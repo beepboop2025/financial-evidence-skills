@@ -71,6 +71,19 @@ class DiscoveryDocsTests(unittest.TestCase):
         self.assertEqual(agent_skill["identifier"], "financial-evidence")
         self.assertEqual(agent_skill["activation_topics"], manifest["topics"])
         self.assertEqual(agent_skill["status"], "public")
+        registry = next(
+            interface
+            for interface in manifest["interfaces"]
+            if interface["kind"] == "mcp-registry"
+        )
+        self.assertEqual(
+            registry["identifier"],
+            "io.github.beepboop2025/financial-evidence",
+        )
+        self.assertEqual(
+            registry["transports"],
+            ["streamable-http", "stdio-oci"],
+        )
         remote_mcp = next(
             interface
             for interface in manifest["interfaces"]
@@ -88,11 +101,11 @@ class DiscoveryDocsTests(unittest.TestCase):
         )
         self.assertEqual(
             openai["status"],
-            "codex-repo-installable-chatgpt-public-directory-pending-review",
+            "codex-repo-installable-chatgpt-submission-not-started",
         )
         self.assertEqual(openai["codex_status"], "repo-installable")
         self.assertEqual(
-            openai["chatgpt_status"], "public-directory-pending-review"
+            openai["chatgpt_status"], "submission-not-started"
         )
 
     def test_html_jsonld_fragments_and_local_links(self):

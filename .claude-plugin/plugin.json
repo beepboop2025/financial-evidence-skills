@@ -1,7 +1,7 @@
 {
   "name": "financial-evidence",
   "description": "Read-only money-market, capital-market, China-economy, bank-risk, and market-liquidity evidence across LiquiLens, Undertow, Seiche, and Palimpsest.",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": {
     "name": "Liquidity Lab",
     "url": "https://github.com/beepboop2025"

@@ -1,25 +1,34 @@
 # OpenAI public plugin submission packet
 
-Status: required public materials are prepared in the repository; the plugin
-has not been entered into the OpenAI portal, submitted, approved, listed, or
-published by OpenAI.
+Status: the public package and form copy are prepared in the repository. The
+account owner must still record the required cross-platform demo, complete
+identity and domain verification, and enter the materials in the portal. The
+plugin has not been submitted, approved, listed, or published by OpenAI.
 
 ## Public listing
 
 - Name: Financial Evidence
 - Developer: Liquidity Lab
 - Category: Productivity
-- Short description: Read-only evidence for money and capital markets.
+- Short description: Read-only financial evidence
 - Long description: Route sourced research across LiquiLens, Undertow, Seiche,
   and Palimpsest for money markets, capital markets, China economy, covered bank
   risk, and market liquidity without flattening evidence into one score.
-- Logo: https://github.com/beepboop2025/financial-evidence-skills/blob/main/assets/logo.svg
+- Logo upload: `assets/logo-400.png` (400 by 400 PNG)
+- Public logo: https://raw.githubusercontent.com/beepboop2025/financial-evidence-skills/v0.1.4/assets/logo-400.png
 - Website: https://beepboop2025.github.io/financial-evidence-skills/
 - Support: https://beepboop2025.github.io/financial-evidence-skills/support/
 - Privacy: https://beepboop2025.github.io/financial-evidence-skills/privacy/
 - Terms: https://beepboop2025.github.io/financial-evidence-skills/terms/
 - Authentication: none; no demo account or credentials are required.
+- Demo recording: not yet recorded. Record the principal `topics`, `route`, and
+  `fetch` workflows in ChatGPT and Codex after the owner account can install the
+  draft, then host the final recording at a public HTTPS URL.
 - Universal MCP URL: https://liquilens.in/mcp/financial-evidence
+- Domain challenge capability: the production route at
+  `https://liquilens.in/.well-known/openai-apps-challenge` is deployed and
+  intentionally returns 404 until the owner installs OpenAI's exact
+  portal-issued token; domain verification is not yet complete.
 - Content security policy: no plugin UI or browser-side fetches; no browser
   connection domains are requested. Server-side retrieval is restricted to the
   fixed public source allowlist implemented by the MCP deployment.
@@ -35,10 +44,10 @@ permission.
 
 ## Release notes
 
-Initial submission, plugin version 0.1.0. Financial Evidence adds a read-only
+Initial submission, plugin version 0.1.4. Financial Evidence adds a read-only
 Agent Skill and Universal MCP route over five deterministic topics and four
-public products. The three tools list topics, explain routing, or retrieve at
-most two topics while retaining source URLs, retrieval clocks, hashes, and
+public products. The three tools list topics, explain routing, or retrieve up
+to five topics while retaining source URLs, retrieval clocks, hashes, and
 explicit unavailable states. No authentication, test account, demo credential,
 plugin UI, financial write action, or prior submitted version is involved.
 
@@ -48,10 +57,38 @@ plugin UI, financial write action, or prior submitted version is involved.
 | --- | --- | --- | --- | --- | --- |
 | `financial_evidence_topics` | List supported topics and product routes | yes | no | yes | no |
 | `financial_evidence_route` | Explain the deterministic route for one topic | yes | no | yes | no |
-| `financial_evidence_fetch` | Retrieve bounded public evidence for up to two topics | yes | no | yes | yes |
+| `financial_evidence_fetch` | Retrieve bounded public evidence for up to five topics | yes | no | yes | yes |
 
-The fetch tool's open-world annotation is required because it performs
-allowlisted HTTPS reads from the four public product surfaces. None of the
+### Annotation justifications
+
+#### `financial_evidence_topics`
+
+- `readOnlyHint` justification: `true` because the tool reads a static in-process
+  topic catalog and cannot create, update, delete, send, enqueue, or persist data.
+- `openWorldHint` justification: `false` because it does not contact an external
+  system or change publicly visible state.
+- `destructiveHint` justification: `false` because it has no operation that can
+  delete, overwrite, revoke, transact, message, or cause an irreversible effect.
+
+#### `financial_evidence_route`
+
+- `readOnlyHint` justification: `true` because the tool looks up one topic in a
+  static deterministic routing table without changing state.
+- `openWorldHint` justification: `false` because route resolution is local and
+  cannot interact with or modify an external service.
+- `destructiveHint` justification: `false` because it cannot delete, overwrite,
+  revoke, transact, message, or cause an irreversible effect.
+
+#### `financial_evidence_fetch`
+
+- `readOnlyHint` justification: `true` because the tool performs only bounded
+  HTTPS retrievals from a fixed public allowlist and never sends a mutation.
+- `openWorldHint` justification: `true` because the tool contacts external public
+  product surfaces whose availability and returned evidence can change.
+- `destructiveHint` justification: `false` because it cannot write to the source
+  products, delete or overwrite data, send messages, or execute transactions.
+
+All annotations are explicit in the live `tools/list` response. None of the
 tools writes data or performs financial actions.
 
 ## Suggested prompts
@@ -144,11 +181,13 @@ context. Reviewers can run them against the public Universal MCP endpoint.
 
 Before a public-directory submission, the OpenAI account owner must have Apps
 Management write access, complete publisher identity verification, confirm the
-portal's country/region selections, verify the publisher domain, and place the
-exact portal-issued token at
+portal's country/region selections, and install the exact portal-issued token at
 `https://liquilens.in/.well-known/openai-apps-challenge`. The owner must then
-create the portal draft, enter these materials, scan the server and imported
-skill, run the five positive and three negative tests, complete the policy
-attestations, submit for review, and manually publish after approval. This
-repository cannot truthfully pre-create the challenge token or represent those
-account actions as complete.
+verify the publisher domain, create the portal draft, enter these materials,
+scan the server and imported
+skill, record and host the required demo across supported platforms, enter the
+nine annotation justifications, run the five positive and three negative tests,
+complete the policy attestations, submit for review, and manually publish after
+approval. The production challenge route already fails closed until the token
+exists, but this repository cannot truthfully invent that token, a demo URL, or
+account receipts, or represent those actions as complete.

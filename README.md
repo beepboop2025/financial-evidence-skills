@@ -4,7 +4,8 @@
 
 [Public documentation](https://beepboop2025.github.io/financial-evidence-skills/)
 includes a crawlable integration matrix plus agent-readable `llms.txt`, pricing,
-and integration metadata.
+integration metadata, and a dated
+[third-party marketplace ledger](MARKETPLACE_STATUS.md).
 
 Open, read-only Agent Skills for routing financial research to bounded public
 evidence. The first skill connects four complementary products without turning
@@ -46,14 +47,14 @@ Bash, Zsh, and Fish completions. Alternatively, run directly from GitHub
 without installing:
 
 ```bash
-uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.3 \
+uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.4 \
   financial-evidence fetch --topic money-market --topic china-economy
 ```
 
 Or install it as a persistent command:
 
 ```bash
-uv tool install git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.3
+uv tool install git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.4
 financial-evidence topics
 financial-evidence route --topic capital-market --format table
 financial-evidence fetch --topic bank-risk --format ndjson
@@ -81,31 +82,26 @@ https://liquilens.in/mcp/financial-evidence
 ```
 
 It exposes the same three read-only `topics`, `route`, and `fetch` tools for
-clients that support remote MCP. The package also includes a dependency-free
-stdio server for local or offline-compatible client setups. A portable stdio
-configuration is in
-the root [`.mcp.json`](.mcp.json) and is mirrored in
-[`integrations/mcp-config.json`](integrations/mcp-config.json):
+clients that support remote MCP. The root [`.mcp.json`](.mcp.json) is the
+portable plugin configuration for that public remote:
 
 ```json
 {
   "mcpServers": {
     "financial-evidence": {
-      "type": "stdio",
-      "command": "uvx",
-      "args": [
-        "--from",
-        "git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.3",
-        "financial-evidence-mcp"
-      ]
+      "type": "http",
+      "url": "https://liquilens.in/mcp/financial-evidence"
     }
   }
 }
 ```
 
-It accepts both the MCP `2025-11-25` initialization flow and the stateless
-`2026-07-28` discovery flow. Messages use newline-delimited JSON-RPC on stdio;
-nothing except protocol messages is written to standard output.
+The package also includes a dependency-free stdio server for local or
+offline-compatible client setups. Its pinned configuration is in
+[`integrations/mcp-config.json`](integrations/mcp-config.json). Both transports
+accept the MCP `2025-11-25` initialization flow and the stateless `2026-07-28`
+discovery flow. Local stdio messages use newline-delimited JSON-RPC; nothing
+except protocol messages is written to standard output.
 
 The official MCP Registry record publishes both the multi-architecture OCI
 package and the public Streamable HTTP endpoint. Remote clients do not need
@@ -121,7 +117,7 @@ instructions as well:
 
 ```bash
 gemini extensions install https://github.com/beepboop2025/financial-evidence-skills \
-  --ref v0.1.3
+  --ref v0.1.4
 ```
 
 Claude Code can add this repository as a self-hosted marketplace and install
@@ -133,8 +129,8 @@ claude plugin install financial-evidence@liquidity-lab
 ```
 
 The Claude plugin loads the same byte-identical Agent Skill plus the root
-`.mcp.json` stdio server. These are direct, self-hosted install routes; they do
-not imply inclusion in a vendor-operated marketplace or endorsement.
+`.mcp.json` public remote server. These are direct, self-hosted install routes;
+they do not imply inclusion in a vendor-operated marketplace or endorsement.
 
 ### Install in Codex; prepare ChatGPT
 
@@ -153,34 +149,34 @@ publisher-identity, and domain-challenge steps belong to the OpenAI account
 owner. See [`OPENAI_PLUGIN_SUBMISSION.md`](OPENAI_PLUGIN_SUBMISSION.md) for the
 listing copy and required positive and negative tests.
 
-The root `.mcp.json` is the portable workspace form read natively by Copilot
-Agent Host and other compatible clients. VS Code forwards `.vscode/mcp.json`
-to Agent Host for ordinary local sessions, but the root file avoids relying on
-that forwarding path.
+The root `.mcp.json` is the portable plugin form for the public remote MCP
+server. VS Code and Cursor retain separate workspace files for the pinned local
+stdio server, so plugin installs do not depend on a local Python process while
+editor workspaces can still use one.
 
 ### Install in VS Code or Cursor
 
 The repository also includes editor-specific workspace configuration:
 [`.vscode/mcp.json`](.vscode/mcp.json) uses VS Code's top-level `servers`
 object, while [`.cursor/mcp.json`](.cursor/mcp.json) uses Cursor's top-level
-`mcpServers` object. Both launch the same v0.1.3 stdio server through `uvx`.
+`mcpServers` object. Both launch the same v0.1.4 stdio server through `uvx`.
 
 VS Code can install the server through its protocol handler:
 
 ```text
-vscode:mcp/install?%7B%22name%22%3A%22financial-evidence%22%2C%22type%22%3A%22stdio%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22--from%22%2C%22git%2Bhttps%3A%2F%2Fgithub.com%2Fbeepboop2025%2Ffinancial-evidence-skills.git%40v0.1.3%22%2C%22financial-evidence-mcp%22%5D%7D
+vscode:mcp/install?%7B%22name%22%3A%22financial-evidence%22%2C%22type%22%3A%22stdio%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22--from%22%2C%22git%2Bhttps%3A%2F%2Fgithub.com%2Fbeepboop2025%2Ffinancial-evidence-skills.git%40v0.1.4%22%2C%22financial-evidence-mcp%22%5D%7D
 ```
 
 Or add it to your VS Code user profile from a terminal:
 
 ```bash
-code --add-mcp '{"name":"financial-evidence","type":"stdio","command":"uvx","args":["--from","git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.3","financial-evidence-mcp"]}'
+code --add-mcp '{"name":"financial-evidence","type":"stdio","command":"uvx","args":["--from","git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.4","financial-evidence-mcp"]}'
 ```
 
 Cursor can install the same configuration through its base64-encoded deeplink:
 
 ```text
-cursor://anysphere.cursor-deeplink/mcp/install?name=financial-evidence&config=eyJ0eXBlIjoic3RkaW8iLCJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyItLWZyb20iLCJnaXQraHR0cHM6Ly9naXRodWIuY29tL2JlZXBib29wMjAyNS9maW5hbmNpYWwtZXZpZGVuY2Utc2tpbGxzLmdpdEB2MC4xLjMiLCJmaW5hbmNpYWwtZXZpZGVuY2UtbWNwIl19
+cursor://anysphere.cursor-deeplink/mcp/install?name=financial-evidence&config=eyJ0eXBlIjoic3RkaW8iLCJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyItLWZyb20iLCJnaXQraHR0cHM6Ly9naXRodWIuY29tL2JlZXBib29wMjAyNS9maW5hbmNpYWwtZXZpZGVuY2Utc2tpbGxzLmdpdEB2MC4xLjQiLCJmaW5hbmNpYWwtZXZpZGVuY2UtbWNwIl19
 ```
 
 Install `uv` first so `uvx` is on your path. Review the source and exact
@@ -193,7 +189,7 @@ before using its inline start action. These are self-installable compatibility
 artifacts, not claims of a VS Code or Cursor marketplace listing or endorsement.
 
 For desktop clients that support one-click MCP Bundles, download
-`financial-evidence-0.1.3.mcpb` from the GitHub release. The bundle uses the
+`financial-evidence-0.1.4.mcpb` from the GitHub release. The bundle uses the
 cross-platform `uv` runtime and requires no API key or configuration.
 
 ## Finance-tool integrations

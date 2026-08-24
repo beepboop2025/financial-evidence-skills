@@ -45,11 +45,23 @@ class EditorIntegrationTests(unittest.TestCase):
             ],
         }
         self.assertEqual(self.config, expected)
-        self.assertEqual(_json(".mcp.json"), self.canonical)
         self.assertEqual(_json(".cursor/mcp.json"), self.canonical)
         self.assertEqual(
             _json(".vscode/mcp.json"),
             {"servers": self.canonical["mcpServers"]},
+        )
+
+    def test_root_plugin_mcp_uses_the_public_remote(self):
+        self.assertEqual(
+            _json(".mcp.json"),
+            {
+                "mcpServers": {
+                    SERVER_NAME: {
+                        "type": "http",
+                        "url": "https://liquilens.in/mcp/financial-evidence",
+                    }
+                }
+            },
         )
 
     def test_vscode_install_url_and_cli_decode_to_named_config(self):
@@ -98,7 +110,7 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertIn("not claims of a VS Code or Cursor marketplace listing", readme)
 
     def test_release_surfaces_are_pinned_to_package_version(self):
-        self.assertEqual(self.version, "0.1.3")
+        self.assertEqual(self.version, "0.1.4")
         self.assertEqual(_json("manifest.json")["version"], self.version)
         server = _json("server.json")
         self.assertEqual(server["version"], self.version)
@@ -189,16 +201,12 @@ class EditorIntegrationTests(unittest.TestCase):
         plugin = _json(".codex-plugin/plugin.json")
         marketplace = _json(".agents/plugins/marketplace.json")
         self.assertEqual(plugin["name"], SERVER_NAME)
-        self.assertEqual(plugin["version"], "0.1.0")
+        self.assertEqual(plugin["version"], self.version)
         self.assertEqual(plugin["skills"], "./skills/")
+        self.assertEqual(plugin["mcpServers"], "./.mcp.json")
         self.assertEqual(
-            plugin["mcpServers"],
-            {
-                SERVER_NAME: {
-                    "type": "http",
-                    "url": "https://liquilens.in/mcp/financial-evidence",
-                }
-            },
+            _json(plugin["mcpServers"])["mcpServers"][SERVER_NAME]["url"],
+            "https://liquilens.in/mcp/financial-evidence",
         )
         self.assertEqual(
             plugin["interface"]["privacyPolicyURL"],
@@ -209,10 +217,20 @@ class EditorIntegrationTests(unittest.TestCase):
             "https://beepboop2025.github.io/financial-evidence-skills/terms/",
         )
         self.assertEqual(
+            plugin["interface"]["supportURL"],
+            "https://beepboop2025.github.io/financial-evidence-skills/support/",
+        )
+        self.assertEqual(
             plugin["interface"]["logo"],
             "./assets/logo.svg",
         )
         self.assertTrue((ROOT / plugin["interface"]["logo"]).is_file())
+        self.assertEqual(
+            plugin["interface"]["composerIcon"],
+            "./assets/logo-400.png",
+        )
+        self.assertTrue((ROOT / plugin["interface"]["composerIcon"]).is_file())
+        self.assertLessEqual(len(plugin["interface"]["shortDescription"]), 30)
         self.assertEqual(marketplace["name"], "liquidity-lab")
         self.assertEqual(len(marketplace["plugins"]), 1)
         entry = marketplace["plugins"][0]
@@ -229,18 +247,18 @@ class EditorIntegrationTests(unittest.TestCase):
         )
         self.assertEqual(
             integration["status"],
-            "codex-repo-installable-chatgpt-public-directory-pending-review",
+            "codex-repo-installable-chatgpt-submission-not-started",
         )
         self.assertIn("codex plugin marketplace add", integration["install"])
         self.assertIn("codex plugin add", integration["install"])
         self.assertEqual(integration["codex_status"], "repo-installable")
         self.assertEqual(
-            integration["chatgpt_status"], "public-directory-pending-review"
+            integration["chatgpt_status"], "submission-not-started"
         )
 
         packet = (ROOT / "OPENAI_PLUGIN_SUBMISSION.md").read_text()
         self.assertIn(
-            "has not been entered into the OpenAI portal, submitted, approved, listed, or",
+            "has not been submitted, approved, listed, or published by OpenAI",
             packet.replace("\n", " "),
         )
         self.assertIn("five positive and three negative tests", packet)
@@ -250,8 +268,21 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertIn("Support: https://", packet)
         self.assertIn("## Release notes", packet)
         self.assertIn("Availability:", packet)
+        self.assertIn("Demo recording: not yet recorded", packet)
+        self.assertEqual(packet.count("`readOnlyHint` justification:"), 3)
+        self.assertEqual(packet.count("`openWorldHint` justification:"), 3)
+        self.assertEqual(packet.count("`destructiveHint` justification:"), 3)
         self.assertEqual(packet.count("Fixture or account data:"), 5)
         self.assertEqual(packet.count("Why it must not complete the action:"), 3)
+
+    def test_glama_metadata_is_minimal_and_owner_scoped(self):
+        self.assertEqual(
+            _json("glama.json"),
+            {
+                "$schema": "https://glama.ai/mcp/schemas/server.json",
+                "maintainers": ["beepboop2025"],
+            },
+        )
 
     def test_agent_skill_layouts_are_byte_identical(self):
         for relative in (

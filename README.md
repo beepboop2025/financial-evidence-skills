@@ -1,5 +1,7 @@
 # Financial Evidence Agent Skills
 
+[![skills.sh](https://skills.sh/b/beepboop2025/financial-evidence-skills)](https://skills.sh/beepboop2025/financial-evidence-skills/financial-evidence)
+
 Open, read-only Agent Skills for routing financial research to bounded public
 evidence. The first skill connects four complementary products without turning
 them into one score:
@@ -18,6 +20,9 @@ npx skills add beepboop2025/financial-evidence-skills --skill financial-evidence
 Or copy [`financial-evidence/`](financial-evidence/) into the Agent Skills
 directory supported by your agent. The folder follows the open
 [Agent Skills specification](https://agentskills.io/specification).
+
+The skill is also indexed in the public
+[skills.sh directory](https://skills.sh/beepboop2025/financial-evidence-skills/financial-evidence).
 
 Once installed, ask your agent to research a money-market, capital-market,
 bank-risk, market-liquidity or China-economy question. The skill's description

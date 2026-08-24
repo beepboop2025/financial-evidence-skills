@@ -22,6 +22,21 @@
   ],
   "interfaces": [
     {
+      "name": "Agent Skills",
+      "kind": "agent-skill",
+      "identifier": "financial-evidence",
+      "install": "npx skills add beepboop2025/financial-evidence-skills --skill financial-evidence",
+      "directory_url": "https://skills.sh/beepboop2025/financial-evidence-skills/financial-evidence",
+      "activation_topics": [
+        "money-market",
+        "capital-market",
+        "china-economy",
+        "bank-risk",
+        "market-liquidity"
+      ],
+      "status": "public"
+    },
+    {
       "name": "Homebrew",
       "kind": "terminal-package",
       "install": "brew install beepboop2025/tap/financial-evidence",

@@ -40,6 +40,7 @@
           "url": "https://github.com/beepboop2025"
         },
         "featureList": [
+          "Installable Agent Skill with domain-triggered routing",
           "Terminal CLI with JSON, NDJSON, CSV, and table output",
           "Read-only MCP server with topic, route, and fetch tools",
           "Self-installable VS Code and Cursor MCP configurations",
@@ -48,7 +49,7 @@
           "Excel Power Query function",
           "FDC3 app-directory compatibility metadata"
         ],
-        "keywords": "money markets, capital markets, China economy, bank risk, market liquidity, MCP, OpenBB, DuckDB, Excel, FDC3"
+        "keywords": "money markets, capital markets, China economy, bank risk, market liquidity, Agent Skills, MCP, OpenBB, DuckDB, Excel, FDC3"
       }
     </script>
   </head>
@@ -71,6 +72,7 @@
         <p class="lede">Financial Evidence connects terminal and agent workflows to LiquiLens, Undertow, Seiche, and Palimpsest. It routes each question to the relevant public evidence without inventing a universal score, hiding an unavailable source, or requiring an account or API key.</p>
         <div class="actions">
           <a class="button primary" href="#install">Install from a terminal</a>
+          <a class="button" href="https://skills.sh/beepboop2025/financial-evidence-skills/financial-evidence">Install agent skill</a>
           <a class="button" href="https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.beepboop2025%2Ffinancial-evidence&amp;version=latest">Official MCP record</a>
         </div>
         <dl class="proof">
@@ -101,10 +103,15 @@
     </section>
 
     <section id="install" class="section muted">
-      <p class="eyebrow">Terminal-first</p>
+      <p class="eyebrow">Agent and terminal</p>
       <h2>How do I install Financial Evidence?</h2>
-      <p class="answer">On macOS or Linux, install the checksum-pinned Homebrew formula. On any system with uv, run the signed Git tag directly. Both methods expose the same CLI and read-only stdio MCP server.</p>
+      <p class="answer">Install the Agent Skill to let compatible agents activate this router for matching financial research. For direct terminal use, install the checksum-pinned Homebrew formula on macOS or Linux, or run the signed Git tag on any system with uv.</p>
       <div class="commands">
+        <div>
+          <h3>Agent Skills</h3>
+          <pre><code>npx skills add beepboop2025/financial-evidence-skills \
+  --skill financial-evidence</code></pre>
+        </div>
         <div>
           <h3>Homebrew</h3>
           <pre><code>brew install beepboop2025/tap/financial-evidence
@@ -122,8 +129,9 @@ financial-evidence fetch --topic money-market --topic china-economy</code></pre>
     <section id="integrations" class="section">
       <p class="eyebrow">Use it where financial work already happens</p>
       <h2>Which terminals and financial tools can use it?</h2>
-      <p class="answer">Financial Evidence has native surfaces for shell automation, VS Code, Cursor, and MCP agents, plus compatibility layers for OpenBB, DuckDB, Excel Power Query, and FDC3 app directories. The compatibility files are open and self-hostable; they do not claim endorsement or marketplace listing by those vendors.</p>
+      <p class="answer">Financial Evidence has native surfaces for Agent Skills, shell automation, VS Code, Cursor, and MCP agents, plus compatibility layers for OpenBB, DuckDB, Excel Power Query, and FDC3 app directories. The compatibility files are open and self-hostable; they do not claim endorsement or marketplace listing by those vendors.</p>
       <div class="grid">
+        <article><h3>Agent Skills</h3><p>A public <code>SKILL.md</code> teaches compatible agents when to route money-market, capital-market, China-economy, bank-risk, and market-liquidity research across the four products.</p><p><a href="https://skills.sh/beepboop2025/financial-evidence-skills/financial-evidence">Open the public skill listing</a></p></article>
         <article><h3>Terminal</h3><p>Homebrew, uvx, persistent uv tools, completions for Bash, Zsh, and Fish, and stable pipeline exit codes.</p></article>
         <article><h3>MCP</h3><p>Three read-only tools, an official registry record, multi-architecture container, root <code>.mcp.json</code> for Copilot Agent Host and compatible clients, and a one-click MCP Bundle.</p></article>
         <article><h3>VS Code</h3><p>A workspace <code>servers</code> config, protocol install URL, and <code>code --add-mcp</code> command, all pinned to v0.1.2.</p></article>

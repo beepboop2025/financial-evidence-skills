@@ -26,6 +26,7 @@ License: MIT for the software; source publishers retain rights in upstream data.
 
 ## Interfaces
 
+- Agent Skills: public `financial-evidence` skill with domain-triggered routing for compatible agents; install with `npx skills add beepboop2025/financial-evidence-skills --skill financial-evidence`.
 - Terminal: Homebrew, uvx, persistent uv tool, Bash/Zsh/Fish completions, JSON/NDJSON/CSV/table output.
 - MCP: three read-only stdio tools, official registry metadata, portable root `.mcp.json` for Copilot Agent Host and compatible clients, MCP Bundle, and multi-architecture OCI image.
 - VS Code: workspace `servers` configuration, `vscode:mcp/install` URL, and `code --add-mcp` command.

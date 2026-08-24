@@ -71,6 +71,9 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: "24"
       - uses: docker/setup-buildx-action@37fe631027851001ddb9b187196cc803df7f5f0e # v4.3.0
       - name: Build the MCP container without publishing
         uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
@@ -91,6 +94,10 @@ jobs:
             | sha256sum --check --strict
           tar --extract --gzip --file mcp-publisher.tar.gz mcp-publisher
       - run: ./mcp-publisher validate server.json
+      - name: Validate Gemini and Claude extension contracts
+        run: |
+          npx --yes @google/gemini-cli@0.56.0 extensions validate .
+          npx --yes @anthropic-ai/claude-code@2.1.241 plugin validate . --strict
       - name: Validate and pack the desktop MCP bundle
         run: |
           npx --yes @anthropic-ai/mcpb@2.1.2 validate manifest.json

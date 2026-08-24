@@ -61,7 +61,7 @@ class DiscoveryDocsTests(unittest.TestCase):
         self.assertFalse(manifest["write_actions"])
         self.assertEqual(len(manifest["products"]), 4)
         self.assertEqual(len(manifest["topics"]), 5)
-        self.assertEqual(len(manifest["interfaces"]), 11)
+        self.assertEqual(len(manifest["interfaces"]), 14)
         agent_skill = next(
             interface
             for interface in manifest["interfaces"]
@@ -70,6 +70,16 @@ class DiscoveryDocsTests(unittest.TestCase):
         self.assertEqual(agent_skill["identifier"], "financial-evidence")
         self.assertEqual(agent_skill["activation_topics"], manifest["topics"])
         self.assertEqual(agent_skill["status"], "public")
+        remote_mcp = next(
+            interface
+            for interface in manifest["interfaces"]
+            if interface["kind"] == "mcp-streamable-http"
+        )
+        self.assertEqual(
+            remote_mcp["url"],
+            "https://liquilens.in/mcp/financial-evidence",
+        )
+        self.assertFalse(remote_mcp["account_required"])
 
     def test_html_jsonld_fragments_and_local_links(self):
         page = DOCS / "index.html"

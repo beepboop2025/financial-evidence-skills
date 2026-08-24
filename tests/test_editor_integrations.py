@@ -98,13 +98,22 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertIn("not claims of a VS Code or Cursor marketplace listing", readme)
 
     def test_release_surfaces_are_pinned_to_package_version(self):
-        self.assertEqual(self.version, "0.1.2")
+        self.assertEqual(self.version, "0.1.3")
         self.assertEqual(_json("manifest.json")["version"], self.version)
         server = _json("server.json")
         self.assertEqual(server["version"], self.version)
         self.assertEqual(
             server["packages"][0]["identifier"],
             f"ghcr.io/beepboop2025/financial-evidence-skills:{self.version}",
+        )
+        self.assertEqual(
+            server["remotes"],
+            [
+                {
+                    "type": "streamable-http",
+                    "url": "https://liquilens.in/mcp/financial-evidence",
+                }
+            ],
         )
         self.assertEqual(
             _json("integrations/fdc3/appd-record.json")["version"], self.version
@@ -118,6 +127,9 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertIn(f'version = "{self.version}"', pyproject)
         release_surfaces = [
             "README.md",
+            "gemini-extension.json",
+            ".claude-plugin/plugin.json",
+            ".claude-plugin/marketplace.json",
             "docs/index.html",
             "docs/integrations.json",
             "docs/llms.txt",
@@ -129,6 +141,57 @@ class EditorIntegrationTests(unittest.TestCase):
         for path in release_surfaces:
             text = (ROOT / path).read_text()
             self.assertNotIn("0.1.1", text, path)
+
+    def test_gemini_extension_uses_bounded_public_remote_mcp(self):
+        extension = _json("gemini-extension.json")
+        self.assertEqual(extension["name"], SERVER_NAME)
+        self.assertEqual(extension["version"], self.version)
+        remote = extension["mcpServers"][SERVER_NAME]
+        self.assertEqual(
+            remote["httpUrl"],
+            "https://liquilens.in/mcp/financial-evidence",
+        )
+        self.assertEqual(remote["timeout"], 30000)
+        self.assertNotIn("trust", remote)
+        self.assertEqual(
+            remote["includeTools"],
+            [
+                "financial_evidence_topics",
+                "financial_evidence_route",
+                "financial_evidence_fetch",
+            ],
+        )
+        integration = self.interfaces["Gemini CLI"]
+        self.assertIn(f"--ref v{self.version}", integration["install"])
+        self.assertNotIn("--consent", integration["install"])
+
+    def test_claude_plugin_and_marketplace_are_self_hosted(self):
+        plugin = _json(".claude-plugin/plugin.json")
+        marketplace = _json(".claude-plugin/marketplace.json")
+        self.assertEqual(plugin["name"], SERVER_NAME)
+        self.assertEqual(plugin["version"], self.version)
+        self.assertEqual(marketplace["name"], "liquidity-lab")
+        self.assertEqual(len(marketplace["plugins"]), 1)
+        entry = marketplace["plugins"][0]
+        self.assertEqual(entry["name"], SERVER_NAME)
+        self.assertEqual(entry["source"], ".")
+        self.assertEqual(entry["version"], self.version)
+        self.assertEqual(plugin["version"], entry["version"])
+        integration = self.interfaces["Claude Code"]
+        self.assertIn("plugin marketplace add", integration["install"])
+        self.assertIn(
+            "financial-evidence@liquidity-lab", integration["install"]
+        )
+
+    def test_agent_skill_layouts_are_byte_identical(self):
+        for relative in (
+            "SKILL.md",
+            "references/routing.md",
+            "scripts/fetch_evidence.py",
+        ):
+            canonical = ROOT / "financial-evidence" / relative
+            extension = ROOT / "skills" / "financial-evidence" / relative
+            self.assertEqual(extension.read_bytes(), canonical.read_bytes(), relative)
 
 
 if __name__ == "__main__":

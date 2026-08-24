@@ -1,0 +1,17 @@
+{
+  "name": "financial-evidence",
+  "version": "0.1.3",
+  "description": "Read-only evidence for money markets, capital markets, China economy, bank risk, and market liquidity across LiquiLens, Undertow, Seiche, and Palimpsest.",
+  "mcpServers": {
+    "financial-evidence": {
+      "httpUrl": "https://liquilens.in/mcp/financial-evidence",
+      "timeout": 30000,
+      "description": "Public read-only financial evidence router with fixed product sources.",
+      "includeTools": [
+        "financial_evidence_topics",
+        "financial_evidence_route",
+        "financial_evidence_fetch"
+      ]
+    }
+  }
+}

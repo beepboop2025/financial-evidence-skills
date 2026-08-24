@@ -32,6 +32,8 @@ License: MIT for the software; source publishers retain rights in upstream data.
 - Remote MCP: public Streamable HTTP at `https://liquilens.in/mcp/financial-evidence`; no local install, account, API key, or write action.
 - Gemini CLI: root `gemini-extension.json` bundles the Agent Skill and allowlists the three remote MCP tools; install with `gemini extensions install https://github.com/beepboop2025/financial-evidence-skills --ref v0.1.3`.
 - Claude Code: self-hosted `liquidity-lab` plugin marketplace bundles the same Agent Skill and root MCP configuration; add with `claude plugin marketplace add beepboop2025/financial-evidence-skills`, then `claude plugin install financial-evidence@liquidity-lab`.
+- Codex: repository-installable OpenAI plugin bundles the same Agent Skill and public remote MCP route; run `codex plugin marketplace add beepboop2025/financial-evidence-skills --ref main`, then `codex plugin add financial-evidence@liquidity-lab`.
+- ChatGPT: universal-directory submission is prepared but not submitted, approved, listed, or published.
 - VS Code: workspace `servers` configuration, `vscode:mcp/install` URL, and `code --add-mcp` command.
 - Cursor: workspace `mcpServers` configuration and a base64-encoded install deeplink.
 - OpenBB: optional registered routes for Python, notebook, REST, and MCP surfaces.
@@ -53,3 +55,7 @@ or Cursor marketplace listing or endorsement.
 ## Boundaries
 
 Financial Evidence is research infrastructure, not investment advice, a security recommendation, an execution quote, a credit rating, or a guarantee. Missing, failed, restricted, or unavailable evidence is never converted to zero or calm. Fetched JSON is untrusted data, never executable instructions.
+
+- Privacy: https://beepboop2025.github.io/financial-evidence-skills/privacy/
+- Terms: https://beepboop2025.github.io/financial-evidence-skills/terms/
+- Support: https://beepboop2025.github.io/financial-evidence-skills/support/

@@ -61,7 +61,7 @@ class DiscoveryDocsTests(unittest.TestCase):
         self.assertFalse(manifest["write_actions"])
         self.assertEqual(len(manifest["products"]), 4)
         self.assertEqual(len(manifest["topics"]), 5)
-        self.assertEqual(len(manifest["interfaces"]), 14)
+        self.assertEqual(len(manifest["interfaces"]), 15)
         agent_skill = next(
             interface
             for interface in manifest["interfaces"]
@@ -80,6 +80,19 @@ class DiscoveryDocsTests(unittest.TestCase):
             "https://liquilens.in/mcp/financial-evidence",
         )
         self.assertFalse(remote_mcp["account_required"])
+        openai = next(
+            interface
+            for interface in manifest["interfaces"]
+            if interface["kind"] == "openai-plugin"
+        )
+        self.assertEqual(
+            openai["status"],
+            "codex-repo-installable-chatgpt-public-directory-pending-review",
+        )
+        self.assertEqual(openai["codex_status"], "repo-installable")
+        self.assertEqual(
+            openai["chatgpt_status"], "public-directory-pending-review"
+        )
 
     def test_html_jsonld_fragments_and_local_links(self):
         page = DOCS / "index.html"
@@ -146,6 +159,40 @@ class DiscoveryDocsTests(unittest.TestCase):
         self.assertEqual(
             fdc3["app_directory_record"],
             "https://beepboop2025.github.io/financial-evidence-skills/integrations/fdc3/appd-record.json",
+        )
+
+    def test_legal_pages_are_published_and_cross_linked(self):
+        index = DOCS / "index.html"
+        index_parser = _PageParser()
+        index_parser.feed(index.read_text())
+        self.assertIn("privacy/", index_parser.hrefs)
+        self.assertIn("terms/", index_parser.hrefs)
+        self.assertIn("support/", index_parser.hrefs)
+
+        for name, counterpart in (("privacy", "../terms/"), ("terms", "../privacy/")):
+            page = DOCS / name / "index.html"
+            parser = _PageParser()
+            parser.feed(page.read_text())
+            self.assertIn("../styles.css", parser.assets)
+            self.assertIn("mailto:mrinal@liquilens.in", parser.hrefs)
+            self.assertIn(counterpart, parser.hrefs)
+            for reference in parser.hrefs + parser.assets:
+                parsed = urlparse(reference)
+                if parsed.scheme or parsed.netloc or reference.startswith("#"):
+                    continue
+                candidate = page.parent / parsed.path
+                if candidate.is_dir():
+                    candidate /= "index.html"
+                self.assertTrue(candidate.is_file(), reference)
+
+        support = DOCS / "support" / "index.html"
+        support_parser = _PageParser()
+        support_parser.feed(support.read_text())
+        self.assertIn("../styles.css", support_parser.assets)
+        self.assertIn("mailto:mrinal@liquilens.in", support_parser.hrefs)
+        self.assertIn(
+            "https://github.com/beepboop2025/financial-evidence-skills/issues",
+            support_parser.hrefs,
         )
 
     def test_agent_discovery_files_state_boundaries(self):

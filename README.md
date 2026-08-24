@@ -136,6 +136,23 @@ The Claude plugin loads the same byte-identical Agent Skill plus the root
 `.mcp.json` stdio server. These are direct, self-hosted install routes; they do
 not imply inclusion in a vendor-operated marketplace or endorsement.
 
+### Install in Codex; prepare ChatGPT
+
+Codex can add the repository's plugin marketplace and then install the plugin:
+
+```bash
+codex plugin marketplace add beepboop2025/financial-evidence-skills --ref main
+codex plugin add financial-evidence@liquidity-lab
+```
+
+The OpenAI plugin package combines the byte-identical Agent Skill with the
+public remote MCP endpoint. The Codex repository install route is public. A
+ChatGPT and Codex universal-directory submission is also prepared, but has not
+been submitted, approved, or published by OpenAI. The remaining review,
+publisher-identity, and domain-challenge steps belong to the OpenAI account
+owner. See [`OPENAI_PLUGIN_SUBMISSION.md`](OPENAI_PLUGIN_SUBMISSION.md) for the
+listing copy and required positive and negative tests.
+
 The root `.mcp.json` is the portable workspace form read natively by Copilot
 Agent Host and other compatible clients. VS Code forwards `.vscode/mcp.json`
 to Agent Host for ordinary local sessions, but the root file avoids relying on
@@ -188,6 +205,11 @@ cross-platform `uv` runtime and requires no API key or configuration.
   allowlists the three tools exposed by the public remote MCP endpoint.
 - **Claude Code:** the self-hosted `liquidity-lab` marketplace installs the
   versioned plugin, Agent Skill, and MCP configuration from this repository.
+- **Codex:** the repository marketplace installs the Agent Skill and public
+  remote MCP package directly.
+- **ChatGPT:** the universal-directory submission packet is prepared; public
+  availability remains pending account-owned verification, submission,
+  review, and publication.
 - **OpenBB:** install `financial-evidence[openbb]` from this repository inside
   an OpenBB environment and run `openbb-build`. The registered router exposes
   `obb.financial_evidence.routes()` and `obb.financial_evidence.fetch()`, which
@@ -236,6 +258,10 @@ This repository provides public research routing, not investment advice,
 security recommendations, execution quotes, credit ratings or guarantees.
 Source publishers retain their rights; an open-source helper does not relicense
 upstream data.
+
+[Support](https://beepboop2025.github.io/financial-evidence-skills/support/) ·
+[Privacy](https://beepboop2025.github.io/financial-evidence-skills/privacy/) ·
+[Terms](https://beepboop2025.github.io/financial-evidence-skills/terms/)
 
 ## Development
 

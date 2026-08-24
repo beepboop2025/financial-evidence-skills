@@ -1,0 +1,49 @@
+{
+  "name": "financial-evidence",
+  "version": "0.1.0",
+  "description": "Read-only money-market, capital-market, China-economy, bank-risk, and market-liquidity evidence.",
+  "author": {
+    "name": "Liquidity Lab",
+    "email": "mrinal@liquilens.in",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://beepboop2025.github.io/financial-evidence-skills/",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT",
+  "keywords": [
+    "bank-risk",
+    "capital-markets",
+    "china-economy",
+    "financial-data",
+    "liquidity",
+    "money-markets"
+  ],
+  "skills": "./skills/",
+  "mcpServers": {
+    "financial-evidence": {
+      "type": "http",
+      "url": "https://liquilens.in/mcp/financial-evidence"
+    }
+  },
+  "interface": {
+    "displayName": "Financial Evidence",
+    "shortDescription": "Read-only evidence for money and capital markets.",
+    "longDescription": "Route sourced research across LiquiLens, Undertow, Seiche, and Palimpsest without flattening evidence into one score.",
+    "developerName": "Liquidity Lab",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Research"
+    ],
+    "websiteURL": "https://beepboop2025.github.io/financial-evidence-skills/",
+    "privacyPolicyURL": "https://beepboop2025.github.io/financial-evidence-skills/privacy/",
+    "termsOfServiceURL": "https://beepboop2025.github.io/financial-evidence-skills/terms/",
+    "logo": "./assets/logo.svg",
+    "defaultPrompt": [
+      "Trace current money-market stress across public evidence.",
+      "Research China economic signals and revision history.",
+      "Compare bank risk with market-liquidity evidence."
+    ],
+    "brandColor": "#0B6E69"
+  }
+}

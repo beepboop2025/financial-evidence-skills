@@ -92,6 +92,14 @@ class DiscoveryDocsTests(unittest.TestCase):
         self.assertIn("Allow: /", robots)
         self.assertIn("sitemap.xml", robots)
 
+    def test_indexnow_key_and_workflow_stay_synchronized(self):
+        key = "82f75882dbd36fa818fdb25735425b6f"
+        workflow = (ROOT / ".github/workflows/indexnow.yml").read_text()
+        self.assertEqual((DOCS / f"{key}.txt").read_text().strip(), key)
+        self.assertGreaterEqual(workflow.count(key), 2)
+        self.assertIn("https://api.indexnow.org/indexnow", workflow)
+        self.assertIn("keyLocation", workflow)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,6 +1,6 @@
 {
   "name": "financial-evidence",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "description": "Read-only money-market, capital-market, China-economy, bank-risk, and market-liquidity evidence.",
   "author": {
     "name": "Liquidity Lab",
@@ -19,15 +19,10 @@
     "money-markets"
   ],
   "skills": "./skills/",
-  "mcpServers": {
-    "financial-evidence": {
-      "type": "http",
-      "url": "https://liquilens.in/mcp/financial-evidence"
-    }
-  },
+  "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Financial Evidence",
-    "shortDescription": "Read-only evidence for money and capital markets.",
+    "shortDescription": "Read-only financial evidence",
     "longDescription": "Route sourced research across LiquiLens, Undertow, Seiche, and Palimpsest without flattening evidence into one score.",
     "developerName": "Liquidity Lab",
     "category": "Productivity",
@@ -38,6 +33,8 @@
     "websiteURL": "https://beepboop2025.github.io/financial-evidence-skills/",
     "privacyPolicyURL": "https://beepboop2025.github.io/financial-evidence-skills/privacy/",
     "termsOfServiceURL": "https://beepboop2025.github.io/financial-evidence-skills/terms/",
+    "supportURL": "https://beepboop2025.github.io/financial-evidence-skills/support/",
+    "composerIcon": "./assets/logo-400.png",
     "logo": "./assets/logo.svg",
     "defaultPrompt": [
       "Trace current money-market stress across public evidence.",

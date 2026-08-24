@@ -1,0 +1,219 @@
+{
+  "schema": "liquidity-lab.financial-evidence-marketplaces.v1",
+  "name": "Financial Evidence",
+  "version": "0.1.4",
+  "checked_at": "2026-08-24T21:46:54Z",
+  "state_definitions": {
+    "live": "A public listing or install surface was independently resolved.",
+    "listed_incomplete": "A public listing exists, but a required semantic evaluation is incomplete.",
+    "submitted": "The third-party operator has received the submission; review or acceptance is pending.",
+    "eligible_automatic": "The repository meets the operator's automatic indexing rules, but the listing was not observed.",
+    "ready_account_action": "Technical assets are ready; an account-owned portal, identity, or domain-verification action remains.",
+    "ready_validation": "Submission assets are ready, but an operator-specific install test remains before an honest attestation can be made.",
+    "paused_external": "The operator is not currently accepting submissions.",
+    "conditional_artifact": "The channel is appropriate only after a destination-specific artifact is produced.",
+    "skipped_paid": "A paid listing was deliberately not purchased because no spend was authorized."
+  },
+  "entries": [
+    {
+      "id": "official-mcp-registry",
+      "name": "Official MCP Registry",
+      "channel": "mcp-registry",
+      "state": "live",
+      "listing_url": "https://registry.modelcontextprotocol.io/v0/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.4",
+      "cost": "free",
+      "detail": "Version 0.1.4 is active with the public remote endpoint and OCI package.",
+      "next_action": "Monitor future release publication."
+    },
+    {
+      "id": "skills-sh",
+      "name": "skills.sh",
+      "channel": "agent-skill-directory",
+      "state": "live",
+      "listing_url": "https://skills.sh/beepboop2025/financial-evidence-skills/financial-evidence",
+      "cost": "free",
+      "detail": "The Agent Skill listing is public and installable.",
+      "next_action": "Monitor directory security scans after releases."
+    },
+    {
+      "id": "glama",
+      "name": "Glama",
+      "channel": "mcp-directory",
+      "state": "listed_incomplete",
+      "listing_url": "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills",
+      "cost": "free",
+      "detail": "The author-verified listing is public, but the score page reports no Glama release and an empty tool inventory.",
+      "next_action": "Complete the authenticated Glama release and confirm all three tools are introspected."
+    },
+    {
+      "id": "docker-mcp-catalog",
+      "name": "Docker MCP Catalog",
+      "channel": "mcp-catalog",
+      "state": "submitted",
+      "submission_url": "https://github.com/docker/mcp-registry/pull/4765",
+      "cost": "free",
+      "detail": "The v0.1.4 source-pinned submission is validator-clean, mergeable, and awaiting maintainer review.",
+      "next_action": "Wait for Docker maintainer review."
+    },
+    {
+      "id": "awesome-mcp-servers",
+      "name": "Awesome MCP Servers",
+      "channel": "community-catalog",
+      "state": "submitted",
+      "submission_url": "https://github.com/punkpeye/awesome-mcp-servers/pull/12771",
+      "cost": "free",
+      "detail": "The catalog check passes and the PR is mergeable; semantic Glama scoring remains incomplete.",
+      "next_action": "Complete Glama evaluation, then wait for maintainer review."
+    },
+    {
+      "id": "awesome-copilot",
+      "name": "Awesome GitHub Copilot",
+      "channel": "agent-skill-catalog",
+      "state": "submitted",
+      "submission_url": "https://github.com/github/awesome-copilot/pull/2785",
+      "cost": "free",
+      "detail": "All automated checks pass; the submission awaits the requested human review.",
+      "next_action": "Wait for maintainer review."
+    },
+    {
+      "id": "finos-fdc3-app-directory",
+      "name": "FINOS FDC3 App Directory",
+      "channel": "financial-desktop-directory",
+      "state": "submitted",
+      "submission_url": "https://github.com/finos-labs/FDC3-App-Directory/pull/40",
+      "cost": "free",
+      "detail": "The v0.1.4 AppD record is schema-valid, DCO-clean, mergeable, and awaiting review.",
+      "next_action": "Wait for FINOS maintainer review."
+    },
+    {
+      "id": "awesome-openbb",
+      "name": "Awesome OpenBB",
+      "channel": "financial-tool-catalog",
+      "state": "submitted",
+      "submission_url": "https://github.com/OpenBB-finance/awesome-openbb/pull/12",
+      "cost": "free",
+      "detail": "The v0.1.4 Financial Evidence entry is signature-verified, mergeable, and validated through a clean OpenBB install and bounded live fetch.",
+      "next_action": "Wait for OpenBB maintainer review."
+    },
+    {
+      "id": "gemini-cli-extension-gallery",
+      "name": "Gemini CLI Extension Gallery",
+      "channel": "agent-extension-gallery",
+      "state": "eligible_automatic",
+      "listing_url": "https://geminicli.com/extensions/",
+      "cost": "free",
+      "detail": "The public repository has the required topic and root manifest; the gallery crawler has not produced an observed listing.",
+      "next_action": "Wait for the daily gallery crawl and verify the listing."
+    },
+    {
+      "id": "openai-plugin-directory",
+      "name": "OpenAI Plugin Directory",
+      "channel": "agent-plugin-directory",
+      "state": "ready_account_action",
+      "submission_url": "https://platform.openai.com/plugins",
+      "cost": "free",
+      "detail": "The public MCP endpoint, listing packet, legal pages, prompts, positive and negative tests, and fail-closed production challenge route are ready; no portal token is installed and no submission has entered review.",
+      "next_action": "Complete publisher identity, install the exact portal-issued challenge token, record the required demo, submit, then publish only after approval."
+    },
+    {
+      "id": "claude-plugin-directory",
+      "name": "Claude Plugin Directory",
+      "channel": "agent-plugin-directory",
+      "state": "ready_account_action",
+      "submission_url": "https://platform.claude.com/plugins/submit",
+      "cost": "free",
+      "detail": "The self-hosted plugin and marketplace manifests pass strict Claude validation; no community-directory submission is claimed.",
+      "next_action": "Submit through the publisher's Claude Console account and await review."
+    },
+    {
+      "id": "smithery",
+      "name": "Smithery",
+      "channel": "mcp-directory",
+      "state": "ready_account_action",
+      "submission_url": "https://smithery.ai/new",
+      "cost": "free-external-registration",
+      "detail": "The public Streamable HTTP endpoint is ready for automated Smithery tool scanning.",
+      "next_action": "Authenticate the owner account, register the external endpoint, and verify the three-tool scan."
+    },
+    {
+      "id": "cline-mcp-marketplace",
+      "name": "Cline MCP Marketplace",
+      "channel": "mcp-marketplace",
+      "state": "ready_validation",
+      "submission_url": "https://github.com/cline/mcp-marketplace/issues/new?template=mcp-server-submission.yml",
+      "cost": "free",
+      "detail": "A dedicated install guide and 400 by 400 PNG are ready; the required Cline install attestation has not been made.",
+      "next_action": "Run a real Cline install from the public guide before checking the submission attestation."
+    },
+    {
+      "id": "stackshare",
+      "name": "StackShare",
+      "channel": "developer-tool-directory",
+      "state": "ready_account_action",
+      "submission_url": "https://stackshare.io/submit",
+      "cost": "unknown-stop-if-checkout",
+      "detail": "Public product, source, documentation, descriptions, and square logo are ready for the standard listing form.",
+      "next_action": "Submit from an owner account only if the standard listing remains free; stop if checkout appears."
+    },
+    {
+      "id": "saashub",
+      "name": "SaaSHub",
+      "channel": "software-directory",
+      "state": "ready_account_action",
+      "submission_url": "https://www.saashub.com/services/submit",
+      "cost": "free-standard-listing",
+      "detail": "The canonical public documentation and free pricing page satisfy the URL-first listing prerequisites.",
+      "next_action": "Complete the free reviewed listing; do not purchase featured placement."
+    },
+    {
+      "id": "alternativeto",
+      "name": "AlternativeTo",
+      "channel": "software-directory",
+      "state": "ready_account_action",
+      "submission_url": "https://alternativeto.net/faq/",
+      "cost": "free-standard-queue",
+      "detail": "The application, platforms, MIT license, descriptions, tags, URLs, and square icon are ready for the normal queue.",
+      "next_action": "Submit through a verified owner account; do not purchase priority review."
+    },
+    {
+      "id": "zenodo",
+      "name": "Zenodo",
+      "channel": "software-archive",
+      "state": "conditional_artifact",
+      "submission_url": "https://zenodo.org/uploads/new",
+      "cost": "free",
+      "detail": "A DOI archive is appropriate after creator and citation metadata are reviewed for a genuine tagged software release.",
+      "next_action": "Prepare reviewed citation metadata before archiving a release."
+    },
+    {
+      "id": "hugging-face-spaces",
+      "name": "Hugging Face Spaces",
+      "channel": "demo-gallery",
+      "state": "conditional_artifact",
+      "submission_url": "https://huggingface.co/spaces/launch",
+      "cost": "free-static-space",
+      "detail": "A listing is justified only after a useful evidence workflow demo exists; a duplicate landing page is not sufficient.",
+      "next_action": "Build and test a destination-specific static explorer before creating a Space."
+    },
+    {
+      "id": "pulsemcp",
+      "name": "PulseMCP",
+      "channel": "mcp-directory",
+      "state": "paused_external",
+      "submission_url": "https://www.pulsemcp.com/submit",
+      "cost": "free-when-open",
+      "detail": "The operator reports that new submissions and changes are temporarily paused.",
+      "next_action": "Recheck when submissions reopen; the official MCP Registry record is already live."
+    },
+    {
+      "id": "mcp-so",
+      "name": "MCP.so",
+      "channel": "mcp-directory",
+      "state": "skipped_paid",
+      "submission_url": "https://mcp.so/submit?type=server",
+      "cost": "USD 39 one-time",
+      "detail": "The paid submission was not purchased.",
+      "next_action": "Require separate authorization for the exact USD 39 spend before reconsidering."
+    }
+  ]
+}

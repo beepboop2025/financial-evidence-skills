@@ -30,6 +30,7 @@ TOPIC_SCHEMA = {
     "type": "array",
     "items": {"type": "string", "enum": list(ROUTES)},
     "minItems": 1,
+    "maxItems": len(ROUTES),
     "uniqueItems": True,
 }
 
@@ -96,14 +97,28 @@ def _tool_result(value: dict[str, Any], *, is_error: bool = False) -> dict[str, 
     }
 
 
+def _validated_topics(arguments: dict[str, Any]) -> list[str]:
+    topics = arguments.get("topics")
+    if not isinstance(topics, list):
+        raise ValueError("topics must be an array")
+    if not 1 <= len(topics) <= len(ROUTES):
+        raise ValueError(f"topics must contain between 1 and {len(ROUTES)} items")
+    if any(not isinstance(topic, str) or topic not in ROUTES for topic in topics):
+        raise ValueError(f"topics must use canonical values: {', '.join(ROUTES)}")
+    if len(set(topics)) != len(topics):
+        raise ValueError("topics must contain unique values")
+    return topics
+
+
 def call_tool(name: str, arguments: dict[str, Any]) -> dict[str, Any]:
     if name == "financial_evidence_topics":
         if arguments:
             raise ValueError("financial_evidence_topics accepts no arguments")
         return _tool_result(route_manifest())
     if name == "financial_evidence_route":
-        return _tool_result(route_manifest(arguments.get("topics", [])))
+        return _tool_result(route_manifest(_validated_topics(arguments)))
     if name == "financial_evidence_fetch":
+        topics = _validated_topics(arguments)
         max_bytes = arguments.get("max_bytes", 1_048_576)
         timeout = arguments.get("timeout", 10.0)
         if not isinstance(max_bytes, int) or isinstance(max_bytes, bool):
@@ -115,7 +130,7 @@ def call_tool(name: str, arguments: dict[str, Any]) -> dict[str, Any]:
         if not 0 < timeout <= 30:
             raise ValueError("timeout must be greater than 0 and at most 30")
         packet = build_packet(
-            arguments.get("topics", []),
+            topics,
             max_bytes=max_bytes,
             timeout=float(timeout),
         )

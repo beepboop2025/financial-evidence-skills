@@ -13,6 +13,7 @@ is the observation clock; external operators may change state after that time.
 
 - Official MCP Registry v0.1.4 is active with both the public Streamable HTTP
   endpoint and the versioned OCI package.
+- The public Homebrew tap installs and tests Financial Evidence v0.1.4.
 - skills.sh serves the Agent Skill.
 - Glama serves both the registry-ingested connector and repository listing, but
   its repository evaluation is incomplete until a Glama release exposes the

@@ -133,6 +133,9 @@ class EditorIntegrationTests(unittest.TestCase):
             _json("integrations/fdc3/appd-record.json")["version"], self.version
         )
         self.assertEqual(_json("docs/integrations.json")["version"], self.version)
+        homebrew = self.interfaces["Homebrew"]
+        self.assertEqual(homebrew["published_version"], self.version)
+        self.assertEqual(homebrew["status"], "public")
         mcp_interface = self.interfaces["Model Context Protocol"]
         self.assertTrue(mcp_interface["portable_agent_host"])
         self.assertTrue(mcp_interface["config"].endswith("/.mcp.json"))

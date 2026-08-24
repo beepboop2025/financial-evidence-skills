@@ -2,7 +2,7 @@
   "schema": "liquidity-lab.financial-evidence-marketplaces.v1",
   "name": "Financial Evidence",
   "version": "0.1.4",
-  "checked_at": "2026-08-24T21:40:19Z",
+  "checked_at": "2026-08-24T21:46:54Z",
   "state_definitions": {
     "live": "A public listing or install surface was independently resolved.",
     "listed_incomplete": "A public listing exists, but a required semantic evaluation is incomplete.",
@@ -52,7 +52,7 @@
       "state": "submitted",
       "submission_url": "https://github.com/docker/mcp-registry/pull/4765",
       "cost": "free",
-      "detail": "The v0.1.3 source-pinned submission is mergeable and awaiting maintainer review.",
+      "detail": "The v0.1.4 source-pinned submission is validator-clean, mergeable, and awaiting maintainer review.",
       "next_action": "Wait for Docker maintainer review."
     },
     {
@@ -82,7 +82,7 @@
       "state": "submitted",
       "submission_url": "https://github.com/finos-labs/FDC3-App-Directory/pull/40",
       "cost": "free",
-      "detail": "The v0.1.3 AppD record is schema-valid, DCO-clean, mergeable, and awaiting review.",
+      "detail": "The v0.1.4 AppD record is schema-valid, DCO-clean, mergeable, and awaiting review.",
       "next_action": "Wait for FINOS maintainer review."
     },
     {
@@ -92,7 +92,7 @@
       "state": "submitted",
       "submission_url": "https://github.com/OpenBB-finance/awesome-openbb/pull/12",
       "cost": "free",
-      "detail": "The separate Financial Evidence entry is signature-verified, mergeable, and validated through a clean OpenBB install and bounded live fetch.",
+      "detail": "The v0.1.4 Financial Evidence entry is signature-verified, mergeable, and validated through a clean OpenBB install and bounded live fetch.",
       "next_action": "Wait for OpenBB maintainer review."
     },
     {

@@ -163,6 +163,11 @@ class EditorIntegrationTests(unittest.TestCase):
             text = (ROOT / path).read_text()
             self.assertNotIn("0.1.1", text, path)
 
+    def test_release_checksums_use_download_basenames(self):
+        workflow = (ROOT / ".github/workflows/release-container.yml").read_text()
+        self.assertNotIn("sha256sum dist/*", workflow)
+        self.assertIn("(cd dist && sha256sum -- *)", workflow)
+
     def test_gemini_extension_uses_bounded_public_remote_mcp(self):
         extension = _json("gemini-extension.json")
         self.assertEqual(extension["name"], SERVER_NAME)

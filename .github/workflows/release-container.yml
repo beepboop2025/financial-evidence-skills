@@ -120,7 +120,10 @@ jobs:
           python3 -m build
           npx --yes @anthropic-ai/mcpb@2.1.2 validate manifest.json
           npx --yes @anthropic-ai/mcpb@2.1.2 pack . "financial-evidence-${version}.mcpb"
-          sha256sum dist/* "financial-evidence-${version}.mcpb" > SHA256SUMS
+          {
+            (cd dist && sha256sum -- *)
+            sha256sum "financial-evidence-${version}.mcpb"
+          } > SHA256SUMS
       - name: Attach artifacts to the GitHub release
         env:
           GH_TOKEN: ${{ github.token }}

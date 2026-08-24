@@ -155,9 +155,12 @@ cross-platform `uv` runtime and requires no API key or configuration.
   into Advanced Editor and invoke, for example,
   `FinancialEvidence("money-market")`.
 - **FDC3:**
+  the public [Financial Evidence Inspector](https://beepboop2025.github.io/financial-evidence-skills/integrations/fdc3/evidence-inspector/)
+  receives and broadcasts declared standard contexts through `window.fdc3`.
   [`integrations/fdc3/appd-record.json`](integrations/fdc3/appd-record.json)
-  is a schema-validated FDC3 web-app record for self-hosted or enterprise app
-  directories. It is compatibility metadata, not a claim of vendor listing.
+  is its FDC3 2.0 web-app record for self-hosted or enterprise directories. The
+  record and runtime do not imply FINOS review, directory acceptance, or vendor
+  endorsement.
 - **Containers:** tagged releases publish a multi-architecture image to
   `ghcr.io/beepboop2025/financial-evidence-skills`. The image runs stdio MCP by
   default; use `--entrypoint financial-evidence` for terminal commands.

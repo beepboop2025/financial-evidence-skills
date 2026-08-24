@@ -85,9 +85,16 @@
     },
     {
       "name": "FDC3",
-      "kind": "app-directory-compatibility",
-      "url": "https://github.com/beepboop2025/financial-evidence-skills/blob/main/integrations/fdc3/appd-record.json",
-      "status": "compatibility-metadata-not-vendor-listing"
+      "kind": "fdc3-web-app",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/integrations/fdc3/evidence-inspector/",
+      "app_directory_record": "https://github.com/beepboop2025/financial-evidence-skills/blob/main/integrations/fdc3/appd-record.json",
+      "contexts": [
+        "fdc3.instrument",
+        "fdc3.organization",
+        "fdc3.country"
+      ],
+      "intent": "ViewInstrument",
+      "status": "public-runtime-third-party-listing-not-implied"
     }
   ]
 }

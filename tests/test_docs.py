@@ -15,6 +15,7 @@ class _PageParser(HTMLParser):
         super().__init__()
         self.ids: set[str] = set()
         self.hrefs: list[str] = []
+        self.assets: list[str] = []
         self.jsonld: list[str] = []
         self._capture_jsonld = False
 
@@ -26,6 +27,10 @@ class _PageParser(HTMLParser):
             self.ids.add(element_id)
         if tag == "a" and (href := attributes.get("href")):
             self.hrefs.append(href)
+        if tag == "script" and (src := attributes.get("src")):
+            self.assets.append(src)
+        if tag == "link" and (href := attributes.get("href")):
+            self.assets.append(href)
         if tag == "script" and attributes.get("type") == "application/ld+json":
             self._capture_jsonld = True
             self.jsonld.append("")
@@ -59,8 +64,9 @@ class DiscoveryDocsTests(unittest.TestCase):
         self.assertEqual(len(manifest["interfaces"]), 10)
 
     def test_html_jsonld_fragments_and_local_links(self):
+        page = DOCS / "index.html"
         parser = _PageParser()
-        parser.feed((DOCS / "index.html").read_text())
+        parser.feed(page.read_text())
         self.assertEqual(len(parser.jsonld), 1)
         metadata = json.loads(parser.jsonld[0])
         self.assertEqual(metadata["@type"], "SoftwareApplication")
@@ -73,7 +79,45 @@ class DiscoveryDocsTests(unittest.TestCase):
                 continue
             parsed = urlparse(href)
             if not parsed.scheme and not parsed.netloc:
-                self.assertTrue((DOCS / parsed.path).is_file(), href)
+                candidate = page.parent / parsed.path
+                if candidate.is_dir():
+                    candidate /= "index.html"
+                self.assertTrue(candidate.is_file(), href)
+
+    def test_fdc3_runtime_page_and_record(self):
+        page = DOCS / "integrations" / "fdc3" / "evidence-inspector" / "index.html"
+        parser = _PageParser()
+        parser.feed(page.read_text())
+        self.assertIn("inspector", parser.ids)
+        self.assertIn("routes", parser.ids)
+        self.assertIn("app.js", parser.assets)
+        self.assertIn("styles.css", parser.assets)
+
+        for reference in parser.hrefs + parser.assets:
+            parsed = urlparse(reference)
+            if parsed.scheme or parsed.netloc or reference.startswith("#"):
+                continue
+            candidate = page.parent / parsed.path
+            if candidate.is_dir():
+                candidate /= "index.html"
+            self.assertTrue(candidate.is_file(), reference)
+
+        record = json.loads((ROOT / "integrations/fdc3/appd-record.json").read_text())
+        self.assertEqual(record["appId"], "financial-evidence-inspector")
+        self.assertEqual(record["name"], record["appId"])
+        self.assertEqual(
+            record["details"]["url"],
+            "https://beepboop2025.github.io/financial-evidence-skills/integrations/fdc3/evidence-inspector/",
+        )
+        self.assertNotIn("publisher", record)
+        self.assertEqual(
+            record["interop"]["userChannels"]["broadcasts"],
+            record["interop"]["userChannels"]["listensFor"],
+        )
+        self.assertEqual(
+            record["interop"]["intents"]["listensFor"]["ViewInstrument"]["contexts"],
+            ["fdc3.instrument"],
+        )
 
     def test_agent_discovery_files_state_boundaries(self):
         llms = (DOCS / "llms.txt").read_text()

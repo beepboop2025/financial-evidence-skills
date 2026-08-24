@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Financial Evidence Inspector — FDC3 context utility</title>
+    <meta name="description" content="A read-only FDC3 utility that inspects instrument, organization, and country contexts and routes users to public LiquiLens, Seiche, Undertow, and Palimpsest evidence.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://beepboop2025.github.io/financial-evidence-skills/integrations/fdc3/evidence-inspector/">
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../../styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Financial Evidence Inspector">
+    <meta property="og:description" content="Inspect and rebroadcast standard FDC3 contexts without trading, advice, or write actions.">
+    <meta property="og:url" content="https://beepboop2025.github.io/financial-evidence-skills/integrations/fdc3/evidence-inspector/">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="inspector-header">
+      <nav aria-label="Primary">
+        <a class="brand" href="../../../">Financial Evidence</a>
+        <div>
+          <a href="#inspector">Inspector</a>
+          <a href="#routes">Evidence routes</a>
+          <a href="https://github.com/beepboop2025/financial-evidence-skills/tree/main/integrations/fdc3">Source</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="inspector-main">
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">FDC3 2.0 web application · read-only</p>
+        <h1 id="page-title">See the context before you trust the route.</h1>
+        <p class="lede">The Financial Evidence Inspector receives standard instrument, organization, and country contexts from an FDC3 Desktop Agent. It shows the exact context and transport metadata, can rebroadcast the unchanged context on the current user channel, and links to fixed public evidence routes.</p>
+        <div class="runtime-status" role="status" aria-live="polite">
+          <span id="fdc3-status-indicator" class="status-dot" aria-hidden="true"></span>
+          <div>
+            <strong id="fdc3-status">Checking for an FDC3 Desktop Agent…</strong>
+            <p id="fdc3-status-detail">No context has been received.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="inspector" class="inspector-grid" aria-label="FDC3 context inspector">
+        <article class="panel composer">
+          <p class="eyebrow">Context composer</p>
+          <h2>Broadcast a standard context</h2>
+          <p>Paste one of the declared context types. In an FDC3 container, Broadcast sends it unchanged to the current user channel. In an ordinary browser, the sample remains local.</p>
+          <label for="context-input">Context JSON</label>
+          <textarea id="context-input" rows="13" spellcheck="false" aria-describedby="context-help"></textarea>
+          <p id="context-help" class="field-help">Supported: <code>fdc3.instrument</code>, <code>fdc3.organization</code>, and <code>fdc3.country</code>.</p>
+          <div class="actions compact">
+            <button id="load-example-button" class="button" type="button">Load instrument example</button>
+            <button id="broadcast-button" class="button primary" type="button">Broadcast on current channel</button>
+          </div>
+          <p id="composer-message" class="message" aria-live="polite"></p>
+        </article>
+
+        <article class="panel receiver">
+          <p class="eyebrow">Exact received payload</p>
+          <h2>Latest context</h2>
+          <dl class="context-meta">
+            <div><dt>Type</dt><dd id="context-type">None</dd></div>
+            <div><dt>Transport</dt><dd id="context-transport">None</dd></div>
+            <div><dt>Received at</dt><dd id="context-received-at">Not yet</dd></div>
+            <div><dt>Source</dt><dd id="context-source">Not provided</dd></div>
+          </dl>
+          <pre class="context-output" tabindex="0"><code id="received-context">No FDC3 context has been received.</code></pre>
+          <p class="field-help">Context values are rendered as text, kept in this page only, and never treated as instructions.</p>
+        </article>
+      </section>
+
+      <section id="routes" class="route-section" aria-labelledby="routes-title">
+        <p class="eyebrow">Fixed public destinations</p>
+        <h2 id="routes-title">Route the research question, not the trade.</h2>
+        <p class="answer">Choose the evidence surface that matches the question. These links do not interpolate context identifiers into requests, place orders, or infer a universal risk score.</p>
+        <div class="route-grid">
+          <article>
+            <h3>Money markets</h3>
+            <p>Seiche: repo, reserves, Treasury cash, and system funding.</p>
+            <a href="https://seiche.info/use-cases/money-market-research/" target="_blank" rel="noopener noreferrer">Open Seiche research route</a>
+          </article>
+          <article>
+            <h3>Capital markets</h3>
+            <p>Seiche: bounded capital-market transmission evidence.</p>
+            <a href="https://seiche.info/use-cases/capital-market-transmission/" target="_blank" rel="noopener noreferrer">Open capital-market route</a>
+          </article>
+          <article>
+            <h3>Bank and lender risk</h3>
+            <p>LiquiLens: covered institution evidence with explicit gaps.</p>
+            <a href="https://liquilens.in/use-cases/" target="_blank" rel="noopener noreferrer">Open LiquiLens use cases</a>
+          </article>
+          <article>
+            <h3>Market liquidity</h3>
+            <p>Undertow: depth, provider concentration, and exit liquidity.</p>
+            <a href="https://liquilens-undertow.com/use-cases/" target="_blank" rel="noopener noreferrer">Open Undertow use cases</a>
+          </article>
+          <article>
+            <h3>China economy</h3>
+            <p>Palimpsest: revision-safe readings and information-state history.</p>
+            <a href="https://palimpsest.info/china/" target="_blank" rel="noopener noreferrer">Open Palimpsest China evidence</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="boundary" aria-labelledby="boundary-title">
+        <p class="eyebrow">Deliberate boundary</p>
+        <h2 id="boundary-title">Inspection is not execution.</h2>
+        <ul>
+          <li>No brokerage, order, portfolio, custody, or write API is present.</li>
+          <li>No account, API key, or personal data is requested.</li>
+          <li>No received identifier is inserted into an outbound URL.</li>
+          <li>Missing, restricted, or failed evidence is never converted to zero or calm.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>Financial Evidence Inspector v0.1.2 · public source · no FINOS endorsement or directory acceptance is implied.</p>
+      <p><a href="../../../">Documentation</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/blob/main/integrations/fdc3/appd-record.json">AppD record</a> · <a href="mailto:mrinal@liquilens.in">Support</a></p>
+    </footer>
+  </body>
+</html>

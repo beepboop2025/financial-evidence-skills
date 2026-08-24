@@ -94,8 +94,11 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertTrue(vscode["review_before_start"])
         self.assertTrue(cursor["review_before_start"])
         for integration in (vscode, cursor):
-            self.assertEqual(integration["published_version"], "0.1.3")
-            self.assertEqual(integration["status"], "v0.1.4-release-pending")
+            self.assertEqual(integration["published_version"], self.version)
+            self.assertEqual(
+                integration["status"],
+                "self-installable-not-vendor-listing",
+            )
 
         readme = (ROOT / "README.md").read_text()
         llms = (ROOT / "docs/llms.txt").read_text()
@@ -133,11 +136,11 @@ class EditorIntegrationTests(unittest.TestCase):
         mcp_interface = self.interfaces["Model Context Protocol"]
         self.assertTrue(mcp_interface["portable_agent_host"])
         self.assertTrue(mcp_interface["config"].endswith("/.mcp.json"))
-        self.assertEqual(mcp_interface["published_version"], "0.1.3")
-        self.assertEqual(mcp_interface["status"], "v0.1.4-release-pending")
+        self.assertEqual(mcp_interface["published_version"], self.version)
+        self.assertEqual(mcp_interface["status"], "official-registry-active")
         bundle = self.interfaces["MCP Bundle"]
-        self.assertEqual(bundle["published_version"], "0.1.3")
-        self.assertEqual(bundle["status"], "v0.1.4-release-pending")
+        self.assertEqual(bundle["published_version"], self.version)
+        self.assertEqual(bundle["status"], "public")
 
         pyproject = (ROOT / "pyproject.toml").read_text()
         self.assertIn(f'version = "{self.version}"', pyproject)

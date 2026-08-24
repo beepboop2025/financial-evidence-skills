@@ -11,8 +11,8 @@ is the observation clock; external operators may change state after that time.
 
 ## Public now
 
-- Official MCP Registry v0.1.3 was active at the ledger's observation time;
-  v0.1.4 remains a release candidate until its independent receipt exists.
+- Official MCP Registry v0.1.4 is active with both the public Streamable HTTP
+  endpoint and the versioned OCI package.
 - skills.sh serves the Agent Skill.
 - Glama serves both the registry-ingested connector and repository listing, but
   its repository evaluation is incomplete until a Glama release exposes the

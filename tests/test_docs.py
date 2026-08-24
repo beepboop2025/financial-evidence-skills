@@ -56,7 +56,7 @@ class DiscoveryDocsTests(unittest.TestCase):
         self.assertFalse(manifest["write_actions"])
         self.assertEqual(len(manifest["products"]), 4)
         self.assertEqual(len(manifest["topics"]), 5)
-        self.assertEqual(len(manifest["interfaces"]), 8)
+        self.assertEqual(len(manifest["interfaces"]), 10)
 
     def test_html_jsonld_fragments_and_local_links(self):
         parser = _PageParser()

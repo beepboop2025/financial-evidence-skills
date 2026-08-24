@@ -2,7 +2,7 @@
 
 > Financial Evidence is a free, read-only terminal and MCP router for public money-market, capital-market, china-economy, bank-risk, and market-liquidity evidence. It connects LiquiLens, Undertow, Seiche, and Palimpsest while preserving separate sources and explicit unavailable states.
 
-Version: 0.1.1
+Version: 0.1.2
 Last updated: 2026-08-24
 Publisher: Liquidity Lab
 License: MIT for the software; source publishers retain rights in upstream data.
@@ -11,7 +11,7 @@ License: MIT for the software; source publishers retain rights in upstream data.
 
 - [Overview and integration matrix](https://beepboop2025.github.io/financial-evidence-skills/)
 - [Source repository and full README](https://github.com/beepboop2025/financial-evidence-skills)
-- [Release v0.1.1](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.1)
+- [Release v0.1.2](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.2)
 - [Machine-readable integration manifest](https://beepboop2025.github.io/financial-evidence-skills/integrations.json)
 - [Transparent pricing](https://beepboop2025.github.io/financial-evidence-skills/pricing.md)
 - [Official MCP Registry record](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.beepboop2025%2Ffinancial-evidence&version=latest)
@@ -27,11 +27,24 @@ License: MIT for the software; source publishers retain rights in upstream data.
 ## Interfaces
 
 - Terminal: Homebrew, uvx, persistent uv tool, Bash/Zsh/Fish completions, JSON/NDJSON/CSV/table output.
-- MCP: three read-only stdio tools, official registry metadata, portable configuration, MCP Bundle, and multi-architecture OCI image.
+- MCP: three read-only stdio tools, official registry metadata, portable root `.mcp.json` for Copilot Agent Host and compatible clients, MCP Bundle, and multi-architecture OCI image.
+- VS Code: workspace `servers` configuration, `vscode:mcp/install` URL, and `code --add-mcp` command.
+- Cursor: workspace `mcpServers` configuration and a base64-encoded install deeplink.
 - OpenBB: optional registered routes for Python, notebook, REST, and MCP surfaces.
 - DuckDB: six HTTP-backed SQL views.
 - Excel: Power Query function.
 - FDC3: app-directory compatibility record for self-hosted or enterprise environments.
+
+## Editor installation
+
+- VS Code URL: `vscode:mcp/install?%7B%22name%22%3A%22financial-evidence%22%2C%22type%22%3A%22stdio%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22--from%22%2C%22git%2Bhttps%3A%2F%2Fgithub.com%2Fbeepboop2025%2Ffinancial-evidence-skills.git%40v0.1.2%22%2C%22financial-evidence-mcp%22%5D%7D`
+- VS Code CLI: `code --add-mcp '{"name":"financial-evidence","type":"stdio","command":"uvx","args":["--from","git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.2","financial-evidence-mcp"]}'`
+- Cursor deeplink: `cursor://anysphere.cursor-deeplink/mcp/install?name=financial-evidence&config=eyJ0eXBlIjoic3RkaW8iLCJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyItLWZyb20iLCJnaXQraHR0cHM6Ly9naXRodWIuY29tL2JlZXBib29wMjAyNS9maW5hbmNpYWwtZXZpZGVuY2Utc2tpbGxzLmdpdEB2MC4xLjIiLCJmaW5hbmNpYWwtZXZpZGVuY2UtbWNwIl19`
+
+These routes register a local stdio server and require `uvx`. Review the
+source and exact configuration before accepting editor installation, trust,
+or tool-use prompts. They are compatibility artifacts, not claims of a VS Code
+or Cursor marketplace listing or endorsement.
 
 ## Boundaries
 

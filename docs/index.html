@@ -22,8 +22,8 @@
         "description": "A free, read-only terminal and MCP router for public money-market, capital-market, China-economy, bank-risk, and market-liquidity evidence.",
         "url": "https://beepboop2025.github.io/financial-evidence-skills/",
         "codeRepository": "https://github.com/beepboop2025/financial-evidence-skills",
-        "downloadUrl": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.1",
-        "softwareVersion": "0.1.1",
+        "downloadUrl": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.2",
+        "softwareVersion": "0.1.2",
         "applicationCategory": "FinanceApplication",
         "applicationSubCategory": "Financial research infrastructure",
         "operatingSystem": "macOS, Linux, Windows",
@@ -42,6 +42,7 @@
         "featureList": [
           "Terminal CLI with JSON, NDJSON, CSV, and table output",
           "Read-only MCP server with topic, route, and fetch tools",
+          "Self-installable VS Code and Cursor MCP configurations",
           "OpenBB extension routes",
           "DuckDB HTTP-backed views",
           "Excel Power Query function",
@@ -65,7 +66,7 @@
         </nav>
       </header>
       <main id="top">
-        <p class="eyebrow">Open financial research infrastructure · v0.1.1</p>
+        <p class="eyebrow">Open financial research infrastructure · v0.1.2</p>
         <h1>One read-only route into four evidence systems.</h1>
         <p class="lede">Financial Evidence connects terminal and agent workflows to LiquiLens, Undertow, Seiche, and Palimpsest. It routes each question to the relevant public evidence without inventing a universal score, hiding an unavailable source, or requiring an account or API key.</p>
         <div class="actions">
@@ -111,7 +112,7 @@ financial-evidence fetch --topic money-market --topic china-economy</code></pre>
         </div>
         <div>
           <h3>Run without installing</h3>
-          <pre><code>uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.1 \
+          <pre><code>uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.2 \
   financial-evidence route --topic capital-market --format table</code></pre>
         </div>
       </div>
@@ -121,15 +122,28 @@ financial-evidence fetch --topic money-market --topic china-economy</code></pre>
     <section id="integrations" class="section">
       <p class="eyebrow">Use it where financial work already happens</p>
       <h2>Which terminals and financial tools can use it?</h2>
-      <p class="answer">Financial Evidence has native surfaces for shell automation and MCP agents, plus compatibility layers for OpenBB, DuckDB, Excel Power Query, and FDC3 app directories. The compatibility files are open and self-hostable; they do not claim endorsement or marketplace listing by those vendors.</p>
+      <p class="answer">Financial Evidence has native surfaces for shell automation, VS Code, Cursor, and MCP agents, plus compatibility layers for OpenBB, DuckDB, Excel Power Query, and FDC3 app directories. The compatibility files are open and self-hostable; they do not claim endorsement or marketplace listing by those vendors.</p>
       <div class="grid">
         <article><h3>Terminal</h3><p>Homebrew, uvx, persistent uv tools, completions for Bash, Zsh, and Fish, and stable pipeline exit codes.</p></article>
-        <article><h3>MCP</h3><p>Three read-only tools, an official registry record, multi-architecture container, portable client config, and one-click MCP Bundle.</p></article>
+        <article><h3>MCP</h3><p>Three read-only tools, an official registry record, multi-architecture container, root <code>.mcp.json</code> for Copilot Agent Host and compatible clients, and a one-click MCP Bundle.</p></article>
+        <article><h3>VS Code</h3><p>A workspace <code>servers</code> config, protocol install URL, and <code>code --add-mcp</code> command, all pinned to v0.1.2.</p></article>
+        <article><h3>Cursor</h3><p>A workspace <code>mcpServers</code> config and base64-encoded install deeplink pinned to the same stdio server.</p></article>
         <article><h3>OpenBB</h3><p>Registered routes for Python, notebook, REST, and MCP surfaces after installing the optional extension.</p></article>
         <article><h3>DuckDB</h3><p>Six HTTP-backed views that keep the four products separate and queryable with SQL.</p></article>
         <article><h3>Excel</h3><p>A Power Query function that returns topic evidence to ordinary workbooks without a custom add-in.</p></article>
         <article><h3>FDC3</h3><p>A schema-validated app-directory record for compatible self-hosted or enterprise desktop environments.</p></article>
       </div>
+      <div class="actions">
+        <a class="button primary" href="vscode:mcp/install?%7B%22name%22%3A%22financial-evidence%22%2C%22type%22%3A%22stdio%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22--from%22%2C%22git%2Bhttps%3A%2F%2Fgithub.com%2Fbeepboop2025%2Ffinancial-evidence-skills.git%40v0.1.2%22%2C%22financial-evidence-mcp%22%5D%7D">Install in VS Code</a>
+        <a class="button" href="cursor://anysphere.cursor-deeplink/mcp/install?name=financial-evidence&amp;config=eyJ0eXBlIjoic3RkaW8iLCJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyItLWZyb20iLCJnaXQraHR0cHM6Ly9naXRodWIuY29tL2JlZXBib29wMjAyNS9maW5hbmNpYWwtZXZpZGVuY2Utc2tpbGxzLmdpdEB2MC4xLjIiLCJmaW5hbmNpYWwtZXZpZGVuY2UtbWNwIl19">Install in Cursor</a>
+      </div>
+      <div class="commands">
+        <div>
+          <h3>VS Code CLI</h3>
+          <pre><code>code --add-mcp '{"name":"financial-evidence","type":"stdio","command":"uvx","args":["--from","git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.2","financial-evidence-mcp"]}'</code></pre>
+        </div>
+      </div>
+      <p>Install <code>uv</code> first, then review the exact local command and source before accepting editor install, trust, or tool-use prompts. Cursor asks for tool approval by default. VS Code normally asks you to trust a server on first start, but its inline <code>mcp.json</code> start action can skip that prompt. These are self-install routes, not vendor marketplace listings.</p>
       <p class="machine-links">Machine-readable: <a href="integrations.json">integration manifest</a> · <a href="llms.txt">llms.txt</a> · <a href="pricing.md">pricing</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/blob/main/server.json">MCP metadata</a></p>
     </section>
 
@@ -147,7 +161,7 @@ financial-evidence fetch --topic money-market --topic china-economy</code></pre>
 
     <footer>
       <p>Last updated 24 August 2026 · MIT-licensed software by Liquidity Lab.</p>
-      <p><a href="https://github.com/beepboop2025/financial-evidence-skills">Source and documentation</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.1">Release v0.1.1</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/security/policy">Security policy</a></p>
+      <p><a href="https://github.com/beepboop2025/financial-evidence-skills">Source and documentation</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.2">Release v0.1.2</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/security/policy">Security policy</a></p>
     </footer>
   </body>
 </html>

@@ -13,10 +13,17 @@ from .core import ROUTES, build_packet, route_manifest
 LEGACY_PROTOCOL = "2025-11-25"
 MODERN_PROTOCOL = "2026-07-28"
 SERVER_INFO = {"name": "financial-evidence", "version": __version__}
-TOOL_ANNOTATIONS = {
+READ_ONLY_TOOL_ANNOTATIONS = {
     "readOnlyHint": True,
     "destructiveHint": False,
     "idempotentHint": True,
+}
+LOCAL_TOOL_ANNOTATIONS = {
+    **READ_ONLY_TOOL_ANNOTATIONS,
+    "openWorldHint": False,
+}
+NETWORK_TOOL_ANNOTATIONS = {
+    **READ_ONLY_TOOL_ANNOTATIONS,
     "openWorldHint": True,
 }
 TOPIC_SCHEMA = {
@@ -33,7 +40,7 @@ TOOLS = [
         "title": "List Financial Evidence Topics",
         "description": "List supported topics and their fixed public product routes without network access.",
         "inputSchema": {"type": "object", "additionalProperties": False},
-        "annotations": TOOL_ANNOTATIONS,
+        "annotations": LOCAL_TOOL_ANNOTATIONS,
     },
     {
         "name": "financial_evidence_route",
@@ -45,7 +52,7 @@ TOOLS = [
             "required": ["topics"],
             "additionalProperties": False,
         },
-        "annotations": TOOL_ANNOTATIONS,
+        "annotations": LOCAL_TOOL_ANNOTATIONS,
     },
     {
         "name": "financial_evidence_fetch",
@@ -71,7 +78,7 @@ TOOLS = [
             "required": ["topics"],
             "additionalProperties": False,
         },
-        "annotations": TOOL_ANNOTATIONS,
+        "annotations": NETWORK_TOOL_ANNOTATIONS,
     },
 ]
 

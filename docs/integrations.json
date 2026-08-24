@@ -84,6 +84,17 @@
       "status": "self-installable"
     },
     {
+      "name": "Codex plugin and ChatGPT submission",
+      "kind": "openai-plugin",
+      "manifest": "https://github.com/beepboop2025/financial-evidence-skills/blob/main/.codex-plugin/plugin.json",
+      "install": "codex plugin marketplace add beepboop2025/financial-evidence-skills --ref main && codex plugin add financial-evidence@liquidity-lab",
+      "remote_mcp": "https://liquilens.in/mcp/financial-evidence",
+      "bundled_skill": "financial-evidence",
+      "codex_status": "repo-installable",
+      "chatgpt_status": "public-directory-pending-review",
+      "status": "codex-repo-installable-chatgpt-public-directory-pending-review"
+    },
+    {
       "name": "Visual Studio Code",
       "kind": "editor-mcp-stdio",
       "config": "https://github.com/beepboop2025/financial-evidence-skills/blob/main/.vscode/mcp.json",

@@ -130,6 +130,8 @@ class EditorIntegrationTests(unittest.TestCase):
             "gemini-extension.json",
             ".claude-plugin/plugin.json",
             ".claude-plugin/marketplace.json",
+            ".codex-plugin/plugin.json",
+            ".agents/plugins/marketplace.json",
             "docs/index.html",
             "docs/integrations.json",
             "docs/llms.txt",
@@ -182,6 +184,74 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertIn(
             "financial-evidence@liquidity-lab", integration["install"]
         )
+
+    def test_openai_plugin_is_repo_installable_and_review_bounded(self):
+        plugin = _json(".codex-plugin/plugin.json")
+        marketplace = _json(".agents/plugins/marketplace.json")
+        self.assertEqual(plugin["name"], SERVER_NAME)
+        self.assertEqual(plugin["version"], "0.1.0")
+        self.assertEqual(plugin["skills"], "./skills/")
+        self.assertEqual(
+            plugin["mcpServers"],
+            {
+                SERVER_NAME: {
+                    "type": "http",
+                    "url": "https://liquilens.in/mcp/financial-evidence",
+                }
+            },
+        )
+        self.assertEqual(
+            plugin["interface"]["privacyPolicyURL"],
+            "https://beepboop2025.github.io/financial-evidence-skills/privacy/",
+        )
+        self.assertEqual(
+            plugin["interface"]["termsOfServiceURL"],
+            "https://beepboop2025.github.io/financial-evidence-skills/terms/",
+        )
+        self.assertEqual(
+            plugin["interface"]["logo"],
+            "./assets/logo.svg",
+        )
+        self.assertTrue((ROOT / plugin["interface"]["logo"]).is_file())
+        self.assertEqual(marketplace["name"], "liquidity-lab")
+        self.assertEqual(len(marketplace["plugins"]), 1)
+        entry = marketplace["plugins"][0]
+        self.assertEqual(entry["name"], SERVER_NAME)
+        self.assertEqual(entry["source"]["source"], "url")
+        self.assertEqual(entry["source"]["ref"], "main")
+        self.assertEqual(entry["policy"]["installation"], "AVAILABLE")
+
+        integration = self.interfaces["Codex plugin and ChatGPT submission"]
+        self.assertEqual(integration["kind"], "openai-plugin")
+        self.assertEqual(
+            integration["remote_mcp"],
+            "https://liquilens.in/mcp/financial-evidence",
+        )
+        self.assertEqual(
+            integration["status"],
+            "codex-repo-installable-chatgpt-public-directory-pending-review",
+        )
+        self.assertIn("codex plugin marketplace add", integration["install"])
+        self.assertIn("codex plugin add", integration["install"])
+        self.assertEqual(integration["codex_status"], "repo-installable")
+        self.assertEqual(
+            integration["chatgpt_status"], "public-directory-pending-review"
+        )
+
+        packet = (ROOT / "OPENAI_PLUGIN_SUBMISSION.md").read_text()
+        self.assertIn(
+            "has not been entered into the OpenAI portal, submitted, approved, listed, or",
+            packet.replace("\n", " "),
+        )
+        self.assertIn("five positive and three negative tests", packet)
+        self.assertIn("openai-apps-challenge", packet)
+        self.assertIn("Short description:", packet)
+        self.assertIn("Long description:", packet)
+        self.assertIn("Support: https://", packet)
+        self.assertIn("## Release notes", packet)
+        self.assertIn("Availability:", packet)
+        self.assertEqual(packet.count("Fixture or account data:"), 5)
+        self.assertEqual(packet.count("Why it must not complete the action:"), 3)
 
     def test_agent_skill_layouts_are_byte_identical(self):
         for relative in (

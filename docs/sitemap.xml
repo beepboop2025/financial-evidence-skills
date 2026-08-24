@@ -19,6 +19,24 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://beepboop2025.github.io/financial-evidence-skills/privacy/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://beepboop2025.github.io/financial-evidence-skills/terms/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://beepboop2025.github.io/financial-evidence-skills/support/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://beepboop2025.github.io/financial-evidence-skills/integrations/fdc3/evidence-inspector/</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>weekly</changefreq>

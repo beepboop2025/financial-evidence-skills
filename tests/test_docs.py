@@ -1,6 +1,7 @@
 import json
 import re
 import unittest
+from datetime import date
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse
@@ -100,9 +101,52 @@ class DiscoveryDocsTests(unittest.TestCase):
         parser.feed(page.read_text())
         self.assertEqual(len(parser.jsonld), 1)
         metadata = json.loads(parser.jsonld[0])
-        self.assertEqual(metadata["@type"], "SoftwareApplication")
-        self.assertEqual(metadata["softwareVersion"], _package_version())
-        self.assertTrue(metadata["isAccessibleForFree"])
+        graph = metadata["@graph"]
+        nodes = {node["@id"]: node for node in graph}
+        self.assertEqual(len(nodes), 4)
+
+        page_id = (
+            "https://beepboop2025.github.io/financial-evidence-skills/#webpage"
+        )
+        software_id = (
+            "https://beepboop2025.github.io/financial-evidence-skills/#software"
+        )
+        source_id = (
+            "https://github.com/beepboop2025/financial-evidence-skills#source"
+        )
+        publisher_id = "https://github.com/beepboop2025#organization"
+
+        web_page = nodes[page_id]
+        self.assertEqual(web_page["@type"], "WebPage")
+        self.assertEqual(web_page["mainEntity"]["@id"], software_id)
+        modified = date.fromisoformat(web_page["dateModified"])
+        visible_modified = f"{modified.day} {modified.strftime('%B %Y')}"
+        self.assertIn(f"Last updated {visible_modified}", page.read_text())
+        self.assertIn(
+            f"<lastmod>{modified.isoformat()}</lastmod>",
+            (DOCS / "sitemap.xml").read_text(),
+        )
+
+        software = nodes[software_id]
+        self.assertEqual(software["@type"], "SoftwareApplication")
+        self.assertEqual(software["softwareVersion"], _package_version())
+        self.assertTrue(software["isAccessibleForFree"])
+        self.assertNotIn("codeRepository", software)
+        self.assertEqual(software["publisher"]["@id"], publisher_id)
+        self.assertEqual(software["maintainer"]["@id"], publisher_id)
+
+        source = nodes[source_id]
+        self.assertEqual(source["@type"], "SoftwareSourceCode")
+        self.assertEqual(
+            source["codeRepository"],
+            "https://github.com/beepboop2025/financial-evidence-skills",
+        )
+        self.assertEqual(source["version"], _package_version())
+        self.assertEqual(source["targetProduct"]["@id"], software_id)
+        self.assertEqual(source["publisher"]["@id"], publisher_id)
+
+        self.assertEqual(nodes[publisher_id]["@type"], "Organization")
+        self.assertEqual(nodes[publisher_id]["name"], "Liquidity Lab")
 
         for href in parser.hrefs:
             if href.startswith("#"):

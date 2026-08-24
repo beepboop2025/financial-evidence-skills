@@ -34,7 +34,7 @@ License: MIT for the software; source publishers retain rights in upstream data.
 - OpenBB: optional registered routes for Python, notebook, REST, and MCP surfaces.
 - DuckDB: six HTTP-backed SQL views.
 - Excel: Power Query function.
-- FDC3: app-directory compatibility record for self-hosted or enterprise environments.
+- FDC3: public Evidence Inspector and raw app-directory record at `https://beepboop2025.github.io/financial-evidence-skills/integrations/fdc3/appd-record.json` for self-hosted or enterprise environments.
 
 ## Editor installation
 

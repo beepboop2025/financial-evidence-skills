@@ -110,7 +110,10 @@ class DiscoveryDocsTests(unittest.TestCase):
                 candidate /= "index.html"
             self.assertTrue(candidate.is_file(), reference)
 
-        record = json.loads((ROOT / "integrations/fdc3/appd-record.json").read_text())
+        canonical_record = ROOT / "integrations/fdc3/appd-record.json"
+        published_record = DOCS / "integrations/fdc3/appd-record.json"
+        self.assertEqual(published_record.read_bytes(), canonical_record.read_bytes())
+        record = json.loads(canonical_record.read_text())
         self.assertEqual(record["appId"], "financial-evidence-inspector")
         self.assertEqual(record["name"], record["appId"])
         self.assertEqual(
@@ -125,6 +128,14 @@ class DiscoveryDocsTests(unittest.TestCase):
         self.assertEqual(
             record["interop"]["intents"]["listensFor"]["ViewInstrument"]["contexts"],
             ["fdc3.instrument"],
+        )
+        manifest = json.loads((DOCS / "integrations.json").read_text())
+        fdc3 = next(
+            interface for interface in manifest["interfaces"] if interface["kind"] == "fdc3-web-app"
+        )
+        self.assertEqual(
+            fdc3["app_directory_record"],
+            "https://beepboop2025.github.io/financial-evidence-skills/integrations/fdc3/appd-record.json",
         )
 
     def test_agent_discovery_files_state_boundaries(self):

@@ -30,7 +30,16 @@ lets compatible agents activate it when the work matches.
 
 ## Use from any terminal
 
-No account or API key is required. Run directly from GitHub without installing:
+No account or API key is required. On macOS or Linux with Homebrew:
+
+```bash
+brew install beepboop2025/tap/financial-evidence
+financial-evidence fetch --topic money-market --topic china-economy
+```
+
+The formula installs `financial-evidence`, `financial-evidence-mcp`, and native
+Bash, Zsh, and Fish completions. Alternatively, run directly from GitHub
+without installing:
 
 ```bash
 uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.0 \
@@ -52,7 +61,7 @@ packet, and `2` means every requested source was unavailable. That makes the
 client safe to compose in shell pipelines and scheduled jobs. JSON, NDJSON and
 CSV go to standard output; no result is silently replaced with a score.
 
-Shell completions are emitted as inert text:
+Outside Homebrew, shell completions are emitted as inert text:
 
 ```bash
 financial-evidence completion zsh > ~/.zfunc/_financial-evidence

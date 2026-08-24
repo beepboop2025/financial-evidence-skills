@@ -11,7 +11,7 @@ them into one score:
 - **Undertow** — market depth, provider concentration and position-sized exit liquidity.
 - **Palimpsest** — revision-safe China economy evidence and information-state history.
 
-## Install
+## Install the agent skill
 
 ```bash
 npx skills add beepboop2025/financial-evidence-skills --skill financial-evidence
@@ -27,6 +27,82 @@ The skill is also indexed in the public
 Once installed, ask your agent to research a money-market, capital-market,
 bank-risk, market-liquidity or China-economy question. The skill's description
 lets compatible agents activate it when the work matches.
+
+## Use from any terminal
+
+No account or API key is required. Run directly from GitHub without installing:
+
+```bash
+uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.0 \
+  financial-evidence fetch --topic money-market --topic china-economy
+```
+
+Or install it as a persistent command:
+
+```bash
+uv tool install git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.0
+financial-evidence topics
+financial-evidence route --topic capital-market --format table
+financial-evidence fetch --topic bank-risk --format ndjson
+financial-evidence doctor --format csv
+```
+
+Exit code `0` means every requested source succeeded, `1` means a partial
+packet, and `2` means every requested source was unavailable. That makes the
+client safe to compose in shell pipelines and scheduled jobs. JSON, NDJSON and
+CSV go to standard output; no result is silently replaced with a score.
+
+Shell completions are emitted as inert text:
+
+```bash
+financial-evidence completion zsh > ~/.zfunc/_financial-evidence
+```
+
+## Use as MCP infrastructure
+
+The same package includes a dependency-free, read-only stdio MCP server with
+`topics`, `route`, and `fetch` tools. A portable client configuration is in
+[`integrations/mcp-config.json`](integrations/mcp-config.json):
+
+```json
+{
+  "mcpServers": {
+    "financial-evidence": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.0",
+        "financial-evidence-mcp"
+      ]
+    }
+  }
+}
+```
+
+It accepts both the MCP `2025-11-25` initialization flow and the stateless
+`2026-07-28` discovery flow. Messages use newline-delimited JSON-RPC on stdio;
+nothing except protocol messages is written to standard output.
+
+## Finance-tool integrations
+
+- **OpenBB:** install `financial-evidence[openbb]` from this repository inside
+  an OpenBB environment and run `openbb-build`. The registered router exposes
+  `obb.financial_evidence.routes()` and `obb.financial_evidence.fetch()`, which
+  also become available to OpenBB's REST, notebook and MCP surfaces.
+- **DuckDB:** run
+  [`integrations/duckdb/financial_evidence.sql`](integrations/duckdb/financial_evidence.sql)
+  to create separate HTTP-backed views for all four products.
+- **Excel / Power Query:** paste
+  [`integrations/excel/FinancialEvidence.pq`](integrations/excel/FinancialEvidence.pq)
+  into Advanced Editor and invoke, for example,
+  `FinancialEvidence("money-market")`.
+- **FDC3:**
+  [`integrations/fdc3/appd-record.json`](integrations/fdc3/appd-record.json)
+  is a schema-validated FDC3 web-app record for self-hosted or enterprise app
+  directories. It is compatibility metadata, not a claim of vendor listing.
+- **Containers:** tagged releases publish a multi-architecture image to
+  `ghcr.io/beepboop2025/financial-evidence-skills`. Override the entry point
+  with `financial-evidence-mcp` when a container host expects stdio MCP.
 
 ## Optional bounded retrieval
 
@@ -55,7 +131,7 @@ upstream data.
 
 ```bash
 python3 -m unittest discover -s tests -v
-python3 -m py_compile financial-evidence/scripts/fetch_evidence.py
+python3 -m py_compile financial-evidence/scripts/fetch_evidence.py src/financial_evidence/*.py
 ```
 
 The code and skill instructions are MIT-licensed.

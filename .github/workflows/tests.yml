@@ -12,12 +12,53 @@ jobs:
   stdlib-contract:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.14"]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python-version }}
       - run: python3 -m unittest discover -s tests -v
-      - run: python3 -m py_compile financial-evidence/scripts/fetch_evidence.py
+      - run: python3 -m py_compile financial-evidence/scripts/fetch_evidence.py src/financial_evidence/*.py
+      - run: python3 -m pip install .
+      - run: financial-evidence route --topic money-market --format json
+      - name: MCP stdio smoke test
+        run: |
+          printf '%s\n' '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}' \
+            | financial-evidence-mcp \
+            | python3 -c 'import json,sys; assert len(json.load(sys.stdin)["result"]["tools"]) == 3'
+
+  openbb-extension:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+      - run: python3 -m pip install '.[openbb]'
+      - name: Prove OpenBB entry point and routes
+        run: |
+          python3 - <<'PY'
+          from importlib.metadata import entry_points
+          from financial_evidence.openbb_router import router
+
+          matches = [
+              item
+              for item in entry_points(group="openbb_core_extension")
+              if item.name == "financial_evidence"
+          ]
+          assert len(matches) == 1
+          assert matches[0].load() is router
+          assert sorted(route.path for route in router._api_router.routes) == [
+              "/fetch",
+              "/routes",
+          ]
+          PY

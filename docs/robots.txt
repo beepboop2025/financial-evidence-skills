@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://beepboop2025.github.io/financial-evidence-skills/sitemap.xml

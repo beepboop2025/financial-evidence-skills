@@ -1,0 +1,74 @@
+{
+  "schema": "liquidity-lab.financial-evidence-integrations.v1",
+  "name": "Financial Evidence",
+  "version": "0.1.1",
+  "updated_at": "2026-08-24",
+  "license": "MIT",
+  "account_required": false,
+  "api_key_required": false,
+  "write_actions": false,
+  "topics": [
+    "money-market",
+    "capital-market",
+    "china-economy",
+    "bank-risk",
+    "market-liquidity"
+  ],
+  "products": [
+    "LiquiLens",
+    "Undertow",
+    "Seiche",
+    "Palimpsest"
+  ],
+  "interfaces": [
+    {
+      "name": "Homebrew",
+      "kind": "terminal-package",
+      "install": "brew install beepboop2025/tap/financial-evidence",
+      "status": "public"
+    },
+    {
+      "name": "uvx",
+      "kind": "terminal-runner",
+      "install": "uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.1 financial-evidence",
+      "status": "public"
+    },
+    {
+      "name": "Model Context Protocol",
+      "kind": "mcp-stdio",
+      "identifier": "io.github.beepboop2025/financial-evidence",
+      "tools": 3,
+      "status": "official-registry-active"
+    },
+    {
+      "name": "MCP Bundle",
+      "kind": "desktop-bundle",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.1/financial-evidence-0.1.1.mcpb",
+      "status": "public"
+    },
+    {
+      "name": "OpenBB",
+      "kind": "python-extension",
+      "entry_point": "openbb_core_extension",
+      "status": "self-installable"
+    },
+    {
+      "name": "DuckDB",
+      "kind": "sql-views",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/blob/main/integrations/duckdb/financial_evidence.sql",
+      "status": "self-installable"
+    },
+    {
+      "name": "Excel Power Query",
+      "kind": "power-query-function",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/blob/main/integrations/excel/FinancialEvidence.pq",
+      "status": "self-installable"
+    },
+    {
+      "name": "FDC3",
+      "kind": "app-directory-compatibility",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/blob/main/integrations/fdc3/appd-record.json",
+      "status": "compatibility-metadata-not-vendor-listing"
+    }
+  ]
+}

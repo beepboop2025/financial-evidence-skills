@@ -2,6 +2,10 @@
 
 [![skills.sh](https://skills.sh/b/beepboop2025/financial-evidence-skills)](https://skills.sh/beepboop2025/financial-evidence-skills/financial-evidence)
 
+[Public documentation](https://beepboop2025.github.io/financial-evidence-skills/)
+includes a crawlable integration matrix plus agent-readable `llms.txt`, pricing,
+and integration metadata.
+
 Open, read-only Agent Skills for routing financial research to bounded public
 evidence. The first skill connects four complementary products without turning
 them into one score:

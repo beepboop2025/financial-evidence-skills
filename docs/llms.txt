@@ -3,7 +3,7 @@
 > Financial Evidence is a free, read-only terminal and MCP router for public money-market, capital-market, china-economy, bank-risk, and market-liquidity evidence. It connects LiquiLens, Undertow, Seiche, and Palimpsest while preserving separate sources and explicit unavailable states.
 
 Version: 0.1.4
-Last updated: 2026-08-25
+Last updated: 2026-08-24
 Publisher: Liquidity Lab
 License: MIT for the software; source publishers retain rights in upstream data.
 

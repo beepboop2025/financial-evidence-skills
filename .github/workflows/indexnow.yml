@@ -73,4 +73,4 @@ jobs:
             echo "IndexNow returned HTTP $response_code" >&2
             exit 1
           fi
-          echo "IndexNow accepted the five-URL discovery update with HTTP $response_code"
+          echo "IndexNow accepted the six-URL discovery update with HTTP $response_code"

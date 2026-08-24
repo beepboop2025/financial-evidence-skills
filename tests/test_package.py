@@ -170,6 +170,53 @@ class McpTests(unittest.TestCase):
                 },
             },
         )
+        for tool in tools[1:]:
+            topics = tool["inputSchema"]["properties"]["topics"]
+            self.assertEqual(topics["minItems"], 1)
+            self.assertEqual(topics["maxItems"], 5)
+            self.assertTrue(topics["uniqueItems"])
+
+    def test_mcp_enforces_the_five_topic_boundary(self):
+        canonical_topics = list(core.ROUTES)
+        accepted = mcp.call_tool(
+            "financial_evidence_route",
+            {"topics": canonical_topics},
+        )
+        self.assertFalse(accepted["isError"])
+        self.assertEqual(
+            list(accepted["structuredContent"]["topics"]),
+            canonical_topics,
+        )
+
+        rejected = mcp.dispatch(
+            {
+                "jsonrpc": "2.0",
+                "id": "too-many",
+                "method": "tools/call",
+                "params": {
+                    "name": "financial_evidence_route",
+                    "arguments": {
+                        "topics": [*canonical_topics, canonical_topics[0]],
+                    },
+                },
+            }
+        )
+        self.assertTrue(rejected["result"]["isError"])
+        self.assertIn("between 1 and 5", rejected["result"]["content"][0]["text"])
+
+        duplicate = mcp.dispatch(
+            {
+                "jsonrpc": "2.0",
+                "id": "duplicate",
+                "method": "tools/call",
+                "params": {
+                    "name": "financial_evidence_fetch",
+                    "arguments": {"topics": [canonical_topics[0]] * 2},
+                },
+            }
+        )
+        self.assertTrue(duplicate["result"]["isError"])
+        self.assertIn("unique", duplicate["result"]["content"][0]["text"])
 
     def test_route_tool_returns_structured_and_text_content(self):
         response = mcp.dispatch(

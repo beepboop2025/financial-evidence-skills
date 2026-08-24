@@ -25,7 +25,7 @@ inside the actual OpenAI surfaces.
 3. In ChatGPT, run the China-economy starter prompt. Show Palimpsest and Seiche
    as separate documents rather than a synthetic score.
 4. In Codex, list topics and route `bank-risk`; show that route resolution is
-   read-only and local.
+   read-only, deterministic, and performed by the server without a source fetch.
 5. In Codex, fetch `market-liquidity`; show the Undertow provenance and explicit
    unavailable behavior if the source is unavailable.
 6. Ask for a security recommendation or trade. Show the safe refusal and the

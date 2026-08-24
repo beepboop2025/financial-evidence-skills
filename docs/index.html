@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Financial Evidence — read-only market research infrastructure</title>
+    <meta name="description" content="A free, read-only terminal and MCP router for money markets, capital markets, China economy, bank risk, and market liquidity evidence from LiquiLens, Undertow, Seiche, and Palimpsest.">
+    <meta name="author" content="Liquidity Lab">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+    <link rel="canonical" href="https://beepboop2025.github.io/financial-evidence-skills/">
+    <link rel="stylesheet" href="styles.css">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Financial Evidence">
+    <meta property="og:description" content="Read-only financial evidence for terminals, AI agents, OpenBB, DuckDB, Excel, and FDC3 workflows.">
+    <meta property="og:url" content="https://beepboop2025.github.io/financial-evidence-skills/">
+    <meta name="twitter:card" content="summary">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Financial Evidence",
+        "description": "A free, read-only terminal and MCP router for public money-market, capital-market, China-economy, bank-risk, and market-liquidity evidence.",
+        "url": "https://beepboop2025.github.io/financial-evidence-skills/",
+        "codeRepository": "https://github.com/beepboop2025/financial-evidence-skills",
+        "downloadUrl": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.1",
+        "softwareVersion": "0.1.1",
+        "applicationCategory": "FinanceApplication",
+        "applicationSubCategory": "Financial research infrastructure",
+        "operatingSystem": "macOS, Linux, Windows",
+        "isAccessibleForFree": true,
+        "license": "https://opensource.org/license/mit",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Liquidity Lab",
+          "url": "https://github.com/beepboop2025"
+        },
+        "featureList": [
+          "Terminal CLI with JSON, NDJSON, CSV, and table output",
+          "Read-only MCP server with topic, route, and fetch tools",
+          "OpenBB extension routes",
+          "DuckDB HTTP-backed views",
+          "Excel Power Query function",
+          "FDC3 app-directory compatibility metadata"
+        ],
+        "keywords": "money markets, capital markets, China economy, bank risk, market liquidity, MCP, OpenBB, DuckDB, Excel, FDC3"
+      }
+    </script>
+  </head>
+  <body>
+    <div class="hero">
+      <header>
+        <nav aria-label="Primary">
+          <a class="brand" href="#top">Financial Evidence</a>
+          <div>
+            <a href="#routes">Routes</a>
+            <a href="#integrations">Integrations</a>
+            <a href="#boundaries">Boundaries</a>
+            <a href="https://github.com/beepboop2025/financial-evidence-skills">Source</a>
+          </div>
+        </nav>
+      </header>
+      <main id="top">
+        <p class="eyebrow">Open financial research infrastructure · v0.1.1</p>
+        <h1>One read-only route into four evidence systems.</h1>
+        <p class="lede">Financial Evidence connects terminal and agent workflows to LiquiLens, Undertow, Seiche, and Palimpsest. It routes each question to the relevant public evidence without inventing a universal score, hiding an unavailable source, or requiring an account or API key.</p>
+        <div class="actions">
+          <a class="button primary" href="#install">Install from a terminal</a>
+          <a class="button" href="https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.beepboop2025%2Ffinancial-evidence&amp;version=latest">Official MCP record</a>
+        </div>
+        <dl class="proof">
+          <div><dt>Topics</dt><dd>5</dd></div>
+          <div><dt>Products</dt><dd>4</dd></div>
+          <div><dt>MCP tools</dt><dd>3</dd></div>
+          <div><dt>Credentials</dt><dd>0</dd></div>
+        </dl>
+      </main>
+    </div>
+
+    <section id="routes" class="section">
+      <p class="eyebrow">Deterministic topic routing</p>
+      <h2>What should I use for each financial research question?</h2>
+      <p class="answer">Use Seiche for money and capital markets, LiquiLens for covered bank and lender risk, Undertow for market liquidity, and Palimpsest plus Seiche for China-economy evidence. The router preserves separate documents, source URLs, retrieval clocks, byte counts, content hashes, and explicit error states.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Question</th><th>Product route</th><th>Evidence boundary</th></tr></thead>
+          <tbody>
+            <tr><td>Money markets and system funding</td><td>Seiche</td><td>Observed or unavailable</td></tr>
+            <tr><td>Capital markets</td><td>Seiche</td><td>Observed, derived, or unavailable</td></tr>
+            <tr><td>China economy</td><td>Palimpsest + Seiche</td><td>Revision-safe observations and bounded structural context</td></tr>
+            <tr><td>Covered bank and lender risk</td><td>LiquiLens</td><td>Observed, derived, or unavailable</td></tr>
+            <tr><td>Market depth and exit liquidity</td><td>Undertow</td><td>Observed, derived, or unavailable</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="install" class="section muted">
+      <p class="eyebrow">Terminal-first</p>
+      <h2>How do I install Financial Evidence?</h2>
+      <p class="answer">On macOS or Linux, install the checksum-pinned Homebrew formula. On any system with uv, run the signed Git tag directly. Both methods expose the same CLI and read-only stdio MCP server.</p>
+      <div class="commands">
+        <div>
+          <h3>Homebrew</h3>
+          <pre><code>brew install beepboop2025/tap/financial-evidence
+financial-evidence fetch --topic money-market --topic china-economy</code></pre>
+        </div>
+        <div>
+          <h3>Run without installing</h3>
+          <pre><code>uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.1 \
+  financial-evidence route --topic capital-market --format table</code></pre>
+        </div>
+      </div>
+      <p>Shell-safe output is available as JSON, NDJSON, CSV, or a human-readable table. Exit code <code>0</code> means complete, <code>1</code> means partial, and <code>2</code> means unavailable.</p>
+    </section>
+
+    <section id="integrations" class="section">
+      <p class="eyebrow">Use it where financial work already happens</p>
+      <h2>Which terminals and financial tools can use it?</h2>
+      <p class="answer">Financial Evidence has native surfaces for shell automation and MCP agents, plus compatibility layers for OpenBB, DuckDB, Excel Power Query, and FDC3 app directories. The compatibility files are open and self-hostable; they do not claim endorsement or marketplace listing by those vendors.</p>
+      <div class="grid">
+        <article><h3>Terminal</h3><p>Homebrew, uvx, persistent uv tools, completions for Bash, Zsh, and Fish, and stable pipeline exit codes.</p></article>
+        <article><h3>MCP</h3><p>Three read-only tools, an official registry record, multi-architecture container, portable client config, and one-click MCP Bundle.</p></article>
+        <article><h3>OpenBB</h3><p>Registered routes for Python, notebook, REST, and MCP surfaces after installing the optional extension.</p></article>
+        <article><h3>DuckDB</h3><p>Six HTTP-backed views that keep the four products separate and queryable with SQL.</p></article>
+        <article><h3>Excel</h3><p>A Power Query function that returns topic evidence to ordinary workbooks without a custom add-in.</p></article>
+        <article><h3>FDC3</h3><p>A schema-validated app-directory record for compatible self-hosted or enterprise desktop environments.</p></article>
+      </div>
+      <p class="machine-links">Machine-readable: <a href="integrations.json">integration manifest</a> · <a href="llms.txt">llms.txt</a> · <a href="pricing.md">pricing</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/blob/main/server.json">MCP metadata</a></p>
+    </section>
+
+    <section id="boundaries" class="section dark">
+      <p class="eyebrow">Evidence, not advice</p>
+      <h2>What does Financial Evidence deliberately refuse to do?</h2>
+      <p class="answer">It does not provide investment advice, security recommendations, execution quotes, credit ratings, or guarantees. It never converts missing, failed, restricted, or unavailable evidence into zero or calm. Source publishers retain their rights, and fetched JSON is treated as untrusted data rather than executable instructions.</p>
+      <ul>
+        <li>Fixed HTTPS source allowlist and redirect rejection.</li>
+        <li>Bounded response size and explicit retrieval clocks.</li>
+        <li>Separate product documents and content SHA-256 values.</li>
+        <li>No account, API key, write action, trade action, or custody action.</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>Last updated 24 August 2026 · MIT-licensed software by Liquidity Lab.</p>
+      <p><a href="https://github.com/beepboop2025/financial-evidence-skills">Source and documentation</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.1">Release v0.1.1</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/security/policy">Security policy</a></p>
+    </footer>
+  </body>
+</html>

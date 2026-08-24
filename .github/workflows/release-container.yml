@@ -70,3 +70,31 @@ jobs:
         run: ./mcp-publisher login github-oidc
       - name: Publish to the official MCP Registry
         run: ./mcp-publisher publish server.json
+
+  mcpb:
+    needs: [ghcr, mcp-registry]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Validate release version and pack
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          test "$(jq --raw-output .version manifest.json)" = "$version"
+          npx --yes @anthropic-ai/mcpb@2.1.2 validate manifest.json
+          npx --yes @anthropic-ai/mcpb@2.1.2 pack . "financial-evidence-${version}.mcpb"
+          shasum --algorithm 256 "financial-evidence-${version}.mcpb" \
+            > "financial-evidence-${version}.mcpb.sha256"
+      - name: Attach bundle to the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1 \
+            || gh release create "$GITHUB_REF_NAME" --verify-tag --generate-notes
+          gh release upload "$GITHUB_REF_NAME" \
+            "financial-evidence-${GITHUB_REF_NAME#v}.mcpb" \
+            "financial-evidence-${GITHUB_REF_NAME#v}.mcpb.sha256" \
+            --clobber

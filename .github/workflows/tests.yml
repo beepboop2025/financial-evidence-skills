@@ -90,3 +90,8 @@ jobs:
             | sha256sum --check --strict
           tar --extract --gzip --file mcp-publisher.tar.gz mcp-publisher
       - run: ./mcp-publisher validate server.json
+      - name: Validate and pack the desktop MCP bundle
+        run: |
+          npx --yes @anthropic-ai/mcpb@2.1.2 validate manifest.json
+          npx --yes @anthropic-ai/mcpb@2.1.2 pack . financial-evidence.mcpb
+          npx --yes @anthropic-ai/mcpb@2.1.2 info financial-evidence.mcpb

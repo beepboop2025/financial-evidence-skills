@@ -1,0 +1,72 @@
+{
+  "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/mcpb/main/schemas/mcpb-manifest-v0.4.schema.json",
+  "manifest_version": "0.4",
+  "name": "financial-evidence",
+  "display_name": "Financial Evidence",
+  "version": "0.1.0",
+  "description": "Read-only money-market, capital-market, China-economy, bank-risk, and liquidity evidence for AI agents.",
+  "long_description": "Routes financial research to separate public evidence from LiquiLens, Undertow, Seiche, and Palimpsest. The server exposes bounded topic discovery, route resolution, and retrieval tools. Missing, restricted, or unavailable evidence remains unavailable and is never converted to zero, a composite score, or a synthetic calm reading.",
+  "author": {
+    "name": "Liquidity Lab",
+    "url": "https://github.com/beepboop2025"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beepboop2025/financial-evidence-skills.git"
+  },
+  "homepage": "https://github.com/beepboop2025/financial-evidence-skills",
+  "documentation": "https://github.com/beepboop2025/financial-evidence-skills#readme",
+  "support": "https://github.com/beepboop2025/financial-evidence-skills/issues",
+  "server": {
+    "type": "uv",
+    "entry_point": "src/financial_evidence/mcp.py",
+    "mcp_config": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--no-project",
+        "--directory",
+        "${__dirname}",
+        "python",
+        "-m",
+        "financial_evidence.mcp"
+      ],
+      "env": {
+        "PYTHONPATH": "${__dirname}/src"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "financial_evidence_topics",
+      "description": "List supported financial-research topics and fixed public product routes."
+    },
+    {
+      "name": "financial_evidence_route",
+      "description": "Resolve financial-research topics to fixed public evidence sources without fetching them."
+    },
+    {
+      "name": "financial_evidence_fetch",
+      "description": "Fetch bounded read-only JSON evidence while preserving unavailable and missing states."
+    }
+  ],
+  "keywords": [
+    "bank-risk",
+    "capital-markets",
+    "china-economy",
+    "financial-data",
+    "liquidity",
+    "money-markets"
+  ],
+  "license": "MIT",
+  "compatibility": {
+    "platforms": [
+      "darwin",
+      "linux",
+      "win32"
+    ],
+    "runtimes": {
+      "python": ">=3.10"
+    }
+  }
+}

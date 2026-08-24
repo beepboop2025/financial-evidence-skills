@@ -92,6 +92,10 @@ It accepts both the MCP `2025-11-25` initialization flow and the stateless
 `2026-07-28` discovery flow. Messages use newline-delimited JSON-RPC on stdio;
 nothing except protocol messages is written to standard output.
 
+For desktop clients that support one-click MCP Bundles, download
+`financial-evidence-0.1.0.mcpb` from the GitHub release. The bundle uses the
+cross-platform `uv` runtime and requires no API key or configuration.
+
 ## Finance-tool integrations
 
 - **OpenBB:** install `financial-evidence[openbb]` from this repository inside

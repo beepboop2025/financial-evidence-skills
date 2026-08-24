@@ -1,0 +1,15 @@
+.git/
+.github/
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+*.egg-info/
+*.mcpb
+*.pyc
+dist/
+financial-evidence/
+integrations/
+tests/
+.dockerignore
+Containerfile
+server.json

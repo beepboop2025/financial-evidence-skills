@@ -11,5 +11,5 @@ financial-evidence/
 integrations/
 tests/
 .dockerignore
-Containerfile
+Dockerfile
 server.json

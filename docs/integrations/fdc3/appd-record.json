@@ -1,0 +1,54 @@
+{
+  "appId": "financial-evidence-inspector",
+  "name": "financial-evidence-inspector",
+  "title": "Financial Evidence Inspector",
+  "description": "Inspect standard FDC3 instrument, organization and country contexts, rebroadcast an unchanged context on the current user channel, and open fixed public evidence routes for LiquiLens, Seiche, Undertow and Palimpsest. Read-only: no orders, advice or write actions.",
+  "categories": [
+    "analytics",
+    "developer tools",
+    "market data",
+    "research",
+    "risk"
+  ],
+  "version": "0.1.2",
+  "tooltip": "Inspect standard FDC3 contexts before routing a financial research question.",
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "https://beepboop2025.github.io/financial-evidence-skills/integrations/fdc3/evidence-inspector/icon.svg",
+      "size": "256x256",
+      "type": "image/svg+xml"
+    }
+  ],
+  "contactEmail": "mrinal@liquilens.in",
+  "supportEmail": "mrinal@liquilens.in",
+  "moreInfo": "https://beepboop2025.github.io/financial-evidence-skills/",
+  "type": "web",
+  "details": {
+    "url": "https://beepboop2025.github.io/financial-evidence-skills/integrations/fdc3/evidence-inspector/"
+  },
+  "interop": {
+    "intents": {
+      "listensFor": {
+        "ViewInstrument": {
+          "displayName": "View Instrument",
+          "contexts": [
+            "fdc3.instrument"
+          ]
+        }
+      }
+    },
+    "userChannels": {
+      "broadcasts": [
+        "fdc3.instrument",
+        "fdc3.organization",
+        "fdc3.country"
+      ],
+      "listensFor": [
+        "fdc3.instrument",
+        "fdc3.organization",
+        "fdc3.country"
+      ]
+    }
+  }
+}

@@ -101,8 +101,11 @@ nothing except protocol messages is written to standard output.
   is a schema-validated FDC3 web-app record for self-hosted or enterprise app
   directories. It is compatibility metadata, not a claim of vendor listing.
 - **Containers:** tagged releases publish a multi-architecture image to
-  `ghcr.io/beepboop2025/financial-evidence-skills`. Override the entry point
-  with `financial-evidence-mcp` when a container host expects stdio MCP.
+  `ghcr.io/beepboop2025/financial-evidence-skills`. The image runs stdio MCP by
+  default; use `--entrypoint financial-evidence` for terminal commands.
+- **Official MCP Registry:** tagged images are published under
+  `io.github.beepboop2025/financial-evidence` using GitHub OIDC and the image's
+  ownership annotation. No long-lived registry credential is stored.
 
 ## Optional bounded retrieval
 

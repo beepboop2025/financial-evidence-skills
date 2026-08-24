@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.beepboop2025/financial-evidence",
+  "title": "Financial Evidence",
+  "description": "Read-only public financial evidence from LiquiLens, Undertow, Seiche and Palimpsest.",
+  "repository": {
+    "url": "https://github.com/beepboop2025/financial-evidence-skills",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "oci",
+      "identifier": "ghcr.io/beepboop2025/financial-evidence-skills:0.1.0",
+      "runtimeHint": "docker",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

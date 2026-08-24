@@ -42,14 +42,14 @@ Bash, Zsh, and Fish completions. Alternatively, run directly from GitHub
 without installing:
 
 ```bash
-uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.0 \
+uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.1 \
   financial-evidence fetch --topic money-market --topic china-economy
 ```
 
 Or install it as a persistent command:
 
 ```bash
-uv tool install git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.0
+uv tool install git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.1
 financial-evidence topics
 financial-evidence route --topic capital-market --format table
 financial-evidence fetch --topic bank-risk --format ndjson
@@ -80,7 +80,7 @@ The same package includes a dependency-free, read-only stdio MCP server with
       "command": "uvx",
       "args": [
         "--from",
-        "git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.0",
+        "git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.1",
         "financial-evidence-mcp"
       ]
     }
@@ -93,7 +93,7 @@ It accepts both the MCP `2025-11-25` initialization flow and the stateless
 nothing except protocol messages is written to standard output.
 
 For desktop clients that support one-click MCP Bundles, download
-`financial-evidence-0.1.0.mcpb` from the GitHub release. The bundle uses the
+`financial-evidence-0.1.1.mcpb` from the GitHub release. The bundle uses the
 cross-platform `uv` runtime and requires no API key or configuration.
 
 ## Finance-tool integrations

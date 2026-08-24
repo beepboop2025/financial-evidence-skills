@@ -61,7 +61,15 @@ class DiscoveryDocsTests(unittest.TestCase):
         self.assertFalse(manifest["write_actions"])
         self.assertEqual(len(manifest["products"]), 4)
         self.assertEqual(len(manifest["topics"]), 5)
-        self.assertEqual(len(manifest["interfaces"]), 10)
+        self.assertEqual(len(manifest["interfaces"]), 11)
+        agent_skill = next(
+            interface
+            for interface in manifest["interfaces"]
+            if interface["kind"] == "agent-skill"
+        )
+        self.assertEqual(agent_skill["identifier"], "financial-evidence")
+        self.assertEqual(agent_skill["activation_topics"], manifest["topics"])
+        self.assertEqual(agent_skill["status"], "public")
 
     def test_html_jsonld_fragments_and_local_links(self):
         page = DOCS / "index.html"
@@ -133,6 +141,7 @@ class DiscoveryDocsTests(unittest.TestCase):
             self.assertIn(topic, llms)
         self.assertIn("Price: USD 0", pricing)
         self.assertIn("source publishers retain rights", llms.lower())
+        self.assertIn("npx skills add beepboop2025/financial-evidence-skills", llms)
         self.assertIn("Allow: /", robots)
         self.assertIn("sitemap.xml", robots)
 

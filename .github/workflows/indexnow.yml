@@ -1,0 +1,75 @@
+name: Notify IndexNow
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/**"
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: indexnow-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Wait for the Pages ownership key
+        env:
+          INDEXNOW_KEY: 82f75882dbd36fa818fdb25735425b6f
+          KEY_URL: https://beepboop2025.github.io/financial-evidence-skills/82f75882dbd36fa818fdb25735425b6f.txt
+        run: |
+          set -euo pipefail
+          for attempt in {1..24}; do
+            served_key="$(curl --fail --silent --show-error --max-time 10 "$KEY_URL" || true)"
+            if [[ "$served_key" == "$INDEXNOW_KEY" ]]; then
+              exit 0
+            fi
+            echo "Pages has not served the exact ownership key yet (attempt $attempt/24)"
+            sleep 5
+          done
+          echo "Pages did not serve the exact IndexNow ownership key" >&2
+          exit 1
+
+      - name: Submit changed discovery URLs
+        env:
+          INDEXNOW_KEY: 82f75882dbd36fa818fdb25735425b6f
+          KEY_URL: https://beepboop2025.github.io/financial-evidence-skills/82f75882dbd36fa818fdb25735425b6f.txt
+        run: |
+          set -euo pipefail
+          payload="$(jq -n \
+            --arg host "beepboop2025.github.io" \
+            --arg key "$INDEXNOW_KEY" \
+            --arg key_location "$KEY_URL" \
+            '{
+              host: $host,
+              key: $key,
+              keyLocation: $key_location,
+              urlList: [
+                "https://beepboop2025.github.io/financial-evidence-skills/",
+                "https://beepboop2025.github.io/financial-evidence-skills/llms.txt",
+                "https://beepboop2025.github.io/financial-evidence-skills/integrations.json",
+                "https://beepboop2025.github.io/financial-evidence-skills/pricing.md",
+                "https://beepboop2025.github.io/financial-evidence-skills/sitemap.xml"
+              ]
+            }')"
+          response_code="$(curl \
+            --silent \
+            --show-error \
+            --max-time 30 \
+            --output indexnow-response.txt \
+            --write-out '%{http_code}' \
+            --header 'Content-Type: application/json; charset=utf-8' \
+            --data "$payload" \
+            https://api.indexnow.org/indexnow)"
+          if [[ "$response_code" != "200" && "$response_code" != "202" ]]; then
+            cat indexnow-response.txt >&2
+            echo "IndexNow returned HTTP $response_code" >&2
+            exit 1
+          fi
+          echo "IndexNow accepted the five-URL discovery update with HTTP $response_code"

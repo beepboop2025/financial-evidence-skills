@@ -3,7 +3,7 @@
   "manifest_version": "0.4",
   "name": "financial-evidence",
   "display_name": "Financial Evidence",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Read-only money-market, capital-market, China-economy, bank-risk, and liquidity evidence for AI agents.",
   "long_description": "Routes financial research to separate public evidence from LiquiLens, Undertow, Seiche, and Palimpsest. The server exposes bounded topic discovery, route resolution, and retrieval tools. Missing, restricted, or unavailable evidence remains unavailable and is never converted to zero, a composite score, or a synthetic calm reading.",
   "author": {

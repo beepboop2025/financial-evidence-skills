@@ -7,11 +7,11 @@
     "url": "https://github.com/beepboop2025/financial-evidence-skills",
     "source": "github"
   },
-  "version": "0.1.1",
+  "version": "0.1.2",
   "packages": [
     {
       "registryType": "oci",
-      "identifier": "ghcr.io/beepboop2025/financial-evidence-skills:0.1.1",
+      "identifier": "ghcr.io/beepboop2025/financial-evidence-skills:0.1.2",
       "runtimeHint": "docker",
       "transport": {
         "type": "stdio"

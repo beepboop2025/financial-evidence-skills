@@ -148,9 +148,27 @@ class McpTests(unittest.TestCase):
                 "financial_evidence_fetch",
             ],
         )
-        self.assertTrue(all(tool["annotations"]["readOnlyHint"] for tool in tools))
-        self.assertTrue(
-            all(not tool["annotations"]["destructiveHint"] for tool in tools)
+        common = {
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "idempotentHint": True,
+        }
+        self.assertEqual(
+            {tool["name"]: tool["annotations"] for tool in tools},
+            {
+                "financial_evidence_topics": {
+                    **common,
+                    "openWorldHint": False,
+                },
+                "financial_evidence_route": {
+                    **common,
+                    "openWorldHint": False,
+                },
+                "financial_evidence_fetch": {
+                    **common,
+                    "openWorldHint": True,
+                },
+            },
         )
 
     def test_route_tool_returns_structured_and_text_content(self):

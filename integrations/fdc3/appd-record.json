@@ -5,7 +5,7 @@
   "details": {
     "url": "https://github.com/beepboop2025/financial-evidence-skills"
   },
-  "version": "0.1.1",
+  "version": "0.1.2",
   "tooltip": "Route money-market, capital-market, bank-risk, market-liquidity and China-economy work to bounded public evidence.",
   "lang": "en-US",
   "description": "Read-only access to public evidence from LiquiLens, Undertow, Seiche and Palimpsest. Missing or restricted evidence remains unavailable and is never converted to zero or calm.",

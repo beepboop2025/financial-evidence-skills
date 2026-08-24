@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import sys
 import unittest
+import urllib.error
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -88,6 +89,34 @@ class FetchEvidenceTests(unittest.TestCase):
             all(row["document"] == {"status": "structural"}
                 for row in packet["sources"])
         )
+        self.assertTrue(
+            all(row["resolved_url"] == row["source_url"]
+                for row in packet["sources"])
+        )
+        self.assertTrue(
+            all(row["content_sha256"].startswith("sha256:")
+                and len(row["content_sha256"]) == 71
+                for row in packet["sources"])
+        )
+
+    def test_redirect_handler_rejects_before_following(self):
+        handler = self.module.RejectRedirects()
+        request = self.module.urllib.request.Request(
+            "https://api.seiche.info/api/v2/money-markets"
+        )
+        with self.assertRaisesRegex(
+            urllib.error.HTTPError,
+            "redirects are not accepted",
+        ) as caught:
+            handler.redirect_request(
+                request,
+                None,
+                302,
+                "Found",
+                {},
+                "https://example.invalid/redirected",
+            )
+        caught.exception.close()
 
     def test_redirects_oversize_and_invalid_json_are_explicit_errors(self):
         source = self.module.ROUTES["money-market"][0]
@@ -122,6 +151,7 @@ class FetchEvidenceTests(unittest.TestCase):
                             for row in packet["sources"]))
         self.assertNotIn('"document": 0', json.dumps(packet))
         self.assertIn("never converted to zero or calm", packet["absence_policy"])
+        self.assertIn("untrusted evidence data", packet["data_handling"])
 
 
 if __name__ == "__main__":

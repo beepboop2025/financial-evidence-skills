@@ -32,6 +32,17 @@ class EditorIntegrationTests(unittest.TestCase):
         self.config = self.canonical["mcpServers"][SERVER_NAME]
         self.named_config = {"name": SERVER_NAME, **self.config}
         manifest = _json("docs/integrations.json")
+        self.published_version = manifest["last_verified_release"]
+        self.public_config = {
+            "type": "stdio",
+            "command": "uvx",
+            "args": [
+                "--from",
+                f"git+{REPOSITORY}@v{self.published_version}",
+                "financial-evidence-mcp",
+            ],
+        }
+        self.public_named_config = {"name": SERVER_NAME, **self.public_config}
         self.interfaces = {item["name"]: item for item in manifest["interfaces"]}
 
     def test_workspace_configs_share_one_exact_stdio_contract(self):
@@ -69,12 +80,12 @@ class EditorIntegrationTests(unittest.TestCase):
         install_url = integration["install_url"]
         self.assertTrue(install_url.startswith("vscode:mcp/install?"))
         encoded = install_url.split("?", 1)[1]
-        self.assertEqual(json.loads(unquote(encoded)), self.named_config)
+        self.assertEqual(json.loads(unquote(encoded)), self.public_named_config)
 
         command = shlex.split(integration["cli_install"])
         self.assertEqual(command[:2], ["code", "--add-mcp"])
         self.assertEqual(len(command), 3)
-        self.assertEqual(json.loads(command[2]), self.named_config)
+        self.assertEqual(json.loads(command[2]), self.public_named_config)
 
     def test_cursor_deeplink_decodes_to_unnamed_transport_config(self):
         install_url = self.interfaces["Cursor"]["install_url"]
@@ -86,7 +97,7 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertEqual(query["name"], [SERVER_NAME])
         self.assertEqual(len(query["config"]), 1)
         decoded = base64.b64decode(query["config"][0], validate=True)
-        self.assertEqual(json.loads(decoded), self.config)
+        self.assertEqual(json.loads(decoded), self.public_config)
 
     def test_install_routes_are_documented_with_review_boundaries(self):
         vscode = self.interfaces["Visual Studio Code"]
@@ -94,11 +105,16 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertTrue(vscode["review_before_start"])
         self.assertTrue(cursor["review_before_start"])
         for integration in (vscode, cursor):
-            self.assertEqual(integration["published_version"], self.version)
+            self.assertEqual(integration["candidate_version"], self.version)
+            self.assertEqual(
+                integration["published_version"], self.published_version
+            )
             self.assertEqual(
                 integration["status"],
-                "self-installable-not-vendor-listing",
+                "self-installable-last-verified-release-not-vendor-listing",
             )
+            self.assertIn(f"/blob/v{self.published_version}/", integration["config"])
+            self.assertIn("/blob/main/", integration["candidate_config"])
 
         readme = (ROOT / "README.md").read_text()
         llms = (ROOT / "docs/llms.txt").read_text()
@@ -112,7 +128,7 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertIn("not claims of a VS Code or Cursor marketplace listing", readme)
 
     def test_release_surfaces_are_pinned_to_package_version(self):
-        self.assertEqual(self.version, "0.1.4")
+        self.assertEqual(self.version, "0.1.5")
         self.assertEqual(_json("manifest.json")["version"], self.version)
         server = _json("server.json")
         self.assertEqual(server["version"], self.version)
@@ -132,18 +148,34 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertEqual(
             _json("integrations/fdc3/appd-record.json")["version"], self.version
         )
-        self.assertEqual(_json("docs/integrations.json")["version"], self.version)
+        manifest = _json("docs/integrations.json")
+        self.assertEqual(manifest["version"], self.version)
+        self.assertEqual(manifest["release_state"], "candidate")
+        self.assertEqual(manifest["last_verified_release"], "0.1.4")
         homebrew = self.interfaces["Homebrew"]
-        self.assertEqual(homebrew["published_version"], self.version)
-        self.assertEqual(homebrew["status"], "public")
+        self.assertEqual(homebrew["candidate_version"], self.version)
+        self.assertEqual(homebrew["published_version"], self.published_version)
+        self.assertEqual(homebrew["status"], "public-last-verified-release")
         mcp_interface = self.interfaces["Model Context Protocol"]
         self.assertTrue(mcp_interface["portable_agent_host"])
-        self.assertTrue(mcp_interface["config"].endswith("/.mcp.json"))
-        self.assertEqual(mcp_interface["published_version"], self.version)
-        self.assertEqual(mcp_interface["status"], "official-registry-active")
+        self.assertTrue(
+            mcp_interface["config"].endswith(
+                f"/blob/v{self.published_version}/.mcp.json"
+            )
+        )
+        self.assertTrue(mcp_interface["candidate_config"].endswith("/blob/main/.mcp.json"))
+        self.assertEqual(mcp_interface["candidate_version"], self.version)
+        self.assertEqual(
+            mcp_interface["published_version"], self.published_version
+        )
+        self.assertEqual(
+            mcp_interface["status"],
+            "official-registry-active-last-verified-release",
+        )
         bundle = self.interfaces["MCP Bundle"]
-        self.assertEqual(bundle["published_version"], self.version)
-        self.assertEqual(bundle["status"], "public")
+        self.assertEqual(bundle["candidate_version"], self.version)
+        self.assertEqual(bundle["published_version"], self.published_version)
+        self.assertEqual(bundle["status"], "public-last-verified-release")
 
         pyproject = (ROOT / "pyproject.toml").read_text()
         self.assertIn(f'version = "{self.version}"', pyproject)
@@ -165,6 +197,14 @@ class EditorIntegrationTests(unittest.TestCase):
         for path in release_surfaces:
             text = (ROOT / path).read_text()
             self.assertNotIn("0.1.1", text, path)
+            if path not in {
+                "README.md",
+                ".agents/plugins/marketplace.json",
+                "docs/index.html",
+                "docs/integrations.json",
+                "docs/llms.txt",
+            }:
+                self.assertNotIn("0.1.4", text, path)
 
     def test_release_checksums_use_download_basenames(self):
         workflow = (ROOT / ".github/workflows/release-container.yml").read_text()
@@ -191,7 +231,15 @@ class EditorIntegrationTests(unittest.TestCase):
             ],
         )
         integration = self.interfaces["Gemini CLI"]
-        self.assertIn(f"--ref v{self.version}", integration["install"])
+        self.assertEqual(integration["candidate_version"], self.version)
+        self.assertIn(
+            f"--ref v{self.published_version}", integration["install"]
+        )
+        self.assertIn(
+            f"/blob/v{self.published_version}/gemini-extension.json",
+            integration["manifest"],
+        )
+        self.assertIn("/blob/main/gemini-extension.json", integration["candidate_manifest"])
         self.assertNotIn("--consent", integration["install"])
 
     def test_claude_plugin_and_marketplace_are_self_hosted(self):
@@ -208,9 +256,11 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertEqual(plugin["version"], entry["version"])
         integration = self.interfaces["Claude Code"]
         self.assertIn("plugin marketplace add", integration["install"])
-        self.assertIn(
-            "financial-evidence@liquidity-lab", integration["install"]
-        )
+        self.assertIn("financial-evidence@liquidity-lab", integration["install"])
+        self.assertEqual(integration["source_ref"], "mutable-default-branch")
+        self.assertEqual(integration["candidate_version"], self.version)
+        self.assertEqual(integration["published_version"], self.published_version)
+        self.assertEqual(integration["status"], "self-installable-mutable-main-candidate")
 
     def test_openai_plugin_is_repo_installable_and_review_bounded(self):
         plugin = _json(".codex-plugin/plugin.json")
@@ -251,7 +301,7 @@ class EditorIntegrationTests(unittest.TestCase):
         entry = marketplace["plugins"][0]
         self.assertEqual(entry["name"], SERVER_NAME)
         self.assertEqual(entry["source"]["source"], "url")
-        self.assertEqual(entry["source"]["ref"], "main")
+        self.assertEqual(entry["source"]["ref"], f"v{self.published_version}")
         self.assertEqual(entry["policy"]["installation"], "AVAILABLE")
 
         integration = self.interfaces["Codex plugin and ChatGPT submission"]
@@ -262,14 +312,18 @@ class EditorIntegrationTests(unittest.TestCase):
         )
         self.assertEqual(
             integration["status"],
-            "codex-repo-installable-chatgpt-submission-not-started",
+            "codex-last-verified-release-chatgpt-submission-not-started",
         )
         self.assertIn("codex plugin marketplace add", integration["install"])
         self.assertIn("codex plugin add", integration["install"])
-        self.assertEqual(integration["codex_status"], "repo-installable")
         self.assertEqual(
-            integration["chatgpt_status"], "submission-not-started"
+            integration["codex_status"],
+            "repo-installable-last-verified-release",
         )
+        self.assertEqual(integration["candidate_version"], self.version)
+        self.assertEqual(integration["published_version"], self.published_version)
+        self.assertIn(f"--ref v{self.published_version}", integration["install"])
+        self.assertEqual(integration["chatgpt_status"], "submission-not-started")
 
         packet = (ROOT / "OPENAI_PLUGIN_SUBMISSION.md").read_text()
         self.assertIn(
@@ -284,6 +338,7 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertIn("## Release notes", packet)
         self.assertIn("Availability:", packet)
         self.assertIn("Demo recording: not yet recorded", packet)
+        self.assertIn("public logo and release URL are release-gated", packet)
         self.assertEqual(packet.count("`readOnlyHint` justification:"), 3)
         self.assertEqual(packet.count("`openWorldHint` justification:"), 3)
         self.assertEqual(packet.count("`destructiveHint` justification:"), 3)

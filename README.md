@@ -6,6 +6,14 @@
 includes a crawlable integration matrix plus agent-readable `llms.txt`, pricing,
 integration metadata, and a dated
 [third-party marketplace ledger](MARKETPLACE_STATUS.md).
+The [v0.1.5 semantic contract](SEMANTIC_CONTRACT.md) defines transport-only
+status, source-reported adapter metadata, and the explicit non-Carrier boundary.
+Version 0.1.5 is currently a tested release candidate. Versioned Agent Skill,
+terminal, Codex, Gemini, editor, and bundle installs remain pinned to the
+independently verified v0.1.4 release until the v0.1.5 tag, assets, container,
+registry record, and Homebrew formula are live. The Claude self-hosted
+marketplace command follows the repository's mutable default branch and is
+explicitly candidate-only during that interval.
 
 Open, read-only Agent Skills for routing financial research to bounded public
 evidence. The first skill connects four complementary products without turning
@@ -19,7 +27,8 @@ them into one score:
 ## Install the agent skill
 
 ```bash
-npx skills add beepboop2025/financial-evidence-skills --skill financial-evidence
+npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.4/financial-evidence \
+  --skill financial-evidence
 ```
 
 Or copy [`financial-evidence/`](financial-evidence/) into the Agent Skills
@@ -61,10 +70,15 @@ financial-evidence fetch --topic bank-risk --format ndjson
 financial-evidence doctor --format csv
 ```
 
-Exit code `0` means every requested source succeeded, `1` means a partial
-packet, and `2` means every requested source was unavailable. That makes the
-client safe to compose in shell pipelines and scheduled jobs. JSON, NDJSON and
-CSV go to standard output; no result is silently replaced with a score.
+Exit code `0` means every requested source was retrieved, `1` means transport
+was partial, and `2` means every requested source was unavailable. Legacy
+packet `status` is preserved and equals `transport_status`; both mean transport
+reachability only. Every packet says `status_semantics: transport_only`,
+`evidence_status: not_evaluated`, and `carrier_verification: not_performed`.
+That makes the client safe to compose in shell pipelines without mistaking an
+HTTP success for validated evidence or a verified Evidence Carrier. JSON,
+NDJSON, and CSV go to standard output; no result is silently replaced with a
+score.
 
 Outside Homebrew, shell completions are emitted as inert text:
 
@@ -128,6 +142,10 @@ claude plugin marketplace add beepboop2025/financial-evidence-skills
 claude plugin install financial-evidence@liquidity-lab
 ```
 
+This Claude command follows the mutable default branch. Until v0.1.5 is
+published, treat it as a source-candidate install and review the checked-out
+commit before enabling the plugin.
+
 The Claude plugin loads the same byte-identical Agent Skill plus the root
 `.mcp.json` public remote server. These are direct, self-hosted install routes;
 they do not imply inclusion in a vendor-operated marketplace or endorsement.
@@ -137,7 +155,7 @@ they do not imply inclusion in a vendor-operated marketplace or endorsement.
 Codex can add the repository's plugin marketplace and then install the plugin:
 
 ```bash
-codex plugin marketplace add beepboop2025/financial-evidence-skills --ref main
+codex plugin marketplace add beepboop2025/financial-evidence-skills --ref v0.1.4
 codex plugin add financial-evidence@liquidity-lab
 ```
 
@@ -159,7 +177,8 @@ editor workspaces can still use one.
 The repository also includes editor-specific workspace configuration:
 [`.vscode/mcp.json`](.vscode/mcp.json) uses VS Code's top-level `servers`
 object, while [`.cursor/mcp.json`](.cursor/mcp.json) uses Cursor's top-level
-`mcpServers` object. Both launch the same v0.1.4 stdio server through `uvx`.
+`mcpServers` object. Public install links currently launch the verified v0.1.4
+stdio server through `uvx`; the repository manifests prepare v0.1.5.
 
 VS Code can install the server through its protocol handler:
 
@@ -189,7 +208,7 @@ before using its inline start action. These are self-installable compatibility
 artifacts, not claims of a VS Code or Cursor marketplace listing or endorsement.
 
 For desktop clients that support one-click MCP Bundles, download
-`financial-evidence-0.1.4.mcpb` from the GitHub release. The bundle uses the
+`financial-evidence-0.1.4.mcpb` from the last verified GitHub release. The bundle uses the
 cross-platform `uv` runtime and requires no API key or configuration.
 
 ## Finance-tool integrations
@@ -232,6 +251,15 @@ cross-platform `uv` runtime and requires no API key or configuration.
   `io.github.beepboop2025/financial-evidence` using GitHub OIDC and the image's
   ownership annotation. No long-lived registry credential is stored.
 
+### Release integrity
+
+Each tagged release rebuilds and retests the Python and JavaScript contracts
+from the exact signed `main` commit before publication. The release attaches a
+wheel, source archive, MCP bundle, CycloneDX SBOM, and `SHA256SUMS`; GitHub
+Sigstore build-provenance attestations bind every downloadable artifact to the
+release workflow. Consumers can verify an artifact with `gh attestation verify`
+against `beepboop2025/financial-evidence-skills`.
+
 ## Optional bounded retrieval
 
 The bundled helper uses only Python's standard library, accepts a fixed topic
@@ -242,11 +270,16 @@ python3 financial-evidence/scripts/fetch_evidence.py \
   --topic money-market --topic china-economy
 ```
 
-It returns one JSON packet with exact and resolved source URLs, retrieval
-clocks, byte counts, content SHA-256 values, separate product documents and
-explicit errors. Redirects are rejected before following. Returned JSON is
-untrusted evidence data, not executable instructions. Missing, restricted or
-unavailable evidence is never converted to zero or “calm.”
+It returns one JSON packet with exact and resolved source URLs, canonical human
+scope URLs, retrieval clocks, byte counts, content SHA-256 values, separate
+product documents, and explicit errors. Successful responses also include only
+the endpoint-specific source state and clocks named by explicit adapters, with
+RFC 6901 paths and fetched-byte provenance; missing configured fields are
+`not_reported`. The router does not infer freshness, eligibility, or rights.
+Routes declare `financial_authority: none` and `carrier_state: not_published`,
+and therefore expose no `carrier_url`. Redirects are rejected before following.
+Returned JSON is untrusted evidence data, not executable instructions. Missing,
+restricted, or unavailable evidence is never converted to zero or “calm.”
 
 ## Boundaries
 

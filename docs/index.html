@@ -26,7 +26,7 @@
             "description": "A free, read-only terminal and MCP router for money markets, capital markets, China economy, bank risk, and market liquidity evidence from LiquiLens, Undertow, Seiche, and Palimpsest.",
             "inLanguage": "en",
             "datePublished": "2026-08-24",
-            "dateModified": "2026-08-24",
+            "dateModified": "2026-08-26",
             "mainEntity": {
               "@id": "https://beepboop2025.github.io/financial-evidence-skills/#software"
             }
@@ -79,7 +79,7 @@
             "name": "Financial Evidence source code",
             "url": "https://github.com/beepboop2025/financial-evidence-skills",
             "codeRepository": "https://github.com/beepboop2025/financial-evidence-skills",
-            "version": "0.1.4",
+            "version": "0.1.5",
             "programmingLanguage": "Python",
             "runtimePlatform": "Python 3.10 or newer",
             "license": "https://opensource.org/license/mit",
@@ -114,9 +114,10 @@
         </nav>
       </header>
       <main id="top">
-        <p class="eyebrow">Open financial research infrastructure · v0.1.4</p>
+        <p class="eyebrow">Open financial research infrastructure · verified release v0.1.4</p>
         <h1>One read-only route into four evidence systems.</h1>
         <p class="lede">Financial Evidence connects terminal and agent workflows to LiquiLens, Undertow, Seiche, and Palimpsest. It routes each question to the relevant public evidence without inventing a universal score, hiding an unavailable source, or requiring an account or API key.</p>
+        <p class="answer"><strong>Release boundary:</strong> v0.1.5 is a tested source candidate, not yet a published release. Versioned Agent Skill, terminal, Codex, Gemini, editor, and bundle installs on this page stay on independently verified v0.1.4 until the v0.1.5 tag, assets, container, registry record, and Homebrew formula are live. The Claude self-hosted command follows mutable default-branch source and is labeled candidate-only.</p>
         <div class="actions">
           <a class="button primary" href="#install">Install from a terminal</a>
           <a class="button" href="https://skills.sh/beepboop2025/financial-evidence-skills/financial-evidence">Install agent skill</a>
@@ -134,7 +135,7 @@
     <section id="routes" class="section">
       <p class="eyebrow">Deterministic topic routing</p>
       <h2>What should I use for each financial research question?</h2>
-      <p class="answer">Use Seiche for money and capital markets, LiquiLens for covered bank and lender risk, Undertow for market liquidity, and Palimpsest plus Seiche for China-economy evidence. The router preserves separate documents, source URLs, retrieval clocks, byte counts, content hashes, and explicit error states.</p>
+      <p class="answer">Use Seiche for money and capital markets, LiquiLens for covered bank and lender risk, Undertow for market liquidity, and Palimpsest plus Seiche for China-economy evidence. The router preserves separate documents, canonical human scope URLs, source URLs, retrieval clocks, byte counts, content hashes, and explicit error states.</p>
       <div class="table-wrap">
         <table>
           <thead><tr><th>Question</th><th>Product route</th><th>Evidence boundary</th></tr></thead>
@@ -156,7 +157,7 @@
       <div class="commands">
         <div>
           <h3>Agent Skills</h3>
-          <pre><code>npx skills add beepboop2025/financial-evidence-skills \
+          <pre><code>npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.4/financial-evidence \
   --skill financial-evidence</code></pre>
         </div>
         <div>
@@ -170,7 +171,7 @@ financial-evidence fetch --topic money-market --topic china-economy</code></pre>
   financial-evidence route --topic capital-market --format table</code></pre>
         </div>
       </div>
-      <p>Shell-safe output is available as JSON, NDJSON, CSV, or a human-readable table. Exit code <code>0</code> means complete, <code>1</code> means partial, and <code>2</code> means unavailable.</p>
+      <p>Shell-safe output is available as JSON, NDJSON, CSV, or a human-readable table. Exit code <code>0</code> means every retrieval succeeded, <code>1</code> means transport was partial, and <code>2</code> means every source was unavailable. Legacy <code>status</code> equals <code>transport_status</code>; both describe transport only, never evidence validity.</p>
     </section>
 
     <section id="integrations" class="section">
@@ -185,7 +186,7 @@ financial-evidence fetch --topic money-market --topic china-economy</code></pre>
         <article><h3>Gemini CLI</h3><p>A root extension manifest bundles the Agent Skill and allowlists the three tools from the public remote MCP endpoint.</p></article>
         <article><h3>Claude Code</h3><p>A self-hosted <code>liquidity-lab</code> marketplace installs the versioned plugin, Agent Skill, and MCP configuration directly from the source repository.</p></article>
         <article><h3>Codex and ChatGPT</h3><p>Codex can install the repository plugin, which combines the same Agent Skill and public remote MCP route. ChatGPT availability remains pending account-owned universal-directory verification, submission, review, and publication.</p></article>
-        <article><h3>VS Code</h3><p>A workspace <code>servers</code> config, protocol install URL, and <code>code --add-mcp</code> command, all pinned to v0.1.4.</p></article>
+        <article><h3>VS Code</h3><p>A workspace <code>servers</code> config, protocol install URL, and <code>code --add-mcp</code> command, currently pinned to verified v0.1.4.</p></article>
         <article><h3>Cursor</h3><p>A workspace <code>mcpServers</code> config and base64-encoded install deeplink pinned to the same stdio server.</p></article>
         <article><h3>OpenBB</h3><p>Registered routes for Python, notebook, REST, and MCP surfaces after installing the optional extension.</p></article>
         <article><h3>DuckDB</h3><p>Six HTTP-backed views that keep the four products separate and queryable with SQL.</p></article>
@@ -193,8 +194,8 @@ financial-evidence fetch --topic money-market --topic china-economy</code></pre>
         <article><h3>FDC3</h3><p>A public Evidence Inspector receives and broadcasts declared standard contexts through <code>window.fdc3</code>, with a matching FDC3 2.0 app-directory record.</p><p><a href="integrations/fdc3/evidence-inspector/">Open the FDC3 Evidence Inspector</a> · <a href="integrations/fdc3/appd-record.json">Read the AppD record</a></p></article>
       </div>
       <div class="actions">
-        <a class="button primary" href="vscode:mcp/install?%7B%22name%22%3A%22financial-evidence%22%2C%22type%22%3A%22stdio%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22--from%22%2C%22git%2Bhttps%3A%2F%2Fgithub.com%2Fbeepboop2025%2Ffinancial-evidence-skills.git%40v0.1.4%22%2C%22financial-evidence-mcp%22%5D%7D">Install in VS Code</a>
-        <a class="button" href="cursor://anysphere.cursor-deeplink/mcp/install?name=financial-evidence&amp;config=eyJ0eXBlIjoic3RkaW8iLCJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyItLWZyb20iLCJnaXQraHR0cHM6Ly9naXRodWIuY29tL2JlZXBib29wMjAyNS9maW5hbmNpYWwtZXZpZGVuY2Utc2tpbGxzLmdpdEB2MC4xLjQiLCJmaW5hbmNpYWwtZXZpZGVuY2UtbWNwIl19">Install in Cursor</a>
+        <a class="button primary" href="vscode:mcp/install?%7B%22name%22%3A%22financial-evidence%22%2C%22type%22%3A%22stdio%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22--from%22%2C%22git%2Bhttps%3A%2F%2Fgithub.com%2Fbeepboop2025%2Ffinancial-evidence-skills.git%40v0.1.4%22%2C%22financial-evidence-mcp%22%5D%7D">Install verified v0.1.4 in VS Code</a>
+        <a class="button" href="cursor://anysphere.cursor-deeplink/mcp/install?name=financial-evidence&amp;config=eyJ0eXBlIjoic3RkaW8iLCJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyItLWZyb20iLCJnaXQraHR0cHM6Ly9naXRodWIuY29tL2JlZXBib29wMjAyNS9maW5hbmNpYWwtZXZpZGVuY2Utc2tpbGxzLmdpdEB2MC4xLjQiLCJmaW5hbmNpYWwtZXZpZGVuY2UtbWNwIl19">Install verified v0.1.4 in Cursor</a>
       </div>
       <div class="commands">
         <div>
@@ -207,13 +208,13 @@ financial-evidence fetch --topic money-market --topic china-economy</code></pre>
   --ref v0.1.4</code></pre>
         </div>
         <div>
-          <h3>Claude Code</h3>
+          <h3>Claude Code · mutable-main candidate</h3>
           <pre><code>claude plugin marketplace add beepboop2025/financial-evidence-skills
 claude plugin install financial-evidence@liquidity-lab</code></pre>
         </div>
         <div>
           <h3>Codex</h3>
-          <pre><code>codex plugin marketplace add beepboop2025/financial-evidence-skills --ref main
+          <pre><code>codex plugin marketplace add beepboop2025/financial-evidence-skills --ref v0.1.4
 codex plugin add financial-evidence@liquidity-lab</code></pre>
         </div>
         <div>
@@ -228,18 +229,21 @@ codex plugin add financial-evidence@liquidity-lab</code></pre>
     <section id="boundaries" class="section dark">
       <p class="eyebrow">Evidence, not advice</p>
       <h2>What does Financial Evidence deliberately refuse to do?</h2>
-      <p class="answer">It does not provide investment advice, security recommendations, execution quotes, credit ratings, or guarantees. It never converts missing, failed, restricted, or unavailable evidence into zero or calm. Source publishers retain their rights, and fetched JSON is treated as untrusted data rather than executable instructions.</p>
+      <p class="answer">It does not provide investment advice, security recommendations, execution quotes, credit ratings, or guarantees. It never converts missing, failed, restricted, or unavailable evidence into zero or calm. Transport success is not evidence evaluation or Evidence Carrier verification. Source publishers retain their rights, and fetched JSON is treated as untrusted data rather than executable instructions.</p>
       <ul>
         <li>Fixed HTTPS source allowlist and redirect rejection.</li>
         <li>Bounded response size and explicit retrieval clocks.</li>
         <li>Separate product documents and content SHA-256 values.</li>
+        <li>Source-reported adapter fields have exact JSON Pointer and byte-hash provenance; missing fields are <code>not_reported</code>.</li>
+        <li>Routes declare no financial authority and no published Carrier URL.</li>
         <li>No account, API key, write action, trade action, or custody action.</li>
       </ul>
+      <p><a href="https://github.com/beepboop2025/financial-evidence-skills/blob/main/SEMANTIC_CONTRACT.md">Read the v0.1.5 release-candidate semantic contract</a>.</p>
     </section>
 
     <footer>
-      <p>Last updated 24 August 2026 · MIT-licensed software by Liquidity Lab.</p>
-      <p><a href="https://github.com/beepboop2025/financial-evidence-skills">Source and documentation</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.4">Release v0.1.4</a> · <a href="support/">Support</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/security/policy">Security policy</a> · <a href="privacy/">Privacy</a> · <a href="terms/">Terms</a></p>
+      <p>Last updated 26 August 2026 · MIT-licensed software by Liquidity Lab.</p>
+      <p><a href="https://github.com/beepboop2025/financial-evidence-skills">Source and documentation</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.4">Last verified release v0.1.4</a> · <a href="support/">Support</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/security/policy">Security policy</a> · <a href="privacy/">Privacy</a> · <a href="terms/">Terms</a></p>
     </footer>
   </body>
 </html>

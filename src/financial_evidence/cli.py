@@ -13,6 +13,7 @@ from . import __version__
 from .core import ALIASES, ROUTES, build_packet, normalize_topics, route_manifest
 
 
+# Legacy process codes are intentionally keyed to transport reachability only.
 STATUS_EXIT = {"complete": 0, "partial": 1, "unavailable": 2}
 
 
@@ -40,10 +41,28 @@ def _route_rows(manifest: dict[str, Any]) -> list[dict[str, Any]]:
 
 def _source_rows(packet: dict[str, Any]) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
+    packet_semantics = {
+        key: packet[key]
+        for key in (
+            "status",
+            "transport_status",
+            "status_semantics",
+            "evidence_status",
+            "carrier_verification",
+        )
+    }
     for source in packet["sources"]:
-        row = {key: value for key, value in source.items() if key != "document"}
-        if "document" in source:
-            row["document"] = compact_json(source["document"])
+        row = {
+            **packet_semantics,
+            **{
+                key: value
+                for key, value in source.items()
+                if key not in {"document", "source_reported"}
+            },
+        }
+        for key in ("source_reported", "document"):
+            if key in source:
+                row[key] = compact_json(source[key])
         rows.append(row)
     return rows
 
@@ -109,7 +128,18 @@ def command_route(args: argparse.Namespace) -> int:
     if args.format == "json":
         print(compact_json(manifest))
     elif args.format == "table":
-        emit_table(_route_rows(manifest), ("topic", "product", "evidence_class", "url"))
+        emit_table(
+            _route_rows(manifest),
+            (
+                "topic",
+                "product",
+                "evidence_class",
+                "url",
+                "human_scope_url",
+                "financial_authority",
+                "carrier_state",
+            ),
+        )
     else:
         emit_rows(_route_rows(manifest), args.format)
     return 0
@@ -126,7 +156,7 @@ def command_fetch(args: argparse.Namespace) -> int:
         print(compact_json(packet))
     else:
         emit_rows(_source_rows(packet), args.format)
-    return STATUS_EXIT[packet["status"]]
+    return STATUS_EXIT[packet["transport_status"]]
 
 
 def command_doctor(args: argparse.Namespace) -> int:

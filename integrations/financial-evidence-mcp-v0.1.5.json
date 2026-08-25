@@ -1,0 +1,109 @@
+{
+  "schema": "liquidity-lab.financial-evidence-mcp-contract.v1",
+  "serverInfo": {
+    "name": "financial-evidence",
+    "version": "0.1.5"
+  },
+  "toolsSha256": "afd31000e0132cd1903f02f2363cac41693e6d6700e424416d890180af2d61d0",
+  "tools": [
+    {
+      "name": "financial_evidence_topics",
+      "title": "List Financial Evidence Topics",
+      "description": "List supported topics and their fixed public raw-JSON routes without network access.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "financial_evidence_route",
+      "title": "Route Financial Research",
+      "description": "Resolve one or more financial research topics to fixed public raw-JSON sources without fetching them.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "topics": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "money-market",
+                "capital-market",
+                "china-economy",
+                "bank-risk",
+                "market-liquidity"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 5,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "topics"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "financial_evidence_fetch",
+      "title": "Fetch Financial Evidence",
+      "description": "Fetch bounded untrusted read-only JSON from fixed LiquiLens, Undertow, Seiche, and Palimpsest routes. Status reports transport only; evidence is not evaluated and Evidence Carrier verification is not performed.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "topics": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "money-market",
+                "capital-market",
+                "china-economy",
+                "bank-risk",
+                "market-liquidity"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 5,
+            "uniqueItems": true
+          },
+          "max_bytes": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 4194304,
+            "default": 1048576
+          },
+          "timeout": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 30,
+            "default": 10
+          }
+        },
+        "required": [
+          "topics"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    }
+  ]
+}

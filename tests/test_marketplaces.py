@@ -27,6 +27,8 @@ class MarketplaceLedgerTests(unittest.TestCase):
 
     def test_release_and_observation_clock_are_explicit(self):
         self.assertEqual(self.ledger["version"], _package_version())
+        self.assertEqual(self.ledger["release_state"], "candidate")
+        self.assertEqual(self.ledger["last_verified_release"], "0.1.4")
         checked_at = self.ledger["checked_at"]
         self.assertTrue(checked_at.endswith("Z"))
         datetime.fromisoformat(checked_at.removesuffix("Z") + "+00:00")
@@ -64,8 +66,12 @@ class MarketplaceLedgerTests(unittest.TestCase):
         self.assertEqual(self.by_id["glama"]["state"], "listed_incomplete")
         self.assertEqual(self.by_id["awesome-openbb"]["state"], "submitted")
         self.assertEqual(
+            self.by_id["awesome-copilot"]["state"],
+            "closed_unmerged",
+        )
+        self.assertEqual(
             self.by_id["openai-plugin-directory"]["state"],
-            "ready_account_action",
+            "release_gated_owner_action",
         )
         self.assertEqual(
             self.by_id["gemini-cli-extension-gallery"]["state"],
@@ -89,6 +95,7 @@ class MarketplaceLedgerTests(unittest.TestCase):
         privacy = (ROOT / "docs" / "privacy" / "index.html").read_text()
 
         self.assertIn("Demo recording: not yet recorded", packet)
+        self.assertIn("public logo and release URL are release-gated", packet)
         self.assertIn("both ChatGPT and Codex", demo)
         self.assertIn("does not persist topic request bodies", privacy)
         self.assertIn("no later than 30 days", privacy)

@@ -3,9 +3,9 @@
   "manifest_version": "0.4",
   "name": "financial-evidence",
   "display_name": "Financial Evidence",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Read-only money-market, capital-market, China-economy, bank-risk, and liquidity evidence for AI agents.",
-  "long_description": "Routes financial research to separate public evidence from LiquiLens, Undertow, Seiche, and Palimpsest. The server exposes bounded topic discovery, route resolution, and retrieval tools. Missing, restricted, or unavailable evidence remains unavailable and is never converted to zero, a composite score, or a synthetic calm reading.",
+  "long_description": "Routes financial research to separate public evidence from LiquiLens, Undertow, Seiche, and Palimpsest. The server exposes bounded topic discovery, route resolution, and retrieval tools. Status reports transport reachability only; evidence evaluation and Evidence Carrier verification are not performed. Missing, restricted, or unavailable evidence remains unavailable and is never converted to zero, a composite score, or a synthetic calm reading.",
   "author": {
     "name": "Liquidity Lab",
     "url": "https://github.com/beepboop2025"
@@ -39,15 +39,15 @@
   "tools": [
     {
       "name": "financial_evidence_topics",
-      "description": "List supported financial-research topics and fixed public product routes."
+      "description": "List supported topics and their fixed public raw-JSON routes without network access."
     },
     {
       "name": "financial_evidence_route",
-      "description": "Resolve financial-research topics to fixed public evidence sources without fetching them."
+      "description": "Resolve one or more financial research topics to fixed public raw-JSON sources without fetching them."
     },
     {
       "name": "financial_evidence_fetch",
-      "description": "Fetch bounded read-only JSON evidence while preserving unavailable and missing states."
+      "description": "Fetch bounded untrusted read-only JSON from fixed LiquiLens, Undertow, Seiche, and Palimpsest routes. Status reports transport only; evidence is not evaluated and Evidence Carrier verification is not performed."
     }
   ],
   "keywords": [

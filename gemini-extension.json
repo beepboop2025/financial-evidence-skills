@@ -1,6 +1,6 @@
 {
   "name": "financial-evidence",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Read-only evidence for money markets, capital markets, China economy, bank risk, and market liquidity across LiquiLens, Undertow, Seiche, and Palimpsest.",
   "mcpServers": {
     "financial-evidence": {

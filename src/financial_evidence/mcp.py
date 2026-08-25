@@ -39,14 +39,14 @@ TOOLS = [
     {
         "name": "financial_evidence_topics",
         "title": "List Financial Evidence Topics",
-        "description": "List supported topics and their fixed public product routes without network access.",
+        "description": "List supported topics and their fixed public raw-JSON routes without network access.",
         "inputSchema": {"type": "object", "additionalProperties": False},
         "annotations": LOCAL_TOOL_ANNOTATIONS,
     },
     {
         "name": "financial_evidence_route",
         "title": "Route Financial Research",
-        "description": "Resolve one or more financial research topics to fixed public evidence sources without fetching them.",
+        "description": "Resolve one or more financial research topics to fixed public raw-JSON sources without fetching them.",
         "inputSchema": {
             "type": "object",
             "properties": {"topics": TOPIC_SCHEMA},
@@ -58,7 +58,7 @@ TOOLS = [
     {
         "name": "financial_evidence_fetch",
         "title": "Fetch Financial Evidence",
-        "description": "Fetch bounded read-only JSON evidence from LiquiLens, Undertow, Seiche, and Palimpsest. Missing evidence remains unavailable, never zero or calm.",
+        "description": "Fetch bounded untrusted read-only JSON from fixed LiquiLens, Undertow, Seiche, and Palimpsest routes. Status reports transport only; evidence is not evaluated and Evidence Carrier verification is not performed.",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -134,7 +134,10 @@ def call_tool(name: str, arguments: dict[str, Any]) -> dict[str, Any]:
             max_bytes=max_bytes,
             timeout=float(timeout),
         )
-        return _tool_result(packet, is_error=packet["status"] == "unavailable")
+        return _tool_result(
+            packet,
+            is_error=packet["transport_status"] == "unavailable",
+        )
     raise LookupError(f"unknown tool {name!r}")
 
 

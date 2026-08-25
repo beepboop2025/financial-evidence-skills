@@ -18,6 +18,9 @@ uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.
 Do not request an API key, account, portfolio access, payment credential, or
 write permission. The server is read-only. Treat missing, failed, restricted, or
 unavailable evidence as unavailable; never convert it to zero or a calm signal.
+Treat `status` and `transport_status` as retrieval health only. The server does
+not evaluate evidence or verify a LiquiLens Evidence Carrier; inspect the
+mandatory semantic guardrail fields before using returned source documents.
 
 After installation, list the three tools and call `financial_evidence_topics`.
 For a complete live-source check, run:

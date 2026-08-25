@@ -57,6 +57,8 @@ class DiscoveryDocsTests(unittest.TestCase):
     def test_machine_readable_manifest_tracks_release(self):
         manifest = json.loads((DOCS / "integrations.json").read_text())
         self.assertEqual(manifest["version"], _package_version())
+        self.assertEqual(manifest["release_state"], "candidate")
+        self.assertEqual(manifest["last_verified_release"], "0.1.4")
         self.assertFalse(manifest["account_required"])
         self.assertFalse(manifest["api_key_required"])
         self.assertFalse(manifest["write_actions"])
@@ -70,7 +72,10 @@ class DiscoveryDocsTests(unittest.TestCase):
         )
         self.assertEqual(agent_skill["identifier"], "financial-evidence")
         self.assertEqual(agent_skill["activation_topics"], manifest["topics"])
-        self.assertEqual(agent_skill["status"], "public")
+        self.assertEqual(agent_skill["status"], "public-last-verified-release")
+        self.assertEqual(agent_skill["candidate_version"], _package_version())
+        self.assertEqual(agent_skill["published_version"], "0.1.4")
+        self.assertIn("/tree/v0.1.4/", agent_skill["install"])
         registry = next(
             interface
             for interface in manifest["interfaces"]
@@ -101,12 +106,12 @@ class DiscoveryDocsTests(unittest.TestCase):
         )
         self.assertEqual(
             openai["status"],
-            "codex-repo-installable-chatgpt-submission-not-started",
+            "codex-last-verified-release-chatgpt-submission-not-started",
         )
-        self.assertEqual(openai["codex_status"], "repo-installable")
         self.assertEqual(
-            openai["chatgpt_status"], "submission-not-started"
+            openai["codex_status"], "repo-installable-last-verified-release"
         )
+        self.assertEqual(openai["chatgpt_status"], "submission-not-started")
 
     def test_html_jsonld_fragments_and_local_links(self):
         page = DOCS / "index.html"
@@ -118,15 +123,11 @@ class DiscoveryDocsTests(unittest.TestCase):
         nodes = {node["@id"]: node for node in graph}
         self.assertEqual(len(nodes), 4)
 
-        page_id = (
-            "https://beepboop2025.github.io/financial-evidence-skills/#webpage"
-        )
+        page_id = "https://beepboop2025.github.io/financial-evidence-skills/#webpage"
         software_id = (
             "https://beepboop2025.github.io/financial-evidence-skills/#software"
         )
-        source_id = (
-            "https://github.com/beepboop2025/financial-evidence-skills#source"
-        )
+        source_id = "https://github.com/beepboop2025/financial-evidence-skills#source"
         publisher_id = "https://github.com/beepboop2025#organization"
 
         web_page = nodes[page_id]
@@ -142,7 +143,7 @@ class DiscoveryDocsTests(unittest.TestCase):
 
         software = nodes[software_id]
         self.assertEqual(software["@type"], "SoftwareApplication")
-        self.assertEqual(software["softwareVersion"], _package_version())
+        self.assertEqual(software["softwareVersion"], "0.1.4")
         self.assertTrue(software["isAccessibleForFree"])
         self.assertNotIn("codeRepository", software)
         self.assertEqual(software["publisher"]["@id"], publisher_id)
@@ -160,6 +161,7 @@ class DiscoveryDocsTests(unittest.TestCase):
 
         self.assertEqual(nodes[publisher_id]["@type"], "Organization")
         self.assertEqual(nodes[publisher_id]["name"], "Liquidity Lab")
+        self.assertIn("v0.1.5 is a tested source candidate", page.read_text())
 
         for href in parser.hrefs:
             if href.startswith("#"):
@@ -211,7 +213,9 @@ class DiscoveryDocsTests(unittest.TestCase):
         )
         manifest = json.loads((DOCS / "integrations.json").read_text())
         fdc3 = next(
-            interface for interface in manifest["interfaces"] if interface["kind"] == "fdc3-web-app"
+            interface
+            for interface in manifest["interfaces"]
+            if interface["kind"] == "fdc3-web-app"
         )
         self.assertEqual(
             fdc3["app_directory_record"],
@@ -266,9 +270,38 @@ class DiscoveryDocsTests(unittest.TestCase):
             self.assertIn(topic, llms)
         self.assertIn("Price: USD 0", pricing)
         self.assertIn("source publishers retain rights", llms.lower())
-        self.assertIn("npx skills add beepboop2025/financial-evidence-skills", llms)
+        self.assertIn(
+            "npx skills add https://github.com/beepboop2025/"
+            "financial-evidence-skills/tree/v0.1.4/financial-evidence",
+            llms,
+        )
         self.assertIn("Allow: /", robots)
         self.assertIn("sitemap.xml", robots)
+
+    def test_v015_semantic_contract_is_explicit_and_discoverable(self):
+        contract = (ROOT / "SEMANTIC_CONTRACT.md").read_text()
+        readme = (ROOT / "README.md").read_text()
+        llms = (DOCS / "llms.txt").read_text()
+        page = (DOCS / "index.html").read_text()
+        for marker in (
+            "transport_status",
+            "status_semantics",
+            "transport_only",
+            "evidence_status",
+            "not_evaluated",
+            "carrier_verification",
+            "not_performed",
+            "not_reported",
+            "carrier_state",
+            "not_published",
+        ):
+            self.assertIn(marker, contract)
+        self.assertIn(
+            "must not contain a `carrier_url` key",
+            contract.replace("\n", " "),
+        )
+        for discovery_document in (readme, llms, page):
+            self.assertIn("SEMANTIC_CONTRACT.md", discovery_document)
 
     def test_indexnow_key_and_workflow_stay_synchronized(self):
         key = "82f75882dbd36fa818fdb25735425b6f"

@@ -1,7 +1,8 @@
 # Third-party marketplace status
 
 This ledger records third-party discovery and marketplace work for Financial
-Evidence v0.1.4. It deliberately separates an independently verified public
+Evidence v0.1.5. Public versioned listings remain at v0.1.4 until the v0.1.5
+release is published and independently verified. This ledger separates a public
 listing from a submission, an automatic-indexing prerequisite, and a packet
 that is technically ready but still needs an account-owned action.
 
@@ -23,28 +24,34 @@ is the observation clock; external operators may change state after that time.
 
 - Docker MCP Catalog: [PR #4765](https://github.com/docker/mcp-registry/pull/4765)
 - Awesome MCP Servers: [PR #12771](https://github.com/punkpeye/awesome-mcp-servers/pull/12771)
-- Awesome GitHub Copilot: [PR #2785](https://github.com/github/awesome-copilot/pull/2785)
 - FINOS FDC3 App Directory: [PR #40](https://github.com/finos-labs/FDC3-App-Directory/pull/40)
 - Awesome OpenBB: [PR #12](https://github.com/OpenBB-finance/awesome-openbb/pull/12)
 
 An open or mergeable pull request is not an accepted listing. The operator's
 review and merge remain authoritative.
 
+## Closed without listing
+
+- Awesome GitHub Copilot [PR #2785](https://github.com/github/awesome-copilot/pull/2785)
+  closed without merge on 25 August 2026. Passing checks did not create a
+  listing, and no acceptance is claimed.
+
 ## Ready for account-owned action
 
-OpenAI, Claude, Smithery, StackShare, SaaSHub, and AlternativeTo require an
+OpenAI, Claude, Smithery, StackShare, SaaSHub, AlternativeTo, and Hugging Face require an
 authenticated publisher or owner portal. Their public assets are ready, but no
 submission, approval, listing, or publication is claimed until the operator
-returns a receipt. Cline additionally requires a real Cline install test before
-its submission attestation can be checked honestly.
+returns a receipt. The Hugging Face artifact is a destination-specific,
+browser-only packet inspector under `integrations/huggingface-space`; the local
+CLI is not authenticated. Cline additionally requires a real Cline install test
+before its submission attestation can be checked honestly.
 
 ## Held by policy or channel fit
 
 - Gemini CLI gallery discovery is automatic; repository prerequisites are met,
   but no observed gallery listing is claimed.
 - PulseMCP is temporarily closed to submissions.
-- Zenodo and Hugging Face require destination-specific citation or demo assets;
-  a promotional mirror would not be a valid submission.
+- Zenodo requires reviewed citation metadata for a genuine tagged release.
 - MCP.so charges USD 39. It remains unpurchased because no exact spend was
   authorized.
 

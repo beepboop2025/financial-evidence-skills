@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'self' https://huggingface.co">
+  <title>Financial Evidence Packet Inspector</title>
+  <meta name="description" content="Inspect a Financial Evidence JSON packet locally without uploading evidence or confusing transport success with evidence completeness.">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <header>
+    <p class="kicker">Financial Evidence · browser-only inspector</p>
+    <h1>Read what the packet proves—and what it does not.</h1>
+    <p class="lede">Load a Financial Evidence JSON packet from your computer. The inspector runs entirely in this browser: it makes no network request and uploads nothing.</p>
+    <p class="boundary"><strong>Authority boundary:</strong> research only. Transport success is not evidence completeness. This tool is not investment advice, a credit rating, or a trading signal.</p>
+  </header>
+  <main>
+    <section>
+      <h2>Choose a packet</h2>
+      <div class="controls"><label class="file"><span>Load local JSON</span><input type="file" accept="application/json,.json" data-file></label><button type="button" data-example>Use synthetic example</button><button type="button" class="secondary" data-clear>Clear</button></div>
+      <p class="status" role="status" aria-live="polite" data-status>No packet loaded.</p>
+      <p class="privacy">Files are parsed locally. This Space declares <code>connect-src 'none'</code> and contains no analytics.</p>
+    </section>
+    <section data-results hidden>
+      <h2>Semantic boundary</h2>
+      <div class="summary"><article><span>Transport</span><strong data-summary="transport">—</strong></article><article><span>Evidence</span><strong data-summary="evidence">—</strong></article><article><span>Carrier</span><strong data-summary="carrier">—</strong></article></div>
+      <div class="sources" data-sources></div>
+    </section>
+    <section>
+      <h2>Need a packet?</h2>
+      <p>The live no-login workflow is at <a href="https://liquilens.in/evidence-desk/" target="_blank" rel="noopener noreferrer">liquilens.in/evidence-desk/</a>. Download the raw packet there, then inspect it here without sending the file to another service.</p>
+    </section>
+  </main>
+  <footer>Financial authority: none · <a href="https://github.com/beepboop2025/financial-evidence-skills" target="_blank" rel="noopener noreferrer">MIT-licensed source</a></footer>
+</body>
+</html>

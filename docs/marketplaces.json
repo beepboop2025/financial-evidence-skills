@@ -1,14 +1,18 @@
 {
   "schema": "liquidity-lab.financial-evidence-marketplaces.v1",
   "name": "Financial Evidence",
-  "version": "0.1.4",
-  "checked_at": "2026-08-24T21:46:54Z",
+  "version": "0.1.5",
+  "release_state": "candidate",
+  "last_verified_release": "0.1.4",
+  "checked_at": "2026-08-25T19:53:54Z",
   "state_definitions": {
     "live": "A public listing or install surface was independently resolved.",
     "listed_incomplete": "A public listing exists, but a required semantic evaluation is incomplete.",
     "submitted": "The third-party operator has received the submission; review or acceptance is pending.",
+    "closed_unmerged": "The operator closed the submission without merging it; no listing is claimed.",
     "eligible_automatic": "The repository meets the operator's automatic indexing rules, but the listing was not observed.",
     "ready_account_action": "Technical assets are ready; an account-owned portal, identity, or domain-verification action remains.",
+    "release_gated_owner_action": "A public tagged release must exist before the account-owned portal, identity, or domain-verification action can begin.",
     "ready_validation": "Submission assets are ready, but an operator-specific install test remains before an honest attestation can be made.",
     "paused_external": "The operator is not currently accepting submissions.",
     "conditional_artifact": "The channel is appropriate only after a destination-specific artifact is produced.",
@@ -69,11 +73,11 @@
       "id": "awesome-copilot",
       "name": "Awesome GitHub Copilot",
       "channel": "agent-skill-catalog",
-      "state": "submitted",
+      "state": "closed_unmerged",
       "submission_url": "https://github.com/github/awesome-copilot/pull/2785",
       "cost": "free",
-      "detail": "All automated checks pass; the submission awaits the requested human review.",
-      "next_action": "Wait for maintainer review."
+      "detail": "PR #2785 was closed without merge on 2026-08-25 after automated checks passed. No Awesome GitHub Copilot listing is claimed.",
+      "next_action": "Review the maintainer outcome before deciding whether a materially revised resubmission is appropriate."
     },
     {
       "id": "finos-fdc3-app-directory",
@@ -109,11 +113,11 @@
       "id": "openai-plugin-directory",
       "name": "OpenAI Plugin Directory",
       "channel": "agent-plugin-directory",
-      "state": "ready_account_action",
+      "state": "release_gated_owner_action",
       "submission_url": "https://platform.openai.com/plugins",
       "cost": "free",
-      "detail": "The public MCP endpoint, listing packet, legal pages, prompts, positive and negative tests, and fail-closed production challenge route are ready; no portal token is installed and no submission has entered review.",
-      "next_action": "Complete publisher identity, install the exact portal-issued challenge token, record the required demo, submit, then publish only after approval."
+      "detail": "The local listing packet, legal pages, prompts, positive and negative tests, and fail-closed challenge route are prepared, but the v0.1.5 public logo and release URL do not exist yet; no portal token is installed and no submission has entered review.",
+      "next_action": "Publish and verify v0.1.5 first; then complete publisher identity, install the exact portal-issued challenge token, record the required demo, submit, and publish only after approval."
     },
     {
       "id": "claude-plugin-directory",
@@ -189,11 +193,11 @@
       "id": "hugging-face-spaces",
       "name": "Hugging Face Spaces",
       "channel": "demo-gallery",
-      "state": "conditional_artifact",
+      "state": "ready_account_action",
       "submission_url": "https://huggingface.co/spaces/launch",
       "cost": "free-static-space",
-      "detail": "A listing is justified only after a useful evidence workflow demo exists; a duplicate landing page is not sufficient.",
-      "next_action": "Build and test a destination-specific static explorer before creating a Space."
+      "detail": "A destination-specific static packet inspector now loads local Financial Evidence JSON without network access, includes a deliberately partial synthetic example, and passes its offline security tests. The local Hugging Face CLI is not authenticated, so no Space exists yet.",
+      "next_action": "Authenticate the owner account, create a free static Space, upload integrations/huggingface-space, then verify anonymous served bytes and the browser-only privacy boundary."
     },
     {
       "id": "pulsemcp",

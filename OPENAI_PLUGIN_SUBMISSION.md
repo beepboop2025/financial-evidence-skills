@@ -1,7 +1,9 @@
 # OpenAI public plugin submission packet
 
-Status: the public package and form copy are prepared in the repository. The
-account owner must still record the required cross-platform demo, complete
+Status: the form copy and local assets are prepared in the repository. The
+v0.1.5 public logo and release URL are release-gated and do not exist until the
+signed tag is published; do not begin the portal submission before that check.
+The account owner must still record the required cross-platform demo, complete
 identity and domain verification, and enter the materials in the portal. The
 plugin has not been submitted, approved, listed, or published by OpenAI.
 
@@ -15,7 +17,7 @@ plugin has not been submitted, approved, listed, or published by OpenAI.
   and Palimpsest for money markets, capital markets, China economy, covered bank
   risk, and market liquidity without flattening evidence into one score.
 - Logo upload: `assets/logo-400.png` (400 by 400 PNG)
-- Public logo: https://raw.githubusercontent.com/beepboop2025/financial-evidence-skills/v0.1.4/assets/logo-400.png
+- Public logo after the release gate: https://raw.githubusercontent.com/beepboop2025/financial-evidence-skills/v0.1.5/assets/logo-400.png
 - Website: https://beepboop2025.github.io/financial-evidence-skills/
 - Support: https://beepboop2025.github.io/financial-evidence-skills/support/
 - Privacy: https://beepboop2025.github.io/financial-evidence-skills/privacy/
@@ -44,12 +46,14 @@ permission.
 
 ## Release notes
 
-Initial submission, plugin version 0.1.4. Financial Evidence adds a read-only
+Initial submission, plugin version 0.1.5. Financial Evidence adds a read-only
 Agent Skill and Universal MCP route over five deterministic topics and four
 public products. The three tools list topics, explain routing, or retrieve up
 to five topics while retaining source URLs, retrieval clocks, hashes, and
-explicit unavailable states. No authentication, test account, demo credential,
-plugin UI, financial write action, or prior submitted version is involved.
+explicit unavailable states. Packet status is transport-only; evidence
+evaluation and Evidence Carrier verification are explicitly not performed.
+No authentication, test account, demo credential, plugin UI, financial write
+action, or prior submitted version is involved.
 
 ## MCP tools and annotations
 
@@ -105,7 +109,8 @@ tools writes data or performs financial actions.
 - Expected behavior: call `financial_evidence_fetch` with `money-market`.
 - Expected result shape: a complete or partial evidence packet containing the
   topic, routed product, source URL, retrieval clock, byte count, content hash,
-  document or explicit error, and overall status.
+  document or explicit error, legacy and transport status, and the mandatory
+  evidence/Carrier non-evaluation guardrails.
 - Fixture or account data: none. Use the public Universal MCP URL with no
   authentication. Public source availability may produce a truthful partial
   packet and is not a failed test.

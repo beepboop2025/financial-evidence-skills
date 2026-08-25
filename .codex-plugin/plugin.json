@@ -1,6 +1,6 @@
 {
   "name": "financial-evidence",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Read-only money-market, capital-market, China-economy, bank-risk, and market-liquidity evidence.",
   "author": {
     "name": "Liquidity Lab",

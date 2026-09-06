@@ -1,20 +1,22 @@
 # Third-party marketplace status
 
 This ledger records third-party discovery and marketplace work for Financial
-Evidence v0.1.5. Public versioned listings remain at v0.1.4 until the v0.1.5
-release is published and independently verified. This ledger separates a public
+Evidence v0.1.5. Owner-controlled release artifacts and installation paths are
+independently verified at v0.1.5. This ledger separates a public
 listing from a submission, an automatic-indexing prerequisite, and a packet
 that is technically ready but still needs an account-owned action.
 
 The machine-readable source of truth is
 [`docs/marketplaces.json`](docs/marketplaces.json). Its `checked_at` timestamp
-is the observation clock; external operators may change state after that time.
+is the external-channel observation clock; external operators may change state
+after that time. `release_verified_at` separately records the latest release
+verification and does not refresh historical submission observations.
 
 ## Public now
 
-- Official MCP Registry v0.1.4 is active with both the public Streamable HTTP
+- Official MCP Registry v0.1.5 is active with both the public Streamable HTTP
   endpoint and the versioned OCI package.
-- The public Homebrew tap installs and tests Financial Evidence v0.1.4.
+- The public Homebrew tap installs and tests Financial Evidence v0.1.5.
 - skills.sh serves the Agent Skill.
 - Glama serves both the registry-ingested connector and repository listing, but
   its repository evaluation is incomplete until a Glama release exposes the

@@ -2,8 +2,8 @@
   "schema": "liquidity-lab.financial-evidence-marketplaces.v1",
   "name": "Financial Evidence",
   "version": "0.1.5",
-  "release_state": "candidate",
-  "last_verified_release": "0.1.4",
+  "release_state": "published",
+  "last_verified_release": "0.1.5",
   "checked_at": "2026-08-25T19:53:54Z",
   "state_definitions": {
     "live": "A public listing or install surface was independently resolved.",
@@ -24,10 +24,11 @@
       "name": "Official MCP Registry",
       "channel": "mcp-registry",
       "state": "live",
-      "listing_url": "https://registry.modelcontextprotocol.io/v0/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.4",
+      "listing_url": "https://registry.modelcontextprotocol.io/v0/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.5",
       "cost": "free",
-      "detail": "Version 0.1.4 is active with the public remote endpoint and OCI package.",
-      "next_action": "Monitor future release publication."
+      "detail": "Version 0.1.5 is active with the public remote endpoint and OCI package.",
+      "next_action": "Monitor future release publication.",
+      "verified_at": "2026-09-06T01:27:31.940106+00:00"
     },
     {
       "id": "skills-sh",
@@ -113,11 +114,11 @@
       "id": "openai-plugin-directory",
       "name": "OpenAI Plugin Directory",
       "channel": "agent-plugin-directory",
-      "state": "release_gated_owner_action",
+      "state": "ready_account_action",
       "submission_url": "https://platform.openai.com/plugins",
       "cost": "free",
-      "detail": "The local listing packet, legal pages, prompts, positive and negative tests, and fail-closed challenge route are prepared, but the v0.1.5 public logo and release URL do not exist yet; no portal token is installed and no submission has entered review.",
-      "next_action": "Publish and verify v0.1.5 first; then complete publisher identity, install the exact portal-issued challenge token, record the required demo, submit, and publish only after approval."
+      "detail": "The v0.1.5 public logo and release URL are verified. The listing packet, legal pages, prompts, tests, and fail-closed challenge route are prepared; no portal token is installed and no submission has entered review.",
+      "next_action": "Complete publisher identity, install the exact portal-issued challenge token, record the required demo, submit, and publish only after approval."
     },
     {
       "id": "claude-plugin-directory",
@@ -219,5 +220,6 @@
       "detail": "The paid submission was not purchased.",
       "next_action": "Require separate authorization for the exact USD 39 spend before reconsidering."
     }
-  ]
+  ],
+  "release_verified_at": "2026-09-06T01:35:28.021660+00:00"
 }

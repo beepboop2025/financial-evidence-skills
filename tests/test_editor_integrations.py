@@ -111,7 +111,7 @@ class EditorIntegrationTests(unittest.TestCase):
             )
             self.assertEqual(
                 integration["status"],
-                "self-installable-last-verified-release-not-vendor-listing",
+                "self-installable-not-vendor-listing",
             )
             self.assertIn(f"/blob/v{self.published_version}/", integration["config"])
             self.assertIn("/blob/main/", integration["candidate_config"])
@@ -150,12 +150,12 @@ class EditorIntegrationTests(unittest.TestCase):
         )
         manifest = _json("docs/integrations.json")
         self.assertEqual(manifest["version"], self.version)
-        self.assertEqual(manifest["release_state"], "candidate")
-        self.assertEqual(manifest["last_verified_release"], "0.1.4")
+        self.assertEqual(manifest["release_state"], "published")
+        self.assertEqual(manifest["last_verified_release"], "0.1.5")
         homebrew = self.interfaces["Homebrew"]
         self.assertEqual(homebrew["candidate_version"], self.version)
         self.assertEqual(homebrew["published_version"], self.published_version)
-        self.assertEqual(homebrew["status"], "public-last-verified-release")
+        self.assertEqual(homebrew["status"], "public")
         mcp_interface = self.interfaces["Model Context Protocol"]
         self.assertTrue(mcp_interface["portable_agent_host"])
         self.assertTrue(
@@ -170,12 +170,12 @@ class EditorIntegrationTests(unittest.TestCase):
         )
         self.assertEqual(
             mcp_interface["status"],
-            "official-registry-active-last-verified-release",
+            "official-registry-active",
         )
         bundle = self.interfaces["MCP Bundle"]
         self.assertEqual(bundle["candidate_version"], self.version)
         self.assertEqual(bundle["published_version"], self.published_version)
-        self.assertEqual(bundle["status"], "public-last-verified-release")
+        self.assertEqual(bundle["status"], "public")
 
         pyproject = (ROOT / "pyproject.toml").read_text()
         self.assertIn(f'version = "{self.version}"', pyproject)
@@ -260,7 +260,7 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertEqual(integration["source_ref"], "mutable-default-branch")
         self.assertEqual(integration["candidate_version"], self.version)
         self.assertEqual(integration["published_version"], self.published_version)
-        self.assertEqual(integration["status"], "self-installable-mutable-main-candidate")
+        self.assertEqual(integration["status"], "self-installable-mutable-main")
 
     def test_openai_plugin_is_repo_installable_and_review_bounded(self):
         plugin = _json(".codex-plugin/plugin.json")
@@ -316,13 +316,13 @@ class EditorIntegrationTests(unittest.TestCase):
         )
         self.assertEqual(
             integration["status"],
-            "codex-last-verified-release-chatgpt-submission-not-started",
+            "codex-repo-installable-chatgpt-submission-not-started",
         )
         self.assertIn("codex plugin marketplace add", integration["install"])
         self.assertIn("codex plugin add", integration["install"])
         self.assertEqual(
             integration["codex_status"],
-            "repo-installable-last-verified-release",
+            "repo-installable",
         )
         self.assertEqual(integration["candidate_version"], self.version)
         self.assertEqual(integration["published_version"], self.published_version)
@@ -342,7 +342,7 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertIn("## Release notes", packet)
         self.assertIn("Availability:", packet)
         self.assertIn("Demo recording: not yet recorded", packet)
-        self.assertIn("public logo and release URL are release-gated", packet)
+        self.assertIn("public logo and release URL are independently verified", packet)
         self.assertEqual(packet.count("`readOnlyHint` justification:"), 3)
         self.assertEqual(packet.count("`openWorldHint` justification:"), 3)
         self.assertEqual(packet.count("`destructiveHint` justification:"), 3)

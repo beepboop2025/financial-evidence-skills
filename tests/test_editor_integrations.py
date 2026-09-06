@@ -11,6 +11,9 @@ from urllib.parse import parse_qs, unquote, urlparse
 ROOT = Path(__file__).resolve().parents[1]
 SERVER_NAME = "financial-evidence"
 REPOSITORY = "https://github.com/beepboop2025/financial-evidence-skills.git"
+MARKET_BRIEF_NAME = "market-brief"
+MARKET_BRIEF_VERSION = "0.1.0"
+MARKET_BRIEF_REPOSITORY = "https://github.com/beepboop2025/market-brief.git"
 
 
 def _json(path: str):
@@ -248,7 +251,11 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertEqual(plugin["name"], SERVER_NAME)
         self.assertEqual(plugin["version"], self.version)
         self.assertEqual(marketplace["name"], "liquidity-lab")
-        self.assertEqual(len(marketplace["plugins"]), 1)
+        self.assertEqual(len(marketplace["plugins"]), 2)
+        self.assertEqual(
+            [entry["name"] for entry in marketplace["plugins"]],
+            [SERVER_NAME, MARKET_BRIEF_NAME],
+        )
         entry = marketplace["plugins"][0]
         self.assertEqual(entry["name"], SERVER_NAME)
         self.assertEqual(entry["source"], ".")
@@ -297,10 +304,15 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertTrue((ROOT / plugin["interface"]["composerIcon"]).is_file())
         self.assertLessEqual(len(plugin["interface"]["shortDescription"]), 30)
         self.assertEqual(marketplace["name"], "liquidity-lab")
-        self.assertEqual(len(marketplace["plugins"]), 1)
+        self.assertEqual(len(marketplace["plugins"]), 2)
+        self.assertEqual(
+            [entry["name"] for entry in marketplace["plugins"]],
+            [SERVER_NAME, MARKET_BRIEF_NAME],
+        )
         entry = marketplace["plugins"][0]
         self.assertEqual(entry["name"], SERVER_NAME)
         self.assertEqual(entry["source"]["source"], "url")
+        self.assertEqual(entry["source"]["url"], REPOSITORY)
         # A marketplace loaded from the immutable release tag must resolve
         # its plugin from that same release, while public guide pins remain
         # on last_verified_release until publication succeeds.
@@ -348,6 +360,34 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertEqual(packet.count("`destructiveHint` justification:"), 3)
         self.assertEqual(packet.count("Fixture or account data:"), 5)
         self.assertEqual(packet.count("Why it must not complete the action:"), 3)
+
+    def test_market_brief_uses_independently_pinned_sources(self):
+        codex_entry = _json(".agents/plugins/marketplace.json")["plugins"][1]
+        claude_entry = _json(".claude-plugin/marketplace.json")["plugins"][1]
+        self.assertEqual(codex_entry["name"], MARKET_BRIEF_NAME)
+        self.assertEqual(
+            codex_entry["source"],
+            {
+                "source": "url",
+                "url": MARKET_BRIEF_REPOSITORY,
+                "ref": f"v{MARKET_BRIEF_VERSION}",
+            },
+        )
+        self.assertEqual(
+            codex_entry["policy"],
+            {"installation": "AVAILABLE", "authentication": "ON_INSTALL"},
+        )
+        self.assertEqual(codex_entry["category"], "Productivity")
+        self.assertEqual(claude_entry["name"], MARKET_BRIEF_NAME)
+        self.assertEqual(
+            claude_entry["source"],
+            {
+                "source": "github",
+                "repo": "beepboop2025/market-brief",
+                "ref": f"v{MARKET_BRIEF_VERSION}",
+            },
+        )
+        self.assertEqual(claude_entry["version"], MARKET_BRIEF_VERSION)
 
     def test_glama_metadata_is_minimal_and_owner_scoped(self):
         self.assertEqual(

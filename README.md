@@ -23,6 +23,11 @@ them into one score:
 - **Undertow** — market depth, provider concentration and position-sized exit liquidity.
 - **Palimpsest** — revision-safe China economy evidence and information-state history.
 
+For a daily research workflow, [Market Brief](https://github.com/beepboop2025/market-brief)
+provides free, source-cited funding, capital-market and liquidity briefs with local
+change comparisons. This separately versioned browser companion and agent skill
+uses the existing public evidence sources.
+
 ## Install the agent skill
 
 ```bash

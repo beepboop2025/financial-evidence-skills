@@ -24,6 +24,16 @@
         "liquidity",
         "money-markets"
       ]
+    },
+    {
+      "name": "market-brief",
+      "source": {
+        "source": "github",
+        "repo": "beepboop2025/market-brief",
+        "ref": "v0.1.0"
+      },
+      "description": "Free, source-cited funding, capital-market and liquidity briefs with local change comparisons.",
+      "version": "0.1.0"
     }
   ]
 }

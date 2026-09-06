@@ -301,7 +301,11 @@ class EditorIntegrationTests(unittest.TestCase):
         entry = marketplace["plugins"][0]
         self.assertEqual(entry["name"], SERVER_NAME)
         self.assertEqual(entry["source"]["source"], "url")
-        self.assertEqual(entry["source"]["ref"], f"v{self.published_version}")
+        # A marketplace loaded from the immutable release tag must resolve
+        # its plugin from that same release, while public guide pins remain
+        # on last_verified_release until publication succeeds.
+        self.assertEqual(entry["source"]["ref"], f"v{self.version}")
+        self.assertEqual(entry["source"]["ref"], f"v{plugin['version']}")
         self.assertEqual(entry["policy"]["installation"], "AVAILABLE")
 
         integration = self.interfaces["Codex plugin and ChatGPT submission"]

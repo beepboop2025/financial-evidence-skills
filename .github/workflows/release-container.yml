@@ -39,6 +39,7 @@ jobs:
           test "$(jq --raw-output .version gemini-extension.json)" = "$version"
           test "$(jq --raw-output .version .claude-plugin/plugin.json)" = "$version"
           test "$(jq --raw-output .version .codex-plugin/plugin.json)" = "$version"
+          test "$(jq --raw-output '.plugins[0].source.ref' .agents/plugins/marketplace.json)" = "$GITHUB_REF_NAME"
           test "$(python3 -c 'import tomllib; print(tomllib.load(open("pyproject.toml", "rb"))["project"]["version"])')" = "$version"
           test "$(PYTHONPATH=src python3 -c 'import financial_evidence; print(financial_evidence.__version__)')" = "$version"
       - name: Re-run release contract suites

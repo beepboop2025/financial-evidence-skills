@@ -1,6 +1,8 @@
+import io
 import json
 import sys
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 
@@ -14,10 +16,58 @@ from scripts.verify_remote_mcp import (
     decode_response,
     normalize_tools,
     require_fetch_semantics,
+    verify,
 )
 
 
 class RemoteMcpVerifierTests(unittest.TestCase):
+    def test_requests_preserve_the_negotiated_protocol(self):
+        seen = []
+
+        def respond(request, timeout):
+            payload = json.loads(request.data)
+            headers = {key.lower(): value for key, value in request.header_items()}
+            method = payload["method"]
+            seen.append(method)
+            if method == "initialize":
+                self.assertEqual(payload["params"]["protocolVersion"], "2025-11-25")
+                result = {
+                    "serverInfo": CONTRACT["serverInfo"],
+                    "protocolVersion": "2025-11-25",
+                }
+            else:
+                # The legacy initialize handshake cannot authorize a modern
+                # per-request envelope merely by changing this HTTP header.
+                self.assertEqual(headers.get("mcp-protocol-version"), "2025-11-25")
+                result = {"tools": CONTRACT["tools"]} if method == "tools/list" else {}
+            response = io.BytesIO(json.dumps({
+                "jsonrpc": "2.0", "id": payload["id"], "result": result,
+            }).encode())
+            response.headers = {
+                "Content-Type": "application/json", "X-LiquiLens-Worker-Tag": "a" * 40,
+            }
+            return response
+
+        with patch("urllib.request.urlopen", side_effect=respond), patch(
+            "scripts.verify_remote_mcp.require_fetch_semantics"
+        ) as require_semantics:
+            verify("https://example.invalid/mcp", "a" * 40)
+        self.assertEqual(seen, ["initialize", "tools/list", "tools/call"])
+        require_semantics.assert_called_once_with({})
+
+    def test_unexpected_negotiated_protocol_fails_before_tool_requests(self):
+        initialized = {
+            "jsonrpc": "2.0", "id": "initialize", "result": {
+                "serverInfo": CONTRACT["serverInfo"], "protocolVersion": "unsupported",
+            },
+        }
+        with patch("scripts.verify_remote_mcp._post", return_value=(
+            initialized, {"x-liquilens-worker-tag": "a" * 40},
+        )) as post:
+            with self.assertRaisesRegex(RuntimeError, "negotiated protocol differs"):
+                verify("https://example.invalid/mcp", "a" * 40)
+        self.assertEqual(post.call_count, 1)
+
     def test_contract_decoder_and_normalizer_are_exact(self):
         payload = {"jsonrpc": "2.0", "id": "x", "result": {"tools": []}}
         encoded = json.dumps(payload).encode()

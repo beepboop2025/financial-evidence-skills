@@ -159,10 +159,14 @@ def verify(url: str, expected_worker_tag: str) -> None:
     identity = _result(initialized, "initialize")
     if identity.get("serverInfo") != CONTRACT["serverInfo"]:
         raise RuntimeError(f"remote MCP identity differs: {identity!r}")
+    protocol_version = identity.get("protocolVersion")
+    if protocol_version != "2025-11-25":
+        raise RuntimeError(f"remote MCP negotiated protocol differs: {protocol_version!r}")
 
     listed, headers = _post(
         url,
         {"jsonrpc": "2.0", "id": "tools", "method": "tools/list", "params": {}},
+        protocol_version=protocol_version,
     )
     if headers.get("x-liquilens-worker-tag") != expected_worker_tag:
         raise RuntimeError("remote Worker changed during release verification")
@@ -181,7 +185,7 @@ def verify(url: str, expected_worker_tag: str) -> None:
                 "arguments": {"topics": ["money-market"]},
             },
         },
-        protocol_version="2026-07-28",
+        protocol_version=protocol_version,
     )
     if headers.get("x-liquilens-worker-tag") != expected_worker_tag:
         raise RuntimeError("remote Worker changed during release verification")

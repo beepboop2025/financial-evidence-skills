@@ -11,7 +11,7 @@ Use the public Streamable HTTP server when the client supports remote MCP:
 For a local stdio server, install `uv` and run this exact signed-release command:
 
 ```bash
-uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.4 \
+uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.5 \
   financial-evidence-mcp
 ```
 
@@ -26,6 +26,6 @@ After installation, list the three tools and call `financial_evidence_topics`.
 For a complete live-source check, run:
 
 ```bash
-uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.4 \
+uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.5 \
   financial-evidence doctor --format json
 ```

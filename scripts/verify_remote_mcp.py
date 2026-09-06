@@ -94,7 +94,7 @@ def require_fetch_semantics(result: dict[str, Any]) -> None:
     for field in reported["state"]:
         provenance = field.get("provenance") if isinstance(field, dict) else None
         if provenance != {
-            "kind": "source_reported_allowlisted_field",
+            "kind": "source_document",
             "source_url": source.get("source_url"),
             "content_sha256": digest,
         }:

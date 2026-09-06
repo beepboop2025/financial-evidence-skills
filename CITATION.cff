@@ -5,7 +5,7 @@ message: >-
 title: Financial Evidence
 type: software
 version: 0.1.5
-date-released: '2026-08-26'
+date-released: '2026-09-06'
 authors:
   - name: Liquidity Lab
 license: MIT

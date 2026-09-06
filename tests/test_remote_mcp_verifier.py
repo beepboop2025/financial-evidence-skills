@@ -5,6 +5,9 @@ from pathlib import Path
 
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
+from financial_evidence import core
 
 from scripts.verify_remote_mcp import (
     CONTRACT,
@@ -56,7 +59,7 @@ class RemoteMcpVerifierTests(unittest.TestCase):
                             "value": "PARTIAL",
                             "path": "/status",
                             "provenance": {
-                                "kind": "source_reported_allowlisted_field",
+                                "kind": "source_document",
                                 "source_url": source_url,
                                 "content_sha256": digest,
                             },
@@ -66,7 +69,19 @@ class RemoteMcpVerifierTests(unittest.TestCase):
                 }],
             },
         }
+        canonical = core.source_reported_metadata(
+            core.ROUTES["money-market"][0], {"status": "PARTIAL"},
+            content_sha256=digest,
+        )
+        source = result["structuredContent"]["sources"][0]
+        self.assertEqual(source["source_reported"], canonical)
         require_fetch_semantics(result)
+        source["source_reported"]["state"][0]["provenance"]["kind"] = (
+            "source_reported_allowlisted_field"
+        )
+        with self.assertRaisesRegex(RuntimeError, "source-reported provenance differs"):
+            require_fetch_semantics(result)
+        source["source_reported"] = canonical
         result["structuredContent"]["output_status"] = "unavailable"
         with self.assertRaisesRegex(RuntimeError, "semantic boundary differs"):
             require_fetch_semantics(result)

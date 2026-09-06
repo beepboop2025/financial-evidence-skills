@@ -12,7 +12,7 @@ class ReleaseIntegrityTests(unittest.TestCase):
         citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
         self.assertIn("cff-version: 1.2.0", citation)
         self.assertIn("version: 0.1.5", citation)
-        self.assertIn("date-released: '2026-08-26'", citation)
+        self.assertIn("date-released: '2026-09-06'", citation)
         self.assertIn("releases/tag/v0.1.5", citation)
 
     def test_release_assets_are_sbomed_and_attested_by_immutable_actions(self):

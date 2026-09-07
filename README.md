@@ -1,5 +1,13 @@
 # Financial Evidence Agent Skills
 
+**Try the underlying evidence first:** [Open three browser research questions](https://liquilens.in/start/)
+for bank NPA disclosures, dollar funding and BTC exit estimates. Each example
+calls its named public MCP after a click and displays the returned sources,
+dates and limits. No key or installation is needed. The page also has setup
+and starter questions for Financial Evidence and eight other hosted MCPs.
+The browser examples call individual services; they do not verify an Evidence
+Carrier or evaluate a combined Financial Evidence packet.
+
 [![skills.sh](https://skills.sh/b/beepboop2025/financial-evidence-skills)](https://skills.sh/beepboop2025/financial-evidence-skills/financial-evidence)
 
 [Public documentation](https://beepboop2025.github.io/financial-evidence-skills/)

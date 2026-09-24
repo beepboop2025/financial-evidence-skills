@@ -36,6 +36,13 @@ provides free, source-cited funding, capital-market and liquidity briefs with lo
 change comparisons. This separately versioned browser companion and agent skill
 uses the existing public evidence sources.
 
+For direct calls to Seiche, LiquiLens and Undertow, the companion
+[free agent starter kit](https://liquilens.in/agents/) includes
+[Hermes](https://liquilens.in/agents/hermes/) and
+[OpenClaw](https://liquilens.in/agents/openclaw/) setup guides. That kit uses a
+separate trading-research skill; it does not install Financial Evidence or connect
+Palimpsest. Use the versioned install below for this four-product routing skill.
+
 ## Install the agent skill
 
 ```bash

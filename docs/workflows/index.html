@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Funding and counterparty research workflows | Financial Evidence</title>
+  <meta name="description" content="Run a repeatable funding, bank-context or liquidity-context job. Keep source documents, dates, missing evidence and a CSV index in your own research workflow.">
+  <meta name="robots" content="index,follow,max-snippet:-1">
+  <link rel="canonical" href="https://beepboop2025.github.io/financial-evidence-skills/workflows/">
+  <link rel="stylesheet" href="../styles.css">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Bring funding evidence into your daily research">
+  <meta property="og:description" content="Three repeatable research jobs, source documents and a spreadsheet index. Free public evidence; no API key.">
+  <meta property="og:url" content="https://beepboop2025.github.io/financial-evidence-skills/workflows/">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Funding and counterparty research workflows","url":"https://beepboop2025.github.io/financial-evidence-skills/workflows/","dateModified":"2026-09-27","description":"Repeatable public funding, bank-context and liquidity-context research with retained source documents and explicit gaps.","isAccessibleForFree":true}</script>
+</head>
+<body>
+  <div class="hero">
+    <header><nav aria-label="Primary"><a class="brand" href="../">Financial Evidence</a><div><a href="#choose">Choose a job</a><a href="#run">Run it</a><a href="#pilot">Integration pilot</a></div></nav></header>
+    <main id="top">
+      <p class="eyebrow">For treasury researchers, risk teams and agent builders</p>
+      <h1>Bring funding evidence into your daily research.</h1>
+      <p class="lede">Add a source-linked evidence packet to the workbook, research job or agent you already use. Keep the original response, its dates and its gaps. Start with one recurring question.</p>
+      <div class="actions"><a class="button primary" href="#run">Run the funding workflow</a><a class="button" href="https://liquilens.in/start/">Try public research in your browser</a><a class="button" href="#pilot">Scope an integration pilot</a></div>
+      <p>Free public research. No account, API key, LLM or broker connection required. Example runner 1.0.0 uses the separately released Financial Evidence 0.1.5 package.</p>
+    </main>
+  </div>
+  <section id="choose" class="section">
+    <p class="eyebrow">One recurring job</p><h2>Choose the evidence your workflow needs.</h2>
+    <div class="grid">
+      <article><h3>Morning funding review</h3><p><strong>For:</strong> treasury and macro researchers.</p><p>Retain Seiche's public money-market context with source-reported clocks. Review funding inputs and missing evidence before writing the desk note.</p><p><code>--workflow funding</code></p><p><a href="https://seiche.info/use-cases/money-market-research/">Method and coverage</a></p></article>
+      <article><h3>Bank review context</h3><p><strong>For:</strong> counterparty and credit research teams.</p><p>Retain LiquiLens's public board alongside the separate funding context. This job gives board-level context. Use the institution recipe below for a named bank's filing review.</p><p><code>--workflow bank-context</code></p><p><a href="https://liquilens.in/developers/institutions/">Named institution review recipe</a></p></article>
+      <article><h3>Liquidity research context</h3><p><strong>For:</strong> execution researchers and agent builders.</p><p>Retain Undertow's public summary and separate Seiche funding context. Position-specific depth and exit estimates use Undertow's dedicated research tools.</p><p><code>--workflow liquidity-context</code></p><p><a href="https://liquilens-undertow.com/developers/">Position-size research tools</a></p></article>
+    </div>
+    <p>For China research, <a href="https://palimpsest.info/china/">Palimpsest</a> supplies separately scoped information-state and economic evidence. For offline verification, use <a href="https://github.com/beepboop2025/liquilens-evidence-carrier">Evidence Carrier</a> with an actual supported carrier. The packets produced here are ordinary research captures.</p>
+  </section>
+  <section id="run" class="section muted">
+    <p class="eyebrow">From first result to a repeatable job</p><h2>Keep one research run.</h2>
+    <p>Download and inspect <a href="evidence_job.py" download>evidence_job.py</a>. Use Python 3.10 or newer and Git. Install the exact source revision of Financial Evidence 0.1.5 in a project environment:</p>
+    <pre><code>python3 -m venv .venv
+.venv/bin/python -m pip install 'git+https://github.com/beepboop2025/financial-evidence-skills.git@f12a4889180f1a6d1b76324ebe62659c97865eb5'
+.venv/bin/python evidence_job.py --workflow funding --output captures/first</code></pre>
+    <p>On Windows, use <code>.venv\Scripts\python.exe</code> in place of <code>.venv/bin/python</code>. The package is pinned; review the downloaded runner before executing it. This example does not change your existing agent configuration.</p>
+    <div class="table-wrap"><table><thead><tr><th>File</th><th>Use it for</th></tr></thead><tbody>
+      <tr><td><code>packet.json</code></td><td>The complete returned documents, including observations, units, limitations and failed-source records.</td></tr>
+      <tr><td><code>sources.csv</code></td><td>A spreadsheet index of source URLs, retrieval times, source-reported clocks and transport failures. Full financial observations remain in the JSON.</td></tr>
+      <tr><td><code>run.json</code></td><td>Workflow identity, exit code and hashes of both saved files. Written last; a directory without this file is an incomplete local write.</td></tr>
+    </tbody></table></div>
+    <p>The runner refuses to overwrite a capture. On a later research day, run the same job into <code>captures/second</code>. Each source is requested once, with a 1 MiB response limit and a 15-second socket timeout. There are no automatic retries. A scheduler should also set a total job deadline.</p>
+    <p><strong>Read the result:</strong> exit 0 means all retrievals succeeded; 1 means partial retrieval; 2 means none succeeded; 3 means a local job error. Successful retrieval can contain stale, restricted or unavailable evidence. Source validity, freshness and Carrier verification remain unassessed. A hash records file integrity, not a signature or trading permission.</p>
+    <p>Operator checks must add <code>--verification</code>. The runner marks those requests synthetic and records that fact locally. Legacy upstream logs may still lack reliable attribution; do not count these checks as users.</p>
+    <h3>Use your own scheduler</h3>
+    <p><a href="research-job.yml.txt" download>Download the GitHub Actions template</a>. Commit the reviewed runner at <code>scripts/evidence_job.py</code> and the template at <code>.github/workflows/research-evidence.yml</code> in your own repository. Start it manually. The weekday schedule is commented out until you choose to enable it.</p>
+    <p>The template retains artifacts for 14 days, including partial results, and fails the job when retrieval fails. Prefer a private repository for research captures and follow upstream data rights. GitHub quotas, billing and scheduler delays apply. Local execution has been checked; a customer-owned GitHub schedule needs its own acceptance run.</p>
+  </section>
+  <section id="connect" class="section">
+    <p class="eyebrow">Use your existing tools</p><h2>One evidence layer, several delivery routes.</h2>
+    <div class="table-wrap"><table><thead><tr><th>Where you work</th><th>Connection</th><th>First useful result</th></tr></thead><tbody>
+      <tr><td>Agent framework or MCP client</td><td><code>https://liquilens.in/mcp/financial-evidence</code></td><td>List topics, route <code>money-market</code>, then fetch that topic. Keep source-reported metadata and complete documents.</td></tr>
+      <tr><td>Excel or SQL notebook</td><td><a href="https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.5/integrations/excel/FinancialEvidence.pq">Power Query</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.5/integrations/duckdb/financial_evidence.sql">DuckDB views</a></td><td>Read a funding document beside your existing licensed data. The CSV above is an alternative for a captured run.</td></tr>
+      <tr><td>OpenBB</td><td><a href="https://github.com/beepboop2025/financial-evidence-skills#finance-tool-integrations">Existing router extension</a></td><td>Call <code>obb.financial_evidence.routes()</code> before fetching a selected topic.</td></tr>
+      <tr><td>Hermes, OpenClaw or n8n</td><td><a href="https://liquilens.in/agents/">Agent kit and tested setup guides</a></td><td>Funding, exact covered-bank evidence or position-size exit research through dedicated tools.</td></tr>
+    </tbody></table></div>
+    <p>These are available connection routes. They do not imply vendor endorsement, marketplace acceptance or access to Bloomberg, Reuters or LSEG content.</p>
+  </section>
+  <section id="pilot" class="section muted">
+    <p class="eyebrow">Prove a useful dependency</p><h2>Test one workflow over ten research days.</h2>
+    <p>Start with a free self-serve evaluation. Agree one recurring research question, its coverage and the reviewer who will judge it. Compare the existing process with the evidence-assisted process using the same question and sources.</p>
+    <ol>
+      <li><strong>First result:</strong> retain a packet and have a reviewer confirm that it answers a real research task within the published scope.</li>
+      <li><strong>Repeat use:</strong> run the same workflow on at least three distinct research days and record whether its output was used.</li>
+      <li><strong>Outcome:</strong> compare review time and omissions against the manual baseline. Record failures and cases where coverage was insufficient.</li>
+    </ol>
+    <p><a href="pilot-scorecard.csv" download>Download the private pilot scorecard</a>. Keep it in your environment. No usage telemetry or organization identifier is sent by this example. Share only an agreed, redacted outcome if you want integration help.</p>
+    <div class="actions"><a class="button primary" href="mailto:mrinal@liquilens.in?subject=Financial%20Evidence%20integration%20pilot&amp;body=Workflow%3A%20%0AExisting%20tool%3A%20%0ACovered%20market%20or%20institution%3A%20%0AWhat%20a%20successful%20result%20would%20do%3A%20%0ACurrent%20blocker%3A%20">Discuss an integration pilot</a><a class="button" href="https://github.com/beepboop2025/financial-evidence-skills/issues/new?template=integration.yml">Report a public integration blocker</a></div>
+    <p>Use the private email route for confidential requirements. Public issues should contain only redacted technical examples. Dedicated capacity, support terms and any commercial agreement require separate scoping; this page promises no SLA or automatic paid enrollment.</p>
+  </section>
+  <footer><p>Last updated 27 September 2026. <a href="../">Financial Evidence</a> · <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a> · <a href="../support/">Support</a></p></footer>
+</body>
+</html>

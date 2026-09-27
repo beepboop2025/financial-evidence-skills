@@ -4,13 +4,14 @@
 
 Published source version: 0.1.5
 Last verified release: 0.1.5
-Last updated: 2026-09-06
+Last updated: 2026-09-27
 Publisher: Liquidity Lab
 License: MIT for the software; source publishers retain rights in upstream data.
 
 ## Primary documentation
 
 - [Overview and integration matrix](https://beepboop2025.github.io/financial-evidence-skills/)
+- [Recurring research workflows](https://beepboop2025.github.io/financial-evidence-skills/workflows/): funding, bank-context and liquidity-context captures with a CSV source index, optional scheduling template and private pilot scorecard; examples use package 0.1.5 and keep transport success separate from evidence validity.
 - [Source repository and full README](https://github.com/beepboop2025/financial-evidence-skills)
 - [Last verified release v0.1.5](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.5)
 - [v0.1.5 semantic contract](https://github.com/beepboop2025/financial-evidence-skills/blob/main/SEMANTIC_CONTRACT.md)

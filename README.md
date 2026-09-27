@@ -1,5 +1,11 @@
 # Financial Evidence Agent Skills
 
+**Put it into a recurring workflow:** the [funding and counterparty workflow pack](https://beepboop2025.github.io/financial-evidence-skills/workflows/)
+retains source documents, a spreadsheet index and a local integrity manifest.
+It includes a reviewed Python runner, an opt-in scheduling template and a
+ten-day integration scorecard. These examples use the existing 0.1.5 package;
+they do not change its release or evidence semantics.
+
 **Try the underlying evidence first:** [Open three browser research questions](https://liquilens.in/start/)
 for bank NPA disclosures, dollar funding and BTC exit estimates. Each example
 calls its named public MCP after a click and displays the returned sources,

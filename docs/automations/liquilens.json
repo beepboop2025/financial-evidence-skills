@@ -1,0 +1,253 @@
+{
+  "name": "Review Cosmos Bank NPA disclosures with LiquiLens and optional updates",
+  "active": false,
+  "nodes": [
+    {
+      "id": "try-once",
+      "name": "Try once",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        240
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "morning-schedule",
+      "name": "Morning schedule",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        100,
+        460
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 8 * * 1-5"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "task-settings",
+      "name": "Task settings",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        400,
+        240
+      ],
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"toolInput\": {\n    \"slug\": \"cosmos-ucb\",\n    \"include_history\": true\n  },\n  \"maxAgeSeconds\": 21600\n}",
+        "options": {}
+      }
+    },
+    {
+      "id": "fetch-task-evidence",
+      "name": "Fetch task evidence",
+      "type": "@n8n/n8n-nodes-langchain.mcpClient",
+      "typeVersion": 1.1,
+      "position": [
+        700,
+        240
+      ],
+      "parameters": {
+        "serverTransport": "httpStreamable",
+        "endpointUrl": "https://api.liquilens.in/mcp",
+        "authentication": "none",
+        "tool": {
+          "__rl": true,
+          "mode": "id",
+          "value": "bank_asset_quality_review"
+        },
+        "inputMode": "json",
+        "jsonInput": "={{ JSON.stringify($json.toolInput) }}",
+        "options": {
+          "timeout": 20000,
+          "convertToBinary": false
+        }
+      }
+    },
+    {
+      "id": "keep-evidence-and-prepare-update",
+      "name": "Keep evidence and prepare update",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        240
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "'use strict';\n\n// Embedded in the downloadable workflows by scripts/build_task_workflows.py.\n// Keep the source result intact; only the small notification is summarized.\nfunction formatTaskResponse(product, response, settings, now = new Date()) {\n  const object = value => value !== null && typeof value === 'object' && !Array.isArray(value);\n  const number = value => typeof value === 'number' && Number.isFinite(value);\n  const nonnegative = value => number(value) && value >= 0;\n  if (!object(response) || response.error !== undefined || response.isError === true) {\n    throw new Error('MCP tool failed; no completed research result is available');\n  }\n  let evidence = response.structuredContent;\n  if (evidence === undefined) {\n    const text = response.content?.find(item => item.type === 'text')?.text;\n    evidence = typeof text === 'string' ? JSON.parse(text) : text;\n  }\n  if (!object(evidence)) throw new Error('Expected structured evidence');\n  if (!object(settings) || !object(settings.toolInput)) throw new Error('Missing task settings');\n  const retrievedAt = now.toISOString();\n  let state, sourceClock, lines, endpoint, tool;\n  const clockState = timestamp => {\n    const time = typeof timestamp === 'string' ? Date.parse(timestamp) : NaN;\n    if (!Number.isFinite(time)) throw new Error('Missing or invalid source generation clock');\n    if (!number(settings.maxAgeSeconds) || settings.maxAgeSeconds <= 0) throw new Error('Invalid freshness limit');\n    const age = (now.getTime() - time) / 1000;\n    return age < -300 ? 'FUTURE_SOURCE_CLOCK' : age > settings.maxAgeSeconds ? 'STALE_SNAPSHOT' : 'WITHIN_SNAPSHOT_AGE_LIMIT';\n  };\n  if (product === 'seiche') {\n    endpoint = 'https://api.seiche.info/mcp'; tool = 'funding_stress_now';\n    if (evidence.schema !== 'seiche.public.v2' || !object(evidence.data_quality) || !object(evidence.conclusion)) {\n      throw new Error('Unexpected Seiche funding contract');\n    }\n    sourceClock = evidence.generated_at;\n    state = clockState(sourceClock);\n    const counts = evidence.data_quality.status_counts;\n    if (!object(counts) || !['fresh', 'aging', 'dead', 'unknown'].every(k => Number.isInteger(counts[k]) && counts[k] >= 0)) {\n      throw new Error('Funding source-quality counts are missing');\n    }\n    const c = evidence.conclusion;\n    const regime = typeof c.regime === 'string' && /^[A-Z_ -]{1,40}$/.test(c.regime) ? c.regime : null;\n    if (!regime || !number(c.value) || !number(c.coverage_pct)) throw new Error('Funding conclusion is incomplete');\n    const timely = state === 'WITHIN_SNAPSHOT_AGE_LIMIT';\n    if (timely) state = counts.aging + counts.dead + counts.unknown > 0 || c.coverage_pct < 100 ? 'DATA_GAPS' : 'SOURCE_REPORTED';\n    lines = [`Seiche funding review \u2014 ${state}`, `Board generated: ${sourceClock}`];\n    if (timely) lines.push(`Source-reported regime: ${regime}; gauge ${c.value}/100; coverage ${c.coverage_pct}%.`);\n    else lines.push('Snapshot is outside the configured age window; current reading withheld.');\n    lines.push(`Sources: ${counts.fresh} fresh, ${counts.aging} aging, ${counts.dead} dead, ${counts.unknown} unknown.`);\n    lines.push('Board generation time is not the date of every observation. Inspect headline_ages and proof limits in the retained evidence.');\n    lines.push('https://seiche.info/');\n  } else if (product === 'liquilens') {\n    endpoint = 'https://api.liquilens.in/mcp'; tool = 'bank_asset_quality_review';\n    if (evidence.schema !== 'liquilens.bank-specialisation.v1' || evidence.slug !== settings.toolInput.slug ||\n        !['observed', 'stale', 'historical', 'unavailable'].includes(evidence.status) || evidence.scope !== 'research' ||\n        evidence.score_authority !== false || evidence.can_authorize_credit !== false) {\n      throw new Error('Unexpected bank identity, status or research contract');\n    }\n    sourceClock = evidence.period_end ?? null;\n    state = evidence.status.toUpperCase();\n    const cited = Array.isArray(evidence.sources) && evidence.sources.some(s => typeof s === 'string' && s.startsWith('https://'));\n    if (state === 'OBSERVED' && !cited) state = 'UNCITED';\n    lines = [`LiquiLens bank filing review \u2014 ${state}`, `Institution: ${evidence.slug}`, `Filing period end: ${sourceClock ?? 'not supplied'}`];\n    if (state === 'OBSERVED') {\n      const metrics = evidence.metrics;\n      if (!object(metrics)) throw new Error('Missing bank metrics contract');\n      const ratio = key => {\n        const m = metrics[key];\n        return object(m) && m.status === 'observed' && number(m.value) && m.unit === 'percent' ? `${m.value}%` : 'not disclosed';\n      };\n      lines.push(`GNPA ${ratio('gnpa_pct')}; NNPA ${ratio('nnpa_pct')}.`);\n      const annual = evidence.changes?.year;\n      if (annual?.status === 'observed' && annual.unit === 'percentage_points' && number(annual.changes?.gnpa_pct)) {\n        lines.push(`GNPA year change: ${annual.changes.gnpa_pct} percentage points (${annual.from_period} to ${annual.to_period}).`);\n      }\n      const m = evidence.npa_movement;\n      if (m?.status === 'reconciled' && m.amount_unit === 'INR_crore' && object(m.reductions)) {\n        for (const [key, label] of [['cash_recoveries', 'Cash recoveries'], ['write_offs', 'Write-offs'], ['upgrades', 'Upgrades']]) {\n          if (nonnegative(m.reductions[key])) lines.push(`${label}: INR ${m.reductions[key]} crore.`);\n        }\n        lines.push('Reconciliation is arithmetic against the supplied statement; reductions are not all cash recoveries.');\n      }\n    } else lines.push('Current ratios withheld; inspect the retained evidence status and coverage gaps.');\n    lines.push('Filing dates, cited PDF pages, PCR basis and missing disclosures remain in the full record.');\n    lines.push('https://liquilens.in/banking/?institution=' + encodeURIComponent(evidence.slug));\n  } else if (product === 'undertow') {\n    endpoint = 'https://api.seiche.info/undertow/mcp'; tool = 'exit_cost';\n    if (evidence.asset !== 'BTC' || !number(settings.toolInput.size_usd) || settings.toolInput.size_usd <= 0 ||\n        evidence.requested_size_usd !== settings.toolInput.size_usd || !number(evidence.published_rung_used_usd) ||\n        evidence.published_rung_used_usd <= 0 || !object(evidence.sell_cost_bp_by_venue) ||\n        typeof evidence.method !== 'string' || !Array.isArray(evidence.unable_at_observed_depth)) {\n      throw new Error('Unexpected BTC size or exit-estimate contract');\n    }\n    sourceClock = evidence.generated_at;\n    state = clockState(sourceClock);\n    const timely = state === 'WITHIN_SNAPSHOT_AGE_LIMIT';\n    const costs = Object.entries(evidence.sell_cost_bp_by_venue);\n    if (costs.some(([venue, cost]) => !/^[a-z0-9_-]{1,40}$/i.test(venue) || (cost !== null && !nonnegative(cost)))) {\n      throw new Error('Malformed venue cost');\n    }\n    if (timely) state = costs.length === 0 || costs.some(([,cost]) => cost === null) || evidence.unable_at_observed_depth.length > 0 ? 'DEPTH_GAPS' : 'ESTIMATE_AVAILABLE';\n    lines = [`Undertow BTC exit \u2014 ${state}`, `Snapshot generated: ${sourceClock}`,\n      `Requested: USD ${evidence.requested_size_usd}; published rung used: USD ${evidence.published_rung_used_usd}.`];\n    if (timely) for (const [venue, cost] of costs) lines.push(`${venue}: ${cost === null ? 'unavailable' : `${cost} bp`}`);\n    else lines.push('Snapshot is outside the configured age window; current costs withheld.');\n    if (evidence.unable_at_observed_depth.length) lines.push(`Insufficient observed depth at ${evidence.unable_at_observed_depth.length} venue(s); see full evidence.`);\n    lines.push('Depth-band interpolation; fees excluded. An estimate, not an executable quote or guaranteed fill.');\n    lines.push('https://liquilens.in/start/?task=exit&size=' + encodeURIComponent(evidence.requested_size_usd));\n  } else throw new Error('Unknown research task');\n  return { schema: 'liquidity-lab.task-delivery.v1', product, endpoint, tool,\n    retrieved_at: retrievedAt, source_status: state, source_clock: sourceClock,\n    message_text: lines.join('\\n'), evidence };\n}\n\n\nconst items = $input.all();\nif (items.length !== 1) throw new Error('Expected one MCP result');\nreturn [{json: formatTaskResponse(\"liquilens\", items[0].json, $('Task settings').first().json)}];\n"
+      }
+    },
+    {
+      "id": "optional-slack-update",
+      "name": "Optional Slack update",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        1340,
+        180
+      ],
+      "parameters": {
+        "resource": "message",
+        "operation": "post",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "mode": "id",
+          "value": ""
+        },
+        "text": "={{ $json.message_text }}",
+        "otherOptions": {
+          "includeLinkToWorkflow": false
+        }
+      },
+      "disabled": true
+    },
+    {
+      "id": "optional-telegram-update",
+      "name": "Optional Telegram update",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1340,
+        420
+      ],
+      "parameters": {
+        "resource": "message",
+        "operation": "sendMessage",
+        "chatId": "",
+        "text": "={{ $json.message_text }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "disabled": true
+    },
+    {
+      "id": "01-start-here",
+      "name": "01 Start here",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        20,
+        -240
+      ],
+      "parameters": {
+        "width": 550,
+        "height": 380,
+        "color": 5,
+        "content": "## 01 \u00b7 Try the research task\nImport into your n8n instance and select **Execute workflow**. Public evidence requires no API key, account or AI model.\n\n[Try the browser demo](https://liquilens.in/start/?task=bank)\n\nEdit **Task settings** for the bank slug, position size or snapshot-age limit where applicable. For another bank, check `banking_specialisation_coverage` first.\n\nThe workflow imports **inactive**. The schedule is weekdays at 08:00 **UTC**; change the workflow timezone and cron before publishing."
+      }
+    },
+    {
+      "id": "02-read-the-complete-result",
+      "name": "02 Read the complete result",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        620,
+        -240
+      ],
+      "parameters": {
+        "width": 570,
+        "height": 380,
+        "color": 5,
+        "content": "## 02 \u00b7 Keep the source evidence\nOpen **Keep evidence and prepare update**. `evidence` preserves the complete source response; `message_text` is a short, deterministic summary.\n\nGeneration, retrieval and observation dates mean different things. Missing data stays missing. Old snapshots suppress current-looking summaries; transport/tool errors stop execution.\n\nFunding context is not a bank rating. An NPA reduction is not necessarily a cash recovery. BTC costs use published depth bands and exclude fees.\n\n[Setup and interpretation](https://beepboop2025.github.io/financial-evidence-skills/automations/)"
+      }
+    },
+    {
+      "id": "03-connect-your-update-destination",
+      "name": "03 Connect your update destination",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1250,
+        -240
+      ],
+      "parameters": {
+        "width": 470,
+        "height": 340,
+        "color": 4,
+        "content": "## 03 \u00b7 Optional delivery\nBoth message nodes are **disabled** on import.\n\nTo receive updates, choose one node, attach your own Slack or Telegram credential, enter your channel/chat ID and enable it. Test with your own destination.\n\nKeep unused delivery nodes disabled. Activate the workflow only after reviewing its schedule.\n\nYour n8n execution retention settings determine how long the full evidence is kept. No trading or credit decision is automated."
+      }
+    }
+  ],
+  "connections": {
+    "Try once": {
+      "main": [
+        [
+          {
+            "node": "Task settings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Morning schedule": {
+      "main": [
+        [
+          {
+            "node": "Task settings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Task settings": {
+      "main": [
+        [
+          {
+            "node": "Fetch task evidence",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch task evidence": {
+      "main": [
+        [
+          {
+            "node": "Keep evidence and prepare update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Keep evidence and prepare update": {
+      "main": [
+        [
+          {
+            "node": "Optional Slack update",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Optional Telegram update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "UTC"
+  },
+  "pinData": {},
+  "tags": []
+}

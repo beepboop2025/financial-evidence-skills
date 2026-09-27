@@ -65,3 +65,5 @@ Packet `status` equals `transport_status` and describes retrieval only. Every pa
 - Privacy: https://beepboop2025.github.io/financial-evidence-skills/privacy/
 - Terms: https://beepboop2025.github.io/financial-evidence-skills/terms/
 - Support: https://beepboop2025.github.io/financial-evidence-skills/support/
+
+- [Task automations](https://beepboop2025.github.io/financial-evidence-skills/automations/): native n8n funding, Cosmos NPA and sized BTC exit workflows, optional Slack/Telegram delivery, focused Cursor skills and a local sources.csv Power Query reader. Workflows import inactive; directory acceptance is separate.

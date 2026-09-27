@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Funding, bank filings and BTC exits in n8n | Liquidity Lab</title>
+  <meta name="description" content="Run one funding review, Cosmos Bank NPA review or $100k BTC exit estimate. Import a native n8n workflow and optionally send the evidence summary to Slack or Telegram.">
+  <link rel="canonical" href="https://beepboop2025.github.io/financial-evidence-skills/automations/">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="hero"><header><nav aria-label="Primary"><a class="brand" href="../">Liquidity Lab</a><div><a href="#tasks">Choose a task</a><a href="#setup">Set up n8n</a><a href="#agents">Agent setup</a></div></nav></header>
+  <main><p class="eyebrow">Seiche · LiquiLens · Undertow</p><h1>One question.<br>A repeatable research task.</h1>
+  <p class="lede">Check dollar funding, reconcile a bank's disclosed NPAs, or compare a sized BTC exit estimate. Try the public result, then bring that same task into your daily workflow.</p>
+  <p>No product account, API key or AI model is needed. Public usage limits and your n8n hosting costs apply.</p></main></div>
+  <section id="tasks" class="section"><h2>Start with the result you need.</h2><div class="grid">
+    <article><h3>Seiche: morning funding review</h3><p>What does the dollar-funding board say, and which observations are old or missing?</p><p>Retain the source-reported regime, source dates and data-quality counts.</p><p><a href="https://liquilens.in/start/?task=funding">Try funding research</a></p><p><a href="seiche.json" download>Download the Seiche n8n workflow</a></p></article>
+    <article><h3>LiquiLens: Cosmos Bank NPAs</h3><p>What changed in the bank's disclosed bad loans?</p><p>Separate cash recoveries, write-offs and upgrades. Keep the filing period, source PDF pages, PCR basis and missing ratios.</p><p><a href="https://liquilens.in/start/?task=bank">Try the Cosmos NPA review</a></p><p><a href="liquilens.json" download>Download the LiquiLens n8n workflow</a></p></article>
+    <article><h3>Undertow: a $100,000 BTC exit</h3><p>What do published venue-depth estimates imply at this size?</p><p>Show snapshot age, the size rung used and missing depth. Estimates exclude fees and are not executable quotes.</p><p><a href="https://liquilens.in/start/?task=exit&amp;size=100000">Try the BTC exit estimate</a></p><p><a href="undertow.json" download>Download the Undertow n8n workflow</a></p></article>
+  </div></section>
+  <section id="setup" class="section muted"><h2>Run it once, then choose your cadence.</h2>
+    <ol><li>Import one JSON file through n8n's workflow menu. Select <strong>Execute workflow</strong>.</li>
+    <li>Open <strong>Keep evidence and prepare update</strong>. The complete response is in <code>evidence</code>; <code>message_text</code> is the short update.</li>
+    <li>Edit <strong>Task settings</strong> for another covered bank or a different BTC dollar size. The BTC snapshot-age limit defaults to two hours; the funding board limit is six hours. Individual macro observation dates remain separate.</li>
+    <li>For delivery, configure your own credential and channel/chat ID on one optional Slack or Telegram node, then enable that node. Both are disabled on import.</li>
+    <li>Review the schedule before activating the workflow. The template is inactive and defaults to weekdays at 08:00 UTC. Change the timezone and cron for your desk.</li></ol>
+    <p>Tool errors stop the run. Stale snapshots suppress current-looking funding readings and BTC costs in the update. A bank's historical, stale or unavailable evidence remains labelled. Full evidence is kept in the execution output according to your n8n retention settings.</p>
+    <p>These are downloadable native workflows. An official n8n template-library listing is a separate review; no acceptance is claimed here.</p>
+  </section>
+  <section id="agents" class="section"><h2>Ask the same question in your agent.</h2>
+    <p><a href="https://liquilens.in/agents/">Choose your MCP client</a> and connect the relevant public endpoint. The repository's Cursor plugin bundles three focused task skills and the three remote MCP connections.</p>
+    <pre><code>Seiche     https://api.seiche.info/mcp
+LiquiLens  https://api.liquilens.in/mcp
+Undertow   https://api.seiche.info/undertow/mcp</code></pre>
+    <p><a href="https://github.com/beepboop2025/financial-evidence-skills/tree/main/task-skills">Read the task skills</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/blob/main/integrations/task-mcp.json">Download MCP configuration</a> · <a href="https://liquilens.in/agents/openclaw/">Existing versioned OpenClaw skill</a></p>
+    <p>Cursor Marketplace and Hermes catalog inclusion require their maintainers' acceptance. Direct connection works independently of those reviews.</p>
+    <h3>Keep a source index in Excel or DuckDB</h3><p>The <a href="../workflows/#run">capture runner</a> produces <code>sources.csv</code> with the source URLs, clocks, gaps and hashes. <a href="SourcesCsv.pq" download>Download the Power Query reader</a>, paste it into a blank query and invoke it with the local CSV path. All columns remain text.</p>
+    <pre><code>SELECT * FROM read_csv('sources.csv', header = true, all_varchar = true);</code></pre>
+    <p>The CSV indexes a retained capture; full source observations remain in <code>packet.json</code>.</p>
+  </section>
+  <section class="section muted"><h2>Make the first result useful.</h2><p>Use it in one real research task. Record whether it saved source-gathering time and whether you used it again on another research day. <a href="../workflows/pilot-scorecard.csv">The private scorecard</a> helps compare that outcome against your existing process.</p><p><a href="../support/">Get integration help</a></p></section>
+  <footer><p><a href="../">Financial Evidence</a> · <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a> · <a href="../support/">Support</a></p></footer>
+</body>
+</html>

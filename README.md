@@ -1,5 +1,10 @@
 # Financial Evidence Agent Skills
 
+**Three concrete jobs:** [funding review, Cosmos Bank NPAs and a $100k BTC exit](https://beepboop2025.github.io/financial-evidence-skills/automations/)
+with native n8n workflows and optional Slack/Telegram delivery. The
+[Cursor task plugin](.cursor-plugin/plugin.json) bundles the same three focused
+skills and public MCP connections. Marketplace acceptance is separate.
+
 **Put it into a recurring workflow:** the [funding and counterparty workflow pack](https://beepboop2025.github.io/financial-evidence-skills/workflows/)
 retains source documents, a spreadsheet index and a local integrity manifest.
 It includes a reviewed Python runner, an opt-in scheduling template and a

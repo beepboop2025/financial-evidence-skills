@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "seiche": { "url": "https://api.seiche.info/mcp" },
+    "liquilens": { "url": "https://api.liquilens.in/mcp" },
+    "undertow": { "url": "https://api.seiche.info/undertow/mcp" }
+  }
+}

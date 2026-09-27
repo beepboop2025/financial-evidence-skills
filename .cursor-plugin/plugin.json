@@ -1,0 +1,13 @@
+{
+  "name": "funding-bank-exit",
+  "version": "1.0.0",
+  "description": "Check dollar funding, a covered Indian bank's NPA disclosures, or a sized BTC exit estimate with Seiche, LiquiLens and Undertow.",
+  "author": { "name": "Liquidity Lab" },
+  "homepage": "https://liquilens.in/start/",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT",
+  "keywords": ["finance", "funding", "seiche", "bank", "npa", "liquilens", "btc", "liquidity", "undertow"],
+  "logo": "assets/logo.svg",
+  "skills": "./task-skills/",
+  "mcpServers": "./integrations/task-mcp.json"
+}

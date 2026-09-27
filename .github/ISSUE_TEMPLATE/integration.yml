@@ -1,0 +1,41 @@
+name: Integration blocker
+description: Help us reproduce a blocker in a recurring financial research workflow.
+title: '[Integration] '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Share only public or redacted technical information. For confidential requirements, contact mrinal@liquilens.in. Please do not include credentials, positions, customer names or private financial records.
+  - type: dropdown
+    id: workflow
+    attributes:
+      label: Research workflow
+      options:
+        - Funding review
+        - Bank or counterparty research
+        - Market liquidity research
+        - China economy evidence
+        - Evidence verification
+    validations:
+      required: true
+  - type: input
+    id: client
+    attributes:
+      label: Client and version
+      placeholder: Python 3.12, an MCP client, Excel, OpenBB, or another integration
+    validations:
+      required: true
+  - type: textarea
+    id: task
+    attributes:
+      label: What recurring task should this help complete?
+      description: Describe the expected output and public coverage needed.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction and actual result
+      description: Include a redacted command, UTC retrieval time and error. An unavailable source is useful evidence; keep its state visible.
+    validations:
+      required: true

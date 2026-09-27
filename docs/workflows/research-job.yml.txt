@@ -1,0 +1,37 @@
+# Copy to .github/workflows/research-evidence.yml in your own repository.
+# Review evidence_job.py and commit it to scripts/evidence_job.py first.
+# Prefer a private repository for retained evidence; upstream data rights apply.
+name: Research evidence capture
+on:
+  workflow_dispatch:
+  # Enable only after a successful manual run; scheduled runs may be delayed.
+  # schedule:
+  #   - cron: '17 7 * * 1-5'
+permissions:
+  contents: read
+concurrency:
+  group: research-evidence
+  cancel-in-progress: false
+jobs:
+  funding:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: '3.12'
+      - name: Install the exact v0.1.5 source
+        run: python -m pip install 'git+https://github.com/beepboop2025/financial-evidence-skills.git@f12a4889180f1a6d1b76324ebe62659c97865eb5'
+      - name: Retain funding research
+        run: python scripts/evidence_job.py --workflow funding --output evidence-run
+      - name: Retain partial results even when a source fails
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: funding-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: evidence-run/
+          if-no-files-found: error
+          retention-days: 14

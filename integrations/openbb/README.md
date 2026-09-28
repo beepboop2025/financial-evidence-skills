@@ -46,7 +46,7 @@ catalog = obb.financial_evidence.datasets().to_df()
 result = obb.financial_evidence.query(dataset="money_markets")
 rates = result.to_df()
 print(rates[["entity_id", "metric", "value", "unit", "as_of", "availability"]])
-print(result.extra["metadata"]["sources"])
+print(result.extra["financial_evidence"]["sources"])
 
 history = obb.financial_evidence.query(
     dataset="money_market_history", entity="US-USD",
@@ -56,11 +56,12 @@ print(history.to_df())
 
 # Exact name/ID substring, not a ticker resolver or unsupported-issuer lookup.
 banks = obb.financial_evidence.query(dataset="bank_risk", entity="ESAF")
-print(banks.extra["metadata"]["total_rows"])
+print(banks.extra["financial_evidence"]["total_rows"])
 ```
 
 `routes()` and `fetch()` retain their existing interfaces. New query results use
-typed rows and retain pagination and source diagnostics in `extra.metadata`.
+typed rows and retain pagination and source diagnostics in `extra.financial_evidence`.
+OpenBB reserves `extra.metadata` for its own command execution details.
 An empty entity match is not a statement about that institution's risk.
 For an empty result, inspect `results` and metadata before calling `to_df()`;
 OpenBB raises when there are no rows to convert.

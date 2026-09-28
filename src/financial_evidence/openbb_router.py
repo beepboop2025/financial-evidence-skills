@@ -89,7 +89,7 @@ async def query(
 
     Filter entity IDs or names by a case-insensitive substring. Dates use
     YYYY-MM-DD and refer to observation dates, never retrieval time. Null values
-    remain missing or withheld. Inspect extra.metadata for source errors,
+    remain missing or withheld. Inspect extra.financial_evidence for source errors,
     publisher clocks, cache age, total_rows and next_offset.
     """
     result = await asyncio.to_thread(
@@ -104,7 +104,7 @@ async def query(
     return OBBject(
         results=[EvidenceRow(**row) for row in result["results"]],
         extra={
-            "metadata": {
+            "financial_evidence": {
                 key: value for key, value in result.items() if key != "results"
             }
         },

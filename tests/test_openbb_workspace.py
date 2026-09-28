@@ -210,14 +210,16 @@ class WorkspaceTests(unittest.TestCase):
 
 @unittest.skipUnless(HAS_OPENBB, "Install .[openbb] for OpenBB integration tests")
 class OpenBBTests(unittest.TestCase):
-    def test_generated_module_imports_with_resolved_parameter_types(self):
-        from fastapi import APIRouter
+    def test_generated_commands_preserve_evidence_with_execution_metadata(self):
+        from openbb_core.app.command_runner import CommandRunner, ExecutionContext
+        from openbb_core.app.model.user_settings import UserSettings
+        from openbb_core.app.router import CommandMap, Router
         from openbb_core.app.static.package_builder import ModuleBuilder, PathHandler
         from financial_evidence.openbb_router import router
 
-        api = APIRouter()
-        api.include_router(router._api_router, prefix="/financial_evidence")
-        routes = {route.path: route for route in api.routes}
+        root = Router()
+        root.include_router(router, prefix="/financial_evidence")
+        routes = {route.path: route for route in root.api_router.routes}
         with (
             patch.object(PathHandler, "build_route_map", return_value=routes),
             patch.object(PathHandler, "get_router_dependencies", return_value=[]),
@@ -228,6 +230,25 @@ class OpenBBTests(unittest.TestCase):
         generated_router = namespace["ROUTER_financial_evidence"]
         for command in ("datasets", "query", "sources", "routes", "fetch"):
             self.assertTrue(callable(getattr(generated_router, command)))
+        settings = UserSettings()
+        settings.preferences.metadata = True
+        runner = CommandRunner(
+            command_map=CommandMap(router=root), user_settings=settings
+        )
+        service = EvidenceService(
+            fetcher=lambda source, **kwargs: source_result(source)
+        )
+        self.addCleanup(service.close)
+        with (
+            patch.object(ExecutionContext, "_route_map", routes),
+            patch("financial_evidence.openbb_router._service", return_value=service),
+        ):
+            interface = generated_router(runner)
+            self.assertEqual(len(interface.datasets().to_df()), 7)
+            result = interface.query(dataset="money_markets", entity="usd")
+        self.assertEqual(result.to_df().iloc[0]["value"], 0)
+        self.assertEqual(result.extra["financial_evidence"]["total_rows"], 1)
+        self.assertEqual(result.extra["metadata"].route, "/financial_evidence/query")
 
     def test_query_returns_dataframe_with_metadata_and_shared_semantics(self):
         from financial_evidence.openbb_router import query
@@ -241,8 +262,10 @@ class OpenBBTests(unittest.TestCase):
         dataframe = result.to_df()
         self.assertEqual(dataframe.iloc[0]["value"], 0)
         self.assertEqual(dataframe.iloc[0]["as_of"], "2026-09-24")
-        self.assertEqual(result.extra["metadata"]["total_rows"], 1)
-        self.assertEqual(result.extra["metadata"]["evidence_status"], "not_evaluated")
+        self.assertEqual(result.extra["financial_evidence"]["total_rows"], 1)
+        self.assertEqual(
+            result.extra["financial_evidence"]["evidence_status"], "not_evaluated"
+        )
 
 
 if __name__ == "__main__":

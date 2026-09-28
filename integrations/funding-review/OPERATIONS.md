@@ -154,6 +154,14 @@ accepted basis; do not treat a future deadline alone as proof of freshness.
 
 ## Scheduled operation
 
+A configured live Workspace requires the captured backend's complete release
+identity to match its current runtime. After an upgrade, an older matched capture
+is exposed as `runtime_release_identity=mismatch`, is not ready, and has no CSV
+download until a new matching capture arrives. The original capture is unchanged.
+The Python reader's explicit `enforce_runtime_release=False` option is reserved
+for historical/offline inspection and reports `not_checked`; HTTP/MCP clients
+cannot request this override.
+
 The [oneshot service](financial-evidence-funding-review.service) and
 [15-minute timer](financial-evidence-funding-review.timer) are templates. They are
 not activated by installing the Python package. Install them only as part of the

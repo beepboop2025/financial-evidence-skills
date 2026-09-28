@@ -11,12 +11,18 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from financial_evidence.funding_archive import load_csv, read_export, read_review
+from financial_evidence.release import release_identity
 from test_capture_funding_review import capture, fetcher, responses
 from test_funding_review import captures, NOW
 
 
 class FundingArchiveTests(unittest.TestCase):
     def setUp(self):
+        # These fixtures are offline captures unless a test explicitly configures
+        # a live release. Do not inherit the test runner's container identity.
+        environment = patch.dict(os.environ, {"FINANCIAL_EVIDENCE_SOURCE_COMMIT": ""})
+        environment.start()
+        self.addCleanup(environment.stop)
         self.temporary = tempfile.TemporaryDirectory()
         self.output = Path(self.temporary.name)
         with patch.object(capture, "utcnow", return_value=NOW):
@@ -43,6 +49,141 @@ class FundingArchiveTests(unittest.TestCase):
         current = self.current()
         current["latest"]["manifest_sha256"] = capture.sha256(manifest_raw)
         self.replace_current(current)
+
+    def capture_backend(self, release):
+        bodies = responses()
+        bodies["backend-health"] = capture.encoded(
+            {"status": "ok", "release_id": release["release_id"]}
+        )
+        bodies["backend-release"] = capture.encoded(release)
+        with patch.object(capture, "utcnow", return_value=NOW):
+            return capture.capture(
+                self.output,
+                backend="https://example.com/openbb",
+                expected_release=release["release_id"],
+                fetcher=fetcher(bodies),
+            )
+
+    def test_live_upgrade_invalidates_previous_matched_capture_without_mutating_it(
+        self,
+    ):
+        with patch.dict(os.environ, {"FINANCIAL_EVIDENCE_SOURCE_COMMIT": "a" * 40}):
+            old_release = release_identity()
+            old_path, manifest = self.capture_backend(old_release)
+            old_manifest = (old_path / "manifest.json").read_bytes()
+            old_current = (self.output / "current.json").read_bytes()
+            self.assertEqual(manifest["release_identity"], "matched")
+            self.assertTrue(self.read()["ready"])
+            self.assertEqual(self.read()["runtime_release_identity"], "matched")
+        with patch.dict(os.environ, {"FINANCIAL_EVIDENCE_SOURCE_COMMIT": "b" * 40}):
+            result, csv_bytes = read_export(self.output, now=NOW)
+            self.assertTrue(result["available"])
+            self.assertFalse(result["stale"])
+            self.assertFalse(result["ready"])
+            self.assertEqual(result["data_readiness"], "checks_passed")
+            self.assertEqual(result["capture_release_identity"], "matched")
+            self.assertEqual(result["release_identity"], "mismatch")
+            self.assertEqual(result["runtime_release_identity"], "mismatch")
+            self.assertEqual(result["observed_release"]["source_commit"], "a" * 40)
+            self.assertEqual(result["runtime_release"]["source_commit"], "b" * 40)
+            self.assertIn(
+                {
+                    "code": "runtime_release_identity_mismatch",
+                    "subject": "funding_review",
+                },
+                result["issues"],
+            )
+            self.assertEqual(
+                {row["review_status"] for row in result["results"]},
+                {"release_identity_mismatch"},
+            )
+            self.assertIsNone(csv_bytes)
+            self.assertIsNone(load_csv(self.output, now=NOW))
+        self.assertEqual((old_path / "manifest.json").read_bytes(), old_manifest)
+        self.assertEqual((self.output / "current.json").read_bytes(), old_current)
+        # A subsequent request reads its actual environment rather than a global
+        # cached release identity. Returning to the original runtime is explicit.
+        with patch.dict(os.environ, {"FINANCIAL_EVIDENCE_SOURCE_COMMIT": "a" * 40}):
+            self.assertTrue(self.read()["ready"])
+
+    def test_current_complete_runtime_identity_allows_verified_csv(self):
+        with patch.dict(os.environ, {"FINANCIAL_EVIDENCE_SOURCE_COMMIT": "c" * 40}):
+            release = release_identity()
+            path, _ = self.capture_backend(release)
+            result, csv_bytes = read_export(self.output, now=NOW)
+            self.assertTrue(result["ready"])
+            self.assertEqual(result["runtime_release_identity"], "matched")
+            self.assertEqual(result["release_identity"], "matched")
+            self.assertEqual(
+                csv_bytes, (path / "funding-observations.csv").read_bytes()
+            )
+
+    def test_full_commit_is_required_even_when_display_prefix_collides(self):
+        old_sha, new_sha = "d" * 12 + "1" * 28, "d" * 12 + "2" * 28
+        with patch.dict(os.environ, {"FINANCIAL_EVIDENCE_SOURCE_COMMIT": old_sha}):
+            old_release = release_identity()
+            self.capture_backend(old_release)
+        with patch.dict(os.environ, {"FINANCIAL_EVIDENCE_SOURCE_COMMIT": new_sha}):
+            self.assertEqual(
+                old_release["release_id"], release_identity()["release_id"]
+            )
+            self.assertFalse(self.read()["ready"])
+            self.assertEqual(self.read()["runtime_release_identity"], "mismatch")
+            self.assertIsNone(load_csv(self.output, now=NOW))
+
+    def test_live_runtime_requires_backend_identity_and_all_release_fields(self):
+        with patch.dict(os.environ, {"FINANCIAL_EVIDENCE_SOURCE_COMMIT": "e" * 40}):
+            # A source-only capture was valid offline but cannot certify a live
+            # deployment which it never queried.
+            self.assertFalse(self.read()["ready"])
+            self.assertEqual(self.read()["runtime_release_identity"], "mismatch")
+            self.assertIsNone(load_csv(self.output, now=NOW))
+            original = release_identity()
+            for field in (
+                "schema",
+                "workspace_version",
+                "package_version",
+                "contract",
+                "source_commit",
+            ):
+                with self.subTest(field=field):
+                    broken = dict(original)
+                    del broken[field]
+                    _, manifest = self.capture_backend(broken)
+                    self.assertEqual(manifest["release_identity"], "matched")
+                    self.assertFalse(self.read()["ready"])
+                    self.assertEqual(
+                        self.read()["runtime_release_identity"], "mismatch"
+                    )
+
+    def test_explicit_offline_override_is_visible_and_not_a_live_default(self):
+        with patch.dict(os.environ, {"FINANCIAL_EVIDENCE_SOURCE_COMMIT": "f" * 40}):
+            self.capture_backend(release_identity())
+        with patch.dict(os.environ, {"FINANCIAL_EVIDENCE_SOURCE_COMMIT": "1" * 40}):
+            self.assertFalse(self.read()["ready"])
+            result, csv_bytes = read_export(
+                self.output, now=NOW, enforce_runtime_release=False
+            )
+            self.assertTrue(result["ready"])
+            self.assertEqual(result["runtime_release_identity"], "not_checked")
+            self.assertEqual(result["runtime_release"], {})
+            self.assertIsNotNone(csv_bytes)
+            self.assertTrue(self.read(enforce_runtime_release=False)["ready"])
+            self.assertIsNotNone(
+                load_csv(self.output, now=NOW, enforce_runtime_release=False)
+            )
+
+    def test_malformed_runtime_configuration_and_policy_fail_closed(self):
+        with patch.dict(
+            os.environ, {"FINANCIAL_EVIDENCE_SOURCE_COMMIT": "/private/invalid/sha"}
+        ):
+            result, csv_bytes = read_export(self.output, now=NOW)
+            self.assertFalse(result["ready"])
+            self.assertIsNone(csv_bytes)
+            self.assertNotIn("/private/invalid", json.dumps(result))
+        for value in (None, "false", 0):
+            with self.subTest(value=value):
+                self.assertFalse(self.read(enforce_runtime_release=value)["ready"])
 
     def test_verified_rows_csv_and_environment_default(self):
         result = self.read()

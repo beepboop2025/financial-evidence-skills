@@ -14,6 +14,7 @@ import re
 import stat
 
 from .core import _parse_finite_float, _reject_nonfinite
+from .release import release_identity
 
 SCHEMA = "liquidity-lab.funding-review.v1"
 MAX_BYTES = 131_072
@@ -39,6 +40,14 @@ FIELDS = (
     "value_state",
     "evaluated_at",
     "review_status",
+)
+RELEASE_FIELDS = (
+    "schema",
+    "release_id",
+    "source_commit",
+    "workspace_version",
+    "package_version",
+    "contract",
 )
 
 
@@ -165,7 +174,7 @@ def _measurement(value):
     return result
 
 
-def _load(directory, *, now, max_age_seconds):
+def _load(directory, *, now, max_age_seconds, runtime_release, runtime_check):
     if (
         isinstance(max_age_seconds, bool)
         or not isinstance(max_age_seconds, (int, float))
@@ -254,8 +263,30 @@ def _load(directory, *, now, max_age_seconds):
                 csv_bytes, manifest["artifact_sha256"].get("funding-observations.csv")
             )
             rows = _rows(csv_bytes, review["evaluated_at"], review["status"])
+        observed_release = manifest.get("observed_release") or {}
+        if not isinstance(observed_release, dict):
+            raise ValueError("invalid observed release")
+        if runtime_release is not None:
+            runtime_check = (
+                "matched"
+                if all(
+                    observed_release.get(key) == runtime_release[key]
+                    for key in RELEASE_FIELDS
+                )
+                else "mismatch"
+            )
         available = manifest["availability"] == "available"
-        identity_mismatch = manifest["release_identity"] == "mismatch"
+        identity_mismatch = (
+            manifest["release_identity"] == "mismatch" or runtime_check == "mismatch"
+        )
+        if runtime_check == "mismatch":
+            issues = [
+                *issues,
+                {
+                    "code": "runtime_release_identity_mismatch",
+                    "subject": "funding_review",
+                },
+            ]
         row_status = (
             "stale_capture"
             if stale
@@ -272,8 +303,7 @@ def _load(directory, *, now, max_age_seconds):
         freshness_assessments = review.get("freshness_assessments", {})
         if not isinstance(freshness_assessments, dict):
             raise ValueError("invalid freshness assessments")
-        observed_release = manifest.get("observed_release") or {}
-        if not isinstance(input_hashes, dict) or not isinstance(observed_release, dict):
+        if not isinstance(input_hashes, dict):
             raise ValueError("invalid audit identity fields")
         policy_id = review.get("policy_id")
         if evaluated and (
@@ -298,7 +328,16 @@ def _load(directory, *, now, max_age_seconds):
             "capture_id": capture_id,
             "availability": manifest["availability"],
             "data_readiness": manifest["data_readiness"],
-            "release_identity": manifest["release_identity"],
+            "release_identity": "mismatch"
+            if identity_mismatch
+            else manifest["release_identity"],
+            "capture_release_identity": manifest["release_identity"],
+            "runtime_release_identity": runtime_check,
+            "runtime_release": (
+                {key: runtime_release[key] for key in RELEASE_FIELDS}
+                if runtime_release is not None
+                else {}
+            ),
             "issues": [
                 {"code": item["code"][:240], "subject": item["subject"][:240]}
                 for item in issues
@@ -382,8 +421,17 @@ def _unavailable(code):
     }
 
 
-def read_export(directory=None, *, now=None, max_age_seconds=1200):
-    """Read summary and optional CSV from one hash-verified immutable capture."""
+def read_export(
+    directory=None, *, now=None, max_age_seconds=1200, enforce_runtime_release=True
+):
+    """Read one verified capture, binding it to a configured live release.
+
+    When FINANCIAL_EVIDENCE_SOURCE_COMMIT is configured, the current release's
+    complete identity must match the captured backend identity before readiness
+    or CSV export is allowed. HTTP and MCP callers use this default. Explicit
+    ``enforce_runtime_release=False`` is for historical/offline Python reads;
+    that override is reported as ``runtime_release_identity=not_checked``.
+    """
     configured = (
         directory
         if directory is not None
@@ -392,7 +440,23 @@ def read_export(directory=None, *, now=None, max_age_seconds=1200):
     if not configured:
         return _unavailable("funding_review_not_configured"), None
     try:
-        return _load(configured, now=now, max_age_seconds=max_age_seconds)
+        if not isinstance(enforce_runtime_release, bool):
+            raise ValueError("runtime release policy must be boolean")
+        runtime_release = (
+            release_identity()
+            if enforce_runtime_release
+            and os.environ.get("FINANCIAL_EVIDENCE_SOURCE_COMMIT")
+            else None
+        )
+        return _load(
+            configured,
+            now=now,
+            max_age_seconds=max_age_seconds,
+            runtime_release=runtime_release,
+            runtime_check="not_configured"
+            if enforce_runtime_release
+            else "not_checked",
+        )
     except (
         OSError,
         ValueError,
@@ -405,11 +469,25 @@ def read_export(directory=None, *, now=None, max_age_seconds=1200):
         return _unavailable("funding_review_archive_unavailable_or_invalid"), None
 
 
-def read_review(directory=None, *, now=None, max_age_seconds=1200):
+def read_review(
+    directory=None, *, now=None, max_age_seconds=1200, enforce_runtime_release=True
+):
     """Return latest verified review; no path or previous-good fallback leaks."""
-    return read_export(directory, now=now, max_age_seconds=max_age_seconds)[0]
+    return read_export(
+        directory,
+        now=now,
+        max_age_seconds=max_age_seconds,
+        enforce_runtime_release=enforce_runtime_release,
+    )[0]
 
 
-def load_csv(directory=None, *, now=None, max_age_seconds=1200):
+def load_csv(
+    directory=None, *, now=None, max_age_seconds=1200, enforce_runtime_release=True
+):
     """Return latest CSV unless stale, unavailable or release identity differs."""
-    return read_export(directory, now=now, max_age_seconds=max_age_seconds)[1]
+    return read_export(
+        directory,
+        now=now,
+        max_age_seconds=max_age_seconds,
+        enforce_runtime_release=enforce_runtime_release,
+    )[1]

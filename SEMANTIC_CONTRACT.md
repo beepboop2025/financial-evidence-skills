@@ -74,3 +74,24 @@ The v0.1.5 guardrail does not broaden network access. Retrieval remains limited
 to the fixed public HTTPS route allowlist, redirects are rejected before they
 are followed, accepted content must be JSON, and response bytes remain bounded
 by the existing configurable limit (maximum 4 MiB).
+
+## OpenBB table projections (unreleased source extension)
+
+The optional OpenBB Workspace backend projects explicitly selected public fields
+into typed rows. A numeric row retains its source URL, JSON pointer, native unit,
+observation date, retrieval time and fetched-byte SHA-256. It does not grant
+financial authority, infer freshness, verify an Evidence Carrier, reconstruct a
+withheld percentile or combine products into a score. Metadata-only China rows
+have no numeric economic value or observation date.
+
+Per-row `availability` describes the projection or repeats publisher metadata;
+it is separate from `transport_status`. A successful HTTP response whose expected
+collection is missing produces a `schema_unavailable` diagnostic. Query filters
+and pagination never remove source failures from the response's `diagnostics`
+and `sources` metadata. A cache hit retains the original retrieval and publisher
+clocks and separately reports cache age. Expired successful responses are not
+used as fallback after an upstream failure.
+
+The new backend has a separate five-tool MCP surface. The original stdio and
+public v0.1.5 MCP tool contract remain three tools. Source-tree additions do not
+assert that existing published artifacts or deployed services have been upgraded.

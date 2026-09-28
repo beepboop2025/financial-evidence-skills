@@ -31,6 +31,7 @@ dependencies = []
 
 [project.optional-dependencies]
 openbb = ["openbb-core>=1.6.13,<2"]
+workspace = ["fastapi>=0.115,<1", "uvicorn>=0.30,<1", "mcp>=1.30,<2"]
 
 [project.urls]
 Homepage = "https://github.com/beepboop2025/financial-evidence-skills"
@@ -40,6 +41,8 @@ Source = "https://github.com/beepboop2025/financial-evidence-skills"
 [project.scripts]
 financial-evidence = "financial_evidence.cli:main"
 financial-evidence-mcp = "financial_evidence.mcp:main"
+financial-evidence-api = "financial_evidence.workspace:main"
+financial-evidence-workspace-mcp = "financial_evidence.workspace_mcp:main"
 
 [project.entry-points.openbb_core_extension]
 financial_evidence = "financial_evidence.openbb_router:router"

@@ -36,15 +36,20 @@ jobs:
 
   openbb-extension:
     runs-on: ubuntu-24.04
-    timeout-minutes: 8
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.13"]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: "3.13"
-      - run: python3 -m pip install '.[openbb]'
+          python-version: ${{ matrix.python-version }}
+      - run: python3 -m pip install '.[openbb,workspace]'
+      - run: python3 -m unittest discover -s tests -v
       - name: Prove OpenBB entry point and routes
         run: |
           python3 - <<'PY'
@@ -59,9 +64,62 @@ jobs:
           assert len(matches) == 1
           assert matches[0].load() is router
           assert sorted(route.path for route in router._api_router.routes) == [
+              "/datasets",
               "/fetch",
+              "/query",
               "/routes",
+              "/sources",
           ]
+          PY
+      - run: openbb-build
+      - name: Exercise generated OpenBB interface without live network data
+        run: |
+          python3 - <<'PY'
+          from openbb import obb
+          result = obb.financial_evidence.datasets()
+          assert len(result.to_df()) == 7
+          assert callable(obb.financial_evidence.query)
+          assert callable(obb.financial_evidence.sources)
+          PY
+
+  workspace-container:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Build the optional Workspace image
+        run: docker build -f integrations/openbb/Dockerfile -t evidence-workspace-test .
+      - name: Check the read-only container through real HTTP and MCP
+        run: |
+          docker run --detach --name evidence-workspace-test --read-only --cap-drop ALL \
+            --security-opt no-new-privileges -p 127.0.0.1:16900:6900 evidence-workspace-test \
+            --host 0.0.0.0 --port 6900 --public-base-url http://127.0.0.1:16900
+          trap 'docker logs evidence-workspace-test; docker rm -f evidence-workspace-test' EXIT
+          python3 - <<'PY'
+          import json, time, urllib.request
+          base = "http://127.0.0.1:16900"
+          for attempt in range(30):
+              try:
+                  with urllib.request.urlopen(base + "/healthz", timeout=2) as response:
+                      assert json.load(response)["status"] == "ok"
+                  break
+              except OSError:
+                  time.sleep(1)
+          else:
+              raise RuntimeError("Workspace container did not become ready")
+          with urllib.request.urlopen(base + "/widgets.json", timeout=5) as response:
+              assert len(json.load(response)) == 8
+          with urllib.request.urlopen(base + "/apps.json", timeout=5) as response:
+              assert json.load(response)[0]["mcp_servers"][0]["url"] == base + "/mcp"
+          request = urllib.request.Request(base + "/mcp", data=json.dumps({
+              "jsonrpc": "2.0", "id": 1, "method": "tools/list", "params": {},
+          }).encode(), headers={"Content-Type": "application/json",
+                                "Accept": "application/json, text/event-stream",
+                                "MCP-Protocol-Version": "2025-11-25"})
+          with urllib.request.urlopen(request, timeout=5) as response:
+              assert len(json.load(response)["result"]["tools"]) == 5
           PY
 
   distribution-contract:

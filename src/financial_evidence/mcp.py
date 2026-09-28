@@ -111,6 +111,14 @@ def _validated_topics(arguments: dict[str, Any]) -> list[str]:
 
 
 def call_tool(name: str, arguments: dict[str, Any]) -> dict[str, Any]:
+    tool = next((item for item in TOOLS if item["name"] == name), None)
+    if tool is None:
+        raise LookupError(f"unknown tool {name!r}")
+    if not isinstance(arguments, dict):
+        raise ValueError("arguments must be an object")
+    unknown = set(arguments) - set(tool["inputSchema"].get("properties", {}))
+    if unknown:
+        raise ValueError(f"unknown arguments: {', '.join(sorted(unknown))}")
     if name == "financial_evidence_topics":
         if arguments:
             raise ValueError("financial_evidence_topics accepts no arguments")
@@ -155,6 +163,9 @@ def dispatch(message: dict[str, Any]) -> dict[str, Any] | None:
     request_id = message["id"]
     method = message.get("method")
     try:
+        params = message.get("params", {})
+        if not isinstance(params, dict):
+            raise ValueError("params must be an object")
         if method == "server/discover":
             result = {
                 "resultType": "complete",
@@ -167,7 +178,7 @@ def dispatch(message: dict[str, Any]) -> dict[str, Any] | None:
                 ),
             }
         elif method == "initialize":
-            requested = message.get("params", {}).get("protocolVersion")
+            requested = params.get("protocolVersion")
             result = {
                 "protocolVersion": (
                     requested

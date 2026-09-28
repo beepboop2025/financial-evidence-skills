@@ -182,7 +182,7 @@ class FetchEvidenceTests(unittest.TestCase):
                     "capital_markets_domain_as_of",
                 },
             ),
-            "https://palimpsest.info/readings/china-index-latest.json": (
+            "https://www.palimpsest.info/readings/china-index-latest.json": (
                 {
                     "economic_state": {"status": "warming_up"},
                     "readiness": {"status": "warming_up"},

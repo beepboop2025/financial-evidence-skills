@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import urllib.error
 import urllib.request
 from collections.abc import Callable, Iterable
@@ -368,6 +369,13 @@ def _reject_nonfinite(value: str):
     raise ValueError(f"non-finite JSON number {value!r} is not permitted")
 
 
+def _parse_finite_float(value: str) -> float:
+    number = float(value)
+    if not math.isfinite(number):
+        _reject_nonfinite(value)
+    return number
+
+
 def fetch_source(
     source: Source,
     *,
@@ -422,7 +430,11 @@ def fetch_source(
             raw = response.read(max_bytes + 1)
             if len(raw) > max_bytes:
                 raise ValueError(f"response exceeds {max_bytes} bytes")
-            document = json.loads(raw.decode("utf-8"), parse_constant=_reject_nonfinite)
+            document = json.loads(
+                raw.decode("utf-8"),
+                parse_constant=_reject_nonfinite,
+                parse_float=_parse_finite_float,
+            )
             if not isinstance(document, (dict, list)):
                 raise ValueError("JSON root must be an object or array")
             content_sha256 = f"sha256:{hashlib.sha256(raw).hexdigest()}"

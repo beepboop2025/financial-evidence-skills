@@ -84,13 +84,13 @@ def _text(value: Any) -> str | None:
 
 
 def _number(value: Any) -> float | None:
-    if (
-        isinstance(value, (int, float))
-        and not isinstance(value, bool)
-        and math.isfinite(value)
-    ):
-        return float(value)
-    return None
+    if not isinstance(value, (int, float)) or isinstance(value, bool):
+        return None
+    try:
+        number = float(value)
+    except OverflowError:
+        return None
+    return number if math.isfinite(number) else None
 
 
 def _items(value: Any) -> list:
@@ -177,12 +177,12 @@ def _rates(source: dict, dataset: str) -> list[dict]:
             "rights_status": _text(benchmark.get("redistribution_status")),
             "context": _text(item.get("countercase")),
         }
+        if blocked:
+            fields["availability"] = "restricted_or_unavailable"
         if dataset == "money_markets":
             value = None if blocked else _number(benchmark.get("value"))
             if value is None and not blocked:
                 fields["availability"] = "unavailable"
-            if blocked:
-                fields["availability"] = "restricted_or_unavailable"
             rows.append(
                 _row(
                     source,
@@ -233,7 +233,11 @@ def _capital(source: dict) -> list[dict]:
     if document.get("schema") != "seiche.world-markets.v1":
         return []
     capital = _obj(document.get("capital_markets"))
-    prices = _obj(_obj(capital.get("risk_context")).get("market_prices"))
+    risk_context = _obj(capital.get("risk_context"))
+    prices = _obj(risk_context.get("market_prices"))
+    parent_blocked = any(
+        _blocked(item) for item in (document, capital, risk_context, prices)
+    )
     rows = []
     for key, label, unit in (
         ("vix", "CBOE VIX", "index_points"),
@@ -241,9 +245,7 @@ def _capital(source: dict) -> list[dict]:
     ):
         value = _obj(prices.get(key))
         number = (
-            None
-            if _blocked(value) or _blocked(capital)
-            else _number(value.get("value"))
+            None if parent_blocked or _blocked(value) else _number(value.get("value"))
         )
         rows.append(
             _row(
@@ -318,12 +320,14 @@ def _banks(source: dict) -> list[dict]:
 
 
 def _liquidity(source: dict) -> list[dict]:
-    items = _obj(source.get("document")).get("segment_reports")
+    document = _obj(source.get("document"))
+    items = document.get("segment_reports")
     if not isinstance(items, list):
         return []
     rows = []
     for i, raw in enumerate(items):
         segment = _obj(raw)
+        parent_blocked = _blocked(document) or _blocked(segment)
         coverage = _obj(segment.get("coverage"))
         observations = segment.get("observations", [])
         for j, raw_obs in enumerate(
@@ -333,7 +337,7 @@ def _liquidity(source: dict) -> list[dict]:
             withheld = obs.get("stress_pctl_withheld") is True
             value = (
                 None
-                if withheld or _blocked(obs) or _blocked(_obj(source.get("document")))
+                if withheld or parent_blocked or _blocked(obs)
                 else _number(obs.get("stress_pctl"))
             )
             rows.append(

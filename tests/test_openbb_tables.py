@@ -116,7 +116,13 @@ class ProjectionTests(unittest.TestCase):
         from test_package import Response
 
         source = core.ROUTES["money-market"][0]
-        for raw in (b'{"value":NaN}', b'{"value":Infinity}', b'{"value":-Infinity}'):
+        for raw in (
+            b'{"value":NaN}',
+            b'{"value":Infinity}',
+            b'{"value":-Infinity}',
+            b'{"value":1e999}',
+            b'{"value":-1e999}',
+        ):
             result = core.fetch_source(
                 source,
                 max_bytes=1024,
@@ -127,6 +133,13 @@ class ProjectionTests(unittest.TestCase):
             )
             self.assertFalse(result["ok"])
             self.assertNotIn("document", result)
+
+    def test_unrepresentable_numeric_value_is_unavailable(self):
+        doc = copy.deepcopy(MONEY)
+        doc["markets"][0]["benchmark"]["value"] = 10**400
+        row = query_packet(packet("money-market", doc), "money_markets")["results"][0]
+        self.assertIsNone(row["value"])
+        self.assertEqual(row["availability"], "unavailable")
 
     def test_actual_zero_remains_zero_and_restricted_numbers_are_not_published(self):
         result = query_packet(packet("money-market"), "money_markets")
@@ -192,6 +205,49 @@ class ProjectionTests(unittest.TestCase):
         self.assertIsNone(rows[1]["value"])
         self.assertIsNone(rows[1]["as_of"])
 
+    def test_parent_restrictions_suppress_capital_values(self):
+        original = {
+            "schema": "seiche.world-markets.v1",
+            "capital_markets": {
+                "risk_context": {
+                    "market_prices": {
+                        "vix": {"value": 14.2},
+                        "high_yield_oas": {"value": 3.1},
+                    }
+                }
+            },
+        }
+        for path in (
+            (),
+            ("capital_markets",),
+            ("capital_markets", "risk_context"),
+            ("capital_markets", "risk_context", "market_prices"),
+        ):
+            with self.subTest(restriction_path=path):
+                doc = copy.deepcopy(original)
+                parent = doc
+                for key in path:
+                    parent = parent[key]
+                parent["publication_allowed"] = False
+                rows = query_packet(packet("capital-market", doc), "capital_markets")[
+                    "results"
+                ]
+                self.assertEqual(len(rows), 2)
+                self.assertTrue(all(row["value"] is None for row in rows))
+                self.assertTrue(all(row["availability"] != "published" for row in rows))
+
+    def test_restricted_history_has_explicit_unavailable_status(self):
+        doc = copy.deepcopy(MONEY)
+        doc["publication_allowed"] = False
+        rows = query_packet(packet("money-market", doc), "money_market_history")[
+            "results"
+        ]
+        self.assertEqual(len(rows), 2)
+        self.assertTrue(all(row["value"] is None for row in rows))
+        self.assertTrue(
+            all(row["availability"] == "restricted_or_unavailable" for row in rows)
+        )
+
     def test_bank_diagnostics_keep_probability_scale_and_eligibility_limits(self):
         doc = {
             "as_of": "2026-09-28",
@@ -242,6 +298,23 @@ class ProjectionTests(unittest.TestCase):
         self.assertIsNone(rows[1]["value"])
         self.assertEqual(rows[1]["availability"], "withheld")
         self.assertIn("retrospective replay", rows[1]["context"])
+
+    def test_segment_restriction_suppresses_liquidity_observations(self):
+        doc = {
+            "segment_reports": [
+                {
+                    "segment": "UST",
+                    "publication_allowed": False,
+                    "observations": [{"measure": "A", "stress_pctl": 0.3}],
+                }
+            ]
+        }
+        rows = query_packet(packet("market-liquidity", doc), "market_liquidity")[
+            "results"
+        ]
+        self.assertEqual(len(rows), 1)
+        self.assertIsNone(rows[0]["value"])
+        self.assertNotEqual(rows[0]["availability"], "published")
 
     def test_china_is_metadata_only_even_when_source_contains_values(self):
         doc = {

@@ -95,3 +95,22 @@ used as fallback after an upstream failure.
 The new backend has a separate five-tool MCP surface. The original stdio and
 public v0.1.5 MCP tool contract remain three tools. Source-tree additions do not
 assert that existing published artifacts or deployed services have been upgraded.
+
+Explicit `prohibited` and `metadata_only` restrictions suppress numeric table
+values even when a child reports availability. `derived_only` also suppresses
+raw benchmark rates, their history, and raw capital-market prices: changing a
+number's table shape does not create a derived work. Already published derived
+bank diagnostics and liquidity percentiles retain their existing restriction
+checks. Absence of a restriction is not an independent licence verification.
+
+## USD funding review checks (source utility)
+
+`scripts/check_funding_review.py` assesses captured USD desk, global atlas and
+health documents. It requires named observations with expected units and source
+dates, checks snapshot age separately, and compares SOFR observation dates and
+same-date values across the surfaces. Missing data, duplicates, publication
+restrictions and missed publication opportunities require attention. The
+explicit calendar-day age backstops supplement publisher freshness; they do not
+implement an official release calendar or certify source correctness. Captures
+retain their own clocks. Passing these checks does not establish point-in-time
+history, an SLA, financial authority or institutional production readiness.

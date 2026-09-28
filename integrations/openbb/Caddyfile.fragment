@@ -2,7 +2,7 @@
 # Preserve the rest of the host configuration and its Railway environment.
 @financial_evidence_root path /openbb
 handle @financial_evidence_root {
-    redir /openbb/ 308
+    redir * /openbb/ 308
 }
 handle_path /openbb/* {
     request_body {
@@ -10,7 +10,11 @@ handle_path /openbb/* {
     }
     # Interactive API docs load the standard Swagger assets. Source text never
     # becomes executable code; other host paths keep their existing CSP.
-    header >Content-Security-Policy "default-src 'none'; connect-src 'self'; script-src https://cdn.jsdelivr.net 'unsafe-inline'; style-src https://cdn.jsdelivr.net 'unsafe-inline'; img-src data: https://fastapi.tiangolo.com; base-uri 'none'; frame-ancestors 'none'"
+    # Explicit defer also works with the production Caddy 2.6 adapter.
+    header {
+        Content-Security-Policy "default-src 'none'; connect-src 'self'; script-src https://cdn.jsdelivr.net 'unsafe-inline'; style-src https://cdn.jsdelivr.net 'unsafe-inline'; img-src data: https://fastapi.tiangolo.com; base-uri 'none'; frame-ancestors 'none'"
+        defer
+    }
     header Cache-Control "no-store, no-transform"
     reverse_proxy 127.0.0.1:6900 {
         flush_interval -1

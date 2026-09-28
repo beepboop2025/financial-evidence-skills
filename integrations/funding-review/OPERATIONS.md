@@ -198,3 +198,23 @@ back to `last_ready`. A fresh `attention_required` review can still be inspected
 and exported with its exception status intact. `read_export()` returns summary
 and optional CSV from the same verified capture, so HTTP metadata cannot race
 with a separate archive read. The public summary includes the checker `policy_id`.
+
+## Verified backup to another machine
+
+`scripts/backup_funding_review.py --output-dir /path/on/backup/storage` reads an
+SSH inventory of completed captures, pulls only their listed files with rsync,
+and verifies every manifest and artifact hash before advancing the backup's
+`current.json`. The default SSH alias is `liquilens-hetzner`; credentials stay in
+SSH configuration. Existing backup files are never replaced or deleted: changed
+upstream evidence fails verification. Failed and attention-required captures are
+backed up as evidence, along with successful ones. Partial uncommitted captures
+are excluded. Each successful pull leaves a dated `backup-receipts/` record.
+
+Schedule this on an independent machine with the existing SSH authorization.
+On this Mac, run through `ssd-workspace run` with output on the mounted SSD.
+A login LaunchAgent runs only while that Mac and SSD are available; its schedule
+is not an always-on offsite guarantee. Inspect receipt age rather than assuming a
+scheduled backup completed. Restore into a separate directory, replay with the
+original source release, and compare review/CSV bytes before using restored data.
+Do not restore a historical `current.json` over the live server to conceal an
+outage. The backup pull itself does not claim that a restore drill passed.

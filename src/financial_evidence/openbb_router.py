@@ -1,6 +1,6 @@
 """OpenBB router extension loaded only inside an OpenBB environment."""
 
-from __future__ import annotations
+# OpenBB's code generator needs evaluated type objects to import aliases and models.
 
 import asyncio
 import atexit

@@ -210,6 +210,25 @@ class WorkspaceTests(unittest.TestCase):
 
 @unittest.skipUnless(HAS_OPENBB, "Install .[openbb] for OpenBB integration tests")
 class OpenBBTests(unittest.TestCase):
+    def test_generated_module_imports_with_resolved_parameter_types(self):
+        from fastapi import APIRouter
+        from openbb_core.app.static.package_builder import ModuleBuilder, PathHandler
+        from financial_evidence.openbb_router import router
+
+        api = APIRouter()
+        api.include_router(router._api_router, prefix="/financial_evidence")
+        routes = {route.path: route for route in api.routes}
+        with (
+            patch.object(PathHandler, "build_route_map", return_value=routes),
+            patch.object(PathHandler, "get_router_dependencies", return_value=[]),
+        ):
+            generated = ModuleBuilder.build("/financial_evidence")
+        namespace = {"__name__": "generated_financial_evidence"}
+        exec(compile(generated, "generated_financial_evidence.py", "exec"), namespace)
+        generated_router = namespace["ROUTER_financial_evidence"]
+        for command in ("datasets", "query", "sources", "routes", "fetch"):
+            self.assertTrue(callable(getattr(generated_router, command)))
+
     def test_query_returns_dataframe_with_metadata_and_shared_semantics(self):
         from financial_evidence.openbb_router import query
 

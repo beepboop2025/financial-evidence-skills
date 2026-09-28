@@ -17,6 +17,7 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+from financial_evidence.core import _parse_finite_float, _reject_nonfinite
 from financial_evidence.tables import _blocked
 
 POLICY_ID = "usd-funding-review-checks.v1"
@@ -248,12 +249,12 @@ def load_document(path):
     if len(raw) > MAX_BYTES:
         raise ValueError("input exceeds 2 MiB")
 
-    def reject_constant(value):
-        raise ValueError("non-finite JSON number: " + value)
-
-    return json.loads(raw, parse_constant=reject_constant), hashlib.sha256(
-        raw
-    ).hexdigest()
+    return (
+        json.loads(
+            raw, parse_constant=_reject_nonfinite, parse_float=_parse_finite_float
+        ),
+        hashlib.sha256(raw).hexdigest(),
+    )
 
 
 def main(argv=None):
@@ -278,7 +279,7 @@ def main(argv=None):
         report["input_sha256"] = {name: entry[1] for name, entry in captures.items()}
         print(json.dumps(report, indent=2, allow_nan=False))
         return 0 if report["status"] == "checks_passed" else 1
-    except (OSError, ValueError, TypeError, OverflowError) as error:
+    except (OSError, ValueError, TypeError, OverflowError, RecursionError) as error:
         print(json.dumps({"status": "invalid_input", "error": str(error)}))
         return 2
 

@@ -195,9 +195,13 @@ class FundingReviewTests(unittest.TestCase):
             report = json.loads(output.getvalue())
             self.assertEqual(set(report["input_sha256"]), {"desk", "atlas", "health"})
             self.assertTrue(all(len(x) == 64 for x in report["input_sha256"].values()))
-            (Path(folder) / "desk.json").write_text('{"bad":NaN}')
-            with contextlib.redirect_stdout(io.StringIO()):
-                self.assertEqual(main(args), 2)
+            for token in ("NaN", "1e999", "-1e999"):
+                (Path(folder) / "desk.json").write_text('{"bad":' + token + "}")
+                with (
+                    self.subTest(token=token),
+                    contextlib.redirect_stdout(io.StringIO()),
+                ):
+                    self.assertEqual(main(args), 2)
 
 
 if __name__ == "__main__":

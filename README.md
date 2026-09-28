@@ -1,5 +1,12 @@
 # Financial Evidence Agent Skills
 
+**New in this source tree: [OpenBB Research Desk](integrations/openbb/README.md).**
+Seven cited datasets, a six-tab Workspace app, benchmark history charts, typed
+REST responses and a five-tool MCP server connect all four projects. Install
+`.[openbb,workspace]` from this checkout, then run `openbb-build` and
+`financial-evidence-api`. These additions are not in the published v0.1.5 wheel
+or the existing public three-tool MCP deployment.
+
 **Three concrete jobs:** [funding review, Cosmos Bank NPAs and a $100k BTC exit](https://beepboop2025.github.io/financial-evidence-skills/automations/)
 with native n8n workflows and optional Slack/Telegram delivery. The
 [Cursor task plugin](.cursor-plugin/plugin.json) bundles the same three focused

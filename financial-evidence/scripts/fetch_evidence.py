@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+from concurrent.futures import ThreadPoolExecutor
 import json
 import sys
 import urllib.error
@@ -66,7 +67,7 @@ ROUTES: dict[str, tuple[Source, ...]] = {
     "china-economy": (
         Source(
             "Palimpsest",
-            "https://palimpsest.info/readings/china-index-latest.json",
+            "https://www.palimpsest.info/readings/china-index-latest.json",
             "observed_structural_or_unavailable",
             "https://palimpsest.info/china/",
         ),
@@ -124,9 +125,12 @@ SOURCE_ADAPTERS: dict[str, SourceAdapter] = {
             ),
         ),
     ),
-    "https://palimpsest.info/readings/china-index-latest.json": SourceAdapter(
+    "https://www.palimpsest.info/readings/china-index-latest.json": SourceAdapter(
         name="palimpsest_china_index_v1",
         states=(
+            ReportedField("publication_status", ("status",)),
+            ReportedField("availability", ("availability",)),
+            ReportedField("publication_allowed", ("publication_allowed",)),
             ReportedField("economic_state", ("economic_state", "status")),
             ReportedField("readiness", ("readiness", "status")),
         ),
@@ -321,6 +325,10 @@ def source_reported_metadata(
     }
 
 
+def _reject_nonfinite(value: str):
+    raise ValueError(f"non-finite JSON number {value!r} is not permitted")
+
+
 def fetch_source(
     source: Source,
     *,
@@ -372,7 +380,7 @@ def fetch_source(
             raw = response.read(max_bytes + 1)
             if len(raw) > max_bytes:
                 raise ValueError(f"response exceeds {max_bytes} bytes")
-            document = json.loads(raw.decode("utf-8"))
+            document = json.loads(raw.decode("utf-8"), parse_constant=_reject_nonfinite)
             if not isinstance(document, (dict, list)):
                 raise ValueError("JSON root must be an object or array")
             content_sha256 = f"sha256:{hashlib.sha256(raw).hexdigest()}"
@@ -406,20 +414,17 @@ def build_packet(
     timeout: float,
     opener: Callable[..., Any] = FIXED_ROUTE_OPENER,
 ) -> dict[str, Any]:
-    results = []
-    for topic in topics:
-        for source in ROUTES[topic]:
-            results.append(
-                {
-                    "topic": topic,
-                    **fetch_source(
-                        source,
-                        max_bytes=max_bytes,
-                        timeout=timeout,
-                        opener=opener,
-                    ),
-                }
-            )
+    topics = normalize_topics(topics)
+    jobs = [(topic, source) for topic in topics for source in ROUTES[topic]]
+
+    def retrieve(job):
+        topic, source = job
+        return {"topic": topic, **fetch_source(
+            source, max_bytes=max_bytes, timeout=timeout, opener=opener,
+        )}
+
+    with ThreadPoolExecutor(max_workers=min(4, len(jobs))) as pool:
+        results = list(pool.map(retrieve, jobs))
     succeeded = sum(result["ok"] for result in results)
     status = (
         "complete"

@@ -7,6 +7,7 @@ import json
 import urllib.error
 import urllib.request
 from collections.abc import Callable, Iterable
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from typing import Any
@@ -77,7 +78,7 @@ ROUTES: dict[str, tuple[Source, ...]] = {
     "china-economy": (
         Source(
             "Palimpsest",
-            "https://palimpsest.info/readings/china-index-latest.json",
+            "https://www.palimpsest.info/readings/china-index-latest.json",
             "observed_structural_or_unavailable",
             "https://palimpsest.info/china/",
         ),
@@ -135,9 +136,12 @@ SOURCE_ADAPTERS: dict[str, SourceAdapter] = {
             ),
         ),
     ),
-    "https://palimpsest.info/readings/china-index-latest.json": SourceAdapter(
+    "https://www.palimpsest.info/readings/china-index-latest.json": SourceAdapter(
         name="palimpsest_china_index_v1",
         states=(
+            ReportedField("publication_status", ("status",)),
+            ReportedField("availability", ("availability",)),
+            ReportedField("publication_allowed", ("publication_allowed",)),
             ReportedField("economic_state", ("economic_state", "status")),
             ReportedField("readiness", ("readiness", "status")),
         ),
@@ -360,6 +364,10 @@ def source_reported_metadata(
     }
 
 
+def _reject_nonfinite(value: str):
+    raise ValueError(f"non-finite JSON number {value!r} is not permitted")
+
+
 def fetch_source(
     source: Source,
     *,
@@ -414,7 +422,7 @@ def fetch_source(
             raw = response.read(max_bytes + 1)
             if len(raw) > max_bytes:
                 raise ValueError(f"response exceeds {max_bytes} bytes")
-            document = json.loads(raw.decode("utf-8"))
+            document = json.loads(raw.decode("utf-8"), parse_constant=_reject_nonfinite)
             if not isinstance(document, (dict, list)):
                 raise ValueError("JSON root must be an object or array")
             content_sha256 = f"sha256:{hashlib.sha256(raw).hexdigest()}"
@@ -451,20 +459,17 @@ def build_packet(
     """Fetch a bounded multi-product packet for normalized topics."""
 
     selected = normalize_topics(topics)
-    results: list[dict[str, Any]] = []
-    for topic in selected:
-        for source in ROUTES[topic]:
-            results.append(
-                {
-                    "topic": topic,
-                    **fetch_source(
-                        source,
-                        max_bytes=max_bytes,
-                        timeout=timeout,
-                        opener=opener,
-                    ),
-                }
-            )
+    jobs = [(topic, source) for topic in selected for source in ROUTES[topic]]
+
+    def retrieve(job):
+        topic, source = job
+        return {"topic": topic, **fetch_source(
+            source, max_bytes=max_bytes, timeout=timeout, opener=opener,
+        )}
+
+    # map preserves route order while independent fixed sources run concurrently.
+    with ThreadPoolExecutor(max_workers=min(4, len(jobs))) as pool:
+        results = list(pool.map(retrieve, jobs))
     succeeded = sum(bool(result["ok"]) for result in results)
     status = (
         "complete"

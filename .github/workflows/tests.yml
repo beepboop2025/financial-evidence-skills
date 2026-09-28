@@ -4,9 +4,14 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   stdlib-contract:
@@ -24,7 +29,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - run: python3 -m unittest discover -s tests -v
-      - run: node --test tests/fdc3_runtime.test.js tests/huggingface_space.test.js
+      - run: node --test tests/*.test.js tests/*.test.cjs
       - run: python3 -m py_compile financial-evidence/scripts/fetch_evidence.py src/financial_evidence/*.py
       - run: python3 -m pip install .
       - run: financial-evidence route --topic money-market --format json
@@ -90,15 +95,19 @@ jobs:
         with:
           persist-credentials: false
       - name: Build the optional Workspace image
-        run: docker build -f integrations/openbb/Dockerfile -t evidence-workspace-test .
+        env:
+          SOURCE_COMMIT: ${{ github.sha }}
+        run: docker build --build-arg SOURCE_COMMIT="$SOURCE_COMMIT" -f integrations/openbb/Dockerfile -t evidence-workspace-test .
       - name: Check the read-only container through real HTTP and MCP
+        env:
+          EXPECTED_SOURCE: ${{ github.sha }}
         run: |
           docker run --detach --name evidence-workspace-test --read-only --cap-drop ALL \
             --security-opt no-new-privileges -p 127.0.0.1:16900:6900 evidence-workspace-test \
             --host 0.0.0.0 --port 6900 --public-base-url http://127.0.0.1:16900
           trap 'docker logs evidence-workspace-test; docker rm -f evidence-workspace-test' EXIT
           python3 - <<'PY'
-          import json, time, urllib.request
+          import json, os, time, urllib.request
           base = "http://127.0.0.1:16900"
           for attempt in range(30):
               try:
@@ -109,6 +118,10 @@ jobs:
                   time.sleep(1)
           else:
               raise RuntimeError("Workspace container did not become ready")
+          with urllib.request.urlopen(base + "/api/v1/release", timeout=5) as response:
+              identity = json.load(response)
+              assert identity["source_commit"] == os.environ["EXPECTED_SOURCE"]
+              assert identity["release_id"] == f"workspace-{identity['workspace_version']}+{os.environ['EXPECTED_SOURCE'][:12]}"
           with urllib.request.urlopen(base + "/widgets.json", timeout=5) as response:
               assert len(json.load(response)) == 9
           with urllib.request.urlopen(base + "/apps.json", timeout=5) as response:

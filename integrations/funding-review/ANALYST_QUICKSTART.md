@@ -18,10 +18,13 @@ are prefixed with an apostrophe.
    `funding-observations.csv`. Use UTF-8 and comma separation.
 2. Choose **Transform Data**. Set `value` to decimal number, `observation_date` to
    date, and `evaluated_at` to date/time/timezone. Keep `metric_id`, `unit`,
-   `value_state`, `publisher_freshness`, and `review_status` as text.
+   `value_state`, `publisher_freshness`, `review_scope`, and `review_status` as text.
+   Set `review_asof` and `canonical_latest_asof` to dates. Keep the explicit
+   `latest_per_instrument=false` scope and the newer-observation flag visible.
 3. Preserve blank values as null. Add a filter or visible exception table for
    `value_state <> "available"` or
-   `review_status <> "checks_passed"`. Review exceptions before use.
+   `review_status <> "checks_passed"`. Also flag newer reported observations
+   before using this dated review to discuss current conditions.
 4. Load the table. Record the capture ID next to the table; refreshing a file path
    is not an archive of previous workbook inputs.
 
@@ -52,17 +55,24 @@ SELECT
     publisher_freshness,
     value_state,
     TRY_CAST(evaluated_at AS TIMESTAMPTZ) AS evaluated_at,
-    review_status
+    review_status,
+    TRY_CAST(review_asof AS DATE) AS review_asof,
+    review_scope,
+    TRY_CAST(latest_per_instrument AS BOOLEAN) AS latest_per_instrument,
+    TRY_CAST(canonical_latest_asof AS DATE) AS canonical_latest_asof,
+    TRY_CAST(newer_observation_available AS BOOLEAN) AS newer_observation_available
 FROM read_csv('funding-observations.csv', header=true, all_varchar=true);
 
 SELECT metric_id, observation_date, value, unit, value_state,
-       publisher_freshness, review_status
+       publisher_freshness, review_status, review_asof, review_scope,
+       latest_per_instrument, canonical_latest_asof, newer_observation_available
 FROM funding_review
 ORDER BY metric_id;
 
 SELECT * FROM funding_review
 WHERE value_state <> 'available'
-   OR review_status <> 'checks_passed';
+   OR review_status <> 'checks_passed'
+   OR newer_observation_available IS TRUE;
 ```
 
 `TRY_CAST` leaves malformed values null for inspection. Never apply `COALESCE` to

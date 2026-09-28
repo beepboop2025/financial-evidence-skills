@@ -19,12 +19,14 @@ measurement. Do not replace source clocks with the time of capture.
 | `desk.json` | `https://api.seiche.info/mcp`, tool `money_market_context`, arguments `{"section":"all"}` | Decoded tool payload, schema `seiche.money-market-desk.v1`; not the outer JSON-RPC envelope |
 | `atlas.json` | `https://api.seiche.info/api/v2/money-markets` | Original JSON object |
 | `health.json` | `https://api.seiche.info/api/health` | Original JSON object |
+| `desk-history.json` | `https://api.seiche.info/api/money-markets` | Full USD desk snapshot with dated charts; must match the MCP snapshot and observations |
 
 From this repository, with Python 3.10 or newer:
 
 ```bash
 python scripts/check_funding_review.py \
   --desk desk.json --atlas atlas.json --health health.json \
+  --desk-history desk-history.json \
   --evaluated-at 2026-09-28T19:17:16Z > review.json
 ```
 
@@ -78,6 +80,22 @@ January 2027 calculation bridge. Review and version the calendar before acceptin
 consumer does not repair or silently replace the upstream calendar. IORB, ON RRP
 and SRF have no such exception based on an inferred deadline. Original captures
 must be replayed with their original policy and calendar fingerprints.
+
+The USD desk intentionally clips inputs to its latest common SOFR-IORB date.
+The review therefore exports `review_asof`, `review_scope`, and
+`latest_per_instrument=false` on every CSV row as well as in REST/MCP. A ready
+common-horizon review establishes the stated dated assessment; individual
+instruments may already have newer observations. `canonical_latest_asof` and
+`newer_observation_available` retain reported atlas/health dates, with unknown
+values left explicit. They do not supply or infer a newer numeric value.
+
+For this explicit scope, IORB, ON RRP and SRF may retain an `aging` label only
+when their own dated values match the corresponding history points, the full
+REST and MCP snapshots agree, the common SOFR-IORB history intersection is
+current, and the SOFR/EFFR publication clocks pass. No older-than-horizon,
+restricted, stale or unknown observation is excused. Missing charts or ambiguous
+history require attention. The REST history is an additional fixed public GET;
+the scheduled capture still uses one upstream MCP funding-tool call.
 
 SOFR is compared between the desk policy ladder, desk secured distribution, and
 atlas US-USD benchmark. Different observation dates require attention; values

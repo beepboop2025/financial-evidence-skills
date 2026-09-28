@@ -156,7 +156,7 @@ def create_app(
 
     @app.get("/api/v1/funding-review")
     async def funding_review() -> dict:
-        """Latest archived review with explicit capture age and data exceptions."""
+        """Dated funding review with explicit alignment scope, capture age and exceptions."""
         return await asyncio.to_thread(read_review)
 
     @app.get("/api/v1/funding-review.csv")
@@ -180,6 +180,8 @@ def create_app(
                 "X-Financial-Evidence-Capture": review["capture_id"],
                 "X-Data-Readiness": review["data_readiness"],
                 "X-Release-Identity": review["release_identity"],
+                "X-Funding-Review-Scope": review["review_scope"],
+                "X-Funding-Review-As-Of": review["review_asof"] or "unknown",
                 "ETag": '"' + hashlib.sha256(data).hexdigest() + '"',
             },
         )

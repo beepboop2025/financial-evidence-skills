@@ -21,6 +21,10 @@ documents before making a research claim.
 USD Funding Review reads the most recent scheduled capture of nine required
 inputs. Its review status includes source disagreements and overdue publication
 checks. A stale or failed capture cannot be treated as a passing daily review.
+The review preserves the desk's common SOFR-IORB date. Read Review Date, Scope,
+and Newer Data Reported: some instruments already have a newer observation.
+Latest Per Instrument is false for this aligned view. Ready means the dated
+review passed its stated checks. Each saved CSV carries this scope on every row.
 """
 
 
@@ -140,7 +144,7 @@ def widgets() -> dict:
         }
     definitions["evidence_funding_review"] = {
         "name": "USD Funding Review",
-        "description": "Nine required observations from one preserved capture, with publication checks and explicit review status.",
+        "description": "Nine observations aligned to the stated funding review date. Scope and newer reported source dates remain visible; readiness applies to this dated review.",
         "category": "Financial Evidence",
         "type": "table",
         "endpoint": "api/v1/funding-review",
@@ -157,6 +161,15 @@ def widgets() -> dict:
                         ("value", "Value", "number"),
                         ("unit", "Unit", "text"),
                         ("observation_date", "Observation Date", "dateString"),
+                        ("review_asof", "Review Date", "dateString"),
+                        ("review_scope", "Review Scope", "text"),
+                        ("latest_per_instrument", "Latest Per Instrument", "boolean"),
+                        ("canonical_latest_asof", "Latest Reported Date", "dateString"),
+                        (
+                            "newer_observation_available",
+                            "Newer Data Reported",
+                            "boolean",
+                        ),
                         ("value_state", "Availability", "text"),
                         ("publisher_freshness", "Publisher Freshness", "text"),
                         ("review_status", "Review Status", "text"),

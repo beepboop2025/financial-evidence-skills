@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import csv
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 import hashlib
 import io
 import json
@@ -29,7 +29,7 @@ METRICS = (
     "liquidity.on_rrp",
     "liquidity.srf",
 )
-FIELDS = (
+LEGACY_FIELDS = (
     "metric_id",
     "value",
     "unit",
@@ -40,6 +40,15 @@ FIELDS = (
     "value_state",
     "evaluated_at",
     "review_status",
+)
+SCOPE_FIELDS = ("review_asof", "review_scope", "latest_per_instrument")
+FIELDS = (
+    LEGACY_FIELDS
+    + SCOPE_FIELDS
+    + (
+        "canonical_latest_asof",
+        "newer_observation_available",
+    )
 )
 RELEASE_FIELDS = (
     "schema",
@@ -91,10 +100,47 @@ def _verify(raw, digest):
         raise ValueError("archive hash mismatch")
 
 
-def _rows(raw, captured_at, review_status):
+def _date(value):
+    if not isinstance(value, str) or date.fromisoformat(value).isoformat() != value:
+        raise ValueError("invalid observation date")
+    return value
+
+
+def _scope(review):
+    present = set(SCOPE_FIELDS).intersection(review)
+    if not present:
+        return {
+            "review_asof": None,
+            "review_scope": "unknown",
+            "latest_per_instrument": None,
+        }
+    if present != set(SCOPE_FIELDS):
+        raise ValueError("incomplete review scope")
+    scope = {key: review[key] for key in SCOPE_FIELDS}
+    if scope["latest_per_instrument"] is not False or scope["review_scope"] not in (
+        "common_sofr_iorb_horizon",
+        "captured_observations",
+    ):
+        raise ValueError("unsupported review scope")
+    if scope["review_asof"] is not None:
+        _date(scope["review_asof"])
+    if (
+        scope["review_scope"] == "common_sofr_iorb_horizon"
+        and scope["review_asof"] is None
+    ):
+        raise ValueError("common horizon lacks observation date")
+    return scope
+
+
+def _rows(raw, captured_at, review, scope):
+    review_status = review["status"]
     reader = csv.DictReader(io.StringIO(raw.decode("utf-8"), newline=""))
-    if tuple(reader.fieldnames or ()) != FIELDS:
+    fields = tuple(reader.fieldnames or ())
+    if fields not in (LEGACY_FIELDS, FIELDS):
         raise ValueError("unexpected export columns")
+    legacy = fields == LEGACY_FIELDS
+    if legacy != (scope["review_scope"] == "unknown"):
+        raise ValueError("export columns and review scope disagree")
     rows = list(reader)
     if (
         len(rows) != len(METRICS)
@@ -122,6 +168,48 @@ def _rows(raw, captured_at, review_status):
             row["value"] = None
         for key in ("observation_date", "source", "publisher_freshness"):
             row[key] = row[key] or None
+        if legacy:
+            row.update(
+                scope, canonical_latest_asof=None, newer_observation_available=None
+            )
+            continue
+        if any(
+            row[key]
+            != ("false" if key == "latest_per_instrument" else scope[key] or "")
+            for key in SCOPE_FIELDS
+        ):
+            raise ValueError("export and review scope disagree")
+        assessments = review.get("freshness_assessments", {})
+        if not isinstance(assessments, dict):
+            raise ValueError("invalid freshness assessments")
+        assessment = assessments.get(row["metric_id"], {})
+        if not isinstance(assessment, dict):
+            raise ValueError("invalid metric freshness assessment")
+        latest = assessment.get("canonical_latest_asof")
+        if latest is not None:
+            _date(latest)
+        newer = assessment.get("newer_observation_available")
+        if newer is not None and not isinstance(newer, bool):
+            raise ValueError("invalid newer observation state")
+        if row["canonical_latest_asof"] != (latest or "") or row[
+            "newer_observation_available"
+        ] != ("unknown" if newer is None else "true" if newer else "false"):
+            raise ValueError("export and latest observation assessment disagree")
+        try:
+            observed = _date(row["observation_date"])
+        except (ValueError, TypeError):
+            observed = None
+        if (
+            latest is not None
+            and observed is not None
+            and newer is not (latest > observed)
+        ):
+            raise ValueError("newer observation state disagrees with dates")
+        if (latest is None or observed is None) and newer is not None:
+            raise ValueError("newer observation state lacks comparable dates")
+        row.update(
+            scope, canonical_latest_asof=latest, newer_observation_available=newer
+        )
     return rows
 
 
@@ -161,6 +249,7 @@ def _measurement(value):
                 "mcp-initialize",
                 "mcp-initialized",
                 "funding-desk",
+                "desk-history",
                 "atlas",
                 "health",
                 "backend-health",
@@ -256,13 +345,14 @@ def _load(directory, *, now, max_age_seconds, runtime_release, runtime_check):
             )
         ):
             raise ValueError("invalid review issues")
+        scope = _scope(review)
         csv_bytes, rows = None, []
         if evaluated:
             csv_bytes = _read_at(capture_fd, "funding-observations.csv")
             _verify(
                 csv_bytes, manifest["artifact_sha256"].get("funding-observations.csv")
             )
-            rows = _rows(csv_bytes, review["evaluated_at"], review["status"])
+            rows = _rows(csv_bytes, review["evaluated_at"], review, scope)
         observed_release = manifest.get("observed_release") or {}
         if not isinstance(observed_release, dict):
             raise ValueError("invalid observed release")
@@ -314,6 +404,7 @@ def _load(directory, *, now, max_age_seconds, runtime_release, runtime_check):
         result = {
             "schema": SCHEMA,
             "policy_id": policy_id,
+            **scope,
             "available": available,
             "ready": available
             and not stale
@@ -356,8 +447,17 @@ def _load(directory, *, now, max_age_seconds, runtime_release, runtime_check):
                         "expected_next_update",
                         "calendar_scope",
                         "atlas_source",
+                        "canonical_latest_asof",
+                        "latest_observation_basis",
                     )
                     and isinstance(value, str)
+                }
+                | {
+                    "newer_observation_available": assessment.get(
+                        "newer_observation_available"
+                    )
+                    if isinstance(assessment.get("newer_observation_available"), bool)
+                    else None,
                 }
                 for name, assessment in freshness_assessments.items()
                 if name in METRICS and isinstance(assessment, dict)
@@ -368,12 +468,13 @@ def _load(directory, *, now, max_age_seconds, runtime_release, runtime_check):
             "input_sha256": {
                 key: digest
                 for key, digest in input_hashes.items()
-                if key in ("desk", "atlas", "health")
+                if key in ("desk", "atlas", "health", "desk_history")
                 and isinstance(digest, str)
                 and re.fullmatch(r"[0-9a-f]{64}", digest)
             },
             "source_urls": {
                 "desk": "https://api.seiche.info/mcp",
+                "desk_history": "https://api.seiche.info/api/money-markets",
                 "atlas": "https://api.seiche.info/api/v2/money-markets",
                 "health": "https://api.seiche.info/api/health",
             },
@@ -406,6 +507,9 @@ def _unavailable(code):
     return {
         "schema": SCHEMA,
         "policy_id": None,
+        "review_asof": None,
+        "review_scope": "unknown",
+        "latest_per_instrument": None,
         "available": False,
         "ready": False,
         "stale": None,

@@ -1,6 +1,8 @@
 """Public readers verify latest evidence and reject links, tampering and staleness."""
 
 from datetime import datetime, timezone
+import csv
+import io
 import json
 import os
 from pathlib import Path
@@ -10,7 +12,13 @@ import unittest
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from financial_evidence.funding_archive import load_csv, read_export, read_review
+from financial_evidence.funding_archive import (
+    FIELDS,
+    LEGACY_FIELDS,
+    load_csv,
+    read_export,
+    read_review,
+)
 from financial_evidence.release import release_identity
 from test_capture_funding_review import capture, fetcher, responses
 from test_funding_review import captures, NOW
@@ -63,6 +71,187 @@ class FundingArchiveTests(unittest.TestCase):
                 expected_release=release["release_id"],
                 fetcher=fetcher(bodies),
             )
+
+    def write_export(self, rows, fields=FIELDS):
+        stream = io.StringIO(newline="")
+        writer = csv.DictWriter(stream, fieldnames=fields, extrasaction="ignore")
+        writer.writeheader()
+        writer.writerows(rows)
+        self.replace_artifact("funding-observations.csv", stream.getvalue().encode())
+
+    def scoped_archive(self):
+        report = json.loads((self.path / "review.json").read_bytes())
+        report.update(
+            review_asof="2026-09-25",
+            review_scope="common_sofr_iorb_horizon",
+            latest_per_instrument=False,
+        )
+        rows = list(
+            csv.DictReader(
+                io.StringIO((self.path / "funding-observations.csv").read_text())
+            )
+        )
+        for row in rows:
+            latest = (
+                "2026-09-28"
+                if row["metric_id"] == "policy.iorb"
+                else row["observation_date"]
+            )
+            newer = latest > row["observation_date"]
+            row.update(
+                review_asof=report["review_asof"],
+                review_scope=report["review_scope"],
+                latest_per_instrument="false",
+                canonical_latest_asof=latest,
+                newer_observation_available="true" if newer else "false",
+            )
+            report.setdefault("freshness_assessments", {}).setdefault(
+                row["metric_id"], {}
+            ).update(
+                canonical_latest_asof=latest,
+                newer_observation_available=newer,
+                latest_observation_basis="exact captured official observation",
+            )
+        self.replace_artifact("review.json", capture.encoded(report))
+        self.write_export(rows)
+        return report, rows
+
+    def test_common_horizon_and_newer_observations_remain_explicit(self):
+        self.scoped_archive()
+        result = self.read()
+        self.assertTrue(result["ready"])
+        self.assertEqual(result["review_scope"], "common_sofr_iorb_horizon")
+        self.assertEqual(result["review_asof"], "2026-09-25")
+        self.assertIs(result["latest_per_instrument"], False)
+        for row in result["results"]:
+            self.assertEqual(row["review_scope"], result["review_scope"])
+            self.assertEqual(row["review_asof"], result["review_asof"])
+            self.assertIs(row["latest_per_instrument"], False)
+        iorb = next(
+            row for row in result["results"] if row["metric_id"] == "policy.iorb"
+        )
+        self.assertEqual(iorb["observation_date"], "2026-09-25")
+        self.assertEqual(iorb["canonical_latest_asof"], "2026-09-28")
+        self.assertIs(iorb["newer_observation_available"], True)
+        self.assertIs(
+            result["freshness_assessments"]["policy.iorb"][
+                "newer_observation_available"
+            ],
+            True,
+        )
+        self.assertEqual(
+            result["freshness_assessments"]["policy.iorb"]["latest_observation_basis"],
+            "exact captured official observation",
+        )
+
+    def test_legacy_ten_columns_do_not_gain_a_retrospective_scope(self):
+        report, rows = self.scoped_archive()
+        for key in ("review_asof", "review_scope", "latest_per_instrument"):
+            del report[key]
+        report.pop("freshness_assessments", None)
+        report["policy_id"] = "usd-funding-review-checks.v2"
+        self.replace_artifact("review.json", capture.encoded(report))
+        self.write_export(rows, fields=LEGACY_FIELDS)
+        result = self.read()
+        self.assertTrue(result["ready"])
+        self.assertEqual(result["policy_id"], "usd-funding-review-checks.v2")
+        self.assertEqual(result["review_scope"], "unknown")
+        self.assertIsNone(result["review_asof"])
+        self.assertIsNone(result["latest_per_instrument"])
+        for row in result["results"]:
+            self.assertEqual(row["review_scope"], "unknown")
+            self.assertIsNone(row["latest_per_instrument"])
+            self.assertIsNone(row["canonical_latest_asof"])
+            self.assertIsNone(row["newer_observation_available"])
+        self.assertIsNotNone(load_csv(self.output, now=NOW))
+
+    def test_row_scope_cannot_disagree_with_review_or_be_downgraded(self):
+        report, rows = self.scoped_archive()
+        for key, value in (
+            ("review_asof", "2026-09-24"),
+            ("review_scope", "captured_observations"),
+            ("latest_per_instrument", "true"),
+            ("latest_per_instrument", "False"),
+        ):
+            with self.subTest(key=key, value=value):
+                changed = [dict(row) for row in rows]
+                changed[0][key] = value
+                self.write_export(changed)
+                self.assertFalse(self.read()["available"])
+                self.assertIsNone(load_csv(self.output, now=NOW))
+        self.write_export(rows, fields=LEGACY_FIELDS)
+        self.assertFalse(self.read()["available"])
+        self.write_export(rows)
+        del report["review_scope"]
+        self.replace_artifact("review.json", capture.encoded(report))
+        self.assertFalse(self.read()["available"])
+
+    def test_latest_metadata_must_match_report_and_date_comparison(self):
+        report, rows = self.scoped_archive()
+        index = next(
+            i for i, row in enumerate(rows) if row["metric_id"] == "policy.iorb"
+        )
+        for key, value in (
+            ("canonical_latest_asof", "2026-09-27"),
+            ("canonical_latest_asof", "20260928"),
+            ("newer_observation_available", "false"),
+            ("newer_observation_available", "unknown"),
+            ("newer_observation_available", "True"),
+        ):
+            with self.subTest(key=key, value=value):
+                changed = [dict(row) for row in rows]
+                changed[index][key] = value
+                self.write_export(changed)
+                self.assertFalse(self.read()["available"])
+        # Matching two false claims cannot suppress a demonstrably newer date.
+        rows[index]["newer_observation_available"] = "false"
+        report["freshness_assessments"]["policy.iorb"][
+            "newer_observation_available"
+        ] = False
+        self.replace_artifact("review.json", capture.encoded(report))
+        self.write_export(rows)
+        self.assertFalse(self.read()["available"])
+
+    def test_unknown_latest_metadata_remains_null(self):
+        report, rows = self.scoped_archive()
+        rows[0].update(canonical_latest_asof="", newer_observation_available="unknown")
+        report["freshness_assessments"]["policy.sofr"].update(
+            canonical_latest_asof=None,
+            newer_observation_available=None,
+        )
+        self.replace_artifact("review.json", capture.encoded(report))
+        self.write_export(rows)
+        result = self.read()
+        self.assertTrue(result["available"])
+        self.assertIsNone(result["results"][0]["canonical_latest_asof"])
+        self.assertIsNone(result["results"][0]["newer_observation_available"])
+        rows[0]["newer_observation_available"] = "true"
+        report["freshness_assessments"]["policy.sofr"][
+            "newer_observation_available"
+        ] = True
+        self.replace_artifact("review.json", capture.encoded(report))
+        self.write_export(rows)
+        self.assertFalse(self.read()["available"])
+
+    def test_invalid_report_scope_and_latest_metadata_fail_closed(self):
+        original_report, rows = self.scoped_archive()
+        for key, value in (
+            ("review_asof", "20260925"),
+            ("review_asof", None),
+            ("review_scope", "latest_live_rates"),
+            ("latest_per_instrument", True),
+        ):
+            with self.subTest(key=key, value=value):
+                report = dict(original_report)
+                report[key] = value
+                self.replace_artifact("review.json", capture.encoded(report))
+                self.assertFalse(self.read()["available"])
+        report = json.loads(json.dumps(original_report))
+        report["freshness_assessments"]["policy.iorb"][
+            "newer_observation_available"
+        ] = 1
+        self.replace_artifact("review.json", capture.encoded(report))
+        self.assertFalse(self.read()["available"])
 
     def test_live_upgrade_invalidates_previous_matched_capture_without_mutating_it(
         self,
@@ -198,7 +387,9 @@ class FundingArchiveTests(unittest.TestCase):
             result["manifest_sha256"],
             capture.sha256((self.path / "manifest.json").read_bytes()),
         )
-        self.assertEqual(set(result["input_sha256"]), {"desk", "atlas", "health"})
+        self.assertEqual(
+            set(result["input_sha256"]), {"desk", "atlas", "health", "desk_history"}
+        )
         self.assertEqual(result["source_urls"]["desk"], "https://api.seiche.info/mcp")
         self.assertEqual(
             load_csv(self.output, now=NOW),
@@ -250,6 +441,7 @@ class FundingArchiveTests(unittest.TestCase):
                 "policy.sofr": {
                     "publisher_freshness": "aging",
                     "basis": "matched_nyfed_publication_clock",
+                    "newer_observation_available": None,
                 }
             },
         )

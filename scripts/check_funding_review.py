@@ -23,6 +23,7 @@ from financial_evidence.tables import _blocked
 from financial_evidence.funding_publication_calendar import (
     next_publication_after_observation,
 )
+from financial_evidence.funding_horizon import common_horizon_evidence
 
 POLICY_ID = "usd-funding-review-checks.v3"
 REQUIRED = {
@@ -144,7 +145,64 @@ def nyfed_clock_evidence(name, row, market, now):
     }
 
 
-def evaluate(desk, atlas, health, *, evaluated_at, max_snapshot_age_seconds=900):
+def reported_latest_date(name, market, health, now):
+    """Report observed source dates, never manufacture a latest numeric value."""
+    dates = []
+    instrument = {
+        "policy.iorb": "US.FED.IORB",
+        "liquidity.srf": "US.NYFED.SRF_TAKEUP",
+    }.get(name)
+    if name in NYFED_CLOCKS:
+        instrument = NYFED_CLOCKS[name][0]
+    if (
+        instrument
+        and isinstance(market, dict)
+        and isinstance(market.get("metrics"), list)
+    ):
+        matches = [
+            node
+            for node in market["metrics"]
+            if isinstance(node, dict) and node.get("id") == instrument
+        ]
+        if len(matches) == 1:
+            dates.append(matches[0].get("asof"))
+    health_names = {
+        "policy.iorb": ("IORB", "%"),
+        "liquidity.on_rrp": ("RRPONTSYD", "$B"),
+    }
+    if name in health_names and isinstance(health.get("provenance"), list):
+        mnemonic, unit = health_names[name]
+        matches = [
+            node
+            for node in health["provenance"]
+            if isinstance(node, dict)
+            and node.get("mnemonic") == mnemonic
+            and node.get("source") == "fred"
+            and node.get("unit") == unit
+            and node.get("freq") == "D"
+        ]
+        if len(matches) == 1:
+            dates.append(matches[0].get("asof"))
+    valid = []
+    for value in dates:
+        try:
+            day = date.fromisoformat(value)
+            if day.isoformat() == value and day <= now.date():
+                valid.append(day)
+        except (ValueError, TypeError):
+            pass
+    return max(valid) if valid else None
+
+
+def evaluate(
+    desk,
+    atlas,
+    health,
+    *,
+    evaluated_at,
+    max_snapshot_age_seconds=900,
+    desk_history=None,
+):
     """Inspect only named public fields; never infer a missing print or clock."""
     now = timestamp(evaluated_at)
     if (
@@ -154,6 +212,8 @@ def evaluate(desk, atlas, health, *, evaluated_at, max_snapshot_age_seconds=900)
         raise ValueError("snapshot age limit must be between 1 and 86400 seconds")
     if any(not isinstance(doc, dict) for doc in (desk, atlas, health)):
         raise ValueError("each input must be one JSON object")
+    if desk_history is not None and not isinstance(desk_history, dict):
+        raise ValueError("desk history must be one JSON object")
     issues = []
 
     def issue(code, subject):
@@ -200,6 +260,8 @@ def evaluate(desk, atlas, health, *, evaluated_at, max_snapshot_age_seconds=900)
     check_clock(desk.get("snapshot_generated_at"), "desk")
     check_clock(atlas.get("generated_at"), "atlas")
     check_clock(health.get("generated_at"), "health")
+    if desk_history is not None:
+        check_clock(desk_history.get("snapshot_generated_at"), "desk_history")
     metrics = {}
     sections = desk.get("sections")
     if not isinstance(sections, list):
@@ -229,6 +291,26 @@ def evaluate(desk, atlas, health, *, evaluated_at, max_snapshot_age_seconds=900)
         else []
     )
     market = usd[0] if len(usd) == 1 else None
+    methodology = desk.get("methodology")
+    common_claim = (
+        isinstance(methodology, dict)
+        and methodology.get("evidence_horizon")
+        == "all inputs are clipped to the latest exact-date SOFR-IORB observation"
+    )
+    review_asof = None
+    horizon = None
+    if common_claim:
+        horizon_day = observation_day(desk.get("asof"), "desk.evidence_horizon")
+        review_asof = horizon_day.isoformat() if horizon_day else None
+        try:
+            # Alignment alone never excuses a missed reference-rate publication.
+            for reference_name in ("policy.sofr", "policy.effr"):
+                nyfed_clock_evidence(
+                    reference_name, metrics.get(reference_name, {}), market, now
+                )
+            horizon = common_horizon_evidence(desk, market, desk_history, now)
+        except (ValueError, TypeError, KeyError, OverflowError):
+            issue("common_horizon_not_verified", "desk.evidence_horizon")
     freshness_assessments = {}
     for name, (unit, cadence) in REQUIRED.items():
         row = metrics.get(name)
@@ -246,6 +328,7 @@ def evaluate(desk, atlas, health, *, evaluated_at, max_snapshot_age_seconds=900)
         day = observation_day(row.get("asof"), name)
         scheduled_fresh = False
         nyfed_fresh = False
+        horizon_fresh = False
         assessment = {
             "publisher_freshness": row.get("freshness"),
             "basis": "publisher_freshness",
@@ -262,6 +345,12 @@ def evaluate(desk, atlas, health, *, evaluated_at, max_snapshot_age_seconds=900)
             except (ValueError, TypeError, KeyError, OverflowError):
                 issue("nyfed_publication_clock_not_usable", name)
                 assessment["basis"] = "publication_clock_requires_attention"
+        if horizon and name in ("policy.iorb", "liquidity.on_rrp", "liquidity.srf"):
+            proof = horizon.get("historical_observation_checks", {}).get(name)
+            if isinstance(proof, dict) and row.get("freshness") in {"fresh", "aging"}:
+                horizon_fresh = True
+                assessment.update(proof)
+                assessment["basis"] = "verified_dated_common_horizon"
         if (
             name == "liquidity.tga"
             and row.get("freshness_policy") == "treasury-dts-next-business-day-v1"
@@ -304,11 +393,25 @@ def evaluate(desk, atlas, health, *, evaluated_at, max_snapshot_age_seconds=900)
             except (ValueError, TypeError, KeyError, OverflowError):
                 issue("publication_schedule_invalid", name)
         if day and (now.date() - day).days > (
-            8 if scheduled_fresh or nyfed_fresh else MAX_AGE_DAYS[cadence]
+            8
+            if scheduled_fresh or nyfed_fresh or horizon_fresh
+            else MAX_AGE_DAYS[cadence]
         ):
             issue("observation_exceeds_age_backstop", name)
-        if row.get("freshness") != "fresh" and not nyfed_fresh:
+        if row.get("freshness") != "fresh" and not nyfed_fresh and not horizon_fresh:
             issue("required_metric_not_reported_fresh", name)
+        latest_day = reported_latest_date(name, market, health, now)
+        assessment["canonical_latest_asof"] = (
+            latest_day.isoformat() if latest_day else None
+        )
+        assessment["newer_observation_available"] = (
+            latest_day > day if latest_day and day else None
+        )
+        assessment["latest_observation_basis"] = (
+            "reported atlas or named health observation date"
+            if latest_day
+            else "not established by these captures"
+        )
         freshness_assessments[name] = assessment
     benchmark = usd[0].get("benchmark") if len(usd) == 1 else None
     if not isinstance(benchmark, dict):
@@ -372,6 +475,11 @@ def evaluate(desk, atlas, health, *, evaluated_at, max_snapshot_age_seconds=900)
         "evaluated_at": now.isoformat(),
         "status": "attention_required" if issues else "checks_passed",
         "scope": "captured_usd_funding_consistency_and_age_backstops",
+        "review_scope": "common_sofr_iorb_horizon"
+        if common_claim and review_asof is not None
+        else "captured_observations",
+        "review_asof": review_asof,
+        "latest_per_instrument": False,
         "max_snapshot_age_seconds": max_snapshot_age_seconds,
         "required_metrics": list(REQUIRED),
         "issues": issues,
@@ -384,6 +492,7 @@ def evaluate(desk, atlas, health, *, evaluated_at, max_snapshot_age_seconds=900)
             "This is an operator check, not an institutional-readiness certification or trading signal.",
             "NYFed clock acceptance is bounded to reviewed 2026 observations and requires matching atlas clocks; other publication calendars are not independently certified. Recognized Treasury DTS schedules and matched NYFed clocks retain an absolute eight-day backstop.",
             "Publisher freshness and coverage are reported claims, not independent source verification.",
+            "A common-horizon review is dated to its SOFR-IORB intersection; it does not claim the latest observation of every instrument. Newer reported source dates remain visible.",
             "Input hashes identify local files, not signed original source evidence or historic vintages.",
             "No data repair, forward fill, financial-authority grant, or external message occurs.",
         ],
@@ -409,6 +518,11 @@ def main(argv=None):
     for name in ("desk", "atlas", "health"):
         parser.add_argument("--" + name, type=Path, required=True)
     parser.add_argument(
+        "--desk-history",
+        type=Path,
+        help="full matching USD desk REST snapshot with dated charts",
+    )
+    parser.add_argument(
         "--evaluated-at", required=True, help="explicit ISO timestamp with timezone"
     )
     parser.add_argument("--max-snapshot-age-seconds", type=int, default=900)
@@ -418,8 +532,13 @@ def main(argv=None):
             name: load_document(getattr(args, name))
             for name in ("desk", "atlas", "health")
         }
+        if args.desk_history:
+            captures["desk_history"] = load_document(args.desk_history)
         report = evaluate(
             *(captures[name][0] for name in ("desk", "atlas", "health")),
+            desk_history=captures["desk_history"][0]
+            if "desk_history" in captures
+            else None,
             evaluated_at=args.evaluated_at,
             max_snapshot_age_seconds=args.max_snapshot_age_seconds,
         )

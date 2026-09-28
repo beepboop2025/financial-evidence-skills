@@ -75,7 +75,7 @@ to the fixed public HTTPS route allowlist, redirects are rejected before they
 are followed, accepted content must be JSON, and response bytes remain bounded
 by the existing configurable limit (maximum 4 MiB).
 
-## OpenBB table projections (unreleased source extension)
+## OpenBB table projections (separately versioned Workspace service)
 
 The optional OpenBB Workspace backend projects explicitly selected public fields
 into typed rows. A numeric row retains its source URL, JSON pointer, native unit,
@@ -92,7 +92,7 @@ and `sources` metadata. A cache hit retains the original retrieval and publisher
 clocks and separately reports cache age. Expired successful responses are not
 used as fallback after an upstream failure.
 
-The new backend has a separate five-tool MCP surface. The original stdio and
+The Workspace backend has a separate six-tool MCP surface. The original stdio and
 public v0.1.5 MCP tool contract remain three tools. Source-tree additions do not
 assert that existing published artifacts or deployed services have been upgraded.
 
@@ -103,14 +103,33 @@ number's table shape does not create a derived work. Already published derived
 bank diagnostics and liquidity percentiles retain their existing restriction
 checks. Absence of a restriction is not an independent licence verification.
 
-## USD funding review checks (source utility)
+## USD funding review checks (Workspace 1.0.1, policy v3)
 
-`scripts/check_funding_review.py` assesses captured USD desk, global atlas and
-health documents. It requires named observations with expected units and source
-dates, checks snapshot age separately, and compares SOFR observation dates and
-same-date values across the surfaces. Missing data, duplicates, publication
-restrictions and missed publication opportunities require attention. The
-explicit calendar-day age backstops supplement publisher freshness; they do not
-implement an official release calendar or certify source correctness. Captures
-retain their own clocks. Passing these checks does not establish point-in-time
-history, an SLA, financial authority or institutional production readiness.
+`scripts/check_funding_review.py` assesses captured USD desk, global atlas,
+health and optional desk-history documents. It requires nine named observations
+with expected units and source dates, checks snapshot age separately, and joins
+each supported NY Fed observation to its own canonical atlas series. Missing
+data, duplicates, restrictions, conflicting values and missed publication
+opportunities require attention.
+
+Daily SOFR and EFFR clocks use an independently reviewed 2026 NY Fed calendar,
+including rate-specific exceptional closure days. An atlas deadline must match
+that calendar exactly; an arbitrary future deadline cannot excuse aging data.
+Dates outside the reviewed calendar fail closed. The bounded January 2027
+bridge supports the final 2026 observations and does not certify the 2027 year.
+Treasury freshness uses the documented publication schedule separately.
+
+The desk deliberately clips its inputs to the latest exact-date SOFR-IORB
+intersection. A validated own-series historical point may support that dated
+review; it does not make the observation the latest value for that instrument.
+REST, MCP and every saved CSV retain `review_asof`, `review_scope`,
+`latest_per_instrument`, `canonical_latest_asof` and
+`newer_observation_available`. Missing or contradictory historical proof cannot
+qualify aging inputs. Original publisher labels and source clocks are retained.
+
+Live readers require the capture's complete release identity to match the
+running backend, verify the report and CSV hashes, and withhold ready exports
+after failure, expiry or mismatch. Offline replay uses the original capture's
+implementation and is explicitly separate from current readiness. Passing
+checks does not establish as-published historical vintages, an SLA, financial
+authority or institutional production readiness.

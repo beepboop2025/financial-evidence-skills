@@ -67,7 +67,7 @@ def create_mcp(
 
     @server.tool(annotations=local)
     async def financial_evidence_funding_review() -> dict[str, Any]:
-        """Read the latest archived USD funding review and its nine required inputs. Inspect ready, issues and capture age; unavailable or stale captures never imply a passing review. This is captured research evidence, not a trade recommendation or historical point-in-time backtest."""
+        """Read a dated USD funding review and its nine inputs. Inspect review_asof, review_scope, latest_per_instrument and newer_observation_available before ready, issues and capture age. Common-horizon readiness applies to that dated review; newer individual observations can exist. Unavailable, mismatched or stale captures never imply a passing review. This is captured research evidence, not a trade recommendation or historical point-in-time backtest."""
         return await asyncio.to_thread(read_review)
 
     @server.tool(annotations=network)
@@ -122,7 +122,7 @@ def create_mcp(
     def morning_funding_review() -> str:
         """Prepare a funding review grounded in published observations and explicit gaps."""
         return (
-            "Read financial_evidence_funding_review first and inspect ready, issues, capture age and source dates. "
+            "Read financial_evidence_funding_review first and state review_asof, review_scope and latest_per_instrument. Inspect newer_observation_available, ready, issues, capture age and source dates. "
             "Then query money_markets and capital_markets and inspect source_health. "
             "Report observation dates, units and source URLs. Separate publisher commentary "
             "from observations. Identify missing, stale or restricted inputs using publisher "

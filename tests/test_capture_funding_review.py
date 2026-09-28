@@ -50,6 +50,7 @@ def responses(docs=None):
             indent=3,
         ).encode(),
         "atlas": json.dumps(atlas, indent=3).encode(),
+        "desk-history": json.dumps(desk, indent=3).encode(),
         "health": json.dumps(health, indent=3).encode(),
         "backend-health": b'{"status":"ok","release_id":"workspace-1.0.0+abcdef123456"}',
         "backend-release": b'{"release_id":"workspace-1.0.0+abcdef123456"}',
@@ -229,6 +230,7 @@ class CaptureTests(unittest.TestCase):
             ("capture_tool_sha256", "0" * 64),
             ("publication_policy_sha256", "0" * 64),
             ("publication_calendar_sha256", "0" * 64),
+            ("funding_horizon_sha256", "0" * 64),
             ("policy_id", "usd-funding-review-checks.v0"),
         ):
             with self.subTest(key=key):

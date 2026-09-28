@@ -38,12 +38,20 @@ from check_funding_review import (
 )
 from financial_evidence import tables as table_policy
 from financial_evidence import funding_publication_calendar
+from financial_evidence import funding_horizon
 from financial_evidence.core import _parse_finite_float, _reject_nonfinite
 
 ORIGIN = "https://api.seiche.info"
 PROTOCOL = "2025-11-25"
 SCHEMA = "liquidity-lab.funding-capture.v1"
-SOURCE_NAMES = ("mcp-initialize", "mcp-initialized", "funding-desk", "atlas", "health")
+SOURCE_NAMES = (
+    "mcp-initialize",
+    "mcp-initialized",
+    "funding-desk",
+    "desk-history",
+    "atlas",
+    "health",
+)
 BACKEND_NAMES = ("backend-health", "backend-release")
 
 
@@ -61,6 +69,7 @@ def implementation_fingerprints():
         "publication_calendar_sha256": sha256(
             Path(funding_publication_calendar.__file__).read_bytes()
         ),
+        "funding_horizon_sha256": sha256(Path(funding_horizon.__file__).read_bytes()),
     }
 
 
@@ -280,10 +289,17 @@ def export_csv(desk, report):
             "value_state",
             "evaluated_at",
             "review_status",
+            "review_asof",
+            "review_scope",
+            "latest_per_instrument",
+            "canonical_latest_asof",
+            "newer_observation_available",
         ]
     )
     for name, (unit, cadence) in REQUIRED.items():
         row, denied = rows.get(name, ({}, False))
+        assessment = report.get("freshness_assessments", {}).get(name, {})
+        newer = assessment.get("newer_observation_available")
         state = (
             "restricted"
             if denied
@@ -305,6 +321,11 @@ def export_csv(desk, report):
                 state,
                 report["evaluated_at"],
                 report["status"],
+                spreadsheet_text(report.get("review_asof")),
+                spreadsheet_text(report.get("review_scope", "captured_observations")),
+                "false",
+                spreadsheet_text(assessment.get("canonical_latest_asof")),
+                "true" if newer is True else "false" if newer is False else "unknown",
             ]
         )
     return output.getvalue().encode("utf-8")
@@ -347,10 +368,12 @@ def analyze(
                 raise ValueError("unsupported negotiated MCP protocol")
             desk = decode_desk(bodies["funding-desk"])
             atlas, health = (strict_json(bodies[name]) for name in ("atlas", "health"))
+            desk_history = strict_json(bodies["desk-history"])
             report = evaluate(
                 desk,
                 atlas,
                 health,
+                desk_history=desk_history,
                 evaluated_at=evaluated_at,
                 max_snapshot_age_seconds=max_snapshot_age_seconds,
             )
@@ -358,6 +381,7 @@ def analyze(
                 "desk": sha256(encoded(desk)),
                 "atlas": sha256(bodies["atlas"]),
                 "health": sha256(bodies["health"]),
+                "desk_history": sha256(bodies["desk-history"]),
             }
         except (
             ValueError,
@@ -567,6 +591,7 @@ def capture(
         session,
     )
     request("atlas", ORIGIN + "/api/v2/money-markets")
+    request("desk-history", ORIGIN + "/api/money-markets")
     request("health", ORIGIN + "/api/health")
     if backend:
         request("backend-health", backend + "/healthz")

@@ -1,9 +1,9 @@
 # Financial Evidence Agent Skills
 
-**[OpenBB Research Desk](integrations/openbb/README.md), Workspace release 1.0.0.**
+**[OpenBB Research Desk](integrations/openbb/README.md), [Workspace release 1.0.1](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/workspace-v1.0.1).**
 Seven cited datasets, a seven-tab Workspace app, an archived USD funding review,
 benchmark history charts, typed REST responses and a six-tool MCP server connect
-all four projects. The hosted deployment target is `https://api.seiche.info/openbb`.
+all four projects. The hosted service is `https://api.seiche.info/openbb`.
 Install
 `.[openbb,workspace]` from this checkout, then run `openbb-build` and
 `financial-evidence-api`. These additions are not in the published v0.1.5 wheel
@@ -11,9 +11,11 @@ or the existing public three-tool MCP deployment. The Workspace release identifi
 its exact source commit independently at `/api/v1/release`.
 
 **Check a captured USD funding review:** the [funding review checks](integrations/funding-review/README.md)
-compare required inputs, units, source clocks and SOFR consistency across Seiche
-surfaces. Missing, aging or contradictory evidence requires attention; passing
-these checks is not an institutional-readiness certification.
+compare required inputs, units, publication clocks and own-series observations
+across Seiche surfaces. The dated SOFR-IORB review exposes newer individual source
+dates; it does not claim the latest print for every instrument. Missing, overdue
+or contradictory evidence requires attention. Passing these checks is not an
+institutional-readiness certification.
 
 **Three concrete jobs:** [funding review, Cosmos Bank NPAs and a $100k BTC exit](https://beepboop2025.github.io/financial-evidence-skills/automations/)
 with native n8n workflows and optional Slack/Telegram delivery. The

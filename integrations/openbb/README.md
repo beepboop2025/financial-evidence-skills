@@ -9,7 +9,7 @@ commit exposed at `/api/v1/release`. The published **v0.1.5 artifacts and public
 three-tool MCP endpoint retain their existing contract**. A hosted custom backend
 is separate from acceptance in OpenBB's directory.
 
-The production deployment target is **https://api.seiche.info/openbb**. Add that
+The hosted production backend is **https://api.seiche.info/openbb**. Add that
 URL as a custom backend in OpenBB Workspace. Its MCP endpoint is
 `https://api.seiche.info/openbb/mcp`; interactive documentation is at
 `https://api.seiche.info/openbb/docs`. Check the release and source status before
@@ -38,7 +38,11 @@ Other widgets present tables, keeping units, dates, availability and limitations
 next to the observations. Tables can be exported from Workspace.
 
 USD Funding Review reads one immutable scheduled capture containing nine required
-observations and consistency checks. `/api/v1/funding-review` provides its capture
+observations and consistency checks. Inspect `review_asof`, `review_scope`,
+`latest_per_instrument` and each row's `newer_observation_available` before
+interpreting `ready`: this is a dated common SOFR-IORB review, not the latest
+individual print of every instrument. These fields remain in saved CSV exports.
+`/api/v1/funding-review` provides its capture
 age, exceptions and source hashes; `/api/v1/funding-review.csv` exports its rows
 for spreadsheets and SQL. If capture storage is missing or overdue, the review
 reports unavailable/stale and CSV returns 503. A captured review with data issues

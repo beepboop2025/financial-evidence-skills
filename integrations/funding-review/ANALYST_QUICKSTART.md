@@ -1,7 +1,7 @@
 # Funding observations in Excel and DuckDB
 
-Use `funding-observations.csv` from an identified capture, or the hosted release's
-documented CSV endpoint when deployed. Keep the capture ID and manifest hash with
+Use `funding-observations.csv` from an identified capture, or the hosted
+[CSV endpoint](https://api.seiche.info/openbb/api/v1/funding-review.csv). Keep the capture ID and manifest hash with
 the research workbook. A daily observation date differs from the operator's
 `evaluated_at`; neither should replace the other.
 

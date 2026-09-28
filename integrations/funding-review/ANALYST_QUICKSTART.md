@@ -20,10 +20,15 @@ are prefixed with an apostrophe.
    date, and `evaluated_at` to date/time/timezone. Keep `metric_id`, `unit`,
    `value_state`, `publisher_freshness`, and `review_status` as text.
 3. Preserve blank values as null. Add a filter or visible exception table for
-   `value_state <> "available"`, `publisher_freshness <> "fresh"`, or
+   `value_state <> "available"` or
    `review_status <> "checks_passed"`. Review exceptions before use.
 4. Load the table. Record the capture ID next to the table; refreshing a file path
    is not an archive of previous workbook inputs.
+
+Keep `publisher_freshness` visible. Policy v3 may accept an `aging` label only
+with matching, bounded publication-clock evidence; inspect `freshness_assessments`
+in the JSON review for the basis and deadline. Use `review_status` for the review
+exception filter.
 
 If your deployed backend exposes a CSV URL, **Data → From Web** can load that
 documented endpoint. Retain the timestamped local export for reproducibility.
@@ -57,7 +62,6 @@ ORDER BY metric_id;
 
 SELECT * FROM funding_review
 WHERE value_state <> 'available'
-   OR publisher_freshness IS DISTINCT FROM 'fresh'
    OR review_status <> 'checks_passed';
 ```
 

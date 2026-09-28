@@ -269,6 +269,9 @@ def _load(directory, *, now, max_age_seconds):
             for row in rows:
                 row["review_status"] = row_status
         input_hashes = review.get("input_sha256", {})
+        freshness_assessments = review.get("freshness_assessments", {})
+        if not isinstance(freshness_assessments, dict):
+            raise ValueError("invalid freshness assessments")
         observed_release = manifest.get("observed_release") or {}
         if not isinstance(input_hashes, dict) or not isinstance(observed_release, dict):
             raise ValueError("invalid audit identity fields")
@@ -301,6 +304,25 @@ def _load(directory, *, now, max_age_seconds):
                 for item in issues
             ],
             "results": rows,
+            "freshness_assessments": {
+                name: {
+                    key: value[:240]
+                    for key, value in assessment.items()
+                    if key
+                    in (
+                        "publisher_freshness",
+                        "basis",
+                        "instrument",
+                        "asof",
+                        "expected_next_update",
+                        "calendar_scope",
+                        "atlas_source",
+                    )
+                    and isinstance(value, str)
+                }
+                for name, assessment in freshness_assessments.items()
+                if name in METRICS and isinstance(assessment, dict)
+            },
             "measurement": _measurement(current.get("measurement")),
             "scope": "captured_operator_checks_not_continuous_uptime_or_point_in_time_history",
             "manifest_sha256": hashlib.sha256(manifest_raw).hexdigest(),

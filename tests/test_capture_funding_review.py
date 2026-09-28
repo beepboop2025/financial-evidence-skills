@@ -228,6 +228,7 @@ class CaptureTests(unittest.TestCase):
             ("checker_source_sha256", "0" * 64),
             ("capture_tool_sha256", "0" * 64),
             ("publication_policy_sha256", "0" * 64),
+            ("publication_calendar_sha256", "0" * 64),
             ("policy_id", "usd-funding-review-checks.v0"),
         ):
             with self.subTest(key=key):

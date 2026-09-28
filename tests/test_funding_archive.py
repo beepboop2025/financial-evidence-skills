@@ -49,7 +49,7 @@ class FundingArchiveTests(unittest.TestCase):
         self.assertTrue(result["available"])
         self.assertTrue(result["ready"])
         self.assertFalse(result["stale"])
-        self.assertEqual(result["policy_id"], "usd-funding-review-checks.v2")
+        self.assertEqual(result["policy_id"], "usd-funding-review-checks.v3")
         self.assertEqual(len(result["results"]), 9)
         self.assertEqual(result["results"][0]["value"], 0.0)
         self.assertEqual(result["capture_id"], self.path.name)
@@ -91,6 +91,30 @@ class FundingArchiveTests(unittest.TestCase):
             {"release_identity_mismatch"},
         )
         self.assertIsNone(csv_bytes)
+
+    def test_freshness_explanations_are_bounded_and_invalid_shape_fails_closed(self):
+        report = json.loads((self.path / "review.json").read_bytes())
+        report["freshness_assessments"] = {
+            "policy.sofr": {
+                "publisher_freshness": "aging",
+                "basis": "matched_nyfed_publication_clock",
+                "private_path": "/private/operator",
+            },
+            "unrelated": {"basis": "/private/operator"},
+        }
+        self.replace_artifact("review.json", capture.encoded(report))
+        self.assertEqual(
+            self.read()["freshness_assessments"],
+            {
+                "policy.sofr": {
+                    "publisher_freshness": "aging",
+                    "basis": "matched_nyfed_publication_clock",
+                }
+            },
+        )
+        report["freshness_assessments"] = []
+        self.replace_artifact("review.json", capture.encoded(report))
+        self.assertFalse(self.read()["ready"])
 
     def test_backend_failure_is_visible_on_each_available_source_row(self):
         with patch.object(capture, "utcnow", return_value=NOW):

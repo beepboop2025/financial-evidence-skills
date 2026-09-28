@@ -4,7 +4,7 @@ Use Seiche, LiquiLens, Undertow and Palimpsest from one OpenBB research desk.
 The Workspace release adds seven datasets, nine Workspace widgets, seven dashboard
 tabs, six SDK-backed MCP tools, two research prompts and a typed REST API.
 
-Workspace is independently versioned as **workspace-1.0.0**, with the exact source
+Workspace is independently versioned as **workspace-1.0.1**, with the exact source
 commit exposed at `/api/v1/release`. The published **v0.1.5 artifacts and public
 three-tool MCP endpoint retain their existing contract**. A hosted custom backend
 is separate from acceptance in OpenBB's directory.

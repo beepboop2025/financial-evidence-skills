@@ -37,6 +37,7 @@ from check_funding_review import (
     timestamp,
 )
 from financial_evidence import tables as table_policy
+from financial_evidence import funding_publication_calendar
 from financial_evidence.core import _parse_finite_float, _reject_nonfinite
 
 ORIGIN = "https://api.seiche.info"
@@ -57,6 +58,9 @@ def implementation_fingerprints():
         ),
         "capture_tool_sha256": sha256(Path(__file__).read_bytes()),
         "publication_policy_sha256": sha256(Path(table_policy.__file__).read_bytes()),
+        "publication_calendar_sha256": sha256(
+            Path(funding_publication_calendar.__file__).read_bytes()
+        ),
     }
 
 

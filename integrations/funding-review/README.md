@@ -6,7 +6,7 @@ explicit publication restrictions, and disagreement about SOFR across the USD
 desk, global atlas and source-health surface.
 
 It does not produce a funding-risk score or certify the service for institutional
-use. A passing result covers the checks in `usd-funding-review-checks.v2` only.
+use. A passing result covers the checks in `usd-funding-review-checks.v3` only.
 
 ## Inputs and reproducible use
 
@@ -39,11 +39,11 @@ Files are bounded to 2 MiB each. The output hashes the exact local input bytes.
 | 1 | Review needs attention; inspect `issues`. |
 | 2 | Input or policy argument could not be evaluated. |
 
-## Policy v2
+## Policy v3
 
 Required inputs are SOFR, EFFR, IORB, SOFR P99 and volume, reserves, TGA, ON RRP
 and SRF use. Every required value must have its expected native unit and cadence,
-a source label, an observation date and publisher-reported `fresh` state. A real
+a source label, an observation date and an accepted freshness assessment. A real
 zero remains valid. Missing or malformed values never become zero.
 
 Snapshot age defaults to 900 seconds, independently of observation age. This is
@@ -57,6 +57,27 @@ date must be covered, its latest due time cannot be in the future, and the count
 of missed publication opportunities must be zero. Invalid or missed schedules
 require attention. This recognizes Seiche's Treasury schedule; it does not
 independently certify all publishers' calendars or create a contractual SLA.
+
+Policy v3 reconciles SOFR, EFFR, SOFR P99 and SOFR volume with their own atlas
+instruments. Dates and values must match, including the explicit USD-million to
+USD-billion volume conversion. Each row must be available, unrestricted and
+reported FRESH with zero missed releases. Its next publication deadline must
+exactly match the independently reviewed 2026 NY Fed calendar and remain ahead
+of evaluation. This can explain an `aging` desk label through midnight or a
+holiday; it cannot excuse `stale`, `unknown`, a mismatched distribution, or a
+missed release. The original label is preserved in CSV and in the report's
+`freshness_assessments`, alongside the accepted basis and deadline.
+
+The reviewed calendar follows the [NY Fed holiday schedule](https://www.newyorkfed.org/aboutthefed/holiday_schedule)
+and [reference-rate publication methodology](https://www.newyorkfed.org/markets/reference-rates/additional-information-about-reference-rates),
+including distinct SOFR closures on [April 3](https://www.newyorkfed.org/markets/opolicy/operating_policy_260312a)
+and [July 3](https://www.newyorkfed.org/markets/opolicy/operating_policy_260618a),
+2026, when EFFR continues. It accepts only 2026 observation dates, with a limited
+January 2027 calculation bridge. Review and version the calendar before accepting
+2027 observations. A source-calendar disagreement remains an exception; this
+consumer does not repair or silently replace the upstream calendar. IORB, ON RRP
+and SRF have no such exception based on an inferred deadline. Original captures
+must be replayed with their original policy and calendar fingerprints.
 
 SOFR is compared between the desk policy ladder, desk secured distribution, and
 atlas US-USD benchmark. Different observation dates require attention; values

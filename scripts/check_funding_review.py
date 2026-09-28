@@ -20,8 +20,11 @@ from zoneinfo import ZoneInfo
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from financial_evidence.core import _parse_finite_float, _reject_nonfinite
 from financial_evidence.tables import _blocked
+from financial_evidence.funding_publication_calendar import (
+    next_publication_after_observation,
+)
 
-POLICY_ID = "usd-funding-review-checks.v2"
+POLICY_ID = "usd-funding-review-checks.v3"
 REQUIRED = {
     "policy.sofr": ("%", "daily"),
     "policy.effr": ("%", "daily"),
@@ -34,10 +37,23 @@ REQUIRED = {
     "liquidity.srf": ("$B", "daily"),
 }
 # Calendar-day backstops, not central-bank publication calendars. In addition,
-# every required metric must retain the publisher's explicit fresh state.
+# recognized publication clocks may explain an aging publisher label.
 MAX_AGE_DAYS = {"daily": 4, "weekly": 10}
 MAX_BYTES = 2_097_152
 TGA_SCHEDULE_SOURCE = "https://home.treasury.gov/policy-issues/financial-markets-financial-institutions-and-fiscal-service/cash-and-debt-forecasting"
+ATLAS_CLOCK_BASIS = "pack business calendar + adapter publication lag/cadence; stored state is a lower bound"
+NYFED_CLOCKS = {
+    "policy.sofr": ("US.NYFED.SOFR", "SOFR", "%", 1, "fred"),
+    "policy.effr": ("US.NYFED.EFFR", "EFFR", "%", 1, "fred"),
+    "distribution.sofr.p99": ("US.NYFED.SOFR_P99", "SOFR", "%", 1, "nyfed_rates"),
+    "distribution.sofr.volume": (
+        "US.NYFED.SOFR_VOLUME",
+        "SOFR",
+        "local_currency_millions",
+        1000,
+        "nyfed_rates",
+    ),
+}
 
 
 def timestamp(value):
@@ -61,6 +77,71 @@ def finite_number(value):
 def publication_denied(value):
     # Use the same publication policy as the REST/OpenBB/MCP projections.
     return _blocked(value, raw_observation=True)
+
+
+def nyfed_clock_evidence(name, row, market, now):
+    """Join one exact observation to a bounded, independently reviewed clock.
+
+    This does not use the atlas's estimated published_at as an actual release
+    timestamp, and never substitutes SOFR's rate for its percentile or volume.
+    """
+    instrument, clock, unit, divisor, source = NYFED_CLOCKS[name]
+    if not isinstance(market, dict) or (
+        market.get("timezone") != "America/New_York"
+        or market.get("settlement_calendar") != "US-FEDWIRE"
+        or publication_denied(market)
+    ):
+        raise ValueError("unrecognized market calendar")
+    members = market.get("metrics")
+    matches = (
+        [x for x in members if isinstance(x, dict) and x.get("id") == instrument]
+        if isinstance(members, list)
+        else []
+    )
+    if len(matches) != 1:
+        raise ValueError("missing or duplicate instrument")
+    atlas_row = matches[0]
+    missed = atlas_row.get("missed_publication_opportunities")
+    if (
+        atlas_row.get("availability") != "AVAILABLE"
+        or atlas_row.get("status") != "FRESH"
+        or atlas_row.get("cadence") != "P1D"
+        or atlas_row.get("source_tier") != "official_open"
+        or atlas_row.get("source") != source
+        or atlas_row.get("redistribution_status") != "allowed"
+        or publication_denied(atlas_row)
+        or atlas_row.get("freshness_basis") != ATLAS_CLOCK_BASIS
+        or isinstance(missed, bool)
+        or not isinstance(missed, int)
+        or missed != 0
+        or atlas_row.get("asof") != row.get("asof")
+        or atlas_row.get("unit") != unit
+        or not finite_number(atlas_row.get("value"))
+        or not finite_number(row.get("value"))
+        or not math.isclose(
+            atlas_row["value"] / divisor, row["value"], rel_tol=0, abs_tol=1e-9
+        )
+    ):
+        raise ValueError("instrument, rights, observation or clock claims disagree")
+    day = date.fromisoformat(row["asof"])
+    if row["asof"] != day.isoformat():
+        raise ValueError("noncanonical observation date")
+    event = timestamp(atlas_row.get("event_time"))
+    if event != datetime.combine(day, datetime.min.time(), tzinfo=timezone.utc):
+        raise ValueError("event clock disagrees with observation date")
+    due = next_publication_after_observation(day, clock)
+    if timestamp(atlas_row.get("expected_next_update")) != due or not now < due:
+        raise ValueError("publication deadline disagrees or has passed")
+    if not 0 <= (now.date() - day).days <= 8:
+        raise ValueError("observation exceeds absolute backstop")
+    return {
+        "basis": "matched_nyfed_publication_clock",
+        "instrument": instrument,
+        "asof": day.isoformat(),
+        "expected_next_update": due.isoformat(),
+        "calendar_scope": "reviewed_2026",
+        "atlas_source": source,
+    }
 
 
 def evaluate(desk, atlas, health, *, evaluated_at, max_snapshot_age_seconds=900):
@@ -141,6 +222,14 @@ def evaluate(desk, atlas, health, *, evaluated_at, max_snapshot_age_seconds=900)
                 issue("duplicate_metric", name)
             else:
                 metrics[name] = metric
+    markets = atlas.get("markets")
+    usd = (
+        [m for m in markets if isinstance(m, dict) and m.get("market_id") == "US-USD"]
+        if isinstance(markets, list)
+        else []
+    )
+    market = usd[0] if len(usd) == 1 else None
+    freshness_assessments = {}
     for name, (unit, cadence) in REQUIRED.items():
         row = metrics.get(name)
         if row is None:
@@ -156,6 +245,23 @@ def evaluate(desk, atlas, health, *, evaluated_at, max_snapshot_age_seconds=900)
             issue("source_missing", name)
         day = observation_day(row.get("asof"), name)
         scheduled_fresh = False
+        nyfed_fresh = False
+        assessment = {
+            "publisher_freshness": row.get("freshness"),
+            "basis": "publisher_freshness",
+        }
+        # Older captures without per-instrument clocks retain the original
+        # strict publisher-fresh rule. A supplied clock must reconcile even
+        # when the desk's coarse age label says fresh.
+        if name in NYFED_CLOCKS and isinstance(market, dict) and "metrics" in market:
+            try:
+                evidence = nyfed_clock_evidence(name, row, market, now)
+                nyfed_fresh = row.get("freshness") in {"fresh", "aging"}
+                if nyfed_fresh:
+                    assessment.update(evidence)
+            except (ValueError, TypeError, KeyError, OverflowError):
+                issue("nyfed_publication_clock_not_usable", name)
+                assessment["basis"] = "publication_clock_requires_attention"
         if (
             name == "liquidity.tga"
             and row.get("freshness_policy") == "treasury-dts-next-business-day-v1"
@@ -198,18 +304,12 @@ def evaluate(desk, atlas, health, *, evaluated_at, max_snapshot_age_seconds=900)
             except (ValueError, TypeError, KeyError, OverflowError):
                 issue("publication_schedule_invalid", name)
         if day and (now.date() - day).days > (
-            8 if scheduled_fresh else MAX_AGE_DAYS[cadence]
+            8 if scheduled_fresh or nyfed_fresh else MAX_AGE_DAYS[cadence]
         ):
             issue("observation_exceeds_age_backstop", name)
-        if row.get("freshness") != "fresh":
+        if row.get("freshness") != "fresh" and not nyfed_fresh:
             issue("required_metric_not_reported_fresh", name)
-
-    markets = atlas.get("markets")
-    usd = (
-        [m for m in markets if isinstance(m, dict) and m.get("market_id") == "US-USD"]
-        if isinstance(markets, list)
-        else []
-    )
+        freshness_assessments[name] = assessment
     benchmark = usd[0].get("benchmark") if len(usd) == 1 else None
     if not isinstance(benchmark, dict):
         issue("missing_or_duplicate_usd_benchmark", "atlas.US-USD")
@@ -279,9 +379,10 @@ def evaluate(desk, atlas, health, *, evaluated_at, max_snapshot_age_seconds=900)
             name: row.get("asof") for name, row in prints.items()
         },
         "publisher_coverage": desk.get("coverage"),
+        "freshness_assessments": freshness_assessments,
         "limits": [
             "This is an operator check, not an institutional-readiness certification or trading signal.",
-            "Calendar-day backstops do not implement official publication calendars; a bounded recognized publisher Treasury DTS schedule may extend TGA's age limit to eight days, never remove it.",
+            "NYFed clock acceptance is bounded to reviewed 2026 observations and requires matching atlas clocks; other publication calendars are not independently certified. Recognized Treasury DTS schedules and matched NYFed clocks retain an absolute eight-day backstop.",
             "Publisher freshness and coverage are reported claims, not independent source verification.",
             "Input hashes identify local files, not signed original source evidence or historic vintages.",
             "No data repair, forward fill, financial-authority grant, or external message occurs.",

@@ -17,7 +17,7 @@ with `ssd-workspace status` first and put output beneath `SSDWorkspace/evidence`
 python3 scripts/capture_funding_review.py \
   --output-dir /var/lib/financial-evidence/funding-review \
   --backend-url https://api.seiche.info/openbb \
-  --expected-release workspace-1.0.0+REPLACE_WITH_TESTED_COMMIT_PREFIX
+  --expected-release workspace-1.0.1+REPLACE_WITH_TESTED_COMMIT_PREFIX
 ```
 
 Use the release identity recorded in the deployment receipt. Omitting
@@ -136,13 +136,21 @@ There are no retries. The service template also limits total runtime and memory.
 This intentionally provides one recorded observation per scheduled attempt.
 
 The checker retains publisher freshness and missed-publication claims and adds
-calendar-day age backstops. Policy v2 recognizes a bounded Treasury DTS publisher
+calendar-day age backstops. Policy v3 recognizes a bounded Treasury DTS publisher
 schedule: its latest due time must be 16:00 New York time and no older than four
 days plus one hour, its expected observation must precede that due date by one
 to four days, and its source URL must match the documented Treasury page. This
 may extend TGA's observation-age limit to eight days; it never removes the limit.
 These are consistency bounds, not an independent official-source publication
 calendar or a funding-risk recommendation. See [the checker's policy](README.md).
+
+Policy v3 also checks four exact NY Fed instruments against an independently
+reviewed 2026 publication calendar. Its original bytes are included in every
+capture's `publication_calendar_sha256`; replay requires the same calendar.
+The bounded calendar must be reviewed and versioned before accepting 2027
+observations. Atlas/calendar disagreements remain visible exceptions. Preserve
+the raw publisher freshness label and inspect `freshness_assessments` for the
+accepted basis; do not treat a future deadline alone as proof of freshness.
 
 ## Scheduled operation
 

@@ -9,18 +9,19 @@ source accuracy, historical point-in-time coverage, or an availability SLA.
 from __future__ import annotations
 
 import argparse
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 import hashlib
 import json
 import math
 from pathlib import Path
 import sys
+from zoneinfo import ZoneInfo
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from financial_evidence.core import _parse_finite_float, _reject_nonfinite
 from financial_evidence.tables import _blocked
 
-POLICY_ID = "usd-funding-review-checks.v1"
+POLICY_ID = "usd-funding-review-checks.v2"
 REQUIRED = {
     "policy.sofr": ("%", "daily"),
     "policy.effr": ("%", "daily"),
@@ -36,6 +37,7 @@ REQUIRED = {
 # every required metric must retain the publisher's explicit fresh state.
 MAX_AGE_DAYS = {"daily": 4, "weekly": 10}
 MAX_BYTES = 2_097_152
+TGA_SCHEDULE_SOURCE = "https://home.treasury.gov/policy-issues/financial-markets-financial-institutions-and-fiscal-service/cash-and-debt-forecasting"
 
 
 def timestamp(value):
@@ -153,7 +155,51 @@ def evaluate(desk, atlas, health, *, evaluated_at, max_snapshot_age_seconds=900)
         if not isinstance(row.get("source"), str) or not row["source"].strip():
             issue("source_missing", name)
         day = observation_day(row.get("asof"), name)
-        if day and (now.date() - day).days > MAX_AGE_DAYS[cadence]:
+        scheduled_fresh = False
+        if (
+            name == "liquidity.tga"
+            and row.get("freshness_policy") == "treasury-dts-next-business-day-v1"
+        ):
+            schedule = row.get("publication_schedule")
+            try:
+                if not isinstance(schedule, dict):
+                    raise ValueError("schedule missing")
+                expected = date.fromisoformat(schedule["expected_observation_date"])
+                due = timestamp(schedule["latest_due_at"])
+                local_due = due.astimezone(ZoneInfo("America/New_York"))
+                missed_tga = schedule["missed_publication_opportunities"]
+                if (
+                    schedule.get("timezone") != "America/New_York"
+                    or schedule.get("clock_precision") != "scheduled"
+                    or schedule.get("source_url") != TGA_SCHEDULE_SOURCE
+                    or isinstance(missed_tga, bool)
+                    or not isinstance(missed_tga, int)
+                    or missed_tga < 0
+                    or due > now
+                    or now - due > timedelta(days=4, hours=1)
+                    or (
+                        local_due.hour,
+                        local_due.minute,
+                        local_due.second,
+                        local_due.microsecond,
+                    )
+                    != (16, 0, 0, 0)
+                    or not 1 <= (local_due.date() - expected).days <= 4
+                    or expected > now.date()
+                ):
+                    raise ValueError("invalid schedule")
+                if missed_tga or day is None or day < expected:
+                    issue("publication_opportunity_missed", name)
+                else:
+                    # This is a bounded publisher-schedule check, not an
+                    # independent holiday calendar. It never removes the
+                    # absolute eight-day backstop for a TGA observation.
+                    scheduled_fresh = True
+            except (ValueError, TypeError, KeyError, OverflowError):
+                issue("publication_schedule_invalid", name)
+        if day and (now.date() - day).days > (
+            8 if scheduled_fresh else MAX_AGE_DAYS[cadence]
+        ):
             issue("observation_exceeds_age_backstop", name)
         if row.get("freshness") != "fresh":
             issue("required_metric_not_reported_fresh", name)
@@ -235,7 +281,7 @@ def evaluate(desk, atlas, health, *, evaluated_at, max_snapshot_age_seconds=900)
         "publisher_coverage": desk.get("coverage"),
         "limits": [
             "This is an operator check, not an institutional-readiness certification or trading signal.",
-            "Calendar-day backstops do not implement official publication calendars.",
+            "Calendar-day backstops do not implement official publication calendars; a bounded recognized publisher Treasury DTS schedule may extend TGA's age limit to eight days, never remove it.",
             "Publisher freshness and coverage are reported claims, not independent source verification.",
             "Input hashes identify local files, not signed original source evidence or historic vintages.",
             "No data repair, forward fill, financial-authority grant, or external message occurs.",

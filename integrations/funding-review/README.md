@@ -6,7 +6,7 @@ explicit publication restrictions, and disagreement about SOFR across the USD
 desk, global atlas and source-health surface.
 
 It does not produce a funding-risk score or certify the service for institutional
-use. A passing result covers the checks in `usd-funding-review-checks.v1` only.
+use. A passing result covers the checks in `usd-funding-review-checks.v2` only.
 
 ## Inputs and reproducible use
 
@@ -39,7 +39,7 @@ Files are bounded to 2 MiB each. The output hashes the exact local input bytes.
 | 1 | Review needs attention; inspect `issues`. |
 | 2 | Input or policy argument could not be evaluated. |
 
-## Policy v1
+## Policy v2
 
 Required inputs are SOFR, EFFR, IORB, SOFR P99 and volume, reserves, TGA, ON RRP
 and SRF use. Every required value must have its expected native unit and cadence,
@@ -51,8 +51,12 @@ an operator-selected acceptance threshold, not an advertised service SLA. A
 snapshot more than 300 seconds into the future requires attention. Daily and
 weekly observations additionally have calendar-day backstops of four and ten
 days. These backstops do not implement the NY Fed or other official publication
-calendars. A per-series, holiday-aware release policy is still needed before
-making a contractual freshness commitment.
+calendars. For TGA, a complete `treasury-dts-next-business-day-v1` publication
+schedule can explain a longer interval over holidays: the expected observation
+date must be covered, its latest due time cannot be in the future, and the count
+of missed publication opportunities must be zero. Invalid or missed schedules
+require attention. This recognizes Seiche's Treasury schedule; it does not
+independently certify all publishers' calendars or create a contractual SLA.
 
 SOFR is compared between the desk policy ladder, desk secured distribution, and
 atlas US-USD benchmark. Different observation dates require attention; values

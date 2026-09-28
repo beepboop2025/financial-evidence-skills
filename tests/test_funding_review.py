@@ -10,7 +10,7 @@ import tempfile
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from scripts.check_funding_review import REQUIRED, evaluate, main
+from scripts.check_funding_review import REQUIRED, TGA_SCHEDULE_SOURCE, evaluate, main
 
 NOW = "2026-09-28T19:17:00Z"
 CLOCK = "2026-09-28T19:15:00Z"
@@ -103,6 +103,127 @@ class FundingReviewTests(unittest.TestCase):
                 docs = captures()
                 docs[0]["sections"][0]["metrics"][1]["freshness"] = state
                 self.assertIn("required_metric_not_reported_fresh", self.codes(docs))
+
+    def test_complete_tga_schedule_can_explain_holiday_age_but_not_a_missed_release(
+        self,
+    ):
+        docs = captures()
+        holiday_now = "2026-09-08T19:00:00Z"
+        for key, document in zip(
+            ("snapshot_generated_at", "generated_at", "generated_at"), docs
+        ):
+            document[key] = "2026-09-08T18:58:00Z"
+        for metric in docs[0]["sections"][0]["metrics"]:
+            metric["asof"] = (
+                "2026-09-02" if metric["cadence"] == "weekly" else "2026-09-04"
+            )
+        docs[1]["markets"][0]["benchmark"]["asof"] = "2026-09-04"
+        docs[2]["provenance"][0]["asof"] = "2026-09-04"
+        tga = next(
+            row
+            for row in docs[0]["sections"][0]["metrics"]
+            if row["id"] == "liquidity.tga"
+        )
+        tga.update(
+            asof="2026-09-03",
+            freshness_policy="treasury-dts-next-business-day-v1",
+            publication_schedule={
+                "source_url": TGA_SCHEDULE_SOURCE,
+                "timezone": "America/New_York",
+                "clock_precision": "scheduled",
+                "expected_observation_date": "2026-09-03",
+                "latest_due_at": "2026-09-04T16:00:00-04:00",
+                "missed_publication_opportunities": 0,
+            },
+        )
+        # Tuesday before the new release after Labor Day: Thursday's TGA
+        # observation is five calendar days old but the Friday due time is
+        # still within the bounded publisher-schedule acceptance interval.
+        self.assertEqual(
+            evaluate(*docs, evaluated_at=holiday_now)["status"], "checks_passed"
+        )
+        for field, value in (
+            ("missed_publication_opportunities", 1),
+            ("expected_observation_date", "2026-09-04"),
+        ):
+            broken = copy.deepcopy(docs)
+            row = next(
+                row
+                for row in broken[0]["sections"][0]["metrics"]
+                if row["id"] == "liquidity.tga"
+            )
+            row["publication_schedule"][field] = value
+            result = evaluate(*broken, evaluated_at=holiday_now)
+            self.assertEqual(result["status"], "attention_required")
+            self.assertTrue(
+                {issue["code"] for issue in result["issues"]}
+                & {"publication_opportunity_missed", "publication_schedule_invalid"}
+            )
+        tga["publication_schedule"]["latest_due_at"] = "2099-01-01T00:00:00Z"
+        self.assertIn(
+            "publication_schedule_invalid",
+            {
+                issue["code"]
+                for issue in evaluate(*docs, evaluated_at=holiday_now)["issues"]
+            },
+        )
+
+    def test_expired_tga_schedule_cannot_hide_old_observations(self):
+        for day, due in (
+            ("2020-01-01", "2020-01-02T16:00:00-05:00"),
+            ("2026-09-22", "2026-09-23T16:00:00-04:00"),
+        ):
+            docs = captures()
+            tga = next(
+                row
+                for row in docs[0]["sections"][0]["metrics"]
+                if row["id"] == "liquidity.tga"
+            )
+            tga.update(
+                asof=day,
+                freshness_policy="treasury-dts-next-business-day-v1",
+                publication_schedule={
+                    "source_url": TGA_SCHEDULE_SOURCE,
+                    "timezone": "America/New_York",
+                    "clock_precision": "scheduled",
+                    "expected_observation_date": day,
+                    "latest_due_at": due,
+                    "missed_publication_opportunities": 0,
+                },
+            )
+            codes = self.codes(docs)
+            self.assertIn("publication_schedule_invalid", codes)
+            self.assertIn("observation_exceeds_age_backstop", codes)
+
+    def test_tga_schedule_requires_recognized_source_and_local_release_time(self):
+        for source, due, expected in (
+            (
+                "https://home.treasury.gov/anything",
+                "2026-09-25T16:00:00-04:00",
+                "2026-09-24",
+            ),
+            (TGA_SCHEDULE_SOURCE, "2026-09-25T15:00:00-04:00", "2026-09-24"),
+            (TGA_SCHEDULE_SOURCE, "2026-09-25T16:00:00-04:00", "2026-09-25"),
+            (TGA_SCHEDULE_SOURCE, "2026-09-25T16:00:00-04:00", "2026-09-20"),
+        ):
+            docs = captures()
+            tga = next(
+                row
+                for row in docs[0]["sections"][0]["metrics"]
+                if row["id"] == "liquidity.tga"
+            )
+            tga.update(
+                freshness_policy="treasury-dts-next-business-day-v1",
+                publication_schedule={
+                    "source_url": source,
+                    "timezone": "America/New_York",
+                    "clock_precision": "scheduled",
+                    "expected_observation_date": expected,
+                    "latest_due_at": due,
+                    "missed_publication_opportunities": 0,
+                },
+            )
+            self.assertIn("publication_schedule_invalid", self.codes(docs))
 
     def test_missing_nonfinite_boolean_values_and_unit_changes_fail(self):
         for value in (None, True, float("nan"), float("inf"), 10**400):

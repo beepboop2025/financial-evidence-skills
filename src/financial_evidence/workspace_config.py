@@ -17,6 +17,10 @@ forecasts. Liquidity percentiles retain the publisher's replay limitations.
 HTTP success describes retrieval, not freshness, usability or investment merit.
 Evidence Carrier verification is not performed. Use the source audit and original
 documents before making a research claim.
+
+USD Funding Review reads the most recent scheduled capture of nine required
+inputs. Its review status includes source disagreements and overdue publication
+checks. A stale or failed capture cannot be treated as a passing daily review.
 """
 
 
@@ -134,6 +138,39 @@ def widgets() -> dict:
                 "tool_id": "financial_evidence_query",
             },
         }
+    definitions["evidence_funding_review"] = {
+        "name": "USD Funding Review",
+        "description": "Nine required observations from one preserved capture, with publication checks and explicit review status.",
+        "category": "Financial Evidence",
+        "type": "table",
+        "endpoint": "api/v1/funding-review",
+        "source": "Seiche / Liquidity Lab",
+        "params": [],
+        "gridData": {"w": 40, "h": 14},
+        "data": {
+            "dataKey": "results",
+            "table": {
+                "columnsDefs": [
+                    {"field": field, "headerName": label, "cellDataType": kind}
+                    for field, label, kind in (
+                        ("metric_id", "Observation", "text"),
+                        ("value", "Value", "number"),
+                        ("unit", "Unit", "text"),
+                        ("observation_date", "Observation Date", "dateString"),
+                        ("value_state", "Availability", "text"),
+                        ("publisher_freshness", "Publisher Freshness", "text"),
+                        ("review_status", "Review Status", "text"),
+                        ("evaluated_at", "Capture Time", "text"),
+                        ("source", "Source", "text"),
+                    )
+                ]
+            },
+        },
+        "mcp_tool": {
+            "mcp_server": "Financial Evidence Workspace",
+            "tool_id": "financial_evidence_funding_review",
+        },
+    }
     return definitions
 
 
@@ -159,6 +196,14 @@ def apps(base_url: str) -> list[dict]:
             "img": base_url + "/thumbnail.svg",
             "allowCustomization": True,
             "tabs": {
+                "daily_review": {
+                    "id": "daily_review",
+                    "name": "USD Funding Review",
+                    "layout": [
+                        placement("guide", 0, 5, {}),
+                        placement("funding_review", 5, 14, {}),
+                    ],
+                },
                 "funding": {
                     "id": "funding",
                     "name": "Funding & Capital",
@@ -206,6 +251,7 @@ def apps(base_url: str) -> list[dict]:
             },
             "groups": [],
             "prompts": [
+                "Using @[id:evidence_funding_review], report the capture date, review status and each required funding observation. Inspect review issues before relying on the packet; do not treat an older capture as current.",
                 "Using @[id:evidence_money_markets], compare published overnight benchmarks with their dates and units. Identify unavailable inputs before drawing conclusions.",
                 "Using @[id:evidence_bank_risk], explain the covered-bank diagnostics and their construction-PIT limitations. Do not present them as credit ratings.",
                 "Using @[id:evidence_market_liquidity], distinguish visible observations from withheld measures and summarize the validation limits.",

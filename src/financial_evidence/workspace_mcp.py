@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import asyncio
-from typing import Annotated, Literal
+from typing import Annotated, Any, Literal
 
 from mcp.server.fastmcp import FastMCP
 from mcp.server.transport_security import TransportSecuritySettings
@@ -11,6 +11,7 @@ from mcp.types import ToolAnnotations
 from pydantic import Field
 
 from .core import route_manifest
+from .funding_archive import read_review
 from .models import QueryResult
 from .service import EvidenceService
 from .tables import Dataset, dataset_catalog
@@ -44,6 +45,7 @@ def create_mcp(
         "Financial Evidence Workspace",
         stateless_http=True,
         json_response=True,
+        max_request_body_size=65536,
         instructions=(
             "Start with financial_evidence_datasets, then query a bounded table. "
             "Cite source_url, source_field, as_of and unit. A transport success is not "
@@ -62,6 +64,11 @@ def create_mcp(
     def financial_evidence_datasets() -> dict:
         """Discover seven bounded OpenBB datasets, their coverage, filters and limits. Offline."""
         return {"datasets": dataset_catalog()}
+
+    @server.tool(annotations=local)
+    async def financial_evidence_funding_review() -> dict[str, Any]:
+        """Read the latest archived USD funding review and its nine required inputs. Inspect ready, issues and capture age; unavailable or stale captures never imply a passing review. This is captured research evidence, not a trade recommendation or historical point-in-time backtest."""
+        return await asyncio.to_thread(read_review)
 
     @server.tool(annotations=network)
     async def financial_evidence_query(
@@ -115,7 +122,8 @@ def create_mcp(
     def morning_funding_review() -> str:
         """Prepare a funding review grounded in published observations and explicit gaps."""
         return (
-            "Query money_markets and capital_markets, then inspect source_health. "
+            "Read financial_evidence_funding_review first and inspect ready, issues, capture age and source dates. "
+            "Then query money_markets and capital_markets and inspect source_health. "
             "Report observation dates, units and source URLs. Separate publisher commentary "
             "from observations. Identify missing, stale or restricted inputs using publisher "
             "metadata; do not infer freshness from retrieval time or compare rate levels as stress rankings."

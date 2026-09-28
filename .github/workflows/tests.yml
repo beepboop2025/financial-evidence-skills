@@ -110,7 +110,7 @@ jobs:
           else:
               raise RuntimeError("Workspace container did not become ready")
           with urllib.request.urlopen(base + "/widgets.json", timeout=5) as response:
-              assert len(json.load(response)) == 8
+              assert len(json.load(response)) == 9
           with urllib.request.urlopen(base + "/apps.json", timeout=5) as response:
               assert json.load(response)[0]["mcp_servers"][0]["url"] == base + "/mcp"
           request = urllib.request.Request(base + "/mcp", data=json.dumps({
@@ -119,7 +119,7 @@ jobs:
                                 "Accept": "application/json, text/event-stream",
                                 "MCP-Protocol-Version": "2025-11-25"})
           with urllib.request.urlopen(request, timeout=5) as response:
-              assert len(json.load(response)["result"]["tools"]) == 5
+              assert len(json.load(response)["result"]["tools"]) == 6
           PY
 
   distribution-contract:

@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import hashlib
 import os
+import re
 from contextlib import asynccontextmanager
 from typing import Annotated, Any
 from urllib.parse import urlsplit
@@ -16,6 +18,8 @@ from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 from . import __version__
 from .models import QueryResult
+from .funding_archive import read_export, read_review
+from .release import WORKSPACE_VERSION, release_identity
 from .service import EvidenceService
 from .tables import Dataset, dataset_catalog
 from .workspace_config import SCOPE, THUMBNAIL, apps, widgets
@@ -34,19 +38,20 @@ def create_app(
         or not parsed.hostname
         or parsed.username
         or parsed.password
-        or parsed.path
+        or (parsed.path and not re.fullmatch(r"(?:/[A-Za-z0-9_-]+)+", parsed.path))
         or parsed.query
         or parsed.fragment
     ):
         raise ValueError(
-            "base_url must be an HTTP(S) origin without credentials, path, query or fragment"
+            "base_url must be an HTTP(S) origin with an optional simple path prefix, without credentials, query or fragment"
         )
+    origin = f"{parsed.scheme}://{parsed.netloc}"
     origins = [
         "https://pro.openbb.co",
         "https://my.openbb.co",
         "http://localhost:6900",
         "http://127.0.0.1:6900",
-        base_url,
+        origin,
     ]
     origins += [
         value.strip()
@@ -68,6 +73,7 @@ def create_app(
             raise ValueError("Allowed origins must be explicit HTTP(S) origins")
     owned_service = service is None
     service = service or EvidenceService()
+    identity = release_identity()
     mcp = create_mcp(
         service,
         allowed_hosts=["127.0.0.1:*", "localhost:*", "[::1]:*", parsed.netloc],
@@ -86,7 +92,8 @@ def create_app(
 
     app = FastAPI(
         title="Financial Evidence for OpenBB",
-        version=__version__,
+        version=WORKSPACE_VERSION,
+        root_path=parsed.path,
         lifespan=lifespan,
         description="Seven source-cited datasets, Workspace widgets and read-only MCP. No API key required.",
     )
@@ -106,7 +113,13 @@ def create_app(
             "Mcp-Session-Id",
             "Last-Event-ID",
         ],
-        expose_headers=["Mcp-Session-Id"],
+        expose_headers=[
+            "Mcp-Session-Id",
+            "X-Financial-Evidence-Capture",
+            "X-Data-Readiness",
+            "X-Release-Identity",
+            "ETag",
+        ],
         allow_credentials=False,
     )
 
@@ -119,6 +132,7 @@ def create_app(
         return {
             "name": app.title,
             "version": __version__,
+            "release": identity,
             "docs": base_url + "/docs",
             "workspace_backend": base_url,
             "mcp": base_url + "/mcp",
@@ -132,7 +146,43 @@ def create_app(
             "status": "ok",
             "scope": "backend_process_only",
             "upstream_status": "not_checked",
+            "release_id": identity["release_id"],
         }
+
+    @app.get("/api/v1/release")
+    async def release() -> dict:
+        """Build identity; this does not assert data freshness or readiness."""
+        return identity
+
+    @app.get("/api/v1/funding-review")
+    async def funding_review() -> dict:
+        """Latest archived review with explicit capture age and data exceptions."""
+        return await asyncio.to_thread(read_review)
+
+    @app.get("/api/v1/funding-review.csv")
+    async def funding_review_csv():
+        """Latest verified export; stale or unavailable captures return 503."""
+        review, data = await asyncio.to_thread(read_export)
+        if data is None:
+            return JSONResponse(
+                status_code=503,
+                content={
+                    "status": "capture_unavailable_or_stale",
+                    "review": base_url + "/api/v1/funding-review",
+                },
+            )
+        return Response(
+            data,
+            media_type="text/csv",
+            headers={
+                "Cache-Control": "no-store",
+                "Content-Disposition": 'attachment; filename="funding-observations.csv"',
+                "X-Financial-Evidence-Capture": review["capture_id"],
+                "X-Data-Readiness": review["data_readiness"],
+                "X-Release-Identity": review["release_identity"],
+                "ETag": '"' + hashlib.sha256(data).hexdigest() + '"',
+            },
+        )
 
     @app.get("/widgets.json", include_in_schema=False)
     async def get_widgets():
@@ -207,7 +257,7 @@ def main() -> None:
     parser.add_argument(
         "--public-base-url",
         default=None,
-        help="Public origin advertised to OpenBB; configure this behind a reverse proxy.",
+        help="Public base URL advertised to OpenBB; the proxy must strip any path prefix.",
     )
     args = parser.parse_args()
     import uvicorn
@@ -218,7 +268,18 @@ def main() -> None:
         if ":" in advertised_host:
             advertised_host = f"[{advertised_host}]"
         base_url = f"http://{advertised_host}:{args.port}"
-    uvicorn.run(create_app(base_url=base_url), host=args.host, port=args.port)
+    uvicorn.run(
+        create_app(base_url=base_url),
+        host=args.host,
+        port=args.port,
+        limit_concurrency=64,
+        backlog=128,
+        timeout_keep_alive=5,
+        proxy_headers=True,
+        forwarded_allow_ips=os.getenv(
+            "FINANCIAL_EVIDENCE_TRUSTED_PROXIES", "127.0.0.1"
+        ),
+    )
 
 
 if __name__ == "__main__":

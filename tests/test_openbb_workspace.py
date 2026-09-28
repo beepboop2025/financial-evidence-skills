@@ -1,7 +1,11 @@
 """Exercise Workspace manifests, REST and real SDK MCP wire responses."""
 
 import asyncio
+from datetime import datetime
 import importlib.util
+import os
+from pathlib import Path
+import tempfile
 import unittest
 from unittest.mock import patch
 
@@ -19,7 +23,7 @@ HAS_OPENBB = importlib.util.find_spec("openbb_core") is not None
 class ManifestTests(unittest.TestCase):
     def test_layout_references_real_widgets_and_valid_default_parameters(self):
         definitions = widgets()
-        self.assertEqual(len(definitions), 8)
+        self.assertEqual(len(definitions), 9)
         app = apps("http://localhost:6900")[0]
         self.assertEqual(app["mcp_servers"][0]["url"], "http://localhost:6900/mcp")
         for tab in app["tabs"].values():
@@ -30,7 +34,8 @@ class ManifestTests(unittest.TestCase):
                     self.assertEqual(
                         widget["mcp_tool"]["mcp_server"], app["mcp_servers"][0]["name"]
                     )
-                    self.assertIn(placed["state"]["params"]["dataset"], DATASETS)
+                    if "dataset" in placed["state"]["params"]:
+                        self.assertIn(placed["state"]["params"]["dataset"], DATASETS)
                     declared = {param["paramName"] for param in widget["params"]}
                     self.assertTrue(set(placed["state"]["params"]).issubset(declared))
         history = definitions["evidence_money_market_history"]["data"]["table"]
@@ -109,6 +114,14 @@ class WorkspaceTests(unittest.TestCase):
         )
         self.assertEqual(self.calls, [])
 
+    def test_release_endpoint_agrees_with_health_without_fetching_sources(self):
+        release = self.client.get("/api/v1/release").json()
+        self.assertEqual(
+            release["release_id"], self.client.get("/healthz").json()["release_id"]
+        )
+        self.assertEqual(release, self.client.get("/").json()["release"])
+        self.assertEqual(self.calls, [])
+
     def test_unknown_host_and_untrusted_browser_origin_are_rejected(self):
         self.assertEqual(
             self.client.get("/healthz", headers={"Host": "evil.example"}).status_code,
@@ -150,7 +163,7 @@ class WorkspaceTests(unittest.TestCase):
             initialized["result"]["serverInfo"]["name"], "Financial Evidence Workspace"
         )
         tools = self.rpc("tools/list")["result"]["tools"]
-        self.assertEqual(len(tools), 5)
+        self.assertEqual(len(tools), 6)
         for tool in tools:
             self.assertTrue(tool["annotations"]["readOnlyHint"])
             self.assertFalse(tool["annotations"]["destructiveHint"])
@@ -206,6 +219,99 @@ class WorkspaceTests(unittest.TestCase):
             )
             self.assertEqual(response.status_code, 200, response.text)
             self.assertIsInstance(response.json()[widget["data"]["dataKey"]], list)
+
+    def test_proxy_prefix_preserves_manifests_docs_cors_and_mcp(self):
+        from fastapi.testclient import TestClient
+        from financial_evidence.workspace import create_app
+
+        base = "https://evidence.example/openbb"
+        app = create_app(service=self.service, base_url=base)
+        # Caddy strips /openbb before forwarding. Root-path metadata must
+        # still make docs and MCP-generated links point at the public prefix.
+        with TestClient(app, base_url="https://evidence.example") as client:
+            manifest = client.get("/apps.json").json()[0]
+            self.assertEqual(manifest["mcp_servers"][0]["url"], base + "/mcp")
+            self.assertIn("/openbb/openapi.json", client.get("/docs").text)
+            schema = client.get("/openapi.json").json()
+            self.assertEqual(schema["servers"][0]["url"], "/openbb")
+            response = client.options(
+                "/mcp",
+                headers={
+                    "Origin": "https://pro.openbb.co",
+                    "Access-Control-Request-Method": "POST",
+                },
+            )
+            self.assertEqual(response.status_code, 200)
+            response = client.post(
+                "/mcp",
+                json={
+                    "jsonrpc": "2.0",
+                    "id": 1,
+                    "method": "tools/list",
+                    "params": {},
+                },
+                headers={
+                    "Accept": "application/json, text/event-stream",
+                    "Origin": "https://pro.openbb.co",
+                },
+            )
+            self.assertEqual(response.status_code, 200, response.text)
+            self.assertEqual(len(response.json()["result"]["tools"]), 6)
+
+    def test_invalid_proxy_prefixes_are_rejected(self):
+        from financial_evidence.workspace import create_app
+
+        for suffix in ("/../secret", "/%2fsecret", "//openbb", "/openbb?token=a"):
+            with self.subTest(suffix=suffix), self.assertRaises(ValueError):
+                create_app(
+                    service=self.service, base_url="https://evidence.example" + suffix
+                )
+
+    def test_archived_funding_review_matches_rest_mcp_and_csv(self):
+        from test_capture_funding_review import capture, fetcher
+        from test_funding_review import NOW
+
+        class FrozenDatetime(datetime):
+            @classmethod
+            def now(cls, tz=None):
+                return cls.fromisoformat(NOW.replace("Z", "+00:00"))
+
+        with (
+            tempfile.TemporaryDirectory() as folder,
+            patch.dict(os.environ, {"FINANCIAL_EVIDENCE_REVIEW_DIR": folder}),
+        ):
+            with patch.object(capture, "utcnow", return_value=NOW):
+                capture.capture(Path(folder), fetcher=fetcher())
+            with patch("financial_evidence.funding_archive.datetime", FrozenDatetime):
+                rest = self.client.get("/api/v1/funding-review").json()
+                mcp = self.rpc(
+                    "tools/call",
+                    {"name": "financial_evidence_funding_review", "arguments": {}},
+                )
+                result = mcp["result"]["structuredContent"]
+                for key in (
+                    "capture_id",
+                    "manifest_sha256",
+                    "input_sha256",
+                    "results",
+                    "ready",
+                ):
+                    self.assertEqual(rest[key], result[key])
+                self.assertTrue(rest["ready"])
+                self.assertEqual(len(rest["results"]), 9)
+                csv = self.client.get("/api/v1/funding-review.csv")
+                self.assertEqual(csv.status_code, 200)
+                self.assertIn("policy.sofr,0,%,2026-09-25", csv.text)
+            # Explicitly missing capture storage must never reuse those rows.
+            with patch.dict(
+                os.environ, {"FINANCIAL_EVIDENCE_REVIEW_DIR": folder + "/missing"}
+            ):
+                self.assertEqual(
+                    self.client.get("/api/v1/funding-review.csv").status_code, 503
+                )
+                self.assertFalse(
+                    self.client.get("/api/v1/funding-review").json()["ready"]
+                )
 
 
 @unittest.skipUnless(HAS_OPENBB, "Install .[openbb] for OpenBB integration tests")

@@ -9,7 +9,7 @@ import urllib.request
 from datetime import datetime, timezone
 
 
-def verify(base_url):
+def verify(base_url, expected_source_commit=None):
     base_url = base_url.rstrip("/")
     headers = {
         "User-Agent": "Financial-Evidence-Operator-Verification/1.0",
@@ -52,9 +52,17 @@ def verify(base_url):
         "backend": base_url,
         "datasets": {},
     }
-    assert get("/healthz")["status"] == "ok"
+    health = get("/healthz")
+    assert health["status"] == "ok"
+    report["release"] = get("/api/v1/release")
+    assert health["release_id"] == report["release"]["release_id"]
+    if expected_source_commit:
+        assert report["release"]["source_commit"] == expected_source_commit, report[
+            "release"
+        ]
     definitions = get("/widgets.json")
     app = get("/apps.json")[0]
+    assert app["mcp_servers"][0]["url"] == base_url + "/mcp"
     assert all(
         widget["i"] in definitions
         for tab in app["tabs"].values()
@@ -84,7 +92,7 @@ def verify(base_url):
         },
     )["serverInfo"]
     tools = rpc("tools/list")["tools"]
-    assert len(tools) == 5 and all(
+    assert len(tools) == 6 and all(
         tool["annotations"]["readOnlyHint"] for tool in tools
     )
     result = rpc(
@@ -105,5 +113,6 @@ def verify(base_url):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--url", default="http://127.0.0.1:6900")
+    parser.add_argument("--expected-source-commit")
     args = parser.parse_args()
-    print(json.dumps(verify(args.url), indent=2))
+    print(json.dumps(verify(args.url, args.expected_source_commit), indent=2))

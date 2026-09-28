@@ -1,11 +1,14 @@
 # Financial Evidence Agent Skills
 
-**New in this source tree: [OpenBB Research Desk](integrations/openbb/README.md).**
-Seven cited datasets, a six-tab Workspace app, benchmark history charts, typed
-REST responses and a five-tool MCP server connect all four projects. Install
+**[OpenBB Research Desk](integrations/openbb/README.md), Workspace release 1.0.0.**
+Seven cited datasets, a seven-tab Workspace app, an archived USD funding review,
+benchmark history charts, typed REST responses and a six-tool MCP server connect
+all four projects. The hosted deployment target is `https://api.seiche.info/openbb`.
+Install
 `.[openbb,workspace]` from this checkout, then run `openbb-build` and
 `financial-evidence-api`. These additions are not in the published v0.1.5 wheel
-or the existing public three-tool MCP deployment.
+or the existing public three-tool MCP deployment. The Workspace release identifies
+its exact source commit independently at `/api/v1/release`.
 
 **Check a captured USD funding review:** the [funding review checks](integrations/funding-review/README.md)
 compare required inputs, units, source clocks and SOFR consistency across Seiche

@@ -1,0 +1,12 @@
+[Unit]
+Description=Sample USD funding availability and data quality every 15 minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=15min
+AccuracySec=30s
+RandomizedDelaySec=30s
+Unit=financial-evidence-funding-review.service
+
+[Install]
+WantedBy=timers.target

@@ -1,12 +1,19 @@
 # Financial Evidence for OpenBB
 
 Use Seiche, LiquiLens, Undertow and Palimpsest from one OpenBB research desk.
-The source upgrade adds seven datasets, eight Workspace widgets, six dashboard
-tabs, five SDK-backed MCP tools, two research prompts and a typed REST API.
+The Workspace release adds seven datasets, nine Workspace widgets, seven dashboard
+tabs, six SDK-backed MCP tools, two research prompts and a typed REST API.
 
-These features require this source tree. The published **v0.1.5 artifacts and
-public three-tool MCP endpoint do not include the new Workspace backend**.
-This is a self-hosted integration; it is not an OpenBB marketplace acceptance.
+Workspace is independently versioned as **workspace-1.0.0**, with the exact source
+commit exposed at `/api/v1/release`. The published **v0.1.5 artifacts and public
+three-tool MCP endpoint retain their existing contract**. A hosted custom backend
+is separate from acceptance in OpenBB's directory.
+
+The production deployment target is **https://api.seiche.info/openbb**. Add that
+URL as a custom backend in OpenBB Workspace. Its MCP endpoint is
+`https://api.seiche.info/openbb/mcp`; interactive documentation is at
+`https://api.seiche.info/openbb/docs`. Check the release and source status before
+relying on any current deployment.
 
 ## Start the Workspace backend
 
@@ -24,11 +31,18 @@ No financial-data account or API key is required. OpenBB itself may require an
 account. If the browser is on a different machine, use a reachable HTTPS backend
 origin instead of that browser's own loopback address.
 
-The app has Funding & Capital, Benchmark History, Bank Research, Market
+The app has USD Funding Review, Funding & Capital, Benchmark History, Bank Research, Market
 Liquidity, China Coverage and Source Audit tabs. The history widget initially
 charts US-USD; keep one entity selected when comparing a series over time.
 Other widgets present tables, keeping units, dates, availability and limitations
 next to the observations. Tables can be exported from Workspace.
+
+USD Funding Review reads one immutable scheduled capture containing nine required
+observations and consistency checks. `/api/v1/funding-review` provides its capture
+age, exceptions and source hashes; `/api/v1/funding-review.csv` exports its rows
+for spreadsheets and SQL. If capture storage is missing or overdue, the review
+reports unavailable/stale and CSV returns 503. A captured review with data issues
+retains the issues rather than silently substituting an older passing review.
 
 ## Python / notebooks
 
@@ -98,6 +112,7 @@ Interactive API documentation is at `/docs`; the typed specification is at
 in OpenBB, or connect it from the app's MCP entry. It exposes:
 
 - `financial_evidence_datasets`: offline catalog and coverage.
+- `financial_evidence_funding_review`: latest archived funding review, exceptions and capture age.
 - `financial_evidence_query`: filtered, paginated, cited table rows.
 - `financial_evidence_sources`: source health and provenance audit.
 - `financial_evidence_route`: offline routing to fixed public sources.
@@ -124,6 +139,17 @@ and credentialed origins are rejected. The server has host and MCP origin checks
 Apply deployment-specific rate and connection limits at the proxy for a public
 service. It is a public read-only backend and has no built-in user authentication.
 
+A safe path prefix such as `/openbb` is supported; configure the proxy to strip
+it before forwarding. The checked-in [Caddy fragment](Caddyfile.fragment) includes
+a 64 KiB request limit and delegates origin checks to the application. Uvicorn
+limits concurrent connections to 64; the service template bounds container CPU,
+memory and processes. These limits do not create per-organization entitlements.
+
+Set `FINANCIAL_EVIDENCE_REVIEW_DIR` to the read-only mounted review archive. The
+[capture service and timer](../funding-review/OPERATIONS.md) must write that archive
+under the same dedicated UID as its container reader. Capture ownership does
+not grant the API write access to the archive.
+
 The cache stores at most six fixed sources in process memory, with four network
 workers and one in-flight request per source. Successful responses cache for 60
 seconds, failures for five. Cached retrieval time and source dates never advance.
@@ -134,7 +160,7 @@ whole-response deadline. Each server process has its own cache.
 Use the separate container recipe from the repository root:
 
 ```bash
-docker build -f integrations/openbb/Dockerfile -t financial-evidence-workspace .
+docker build -f integrations/openbb/Dockerfile --build-arg SOURCE_COMMIT="$(git rev-parse HEAD)" -t financial-evidence-workspace .
 docker run --rm --read-only --cap-drop ALL --security-opt no-new-privileges \
   -p 127.0.0.1:6900:6900 financial-evidence-workspace
 python scripts/verify_openbb_workspace.py --url http://127.0.0.1:6900

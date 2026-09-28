@@ -287,7 +287,14 @@ def common_horizon_evidence(desk, market, history, now):
             canonical_asof = iorb["asof"]
         elif name == "liquidity.srf":
             value = srf_points.get(horizon.isoformat())
-            if not _number(value) or round(value / 1000, 2) != card["value"]:
+            # The published desk chart uses two decimal places in $B. Preserve
+            # that precision for nonzero displayed amounts, but do not let a
+            # positive sub-$5M use round into evidence of zero facility use.
+            if (
+                not _number(value)
+                or (card["value"] == 0 and value != 0)
+                or round(value / 1000, 2) != card["value"]
+            ):
                 raise ValueError("SRF differs from its canonical historical point")
             canonical_asof = srf["asof"]
         result[name] = {

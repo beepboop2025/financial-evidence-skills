@@ -197,6 +197,29 @@ class FundingHorizonTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.check()
 
+    def test_nonzero_srf_cannot_qualify_a_rounded_zero(self):
+        # $1M is 0.001B and would round to the desk's displayed 0.00B.
+        for value in (1, 4.9, -1):
+            with self.subTest(canonical_millions=value):
+                self.market["metrics"][2]["history"][1][1] = value
+                with self.assertRaises(ValueError):
+                    self.check()
+        self.market["metrics"][2]["history"][1][1] = 0
+        proof = self.check()
+        self.assertEqual(
+            proof["historical_observation_checks"]["liquidity.srf"]["value"], 0
+        )
+
+    def test_nonzero_srf_preserves_documented_display_precision(self):
+        self.market["metrics"][2]["history"][1][1] = 123
+        for document in (self.desk, self.history):
+            self.card("liquidity.srf", document)["value"] = 0.12
+        self.history["charts"]["liquidity"]["rows"][-1][4] = 0.12
+        proof = self.check()
+        self.assertEqual(
+            proof["historical_observation_checks"]["liquidity.srf"]["value"], 0.12
+        )
+
     def test_duplicate_canonical_dates_rejected(self):
         row = self.market["metrics"][0]
         row["history"].insert(0, row["history"][0][:])

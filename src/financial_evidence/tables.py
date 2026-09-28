@@ -103,7 +103,7 @@ def _json(value: Any) -> str:
     return json.dumps(value, ensure_ascii=False, sort_keys=True, allow_nan=False)
 
 
-def _blocked(value: dict) -> bool:
+def _blocked(value: dict, *, raw_observation: bool = False) -> bool:
     # Fail closed on explicit source restrictions; do not infer approval.
     states = [
         value.get(k)
@@ -117,9 +117,18 @@ def _blocked(value: dict) -> bool:
         "denied",
         "pending",
         "review_required",
+        "prohibited",
+        "metadata_only",
     )
+    if raw_observation:
+        # Projecting an upstream number into a new table is still raw
+        # redistribution. It does not make a benchmark or price a derivative.
+        denied += ("derived_only",)
     return value.get("publication_allowed") is False or any(
-        any(word in str(state).lower() for word in denied)
+        any(
+            word in str(state).strip().lower().replace("-", "_").replace(" ", "_")
+            for word in denied
+        )
         for state in states
         if state is not None
     )
@@ -163,7 +172,9 @@ def _rates(source: dict, dataset: str) -> list[dict]:
         item = _obj(item)
         benchmark = _obj(item.get("benchmark"))
         base = f"/markets/{index}/benchmark"
-        blocked = _blocked(document) or _blocked(item) or _blocked(benchmark)
+        blocked = any(
+            _blocked(node, raw_observation=True) for node in (document, item, benchmark)
+        )
         fields = {
             "entity_id": _text(item.get("market_id")),
             "entity_name": _text(item.get("display_name")),
@@ -236,7 +247,8 @@ def _capital(source: dict) -> list[dict]:
     risk_context = _obj(capital.get("risk_context"))
     prices = _obj(risk_context.get("market_prices"))
     parent_blocked = any(
-        _blocked(item) for item in (document, capital, risk_context, prices)
+        _blocked(item, raw_observation=True)
+        for item in (document, capital, risk_context, prices)
     )
     rows = []
     for key, label, unit in (
@@ -245,7 +257,9 @@ def _capital(source: dict) -> list[dict]:
     ):
         value = _obj(prices.get(key))
         number = (
-            None if parent_blocked or _blocked(value) else _number(value.get("value"))
+            None
+            if parent_blocked or _blocked(value, raw_observation=True)
+            else _number(value.get("value"))
         )
         rows.append(
             _row(

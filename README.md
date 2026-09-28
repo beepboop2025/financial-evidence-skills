@@ -7,6 +7,11 @@ REST responses and a five-tool MCP server connect all four projects. Install
 `financial-evidence-api`. These additions are not in the published v0.1.5 wheel
 or the existing public three-tool MCP deployment.
 
+**Check a captured USD funding review:** the [funding review checks](integrations/funding-review/README.md)
+compare required inputs, units, source clocks and SOFR consistency across Seiche
+surfaces. Missing, aging or contradictory evidence requires attention; passing
+these checks is not an institutional-readiness certification.
+
 **Three concrete jobs:** [funding review, Cosmos Bank NPAs and a $100k BTC exit](https://beepboop2025.github.io/financial-evidence-skills/automations/)
 with native n8n workflows and optional Slack/Telegram delivery. The
 [Cursor task plugin](.cursor-plugin/plugin.json) bundles the same three focused

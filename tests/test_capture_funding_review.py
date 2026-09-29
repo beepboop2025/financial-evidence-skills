@@ -245,6 +245,47 @@ class CaptureTests(unittest.TestCase):
         self.assertEqual(len(attempts), 1)
         sleep.assert_not_called()
 
+    def boundary(self, before="2026-09-28T19:15:00Z", after="2026-09-28T19:16:00Z"):
+        directory = self.output / "boundary"
+        directory.mkdir(exist_ok=True)
+        manifest = {"evaluated_at": NOW, "artifact_sha256": {}}
+        for name, at in (("desk.json", before), ("desk-history.response", after)):
+            document = {"schema": "seiche.money-market-desk.v1", "asof": "2026-09-25",
+                        "snapshot_generated_at": at,
+                        "methodology": {"evidence_horizon": capture.funding_horizon.HORIZON_RULE}}
+            raw = capture.encoded(document)
+            (directory / name).write_bytes(raw)
+            manifest["artifact_sha256"][name] = capture.sha256(raw)
+        issues = [{"code": "common_horizon_not_verified", "subject": "desk.evidence_horizon"}]
+        return directory, manifest, issues
+
+    def test_forward_snapshot_boundary_can_be_rechecked_but_not_accepted(self):
+        directory, manifest, issues = self.boundary()
+        self.assertTrue(capture.snapshot_recheckable(directory, manifest, issues))
+        self.assertTrue(capture.snapshot_recheckable(directory, manifest, issues +
+            [{"code": "snapshot_too_old", "subject": "desk"}]))
+        self.assertFalse(capture.snapshot_recheckable(directory, manifest, issues +
+            [{"code": "required_value_unavailable", "subject": "policy.sofr"}]))
+
+    def test_same_backward_and_future_snapshots_are_not_boundary_retries(self):
+        for before, after in (("2026-09-28T19:15:00Z", "2026-09-28T19:15:00Z"),
+                              ("2026-09-28T19:16:00Z", "2026-09-28T19:15:00Z"),
+                              ("2026-09-28T19:15:00Z", "2026-09-28T19:18:00Z")):
+            with self.subTest(before=before, after=after):
+                self.assertFalse(capture.snapshot_recheckable(*self.boundary(before, after)))
+
+    def test_tampered_snapshot_cannot_authorize_recheck(self):
+        directory, manifest, issues = self.boundary()
+        (directory / "desk-history.response").write_text("{}")
+        with self.assertRaisesRegex(ValueError, "retained snapshot changed"):
+            capture.snapshot_recheckable(directory, manifest, issues)
+
+    def test_mcp_and_full_history_reads_are_adjacent(self):
+        client = fetcher()
+        self.run_capture(fetcher=client)
+        names = [row[0] for row in client.calls]
+        self.assertEqual(names[names.index("funding-desk")+1], "desk-history")
+
     def test_snapshot_recheck_count_cannot_be_unbounded(self):
         for value in (-1, 3, True, 1.5):
             with self.subTest(value=value), self.assertRaises(ValueError):

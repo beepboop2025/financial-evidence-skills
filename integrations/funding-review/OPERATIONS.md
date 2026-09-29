@@ -134,8 +134,12 @@ timeout is 15 seconds, configurable from 1 to 30. Reads check elapsed time betwe
 single socket operations, so a slow body can take approximately twice the timeout.
 Individual HTTP requests are not retried. The CLI defaults to one capture.
 `--snapshot-rechecks 2` permits at most two additional captures, 45 seconds apart,
-only when snapshot age is the sole review failure and availability and any
-requested release identity pass. A new capture must pass the unchanged age limit;
+only for snapshot-age failures or a hash-verified forward snapshot change between
+the MCP desk and its full history response, with no other review failure and
+with availability and any requested release identity passing. Those two reads
+are adjacent to reduce the publication-boundary window. A single-snapshot
+inconsistency, backward snapshot change or future clock is not retried. A new
+capture must pass the unchanged snapshot-identity, value and age checks;
 missing data, restrictions, publisher freshness failures, future clocks and
 identity mismatches are not retried. Every attempt remains in the archive and
 updates the live summary, including failures. CLI output lists `capture_attempts`.

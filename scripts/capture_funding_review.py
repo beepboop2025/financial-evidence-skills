@@ -590,8 +590,8 @@ def capture(
         },
         session,
     )
-    request("atlas", ORIGIN + "/api/v2/money-markets")
     request("desk-history", ORIGIN + "/api/money-markets")
+    request("atlas", ORIGIN + "/api/v2/money-markets")
     request("health", ORIGIN + "/api/health")
     if backend:
         request("backend-health", backend + "/healthz")
@@ -612,8 +612,47 @@ def capture(
     return directory, manifest
 
 
+def snapshot_recheckable(directory, manifest, issues):
+    """Recognize age-only failures or a proven forward publication boundary."""
+    if not issues:
+        return False
+    boundary = False
+    for issue in issues:
+        if issue.get("code") == "snapshot_too_old" and issue.get("subject") in {
+            "desk", "atlas", "health", "desk_history"
+        }:
+            continue
+        if issue == {"code": "common_horizon_not_verified", "subject": "desk.evidence_horizon"}:
+            boundary = True
+            continue
+        return False
+    if not boundary:
+        return True
+    documents = []
+    for name in ("desk.json", "desk-history.response"):
+        raw = (directory / name).read_bytes()
+        if sha256(raw) != manifest["artifact_sha256"][name]:
+            raise ValueError("retained snapshot changed before coherence recheck")
+        documents.append(strict_json(raw))
+    desk, history = documents
+    if any(not isinstance(document, dict)
+           or document.get("schema") != "seiche.money-market-desk.v1"
+           or not isinstance(document.get("methodology"), dict)
+           or document["methodology"].get("evidence_horizon") != funding_horizon.HORIZON_RULE
+           for document in documents) or desk.get("asof") != history.get("asof"):
+        return False
+    try:
+        before, after = [timestamp(document.get("snapshot_generated_at")) for document in documents]
+        evaluated = timestamp(manifest["evaluated_at"])
+    except (ValueError, TypeError, OverflowError):
+        return False
+    # A single-snapshot inconsistency, backwards movement or future clock is
+    # not a publication race. This changes retry admission, never readiness.
+    return before < after <= evaluated
+
+
 def capture_with_snapshot_rechecks(output, *, snapshot_rechecks=0, **kwargs):
-    """Retain each observation; retry only a snapshot-age-only review failure."""
+    """Retain each observation; retry bounded snapshot age/coherence failures."""
     if type(snapshot_rechecks) is not int or not 0 <= snapshot_rechecks <= 2:
         raise ValueError("snapshot rechecks must be between 0 and 2")
     attempts = []
@@ -631,11 +670,7 @@ def capture_with_snapshot_rechecks(output, *, snapshot_rechecks=0, **kwargs):
         if sha256(raw) != manifest["artifact_sha256"]["review.json"]:
             raise ValueError("retained review changed before snapshot recheck")
         issues = strict_json(raw)["issues"]
-        if not issues or any(
-            issue.get("code") != "snapshot_too_old"
-            or issue.get("subject") not in {"desk", "atlas", "health", "desk_history"}
-            for issue in issues
-        ):
+        if not snapshot_recheckable(directory, manifest, issues):
             break
         time.sleep(45)
     return directory, manifest, attempts

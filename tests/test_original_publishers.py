@@ -134,15 +134,23 @@ class PublisherTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 self.build()
 
-    def test_partial_srf_and_rounded_nonzero_fail(self):
+    def test_partial_srf_fails_and_small_nonzero_is_preserved(self):
         value = source.strict_json(self.documents["srf"])
         value["repo"]["operations"][0]["totalAmtAccepted"] = 1000000
         self.documents["srf"] = encoded(value)
-        with self.assertRaisesRegex(ValueError, "disagrees"):
-            self.build()
+        review, csv_raw, _ = self.build()
+        self.assertEqual(review["results"][8]["value"], 0.001)
+        self.assertIn(b"0.001", csv_raw)
         value["repo"]["operations"].pop()
         self.documents["srf"] = encoded(value)
         with self.assertRaisesRegex(ValueError, "incomplete"):
+            self.build()
+
+    def test_disagreement_beyond_reference_precision_fails(self):
+        value = source.strict_json(self.documents["srf"])
+        value["repo"]["operations"][0]["totalAmtAccepted"] = 10000000
+        self.documents["srf"] = encoded(value)
+        with self.assertRaisesRegex(ValueError, "disagrees"):
             self.build()
 
     def test_reserves_reject_changed_header_and_wrong_reference_date(self):

@@ -14,7 +14,7 @@
     "latest_per_instrument": false,
     "reference_release": "workspace-1.0.1+6aa5d7a22823",
     "reference_source_commit": "6aa5d7a22823b2490d7500afeba18174ca2e8822",
-    "method": "independently retrieve original-publisher values for the reference observation dates; compare within reference display precision of 0.005; a reference zero requires an exact original-publisher zero",
+    "method": "independently retrieve original-publisher values for the reference observation dates; compare within reference display precision of 0.005, including reference values displayed as zero; retain full original-publisher precision so nonzero source values remain nonzero in the packet",
     "cadence": "15-minute capture attempts, subject to publisher availability",
     "freshness": "1200-second maximum elapsed age for both the source capture and successful packet acquisition; this is capture freshness, not every input observation age",
     "missing_policy": "Fail the attempt on missing, ambiguous, mismatched, stale or restricted evidence; latest never substitutes a preceding successful packet",

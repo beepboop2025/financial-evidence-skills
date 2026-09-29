@@ -48,7 +48,10 @@ Each packet includes the original source URLs, response hashes, retrieval
 clocks and field lineage. The pinned Workspace review supplies a reference
 horizon and release/readiness metadata. Original-publisher values are fetched
 independently and compared with that reference within its two-decimal display
-precision. FRED-derived reference bodies are not retained in this new archive.
+precision. For example, USD 1 million of repo usage stays USD 0.001 billion
+in the packet even if the reference screen displays 0.00. Missing source values
+are never replaced with a reference value or with zero. FRED-derived reference
+bodies are not retained in this new archive.
 
 Packets align SOFR and IORB to a common horizon. Every input retains its own
 observation date and a flag when the acquired publisher document contains a

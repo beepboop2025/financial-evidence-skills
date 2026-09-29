@@ -213,12 +213,39 @@ class FundingHorizonTests(unittest.TestCase):
     def test_nonzero_srf_preserves_documented_display_precision(self):
         self.market["metrics"][2]["history"][1][1] = 123
         for document in (self.desk, self.history):
-            self.card("liquidity.srf", document)["value"] = 0.12
+            self.card("liquidity.srf", document)["value"] = 0.123
         self.history["charts"]["liquidity"]["rows"][-1][4] = 0.12
         proof = self.check()
         self.assertEqual(
-            proof["historical_observation_checks"]["liquidity.srf"]["value"], 0.12
+            proof["historical_observation_checks"]["liquidity.srf"]["value"], 0.123
         )
+
+    def test_small_srf_keeps_nonzero_card_and_canonical_amount(self):
+        self.market["metrics"][2]["history"][1][1] = 1
+        for document in (self.desk, self.history):
+            self.card("liquidity.srf", document)["value"] = 0.001
+        original = copy.deepcopy((self.desk, self.market, self.history))
+        proof = self.check()["historical_observation_checks"]["liquidity.srf"]
+        self.assertEqual(proof["value"], 0.001)
+        self.assertEqual(proof["canonical_value_millions"], 1)
+        self.assertEqual(proof["own_history_chart_value"], 0)
+        self.assertEqual((self.desk, self.market, self.history), original)
+
+    def test_srf_precision_cannot_excuse_changed_card_chart_or_source(self):
+        for changed in ("card", "chart", "source"):
+            with self.subTest(changed=changed):
+                self.setUp()
+                self.market["metrics"][2]["history"][1][1] = 1
+                for document in (self.desk, self.history):
+                    self.card("liquidity.srf", document)["value"] = (
+                        0.002 if changed == "card" else 0.001
+                    )
+                if changed == "chart":
+                    self.history["charts"]["liquidity"]["rows"][-1][4] = 0.01
+                if changed == "source":
+                    self.market["metrics"][2]["history"][1][1] = 2
+                with self.assertRaises(ValueError):
+                    self.check()
 
     def test_duplicate_canonical_dates_rejected(self):
         row = self.market["metrics"][0]

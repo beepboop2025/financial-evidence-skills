@@ -70,6 +70,37 @@ def full_review():
 
 
 class HorizonReviewTests(unittest.TestCase):
+    def test_small_srf_survives_capture_reader_csv_and_replay(self):
+        desk, atlas, health, history = full_review()
+        for document in (desk, history):
+            for card in document["sections"][0]["metrics"]:
+                if card["id"] == "liquidity.srf":
+                    card["value"] = 0.001
+        srf = next(
+            row for row in atlas["markets"][0]["metrics"]
+            if row["id"] == "US.NYFED.SRF_TAKEUP"
+        )
+        srf["history"][1][1] = 1
+        bodies = responses((desk, atlas, health))
+        bodies["desk-history"] = json.dumps(history).encode()
+        with (
+            tempfile.TemporaryDirectory() as folder,
+            patch.object(capture, "utcnow", return_value=NOW),
+            patch.dict(os.environ, {"FINANCIAL_EVIDENCE_SOURCE_COMMIT": ""}),
+        ):
+            path, manifest = capture.capture(Path(folder), fetcher=fetcher(bodies))
+            self.assertTrue(manifest["ready"])
+            self.assertTrue(read_review(folder, now=NOW)["ready"])
+            rows = list(csv.DictReader(io.StringIO(load_csv(folder, now=NOW).decode())))
+            row = next(row for row in rows if row["metric_id"] == "liquidity.srf")
+            self.assertEqual(row["value"], "0.001")
+            replay_path, replay_manifest = capture.replay(path, Path(folder))
+            self.assertTrue(replay_manifest["ready"])
+            self.assertEqual(
+                (replay_path / "funding-observations.csv").read_bytes(),
+                (path / "funding-observations.csv").read_bytes(),
+            )
+
     def test_aging_common_horizon_passes_without_calling_old_values_current(self):
         desk, atlas, health, history = full_review()
         result = evaluate(desk, atlas, health, desk_history=history, evaluated_at=NOW)

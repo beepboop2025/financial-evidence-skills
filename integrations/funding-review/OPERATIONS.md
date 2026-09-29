@@ -154,6 +154,20 @@ accepted basis; do not treat a future deadline alone as proof of freshness.
 
 ## Scheduled operation
 
+The historical SRF check verifies the card's three decimal places and the chart's
+two decimal places in billions against the same canonical observation in
+millions. A $1 million operation remains $0.001 billion in the review and CSV,
+even when its chart displays $0.00 billion. A zero card still requires a genuine
+zero canonical observation. Each capture fingerprints this checker implementation;
+older captures require their original implementation for deterministic replay.
+
+The capture generator can be deployed from a separate immutable source directory
+using a service override for `WorkingDirectory` and `ExecStart`. Its implementation
+fingerprints identify the generator independently of the observed Workspace
+backend release. Keep the expected backend release pinned to the actual backend,
+retain previous generator releases for replay, and record the generator commit and
+source archive hash in the deployment receipt.
+
 A configured live Workspace requires the captured backend's complete release
 identity to match its current runtime. After an upgrade, an older matched capture
 is exposed as `runtime_release_identity=mismatch`, is not ready, and has no CSV

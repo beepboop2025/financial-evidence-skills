@@ -278,7 +278,7 @@ def common_horizon_evidence(desk, market, history, now):
             raise ValueError("own source metadata missing or inconsistent")
         _allowed(matches[0])
         point = _chart_point(history, chart_id, column, horizon)
-        if not _equal(card["value"], point):
+        if name != "liquidity.srf" and not _equal(card["value"], point):
             raise ValueError("card differs from its own chart point")
         canonical_asof = None
         if name == "policy.iorb":
@@ -287,13 +287,14 @@ def common_horizon_evidence(desk, market, history, now):
             canonical_asof = iorb["asof"]
         elif name == "liquidity.srf":
             value = srf_points.get(horizon.isoformat())
-            # The published desk chart uses two decimal places in $B. Preserve
-            # that precision for nonzero displayed amounts, but do not let a
-            # positive sub-$5M use round into evidence of zero facility use.
+            # The SRF card uses three decimals in $B, while its chart uses two.
+            # Verify both against the same canonical amount in $M. A rounded
+            # chart zero is display precision, never proof of zero facility use.
             if (
                 not _number(value)
                 or (card["value"] == 0 and value != 0)
-                or round(value / 1000, 2) != card["value"]
+                or round(value / 1000, 3) != card["value"]
+                or round(value / 1000, 2) != point
             ):
                 raise ValueError("SRF differs from its canonical historical point")
             canonical_asof = srf["asof"]
@@ -301,7 +302,7 @@ def common_horizon_evidence(desk, market, history, now):
             "asof": horizon.isoformat(),
             "own_history_chart": chart_id,
             "own_history_column": column,
-            "value": point,
+            "value": card["value"],
             "unit": card["unit"],
             "publisher_freshness": card["freshness"],
             "canonical_latest_asof": canonical_asof,
@@ -310,6 +311,13 @@ def common_horizon_evidence(desk, market, history, now):
             else None,
             "basis": "verified_own_observation_at_common_sofr_iorb_horizon",
         }
+        if name == "liquidity.srf":
+            result[name].update(
+                canonical_value_millions=value,
+                own_history_chart_value=point,
+                card_decimal_places=3,
+                chart_decimal_places=2,
+            )
     return {
         "review_scope": "common_sofr_iorb_horizon",
         "review_asof": horizon.isoformat(),

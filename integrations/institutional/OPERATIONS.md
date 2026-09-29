@@ -20,7 +20,13 @@ packet. It does not turn historical observation dates into earlier knowledge.
 - `financial-evidence-packets.service`: container on loopback port 6910,
   non-root, read-only filesystem, restricted resources, archive mounted read-only.
   The separate usage mount contains optional consented counters only.
-- `financial-evidence-packet-capture.timer`: :08/:23/:38/:53 UTC, up to 20
+- `financial-evidence-packet-capture.path`: watches the source review's atomically
+  replaced `current.json` and starts the existing capture service after each
+  completed observation, including failed observations and bounded rechecks.
+  systemd serializes this with timer starts and checks the watched path again
+  after the capture service exits. Enable this path unit on the source host.
+  The packet's original source clock and 1200-second limit remain unchanged.
+- `financial-evidence-packet-capture.timer`: fallback at :08/:23/:38/:53 UTC, up to 20
   seconds jitter, plus an initial attempt one minute after activation. Fetches the existing review and matching CSV, then seven
   bounded original-publisher documents. A failed source or mismatch records an
   unsuccessful attempt; `/latest` never falls back to an earlier success.

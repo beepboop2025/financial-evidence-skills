@@ -1,0 +1,11 @@
+[Unit]
+Description=Hourly funding capture backup independent of the Mac
+
+[Timer]
+OnCalendar=hourly
+RandomizedDelaySec=3m
+Persistent=true
+Unit=financial-evidence-funding-offsite.service
+
+[Install]
+WantedBy=timers.target

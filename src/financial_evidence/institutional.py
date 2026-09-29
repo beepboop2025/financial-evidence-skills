@@ -181,6 +181,21 @@ def archive_once(
                     "knowledge_time_basis": "first_verified_in_this_forward_archive",
                     "source_release": RELEASE,
                     "source_commit": SOURCE,
+                    "producer_source_commit": os.environ.get(
+                        "FINANCIAL_EVIDENCE_SOURCE_COMMIT", "unknown"
+                    ),
+                    "producer_modules_sha256": {
+                        name: digest(Path(__file__).with_name(name).read_bytes())
+                        for name in (
+                            "institutional.py",
+                            "original_publishers.py",
+                            "reliability.py",
+                            "funding_archive.py",
+                        )
+                    },
+                    "method_version": review.get(
+                        "method_version", "synthetic_test_fixture"
+                    ),
                     "review_asof": review.get("review_asof"),
                     "review_scope": review.get("review_scope"),
                     "latest_per_instrument": False,

@@ -612,6 +612,35 @@ def capture(
     return directory, manifest
 
 
+def capture_with_snapshot_rechecks(output, *, snapshot_rechecks=0, **kwargs):
+    """Retain each observation; retry only a snapshot-age-only review failure."""
+    if type(snapshot_rechecks) is not int or not 0 <= snapshot_rechecks <= 2:
+        raise ValueError("snapshot rechecks must be between 0 and 2")
+    attempts = []
+    for attempt in range(snapshot_rechecks + 1):
+        directory, manifest = capture(output, **kwargs)
+        attempts.append(directory)
+        if (
+            attempt == snapshot_rechecks
+            or manifest["availability"] != "available"
+            or manifest["release_identity"] not in {"matched", "observed", "not_requested"}
+            or manifest["data_readiness"] != "attention_required"
+        ):
+            break
+        raw = (directory / "review.json").read_bytes()
+        if sha256(raw) != manifest["artifact_sha256"]["review.json"]:
+            raise ValueError("retained review changed before snapshot recheck")
+        issues = strict_json(raw)["issues"]
+        if not issues or any(
+            issue.get("code") != "snapshot_too_old"
+            or issue.get("subject") not in {"desk", "atlas", "health", "desk_history"}
+            for issue in issues
+        ):
+            break
+        time.sleep(45)
+    return directory, manifest, attempts
+
+
 def replay(source, output):
     manifest, manifest_hash = load_document(source / "manifest.json")
     if manifest.get("schema") != SCHEMA:
@@ -683,6 +712,7 @@ def main(argv=None):
     parser.add_argument("--expected-release")
     parser.add_argument("--timeout", type=float, default=15)
     parser.add_argument("--max-snapshot-age-seconds", type=int, default=900)
+    parser.add_argument("--snapshot-rechecks", type=int, choices=(0, 1, 2), default=0)
     parser.add_argument("--replay", type=Path)
     args = parser.parse_args(argv)
     try:
@@ -694,21 +724,25 @@ def main(argv=None):
             raise ValueError("expected release requires a backend URL")
         if args.replay and (args.backend_url or args.expected_release):
             raise ValueError("replay uses the backend identity recorded in the capture")
-        directory, manifest = (
-            replay(args.replay, args.output_dir)
-            if args.replay
-            else capture(
+        if args.replay and args.snapshot_rechecks:
+            raise ValueError("replay cannot request live snapshot rechecks")
+        if args.replay:
+            directory, manifest = replay(args.replay, args.output_dir)
+            attempts = [directory]
+        else:
+            directory, manifest, attempts = capture_with_snapshot_rechecks(
                 args.output_dir,
+                snapshot_rechecks=args.snapshot_rechecks,
                 backend=args.backend_url,
                 expected_release=args.expected_release,
                 timeout=args.timeout,
                 max_snapshot_age_seconds=args.max_snapshot_age_seconds,
             )
-        )
         print(
             json.dumps(
                 {
                     "capture_directory": str(directory),
+                    "capture_attempts": [str(path) for path in attempts],
                     **{
                         key: manifest[key]
                         for key in (

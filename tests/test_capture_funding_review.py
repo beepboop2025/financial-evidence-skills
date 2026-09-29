@@ -174,6 +174,89 @@ class CaptureTests(unittest.TestCase):
         self.assertEqual(result["exit_code"], 1)
         self.assertIsNone(self.current()["last_ready"])
 
+    def snapshot_rechecks(self, documents, **kwargs):
+        fakes = [fetcher(responses(docs)) for docs in documents]
+        index = -1
+
+        def sequential(name, url, **options):
+            nonlocal index
+            if name == "mcp-initialize":
+                index += 1
+            return fakes[min(index, len(fakes) - 1)](name, url, **options)
+
+        with patch.object(capture.time, "sleep") as sleep:
+            result = capture.capture_with_snapshot_rechecks(
+                self.output, snapshot_rechecks=2, fetcher=sequential, **kwargs
+            )
+        return result, sleep
+
+    def old_snapshot(self):
+        docs = captures()
+        docs[0]["snapshot_generated_at"] = "2026-09-28T18:00:00Z"
+        docs[1]["generated_at"] = docs[2]["generated_at"] = "2026-09-28T18:00:00Z"
+        return docs
+
+    def test_snapshot_recheck_keeps_failure_and_accepts_only_new_passing_capture(self):
+        (latest, result, attempts), sleep = self.snapshot_rechecks(
+            [self.old_snapshot(), captures()]
+        )
+        self.assertTrue(result["ready"])
+        self.assertEqual(len(attempts), 2)
+        sleep.assert_called_once_with(45)
+        first = json.loads((attempts[0] / "manifest.json").read_bytes())
+        self.assertFalse(first["ready"])
+        self.assertEqual(first["max_snapshot_age_seconds"], 900)
+        self.assertEqual(self.current()["latest"]["capture_id"], latest.name)
+        self.assertEqual(self.current()["measurement"]["probes"], 2)
+        before = (self.output / "current.json").read_bytes()
+        _, replayed = capture.replay(attempts[0], self.output)
+        self.assertFalse(replayed["ready"])
+        self.assertEqual(before, (self.output / "current.json").read_bytes())
+
+    def test_snapshot_rechecks_stop_after_three_failed_captures(self):
+        (latest, result, attempts), sleep = self.snapshot_rechecks([self.old_snapshot()])
+        self.assertFalse(result["ready"])
+        self.assertEqual(result["exit_code"], 1)
+        self.assertEqual(len(attempts), 3)
+        self.assertEqual(sleep.call_count, 2)
+        self.assertEqual(self.current()["latest"]["capture_id"], latest.name)
+        self.assertIsNone(self.current()["last_ready"])
+
+    def test_snapshot_recheck_does_not_retry_another_data_failure(self):
+        docs = self.old_snapshot()
+        docs[0]["sections"][0]["metrics"][0]["freshness"] = "stale"
+        (_, result, attempts), sleep = self.snapshot_rechecks([docs, captures()])
+        self.assertFalse(result["ready"])
+        self.assertEqual(len(attempts), 1)
+        sleep.assert_not_called()
+
+    def test_snapshot_recheck_does_not_retry_identity_mismatch(self):
+        (_, result, attempts), sleep = self.snapshot_rechecks(
+            [self.old_snapshot(), captures()], backend="https://evidence.example",
+            expected_release="wrong-release",
+        )
+        self.assertEqual(result["release_identity"], "mismatch")
+        self.assertEqual(len(attempts), 1)
+        sleep.assert_not_called()
+
+    def test_passing_snapshot_needs_no_recheck(self):
+        (_, result, attempts), sleep = self.snapshot_rechecks([captures()])
+        self.assertTrue(result["ready"])
+        self.assertEqual(len(attempts), 1)
+        sleep.assert_not_called()
+
+    def test_snapshot_recheck_count_cannot_be_unbounded(self):
+        for value in (-1, 3, True, 1.5):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                capture.capture_with_snapshot_rechecks(self.output, snapshot_rechecks=value)
+
+    def test_replay_cannot_request_live_snapshot_rechecks(self):
+        with patch.object(capture, "replay") as replay:
+            with patch("sys.stdout", new_callable=io.StringIO):
+                code = capture.main(["--output-dir", str(self.output), "--replay", "old", "--snapshot-rechecks", "2"])
+        self.assertEqual(code, 2)
+        replay.assert_not_called()
+
     def test_backend_outage_does_not_erase_source_data_readiness(self):
         _, result = self.run_capture(
             backend="https://evidence.example",

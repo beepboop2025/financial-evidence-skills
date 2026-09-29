@@ -1,0 +1,16 @@
+[Unit]
+Description=Encrypted offsite funding packet backup with exact snapshot restoration
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+UMask=0077
+EnvironmentFile=/etc/financial-evidence/funding-offsite.env
+ExecStart=/usr/bin/env RESTIC_CACHE_DIR=/var/cache/financial-evidence-packets /usr/bin/python3 /opt/financial-evidence-institutional/current/scripts/backup_institutional_packets.py --source /var/lib/financial-evidence-institutional/archive --state /var/lib/financial-evidence-institutional/backup --repository-id e3cb93586e3eb2fe08d65140ff36018c8899c1fde549d8dcff293528c8451a42
+TimeoutStartSec=15min
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/financial-evidence-institutional/backup /var/cache/financial-evidence-packets

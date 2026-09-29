@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>USD funding review — Financial Evidence</title>
+  <meta name="description" content="Inspect nine USD funding inputs, source dates and exceptions. Save a verified research packet, compare captured reviews, and integrate with Excel, Python or OpenBB.">
+  <link rel="canonical" href="https://beepboop2025.github.io/financial-evidence-skills/funding/">
+  <link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="funding.css">
+  <script type="module" src="funding.js"></script>
+</head>
+<body>
+  <header class="funding-header"><nav aria-label="Primary"><a class="brand" href="../">Financial Evidence</a><div><a href="#review">Funding review</a><a href="#history">History</a><a href="#integrate">Integrate</a><a href="#support">Talk to us</a></div></nav></header>
+  <main class="funding-main">
+    <p class="eyebrow">USD funding · Public research</p>
+    <h1>A funding review you can check.</h1>
+    <p class="answer">Nine inputs for a macro or rates desk. Keep the values, source dates and exceptions together—from the first look to the saved research note.</p>
+    <div class="actions"><button class="button primary" id="save-packet" disabled>Save evidence packet</button><button class="button" id="save-csv" disabled>Download CSV</button><a class="button" href="#integrate">Use in your workflow</a></div>
+    <p class="status" id="status" role="status" aria-live="polite">Checking the latest saved review…</p>
+    <section id="review" aria-labelledby="review-title">
+      <h2 id="review-title">What the evidence says</h2>
+      <div class="facts"><div><span>Review date</span><strong id="review-date">—</strong></div><div><span>Source captured</span><strong id="captured">—</strong></div><div><span>Packet archived</span><strong id="archived">—</strong></div></div>
+      <p id="scope">This review aligns SOFR and IORB to a common date. Each input retains its own observation date; inspect newer-observation flags before discussing current conditions.</p>
+      <ul id="exceptions" class="exceptions" aria-label="Review exceptions"></ul>
+      <div class="table-wrap"><table><thead><tr><th>Input</th><th>Value</th><th>Observed</th><th>Evidence state</th><th>Source</th></tr></thead><tbody id="observations"><tr><td colspan="5">Loading the verified packet…</td></tr></tbody></table></div>
+      <p class="small">Percentages are rates; $B means billions of US dollars. Blank or restricted data stays unavailable. <a href="contract.json">Dataset contract</a> · <a href="sources.md">Source attribution and rights</a> · <a id="manifest-link" hidden>Packet manifest</a></p>
+    </section>
+    <section id="history" aria-labelledby="history-title">
+      <h2 id="history-title">Return to what you saved.</h2>
+      <p id="coverage">Loading forward archive coverage…</p>
+      <p>Archive time is when this service first verified the packet. Earlier observation dates do not create earlier knowledge. This is captured research history, not complete publisher-vintage backtesting data.</p>
+      <div class="controls"><label>Known by (UTC)<input type="datetime-local" id="as-of"></label><button class="button" id="query-history">Find saved reviews</button><button class="button" id="show-latest">Return to latest</button></div>
+      <div class="controls"><label>Earlier packet<select id="before"><option value="">No packets loaded</option></select></label><label>Later packet<select id="after"><option value="">No packets loaded</option></select></label><button class="button" id="compare">Compare inputs</button><button class="button" id="open-history">Open later packet</button></div>
+      <p id="history-status" role="status" aria-live="polite"></p><div id="comparison"></div>
+    </section>
+    <section id="reliability" aria-labelledby="reliability-title">
+      <h2 id="reliability-title">Reliability, with the gaps visible.</h2>
+      <p id="reliability-status">Loading observed service coverage…</p>
+      <p>Server observations and <a href="https://github.com/beepboop2025/financial-evidence-skills/actions/workflows/funding-reliability.yml">independent GitHub observations</a> run separately. Missing samples remain missing. A successful request is not proof of uninterrupted service or fresh data.</p>
+      <p><a href="https://api.seiche.info/funding-evidence/reliability">Machine-readable server report</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/blob/main/integrations/institutional/OPERATIONS.md">Operations and recovery</a></p>
+    </section>
+    <section id="integrate" aria-labelledby="integrate-title">
+      <h2 id="integrate-title">One packet. Your existing tools.</h2>
+      <div class="grid"><article><h3>Excel &amp; SQL</h3><p>Download the CSV and keep its manifest with your workbook. Preserve dates, units and unavailable states.</p><a href="quickstart.md">Excel and DuckDB guide</a></article><article><h3>Python &amp; scheduling</h3><p>Save the verified manifest, JSON and CSV to a new folder. The small client uses Python's standard library.</p><a href="download_packet.py" download>Download the packet client</a></article><article><h3>OpenBB &amp; agents</h3><p>Connect the existing funding-review backend to your research workspace. Every review keeps its evidence identity.</p><a href="https://api.seiche.info/openbb/docs">API documentation</a></article></div>
+      <pre><code>python3 download_packet.py --output ./funding-review-001</code></pre>
+      <p>The packet client contacts only this service and does not report usage. Exit 1 means a retained review needs attention; exit 2 means acquisition or verification failed.</p>
+    </section>
+    <section id="support" aria-labelledby="support-title">
+      <h2 id="support-title">Make this part of your desk's review.</h2>
+      <p>Tell Mrinal what you check today, your reporting deadline and the tool you use. We can agree a focused evaluation against your existing process.</p>
+      <div class="actions"><a class="button primary" href="mailto:mrinal@liquilens.in?subject=USD%20funding%20workflow%20evaluation&amp;body=Team%20and%20role%3A%20%0AWhat%20we%20review%20today%3A%20%0ARequired%20inputs%20and%20deadline%20with%20timezone%3A%20%0ACurrent%20tool%3A%20%0AWhat%20would%20make%20this%20useful%3A%20">Discuss a research workflow</a><a class="button" href="pilot.md">Evaluation checklist</a></div>
+      <p>Public research access is free and needs no account. Dedicated access, licensed delivery and support commitments require agreed terms. Please keep positions, client data and credentials out of public bug reports.</p>
+    </section>
+    <aside class="measurement"><label><input type="checkbox" id="consent"> Help improve this workflow with optional anonymous download measurement.</label><p class="small">With your permission, a random browser identifier links packet downloads for up to 30 days. We do not request your name, employer or portfolio. <a href="../privacy/">Privacy details</a> · <button id="forget" class="text-button">Forget my usage</button></p><p id="privacy-status" role="status"></p></aside>
+  </main>
+  <footer><p>Last updated 29 September 2026. Sources include the Federal Reserve Board, Federal Reserve Bank of New York and US Treasury. Liquidity Lab is not affiliated with these publishers; inclusion does not imply endorsement. SOFR, EFFR and operation results are subject to the New York Fed Terms of Use. The New York Fed is not responsible for publication of these data by Liquidity Lab, does not sanction or endorse this republication, and has no liability for your use. Review <a href="contract.json">source-specific terms</a> before commercial redistribution. This service provides research evidence, not trading instructions or an SLA.</p><p><a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a> · <a href="../support/">Support</a></p></footer>
+</body>
+</html>

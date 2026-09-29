@@ -17,11 +17,11 @@ packet. It does not turn historical observation dates into earlier knowledge.
   non-root, read-only filesystem, restricted resources, archive mounted read-only.
   The separate usage mount contains optional consented counters only.
 - `financial-evidence-packet-capture.timer`: :08/:23/:38/:53 UTC, up to 20
-  seconds jitter. Fetches the existing review and matching CSV, then seven
+  seconds jitter, plus an initial attempt one minute after activation. Fetches the existing review and matching CSV, then seven
   bounded original-publisher documents. A failed source or mismatch records an
   unsuccessful attempt; `/latest` never falls back to an earlier success.
 - `financial-evidence-packet-backup.timer`: hourly at :12 UTC with up to 30
-  seconds jitter. Uses the existing encrypted repository under a separate tag,
+  seconds jitter, plus an initial backup two minutes after activation. Uses the existing encrypted repository under a separate tag,
   restores the exact new snapshot and verifies every file. Usage identifiers
   and the HMAC key are excluded. No deletion or repository initialization occurs.
 - `financial-evidence-usage-expiry.timer`: daily at midnight UTC. Purges consented

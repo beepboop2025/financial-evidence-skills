@@ -1,6 +1,7 @@
 [Unit]
 Description=Hourly original-publisher packet backup
 [Timer]
+OnActiveSec=2min
 OnCalendar=*-*-* *:12:00 UTC
 Persistent=true
 RandomizedDelaySec=30

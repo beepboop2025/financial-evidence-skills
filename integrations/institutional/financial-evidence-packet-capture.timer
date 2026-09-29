@@ -2,6 +2,7 @@
 Description=Retain public funding research packets every fifteen minutes
 
 [Timer]
+OnActiveSec=1min
 OnCalendar=*-*-* *:08,23,38,53:00 UTC
 Persistent=true
 RandomizedDelaySec=20

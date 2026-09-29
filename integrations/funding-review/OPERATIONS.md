@@ -132,8 +132,15 @@ use a new output directory when changing which services the policy covers.
 Every response is limited to 2 MiB plus one sentinel byte. Default socket/read
 timeout is 15 seconds, configurable from 1 to 30. Reads check elapsed time between
 single socket operations, so a slow body can take approximately twice the timeout.
-There are no retries. The service template also limits total runtime and memory.
-This intentionally provides one recorded observation per scheduled attempt.
+Individual HTTP requests are not retried. The CLI defaults to one capture.
+`--snapshot-rechecks 2` permits at most two additional captures, 45 seconds apart,
+only when snapshot age is the sole review failure and availability and any
+requested release identity pass. A new capture must pass the unchanged age limit;
+missing data, restrictions, publisher freshness failures, future clocks and
+identity mismatches are not retried. Every attempt remains in the archive and
+updates the live summary, including failures. CLI output lists `capture_attempts`.
+Replay cannot request live rechecks. The service template enables these bounded
+rechecks and limits the whole process to 900 seconds with the existing memory cap.
 
 The checker retains publisher freshness and missed-publication claims and adds
 calendar-day age backstops. Policy v3 recognizes a bounded Treasury DTS publisher

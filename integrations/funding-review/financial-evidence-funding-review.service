@@ -11,9 +11,9 @@ WorkingDirectory=/opt/financial-evidence-workspace/current
 StateDirectory=financial-evidence
 StateDirectoryMode=0750
 UMask=0027
-ExecStart=/usr/bin/python3 /opt/financial-evidence-workspace/current/scripts/capture_funding_review.py --output-dir /var/lib/financial-evidence/funding-review --backend-url https://api.seiche.info/openbb
+ExecStart=/usr/bin/python3 /opt/financial-evidence-workspace/current/scripts/capture_funding_review.py --output-dir /var/lib/financial-evidence/funding-review --backend-url https://api.seiche.info/openbb --snapshot-rechecks 2
 SuccessExitStatus=1
-TimeoutStartSec=240
+TimeoutStartSec=900
 MemoryMax=192M
 CPUQuota=25%
 TasksMax=16
@@ -30,4 +30,3 @@ RestrictSUIDSGID=true
 LockPersonality=true
 RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
 ReadWritePaths=/var/lib/financial-evidence
-

@@ -4,7 +4,11 @@ This service adds a public research workflow around the pinned Workspace 1.0.1
 release. The Workspace and Seiche production images are unchanged. Its packet
 values are independently acquired from original publishers. FRED-derived
 Workspace values are compared transiently, never copied into this new archive.
-Publisher responses and field lineage are retained with their own hashes.
+Publisher responses and field lineage are retained with their own hashes. New
+packet manifests separately bind the generator commit and four source-module
+hashes; `source_commit` remains the pinned reference release. Initial manifests
+without producer fields remain linked through their activation receipt, not
+retroactively rewritten.
 
 The USD funding dataset contract is `docs/funding/contract.json`. The web client
 and standard-library Python client verify the packet JSON/CSV hashes before

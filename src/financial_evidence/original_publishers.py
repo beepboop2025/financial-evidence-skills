@@ -323,9 +323,10 @@ def build(reference, *, getter=get_source):
     for row in rows:
         metric = row["metric_id"]
         value, key, source, latest, field = values[metric]
-        # Reference UI rounds to two decimals. Never let rounding hide nonzero usage.
+        # Compare at the reference display precision, but publish the unrounded
+        # original value: a $1m operation must remain $0.001B, never zero.
         expected = number(row["value"])
-        if abs(value - expected) > Decimal("0.005") or (expected == 0 and value != 0):
+        if abs(value - expected) > Decimal("0.005"):
             raise ValueError("original publisher disagrees with reference: " + metric)
         latest = date.fromisoformat(latest).isoformat()
         newer = latest > targets[metric]
@@ -351,7 +352,7 @@ def build(reference, *, getter=get_source):
         assessments[metric] = {
             "canonical_latest_asof": latest,
             "newer_observation_available": newer,
-            "basis": "Original-publisher observation matches reference within displayed precision; no rounded nonzero accepted as zero.",
+            "basis": "Original-publisher observation matches reference within displayed precision; nonzero source values remain nonzero in the packet.",
         }
         lineage[metric] = {
             **receipts[key],
@@ -391,7 +392,7 @@ def build(reference, *, getter=get_source):
         publisher_lineage=lineage,
         value_basis="independently_retrieved_original_publishers_at_full_source_precision",
         reference_basis="dated_release_and_policy_crosscheck_not_source_of_republished_values",
-        method_version="original-publisher-crosscheck.v1",
+        method_version="original-publisher-crosscheck.v1.1",
         publisher_notice=NYFED_NOTICE,
         transformations=[
             "Publisher numbers parsed without rounding",

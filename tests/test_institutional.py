@@ -230,6 +230,19 @@ class ArchiveTests(unittest.TestCase):
         )
         self.assertEqual(store.history(self.root)["packet_count"], 1)
 
+    def test_packet_binds_its_generator_separately_from_the_reference(self):
+        import os
+
+        with patch.dict(os.environ, {"FINANCIAL_EVIDENCE_SOURCE_COMMIT": "e" * 40}):
+            self.archive()
+        manifest, _, _ = store.packet(self.root, PID)
+        self.assertEqual(manifest["producer_source_commit"], "e" * 40)
+        self.assertEqual(manifest["source_commit"], reliability.SOURCE)
+        for name, value in manifest["producer_modules_sha256"].items():
+            self.assertEqual(
+                value, store.digest(Path(store.__file__).with_name(name).read_bytes())
+            )
+
     def test_as_of_does_not_backfill_capture_or_observation_date(self):
         self.archive()
         self.assertEqual(

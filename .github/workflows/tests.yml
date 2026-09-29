@@ -23,6 +23,22 @@ jobs:
           persist-credentials: false
       - run: sudo apt-get update && sudo apt-get install --yes restic
       - run: python3 tests/integration_funding_offsite.py
+      - run: python3 tests/integration_institutional_backup.py
+
+  funding-packet-container:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Build and test the restricted packet image
+        env:
+          SOURCE_COMMIT: ${{ github.sha }}
+        run: |
+          docker build --build-arg SOURCE_COMMIT="$SOURCE_COMMIT" -f integrations/institutional/Dockerfile -t funding-packet-test .
+          docker run --rm --read-only --cap-drop ALL --security-opt no-new-privileges --tmpfs /tmp:rw,nosuid,size=32m -v "$PWD/tests:/tests:ro" --entrypoint python funding-packet-test -m unittest discover -s /tests -p 'test_institutional.py' -v
+          docker run --rm --read-only --cap-drop ALL --security-opt no-new-privileges --tmpfs /tmp:rw,nosuid,size=32m -v "$PWD/tests:/tests:ro" --entrypoint python funding-packet-test -m unittest discover -s /tests -p 'test_original_publishers.py' -v
 
   stdlib-contract:
     runs-on: ubuntu-24.04

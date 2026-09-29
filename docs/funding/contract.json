@@ -1,0 +1,188 @@
+{
+  "schema": "financial-evidence.dataset-contract.v1",
+  "dataset": "usd-funding-original-publisher-review",
+  "version": "1.0.0",
+  "updated_at": "2026-09-29",
+  "public_access": {
+    "account_required": false,
+    "fee_required": false,
+    "base_url": "https://api.seiche.info/funding-evidence",
+    "contact": "mrinal@liquilens.in"
+  },
+  "review": {
+    "scope": "common_sofr_iorb_horizon",
+    "latest_per_instrument": false,
+    "reference_release": "workspace-1.0.1+6aa5d7a22823",
+    "reference_source_commit": "6aa5d7a22823b2490d7500afeba18174ca2e8822",
+    "method": "independently retrieve original-publisher values for the reference observation dates; compare within reference display precision of 0.005; a reference zero requires an exact original-publisher zero",
+    "cadence": "15-minute capture attempts, subject to publisher availability",
+    "freshness": "1200-second maximum elapsed age for both the source capture and successful packet acquisition; this is capture freshness, not every input observation age",
+    "missing_policy": "Fail the attempt on missing, ambiguous, mismatched, stale or restricted evidence; latest never substitutes a preceding successful packet",
+    "readiness": "Original-publisher checks plus the pinned reference review calendar and release checks; individual dates and newer-observation flags stay visible",
+    "calendar_limit": "The reference release calendar currently covers 2026; review and release an updated calendar before its year boundary"
+  },
+  "metrics": [
+    {
+      "metric_id": "policy.sofr",
+      "name": "SOFR",
+      "unit": "%",
+      "observation_cadence": "daily",
+      "publisher_document": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/10.json",
+      "field": "percentRate",
+      "normalization": "publisher precision retained"
+    },
+    {
+      "metric_id": "policy.effr",
+      "name": "Effective federal funds rate",
+      "unit": "%",
+      "observation_cadence": "daily",
+      "publisher_document": "https://markets.newyorkfed.org/api/rates/unsecured/effr/last/10.json",
+      "field": "percentRate",
+      "normalization": "publisher precision retained"
+    },
+    {
+      "metric_id": "policy.iorb",
+      "name": "Interest on reserve balances",
+      "unit": "%",
+      "observation_cadence": "daily",
+      "publisher_document": "https://www.federalreserve.gov/releases/prates/data/FRB_PRATES_xml.zip",
+      "field": "RESBM_N.D/OBS_VALUE",
+      "normalization": "publisher precision retained"
+    },
+    {
+      "metric_id": "distribution.sofr.p99",
+      "name": "SOFR 99th percentile",
+      "unit": "%",
+      "observation_cadence": "daily",
+      "publisher_document": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/10.json",
+      "field": "percentPercentile99",
+      "normalization": "publisher precision retained"
+    },
+    {
+      "metric_id": "distribution.sofr.volume",
+      "name": "SOFR volume",
+      "unit": "$B",
+      "observation_cadence": "daily",
+      "publisher_document": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/10.json",
+      "field": "volumeInBillions",
+      "normalization": "publisher precision retained"
+    },
+    {
+      "metric_id": "liquidity.reserves",
+      "name": "Reserve balances with Federal Reserve Banks, weekly average",
+      "unit": "$B",
+      "observation_cadence": "weekly",
+      "publisher_document": "https://www.federalreserve.gov/releases/h41/current/h41.htm",
+      "field": "t2r16c2",
+      "normalization": "USD millions divided by 1000"
+    },
+    {
+      "metric_id": "liquidity.tga",
+      "name": "Treasury General Account opening balance",
+      "unit": "$B",
+      "observation_cadence": "daily",
+      "publisher_document": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/dts/operating_cash_balance",
+      "field": "open_today_bal",
+      "normalization": "USD millions divided by 1000"
+    },
+    {
+      "metric_id": "liquidity.on_rrp",
+      "name": "Overnight reverse repo accepted amount",
+      "unit": "$B",
+      "observation_cadence": "daily",
+      "publisher_document": "https://markets.newyorkfed.org/api/rp/reverserepo/all/results/last/10.json",
+      "field": "totalAmtAccepted",
+      "normalization": "USD dollars divided by 1000000000"
+    },
+    {
+      "metric_id": "liquidity.srf",
+      "name": "Standing repo facility accepted amount, morning plus afternoon",
+      "unit": "$B",
+      "observation_cadence": "daily",
+      "publisher_document": "https://markets.newyorkfed.org/api/rp/repo/all/results/last/20.json",
+      "field": "sum(totalAmtAccepted)",
+      "normalization": "USD dollars divided by 1000000000"
+    }
+  ],
+  "csv_fields": [
+    "metric_id",
+    "value",
+    "unit",
+    "observation_date",
+    "source",
+    "cadence",
+    "publisher_freshness",
+    "value_state",
+    "evaluated_at",
+    "review_status",
+    "review_asof",
+    "review_scope",
+    "latest_per_instrument",
+    "canonical_latest_asof",
+    "newer_observation_available"
+  ],
+  "time_semantics": {
+    "observation_date": "Period or date to which the publisher value applies",
+    "captured_at": "Pinned reference review capture clock",
+    "original_publisher_acquired_at": "Original-publisher checks completed",
+    "archived_at": "First verified insertion into this forward archive; basis for as_of",
+    "retrieved_at": "Per-source completed download clock; not publication time",
+    "history": "No pre-launch knowledge reconstructed. Same-date changes are captured differences, not confirmed publisher revision events."
+  },
+  "verification": {
+    "artifacts": [
+      "review.json",
+      "observations.csv"
+    ],
+    "hash": "SHA-256",
+    "authentication": "HTTPS delivery; packet hashes are integrity checks, not publisher signatures",
+    "source_receipts": "Each publisher response retained by hash; raw source blobs are operator recovery evidence, not a public arbitrary-file API",
+    "backup": "Encrypted hourly offsite snapshots with exact-snapshot restoration and every-file hash verification; usage data excluded"
+  },
+  "reliability": {
+    "cadence_seconds": 900,
+    "perspectives": [
+      "hetzner_same_host",
+      "github_external"
+    ],
+    "window_days": 30,
+    "missing_slots": "explicit, never successful",
+    "manual_samples": "excluded from scheduled availability counts",
+    "sla": false
+  },
+  "source_rights": {
+    "software_license": "MIT does not relicense publisher data",
+    "notice": "Copyright 2026 Federal Reserve Bank of New York. Content from the New York Fed subject to the Terms of Use at newyorkfed.org. SOFR, EFFR and operation results are subject to those Terms of Use. The New York Fed is not responsible for publication of these data by Liquidity Lab, does not sanction or endorse this republication, and has no liability for your use. Liquidity Lab is not affiliated with the New York Fed.",
+    "terms": {
+      "new_york_fed": "https://www.newyorkfed.org/privacy/termsofuse",
+      "federal_reserve_board": "https://www.federalreserve.gov/disclaimer.htm",
+      "treasury": "https://fiscaldata.treasury.gov/about-us/"
+    },
+    "downstream_use": "Retain attribution, links, publisher conditions and declared transformations; no exclusive rights or publisher endorsement claimed",
+    "fred": "FRED-derived reference bodies are not retained in this packet archive; values are reacquired from original publishers"
+  },
+  "usage_measurement": {
+    "optional": true,
+    "default": "off",
+    "retention_days_max": 30,
+    "event": "download initiated after integrity verification",
+    "not_proven": [
+      "fund identity",
+      "analyst completion",
+      "time saved",
+      "willingness to pay",
+      "paid adoption"
+    ]
+  },
+  "support": {
+    "public_contact": "mrinal@liquilens.in",
+    "response_time_commitment": null,
+    "private_service": "Scope access, licensed delivery and support terms with a real participant before deployment"
+  },
+  "limitations": [
+    "Nine USD funding inputs, not every market or fund workflow",
+    "Not trade recommendations or a live execution feed",
+    "No continuous-uptime or institutional-adoption claim",
+    "Historical source vintages before archive launch are unavailable"
+  ]
+}

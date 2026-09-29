@@ -1,0 +1,10 @@
+[Unit]
+Description=Expire optional funding download counters
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/financial-evidence/institutional.env
+ExecStart=/usr/bin/docker run --rm --name financial-evidence-usage-expiry --read-only --cap-drop ALL --security-opt no-new-privileges --memory 96m --cpus 0.25 --pids-limit 16 --user 65532:65532 -v /var/lib/financial-evidence-institutional/usage:/data/usage:rw --entrypoint python ${INSTITUTIONAL_IMAGE} -m financial_evidence.institutional usage --directory /data/usage
+TimeoutStartSec=60

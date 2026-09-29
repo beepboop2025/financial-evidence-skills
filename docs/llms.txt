@@ -4,11 +4,13 @@
 
 Published source version: 0.1.5
 Last verified release: 0.1.5
-Last updated: 2026-09-27
+Last updated: 2026-09-29
 Publisher: Liquidity Lab
 License: MIT for the software; source publishers retain rights in upstream data.
 
 ## Primary documentation
+
+- [Public USD funding review](https://beepboop2025.github.io/financial-evidence-skills/funding/): nine independently acquired original-publisher values, verified JSON/CSV, forward-only captured history and observed reliability. Public access needs no account. Source terms and per-input observation dates remain explicit; it is not complete historical vintage data.
 
 - [Overview and integration matrix](https://beepboop2025.github.io/financial-evidence-skills/)
 - [Recurring research workflows](https://beepboop2025.github.io/financial-evidence-skills/workflows/): funding, bank-context and liquidity-context captures with a CSV source index, optional scheduling template and private pilot scorecard; examples use package 0.1.5 and keep transport success separate from evidence validity.

@@ -1,0 +1,36 @@
+name: Funding reliability observations
+on:
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: funding-reliability-observations
+  cancel-in-progress: false
+jobs:
+  observe:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Restore retained observation ledger
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/restore_reliability_ledger.py
+      - name: Observe the public service from GitHub
+        env:
+          OBSERVATION_TRIGGER: ${{ github.event_name }}
+        run: python3 scripts/observe_funding_reliability.py --directory reliability-evidence --perspective github_external --trigger "$OBSERVATION_TRIGGER"
+      - name: Retain successes and failures
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: funding-reliability-ledger
+          path: reliability-evidence/
+          retention-days: 90
+          if-no-files-found: error

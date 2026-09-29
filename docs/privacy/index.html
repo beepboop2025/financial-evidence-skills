@@ -13,15 +13,18 @@
     <main class="section">
       <p class="eyebrow">Financial Evidence</p>
       <h1>Privacy</h1>
-      <p>Last updated 24 August 2026.</p>
+      <p>Last updated 29 September 2026.</p>
       <h2>What the service receives</h2>
       <p>Financial Evidence requires no account, API key, or payment information. A request contains only the selected research topic or topics and ordinary protocol metadata needed to return a response. Please do not put personal or confidential information into a topic request.</p>
       <h2>Infrastructure data</h2>
       <p>The public documentation and remote MCP endpoint are delivered using GitHub Pages, Cloudflare, and the four public product surfaces. Those providers may process standard security and delivery logs such as IP address, user agent, timestamp, requested path, and operational error information under their own policies. The evidence router may make allowlisted upstream requests needed to retrieve the selected public evidence.</p>
       <h2>Use and sharing</h2>
       <p>Liquidity Lab uses operational data only to secure, diagnose, rate-limit, and operate the service. It does not sell personal information, build advertising profiles, or intentionally collect sensitive personal data through this service. Data may be disclosed when required by law or needed to protect the service and its users.</p>
+      <h2>Optional funding download measurement</h2>
+      <p>The funding review page measures downloads only after you opt in. It stores a random browser identifier in your browser and sends it with a fixed download event and packet identifier. The application stores only a keyed hash of that identifier, UTC day, packet identifier and event name. It does not store IP addresses, browser details, names, employers, portfolios or free text in this counter database. Events describe a download initiated after integrity checks; they do not prove saved files, fund identity or research use.</p>
+      <p>Measurement starts off. Uncheck the option or choose “Forget my usage” to disable it and request removal. If deletion is unavailable, the page keeps measurement disabled and lets you retry. Counters expire on daily maintenance within 30 days, including when no new usage arrives. Browser identifiers expire after 30 days. These counters and their key are excluded from evidence backups. Python clients send no usage events. Standard infrastructure delivery logs remain separate.</p>
       <h2>Retention and contact</h2>
-      <p>The Financial Evidence application does not persist topic request bodies or evidence responses in application storage. Liquidity Lab deletes operational logs it controls when the related security or diagnostic need closes, and no later than 30 days after collection, unless a longer period is required by law or to investigate active abuse. Provider-managed security and delivery logs follow each provider's configured lifecycle and privacy policy. For privacy questions, deletion requests, or a request concerning data controlled by Liquidity Lab, email <a href="mailto:mrinal@liquilens.in">mrinal@liquilens.in</a>.</p>
+      <p>The evidence router does not persist topic request bodies. The funding service retains public research packets, public original-publisher responses and operational capture receipts in an append-only archive and encrypted recovery backups. These public evidence records are separate from optional usage counters; deleting a usage identifier does not delete public evidence. Liquidity Lab deletes operational logs it controls when the related security or diagnostic need closes, and no later than 30 days after collection, unless a longer period is required by law or to investigate active abuse. Provider-managed security and delivery logs follow each provider's configured lifecycle and privacy policy. For privacy questions, deletion requests, or a request concerning data controlled by Liquidity Lab, email <a href="mailto:mrinal@liquilens.in">mrinal@liquilens.in</a>.</p>
       <p><a href="../">Return to Financial Evidence</a> · <a href="../terms/">Terms</a></p>
     </main>
   </body>

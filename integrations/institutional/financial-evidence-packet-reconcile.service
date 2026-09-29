@@ -1,0 +1,11 @@
+[Unit]
+Description=Repair missed funding packet notifications using local capture identities
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /opt/financial-evidence-institutional/current/scripts/reconcile_funding_packet.py
+TimeoutStartSec=15
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true

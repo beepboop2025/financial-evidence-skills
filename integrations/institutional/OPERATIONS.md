@@ -23,9 +23,17 @@ packet. It does not turn historical observation dates into earlier knowledge.
 - `financial-evidence-packet-capture.path`: watches the source review's atomically
   replaced `current.json` and starts the existing capture service after each
   completed observation, including failed observations and bounded rechecks.
-  systemd serializes this with timer starts and checks the watched path again
-  after the capture service exits. Enable this path unit on the source host.
+  systemd serializes this with timer starts. Changes while capture is running
+  may coalesce; the reconciliation timer below catches those missed updates.
+  Enable this path unit on the source host.
   The packet's original source clock and 1200-second limit remain unchanged.
+- `financial-evidence-packet-reconcile.timer`: every minute, compare the completed
+  source capture identity with the archive's latest hash-verified attempt. Start
+  the existing serialized capture service only when they differ. This check
+  reads local references and makes no source requests when nothing has changed.
+  It also retries a notification that arrived while capture was running. The
+  regular fifteen-minute capture remains responsible for retrying a failed
+  attempt against the same source identity.
 - `financial-evidence-packet-capture.timer`: fallback at :08/:23/:38/:53 UTC, up to 20
   seconds jitter, plus an initial attempt one minute after activation. Fetches the existing review and matching CSV, then seven
   bounded original-publisher documents. A failed source or mismatch records an
@@ -47,6 +55,31 @@ subsequent automatic run. To manually test capture, run the image's archive
 command with `--trigger manual`, not the scheduled systemd command.
 
 ## Read current evidence
+
+The versioned `/v1/funding/latest` and `/v1/funding/changes` routes validate live
+freshness before conditional responses. `/widgets.json` and `/apps.json` expose
+the same contract as an optional OpenBB backend. Anonymous reads remain open;
+application enrollment is explicit measurement consent, with no quota upgrade.
+
+Application storage shares the private usage mount and is excluded from evidence
+backups. The existing daily usage-expiry service purges both independent usage
+datasets: browser events retain 30 UTC dates; application completions retain 90.
+Application credentials and first-use dates expire after 180 inactive days.
+Read the server report with the installed image's
+`python -m financial_evidence.application_usage report --directory /data/usage`.
+Use only a container with that private mount; do not expose the report publicly.
+
+New credentials are unverified. Local `application_usage classify` supports
+`--application ID --classification internal|unverified|external_verified`.
+External verification also requires `--evidence /private/review.json` containing
+the matching `application_id`, `independent_operator: true` and a reviewed
+`basis`. Only its hash is stored, and classification applies to future responses.
+Never classify owner-operated tests as independent applications. D7/D30 return
+rates remain null when no completed eligible observation window exists.
+
+The shared Caddy funding route must allow the API's Cache-Control response
+header through: normal routes send no-store; conditional routes send private,
+no-cache, must-revalidate. Keep the request-body limit and loopback binding.
 
 ```sh
 systemctl list-timers 'financial-evidence-packet-*'

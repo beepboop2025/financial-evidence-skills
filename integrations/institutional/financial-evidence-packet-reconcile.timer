@@ -1,0 +1,11 @@
+[Unit]
+Description=Check for a completed funding review missing from the packet archive
+
+[Timer]
+OnActiveSec=30s
+OnUnitInactiveSec=60s
+AccuracySec=1s
+Unit=financial-evidence-packet-reconcile.service
+
+[Install]
+WantedBy=timers.target

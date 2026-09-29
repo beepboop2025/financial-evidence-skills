@@ -484,6 +484,9 @@ def main():
         value = history(args.directory, as_of=args.as_of)
     else:
         value = usage_report(args.directory)
+        from .application_usage import report as application_report
+
+        value["applications"] = application_report(args.directory)
     print(json.dumps(value, indent=2))
     return 1 if args.command == "archive" and value["error"] else 0
 

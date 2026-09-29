@@ -39,6 +39,7 @@ jobs:
           docker build --build-arg SOURCE_COMMIT="$SOURCE_COMMIT" -f integrations/institutional/Dockerfile -t funding-packet-test .
           docker run --rm --read-only --cap-drop ALL --security-opt no-new-privileges --tmpfs /tmp:rw,nosuid,size=32m -v "$PWD/tests:/tests:ro" --entrypoint python funding-packet-test -m unittest discover -s /tests -p 'test_institutional.py' -v
           docker run --rm --read-only --cap-drop ALL --security-opt no-new-privileges --tmpfs /tmp:rw,nosuid,size=32m -v "$PWD/tests:/tests:ro" --entrypoint python funding-packet-test -m unittest discover -s /tests -p 'test_original_publishers.py' -v
+          docker run --rm --read-only --cap-drop ALL --security-opt no-new-privileges --tmpfs /tmp:rw,nosuid,size=32m -v "$PWD/tests:/tests:ro" --entrypoint python funding-packet-test -m unittest discover -s /tests -p 'test_funding_automation.py' -v
 
   stdlib-contract:
     runs-on: ubuntu-24.04

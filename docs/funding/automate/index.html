@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Load daily funding data into Python, OpenBB or an agent — Financial Evidence</title>
+  <meta name="description" content="Save a verified USD funding packet and retrieve changes since your last successful run. Public access without an account or sales call.">
+  <link rel="canonical" href="https://beepboop2025.github.io/financial-evidence-skills/funding/automate/">
+  <link rel="stylesheet" href="../../styles.css"><link rel="stylesheet" href="../funding.css">
+</head>
+<body>
+  <header class="funding-header"><nav aria-label="Primary"><a class="brand" href="../../">Financial Evidence</a><div><a href="../">Funding review</a><a href="#python">Python</a><a href="#tools">OpenBB &amp; agents</a><a href="#identity">Application identity</a></div></nav></header>
+  <main class="funding-main">
+    <p class="eyebrow">Public funding data · Developer workflow</p>
+    <h1>Keep funding data in your own workflow.</h1>
+    <p class="answer">Save nine verified USD funding inputs with their dates, units and sources. On your next run, fetch the changes and keep the last successful packet if a request fails.</p>
+    <div class="actions"><a class="button primary" href="../daily_job.py" download>Download the Python job</a><a class="button" href="../funding_research.ipynb" download>Open a research notebook</a><a class="button" href="api.md">Read the API contract</a></div>
+    <p>Public access needs no account, payment or meeting. Inspect dates and source terms before using or redistributing the data.</p>
+    <section id="python"><h2>Run once. Reuse it tomorrow.</h2>
+      <p>Save the Python job, then run it with Python 3.10 or newer on macOS or Linux. It uses the standard library.</p>
+      <pre><code>python3 daily_job.py --state ./funding-state</code></pre>
+      <p>The output says <code>updated</code> or <code>unchanged</code>. Verified JSON, CSV and their manifest stay in <code>funding-state/packets/</code>. Captured changes stay in <code>funding-state/changes/</code>. A failure exits with code 2 and preserves the previous cursor.</p>
+      <p>Run it once for each research update you need. A daily task is enough for a daily report. Keep the state directory between runs.</p>
+      <pre><code># Example cron entry: daily at 08:00 in the machine's timezone.
+0 8 * * * /usr/bin/python3 /absolute/path/daily_job.py --state /absolute/path/funding-state</code></pre>
+      <p><a href="../funding_research.ipynb" download>Notebook template</a> · <a href="api.md">Request and error examples</a> · <a href="../sources.md">Attribution and source terms</a></p>
+    </section>
+    <section id="tools"><h2>Connect the tools you already use.</h2>
+      <div class="grid"><article><h3>OpenBB Workspace</h3><p>Add this custom backend, then open the Funding Evidence Automation app:</p><pre><code>https://api.seiche.info/funding-evidence</code></pre><p>The table uses the same versioned packet endpoint and preserves dates and newer-data flags. Stale or failed inputs return an error.</p></article>
+      <article><h3>Agents through MCP</h3><p>Download the small local tool beside the daily job. Install the MCP SDK and explicitly connect the tool in your agent host.</p><p><a href="../funding_agent.py" download>Local MCP tool</a> · <a href="agent.md">Setup and example research task</a></p><p>The tool shares the same packet checks and local cursor. A template does not automatically install itself in another application.</p></article></div>
+      <p>The hosted packet API and downloadable templates are independently deployed. The published Financial Evidence v0.1.5 package retains its existing transport API; installing that wheel alone does not install this new job.</p>
+    </section>
+    <section><h2>Know what changed—and what is still unknown.</h2>
+      <p>SOFR and IORB use a common review date. Weekly inputs keep their own observation dates. Archive time means the first time this service verified a packet. The archive contains observed packets and visible gaps; it does not reconstruct complete historical publisher vintages.</p>
+      <p>The change feed describes differences between captured packets. A same-date change is not independently confirmed as a publisher revision. HTTP 503 means the latest evidence failed availability or freshness checks; a cached response cannot override those checks.</p>
+      <p><a href="https://api.seiche.info/funding-evidence/reliability">Observed reliability and gaps</a> · <a href="https://api.seiche.info/funding-evidence/v1/funding/history">Forward archive coverage</a></p>
+    </section>
+    <section id="identity"><h2>Optional identity for your application.</h2>
+      <p>Anonymous reads work immediately. If you choose an application key, you consent to the service recording a random installation identity, UTC day and packet for successful data responses. This helps measure returning integrations. It does not identify your employer or prove independent ownership.</p>
+      <p>The key is returned once. Keep it in a private file and pass <code>--token-file /private/path/key</code> to the job. Keyed access has the same public limits; it does not promise a higher quota or an SLA. Never put a key in a URL, notebook output, public repository or agent prompt.</p>
+      <p><a href="api.md#optional-application-identity">Enrollment and deletion instructions</a> · <a href="../../privacy/">Retention and privacy</a></p>
+      <p>Application completions expire after 90 UTC dates. Keys expire after 180 days without accepted use. Deleting a key removes its identity and linked events. Our own applications and synthetic checks are excluded from external-use counts; self-issued keys remain unverified until independent ownership is established.</p>
+    </section>
+  </main>
+  <footer><p><a href="../">Funding review</a> · <a href="../../support/">Support</a> · <a href="../../terms/">Terms</a> · <a href="../../privacy/">Privacy</a>. No measured customer time savings or external adoption is claimed by these templates.</p></footer>
+</body></html>

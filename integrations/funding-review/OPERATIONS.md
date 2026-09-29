@@ -217,6 +217,51 @@ with a separate archive read. The public summary includes the checker `policy_id
 
 ## Verified backup to another machine
 
+### Independent encrypted offsite backup
+
+`scripts/offsite_funding_review.py` runs on the capture host and requires Restic.
+It stages completed captures, verifies their manifest hashes and current
+references, uploads an encrypted snapshot, restores that exact snapshot to a
+temporary directory, and checks the complete restored file inventory and every
+hash. Only then does it write a successful receipt. It never updates captures,
+initializes repositories, or deletes snapshots. An interrupted capture without
+its final manifest is excluded. Failures update `status.json` while preserving
+earlier receipts, so consumers must inspect the current status and its timestamp.
+
+The [offsite service](financial-evidence-funding-offsite.service) and
+[hourly timer](financial-evidence-funding-offsite.timer) run without a Mac or
+attached SSD. Install the reviewed source in
+`/opt/financial-evidence-offsite/releases/COMMIT` and set `current` to that release.
+Create private state at `/var/lib/financial-evidence-offsite` and a mode-0600
+`/etc/financial-evidence/funding-offsite.env` containing the separately initialized
+Restic repository location, password-file path, expected repository ID in
+`FUNDING_RESTIC_REPOSITORY_ID`, provider credentials, and
+`RESTIC_CACHE_DIR=/var/lib/financial-evidence-offsite/cache`. Keep the password
+outside the source tree and a recoverable credential copy away from the host.
+Never print the environment file or place it in a verification receipt.
+
+Run the service once and inspect `/var/lib/financial-evidence-offsite/status.json`
+before enabling the timer. A `pass` receipt includes the exact repository and
+snapshot IDs, capture count, file count and verification time. Check the next
+timer execution and later verify a scheduled receipt; a manual test does not
+prove a future scheduled run.
+
+For disaster recovery, provide the saved repository credentials to Restic on an
+independent machine. Run `restic cat config` and compare its `id` to the retained
+receipt, then `restic restore SNAPSHOT_ID --target /private/restore`. Snapshots
+contain the staged archive under its original absolute path; use
+`restic ls SNAPSHOT_ID` to locate `archive/current.json`. Verify the captured
+manifest and artifact hashes before serving or replaying this archive. Keep the
+restore separate from the live capture path until that verification completes.
+
+Storage grows with retained snapshots. The hourly job deduplicates content but
+deliberately applies no retention deletion policy. This encrypted copy is not
+advertised as write-once storage or evidence of continuous uptime. Test the
+installed Restic integration with `python3 tests/integration_funding_offsite.py`;
+it uses an isolated temporary repository and no production credentials.
+
+### Pull a verified copy over SSH
+
 `scripts/backup_funding_review.py --output-dir /path/on/backup/storage` reads an
 SSH inventory of completed captures, pulls only their listed files with rsync,
 and verifies every manifest and artifact hash before advancing the backup's

@@ -1,0 +1,24 @@
+[Unit]
+Description=Encrypted funding capture backup with a verified full restore
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/financial-evidence/funding-offsite.env
+ExecStart=/usr/bin/python3 -B /opt/financial-evidence-offsite/current/scripts/offsite_funding_review.py --source /var/lib/financial-evidence/funding-review --state /var/lib/financial-evidence-offsite --repository-id ${FUNDING_RESTIC_REPOSITORY_ID}
+UMask=0077
+TimeoutStartSec=1h
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadOnlyPaths=/var/lib/financial-evidence/funding-review
+ReadWritePaths=/var/lib/financial-evidence-offsite
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target

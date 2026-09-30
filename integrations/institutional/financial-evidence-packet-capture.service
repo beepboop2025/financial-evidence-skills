@@ -6,5 +6,5 @@ Requires=docker.service
 [Service]
 Type=oneshot
 EnvironmentFile=/etc/financial-evidence/institutional.env
-ExecStart=/usr/bin/docker run --rm --name financial-evidence-packet-capture --read-only --cap-drop ALL --security-opt no-new-privileges --memory 192m --cpus 0.5 --pids-limit 32 --log-driver local --log-opt max-size=5m --log-opt max-file=2 --tmpfs /tmp:rw,noexec,nosuid,size=16m --user 65532:65532 -v /var/lib/financial-evidence-institutional/archive:/data/packets:rw --entrypoint python ${INSTITUTIONAL_IMAGE} -m financial_evidence.institutional archive --directory /data/packets --trigger schedule
+ExecStart=/usr/bin/docker run --rm --name financial-evidence-packet-capture --read-only --cap-drop ALL --security-opt no-new-privileges --memory 192m --cpus 0.5 --pids-limit 32 --log-driver local --log-opt max-size=5m --log-opt max-file=2 --tmpfs /tmp:rw,noexec,nosuid,size=16m --user 65532:65532 -v /var/lib/financial-evidence-institutional/archive:/data/packets:rw -e FINANCIAL_EVIDENCE_EXPECTED_RELEASE=${FINANCIAL_EVIDENCE_EXPECTED_RELEASE} -e FINANCIAL_EVIDENCE_EXPECTED_SOURCE=${FINANCIAL_EVIDENCE_EXPECTED_SOURCE} --entrypoint python ${INSTITUTIONAL_IMAGE} -m financial_evidence.institutional archive --directory /data/packets --trigger schedule
 TimeoutStartSec=240

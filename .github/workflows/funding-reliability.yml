@@ -25,6 +25,8 @@ jobs:
       - name: Observe the public service from GitHub
         env:
           OBSERVATION_TRIGGER: ${{ github.event_name }}
+          FINANCIAL_EVIDENCE_EXPECTED_RELEASE: ${{ vars.FINANCIAL_EVIDENCE_EXPECTED_RELEASE }}
+          FINANCIAL_EVIDENCE_EXPECTED_SOURCE: ${{ vars.FINANCIAL_EVIDENCE_EXPECTED_SOURCE }}
         run: python3 scripts/observe_funding_reliability.py --directory reliability-evidence --perspective github_external --trigger "$OBSERVATION_TRIGGER"
       - name: Retain successes and failures
         if: always()

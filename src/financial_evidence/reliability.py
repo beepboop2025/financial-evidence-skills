@@ -3,6 +3,8 @@
 import hashlib
 import json
 import math
+import os
+import re
 import time
 import urllib.error
 import urllib.request
@@ -10,8 +12,20 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 BASE = "https://api.seiche.info/openbb"
-RELEASE = "workspace-1.0.1+6aa5d7a22823"
-SOURCE = "6aa5d7a22823b2490d7500afeba18174ca2e8822"
+def expected_identity(environ):
+    """Bind observers to one operator-selected release, preserving old defaults."""
+    release = environ.get("FINANCIAL_EVIDENCE_EXPECTED_RELEASE", "")
+    source = environ.get("FINANCIAL_EVIDENCE_EXPECTED_SOURCE", "")
+    if not release and not source:
+        return ("workspace-1.0.1+6aa5d7a22823", "6aa5d7a22823b2490d7500afeba18174ca2e8822")
+    if not re.fullmatch(r"[0-9a-f]{40}", source) or not re.fullmatch(
+        r"workspace-[0-9]+\.[0-9]+\.[0-9]+\+" + source[:12], release
+    ):
+        raise ValueError("Expected Workspace release and full source SHA must form one matching pair")
+    return release, source
+
+
+RELEASE, SOURCE = expected_identity(os.environ)
 SCHEMA = "financial-evidence.reliability-sample.v1"
 LIMIT = 131072
 CADENCE = 900

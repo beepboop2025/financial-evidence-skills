@@ -43,6 +43,7 @@ financial-evidence = "financial_evidence.cli:main"
 financial-evidence-mcp = "financial_evidence.mcp:main"
 financial-evidence-api = "financial_evidence.workspace:main"
 financial-evidence-workspace-mcp = "financial_evidence.workspace_mcp:main"
+financial-evidence-agent-mcp = "financial_evidence.workspace_mcp:main"
 
 [project.entry-points.openbb_core_extension]
 financial_evidence = "financial_evidence.openbb_router:router"

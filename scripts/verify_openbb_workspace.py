@@ -92,7 +92,7 @@ def verify(base_url, expected_source_commit=None):
         },
     )["serverInfo"]
     tools = rpc("tools/list")["tools"]
-    assert len(tools) == 6 and all(
+    assert len(tools) == 8 and all(
         tool["annotations"]["readOnlyHint"] for tool in tools
     )
     result = rpc(

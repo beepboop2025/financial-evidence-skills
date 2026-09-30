@@ -78,6 +78,28 @@ class WorkspaceTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200, response.text)
         return response.json()
 
+    def test_agent_query_http_and_mcp_match_and_repeat_retains_metadata(self):
+        first = self.client.get("/api/v1/agent-query", params={"dataset": "money_markets", "limit": 2}).json()
+        result = self.rpc("tools/call", {"name": "financial_evidence_agent_query", "arguments": {"dataset": "money_markets", "limit": 2}})["result"]
+        self.assertFalse(result.get("isError", False))
+        self.assertEqual(result["structuredContent"]["revision"], first["revision"])
+        repeated = self.client.get("/api/v1/agent-query", params={"dataset": "money_markets", "limit": 2, "previous_revision": first["revision"]}).json()
+        self.assertEqual(repeated["change_status"], "unchanged")
+        self.assertTrue(repeated["sources"])
+        self.assertEqual(repeated["freshness_status"], "not_evaluated")
+        for params in [{"dataset": "money_markets", "limit": 101}, {"dataset": "money_markets", "previous_revision": "bad"}]:
+            self.assertEqual(self.client.get("/api/v1/agent-query", params=params).status_code, 422)
+
+    def test_three_product_review_http_and_mcp_keep_separate_sections(self):
+        response = self.client.get("/api/v1/agent-review", params={"bank": "uncovered", "limit": 2})
+        self.assertEqual(response.status_code, 200)
+        result = self.rpc("tools/call", {"name": "financial_evidence_review", "arguments": {"bank": "uncovered", "limit": 2}})["result"]
+        self.assertFalse(result.get("isError", False))
+        self.assertEqual(result["structuredContent"]["revision"], response.json()["revision"])
+        self.assertEqual(len(response.json()["sections"]), 3)
+        self.assertEqual(response.json()["financial_authority"], "none")
+        self.assertEqual(self.client.get("/api/v1/agent-review", params={"limit": 26}).status_code, 422)
+
     def test_rest_query_is_typed_cited_and_paginated(self):
         response = self.client.get(
             "/api/v1/query",
@@ -162,8 +184,10 @@ class WorkspaceTests(unittest.TestCase):
         self.assertEqual(
             initialized["result"]["serverInfo"]["name"], "Financial Evidence Workspace"
         )
+        from financial_evidence.release import WORKSPACE_VERSION
+        self.assertEqual(initialized["result"]["serverInfo"]["version"], WORKSPACE_VERSION)
         tools = self.rpc("tools/list")["result"]["tools"]
-        self.assertEqual(len(tools), 6)
+        self.assertEqual(len(tools), 8)
         for tool in tools:
             self.assertTrue(tool["annotations"]["readOnlyHint"])
             self.assertFalse(tool["annotations"]["destructiveHint"])
@@ -256,7 +280,7 @@ class WorkspaceTests(unittest.TestCase):
                 },
             )
             self.assertEqual(response.status_code, 200, response.text)
-            self.assertEqual(len(response.json()["result"]["tools"]), 6)
+            self.assertEqual(len(response.json()["result"]["tools"]), 8)
 
     def test_invalid_proxy_prefixes_are_rejected(self):
         from financial_evidence.workspace import create_app

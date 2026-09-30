@@ -17,6 +17,7 @@ from fastapi.responses import JSONResponse, PlainTextResponse, Response
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 from . import __version__
+from .agents import EvidenceAgentClient
 from .models import QueryResult
 from .funding_archive import read_export, read_review
 from .release import WORKSPACE_VERSION, release_identity
@@ -74,6 +75,7 @@ def create_app(
     owned_service = service is None
     service = service or EvidenceService()
     identity = release_identity()
+    agent_client = EvidenceAgentClient(service)
     mcp = create_mcp(
         service,
         allowed_hosts=["127.0.0.1:*", "localhost:*", "[::1]:*", parsed.netloc],
@@ -246,6 +248,27 @@ def create_app(
     async def packet(topics: Annotated[str, Query(max_length=150)]) -> dict[str, Any]:
         """Fetch original documents for comma-separated topics, up to 1 MiB per source."""
         return await asyncio.to_thread(service.packet, [topics])
+
+    @app.get("/api/v1/agent-query")
+    async def agent_query(
+        dataset: Dataset, entity: Annotated[str, Query(max_length=100)] = "",
+        start_date: str = "", end_date: str = "",
+        limit: Annotated[int, Query(ge=1, le=100)] = 25,
+        offset: Annotated[int, Query(ge=0, le=100000)] = 0,
+        previous_revision: Annotated[str, Query(pattern=r"^(?:[0-9a-f]{64})?$", max_length=64)] = "",
+    ) -> dict[str, Any]:
+        """Compact cited rows with a repeat-call revision, retaining source clocks and gaps."""
+        return await asyncio.to_thread(agent_client.query, dataset, entity,
+                                       start_date, end_date, limit, offset, previous_revision)
+
+    @app.get("/api/v1/agent-review")
+    async def agent_review(
+        bank: Annotated[str, Query(max_length=100)] = "",
+        limit: Annotated[int, Query(ge=1, le=25)] = 10,
+        previous_revision: Annotated[str, Query(pattern=r"^(?:[0-9a-f]{64})?$", max_length=64)] = "",
+    ) -> dict[str, Any]:
+        """Seiche funding, LiquiLens bank research and Undertow liquidity; no trade decision."""
+        return await asyncio.to_thread(agent_client.review, bank, limit, previous_revision)
 
     # Mount at root last so /mcp keeps the SDK's exact transport path.
     app.mount("/", mcp_app)

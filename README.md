@@ -349,3 +349,7 @@ python3 -m py_compile financial-evidence/scripts/fetch_evidence.py src/financial
 ```
 
 The code and skill instructions are MIT-licensed.
+
+## Quant and research agents
+
+[Native framework tools and cited quant datasets](https://beepboop2025.github.io/financial-evidence-skills/agents/) connect Seiche, LiquiLens and Undertow. Source-pinned agent release 1.0.0 adds compact queries, a three-product review and repeat-call revisions. See [the source guide](https://github.com/beepboop2025/financial-evidence-skills/tree/agent-v1.0.0/integrations/agents). These are integration recipes, not evidence of external adoption.

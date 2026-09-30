@@ -11,6 +11,20 @@ from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from financial_evidence import institutional as store
 from financial_evidence import reliability
+
+
+class ExpectedReleaseTests(unittest.TestCase):
+    def test_deployment_pin_requires_matching_full_source(self):
+        source = "a" * 40
+        release = "workspace-1.1.0+" + source[:12]
+        config = {"FINANCIAL_EVIDENCE_EXPECTED_RELEASE": release,
+                  "FINANCIAL_EVIDENCE_EXPECTED_SOURCE": source}
+        self.assertEqual(reliability.expected_identity(config), (release, source))
+        for bad in ({**config, "FINANCIAL_EVIDENCE_EXPECTED_SOURCE": "b" * 40},
+                    {"FINANCIAL_EVIDENCE_EXPECTED_RELEASE": release},
+                    {**config, "FINANCIAL_EVIDENCE_EXPECTED_SOURCE": source[:12]}):
+            with self.subTest(config=bad), self.assertRaises(ValueError):
+                reliability.expected_identity(bad)
 from financial_evidence.funding_archive import FIELDS, METRICS
 
 AT = "2026-09-29T12:00:00+00:00"

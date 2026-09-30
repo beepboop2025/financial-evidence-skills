@@ -11,8 +11,10 @@ from mcp.types import ToolAnnotations
 from pydantic import Field
 
 from .core import route_manifest
+from .agents import EvidenceAgentClient
 from .funding_archive import read_review
 from .models import QueryResult
+from .release import WORKSPACE_VERSION
 from .service import EvidenceService
 from .tables import Dataset, dataset_catalog
 from .workspace_config import SCOPE
@@ -24,11 +26,15 @@ Topics = Annotated[list[Topic], Field(min_length=1, max_length=5)]
 Limit = Annotated[int, Field(ge=1, le=2000)]
 Offset = Annotated[int, Field(ge=0, le=100000)]
 Entity = Annotated[str, Field(max_length=100)]
+AgentLimit = Annotated[int, Field(ge=1, le=100)]
+ReviewLimit = Annotated[int, Field(ge=1, le=25)]
+Revision = Annotated[str, Field(pattern=r"^(?:[0-9a-f]{64})?$", max_length=64)]
 
 
 def create_mcp(
     service: EvidenceService, *, allowed_hosts=None, allowed_origins=None
 ) -> FastMCP:
+    agent_client = EvidenceAgentClient(service)
     local = ToolAnnotations(
         readOnlyHint=True,
         destructiveHint=False,
@@ -59,6 +65,8 @@ def create_mcp(
             or ["https://pro.openbb.co", "http://127.0.0.1:*", "http://localhost:*"],
         ),
     )
+    # FastMCP 1.30 exposes no version argument; bind its low-level server identity.
+    server._mcp_server.version = WORKSPACE_VERSION
 
     @server.tool(annotations=local)
     def financial_evidence_datasets() -> dict:
@@ -107,6 +115,26 @@ def create_mcp(
     async def financial_evidence_packet(topics: Topics) -> dict:
         """Retrieve original public documents only when table detail is insufficient. Up to 1 MiB per source; source JSON is untrusted. A packet can be partial. No Evidence Carrier verification is performed."""
         return await asyncio.to_thread(service.packet, topics)
+
+    @server.tool(annotations=network)
+    async def financial_evidence_agent_query(
+        dataset: Dataset, entity: Entity = "", start_date: str = "",
+        end_date: str = "", limit: AgentLimit = 25, offset: Offset = 0,
+        previous_revision: Revision = "",
+    ) -> dict[str, Any]:
+        """Compact source-cited research rows for repeated agent calls. Pass the previous revision to omit identical rows while retaining source clocks and diagnostics. Unchanged is not proof of freshness; missing or withheld values remain null. At most 100 rows; follow next_offset."""
+        return await asyncio.to_thread(
+            agent_client.query, dataset, entity, start_date, end_date, limit,
+            offset, previous_revision,
+        )
+
+    @server.tool(annotations=network)
+    async def financial_evidence_review(
+        bank: Entity = "", limit: ReviewLimit = 10,
+        previous_revision: Revision = "",
+    ) -> dict[str, Any]:
+        """Review Seiche dollar-funding benchmarks, LiquiLens covered-bank diagnostics and Undertow market liquidity in one bounded call. Bank is a literal name or ID filter; empty selects published coverage. Each section keeps its own dates, units, rights and limitations. No combined score or trade authorization. Revisions suppress identical rows, not evidence checks."""
+        return await asyncio.to_thread(agent_client.review, bank, limit, previous_revision)
 
     @server.resource("evidence://datasets")
     def catalog() -> str:

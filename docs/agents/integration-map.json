@@ -1,0 +1,193 @@
+{
+  "schema": "financial-evidence.agent-integrations.v1",
+  "agent_version": "1.0.0",
+  "screened_at": "2026-09-30",
+  "screened_accessible_repositories": 35,
+  "mcp": "https://api.seiche.info/openbb/mcp",
+  "rest_review": "https://api.seiche.info/openbb/api/v1/agent-review",
+  "frameworks": [
+    "langchain",
+    "crewai",
+    "openai",
+    "pydantic-ai"
+  ],
+  "adoption_status": "integration_recipes_not_verified_external_adoption",
+  "history_scope": "currently_published_not_as_published_vintages",
+  "repositories": [
+    {
+      "name": "TauricResearch/TradingAgents",
+      "url": "https://github.com/TauricResearch/TradingAgents",
+      "readme_sha": "23ffca984a4a1e323b40843e17d99b810221b34c"
+    },
+    {
+      "name": "virattt/ai-hedge-fund",
+      "url": "https://github.com/virattt/ai-hedge-fund",
+      "readme_sha": "7b02b274458e48d1e68a9adb134f33b7ee2fdfe4"
+    },
+    {
+      "name": "virattt/dexter",
+      "url": "https://github.com/virattt/dexter",
+      "readme_sha": "ed1b9350b9af933eb6c5f9cb12360d4d42da7a0c"
+    },
+    {
+      "name": "AI4Finance-Foundation/FinRobot",
+      "url": "https://github.com/AI4Finance-Foundation/FinRobot",
+      "readme_sha": "65fa262404162040a4e439f598db8d0f294e4528"
+    },
+    {
+      "name": "AI4Finance-Foundation/FinRL",
+      "url": "https://github.com/AI4Finance-Foundation/FinRL",
+      "readme_sha": "50e026b2c8715f4683f548afde0d782da777fc9e"
+    },
+    {
+      "name": "microsoft/qlib",
+      "url": "https://github.com/microsoft/qlib",
+      "readme_sha": "42c446e69e5ead8cb6aae2df145d5d24e5d78632"
+    },
+    {
+      "name": "microsoft/RD-Agent",
+      "url": "https://github.com/microsoft/RD-Agent",
+      "readme_sha": "2b766a76a9adeaa1080c4dce058d0a84e782202d"
+    },
+    {
+      "name": "nautechsystems/nautilus_trader",
+      "url": "https://github.com/nautechsystems/nautilus_trader",
+      "readme_sha": "df09e8b2bff0049f073defe43fc9a7c1f963933a"
+    },
+    {
+      "name": "QuantConnect/Lean",
+      "url": "https://github.com/QuantConnect/Lean",
+      "readme_sha": "b352780b83e4da76837cdac623d3d36597639852"
+    },
+    {
+      "name": "freqtrade/freqtrade",
+      "url": "https://github.com/freqtrade/freqtrade",
+      "readme_sha": "439f4c80034e9e644e71ba627debe911ae1a26a3"
+    },
+    {
+      "name": "hummingbot/hummingbot",
+      "url": "https://github.com/hummingbot/hummingbot",
+      "readme_sha": "20dadd44364c91a25448716ebb92e142797794da"
+    },
+    {
+      "name": "jesse-ai/jesse",
+      "url": "https://github.com/jesse-ai/jesse",
+      "readme_sha": "bcdc01bb4af72891f939bd8390eb71cc76a5c76b"
+    },
+    {
+      "name": "ccxt/ccxt",
+      "url": "https://github.com/ccxt/ccxt",
+      "readme_sha": "21462f2e4c7240791b0ef1d0a39c4a098d942e22"
+    },
+    {
+      "name": "polakowo/vectorbt",
+      "url": "https://github.com/polakowo/vectorbt",
+      "readme_sha": "32e03794ba65c1d87106b17e89124783522dacaa"
+    },
+    {
+      "name": "mementum/backtrader",
+      "url": "https://github.com/mementum/backtrader",
+      "readme_sha": "56c664e45365dbd7e87b664d38a3c90e4831735d"
+    },
+    {
+      "name": "OpenBB-finance/OpenBB",
+      "url": "https://github.com/OpenBB-finance/OpenBB",
+      "readme_sha": "20a11786e8936c866511f18ed17f00e2619a2272"
+    },
+    {
+      "name": "OpenBB-finance/agents-for-openbb",
+      "url": "https://github.com/OpenBB-finance/agents-for-openbb",
+      "readme_sha": "926a8a4fe2ac5092795bdaf42685efd79511e505"
+    },
+    {
+      "name": "man-group/ArcticDB",
+      "url": "https://github.com/man-group/ArcticDB",
+      "readme_sha": "2baf5a1370b3ba66b8d231c8cfa08c46e3dac9f8"
+    },
+    {
+      "name": "goldmansachs/gs-quant",
+      "url": "https://github.com/goldmansachs/gs-quant",
+      "readme_sha": "a63313af5dff83691a9699aeaaf57cd2b0efd1d3"
+    },
+    {
+      "name": "finos/legend",
+      "url": "https://github.com/finos/legend",
+      "readme_sha": "7472bc0f61ed814ce0a9015fa0108c869322f109"
+    },
+    {
+      "name": "finos/FDC3",
+      "url": "https://github.com/finos/FDC3",
+      "readme_sha": "7cb167d7d8c2a87037c568d0a70b568f00070812"
+    },
+    {
+      "name": "langchain-ai/langchain",
+      "url": "https://github.com/langchain-ai/langchain",
+      "readme_sha": "aeea8c38765f4a33c777e8755ac2f439132ffbb0"
+    },
+    {
+      "name": "langchain-ai/langgraph",
+      "url": "https://github.com/langchain-ai/langgraph",
+      "readme_sha": "97c31e9cb4d8fe56be8d768ce3eb5e22400e897e"
+    },
+    {
+      "name": "crewAIInc/crewAI",
+      "url": "https://github.com/crewAIInc/crewAI",
+      "readme_sha": "4a5360ad587a35625684747157881558c6acae1d"
+    },
+    {
+      "name": "microsoft/autogen",
+      "url": "https://github.com/microsoft/autogen",
+      "readme_sha": "25f7cc162ae92c3988966d85cce173ff6df48020"
+    },
+    {
+      "name": "ag2ai/ag2",
+      "url": "https://github.com/ag2ai/ag2",
+      "readme_sha": "ea24c9f23dee3d422ab38c7777fdd941f983e127"
+    },
+    {
+      "name": "pydantic/pydantic-ai",
+      "url": "https://github.com/pydantic/pydantic-ai",
+      "readme_sha": "5c92efbcdb40ca35c9effdd7986cdfea40d0312a"
+    },
+    {
+      "name": "agno-agi/agno",
+      "url": "https://github.com/agno-agi/agno",
+      "readme_sha": "2813f35fa7620ff7d95465d853d7b0a6ee2c00b4"
+    },
+    {
+      "name": "huggingface/smolagents",
+      "url": "https://github.com/huggingface/smolagents",
+      "readme_sha": "7c8af38d981a563add56db76b10cde810e010690"
+    },
+    {
+      "name": "vercel/ai",
+      "url": "https://github.com/vercel/ai",
+      "readme_sha": "456d3853992ce379bda7e16d04612f0c506041b9"
+    },
+    {
+      "name": "HKUDS/AI-Trader",
+      "url": "https://github.com/HKUDS/AI-Trader",
+      "readme_sha": "ccb95b088d6041a8ea4bd5e522d426394fabc245"
+    },
+    {
+      "name": "HKUDS/Vibe-Trading",
+      "url": "https://github.com/HKUDS/Vibe-Trading",
+      "readme_sha": "9da849c1ce201a0b33a1a511f9be161f2cea404a"
+    },
+    {
+      "name": "modelcontextprotocol/python-sdk",
+      "url": "https://github.com/modelcontextprotocol/python-sdk",
+      "readme_sha": "7a550e8cfb37d7edb098a9fe6927a2540bb49d6b"
+    },
+    {
+      "name": "anthropics/claude-agent-sdk-python",
+      "url": "https://github.com/anthropics/claude-agent-sdk-python",
+      "readme_sha": "ef674636ad16cdb1595d2515daba3ae0f37f5e0a"
+    },
+    {
+      "name": "openai/openai-agents-python",
+      "url": "https://github.com/openai/openai-agents-python",
+      "readme_sha": "fb76a5b22c9e40705670ea3e89fcafef3cb81fa3"
+    }
+  ]
+}

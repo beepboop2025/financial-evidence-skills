@@ -5,7 +5,7 @@ Requires=docker.service
 
 [Service]
 EnvironmentFile=/etc/financial-evidence/institutional.env
-ExecStart=/usr/bin/docker run --rm --name financial-evidence-packets --read-only --cap-drop ALL --security-opt no-new-privileges --memory 256m --cpus 0.5 --pids-limit 64 --log-driver local --log-opt max-size=5m --log-opt max-file=2 --tmpfs /tmp:rw,noexec,nosuid,size=16m --user 65532:65532 -p 127.0.0.1:6910:6910 -v /var/lib/financial-evidence-institutional/archive:/data/packets:ro -v /var/lib/financial-evidence-institutional/usage:/data/usage:rw ${INSTITUTIONAL_IMAGE}
+ExecStart=/usr/bin/docker run --rm --name financial-evidence-packets --read-only --cap-drop ALL --security-opt no-new-privileges --memory 256m --cpus 0.5 --pids-limit 64 --log-driver local --log-opt max-size=5m --log-opt max-file=2 --tmpfs /tmp:rw,noexec,nosuid,size=16m --user 65532:65532 -p 127.0.0.1:6910:6910 -v /var/lib/financial-evidence-institutional/archive:/data/packets:ro -v /var/lib/financial-evidence-institutional/usage:/data/usage:rw -e FINANCIAL_EVIDENCE_EXPECTED_RELEASE=${FINANCIAL_EVIDENCE_EXPECTED_RELEASE} -e FINANCIAL_EVIDENCE_EXPECTED_SOURCE=${FINANCIAL_EVIDENCE_EXPECTED_SOURCE} ${INSTITUTIONAL_IMAGE}
 ExecStop=/usr/bin/docker stop --time 15 financial-evidence-packets
 Restart=on-failure
 RestartSec=5

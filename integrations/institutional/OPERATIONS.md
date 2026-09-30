@@ -1,7 +1,7 @@
 # Public funding packet operations
 
-This service adds a public research workflow around the pinned Workspace 1.0.1
-release. The Workspace and Seiche production images are unchanged. Its packet
+This service adds a public research workflow around an exactly pinned Workspace
+release. Its packet
 values are independently acquired from original publishers. FRED-derived
 Workspace values are compared transiently, never copied into this new archive.
 Publisher responses and field lineage are retained with their own hashes. New
@@ -16,6 +16,15 @@ preparing a download. The archive begins when this service first verifies a
 packet. It does not turn historical observation dates into earlier knowledge.
 
 ## Runtime and schedules
+
+Set `FINANCIAL_EVIDENCE_EXPECTED_RELEASE` and
+`FINANCIAL_EVIDENCE_EXPECTED_SOURCE` in `/etc/financial-evidence/institutional.env`
+to the accepted Workspace release ID and its full source SHA. They must be a
+matching pair. Pass both into the packet API and capture containers, and use the
+same GitHub Actions variables for external reliability samples. The historical
+default remains Workspace 1.0.1; a new deployment must set its reviewed identity
+explicitly. A mismatch remains a failed sample and never becomes an availability
+or freshness success. Old packets retain their original release identity.
 
 - `financial-evidence-packets.service`: container on loopback port 6910,
   non-root, read-only filesystem, restricted resources, archive mounted read-only.

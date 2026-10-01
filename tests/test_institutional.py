@@ -209,6 +209,33 @@ class ReliabilityTests(unittest.TestCase):
         self.assertTrue(report["github_external"]["independent_host"])
         self.assertFalse(report["hetzner_same_host"]["independent_host"])
 
+    def test_release_histories_retain_failures_without_merging_baselines(self):
+        current = self.probe(fetcher=fetcher())
+        old = dict(current, expected_source="c" * 40,
+                   expected_release="workspace-1.0.0+" + "c" * 12,
+                   ready=False, available=False)
+        end = "2026-09-29T12:15:00+00:00"
+        with self.assertRaises(ValueError):
+            reliability.summarize([current, old], evaluated_at=end)
+        report = reliability.summarize_releases([current, old], evaluated_at=end)
+        self.assertEqual(report["perspectives"]["github_external"]["sampled_readiness_pct"], 100)
+        prior = report["prior_releases"][0]
+        self.assertEqual(prior["expected_source"], old["expected_source"])
+        self.assertEqual(prior["perspectives"]["github_external"]["sampled_readiness_pct"], 0)
+        self.assertFalse(prior["perspectives"]["github_external"]["thirty_days_elapsed"])
+        for invalid in (dict(old, expected_release="workspace-1.0.0+" + "d" * 12),
+                        dict(old, expected_source=None), dict(old, schema="unknown")):
+            with self.subTest(sample=invalid), self.assertRaises(ValueError):
+                reliability.summarize_releases([current, invalid], evaluated_at=end)
+
+    def test_prior_release_cannot_supply_a_new_release_baseline(self):
+        old = self.probe(fetcher=fetcher())
+        with (patch.object(reliability, "SOURCE", "c" * 40),
+              patch.object(reliability, "RELEASE", "workspace-1.2.0+" + "c" * 12)):
+            report = reliability.summarize_releases([old], evaluated_at=AT)
+        self.assertEqual(report["perspectives"], {})
+        self.assertEqual(len(report["prior_releases"]), 1)
+
 
 class ArchiveTests(unittest.TestCase):
     def setUp(self):
@@ -256,6 +283,40 @@ class ArchiveTests(unittest.TestCase):
             self.assertEqual(
                 value, store.digest(Path(store.__file__).with_name(name).read_bytes())
             )
+
+    def test_upgrade_preserves_old_packets_and_requires_new_live_identity(self):
+        self.archive()
+        old_review, old_csv = fixture()
+        manifest_path = self.root / "packets" / PID / "manifest.json"
+        original = manifest_path.read_bytes()
+        source, release = "c" * 40, "workspace-1.2.0+" + "c" * 12
+        with (patch.object(store, "SOURCE", source), patch.object(store, "RELEASE", release),
+              patch.object(reliability, "SOURCE", source), patch.object(reliability, "RELEASE", release)):
+            self.assertFalse(store.latest(self.root)["available"])
+            self.assertIsNone(store.latest(self.root)["packet"])
+            self.assertEqual(store.packet(self.root, PID)[1], store.encoded(old_review))
+            with self.assertRaisesRegex(ValueError, "release mismatch"):
+                store.verify_pair(old_review, old_csv)
+            new_review, new_csv = fixture("20260929T120000.000000Z-" + "c" * 32)
+            result = self.archive(review=new_review, csv_raw=new_csv)
+            self.assertIsNone(result["error"])
+            self.assertTrue(store.latest(self.root)["ready"])
+            report = store.read_json(self.root / "reliability.json")
+            self.assertEqual(report["expected_source"], source)
+            self.assertEqual(len(report["prior_releases"]), 1)
+        self.assertEqual(manifest_path.read_bytes(), original)
+        self.assertEqual(store.history(self.root)["packet_count"], 2)
+
+    def test_historical_packet_identity_remains_bound_to_its_manifest(self):
+        self.archive()
+        path = self.root / "packets" / PID / "manifest.json"
+        original = store.read_json(path)
+        for fields in ({"source_commit": "d" * 40},
+                       {"source_commit": "d" * 40, "source_release": "workspace-1.2.0+" + "d" * 12},
+                       {"source_release": ""}):
+            path.write_bytes(store.encoded(dict(original, **fields)))
+            with self.subTest(fields=fields), self.assertRaises(ValueError):
+                store.packet(self.root, PID)
 
     def test_as_of_does_not_backfill_capture_or_observation_date(self):
         self.archive()

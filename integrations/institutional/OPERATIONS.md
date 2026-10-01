@@ -25,6 +25,12 @@ same GitHub Actions variables for external reliability samples. The historical
 default remains Workspace 1.0.1; a new deployment must set its reviewed identity
 explicitly. A mismatch remains a failed sample and never becomes an availability
 or freshness success. Old packets retain their original release identity.
+Historical packet reads and backups verify each packet against its own stored
+release/source pair and artifact hashes. The current live capture still requires
+the configured Workspace identity. Reliability reports keep the current release
+at the top level and older releases under `prior_releases`; their observation
+windows and failed samples are retained separately, never combined into a new
+release's baseline. No packet or attempt migration is needed on upgrade.
 
 - `financial-evidence-packets.service`: container on loopback port 6910,
   non-root, read-only filesystem, restricted resources, archive mounted read-only.

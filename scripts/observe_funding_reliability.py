@@ -9,7 +9,7 @@ import uuid
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from financial_evidence.reliability import encoded, now, sample, strict_json, summarize
+from financial_evidence.reliability import encoded, now, sample, strict_json, summarize_releases
 
 
 def main():
@@ -43,7 +43,7 @@ def main():
         include_packet_service=True,
     )
     values.append(observation)
-    report = summarize(values)
+    report = summarize_releases(values)
     (args.directory / ("sample-" + run_id + ".json")).write_bytes(encoded(observation))
     # The old artifact remains immutable. This run publishes a new cumulative artifact.
     ledger.write_bytes(encoded(values))

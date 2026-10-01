@@ -209,11 +209,25 @@ def sample(
     return result, docs
 
 
-def summarize(samples, *, evaluated_at=None):
+def summarize(
+    samples, *, evaluated_at=None, expected_release=None, expected_source=None
+):
+    release, source = expected_identity({
+        "FINANCIAL_EVIDENCE_EXPECTED_RELEASE": (
+            RELEASE if expected_release is None else expected_release
+        ),
+        "FINANCIAL_EVIDENCE_EXPECTED_SOURCE": (
+            SOURCE if expected_source is None else expected_source
+        ),
+    })
     end = timestamp(evaluated_at or now())
     unique = {}
     for item in samples:
-        if item.get("schema") != SCHEMA or item.get("expected_source") != SOURCE:
+        if (
+            item.get("schema") != SCHEMA
+            or item.get("expected_source") != source
+            or item.get("expected_release") != release
+        ):
             raise ValueError("mixed or unsupported observer identity")
         at = timestamp(item["observed_at"])
         if at > end or timestamp(item["finished_at"]) < at:
@@ -230,8 +244,8 @@ def summarize(samples, *, evaluated_at=None):
     result = {
         "schema": "financial-evidence.reliability-report.v1",
         "evaluated_at": end.isoformat(),
-        "expected_release": RELEASE,
-        "expected_source": SOURCE,
+        "expected_release": release,
+        "expected_source": source,
         "window_days": 30,
         "scope": "scheduled_samples_not_continuous_uptime",
         "sla_claim": False,
@@ -302,3 +316,26 @@ def summarize(samples, *, evaluated_at=None):
             "independent_host": perspective == "github_external",
         }
     return result
+
+
+def summarize_releases(samples, *, evaluated_at=None):
+    """Keep each release's baseline and failures without combining their slots."""
+    groups = {}
+    for item in samples:
+        release = item.get("expected_release")
+        source = item.get("expected_source")
+        if not isinstance(release, str) or not isinstance(source, str) or not release or not source:
+            raise ValueError("missing observer release identity")
+        identity = expected_identity({
+            "FINANCIAL_EVIDENCE_EXPECTED_RELEASE": release,
+            "FINANCIAL_EVIDENCE_EXPECTED_SOURCE": source,
+        })
+        groups.setdefault(identity, []).append(item)
+    end = evaluated_at or now()
+    current = summarize(groups.pop((RELEASE, SOURCE), []), evaluated_at=end)
+    current["prior_releases"] = [
+        summarize(values, evaluated_at=end, expected_release=release,
+                  expected_source=source)
+        for (release, source), values in sorted(groups.items())
+    ]
+    return current

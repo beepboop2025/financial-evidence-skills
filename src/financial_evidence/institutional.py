@@ -21,11 +21,12 @@ from .reliability import (
     RELEASE,
     SOURCE,
     encoded,
+    expected_identity,
     fetch,
     now,
     sample,
     strict_json,
-    summarize,
+    summarize_releases,
     timestamp,
 )
 
@@ -57,8 +58,11 @@ def replace(path, value):
     os.replace(temporary, path)
 
 
-def verify_pair(review, csv_raw):
+def verify_pair(review, csv_raw, *, expected_source=None):
     """A CSV from a different capture must never be attached to this review."""
+    source = SOURCE if expected_source is None else expected_source
+    if not isinstance(source, str) or not re.fullmatch(r"[0-9a-f]{40}", source):
+        raise ValueError("invalid expected review source")
     capture_id = review.get("capture_id", "")
     if not CAPTURE.fullmatch(capture_id) or review.get("schema") not in (
         "liquidity-lab.funding-review.v1",
@@ -66,8 +70,8 @@ def verify_pair(review, csv_raw):
     ):
         raise ValueError("unsupported review")
     if (
-        review.get("observed_release", {}).get("source_commit") != SOURCE
-        or review.get("runtime_release", {}).get("source_commit") != SOURCE
+        review.get("observed_release", {}).get("source_commit") != source
+        or review.get("runtime_release", {}).get("source_commit") != source
     ):
         raise ValueError("review release mismatch")
     if (
@@ -238,7 +242,7 @@ def archive_once(
         observations = [
             read_json(p)["probe"] for p in (root / "attempts").glob("*.json")
         ]
-        replace(root / "reliability.json", summarize(observations))
+        replace(root / "reliability.json", summarize_releases(observations))
         replace(root / "coverage.json", history(root))
         return attempt
 
@@ -264,7 +268,14 @@ def packet(root, identifier):
         if digest(raw) != manifest["artifacts"][name]:
             raise ValueError("packet hash mismatch")
         values.append(raw)
-    verify_pair(strict_json(values[0]), values[1])
+    release, source = manifest.get("source_release"), manifest.get("source_commit")
+    if not isinstance(release, str) or not isinstance(source, str) or not release or not source:
+        raise ValueError("missing packet release identity")
+    expected_identity({
+        "FINANCIAL_EVIDENCE_EXPECTED_RELEASE": release,
+        "FINANCIAL_EVIDENCE_EXPECTED_SOURCE": source,
+    })
+    verify_pair(strict_json(values[0]), values[1], expected_source=source)
     return manifest, *values
 
 
@@ -329,15 +340,23 @@ def latest(root):
     usable = (
         attempt["packet_id"] is not None
         and attempt["error"] is None
+        and attempt["probe"].get("expected_source") == SOURCE
+        and attempt["probe"].get("expected_release") == RELEASE
+        and attempt["probe"].get("release_matches") is True
         and 0 <= age <= 1200
         and source_current
     )
+    manifest = packet(root, attempt["packet_id"])[0] if usable else None
+    if manifest and (
+        manifest["source_commit"] != SOURCE or manifest["source_release"] != RELEASE
+    ):
+        raise ValueError("latest packet release mismatch")
     return {
         "available": usable,
         "ready": usable and attempt["probe"]["ready"],
         "age_seconds": age,
         "attempt": attempt,
-        "packet": packet(root, attempt["packet_id"])[0] if usable else None,
+        "packet": manifest,
     }
 
 

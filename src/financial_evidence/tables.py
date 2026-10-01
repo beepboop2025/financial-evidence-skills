@@ -41,7 +41,7 @@ DATASETS = {
     "bank_risk": {
         "name": "Covered-bank research diagnostics",
         "topics": ["bank-risk"],
-        "description": "LiquiLens corpus monitoring scores and 12-month model probabilities with quarter dates and construction-PIT limitations. Not credit ratings or validated forecasts.",
+        "description": "Current reviewed bank filing ratios, followed by eligible corpus monitoring diagnostics. Retains filing dates, source citations and construction-PIT limitations; not credit ratings or validated forecasts.",
     },
     "market_liquidity": {
         "name": "Public market-liquidity observations",
@@ -281,12 +281,42 @@ def _capital(source: dict) -> list[dict]:
     return rows
 
 
+def _bank_filings(source: dict) -> list[dict]:
+    document = _obj(source.get("document"))
+    filings = _obj(document.get("current_disclosures"))
+    if filings.get("schema") != "liquilens.current-bank-filings.v1":
+        return []
+    rows = []
+    for index, raw in enumerate(_items(filings.get("rows"))):
+        item = _obj(raw)
+        metrics = _obj(item.get("metrics"))
+        sources = _items(item.get("sources"))
+        observation_url = next((url for url in sources if isinstance(url, str) and url.startswith("https://")), None)
+        for name in ("gnpa_pct", "nnpa_pct", "crar_pct", "cet1_pct", "tier1_pct", "casa_pct", "lcr_pct"):
+            metric = _obj(metrics.get(name))
+            blocked = any(_blocked(node, raw_observation=True) for node in (document, filings, item, metric))
+            observed = item.get("status") == "observed" and metric.get("status") == "observed"
+            number = _number(metric.get("value")) if not blocked and observed and metric.get("unit") == "percent" else None
+            rows.append(_row(
+                source, "bank_risk", entity_id=_text(item.get("slug")), entity_name=_text(item.get("name")),
+                metric=name, value=number, unit=_text(metric.get("unit")), as_of=_text(item.get("period_end")),
+                published_at=_text(item.get("publication_date")), knowledge_time=_text(item.get("available_at")),
+                source_status=_text(item.get("status")), availability="published" if number is not None else "unavailable",
+                source_field=f"/current_disclosures/rows/{index}/metrics/{name}/value", observation_url=observation_url,
+                rights_status=_text(metric.get("rights_status") or item.get("rights_status") or filings.get("rights_status")),
+                context=_json({"scope": "reported_filing_ratio", "score_authority": False,
+                    "basis": metric.get("basis"), "source_documents": item.get("source_documents", []),
+                    "interpretation_limits": item.get("interpretation_limits", [])}),
+            ))
+    return rows
+
+
 def _banks(source: dict) -> list[dict]:
     document = _obj(source.get("document"))
     items = document.get("rows")
+    rows = _bank_filings(source)
     if not isinstance(items, list):
-        return []
-    rows = []
+        return rows
     for i, raw in enumerate(items):
         item = _obj(raw)
         hazard = _obj(item.get("hazard"))

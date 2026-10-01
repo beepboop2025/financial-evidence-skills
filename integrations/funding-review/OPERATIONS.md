@@ -17,7 +17,7 @@ with `ssd-workspace status` first and put output beneath `SSDWorkspace/evidence`
 python3 scripts/capture_funding_review.py \
   --output-dir /var/lib/financial-evidence/funding-review \
   --backend-url https://api.seiche.info/openbb \
-  --expected-release workspace-1.1.0+REPLACE_WITH_TESTED_COMMIT_PREFIX
+  --expected-release workspace-1.1.1+REPLACE_WITH_TESTED_COMMIT_PREFIX
 ```
 
 Use the release identity recorded in the deployment receipt. Omitting

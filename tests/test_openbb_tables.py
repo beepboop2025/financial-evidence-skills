@@ -90,6 +90,28 @@ def packet(topic, document=None, ok=True):
 
 
 class ProjectionTests(unittest.TestCase):
+    def test_current_filings_preserve_zero_null_citations_and_knowledge_clock(self):
+        doc = {"rows": [], "current_disclosures": {
+            "schema": "liquilens.current-bank-filings.v1", "score_authority": False,
+            "rows": [{"slug": "jana-sfb", "name": "Jana Small Finance Bank", "status": "observed",
+                "period_end": "2026-06-30", "publication_date": "2026-07-30", "available_at": "2026-09-24",
+                "sources": ["https://bank.example/filing.pdf"], "source_documents": [{"sha256": "a" * 64}],
+                "metrics": {"gnpa_pct": {"value": 0, "unit": "percent", "status": "observed"},
+                            "nnpa_pct": {"value": None, "unit": "percent", "status": "not_disclosed"}}}]}}
+        rows = query_packet(packet("bank-risk", doc), "bank_risk")["results"]
+        self.assertEqual(rows[0]["value"], 0)
+        self.assertIsNone(rows[1]["value"])
+        self.assertEqual(rows[0]["source_field"], "/current_disclosures/rows/0/metrics/gnpa_pct/value")
+        self.assertEqual(rows[0]["as_of"], "2026-06-30")
+        self.assertEqual(rows[0]["knowledge_time"], "2026-09-24")
+        self.assertEqual(rows[0]["observation_url"], "https://bank.example/filing.pdf")
+        self.assertFalse(json.loads(rows[0]["context"])["score_authority"])
+        for mutation in ({"status": "stale"}, {"rights_status": "restricted"}):
+            amended = copy.deepcopy(doc)
+            amended["current_disclosures"]["rows"][0].update(mutation)
+            output = query_packet(packet("bank-risk", amended), "bank_risk")["results"]
+            self.assertTrue(all(row["value"] is None for row in output))
+
     def test_malformed_mcp_params_and_unknown_arguments_do_not_crash_or_fetch(self):
         result = mcp.dispatch(
             {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": []}

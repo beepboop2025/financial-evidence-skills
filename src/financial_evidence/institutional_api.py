@@ -11,7 +11,7 @@ from fastapi.responses import Response
 from . import institutional as store
 from . import application_usage as applications
 from . import funding_contract as contract
-from .reliability import now, strict_json, summarize
+from .reliability import now, strict_json, summarize_releases
 
 
 def create_app(archive=None, events=None):
@@ -239,7 +239,7 @@ def create_app(archive=None, events=None):
                 for p in (archive / "attempts").glob("*.json")
             ]
         )
-        return read(lambda: summarize(observations, evaluated_at=now()))
+        return read(lambda: summarize_releases(observations, evaluated_at=now()))
 
     @app.get("/packets/{identifier}/{name}")
     def download(identifier: str, name: str):

@@ -307,6 +307,31 @@ class ArchiveTests(unittest.TestCase):
         self.assertEqual(manifest_path.read_bytes(), original)
         self.assertEqual(store.history(self.root)["packet_count"], 2)
 
+    def test_http_reliability_preserves_release_histories_and_tail_gaps(self):
+        try:
+            from fastapi.testclient import TestClient
+            from financial_evidence.institutional_api import create_app
+        except ImportError:
+            self.skipTest("optional workspace dependencies")
+        self.archive()
+        source, release = "c" * 40, "workspace-1.2.0+" + "c" * 12
+        with (patch.object(store, "SOURCE", source), patch.object(store, "RELEASE", release),
+              patch.object(reliability, "SOURCE", source), patch.object(reliability, "RELEASE", release),
+              patch("financial_evidence.institutional_api.now", return_value=AT)):
+            review, csv_raw = fixture("20260929T120000.000000Z-" + "c" * 32)
+            self.assertIsNone(self.archive(review=review, csv_raw=csv_raw)["error"])
+            with TestClient(create_app(self.root, self.events)) as client:
+                response = client.get("/reliability")
+                self.assertEqual(response.status_code, 200)
+                report = response.json()
+                self.assertEqual(report["expected_source"], source)
+                self.assertEqual(len(report["prior_releases"]), 1)
+                self.assertNotEqual(report["prior_releases"][0]["expected_source"], source)
+                self.assertEqual(client.get("/packets/" + PID + "/review.json").status_code, 200)
+                with patch("financial_evidence.institutional_api.now", return_value="2026-09-29T12:30:00+00:00"):
+                    later = client.get("/reliability").json()
+                self.assertEqual(later["perspectives"]["hetzner_same_host"]["expected_slots"], 2)
+
     def test_historical_packet_identity_remains_bound_to_its_manifest(self):
         self.archive()
         path = self.root / "packets" / PID / "manifest.json"

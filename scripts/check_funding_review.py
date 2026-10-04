@@ -43,6 +43,15 @@ MAX_AGE_DAYS = {"daily": 4, "weekly": 10}
 MAX_BYTES = 2_097_152
 TGA_SCHEDULE_SOURCE = "https://home.treasury.gov/policy-issues/financial-markets-financial-institutions-and-fiscal-service/cash-and-debt-forecasting"
 ATLAS_CLOCK_BASIS = "pack business calendar + adapter publication lag/cadence; stored state is a lower bound"
+ATLAS_DECLARED_CLOCK_BASIS = (
+    "pack business calendar + adapter publication lag/cadence; "
+    "declared publication schedule, not a publication receipt; "
+    "stored state is a lower bound"
+)
+# Seiche 0.14 clarifies the same declared schedule in its public description.
+# Inferred clocks are deliberately excluded. The independently calculated
+# deadline and all observation, identity and rights checks still apply below.
+ATLAS_CLOCK_BASES = (ATLAS_CLOCK_BASIS, ATLAS_DECLARED_CLOCK_BASIS)
 NYFED_CLOCKS = {
     "policy.sofr": ("US.NYFED.SOFR", "SOFR", "%", 1, "fred"),
     "policy.effr": ("US.NYFED.EFFR", "EFFR", "%", 1, "fred"),
@@ -111,7 +120,7 @@ def nyfed_clock_evidence(name, row, market, now):
         or atlas_row.get("source") != source
         or atlas_row.get("redistribution_status") != "allowed"
         or publication_denied(atlas_row)
-        or atlas_row.get("freshness_basis") != ATLAS_CLOCK_BASIS
+        or atlas_row.get("freshness_basis") not in ATLAS_CLOCK_BASES
         or isinstance(missed, bool)
         or not isinstance(missed, int)
         or missed != 0

@@ -3,7 +3,11 @@
 import copy
 import unittest
 
-from scripts.check_funding_review import ATLAS_CLOCK_BASIS, evaluate
+from scripts.check_funding_review import (
+    ATLAS_CLOCK_BASIS,
+    ATLAS_DECLARED_CLOCK_BASIS,
+    evaluate,
+)
 from test_funding_review import captures
 
 
@@ -70,6 +74,52 @@ def overnight(asof="2026-09-25", now="2026-09-29T00:01:00Z", due="2026-09-29"):
 
 
 class PublicationReviewTests(unittest.TestCase):
+    def test_declared_schedule_description_preserves_observations_and_deadlines(self):
+        now = "2026-10-04T06:00:00Z"
+        docs = overnight("2026-10-01", now, "2026-10-05")
+        for row in docs[1]["markets"][0]["metrics"]:
+            row["freshness_basis"] = ATLAS_DECLARED_CLOCK_BASIS
+        before = copy.deepcopy(docs)
+        result = evaluate(*docs, evaluated_at=now)
+        self.assertEqual(result["issues"], [])
+        self.assertEqual(docs, before)
+        for clock, count in (("12:00:00", 3), ("13:00:00", 4)):
+            expired = evaluate(*docs, evaluated_at=f"2026-10-05T{clock}Z")
+            self.assertEqual(
+                sum(x["code"] == "nyfed_publication_clock_not_usable"
+                    for x in expired["issues"]),
+                count,
+            )
+
+    def test_new_description_does_not_admit_inferred_or_inconsistent_clocks(self):
+        inferred = (
+            "pack business calendar + adapter publication lag/cadence; "
+            "native publication clock inferred from retained row; "
+            "schedule is estimated, not a publication receipt; "
+            "stored state is a lower bound"
+        )
+        for field, value in (
+            ("freshness_basis", inferred),
+            ("freshness_basis", ATLAS_DECLARED_CLOCK_BASIS + "; unreviewed"),
+            ("freshness_basis", None),
+            ("freshness_basis", [ATLAS_DECLARED_CLOCK_BASIS]),
+            ("value", 3.91),
+            ("redistribution_status", "prohibited"),
+            ("expected_next_update", "2026-09-30T12:00:00Z"),
+            ("missed_publication_opportunities", 1),
+        ):
+            with self.subTest(field=field, value=value):
+                docs = overnight()
+                rows = docs[1]["markets"][0]["metrics"]
+                for row in rows:
+                    row["freshness_basis"] = ATLAS_DECLARED_CLOCK_BASIS
+                rows[0][field] = value
+                result = evaluate(*docs, evaluated_at="2026-09-29T00:01:00Z")
+                self.assertIn(
+                    {"code": "nyfed_publication_clock_not_usable", "subject": "policy.sofr"},
+                    result["issues"],
+                )
+
     def test_midnight_accepts_matching_four_instruments_without_rewriting_labels(self):
         docs = overnight()
         before = copy.deepcopy(docs)

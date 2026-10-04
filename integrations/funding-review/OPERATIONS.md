@@ -163,6 +163,14 @@ observations. Atlas/calendar disagreements remain visible exceptions. Preserve
 the raw publisher freshness label and inspect `freshness_assessments` for the
 accepted basis; do not treat a future deadline alone as proof of freshness.
 
+The checker recognizes both the original Atlas clock description and Seiche's
+explicit "declared publication schedule, not a publication receipt" description.
+It does not accept the separate inferred-clock description. Both admitted
+descriptions require the same exact instrument, observation, unit, rights,
+zero missed publications and independently calculated NY Fed deadline. Captures
+retain the checker fingerprint, so this compatibility update does not relabel
+historical failures or bypass the original-implementation replay requirement.
+
 ## Scheduled operation
 
 The historical SRF check verifies the card's three decimal places and the chart's

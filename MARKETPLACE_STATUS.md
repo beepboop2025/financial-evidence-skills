@@ -16,7 +16,8 @@ verification and does not refresh historical submission observations.
 
 - Official MCP Registry v0.1.6 is active with both the public Streamable HTTP
   endpoint and the versioned OCI package.
-- The public Homebrew tap installs and tests Financial Evidence v0.1.6.
+- The public Homebrew tap installs and tests Financial Evidence v0.1.5; the
+  v0.1.6 formula remains pending separate consumer acceptance and publication.
 - skills.sh serves the Agent Skill.
 - Glama serves both the registry-ingested connector and repository listing, but
   its repository evaluation is incomplete until a Glama release exposes the

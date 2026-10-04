@@ -14,6 +14,59 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  homebrew-candidate-consumer:
+    name: Independent Homebrew candidate acceptance
+    runs-on: macos-15
+    timeout-minutes: 15
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_ANALYTICS: "1"
+      TAP_SOURCE: "0115418229d64608b302fec99f4b02d8a6f81f0e"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: beepboop2025/homebrew-tap
+          ref: 0115418229d64608b302fec99f4b02d8a6f81f0e
+          path: tap-candidate
+          persist-credentials: false
+      - name: Register only the exact public candidate tap
+        run: |
+          test "$(git -C tap-candidate rev-parse HEAD)" = "$TAP_SOURCE"
+          brew tap beepboop2025/tap "$GITHUB_WORKSPACE/tap-candidate"
+          test "$(git -C "$(brew --repo beepboop2025/tap)" rev-parse HEAD)" = "$TAP_SOURCE"
+      - run: brew audit --strict --online beepboop2025/tap/financial-evidence
+      - run: brew style beepboop2025/tap/financial-evidence
+      - run: brew install beepboop2025/tap/financial-evidence
+      - run: brew test beepboop2025/tap/financial-evidence
+      - name: Verify installed MCP and retain the separate candidate identity
+        run: |
+          python3 scripts/verify_published_mcp.py --receipt homebrew-mcp-receipt.json -- \
+            "$(brew --prefix financial-evidence)/bin/financial-evidence-mcp"
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, subprocess
+          from datetime import datetime, timezone
+          tap = subprocess.check_output(["brew", "--repo", "beepboop2025/tap"], text=True).strip()
+          source = subprocess.check_output(["git", "-C", tap, "rev-parse", "HEAD"], text=True).strip()
+          assert source == os.environ["TAP_SOURCE"]
+          formula = pathlib.Path(tap) / "Formula/financial-evidence.rb"
+          receipt = {"schema": "financial-evidence.homebrew-candidate-acceptance.v1",
+                     "observed_at": datetime.now(timezone.utc).isoformat(),
+                     "source_commit": source, "formula_sha256": hashlib.sha256(formula.read_bytes()).hexdigest(),
+                     "checks": ["strict_online_audit", "style", "actual_install", "formula_test", "published_mcp_contract"],
+                     "status": "PASS", "scope": "Independent consumer acceptance, not native tap CI or public tap publication"}
+          pathlib.Path("homebrew-source-receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
+          PY
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: homebrew-candidate-consumer
+          path: |
+            homebrew-mcp-receipt.json
+            homebrew-source-receipt.json
+          retention-days: 30
+
   published-mcp-consumer:
     runs-on: ubuntu-24.04
     timeout-minutes: 5

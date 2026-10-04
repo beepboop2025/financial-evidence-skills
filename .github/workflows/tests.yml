@@ -14,6 +14,29 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  published-mcp-consumer:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Pull the immutable public release
+        run: docker pull ghcr.io/beepboop2025/financial-evidence-skills@sha256:5d4cff428c8ad95d57217c2e2a9dd55be4ecb570a072e57c949ddaef567365f1
+      - name: Exercise the published stdio contract without network access
+        run: |
+          python3 scripts/verify_published_mcp.py --receipt published-mcp-receipt.json -- \
+            docker run --rm --interactive --pull never --read-only --network none \
+            --cap-drop ALL --security-opt no-new-privileges --pids-limit 64 \
+            --memory 128m --cpus 1 \
+            ghcr.io/beepboop2025/financial-evidence-skills@sha256:5d4cff428c8ad95d57217c2e2a9dd55be4ecb570a072e57c949ddaef567365f1
+      - name: Retain the published artifact receipt
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: published-mcp-consumer
+          path: published-mcp-receipt.json
+          retention-days: 30
+
   native-agent-tools:
     runs-on: ubuntu-24.04
     timeout-minutes: 10

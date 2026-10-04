@@ -1,12 +1,11 @@
 # Financial Evidence Agent Skills
 
-**0.1.6 source candidate:** the checked-out helper and package add `gift-city`,
-`forex` and `gold` to the five published research topics. GIFT City serves gold
-and treasury desks, investors/fund managers, and banks/IFSC institutions. The
-helper reads fixed public context and keeps gold/FX calculations as explicit
-user-input steps. See [topic routing](financial-evidence/references/routing.md).
-This is not yet a published package, Registry update or remote MCP upgrade;
-the verified installation commands below remain pinned to **0.1.5**.
+**Verified release 0.1.6:** the published package and public MCP router support
+`gift-city`, `forex` and `gold` alongside the five existing research topics.
+GIFT City serves gold and treasury desks, investors/fund managers, and banks/IFSC
+institutions. The helper reads fixed public context; gold/FX calculations remain
+explicit user-input steps. See [topic routing](financial-evidence/references/routing.md)
+and the [release verification record](docs/releases/0.1.6.json).
 
 **[OpenBB Research Desk](integrations/openbb/README.md), [Workspace release 1.0.1](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/workspace-v1.0.1).**
 Seven cited datasets, a seven-tab Workspace app, an archived USD funding review,
@@ -14,8 +13,8 @@ benchmark history charts, typed REST responses and a six-tool MCP server connect
 all four projects. The hosted service is `https://api.seiche.info/openbb`.
 Install
 `.[openbb,workspace]` from this checkout, then run `openbb-build` and
-`financial-evidence-api`. These additions are not in the published v0.1.5 wheel
-or the existing public three-tool MCP deployment. The Workspace release identifies
+`financial-evidence-api`. The optional modules are included in the v0.1.6 wheel;
+the public router retains its separate three-tool contract. The hosted Workspace release identifies
 its exact source commit independently at `/api/v1/release`.
 
 **Check a captured USD funding review:** the [funding review checks](integrations/funding-review/README.md)
@@ -25,7 +24,7 @@ dates; it does not claim the latest print for every instrument. Missing, overdue
 or contradictory evidence requires attention. Passing these checks is not an
 institutional-readiness certification.
 
-**Automate funding research:** [versioned packets, captured changes, Python, OpenBB and a local agent tool](https://beepboop2025.github.io/financial-evidence-skills/funding/automate/). Public access requires no account; optional application keys use explicit measurement consent. The hosted packet API and downloadable templates are independent of the published v0.1.5 wheel.
+**Automate funding research:** [versioned packets, captured changes, Python, OpenBB and a local agent tool](https://beepboop2025.github.io/financial-evidence-skills/funding/automate/). Public access requires no account; optional application keys use explicit measurement consent. The hosted packet API and downloadable templates are versioned separately from the v0.1.6 wheel.
 
 **Three concrete jobs:** [funding review, Cosmos Bank NPAs and a $100k BTC exit](https://beepboop2025.github.io/financial-evidence-skills/automations/)
 with native n8n workflows and optional Slack/Telegram delivery. The
@@ -54,11 +53,11 @@ integration metadata, and a dated
 [third-party marketplace ledger](MARKETPLACE_STATUS.md).
 The [v0.1.5 semantic contract](SEMANTIC_CONTRACT.md) defines transport-only
 status, source-reported adapter metadata, and the explicit non-Carrier boundary.
-Version 0.1.5 is a signed, independently verified release. Its versioned
+Version 0.1.6 is a signed, independently verified release. Its versioned
 Agent Skill, terminal, Codex, Gemini, editor, and bundle installs use the same
-release, with published artifacts, container, Registry record, and Homebrew
-formula. The Claude self-hosted marketplace command follows the repository's
-mutable default branch; review the checked-out commit before enabling it.
+release, with published artifacts, container, and Registry record. Homebrew
+currently installs 0.1.5 while its separate formula update is verified. The Claude
+self-hosted marketplace command follows the repository's mutable default branch; review the checked-out commit before enabling it.
 
 Open, read-only Agent Skills for routing financial research to bounded public
 evidence. The first skill connects four complementary products without turning
@@ -84,7 +83,7 @@ Palimpsest. Use the versioned install below for this four-product routing skill.
 ## Install the agent skill
 
 ```bash
-npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.5/financial-evidence \
+npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.6/financial-evidence \
   --skill financial-evidence
 ```
 
@@ -96,8 +95,8 @@ The skill is also indexed in the public
 [skills.sh directory](https://skills.sh/beepboop2025/financial-evidence-skills/financial-evidence).
 
 Once installed, ask your agent to research a money-market, capital-market,
-bank-risk, market-liquidity or China-economy question. The skill's description
-lets compatible agents activate it when the work matches.
+bank-risk, market-liquidity, China-economy, GIFT City, forex or gold question.
+The skill's description lets compatible agents activate it when the work matches.
 
 ## Use from any terminal
 
@@ -109,18 +108,19 @@ financial-evidence fetch --topic money-market --topic china-economy
 ```
 
 The formula installs `financial-evidence`, `financial-evidence-mcp`, and native
-Bash, Zsh, and Fish completions. Alternatively, run directly from GitHub
-without installing:
+Bash, Zsh, and Fish completions. It currently installs 0.1.5; use the versioned
+Git install below for the eight-topic 0.1.6 release. Alternatively, run directly
+from GitHub without installing:
 
 ```bash
-uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.5 \
+uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.6 \
   financial-evidence fetch --topic money-market --topic china-economy
 ```
 
 Or install it as a persistent command:
 
 ```bash
-uv tool install git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.5
+uv tool install git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.6
 financial-evidence topics
 financial-evidence route --topic capital-market --format table
 financial-evidence fetch --topic bank-risk --format ndjson
@@ -188,7 +188,7 @@ instructions as well:
 
 ```bash
 gemini extensions install https://github.com/beepboop2025/financial-evidence-skills \
-  --ref v0.1.5
+  --ref v0.1.6
 ```
 
 Claude Code can add this repository as a self-hosted marketplace and install
@@ -212,7 +212,7 @@ they do not imply inclusion in a vendor-operated marketplace or endorsement.
 Codex can add the repository's plugin marketplace and then install the plugin:
 
 ```bash
-codex plugin marketplace add beepboop2025/financial-evidence-skills --ref v0.1.5
+codex plugin marketplace add beepboop2025/financial-evidence-skills --ref v0.1.6
 codex plugin add financial-evidence@liquidity-lab
 ```
 
@@ -234,25 +234,25 @@ editor workspaces can still use one.
 The repository also includes editor-specific workspace configuration:
 [`.vscode/mcp.json`](.vscode/mcp.json) uses VS Code's top-level `servers`
 object, while [`.cursor/mcp.json`](.cursor/mcp.json) uses Cursor's top-level
-`mcpServers` object. Public install links currently launch the verified v0.1.5
+`mcpServers` object. Public install links currently launch the verified v0.1.6
 stdio server through `uvx`, matching the repository manifests.
 
 VS Code can install the server through its protocol handler:
 
 ```text
-vscode:mcp/install?%7B%22name%22%3A%22financial-evidence%22%2C%22type%22%3A%22stdio%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22--from%22%2C%22git%2Bhttps%3A%2F%2Fgithub.com%2Fbeepboop2025%2Ffinancial-evidence-skills.git%40v0.1.5%22%2C%22financial-evidence-mcp%22%5D%7D
+vscode:mcp/install?%7B%22name%22%3A%22financial-evidence%22%2C%22type%22%3A%22stdio%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22--from%22%2C%22git%2Bhttps%3A%2F%2Fgithub.com%2Fbeepboop2025%2Ffinancial-evidence-skills.git%40v0.1.6%22%2C%22financial-evidence-mcp%22%5D%7D
 ```
 
 Or add it to your VS Code user profile from a terminal:
 
 ```bash
-code --add-mcp '{"name":"financial-evidence","type":"stdio","command":"uvx","args":["--from","git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.5","financial-evidence-mcp"]}'
+code --add-mcp '{"name":"financial-evidence","type":"stdio","command":"uvx","args":["--from","git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.6","financial-evidence-mcp"]}'
 ```
 
 Cursor can install the same configuration through its base64-encoded deeplink:
 
 ```text
-cursor://anysphere.cursor-deeplink/mcp/install?name=financial-evidence&config=eyJ0eXBlIjoic3RkaW8iLCJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyItLWZyb20iLCJnaXQraHR0cHM6Ly9naXRodWIuY29tL2JlZXBib29wMjAyNS9maW5hbmNpYWwtZXZpZGVuY2Utc2tpbGxzLmdpdEB2MC4xLjUiLCJmaW5hbmNpYWwtZXZpZGVuY2UtbWNwIl19
+cursor://anysphere.cursor-deeplink/mcp/install?name=financial-evidence&config=eyJ0eXBlIjoic3RkaW8iLCJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyItLWZyb20iLCJnaXQraHR0cHM6Ly9naXRodWIuY29tL2JlZXBib29wMjAyNS9maW5hbmNpYWwtZXZpZGVuY2Utc2tpbGxzLmdpdEB2MC4xLjYiLCJmaW5hbmNpYWwtZXZpZGVuY2UtbWNwIl19
 ```
 
 Install `uv` first so `uvx` is on your path. Review the source and exact
@@ -265,7 +265,7 @@ before using its inline start action. These are self-installable compatibility
 artifacts, not claims of a VS Code or Cursor marketplace listing or endorsement.
 
 For desktop clients that support one-click MCP Bundles, download
-`financial-evidence-0.1.5.mcpb` from the last verified GitHub release. The bundle uses the
+`financial-evidence-0.1.6.mcpb` from the last verified GitHub release. The bundle uses the
 cross-platform `uv` runtime and requires no API key or configuration.
 
 ## Finance-tool integrations

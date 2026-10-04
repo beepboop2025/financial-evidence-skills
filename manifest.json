@@ -3,8 +3,8 @@
   "manifest_version": "0.4",
   "name": "financial-evidence",
   "display_name": "Financial Evidence",
-  "version": "0.1.5",
-  "description": "Read-only money-market, capital-market, China-economy, bank-risk, and liquidity evidence for AI agents.",
+  "version": "0.1.6",
+  "description": "Read-only GIFT City, forex, gold, money-market, capital-market, China-economy, bank-risk and liquidity evidence.",
   "long_description": "Routes financial research to separate public evidence from LiquiLens, Undertow, Seiche, and Palimpsest. The server exposes bounded topic discovery, route resolution, and retrieval tools. Status reports transport reachability only; evidence evaluation and Evidence Carrier verification are not performed. Missing, restricted, or unavailable evidence remains unavailable and is never converted to zero, a composite score, or a synthetic calm reading.",
   "author": {
     "name": "Liquidity Lab",
@@ -56,7 +56,10 @@
     "china-economy",
     "financial-data",
     "liquidity",
-    "money-markets"
+    "money-markets",
+    "gift-city",
+    "forex",
+    "gold"
   ],
   "license": "MIT",
   "compatibility": {

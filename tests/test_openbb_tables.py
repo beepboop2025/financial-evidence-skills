@@ -490,7 +490,7 @@ class CacheTests(unittest.TestCase):
             [row["source_url"] for row in result["sources"]],
             [s.url for routes in core.ROUTES.values() for s in routes],
         )
-        self.assertEqual(len(service._cache), 6)
+        self.assertEqual(len(service._cache), 8)
 
 
 if __name__ == "__main__":

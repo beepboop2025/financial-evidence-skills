@@ -1,6 +1,6 @@
 ---
 name: financial-evidence
-description: Route evidence-led research about money markets, capital-market transmission, China economics and information controls, financial-institution risk, or market liquidity across Seiche, LiquiLens, Undertow, and Palimpsest. Use for sourced research and data retrieval, not trading, portfolio, or personalized financial-advice requests.
+description: Route evidence-led research about GIFT City and IFSC, forex and currency conversion, gold funding and sale proceeds, money markets, capital-market transmission, China economics and information controls, financial-institution risk, or market liquidity across Seiche, LiquiLens, Undertow, and Palimpsest. Use for sourced research and bounded scenarios, not trading, portfolio, or personalized financial-advice requests.
 license: MIT
 ---
 
@@ -12,15 +12,24 @@ into one score.
 ## Route the question
 
 - Use **Seiche** for system funding, repo, reserves, Treasury cash,
-  money-market structure, and bounded capital-market transmission.
+  money-market structure, bounded capital-market transmission, dated forex
+  references, and GIFT City funding/FX/gold context.
 - Use **LiquiLens** for bank, lender, or other covered
   financial-institution balance-sheet risk.
 - Use **Undertow** for market depth, provider fragility, crowding, and
-  position-sized exit liquidity.
+  position-sized exit liquidity; use its explicit gold scenario for sale
+  proceeds and cash availability when the user supplies the necessary inputs.
 - Use **Palimpsest** for revision-safe China economic observations,
   information controls, erasure, and public-record provenance. Pair it with
   Seiche's metadata-only China macro catalog when the question crosses
   economics and information availability.
+
+For GIFT City, serve gold importers and treasury desks, investors and fund
+managers, and banks/IFSC institutions. Start with `gift-city` context; add
+`forex` for dated reference rates, `bank-risk` for covered counterparties and
+`market-liquidity` for exit context as relevant. Public research does not
+establish IFSCA/IIBX eligibility, a complete fund directory, fund NAVs, an
+institution's private ALM position, or availability of a funding facility.
 
 For exact public endpoints, topic aliases, evidence classes, and citation
 rules, read [references/routing.md](references/routing.md).
@@ -33,7 +42,15 @@ one or more topics:
 ```bash
 python3 financial-evidence/scripts/fetch_evidence.py \
   --topic money-market --topic capital-market
+
+python3 financial-evidence/scripts/fetch_evidence.py \
+  --topic gift-city --topic forex --topic gold
 ```
+
+The new topics require the 0.1.6 candidate helper or package. The published
+0.1.5 helper and remote router may still expose five topics; inspect their
+topic list before requesting a new topic. A source checkout does not upgrade
+a hosted MCP endpoint.
 
 If the skill is installed into a different directory, resolve the script
 relative to this `SKILL.md` file. The helper emits one canonical JSON shape
@@ -50,6 +67,34 @@ prevent transport success from being presented as evidence validation or a
 verified Evidence Carrier. A successful source may include only explicitly
 adapted source-reported state and clocks, each with its JSON Pointer and fetched
 byte provenance. `not_reported` is an absence marker, not an inferred judgment.
+
+`gift-city` and `gold` share one public context endpoint. A combined fetch
+retrieves it once and retains separate topic records with the same source
+receipt. Gold context includes dated futures positioning and a possibly null
+bullion price. It is not a live bullion quote or a sale-proceeds calculation.
+The adapter summary is bounded; retain the full document's per-row clocks,
+partial/gated states, missing values, source conventions and rights.
+
+## Explicit scenario steps
+
+The helper performs only fixed public GET reads. It never calls a calculator,
+submits a trade or supplies missing user inputs. For a requested scenario,
+inspect the native MCP tool schema and ask for missing inputs before calling:
+
+- Seiche `market_workbench`: select `provider`, `base`, `quote` and `days`
+  for pair-specific dated H.10 or ECB references. Quote direction and dates
+  stay attached; reference rates are not executable dealer prices.
+- Seiche `gold_inventory_carry`: requires explicit decimal-string weight,
+  fineness, caller bullion price, funding rate, FX rate, fees and holding days.
+  Keep metal value, financing cost and currency conversion separate.
+- Undertow `gold_cash_realisation`: requires the user's bid and FX assumptions,
+  quote clocks, costs, settlement/access and pledge assertions. Preserve
+  unavailable or not-admitted cash states; a scenario is not a verified balance.
+
+Discover these tools through `https://api.seiche.info/mcp` and
+`https://liquilens-undertow.com/mcp`. Native tool availability is separate from
+the Financial Evidence router's three read-only tools. Never turn a request
+for current gold or FX context into a scenario using invented prices or terms.
 
 ## Preserve evidence boundaries
 

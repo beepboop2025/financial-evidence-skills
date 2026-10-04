@@ -48,6 +48,28 @@ def load_legacy_helper():
 
 
 class CoreTests(unittest.TestCase):
+    def test_published_v015_contract_is_preserved_as_historical_evidence(self):
+        raw = (ROOT / "integrations/financial-evidence-mcp-v0.1.5.json").read_bytes()
+        self.assertEqual(hashlib.sha256(raw).hexdigest(), "897dbb90533e8c63113cc8a433e67f319794f385abda917c08147c0bd9664e76")
+        self.assertEqual(json.loads(raw)["serverInfo"]["version"], "0.1.5")
+
+    def test_packaged_new_topics_deduplicate_context_without_evaluating_it(self):
+        helper = load_legacy_helper()
+        for module in (helper, core):
+            with self.subTest(module=module.__name__):
+                calls = []
+                def opener(request, *, timeout):
+                    calls.append(request.full_url)
+                    self.assertEqual(request.get_method(), "GET")
+                    self.assertIsNone(request.data)
+                    return Response(request.full_url, b'{"status":"gated","gold":{"price":null}}')
+                packet = module.build_packet(["gift-city", "gold"], max_bytes=1024, timeout=1, opener=opener)
+                self.assertEqual(len(calls), 1)
+                self.assertEqual(packet["status_semantics"], "transport_only")
+                self.assertEqual(packet["evidence_status"], "not_evaluated")
+                self.assertEqual(packet["sources"][0]["document"], {"status": "gated", "gold": {"price": None}})
+                self.assertEqual(packet["sources"][0]["retrieved_at"], packet["sources"][1]["retrieved_at"])
+
     def test_legacy_three_argument_source_constructor_remains_compatible(self):
         source = core.Source("Example", "https://example.com/data.json", "observed")
         self.assertEqual(source.human_scope_url, "")
@@ -158,7 +180,7 @@ class CliTests(unittest.TestCase):
         status, output = self.run_cli(["topics", "--format", "json"])
         self.assertEqual(status, 0)
         payload = json.loads(output)
-        self.assertEqual(len(payload["topics"]), 5)
+        self.assertEqual(len(payload["topics"]), 8)
 
     def test_route_ndjson_has_one_source_per_line(self):
         status, output = self.run_cli(
@@ -300,10 +322,10 @@ class McpTests(unittest.TestCase):
         for tool in tools[1:]:
             topics = tool["inputSchema"]["properties"]["topics"]
             self.assertEqual(topics["minItems"], 1)
-            self.assertEqual(topics["maxItems"], 5)
+            self.assertEqual(topics["maxItems"], 8)
             self.assertTrue(topics["uniqueItems"])
         contract = json.loads(
-            (ROOT / "integrations" / "financial-evidence-mcp-v0.1.5.json")
+            (ROOT / "integrations" / "financial-evidence-mcp-v0.1.6.json")
             .read_text(encoding="utf-8")
         )
         self.assertEqual(contract["serverInfo"], mcp.SERVER_INFO)
@@ -321,7 +343,7 @@ class McpTests(unittest.TestCase):
             {tool["name"]: tool["description"] for tool in tools},
         )
 
-    def test_mcp_enforces_the_five_topic_boundary(self):
+    def test_mcp_enforces_the_eight_topic_boundary(self):
         canonical_topics = list(core.ROUTES)
         accepted = mcp.call_tool(
             "financial_evidence_route",
@@ -347,7 +369,7 @@ class McpTests(unittest.TestCase):
             }
         )
         self.assertTrue(rejected["result"]["isError"])
-        self.assertIn("between 1 and 5", rejected["result"]["content"][0]["text"])
+        self.assertIn("between 1 and 8", rejected["result"]["content"][0]["text"])
 
         duplicate = mcp.dispatch(
             {

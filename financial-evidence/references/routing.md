@@ -9,6 +9,9 @@
 | China economy | Palimpsest plus Seiche context | `https://www.palimpsest.info/readings/china-index-latest.json`; `https://api.seiche.info/api/v2/world-markets?section=china_macro` | `https://palimpsest.info/china/`; `https://seiche.info/markets/china-macro/` | Palimpsest observations and Seiche structural context retain separate clocks, rights, and evidence classes. |
 | Bank or institution risk | LiquiLens | `https://api.liquilens.in/api/failure-radar/board` | `https://liquilens.in/use-cases/` | Published diagnostics are not a supervisory determination, credit rating, or certainty of failure. |
 | Market and exit liquidity | Undertow | `https://api.seiche.info/undertow/x402/summary` | `https://liquilens-undertow.com/use-cases/` | Public market-liquidity context is not an executable quote or a promise that size can trade. |
+| GIFT City and IFSC research | Seiche; add institution/exit topics as needed | `https://api.seiche.info/api/v2/gift-city` | `https://seiche.info/gift-city/` | India–UAE funding/FX/gold context serves multiple research audiences, not regulatory eligibility, fund NAVs or private-book ALM. |
+| Forex and currency conversion references | Seiche | `https://api.seiche.info/api/v2/world-markets?section=forex` | `https://seiche.info/markets/forex/` | Dated references and conventions, not executable spot quotes, complete forward curves or a conversion transaction. |
+| Gold context | Seiche; Undertow for an explicit sale scenario | `https://api.seiche.info/api/v2/gift-city` | `https://seiche.info/gift-city/` | Gold positioning has its own weekly clock; a null bullion price stays null. Funding context is not a dealer bid or cash admission. |
 
 ## Topic aliases accepted by the helper
 
@@ -17,6 +20,30 @@
 - `china-economy`, `china`, `china-macro`
 - `bank-risk`, `institution-risk`, `financial-institution-risk`
 - `market-liquidity`, `exit-liquidity`, `liquidity`
+- `gift-city`, `giftcity`, `gift-city-ifsc`, `ifsc`
+- `forex`, `fx`, `foreign-exchange`, `currency-conversion`
+- `gold`, `bullion`, `gold-conversion`, `gold-funding`
+
+The last three topic groups are additions in the 0.1.6 candidate. Published
+0.1.5 installs retain their five-topic contract until explicitly upgraded.
+
+## GIFT City audience and scenario routing
+
+| Audience or question | Context first | Explicit next step and boundary |
+|---|---|---|
+| Gold importer or treasury desk | `gift-city`, `gold`, `forex` | Seiche `gold_inventory_carry` for supplied weight, purity, bullion price, funding rate, fees, FX and term. Undertow `gold_cash_realisation` for supplied sale/settlement/access assumptions. Neither confirms IIBX access. |
+| Investor or fund manager | `gift-city`, `forex`, `money-market`, `market-liquidity` | Inspect dated provider/pair evidence with Seiche `market_workbench`; retain fund-specific NAV, redemption and eligibility gaps. |
+| Bank or IFSC institution | `gift-city`, `bank-risk`, `money-market` | Use covered legal-entity disclosures and dated funding evidence; private facilities, collateral, ALM and supervisory conclusions remain outside public context. |
+| Gold weight, purity or conversion | `gold`, `forex` | Normalise the stated unit and fineness; use the user's actual price and FX assumptions for a requested calculation. Weekly futures positions cannot supply a bullion price. |
+
+The helper never executes these scenario steps. Native Seiche tools are at
+`https://api.seiche.info/mcp`; Undertow tools are at
+`https://liquilens-undertow.com/mcp`. Inspect `tools/list` for the current input
+contract. Gold calculations require explicit user inputs; missing quote dates,
+fees, FX, settlement or access assertions cannot be silently invented.
+Seiche `gift_city_context` reads the same dated desk. Its `market_workbench`
+selects H.10/ECB provider, currency pair and bounded history; the fixed helper
+`forex` route is broad reference context rather than a caller-selected pair.
 
 ## Route and packet semantics
 
@@ -36,6 +63,12 @@ the exact source URL, and fetched-byte SHA-256 provenance. Missing or null
 configured values are `not_reported`. Do not derive freshness, eligibility, or
 rights from these summaries; inspect and cite the source document's own fields
 when a claim requires them.
+
+Shared GIFT City and gold context is fetched once per packet and appears under
+each requested topic with the same source receipt. This is not independent
+corroboration. Source `status: partial` or `gated`, null gold prices, unavailable
+funding rows and missing observation clocks remain intact even when every HTTP
+request succeeds. Summaries do not replace per-series clocks in the raw JSON.
 
 ## Evidence classes
 

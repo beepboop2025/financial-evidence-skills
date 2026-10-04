@@ -22,7 +22,7 @@ from .tables import DATASETS, query_packet, validate_query
 
 
 class EvidenceService:
-    """At most six source keys and four network workers, shared across filters.
+    """At most eight source keys and four network workers, shared across filters.
 
     Concurrent callers reuse the same in-flight retrieval. Cache age is explicit
     and never changes a source's observation or retrieval timestamps. Failures

@@ -36,7 +36,7 @@ License: MIT for the software; source publishers retain rights in upstream data.
 ## Interfaces
 
 - Agent Skills: public `financial-evidence` skill with domain-triggered routing for compatible agents; install the last verified release with `npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.6/financial-evidence --skill financial-evidence`.
-- Terminal: Homebrew (currently 0.1.5 pending a separate verified formula update), uvx and persistent uv tool (0.1.6), Bash/Zsh/Fish completions, JSON/NDJSON/CSV/table output.
+- Terminal: Homebrew, uvx and persistent uv tool (0.1.6), Bash/Zsh/Fish completions, JSON/NDJSON/CSV/table output.
 - MCP: three read-only tools, official registry metadata, portable root `.mcp.json` for the public remote, pinned local stdio editor configs, MCP Bundle, and multi-architecture OCI image.
 - Remote MCP: public Streamable HTTP at `https://liquilens.in/mcp/financial-evidence`; no local install, account, API key, or write action.
 - Gemini CLI: root `gemini-extension.json` matches v0.1.6; install the verified release with `gemini extensions install https://github.com/beepboop2025/financial-evidence-skills --ref v0.1.6`.

@@ -2,7 +2,7 @@
 
 This ledger records third-party discovery and marketplace work for Financial
 Evidence v0.1.6. Owner-controlled release artifacts and installation paths are
-independently verified at v0.1.6, except the separately tracked Homebrew formula. This ledger separates a public
+independently verified at v0.1.6, including the separately accepted Homebrew formula. This ledger separates a public
 listing from a submission, an automatic-indexing prerequisite, and a packet
 that is technically ready but still needs an account-owned action.
 
@@ -16,8 +16,9 @@ verification and does not refresh historical submission observations.
 
 - Official MCP Registry v0.1.6 is active with both the public Streamable HTTP
   endpoint and the versioned OCI package.
-- The public Homebrew tap installs and tests Financial Evidence v0.1.5; the
-  v0.1.6 formula remains pending separate consumer acceptance and publication.
+- The public Homebrew tap publishes Financial Evidence v0.1.6. Its exact formula
+  passed strict audit, installation and tests on an isolated macOS consumer runner;
+  native tap Actions remain disabled and are not claimed to have passed.
 - skills.sh serves the Agent Skill.
 - Glama serves both the registry-ingested connector and repository listing, but
   its repository evaluation is incomplete until a Glama release exposes the

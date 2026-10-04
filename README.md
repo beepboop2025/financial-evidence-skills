@@ -55,8 +55,8 @@ The [v0.1.5 semantic contract](SEMANTIC_CONTRACT.md) defines transport-only
 status, source-reported adapter metadata, and the explicit non-Carrier boundary.
 Version 0.1.6 is a signed, independently verified release. Its versioned
 Agent Skill, terminal, Codex, Gemini, editor, and bundle installs use the same
-release, with published artifacts, container, and Registry record. Homebrew
-currently installs 0.1.5 while its separate formula update is verified. The Claude
+release, with published artifacts, container, Registry record, and a separately
+verified Homebrew formula. The Claude
 self-hosted marketplace command follows the repository's mutable default branch; review the checked-out commit before enabling it.
 
 Open, read-only Agent Skills for routing financial research to bounded public
@@ -108,9 +108,8 @@ financial-evidence fetch --topic money-market --topic china-economy
 ```
 
 The formula installs `financial-evidence`, `financial-evidence-mcp`, and native
-Bash, Zsh, and Fish completions. It currently installs 0.1.5; use the versioned
-Git install below for the eight-topic 0.1.6 release. Alternatively, run directly
-from GitHub without installing:
+Bash, Zsh, and Fish completions for 0.1.6. Alternatively, run directly from
+GitHub without installing:
 
 ```bash
 uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.6 \

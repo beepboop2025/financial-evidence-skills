@@ -5,7 +5,7 @@
   "tag_object": "eaa4907dae0266b0d16d1903b3f5b280fb6f617d",
   "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.6",
   "published_at": "2026-10-04T21:13:14Z",
-  "verified_at": "2026-10-04T21:17:38.870007+00:00",
+  "verified_at": "2026-10-04T21:36:19.672601+00:00",
   "workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/37235021111",
   "source_and_tag_signatures": "verified_existing_owner_SSH_policy",
   "checksums": "verified_SHA256SUMS_and_GitHub_asset_digests",
@@ -51,7 +51,16 @@
       "linux/arm64"
     ],
     "source_labels_and_attestations": "verified",
-    "runtime_check": "separately_required_published-mcp-consumer_CI_job"
+    "runtime_check": "PASS",
+    "tested_platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ],
+    "consumer_workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/37236054026",
+    "receipt_artifact_ids": {
+      "linux/amd64": 11315437171,
+      "linux/arm64": 11315134315
+    }
   },
   "runtime_checks": {
     "wheel": "PASS",
@@ -73,8 +82,30 @@
     "five_github_asset_digests": "unchanged"
   },
   "boundaries": [
-    "Homebrew remains separately versioned until its own publication proof.",
+    "Homebrew publication and isolated consumer acceptance do not upgrade existing local installations.",
     "Workspace 1.0.1 remains an independently versioned hosted deployment.",
     "Verification is an operator probe, not external adoption or source freshness evidence."
-  ]
+  ],
+  "initial_verified_at": "2026-10-04T21:17:38.870007+00:00",
+  "homebrew": {
+    "version": "0.1.6",
+    "reviewed_source_commit": "d10d67b30e6d93e2e0b65e8798ef6b6ebf33266c",
+    "published_main_commit": "19ccd3c33cfdf5246e36043580af9b660acdc606",
+    "formula_sha256": "e8d3cf31add3fb970b230c2a2be5de1ee1c7f11cf8c220bf80d74289e21385a9",
+    "public_formula_url": "https://raw.githubusercontent.com/beepboop2025/homebrew-tap/main/Formula/financial-evidence.rb",
+    "public_formula_matches_reviewed_bytes": true,
+    "verified_at": "2026-10-04T21:36:19.672601+00:00",
+    "consumer_job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/37236552465/job/111536689494",
+    "consumer_artifact_id": 11315791694,
+    "checks": [
+      "strict_online_audit",
+      "style",
+      "actual_install",
+      "formula_test",
+      "published_mcp_contract"
+    ],
+    "status": "PASS",
+    "native_tap_actions": "disabled_unchanged_not_claimed_passed",
+    "local_user_install": "unchanged"
+  }
 }

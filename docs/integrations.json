@@ -61,8 +61,11 @@
       "kind": "terminal-package",
       "install": "brew install beepboop2025/tap/financial-evidence",
       "candidate_version": "0.1.6",
-      "published_version": "0.1.5",
-      "status": "public"
+      "published_version": "0.1.6",
+      "status": "public",
+      "verified_at": "2026-10-04T21:36:19.672601+00:00",
+      "publication_url": "https://github.com/beepboop2025/homebrew-tap/pull/7",
+      "consumer_verification_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/37236552465/job/111536689494"
     },
     {
       "name": "uvx",
@@ -209,5 +212,5 @@
     "forex",
     "gold"
   ],
-  "release_verified_at": "2026-10-04T21:17:38.870007+00:00"
+  "release_verified_at": "2026-10-04T21:36:19.672601+00:00"
 }

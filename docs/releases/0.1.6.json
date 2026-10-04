@@ -1,0 +1,111 @@
+{
+  "schema": "financial-evidence.release-verification.v1",
+  "version": "0.1.6",
+  "source_commit": "5435c9c8d8acba9a2d3e170469976b6cac2fb4b4",
+  "tag_object": "eaa4907dae0266b0d16d1903b3f5b280fb6f617d",
+  "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.6",
+  "published_at": "2026-10-04T21:13:14Z",
+  "verified_at": "2026-10-04T21:36:19.672601+00:00",
+  "workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/37235021111",
+  "source_and_tag_signatures": "verified_existing_owner_SSH_policy",
+  "checksums": "verified_SHA256SUMS_and_GitHub_asset_digests",
+  "attestations": "verified_release_workflow_source_ref_and_source_digest",
+  "assets": [
+    {
+      "name": "financial-evidence-0.1.6.mcpb",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.6/financial-evidence-0.1.6.mcpb",
+      "digest": "sha256:7259901433175ac9bbdca4b34c35077ed670955c344c4d51ca48743fa7310483",
+      "size": 446021
+    },
+    {
+      "name": "financial-evidence-v0.1.6.cdx.json",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.6/financial-evidence-v0.1.6.cdx.json",
+      "digest": "sha256:6c56338d37d54400dc8b2459dc75ab7be6b635e0865fedd5204a6cfc830ac13b",
+      "size": 150741
+    },
+    {
+      "name": "financial_evidence-0.1.6-py3-none-any.whl",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.6/financial_evidence-0.1.6-py3-none-any.whl",
+      "digest": "sha256:46b30322c271c948f366efff08bc801ff84913b0ea8ca52b2d2634332900975c",
+      "size": 80247
+    },
+    {
+      "name": "financial_evidence-0.1.6.tar.gz",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.6/financial_evidence-0.1.6.tar.gz",
+      "digest": "sha256:442620a9ce6dc98cb0d15a119a56ac15b399be4ccb4bf24e2b7a5bb23fdf98d0",
+      "size": 538792
+    },
+    {
+      "name": "SHA256SUMS",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.6/SHA256SUMS",
+      "digest": "sha256:e45ef0fe80531b2bb8981b2ef3c73ea31bcb525fb8ca0a816eef044ffe74199d",
+      "size": 403
+    }
+  ],
+  "registry_url": "https://registry.modelcontextprotocol.io/v0/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.6",
+  "registry_status": "active",
+  "oci": {
+    "image": "ghcr.io/beepboop2025/financial-evidence-skills@sha256:5d4cff428c8ad95d57217c2e2a9dd55be4ecb570a072e57c949ddaef567365f1",
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ],
+    "source_labels_and_attestations": "verified",
+    "runtime_check": "PASS",
+    "tested_platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ],
+    "consumer_workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/37236054026",
+    "receipt_artifact_ids": {
+      "linux/amd64": 11315437171,
+      "linux/arm64": 11315134315
+    }
+  },
+  "runtime_checks": {
+    "wheel": "PASS",
+    "mcpb_exact_manifest_entry": "PASS",
+    "version": "0.1.6",
+    "tools_sha256": "23f68eaf19f7328616cf66f49bc908e81b0779b65695201a415301595660817f",
+    "topics": 8,
+    "strict_arguments": "PASS"
+  },
+  "remote_mcp": {
+    "url": "https://liquilens.in/mcp/financial-evidence",
+    "version": "0.1.6",
+    "worker_source_commit": "6bee524b18ae39fc6166301c7e2f3666b8fc72e9",
+    "verified_at": "2026-10-04T21:06:06Z"
+  },
+  "prior_015": {
+    "tag_and_artifact_policy": "preserved",
+    "oci_digest": "sha256:886464d47ee6b589926575f03393c1260c0d70e025e763235ba6feec9e5e388f",
+    "five_github_asset_digests": "unchanged"
+  },
+  "boundaries": [
+    "Homebrew publication and isolated consumer acceptance do not upgrade existing local installations.",
+    "Workspace 1.0.1 remains an independently versioned hosted deployment.",
+    "Verification is an operator probe, not external adoption or source freshness evidence."
+  ],
+  "initial_verified_at": "2026-10-04T21:17:38.870007+00:00",
+  "homebrew": {
+    "version": "0.1.6",
+    "reviewed_source_commit": "d10d67b30e6d93e2e0b65e8798ef6b6ebf33266c",
+    "published_main_commit": "19ccd3c33cfdf5246e36043580af9b660acdc606",
+    "formula_sha256": "e8d3cf31add3fb970b230c2a2be5de1ee1c7f11cf8c220bf80d74289e21385a9",
+    "public_formula_url": "https://raw.githubusercontent.com/beepboop2025/homebrew-tap/main/Formula/financial-evidence.rb",
+    "public_formula_matches_reviewed_bytes": true,
+    "verified_at": "2026-10-04T21:36:19.672601+00:00",
+    "consumer_job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/37236552465/job/111536689494",
+    "consumer_artifact_id": 11315791694,
+    "checks": [
+      "strict_online_audit",
+      "style",
+      "actual_install",
+      "formula_test",
+      "published_mcp_contract"
+    ],
+    "status": "PASS",
+    "native_tap_actions": "disabled_unchanged_not_claimed_passed",
+    "local_user_install": "unchanged"
+  }
+}

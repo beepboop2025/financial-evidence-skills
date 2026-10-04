@@ -8,12 +8,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class ReleaseIntegrityTests(unittest.TestCase):
-    def test_citation_metadata_tracks_the_candidate_release(self):
+    def test_citation_metadata_tracks_the_verified_release(self):
         citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
         self.assertIn("cff-version: 1.2.0", citation)
-        self.assertIn("version: 0.1.5", citation)
-        self.assertIn("date-released: '2026-09-06'", citation)
-        self.assertIn("releases/tag/v0.1.5", citation)
+        self.assertIn("version: 0.1.6", citation)
+        self.assertIn("date-released: '2026-10-04'", citation)
+        self.assertIn("releases/tag/v0.1.6", citation)
 
     def test_release_assets_are_sbomed_and_attested_by_immutable_actions(self):
         workflow = (

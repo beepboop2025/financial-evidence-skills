@@ -21,6 +21,20 @@ from scripts.verify_remote_mcp import (
 
 
 class RemoteMcpVerifierTests(unittest.TestCase):
+    def test_candidate_release_rejects_published_v015_remote_identity(self):
+        initialized = {
+            "jsonrpc": "2.0", "id": "initialize", "result": {
+                "serverInfo": {"name": "financial-evidence", "version": "0.1.5"},
+                "protocolVersion": "2025-11-25",
+            },
+        }
+        with patch("scripts.verify_remote_mcp._post", return_value=(
+            initialized, {"x-liquilens-worker-tag": "a" * 40},
+        )) as post:
+            with self.assertRaises(RuntimeError):
+                verify("https://example.invalid/mcp", "a" * 40)
+        self.assertEqual(post.call_count, 1)
+
     def test_requests_preserve_the_negotiated_protocol(self):
         seen = []
 

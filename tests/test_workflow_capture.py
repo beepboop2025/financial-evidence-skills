@@ -34,7 +34,18 @@ class WorkflowCaptureTests(unittest.TestCase):
     def run_capture(self, root, workflow="funding", opener=None, **kwargs):
         def default(request, **_):
             return Response(request.full_url, {"status": "unavailable", "generated_at": "2020-01-01T00:00:00Z", "value": None})
-        return job.collect(workflow, root / "capture", opener=opener or default, **kwargs)
+        # The published workflow example stays pinned to its reviewed 0.1.5
+        # runtime. Exercise that historical fixture without weakening its guard.
+        with patch.object(job, "__version__", "0.1.5"):
+            return job.collect(workflow, root / "capture", opener=opener or default, **kwargs)
+
+    def test_published_workflow_refuses_the_unreviewed_candidate_before_network(self):
+        with tempfile.TemporaryDirectory() as directory:
+            with patch.object(job, "build_packet") as fetch:
+                with self.assertRaisesRegex(ValueError, "requires financial-evidence 0.1.5"):
+                    job.collect("funding", Path(directory) / "capture")
+                fetch.assert_not_called()
+                self.assertFalse((Path(directory) / "capture").exists())
 
     def test_retrieved_unavailable_evidence_is_not_relabelled_valid_or_fresh(self):
         with tempfile.TemporaryDirectory() as directory:

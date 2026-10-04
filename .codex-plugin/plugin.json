@@ -1,7 +1,7 @@
 {
   "name": "financial-evidence",
-  "version": "0.1.5",
-  "description": "Read-only money-market, capital-market, China-economy, bank-risk, and market-liquidity evidence.",
+  "version": "0.1.6",
+  "description": "Read-only GIFT City, forex, gold, money-market, capital-market, China-economy, bank-risk and liquidity evidence.",
   "author": {
     "name": "Liquidity Lab",
     "email": "mrinal@liquilens.in",
@@ -16,7 +16,10 @@
     "china-economy",
     "financial-data",
     "liquidity",
-    "money-markets"
+    "money-markets",
+    "gift-city",
+    "forex",
+    "gold"
   ],
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",

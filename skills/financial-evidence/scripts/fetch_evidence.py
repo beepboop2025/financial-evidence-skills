@@ -95,10 +95,65 @@ ROUTES: dict[str, tuple[Source, ...]] = {
             "https://liquilens-undertow.com/use-cases/",
         ),
     ),
+    "gift-city": (
+        Source(
+            "Seiche",
+            "https://api.seiche.info/api/v2/gift-city",
+            "observed_derived_structural_or_unavailable",
+            "https://seiche.info/gift-city/",
+        ),
+    ),
+    "forex": (
+        Source(
+            "Seiche",
+            "https://api.seiche.info/api/v2/world-markets?section=forex",
+            "observed_derived_or_unavailable",
+            "https://seiche.info/markets/forex/",
+        ),
+    ),
+    "gold": (
+        Source(
+            "Seiche",
+            "https://api.seiche.info/api/v2/gift-city",
+            "observed_derived_structural_or_unavailable",
+            "https://seiche.info/gift-city/",
+        ),
+    ),
 }
 
 
 SOURCE_ADAPTERS: dict[str, SourceAdapter] = {
+    "https://api.seiche.info/api/v2/gift-city": SourceAdapter(
+        name="seiche_gift_city_v1",
+        states=(
+            ReportedField("response_status", ("status",)),
+            ReportedField("gold_positioning_status", ("gold", "positioning", "status")),
+        ),
+        clocks=(
+            ReportedField("generated_at", ("generated_at",)),
+            ReportedField("gold_positioning_as_of", ("gold", "positioning", "as_of")),
+            ReportedField("gold_positioning_fetched_at", ("gold", "positioning", "fetched_at")),
+            ReportedField("gold_positioning_publication_time", ("gold", "positioning", "source_publication_time")),
+            ReportedField("uae_fx_observation_date", ("forex", "uae_capture", "last_observation_date")),
+            ReportedField("uae_fx_publisher_updated_at", ("forex", "uae_capture", "publisher_updated_at")),
+            ReportedField("uae_fx_fetched_at", ("forex", "uae_capture", "fetched_at")),
+        ),
+    ),
+    "https://api.seiche.info/api/v2/world-markets?section=forex": SourceAdapter(
+        name="seiche_forex_v1",
+        states=(
+            ReportedField("response_status", ("status",)),
+            ReportedField("section_status", ("forex", "status")),
+        ),
+        clocks=(
+            ReportedField("generated_at", ("generated_at",)),
+            ReportedField("as_of", ("as_of",)),
+            ReportedField("snapshot_generated_at", ("clocks", "snapshot_generated_at")),
+            ReportedField("evaluation_at", ("clocks", "evaluation_at")),
+            ReportedField("selected_evidence_as_of", ("clocks", "selected_evidence_as_of")),
+            ReportedField("forex_domain_as_of", ("clocks", "domains", "forex")),
+        ),
+    ),
     "https://api.seiche.info/api/v2/money-markets": SourceAdapter(
         name="seiche_money_markets_v1",
         states=(ReportedField("response_status", ("status",)),),
@@ -197,6 +252,15 @@ SOURCE_ADAPTERS: dict[str, SourceAdapter] = {
 }
 
 ALIASES = {
+    "giftcity": "gift-city",
+    "gift-city-ifsc": "gift-city",
+    "ifsc": "gift-city",
+    "fx": "forex",
+    "foreign-exchange": "forex",
+    "currency-conversion": "forex",
+    "bullion": "gold",
+    "gold-conversion": "gold",
+    "gold-funding": "gold",
     "money-markets": "money-market",
     "funding": "money-market",
     "capital-markets": "capital-market",
@@ -429,14 +493,15 @@ def build_packet(
     topics = normalize_topics(topics)
     jobs = [(topic, source) for topic in topics for source in ROUTES[topic]]
 
-    def retrieve(job):
-        topic, source = job
-        return {"topic": topic, **fetch_source(
-            source, max_bytes=max_bytes, timeout=timeout, opener=opener,
-        )}
+    # Shared topics keep separate output records but reuse one source receipt.
+    sources = list(dict.fromkeys(source for _, source in jobs))
 
-    with ThreadPoolExecutor(max_workers=min(4, len(jobs))) as pool:
-        results = list(pool.map(retrieve, jobs))
+    def retrieve(source):
+        return fetch_source(source, max_bytes=max_bytes, timeout=timeout, opener=opener)
+
+    with ThreadPoolExecutor(max_workers=min(4, len(sources))) as pool:
+        fetched = dict(zip(sources, pool.map(retrieve, sources)))
+    results = [{"topic": topic, **fetched[source]} for topic, source in jobs]
     succeeded = sum(result["ok"] for result in results)
     status = (
         "complete"

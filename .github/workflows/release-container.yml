@@ -47,7 +47,7 @@ jobs:
           python3 -m unittest discover -s tests -v
           node --test tests/*.test.js tests/*.test.cjs
           python3 -m py_compile financial-evidence/scripts/fetch_evidence.py src/financial_evidence/*.py scripts/verify_remote_mcp.py
-      - name: Require the exact live site Worker and v0.1.5 remote contract
+      - name: Require the exact live site Worker and candidate remote contract
         run: |
           expected_worker_tag="$(
             git ls-remote https://github.com/beepboop2025/liquilens-site.git refs/heads/main \

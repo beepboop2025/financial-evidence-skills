@@ -57,7 +57,8 @@ class FetchEvidenceTests(unittest.TestCase):
         urls = [
             source.url for sources in self.module.ROUTES.values() for source in sources
         ]
-        self.assertEqual(len(urls), len(set(urls)))
+        self.assertEqual(self.module.ROUTES["gift-city"], self.module.ROUTES["gold"])
+        self.assertEqual(len(urls), len(set(urls)) + 1)
         self.assertTrue(all(url.startswith("https://") for url in urls))
         self.assertNotIn("localhost", " ".join(urls))
         self.assertEqual(set(urls), set(self.module.SOURCE_ADAPTERS))
@@ -68,6 +69,74 @@ class FetchEvidenceTests(unittest.TestCase):
                 self.assertEqual(source.financial_authority, "none")
                 self.assertEqual(source.carrier_state, "not_published")
                 self.assertFalse(hasattr(source, "carrier_url"))
+
+    def test_gift_forex_gold_aliases_and_shared_context_are_read_only(self):
+        topics = self.module.normalize_topics(
+            ["giftcity,ifsc", "fx,foreign-exchange", "bullion,gold-funding"]
+        )
+        self.assertEqual(topics, ["gift-city", "forex", "gold"])
+        seen = []
+        document = {
+            "status": "partial", "generated_at": "2026-10-04T20:00:00Z",
+            "gold": {"price": None, "positioning": {
+                "status": "gated", "as_of": "2026-09-29",
+                "source_publication_time": None,
+            }},
+            "eligibility": {"execution": False, "scoring": False},
+        }
+
+        def opener(request, *, timeout):
+            self.assertEqual(request.get_method(), "GET")
+            self.assertIsNone(request.data)
+            self.assertNotIn("authorization", dict(request.header_items()))
+            seen.append(request.full_url)
+            return Response(request.full_url, json.dumps(document).encode())
+
+        packet = self.module.build_packet(topics, max_bytes=4096, timeout=1, opener=opener)
+        self.assertEqual(len(seen), 2)
+        self.assertEqual(set(seen), {
+            "https://api.seiche.info/api/v2/gift-city",
+            "https://api.seiche.info/api/v2/world-markets?section=forex",
+        })
+        self.assertEqual(packet["transport_status"], "complete")
+        self.assertEqual(packet["evidence_status"], "not_evaluated")
+        gift, forex, gold = packet["sources"]
+        self.assertEqual([row["topic"] for row in packet["sources"]], topics)
+        self.assertEqual(gift["content_sha256"], gold["content_sha256"])
+        self.assertEqual(gift["retrieved_at"], gold["retrieved_at"])
+        for row in (gift, gold):
+            self.assertEqual(row["document"], document)
+            states = {item["name"]: item["value"] for item in row["source_reported"]["state"]}
+            clocks = {item["name"]: item["value"] for item in row["source_reported"]["clocks"]}
+            self.assertEqual(states, {"response_status": "partial", "gold_positioning_status": "gated"})
+            self.assertEqual(clocks, {"generated_at": "2026-10-04T20:00:00Z", "gold_positioning_as_of": "2026-09-29"})
+            self.assertIsNone(row["document"]["gold"]["price"])
+            self.assertFalse(row["document"]["eligibility"]["execution"])
+
+    def test_shared_context_failure_is_not_retried_or_replaced_with_zero(self):
+        seen = []
+
+        def opener(request, *, timeout):
+            seen.append(request.full_url)
+            raise OSError("bounded source unavailable")
+
+        packet = self.module.build_packet(["gift-city", "gold"], max_bytes=1024, timeout=1, opener=opener)
+        self.assertEqual(len(seen), 1)
+        self.assertEqual(packet["transport_status"], "unavailable")
+        self.assertTrue(all(not row["ok"] and "document" not in row for row in packet["sources"]))
+
+    def test_calculator_routes_cannot_be_fetched_as_context(self):
+        for url in (
+            "https://api.seiche.info/api/v2/gift-city/gold-carry",
+            "https://liquilens-undertow.com/mcp",
+            "https://api.seiche.info/api/v2/gift-city?quantity_kg=1",
+        ):
+            source = self.module.Source("Seiche", url, "caller_scenario")
+            def opener(*args, **kwargs):
+                self.fail("Scenario or dynamic URL must not be requested")
+            result = self.module.fetch_source(source, max_bytes=1024, timeout=1, opener=opener)
+            self.assertFalse(result["ok"])
+            self.assertIn("outside the HTTPS allowlist", result["error"])
 
     def test_same_host_non_route_and_human_scope_urls_are_not_fetchable(self):
         canonical = self.module.ROUTES["money-market"][0]
@@ -149,6 +218,39 @@ class FetchEvidenceTests(unittest.TestCase):
 
     def test_explicit_adapters_report_only_allowlisted_state_and_clocks(self):
         fixtures = {
+            "https://api.seiche.info/api/v2/gift-city": (
+                {
+                    "status": "partial",
+                    "generated_at": "2026-10-04T20:00:00Z",
+                    "gold": {"price": None, "positioning": {
+                        "status": "stale", "as_of": "2026-09-22",
+                        "fetched_at": "2026-10-04T19:00:00Z",
+                        "source_publication_time": None,
+                    }},
+                    "forex": {"uae_capture": {
+                        "last_observation_date": "2026-10-01",
+                        "publisher_updated_at": "2026-10-01T18:00:00+04:00",
+                        "fetched_at": "2026-10-04T19:30:00Z",
+                    }},
+                },
+                {"response_status", "gold_positioning_status"},
+                {"generated_at", "gold_positioning_as_of", "gold_positioning_fetched_at",
+                 "uae_fx_observation_date", "uae_fx_publisher_updated_at", "uae_fx_fetched_at"},
+            ),
+            "https://api.seiche.info/api/v2/world-markets?section=forex": (
+                {
+                    "status": "derived", "forex": {"status": "unavailable"},
+                    "generated_at": "2026-10-04T20:00:00Z", "as_of": None,
+                    "clocks": {
+                        "snapshot_generated_at": "2026-10-04T19:00:00Z",
+                        "evaluation_at": "2026-10-04T20:00:00Z",
+                        "selected_evidence_as_of": None,
+                        "domains": {"forex": None},
+                    },
+                },
+                {"response_status", "section_status"},
+                {"generated_at", "snapshot_generated_at", "evaluation_at"},
+            ),
             "https://api.seiche.info/api/v2/money-markets": (
                 {
                     "status": "PARTIAL",

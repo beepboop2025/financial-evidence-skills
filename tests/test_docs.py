@@ -57,13 +57,13 @@ class DiscoveryDocsTests(unittest.TestCase):
     def test_machine_readable_manifest_tracks_release(self):
         manifest = json.loads((DOCS / "integrations.json").read_text())
         self.assertEqual(manifest["version"], _package_version())
-        self.assertEqual(manifest["release_state"], "published")
+        self.assertEqual(manifest["release_state"], "candidate")
         self.assertEqual(manifest["last_verified_release"], "0.1.5")
         self.assertFalse(manifest["account_required"])
         self.assertFalse(manifest["api_key_required"])
         self.assertFalse(manifest["write_actions"])
         self.assertEqual(len(manifest["products"]), 4)
-        self.assertEqual(len(manifest["topics"]), 5)
+        self.assertEqual(len(manifest["topics"]), 8)
         self.assertEqual(len(manifest["interfaces"]), 15)
         agent_skill = next(
             interface
@@ -71,7 +71,9 @@ class DiscoveryDocsTests(unittest.TestCase):
             if interface["kind"] == "agent-skill"
         )
         self.assertEqual(agent_skill["identifier"], "financial-evidence")
-        self.assertEqual(agent_skill["activation_topics"], manifest["topics"])
+        self.assertEqual(agent_skill["activation_topics"], manifest["published_topics"])
+        self.assertEqual(agent_skill["candidate_activation_topics"], manifest["topics"])
+        self.assertEqual(len(manifest["published_topics"]), 5)
         self.assertEqual(agent_skill["status"], "public")
         self.assertEqual(agent_skill["candidate_version"], _package_version())
         self.assertEqual(agent_skill["published_version"], "0.1.5")

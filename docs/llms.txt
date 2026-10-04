@@ -2,6 +2,9 @@
 
 > Financial Evidence is a free, read-only terminal and MCP router for public money-market, capital-market, china-economy, bank-risk, and market-liquidity evidence. It connects LiquiLens, Undertow, Seiche, and Palimpsest while preserving separate sources and explicit unavailable states.
 
+Candidate source version: 0.1.6
+Candidate topics: gift-city, forex, gold plus the five published topics.
+Candidate is not yet a package release or hosted MCP upgrade.
 Published source version: 0.1.5
 Last verified release: 0.1.5
 Last updated: 2026-09-29

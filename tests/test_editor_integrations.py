@@ -131,7 +131,7 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertIn("not claims of a VS Code or Cursor marketplace listing", readme)
 
     def test_release_surfaces_are_pinned_to_package_version(self):
-        self.assertEqual(self.version, "0.1.5")
+        self.assertEqual(self.version, "0.1.6")
         self.assertEqual(_json("manifest.json")["version"], self.version)
         server = _json("server.json")
         self.assertEqual(server["version"], self.version)
@@ -153,7 +153,7 @@ class EditorIntegrationTests(unittest.TestCase):
         )
         manifest = _json("docs/integrations.json")
         self.assertEqual(manifest["version"], self.version)
-        self.assertEqual(manifest["release_state"], "published")
+        self.assertEqual(manifest["release_state"], "candidate")
         self.assertEqual(manifest["last_verified_release"], "0.1.5")
         homebrew = self.interfaces["Homebrew"]
         self.assertEqual(homebrew["candidate_version"], self.version)

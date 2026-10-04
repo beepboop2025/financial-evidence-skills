@@ -1,5 +1,13 @@
 # Financial Evidence Agent Skills
 
+**0.1.6 source candidate:** the checked-out helper and package add `gift-city`,
+`forex` and `gold` to the five published research topics. GIFT City serves gold
+and treasury desks, investors/fund managers, and banks/IFSC institutions. The
+helper reads fixed public context and keeps gold/FX calculations as explicit
+user-input steps. See [topic routing](financial-evidence/references/routing.md).
+This is not yet a published package, Registry update or remote MCP upgrade;
+the verified installation commands below remain pinned to **0.1.5**.
+
 **[OpenBB Research Desk](integrations/openbb/README.md), [Workspace release 1.0.1](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/workspace-v1.0.1).**
 Seven cited datasets, a seven-tab Workspace app, an archived USD funding review,
 benchmark history charts, typed REST responses and a six-tool MCP server connect

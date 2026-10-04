@@ -10,7 +10,7 @@
       "name": "financial-evidence",
       "source": ".",
       "description": "Read-only financial evidence routing across LiquiLens, Undertow, Seiche, and Palimpsest.",
-      "version": "0.1.5",
+      "version": "0.1.6",
       "author": {
         "name": "Liquidity Lab"
       },

@@ -21,7 +21,7 @@ jobs:
     env:
       HOMEBREW_NO_AUTO_UPDATE: "1"
       HOMEBREW_NO_ANALYTICS: "1"
-      TAP_SOURCE: "0115418229d64608b302fec99f4b02d8a6f81f0e"
+      TAP_SOURCE: "1e7e2c44032abd6c69727385b4027feb93e434ae"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: beepboop2025/homebrew-tap
-          ref: 0115418229d64608b302fec99f4b02d8a6f81f0e
+          ref: 1e7e2c44032abd6c69727385b4027feb93e434ae
           path: tap-candidate
           persist-credentials: false
       - name: Register only the exact public candidate tap

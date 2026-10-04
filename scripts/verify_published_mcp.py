@@ -75,8 +75,20 @@ def verify(command: list[str]) -> dict:
             assert source["financial_authority"] == "none"
             assert source["carrier_state"] == "not_published"
             assert "carrier_url" not in source
-    for request_id in range(6, 11):
-        assert by_id[request_id]["result"]["isError"] is True, "Unsafe arguments accepted"
+    expected_errors = {
+        6: "unknown arguments: url",
+        7: "unknown arguments: scenario",
+        8: "topics must contain unique values",
+        9: f"topics must use canonical values: {', '.join(TOPICS)}",
+        10: "unknown arguments: url",
+    }
+    for request_id, message in expected_errors.items():
+        result = by_id[request_id]["result"]
+        assert result["isError"] is True, "Unsafe arguments accepted"
+        # A failed network retrieval is not evidence of argument validation.
+        expected = {"error": message}
+        assert result["structuredContent"] == expected
+        assert json.loads(result["content"][0]["text"]) == expected
     return {
         "schema": "financial-evidence.published-artifact-check.v1",
         "observed_at": datetime.now(timezone.utc).isoformat(),
@@ -85,7 +97,7 @@ def verify(command: list[str]) -> dict:
         "topic_count": len(TOPICS), "topics": TOPICS,
         "checks": ["initialize", "frozen_tools_contract", "all_topic_routes",
                    "new_topic_routes", "shared_gold_gift_source", "strict_arguments"],
-        "network_fetches": 0,
+        "valid_fetch_requests": 0,
         "scope": "Artifact runtime contract; no source freshness or external adoption claim",
     }
 

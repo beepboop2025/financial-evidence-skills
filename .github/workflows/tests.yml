@@ -68,25 +68,51 @@ jobs:
           retention-days: 30
 
   published-mcp-consumer:
-    runs-on: ubuntu-24.04
+    runs-on: ${{ matrix.runner }}
     timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-24.04
+            platform: linux/amd64
+            architecture: amd64
+          - runner: ubuntu-24.04-arm
+            platform: linux/arm64
+            architecture: arm64
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: Pull the immutable public release
-        run: docker pull ghcr.io/beepboop2025/financial-evidence-skills@sha256:5d4cff428c8ad95d57217c2e2a9dd55be4ecb570a072e57c949ddaef567365f1
+        run: docker pull --platform '${{ matrix.platform }}' ghcr.io/beepboop2025/financial-evidence-skills@sha256:5d4cff428c8ad95d57217c2e2a9dd55be4ecb570a072e57c949ddaef567365f1
       - name: Exercise the published stdio contract without network access
+        env:
+          TESTED_PLATFORM: ${{ matrix.platform }}
         run: |
           python3 scripts/verify_published_mcp.py --receipt published-mcp-receipt.json -- \
-            docker run --rm --interactive --pull never --read-only --network none \
+            docker run --rm --interactive --platform "$TESTED_PLATFORM" --pull never --read-only --network none \
             --cap-drop ALL --security-opt no-new-privileges --pids-limit 64 \
             --memory 128m --cpus 1 \
             ghcr.io/beepboop2025/financial-evidence-skills@sha256:5d4cff428c8ad95d57217c2e2a9dd55be4ecb570a072e57c949ddaef567365f1
+          python3 - <<'PY'
+          import json, os, pathlib, subprocess
+          image = "ghcr.io/beepboop2025/financial-evidence-skills@sha256:5d4cff428c8ad95d57217c2e2a9dd55be4ecb570a072e57c949ddaef567365f1"
+          details = json.loads(subprocess.check_output(["docker", "image", "inspect", image]))[0]
+          platform = details["Os"] + "/" + details["Architecture"]
+          assert platform == os.environ["TESTED_PLATFORM"]
+          assert details["Config"]["Labels"]["org.opencontainers.image.revision"] == "5435c9c8d8acba9a2d3e170469976b6cac2fb4b4"
+          assert details["Config"]["User"] == "65532:65532"
+          path = pathlib.Path("published-mcp-receipt.json")
+          receipt = json.loads(path.read_text())
+          receipt.update(tested_platform=platform, image=image, image_id=details["Id"],
+                         source_commit=details["Config"]["Labels"]["org.opencontainers.image.revision"])
+          path.write_text(json.dumps(receipt, indent=2) + "\n")
+          PY
       - name: Retain the published artifact receipt
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
-          name: published-mcp-consumer
+          name: published-mcp-consumer-${{ matrix.architecture }}
           path: published-mcp-receipt.json
           retention-days: 30
 

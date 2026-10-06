@@ -349,7 +349,14 @@ class OpenBBTests(unittest.TestCase):
 
         root = Router()
         root.include_router(router, prefix="/financial_evidence")
-        routes = {route.path: route for route in root.api_router.routes}
+        try:
+            from openbb_core.app.route_iter import iter_api_routes
+        except ImportError:
+            # V4 exposes flat FastAPI routes; V5 also supports nested routers.
+            api_routes = root.api_router.routes
+        else:
+            api_routes = iter_api_routes(root.api_router)
+        routes = {route.path: route for route in api_routes}
         with (
             patch.object(PathHandler, "build_route_map", return_value=routes),
             patch.object(PathHandler, "get_router_dependencies", return_value=[]),

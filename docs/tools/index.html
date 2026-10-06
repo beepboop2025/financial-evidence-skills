@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Use LiquiLens, Seiche and Undertow in your research tools</title>
+  <meta name="description" content="Connect OpenBB, Python, Excel, Power BI and research agents to source-cited bank, funding and market-liquidity evidence. Download a reusable research desk.">
+  <link rel="canonical" href="https://beepboop2025.github.io/financial-evidence-skills/tools/">
+  <link rel="stylesheet" href="../styles.css">
+  <style>.hero{min-height:auto}.hero main{padding:4rem 0}h1{max-width:20ch;font-size:clamp(2.7rem,6vw,5rem)}.section{padding-block:3.5rem}.section h2{max-width:28ch;font-size:clamp(2rem,4vw,3rem)}nav div{flex-wrap:wrap}.steps{padding-left:1.25rem}.steps li{margin:.7rem 0}.note{color:var(--muted-ink);max-width:65ch}.tool-code{overflow-wrap:anywhere}.actions{margin-bottom:1rem}a:focus-visible{outline:3px solid #438500;outline-offset:4px}</style>
+</head>
+<body>
+  <header class="hero">
+    <nav aria-label="Main navigation"><a class="brand" href="../">Financial Evidence</a><div><a href="#openbb">OpenBB</a><a href="#python">Python</a><a href="#excel">Excel</a><a href="#agents">Agents</a></div></nav>
+    <main>
+      <p class="eyebrow">Your daily research desk</p>
+      <h1>Bring the evidence into the tools you already use.</h1>
+      <p class="lede">Review bank disclosures with LiquiLens, dollar funding with Seiche, and market liquidity with Undertow. Keep the date, source and coverage beside each result.</p>
+      <div class="actions"><a class="button primary" href="#openbb">Connect OpenBB</a><a class="button" href="research-kit.zip" download>Download the research kit</a><a class="button" href="#agents">Connect your agent</a></div>
+      <p>No financial-data API key is needed for these public research endpoints. Your analysis platform may require its own account.</p>
+    </main>
+  </header>
+  <section class="section" aria-labelledby="tasks">
+    <p class="eyebrow">Start with a useful question</p><h2 id="tasks">Three tasks. One reusable setup.</h2>
+    <div class="grid">
+      <article><h3>LiquiLens · Bank evidence</h3><p>Find the latest covered disclosures for ESAF. Review reported asset-quality measures alongside their filing dates and original documents.</p><p><code>bank_risk</code> · Entity <code>ESAF</code></p><a href="https://liquilens.in/developers/">Explore covered-bank workflows</a></article>
+      <article><h3>Seiche · Dollar funding</h3><p>Review USD benchmarks and their observation dates. Open the dated funding review when you need the documented nine-input reconciliation.</p><p><code>money_markets</code> · Entity <code>USD</code></p><a href="../funding/">Open the funding review</a></article>
+      <article><h3>Undertow · Market liquidity</h3><p>Inspect the available liquidity observations and withheld values. Use the native exit workflow for a named market and trade size.</p><p><code>market_liquidity</code></p><a href="https://liquilens-undertow.com/exit/">Open the exit workflow</a></article>
+    </div>
+    <p class="note">These are separate research views. They do not supply credit ratings, executable prices or trade approvals.</p>
+  </section>
+  <section class="section muted" aria-labelledby="openbb">
+    <p class="eyebrow">OpenBB Workspace</p><h2 id="openbb">Add the desk once. Return to it for each review.</h2>
+    <ol class="steps"><li>In OpenBB Workspace, open <strong>Add data</strong> and add a custom backend.</li><li>Use this backend URL:</li></ol>
+    <pre><code>https://api.seiche.info/openbb</code></pre>
+    <p>Select <strong>Financial Evidence Research Desk</strong> under My Apps. Use the Bank Research, Funding &amp; Capital, Market Liquidity and Source Audit tabs. Save your preferred layout in your own workspace.</p>
+    <p><a href="https://api.seiche.info/openbb/docs">API and dataset documentation</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/blob/main/integrations/openbb/README.md">Python extension setup for OpenBB V4 and V5</a></p>
+    <p class="note">This is a public custom backend. Inclusion in OpenBB's curated directory is a separate review.</p>
+  </section>
+  <section class="section" aria-labelledby="python">
+    <p class="eyebrow">Python · Jupyter · SQL</p><h2 id="python">Save a cited capture you can use again.</h2>
+    <p>Download <a href="research_client.py" download>research_client.py</a>. Python 3.10 or newer is sufficient; the client has no package dependencies. It follows pagination, checks that source documents remain the same and saves JSON, CSV and a checksum receipt.</p>
+    <pre><code>python3 research_client.py desk --output captures/first-review
+python3 research_client.py bank_risk --entity ESAF --output captures/esaf-review</code></pre>
+    <p>The first command creates separate funding, bank and liquidity tables. For notebooks, keep the client beside <a href="research_desk.ipynb" download>research_desk.ipynb</a>. Open the notebook and run the task you need.</p>
+    <pre><code>from research_client import collect
+funding = collect("money_markets", entity="USD")
+rows = funding["results"]</code></pre>
+    <p>Use each saved <code>rows.csv</code> in R, DuckDB or your firm's approved data tools. Keep <code>evidence.json</code> and <code>receipt.json</code> alongside it.</p>
+    <pre><code>SELECT entity_id, metric, value, unit, as_of, availability, source_url
+FROM read_csv('captures/first-review/money_markets/rows.csv', all_varchar=true);</code></pre>
+    <p class="note">Captures contain currently published evidence. A historical observation date does not establish that today's dataset was available at that time. Empty and withheld values stay missing.</p>
+  </section>
+  <section class="section muted" aria-labelledby="excel">
+    <p class="eyebrow">Excel · Power BI</p><h2 id="excel">Refresh a table with its sources attached.</h2>
+    <ol class="steps"><li>Download <a href="FinancialEvidenceRows.pq" download>FinancialEvidenceRows.pq</a>.</li><li>Create a blank Power Query, paste the function into Advanced Editor and name it <code>FinancialEvidenceRows</code>.</li><li>Choose <strong>Anonymous</strong> authentication for <code>https://api.seiche.info</code>.</li><li>Invoke a task below and load the table. Refresh when you need a new observation.</li></ol>
+    <pre><code>FinancialEvidenceRows("money_markets", "USD")
+FinancialEvidenceRows("bank_risk", "ESAF")
+FinancialEvidenceRows("market_liquidity")</code></pre>
+    <p>The function returns up to 2,000 rows and refuses to silently truncate a larger result. For larger histories or restricted network environments, import the Python client's saved CSV instead.</p>
+  </section>
+  <section class="section" aria-labelledby="agents">
+    <p class="eyebrow">MCP · Research agents</p><h2 id="agents">Give the agent a clear research starting point.</h2>
+    <p>Add a Streamable HTTP MCP connection with this URL:</p>
+    <pre><code>https://api.seiche.info/openbb/mcp</code></pre>
+    <p>Download <a href="mcp.json" download>example configuration</a> and <a href="agent-instructions.md" download>project instructions</a>. Start with <code>financial_evidence_datasets</code>, then <code>financial_evidence_agent_review</code>. On a later review, pass the previous revision to identify changed published evidence.</p>
+    <blockquote>Discover coverage, then review USD funding, the covered bank ESAF, and market liquidity. Cite the source, date and unit beside every observation. List gaps and the further evidence the analyst needs.</blockquote>
+    <p><a href="../agents/">Native LangGraph, CrewAI, OpenAI Agents and Pydantic AI integrations</a> · <a href="../automations/">n8n and scheduled research examples</a></p>
+  </section>
+  <section class="section muted" aria-labelledby="terminals">
+    <p class="eyebrow">Bloomberg · Other institutional platforms</p><h2 id="terminals">Bring a reviewable data capture to your institutional workspace.</h2>
+    <p>The research kit supplies portable Python, CSV and JSON for your firm's approved import process. A Bloomberg BQuant administrator can assess these assets for an entitled environment; our notebook has not been validated inside BQuant or approved for Bloomberg App Portal distribution.</p>
+    <p>For LSEG Workspace, FactSet and other vendor platforms, use the firm's supported external-data process or the <a href="../integrations/fdc3/evidence-inspector/">FDC3 reference app</a> where supported. Platform acceptance and entitlements remain separate from portable file compatibility.</p>
+    <p><a href="vendor-readiness.md">Technical evaluation and vendor submission materials</a> · <a href="setup.md">Setup, limits and repeat-use checklist</a></p>
+  </section>
+  <footer><p>Financial Evidence · Last updated 6 October 2026 · <a href="../privacy/">Privacy</a> · <a href="../support/">Support</a></p><p>Use source dates, units, availability and rights status when interpreting every row. Retrieval success does not establish freshness or suitability.</p></footer>
+</body>
+</html>

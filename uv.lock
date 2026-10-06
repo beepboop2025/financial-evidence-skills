@@ -619,6 +619,8 @@ source = { editable = "." }
 [package.optional-dependencies]
 openbb = [
     { name = "openbb-core" },
+    { name = "pandas", version = "2.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "pandas", version = "3.0.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
 ]
 workspace = [
     { name = "fastapi" },
@@ -631,7 +633,8 @@ workspace = [
 requires-dist = [
     { name = "fastapi", marker = "extra == 'workspace'", specifier = ">=0.115,<1" },
     { name = "mcp", marker = "extra == 'workspace'", specifier = ">=1.30,<2" },
-    { name = "openbb-core", marker = "extra == 'openbb'", specifier = ">=1.6.13,<2" },
+    { name = "openbb-core", marker = "extra == 'openbb'", specifier = ">=1.6.13,<3" },
+    { name = "pandas", marker = "extra == 'openbb'", specifier = ">=1.5.3,<4" },
     { name = "pyjwt", extras = ["crypto"], marker = "extra == 'workspace'", specifier = ">=2.15.1,<3" },
     { name = "uvicorn", marker = "extra == 'workspace'", specifier = ">=0.30,<1" },
 ]

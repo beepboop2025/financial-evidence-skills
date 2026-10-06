@@ -1,0 +1,40 @@
+name: research tools
+
+on:
+  schedule:
+    - cron: '17 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: research-tools
+  cancel-in-progress: false
+
+jobs:
+  public-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - name: Exercise consumer failure detection without network data
+        run: python3 -m unittest discover -s tests -p test_research_client.py -v
+      - name: Check OpenBB HTTP and MCP contracts as operator traffic
+        run: python3 scripts/verify_openbb_workspace.py --url https://api.seiche.info/openbb > openbb-contract.json
+      - name: Check complete source-consistent research captures as operator traffic
+        run: python3 scripts/verify_research_tools.py > research-kit-contract.json
+      - name: Preserve bounded contract reports
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: research-tools-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            openbb-contract.json
+            research-kit-contract.json
+          retention-days: 30

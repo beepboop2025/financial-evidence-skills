@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "financial-evidence-research-desk": {
+      "url": "https://api.seiche.info/openbb/mcp"
+    }
+  }
+}

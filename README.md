@@ -7,9 +7,14 @@ institutions. The helper reads fixed public context; gold/FX calculations remain
 explicit user-input steps. See [topic routing](financial-evidence/references/routing.md)
 and the [release verification record](docs/releases/0.1.6.json).
 
-**[OpenBB Research Desk](integrations/openbb/README.md), [Workspace release 1.0.1](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/workspace-v1.0.1).**
+**Use your existing tools:** the [research tool hub](https://beepboop2025.github.io/financial-evidence-skills/tools/)
+provides a complete capture client, notebook, flat Excel/Power BI query and MCP
+project defaults for LiquiLens, Seiche and Undertow. Download the kit or connect
+the hosted OpenBB desk. Institutional vendor acceptance remains separate.
+
+**[OpenBB Research Desk](integrations/openbb/README.md), hosted Workspace 1.1.1.**
 Seven cited datasets, a seven-tab Workspace app, an archived USD funding review,
-benchmark history charts, typed REST responses and a six-tool MCP server connect
+benchmark history charts, typed REST responses and an eight-tool MCP server connect
 all four projects. The hosted service is `https://api.seiche.info/openbb`.
 Install
 `.[openbb,workspace]` from this checkout, then run `openbb-build` and
@@ -281,10 +286,11 @@ cross-platform `uv` runtime and requires no API key or configuration.
 - **ChatGPT:** the universal-directory submission packet is prepared; public
   availability remains pending account-owned verification, submission,
   review, and publication.
-- **OpenBB:** install `financial-evidence[openbb]` from this repository inside
-  an OpenBB environment and run `openbb-build`. The registered router exposes
-  `obb.financial_evidence.routes()` and `obb.financial_evidence.fetch()`, which
-  also become available to OpenBB's REST, notebook and MCP surfaces.
+- **OpenBB:** install `.[openbb,workspace]` from current repository source in a
+  clean environment and run `openbb-build`. V4 and V5 compatibility is checked
+  in CI. The released v0.1.6 dependency range remains V4-only. The router exposes
+  `datasets()`, `query()`, `sources()`, `routes()` and `fetch()` under
+  `obb.financial_evidence`. See the [setup guide](integrations/openbb/README.md).
 - **DuckDB:** run
   [`integrations/duckdb/financial_evidence.sql`](integrations/duckdb/financial_evidence.sql)
   to create separate HTTP-backed views for all four products.
@@ -292,6 +298,8 @@ cross-platform `uv` runtime and requires no API key or configuration.
   [`integrations/excel/FinancialEvidence.pq`](integrations/excel/FinancialEvidence.pq)
   into Advanced Editor and invoke, for example,
   `FinancialEvidence("money-market")`.
+  For flat research rows, use [FinancialEvidenceRows](docs/tools/FinancialEvidenceRows.pq)
+  from the [research kit](https://beepboop2025.github.io/financial-evidence-skills/tools/).
 - **FDC3:**
   the public [Financial Evidence Inspector](https://beepboop2025.github.io/financial-evidence-skills/integrations/fdc3/evidence-inspector/)
   receives and broadcasts declared standard contexts through `window.fdc3`.

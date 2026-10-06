@@ -50,12 +50,22 @@ retains the issues rather than silently substituting an older passing review.
 
 ## Python / notebooks
 
-Install both interfaces in the same environment and regenerate OpenBB:
+Current repository source supports OpenBB V4 (`openbb-core` 1.6.13) and V5
+(`openbb-core` 2.0.1), with generated-query checks in CI for Python 3.10 and
+3.13. The published v0.1.6 wheel retains its original V4-only dependency range.
+Use a fresh environment for V5, as the [OpenBB migration guide](https://docs.openbb.co/odp/python/migration-from-v4)
+requires. From a current clone of this repository:
 
 ```bash
-python -m pip install '.[openbb,workspace]'
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install '.[openbb,workspace]' 'openbb-core==2.0.1'
 openbb-build
 ```
+
+For a clean V4 environment, substitute `openbb-core==1.6.13`. Record the checkout
+commit when installing source. The [portable research kit](https://beepboop2025.github.io/financial-evidence-skills/tools/)
+also works without installing OpenBB and follows pagination for complete captures.
 
 ```python
 from openbb import obb

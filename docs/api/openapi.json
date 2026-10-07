@@ -8,7 +8,9 @@
       "name": "LIQUILENS PRIVATE LIMITED",
       "url": "https://beepboop2025.github.io/financial-evidence-skills/support/"
     },
-    "termsOfService": "https://beepboop2025.github.io/financial-evidence-skills/terms/"
+    "termsOfService": "https://beepboop2025.github.io/financial-evidence-skills/terms/",
+    "x-providerName": "seiche.info",
+    "x-serviceName": "financial-evidence"
   },
   "paths": {
     "/api/v1/applications": {
@@ -919,7 +921,8 @@
   },
   "servers": [
     {
-      "url": "https://api.seiche.info/openbb"
+      "url": "https://api.seiche.info/openbb",
+      "description": "Public hosted research API"
     }
   ],
   "x-source-observation": {
@@ -931,5 +934,9 @@
       "discovery metadata only"
     ],
     "api_version_semantics": "Hosted workspace version, separate from the CLI package release."
+  },
+  "externalDocs": {
+    "url": "https://beepboop2025.github.io/financial-evidence-skills/api/",
+    "description": "Runnable collections and first research task"
   }
 }

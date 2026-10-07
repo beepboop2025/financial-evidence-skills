@@ -55,4 +55,3 @@ deduplicated response records per day and 1,000,000 aggregate counts per class
 and day. Saturation and outages are not proof of non-use. Review capacity from
 observed independent demand before raising limits; the current deployment is
 not certified for one million active people.
-

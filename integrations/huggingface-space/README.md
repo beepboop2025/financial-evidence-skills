@@ -7,7 +7,12 @@ sdk: static
 app_file: index.html
 pinned: false
 license: mit
-short_description: Inspect transport, evidence, carrier, clocks, and unavailable sources locally.
+short_description: Inspect financial evidence packets in your browser
+tags:
+  - financial-research
+  - evidence
+  - provenance
+  - privacy
 ---
 
 # Financial Evidence Packet Inspector
@@ -26,3 +31,6 @@ Source package: https://github.com/beepboop2025/financial-evidence-skills
 
 Financial authority: none. This tool is not investment advice, a credit rating,
 or a trading signal.
+
+Published by LIQUILENS PRIVATE LIMITED, the company behind LiquiLens, Seiche
+and Undertow. Code license: MIT. Source data retains its original rights.

@@ -162,18 +162,20 @@
       "state": "ready_account_action",
       "submission_url": "https://stackshare.io/submit",
       "cost": "unknown-stop-if-checkout",
-      "detail": "Public product, source, documentation, descriptions, and square logo are ready for the standard listing form.",
-      "next_action": "Submit from an owner account only if the standard listing remains free; stop if checkout appears."
+      "detail": "The inherited /submit route resolves to an unrelated public user profile, not a product form. The current self-service submission route remains unverified.",
+      "next_action": "Find a current operator-supported product listing route before submitting.",
+      "verified_at": "2026-10-07T16:53:30.231429+00:00"
     },
     {
       "id": "saashub",
-      "name": "SaaSHub",
+      "name": "SaaSHub — LiquiLens",
       "channel": "software-directory",
-      "state": "ready_account_action",
-      "submission_url": "https://www.saashub.com/services/submit",
+      "state": "submitted",
+      "submission_url": "https://www.saashub.com/liquilens/added",
       "cost": "free-standard-listing",
-      "detail": "The canonical public documentation and free pricing page satisfy the URL-first listing prerequisites.",
-      "next_action": "Complete the free reviewed listing; do not purchase featured placement."
+      "detail": "The operator acknowledged the free LiquiLens submission. Research categories and extended description were saved; approval is pending.",
+      "next_action": "Complete logo/screenshots and domain verification, then await review; do not duplicate the submission.",
+      "verified_at": "2026-10-07T16:53:30.231429+00:00"
     },
     {
       "id": "alternativeto",
@@ -182,8 +184,9 @@
       "state": "ready_account_action",
       "submission_url": "https://alternativeto.net/faq/",
       "cost": "free-standard-queue",
-      "detail": "The application, platforms, MIT license, descriptions, tags, URLs, and square icon are ready for the normal queue.",
-      "next_action": "Submit through a verified owner account; do not purchase priority review."
+      "detail": "The owner is signed in, but the site reports an unverified email and disables new-app submission.",
+      "next_action": "Verify the account email, refresh the profile and submit the prepared product through the normal queue.",
+      "verified_at": "2026-10-07T16:53:30.231429+00:00"
     },
     {
       "id": "zenodo",
@@ -199,11 +202,13 @@
       "id": "hugging-face-spaces",
       "name": "Hugging Face Spaces",
       "channel": "demo-gallery",
-      "state": "ready_account_action",
+      "state": "live",
       "submission_url": "https://huggingface.co/spaces/launch",
       "cost": "free-static-space",
-      "detail": "A destination-specific static packet inspector now loads local Financial Evidence JSON without network access, includes a deliberately partial synthetic example, and passes its offline security tests. The local Hugging Face CLI is not authenticated, so no Space exists yet.",
-      "next_action": "Authenticate the owner account, create a free static Space, upload integrations/huggingface-space, then verify anonymous served bytes and the browser-only privacy boundary."
+      "detail": "Public Static Space at commit 4a857f30a6b1d7a30c933a1eb2e62c41efe5d9ea. Anonymous source and served-asset checks passed; example and Clear controls worked in the deployed browser app. Local JSON is parsed without upload; the bundled example is synthetic.",
+      "next_action": "Monitor real use and keep source changes synchronized; no paid hardware is needed.",
+      "listing_url": "https://huggingface.co/spaces/oldmacdonaldhadafarm/financial-evidence-packet-inspector",
+      "verified_at": "2026-10-07T16:53:30.231429+00:00"
     },
     {
       "id": "pulsemcp",
@@ -632,10 +637,32 @@
       "cost": "Provider submission free; one ApyHub atom per endpoint request if approved.",
       "detail": "ApyHub received Seiche Reference FX API v1.0.0 with four fixed GET CSV endpoints for USD, GBP, JPY and INR per EUR. All four tests passed; ECB source attribution and free-data notices were retained. Admin approval and public gateway acceptance remain pending. The separate broad JSON Research API draft remains rights-held.",
       "next_action": "Wait for the existing submitted draft to be reviewed. After approval verify the public catalog, gateway response, attribution, pricing and acquisition attribution; do not resubmit."
+    },
+    {
+      "id": "saashub-seiche",
+      "name": "SaaSHub — Seiche",
+      "channel": "software-directory",
+      "state": "submitted",
+      "submission_url": "https://www.saashub.com/seiche/added",
+      "cost": "free-standard-listing",
+      "detail": "The operator acknowledged the free Seiche submission. Research categories and extended description were saved; approval is pending.",
+      "next_action": "Complete logo/screenshots and domain verification, then await review; do not duplicate the submission.",
+      "verified_at": "2026-10-07T16:53:30.231429+00:00"
+    },
+    {
+      "id": "saashub-undertow",
+      "name": "SaaSHub — Undertow",
+      "channel": "software-directory",
+      "state": "paused_external",
+      "submission_url": "https://www.saashub.com/services/submit",
+      "cost": "free-standard-listing",
+      "verified_at": "2026-10-07T16:53:30.231429+00:00",
+      "detail": "The operator requires approval of an earlier submission before accepting another product from this account. No Undertow submission receipt exists.",
+      "next_action": "Wait for a LiquiLens or Seiche review outcome, then continue the prepared Undertow entry."
     }
   ],
   "release_verified_at": "2026-10-04T21:36:19.672601+00:00",
-  "updated_at": "2026-10-07T16:06:20.963429Z",
+  "updated_at": "2026-10-07T16:53:30.231429+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",

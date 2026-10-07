@@ -1,0 +1,16 @@
+identity:
+  author: beepboop2025
+  name: financial_evidence
+  label:
+    en_US: Financial Evidence
+  description:
+    en_US: Public financial research from LIQUILENS PRIVATE LIMITED.
+  icon: icon.svg
+  tags:
+    - finance
+credentials_for_provider: {}
+tools:
+  - tools/evidence_page.yaml
+extra:
+  python:
+    source: provider/financial_evidence.py

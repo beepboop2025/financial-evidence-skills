@@ -1,0 +1,5 @@
+{
+  "baseUrl": "https://api.seiche.info/openbb",
+  "headers": {"Accept": "application/json"},
+  "response": {"error": {"message": "Research API request failed (HTTP {{statusCode}})."}}
+}

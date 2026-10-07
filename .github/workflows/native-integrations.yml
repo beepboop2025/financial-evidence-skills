@@ -1,0 +1,60 @@
+name: Native integration candidates
+
+on:
+  pull_request:
+    paths: ['integrations/n8n-node/**', 'integrations/zapier/**', 'integrations/dify/**', 'integrations/make/**', '.github/workflows/native-integrations.yml']
+  push:
+    branches: [main]
+    paths: ['integrations/n8n-node/**', 'integrations/zapier/**', 'integrations/dify/**', 'integrations/make/**', '.github/workflows/native-integrations.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  n8n-candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: integrations/n8n-node
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '22'
+      # The build and SDK tests do not start n8n's dev-server/native VM.
+      - run: npm ci --ignore-scripts --legacy-peer-deps --no-audit --no-fund
+      - run: npm run build
+      - run: npm run lint
+      - run: npm test
+      - run: npm pack --dry-run
+  zapier-candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: integrations/zapier
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - run: npm run validate
+      - run: npm test
+  dify-candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: integrations/dify
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.txt
+      - run: python -m unittest discover -s tests -v
+      - name: Register the actual plugin manifest and provider
+        run: python -c 'from dify_plugin.core.plugin_registration import PluginRegistration; from dify_plugin import DifyPluginEnv; PluginRegistration(DifyPluginEnv())'

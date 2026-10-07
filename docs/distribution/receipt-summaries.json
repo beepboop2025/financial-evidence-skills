@@ -96,6 +96,36 @@
       "test_sha256": "7ac2df0fc5482206125c1fa8b6ad1e75f458c70dcb37c584bad0040724a5b286",
       "rights_evidence": "apyhub-reference-fx-rights.md",
       "scope": "Four fixed ECB reference FX CSV routes, one atom each, 4/4 tested and review acknowledged. Submitted for admin review; no live gateway or adoption claimed. Separate broad Research API draft remains rights-held."
+    },
+    {
+      "ledger_id": "saashub",
+      "product": "LiquiLens",
+      "state": "submitted",
+      "operator_url": "https://www.saashub.com/liquilens/added",
+      "observed_at": "2026-10-07T16:53:30.231429+00:00",
+      "evidence_filename": "saashub-liquilens-added.txt",
+      "sha256": "f3a733056eebcd598ea0a3ba3a23ce38412354677a0f27d96326f3140110a886",
+      "scope": "Free submission acknowledged; public approval pending"
+    },
+    {
+      "ledger_id": "saashub-seiche",
+      "product": "Seiche",
+      "state": "submitted",
+      "operator_url": "https://www.saashub.com/seiche/added",
+      "observed_at": "2026-10-07T16:53:30.231429+00:00",
+      "evidence_filename": "saashub-seiche-confirmed.txt",
+      "sha256": "1b5c46cc6572e0c53e34ceccaa09b77c7eed4244983b48b1cc2493a61710f4af",
+      "scope": "Free submission acknowledged; public approval pending"
+    },
+    {
+      "ledger_id": "hugging-face-spaces",
+      "product": "Financial Evidence Packet Inspector",
+      "state": "live",
+      "operator_url": "https://huggingface.co/spaces/oldmacdonaldhadafarm/financial-evidence-packet-inspector",
+      "observed_at": "2026-10-07T16:53:30.231429+00:00",
+      "evidence_filename": "huggingface-public-receipt.json",
+      "sha256": "77fddcdd61248a4837c1852098bbd39d20e7fa0ffaebec9f5433cec231b547ac",
+      "scope": "Anonymous source/asset parity and live example/clear controls verified"
     }
   ],
   "onboarding_receipts": [

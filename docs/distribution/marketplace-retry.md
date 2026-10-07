@@ -7,7 +7,7 @@ visibility remains unverified.
 
 | Platform | Product or company | Verified result | Remaining acceptance |
 | --- | --- | --- | --- |
-| [G2](https://www.g2.com/products/liquilens/reviews) | LiquiLens | Public profile claimed under LIQUILENS PRIVATE LIMITED; free-public-access pricing saved; correction case 00642455 received | G2 category decision and logo enrichment |
+| [G2](https://www.g2.com/products/liquilens/reviews) | LiquiLens | Public profile claimed under LIQUILENS PRIVATE LIMITED; free Public research tier visible at $0; correction case 00642455 received | G2 category decision and logo enrichment |
 | G2 | Seiche | The submission page says **Profile Approved!** | Public profile propagation and category assignment |
 | G2 | Undertow | The submission page says **Profile Approved!** | Public profile propagation and category assignment |
 | API.market | Seiche Reference FX API | **In Review**, publishing checklist **3 / 3 complete** | Operator review and public gateway verification |
@@ -29,15 +29,18 @@ Seiche's record URL still returned 404 at 17:45 UTC and its public search did no
 expose an exact Seiche listing. The company catalog showed only LiquiLens
 when checked after that.
 
-### LiquiLens correction and pricing follow-through
+## LiquiLens correction and pricing follow-through
 
 The My.G2 pricing editor independently confirmed the saved **Free Version**
 setting after the interrupted session resumed. Free Trial is unchecked. The
 description covers public bank/NBFC/MFI research views and documented public
 read-only REST/MCP routes, with no API key required for those routes. Coverage,
 source observation dates and access limits remain explicit. No paid package
-was created. The public review page still says pricing details are unavailable;
-buyer-facing pricing acceptance remains open.
+was created. A **Public research** tier has now been saved, and the
+[buyer-facing pricing page](https://www.g2.com/products/liquilens/pricing)
+displays **Free / $0** with the same public-access boundaries. The pricing route
+was checked in the signed-in administrator browser; anonymous retrieval through
+the search tool was unavailable. Category and logo work remain open.
 
 G2's support portal received **case 00642455** on 7 October. Its confirmation
 lists three separate requests: remove Survey, assess Financial Data APIs, and

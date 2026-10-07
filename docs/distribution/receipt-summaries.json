@@ -196,10 +196,34 @@
       "observed_at": "2026-10-07T17:45:16.484480+00:00",
       "evidence_filename": "api-market-review-receipt.txt",
       "sha256": "a1d031c9aaaaf94b100141d520660c7d2785fd45f796d76e08a9f359302da375",
-      "scope": "In Review, 3/3 publishing checklist complete; four-endpoint free plan. No marketplace gateway or public approval claimed.",
+      "scope": "Initial In Review receipt for the four-endpoint free plan; later paid-plan follow-through is recorded separately below.",
       "test_evidence_filename": "api-market-fx-upstream-checks.json",
       "test_sha256": "88677044d1854fa09739b5121028525db9fa497440839d4c52583fab03a6eeb3",
-      "rights_evidence": "apyhub-reference-fx-rights.md"
+      "rights_evidence": "apyhub-reference-fx-rights.md",
+      "followthrough_observed_at": "2026-10-07T19:14:49.042231+00:00",
+      "followthrough_scope": "PRO $5/month with 10000 calls and no overages saved; all four gateway tests passed on the no-charge Free Trial with source notices retained. Resubmission received as In Review, 3/3 complete. Operator approval, paid checkout and complete gateway history byte parity are not claimed.",
+      "followthrough_evidence": [
+        {
+          "kind": "paid_plan",
+          "evidence_filename": "paid-plan-persisted-summary.txt",
+          "sha256": "00bb06df6f6d9f214afdabaffa459cd171eaf914fb6eb565f162cfbbb2965ae3"
+        },
+        {
+          "kind": "description",
+          "evidence_filename": "product-description-saved.txt",
+          "sha256": "c1cb1e8ee435c6d6f2b07fe2bdc01c15272c17182a89d4b19df047be2ccefe24"
+        },
+        {
+          "kind": "gateway_tests",
+          "evidence_filename": "playground-verification.json",
+          "sha256": "d86c348770200f9556adeec36ebc0c7cebf2d962ac4d9f38b61003e85944d3d5"
+        },
+        {
+          "kind": "resubmission",
+          "evidence_filename": "resubmission-result.txt",
+          "sha256": "fc1ac8baf432b45552588b5a416f7e2bc67b301ffafbcb5a9543b344e259a2a4"
+        }
+      ]
     },
     {
       "ledger_id": "datarade-company",

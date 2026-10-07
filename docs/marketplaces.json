@@ -712,10 +712,31 @@
       "channel": "api-marketplace",
       "state": "submitted",
       "submission_url": "https://api.market/seller/liquilens/products/seiche-reference-fx",
-      "cost": "free-seller-account; submitted-plan-$0; hard-limit-no-overage",
-      "detail": "Operator shows In Review and publishing checklist 3/3 complete. One plan offers four fixed ECB reference FX CSV routes, $0/month, 1000 calls/month, hard limit, no extra calls and one request/second. Source attribution and the original-data notice remain in the product description. Four upstream tests passed; marketplace gateway and public listing are not verified.",
-      "next_action": "Await operator review and verify the public store page plus each marketplace gateway route before marking live.",
-      "verified_at": "2026-10-07T17:45:16.484480+00:00"
+      "cost": "free-seller-account; Free trial $0 for 7 days/1000 calls; PRO $5/month for 10000 calls; hard limits, no overages",
+      "detail": "After the operator requested a paid plan, the owner approved PRO at $5/month with 10000 calls, a hard cap, no extra calls and one request/second. Both plans include all four fixed ECB reference FX CSV routes. All four API Playground gateway tests returned HTTP 200 CSV on the no-charge Free Trial, with source attribution, the free-data notice and the 7 October observation date. The existing product was resubmitted; the operator shows In Review and 3/3 complete. The signed-in preview renders, but operator approval and unrestricted public catalog acceptance remain unverified.",
+      "next_action": "Await the existing resubmission decision. After approval verify the public catalog and displayed plan terms; do not resubmit while review is pending.",
+      "verified_at": "2026-10-07T19:14:49.042231+00:00",
+      "pricing": {
+        "pro": {
+          "price_per_month": "$5",
+          "calls_per_month": 10000,
+          "requests_per_second": 1,
+          "limit": "HARD",
+          "overages": false
+        },
+        "free_trial": {
+          "days": 7,
+          "calls": 1000
+        },
+        "endpoints_per_plan": 4
+      },
+      "gateway_verification": {
+        "tested_endpoints": 4,
+        "passed_endpoints": 4,
+        "test_plan": "Free Trial",
+        "observed_at": "2026-10-07T19:14:34.344Z",
+        "complete_history_byte_parity": false
+      }
     },
     {
       "id": "datarade-company",
@@ -730,7 +751,7 @@
     }
   ],
   "release_verified_at": "2026-10-04T21:36:19.672601+00:00",
-  "updated_at": "2026-10-07T18:36:41.571266+00:00",
+  "updated_at": "2026-10-07T19:14:49.042231+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -753,7 +774,7 @@
     "audit_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/marketplace-retry.md",
     "scope": "Five received records: one public G2 profile needing category correction, two G2 approvals awaiting public verification, and two review applications. Network cross-publication and independent adoption are unverified.",
     "public_profiles_requiring_metadata_correction": 1,
-    "followthrough_observed_at": "2026-10-07T18:36:41.571266+00:00",
+    "followthrough_observed_at": "2026-10-07T19:14:49.042231+00:00",
     "ownership_claims_completed": 1,
     "category_correction_cases_received": 1
   }

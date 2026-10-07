@@ -126,6 +126,54 @@
       "evidence_filename": "huggingface-public-receipt.json",
       "sha256": "77fddcdd61248a4837c1852098bbd39d20e7fa0ffaebec9f5433cec231b547ac",
       "scope": "Anonymous source/asset parity and live example/clear controls verified"
+    },
+    {
+      "ledger_id": "g2-liquilens",
+      "state": "submitted",
+      "operator_url": "https://www.g2.com/add_product_requests/new",
+      "observed_at": "2026-10-07T17:42:01.184656+00:00",
+      "evidence_filename": "g2-undertow-url-result.txt",
+      "sha256": "797fc7ac64d9586e078c821b8b1fd36cc6c7cef7b80cee260e15391352ed0a58",
+      "scope": "Matching operator product record corroborates the owner-confirmed submission email; not a public listing receipt."
+    },
+    {
+      "ledger_id": "g2-seiche",
+      "state": "approved_pending_public",
+      "operator_url": "https://www.g2.com/add_product_requests/new",
+      "observed_at": "2026-10-07T17:42:01.124542+00:00",
+      "evidence_filename": "g2-seiche-submit-result.txt",
+      "sha256": "7cf739668defaea2b46825c985c94d9844644eea2f8330ceb493e3252e5013fe",
+      "scope": "Profile Approved receipt; public page and network cross-publication remain unverified."
+    },
+    {
+      "ledger_id": "g2-undertow",
+      "state": "approved_pending_public",
+      "operator_url": "https://www.g2.com/add_product_requests/new",
+      "observed_at": "2026-10-07T17:45:32.093730+00:00",
+      "evidence_filename": "g2-undertow-submit-result.txt",
+      "sha256": "8be57b0f494f7599d2fe1cb27acf10b76676672cfce0aaf176b6e3d3aaff35d1",
+      "scope": "Profile Approved receipt; public page and network cross-publication remain unverified."
+    },
+    {
+      "ledger_id": "api-market-seiche-reference-fx",
+      "state": "submitted",
+      "operator_url": "https://api.market/seller/liquilens/products/seiche-reference-fx",
+      "observed_at": "2026-10-07T17:45:16.484480+00:00",
+      "evidence_filename": "api-market-review-receipt.txt",
+      "sha256": "a1d031c9aaaaf94b100141d520660c7d2785fd45f796d76e08a9f359302da375",
+      "scope": "In Review, 3/3 publishing checklist complete; four-endpoint free plan. No marketplace gateway or public approval claimed.",
+      "test_evidence_filename": "api-market-fx-upstream-checks.json",
+      "test_sha256": "88677044d1854fa09739b5121028525db9fa497440839d4c52583fab03a6eeb3",
+      "rights_evidence": "apyhub-reference-fx-rights.md"
+    },
+    {
+      "ledger_id": "datarade-company",
+      "state": "submitted",
+      "operator_url": "https://providers.datarade.ai/apply/confirm/success",
+      "observed_at": "2026-10-07T17:39:53.579264+00:00",
+      "evidence_filename": "datarade-confirmed-receipt.txt",
+      "sha256": "c248fbfd6eaf548c0bb2711c538c835c47e5ff876d42fd1d9a17dabc50986195",
+      "scope": "Email confirmed; company provider application is under review."
     }
   ],
   "onboarding_receipts": [
@@ -139,6 +187,15 @@
       "test_evidence_filename": "apyhub-all-endpoint-tests.txt",
       "test_sha256": "b69acd5fc5cb69bfa9e97d8d40831de9c9c6d4c7d120a1840acbf75ce71e9161",
       "scope": "Provider onboarding and public profile only; four draft endpoint tests passed and technical review completed. Zero live APIs; source-specific data rights, final pricing and operator approval remain open."
+    },
+    {
+      "route_id": "zenodo",
+      "state": "release_preservation_enabled_no_archive",
+      "operator_url": "https://zenodo.org/account/settings/github/repository/beepboop2025/financial-evidence-skills",
+      "observed_at": "2026-10-07T17:33:39.179907+00:00",
+      "evidence_filename": "zenodo-financial-evidence-enabled-detail.txt",
+      "sha256": "770992b1934e95996813d2b71576f2ed4dd71e73c2e4b25e7790c67349d3d0d5",
+      "scope": "Automatic preservation enabled; archive list empty, no Financial Evidence DOI claimed."
     }
   ]
 }

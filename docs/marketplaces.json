@@ -16,7 +16,8 @@
     "ready_validation": "Submission assets are ready, but an operator-specific install test remains before an honest attestation can be made.",
     "paused_external": "The operator is not currently accepting submissions.",
     "conditional_artifact": "The channel is appropriate only after a destination-specific artifact is produced.",
-    "skipped_paid": "A paid listing was deliberately not purchased because no spend was authorized."
+    "skipped_paid": "A paid listing was deliberately not purchased because no spend was authorized.",
+    "approved_pending_public": "The operator explicitly approved the profile, but an independently accessible public listing has not yet been verified."
   },
   "entries": [
     {
@@ -160,11 +161,11 @@
       "name": "StackShare",
       "channel": "developer-tool-directory",
       "state": "ready_account_action",
-      "submission_url": "https://stackshare.io/submit",
-      "cost": "unknown-stop-if-checkout",
-      "detail": "The inherited /submit route resolves to an unrelated public user profile, not a product form. The current self-service submission route remains unverified.",
-      "next_action": "Find a current operator-supported product listing route before submitting.",
-      "verified_at": "2026-10-07T16:53:30.231429+00:00"
+      "submission_url": "https://stackshare.io/",
+      "cost": "no-checkout-observed",
+      "detail": "The signed-in List a Tool flow is usable. LiquiLens metadata is prepared, but the automatically imported SVG was rejected because the form requires JPEG, PNG or WebP. No accepted submission exists.",
+      "next_action": "Attach the prepared PNG through the existing form, then submit once and retain the receipt.",
+      "verified_at": "2026-10-07T17:46:37.218560+00:00"
     },
     {
       "id": "saashub",
@@ -186,7 +187,7 @@
       "cost": "free-standard-queue",
       "detail": "The owner is signed in, but the site reports an unverified email and disables new-app submission.",
       "next_action": "Verify the account email, refresh the profile and submit the prepared product through the normal queue.",
-      "verified_at": "2026-10-07T16:53:30.231429+00:00"
+      "verified_at": "2026-10-07T17:16:48.425349+00:00"
     },
     {
       "id": "zenodo",
@@ -195,8 +196,9 @@
       "state": "conditional_artifact",
       "submission_url": "https://zenodo.org/uploads/new",
       "cost": "free",
-      "detail": "A DOI archive is appropriate after creator and citation metadata are reviewed for a genuine tagged software release.",
-      "next_action": "Prepare reviewed citation metadata before archiving a release."
+      "detail": "Automatic GitHub release preservation is enabled for beepboop2025/financial-evidence-skills. The operator repository page still has no archived releases. The existing Seiche DOI is a different product.",
+      "next_action": "On the next genuine software release, verify the archive metadata and its public DOI. Do not create a version solely to trigger archiving.",
+      "verified_at": "2026-10-07T17:33:39.179907+00:00"
     },
     {
       "id": "hugging-face-spaces",
@@ -656,13 +658,68 @@
       "state": "paused_external",
       "submission_url": "https://www.saashub.com/services/submit",
       "cost": "free-standard-listing",
-      "verified_at": "2026-10-07T16:53:30.231429+00:00",
+      "verified_at": "2026-10-07T17:16:52.297315+00:00",
       "detail": "The operator requires approval of an earlier submission before accepting another product from this account. No Undertow submission receipt exists.",
       "next_action": "Wait for a LiquiLens or Seiche review outcome, then continue the prepared Undertow entry."
+    },
+    {
+      "id": "g2-liquilens",
+      "name": "G2 — LiquiLens",
+      "channel": "software-directory",
+      "state": "submitted",
+      "submission_url": "https://www.g2.com/add_product_requests/new",
+      "cost": "free-standard-listing",
+      "detail": "Owner confirmed the submission email. G2 duplicate detection exposes the matching LiquiLens product record and submitted description. The submission response had a rendering error, so it was not replayed. The record URL returned 404; public visibility is unverified. Optional Capterra/GetApp/Software Advice cross-publication was selected with owner authorization and remains subject to verification.",
+      "next_action": "Resolve the public link provided by G2 and verify the exact product and vendor. Do not resubmit.",
+      "verified_at": "2026-10-07T17:42:01.184656+00:00"
+    },
+    {
+      "id": "g2-seiche",
+      "name": "G2 — Seiche",
+      "channel": "software-directory",
+      "state": "approved_pending_public",
+      "submission_url": "https://www.g2.com/add_product_requests/new",
+      "cost": "free-standard-listing",
+      "detail": "The operator returned Profile Approved for Seiche. Public propagation and category assignment are pending; the record URL returned 404 at 17:45 UTC and public search did not expose an exact Seiche listing. Optional network placements remain subject to verification.",
+      "next_action": "Verify the public G2 link after propagation and check any network-site verification results without resubmitting.",
+      "verified_at": "2026-10-07T17:45:23.691515+00:00"
+    },
+    {
+      "id": "g2-undertow",
+      "name": "G2 — Undertow",
+      "channel": "software-directory",
+      "state": "approved_pending_public",
+      "submission_url": "https://www.g2.com/add_product_requests/new",
+      "cost": "free-standard-listing",
+      "detail": "The operator returned Profile Approved for Undertow. Public propagation and category assignment remain unverified; optional Capterra/GetApp/Software Advice placements remain subject to verification.",
+      "next_action": "Verify the public G2 link and any network-site verification results without resubmitting.",
+      "verified_at": "2026-10-07T17:45:32.093730+00:00"
+    },
+    {
+      "id": "api-market-seiche-reference-fx",
+      "name": "API.market — Seiche Reference FX API",
+      "channel": "api-marketplace",
+      "state": "submitted",
+      "submission_url": "https://api.market/seller/liquilens/products/seiche-reference-fx",
+      "cost": "free-seller-account; submitted-plan-$0; hard-limit-no-overage",
+      "detail": "Operator shows In Review and publishing checklist 3/3 complete. One plan offers four fixed ECB reference FX CSV routes, $0/month, 1000 calls/month, hard limit, no extra calls and one request/second. Source attribution and the original-data notice remain in the product description. Four upstream tests passed; marketplace gateway and public listing are not verified.",
+      "next_action": "Await operator review and verify the public store page plus each marketplace gateway route before marking live.",
+      "verified_at": "2026-10-07T17:45:16.484480+00:00"
+    },
+    {
+      "id": "datarade-company",
+      "name": "Datarade — LIQUILENS PRIVATE LIMITED",
+      "channel": "data-provider-application",
+      "state": "submitted",
+      "submission_url": "https://providers.datarade.ai/apply/confirm/success",
+      "cost": "no-payment-or-commercial-plan-selected",
+      "detail": "The operator confirms Email confirmed and the company application is now under review. Application describes public-source financial research and source-by-source redistribution rights. No public provider listing or commercial acceptance is claimed.",
+      "next_action": "Await the provider qualification decision and review any later delivery or commercial requirements. Do not resubmit.",
+      "verified_at": "2026-10-07T17:39:53.579264+00:00"
     }
   ],
   "release_verified_at": "2026-10-04T21:36:19.672601+00:00",
-  "updated_at": "2026-10-07T16:53:30.231429+00:00",
+  "updated_at": "2026-10-07T17:48:29.341187+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -673,5 +730,16 @@
     "target_metric": "monthly active people",
     "measured_monthly_active_people": null,
     "provider_onboardings_completed": 1
+  },
+  "latest_retry": {
+    "id": "2026-10-07-marketplace-retry",
+    "observed_at": "2026-10-07T17:48:29.341187+00:00",
+    "new_product_or_company_submissions": 5,
+    "platforms_with_new_submissions": 3,
+    "approved_profiles_pending_public_verification": 2,
+    "other_received_submissions": 3,
+    "new_public_pages_verified": 0,
+    "audit_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/marketplace-retry.md",
+    "scope": "Five received records, including two G2 profile approvals; cross-publication and independent adoption are unverified."
   }
 }

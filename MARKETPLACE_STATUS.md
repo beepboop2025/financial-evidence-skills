@@ -11,7 +11,25 @@ contains the prepared AWS and institutional submission material.
 older full-ledger check; `release_verified_at` separately records software
 release acceptance. Updating the ledger does not refresh every observation.
 
-## Latest sweep
+## Latest marketplace retries
+
+- **G2:** Seiche and Undertow have explicit profile-approval receipts. LiquiLens
+  has an owner-confirmed email and matching operator record. Public visibility
+  remains unverified; optional Capterra/GetApp/Software Advice placements are
+  subject to separate verification.
+- **API.market:** Seiche Reference FX is in review with four fixed endpoints,
+  a $0 plan, 1,000 monthly requests, hard limit and no overage charge.
+- **Datarade:** the company's confirmed provider application is under review.
+- **Zenodo:** automatic preservation is enabled for future Financial Evidence
+  releases; no Financial Evidence DOI is yet verified.
+
+The [retry record](docs/distribution/marketplace-retry.md) includes the exact
+remaining steps for StackShare, AlternativeTo, SaaSHub and the launch drafts.
+The [earlier follow-through](docs/distribution/non-amazon-follow-through.md)
+records the public Hugging Face Space, two SaaSHub submissions and native
+integration candidates. These results do not establish independent adoption.
+
+## Earlier 7 October sweep
 
 - **Two new public listings:** [Financial Evidence API on FreePublicAPIs](https://www.freepublicapis.com/financial-evidence-api), with four JSON endpoints, and [Financial Evidence Research Desk on AllMCPs](https://allmcps.com/mcp/financial-evidence-research-desk), with the correct hosted MCP endpoint. AllMCPs enrichment, health checks and ownership verification remain pending.
 - **Eight received review submissions:** APIsList for the Research API,
@@ -69,8 +87,9 @@ merge; no placement is claimed.
   own gates. Smithery is no longer account-pending. Paid MCP.so and MCP Market
   remote placements remain unpurchased.
 
-PulseMCP, Gemini, Zenodo and other inherited entries retain their older clocks
-and exact product scope. See the route audit for each remaining action.
+PulseMCP, Gemini and other inherited entries retain their older clocks and
+exact product scope. Zenodo's new preservation setting is recorded separately
+from an archived release. See the route audit and retry record for each action.
 
 ## Adoption and follow-up
 

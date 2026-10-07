@@ -69,8 +69,9 @@
       "state": "submitted",
       "submission_url": "https://github.com/punkpeye/awesome-mcp-servers/pull/12771",
       "cost": "free",
-      "detail": "The catalog check passes and the PR is mergeable; semantic Glama scoring remains incomplete.",
-      "next_action": "Complete Glama evaluation, then wait for maintainer review."
+      "detail": "Existing submission refreshed against current upstream on 7 October 2026. The one-line catalogue addition is mergeable and its submission check passes; the public Glama schema exposes all three tools.",
+      "next_action": "Await independent maintainer review; acceptance is not yet claimed.",
+      "verified_at": "2026-10-07T06:54:25.977088+00:00"
     },
     {
       "id": "awesome-copilot",
@@ -278,9 +279,31 @@
       "detail": "New workspace 1.1.2 listing with eight read-only research tools, two prompts and two resources. This paginated table service is distinct from the three-tool source router. Optional trigger discovery returned unsupported parameters; tool, prompt and resource scans succeeded.",
       "next_action": "Measure independently useful research tasks and return use.",
       "verified_at": "2026-10-07T06:46:30.193821+00:00"
+    },
+    {
+      "id": "apis-guru-research-api",
+      "name": "Financial Evidence Research API on APIs.guru",
+      "channel": "openapi-directory",
+      "state": "submitted",
+      "submission_url": "https://github.com/APIs-guru/openapi-directory/issues/3568",
+      "cost": "free",
+      "detail": "New shared research-table API submitted with the public OpenAPI 3.1 contract, absolute API origin, twelve runnable requests and source-availability limits. The issue is open; directory inclusion remains pending.",
+      "next_action": "Await maintainer review and verify the listing if accepted.",
+      "verified_at": "2026-10-07T06:54:25.977088+00:00"
+    },
+    {
+      "id": "awesome-remote-mcp-servers",
+      "name": "Awesome Remote MCP Servers",
+      "channel": "community-catalog",
+      "state": "submitted",
+      "submission_url": "https://github.com/punkpeye/awesome-remote-mcp-servers/pull/1318",
+      "cost": "free",
+      "detail": "New anonymous hosted Financial Evidence endpoint submission. Initialize and tools/list passed; the required public Glama connector resolves. The catalogue submission check passes and the PR is mergeable; maintainer approval remains pending.",
+      "next_action": "Await maintainer review and verify the listing if accepted.",
+      "verified_at": "2026-10-07T06:54:25.977088+00:00"
     }
   ],
   "release_verified_at": "2026-10-04T21:36:19.672601+00:00",
-  "updated_at": "2026-10-07T06:46:30.193821+00:00",
+  "updated_at": "2026-10-07T06:54:25.977088+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify the entries refreshed; checked_at is the older full-ledger check."
 }

@@ -41,6 +41,7 @@ REQUIRED = {
 # recognized publication clocks may explain an aging publisher label.
 MAX_AGE_DAYS = {"daily": 4, "weekly": 10}
 MAX_BYTES = 2_097_152
+ATLAS_MAX_BYTES = 4_194_304
 TGA_SCHEDULE_SOURCE = "https://home.treasury.gov/policy-issues/financial-markets-financial-institutions-and-fiscal-service/cash-and-debt-forecasting"
 ATLAS_CLOCK_BASIS = "pack business calendar + adapter publication lag/cadence; stored state is a lower bound"
 ATLAS_DECLARED_CLOCK_BASIS = (
@@ -508,11 +509,13 @@ def evaluate(
     }
 
 
-def load_document(path):
+def load_document(path, *, max_bytes=MAX_BYTES):
+    if max_bytes not in (MAX_BYTES, ATLAS_MAX_BYTES):
+        raise ValueError("unsupported document byte limit")
     with Path(path).open("rb") as stream:
-        raw = stream.read(MAX_BYTES + 1)
-    if len(raw) > MAX_BYTES:
-        raise ValueError("input exceeds 2 MiB")
+        raw = stream.read(max_bytes + 1)
+    if len(raw) > max_bytes:
+        raise ValueError(f"input exceeds {max_bytes // 1_048_576} MiB")
 
     return (
         json.loads(
@@ -538,7 +541,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         captures = {
-            name: load_document(getattr(args, name))
+            name: load_document(getattr(args, name), max_bytes=ATLAS_MAX_BYTES if name == "atlas" else MAX_BYTES)
             for name in ("desk", "atlas", "health")
         }
         if args.desk_history:

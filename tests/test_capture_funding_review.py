@@ -444,6 +444,33 @@ class CaptureTests(unittest.TestCase):
         self.assertIn("exceeds 2 MiB", receipt["error"])
         self.assertEqual(receipt["sha256"], capture.sha256(raw))
 
+    def test_only_exact_atlas_route_accepts_a_larger_response(self):
+        raw = b" " * (capture.MAX_BYTES + 100)
+        atlas_url = capture.ORIGIN + "/api/v2/money-markets"
+        for name, url, allowed in [("atlas", atlas_url, True), ("health", atlas_url, False),
+                                   ("atlas", atlas_url + "?other=1", False),
+                                   ("atlas", capture.ORIGIN + "/api/money-markets", False)]:
+            with self.subTest(name=name, url=url):
+                receipt, saved, _ = capture.fetch(name, url, opener=FakeOpener(FakeResponse(raw)))
+                self.assertEqual(receipt["complete"], allowed)
+                self.assertEqual(len(saved), len(raw) if allowed else capture.MAX_BYTES + 1)
+        receipt, saved, _ = capture.fetch("atlas", atlas_url, opener=FakeOpener(FakeResponse(b" " * (capture.ATLAS_MAX_BYTES + 10))))
+        self.assertFalse(receipt["complete"])
+        self.assertEqual(len(saved), capture.ATLAS_MAX_BYTES + 1)
+
+    def test_large_atlas_capture_replays_exactly_with_explicit_local_reader_limit(self):
+        docs = captures(); docs[1]["test_padding"] = "x" * capture.MAX_BYTES
+        raw = responses(docs)
+        path, original = self.run_capture(fetcher=fetcher(raw))
+        self.assertEqual(original["availability"], "available")
+        replay_path, replayed = capture.replay(path, self.output)
+        self.assertEqual(original["data_readiness"], replayed["data_readiness"])
+        self.assertEqual((path / "review.json").read_bytes(), (replay_path / "review.json").read_bytes())
+        with self.assertRaisesRegex(ValueError, "exceeds 2 MiB"):
+            capture.load_document(path / "atlas.response")
+        loaded, digest = capture.load_document(path / "atlas.response", max_bytes=capture.ATLAS_MAX_BYTES)
+        self.assertEqual(loaded, docs[1]); self.assertEqual(digest, capture.sha256(raw["atlas"]))
+
     def test_http_failure_keeps_exact_body_and_network_failure_records_exception(self):
         raw = b'{"error":"not available"}\n'
         error = urllib.error.HTTPError(

@@ -10,7 +10,7 @@ visibility remains unverified.
 | [G2](https://www.g2.com/products/liquilens/reviews) | LiquiLens | Public profile claimed under LIQUILENS PRIVATE LIMITED; free Public research tier visible at $0; correction case 00642455 received | G2 category decision and logo enrichment |
 | G2 | Seiche | The submission page says **Profile Approved!** | Public profile propagation and category assignment |
 | G2 | Undertow | The submission page says **Profile Approved!** | Public profile propagation and category assignment |
-| API.market | Seiche Reference FX API | **In Review**, publishing checklist **3 / 3 complete** | Operator review and public gateway verification |
+| API.market | Seiche Reference FX API | PRO **$5/month**, 10,000-call hard cap; **4/4 Playground tests passed**; resubmitted, **In Review, 3 / 3 complete** | Operator approval and public catalog acceptance |
 | Datarade | LIQUILENS PRIVATE LIMITED | **Email confirmed** and **application is now under review** | Provider qualification and any later commercial onboarding |
 
 G2's optional Capterra, GetApp and Software Advice cross-publication was
@@ -54,10 +54,11 @@ in [receipt summaries](receipt-summaries.json).
 
 ## API.market product scope
 
-The new free seller organization has one submitted product. The **Free**
-plan is **$0/month**, **1,000 requests/month**, **hard limit**, no additional
-calls or overage charge, and **one request per second**. Its four fixed GET
-routes are:
+The free seller organization has one submitted product. API.market requested
+a paid plan because buyers receive the **Free** plan as a **seven-day trial**
+with **1,000 calls**. The owner approved and saved **PRO at $5/month**, with
+**10,000 calls/month**, a **hard limit**, **no overage calls** and **one request
+per second**. Both plans include the same four fixed GET routes:
 
 - `/api/series/ECBFX_USD.csv`
 - `/api/series/ECBFX_GBP.csv`
@@ -68,14 +69,23 @@ The source is `https://api.seiche.info`. The product description retains ECB
 source attribution, the free-original-data notice, modification details and
 the boundary between reference rates and executable quotes. The
 [source-rights review](apyhub-reference-fx-rights.md) also applies to this
-same bounded set of routes. All four upstream CSV checks passed at 17:42 UTC,
-including source notices and observations dated 7 October. This verifies the
-upstream service, not API.market's gateway, operator approval or customer use.
-The separate ApyHub FX submission remains intact.
+same bounded set of routes. The operator's standardized documentation was
+preserved, with the plan terms and explicit ECB free-source notice added before
+subscription. Fresh upstream checks matched the ECB's 7 October observations
+for all four currencies.
 
-The submitted preview currently redirects to
-[the product's store route](https://api.market/store/liquilens/seiche-reference-fx)
-without a product result. It is not a verified public listing.
+All four requests then returned **HTTP 200 CSV** in **API Playground**, with the
+correct series, source credit, free-data notice and 7 October observation date.
+These were owner verification calls on the **no-charge Free Trial**, not paid
+subscriptions or independent adoption. The retained browser response excerpts
+do not establish full-history byte parity through the gateway.
+
+The existing product was resubmitted once after those checks. API.market shows
+**In Review** and **3/3 complete**. The signed-in seller preview now renders the
+description, plans and Playground at
+[the store route](https://api.market/store/liquilens/seiche-reference-fx).
+Operator approval and unrestricted public catalog acceptance remain pending.
+The separate ApyHub FX submission remains intact.
 
 ## Other routes retried
 

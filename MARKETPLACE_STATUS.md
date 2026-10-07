@@ -21,8 +21,11 @@ release acceptance. Updating the ledger does not refresh every observation.
   Seiche and Undertow have explicit profile-approval receipts; their public
   visibility remains unverified. Optional Capterra/GetApp/Software Advice
   placements are subject to separate verification.
-- **API.market:** Seiche Reference FX is in review with four fixed endpoints,
-  a $0 plan, 1,000 monthly requests, hard limit and no overage charge.
+- **API.market:** Seiche Reference FX was resubmitted with the approved **PRO
+  $5/month** plan: 10,000 calls across all four endpoints, a hard cap, no
+  overages and one request/second. The Free plan is a seven-day trial with
+  1,000 calls. All four API Playground gateway tests passed on that no-charge
+  trial. The operator shows **In Review, 3/3 complete**; approval remains pending.
 - **Datarade:** the company's confirmed provider application is under review.
 - **Zenodo:** automatic preservation is enabled for future Financial Evidence
   releases; no Financial Evidence DOI is yet verified.

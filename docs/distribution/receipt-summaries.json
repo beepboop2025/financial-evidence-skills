@@ -83,6 +83,19 @@
       "submission_evidence_filename": "allmcps-review-receipt.txt",
       "submission_sha256": "3bb422f6c3ff432e2f27e733945c062bdb7779210519e6ca739b89a0686ef1b6",
       "scope": "Review-queue receipt and anonymous public page resolved with the correct remote endpoint; enrichment, health and ownership remain pending"
+    },
+    {
+      "route_id": "apyhub",
+      "product": "Seiche Reference FX API",
+      "state": "submitted",
+      "operator_url": "https://apyhub.com/workspace/mrinallovesbhature/publishing/035397d7-9b8c-450b-86fa-cc14eb66d0d4",
+      "observed_at": "2026-10-07T16:06:20.963429Z",
+      "evidence_filename": "apyhub-fx-submission-receipt.txt",
+      "sha256": "43fcc8aebd318e51caf28bb5545f7e3b668228915f7deb5ff6339b5b649ce2bc",
+      "test_evidence_filename": "apyhub-fx-all-tests.txt",
+      "test_sha256": "7ac2df0fc5482206125c1fa8b6ad1e75f458c70dcb37c584bad0040724a5b286",
+      "rights_evidence": "apyhub-reference-fx-rights.md",
+      "scope": "Four fixed ECB reference FX CSV routes, one atom each, 4/4 tested and review acknowledged. Submitted for admin review; no live gateway or adoption claimed. Separate broad Research API draft remains rights-held."
     }
   ],
   "onboarding_receipts": [

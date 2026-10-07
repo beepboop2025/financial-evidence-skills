@@ -1,0 +1,143 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Seiche Reference FX API",
+    "version": "1.0.0",
+    "description": "Daily EUR-base reference-rate histories for USD, GBP, JPY and INR, provided by LIQUILENS PRIVATE LIMITED through Seiche. Each response is CSV with provenance comments followed by date,value rows. Source: European Central Bank. The underlying reference data is available free of charge from https://www.ecb.europa.eu/stats/eurofxref/ and is reused under https://www.ecb.europa.eu/services/using-our-site/disclaimer/html/index.en.html . Seiche converts the ECB XML observations into dated CSV rows without currency conversion, interpolation or economic adjustment. Preserve the comment header, source credit and free-data notice whenever distributing the output. Daily informational reference rates; not executable quotes or investment advice. LIQUILENS PRIVATE LIMITED and Seiche are independent of the ECB; no endorsement is implied.",
+    "contact": {
+      "name": "LiquiLens support",
+      "email": "mrinal@liquilens.in",
+      "url": "https://seiche.info/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.seiche.info"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Reference FX",
+      "description": "Four fixed ECB reference series; no arbitrary upstream URL or dataset parameter."
+    }
+  ],
+  "security": [],
+  "paths": {
+    "/api/series/ECBFX_USD.csv": {
+      "get": {
+        "operationId": "getUSDPerEuroCsv",
+        "tags": [
+          "Reference FX"
+        ],
+        "summary": "USD per euro reference history",
+        "description": "Get the retained daily history in USD per one EUR. The observation date and retrieval time are distinct. Read last_observation and staleness from the CSV comment header before using the data; successful retrieval does not establish freshness. Missing dates stay absent. Historical values reflect the current upstream vintage, not an as-of reconstruction. No path or query parameters. Source: European Central Bank. The underlying reference data is available free of charge from https://www.ecb.europa.eu/stats/eurofxref/ and is reused under https://www.ecb.europa.eu/services/using-our-site/disclaimer/html/index.en.html . Seiche converts the ECB XML observations into dated CSV rows without currency conversion, interpolation or economic adjustment. Preserve the comment header, source credit and free-data notice whenever distributing the output. Daily informational reference rates; not executable quotes or investment advice. LIQUILENS PRIVATE LIMITED and Seiche are independent of the ECB; no endorsement is implied.",
+        "responses": {
+          "200": {
+            "description": "CSV comments include source, units, latest observation, retrieval time, staleness, attribution and free-data notice; followed by date,value rows.",
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "# Source: European Central Bank. Reference data is freely available from the ECB; not executable quotes.\n# unit: USD/EUR\ndate,value\n"
+              }
+            }
+          },
+          "403": {
+            "description": "Upstream redistribution restriction; no observations returned."
+          },
+          "503": {
+            "description": "Source history not yet available; preserve the unavailable state."
+          }
+        }
+      }
+    },
+    "/api/series/ECBFX_GBP.csv": {
+      "get": {
+        "operationId": "getGBPPerEuroCsv",
+        "tags": [
+          "Reference FX"
+        ],
+        "summary": "GBP per euro reference history",
+        "description": "Get the retained daily history in GBP per one EUR. The observation date and retrieval time are distinct. Read last_observation and staleness from the CSV comment header before using the data; successful retrieval does not establish freshness. Missing dates stay absent. Historical values reflect the current upstream vintage, not an as-of reconstruction. No path or query parameters. Source: European Central Bank. The underlying reference data is available free of charge from https://www.ecb.europa.eu/stats/eurofxref/ and is reused under https://www.ecb.europa.eu/services/using-our-site/disclaimer/html/index.en.html . Seiche converts the ECB XML observations into dated CSV rows without currency conversion, interpolation or economic adjustment. Preserve the comment header, source credit and free-data notice whenever distributing the output. Daily informational reference rates; not executable quotes or investment advice. LIQUILENS PRIVATE LIMITED and Seiche are independent of the ECB; no endorsement is implied.",
+        "responses": {
+          "200": {
+            "description": "CSV comments include source, units, latest observation, retrieval time, staleness, attribution and free-data notice; followed by date,value rows.",
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "# Source: European Central Bank. Reference data is freely available from the ECB; not executable quotes.\n# unit: GBP/EUR\ndate,value\n"
+              }
+            }
+          },
+          "403": {
+            "description": "Upstream redistribution restriction; no observations returned."
+          },
+          "503": {
+            "description": "Source history not yet available; preserve the unavailable state."
+          }
+        }
+      }
+    },
+    "/api/series/ECBFX_JPY.csv": {
+      "get": {
+        "operationId": "getJPYPerEuroCsv",
+        "tags": [
+          "Reference FX"
+        ],
+        "summary": "JPY per euro reference history",
+        "description": "Get the retained daily history in JPY per one EUR. The observation date and retrieval time are distinct. Read last_observation and staleness from the CSV comment header before using the data; successful retrieval does not establish freshness. Missing dates stay absent. Historical values reflect the current upstream vintage, not an as-of reconstruction. No path or query parameters. Source: European Central Bank. The underlying reference data is available free of charge from https://www.ecb.europa.eu/stats/eurofxref/ and is reused under https://www.ecb.europa.eu/services/using-our-site/disclaimer/html/index.en.html . Seiche converts the ECB XML observations into dated CSV rows without currency conversion, interpolation or economic adjustment. Preserve the comment header, source credit and free-data notice whenever distributing the output. Daily informational reference rates; not executable quotes or investment advice. LIQUILENS PRIVATE LIMITED and Seiche are independent of the ECB; no endorsement is implied.",
+        "responses": {
+          "200": {
+            "description": "CSV comments include source, units, latest observation, retrieval time, staleness, attribution and free-data notice; followed by date,value rows.",
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "# Source: European Central Bank. Reference data is freely available from the ECB; not executable quotes.\n# unit: JPY/EUR\ndate,value\n"
+              }
+            }
+          },
+          "403": {
+            "description": "Upstream redistribution restriction; no observations returned."
+          },
+          "503": {
+            "description": "Source history not yet available; preserve the unavailable state."
+          }
+        }
+      }
+    },
+    "/api/series/ECBFX_INR.csv": {
+      "get": {
+        "operationId": "getINRPerEuroCsv",
+        "tags": [
+          "Reference FX"
+        ],
+        "summary": "INR per euro reference history",
+        "description": "Get the retained daily history in INR per one EUR. The observation date and retrieval time are distinct. Read last_observation and staleness from the CSV comment header before using the data; successful retrieval does not establish freshness. Missing dates stay absent. Historical values reflect the current upstream vintage, not an as-of reconstruction. No path or query parameters. Source: European Central Bank. The underlying reference data is available free of charge from https://www.ecb.europa.eu/stats/eurofxref/ and is reused under https://www.ecb.europa.eu/services/using-our-site/disclaimer/html/index.en.html . Seiche converts the ECB XML observations into dated CSV rows without currency conversion, interpolation or economic adjustment. Preserve the comment header, source credit and free-data notice whenever distributing the output. Daily informational reference rates; not executable quotes or investment advice. LIQUILENS PRIVATE LIMITED and Seiche are independent of the ECB; no endorsement is implied.",
+        "responses": {
+          "200": {
+            "description": "CSV comments include source, units, latest observation, retrieval time, staleness, attribution and free-data notice; followed by date,value rows.",
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "# Source: European Central Bank. Reference data is freely available from the ECB; not executable quotes.\n# unit: INR/EUR\ndate,value\n"
+              }
+            }
+          },
+          "403": {
+            "description": "Upstream redistribution restriction; no observations returned."
+          },
+          "503": {
+            "description": "Source history not yet available; preserve the unavailable state."
+          }
+        }
+      }
+    }
+  }
+}

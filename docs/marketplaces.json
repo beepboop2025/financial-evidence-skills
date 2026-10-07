@@ -620,15 +620,27 @@
       "outcome": "new_submission",
       "evidence_file": "battlefin-receipt-final.txt",
       "source_url": "https://www.battlefin.com/asiadatamap"
+    },
+    {
+      "id": "apyhub-seiche-reference-fx",
+      "name": "ApyHub - Seiche Reference FX API",
+      "channel": "api-marketplace",
+      "state": "submitted",
+      "submission_url": "https://apyhub.com/workspace/mrinallovesbhature/publishing/035397d7-9b8c-450b-86fa-cc14eb66d0d4",
+      "provider_url": "https://apyhub.com/providers/liquilens",
+      "verified_at": "2026-10-07T16:06:20.963429Z",
+      "cost": "Provider submission free; one ApyHub atom per endpoint request if approved.",
+      "detail": "ApyHub received Seiche Reference FX API v1.0.0 with four fixed GET CSV endpoints for USD, GBP, JPY and INR per EUR. All four tests passed; ECB source attribution and free-data notices were retained. Admin approval and public gateway acceptance remain pending. The separate broad JSON Research API draft remains rights-held.",
+      "next_action": "Wait for the existing submitted draft to be reviewed. After approval verify the public catalog, gateway response, attribution, pricing and acquisition attribution; do not resubmit."
     }
   ],
   "release_verified_at": "2026-10-04T21:36:19.672601+00:00",
-  "updated_at": "2026-10-07T15:39:38.285Z",
+  "updated_at": "2026-10-07T16:06:20.963429Z",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
     "new_publications": 2,
-    "new_submissions": 7,
+    "new_submissions": 8,
     "existing_placements_reconciled": 14,
     "audit_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/marketplace-audit.md",
     "target_metric": "monthly active people",

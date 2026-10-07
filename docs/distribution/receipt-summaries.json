@@ -72,6 +72,30 @@
       "evidence_filename": "battlefin-receipt-final.txt",
       "sha256": "64e30362f201d5f8d00bed5a9011ec62741c709d57b9bff7386ccbdc127a878e",
       "scope": "Operator acknowledged receipt; public approval pending"
+    },
+    {
+      "ledger_id": "allmcps-research-desk",
+      "state": "live",
+      "operator_url": "https://allmcps.com/mcp/financial-evidence-research-desk",
+      "observed_at": "2026-10-07T15:28:38.139Z",
+      "evidence_filename": "allmcps-public-readback.txt",
+      "sha256": "cf129ffbd81a09562ef2454b4acd6dae19a02c49a0522ea45c5fd591cbcb2d5d",
+      "submission_evidence_filename": "allmcps-review-receipt.txt",
+      "submission_sha256": "3bb422f6c3ff432e2f27e733945c062bdb7779210519e6ca739b89a0686ef1b6",
+      "scope": "Review-queue receipt and anonymous public page resolved with the correct remote endpoint; enrichment, health and ownership remain pending"
+    }
+  ],
+  "onboarding_receipts": [
+    {
+      "route_id": "apyhub",
+      "state": "provider_active_api_draft",
+      "operator_url": "https://apyhub.com/providers/liquilens",
+      "observed_at": "2026-10-07T15:39:38.285Z",
+      "evidence_filename": "apyhub-provider-public-readback.txt",
+      "sha256": "02ce81be1dc18b4a64bb3ff45ff1c8aee265bf93bc4f0adb5417c5df086ae6eb",
+      "test_evidence_filename": "apyhub-all-endpoint-tests.txt",
+      "test_sha256": "b69acd5fc5cb69bfa9e97d8d40831de9c9c6d4c7d120a1840acbf75ce71e9161",
+      "scope": "Provider onboarding and public profile only; four draft endpoint tests passed and technical review completed. Zero live APIs; source-specific data rights, final pricing and operator approval remain open."
     }
   ]
 }

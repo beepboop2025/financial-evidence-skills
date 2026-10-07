@@ -1,5 +1,10 @@
 # Non-Amazon distribution follow-through — 7 October 2026
 
+> Later retry results: [G2 approvals, LiquiLens ownership and correction case,
+> API.market and Datarade review receipts,
+> and Zenodo preservation](marketplace-retry.md). The account gates below
+> preserve the earlier observation; the retry record supersedes them where noted.
+
 The new results below extend the [earlier audit](marketplace-audit.md). They do
 not replace its existing receipts or count pending applications as public users.
 

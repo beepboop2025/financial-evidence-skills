@@ -36,6 +36,14 @@ are in `x-source-observation`; they describe the API schema, not data freshness.
 `python3 scripts/build_api_kit.py` from the repository root.
 
 The MIT code license does not replace source-specific data rights.
+
+For direct product tools, use the [financial-agent connection guide](https://beepboop2025.github.io/financial-evidence-skills/agents/CONNECT.md)
+and its [machine-readable catalog](https://beepboop2025.github.io/financial-evidence-skills/agents/connections.json).
+Start with LiquiLens coverage, Seiche source health and Undertow access scope.
+The included **Agent research review** request returns a bounded three-product
+research view. Bring missing or stale evidence to human attention before
+interpreting changed values; this order does not approve financial actions.
+
 [Terms](https://beepboop2025.github.io/financial-evidence-skills/terms/) ·
 [Privacy](https://beepboop2025.github.io/financial-evidence-skills/privacy/) ·
 [Support](https://beepboop2025.github.io/financial-evidence-skills/support/)

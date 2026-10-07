@@ -56,24 +56,3 @@ and day. Saturation and outages are not proof of non-use. Review capacity from
 observed independent demand before raising limits; the current deployment is
 not certified for one million active people.
 
-## Growth decisions
-
-The working target is one million monthly people using the products. It remains
-a target, not a projection. Start with the proposed 10-analyst, three-organization
-pilot and retain evidence of tasks completed and later return use. Before expanding
-a channel, establish useful first tasks, repeat behavior and acceptable failure
-rates for that channel. Keep paid acquisition disabled until a budget and a
-measurable conversion goal exist.
-
-Use the bank, funding and liquidity entry links below in approved placements.
-The query remains editable, and opening a link does not make an API call until
-the visitor runs the research. Share actions strip credentials and operator flags.
-
-- Bank disclosures: [ESAF research](https://beepboop2025.github.io/financial-evidence-skills/start/?dataset=bank_risk&entity=ESAF&utm_source=research_kit&utm_medium=owned)
-- Funding: [USD benchmarks](https://beepboop2025.github.io/financial-evidence-skills/start/?dataset=money_markets&entity=USD&utm_source=research_kit&utm_medium=owned)
-- Liquidity: [Market evidence](https://beepboop2025.github.io/financial-evidence-skills/start/?dataset=market_liquidity&utm_source=research_kit&utm_medium=owned)
-
-Campaign parameters describe the link. The private installation store does not
-collect referrers or arbitrary campaign strings, so channel conversion attribution
-remains incomplete. Directory acceptance, independent platform pilots and real
-customer demand remain separate external outcomes.

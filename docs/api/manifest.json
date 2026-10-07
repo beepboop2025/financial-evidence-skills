@@ -5,8 +5,8 @@
   "api_base": "https://api.seiche.info/openbb",
   "source_observation": {
     "url": "https://api.seiche.info/openbb/openapi.json",
-    "retrieved_at": "2026-10-07T06:34:17.515299+00:00",
-    "sha256": "d53719b7ef03a9493212f8c625d741471fd2fa39ad9065154271677cb3f0aed9",
+    "retrieved_at": "2026-10-07T07:27:10.773540+00:00",
+    "sha256": "23c8b117d8779e966393823adc618e964a9206bb5f2ead006afa6de151947707",
     "changes": [
       "absolute public server URL",
       "discovery metadata only"
@@ -14,7 +14,7 @@
     "api_version_semantics": "Hosted workspace version, separate from the CLI package release."
   },
   "files": {
-    "openapi.json": "1c6348e6a0ada6c604e9c1e06a45d1e31469e9aa6c16851e1d61f9bc9df311b6",
+    "openapi.json": "318a6f203854e87b01fd1e123223a425a8f284946ebebc577beaa0975f04030f",
     "financial-evidence.postman_collection.json": "8b2ca2393e6eb1e42096920ae9d394c140dcd0b0725aa197e56305e2a1fd0ea2",
     "financial-evidence.http": "f6eb6cf89b25bb0ee8ce31dc776a05efbed98f682539c5a5a6c0925a8c706a4d",
     "README.md": "5ef23690f78753b2d55c541c335011a486864123350fa12940d341b66b0e2b16",

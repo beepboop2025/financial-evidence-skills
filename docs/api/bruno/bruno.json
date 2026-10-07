@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Financial Evidence",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

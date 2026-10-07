@@ -1,0 +1,523 @@
+{
+  "info": {
+    "name": "LiquiLens Financial Evidence Research API",
+    "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture. Public reads; no API key. Operator validation must set traffic_class=synthetic. These headers are diagnostic labels, not verified customer identities.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://api.seiche.info/openbb"
+    },
+    {
+      "key": "traffic_class",
+      "value": "developer"
+    }
+  ],
+  "item": [
+    {
+      "name": "Release identity",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Liquilens-Traffic-Class",
+            "value": "{{traffic_class}}"
+          }
+        ],
+        "url": "{{base_url}}/api/v1/release",
+        "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP response succeeded\", function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dataset coverage",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Liquilens-Traffic-Class",
+            "value": "{{traffic_class}}"
+          }
+        ],
+        "url": "{{base_url}}/api/v1/datasets",
+        "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP response succeeded\", function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Source status and clocks",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Liquilens-Traffic-Class",
+            "value": "{{traffic_class}}"
+          }
+        ],
+        "url": "{{base_url}}/api/v1/sources",
+        "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP response succeeded\", function () { pm.response.to.have.status(200); });",
+              "const body = pm.response.json();",
+              "pm.test(\"Evidence boundary is explicit\", function () {",
+              "  pm.expect(body.schema).to.eql(\"liquidity-lab.openbb-table.v1\");",
+              "  pm.expect(body.evidence_status).to.eql(\"not_evaluated\");",
+              "  pm.expect(body.carrier_verification).to.eql(\"not_performed\");",
+              "  pm.expect(body.transport_status).to.be.a(\"string\");",
+              "  pm.expect(body.sources).to.be.an(\"array\");",
+              "  pm.expect(body.diagnostics).to.be.an(\"array\");",
+              "});",
+              "pm.test(\"Pagination is explicit\", function () {",
+              "  pm.expect(body.returned_rows).to.eql(body.results.length);",
+              "  pm.expect(body).to.have.property(\"next_offset\");",
+              "  pm.expect(body.total_rows).to.be.at.least(body.returned_rows);",
+              "});",
+              "console.info(\"Transport:\", body.transport_status, \"Next offset:\", body.next_offset);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Money Markets",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Liquilens-Traffic-Class",
+            "value": "{{traffic_class}}"
+          }
+        ],
+        "url": "{{base_url}}/api/v1/query?dataset=money_markets&limit=5&offset=0",
+        "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP response succeeded\", function () { pm.response.to.have.status(200); });",
+              "const body = pm.response.json();",
+              "pm.test(\"Evidence boundary is explicit\", function () {",
+              "  pm.expect(body.schema).to.eql(\"liquidity-lab.openbb-table.v1\");",
+              "  pm.expect(body.evidence_status).to.eql(\"not_evaluated\");",
+              "  pm.expect(body.carrier_verification).to.eql(\"not_performed\");",
+              "  pm.expect(body.transport_status).to.be.a(\"string\");",
+              "  pm.expect(body.sources).to.be.an(\"array\");",
+              "  pm.expect(body.diagnostics).to.be.an(\"array\");",
+              "});",
+              "pm.test(\"Pagination is explicit\", function () {",
+              "  pm.expect(body.returned_rows).to.eql(body.results.length);",
+              "  pm.expect(body).to.have.property(\"next_offset\");",
+              "  pm.expect(body.total_rows).to.be.at.least(body.returned_rows);",
+              "});",
+              "console.info(\"Transport:\", body.transport_status, \"Next offset:\", body.next_offset);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Money Market History",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Liquilens-Traffic-Class",
+            "value": "{{traffic_class}}"
+          }
+        ],
+        "url": "{{base_url}}/api/v1/query?dataset=money_market_history&limit=5&offset=0",
+        "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP response succeeded\", function () { pm.response.to.have.status(200); });",
+              "const body = pm.response.json();",
+              "pm.test(\"Evidence boundary is explicit\", function () {",
+              "  pm.expect(body.schema).to.eql(\"liquidity-lab.openbb-table.v1\");",
+              "  pm.expect(body.evidence_status).to.eql(\"not_evaluated\");",
+              "  pm.expect(body.carrier_verification).to.eql(\"not_performed\");",
+              "  pm.expect(body.transport_status).to.be.a(\"string\");",
+              "  pm.expect(body.sources).to.be.an(\"array\");",
+              "  pm.expect(body.diagnostics).to.be.an(\"array\");",
+              "});",
+              "pm.test(\"Pagination is explicit\", function () {",
+              "  pm.expect(body.returned_rows).to.eql(body.results.length);",
+              "  pm.expect(body).to.have.property(\"next_offset\");",
+              "  pm.expect(body.total_rows).to.be.at.least(body.returned_rows);",
+              "});",
+              "console.info(\"Transport:\", body.transport_status, \"Next offset:\", body.next_offset);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Capital Markets",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Liquilens-Traffic-Class",
+            "value": "{{traffic_class}}"
+          }
+        ],
+        "url": "{{base_url}}/api/v1/query?dataset=capital_markets&limit=5&offset=0",
+        "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP response succeeded\", function () { pm.response.to.have.status(200); });",
+              "const body = pm.response.json();",
+              "pm.test(\"Evidence boundary is explicit\", function () {",
+              "  pm.expect(body.schema).to.eql(\"liquidity-lab.openbb-table.v1\");",
+              "  pm.expect(body.evidence_status).to.eql(\"not_evaluated\");",
+              "  pm.expect(body.carrier_verification).to.eql(\"not_performed\");",
+              "  pm.expect(body.transport_status).to.be.a(\"string\");",
+              "  pm.expect(body.sources).to.be.an(\"array\");",
+              "  pm.expect(body.diagnostics).to.be.an(\"array\");",
+              "});",
+              "pm.test(\"Pagination is explicit\", function () {",
+              "  pm.expect(body.returned_rows).to.eql(body.results.length);",
+              "  pm.expect(body).to.have.property(\"next_offset\");",
+              "  pm.expect(body.total_rows).to.be.at.least(body.returned_rows);",
+              "});",
+              "console.info(\"Transport:\", body.transport_status, \"Next offset:\", body.next_offset);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bank Risk",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Liquilens-Traffic-Class",
+            "value": "{{traffic_class}}"
+          }
+        ],
+        "url": "{{base_url}}/api/v1/query?dataset=bank_risk&limit=5&offset=0",
+        "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP response succeeded\", function () { pm.response.to.have.status(200); });",
+              "const body = pm.response.json();",
+              "pm.test(\"Evidence boundary is explicit\", function () {",
+              "  pm.expect(body.schema).to.eql(\"liquidity-lab.openbb-table.v1\");",
+              "  pm.expect(body.evidence_status).to.eql(\"not_evaluated\");",
+              "  pm.expect(body.carrier_verification).to.eql(\"not_performed\");",
+              "  pm.expect(body.transport_status).to.be.a(\"string\");",
+              "  pm.expect(body.sources).to.be.an(\"array\");",
+              "  pm.expect(body.diagnostics).to.be.an(\"array\");",
+              "});",
+              "pm.test(\"Pagination is explicit\", function () {",
+              "  pm.expect(body.returned_rows).to.eql(body.results.length);",
+              "  pm.expect(body).to.have.property(\"next_offset\");",
+              "  pm.expect(body.total_rows).to.be.at.least(body.returned_rows);",
+              "});",
+              "console.info(\"Transport:\", body.transport_status, \"Next offset:\", body.next_offset);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Market Liquidity",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Liquilens-Traffic-Class",
+            "value": "{{traffic_class}}"
+          }
+        ],
+        "url": "{{base_url}}/api/v1/query?dataset=market_liquidity&limit=5&offset=0",
+        "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP response succeeded\", function () { pm.response.to.have.status(200); });",
+              "const body = pm.response.json();",
+              "pm.test(\"Evidence boundary is explicit\", function () {",
+              "  pm.expect(body.schema).to.eql(\"liquidity-lab.openbb-table.v1\");",
+              "  pm.expect(body.evidence_status).to.eql(\"not_evaluated\");",
+              "  pm.expect(body.carrier_verification).to.eql(\"not_performed\");",
+              "  pm.expect(body.transport_status).to.be.a(\"string\");",
+              "  pm.expect(body.sources).to.be.an(\"array\");",
+              "  pm.expect(body.diagnostics).to.be.an(\"array\");",
+              "});",
+              "pm.test(\"Pagination is explicit\", function () {",
+              "  pm.expect(body.returned_rows).to.eql(body.results.length);",
+              "  pm.expect(body).to.have.property(\"next_offset\");",
+              "  pm.expect(body.total_rows).to.be.at.least(body.returned_rows);",
+              "});",
+              "console.info(\"Transport:\", body.transport_status, \"Next offset:\", body.next_offset);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "China Economy",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Liquilens-Traffic-Class",
+            "value": "{{traffic_class}}"
+          }
+        ],
+        "url": "{{base_url}}/api/v1/query?dataset=china_economy&limit=5&offset=0",
+        "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP response succeeded\", function () { pm.response.to.have.status(200); });",
+              "const body = pm.response.json();",
+              "pm.test(\"Evidence boundary is explicit\", function () {",
+              "  pm.expect(body.schema).to.eql(\"liquidity-lab.openbb-table.v1\");",
+              "  pm.expect(body.evidence_status).to.eql(\"not_evaluated\");",
+              "  pm.expect(body.carrier_verification).to.eql(\"not_performed\");",
+              "  pm.expect(body.transport_status).to.be.a(\"string\");",
+              "  pm.expect(body.sources).to.be.an(\"array\");",
+              "  pm.expect(body.diagnostics).to.be.an(\"array\");",
+              "});",
+              "pm.test(\"Pagination is explicit\", function () {",
+              "  pm.expect(body.returned_rows).to.eql(body.results.length);",
+              "  pm.expect(body).to.have.property(\"next_offset\");",
+              "  pm.expect(body.total_rows).to.be.at.least(body.returned_rows);",
+              "});",
+              "console.info(\"Transport:\", body.transport_status, \"Next offset:\", body.next_offset);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Source Health",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Liquilens-Traffic-Class",
+            "value": "{{traffic_class}}"
+          }
+        ],
+        "url": "{{base_url}}/api/v1/query?dataset=source_health&limit=5&offset=0",
+        "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP response succeeded\", function () { pm.response.to.have.status(200); });",
+              "const body = pm.response.json();",
+              "pm.test(\"Evidence boundary is explicit\", function () {",
+              "  pm.expect(body.schema).to.eql(\"liquidity-lab.openbb-table.v1\");",
+              "  pm.expect(body.evidence_status).to.eql(\"not_evaluated\");",
+              "  pm.expect(body.carrier_verification).to.eql(\"not_performed\");",
+              "  pm.expect(body.transport_status).to.be.a(\"string\");",
+              "  pm.expect(body.sources).to.be.an(\"array\");",
+              "  pm.expect(body.diagnostics).to.be.an(\"array\");",
+              "});",
+              "pm.test(\"Pagination is explicit\", function () {",
+              "  pm.expect(body.returned_rows).to.eql(body.results.length);",
+              "  pm.expect(body).to.have.property(\"next_offset\");",
+              "  pm.expect(body.total_rows).to.be.at.least(body.returned_rows);",
+              "});",
+              "console.info(\"Transport:\", body.transport_status, \"Next offset:\", body.next_offset);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Funding review",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Liquilens-Traffic-Class",
+            "value": "{{traffic_class}}"
+          }
+        ],
+        "url": "{{base_url}}/api/v1/funding-review",
+        "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP response succeeded\", function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Agent research review",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Liquilens-Traffic-Class",
+            "value": "{{traffic_class}}"
+          }
+        ],
+        "url": "{{base_url}}/api/v1/agent-review?limit=3",
+        "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP response succeeded\", function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

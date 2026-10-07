@@ -670,9 +670,9 @@
       "state": "listed_incomplete",
       "submission_url": "https://www.g2.com/add_product_requests/new",
       "cost": "free-standard-listing",
-      "detail": "Public profile and company catalog verified under LIQUILENS PRIVATE LIMITED; administrator access and Claimed status confirmed. Free Version and bounded public-access description are saved in My.G2, but the public review page still says pricing details are unavailable. G2 received category-correction case 00642455 to remove Survey and assess Financial Data APIs / Financial Research; the case is New in the Intake Queue. Category correction, logo enrichment and optional network listings remain unverified.",
-      "next_action": "Monitor the existing category case without resubmitting; complete logo attachment and verify buyer-facing pricing and category changes before closing enrichment.",
-      "verified_at": "2026-10-07T18:22:44.864968+00:00",
+      "detail": "Public profile and company catalog verified under LIQUILENS PRIVATE LIMITED; administrator access and Claimed status confirmed. The Free Version setting and bounded public-access description are saved in My.G2. A Public research pricing tier is now saved and the buyer-facing pricing route displays Free / $0; no free trial or paid tier is advertised. G2 received category-correction case 00642455 to remove Survey and assess Financial Data APIs / Financial Research; the case is New in the Intake Queue. Category correction, logo enrichment and optional network listings remain unverified.",
+      "next_action": "Monitor the existing category case without resubmitting; complete logo attachment and verify the category decision before closing enrichment.",
+      "verified_at": "2026-10-07T18:36:41.571266+00:00",
       "listing_url": "https://www.g2.com/products/liquilens/reviews",
       "ownership_state": "claimed",
       "category_correction": {
@@ -680,7 +680,9 @@
         "state": "submitted",
         "decision": "pending",
         "observed_at": "2026-10-07T18:22:44.864968+00:00"
-      }
+      },
+      "pricing_state": "free_tier_rendered",
+      "pricing_url": "https://www.g2.com/products/liquilens/pricing"
     },
     {
       "id": "g2-seiche",
@@ -728,7 +730,7 @@
     }
   ],
   "release_verified_at": "2026-10-04T21:36:19.672601+00:00",
-  "updated_at": "2026-10-07T18:22:44.864968+00:00",
+  "updated_at": "2026-10-07T18:36:41.571266+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -751,7 +753,7 @@
     "audit_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/marketplace-retry.md",
     "scope": "Five received records: one public G2 profile needing category correction, two G2 approvals awaiting public verification, and two review applications. Network cross-publication and independent adoption are unverified.",
     "public_profiles_requiring_metadata_correction": 1,
-    "followthrough_observed_at": "2026-10-07T18:22:44.864968+00:00",
+    "followthrough_observed_at": "2026-10-07T18:36:41.571266+00:00",
     "ownership_claims_completed": 1,
     "category_correction_cases_received": 1
   }

@@ -25,10 +25,12 @@ from .service import EvidenceService
 from .tables import Dataset, dataset_catalog
 from .workspace_config import SCOPE, THUMBNAIL, apps, widgets
 from .workspace_mcp import create_mcp
+from .workspace_usage import install as install_usage
 
 
 def create_app(
-    *, service: EvidenceService | None = None, base_url: str | None = None
+    *, service: EvidenceService | None = None, base_url: str | None = None,
+    usage_dir: str | None = None,
 ) -> FastAPI:
     base_url = (
         base_url or os.getenv("FINANCIAL_EVIDENCE_BASE_URL", "http://127.0.0.1:6900")
@@ -50,6 +52,7 @@ def create_app(
     origins = [
         "https://pro.openbb.co",
         "https://my.openbb.co",
+        "https://beepboop2025.github.io",
         "http://localhost:6900",
         "http://127.0.0.1:6900",
         origin,
@@ -108,12 +111,14 @@ def create_app(
     app.add_middleware(
         CORSMiddleware,
         allow_origins=list(dict.fromkeys(origins)),
-        allow_methods=["GET", "POST", "OPTIONS"],
+        allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
         allow_headers=[
             "Content-Type",
             "MCP-Protocol-Version",
             "Mcp-Session-Id",
             "Last-Event-ID",
+            "Authorization",
+            "X-Liquilens-Traffic-Class",
         ],
         expose_headers=[
             "Mcp-Session-Id",
@@ -121,9 +126,11 @@ def create_app(
             "X-Data-Readiness",
             "X-Release-Identity",
             "ETag",
+            "X-Financial-Evidence-Measurement",
         ],
         allow_credentials=False,
     )
+    record_usage = install_usage(app, usage_dir or os.getenv("FINANCIAL_EVIDENCE_USAGE_DIR"), origins)
 
     @app.exception_handler(ValueError)
     async def bad_query(request: Request, exc: ValueError):
@@ -215,6 +222,8 @@ def create_app(
 
     @app.get("/api/v1/query")
     async def query(
+        request: Request,
+        response: Response,
         dataset: Dataset,
         entity: Annotated[
             str,
@@ -235,7 +244,10 @@ def create_app(
             limit=limit,
             offset=offset,
         )
-        return QueryResult.model_validate(result)
+        value = QueryResult.model_validate(result)
+        response.headers["X-Financial-Evidence-Measurement"] = await record_usage(request, value)
+        response.headers["Cache-Control"] = "no-store"
+        return value
 
     @app.get("/api/v1/sources")
     async def sources() -> QueryResult:

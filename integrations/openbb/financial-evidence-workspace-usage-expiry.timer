@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily expiry of optional Research Desk measurement
+
+[Timer]
+OnCalendar=*-*-* 00:11:00 UTC
+Persistent=true
+RandomizedDelaySec=60
+Unit=financial-evidence-workspace-usage-expiry.service
+
+[Install]
+WantedBy=timers.target

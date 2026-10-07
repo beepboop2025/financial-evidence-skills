@@ -162,7 +162,7 @@ class DiscoveryDocsTests(unittest.TestCase):
         self.assertEqual(source["publisher"]["@id"], publisher_id)
 
         self.assertEqual(nodes[publisher_id]["@type"], "Organization")
-        self.assertEqual(nodes[publisher_id]["name"], "Liquidity Lab")
+        self.assertEqual(nodes[publisher_id]["name"], "LIQUILENS PRIVATE LIMITED")
         self.assertIn("v0.1.6 is a signed, independently verified release", page.read_text())
 
         for href in parser.hrefs:

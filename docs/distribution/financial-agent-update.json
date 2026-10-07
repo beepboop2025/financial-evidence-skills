@@ -286,5 +286,18 @@
     "Synthetic verification is not independent user adoption.",
     "No public execution service is advertised.",
     "Older marketplace observations retain their original clocks."
-  ]
+  ],
+  "freepublicapis": {
+    "observed_at": "2026-10-07T19:55:10.277Z",
+    "listing_url": "https://www.freepublicapis.com/financial-evidence-api",
+    "listing_state": "live",
+    "endpoint_update_state": "approved_pending_public",
+    "observed_endpoint_count": 4,
+    "submitted_endpoint": "https://api.seiche.info/openbb/api/v1/agent-review?limit=3",
+    "operator_assigned_label": "Money market benchmark rates and liquidity metrics",
+    "owner_sign_in": "complete",
+    "submission_received": true,
+    "operator_said": "passed the checks and is now listed",
+    "new_endpoint_publicly_observed": false
+  }
 }

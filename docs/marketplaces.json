@@ -326,12 +326,14 @@
       "state": "live",
       "listing_url": "https://www.freepublicapis.com/financial-evidence-api",
       "cost": "free",
-      "detail": "New public listing independently opened after the directory confirmed publication. Four working JSON endpoints are listed; CSV responses were excluded by its JSON-only checker.",
-      "next_action": "Monitor the public page and endpoint metadata; measure referral activation separately.",
-      "verified_at": "2026-10-07T08:20:24.210164+00:00",
-      "audit_batch": "2026-10-07-marketplace-sweep",
-      "outcome": "new_publication",
-      "evidence_file": "freepublicapis-public-readback.txt"
+      "detail": "Existing public listing retains four endpoints. After owner sign-in, the additional /api/v1/agent-review?limit=3 endpoint passed the directory checks and received an explicit now-listed receipt. The refreshed public page still showed four endpoints, so independent public visibility of the additional endpoint remains unverified. The operator assigned the label Money market benchmark rates and liquidity metrics.",
+      "next_action": "Read back the additional agent-review endpoint after directory propagation; do not resubmit an already accepted suggestion. Measure independent referral activation separately.",
+      "verified_at": "2026-10-07T19:55:10.277Z",
+      "audit_batch": "2026-10-08-financial-agents",
+      "outcome": "additional_endpoint_accepted_pending_public",
+      "evidence_file": "freepublicapis-public-after-update.txt",
+      "endpoint_update_state": "approved_pending_public",
+      "submitted_endpoint": "https://api.seiche.info/openbb/api/v1/agent-review?limit=3"
     },
     {
       "id": "apislist-research",

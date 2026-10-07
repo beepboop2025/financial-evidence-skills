@@ -3,3 +3,7 @@ __pycache__/
 .DS_Store
 dist/
 *.mcpb
+node_modules/
+.venv/
+*.tsbuildinfo
+*.tgz

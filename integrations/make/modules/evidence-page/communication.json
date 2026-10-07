@@ -1,0 +1,5 @@
+{
+  "url": "/api/v1/query", "method": "GET",
+  "qs": {"dataset": "{{parameters.dataset}}", "entity": "{{parameters.entity}}", "limit": "{{parameters.limit}}", "offset": "{{parameters.offset}}"},
+  "response": {"output": "{{body}}"}
+}

@@ -1,0 +1,56 @@
+identity:
+  name: evidence_page
+  author: beepboop2025
+  label:
+    en_US: Get Evidence Page
+description:
+  human:
+    en_US: Fetch one page of research, keeping source dates, units, unavailable values and diagnostics.
+  llm: Read public research only. Keep sources, as_of, unit, availability and diagnostics in your answer. Null means missing, not zero. Transport success does not establish freshness or reliability. No trading or investment advice. Follow next_offset only when the user needs more rows.
+parameters:
+  - name: dataset
+    type: select
+    required: true
+    default: money_markets
+    label: {en_US: Dataset}
+    human_description: {en_US: Research table to query.}
+    llm_description: Select the research dataset.
+    form: llm
+    options:
+      - {value: bank_risk, label: {en_US: Bank risk}}
+      - {value: capital_markets, label: {en_US: Capital markets}}
+      - {value: china_economy, label: {en_US: China economy}}
+      - {value: market_liquidity, label: {en_US: Market liquidity}}
+      - {value: money_market_history, label: {en_US: Money market history}}
+      - {value: money_markets, label: {en_US: Money markets}}
+      - {value: source_health, label: {en_US: Source health}}
+  - name: entity
+    type: string
+    required: false
+    label: {en_US: Entity}
+    human_description: {en_US: Optional entity ID or name filter.}
+    llm_description: Optional entity ID or name, at most 100 characters.
+    form: llm
+  - name: limit
+    type: number
+    default: 25
+    required: false
+    min: 1
+    max: 100
+    label: {en_US: Limit}
+    human_description: {en_US: Maximum rows per page, from 1 to 100.}
+    llm_description: Maximum rows per page, integer 1 to 100.
+    form: llm
+  - name: offset
+    type: number
+    default: 0
+    required: false
+    min: 0
+    max: 100000
+    label: {en_US: Offset}
+    human_description: {en_US: Start at zero or use next_offset from a previous page.}
+    llm_description: Integer offset, 0 to 100000. Do not paginate after next_offset is null.
+    form: llm
+extra:
+  python:
+    source: tools/evidence_page.py

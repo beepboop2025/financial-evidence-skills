@@ -1,0 +1,18 @@
+[
+  {"name":"schema","type":"text","label":"Schema"},
+  {"name":"dataset","type":"text","label":"Dataset"},
+  {"name":"transport_status","type":"text","label":"Transport status"},
+  {"name":"evidence_status","type":"text","label":"Evidence status"},
+  {"name":"carrier_verification","type":"text","label":"Carrier verification"},
+  {"name":"absence_policy","type":"text","label":"Missing values policy"},
+  {"name":"next_offset","type":"number","label":"Next offset"},
+  {"name":"returned_rows","type":"number","label":"Returned rows"},
+  {"name":"results","type":"array","label":"Evidence rows","spec":{"type":"collection","spec":[
+    {"name":"entity_name","type":"text","label":"Entity"},{"name":"value","type":"number","label":"Value"},
+    {"name":"unit","type":"text","label":"Unit"},{"name":"as_of","type":"text","label":"Observation date"},
+    {"name":"availability","type":"text","label":"Availability"},{"name":"source_url","type":"url","label":"Source URL"},
+    {"name":"rights_status","type":"text","label":"Source rights"}
+  ]}},
+  {"name":"diagnostics","type":"array","label":"Coverage diagnostics","spec":{"type":"collection"}},
+  {"name":"sources","type":"array","label":"Sources and retrieval clocks","spec":{"type":"collection"}}
+]

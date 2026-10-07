@@ -1,0 +1,11 @@
+[
+  {"name":"dataset","label":"Dataset","type":"select","required":true,"default":"money_markets","options":[
+    {"label":"Bank risk","value":"bank_risk"},{"label":"Capital markets","value":"capital_markets"},
+    {"label":"China economy","value":"china_economy"},{"label":"Market liquidity","value":"market_liquidity"},
+    {"label":"Money market history","value":"money_market_history"},{"label":"Money markets","value":"money_markets"},
+    {"label":"Source health","value":"source_health"}
+  ]},
+  {"name":"entity","label":"Entity","type":"text","required":false,"validate":{"max":100},"help":"Optional entity ID or name filter, up to 100 characters."},
+  {"name":"limit","label":"Limit","type":"uinteger","required":true,"default":25,"validate":{"min":1,"max":100}},
+  {"name":"offset","label":"Offset","type":"uinteger","required":true,"default":0,"validate":{"max":100000},"help":"Map next_offset from the previous page. Null means there is no next page."}
+]

@@ -1,5 +1,7 @@
 # Marketplace and distribution audit — 7 October 2026
 
+> Later results: see the [non-Amazon follow-through](non-amazon-follow-through.md) for the live Hugging Face demo, two SaaSHub submission receipts and native-integration candidates. The audit below preserves its original observation time.
+
 **67 platform and product routes tracked: 44 examined in this sweep and 23 inherited from dated records.**
 This is a bounded audit, not a claim that every marketplace on the internet has
 been found. Primary requirements, accepted submissions and public listings are

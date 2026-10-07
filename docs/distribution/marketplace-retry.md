@@ -7,7 +7,7 @@ visibility remains unverified.
 
 | Platform | Product or company | Verified result | Remaining acceptance |
 | --- | --- | --- | --- |
-| [G2](https://www.g2.com/products/liquilens/reviews) | LiquiLens | Public profile and company catalog resolved under LIQUILENS PRIVATE LIMITED | Correct G2's incorrect Survey category and complete ownership/enrichment |
+| [G2](https://www.g2.com/products/liquilens/reviews) | LiquiLens | Public profile claimed under LIQUILENS PRIVATE LIMITED; free-public-access pricing saved; correction case 00642455 received | G2 category decision and logo enrichment |
 | G2 | Seiche | The submission page says **Profile Approved!** | Public profile propagation and category assignment |
 | G2 | Undertow | The submission page says **Profile Approved!** | Public profile propagation and category assignment |
 | API.market | Seiche Reference FX API | **In Review**, publishing checklist **3 / 3 complete** | Operator review and public gateway verification |
@@ -16,16 +16,38 @@ visibility remains unverified.
 G2's optional Capterra, GetApp and Software Advice cross-publication was
 authorized and selected for all three products. G2 says those placements
 remain subject to verification. They are not three additional accepted
-platforms. Admin claims and customer-review invitations were not submitted.
+platforms. LiquiLens's free administrator claim is complete. No customer-review
+invitations were sent.
 LiquiLens returned a page-rendering error after submission, so it was not
 resubmitted. Its public profile subsequently appeared in search, and the
 [company catalog](https://www.g2.com/sellers/liquilens-private-limited) shows
-the submitted financial-research description. The profile is unclaimed and
-G2 currently misclassifies it as Survey software. The free claim requires
-the owner's job title and a separate Master Service Agreement. Seiche's
-record URL still returned 404 at 17:45 UTC and its public search did not
+the submitted financial-research description. The owner approved the separate
+free Master Service Agreement and supplied the title Founder / CEO. The product
+page verifies administrator access and Claimed status. The claim was submitted
+once; its confirmation-page error was reconciled against the actual profile.
+Seiche's record URL still returned 404 at 17:45 UTC and its public search did not
 expose an exact Seiche listing. The company catalog showed only LiquiLens
 when checked after that.
+
+### LiquiLens correction and pricing follow-through
+
+The My.G2 pricing editor independently confirmed the saved **Free Version**
+setting after the interrupted session resumed. Free Trial is unchecked. The
+description covers public bank/NBFC/MFI research views and documented public
+read-only REST/MCP routes, with no API key required for those routes. Coverage,
+source observation dates and access limits remain explicit. No paid package
+was created. The public review page still says pricing details are unavailable;
+buyer-facing pricing acceptance remains open.
+
+G2's support portal received **case 00642455** on 7 October. Its confirmation
+lists three separate requests: remove Survey, assess Financial Data APIs, and
+assess Financial Research. The supporting evidence explicitly discloses that
+LiquiLens does not provide a real-time market-news feed; G2 must determine the
+appropriate category against its inclusion criteria. The case is **New** in
+the **Intake Queue**. Its displayed 14 October resolution estimate is not a
+guarantee. The profile remains `listed_incomplete` while classification and
+logo enrichment remain open. The receipt is retained privately, with its hash
+in [receipt summaries](receipt-summaries.json).
 
 ## API.market product scope
 

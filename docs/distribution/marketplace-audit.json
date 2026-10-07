@@ -991,5 +991,10 @@
       "ledger_entry_ids": []
     }
   ],
-  "updated_at": "2026-10-07T16:06:20.963429Z"
+  "updated_at": "2026-10-07T16:06:20.963429Z",
+  "follow_up": {
+    "observed_at": "2026-10-07T18:22:44.864968+00:00",
+    "url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/marketplace-retry.md",
+    "scope": "Later G2 ownership and category-case receipt, API.market and Datarade reviews. Original route clocks and sweep totals below are retained."
+  }
 }

@@ -1,6 +1,6 @@
 # Marketplace and distribution audit — 7 October 2026
 
-> Later results: see the [marketplace retries](marketplace-retry.md) for G2 approvals, API.market and Datarade review receipts, and Zenodo preservation. The [non-Amazon follow-through](non-amazon-follow-through.md) covers the live Hugging Face demo, two SaaSHub receipts and native-integration candidates. The audit below preserves its original observation time.
+> Later results: see the [marketplace retries](marketplace-retry.md) for G2 approvals, LiquiLens ownership and category-case receipt, API.market and Datarade reviews, and Zenodo preservation. The [non-Amazon follow-through](non-amazon-follow-through.md) covers the live Hugging Face demo, two SaaSHub receipts and native-integration candidates. The audit below preserves its original observation time.
 
 **67 platform and product routes tracked: 44 examined in this sweep and 23 inherited from dated records.**
 This is a bounded audit, not a claim that every marketplace on the internet has

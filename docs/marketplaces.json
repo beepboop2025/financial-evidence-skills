@@ -670,10 +670,17 @@
       "state": "listed_incomplete",
       "submission_url": "https://www.g2.com/add_product_requests/new",
       "cost": "free-standard-listing",
-      "detail": "Public product and company catalog resolved under LIQUILENS PRIVATE LIMITED. The company catalog retains the submitted financial-research description, but G2 incorrectly assigns Survey as the category. The profile is unclaimed. Optional network placements remain unverified.",
-      "next_action": "Complete the free ownership claim after the separate Master Service Agreement and required job title are confirmed; correct category and finish profile enrichment.",
-      "verified_at": "2026-10-07T17:52:28.634022+00:00",
-      "listing_url": "https://www.g2.com/products/liquilens/reviews"
+      "detail": "Public profile and company catalog verified under LIQUILENS PRIVATE LIMITED; administrator access and Claimed status confirmed. Free Version and bounded public-access description are saved in My.G2, but the public review page still says pricing details are unavailable. G2 received category-correction case 00642455 to remove Survey and assess Financial Data APIs / Financial Research; the case is New in the Intake Queue. Category correction, logo enrichment and optional network listings remain unverified.",
+      "next_action": "Monitor the existing category case without resubmitting; complete logo attachment and verify buyer-facing pricing and category changes before closing enrichment.",
+      "verified_at": "2026-10-07T18:22:44.864968+00:00",
+      "listing_url": "https://www.g2.com/products/liquilens/reviews",
+      "ownership_state": "claimed",
+      "category_correction": {
+        "case_number": "00642455",
+        "state": "submitted",
+        "decision": "pending",
+        "observed_at": "2026-10-07T18:22:44.864968+00:00"
+      }
     },
     {
       "id": "g2-seiche",
@@ -721,7 +728,7 @@
     }
   ],
   "release_verified_at": "2026-10-04T21:36:19.672601+00:00",
-  "updated_at": "2026-10-07T17:55:15.540240+00:00",
+  "updated_at": "2026-10-07T18:22:44.864968+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -743,6 +750,9 @@
     "new_public_pages_verified": 1,
     "audit_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/marketplace-retry.md",
     "scope": "Five received records: one public G2 profile needing category correction, two G2 approvals awaiting public verification, and two review applications. Network cross-publication and independent adoption are unverified.",
-    "public_profiles_requiring_metadata_correction": 1
+    "public_profiles_requiring_metadata_correction": 1,
+    "followthrough_observed_at": "2026-10-07T18:22:44.864968+00:00",
+    "ownership_claims_completed": 1,
+    "category_correction_cases_received": 1
   }
 }

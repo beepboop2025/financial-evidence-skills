@@ -14,7 +14,10 @@ release acceptance. Updating the ledger does not refresh every observation.
 ## Latest marketplace retries
 
 - **G2:** [LiquiLens is public](https://www.g2.com/products/liquilens/reviews)
-  under the correct company, but G2's incorrect Survey category needs correction.
+  and claimed under the correct company; its free-public-access pricing details
+  are saved. G2 accepted category-correction case **00642455** to remove Survey
+  and evaluate Financial Data APIs / Financial Research. The case is in the
+  intake queue; the category has not yet changed. Logo enrichment remains open.
   Seiche and Undertow have explicit profile-approval receipts; their public
   visibility remains unverified. Optional Capterra/GetApp/Software Advice
   placements are subject to separate verification.

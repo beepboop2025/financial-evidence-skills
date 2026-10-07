@@ -27,6 +27,7 @@ import uuid
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from check_funding_review import (
+    ATLAS_MAX_BYTES,
     MAX_BYTES,
     POLICY_ID,
     REQUIRED,
@@ -124,6 +125,12 @@ def backend_origin(value):
     return value.rstrip("/")
 
 
+def response_budget(name, url):
+    # Only the fixed country atlas gets the expanded allowance. Replays use
+    # the same name+URL decision; a larger document is not a new source grant.
+    return ATLAS_MAX_BYTES if name == "atlas" and url == ORIGIN + "/api/v2/money-markets" else MAX_BYTES
+
+
 def fetch(name, url, *, payload=None, session=None, timeout=15, opener=None):
     """Bound bytes, socket inactivity, and elapsed body-read time; never redirect.
 
@@ -137,6 +144,7 @@ def fetch(name, url, *, payload=None, session=None, timeout=15, opener=None):
         "Accept": "application/json, text/event-stream",
         "Accept-Encoding": "identity",
     }
+    max_bytes = response_budget(name, url)
     body = None if payload is None else encoded(payload)
     if body is not None:
         headers.update(
@@ -174,13 +182,13 @@ def fetch(name, url, *, payload=None, session=None, timeout=15, opener=None):
             while True:
                 if time.monotonic() - started > timeout:
                     raise TimeoutError("response exceeded elapsed read limit")
-                chunk = response.read1(min(65536, MAX_BYTES + 1 - len(raw)))
+                chunk = response.read1(min(65536, max_bytes + 1 - len(raw)))
                 if not chunk:
                     receipt["complete"] = True
                     break
                 raw.extend(chunk)
-                if len(raw) > MAX_BYTES:
-                    raise ValueError("response exceeds 2 MiB")
+                if len(raw) > max_bytes:
+                    raise ValueError(f"response exceeds {max_bytes // 1_048_576} MiB")
         if not 200 <= receipt["http_status"] < 300:
             receipt["error"] = "http_error"
     except (OSError, ValueError, urllib.error.URLError) as error:
@@ -704,10 +712,11 @@ def replay(source, output):
         raise ValueError("capture request set is incomplete or unexpected")
     bodies = {}
     for name, receipt in manifest["requests"].items():
+        max_bytes = response_budget(name, receipt.get("url"))
         with (source / (name + ".response")).open("rb") as stream:
-            raw = stream.read(MAX_BYTES + 2)
+            raw = stream.read(max_bytes + 2)
         if (
-            len(raw) > MAX_BYTES + 1
+            len(raw) > max_bytes + 1
             or sha256(raw) != receipt.get("sha256")
             or len(raw) != receipt.get("bytes")
         ):

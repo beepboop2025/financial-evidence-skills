@@ -1,0 +1,26 @@
+meta {
+  name: Agent research review
+  type: http
+  seq: 12
+}
+
+get {
+  url: https://api.seiche.info/openbb/api/v1/agent-review?limit=3
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  X-Liquilens-Traffic-Class: {{traffic_class}}
+}
+
+tests {
+  test("HTTP response succeeded", function () {
+    expect(res.getStatus()).to.equal(200);
+  });
+}
+
+docs {
+  Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture.
+}

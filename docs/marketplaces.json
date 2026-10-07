@@ -134,11 +134,13 @@
       "id": "smithery",
       "name": "Smithery",
       "channel": "mcp-directory",
-      "state": "ready_account_action",
+      "state": "live",
       "submission_url": "https://smithery.ai/new",
       "cost": "free-external-registration",
-      "detail": "The public Streamable HTTP endpoint is ready for automated Smithery tool scanning.",
-      "next_action": "Authenticate the owner account, register the external endpoint, and verify the three-tool scan."
+      "detail": "Financial Evidence 0.1.6 is public with all three read-only routing and retrieval tools scanned.",
+      "next_action": "Track independently useful use; repeat the scan after relevant tool changes.",
+      "listing_url": "https://smithery.ai/servers/mrinallovesbhature/financial-evidence",
+      "verified_at": "2026-10-07T06:43:02.050961+00:00"
     },
     {
       "id": "cline-mcp-marketplace",
@@ -219,7 +221,53 @@
       "cost": "USD 39 one-time",
       "detail": "The paid submission was not purchased.",
       "next_action": "Require separate authorization for the exact USD 39 spend before reconsidering."
+    },
+    {
+      "id": "smithery-liquilens",
+      "name": "LiquiLens on Smithery",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://smithery.ai/servers/mrinallovesbhature/liquilens",
+      "cost": "free",
+      "detail": "Existing listing refreshed to version 1.8.1 with 23 tools and five prompts; previously 22 tools.",
+      "next_action": "Measure independent task completion and return use.",
+      "verified_at": "2026-10-07T06:43:02.050961+00:00"
+    },
+    {
+      "id": "smithery-seiche",
+      "name": "Seiche on Smithery",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://smithery.ai/servers/mrinallovesbhature/seiche",
+      "cost": "free",
+      "detail": "Existing listing refreshed to version 0.16.2 with 16 tools and four prompts; previously 14 tools.",
+      "next_action": "Measure independent task completion and return use.",
+      "verified_at": "2026-10-07T06:43:02.050961+00:00"
+    },
+    {
+      "id": "smithery-undertow",
+      "name": "Undertow on Smithery",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://smithery.ai/servers/mrinallovesbhature/undertow",
+      "cost": "free",
+      "detail": "Existing listing refreshed to version 1.13.0 with 16 tools and three prompts; previously 11 tools.",
+      "next_action": "Measure independent task completion and return use.",
+      "verified_at": "2026-10-07T06:43:02.050961+00:00"
+    },
+    {
+      "id": "postman-research-api",
+      "name": "Financial Evidence Research API on Postman",
+      "channel": "api-directory",
+      "state": "live",
+      "listing_url": "https://documenter.getpostman.com/view/58772927/2sBYHPz2Jm",
+      "cost": "free",
+      "detail": "New public collection and published documentation, twelve bounded requests for seven dataset views. Newman live run passed 28 checks; this is operator verification, not customer adoption.",
+      "next_action": "Measure independent task completion and return use.",
+      "verified_at": "2026-10-07T06:43:02.050961+00:00"
     }
   ],
-  "release_verified_at": "2026-10-04T21:36:19.672601+00:00"
+  "release_verified_at": "2026-10-04T21:36:19.672601+00:00",
+  "updated_at": "2026-10-07T06:43:02.050961+00:00",
+  "verification_scope": "Per-entry verified_at timestamps identify the entries refreshed; checked_at is the older full-ledger check."
 }

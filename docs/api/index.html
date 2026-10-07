@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Financial research API for Postman, Bruno and Insomnia | LiquiLens</title>
+  <meta name="description" content="Try seven source-cited financial datasets with twelve ready-to-run API requests. Import Postman, Bruno, Insomnia or an HTTP client. No API key required.">
+  <link rel="canonical" href="https://beepboop2025.github.io/financial-evidence-skills/api/">
+  <link rel="stylesheet" href="../styles.css">
+  <style>.hero{min-height:auto}.hero main{padding:4rem 0}h1{max-width:18ch;font-size:clamp(2.7rem,6vw,5rem)}.section{padding-block:3rem}.section h2{max-width:28ch;font-size:clamp(2rem,4vw,3rem)}.steps{padding-left:1.4rem}.steps li{margin:1rem 0}pre{overflow:auto}table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:.8rem;border-bottom:1px solid #bbb}a:focus-visible{outline:3px solid #438500;outline-offset:4px}nav div{flex-wrap:wrap}</style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Financial Evidence Research API","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://beepboop2025.github.io/financial-evidence-skills/api/","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"provider":{"@type":"Organization","name":"LIQUILENS PRIVATE LIMITED","url":"https://liquilens.in/"}}</script>
+</head>
+<body>
+  <header class="hero">
+    <nav aria-label="Main navigation"><a class="brand" href="../">Financial Evidence</a><div><a href="../tools/">Research tools</a><a href="../partners/">Platform partners</a><a href="../pricing.md">Pricing</a></div></nav>
+    <main><p class="eyebrow">Financial research · Open API</p><h1>From API discovery to a cited research result.</h1>
+    <p class="lede">Seven dataset views connect LiquiLens bank evidence, Seiche funding and capital markets, Undertow market liquidity, and source availability. Keep the source, observation date, unit and missing values with every result.</p>
+    <div class="actions"><a class="button primary" href="https://documenter.getpostman.com/view/58772927/2sBYHPz2Jm">Open in Postman</a><a class="button" href="api-kit.zip" download>Download all API clients</a></div>
+    <p>Public reads · No API key · No account required · No trade execution</p></main>
+  </header>
+  <section class="section" aria-labelledby="first-task"><p class="eyebrow">First useful task</p><h2 id="first-task">Check funding, a covered bank, and liquidity.</h2>
+    <ol class="steps"><li><strong>Check coverage first.</strong> Run Release identity, Dataset coverage and Source status. Check the returned source dates and limits.</li><li><strong>Run one research request.</strong> Choose Money Markets, Bank Risk or Market Liquidity. Examples return up to five rows so you can inspect the contract.</li><li><strong>Keep the evidence together.</strong> Cite source URLs and native dates. Preserve unavailable values and rights labels. Follow pagination with the <a href="../tools/">complete-capture research kit</a>.</li><li><strong>Return for your next review.</strong> Compare saved captures on another day and identify which source observations changed.</li></ol>
+    <pre><code>curl 'https://api.seiche.info/openbb/api/v1/query?dataset=money_markets&amp;limit=5'</code></pre>
+    <p><a href="https://api.seiche.info/openbb/docs">Interactive API documentation</a> · <a href="README.md">Setup and interpretation guide</a></p>
+  </section>
+  <section class="section muted" aria-labelledby="clients"><p class="eyebrow">Use your existing client</p><h2 id="clients">One contract, familiar tools.</h2>
+    <table><thead><tr><th scope="col">Client</th><th scope="col">Import</th></tr></thead><tbody>
+    <tr><td>Postman / Newman</td><td><a href="financial-evidence.postman_collection.json">Collection with response checks</a></td></tr>
+    <tr><td>Bruno</td><td><a href="api-kit.zip">Collection folder in the API kit</a></td></tr>
+    <tr><td>Insomnia / OpenAPI tools</td><td><a href="openapi.json">OpenAPI 3.1 contract</a></td></tr>
+    <tr><td>JetBrains / VS Code HTTP clients</td><td><a href="financial-evidence.http">Twelve HTTP requests</a></td></tr>
+    <tr><td>Python / Excel / OpenBB / AI agents</td><td><a href="../tools/">Research toolkit and MCP setup</a></td></tr>
+    </tbody></table><p><a href="manifest.json">Download checksums and schema provenance</a>. Client-compatible artifacts do not imply endorsement or marketplace acceptance.</p>
+  </section>
+  <section class="section" aria-labelledby="datasets"><p class="eyebrow">Coverage</p><h2 id="datasets">Choose the evidence your task needs.</h2><p><code>money_markets</code>, <code>money_market_history</code>, <code>capital_markets</code>, <code>bank_risk</code>, <code>market_liquidity</code>, <code>china_economy</code> and <code>source_health</code>.</p><p>Coverage varies by dataset and source. A successful response does not certify freshness, complete pagination or redistribution rights. The API returns these boundaries for you to assess.</p><p><a href="https://api.seiche.info/openbb/api/v1/datasets">Current dataset descriptions</a> · <a href="https://api.seiche.info/openbb/api/v1/sources">Current source status</a> · <a href="../partners/">Evaluate a platform integration</a></p></section>
+  <section class="section muted"><h2>Current coverage boundaries</h2><p>At the 7 October 2026 check, the money-market view returned 19 rows while the underlying atlas reported partial coverage. The China routes reported restricted or unavailable evidence. Dataset names identify query routes, not a promise that all observations are available or current.</p><p><a href="../partners/source-review-2026-10-07.json">Read the dated source review</a> and check live source status before use.</p></section>
+  <footer><p>LIQUILENS PRIVATE LIMITED · Updated 7 October 2026 · <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a> · <a href="../support/">Support</a></p></footer>
+</body>
+</html>

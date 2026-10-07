@@ -667,12 +667,13 @@
       "id": "g2-liquilens",
       "name": "G2 — LiquiLens",
       "channel": "software-directory",
-      "state": "submitted",
+      "state": "listed_incomplete",
       "submission_url": "https://www.g2.com/add_product_requests/new",
       "cost": "free-standard-listing",
-      "detail": "Owner confirmed the submission email. G2 duplicate detection exposes the matching LiquiLens product record and submitted description. The submission response had a rendering error, so it was not replayed. The record URL returned 404; public visibility is unverified. Optional Capterra/GetApp/Software Advice cross-publication was selected with owner authorization and remains subject to verification.",
-      "next_action": "Resolve the public link provided by G2 and verify the exact product and vendor. Do not resubmit.",
-      "verified_at": "2026-10-07T17:42:01.184656+00:00"
+      "detail": "Public product and company catalog resolved under LIQUILENS PRIVATE LIMITED. The company catalog retains the submitted financial-research description, but G2 incorrectly assigns Survey as the category. The profile is unclaimed. Optional network placements remain unverified.",
+      "next_action": "Complete the free ownership claim after the separate Master Service Agreement and required job title are confirmed; correct category and finish profile enrichment.",
+      "verified_at": "2026-10-07T17:52:28.634022+00:00",
+      "listing_url": "https://www.g2.com/products/liquilens/reviews"
     },
     {
       "id": "g2-seiche",
@@ -720,7 +721,7 @@
     }
   ],
   "release_verified_at": "2026-10-04T21:36:19.672601+00:00",
-  "updated_at": "2026-10-07T17:48:29.341187+00:00",
+  "updated_at": "2026-10-07T17:55:15.540240+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -738,9 +739,10 @@
     "new_product_or_company_submissions": 5,
     "platforms_with_new_submissions": 3,
     "approved_profiles_pending_public_verification": 2,
-    "other_received_submissions": 3,
-    "new_public_pages_verified": 0,
+    "other_received_submissions": 2,
+    "new_public_pages_verified": 1,
     "audit_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/marketplace-retry.md",
-    "scope": "Five received records, including two G2 profile approvals; cross-publication and independent adoption are unverified."
+    "scope": "Five received records: one public G2 profile needing category correction, two G2 approvals awaiting public verification, and two review applications. Network cross-publication and independent adoption are unverified.",
+    "public_profiles_requiring_metadata_correction": 1
   }
 }

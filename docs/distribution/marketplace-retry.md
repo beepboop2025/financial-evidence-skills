@@ -1,12 +1,13 @@
 # Marketplace retries — 7 October 2026
 
 This follow-up records five new product/company submissions across three
-platforms. G2 explicitly approved two of the profiles. None of these five
-records is counted as an independently verified public page yet.
+platforms. LiquiLens now has a public G2 profile, with a category correction
+still required. G2 explicitly approved Seiche and Undertow; their public
+visibility remains unverified.
 
 | Platform | Product or company | Verified result | Remaining acceptance |
 | --- | --- | --- | --- |
-| G2 | LiquiLens | Owner confirmed the submission email; G2's duplicate check exposes the matching product record and description | Public profile URL and category assignment |
+| [G2](https://www.g2.com/products/liquilens/reviews) | LiquiLens | Public profile and company catalog resolved under LIQUILENS PRIVATE LIMITED | Correct G2's incorrect Survey category and complete ownership/enrichment |
 | G2 | Seiche | The submission page says **Profile Approved!** | Public profile propagation and category assignment |
 | G2 | Undertow | The submission page says **Profile Approved!** | Public profile propagation and category assignment |
 | API.market | Seiche Reference FX API | **In Review**, publishing checklist **3 / 3 complete** | Operator review and public gateway verification |
@@ -17,9 +18,14 @@ authorized and selected for all three products. G2 says those placements
 remain subject to verification. They are not three additional accepted
 platforms. Admin claims and customer-review invitations were not submitted.
 LiquiLens returned a page-rendering error after submission, so it was not
-resubmitted; the owner's email confirmation and matching operator record
-support receipt, not public visibility. Seiche's record URL still returned
-404 at 17:45 UTC and its public search did not expose an exact Seiche listing.
+resubmitted. Its public profile subsequently appeared in search, and the
+[company catalog](https://www.g2.com/sellers/liquilens-private-limited) shows
+the submitted financial-research description. The profile is unclaimed and
+G2 currently misclassifies it as Survey software. The free claim requires
+the owner's job title and a separate Master Service Agreement. Seiche's
+record URL still returned 404 at 17:45 UTC and its public search did not
+expose an exact Seiche listing. The company catalog showed only LiquiLens
+when checked after that.
 
 ## API.market product scope
 

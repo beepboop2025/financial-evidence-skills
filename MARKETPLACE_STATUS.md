@@ -13,10 +13,11 @@ release acceptance. Updating the ledger does not refresh every observation.
 
 ## Latest marketplace retries
 
-- **G2:** Seiche and Undertow have explicit profile-approval receipts. LiquiLens
-  has an owner-confirmed email and matching operator record. Public visibility
-  remains unverified; optional Capterra/GetApp/Software Advice placements are
-  subject to separate verification.
+- **G2:** [LiquiLens is public](https://www.g2.com/products/liquilens/reviews)
+  under the correct company, but G2's incorrect Survey category needs correction.
+  Seiche and Undertow have explicit profile-approval receipts; their public
+  visibility remains unverified. Optional Capterra/GetApp/Software Advice
+  placements are subject to separate verification.
 - **API.market:** Seiche Reference FX is in review with four fixed endpoints,
   a $0 plan, 1,000 monthly requests, hard limit and no overage charge.
 - **Datarade:** the company's confirmed provider application is under review.

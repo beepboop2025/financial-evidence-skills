@@ -60,6 +60,7 @@ without a product result. It is not a verified public listing.
 | APITracker | No provider submission form was found; the beta waitlist is a consumer signup. No contact email was sent. |
 | Demyst | The earlier data-provider path returns 404; a replacement application route was not established. |
 | Zyla | Provider route remains blocked by Cloudflare. |
+| [PulseMCP](https://www.pulsemcp.com/submit) | Rechecked: new server/client submissions and listing edits are still paused. The operator directs publishers to the Official MCP Registry, where Financial Evidence is already published. The separate use-case submission page is also closed. |
 
 Chrome's local-file upload error persisted after the owner reported enabling
 access. The prepared forms and assets are retained for manual attachment.

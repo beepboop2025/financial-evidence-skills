@@ -219,8 +219,9 @@
       "state": "paused_external",
       "submission_url": "https://www.pulsemcp.com/submit",
       "cost": "free-when-open",
-      "detail": "The operator reports that new submissions and changes are temporarily paused.",
-      "next_action": "Recheck when submissions reopen; the official MCP Registry record is already live."
+      "detail": "The live submission page still pauses new MCP server/client submissions and edits to existing listings. Its notice directs publishers to the Official MCP Registry for later ingestion. The separate use-case submission route is also closed.",
+      "next_action": "Monitor reopening and ingestion of the existing official-registry entry; do not replay or invent a submission receipt.",
+      "verified_at": "2026-10-07T17:50:46.848448+00:00"
     },
     {
       "id": "mcp-so",

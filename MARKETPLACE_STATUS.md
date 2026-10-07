@@ -87,9 +87,10 @@ merge; no placement is claimed.
   own gates. Smithery is no longer account-pending. Paid MCP.so and MCP Market
   remote placements remain unpurchased.
 
-PulseMCP, Gemini and other inherited entries retain their older clocks and
-exact product scope. Zenodo's new preservation setting is recorded separately
-from an archived release. See the route audit and retry record for each action.
+PulseMCP's submission pause was rechecked during the retry. Gemini and other
+inherited entries retain their older clocks and exact product scope. Zenodo's
+new preservation setting is recorded separately from an archived release.
+See the route audit and retry record for each action.
 
 ## Adoption and follow-up
 

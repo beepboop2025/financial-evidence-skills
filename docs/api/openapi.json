@@ -1,9 +1,9 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Financial Evidence Research API",
-    "description": "Read-only source-cited research across LiquiLens bank evidence, Seiche funding and capital markets, Undertow market liquidity, and China economic context. Seven datasets preserve source clocks, hashes, units, missingness and rights. No API key required. Transport success does not certify freshness, completeness, redistribution rights or suitability.",
-    "version": "1.1.2",
+    "title": "LiquiLens Financial Evidence Research API",
+    "description": "Source-cited financial research across LiquiLens, Seiche and Undertow. Public financial-data reads need no API key. Optional installation measurement enrollment and deletion are separate from data access. Preserve source dates, availability, rights and pagination; retrieval success does not validate the evidence.",
+    "version": "1.1.3",
     "contact": {
       "name": "LIQUILENS PRIVATE LIMITED",
       "url": "https://beepboop2025.github.io/financial-evidence-skills/support/"
@@ -13,6 +13,38 @@
     "x-serviceName": "financial-evidence"
   },
   "paths": {
+    "/api/v1/applications": {
+      "post": {
+        "summary": "Enroll",
+        "operationId": "enroll_api_v1_applications_post",
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/applications/current": {
+      "delete": {
+        "summary": "Erase",
+        "operationId": "erase_api_v1_applications_current_delete",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
     "/": {
       "get": {
         "summary": "Index",
@@ -893,18 +925,18 @@
       "description": "Public hosted research API"
     }
   ],
-  "externalDocs": {
-    "url": "https://beepboop2025.github.io/financial-evidence-skills/api/",
-    "description": "Runnable collections and first research task"
-  },
   "x-source-observation": {
     "url": "https://api.seiche.info/openbb/openapi.json",
-    "retrieved_at": "2026-10-07T06:34:17.515299+00:00",
-    "sha256": "d53719b7ef03a9493212f8c625d741471fd2fa39ad9065154271677cb3f0aed9",
+    "retrieved_at": "2026-10-07T07:27:10.773540+00:00",
+    "sha256": "23c8b117d8779e966393823adc618e964a9206bb5f2ead006afa6de151947707",
     "changes": [
       "absolute public server URL",
       "discovery metadata only"
     ],
     "api_version_semantics": "Hosted workspace version, separate from the CLI package release."
+  },
+  "externalDocs": {
+    "url": "https://beepboop2025.github.io/financial-evidence-skills/api/",
+    "description": "Runnable collections and first research task"
   }
 }

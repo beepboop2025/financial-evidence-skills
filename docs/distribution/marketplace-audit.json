@@ -1,0 +1,979 @@
+{
+  "schema": "liquilens.distribution-route-audit.v1",
+  "prepared_at": "2026-10-07T08:36:50.223406+00:00",
+  "company": "LIQUILENS PRIVATE LIMITED",
+  "scope": "Platform and product routes; this is a bounded audit, not a claim to enumerate every marketplace. Existing entries retain their original observation dates.",
+  "target_metric": "monthly active people",
+  "target_value": 1000000,
+  "measured_monthly_active_people": null,
+  "totals": {
+    "routes": 67,
+    "routes_examined_in_this_sweep": 44,
+    "inherited_routes": 23,
+    "new_publications": 1,
+    "new_confirmed_review_submissions": 7,
+    "existing_placements_reconciled": 14
+  },
+  "evidence_rules": {
+    "browser_receipt": "Received by operator; not public approval.",
+    "public_page": "Listing presence only; no native-client or usage claim.",
+    "concurrent_owner_receipt": "Reconciled from the other session; preserve its ownership and exact receipts.",
+    "inherited_per_entry_ledger": "Not reverified by this sweep; inspect checked_at before relying on it.",
+    "primary_docs": "Current operator requirements only; not vendor eligibility or acceptance.",
+    "historical_primary_brochure": "Historical background; current admission must be confirmed.",
+    "access_limited": "Attempted route inspection did not establish usable onboarding."
+  },
+  "routes": [
+    {
+      "id": "official-mcp-registry",
+      "name": "Official MCP Registry",
+      "category": "mcp-registry",
+      "priority": "monitor",
+      "state": "live",
+      "source_url": "https://registry.modelcontextprotocol.io/v0/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.6",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-10-04T21:13:52.129339+00:00",
+      "detail": "Version 0.1.6 is active with the public remote endpoint and OCI package.",
+      "next_action": "Monitor future release publication.",
+      "ledger_entry_ids": [
+        "official-mcp-registry"
+      ]
+    },
+    {
+      "id": "skills-sh",
+      "name": "skills.sh",
+      "category": "agent-skill-directory",
+      "priority": "monitor",
+      "state": "live",
+      "source_url": "https://skills.sh/beepboop2025/financial-evidence-skills/financial-evidence",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-08-25T19:53:54Z",
+      "detail": "The Agent Skill listing is public and installable.",
+      "next_action": "Monitor directory security scans after releases.",
+      "ledger_entry_ids": [
+        "skills-sh"
+      ]
+    },
+    {
+      "id": "glama",
+      "name": "Glama",
+      "category": "mcp-directory",
+      "priority": "monitor",
+      "state": "live",
+      "source_url": "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-10-07T06:46:30.193821+00:00",
+      "detail": "Public schema now exposes all three tools and author verification. This closes the historical empty-inventory state; the listing was already present before this update.",
+      "next_action": "Monitor schema parity and refresh cached release documentation.",
+      "ledger_entry_ids": [
+        "glama"
+      ]
+    },
+    {
+      "id": "docker-mcp-catalog",
+      "name": "Docker MCP Catalog",
+      "category": "mcp-catalog",
+      "priority": "monitor",
+      "state": "submitted",
+      "source_url": "https://github.com/docker/mcp-registry/pull/4765",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-08-25T19:53:54Z",
+      "detail": "The v0.1.4 source-pinned submission is validator-clean, mergeable, and awaiting maintainer review.",
+      "next_action": "Wait for Docker maintainer review.",
+      "ledger_entry_ids": [
+        "docker-mcp-catalog"
+      ]
+    },
+    {
+      "id": "awesome-mcp-servers",
+      "name": "Awesome MCP Servers",
+      "category": "community-catalog",
+      "priority": "monitor",
+      "state": "submitted",
+      "source_url": "https://github.com/punkpeye/awesome-mcp-servers/pull/12771",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-10-07T06:54:25.977088+00:00",
+      "detail": "Existing submission refreshed against current upstream on 7 October 2026. The one-line catalogue addition is mergeable and its submission check passes; the public Glama schema exposes all three tools.",
+      "next_action": "Await independent maintainer review; acceptance is not yet claimed.",
+      "ledger_entry_ids": [
+        "awesome-mcp-servers"
+      ]
+    },
+    {
+      "id": "awesome-copilot",
+      "name": "Awesome GitHub Copilot",
+      "category": "agent-skill-catalog",
+      "priority": "later",
+      "state": "closed_unmerged",
+      "source_url": "https://github.com/github/awesome-copilot/pull/2785",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-08-25T19:53:54Z",
+      "detail": "PR #2785 was closed without merge on 2026-08-25 after automated checks passed. No Awesome GitHub Copilot listing is claimed.",
+      "next_action": "Review the maintainer outcome before deciding whether a materially revised resubmission is appropriate.",
+      "ledger_entry_ids": [
+        "awesome-copilot"
+      ]
+    },
+    {
+      "id": "finos-fdc3-app-directory",
+      "name": "FINOS FDC3 App Directory",
+      "category": "financial-desktop-directory",
+      "priority": "monitor",
+      "state": "submitted",
+      "source_url": "https://github.com/finos-labs/FDC3-App-Directory/pull/40",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-08-25T19:53:54Z",
+      "detail": "The v0.1.4 AppD record is schema-valid, DCO-clean, mergeable, and awaiting review.",
+      "next_action": "Wait for FINOS maintainer review.",
+      "ledger_entry_ids": [
+        "finos-fdc3-app-directory"
+      ]
+    },
+    {
+      "id": "awesome-openbb",
+      "name": "Awesome OpenBB",
+      "category": "financial-tool-catalog",
+      "priority": "monitor",
+      "state": "submitted",
+      "source_url": "https://github.com/OpenBB-finance/awesome-openbb/pull/12",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-08-25T19:53:54Z",
+      "detail": "The v0.1.4 Financial Evidence entry is signature-verified, mergeable, and validated through a clean OpenBB install and bounded live fetch.",
+      "next_action": "Wait for OpenBB maintainer review.",
+      "ledger_entry_ids": [
+        "awesome-openbb"
+      ]
+    },
+    {
+      "id": "gemini-cli-extension-gallery",
+      "name": "Gemini CLI Extension Gallery",
+      "category": "agent-extension-gallery",
+      "priority": "later",
+      "state": "eligible_automatic",
+      "source_url": "https://geminicli.com/extensions/",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-08-25T19:53:54Z",
+      "detail": "The public repository has the required topic and root manifest; the gallery crawler has not produced an observed listing.",
+      "next_action": "Wait for the daily gallery crawl and verify the listing.",
+      "ledger_entry_ids": [
+        "gemini-cli-extension-gallery"
+      ]
+    },
+    {
+      "id": "openai-plugin-directory",
+      "name": "OpenAI Plugin Directory",
+      "category": "agent-plugin-directory",
+      "priority": "later",
+      "state": "ready_account_action",
+      "source_url": "https://platform.openai.com/plugins",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-08-25T19:53:54Z",
+      "detail": "The v0.1.5 public logo and release URL are verified. The listing packet, legal pages, prompts, tests, and fail-closed challenge route are prepared; no portal token is installed and no submission has entered review.",
+      "next_action": "Complete publisher identity, install the exact portal-issued challenge token, record the required demo, submit, and publish only after approval.",
+      "ledger_entry_ids": [
+        "openai-plugin-directory"
+      ]
+    },
+    {
+      "id": "claude-plugin-directory",
+      "name": "Claude Plugin Directory",
+      "category": "agent-plugin-directory",
+      "priority": "later",
+      "state": "ready_account_action",
+      "source_url": "https://platform.claude.com/plugins/submit",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-08-25T19:53:54Z",
+      "detail": "The self-hosted plugin and marketplace manifests pass strict Claude validation; no community-directory submission is claimed.",
+      "next_action": "Submit through the publisher's Claude Console account and await review.",
+      "ledger_entry_ids": [
+        "claude-plugin-directory"
+      ]
+    },
+    {
+      "id": "smithery",
+      "name": "Smithery (five product entries)",
+      "category": "mcp-directory",
+      "priority": "monitor",
+      "state": "live",
+      "source_url": "https://smithery.ai/servers/mrinallovesbhature/financial-evidence",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-10-07T06:43:02.050961+00:00",
+      "detail": "Five existing entries cover the source router, LiquiLens, Seiche, Undertow and the separate Research Desk. Financial Evidence 0.1.6 is public with all three read-only routing and retrieval tools scanned.",
+      "next_action": "Track independently useful use; repeat the scan after relevant tool changes.",
+      "ledger_entry_ids": [
+        "smithery",
+        "smithery-liquilens",
+        "smithery-seiche",
+        "smithery-undertow",
+        "smithery-research-desk"
+      ]
+    },
+    {
+      "id": "cline-mcp-marketplace",
+      "name": "Cline MCP Marketplace",
+      "category": "mcp-marketplace",
+      "priority": "later",
+      "state": "ready_validation",
+      "source_url": "https://github.com/cline/mcp-marketplace/issues/new?template=mcp-server-submission.yml",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-08-25T19:53:54Z",
+      "detail": "A dedicated install guide and 400 by 400 PNG are ready; the required Cline install attestation has not been made.",
+      "next_action": "Run a real Cline install from the public guide before checking the submission attestation.",
+      "ledger_entry_ids": [
+        "cline-mcp-marketplace"
+      ]
+    },
+    {
+      "id": "stackshare",
+      "name": "StackShare",
+      "category": "developer-tool-directory",
+      "priority": "later",
+      "state": "ready_account_action",
+      "source_url": "https://stackshare.io/submit",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-08-25T19:53:54Z",
+      "detail": "Public product, source, documentation, descriptions, and square logo are ready for the standard listing form.",
+      "next_action": "Submit from an owner account only if the standard listing remains free; stop if checkout appears.",
+      "ledger_entry_ids": [
+        "stackshare"
+      ]
+    },
+    {
+      "id": "saashub",
+      "name": "SaaSHub",
+      "category": "software-directory",
+      "priority": "later",
+      "state": "ready_account_action",
+      "source_url": "https://www.saashub.com/services/submit",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-08-25T19:53:54Z",
+      "detail": "The canonical public documentation and free pricing page satisfy the URL-first listing prerequisites.",
+      "next_action": "Complete the free reviewed listing; do not purchase featured placement.",
+      "ledger_entry_ids": [
+        "saashub"
+      ]
+    },
+    {
+      "id": "alternativeto",
+      "name": "AlternativeTo",
+      "category": "software-directory",
+      "priority": "later",
+      "state": "ready_account_action",
+      "source_url": "https://alternativeto.net/faq/",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-08-25T19:53:54Z",
+      "detail": "The application, platforms, MIT license, descriptions, tags, URLs, and square icon are ready for the normal queue.",
+      "next_action": "Submit through a verified owner account; do not purchase priority review.",
+      "ledger_entry_ids": [
+        "alternativeto"
+      ]
+    },
+    {
+      "id": "zenodo",
+      "name": "Zenodo",
+      "category": "software-archive",
+      "priority": "later",
+      "state": "conditional_artifact",
+      "source_url": "https://zenodo.org/uploads/new",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-08-25T19:53:54Z",
+      "detail": "A DOI archive is appropriate after creator and citation metadata are reviewed for a genuine tagged software release.",
+      "next_action": "Prepare reviewed citation metadata before archiving a release.",
+      "ledger_entry_ids": [
+        "zenodo"
+      ]
+    },
+    {
+      "id": "hugging-face-spaces",
+      "name": "Hugging Face Spaces",
+      "category": "demo-gallery",
+      "priority": "later",
+      "state": "ready_account_action",
+      "source_url": "https://huggingface.co/spaces/launch",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-08-25T19:53:54Z",
+      "detail": "A destination-specific static packet inspector now loads local Financial Evidence JSON without network access, includes a deliberately partial synthetic example, and passes its offline security tests. The local Hugging Face CLI is not authenticated, so no Space exists yet.",
+      "next_action": "Authenticate the owner account, create a free static Space, upload integrations/huggingface-space, then verify anonymous served bytes and the browser-only privacy boundary.",
+      "ledger_entry_ids": [
+        "hugging-face-spaces"
+      ]
+    },
+    {
+      "id": "pulsemcp",
+      "name": "PulseMCP",
+      "category": "mcp-directory",
+      "priority": "later",
+      "state": "paused_external",
+      "source_url": "https://www.pulsemcp.com/submit",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-08-25T19:53:54Z",
+      "detail": "The operator reports that new submissions and changes are temporarily paused.",
+      "next_action": "Recheck when submissions reopen; the official MCP Registry record is already live.",
+      "ledger_entry_ids": [
+        "pulsemcp"
+      ]
+    },
+    {
+      "id": "mcp-so",
+      "name": "MCP.so",
+      "category": "mcp-directory",
+      "priority": "later",
+      "state": "skipped_paid",
+      "source_url": "https://mcp.so/submit?type=server",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-08-25T19:53:54Z",
+      "detail": "The paid submission was not purchased.",
+      "next_action": "Require separate authorization for the exact USD 39 spend before reconsidering.",
+      "ledger_entry_ids": [
+        "mcp-so"
+      ]
+    },
+    {
+      "id": "postman-research-api",
+      "name": "Financial Evidence Research API on Postman",
+      "category": "api-directory",
+      "priority": "monitor",
+      "state": "live",
+      "source_url": "https://documenter.getpostman.com/view/58772927/2sBYHPz2Jm",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-10-07T06:43:02.050961+00:00",
+      "detail": "New public collection and published documentation, twelve bounded requests for seven dataset views. Newman live run passed 28 checks; this is operator verification, not customer adoption.",
+      "next_action": "Measure independent task completion and return use.",
+      "ledger_entry_ids": [
+        "postman-research-api"
+      ]
+    },
+    {
+      "id": "apis-guru-research-api",
+      "name": "Financial Evidence Research API on APIs.guru",
+      "category": "openapi-directory",
+      "priority": "monitor",
+      "state": "submitted",
+      "source_url": "https://github.com/APIs-guru/openapi-directory/issues/3568",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-10-07T06:54:25.977088+00:00",
+      "detail": "New shared research-table API submitted with the public OpenAPI 3.1 contract, absolute API origin, twelve runnable requests and source-availability limits. The issue is open; directory inclusion remains pending.",
+      "next_action": "Await maintainer review and verify the listing if accepted.",
+      "ledger_entry_ids": [
+        "apis-guru-research-api"
+      ]
+    },
+    {
+      "id": "awesome-remote-mcp-servers",
+      "name": "Awesome Remote MCP Servers",
+      "category": "community-catalog",
+      "priority": "monitor",
+      "state": "submitted",
+      "source_url": "https://github.com/punkpeye/awesome-remote-mcp-servers/pull/1318",
+      "evidence_level": "inherited_per_entry_ledger",
+      "checked_at": "2026-10-07T06:54:25.977088+00:00",
+      "detail": "New anonymous hosted Financial Evidence endpoint submission. Initialize and tools/list passed; the required public Glama connector resolves. The catalogue submission check passes and the PR is mergeable; maintainer approval remains pending.",
+      "next_action": "Await maintainer review and verify the listing if accepted.",
+      "ledger_entry_ids": [
+        "awesome-remote-mcp-servers"
+      ]
+    },
+    {
+      "id": "freepublicapis",
+      "name": "FreePublicAPIs",
+      "category": "API directory",
+      "priority": "monitor",
+      "state": "live_and_partial",
+      "source_url": "https://www.freepublicapis.com/financial-evidence-api",
+      "evidence_level": "browser_public_page_and_parser",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Shared Research API is newly live with four JSON endpoints. Separate Seiche and Undertow parsers failed; LiquiLens retry found endpoints but generated copy confused recipe limits with server quotas. A follow-up using the precise OpenAPI URL was interrupted by the directory returning HTTP 504 before the parser could start.",
+      "next_action": "Keep shared listing; validate individual-product copy and retain parser failures before another submission.",
+      "ledger_entry_ids": [
+        "freepublicapis-research-api"
+      ]
+    },
+    {
+      "id": "apislist",
+      "name": "APIsList",
+      "category": "API directory",
+      "priority": "monitor",
+      "state": "submitted",
+      "source_url": "https://apislist.com/api/add",
+      "evidence_level": "four_browser_receipts",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Four separate free Standard-queue submissions: shared Research API, LiquiLens, Seiche and Undertow. Operator says review within 30 days.",
+      "next_action": "Check once review completes or by 6 November 2026; do not duplicate these forms.",
+      "ledger_entry_ids": [
+        "apislist-research",
+        "apislist-liquilens",
+        "apislist-seiche",
+        "apislist-undertow"
+      ]
+    },
+    {
+      "id": "apisio",
+      "name": "APIs.io",
+      "category": "API company directory",
+      "priority": "monitor",
+      "state": "submitted",
+      "source_url": "https://apis.io/add/",
+      "evidence_level": "browser_receipt",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Consolidated company entry explicitly received after verification retry; queued for review and a future site build.",
+      "next_action": "Watch the company search and reply channel; no new company submission needed.",
+      "ledger_entry_ids": [
+        "apisio-company"
+      ]
+    },
+    {
+      "id": "mcpservers-org",
+      "name": "MCPServers.org",
+      "category": "MCP directory",
+      "priority": "monitor",
+      "state": "live_and_submitted",
+      "source_url": "https://mcpservers.org/submit",
+      "evidence_level": "public_pages_and_browser_receipt",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Six family repository pages already exist; separate eight-tool Research Desk received in the free queue, with review stated within two weeks.",
+      "next_action": "Check the Research Desk outcome by 21 October 2026 and refresh existing cached descriptions.",
+      "ledger_entry_ids": [
+        "mcpservers-org-research-desk",
+        "mcpservers-org-financial-evidence",
+        "mcpservers-org-liquilens",
+        "mcpservers-org-seiche",
+        "mcpservers-org-undertow",
+        "mcpservers-org-palimpsest",
+        "mcpservers-org-evidence-carrier"
+      ]
+    },
+    {
+      "id": "allmcps",
+      "name": "AllMCPs",
+      "category": "MCP directory",
+      "priority": "next",
+      "state": "live_and_verification_pending",
+      "source_url": "https://allmcps.com/submit",
+      "evidence_level": "browser_search_and_prepared_form",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Seven unique family placements found; Undertow has an additional duplicate and the router has an old install pin. Research Desk form is prepared but Cloudflare verification has no acceptance receipt.",
+      "next_action": "Complete verification, submit the distinct research entry once, then claim and correct existing metadata.",
+      "ledger_entry_ids": [
+        "allmcps-financial-evidence",
+        "allmcps-liquilens",
+        "allmcps-seiche",
+        "allmcps-undertow",
+        "allmcps-palimpsest",
+        "allmcps-evidence-carrier",
+        "allmcps-narcoscope",
+        "allmcps-research-desk"
+      ]
+    },
+    {
+      "id": "mcpmarket",
+      "name": "MCP Market",
+      "category": "MCP directory",
+      "priority": "monitor",
+      "state": "existing_live_paid_alternative_skipped",
+      "source_url": "https://mcpmarket.com/server/financial-evidence",
+      "evidence_level": "browser_public_page",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Repository entry already exists; free form detected it. The separate remote-server route asks USD 69, which was not purchased.",
+      "next_action": "Claim the existing entry; retain the distinct research server on free channels.",
+      "ledger_entry_ids": [
+        "mcpmarket-financial-evidence"
+      ]
+    },
+    {
+      "id": "mcpservers-com",
+      "name": "MCPServers.com",
+      "category": "MCP directory",
+      "priority": "next",
+      "state": "account_required",
+      "source_url": "https://mcpservers.com/submit",
+      "evidence_level": "browser_form",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Submission route requires Google authentication before listing details can be entered.",
+      "next_action": "Use an authorized publisher account and the prepared research-server copy.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "rapidapi",
+      "name": "RapidAPI",
+      "category": "API marketplace",
+      "priority": "monitor",
+      "state": "existing_live",
+      "source_url": "https://rapidapi.com/beepboop2025/api/liquilens-public-api",
+      "evidence_level": "concurrent_owner_receipt",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Other session verified public LiquiLens, Seiche and Undertow definitions. Paid plans were not activated by this sweep.",
+      "next_action": "Preserve the other session's ownership and confirm attributed first requests rather than counting definitions as users.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "swaggerhub",
+      "name": "SwaggerHub Explore",
+      "category": "API directory",
+      "priority": "monitor",
+      "state": "existing_owner_receipt",
+      "source_url": "https://explore.swaggerhub.com/",
+      "evidence_level": "concurrent_owner_handoff",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Three core API definitions were reported complete by the concurrent distribution owner; this sweep did not repeat publication.",
+      "next_action": "Use that owner's exact listing receipts for follow-up; do not duplicate definitions.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "publicapis-dev",
+      "name": "PublicAPIs.dev / marcelscruz/public-apis",
+      "category": "API directory",
+      "priority": "monitor",
+      "state": "existing_merged",
+      "source_url": "https://github.com/marcelscruz/public-apis/pulls?q=is%3Apr+author%3Abeepboop2025",
+      "evidence_level": "concurrent_owner_receipt",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Core-product PRs 1340, 1341 and 1342 were merged on 7 October in the other session's directory readback.",
+      "next_action": "Check rendered directory propagation independently of repository merge.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "public-api-lists",
+      "name": "public-api-lists/public-api-lists",
+      "category": "API directory",
+      "priority": "monitor",
+      "state": "existing_submissions",
+      "source_url": "https://github.com/public-api-lists/public-api-lists/pull/766",
+      "evidence_level": "concurrent_owner_receipt",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Existing PR 766 covers Seiche and Undertow; PR 664 covers LiquiLens. Both await maintainers.",
+      "next_action": "Wait for independent review; no repeat PR.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "n0shake",
+      "name": "n0shake/Public-APIs",
+      "category": "API directory",
+      "priority": "monitor",
+      "state": "existing_submissions",
+      "source_url": "https://github.com/n0shake/Public-APIs/pull/859",
+      "evidence_level": "concurrent_owner_receipt",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Existing core-product PRs 859, 860 and 861 remain open in the other owner's readback.",
+      "next_action": "Wait for maintainer review and verify accepted text if merged.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "public-apis",
+      "name": "public-apis/public-apis",
+      "category": "API directory",
+      "priority": "monitor",
+      "state": "mixed_existing",
+      "source_url": "https://github.com/public-apis/public-apis/pull/7067",
+      "evidence_level": "concurrent_owner_receipt",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "LiquiLens PR 7067 is merged; Seiche 7801 and Undertow 7802 remain open.",
+      "next_action": "Retain separate product states and avoid duplicate PRs.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "aws-mcp",
+      "name": "AWS Marketplace API-based AI agents and tools",
+      "category": "Cloud marketplace",
+      "priority": "next",
+      "state": "account_and_integration_required",
+      "source_url": "https://docs.aws.amazon.com/marketplace/latest/userguide/listing-saas-ai-agents.html",
+      "evidence_level": "primary_docs_and_signin_gate",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Strong fit for the hosted MCP research tools. Seller registration reached AWS sign-in. Metadata is prepared; subscribed delivery and entitlement lifecycle are not implemented.",
+      "next_action": "Complete seller/account and regional route checks, define the offer, implement fulfillment, then submit the reviewed product.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "aws-data-exchange",
+      "name": "AWS Data Exchange",
+      "category": "Data marketplace",
+      "priority": "later",
+      "state": "artifact_and_rights_required",
+      "source_url": "https://docs.aws.amazon.com/data-exchange/latest/userguide/providing-data-sets.html",
+      "evidence_level": "primary_docs",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Potential fit for a specifically licensed dataset. The API route requires an eligible public Amazon API Gateway REST API, not just an externally hosted URL.",
+      "next_action": "Choose one rights-approved dataset and delivery format before seller onboarding and packaging.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "aws-container",
+      "name": "AWS Marketplace container / AgentCore tool",
+      "category": "Cloud marketplace",
+      "priority": "later",
+      "state": "native_artifact_required",
+      "source_url": "https://docs.aws.amazon.com/marketplace/latest/userguide/bedrock-agentcore-runtime.html",
+      "evidence_level": "primary_docs",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Existing OCI distribution alone does not establish the required AWS runtime, commercial lifecycle or approval.",
+      "next_action": "Validate a supported native container only if this delivery route is chosen over API SaaS.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "amazon-appstore",
+      "name": "Amazon Appstore",
+      "category": "Device application store",
+      "priority": "not_now",
+      "state": "no_matching_artifact",
+      "source_url": "https://developer.amazon.com/apps-and-games/blogs/2025/02/upcoming-changes-to-amazon-appstore-for-android-devices-and-coins-program",
+      "evidence_level": "primary_platform_notice",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "General Android-device distribution ended in 2025; supported Fire-device applications are a separate product. No matching application exists here.",
+      "next_action": "Do not create an empty listing; reconsider only with a useful supported device app.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "amazon-sp-api",
+      "name": "Amazon Selling Partner Appstore",
+      "category": "Seller application store",
+      "priority": "not_now",
+      "state": "no_matching_workflow",
+      "source_url": "https://developer-docs.amazon.com/sp-api/docs/onboarding-overview",
+      "evidence_level": "primary_docs",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Requires an actual Amazon seller/vendor workflow and SP-API application onboarding; broad financial research alone is not that workflow.",
+      "next_action": "Reconsider only if a real seller-facing integration is built.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "microsoft-marketplace",
+      "name": "Microsoft Marketplace SaaS",
+      "category": "Cloud marketplace",
+      "priority": "next",
+      "state": "publisher_and_review_required",
+      "source_url": "https://learn.microsoft.com/en-us/partner-center/marketplace-offers/plan-saas-offer",
+      "evidence_level": "primary_docs",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "A Contact me SaaS offer has fewer integration requirements than a transactable offer, but still needs the publisher and certification process.",
+      "next_action": "Use the prepared product packet, verify category/offer fit and complete a company publisher profile.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "google-cloud",
+      "name": "Google Cloud Marketplace",
+      "category": "Cloud marketplace",
+      "priority": "later",
+      "state": "partner_and_solution_required",
+      "source_url": "https://docs.cloud.google.com/marketplace/docs/partners/get-started",
+      "evidence_level": "primary_docs",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "SaaS onboarding requires a supported solution and partner/business review. External hosting does not by itself establish eligibility.",
+      "next_action": "Confirm deployment and business eligibility before implementing procurement/billing integration.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "snowflake",
+      "name": "Snowflake Marketplace",
+      "category": "Data marketplace",
+      "priority": "later",
+      "state": "native_artifact_required",
+      "source_url": "https://docs.snowflake.com/en/collaboration/provider-listings-creating-publishing",
+      "evidence_level": "primary_docs",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Provider profile and a suitable share or native application are required, with metadata and operator review.",
+      "next_action": "Prepare one rights-approved share, schema, dictionary and sample queries in an eligible account.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "databricks",
+      "name": "Databricks Marketplace",
+      "category": "Data marketplace",
+      "priority": "later",
+      "state": "native_artifact_required",
+      "source_url": "https://docs.databricks.com/aws/en/marketplace/become-provider",
+      "evidence_level": "primary_docs",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Requires an eligible provider account, supported sharing setup, permissions and public-listing review.",
+      "next_action": "Define a rights-approved dataset and implement the supported Unity Catalog / sharing delivery path.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "bloomberg",
+      "name": "Bloomberg App Portal / BQuant",
+      "category": "Institutional platform",
+      "priority": "later",
+      "state": "admission_and_native_test_required",
+      "source_url": "https://assets.bbhub.io/professional/sites/10/App-Portal-Overview-for-Developers.pdf",
+      "evidence_level": "historical_primary_brochure",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "The developer overview is historical. No current admission, entitled environment or native acceptance was established.",
+      "next_action": "Confirm current admission with an entitled sponsor, then evaluate the bounded analyst workflow and rights.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "lseg",
+      "name": "LSEG Workspace partnerships",
+      "category": "Institutional platform",
+      "priority": "next",
+      "state": "partner_screening_required",
+      "source_url": "https://www.lseg.com/en/about-us/business-partnerships-marketplace/partners-portal",
+      "evidence_level": "primary_route",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "A business partnership route exists; public research REST/MCP is a demo rather than a certified Workspace integration.",
+      "next_action": "Use the evaluation brief to establish the supported solution or content integration, rights and commercial model.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "factset",
+      "name": "FactSet Marketplace",
+      "category": "Institutional platform",
+      "priority": "later",
+      "state": "provider_screening_required",
+      "source_url": "https://go.factset.com/hubfs/Website/Resources%20Section/Brochures/benefits-of-becoming-an-open-factset-marketplace-partner-brochure.pdf",
+      "evidence_level": "historical_primary_brochure",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Historical partner material explains the provider route; current admission and accepted delivery are not verified.",
+      "next_action": "Confirm current provider requirements and prepare a differentiated, rights-approved research sample.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "reuters",
+      "name": "Reuters Connect",
+      "category": "Editorial-content marketplace",
+      "priority": "later",
+      "state": "content_product_required",
+      "source_url": "https://reutersagency.com/solutions/content-distribution/",
+      "evidence_level": "primary_route",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Fits licensable original editorial content; it is not a generic terminal API marketplace.",
+      "next_action": "Prepare an original research-content offering and verify rights/editorial fit before a partner application.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "nasdaq-data-link",
+      "name": "Nasdaq Data Link",
+      "category": "Institutional data marketplace",
+      "priority": "later",
+      "state": "provider_route_qualification",
+      "source_url": "https://data.nasdaq.com/publishers",
+      "evidence_level": "primary_route_partial",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Provider route inspected but onboarding requirements were not fully exposed. No publisher account or application is claimed.",
+      "next_action": "Qualify a differentiated dataset, permissions and delivery terms through the current publisher process.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "battlefin",
+      "name": "BattleFin Data Maps / data sellers",
+      "category": "Institutional discovery",
+      "priority": "monitor",
+      "state": "submitted",
+      "source_url": "https://www.battlefin.com/asiadatamap",
+      "evidence_level": "primary_route_and_browser_receipt",
+      "checked_at": "2026-10-07T08:40:21.353751+00:00",
+      "detail": "Official Asia Data Map page links to the free provider-map application. The company request returned Submission received and a review notice; map approval is separate from data licensing or customer acquisition.",
+      "next_action": "Wait for BattleFin review, then verify the public firm page; do not repeat the accepted request.",
+      "ledger_entry_ids": [
+        "battlefin-company-map"
+      ]
+    },
+    {
+      "id": "datarade",
+      "name": "Datarade",
+      "category": "Data marketplace",
+      "priority": "later",
+      "state": "route_unverified",
+      "source_url": "https://datarade.ai/",
+      "evidence_level": "access_limited",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Relevant candidate, but the tested public provider path was not accessible enough to verify onboarding.",
+      "next_action": "Inspect the current provider route with an authorized account; do not count as a prepared submission.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "demyst",
+      "name": "Demyst",
+      "category": "Data-provider network",
+      "priority": "later",
+      "state": "route_unverified",
+      "source_url": "https://demyst.com/data-providers",
+      "evidence_level": "access_limited",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Candidate provider route could not be confirmed from accessible primary content.",
+      "next_action": "Confirm that a current supplier program accepts the selected dataset before preparing an application.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "api-market",
+      "name": "API.market",
+      "category": "API marketplace",
+      "priority": "next",
+      "state": "account_and_product_setup_required",
+      "source_url": "https://api.market/seller",
+      "evidence_level": "primary_docs_and_browser",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Seller docs describe organization setup and OpenAPI product import. Browser CTA opened support chat, not an accepted application; no chat message was sent.",
+      "next_action": "Finish the publisher route, import the correct spec and review gateway, authorization and pricing before activation.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "apyhub",
+      "name": "ApyHub",
+      "category": "API marketplace",
+      "priority": "next",
+      "state": "provider_agreement_unsigned",
+      "source_url": "https://apyhub.com/become-a-provider",
+      "evidence_level": "authenticated_prepared_profile",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Starter workspace reached; company profile prepared. Provider agreement includes 24-hour escalated support and software/data-rights representations; no API or pricing plan published.",
+      "next_action": "Define exact data scope and accountable support, review the agreement and obtain company authorization before accepting.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "apilayer",
+      "name": "APILayer",
+      "category": "API marketplace",
+      "priority": "later",
+      "state": "current_route_unverified",
+      "source_url": "https://marketplace.apilayer.com/docs/article/provider-faq",
+      "evidence_level": "primary_faq_and_browser_redirect",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Older provider FAQ links to /provider, which now redirects to the product catalog. A current provider application was not found.",
+      "next_action": "Resolve the current provider onboarding route before calling this ready to submit.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "zyla",
+      "name": "Zyla API Hub",
+      "category": "API marketplace",
+      "priority": "later",
+      "state": "provider_portal_access_required",
+      "source_url": "https://appexchange.zylalabs.com/monetize-your-api",
+      "evidence_level": "primary_route_access_limited",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "A provider monetization route was found; the page returned access restrictions in the available retrieval.",
+      "next_action": "Open an authorized provider session and review account, rights, gateway and commercial requirements.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "apitracker",
+      "name": "APITracker",
+      "category": "API directory",
+      "priority": "later",
+      "state": "no_self_service_form_found",
+      "source_url": "https://apitracker.io/",
+      "evidence_level": "browser_public_site",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Public site exposes a directory contact address; no self-service add form was found. No email was sent.",
+      "next_action": "Confirm an operator-supported listing route; use the factual API packet if requested.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "n8n",
+      "name": "n8n verified community nodes",
+      "category": "Automation marketplace",
+      "priority": "later",
+      "state": "native_node_required",
+      "source_url": "https://docs.n8n.io/integrations/community-nodes/building-community-nodes",
+      "evidence_level": "primary_docs",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Existing product workflow templates are useful but are not a verified native community node.",
+      "next_action": "Choose a repeated user task and build, test, publish and submit a native node only if it improves that workflow.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "zapier",
+      "name": "Zapier public integrations",
+      "category": "Automation marketplace",
+      "priority": "later",
+      "state": "native_integration_required",
+      "source_url": "https://docs.zapier.com/integrations/publish/integration-publishing-requirements",
+      "evidence_level": "primary_docs",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Public integration requires tested native actions/triggers and the operator publishing review.",
+      "next_action": "Define an analyst workflow, implement the integration and meet the current review requirements.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "make",
+      "name": "Make partner apps",
+      "category": "Automation marketplace",
+      "priority": "later",
+      "state": "native_app_required",
+      "source_url": "https://www.make.com/en/become-a-partner",
+      "evidence_level": "primary_route",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Partner route is for a SaaS integration/app rather than a pasted generic API listing.",
+      "next_action": "Build a useful Make app and prepare its supported module and authentication behavior.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "dify",
+      "name": "Dify Marketplace",
+      "category": "AI plugin marketplace",
+      "priority": "later",
+      "state": "native_plugin_required",
+      "source_url": "https://marketplace.dify.ai/",
+      "evidence_level": "primary_marketplace",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "A native plugin artifact and marketplace review are required; remote MCP availability alone is not a listing.",
+      "next_action": "Package a source-preserving tool plugin and validate it in Dify before submission.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "sourceforge",
+      "name": "SourceForge Business Software",
+      "category": "Software directory",
+      "priority": "next",
+      "state": "prepared_upload_permission_required",
+      "source_url": "https://sourceforge.net/software/vendors/new",
+      "evidence_level": "browser_prepared_form",
+      "checked_at": "2026-10-07T08:40:21.353751+00:00",
+      "detail": "Research Desk profile is filled in with Financial Research category and free web access. Required logo upload was attempted with the existing 400px PNG; the Chrome extension rejected it because file-URL access is disabled. No submission receipt exists.",
+      "next_action": "Attach the prepared product logo using the browser upload flow, complete any verification and submit once; phone remains optional and blank.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "g2",
+      "name": "G2",
+      "category": "Software directory",
+      "priority": "later",
+      "state": "current_form_route_required",
+      "source_url": "https://sell.g2.com/create-a-profile",
+      "evidence_level": "primary_docs_and_broken_old_link",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Current profile guidance exists, while the old /products/new add link returned 410. G2 excludes alpha/beta products in its published FAQ.",
+      "next_action": "Use the current profile flow and confirm the specific released product meets eligibility before requesting a profile.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "capterra",
+      "name": "Capterra",
+      "category": "Software directory",
+      "priority": "later",
+      "state": "provider_route_unverified",
+      "source_url": "https://www.capterra.com/vendors",
+      "evidence_level": "primary_route_access_limited",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Vendor hub was found but a working signup form was not established through the available retrieval.",
+      "next_action": "Resolve the current vendor route and list only a suitable released software product.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "producthunt",
+      "name": "Product Hunt",
+      "category": "Product launch",
+      "priority": "later",
+      "state": "publisher_login_required",
+      "source_url": "https://www.producthunt.com/posts/new",
+      "evidence_level": "primary_login_gate",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Launch route redirects to login; a useful launch also needs final demo media and concise released-product positioning.",
+      "next_action": "Use an authorized maker account and prepared product/demo assets; report real launch and referral outcomes.",
+      "ledger_entry_ids": []
+    },
+    {
+      "id": "devhunt",
+      "name": "Dev Hunt",
+      "category": "Developer launch directory",
+      "priority": "later",
+      "state": "submission_flow_not_completed",
+      "source_url": "https://devhunt.org/",
+      "evidence_level": "primary_marketplace",
+      "checked_at": "2026-10-07T08:36:50.223406+00:00",
+      "detail": "Developer directory has relevant API/MCP categories; no completed publisher submission was observed.",
+      "next_action": "Verify the current submit flow and use a concrete developer demo instead of generic family copy.",
+      "ledger_entry_ids": []
+    }
+  ]
+}

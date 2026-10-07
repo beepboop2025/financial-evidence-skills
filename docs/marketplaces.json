@@ -44,11 +44,13 @@
       "id": "glama",
       "name": "Glama",
       "channel": "mcp-directory",
-      "state": "listed_incomplete",
+      "state": "live",
       "listing_url": "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills",
       "cost": "free",
-      "detail": "The author-verified listing is public, but the score page reports no Glama release and an empty tool inventory.",
-      "next_action": "Complete the authenticated Glama release and confirm all three tools are introspected."
+      "detail": "Public schema now exposes all three tools and author verification. This closes the historical empty-inventory state; the listing was already present before this update.",
+      "next_action": "Monitor schema parity and refresh cached release documentation.",
+      "verified_at": "2026-10-07T06:46:30.193821+00:00",
+      "verification_url": "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills/schema"
     },
     {
       "id": "docker-mcp-catalog",
@@ -265,9 +267,20 @@
       "detail": "New public collection and published documentation, twelve bounded requests for seven dataset views. Newman live run passed 28 checks; this is operator verification, not customer adoption.",
       "next_action": "Measure independent task completion and return use.",
       "verified_at": "2026-10-07T06:43:02.050961+00:00"
+    },
+    {
+      "id": "smithery-research-desk",
+      "name": "Financial Evidence Research Desk on Smithery",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://smithery.ai/servers/mrinallovesbhature/financial-evidence-research",
+      "cost": "free",
+      "detail": "New workspace 1.1.2 listing with eight read-only research tools, two prompts and two resources. This paginated table service is distinct from the three-tool source router. Optional trigger discovery returned unsupported parameters; tool, prompt and resource scans succeeded.",
+      "next_action": "Measure independently useful research tasks and return use.",
+      "verified_at": "2026-10-07T06:46:30.193821+00:00"
     }
   ],
   "release_verified_at": "2026-10-04T21:36:19.672601+00:00",
-  "updated_at": "2026-10-07T06:43:02.050961+00:00",
+  "updated_at": "2026-10-07T06:46:30.193821+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify the entries refreshed; checked_at is the older full-ledger check."
 }

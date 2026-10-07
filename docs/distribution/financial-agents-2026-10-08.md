@@ -39,8 +39,12 @@ liquidity sections with explicit missing values and pagination. It did not
 establish source freshness or financial suitability.
 
 The [existing FreePublicAPIs page](https://www.freepublicapis.com/financial-evidence-api)
-still has four endpoints. Suggesting the additional three-product review
-endpoint requires its separate owner sign-in; no duplicate API was submitted.
+still shows four endpoints on public readback. Owner sign-in is complete and
+the additional three-product review endpoint passed the directory checks. The
+site explicitly confirmed it was listed, assigning the label “Money market
+benchmark rates and liquidity metrics”; the added URL has not yet appeared on
+the refreshed public page. Record this as accepted, awaiting independent public
+visibility. Do not resubmit the accepted endpoint. No duplicate API was created.
 Other sessions' API.market, Postman, RapidAPI and SwaggerHub work keeps its
 existing ownership. AWS remains paused at the owner's request.
 

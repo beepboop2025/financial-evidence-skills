@@ -287,6 +287,24 @@
       "evidence_filename": "allmcps-public-after-claim.txt",
       "sha256": "ced363a5ecb327d63e7b1c07bd1ff7569010769efc40e7332f8191419fc578ff",
       "scope": "Public listing shows verified ownership, active directory health and eight tools; revised copy still pending."
+    },
+    {
+      "ledger_id": "freepublicapis-research-api",
+      "state": "live",
+      "operator_url": "https://www.freepublicapis.com/financial-evidence-api",
+      "observed_at": "2026-10-07T19:55:10.277Z",
+      "evidence_filename": "freepublicapis-suggestion-result.txt",
+      "sha256": "e8362fb54b50e5ae88ed1e718ed0a8c355a85dc5ed6cc7e72c749e3ce978a6ab",
+      "scope": "Authenticated additional endpoint suggestion passed directory checks and received an explicit now-listed receipt; exact public propagation is separate."
+    },
+    {
+      "ledger_id": "freepublicapis-research-api",
+      "state": "live",
+      "operator_url": "https://www.freepublicapis.com/financial-evidence-api",
+      "observed_at": "2026-10-07T19:55:10.277Z",
+      "evidence_filename": "freepublicapis-public-after-update.txt",
+      "sha256": "0fdab085d2a425befee9add28ff98f5b334cdec7977e5e013d5bd49b31dc5fd1",
+      "scope": "Existing listing resolves with four endpoints; the accepted additional agent-review URL was not yet present on public readback."
     }
   ],
   "onboarding_receipts": [

@@ -18,7 +18,8 @@ release acceptance. Updating the ledger does not refresh every observation.
   accepted Research Desk ownership; its listing edit is pending operator review.
   The [connection and verification record](docs/distribution/financial-agents-2026-10-08.md)
   includes direct MCP settings, API discovery links and synthetic first-call
-  results. Existing FreePublicAPIs endpoint edits still need its separate login.
+  results. FreePublicAPIs sign-in is complete and its additional agent-review
+  endpoint was accepted; visibility on the public page remains unverified.
 
 - **G2:** [LiquiLens is public](https://www.g2.com/products/liquilens/reviews)
   and claimed under the correct company; its [Public research pricing tier](https://www.g2.com/products/liquilens/pricing)

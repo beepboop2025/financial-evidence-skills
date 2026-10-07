@@ -246,7 +246,7 @@ def create_app(
 
     @app.get("/api/v1/packet")
     async def packet(topics: Annotated[str, Query(max_length=150)]) -> dict[str, Any]:
-        """Fetch original documents for comma-separated topics, up to 1 MiB per source."""
+        """Fetch original documents: up to 4 MiB for the money-market atlas, 1 MiB for other sources."""
         return await asyncio.to_thread(service.packet, [topics])
 
     @app.get("/api/v1/agent-query")

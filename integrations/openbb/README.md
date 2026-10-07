@@ -4,7 +4,7 @@ Use Seiche, LiquiLens, Undertow and Palimpsest from one OpenBB research desk.
 The Workspace release adds seven datasets, nine Workspace widgets, seven dashboard
 tabs, eight SDK-backed MCP tools, two research prompts and a typed REST API.
 
-Workspace is independently versioned as **workspace-1.1.1**, with the exact source
+Workspace is independently versioned as **workspace-1.1.2**, with the exact source
 commit exposed at `/api/v1/release`. The published **v0.1.5 artifacts and public
 three-tool MCP endpoint retain their existing contract**. A hosted custom backend
 is separate from acceptance in OpenBB's directory.
@@ -167,7 +167,7 @@ not grant the API write access to the archive.
 The cache stores at most six fixed sources in process memory, with four network
 workers and one in-flight request per source. Successful responses cache for 60
 seconds, failures for five. Cached retrieval time and source dates never advance.
-An expired success is not served after a refresh failure. Each source has a 1 MiB
+An expired success is not served after a refresh failure. The money-market atlas has a 4 MiB response limit; other sources keep a 1 MiB
 response cap and a ten-second socket timeout; the timeout is not an absolute
 whole-response deadline. Each server process has its own cache.
 

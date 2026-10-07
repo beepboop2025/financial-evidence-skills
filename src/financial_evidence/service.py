@@ -20,6 +20,13 @@ from .core import (
 )
 from .tables import DATASETS, query_packet, validate_query
 
+DEFAULT_SOURCE_MAX_BYTES = 1_048_576
+# The country atlas includes bounded historical series and now exceeds 1 MiB.
+# Keep the larger allowance tied to this exact fixed route, not its whole host.
+SOURCE_MAX_BYTES = {
+    "https://api.seiche.info/api/v2/money-markets": 4_194_304,
+}
+
 
 class EvidenceService:
     """At most eight source keys and four network workers, shared across filters.
@@ -54,7 +61,8 @@ class EvidenceService:
         self._pool.shutdown(wait=True)
 
     def _load(self, source):
-        value = self._fetcher(source, max_bytes=1_048_576, timeout=10)
+        budget = SOURCE_MAX_BYTES.get(source.url, DEFAULT_SOURCE_MAX_BYTES)
+        value = self._fetcher(source, max_bytes=budget, timeout=10)
         return value, self._clock()
 
     def packet(self, topics) -> dict:

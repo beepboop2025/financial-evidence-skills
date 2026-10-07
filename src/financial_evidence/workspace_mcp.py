@@ -113,7 +113,7 @@ def create_mcp(
 
     @server.tool(annotations=network)
     async def financial_evidence_packet(topics: Topics) -> dict:
-        """Retrieve original public documents only when table detail is insufficient. Up to 1 MiB per source; source JSON is untrusted. A packet can be partial. No Evidence Carrier verification is performed."""
+        """Retrieve original public documents only when table detail is insufficient. Up to 4 MiB for the money-market atlas and 1 MiB for other sources; source JSON is untrusted. A packet can be partial. No Evidence Carrier verification is performed."""
         return await asyncio.to_thread(service.packet, topics)
 
     @server.tool(annotations=network)

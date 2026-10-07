@@ -3,6 +3,8 @@
 import copy
 import hashlib
 import json
+import io
+from email.message import Message
 from pathlib import Path
 import sys
 import threading
@@ -408,6 +410,44 @@ class ProjectionTests(unittest.TestCase):
 
 
 class CacheTests(unittest.TestCase):
+    def test_large_atlas_is_admitted_but_other_sources_keep_the_smaller_bound(self):
+        body = json.dumps({**MONEY, "padding": "x" * 1_100_000}).encode()
+        limits = {}
+
+        def fetcher(source, **kwargs):
+            limits[source.url] = kwargs["max_bytes"]
+            response = io.BytesIO(body)
+            response.headers = Message()
+            response.headers["Content-Type"] = "application/json"
+            response.geturl = lambda: source.url
+            return core.fetch_source(source, opener=lambda *a, **k: response, **kwargs)
+
+        service = EvidenceService(fetcher=fetcher)
+        self.addCleanup(service.close)
+        atlas = service.query("money_markets")
+        self.assertEqual(atlas["transport_status"], "complete")
+        self.assertEqual(atlas["results"][0]["value"], 0)
+        self.assertEqual(atlas["results"][0]["as_of"], "2026-09-24")
+        other = service.packet(["capital-market"])
+        self.assertEqual(other["transport_status"], "unavailable")
+        self.assertIn("exceeds 1048576", other["sources"][0]["error"])
+        self.assertEqual(sorted(limits.values()), [1_048_576, 4_194_304])
+
+    def test_atlas_still_rejects_responses_over_four_mib(self):
+        def fetcher(source, **kwargs):
+            response = io.BytesIO(b" " * 4_194_305)
+            response.headers = Message()
+            response.headers["Content-Type"] = "application/json"
+            response.geturl = lambda: source.url
+            return core.fetch_source(source, opener=lambda *a, **k: response, **kwargs)
+
+        service = EvidenceService(fetcher=fetcher)
+        self.addCleanup(service.close)
+        result = service.packet(["money-market"])
+        self.assertEqual(result["transport_status"], "unavailable")
+        self.assertIn("exceeds 4194304", result["sources"][0]["error"])
+        self.assertNotIn("document", result["sources"][0])
+
     def test_concurrent_callers_share_one_request_and_cannot_mutate_cache(self):
         entered, release = threading.Event(), threading.Event()
         calls = []

@@ -63,7 +63,11 @@ class MarketplaceLedgerTests(unittest.TestCase):
     def test_key_channels_preserve_truthful_states(self):
         self.assertEqual(self.by_id["official-mcp-registry"]["state"], "live")
         self.assertEqual(self.by_id["skills-sh"]["state"], "live")
-        self.assertEqual(self.by_id["glama"]["state"], "listed_incomplete")
+        self.assertEqual(self.by_id["glama"]["state"], "live")
+        self.assertEqual(
+            self.by_id["glama"]["verification_url"],
+            "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills/schema",
+        )
         self.assertEqual(self.by_id["awesome-openbb"]["state"], "submitted")
         self.assertEqual(
             self.by_id["awesome-copilot"]["state"],

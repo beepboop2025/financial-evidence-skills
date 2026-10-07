@@ -9,7 +9,7 @@ import re
 
 from . import __version__
 
-WORKSPACE_VERSION = "1.1.1"
+WORKSPACE_VERSION = "1.1.2"
 
 
 def release_identity() -> dict:

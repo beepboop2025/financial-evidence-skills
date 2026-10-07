@@ -6,10 +6,12 @@ Published source version: 0.1.6
 Last verified release: 0.1.6
 Published topics: money-market, capital-market, china-economy, bank-risk, market-liquidity, gift-city, forex, gold.
 Last updated: 2026-10-06
-Publisher: Liquidity Lab
+Publisher: LIQUILENS PRIVATE LIMITED
 License: MIT for the software; source publishers retain rights in upstream data.
 
 ## Primary documentation
+
+- [Browser Research Desk](https://beepboop2025.github.io/financial-evidence-skills/start/): no-install bank, funding and liquidity tasks, complete source-consistent captures, CSV/JSON and shareable research views. Optional installation measurement is separate from verified people.
 
 - [Research tool hub](https://beepboop2025.github.io/financial-evidence-skills/tools/): hosted OpenBB desk, complete paginated Python captures, a notebook, Excel/Power BI rows and MCP project instructions for LiquiLens, Seiche and Undertow. Institutional vendor acceptance is separate.
 

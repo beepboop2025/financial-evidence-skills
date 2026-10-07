@@ -7,7 +7,7 @@ Wants=network-online.target
 [Service]
 Type=simple
 EnvironmentFile=/etc/financial-evidence/workspace.env
-ExecStart=/usr/bin/docker run --rm --name financial-evidence-workspace --read-only --cap-drop ALL --security-opt no-new-privileges --memory 512m --cpus 1 --pids-limit 128 --log-driver local --log-opt max-size=10m --log-opt max-file=3 --tmpfs /tmp:rw,noexec,nosuid,size=32m --user ${WORKSPACE_UID}:${WORKSPACE_GID} -p 127.0.0.1:6900:6900 -v /var/lib/financial-evidence/funding-review:/data/funding-review:ro -e FINANCIAL_EVIDENCE_BASE_URL=https://api.seiche.info/openbb -e FINANCIAL_EVIDENCE_REVIEW_DIR=/data/funding-review -e FINANCIAL_EVIDENCE_TRUSTED_PROXIES=${WORKSPACE_TRUSTED_PROXIES} ${WORKSPACE_IMAGE}
+ExecStart=/usr/bin/docker run --rm --name financial-evidence-workspace --read-only --cap-drop ALL --security-opt no-new-privileges --memory 512m --cpus 1 --pids-limit 128 --log-driver local --log-opt max-size=10m --log-opt max-file=3 --tmpfs /tmp:rw,noexec,nosuid,size=32m --user ${WORKSPACE_UID}:${WORKSPACE_GID} -p 127.0.0.1:6900:6900 -v /var/lib/financial-evidence/funding-review:/data/funding-review:ro -v /var/lib/financial-evidence-workspace/usage:/data/usage:rw -e FINANCIAL_EVIDENCE_USAGE_DIR=/data/usage -e FINANCIAL_EVIDENCE_BASE_URL=https://api.seiche.info/openbb -e FINANCIAL_EVIDENCE_REVIEW_DIR=/data/funding-review -e FINANCIAL_EVIDENCE_TRUSTED_PROXIES=${WORKSPACE_TRUSTED_PROXIES} ${WORKSPACE_IMAGE}
 ExecStop=/usr/bin/docker stop --time 15 financial-evidence-workspace
 Restart=on-failure
 RestartSec=5

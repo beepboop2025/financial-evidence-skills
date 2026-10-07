@@ -80,6 +80,8 @@ def connect(root):
 def excluded(headers):
     return bool(
         headers.get("x-operator-probe")
+        or headers.get("x-liquilens-traffic-class", "").lower()
+        in {"operator", "internal", "synthetic", "test"}
         or headers.get("x-traffic-class", "").lower()
         in {"operator", "internal", "synthetic", "test"}
     )

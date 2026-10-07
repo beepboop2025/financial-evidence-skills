@@ -1,0 +1,10 @@
+[Unit]
+Description=Expire optional Research Desk installation measurement
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/financial-evidence/workspace.env
+ExecStart=/usr/bin/docker run --rm --name financial-evidence-workspace-usage-expiry --read-only --cap-drop ALL --security-opt no-new-privileges --memory 128m --cpus 0.25 --pids-limit 32 --user ${WORKSPACE_UID}:${WORKSPACE_GID} -v /var/lib/financial-evidence-workspace/usage:/data/usage:rw --entrypoint python ${WORKSPACE_IMAGE} -m financial_evidence.workspace_usage report --directory /data/usage
+TimeoutStartSec=60

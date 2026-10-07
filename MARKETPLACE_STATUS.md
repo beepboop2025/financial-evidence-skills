@@ -13,7 +13,7 @@ release acceptance. Updating the ledger does not refresh every observation.
 
 ## Latest sweep
 
-- **One new public listing:** [Financial Evidence API on FreePublicAPIs](https://www.freepublicapis.com/financial-evidence-api), with four JSON endpoints.
+- **Two new public listings:** [Financial Evidence API on FreePublicAPIs](https://www.freepublicapis.com/financial-evidence-api), with four JSON endpoints, and [Financial Evidence Research Desk on AllMCPs](https://allmcps.com/mcp/financial-evidence-research-desk), with the correct hosted MCP endpoint. AllMCPs enrichment, health checks and ownership verification remain pending.
 - **Seven received review submissions:** APIsList for the Research API,
   LiquiLens, Seiche and Undertow; one APIs.io company entry; MCPServers.org for
   the distinct eight-tool Research Desk; BattleFin for the company data map.
@@ -55,14 +55,16 @@ merge; no placement is claimed.
 
 ## Remaining work
 
-- AllMCPs: complete the prepared Research Desk form's Cloudflare verification.
+- AllMCPs: the Research Desk verification/submission gate is resolved. Claim the existing page through owner sign-in and monitor enrichment; do not resubmit.
 - SourceForge: the prepared Research Desk profile needs its required logo;
   the browser extension rejected local upload because file access is disabled.
-- AWS: seller login, company/regional onboarding, offer definition, rights,
-  fulfillment and review remain. The public demo is not a subscribed offer.
-- ApyHub: provider profile prepared; agreement unsigned. Its 24-hour escalated
-  support requirement and source-rights representations need an accountable
-  support owner, defined data scope and company authorization.
+- AWS: sign-in is complete. The seller flow now requires the owner's phone-based
+  ID/selfie verification, followed by company/regional onboarding, offer
+  definition, rights, fulfillment and review. The public demo is not a subscribed offer.
+- ApyHub: provider onboarding is complete after explicit company authorization
+  and confirmation of the 24-hour support owner. One unpublished Research API
+  draft contains four read-only JSON endpoints. Source-rights review, final
+  pricing and operator review remain before publication. All four draft endpoint tests passed.
 - OpenAI, Claude, Cline and other account/native-artifact routes retain their
   own gates. Smithery is no longer account-pending. Paid MCP.so and MCP Market
   remote placements remain unpurchased.

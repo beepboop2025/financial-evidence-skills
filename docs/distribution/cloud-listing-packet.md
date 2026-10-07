@@ -70,8 +70,10 @@ and vendor endorsements. None is established by a marketplace listing.
 ### AWS Marketplace API-based AI agents and tools
 
 The relevant offering is an **MCP tool**, using the SaaS API-based listing
-wizard. The seller portal was opened and reached AWS sign-in; no authenticated
-seller account or product draft was verified. The prepared public logo still
+wizard. The owner completed AWS sign-in. Partner Central now requires the
+owner's phone-based ID/selfie verification through its secure Trulioo flow,
+followed by business details and alliance-lead email verification. No approved
+seller profile or product draft is established yet. The prepared public logo still
 needs a seller-controlled S3 asset. Choose fulfillment and commercial terms
 only after the intended offer is defined. AWS documents its product metadata,
 fulfillment choices and review steps in the [listing guide](https://docs.aws.amazon.com/marketplace/latest/userguide/listing-saas-ai-agents.html).
@@ -155,24 +157,34 @@ bounded pilot, together with the API contract and source-status endpoint.
 - **Nasdaq Data Link and BattleFin:** qualify the dataset, rights, delivery
   and commercial fit before a provider application. No acceptance is claimed.
 
-## ApyHub prepared provider profile
+## ApyHub provider onboarding and API draft
 
 An authenticated Starter workspace was reached through the operator's GitHub
-account using read-only profile/email permissions. The prepared provider
-display name is **LIQUILENS PRIVATE LIMITED**, proposed slug `liquilens`,
+account using read-only profile/email permissions. The created provider
+display name is **LIQUILENS PRIVATE LIMITED**, slug `liquilens`,
 country India. The account's existing workspace display name was preserved.
 
-The provider agreement remains **unsigned**. Its v1.1 terms require a response
-to escalated support within 24 hours, representations about software/data
-rights, and restrictions on soliciting marketplace customers. The displayed
+The owner explicitly authorized accepting **Provider Terms v1.1** and took
+responsibility for the 24-hour escalated-support response. Onboarding returned
+the provider-created confirmation and enabled the publishing workspace.
+The terms include representations about software/data rights and restrictions
+on soliciting marketplace customers. The displayed
 economics are USD 0.000025 per atom, a USD 100 payout threshold and monthly
-settlement subject to the agreement. Provider profile preparation is not an
+settlement subject to the agreement. Provider onboarding is not an
 API listing. [Provider terms](https://apyhub.com/provider-terms).
 
-Before proceeding, define the exact data scope and support owner, review the
-commercial agreement, and obtain company authorization to accept those
-commitments. No API, pricing plan or paid entitlement was published in this
-workspace by this packet.
+The [unpublished OpenAPI draft](apyhub-research-draft.openapi.json) selects four
+GET endpoints: dataset coverage, source clocks, a bounded agent query and the
+funding review. It excludes installation enrollment and deletion routes.
+One service draft has been saved in ApyHub. The imported upstream-auth claim,
+route names, descriptions and examples were corrected. The proposed draft
+price is one atom per call; it is not a published commercial offer.
+
+Before catalog submission, verify rights for the exact source/data scope,
+approve final pricing and resolve operator review. All four endpoint tests
+returned HTTP 200 through ApyHub. Technical review is complete; the initial
+AI review's four gateway-example findings were corrected in the saved preview.
+No API or paid entitlement has been published in this workspace.
 
 ## Acceptance and adoption
 

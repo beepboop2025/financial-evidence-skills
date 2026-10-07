@@ -594,15 +594,17 @@
       "id": "allmcps-research-desk",
       "name": "AllMCPs \u2014 Financial Evidence Research Desk",
       "channel": "mcp-directory",
-      "state": "ready_account_action",
+      "state": "live",
       "submission_url": "https://allmcps.com/submit",
       "cost": "free",
-      "detail": "The separate eight-tool research-server form is prepared. Cloudflare verification did not produce an accepted-submission receipt. The optional newsletter was unchecked.",
-      "next_action": "Complete the verification in the prepared browser tab, submit once and retain the operator response.",
-      "verified_at": "2026-10-07T08:14:37.527910+00:00",
+      "detail": "The distinct eight-tool Research Desk submission returned an explicit review-queue receipt. Its public page independently resolves with the correct https://api.seiche.info/openbb/mcp endpoint and no-auth description. Directory enrichment, health checks and ownership verification remain pending; no endorsement or usage is claimed. The optional newsletter was unchecked.",
+      "next_action": "Monitor enrichment and claim the existing listing through the owner sign-in; do not resubmit. Correct older family metadata separately.",
+      "verified_at": "2026-10-07T15:28:38.139Z",
       "audit_batch": "2026-10-07-marketplace-sweep",
-      "outcome": "pending_action",
-      "evidence_file": "allmcps-research-prepared.txt"
+      "outcome": "new_publication",
+      "evidence_file": "allmcps-public-readback.txt",
+      "listing_url": "https://allmcps.com/mcp/financial-evidence-research-desk",
+      "submission_evidence_file": "allmcps-review-receipt.txt"
     },
     {
       "id": "battlefin-company-map",
@@ -621,15 +623,16 @@
     }
   ],
   "release_verified_at": "2026-10-04T21:36:19.672601+00:00",
-  "updated_at": "2026-10-07T08:40:21.353751+00:00",
+  "updated_at": "2026-10-07T15:39:38.285Z",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
-    "new_publications": 1,
+    "new_publications": 2,
     "new_submissions": 7,
     "existing_placements_reconciled": 14,
     "audit_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/marketplace-audit.md",
     "target_metric": "monthly active people",
-    "measured_monthly_active_people": null
+    "measured_monthly_active_people": null,
+    "provider_onboardings_completed": 1
   }
 }

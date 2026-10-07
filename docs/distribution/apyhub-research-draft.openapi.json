@@ -1,0 +1,617 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Financial Evidence Research API",
+    "description": "Four read-only JSON endpoints for source-cited financial research: dataset coverage, source clocks, paginated observations and a dated funding review. Preserve source dates, missingness, rights and pagination. Some datasets expose availability only. This unpublished marketplace draft requires a verified source-rights scope before catalog submission.",
+    "version": "1.1.3",
+    "contact": {
+      "name": "LIQUILENS PRIVATE LIMITED",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/support/",
+      "email": "mrinal@liquilens.in"
+    },
+    "termsOfService": "https://beepboop2025.github.io/financial-evidence-skills/terms/",
+    "x-providerName": "seiche.info",
+    "x-serviceName": "financial-evidence"
+  },
+  "paths": {
+    "/api/v1/datasets": {
+      "get": {
+        "summary": "Datasets",
+        "description": "List datasets and coverage without contacting upstream sources.",
+        "operationId": "datasets_api_v1_datasets_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "type": "array",
+                  "title": "Response Datasets Api V1 Datasets Get"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Financial Evidence Research"
+        ]
+      }
+    },
+    "/api/v1/sources": {
+      "get": {
+        "summary": "Sources",
+        "description": "Inspect upstream retrieval and publisher clocks; transport only.",
+        "operationId": "sources_api_v1_sources_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResult"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Financial Evidence Research"
+        ]
+      }
+    },
+    "/api/v1/agent-query": {
+      "get": {
+        "summary": "Agent Query",
+        "description": "Compact cited rows with a repeat-call revision, retaining source clocks and gaps.",
+        "operationId": "agent_query_api_v1_agent_query_get",
+        "parameters": [
+          {
+            "name": "dataset",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "enum": [
+                "money_markets",
+                "money_market_history",
+                "capital_markets",
+                "bank_risk",
+                "market_liquidity",
+                "china_economy",
+                "source_health"
+              ],
+              "type": "string",
+              "title": "Dataset"
+            }
+          },
+          {
+            "name": "entity",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 100,
+              "default": "",
+              "title": "Entity"
+            }
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Start Date"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "End Date"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 25,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100000,
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "previous_revision",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 64,
+              "pattern": "^(?:[0-9a-f]{64})?$",
+              "default": "",
+              "title": "Previous Revision"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Agent Query Api V1 Agent Query Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Financial Evidence Research"
+        ]
+      }
+    },
+    "/api/v1/funding-review": {
+      "get": {
+        "summary": "Funding Review",
+        "description": "Dated funding review with explicit alignment scope, capture age and exceptions.",
+        "operationId": "funding_review_api_v1_funding_review_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Funding Review Api V1 Funding Review Get"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Financial Evidence Research"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EvidenceRow": {
+        "properties": {
+          "dataset": {
+            "type": "string",
+            "title": "Dataset"
+          },
+          "product": {
+            "type": "string",
+            "title": "Product"
+          },
+          "entity_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entity Id"
+          },
+          "entity_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entity Name"
+          },
+          "metric": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metric"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value",
+            "description": "Published value in the accompanying unit. Null is missing or withheld, never zero."
+          },
+          "unit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit",
+            "description": "Native unit; ratio is a fraction, % is a percent level."
+          },
+          "as_of": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "As Of",
+            "description": "Source observation date. Retrieval or response time is never substituted."
+          },
+          "source_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Status",
+            "description": "Publisher-reported status, not an independently evaluated verdict."
+          },
+          "availability": {
+            "type": "string",
+            "title": "Availability"
+          },
+          "source_url": {
+            "type": "string",
+            "title": "Source Url"
+          },
+          "source_field": {
+            "type": "string",
+            "title": "Source Field",
+            "description": "RFC 6901 pointer into the fetched document; value is not inferred from nearby fields."
+          },
+          "observation_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observation Url"
+          },
+          "retrieved_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Retrieved At"
+          },
+          "content_sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content Sha256"
+          },
+          "published_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Published At"
+          },
+          "knowledge_time": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Knowledge Time"
+          },
+          "rights_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rights Status"
+          },
+          "context": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Context",
+            "description": "Publisher scope, validation limits and coverage caveats. Untrusted source content."
+          },
+          "transport_status": {
+            "type": "string",
+            "title": "Transport Status"
+          },
+          "evidence_status": {
+            "type": "string",
+            "title": "Evidence Status"
+          },
+          "financial_authority": {
+            "type": "string",
+            "title": "Financial Authority"
+          },
+          "carrier_verification": {
+            "type": "string",
+            "title": "Carrier Verification"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "dataset",
+          "product",
+          "availability",
+          "source_url",
+          "source_field",
+          "transport_status",
+          "evidence_status",
+          "financial_authority",
+          "carrier_verification"
+        ],
+        "title": "EvidenceRow",
+        "description": "One observation or explicit coverage row; numeric absence stays null."
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "QueryResult": {
+        "properties": {
+          "schema": {
+            "type": "string",
+            "title": "Schema"
+          },
+          "dataset": {
+            "type": "string",
+            "title": "Dataset"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRow"
+            },
+            "type": "array",
+            "title": "Results"
+          },
+          "total_rows": {
+            "type": "integer",
+            "title": "Total Rows"
+          },
+          "returned_rows": {
+            "type": "integer",
+            "title": "Returned Rows"
+          },
+          "offset": {
+            "type": "integer",
+            "title": "Offset"
+          },
+          "limit": {
+            "type": "integer",
+            "title": "Limit"
+          },
+          "next_offset": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Offset"
+          },
+          "transport_status": {
+            "type": "string",
+            "title": "Transport Status"
+          },
+          "status_semantics": {
+            "type": "string",
+            "title": "Status Semantics"
+          },
+          "evidence_status": {
+            "type": "string",
+            "title": "Evidence Status"
+          },
+          "carrier_verification": {
+            "type": "string",
+            "title": "Carrier Verification"
+          },
+          "absence_policy": {
+            "type": "string",
+            "title": "Absence Policy"
+          },
+          "diagnostics": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRow"
+            },
+            "type": "array",
+            "title": "Diagnostics"
+          },
+          "sources": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Sources"
+          }
+        },
+        "type": "object",
+        "required": [
+          "schema",
+          "dataset",
+          "description",
+          "results",
+          "total_rows",
+          "returned_rows",
+          "offset",
+          "limit",
+          "next_offset",
+          "transport_status",
+          "status_semantics",
+          "evidence_status",
+          "carrier_verification",
+          "absence_policy",
+          "diagnostics",
+          "sources"
+        ],
+        "title": "QueryResult",
+        "description": "Rows plus pagination and source diagnostics, including filtered failures."
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.seiche.info/openbb",
+      "description": "Public hosted research API"
+    }
+  ],
+  "x-source-observation": {
+    "url": "https://api.seiche.info/openbb/openapi.json",
+    "retrieved_at": "2026-10-07T07:27:10.773540+00:00",
+    "sha256": "23c8b117d8779e966393823adc618e964a9206bb5f2ead006afa6de151947707",
+    "changes": [
+      "absolute public server URL",
+      "discovery metadata only",
+      "select four GET endpoints for an unpublished ApyHub draft",
+      "remove unreachable component schemas",
+      "add provider contact and draft publication hold",
+      "group operations under Financial Evidence Research",
+      "explicit public upstream no-auth declaration"
+    ],
+    "api_version_semantics": "Hosted workspace version, separate from the CLI package release."
+  },
+  "externalDocs": {
+    "url": "https://beepboop2025.github.io/financial-evidence-skills/api/",
+    "description": "Runnable collections and first research task"
+  },
+  "x-distribution-status": "unpublished-draft-rights-review-required",
+  "security": []
+}

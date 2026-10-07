@@ -169,7 +169,7 @@
     },
     {
       "id": "saashub",
-      "name": "SaaSHub — LiquiLens",
+      "name": "SaaSHub \u2014 LiquiLens",
       "channel": "software-directory",
       "state": "submitted",
       "submission_url": "https://www.saashub.com/liquilens/added",
@@ -240,9 +240,12 @@
       "state": "live",
       "listing_url": "https://smithery.ai/servers/mrinallovesbhature/liquilens",
       "cost": "free",
-      "detail": "Existing listing refreshed to version 1.8.1 with 23 tools and five prompts; previously 22 tools.",
-      "next_action": "Measure independent task completion and return use.",
-      "verified_at": "2026-10-07T06:43:02.050961+00:00"
+      "detail": "Existing LiquiLens description and developer homepage updated for financial AI-agent workflows; saved copy and links independently read on the public listing. Native tool inventory was separately checked. No execution capability or user adoption is claimed.",
+      "next_action": "Measure independent useful first tasks and return use; preserve source and per-tool access boundaries.",
+      "verified_at": "2026-10-07T19:36:00.067Z",
+      "outcome": "existing_listing_updated",
+      "audit_batch": "2026-10-08-financial-agents",
+      "evidence_file": "smithery-public-receipts.json"
     },
     {
       "id": "smithery-seiche",
@@ -251,9 +254,12 @@
       "state": "live",
       "listing_url": "https://smithery.ai/servers/mrinallovesbhature/seiche",
       "cost": "free",
-      "detail": "Existing listing refreshed to version 0.16.2 with 16 tools and four prompts; previously 14 tools.",
-      "next_action": "Measure independent task completion and return use.",
-      "verified_at": "2026-10-07T06:43:02.050961+00:00"
+      "detail": "Existing Seiche description and developer homepage updated for financial AI-agent workflows; saved copy and links independently read on the public listing. Native tool inventory was separately checked. No execution capability or user adoption is claimed.",
+      "next_action": "Measure independent useful first tasks and return use; preserve source and per-tool access boundaries.",
+      "verified_at": "2026-10-07T19:36:00.200Z",
+      "outcome": "existing_listing_updated",
+      "audit_batch": "2026-10-08-financial-agents",
+      "evidence_file": "smithery-public-receipts.json"
     },
     {
       "id": "smithery-undertow",
@@ -262,9 +268,12 @@
       "state": "live",
       "listing_url": "https://smithery.ai/servers/mrinallovesbhature/undertow",
       "cost": "free",
-      "detail": "Existing listing refreshed to version 1.13.0 with 16 tools and three prompts; previously 11 tools.",
-      "next_action": "Measure independent task completion and return use.",
-      "verified_at": "2026-10-07T06:43:02.050961+00:00"
+      "detail": "Existing Undertow description and developer homepage updated for financial AI-agent workflows; saved copy and links independently read on the public listing. Native tool inventory was separately checked. No execution capability or user adoption is claimed.",
+      "next_action": "Measure independent useful first tasks and return use; preserve source and per-tool access boundaries.",
+      "verified_at": "2026-10-07T19:36:00.333Z",
+      "outcome": "existing_listing_updated",
+      "audit_batch": "2026-10-08-financial-agents",
+      "evidence_file": "smithery-public-receipts.json"
     },
     {
       "id": "postman-research-api",
@@ -605,14 +614,16 @@
       "state": "live",
       "submission_url": "https://allmcps.com/submit",
       "cost": "free",
-      "detail": "The distinct eight-tool Research Desk submission returned an explicit review-queue receipt. Its public page independently resolves with the correct https://api.seiche.info/openbb/mcp endpoint and no-auth description. Directory enrichment, health checks and ownership verification remain pending; no endorsement or usage is claimed. The optional newsletter was unchecked.",
-      "next_action": "Monitor enrichment and claim the existing listing through the owner sign-in; do not resubmit. Correct older family metadata separately.",
-      "verified_at": "2026-10-07T15:28:38.139Z",
-      "audit_batch": "2026-10-07-marketplace-sweep",
-      "outcome": "new_publication",
-      "evidence_file": "allmcps-public-readback.txt",
+      "detail": "Existing eight-tool Research Desk is public with its hosted /openbb/mcp endpoint, active directory health and a verified ownership badge. The published website meta tag was accepted and full owner editing access granted. Updated financial-agent description, tags, license text and explicit remote endpoint were submitted; the dashboard shows Edit pending. Public metadata approval remains separate.",
+      "next_action": "Read back the revised public metadata after AllMCPs review; do not resubmit. Older router and Undertow entries still need separate ownership and correction.",
+      "verified_at": "2026-10-07T19:45:34.333Z",
+      "audit_batch": "2026-10-08-financial-agents",
+      "outcome": "ownership_verified_update_submitted",
+      "evidence_file": "allmcps-public-after-claim.txt",
       "listing_url": "https://allmcps.com/mcp/financial-evidence-research-desk",
-      "submission_evidence_file": "allmcps-review-receipt.txt"
+      "submission_evidence_file": "allmcps-review-receipt.txt",
+      "ownership_state": "verified_active",
+      "metadata_update_state": "pending_review"
     },
     {
       "id": "battlefin-company-map",
@@ -643,7 +654,7 @@
     },
     {
       "id": "saashub-seiche",
-      "name": "SaaSHub — Seiche",
+      "name": "SaaSHub \u2014 Seiche",
       "channel": "software-directory",
       "state": "submitted",
       "submission_url": "https://www.saashub.com/seiche/added",
@@ -654,7 +665,7 @@
     },
     {
       "id": "saashub-undertow",
-      "name": "SaaSHub — Undertow",
+      "name": "SaaSHub \u2014 Undertow",
       "channel": "software-directory",
       "state": "paused_external",
       "submission_url": "https://www.saashub.com/services/submit",
@@ -665,7 +676,7 @@
     },
     {
       "id": "g2-liquilens",
-      "name": "G2 — LiquiLens",
+      "name": "G2 \u2014 LiquiLens",
       "channel": "software-directory",
       "state": "listed_incomplete",
       "submission_url": "https://www.g2.com/add_product_requests/new",
@@ -686,7 +697,7 @@
     },
     {
       "id": "g2-seiche",
-      "name": "G2 — Seiche",
+      "name": "G2 \u2014 Seiche",
       "channel": "software-directory",
       "state": "approved_pending_public",
       "submission_url": "https://www.g2.com/add_product_requests/new",
@@ -697,7 +708,7 @@
     },
     {
       "id": "g2-undertow",
-      "name": "G2 — Undertow",
+      "name": "G2 \u2014 Undertow",
       "channel": "software-directory",
       "state": "approved_pending_public",
       "submission_url": "https://www.g2.com/add_product_requests/new",
@@ -708,7 +719,7 @@
     },
     {
       "id": "api-market-seiche-reference-fx",
-      "name": "API.market — Seiche Reference FX API",
+      "name": "API.market \u2014 Seiche Reference FX API",
       "channel": "api-marketplace",
       "state": "submitted",
       "submission_url": "https://api.market/seller/liquilens/products/seiche-reference-fx",
@@ -740,7 +751,7 @@
     },
     {
       "id": "datarade-company",
-      "name": "Datarade — LIQUILENS PRIVATE LIMITED",
+      "name": "Datarade \u2014 LIQUILENS PRIVATE LIMITED",
       "channel": "data-provider-application",
       "state": "submitted",
       "submission_url": "https://providers.datarade.ai/apply/confirm/success",

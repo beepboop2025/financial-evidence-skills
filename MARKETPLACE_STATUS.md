@@ -13,6 +13,13 @@ release acceptance. Updating the ledger does not refresh every observation.
 
 ## Latest marketplace retries
 
+- **Financial-agent connections (8 October IST):** all three core Smithery
+  descriptions and developer links are updated and publicly verified. AllMCPs
+  accepted Research Desk ownership; its listing edit is pending operator review.
+  The [connection and verification record](docs/distribution/financial-agents-2026-10-08.md)
+  includes direct MCP settings, API discovery links and synthetic first-call
+  results. Existing FreePublicAPIs endpoint edits still need its separate login.
+
 - **G2:** [LiquiLens is public](https://www.g2.com/products/liquilens/reviews)
   and claimed under the correct company; its [Public research pricing tier](https://www.g2.com/products/liquilens/pricing)
   is visible as Free / $0. G2 accepted category-correction case **00642455** to remove Survey

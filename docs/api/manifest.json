@@ -14,10 +14,10 @@
     "api_version_semantics": "Hosted workspace version, separate from the CLI package release."
   },
   "files": {
-    "openapi.json": "cb187a89e03d4c2164d904c21962c4d84e3c8a6c590f09e3e8d8438a10dca170",
+    "openapi.json": "84692ca35375c7a505e3e8c387d6e23d8ffb0e3f2ddad05e9aa502135a483777",
     "financial-evidence.postman_collection.json": "8b2ca2393e6eb1e42096920ae9d394c140dcd0b0725aa197e56305e2a1fd0ea2",
     "financial-evidence.http": "f6eb6cf89b25bb0ee8ce31dc776a05efbed98f682539c5a5a6c0925a8c706a4d",
-    "README.md": "5ef23690f78753b2d55c541c335011a486864123350fa12940d341b66b0e2b16",
+    "README.md": "f0aed3702c17a76f6f0962b2adda44b1086b1a67fe4c1169908336be547d4157",
     "bruno/01-release-identity.bru": "3fcfe6f48de095051f0ca7ff301ec0c4929c02f3c21671bfe89ef0cf43545d57",
     "bruno/02-dataset-coverage.bru": "22b4bd82f3d3c6f94599bc8e7f5b7f3112cfb63bd297c13ab5828adf5066d5a0",
     "bruno/03-source-status-and-clocks.bru": "e6c825e5889fe769dff2f429299caef26ca01727d3ce2bc26ec84d4113f036b1",

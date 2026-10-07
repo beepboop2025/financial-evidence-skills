@@ -1,0 +1,85 @@
+{
+  "schema": "financial-evidence.agent-connections.v1",
+  "operator": "LIQUILENS PRIVATE LIMITED",
+  "observed_at": "2026-10-07T19:18:07.169074+00:00",
+  "observation_scope": "Synthetic public MCP initialize and tools/list, plus bounded research API GETs. This is a dated connection inventory, not a test of every tool or a source freshness assessment.",
+  "financial_authority": "none",
+  "guide_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/",
+  "configurations": {
+    "portable_mcp": "https://beepboop2025.github.io/financial-evidence-skills/agents/mcp.remote.json",
+    "vscode": "https://beepboop2025.github.io/financial-evidence-skills/agents/mcp.vscode.json"
+  },
+  "products": [
+    {
+      "id": "liquilens",
+      "name": "LiquiLens",
+      "scope": "Covered-bank disclosures, institution research and corporate funding transmission",
+      "mcp_url": "https://api.liquilens.in/mcp",
+      "transport": "streamable-http",
+      "developer_url": "https://liquilens.in/developers/",
+      "smithery_url": "https://smithery.ai/servers/mrinallovesbhature/liquilens",
+      "observed_server_version": "1.8.1",
+      "advertised_tool_count": 23,
+      "tools_list_body_sha256": "6fe1fc4f669af8263ed5be621d7aeb6ed30610f02b42dcdea5098a4bf934801d",
+      "start_with": {
+        "name": "institution_research_coverage",
+        "arguments": {"scope": "dossiers", "limit": 3}
+      },
+      "access": "Public read-only research. Coverage differs by institution and source; discovery does not establish current evidence for every bank."
+    },
+    {
+      "id": "seiche",
+      "name": "Seiche",
+      "scope": "Funding, money-market and cross-market research context",
+      "mcp_url": "https://api.seiche.info/mcp",
+      "transport": "streamable-http",
+      "developer_url": "https://seiche.info/developers/",
+      "smithery_url": "https://smithery.ai/servers/mrinallovesbhature/seiche",
+      "observed_server_version": "0.16.2",
+      "advertised_tool_count": 16,
+      "tools_list_body_sha256": "72d02416c52b3db90e808e2ab0cc55a3dabc98210dc6e7f6cf425c67f23c35f4",
+      "start_with": {"name": "data_health", "arguments": {}},
+      "access": "Public research. Source clocks, units, availability and redistribution rights remain source-specific."
+    },
+    {
+      "id": "undertow",
+      "name": "Undertow",
+      "scope": "Market liquidity, venue depth and hypothetical size-specific exit research",
+      "mcp_url": "https://api.seiche.info/undertow/mcp",
+      "transport": "streamable-http",
+      "developer_url": "https://liquilens-undertow.com/developers/",
+      "smithery_url": "https://smithery.ai/servers/mrinallovesbhature/undertow",
+      "observed_server_version": "1.13.0",
+      "advertised_tool_count": 16,
+      "tools_list_body_sha256": "dc423b2f048ed387b175e12830d46258042080e9b7fba6efb8c615a606f537db",
+      "start_with": {"name": "agent_access_status", "arguments": {}},
+      "access": "Public discovery and summaries; full-fidelity and subscriber tools keep their own entitlements. Advertised tool count does not mean every tool is freely callable."
+    }
+  ],
+  "research_api": {
+    "base_url": "https://api.seiche.info/openbb",
+    "live_openapi_url": "https://api.seiche.info/openbb/openapi.json",
+    "import_openapi_url": "https://beepboop2025.github.io/financial-evidence-skills/api/openapi.json",
+    "client_kit_url": "https://beepboop2025.github.io/financial-evidence-skills/api/",
+    "example": {
+      "method": "GET",
+      "url": "https://api.seiche.info/openbb/api/v1/agent-review?limit=3",
+      "observed_schema": "financial-evidence.agent-result.v1",
+      "observed_body_sha256": "73a54c82aa16794a9b8fbb6ada756c30c9570cc92f97287b7e9ee27256a05d19",
+      "scope": "At most three rows per selected dataset; next_offset indicates more rows. Preserve unavailable and withheld values."
+    },
+    "data_read_authentication": "none",
+    "optional_measurement": "Separate opt-in enrollment and deletion routes exist; these connection examples do not enroll installations."
+  },
+  "review_workflow": {
+    "purpose": "Recurring human review of covered-bank, funding and liquidity evidence",
+    "attention_priority": ["missing evidence", "stale evidence", "changed evidence", "unchanged evidence"],
+    "boundary": "Attention ordering is not approval of a financial action. Check coverage, source dates, rights and gaps before interpreting values."
+  },
+  "limitations": [
+    "Connection success and advertised tools do not establish source freshness, complete coverage or customer adoption.",
+    "These public research tools do not place orders, transfer funds or provide executable quotes.",
+    "Client configuration examples were checked against documented formats; installation in each client was not exercised by this observation.",
+    "Preserve separate product scopes, original observation dates, rights and null values."
+  ]
+}

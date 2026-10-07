@@ -233,6 +233,60 @@
       "evidence_filename": "datarade-confirmed-receipt.txt",
       "sha256": "c248fbfd6eaf548c0bb2711c538c835c47e5ff876d42fd1d9a17dabc50986195",
       "scope": "Email confirmed; company provider application is under review."
+    },
+    {
+      "ledger_id": "smithery-liquilens",
+      "state": "live",
+      "operator_url": "https://smithery.ai/servers/mrinallovesbhature/liquilens",
+      "observed_at": "2026-10-07T19:36:00.067Z",
+      "evidence_filename": "smithery-public-receipts.json",
+      "sha256": "a16cc9f36ee85bb65bc90325cd419dd722cff362922365698188ed819f2c264e",
+      "scope": "Existing listing description and developer URL updated, then independently matched on its public page; not adoption evidence."
+    },
+    {
+      "ledger_id": "smithery-seiche",
+      "state": "live",
+      "operator_url": "https://smithery.ai/servers/mrinallovesbhature/seiche",
+      "observed_at": "2026-10-07T19:36:00.200Z",
+      "evidence_filename": "smithery-public-receipts.json",
+      "sha256": "a16cc9f36ee85bb65bc90325cd419dd722cff362922365698188ed819f2c264e",
+      "scope": "Existing listing description and developer URL updated, then independently matched on its public page; not adoption evidence."
+    },
+    {
+      "ledger_id": "smithery-undertow",
+      "state": "live",
+      "operator_url": "https://smithery.ai/servers/mrinallovesbhature/undertow",
+      "observed_at": "2026-10-07T19:36:00.333Z",
+      "evidence_filename": "smithery-public-receipts.json",
+      "sha256": "a16cc9f36ee85bb65bc90325cd419dd722cff362922365698188ed819f2c264e",
+      "scope": "Existing listing description and developer URL updated, then independently matched on its public page; not adoption evidence."
+    },
+    {
+      "ledger_id": "allmcps-research-desk",
+      "state": "live",
+      "operator_url": "https://allmcps.com/mcp/financial-evidence-research-desk",
+      "observed_at": "2026-10-07T19:45:34.333Z",
+      "evidence_filename": "allmcps-claim-readback.txt",
+      "sha256": "196f368fcf02b106cb3f5f54d960d80c8e809c3ec922094cfb6770bd36adaf89",
+      "scope": "Ownership proof accepted; full editing access active."
+    },
+    {
+      "ledger_id": "allmcps-research-desk",
+      "state": "live",
+      "operator_url": "https://allmcps.com/mcp/financial-evidence-research-desk",
+      "observed_at": "2026-10-07T19:45:34.333Z",
+      "evidence_filename": "allmcps-update-readback.txt",
+      "sha256": "9a8140cc3909bb9c7f7d42a0990c6b6204296b48dd8526d4f8033590d9f33f1a",
+      "scope": "Existing listing edit received; dashboard shows Edit pending. This is not revised public metadata acceptance."
+    },
+    {
+      "ledger_id": "allmcps-research-desk",
+      "state": "live",
+      "operator_url": "https://allmcps.com/mcp/financial-evidence-research-desk",
+      "observed_at": "2026-10-07T19:45:34.333Z",
+      "evidence_filename": "allmcps-public-after-claim.txt",
+      "sha256": "ced363a5ecb327d63e7b1c07bd1ff7569010769efc40e7332f8191419fc578ff",
+      "scope": "Public listing shows verified ownership, active directory health and eight tools; revised copy still pending."
     }
   ],
   "onboarding_receipts": [

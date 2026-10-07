@@ -1,0 +1,290 @@
+{
+  "schema": "financial-evidence.agent-listing-update.v1",
+  "date": "2026-10-08",
+  "smithery": [
+    {
+      "product": "liquilens",
+      "listing": "https://smithery.ai/servers/mrinallovesbhature/liquilens",
+      "verified_at": "2026-10-07T19:36:00.067Z",
+      "description": "Give financial research and treasury agents source-cited evidence on covered banks and lenders in India, the US and Europe. Discover coverage, review disclosed asset quality, NPA movements and corporate funding transmission, and preserve source dates, missing values and historical limitations. Combine selected research with Seiche funding context and Undertow liquidity evidence while keeping their scopes separate. Free read-only tools; no credit rating, lending approval or trade execution. Operated by LIQUILENS PRIVATE LIMITED.",
+      "description_matches": true,
+      "homepage_matches": true
+    },
+    {
+      "product": "seiche",
+      "listing": "https://smithery.ai/servers/mrinallovesbhature/seiche",
+      "verified_at": "2026-10-07T19:36:00.200Z",
+      "description": "Funding and money-market evidence for financial AI agents and treasury research. Discover covered benchmarks and cross-market context, inspect funding observations, FX and gold research, and carry source dates, native units, rights and unavailable values into recurring reviews. Use LiquiLens for covered-bank evidence and Undertow for market-liquidity evidence alongside Seiche's distinct funding scope. Coverage and freshness vary by source. Read-only research; no executable quotes or trade execution. Operated by LIQUILENS PRIVATE LIMITED.",
+      "description_matches": true,
+      "homepage_matches": true
+    },
+    {
+      "product": "undertow",
+      "listing": "https://smithery.ai/servers/mrinallovesbhature/undertow",
+      "verified_at": "2026-10-07T19:36:00.333Z",
+      "description": "Market-liquidity evidence for financial AI agents and execution research. Check access scope, inspect covered venue depth, size-specific BTC exit-cost estimates, concentration and realized depth episodes, and keep source clocks, rights and gaps with every result. Use Seiche for funding context and LiquiLens for covered-bank evidence alongside Undertow's distinct market-liquidity scope. Public summaries are free; full-fidelity and subscriber tools retain their own entitlements. Estimates are not executable quotes and these tools do not submit trades. Operated by LIQUILENS PRIVATE LIMITED.",
+      "description_matches": true,
+      "homepage_matches": true
+    }
+  ],
+  "allmcps": {
+    "observed_at": "2026-10-07T19:45:34.333Z",
+    "listing": "https://allmcps.com/mcp/financial-evidence-research-desk",
+    "ownership": "verified_active",
+    "edit_state": "pending_review",
+    "description": "Financial research for AI agents and treasury teams across LiquiLens bank disclosures, Seiche funding context and Undertow liquidity evidence. Eight read-only MCP tools provide seven dataset views, paginated queries and recurring reviews with source URLs, observation dates, native units, rights and unavailable values. Start in the browser or connect REST/OpenAPI and MCP. No API key for public reads. Coverage and freshness vary by source; these tools do not place trades or approve financial actions. Operated by LIQUILENS PRIVATE LIMITED.",
+    "tags": [
+      "finance",
+      "ai-agents",
+      "treasury",
+      "financial-research",
+      "evidence"
+    ],
+    "license": "Component-specific code; source-specific data rights",
+    "remote_mcp_endpoint": "https://api.seiche.info/openbb/mcp"
+  },
+  "service_observations": [
+    {
+      "name": "liquilens-mcp",
+      "url": "https://api.liquilens.in/mcp",
+      "observed_at": "2026-10-07T19:18:07.169074+00:00",
+      "verification_only": true,
+      "observations": [
+        {
+          "operation": "initialize",
+          "http_status": 200,
+          "bytes": 4504,
+          "sha256": "f58cce35bfb1be78b10e4bbeed811bb94d6b0692386a61955ed59e8088ba0c25",
+          "artifact": "liquilens-mcp-initialize.json",
+          "rpc_error": false,
+          "server_info": {
+            "name": "liquilens",
+            "title": "LiquiLens Failure Radar",
+            "version": "1.8.1",
+            "websiteUrl": "https://liquilens.in"
+          }
+        },
+        {
+          "operation": "tools/list",
+          "http_status": 200,
+          "bytes": 16259,
+          "sha256": "6fe1fc4f669af8263ed5be621d7aeb6ed30610f02b42dcdea5098a4bf934801d",
+          "artifact": "liquilens-mcp-tools-list.json",
+          "rpc_error": false,
+          "tools": [
+            "bank_asset_quality_review",
+            "bank_npa_reconciliation",
+            "banking_specialisation_coverage",
+            "corporate_transmission_board",
+            "crypto_exposure_board",
+            "crypto_regime_board",
+            "evidence_europe",
+            "evidence_india",
+            "evidence_institution",
+            "evidence_markets",
+            "evidence_us",
+            "failure_radar_board",
+            "failure_radar_institution",
+            "forward_odds",
+            "household_credit_board",
+            "institution_research_coverage",
+            "institution_review_packet",
+            "latest_article",
+            "rbi_supervisory_tape",
+            "research_network",
+            "stablecoin_rails_board",
+            "universe_search",
+            "verify_published_record"
+          ],
+          "tool_count": 23
+        }
+      ]
+    },
+    {
+      "name": "seiche-mcp",
+      "url": "https://api.seiche.info/mcp",
+      "observed_at": "2026-10-07T19:18:07.169074+00:00",
+      "verification_only": true,
+      "observations": [
+        {
+          "operation": "initialize",
+          "http_status": 200,
+          "bytes": 5533,
+          "sha256": "9fd1c9be054351683752028664bf0c3751e5f9f3e582a431b536ddee45cf7b8c",
+          "artifact": "seiche-mcp-initialize.json",
+          "rpc_error": false,
+          "server_info": {
+            "name": "seiche",
+            "title": "Seiche — funding-stress terminal",
+            "version": "0.16.2",
+            "websiteUrl": "https://seiche.info"
+          }
+        },
+        {
+          "operation": "tools/list",
+          "http_status": 200,
+          "bytes": 41307,
+          "sha256": "72d02416c52b3db90e808e2ab0cc55a3dabc98210dc6e7f6cf425c67f23c35f4",
+          "artifact": "seiche-mcp-tools-list.json",
+          "rpc_error": false,
+          "tools": [
+            "gift_city_context",
+            "gold_inventory_carry",
+            "market_workbench",
+            "research_network",
+            "latest_article",
+            "funding_stress_now",
+            "trade_safety_risk_context",
+            "money_market_context",
+            "world_markets_context",
+            "historical_analogs",
+            "proof_backtest",
+            "data_health",
+            "crypto_stress_record",
+            "institutional_flows",
+            "oil_funding_context",
+            "fx_materials_passage"
+          ],
+          "tool_count": 16
+        }
+      ]
+    },
+    {
+      "name": "undertow-mcp",
+      "url": "https://api.seiche.info/undertow/mcp",
+      "observed_at": "2026-10-07T19:18:07.169074+00:00",
+      "verification_only": true,
+      "observations": [
+        {
+          "operation": "initialize",
+          "http_status": 200,
+          "bytes": 1482,
+          "sha256": "228a36f59ee19dff6cff62ef5fe96b90214396cc305b72b9145b6b2f40dd7c3a",
+          "artifact": "undertow-mcp-initialize.json",
+          "rpc_error": false,
+          "server_info": {
+            "name": "undertow",
+            "title": "Undertow market liquidity map",
+            "version": "1.13.0",
+            "websiteUrl": "https://liquilens-undertow.com/"
+          }
+        },
+        {
+          "operation": "tools/list",
+          "http_status": 200,
+          "bytes": 11657,
+          "sha256": "dc423b2f048ed387b175e12830d46258042080e9b7fba6efb8c615a606f537db",
+          "artifact": "undertow-mcp-tools-list.json",
+          "rpc_error": false,
+          "tools": [
+            "agent_access_status",
+            "crypto_exit_check",
+            "crypto_funding_cost",
+            "crypto_portfolio_stress",
+            "depth_episodes",
+            "exit_cost",
+            "gold_cash_realisation",
+            "latest_article",
+            "liquidity_tiers",
+            "market_corpus_context",
+            "research_network",
+            "sealed_record",
+            "trade_safety_exit_context",
+            "unwind_watch",
+            "venue_concentration",
+            "venue_price_reconciliation"
+          ],
+          "tool_count": 16
+        }
+      ]
+    },
+    {
+      "name": "agent-review",
+      "url": "https://api.seiche.info/openbb/api/v1/agent-review?limit=3",
+      "observed_at": "2026-10-07T19:18:07.169074+00:00",
+      "verification_only": true,
+      "observations": [
+        {
+          "operation": "GET",
+          "http_status": 200,
+          "bytes": 18944,
+          "sha256": "73a54c82aa16794a9b8fbb6ada756c30c9570cc92f97287b7e9ee27256a05d19",
+          "artifact": "agent-review-get.json",
+          "rpc_error": false,
+          "schema": "financial-evidence.agent-result.v1",
+          "api_version": null
+        }
+      ]
+    },
+    {
+      "name": "research-openapi",
+      "url": "https://api.seiche.info/openbb/openapi.json",
+      "observed_at": "2026-10-07T19:18:07.169074+00:00",
+      "verification_only": true,
+      "observations": [
+        {
+          "operation": "GET",
+          "http_status": 200,
+          "bytes": 12291,
+          "sha256": "23c8b117d8779e966393823adc618e964a9206bb5f2ead006afa6de151947707",
+          "artifact": "research-openapi-get.json",
+          "rpc_error": false,
+          "schema": null,
+          "api_version": "1.1.3"
+        }
+      ]
+    }
+  ],
+  "starter_tool_observations": [
+    {
+      "product": "liquilens",
+      "tool": {
+        "name": "institution_research_coverage",
+        "arguments": {
+          "scope": "dossiers",
+          "limit": 3
+        }
+      },
+      "observed_at": "2026-10-07T19:45:36.355007+00:00",
+      "traffic_class": "synthetic",
+      "http_status": 200,
+      "rpc_error": false,
+      "tool_error": false,
+      "bytes": 7510,
+      "sha256": "7deb75a667c25018eaa13c8a4ee1341825b4866a7690e2f13be0a7a05aa8c225"
+    },
+    {
+      "product": "seiche",
+      "tool": {
+        "name": "data_health",
+        "arguments": {}
+      },
+      "observed_at": "2026-10-07T19:45:36.355224+00:00",
+      "traffic_class": "synthetic",
+      "http_status": 200,
+      "rpc_error": false,
+      "tool_error": false,
+      "bytes": 243985,
+      "sha256": "6e7b2fdc9cdf03754f30ede65c35be5b3567a53f43711781c6665074fd90a4e7"
+    },
+    {
+      "product": "undertow",
+      "tool": {
+        "name": "agent_access_status",
+        "arguments": {}
+      },
+      "observed_at": "2026-10-07T19:45:36.355302+00:00",
+      "traffic_class": "synthetic",
+      "http_status": 200,
+      "rpc_error": false,
+      "tool_error": false,
+      "bytes": 1700,
+      "sha256": "f5025ed281e01234c4fd2d34ab5a8e3d9bf3038d37987b3de3f617b0ab8d074e"
+    }
+  ],
+  "boundaries": [
+    "Synthetic verification is not independent user adoption.",
+    "No public execution service is advertised.",
+    "Older marketplace observations retain their original clocks."
+  ]
+}

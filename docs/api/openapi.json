@@ -1,5 +1,6 @@
 {
   "openapi": "3.1.0",
+  "x-financial-agent-connections": "https://beepboop2025.github.io/financial-evidence-skills/agents/connections.json",
   "info": {
     "title": "LiquiLens Financial Evidence Research API",
     "description": "Source-cited financial research across LiquiLens, Seiche and Undertow. Public financial-data reads need no API key. Optional installation measurement enrollment and deletion are separate from data access. Preserve source dates, availability, rights and pagination; retrieval success does not validate the evidence.",

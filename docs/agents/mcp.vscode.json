@@ -1,0 +1,16 @@
+{
+  "servers": {
+    "liquilens": {
+      "type": "http",
+      "url": "https://api.liquilens.in/mcp"
+    },
+    "seiche": {
+      "type": "http",
+      "url": "https://api.seiche.info/mcp"
+    },
+    "undertow": {
+      "type": "http",
+      "url": "https://api.seiche.info/undertow/mcp"
+    }
+  }
+}

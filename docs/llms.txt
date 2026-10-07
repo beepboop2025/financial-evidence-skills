@@ -79,6 +79,9 @@ Packet `status` equals `transport_status` and describes retrieval only. Every pa
 
 ## Quant and research agents
 
+- [Product connection catalog](https://beepboop2025.github.io/financial-evidence-skills/agents/connections.json): direct LiquiLens, Seiche and Undertow MCP endpoints, initial coverage/health/access tools, and dated inventory checks.
+- [MCP connection guide](https://beepboop2025.github.io/financial-evidence-skills/agents/CONNECT.md): portable and VS Code settings plus a bounded three-product API example. Public research tools have no execution authority; subscriber entitlements remain separate.
+
 [Native framework tools and cited quant datasets](https://beepboop2025.github.io/financial-evidence-skills/agents/) connect Seiche, LiquiLens and Undertow. Source-pinned agent release 1.0.0 adds compact queries, a three-product review and repeat-call revisions. See [the source guide](https://github.com/beepboop2025/financial-evidence-skills/tree/agent-v1.0.0/integrations/agents). These are integration recipes, not evidence of external adoption.
 
 - [API client kit](https://beepboop2025.github.io/financial-evidence-skills/api/): Postman, Bruno, OpenAPI and HTTP clients; twelve bounded requests across seven datasets.

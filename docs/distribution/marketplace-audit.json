@@ -11,7 +11,7 @@
     "routes_examined_in_this_sweep": 44,
     "inherited_routes": 23,
     "new_publications": 2,
-    "new_confirmed_review_submissions": 7,
+    "new_confirmed_review_submissions": 8,
     "existing_placements_reconciled": 14,
     "provider_onboardings_completed": 1
   },
@@ -576,12 +576,12 @@
       "name": "AWS Marketplace API-based AI agents and tools",
       "category": "Cloud marketplace",
       "priority": "next",
-      "state": "identity_and_integration_required",
+      "state": "paused_by_owner",
       "source_url": "https://docs.aws.amazon.com/marketplace/latest/userguide/listing-saas-ai-agents.html",
       "evidence_level": "authenticated_identity_gate",
-      "checked_at": "2026-10-07T15:39:38.285Z",
-      "detail": "Owner sign-in succeeded. AWS Partner Central requires the owner to complete phone-based ID/selfie verification through Trulioo before business details and alliance-lead email verification. Seller approval, product offer and subscription fulfillment are not complete.",
-      "next_action": "Complete the secure phone-based identity check, then verified company and regional onboarding. Define the offer and rights, implement fulfillment, and retain vendor acceptance.",
+      "checked_at": "2026-10-07T16:06:20.963429Z",
+      "detail": "Owner sign-in succeeded but identity verification remains incomplete. The owner explicitly paused AWS work on 7 October 2026. No approved seller profile, offer or fulfillment is claimed.",
+      "next_action": "Resume only after the owner explicitly asks; retain the existing preparation without restarting verification.",
       "ledger_entry_ids": []
     },
     {
@@ -589,26 +589,30 @@
       "name": "AWS Data Exchange",
       "category": "Data marketplace",
       "priority": "later",
-      "state": "artifact_and_rights_required",
+      "state": "paused_by_owner",
       "source_url": "https://docs.aws.amazon.com/data-exchange/latest/userguide/providing-data-sets.html",
       "evidence_level": "primary_docs",
       "checked_at": "2026-10-07T08:36:50.223406+00:00",
       "detail": "Potential fit for a specifically licensed dataset. The API route requires an eligible public Amazon API Gateway REST API, not just an externally hosted URL.",
-      "next_action": "Choose one rights-approved dataset and delivery format before seller onboarding and packaging.",
-      "ledger_entry_ids": []
+      "next_action": "Resume only after the owner explicitly asks. Choose one rights-approved dataset and delivery format before seller onboarding and packaging.",
+      "ledger_entry_ids": [],
+      "state_before_owner_pause": "artifact_and_rights_required",
+      "owner_paused_at": "2026-10-07T16:06:20.963429Z"
     },
     {
       "id": "aws-container",
       "name": "AWS Marketplace container / AgentCore tool",
       "category": "Cloud marketplace",
       "priority": "later",
-      "state": "native_artifact_required",
+      "state": "paused_by_owner",
       "source_url": "https://docs.aws.amazon.com/marketplace/latest/userguide/bedrock-agentcore-runtime.html",
       "evidence_level": "primary_docs",
       "checked_at": "2026-10-07T08:36:50.223406+00:00",
       "detail": "Existing OCI distribution alone does not establish the required AWS runtime, commercial lifecycle or approval.",
-      "next_action": "Validate a supported native container only if this delivery route is chosen over API SaaS.",
-      "ledger_entry_ids": []
+      "next_action": "Resume only after the owner explicitly asks. Validate a supported native container only if this delivery route is chosen over API SaaS.",
+      "ledger_entry_ids": [],
+      "state_before_owner_pause": "native_artifact_required",
+      "owner_paused_at": "2026-10-07T16:06:20.963429Z"
     },
     {
       "id": "amazon-appstore",
@@ -812,18 +816,22 @@
       "name": "ApyHub",
       "category": "API marketplace",
       "priority": "next",
-      "state": "provider_active_api_draft",
+      "state": "fx_api_submitted_broad_draft_held",
       "source_url": "https://apyhub.com/providers/liquilens",
-      "evidence_level": "provider_confirmation_and_tested_draft",
-      "checked_at": "2026-10-07T15:39:38.285Z",
-      "detail": "Provider Terms v1.1 were accepted after explicit owner authorization and confirmation of the 24-hour support owner. The LIQUILENS PRIVATE LIMITED provider profile is public with zero live APIs. A single four-GET-endpoint Research API draft is saved, all four requests returned HTTP 200 and technical review is complete. Initial AI quickstart findings were corrected in the saved preview. Data-rights scope remains unverified; observed rights_status values are null. One atom per request is proposed in the unpublished draft.",
-      "next_action": "Verify source-specific commercial redistribution permissions, finalize pricing and submit the existing tested draft for operator review. Do not recreate provider onboarding or duplicate the draft.",
-      "ledger_entry_ids": [],
+      "evidence_level": "provider_and_submission_receipts",
+      "checked_at": "2026-10-07T16:06:20.963429Z",
+      "detail": "Provider onboarding is complete under authorized Terms v1.1 and a confirmed 24-hour support owner. Seiche Reference FX API v1.0.0 was submitted with four tested fixed CSV endpoints and one atom per request. ECB terms, source notices and latest-value parity were checked. Admin approval/public gateway acceptance remain pending. The separate broad four-JSON-endpoint Research API draft remains unpublished for source-rights review.",
+      "next_action": "Await ApyHub review of the submitted fixed FX offer, then verify public catalog and gateway acceptance. Keep the separate broad Research API draft held until its exact datasets have supported rights; do not duplicate either draft.",
+      "ledger_entry_ids": [
+        "apyhub-seiche-reference-fx"
+      ],
       "evidence_files": [
-        "apyhub-provider-created.txt",
-        "apyhub-provider-public-readback.txt",
-        "apyhub-all-endpoint-tests.txt",
-        "apyhub-draft-reviewed-final.txt"
+        "apyhub-fx-upstream-checks.json",
+        "ecb-original-parity.json",
+        "apyhub-fx-all-tests.txt",
+        "apyhub-fx-reviewed.txt",
+        "apyhub-fx-pricing.txt",
+        "apyhub-fx-submission-receipt.txt"
       ]
     },
     {
@@ -925,9 +933,9 @@
       "state": "prepared_upload_permission_required",
       "source_url": "https://sourceforge.net/software/vendors/new",
       "evidence_level": "browser_prepared_form",
-      "checked_at": "2026-10-07T15:28:38.139Z",
-      "detail": "The Research Desk form is restored with Financial Research category, free web access and company identity. After the owner reported enabling file-URL access, both the existing and a fresh upload chooser still reported permission disabled. Browser security blocks inspection of extension settings. The required logo is not attached and no submission receipt exists.",
-      "next_action": "Resolve Chrome upload permission or manually attach the prepared logo in the completed form, then submit once and retain the response; phone remains optional and blank.",
+      "checked_at": "2026-10-07T16:06:20.963429Z",
+      "detail": "Completed profile restored after browser tabs closed. Category, company and product fields are ready; a fresh logo chooser still reports file access disabled after the owner enabled the setting. No submission was sent.",
+      "next_action": "Manually attach the prepared logo in the restored form, then submit once and retain the receipt; phone remains optional and blank.",
       "ledger_entry_ids": []
     },
     {
@@ -983,5 +991,5 @@
       "ledger_entry_ids": []
     }
   ],
-  "updated_at": "2026-10-07T15:39:38.285Z"
+  "updated_at": "2026-10-07T16:06:20.963429Z"
 }

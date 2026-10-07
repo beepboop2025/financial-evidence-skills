@@ -14,9 +14,10 @@ release acceptance. Updating the ledger does not refresh every observation.
 ## Latest sweep
 
 - **Two new public listings:** [Financial Evidence API on FreePublicAPIs](https://www.freepublicapis.com/financial-evidence-api), with four JSON endpoints, and [Financial Evidence Research Desk on AllMCPs](https://allmcps.com/mcp/financial-evidence-research-desk), with the correct hosted MCP endpoint. AllMCPs enrichment, health checks and ownership verification remain pending.
-- **Seven received review submissions:** APIsList for the Research API,
+- **Eight received review submissions:** APIsList for the Research API,
   LiquiLens, Seiche and Undertow; one APIs.io company entry; MCPServers.org for
-  the distinct eight-tool Research Desk; BattleFin for the company data map.
+  the distinct eight-tool Research Desk; BattleFin for the company data map;
+  ApyHub for the four-endpoint Seiche Reference FX API.
 - **Fourteen existing placements reconciled:** six MCPServers.org pages,
   seven unique AllMCPs product pages and one MCP Market page. These were
   discovered, not newly published. AllMCPs has stale router/Undertow metadata;
@@ -58,13 +59,12 @@ merge; no placement is claimed.
 - AllMCPs: the Research Desk verification/submission gate is resolved. Claim the existing page through owner sign-in and monitor enrichment; do not resubmit.
 - SourceForge: the prepared Research Desk profile needs its required logo;
   the browser extension rejected local upload because file access is disabled.
-- AWS: sign-in is complete. The seller flow now requires the owner's phone-based
-  ID/selfie verification, followed by company/regional onboarding, offer
-  definition, rights, fulfillment and review. The public demo is not a subscribed offer.
-- ApyHub: provider onboarding is complete after explicit company authorization
-  and confirmation of the 24-hour support owner. One unpublished Research API
-  draft contains four read-only JSON endpoints. Source-rights review, final
-  pricing and operator review remain before publication. All four draft endpoint tests passed.
+- AWS: paused at the owner's request. Sign-in is complete; identity verification,
+  business onboarding and offer integration remain. Resume only when requested.
+- ApyHub: the [Seiche Reference FX API](docs/distribution/apyhub-reference-fx-rights.md)
+  was submitted with four tested CSV endpoints and verified ECB reuse conditions.
+  Admin approval and public gateway acceptance remain pending. The separate
+  broad Research API draft remains unpublished pending source-specific rights.
 - OpenAI, Claude, Cline and other account/native-artifact routes retain their
   own gates. Smithery is no longer account-pending. Paid MCP.so and MCP Market
   remote placements remain unpurchased.

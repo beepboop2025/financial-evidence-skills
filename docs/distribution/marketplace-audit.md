@@ -9,10 +9,10 @@ current verified MAU is not established by this audit.
 ## Results from this sweep
 
 - **2 new live listings:** [Financial Evidence API on FreePublicAPIs](https://www.freepublicapis.com/financial-evidence-api), with four working JSON endpoints, and [Financial Evidence Research Desk on AllMCPs](https://allmcps.com/mcp/financial-evidence-research-desk), with the correct hosted MCP endpoint. AllMCPs enrichment, health checks and ownership verification remain pending.
-- **7 confirmed review submissions:** four APIsList product entries, one consolidated APIs.io company entry, one distinct Research Desk MCP submission to MCPServers.org and one BattleFin company-map application.
+- **8 confirmed review submissions:** four APIsList product entries, one consolidated APIs.io company entry, one distinct Research Desk MCP submission to MCPServers.org, one BattleFin company-map application and the four-endpoint Seiche Reference FX API on ApyHub.
 - **14 existing placements reconciled:** six MCPServers.org pages, seven unique AllMCPs product pages and one MCP Market page. These are not new publications. AllMCPs has stale metadata and an additional Undertow duplicate to resolve.
 - AllMCPs returned a review-queue receipt and its public page resolved independently. SourceForge's required product-logo upload still fails after the owner reported enabling file access; its form remains unsubmitted.
-- ApyHub provider onboarding is complete with explicit company authorization and a confirmed 24-hour support owner. An unpublished four-endpoint Research API draft is prepared. AWS sign-in is complete; its phone-based identity verification is pending.
+- ApyHub provider onboarding is complete with explicit company authorization and a confirmed 24-hour support owner. The [four-endpoint FX API](apyhub-reference-fx-rights.md) was submitted after source-rights and platform checks. The broad JSON Research API draft remains rights-held. AWS is paused by explicit owner request.
 
 The prior session's RapidAPI, Postman, SwaggerHub, Smithery and GitHub-directory
 work stays under its existing ownership. Repository merges and public rendered
@@ -29,7 +29,7 @@ accepted only after the owner's explicit authorization.
    Monitor APIs.io's next build without resubmitting the company.
 3. Claim existing entries, correct the older AllMCPs router install pin and
    reconcile Undertow's duplicate and public/subscriber metadata.
-4. Complete an authorized AWS seller session and choose a commercial offer.
+4. AWS is paused by the owner. Resume only after an explicit request.
    Use the [cloud listing packet](cloud-listing-packet.md), which identifies
    the exact fulfillment, source-rights and account requirements.
 5. Build a measurable analyst pilot for institutional proposals: a completed
@@ -38,7 +38,7 @@ accepted only after the owner's explicit authorization.
 
 ## Amazon and institutional platforms
 
-AWS's API-based MCP-tool route is relevant. Sign-in is complete and the seller
+AWS's API-based MCP-tool route is relevant but paused by the owner. Sign-in is complete and the seller
 flow reached the owner's phone-based ID/selfie verification. Metadata alone
 does not complete seller onboarding or subscribed-product
 fulfillment. AWS Data Exchange needs its own approved dataset and delivery
@@ -100,9 +100,9 @@ The [publication ledger](../marketplaces.json) retains product-level states.
 | [public-api-lists/public-api-lists](https://github.com/public-api-lists/public-api-lists/pull/766) | existing submissions | concurrent owner receipt | Wait for independent review; no repeat PR. |
 | [n0shake/Public-APIs](https://github.com/n0shake/Public-APIs/pull/859) | existing submissions | concurrent owner receipt | Wait for maintainer review and verify accepted text if merged. |
 | [public-apis/public-apis](https://github.com/public-apis/public-apis/pull/7067) | mixed existing | concurrent owner receipt | Retain separate product states and avoid duplicate PRs. |
-| [AWS Marketplace API-based AI agents and tools](https://docs.aws.amazon.com/marketplace/latest/userguide/listing-saas-ai-agents.html) | identity and integration required | authenticated identity gate | Complete the secure phone-based identity check, then verified company and regional onboarding. Define the offer and rights, implement fulfillment, and retain vendor acceptance. |
-| [AWS Data Exchange](https://docs.aws.amazon.com/data-exchange/latest/userguide/providing-data-sets.html) | artifact and rights required | primary docs | Choose one rights-approved dataset and delivery format before seller onboarding and packaging. |
-| [AWS Marketplace container / AgentCore tool](https://docs.aws.amazon.com/marketplace/latest/userguide/bedrock-agentcore-runtime.html) | native artifact required | primary docs | Validate a supported native container only if this delivery route is chosen over API SaaS. |
+| [AWS Marketplace API-based AI agents and tools](https://docs.aws.amazon.com/marketplace/latest/userguide/listing-saas-ai-agents.html) | paused by owner | authenticated identity gate | Resume only after the owner explicitly asks; retain the existing preparation without restarting verification. |
+| [AWS Data Exchange](https://docs.aws.amazon.com/data-exchange/latest/userguide/providing-data-sets.html) | paused by owner | primary docs | Resume only after the owner explicitly asks. Choose one rights-approved dataset and delivery format before seller onboarding and packaging. |
+| [AWS Marketplace container / AgentCore tool](https://docs.aws.amazon.com/marketplace/latest/userguide/bedrock-agentcore-runtime.html) | paused by owner | primary docs | Resume only after the owner explicitly asks. Validate a supported native container only if this delivery route is chosen over API SaaS. |
 | [Amazon Appstore](https://developer.amazon.com/apps-and-games/blogs/2025/02/upcoming-changes-to-amazon-appstore-for-android-devices-and-coins-program) | no matching artifact | primary platform notice | Do not create an empty listing; reconsider only with a useful supported device app. |
 | [Amazon Selling Partner Appstore](https://developer-docs.amazon.com/sp-api/docs/onboarding-overview) | no matching workflow | primary docs | Reconsider only if a real seller-facing integration is built. |
 | [Microsoft Marketplace SaaS](https://learn.microsoft.com/en-us/partner-center/marketplace-offers/plan-saas-offer) | publisher and review required | primary docs | Use the prepared product packet, verify category/offer fit and complete a company publisher profile. |
@@ -118,7 +118,7 @@ The [publication ledger](../marketplaces.json) retains product-level states.
 | [Datarade](https://datarade.ai/) | route unverified | access limited | Inspect the current provider route with an authorized account; do not count as a prepared submission. |
 | [Demyst](https://demyst.com/data-providers) | route unverified | access limited | Confirm that a current supplier program accepts the selected dataset before preparing an application. |
 | [API.market](https://api.market/seller) | account and product setup required | primary docs and browser | Finish the publisher route, import the correct spec and review gateway, authorization and pricing before activation. |
-| [ApyHub](https://apyhub.com/providers/liquilens) | provider active api draft | provider confirmation and tested draft | Verify source-specific commercial redistribution permissions, finalize pricing and submit the existing tested draft for operator review. Do not recreate provider onboarding or duplicate the draft. |
+| [ApyHub](https://apyhub.com/providers/liquilens) | fx api submitted broad draft held | provider and submission receipts | Await ApyHub review of the submitted fixed FX offer, then verify public catalog and gateway acceptance. Keep the separate broad Research API draft held until its exact datasets have supported rights; do not duplicate either draft. |
 | [APILayer](https://marketplace.apilayer.com/docs/article/provider-faq) | current route unverified | primary faq and browser redirect | Resolve the current provider onboarding route before calling this ready to submit. |
 | [Zyla API Hub](https://appexchange.zylalabs.com/monetize-your-api) | provider portal access required | primary route access limited | Open an authorized provider session and review account, rights, gateway and commercial requirements. |
 | [APITracker](https://apitracker.io/) | no self service form found | browser public site | Confirm an operator-supported listing route; use the factual API packet if requested. |
@@ -126,7 +126,7 @@ The [publication ledger](../marketplaces.json) retains product-level states.
 | [Zapier public integrations](https://docs.zapier.com/integrations/publish/integration-publishing-requirements) | native integration required | primary docs | Define an analyst workflow, implement the integration and meet the current review requirements. |
 | [Make partner apps](https://www.make.com/en/become-a-partner) | native app required | primary route | Build a useful Make app and prepare its supported module and authentication behavior. |
 | [Dify Marketplace](https://marketplace.dify.ai/) | native plugin required | primary marketplace | Package a source-preserving tool plugin and validate it in Dify before submission. |
-| [SourceForge Business Software](https://sourceforge.net/software/vendors/new) | prepared upload permission required | browser prepared form | Resolve Chrome upload permission or manually attach the prepared logo in the completed form, then submit once and retain the response; phone remains optional and blank. |
+| [SourceForge Business Software](https://sourceforge.net/software/vendors/new) | prepared upload permission required | browser prepared form | Manually attach the prepared logo in the restored form, then submit once and retain the receipt; phone remains optional and blank. |
 | [G2](https://sell.g2.com/create-a-profile) | current form route required | primary docs and broken old link | Use the current profile flow and confirm the specific released product meets eligibility before requesting a profile. |
 | [Capterra](https://www.capterra.com/vendors) | provider route unverified | primary route access limited | Resolve the current vendor route and list only a suitable released software product. |
 | [Product Hunt](https://www.producthunt.com/posts/new) | publisher login required | primary login gate | Use an authorized maker account and prepared product/demo assets; report real launch and referral outcomes. |

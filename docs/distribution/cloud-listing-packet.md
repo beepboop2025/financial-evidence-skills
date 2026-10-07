@@ -70,7 +70,8 @@ and vendor endorsements. None is established by a marketplace listing.
 ### AWS Marketplace API-based AI agents and tools
 
 The relevant offering is an **MCP tool**, using the SaaS API-based listing
-wizard. The owner completed AWS sign-in. Partner Central now requires the
+wizard. **AWS work is paused at the owner's request; resume only when asked.**
+The owner completed AWS sign-in. Partner Central requires the
 owner's phone-based ID/selfie verification through its secure Trulioo flow,
 followed by business details and alliance-lead email verification. No approved
 seller profile or product draft is established yet. The prepared public logo still
@@ -157,7 +158,7 @@ bounded pilot, together with the API contract and source-status endpoint.
 - **Nasdaq Data Link and BattleFin:** qualify the dataset, rights, delivery
   and commercial fit before a provider application. No acceptance is claimed.
 
-## ApyHub provider onboarding and API draft
+## ApyHub provider onboarding and submitted FX offer
 
 An authenticated Starter workspace was reached through the operator's GitHub
 account using read-only profile/email permissions. The created provider
@@ -173,14 +174,21 @@ economics are USD 0.000025 per atom, a USD 100 payout threshold and monthly
 settlement subject to the agreement. Provider onboarding is not an
 API listing. [Provider terms](https://apyhub.com/provider-terms).
 
-The [unpublished OpenAPI draft](apyhub-research-draft.openapi.json) selects four
+The [Seiche Reference FX API](apyhub-reference-fx-rights.md) was submitted on
+7 October with four fixed CSV routes for USD, GBP, JPY and INR per EUR. All
+four platform tests passed, the review was acknowledged, and final pricing
+was one atom per request. ECB reuse conditions, notices and latest-value
+parity were verified for this exact scope. Admin approval and public catalog /
+gateway acceptance remain pending. No API is claimed live.
+
+The separate [unpublished Research draft](apyhub-research-draft.openapi.json) selects four
 GET endpoints: dataset coverage, source clocks, a bounded agent query and the
 funding review. It excludes installation enrollment and deletion routes.
-One service draft has been saved in ApyHub. The imported upstream-auth claim,
+This broad service draft is saved separately in ApyHub. The imported upstream-auth claim,
 route names, descriptions and examples were corrected. The proposed draft
 price is one atom per call; it is not a published commercial offer.
 
-Before catalog submission, verify rights for the exact source/data scope,
+Before submitting that broader draft, verify rights for its exact source/data scope,
 approve final pricing and resolve operator review. All four endpoint tests
 returned HTTP 200 through ApyHub. Technical review is complete; the initial
 AI review's four gateway-example findings were corrected in the saved preview.

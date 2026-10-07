@@ -1,0 +1,77 @@
+{
+  "schema": "liquilens.marketplace-receipt-summaries.v1",
+  "receipts": [
+    {
+      "ledger_id": "freepublicapis-research-api",
+      "state": "live",
+      "operator_url": "https://www.freepublicapis.com/financial-evidence-api",
+      "observed_at": "2026-10-07T08:20:24.210164+00:00",
+      "evidence_filename": "freepublicapis-public-readback.txt",
+      "sha256": "08ac8fa204fd4afa2865c526724cd57c710a98824ce1f6ad363ecb1bab7a5dde",
+      "scope": "Public page resolved"
+    },
+    {
+      "ledger_id": "apislist-research",
+      "state": "submitted",
+      "operator_url": "https://apislist.com/api/add",
+      "observed_at": "2026-10-07T08:01:35.490787+00:00",
+      "evidence_filename": "apislist-submission-receipt.txt",
+      "sha256": "b0a015651af93621efe4569d9946e0d294a6eb6f8055c267bd038e74a241a11f",
+      "scope": "Operator acknowledged receipt; public approval pending"
+    },
+    {
+      "ledger_id": "apislist-liquilens",
+      "state": "submitted",
+      "operator_url": "https://apislist.com/api/add",
+      "observed_at": "2026-10-07T08:17:27.168043+00:00",
+      "evidence_filename": "apislist-liquilens-receipt.txt",
+      "sha256": "d2654ca7c93c9262e1f621676e2ffb19c7dd05ad2b9470e5303238bc0e8b7802",
+      "scope": "Operator acknowledged receipt; public approval pending"
+    },
+    {
+      "ledger_id": "apislist-seiche",
+      "state": "submitted",
+      "operator_url": "https://apislist.com/api/add",
+      "observed_at": "2026-10-07T08:18:14.427030+00:00",
+      "evidence_filename": "apislist-seiche-receipt.txt",
+      "sha256": "d2654ca7c93c9262e1f621676e2ffb19c7dd05ad2b9470e5303238bc0e8b7802",
+      "scope": "Operator acknowledged receipt; public approval pending"
+    },
+    {
+      "ledger_id": "apislist-undertow",
+      "state": "submitted",
+      "operator_url": "https://apislist.com/api/add",
+      "observed_at": "2026-10-07T08:19:25.717213+00:00",
+      "evidence_filename": "apislist-undertow-receipt.txt",
+      "sha256": "6008a669aa04772325615c513f6f48fcd05d2f67aea2598418286652626b9716",
+      "scope": "Operator acknowledged receipt; public approval pending"
+    },
+    {
+      "ledger_id": "apisio-company",
+      "state": "submitted",
+      "operator_url": "https://apis.io/add/",
+      "observed_at": "2026-10-07T08:10:13.752577+00:00",
+      "evidence_filename": "apisio-retry-final.txt",
+      "sha256": "efea17b8b7a95cf2f35193ef5c3efa6bc180f2a2fb4ae10436c121186e9bbb69",
+      "scope": "Operator acknowledged receipt; public approval pending"
+    },
+    {
+      "ledger_id": "mcpservers-org-research-desk",
+      "state": "submitted",
+      "operator_url": "https://mcpservers.org/submit",
+      "observed_at": "2026-10-07T08:21:27.525947+00:00",
+      "evidence_filename": "mcpservers-org-research-receipt.txt",
+      "sha256": "fa845fcf387670935c6a9be84eca7517dc9f36da3c4144df484d01cd1857bfa0",
+      "scope": "Operator acknowledged receipt; public approval pending"
+    },
+    {
+      "ledger_id": "battlefin-company-map",
+      "state": "submitted",
+      "operator_url": "https://battlefin-global-data-maps.lovable.app/submit",
+      "observed_at": "2026-10-07T08:39:14.205913+00:00",
+      "evidence_filename": "battlefin-receipt-final.txt",
+      "sha256": "64e30362f201d5f8d00bed5a9011ec62741c709d57b9bff7386ccbdc127a878e",
+      "scope": "Operator acknowledged receipt; public approval pending"
+    }
+  ]
+}

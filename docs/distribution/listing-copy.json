@@ -1,0 +1,75 @@
+{
+  "schema": "liquilens.marketplace-copy.v1",
+  "prepared_at": "2026-10-07T08:40:21.353751+00:00",
+  "company": "LIQUILENS PRIVATE LIMITED",
+  "public_brand": "LiquiLens",
+  "contact": "mrinal@liquilens.in",
+  "country": "India",
+  "logo_url": "https://raw.githubusercontent.com/beepboop2025/financial-evidence-skills/v0.1.6/assets/logo-400.png",
+  "rules": [
+    "Verify the destination and avoid duplicate entries before submitting.",
+    "Do not certify data redistribution rights, native-client compatibility or support SLAs without separate evidence.",
+    "Do not treat source-router and Research Desk tools as the same product.",
+    "Use each API's actual CORS and access scope; do not infer a commercial license from a free public endpoint."
+  ],
+  "products": [
+    {
+      "id": "liquilens",
+      "name": "LiquiLens Public Research API",
+      "website": "https://liquilens.in/",
+      "documentation": "https://liquilens.in/developers/",
+      "openapi": "https://api.liquilens.in/api/openapi.json",
+      "mcp": "https://api.liquilens.in/mcp",
+      "pricing_scope": "Free public research; private pilots are separately scoped.",
+      "description": "Read-only bank and lender research from public disclosures. Retrieve covered-institution evidence with source links, reporting dates, historical status and missingness. Public research access requires no API key; results support human review and are not credit ratings or investment recommendations."
+    },
+    {
+      "id": "seiche",
+      "name": "Seiche Public Research API",
+      "website": "https://seiche.info/",
+      "documentation": "https://seiche.info/developers",
+      "mcp": "https://api.seiche.info/mcp",
+      "pricing_scope": "Free public research option; any additional authorized tools remain separate.",
+      "description": "Source-cited research for funding markets, benchmarks, FX and capital-market context. Responses retain observation dates, units, coverage limits and restricted or unavailable states. Public research access requires no API key. Source cadence varies; a successful response is not a freshness guarantee."
+    },
+    {
+      "id": "undertow",
+      "name": "Undertow Market Liquidity API",
+      "website": "https://liquilens-undertow.com/",
+      "documentation": "https://liquilens-undertow.com/developers/",
+      "mcp": "https://api.seiche.info/undertow/mcp",
+      "pricing_scope": "Free public summary; full-fidelity machine-payable and subscriber tools have separate requirements.",
+      "description": "Read-only market-liquidity research with dated venue evidence and size-specific exit-cost estimates. Public summary access is free; authorization and payment requirements for other surfaces remain explicit. Estimates preserve methodology and coverage limits and are not executable quotes."
+    },
+    {
+      "id": "research-api",
+      "name": "Financial Evidence Research API",
+      "website": "https://beepboop2025.github.io/financial-evidence-skills/start/",
+      "documentation": "https://beepboop2025.github.io/financial-evidence-skills/api/",
+      "openapi": "https://beepboop2025.github.io/financial-evidence-skills/api/openapi.json",
+      "rest_base": "https://api.seiche.info/openbb",
+      "pricing_scope": "Free public research reads; no API key required.",
+      "description": "A read-only REST API for seven financial-research dataset views, including bank disclosures, funding benchmarks and history, liquidity evidence and source health. Results keep source links, dates, native units, hashes and unavailable values. Source-specific rights and partial coverage apply; some views report availability only."
+    },
+    {
+      "id": "research-desk-mcp",
+      "name": "Financial Evidence Research Desk",
+      "website": "https://beepboop2025.github.io/financial-evidence-skills/start/",
+      "documentation": "https://beepboop2025.github.io/financial-evidence-skills/tools/",
+      "mcp": "https://api.seiche.info/openbb/mcp",
+      "tool_count": 8,
+      "pricing_scope": "Free public research reads; no API key required.",
+      "description": "Eight read-only MCP tools for paginated financial research and source-health checks across seven dataset views. Sources, dates, units and unavailable values remain attached. Includes a browser desk and REST/OpenAPI examples. This hosted research service is distinct from the three-tool Financial Evidence source router."
+    },
+    {
+      "id": "source-router",
+      "name": "Financial Evidence",
+      "website": "https://beepboop2025.github.io/financial-evidence-skills/",
+      "documentation": "https://beepboop2025.github.io/financial-evidence-skills/",
+      "mcp": "https://liquilens.in/mcp/financial-evidence",
+      "tool_count": 3,
+      "pricing_scope": "Free public source routing; no API key required.",
+      "description": "A bounded read-only source router for financial evidence from LiquiLens, Seiche, Undertow and Palimpsest. It preserves product boundaries, source status and provenance and does not combine distinct evidence into a trading score. This is the three-tool source router, separate from the eight-tool Research Desk."
+    }
+  ]
+}

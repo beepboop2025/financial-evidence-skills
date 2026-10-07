@@ -1,71 +1,82 @@
 # Third-party marketplace status
 
-This ledger records third-party discovery and marketplace work for Financial
-Evidence v0.1.6. Owner-controlled release artifacts and installation paths are
-independently verified at v0.1.6, including the separately accepted Homebrew formula. This ledger separates a public
-listing from a submission, an automatic-indexing prerequisite, and a packet
-that is technically ready but still needs an account-owned action.
+The [product-level ledger](docs/marketplaces.json) records publication and
+submission evidence for Financial Evidence and the LiquiLens family. The
+[7 October audit](docs/distribution/marketplace-audit.md) tracks 67 platform
+and product routes: 44 examined in this sweep and 23 inherited from dated
+records. The [cloud listing packet](docs/distribution/cloud-listing-packet.md)
+contains the prepared AWS and institutional submission material.
 
-The machine-readable source of truth is
-[`docs/marketplaces.json`](docs/marketplaces.json). Its `checked_at` timestamp
-is the external-channel observation clock; external operators may change state
-after that time. `release_verified_at` separately records the latest release
-verification and does not refresh historical submission observations.
+`verified_at` is the observation clock for an entry. `checked_at` remains the
+older full-ledger check; `release_verified_at` separately records software
+release acceptance. Updating the ledger does not refresh every observation.
 
-## Public now
+## Latest sweep
 
-- Official MCP Registry v0.1.6 is active with both the public Streamable HTTP
-  endpoint and the versioned OCI package.
-- The public Homebrew tap publishes Financial Evidence v0.1.6. Its exact formula
-  passed strict audit, installation and tests on an isolated macOS consumer runner;
-  native tap Actions remain disabled and are not claimed to have passed.
-- skills.sh serves the Agent Skill.
-- Glama serves both the registry-ingested connector and repository listing, but
-  its repository evaluation is incomplete until a Glama release exposes the
-  three tools.
+- **One new public listing:** [Financial Evidence API on FreePublicAPIs](https://www.freepublicapis.com/financial-evidence-api), with four JSON endpoints.
+- **Seven received review submissions:** APIsList for the Research API,
+  LiquiLens, Seiche and Undertow; one APIs.io company entry; MCPServers.org for
+  the distinct eight-tool Research Desk; BattleFin for the company data map.
+- **Fourteen existing placements reconciled:** six MCPServers.org pages,
+  seven unique AllMCPs product pages and one MCP Market page. These were
+  discovered, not newly published. AllMCPs has stale router/Undertow metadata;
+  an additional Undertow duplicate is excluded from the placement count.
 
-## Submitted for independent review
+[Receipt summaries](docs/distribution/receipt-summaries.json) preserve evidence
+hashes. APIsList states up to 30 days for review and MCPServers.org two weeks;
+these windows do not guarantee approval.
 
-- Docker MCP Catalog: [PR #4765](https://github.com/docker/mcp-registry/pull/4765)
-- Awesome MCP Servers: [PR #12771](https://github.com/punkpeye/awesome-mcp-servers/pull/12771)
-- FINOS FDC3 App Directory: [PR #40](https://github.com/finos-labs/FDC3-App-Directory/pull/40)
-- Awesome OpenBB: [PR #12](https://github.com/OpenBB-finance/awesome-openbb/pull/12)
+## Previously verified public surfaces
 
-An open or mergeable pull request is not an accepted listing. The operator's
-review and merge remain authoritative.
+Official MCP Registry and the separately accepted Homebrew tap publish the
+three-tool source router at v0.1.6. skills.sh serves the Agent Skill. Glama now
+exposes all three tools and author verification, resolving its earlier empty
+inventory. Smithery has five entries: the router, LiquiLens, Seiche, Undertow
+and the distinct Research Desk. The shared REST API has public Postman docs.
+Their individual verification dates remain in the ledger.
 
-## Closed without listing
+Concurrent work owns the core RapidAPI, Postman, SwaggerHub definitions and
+older API-directory PRs. This sweep did not repeat those publications or
+activate paid plans. Another product's release does not close a separate
+shared-product artifact entry.
 
-- Awesome GitHub Copilot [PR #2785](https://github.com/github/awesome-copilot/pull/2785)
-  closed without merge on 25 August 2026. Passing checks did not create a
-  listing, and no acceptance is claimed.
+## Existing submissions awaiting operators
 
-## Ready for account-owned action
+- [Docker MCP Catalog #4765](https://github.com/docker/mcp-registry/pull/4765)
+- [Awesome MCP Servers #12771](https://github.com/punkpeye/awesome-mcp-servers/pull/12771)
+- [FINOS FDC3 #40](https://github.com/finos-labs/FDC3-App-Directory/pull/40)
+- [Awesome OpenBB #12](https://github.com/OpenBB-finance/awesome-openbb/pull/12)
+- [APIs.guru Research API #3568](https://github.com/APIs-guru/openapi-directory/issues/3568)
+- [Awesome Remote MCP Servers #1318](https://github.com/punkpeye/awesome-remote-mcp-servers/pull/1318)
 
-OpenAI, Claude, Smithery, StackShare, SaaSHub, AlternativeTo, and Hugging Face require an
-authenticated publisher or owner portal. Their public assets are ready, but no
-submission, approval, listing, or publication is claimed until the operator
-returns a receipt. The Hugging Face artifact is a destination-specific,
-browser-only packet inspector under `integrations/huggingface-space`; the local
-CLI is not authenticated. Cline additionally requires a real Cline install test
-before its submission attestation can be checked honestly.
+An open or mergeable PR is not an accepted listing. Awesome GitHub Copilot
+[#2785](https://github.com/github/awesome-copilot/pull/2785) closed without
+merge; no placement is claimed.
 
-## Held by policy or channel fit
+## Remaining work
 
-- Gemini CLI gallery discovery is automatic; repository prerequisites are met,
-  but no observed gallery listing is claimed.
-- PulseMCP is temporarily closed to submissions.
-- Zenodo requires reviewed citation metadata for a genuine tagged release.
-- MCP.so charges USD 39. It remains unpurchased because no exact spend was
-  authorized.
+- AllMCPs: complete the prepared Research Desk form's Cloudflare verification.
+- SourceForge: the prepared Research Desk profile needs its required logo;
+  the browser extension rejected local upload because file access is disabled.
+- AWS: seller login, company/regional onboarding, offer definition, rights,
+  fulfillment and review remain. The public demo is not a subscribed offer.
+- ApyHub: provider profile prepared; agreement unsigned. Its 24-hour escalated
+  support requirement and source-rights representations need an accountable
+  support owner, defined data scope and company authorization.
+- OpenAI, Claude, Cline and other account/native-artifact routes retain their
+  own gates. Smithery is no longer account-pending. Paid MCP.so and MCP Market
+  remote placements remain unpurchased.
 
-## Refresh rules
+PulseMCP, Gemini, Zenodo and other inherited entries retain their older clocks
+and exact product scope. See the route audit for each remaining action.
 
-1. Re-resolve the public URL or operator API before changing an entry to
-   `live`.
-2. Record the exact submission or review URL for every `submitted` entry.
-3. Never infer acceptance from mergeability, a passing syntax check, or a badge.
-4. Stop before any checkout unless the exact amount and action were separately
-   authorized.
-5. Publish the signed version tag and verify every release asset before merging
-   documentation that marks those versioned URLs public.
+## Adoption and follow-up
+
+The target is one million monthly active **people**. Listings, API calls,
+crawlers, packages and advertised directory audiences do not measure that
+number. Current verified MAU is unknown in this record. Measure completed
+research tasks, distinct returning people and retention separately.
+
+Reconcile receipts before retrying. Resolve the public URL before marking a
+listing live. Native tests, data rights, review and adoption remain separate;
+publication does not guarantee rankings, endorsements or customer counts.

@@ -1,0 +1,111 @@
+{
+  "schema": "financial-evidence.runtime-ops-verification.v1",
+  "component": "Runtime Operations",
+  "version": "1.0.2",
+  "runtime_package_version": "0.1.7",
+  "source_commit": "54858fd2d5ebfe0dcfd3258bb23acdde64c8c85a",
+  "tag_object": "5ecbfd5290f541379ac6306c79e0d96986e27252",
+  "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/runtime-ops-v1.0.2",
+  "published_at": "2026-10-08T10:34:58Z",
+  "workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/37764334175",
+  "verification_status": "verified",
+  "source_and_tag_signatures": "verified_existing_owner_SSH_policy",
+  "checksums": "verified_SHA256SUMS_and_GitHub_asset_digests",
+  "archive_attestation": "verified_release_workflow_source_ref_and_source_digest",
+  "archive_matches_reviewed_source": true,
+  "assets": [
+    {
+      "name": "financial-evidence-runtime-ops-1.0.2.tar",
+      "sha256": "1c53e263416147f3afc3217d2ba931c895ad1d7299528f71b32f80abcd05477c",
+      "size": 112640,
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/runtime-ops-v1.0.2/financial-evidence-runtime-ops-1.0.2.tar"
+    },
+    {
+      "name": "SHA256SUMS",
+      "sha256": "17473143acf3ea7dd6c97ca67074b57f78c74a70a47beadfe39a911d23f8eaa7",
+      "size": 185,
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/runtime-ops-v1.0.2/SHA256SUMS"
+    },
+    {
+      "name": "source.json",
+      "sha256": "fa40f7ac75d0829e750eba4d0ad931f8c81f7a64a74192ee76822ace542e6c03",
+      "size": 1545,
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/runtime-ops-v1.0.2/source.json"
+    }
+  ],
+  "acceptance": {
+    "focused_failure_tests": 32,
+    "full_python_tests": 403,
+    "optional_skips": 3,
+    "macos_real_encrypted_restic": {
+      "broker_orders": 0,
+      "exact_snapshots_verified": 2,
+      "explicit_snapshot_disaster_recovery": true,
+      "full_repository_check": true,
+      "host_journal_and_receipts_inaccessible": true,
+      "native_systemd_unit_verification": false,
+      "operations_version": "1.0.2",
+      "package_version": "0.1.7",
+      "real_restic": true,
+      "repository_snapshot_inventory_unchanged_by_recovery": true,
+      "restic_version": "restic 0.19.1 compiled with go1.26.5 on darwin/arm64",
+      "restored_admission_stopped": true,
+      "retry_keys_preserved": true,
+      "source_network_calls": 0,
+      "status": "PASS",
+      "traffic_class": "synthetic"
+    },
+    "linux_real_encrypted_restic": {
+      "broker_orders": 0,
+      "exact_snapshots_verified": 2,
+      "explicit_snapshot_disaster_recovery": true,
+      "full_repository_check": true,
+      "host_journal_and_receipts_inaccessible": true,
+      "native_systemd_unit_verification": true,
+      "operations_version": "1.0.2",
+      "package_version": "0.1.7",
+      "real_restic": true,
+      "repository_snapshot_inventory_unchanged_by_recovery": true,
+      "restic_version": "restic 0.16.4 compiled with go1.22.2 on linux/amd64",
+      "restored_admission_stopped": true,
+      "retry_keys_preserved": true,
+      "source_network_calls": 0,
+      "status": "PASS",
+      "traffic_class": "synthetic"
+    },
+    "private_deployment": {
+      "observed_at": "2026-10-08T10:38:17.304467+00:00",
+      "source_and_unit_hashes_verified": true,
+      "console_running_released_version": true,
+      "operations_status": "healthy",
+      "source_status": "blocked",
+      "original_journal_and_receipts_hidden_during_recovery": true,
+      "restored_receipts": 28,
+      "same_keys_return_original_run_ids": 28,
+      "new_key_refused_while_stopped": true,
+      "live_prior_runs_preserved": 28,
+      "live_prior_events_preserved": 59,
+      "source_network_calls_during_recovery": 0,
+      "broker_orders": 0,
+      "traffic_class": "internal"
+    }
+  },
+  "upgrade": {
+    "prior_applied_plan_required": true,
+    "all_existing_unit_hashes_verified": true,
+    "read_only_console_restarted": true,
+    "research_and_backup_workers_not_interrupted": true,
+    "supersedes": "1.0.1",
+    "superseded_issue": "legacy monitor units rejected during preflight before any service change"
+  },
+  "boundaries": {
+    "deployment": "private single Linux/systemd host",
+    "dashboard": "read-only loopback HTTP through existing SSH access",
+    "source_eligibility": "separately assessed; retained source blocks remain visible",
+    "execution_authority": false,
+    "coverage_complete": false,
+    "external_active_users": null,
+    "paid_customers": null,
+    "managed_uptime_sla": false
+  }
+}

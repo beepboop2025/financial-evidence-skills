@@ -94,7 +94,7 @@ def main():
             report = {"status": "PASS", "package_version": "0.1.7", "real_restic": True,
                       "restic_version": subprocess.check_output(["restic", "version"], text=True).strip(),
                       "exact_snapshots_verified": 2, "restored_admission_stopped": True, "retry_keys_preserved": True,
-                      "operations_version": "1.0.1", "host_journal_and_receipts_inaccessible": True,
+                      "operations_version": "1.0.2", "host_journal_and_receipts_inaccessible": True,
                       "explicit_snapshot_disaster_recovery": True, "repository_snapshot_inventory_unchanged_by_recovery": True,
                       "source_network_calls": 0, "broker_orders": 0, "full_repository_check": True,
                       "native_systemd_unit_verification": sys.platform.startswith("linux"), "traffic_class": "synthetic"}

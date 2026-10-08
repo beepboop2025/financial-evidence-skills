@@ -31,7 +31,7 @@ from ops_recovery import candidates, recover_snapshot
 from ops_diagnostics import diagnose
 from ops_monitor import UNITS, assess, monitor, transitions
 from ops import handler
-from install import activate, render
+from install import activate, owned_units, previous_units, render
 
 
 class FakeRestic:
@@ -430,6 +430,41 @@ class OperationsTests(unittest.TestCase):
         with patch("install.subprocess.run", side_effect=systemctl):
             activate({name: "" for name in UNITS})
         self.assertEqual(running_console[0], "new-release")
+
+    def test_upgrade_recognizes_all_legacy_units_by_applied_hashes(self):
+        files = render(self.cfg, python='/opt/runtime/python', code='/opt/ops/old',
+                       config_path='/etc/ops/config.json', credentials='/etc/ops/credentials.env', user='research')
+        directory = self.state / 'units'
+        directory.mkdir(mode=0o700)
+        for name, body in files.items():
+            (directory / name).write_text(body)
+        plan = {'schema': 'financial-evidence.runtime-ops-installation.v1', 'applied': True,
+                'installation_id': self.cfg['installation_id'],
+                'unit_sha256': {name: hashlib.sha256(body.encode()).hexdigest() for name, body in files.items()}}
+        path = self.state / 'prior-plan.json'
+        atomic(path, plan)
+        hashes = previous_units(path, self.cfg, files)
+        self.assertEqual(set(owned_units(directory, files, hashes)), set(files))
+        with self.assertRaises(ValueError):
+            owned_units(directory, files, {})
+        changed = directory / 'financial-evidence-runtime-monitor.timer'
+        changed.write_text(changed.read_text() + '# external edit\n')
+        with self.assertRaises(ValueError):
+            owned_units(directory, files, hashes)
+        changed.unlink()
+        with self.assertRaises(ValueError):
+            owned_units(directory, files, hashes)
+
+    def test_upgrade_rejects_unapplied_foreign_or_partial_prior_plan(self):
+        files = {name: '' for name in UNITS}
+        plan = {'schema': 'financial-evidence.runtime-ops-installation.v1', 'applied': True,
+                'installation_id': self.cfg['installation_id'], 'unit_sha256': {name: 'a' * 64 for name in files}}
+        path = self.state / 'prior-plan.json'
+        for changed in ({'applied': False}, {'installation_id': '0' * 32}, {'unit_sha256': {}},
+                        {'unit_sha256': {name: 'invalid' for name in files}}):
+            atomic(path, {**plan, **changed})
+            with self.assertRaises(ValueError):
+                previous_units(path, self.cfg, files)
 
     def test_http_readonly_host_filter_and_stale_fail_closed(self):
         value = self.report()

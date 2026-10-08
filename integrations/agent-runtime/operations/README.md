@@ -1,6 +1,6 @@
 # Operate a private research installation
 
-Runtime Operations 1.0.0 operates the separately published Financial Evidence
+Runtime Operations 1.0.1 operates the separately published Financial Evidence
 0.1.7 runtime. It adds service supervision, a private console, capacity and
 schedule monitoring, persistent incident transitions, encrypted offsite backup
 and verified restoration. Source eligibility and external adoption remain
@@ -12,25 +12,30 @@ The console listens only on `127.0.0.1:8768`. Package installation alone starts
 no service. This is an individually operated installation, not a hosted tenant
 service or public administration API.
 
+Version 1.0.1 adds recovery after host-local receipt loss and retained-row source
+diagnostics. Use a published 1.0.1 archive for these commands; the 1.0.0 archive
+remains available as the earlier release and does not include them.
+
 ## Bind and install
 
-Download the [Runtime Operations 1.0.0 release](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/runtime-ops-v1.0.0),
+Download Runtime Operations 1.0.1 from the [operations releases](https://github.com/beepboop2025/financial-evidence-skills/releases),
 including the archive, `source.json` and `SHA256SUMS`. The
-[verification record](../../../docs/releases/runtime-ops-1.0.0.json) pins the
+[verification records](../../../docs/releases/) pins the
 signed source and the archive digest. On Linux, verify the downloaded bytes and
 their build provenance before extracting them into a new administrator-owned
-release directory:
+release directory. Replace `EXPECTED_SOURCE_COMMIT` with the exact commit in
+the published verification record:
 
 ```sh
 sha256sum --check SHA256SUMS
-gh attestation verify financial-evidence-runtime-ops-1.0.0.tar \
+gh attestation verify financial-evidence-runtime-ops-1.0.1.tar \
   --repo beepboop2025/financial-evidence-skills \
   --signer-workflow beepboop2025/financial-evidence-skills/.github/workflows/runtime-ops-release.yml \
-  --source-digest e7fa30de7d93d8e32733a7152d19c8b799d80571 \
-  --source-ref refs/tags/runtime-ops-v1.0.0
+  --source-digest EXPECTED_SOURCE_COMMIT \
+  --source-ref refs/tags/runtime-ops-v1.0.1
 ```
 
-The archive contains one `financial-evidence-runtime-ops-1.0.0` directory.
+The archive contains one `financial-evidence-runtime-ops-1.0.1` directory.
 The `/opt/runtime-ops` paths below stand for its verified installation path.
 Keep the immutable release files and the verification record with your plan.
 
@@ -153,6 +158,70 @@ local cleanup without another upload. A preparation failure before an intent
 exists retains its directory for inspection: move only a verified pre-upload
 orphan out of `pending/` before resuming.
 
+## Recover after loss of host-local receipts
+
+Retain the operations configuration and repository credentials independently of
+the runtime host. The configuration pins the installation, exact runtime,
+workflow hashes and encrypted repository. It contains no password. You can adapt
+its filesystem paths for a replacement host while retaining those identities.
+The research and operations directories may both be absent for this recovery.
+
+Using the pinned runtime, the operations release and your existing repository
+credentials, list candidate snapshots:
+
+```sh
+/opt/financial-evidence-runtime/current/.venv/bin/python /opt/runtime-ops/ops.py \
+  --config /etc/financial-evidence-runtime-ops/config.json recovery-candidates
+```
+
+A listing proves only that a tagged snapshot exists. It does not establish that
+the old host verified it. Choose an **exact 64-character snapshot ID**, then use
+a new target under an administrator-owned private parent:
+
+```sh
+/opt/financial-evidence-runtime/current/.venv/bin/python /opt/runtime-ops/ops.py \
+  --config /etc/financial-evidence-runtime-ops/config.json restore-snapshot \
+  --snapshot EXACT_64_CHARACTER_SNAPSHOT_ID --target /data/private-recovery/new-state
+```
+
+`latest`, abbreviated IDs, wrong installations, changed runtime/workflow hashes,
+unexpected payload files and corrupt journals are refused. The helper reads the
+authenticated repository manifest, restores the exact snapshot and validates all
+receipts, keys and cursors. Only then does it publish a stopped database and a
+`reconstructed-receipt.json` in the new directory. An interrupted stop transaction
+cannot publish a live copy. The reconstructed receipt records **newly observed
+restore verification**; the prior host's verification remains unknown.
+
+This path creates no backup snapshot and deletes or prunes none. Restic retains
+its normal repository locking behavior. It does not need the original journal or
+host-local backup receipts, does not alter source state, and does not enable a
+scheduler. Keep the original stopped before explicitly resuming a replacement.
+
+## Diagnose a source block
+
+The private console shows the original receipt time, per-reason affected-row
+counts, representative source field pointers and concrete remediation guidance.
+It uses the runtime's own assessment logic at the **original capture time**.
+Current monitor time never becomes a newer source-observation date.
+
+```sh
+/opt/financial-evidence-runtime/current/.venv/bin/python /opt/runtime-ops/ops.py \
+  --config /etc/financial-evidence-runtime-ops/config.json diagnose --job bank-evidence
+```
+
+Omit `--job` to inspect all registered jobs. This command performs no financial
+source fetch and changes no policy. `/diagnostics.json` exposes the bounded
+read-only result privately; a stale or unavailable report returns HTTP 503.
+Examples are representative, with full row counts and omitted reason labels
+reported explicitly. Consult the original receipt for the entire result.
+
+Unknown rights require an upstream rights statement or review. Missing and
+withheld values stay missing. Stale observations require newer eligible data;
+fresh retrieval does not repair them. A partial page needs a narrower explicit
+question or bounded full-page inspection. Register a new workflow ID for a
+changed research question, then review the new operations inventory; do not
+silently relax the original policy to obtain a green status.
+
 ## Capacity and updates
 
 The runtime's 10,000-attempt / 64 MiB receipt allowance remains enforced. Nothing
@@ -184,7 +253,8 @@ python tests/integration_runtime_operations.py --output /ABSOLUTE/NEW/acceptance
 
 The integration test creates an isolated encrypted **synthetic** repository,
 verifies two snapshots with the actual Restic binary, checks stopped recovery
-and same-key deduplication, and performs a full repository integrity check.
+and same-key deduplication, and performs a full repository integrity check. It also hides both original
+state directories and restores by exact snapshot without a host-local receipt.
 Linux also validates all seven systemd units. No source request or broker order
 is made. Production acceptance separately checks the actual offsite repository,
 private HTTP readback, stopped recovery, preserved retry keys and two natural

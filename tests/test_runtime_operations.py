@@ -27,9 +27,11 @@ from financial_evidence.runtime.engine import Runtime, implementation
 from financial_evidence.runtime.store import Store
 from ops_common import atomic, config, inspect_journal, regular, sha
 from ops_backup import backup, recover
+from ops_recovery import candidates, recover_snapshot
+from ops_diagnostics import diagnose
 from ops_monitor import UNITS, assess, monitor, transitions
 from ops import handler
-from install import render
+from install import activate, render
 
 
 class FakeRestic:
@@ -51,13 +53,17 @@ class FakeRestic:
             path = Path(args[-1])
             identifier = hashlib.sha256(str(len(self.snapshots)).encode()).hexdigest()
             self.snapshots[identifier] = {"id": identifier, "paths": [str(path)],
+                                          "hostname": "financial-evidence-runtime", "time": "2026-10-08T09:00:00Z",
                                           "tags": [args[n + 1] for n, a in enumerate(args) if a == "--tag"],
                                           "files": {p.name: p.read_bytes() for p in path.iterdir()}}
             if self.fail_upload_after:
                 raise RuntimeError("accepted before connection dropped")
             return json.dumps({"message_type": "summary", "snapshot_id": identifier}).encode()
         if args[0] == "snapshots":
-            return json.dumps([{k: v for k, v in row.items() if k != "files"} for row in self.snapshots.values() if args[-1] in row["tags"]]).encode()
+            return json.dumps([{k: v for k, v in row.items() if k != "files"} for row in self.snapshots.values()
+                               if row["id"] == args[-1] or args[-1] in row["tags"]]).encode()
+        if args[0] == "dump":
+            return self.snapshots[args[1]]["files"][Path(args[2]).name]
         if args[0] == "restore":
             row = self.snapshots[args[1]]
             destination = Path(args[-1]) / Path(row["paths"][0]).relative_to("/")
@@ -234,6 +240,125 @@ class OperationsTests(unittest.TestCase):
             backup(cfg, restic=self.restic)
         self.assertFalse(any(c[0] == "backup" for c in self.restic.calls))
 
+    def test_disaster_recovery_with_source_and_operations_directories_lost(self):
+        receipt = backup(self.cfg, restic=self.restic)
+        self.root.rename(self.base / "lost-research")
+        self.state.rename(self.base / "lost-operations")
+        self.restic.calls.clear()
+        catalog = candidates(self.cfg, restic=self.restic)
+        self.assertEqual(catalog["snapshots"][0]["status"], "candidate_not_restore_verified")
+        target = self.base / "replacement"
+        recovery = recover_snapshot(self.cfg, receipt["snapshot_id"], target, restic=self.restic)
+        self.assertTrue(recovery["admission_stopped"])
+        self.assertEqual(recovery["previous_host_verification"], "unknown")
+        reconstructed = json.loads((target / "reconstructed-receipt.json").read_text())
+        self.assertEqual(reconstructed["keys_sha256"], receipt["keys_sha256"])
+        restored = Runtime(Store(target), executor=lambda _: self.fail("unexpected source fetch"), clock=lambda: NOW + 300)
+        self.assertEqual(restored.run(self.workflow.id, "permanent-key")["run_id"], self.run["run_id"])
+        self.assertEqual(restored.run(self.workflow.id, "new-key")["reason"], "stopped")
+        self.assertFalse(self.root.exists())
+        self.assertFalse(self.state.exists())
+        self.assertTrue(all(call[0] in {"cat", "snapshots", "dump", "restore"} for call in self.restic.calls))
+        # The reconstructed receipt supports the ordinary recovery path too.
+        again = recover(self.cfg, target / "reconstructed-receipt.json", self.base / "second-recovery", restic=self.restic)
+        self.assertEqual(again["snapshot_id"], receipt["snapshot_id"])
+
+    def test_disaster_recovery_refuses_latest_prefixes_and_wrong_repository(self):
+        for identifier in ("latest", "abcd1234", "--latest", None):
+            with self.assertRaises(ValueError):
+                recover_snapshot(self.cfg, identifier, self.base / "rejected", restic=self.restic)
+        self.assertEqual(self.restic.calls, [])
+        self.restic.repository_id = "b" * 64
+        with self.assertRaises(ValueError):
+            candidates(self.cfg, restic=self.restic)
+        self.assertEqual(len(self.restic.calls), 1)
+
+    def test_disaster_recovery_rejects_foreign_and_unsafe_snapshot_metadata(self):
+        receipt = backup(self.cfg, restic=self.restic)
+        original = copy.deepcopy(self.restic.snapshots[receipt["snapshot_id"]])
+        for changes in ({"hostname": "another-host"}, {"tags": ["runtime-ops-v1", "installation-" + "0" * 32]},
+                        {"paths": ["/data/../pending/" + receipt["operation_id"] + "/payload"]},
+                        {"paths": ["/data/other/payload"]}, {"time": "2026-10-08T09:00:00"}):
+            with self.subTest(changes=changes):
+                self.restic.snapshots[receipt["snapshot_id"]] = {**original, **changes}
+                with self.assertRaises(ValueError):
+                    recover_snapshot(self.cfg, receipt["snapshot_id"], self.base / "rejected", restic=self.restic)
+                self.assertFalse((self.base / "rejected").exists())
+
+    def test_disaster_recovery_rejects_runtime_workflow_and_manifest_drift(self):
+        receipt = backup(self.cfg, restic=self.restic)
+        snapshot = self.restic.snapshots[receipt["snapshot_id"]]
+        original = json.loads(snapshot["files"]["manifest.json"])
+        for changes in ({"implementation_sha256": "e" * 64}, {"operation_id": "0" * 32},
+                        {"package_version": "9.0.0"}, {"extra": "field"}):
+            with self.subTest(changes=changes):
+                snapshot["files"]["manifest.json"] = json.dumps({**original, **changes}).encode()
+                with self.assertRaises(ValueError):
+                    recover_snapshot(self.cfg, receipt["snapshot_id"], self.base / "rejected", restic=self.restic)
+                self.assertFalse((self.base / "rejected").exists())
+        snapshot["files"]["manifest.json"] = json.dumps(original).encode()
+        with self.assertRaises(ValueError):
+            recover_snapshot({**self.cfg, "jobs": {self.workflow.id: "e" * 64}}, receipt["snapshot_id"], self.base / "rejected", restic=self.restic)
+
+    def test_disaster_recovery_never_accepts_corrupt_or_extra_files(self):
+        receipt = backup(self.cfg, restic=self.restic)
+        self.restic.corrupt_restore = True
+        with self.assertRaisesRegex(ValueError, "checksum"):
+            recover_snapshot(self.cfg, receipt["snapshot_id"], self.base / "corrupt", restic=self.restic)
+        self.assertFalse((self.base / "corrupt/runtime.sqlite").exists())
+        self.restic.corrupt_restore = False
+        self.restic.snapshots[receipt["snapshot_id"]]["files"]["unexpected"] = b"not part of the journal"
+        with self.assertRaisesRegex(ValueError, "inventory"):
+            recover_snapshot(self.cfg, receipt["snapshot_id"], self.base / "extra", restic=self.restic)
+        self.assertFalse((self.base / "extra/reconstructed-receipt.json").exists())
+
+    def test_failed_stop_transaction_cannot_publish_a_live_recovery_copy(self):
+        receipt = backup(self.cfg, restic=self.restic)
+        connect = sqlite3.connect
+        class RefuseStop(sqlite3.Connection):
+            def execute(self, sql, *args, **kwargs):
+                if sql.startswith("UPDATE meta SET value='true'"):
+                    raise sqlite3.OperationalError("injected stop failure")
+                return super().execute(sql, *args, **kwargs)
+        def failing_connect(*args, **kwargs):
+            return connect(*args, **kwargs, factory=RefuseStop)
+        with patch("ops_backup.sqlite3.connect", side_effect=failing_connect):
+            with self.assertRaises(sqlite3.OperationalError):
+                recover_snapshot(self.cfg, receipt["snapshot_id"], self.base / "stop-failed", restic=self.restic)
+        self.assertFalse((self.base / "stop-failed/runtime.sqlite").exists())
+        self.assertFalse((self.base / "stop-failed/recovery.json").exists())
+        self.assertFalse(self.store.report()["stopped"])
+
+    def test_diagnostics_explain_original_rows_without_changing_policy_or_source(self):
+        value = result()
+        value["results"][0].update(value=None, rights_status=None, availability="withheld")
+        self.runtime.executor = lambda _: value
+        self.runtime.clock = lambda: NOW + 300
+        self.runtime.run(self.workflow.id, "source-block")
+        before = sha((self.root / "runtime.sqlite").read_bytes())
+        report = diagnose(self.cfg, now=NOW + 90000)
+        job = report["jobs"][0]
+        self.assertEqual(job["affected_row_counts"]["rights_not_established"], 1)
+        self.assertEqual(job["affected_row_counts"]["numeric_value_missing"], 1)
+        self.assertEqual(job["affected_row_counts"]["source_not_available"], 1)
+        self.assertEqual(job["assessment_time"], "original_capture_only")
+        self.assertEqual(job["requirements"], self.workflow.value["requirements"])
+        self.assertIsNone(job["representative_rows"][0]["rights_status"])
+        self.assertEqual(report["source_network_calls"], 0)
+        self.assertFalse(report["policy_changes"])
+        self.assertEqual(sha((self.root / "runtime.sqlite").read_bytes()), before)
+        with self.assertRaises(ValueError):
+            diagnose(self.cfg, job="unregistered")
+
+    def test_corrupt_previous_monitor_state_is_reported_and_replaced(self):
+        (self.state / "health.json").write_bytes(b'{"invalid":')
+        value = monitor(self.cfg, service_units=self.units, now=NOW)
+        self.assertIn("previous_monitor_state_invalid", {i["code"] for i in value["issues"]})
+        self.assertEqual(json.loads((self.state / "health.json").read_text()), value)
+        self.assertEqual(json.loads((self.state / "diagnostics.json").read_text())["status"], "observed")
+        next_value = monitor(self.cfg, service_units=self.units, now=NOW + 1)
+        self.assertNotIn("previous_monitor_state_invalid", {i["code"] for i in next_value["issues"]})
+
     def test_source_blocks_are_distinct_from_operations_failure(self):
         journal = inspect_journal(self.root / "runtime.sqlite")
         journal["jobs"][0]["latest"].update(status="blocked", reasons=["rights_not_established"])
@@ -292,6 +417,20 @@ class OperationsTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 render(self.cfg, **{**args, **changed})
 
+    def test_upgrade_replaces_active_console_without_restarting_research_workers(self):
+        running_console = ["old-release"]
+        def systemctl(command, **kwargs):
+            if command[1] == "restart":
+                self.assertEqual(command[2:], ["financial-evidence-runtime-dashboard.service"])
+                running_console[0] = "new-release"
+            elif command[1] == "enable":
+                pass  # enable --now intentionally cannot replace an active process.
+            else:
+                self.fail("unexpected service mutation")
+        with patch("install.subprocess.run", side_effect=systemctl):
+            activate({name: "" for name in UNITS})
+        self.assertEqual(running_console[0], "new-release")
+
     def test_http_readonly_host_filter_and_stale_fail_closed(self):
         value = self.report()
         atomic(self.state / "health.json", value)
@@ -315,6 +454,13 @@ class OperationsTests(unittest.TestCase):
         status, body = request("/status.json")
         self.assertEqual(status, 503)  # The September fixture cannot claim current health.
         self.assertEqual(json.loads(body)["operations_status"], "stale")
+        self.assertEqual(request("/diagnostics.json")[0], 503)
+        atomic(self.state / "diagnostics.json", diagnose(self.cfg, now=NOW))
+        status, body = request("/diagnostics.json")
+        self.assertEqual(status, 503)
+        self.assertEqual(json.loads(body)["status"], "stale")
+        atomic(self.state / "diagnostics.json", diagnose(self.cfg))
+        self.assertEqual(request("/diagnostics.json")[0], 200)
 
 
 if __name__ == "__main__":

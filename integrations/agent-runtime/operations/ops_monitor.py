@@ -7,7 +7,8 @@ import sqlite3
 import subprocess
 import time
 
-from ops_common import atomic, bound_identity, decode, encode, inspect_journal, private, regular, runtime_identity, utc
+from ops_common import OPS_VERSION, atomic, bound_identity, decode, encode, inspect_journal, private, regular, runtime_identity, utc
+from ops_diagnostics import diagnose
 
 UNITS = ("financial-evidence-runtime.timer", "financial-evidence-runtime.service",
          "financial-evidence-runtime-backup.timer", "financial-evidence-runtime-backup.service",
@@ -108,7 +109,7 @@ def assess(cfg, journal, service_units, backup, free_bytes, now):
     latest_statuses = [j["latest"]["status"] if j["latest"] else None for j in journal["jobs"]]
     source_status = ("blocked" if sources else "not_observed" if not latest_statuses or None in latest_statuses
                      else "requirements_met" if all(s == "complete" for s in latest_statuses) else "unknown")
-    return {"schema": "financial-evidence.runtime-health.v1", "generated_at": utc(now),
+    return {"schema": "financial-evidence.runtime-health.v1", "operations_version": OPS_VERSION, "generated_at": utc(now),
             "valid_until": utc(now + cfg["monitor_max_age_seconds"]),
             "operations_status": "critical" if critical else "attention" if warnings else "healthy",
             "source_status": source_status,
@@ -145,18 +146,32 @@ def metrics(report):
 def monitor(cfg, *, now=None, service_units=None):
     now = time.time() if now is None else now
     state = private(cfg["state"])
-    previous = decode(regular(state / "health.json", 262144), limit=262144) if (state / "health.json").exists() else None
+    previous, previous_invalid = None, False
+    try:
+        if (state / "health.json").exists():
+            previous = decode(regular(state / "health.json", 262144), limit=262144)
+            if (not isinstance(previous, dict) or not isinstance(previous.get("issues"), list)
+                    or not all(isinstance(row, dict) and isinstance(row.get("id"), str) for row in previous["issues"])):
+                raise ValueError("invalid previous monitoring report")
+    except (ValueError, OSError, TypeError):
+        previous, previous_invalid = None, True
     try:
         runtime_identity(cfg)
         journal = inspect_journal(Path(cfg["root"]) / "runtime.sqlite")
         report = assess(cfg, journal, units() if service_units is None else service_units,
                         backup_status(state), shutil.disk_usage(cfg["root"]).free, now)
+        diagnostics = diagnose(cfg, now=now, journal=journal)
     except (ValueError, OSError, KeyError, TypeError, sqlite3.Error, subprocess.SubprocessError) as error:
-        report = {"schema": "financial-evidence.runtime-health.v1", "generated_at": utc(now),
+        report = {"schema": "financial-evidence.runtime-health.v1", "operations_version": OPS_VERSION, "generated_at": utc(now),
                   "valid_until": utc(now + cfg["monitor_max_age_seconds"]), "operations_status": "critical",
                   "source_status": "unknown", "issues": [{"id": "inspection_failed", "code": "inspection_failed",
                   "severity": "critical", "job": None}], "error_type": type(error).__name__,
                   "execution_authority": False, "external_active_users": None, "coverage_complete": False}
+        diagnostics = {"schema": "financial-evidence.runtime-source-diagnostics.v1", "generated_at": utc(now),
+                       "valid_until": report["valid_until"], "status": "unavailable", "source_network_calls": 0}
+    if previous_invalid:
+        report["operations_status"] = "critical"
+        report["issues"].append({"id": "previous_monitor_state_invalid", "code": "previous_monitor_state_invalid", "severity": "critical", "job": None})
     changes = transitions(previous, report, report["generated_at"])
     ledger = state / "incidents.jsonl"
     if changes:
@@ -168,6 +183,7 @@ def monitor(cfg, *, now=None, service_units=None):
         else:
             atomic(ledger, existing + appended, raw=True)
     atomic(state / "health.json", report)
+    atomic(state / "diagnostics.json", diagnostics)
     atomic(state / "metrics.prom", metrics(report), raw=True)
     return report
 
@@ -176,12 +192,16 @@ def dashboard():
     """A private live view; all upstream text is inserted with textContent."""
     return b'''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Financial Evidence operations</title><style>
-body{background:#f6f5ef;color:#202b26;font:16px system-ui;max-width:1100px;margin:3rem auto;padding:0 1.2rem}h1{font-size:2.5rem}h2{margin-top:2rem}button{padding:.6rem 1rem}table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:.8rem;border-bottom:1px solid #ccd2c9}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#fff;padding:1rem}.bad{color:#992e22}.good{color:#236442}.sub{color:#58665d}#status{font-size:1.4rem;font-weight:650}a{color:#236442}</style>
+body{background:#f6f5ef;color:#202b26;font:16px system-ui;max-width:1100px;margin:3rem auto;padding:0 1.2rem}h1{font-size:2.5rem}h2{margin-top:2rem}button{padding:.6rem 1rem}table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:.8rem;border-bottom:1px solid #ccd2c9}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#fff;padding:1rem}.bad{color:#992e22}.good{color:#236442}.sub{color:#58665d}#status{font-size:1.4rem;font-weight:650}a{color:#236442}.diagnostic{border:1px solid #ccd2c9;padding:1rem;margin:1rem 0;background:#fff}.diagnostic h3{margin-top:0}.diagnostic li{margin:.6rem 0}summary{cursor:pointer}td{overflow-wrap:anywhere}</style>
 <h1>Financial Evidence operations</h1><p class="sub">Private research runtime. This console grants no trading permission.</p>
 <p id="status">Loading current health...</p><p id="clock"></p><button id="refresh">Refresh</button>
 <h2>Research workflows</h2><table><thead><tr><th>Workflow</th><th>Last attempt</th><th>Source observations</th><th>Next due</th></tr></thead><tbody id="jobs"></tbody></table>
+<h2>Source diagnosis</h2><p class="sub">These explanations use retained receipts at their original capture times. They do not refresh source data or change policy.</p><div id="diagnostics">Loading source diagnosis...</div>
 <h2>Recovery</h2><pre id="recovery">Loading...</pre><h2>Active issues</h2><pre id="issues"></pre>
 <p class="sub">Green operations describes the service. Source blocks retain their own reasons. Internal runs are not users or revenue. Refreshes every 20 seconds.</p>
 <script>let latest=null;const byId=id=>document.getElementById(id);function freshness(){if(latest&&Date.now()>Date.parse(latest.valid_until)){byId('status').textContent='STALE: monitor has stopped reporting';byId('status').className='bad';}}
 async function refresh(){try{const response=await fetch('/status.json',{cache:'no-store'});const r=await response.json();latest=r;byId('status').textContent='Operations: '+r.operations_status+' | Source data: '+r.source_status;byId('status').className=r.operations_status==='healthy'?'good':'bad';byId('clock').textContent='Observed '+r.generated_at;byId('jobs').replaceChildren();for(const j of (r.journal?.jobs||[])){const tr=document.createElement('tr');for(const text of [j.id,j.latest?.status||'No attempt',(j.latest?.observation_dates||[]).join(', '),new Date(j.next_due*1000).toISOString()]){const td=document.createElement('td');td.textContent=text;tr.append(td);}byId('jobs').append(tr);}byId('recovery').textContent=JSON.stringify(r.backup||{status:'Unknown'},null,2);byId('issues').textContent=JSON.stringify(r.issues,null,2);freshness();}catch(e){byId('status').textContent='UNAVAILABLE: cannot read the private monitor';byId('status').className='bad';}}
-byId('refresh').addEventListener('click',refresh);refresh();setInterval(refresh,20000);setInterval(freshness,1000);</script></html>'''
+const expandedJobs=new Set();
+async function sourceDiagnosis(){const area=byId('diagnostics');try{const response=await fetch('/diagnostics.json',{cache:'no-store'});const data=await response.json();area.replaceChildren();if(!response.ok||data.status!=='observed'||Date.now()>Date.parse(data.valid_until)){area.textContent='Source diagnosis is unavailable or stale. Inspect current monitor health.';return;}for(const job of data.jobs||[]){if(!job.reasons?.length)continue;const card=document.createElement('section');card.className='diagnostic';const title=document.createElement('h3');title.textContent=job.job;const captured=document.createElement('p');captured.className='sub';captured.textContent='Receipt captured '+job.captured_at+'; '+job.rows_checked+' rows checked.';const list=document.createElement('ul');for(const reason of job.reasons){const item=document.createElement('li');const count=job.affected_row_counts?.[reason];item.textContent=reason+(count?' ('+count+' affected rows)':' (result-level check)')+': '+(data.guidance?.[reason]||'Inspect the retained receipt.');list.append(item);}const details=document.createElement('details');details.open=expandedJobs.has(job.job);details.addEventListener('toggle',()=>{if(details.open)expandedJobs.add(job.job);else expandedJobs.delete(job.job);});const summary=document.createElement('summary');summary.textContent='Representative affected rows and source fields';const pre=document.createElement('pre');pre.textContent=JSON.stringify(job.representative_rows||[],null,2);details.append(summary,pre);card.append(title,captured,list,details);area.append(card);}if(!area.children.length)area.textContent='No source blocks in the retained receipts. This does not establish current source eligibility.';}catch(e){area.textContent='Source diagnosis is unavailable.';}}
+async function refreshAll(){await Promise.all([refresh(),sourceDiagnosis()]);}
+byId('refresh').addEventListener('click',refreshAll);refreshAll();setInterval(refreshAll,20000);setInterval(freshness,1000);</script></html>'''

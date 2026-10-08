@@ -12,6 +12,8 @@ import time
 from ops_backup import backup, recover
 from ops_common import OPS_VERSION, config, decode, encode, private, regular
 from ops_monitor import dashboard, monitor
+from ops_recovery import candidates, recover_snapshot
+from ops_diagnostics import diagnose
 
 
 def handler(cfg):
@@ -33,6 +35,16 @@ def handler(cfg):
             status = 200
             if self.path == "/":
                 body, content_type = dashboard(), "text/html; charset=utf-8"
+            elif self.path == "/diagnostics.json":
+                try:
+                    value = decode(regular(Path(cfg["state"]) / "diagnostics.json", 1_048_576), limit=1_048_576)
+                    if datetime.fromisoformat(value["valid_until"]).timestamp() < time.time():
+                        value = {**value, "status": "stale"}
+                    status = 200 if value.get("status") == "observed" else 503
+                    body, content_type = encode(value), "application/json"
+                except (OSError, ValueError, KeyError, TypeError):
+                    status = 503
+                    body, content_type = b'{"status":"unavailable"}', "application/json"
             elif self.path in {"/status.json", "/metrics"}:
                 try:
                     value = decode(regular(Path(cfg["state"]) / "health.json", 262144), limit=262144)
@@ -87,10 +99,16 @@ def main(argv=None):
     sub.add_parser("monitor")
     sub.add_parser("backup")
     sub.add_parser("status")
+    sub.add_parser("recovery-candidates")
+    command = sub.add_parser("diagnose")
+    command.add_argument("--job")
     command = sub.add_parser("serve")
     command.add_argument("--port", type=int, default=8768)
     command = sub.add_parser("restore")
     command.add_argument("--receipt", required=True)
+    command.add_argument("--target", required=True)
+    command = sub.add_parser("restore-snapshot")
+    command.add_argument("--snapshot", required=True)
     command.add_argument("--target", required=True)
     args = parser.parse_args(argv)
     try:
@@ -103,6 +121,12 @@ def main(argv=None):
             result = backup(cfg)
         elif args.command == "restore":
             result = recover(cfg, args.receipt, args.target)
+        elif args.command == "recovery-candidates":
+            result = candidates(cfg)
+        elif args.command == "restore-snapshot":
+            result = recover_snapshot(cfg, args.snapshot, args.target)
+        elif args.command == "diagnose":
+            result = diagnose(cfg, job=args.job)
         elif args.command == "serve":
             serve(cfg, args.port)
             return 0

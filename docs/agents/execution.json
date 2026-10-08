@@ -5,7 +5,7 @@
   "guide": "https://beepboop2025.github.io/financial-evidence-skills/agents/execution-setup.md",
   "source": {
     "repository": "https://github.com/beepboop2025/liquilens-evidence-carrier",
-    "commit": "ea652c3c5a60556a998ce027ae7772ae90941545",
+    "commit": "942596b55277e002d940fb1fa482b7282212b330",
     "path": "integrations/trading-copilot",
     "status": "integration_candidate"
   },
@@ -36,7 +36,7 @@
     },
     {
       "kind": "read_only_source_observer",
-      "deployment_guide": "https://github.com/beepboop2025/liquilens-evidence-carrier/blob/ea652c3c5a60556a998ce027ae7772ae90941545/integrations/trading-copilot/OBSERVATORY-DEPLOYMENT.md",
+      "deployment_guide": "https://github.com/beepboop2025/liquilens-evidence-carrier/blob/942596b55277e002d940fb1fa482b7282212b330/integrations/trading-copilot/OBSERVATORY-DEPLOYMENT.md",
       "command": "uv run --project integrations/trading-copilot --locked liquilens-trading-copilot observe --format json",
       "formats": ["json", "markdown"],
       "report_schema": "liquilens.execution-observatory.v1",

@@ -1581,6 +1581,7 @@
     "entries_without_public_listing_url": 30,
     "receipt_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/surface-sync-20261008.json",
     "scope": "Discovery metadata and prior submission reconciliation. HTTP success alone does not change listing acceptance or establish adoption.",
-    "tracked_entries": 67
+    "tracked_entries": 70,
+    "counts_scope": "The initial anonymous sweep covered 58 records; its readback counters are retained. Tracked entries include the subsequent API listings and accepted NoiseFloor release records."
   }
 }

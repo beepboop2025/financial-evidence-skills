@@ -1,0 +1,10 @@
+[Unit]
+Description=Check due Financial Evidence research workflows each minute
+
+[Timer]
+OnBootSec=1min
+OnUnitInactiveSec=1min
+Unit=financial-evidence-runtime.service
+
+[Install]
+WantedBy=timers.target

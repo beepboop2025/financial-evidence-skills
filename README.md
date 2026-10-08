@@ -374,3 +374,14 @@ The code and skill instructions are MIT-licensed.
 [Try the browser order-lifecycle simulator](https://beepboop2025.github.io/financial-evidence-skills/agents/execution.html) with synthetic prices, timeout recovery, STOP and an exportable journal. It contacts no broker.
 
 The [source-pinned integration guide](docs/agents/execution-setup.md) covers the separate customer-operated paper REST/MCP host and a live-broker connector candidate. These are in the Evidence Carrier repository; the public Financial Evidence research router remains read-only. Broker activation requires eligible evidence, account controls and the customer's credentials. The [14-day scorecard](docs/agents/pilot-scorecard.md) measures useful independent use and repeat tasks without treating tests or downloads as customers.
+
+## Durable research workflows
+
+The [Financial Evidence Runtime source candidate](integrations/agent-runtime/README.md)
+adds owner-registered workflows, atomic run limits, offline replay, ordered change
+events and backup recovery through Python, CLI and private stdio MCP. It reuses
+the existing product clients and preserves source clocks and missingness. See
+the [architecture](docs/infrastructure/ARCHITECTURE.md) and
+[adoption measurements](docs/infrastructure/ADOPTION.md). These commands require
+the candidate source installation; they are not part of the published 0.1.6
+artifact. Local run counts do not establish external users or paid adoption.

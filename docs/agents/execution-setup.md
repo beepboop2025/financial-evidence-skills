@@ -203,6 +203,11 @@ uv run --project integrations/trading-copilot --locked liquilens-agent assess \
 
 Save the intent before assessment and its assessment ID before any submission.
 An assessment may be unavailable or held. It does not submit an order.
+Assessment retains and evaluates source evidence for the paper proposal;
+submission separately checks account controls. Assessment and status requests
+append durable audit events, including while execution is disabled. Keep the
+original assessment and expiry when retrying the same intent and proposal;
+changing the proposal under that intent is refused.
 The execution token, operator enablement and all source/account checks are
 separate requirements. Never use a new intent to retry an uncertain order.
 
@@ -213,6 +218,28 @@ eight-day age limit. Seiche's selected funding inputs were available.
 This is a dated observation, not a permanent readiness claim. Reassess current
 sources in your installation. Do not mark missing rights approved or increase
 an age limit solely to make an order pass.
+
+## Back up a disabled private installation
+
+The separately qualified [backup and recovery helper](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/9988d2301d041ab94f21f0b04c991a5e3bc5c836/integrations/trading-copilot/HOST-BACKUP.md)
+ships at source `9988d2301d041ab94f21f0b04c991a5e3bc5c836`. It does not
+change the paper-host runtime pin above. Follow that guide to qualify and
+install the helper, provision private encryption/storage configuration and
+verify a manual backup before enabling the six-hour timer and startup recovery.
+
+The helper encrypts a consistent capture, uploads it, downloads and decrypts
+it, and checks file hashes, both databases and identity bindings in isolation.
+Maintenance and token rotation coordinate through its existing operation lock.
+Recovery may resume only a previously active host whose disabled configuration,
+STOP state and service definition still match its retained intent. It does not
+restore into production or authorize trading. Active trading requires a
+separately reviewed recovery design.
+
+**Dated operator verification, 8 October 2026:** an independent scheduled backup
+passed at 12:20:08 UTC, followed by authenticated disabled-host acceptance at
+12:21:12 UTC. This qualifies one private installation's encrypted backup and
+isolated restore checks; a full production disaster-recovery exercise remains
+separate. Each customer must establish acceptance for their own installation.
 
 ## Embed in an AI platform
 
@@ -279,6 +306,35 @@ Alpaca's documented Broker API estimation endpoint is indicative and excludes
 crypto and limit orders, so it cannot supply the preview required by this
 Trading API limit-order connector. [Broker estimation scope](https://docs.alpaca.markets/us/reference/get-v1-trading-accounts-account_id-orders-estimation).
 
+### Check an existing live account without activation
+
+The GET-only account diagnostic is a separately released source addition at
+`4c5e9939cc0973da9f10353c3eed7dffe060f775`, documented in its
+[pinned live connector guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/4c5e9939cc0973da9f10353c3eed7dffe060f775/integrations/trading-copilot/LIVE-CONNECTOR.md).
+Use a separate checkout of that reviewed revision with an existing, privately
+provisioned customer state directory; the earlier paper-host checkout does not
+include this command:
+
+```sh
+uv run --project integrations/trading-copilot --locked liquilens-live check-account \
+  --state-dir /absolute/private/live-state
+```
+
+It reads account, positions and open orders with fixed-origin GET requests and
+works with live execution disabled or STOP present. It requires customer account
+binding, limits and credentials, but no receipt issuer, signed receipt or
+activation acknowledgment. Its JSON contains redacted checks, counts, flags and
+failure reasons. It creates or changes no state, journal, receipt or order.
+
+Exit 0 means the momentary account controls passed; exit 2 means a failed or
+incomplete check. These separate GET responses are not an atomic snapshot and
+cannot authorize a later order. `live_ready` stays false. The released diagnostic
+was tested with synthetic HTTP doubles; no provisioned live account or broker
+fill is claimed. Preview, quote, receipt-issuer and customer deployment
+qualification remain separate requirements.
+
+### Read retained local outcomes
+
 Local recovery remains available when credentials are removed:
 
 ```sh
@@ -309,8 +365,9 @@ into an agent prompt or a public issue. [Official signup requirements](https://a
 
 Account setup alone does not admit source evidence. The default product-evidence
 profile also requires current observations and the applicable data permissions.
-Its doctor explains local blockers; an execution assessment must still pass the
-source and account checks at the time of the request.
+Its doctor explains local blockers. Assessment evaluates and retains source
+evidence; submission separately checks account controls and all required
+execution gates at the time of the request.
 
 Platforms connecting existing customers through OAuth need their own approved
 Alpaca Connect application and explicit paper-environment authorization. This

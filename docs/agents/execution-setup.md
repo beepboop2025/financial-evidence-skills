@@ -61,7 +61,7 @@ Financial Evidence wheel or a new PyPI release. Requires Python 3.11–3.14 and 
 ```sh
 git clone https://github.com/beepboop2025/liquilens-evidence-carrier.git
 cd liquilens-evidence-carrier
-git checkout --detach 8be2261f46bfbde390d277bc60c49d75a9c315aa
+git checkout --detach ee6bdd549e4ac478342e64551f755f5a6389e36a
 uv sync --project integrations/trading-copilot --locked
 ```
 
@@ -114,7 +114,7 @@ secrets. Missing credentials affect only the account row. It does not use
 receipt-signing authority, write operator state or enable execution. Keep the
 input files private and provide them directly, never through a prompt.
 
-For recurring source checks, follow the [source observatory deployment guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/8be2261f46bfbde390d277bc60c49d75a9c315aa/integrations/trading-copilot/OBSERVATORY-DEPLOYMENT.md).
+For recurring source checks, follow the [source observatory deployment guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/ee6bdd549e4ac478342e64551f755f5a6389e36a/integrations/trading-copilot/OBSERVATORY-DEPLOYMENT.md).
 It installs a separate observer service and timer with bounded private history.
 The timer collects **thirty minutes** after the preceding run completes, with
 up to fifteen seconds of jitter: at most 48 scheduled calls per day, leaving
@@ -149,7 +149,7 @@ clocks; do not retry repeatedly or relax eligibility limits to obtain a pass.
 
 ## Paper account
 
-**Existing bound paper account:** follow the [same-state host attachment guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/8be2261f46bfbde390d277bc60c49d75a9c315aa/integrations/trading-copilot/HOST-ATTACH.md).
+**Existing bound paper account:** follow the [same-state host attachment guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/ee6bdd549e4ac478342e64551f755f5a6389e36a/integrations/trading-copilot/HOST-ATTACH.md).
 The guarded check/prepare/apply flow preserves the existing account, broker/HMAC
 credentials, limits, lock and audit history. It adds private agent access without
 initializing another account directory. It requires disabled paper configuration,
@@ -169,7 +169,7 @@ uv run --project integrations/trading-copilot --locked liquilens-agent-host init
 ```
 
 Provision your own paper account ID and paper credentials in the generated
-owner-only files. Follow the [complete host guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/8be2261f46bfbde390d277bc60c49d75a9c315aa/integrations/trading-copilot/AGENT-HOST.md)
+owner-only files. Follow the [complete host guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/ee6bdd549e4ac478342e64551f755f5a6389e36a/integrations/trading-copilot/AGENT-HOST.md)
 for identity, network isolation, activation, recovery and supported limits.
 The default profile is exactly **$1,000 BTC/USD market IOC**. It requires the
 relevant product evidence and account checks before submission.
@@ -265,7 +265,7 @@ uv run --project integrations/trading-copilot --locked liquilens-live doctor \
 ```
 
 These commands contact no broker. Initialization leaves live execution off
-and all credentials blank. The [live connector contract](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/8be2261f46bfbde390d277bc60c49d75a9c315aa/integrations/trading-copilot/LIVE-CONNECTOR.md)
+and all credentials blank. The [live connector contract](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/ee6bdd549e4ac478342e64551f755f5a6389e36a/integrations/trading-copilot/LIVE-CONNECTOR.md)
 specifies customer authorization, dedicated account ownership, trusted issuer
 binding, entitled execution-grade inputs and the verified broker-preview
 reference needed before a live order. Its local preflight does not create that

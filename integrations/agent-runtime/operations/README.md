@@ -19,20 +19,19 @@ remains available as the earlier release and does not include them.
 
 ## Bind and install
 
-Download Runtime Operations 1.0.2 from the [operations releases](https://github.com/beepboop2025/financial-evidence-skills/releases),
+Download Runtime Operations 1.0.2 from the [1.0.2 release](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/runtime-ops-v1.0.2),
 including the archive, `source.json` and `SHA256SUMS`. The
 [verification record](../../../docs/releases/runtime-ops-1.0.2.json) pins the
 signed source and the archive digest. On Linux, verify the downloaded bytes and
 their build provenance before extracting them into a new administrator-owned
-release directory. Replace `EXPECTED_SOURCE_COMMIT` with the exact commit in
-the published verification record:
+release directory. The following source pin matches the published verification record:
 
 ```sh
 sha256sum --check SHA256SUMS
 gh attestation verify financial-evidence-runtime-ops-1.0.2.tar \
   --repo beepboop2025/financial-evidence-skills \
   --signer-workflow beepboop2025/financial-evidence-skills/.github/workflows/runtime-ops-release.yml \
-  --source-digest EXPECTED_SOURCE_COMMIT \
+  --source-digest 54858fd2d5ebfe0dcfd3258bb23acdde64c8c85a \
   --source-ref refs/tags/runtime-ops-v1.0.2
 ```
 

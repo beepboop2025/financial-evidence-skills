@@ -368,3 +368,9 @@ The code and skill instructions are MIT-licensed.
 ## Quant and research agents
 
 [Native framework tools and cited quant datasets](https://beepboop2025.github.io/financial-evidence-skills/agents/) connect Seiche, LiquiLens and Undertow. Source-pinned agent release 1.0.0 adds compact queries, a three-product review and repeat-call revisions. See [the source guide](https://github.com/beepboop2025/financial-evidence-skills/tree/agent-v1.0.0/integrations/agents). These are integration recipes, not evidence of external adoption.
+
+## AI execution integration
+
+[Try the browser order-lifecycle simulator](https://beepboop2025.github.io/financial-evidence-skills/agents/execution.html) with synthetic prices, timeout recovery, STOP and an exportable journal. It contacts no broker.
+
+The [source-pinned integration guide](docs/agents/execution-setup.md) covers the separate customer-operated paper REST/MCP host and a live-broker connector candidate. These are in the Evidence Carrier repository; the public Financial Evidence research router remains read-only. Broker activation requires eligible evidence, account controls and the customer's credentials. The [14-day scorecard](docs/agents/pilot-scorecard.md) measures useful independent use and repeat tasks without treating tests or downloads as customers.

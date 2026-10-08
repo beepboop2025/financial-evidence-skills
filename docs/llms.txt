@@ -79,6 +79,11 @@ Packet `status` equals `transport_status` and describes retrieval only. Every pa
 
 ## Quant and research agents
 
+- [AI execution walkthrough](https://beepboop2025.github.io/financial-evidence-skills/agents/execution.html): browser-only synthetic simulation, private paper REST/MCP host and a separately gated customer-owned live connector. The simulation contacts no broker and records no customer analytics.
+- [Execution installation and scope](https://beepboop2025.github.io/financial-evidence-skills/agents/execution-setup.md): source-pinned setup, account controls, exact-order receipts, STOP and reconciliation. The live connector is an integration candidate; current public evidence does not qualify live execution.
+- [Execution capability catalog](https://beepboop2025.github.io/financial-evidence-skills/agents/execution.json): machine-readable scopes and a dated source-gate observation. Public research MCP endpoints cannot execute orders.
+- [Integration pilot scorecard](https://beepboop2025.github.io/financial-evidence-skills/agents/pilot-scorecard.md): a 14-day protocol for independent first use, repeat use and paid continuation; targets are not measured traction.
+
 - [Product connection catalog](https://beepboop2025.github.io/financial-evidence-skills/agents/connections.json): direct LiquiLens, Seiche and Undertow MCP endpoints, initial coverage/health/access tools, and dated inventory checks.
 - [MCP connection guide](https://beepboop2025.github.io/financial-evidence-skills/agents/CONNECT.md): portable and VS Code settings plus a bounded three-product API example. Public research tools have no execution authority; subscriber entitlements remain separate.
 

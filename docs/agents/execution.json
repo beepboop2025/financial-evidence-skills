@@ -1,0 +1,73 @@
+{
+  "schema": "liquilens.execution-capabilities.v1",
+  "updated_at": "2026-10-08",
+  "publisher": "LIQUILENS PRIVATE LIMITED",
+  "guide": "https://beepboop2025.github.io/financial-evidence-skills/agents/execution-setup.md",
+  "source": {
+    "repository": "https://github.com/beepboop2025/liquilens-evidence-carrier",
+    "commit": "328832ee996734ec2a2d5f27ad458e528d7f33ef",
+    "path": "integrations/trading-copilot",
+    "status": "integration_candidate"
+  },
+  "interfaces": [
+    {
+      "kind": "browser_simulation",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/agents/execution.html",
+      "market_data": "synthetic",
+      "broker_contacted": false,
+      "credentials_required": false,
+      "analytics_collected": false,
+      "state": "in_memory_until_reload"
+    },
+    {
+      "kind": "customer_operated_paper_host",
+      "transports": ["authenticated_http", "private_stdio_mcp"],
+      "broker": "Alpaca paper",
+      "profile": "BTC/USD market IOC, USD 1000",
+      "default_enabled": false,
+      "public_managed_endpoint": null,
+      "durable_order_intents": true,
+      "automatic_submit_retries": false,
+      "requires_current_eligible_source_evidence": true
+    },
+    {
+      "kind": "customer_owned_live_connector",
+      "transports": ["python", "local_cli"],
+      "broker": "Alpaca live",
+      "order_types": ["quantity_sized_limit"],
+      "equity_time_in_force": "day",
+      "crypto_time_in_force": "ioc",
+      "default_enabled": false,
+      "public_managed_endpoint": null,
+      "durable_order_intents": true,
+      "automatic_submit_retries": false,
+      "requires": [
+        "customer_account_mandate_and_credentials",
+        "configured_symbol_and_exposure_limits",
+        "operator_activation",
+        "qualified_live_evidence",
+        "independently_verified_broker_preview_reference",
+        "authenticated_exact_order_live_receipt"
+      ],
+      "live_receipt_issuer_included": false,
+      "real_broker_fill_verified": false
+    }
+  ],
+  "source_gate_observation": {
+    "observed_at": "2026-10-08T03:29:00Z",
+    "scope": "default_paper_profile_source_assessment_only",
+    "broker_contacted": false,
+    "status": "unavailable",
+    "liquilens": {"reason": "CP rollover observation stale for profile", "source_as_of": "2026-09-30"},
+    "undertow": {"reason": "rights_manifest_not_approved", "manifest_status": "pending_owner_review"},
+    "is_current_health_assertion": false
+  },
+  "adoption": {
+    "independent_activated_organizations": null,
+    "retained_organizations": null,
+    "verified_paying_customers": null,
+    "coverage_complete": false,
+    "simulation_runs_count_as_customers": false
+  },
+  "public_research_mcp_execution_authority": "none"
+}

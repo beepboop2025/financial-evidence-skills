@@ -1,6 +1,6 @@
 {
   "schema": "financial-evidence.distribution-surface-sync.v1",
-  "observed_at": "2026-10-08T11:44:54.209471+00:00",
+  "observed_at": "2026-10-08T12:25:18.882263+00:00",
   "scope": "Existing product listings and submissions; discovery and publication are separate from usage, source eligibility and independent adoption.",
   "tracked_entries": 67,
   "record_count_is_not_new_publications": true,
@@ -46,24 +46,19 @@
       "state": "live",
       "url": "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills",
       "latest_surface_check": {
-        "observed_at": "2026-10-08T11:16:05.165102+00:00",
+        "id": "glama",
         "url": "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills",
         "http_status": 200,
-        "final_url": "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills",
-        "readback": "retrieved_not_acceptance",
-        "sha256": "96eed552ca855ea4952d5c2697f74e85f8991a8bcd59c235e9b66ba51e90fe19",
-        "title": "financial-evidence by beepboop2025 | Glama",
-        "mentioned_versions": [
-          "0.1.5",
-          "0.1.6",
-          "1.0.0",
-          "1.1.1",
-          "v0.1.5",
-          "v0.1.6"
-        ]
+        "sha256": "6d781d6c98a6dfbc24d3bfa70266c696d87a7a1e7ee8d1bc4c1ca058ae0154e2",
+        "has_current_guide": false,
+        "has_0162": false,
+        "has_017": true,
+        "observed_at": "2026-10-08T12:12:14.387221+00:00",
+        "authentication_used": false,
+        "readback": "updated_public_metadata_verified"
       },
-      "metadata_freshness": "cached_install_instructions_0.1.6",
-      "next_action": "Refresh the existing repository crawl to published 0.1.7; retain public listing status separately from cached metadata freshness."
+      "metadata_freshness": "current_release_and_setup_guidance",
+      "next_action": "Monitor repository crawl after future releases."
     },
     {
       "id": "docker-mcp-catalog",
@@ -171,7 +166,7 @@
         "title": "Financial Evidence by LiquiLens - MCP | Smithery",
         "mentioned_versions": []
       },
-      "metadata_freshness": null,
+      "metadata_freshness": "live_endpoint_0.1.7_verified",
       "next_action": "Track independently useful use; repeat the scan after relevant tool changes."
     },
     {
@@ -324,17 +319,21 @@
       "state": "live",
       "url": "https://documenter.getpostman.com/view/58772927/2sBYHPz2Jm",
       "latest_surface_check": {
-        "observed_at": "2026-10-08T11:16:06.200937+00:00",
+        "id": "postman-research-api",
         "url": "https://documenter.getpostman.com/view/58772927/2sBYHPz2Jm",
-        "http_status": 200,
-        "final_url": "https://documenter.getpostman.com/view/58772927/2sBYHPz2Jm",
-        "readback": "retrieved_not_acceptance",
-        "sha256": "150c441005eca269fa21c3b206d9f6003687d0271757c36ccb7cc5cc90beb0e6",
-        "title": "LiquiLens Financial Evidence Research API | Source-cited market data",
-        "mentioned_versions": []
+        "observed_at": "2026-10-08T12:25:18.882263+00:00",
+        "readback": "rendered_public_documentation_verified",
+        "publisher_user_id": "58772927",
+        "versions": [
+          "0.1.7",
+          "1.1.3"
+        ],
+        "sha256": "903ef105de14f8cb7b183c81146cce14aa932046f6dc18618a1e0585a1469840",
+        "current_guide_visible": true,
+        "interface_catalog_visible": true
       },
-      "metadata_freshness": null,
-      "next_action": "Measure independent task completion and return use."
+      "metadata_freshness": "current_release_and_setup_guidance",
+      "next_action": "Keep this existing collection aligned with the corresponding product schema; preserve its public URL."
     },
     {
       "id": "smithery-research-desk",
@@ -479,8 +478,8 @@
           "v0.1.6"
         ]
       },
-      "metadata_freshness": "cached_install_instructions_0.1.6",
-      "next_action": "Refresh the existing repository crawl to published 0.1.7; retain public listing status separately from cached metadata freshness."
+      "metadata_freshness": "repository_refresh_requested_pending_recrawl",
+      "next_action": "Acknowledge the existing Requested refresh state; await public repository recrawl and verify 0.1.7 without duplicate requests."
     },
     {
       "id": "mcpservers-org-liquilens",
@@ -520,8 +519,8 @@
           "127.0.0"
         ]
       },
-      "metadata_freshness": null,
-      "next_action": "Review operator-cached metadata after future product releases."
+      "metadata_freshness": "repository_refresh_requested_pending_recrawl",
+      "next_action": "Await the requested repository recrawl and verify 0.16.2 on the existing public listing without duplicate submissions."
     },
     {
       "id": "mcpservers-org-undertow",
@@ -615,8 +614,9 @@
           "v0.1.7"
         ]
       },
-      "metadata_freshness": null,
-      "next_action": "Refresh the stale install pin and complete operator enrichment after ownership verification."
+      "metadata_freshness": "0.1.7_correction_pending_directory_review",
+      "next_action": "Await AllMCPs edit review, then verify the served install command and endpoint without resubmitting.",
+      "edit_state": "submitted_pending_review"
     },
     {
       "id": "allmcps-liquilens",
@@ -952,21 +952,19 @@
       "latest_surface_check": {
         "id": "postman-liquilens",
         "url": "https://documenter.getpostman.com/view/58772927/2sBYHPz25W",
-        "observed_at": "2026-10-08T11:37:43.585541+00:00",
-        "authentication_used": false,
-        "http_status": 200,
-        "final_url": "https://documenter.getpostman.com/view/58772927/2sBYHPz25W",
-        "content_type": "text/html; charset=utf-8",
-        "sha256": "af0cbf13407db1bd3d3c9738db0ad4d0aa79056c520a0d2e03db968367bf57d2",
-        "bytes": 40434,
-        "title": "LiquiLens Public API: Bank and Lender Evidence",
-        "mentioned_versions": [
-          "1.37.2",
-          "3.27.0"
-        ]
+        "observed_at": "2026-10-08T12:25:18.882263+00:00",
+        "readback": "rendered_public_documentation_verified",
+        "publisher_user_id": "58772927",
+        "versions": [
+          "1.0.0",
+          "1.8.1"
+        ],
+        "sha256": "61aef88eca2fce26cf6f82be0bbb9140c421b1960fe5cd2aa663df59f8f26713",
+        "current_guide_visible": true,
+        "interface_catalog_visible": true
       },
-      "metadata_freshness": "publisher_authentication_pending",
-      "next_action": "Refresh the existing collection using its publisher account; current Chrome account does not own it."
+      "metadata_freshness": "current_release_and_setup_guidance",
+      "next_action": "Keep this existing collection aligned with the corresponding product schema; preserve its public URL."
     },
     {
       "id": "postman-seiche",
@@ -975,21 +973,21 @@
       "latest_surface_check": {
         "id": "postman-seiche",
         "url": "https://documenter.getpostman.com/view/58772927/2sBYHPz25X",
-        "observed_at": "2026-10-08T11:37:43.585585+00:00",
-        "authentication_used": false,
-        "http_status": 200,
-        "final_url": "https://documenter.getpostman.com/view/58772927/2sBYHPz25X",
-        "content_type": "text/html; charset=utf-8",
-        "sha256": "dd87f3a011b362e9f902c5f833e6c0ca1a20fd71e07a176f0a9d4c2ff31fa7eb",
-        "bytes": 40437,
-        "title": "Seiche Public API: Funding and Money Market Evidence",
-        "mentioned_versions": [
-          "1.37.2",
-          "3.27.0"
-        ]
+        "observed_at": "2026-10-08T12:25:18.882263+00:00",
+        "readback": "rendered_public_documentation_verified",
+        "publisher_user_id": "58772927",
+        "versions": [
+          "0.16.2"
+        ],
+        "sha256": "3c6de6ca676416352fdc30e33d076dc4a7cd64ed388c53c68030c56046a032c9",
+        "current_guide_visible": true,
+        "interface_catalog_visible": true,
+        "linked_spec_version": "0.16.2",
+        "linked_spec_matches_live_api": true,
+        "path_count": 27
       },
-      "metadata_freshness": "publisher_authentication_pending",
-      "next_action": "Refresh the existing collection using its publisher account; current Chrome account does not own it."
+      "metadata_freshness": "current_release_and_setup_guidance",
+      "next_action": "Keep this existing collection aligned with the corresponding product schema; preserve its public URL."
     },
     {
       "id": "postman-undertow",
@@ -998,21 +996,18 @@
       "latest_surface_check": {
         "id": "postman-undertow",
         "url": "https://documenter.getpostman.com/view/58772927/2sBYHPz25a",
-        "observed_at": "2026-10-08T11:37:44.472011+00:00",
-        "authentication_used": false,
-        "http_status": 200,
-        "final_url": "https://documenter.getpostman.com/view/58772927/2sBYHPz25a",
-        "content_type": "text/html; charset=utf-8",
-        "sha256": "0ef6f3821e074e6ead3837c998abd8cb70017b54207c22588d3d60a5c5a7c3e3",
-        "bytes": 40506,
-        "title": "Undertow Attested Feed API: Liquidity and Exit-Cost Evidence",
-        "mentioned_versions": [
-          "1.37.2",
-          "3.27.0"
-        ]
+        "observed_at": "2026-10-08T12:25:18.882263+00:00",
+        "readback": "rendered_public_documentation_verified",
+        "publisher_user_id": "58772927",
+        "versions": [
+          "1.13.0"
+        ],
+        "sha256": "fda3d0eba5847d055003a1152531a2f03b5276d15b3af48c12c32310c2f1e4b0",
+        "current_guide_visible": true,
+        "interface_catalog_visible": true
       },
-      "metadata_freshness": "publisher_authentication_pending",
-      "next_action": "Refresh the existing collection using its publisher account; current Chrome account does not own it."
+      "metadata_freshness": "current_release_and_setup_guidance",
+      "next_action": "Keep this existing collection aligned with the corresponding product schema; preserve its public URL."
     },
     {
       "id": "rapidapi-liquilens",
@@ -1021,22 +1016,17 @@
       "latest_surface_check": {
         "id": "rapidapi-liquilens",
         "url": "https://rapidapi.com/beepboop2025/api/liquilens-public-api",
-        "observed_at": "2026-10-08T11:37:44.485315+00:00",
-        "authentication_used": false,
         "http_status": 200,
-        "final_url": "https://rapidapi.com/beepboop2025/api/liquilens-public-api",
-        "content_type": "text/html; charset=utf-8",
-        "sha256": "162205635cb5f9c4b0eb62ac77c7cf1f18e92832f81b23202ffc717a8a751df1",
-        "bytes": 260798,
-        "title": "LiquiLens Public API",
-        "mentioned_versions": [
-          "0.9.7",
-          "1.0.0",
-          "3.1.0"
-        ]
+        "sha256": "29eea7e1ddc78fa9dc7b48f95656481ede3c97091b2cdb32d0544d3f946d52b2",
+        "has_current_guide": true,
+        "has_0162": false,
+        "has_017": false,
+        "observed_at": "2026-10-08T12:12:14.387221+00:00",
+        "authentication_used": false,
+        "readback": "updated_public_metadata_verified"
       },
-      "metadata_freshness": null,
-      "next_action": "Keep the existing definition aligned with the product API."
+      "metadata_freshness": "current_release_and_setup_guidance",
+      "next_action": "Keep the existing definition and setup links aligned with the product API."
     },
     {
       "id": "rapidapi-seiche",
@@ -1045,22 +1035,17 @@
       "latest_surface_check": {
         "id": "rapidapi-seiche",
         "url": "https://rapidapi.com/beepboop2025/api/seiche-public-api1",
-        "observed_at": "2026-10-08T11:37:44.618428+00:00",
-        "authentication_used": false,
         "http_status": 200,
-        "final_url": "https://rapidapi.com/beepboop2025/api/seiche-public-api1",
-        "content_type": "text/html; charset=utf-8",
-        "sha256": "ce80bc800d75955e24b46fc4fdb6f26aab39f959270b11f4b7384105a3fe6574",
-        "bytes": 348929,
-        "title": "Seiche Public API",
-        "mentioned_versions": [
-          "0.16.1",
-          "0.9.7",
-          "3.0.3"
-        ]
+        "sha256": "a8dcb58ed7ca23eeea3775a8bb8a9b7dd2aad73a23579a055890d4dbb3d26267",
+        "has_current_guide": true,
+        "has_0162": true,
+        "has_017": false,
+        "observed_at": "2026-10-08T12:12:14.387221+00:00",
+        "authentication_used": false,
+        "readback": "updated_public_metadata_verified"
       },
-      "metadata_freshness": "version_refresh_in_progress",
-      "next_action": "Keep the existing definition aligned with the product API."
+      "metadata_freshness": "current_release_and_setup_guidance",
+      "next_action": "Keep the existing definition and setup links aligned with the product API."
     },
     {
       "id": "rapidapi-undertow",
@@ -1069,22 +1054,17 @@
       "latest_surface_check": {
         "id": "rapidapi-undertow",
         "url": "https://rapidapi.com/beepboop2025/api/undertow-attested-feed-api",
-        "observed_at": "2026-10-08T11:37:44.722903+00:00",
-        "authentication_used": false,
         "http_status": 200,
-        "final_url": "https://rapidapi.com/beepboop2025/api/undertow-attested-feed-api",
-        "content_type": "text/html; charset=utf-8",
-        "sha256": "99a004673e4c2a3824b7875329616e09b92c2c433c5411169df0efb61b6480f3",
-        "bytes": 265839,
-        "title": "Undertow Attested Feed API",
-        "mentioned_versions": [
-          "0.9.7",
-          "1.13.0",
-          "3.0.3"
-        ]
+        "sha256": "e5c5385068fceb31dd56a6e8b1586842a06818a16de977aa20d9d6baa83f3ce5",
+        "has_current_guide": true,
+        "has_0162": false,
+        "has_017": false,
+        "observed_at": "2026-10-08T12:12:14.387221+00:00",
+        "authentication_used": false,
+        "readback": "updated_public_metadata_verified"
       },
-      "metadata_freshness": null,
-      "next_action": "Keep the existing definition aligned with the product API."
+      "metadata_freshness": "current_release_and_setup_guidance",
+      "next_action": "Keep the existing definition and setup links aligned with the product API."
     }
   ]
 }

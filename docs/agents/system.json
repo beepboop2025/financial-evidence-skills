@@ -115,6 +115,29 @@
       "market_data": "synthetic",
       "broker_contacted": false,
       "execution_authority": false
+    },
+    {
+      "id": "noisefloor",
+      "name": "NoiseFloor statistical diagnostics",
+      "version": "0.2.0",
+      "access": "public",
+      "authentication": "none",
+      "transport": "streamable-http",
+      "mcp_url": "https://api.seiche.info/noisefloor/mcp",
+      "protocol": "2025-06-18",
+      "tool_count": 6,
+      "tools": [
+        "ab_test",
+        "did_it_change",
+        "forecast_next",
+        "real_or_sampling",
+        "score_forecasts",
+        "which_metrics_matter"
+      ],
+      "guide_url": "https://github.com/beepboop2025/noisefloor",
+      "observed_at": "2026-10-08T12:21:13.323907+00:00",
+      "execution_authority": false,
+      "qualification": "Descriptive statistical diagnostics. This observation does not verify market performance or future releases."
     }
   ],
   "product_roles": {

@@ -447,6 +447,30 @@
       "final_url": "https://api.seiche.info/riptide/openapi.json",
       "api_version": "1.3.0",
       "path_count": 7
+    },
+    {
+      "kind": "mcp",
+      "name": "noisefloor",
+      "url": "https://api.seiche.info/noisefloor/mcp",
+      "observed_at": "2026-10-08T12:21:13.323907+00:00",
+      "status": "observed",
+      "server": {
+        "name": "noisefloor",
+        "version": "0.2.0",
+        "title": "noisefloor — is this number real?",
+        "websiteUrl": "https://github.com/beepboop2025/noisefloor"
+      },
+      "protocol": "2025-06-18",
+      "tools": [
+        "ab_test",
+        "did_it_change",
+        "forecast_next",
+        "real_or_sampling",
+        "score_forecasts",
+        "which_metrics_matter"
+      ],
+      "tool_count": 6,
+      "sha256": "38896a5a9ae0101a15ff2ade4910b27517eead771a2e99dcac20bca96184e0d0"
     }
   ]
 }

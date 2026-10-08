@@ -12,15 +12,15 @@ import subprocess
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CONTRACT = ROOT / "integrations/financial-evidence-mcp-v0.1.6.json"
+CONTRACT = ROOT / "integrations/financial-evidence-mcp-v0.1.7.json"
 TOPICS = [
     "money-market", "capital-market", "china-economy", "bank-risk",
     "market-liquidity", "gift-city", "forex", "gold",
 ]
 
 
-def verify(command: list[str]) -> dict:
-    contract = json.loads(CONTRACT.read_text())
+def verify(command: list[str], *, contract_path: Path = CONTRACT) -> dict:
+    contract = json.loads(contract_path.read_text())
     messages = [
         {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {
             "protocolVersion": "2025-11-25", "capabilities": {},
@@ -104,13 +104,15 @@ def verify(command: list[str]) -> dict:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--contract", type=Path, default=CONTRACT,
+                        help="Frozen expected contract; specify historical releases explicitly")
     parser.add_argument("--receipt", type=Path, required=True)
     parser.add_argument("command", nargs=argparse.REMAINDER)
     args = parser.parse_args()
     command = args.command[1:] if args.command[:1] == ["--"] else args.command
     if not command:
         parser.error("A published artifact command is required after --")
-    receipt = verify(command)
+    receipt = verify(command, contract_path=args.contract)
     args.receipt.parent.mkdir(parents=True, exist_ok=True)
     args.receipt.write_text(json.dumps(receipt, indent=2) + "\n")
     print(json.dumps(receipt, indent=2))

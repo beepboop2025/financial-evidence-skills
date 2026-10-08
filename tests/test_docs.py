@@ -57,7 +57,7 @@ class DiscoveryDocsTests(unittest.TestCase):
     def test_machine_readable_manifest_tracks_release(self):
         manifest = json.loads((DOCS / "integrations.json").read_text())
         self.assertEqual(manifest["version"], _package_version())
-        self.assertEqual(manifest["release_state"], "verified")
+        self.assertEqual(manifest["release_state"], "candidate")
         self.assertEqual(manifest["last_verified_release"], "0.1.6")
         self.assertFalse(manifest["account_required"])
         self.assertFalse(manifest["api_key_required"])

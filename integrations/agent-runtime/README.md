@@ -195,3 +195,24 @@ deduplicate across a new root. Monitor actual filesystem capacity separately.
 
 See [architecture and scale boundaries](../../docs/infrastructure/ARCHITECTURE.md)
 and [adoption measurements](../../docs/infrastructure/ADOPTION.md).
+
+## Verify the paper-host boundary
+
+`paper_host_acceptance.py` uses the real Carrier ASGI service and its synthetic
+test rig at commit `328832ee996734ec2a2d5f27ad458e528d7f33ef`. Its explicit
+`--carrier-root` must be a clean checkout of that commit. Install the Carrier
+trading-copilot locked test environment, then install this package in the same
+environment, as shown in the `agent-runtime` CI workflow. Run:
+
+```sh
+python integrations/agent-runtime/paper_host_acceptance.py \
+  --carrier-root /ABSOLUTE/PINNED/carrier \
+  --output /ABSOLUTE/NEW/paper-host-acceptance
+```
+
+The test retains a local research-to-intent link. The host independently acquires
+and assesses its evidence; it rejects caller-provided research bundles. Checks
+cover read-scope denial, operator stop, stable intents across restarts, stale
+research and backup restoration. All network connections are denied and broker
+responses are test doubles. A pass proves these integration boundaries, not
+live execution, fills, profitability or external adoption.

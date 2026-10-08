@@ -10,7 +10,7 @@
     "research",
     "risk"
   ],
-  "version": "0.1.6",
+  "version": "0.1.7",
   "tooltip": "Inspect standard FDC3 contexts before routing a financial research question.",
   "lang": "en-US",
   "icons": [

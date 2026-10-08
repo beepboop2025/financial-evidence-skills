@@ -43,7 +43,7 @@ jobs:
       - run: brew test beepboop2025/tap/financial-evidence
       - name: Verify installed MCP and retain the separate candidate identity
         run: |
-          python3 scripts/verify_published_mcp.py --receipt homebrew-mcp-receipt.json -- \
+          python3 scripts/verify_published_mcp.py --contract integrations/financial-evidence-mcp-v0.1.6.json --receipt homebrew-mcp-receipt.json -- \
             "$(brew --prefix financial-evidence)/bin/financial-evidence-mcp"
           python3 - <<'PY'
           import hashlib, json, os, pathlib, subprocess
@@ -90,7 +90,7 @@ jobs:
         env:
           TESTED_PLATFORM: ${{ matrix.platform }}
         run: |
-          python3 scripts/verify_published_mcp.py --receipt published-mcp-receipt.json -- \
+          python3 scripts/verify_published_mcp.py --contract integrations/financial-evidence-mcp-v0.1.6.json --receipt published-mcp-receipt.json -- \
             docker run --rm --interactive --platform "$TESTED_PLATFORM" --pull never --read-only --network none \
             --cap-drop ALL --security-opt no-new-privileges --pids-limit 64 \
             --memory 128m --cpus 1 \

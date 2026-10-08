@@ -50,3 +50,35 @@ jobs:
           python-version: '3.13'
       - run: python -m pip install '.[workspace]' 'mcp==1.30.0'
       - run: python -m unittest discover -s tests -p test_runtime.py -v
+  paper-host:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: beepboop2025/liquilens-evidence-carrier
+          ref: 328832ee996734ec2a2d5f27ad458e528d7f33ef
+          path: carrier-fixture
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - name: Select the isolated test environment after a runner exists
+        run: printf 'UV_PROJECT_ENVIRONMENT=%s/runtime-paper-host-env\n' "$RUNNER_TEMP" >> "$GITHUB_ENV"
+      - run: python -m pip install 'uv==0.10.0'
+      - run: uv sync --project carrier-fixture/integrations/trading-copilot --locked --extra test --python 3.13
+      - run: uv pip install --python "$UV_PROJECT_ENVIRONMENT/bin/python" .
+      - name: Verify research and paper-host authority boundaries without network
+        run: >-
+          "$UV_PROJECT_ENVIRONMENT/bin/python"
+          integrations/agent-runtime/paper_host_acceptance.py
+          --carrier-root carrier-fixture
+          --output '${{ runner.temp }}/runtime-paper-host-acceptance'
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: runtime-paper-host-acceptance
+          path: ${{ runner.temp }}/runtime-paper-host-acceptance
+          retention-days: 30

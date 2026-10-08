@@ -46,7 +46,12 @@ def render(cfg, *, python, code, config_path, credentials, user):
             f"ExecStart=/usr/bin/env RESTIC_CACHE_DIR={state}/restic-cache {prefix} backup\n"
             f"TimeoutStartSec=20min\nMemoryMax=512M\nCPUQuota=50%\nNice=10\nReadOnlyPaths={root}\nReadWritePaths={state}\n"
             "RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6\n", network=True)
-    timer("financial-evidence-runtime-backup", "Restore-verify encrypted research backup every 15 minutes", "45s", "15min")
+    # A startup-relative trigger can rearm on a shared host's daemon reload.
+    # Calendar slots survive reloads without producing extra startup backups.
+    result["financial-evidence-runtime-backup.timer"] = (
+        "[Unit]\nDescription=Restore-verify encrypted research backup every 15 minutes\n\n"
+        "[Timer]\nOnCalendar=*-*-* *:00/15:00 UTC\nPersistent=true\nAccuracySec=1s\n"
+        "Unit=financial-evidence-runtime-backup.service\n\n[Install]\nWantedBy=timers.target\n")
     service("financial-evidence-runtime-monitor", "Inspect runtime scheduling, capacity, source blocks and offsite recovery",
             f"Type=oneshot\nUser=root\nExecStart={prefix} monitor\nTimeoutStartSec=45s\nMemoryMax=256M\n"
             f"ReadOnlyPaths={root}\nReadWritePaths={state}\nPrivateNetwork=true\n")
@@ -126,7 +131,8 @@ def main(argv=None):
     plan = {"schema": "financial-evidence.runtime-ops-installation.v1", "prepared_at": utc(),
             "installation_id": cfg["installation_id"], "unit_sha256": {k: hashlib.sha256(v.encode()).hexdigest() for k, v in files.items()},
             "source_writes": False, "credentials_copied": False, "broker_authority": False,
-            "backup_interval_seconds": 900, "monitor_interval_seconds": 60, "dashboard_bind": "127.0.0.1:8768", "applied": False,
+            "backup_interval_seconds": 900, "backup_schedule": "UTC quarter-hours with persistent catch-up",
+            "monitor_interval_seconds": 60, "dashboard_bind": "127.0.0.1:8768", "applied": False,
             "previous_plan": str(Path(args.previous_plan).absolute()) if args.previous_plan else None}
     atomic(output / "plan.json", plan)
     if not args.apply:

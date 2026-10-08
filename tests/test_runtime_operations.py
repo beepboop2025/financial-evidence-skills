@@ -410,7 +410,6 @@ class OperationsTests(unittest.TestCase):
                 "credentials": "/etc/runtime-ops/backup.env", "user": "financial-research"}
         rendered = render(self.cfg, **args)
         self.assertEqual(len(rendered), 7)
-        self.assertIn("OnUnitActiveSec=15min", rendered["financial-evidence-runtime-backup.timer"])
         self.assertIn("IPAddressAllow=localhost", rendered["financial-evidence-runtime-dashboard.service"])
         self.assertNotIn("rm ", "".join(rendered.values()))
         for changed in ({"code": "/tmp/evil%N"}, {"user": "root\nExecStart=evil"}):

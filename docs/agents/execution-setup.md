@@ -61,7 +61,7 @@ Financial Evidence wheel or a new PyPI release. Requires Python 3.11–3.14 and 
 ```sh
 git clone https://github.com/beepboop2025/liquilens-evidence-carrier.git
 cd liquilens-evidence-carrier
-git checkout --detach 755c3280ce6a15c5fd285f9f396a07ac6e5e2a67
+git checkout --detach ea652c3c5a60556a998ce027ae7772ae90941545
 uv sync --project integrations/trading-copilot --locked
 ```
 
@@ -114,9 +114,19 @@ secrets. Missing credentials affect only the account row. It does not use
 receipt-signing authority, write operator state or enable execution. Keep the
 input files private and provide them directly, never through a prompt.
 
-For recurring source checks, follow the [source observatory deployment guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/755c3280ce6a15c5fd285f9f396a07ac6e5e2a67/integrations/trading-copilot/OBSERVATORY-DEPLOYMENT.md).
+For recurring source checks, follow the [source observatory deployment guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/ea652c3c5a60556a998ce027ae7772ae90941545/integrations/trading-copilot/OBSERVATORY-DEPLOYMENT.md).
 It installs a separate observer service and timer with bounded private history;
 it does not activate the trading service or grant order authority.
+The timer collects fifteen minutes after the preceding run completes, with up
+to fifteen seconds of jitter. Account for startup/manual checks and shared
+endpoint quotas before increasing cadence; monitoring snapshots do not replace
+fresh order-specific evidence.
+
+A completed capture may still report `source_quota_exhausted` for a validated
+MCP quota refusal or `source_clock_in_future` when an upstream clock exceeds
+the observer's trusted evaluation clock. Preserve either source as unavailable.
+Wait for the provider allowance to reset or change, or verify the conflicting
+clocks; do not retry repeatedly or relax eligibility limits to obtain a pass.
 
 ## Paper account
 
@@ -128,7 +138,7 @@ uv run --project integrations/trading-copilot --locked liquilens-agent-host init
 ```
 
 Provision your own paper account ID and paper credentials in the generated
-owner-only files. Follow the [complete host guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/755c3280ce6a15c5fd285f9f396a07ac6e5e2a67/integrations/trading-copilot/AGENT-HOST.md)
+owner-only files. Follow the [complete host guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/ea652c3c5a60556a998ce027ae7772ae90941545/integrations/trading-copilot/AGENT-HOST.md)
 for identity, network isolation, activation, recovery and supported limits.
 The default profile is exactly **$1,000 BTC/USD market IOC**. It requires the
 relevant product evidence and account checks before submission.
@@ -224,7 +234,7 @@ uv run --project integrations/trading-copilot --locked liquilens-live doctor \
 ```
 
 These commands contact no broker. Initialization leaves live execution off
-and all credentials blank. The [live connector contract](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/755c3280ce6a15c5fd285f9f396a07ac6e5e2a67/integrations/trading-copilot/LIVE-CONNECTOR.md)
+and all credentials blank. The [live connector contract](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/ea652c3c5a60556a998ce027ae7772ae90941545/integrations/trading-copilot/LIVE-CONNECTOR.md)
 specifies customer authorization, dedicated account ownership, trusted issuer
 binding, entitled execution-grade inputs and the verified broker-preview
 reference needed before a live order. Its local preflight does not create that

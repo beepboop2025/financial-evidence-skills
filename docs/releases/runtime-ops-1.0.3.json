@@ -119,7 +119,6 @@
     "persistent_missed_run_catch_up": true,
     "startup_relative_trigger": false,
     "first_regular_slot_observed": "2026-10-08T11:00:00.487709+00:00",
-    "first_slot_restore_verified_at": "2026-10-08T11:00:09.730570+00:00",
-    "full_calendar_recurrence": "observed separately in retained deployment evidence"
+    "first_slot_restore_verified_at": "2026-10-08T11:00:09.730570+00:00"
   }
 }

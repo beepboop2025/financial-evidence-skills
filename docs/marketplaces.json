@@ -1,8 +1,8 @@
 {
   "schema": "liquidity-lab.financial-evidence-marketplaces.v1",
   "name": "Financial Evidence",
-  "version": "0.1.6",
-  "release_state": "verified",
+  "version": "0.1.7",
+  "release_state": "candidate",
   "last_verified_release": "0.1.6",
   "checked_at": "2026-08-25T19:53:54Z",
   "state_definitions": {
@@ -169,7 +169,7 @@
     },
     {
       "id": "saashub",
-      "name": "SaaSHub \u2014 LiquiLens",
+      "name": "SaaSHub — LiquiLens",
       "channel": "software-directory",
       "state": "submitted",
       "submission_url": "https://www.saashub.com/liquilens/added",
@@ -321,7 +321,7 @@
     },
     {
       "id": "freepublicapis-research-api",
-      "name": "FreePublicAPIs \u2014 Financial Evidence API",
+      "name": "FreePublicAPIs — Financial Evidence API",
       "channel": "api-directory",
       "state": "live",
       "listing_url": "https://www.freepublicapis.com/financial-evidence-api",
@@ -337,7 +337,7 @@
     },
     {
       "id": "apislist-research",
-      "name": "APIsList \u2014 Financial Evidence Research API",
+      "name": "APIsList — Financial Evidence Research API",
       "channel": "api-directory",
       "state": "submitted",
       "submission_url": "https://apislist.com/api/add",
@@ -351,7 +351,7 @@
     },
     {
       "id": "apislist-liquilens",
-      "name": "APIsList \u2014 LiquiLens Public Research API",
+      "name": "APIsList — LiquiLens Public Research API",
       "channel": "api-directory",
       "state": "submitted",
       "submission_url": "https://apislist.com/api/add",
@@ -365,7 +365,7 @@
     },
     {
       "id": "apislist-seiche",
-      "name": "APIsList \u2014 Seiche Public Research API",
+      "name": "APIsList — Seiche Public Research API",
       "channel": "api-directory",
       "state": "submitted",
       "submission_url": "https://apislist.com/api/add",
@@ -379,7 +379,7 @@
     },
     {
       "id": "apislist-undertow",
-      "name": "APIsList \u2014 Undertow Market Liquidity API",
+      "name": "APIsList — Undertow Market Liquidity API",
       "channel": "api-directory",
       "state": "submitted",
       "submission_url": "https://apislist.com/api/add",
@@ -393,7 +393,7 @@
     },
     {
       "id": "apisio-company",
-      "name": "APIs.io \u2014 LIQUILENS PRIVATE LIMITED",
+      "name": "APIs.io — LIQUILENS PRIVATE LIMITED",
       "channel": "api-company-directory",
       "state": "submitted",
       "submission_url": "https://apis.io/add/",
@@ -407,7 +407,7 @@
     },
     {
       "id": "mcpservers-org-research-desk",
-      "name": "MCPServers.org \u2014 Financial Evidence Research Desk",
+      "name": "MCPServers.org — Financial Evidence Research Desk",
       "channel": "mcp-directory",
       "state": "submitted",
       "submission_url": "https://mcpservers.org/submit",
@@ -421,7 +421,7 @@
     },
     {
       "id": "mcpservers-org-financial-evidence",
-      "name": "MCPServers.org \u2014 Financial Evidence",
+      "name": "MCPServers.org — Financial Evidence",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://mcpservers.org/servers/beepboop2025/financial-evidence-skills",
@@ -434,7 +434,7 @@
     },
     {
       "id": "mcpservers-org-liquilens",
-      "name": "MCPServers.org \u2014 LiquiLens",
+      "name": "MCPServers.org — LiquiLens",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://mcpservers.org/servers/beepboop2025/liquilens-mcp",
@@ -447,7 +447,7 @@
     },
     {
       "id": "mcpservers-org-seiche",
-      "name": "MCPServers.org \u2014 Seiche",
+      "name": "MCPServers.org — Seiche",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://mcpservers.org/servers/beepboop2025/seiche",
@@ -460,7 +460,7 @@
     },
     {
       "id": "mcpservers-org-undertow",
-      "name": "MCPServers.org \u2014 Undertow",
+      "name": "MCPServers.org — Undertow",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://mcpservers.org/servers/beepboop2025/undertow-mcp",
@@ -473,7 +473,7 @@
     },
     {
       "id": "mcpservers-org-palimpsest",
-      "name": "MCPServers.org \u2014 Palimpsest",
+      "name": "MCPServers.org — Palimpsest",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://mcpservers.org/servers/beepboop2025/palimpsest",
@@ -486,7 +486,7 @@
     },
     {
       "id": "mcpservers-org-evidence-carrier",
-      "name": "MCPServers.org \u2014 Evidence Carrier",
+      "name": "MCPServers.org — Evidence Carrier",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://mcpservers.org/servers/beepboop2025/liquilens-evidence-carrier",
@@ -499,7 +499,7 @@
     },
     {
       "id": "allmcps-financial-evidence",
-      "name": "AllMCPs \u2014 Financial Evidence",
+      "name": "AllMCPs — Financial Evidence",
       "channel": "mcp-directory",
       "state": "listed_incomplete",
       "listing_url": "https://allmcps.com/mcp/financial-evidence",
@@ -513,7 +513,7 @@
     },
     {
       "id": "allmcps-liquilens",
-      "name": "AllMCPs \u2014 LiquiLens",
+      "name": "AllMCPs — LiquiLens",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://allmcps.com/mcp/liquilens-the-failure-radar",
@@ -527,7 +527,7 @@
     },
     {
       "id": "allmcps-seiche",
-      "name": "AllMCPs \u2014 Seiche",
+      "name": "AllMCPs — Seiche",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://allmcps.com/mcp/seiche-funding-stress-terminal",
@@ -541,7 +541,7 @@
     },
     {
       "id": "allmcps-undertow",
-      "name": "AllMCPs \u2014 Undertow",
+      "name": "AllMCPs — Undertow",
       "channel": "mcp-directory",
       "state": "listed_incomplete",
       "listing_url": "https://allmcps.com/mcp/undertow-market-liquidity-map-2",
@@ -555,7 +555,7 @@
     },
     {
       "id": "allmcps-palimpsest",
-      "name": "AllMCPs \u2014 Palimpsest",
+      "name": "AllMCPs — Palimpsest",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://allmcps.com/mcp/palimpsest-censorship-observatory",
@@ -569,7 +569,7 @@
     },
     {
       "id": "allmcps-evidence-carrier",
-      "name": "AllMCPs \u2014 Evidence Carrier",
+      "name": "AllMCPs — Evidence Carrier",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://allmcps.com/mcp/liquilens-evidence-carrier",
@@ -583,7 +583,7 @@
     },
     {
       "id": "allmcps-narcoscope",
-      "name": "AllMCPs \u2014 NarcoScope",
+      "name": "AllMCPs — NarcoScope",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://allmcps.com/mcp/narcoscope-official-drug-market-evidence-explorer",
@@ -597,7 +597,7 @@
     },
     {
       "id": "mcpmarket-financial-evidence",
-      "name": "MCP Market \u2014 Financial Evidence",
+      "name": "MCP Market — Financial Evidence",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://mcpmarket.com/server/financial-evidence",
@@ -611,7 +611,7 @@
     },
     {
       "id": "allmcps-research-desk",
-      "name": "AllMCPs \u2014 Financial Evidence Research Desk",
+      "name": "AllMCPs — Financial Evidence Research Desk",
       "channel": "mcp-directory",
       "state": "live",
       "submission_url": "https://allmcps.com/submit",
@@ -629,7 +629,7 @@
     },
     {
       "id": "battlefin-company-map",
-      "name": "BattleFin Data Maps \u2014 LIQUILENS PRIVATE LIMITED",
+      "name": "BattleFin Data Maps — LIQUILENS PRIVATE LIMITED",
       "channel": "institutional-data-provider-directory",
       "state": "submitted",
       "submission_url": "https://battlefin-global-data-maps.lovable.app/submit",
@@ -656,7 +656,7 @@
     },
     {
       "id": "saashub-seiche",
-      "name": "SaaSHub \u2014 Seiche",
+      "name": "SaaSHub — Seiche",
       "channel": "software-directory",
       "state": "submitted",
       "submission_url": "https://www.saashub.com/seiche/added",
@@ -667,7 +667,7 @@
     },
     {
       "id": "saashub-undertow",
-      "name": "SaaSHub \u2014 Undertow",
+      "name": "SaaSHub — Undertow",
       "channel": "software-directory",
       "state": "paused_external",
       "submission_url": "https://www.saashub.com/services/submit",
@@ -678,7 +678,7 @@
     },
     {
       "id": "g2-liquilens",
-      "name": "G2 \u2014 LiquiLens",
+      "name": "G2 — LiquiLens",
       "channel": "software-directory",
       "state": "listed_incomplete",
       "submission_url": "https://www.g2.com/add_product_requests/new",
@@ -699,7 +699,7 @@
     },
     {
       "id": "g2-seiche",
-      "name": "G2 \u2014 Seiche",
+      "name": "G2 — Seiche",
       "channel": "software-directory",
       "state": "approved_pending_public",
       "submission_url": "https://www.g2.com/add_product_requests/new",
@@ -710,7 +710,7 @@
     },
     {
       "id": "g2-undertow",
-      "name": "G2 \u2014 Undertow",
+      "name": "G2 — Undertow",
       "channel": "software-directory",
       "state": "approved_pending_public",
       "submission_url": "https://www.g2.com/add_product_requests/new",
@@ -721,7 +721,7 @@
     },
     {
       "id": "api-market-seiche-reference-fx",
-      "name": "API.market \u2014 Seiche Reference FX API",
+      "name": "API.market — Seiche Reference FX API",
       "channel": "api-marketplace",
       "state": "submitted",
       "submission_url": "https://api.market/seller/liquilens/products/seiche-reference-fx",
@@ -753,7 +753,7 @@
     },
     {
       "id": "datarade-company",
-      "name": "Datarade \u2014 LIQUILENS PRIVATE LIMITED",
+      "name": "Datarade — LIQUILENS PRIVATE LIMITED",
       "channel": "data-provider-application",
       "state": "submitted",
       "submission_url": "https://providers.datarade.ai/apply/confirm/success",

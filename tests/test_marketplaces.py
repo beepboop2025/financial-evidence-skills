@@ -27,7 +27,7 @@ class MarketplaceLedgerTests(unittest.TestCase):
 
     def test_release_and_observation_clock_are_explicit(self):
         self.assertEqual(self.ledger["version"], _package_version())
-        self.assertEqual(self.ledger["release_state"], "verified")
+        self.assertEqual(self.ledger["release_state"], "candidate")
         self.assertEqual(self.ledger["last_verified_release"], "0.1.6")
         checked_at = self.ledger["checked_at"]
         self.assertTrue(checked_at.endswith("Z"))

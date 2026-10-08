@@ -1,7 +1,7 @@
 {
   "name": "financial-evidence",
   "description": "Read-only GIFT City, forex, gold, money-market, capital-market, China-economy, bank-risk and liquidity evidence.",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "author": {
     "name": "Liquidity Lab",
     "url": "https://github.com/beepboop2025"

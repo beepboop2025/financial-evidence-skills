@@ -1,5 +1,9 @@
 # Financial Evidence Runtime
 
+For unattended operation, use the [operations bundle](operations/README.md):
+private live console, schedule/capacity monitoring, encrypted recurring offsite
+backup and a restore command that preserves retry keys and stops the new copy.
+
 Run repeatable research workflows across LiquiLens, Seiche and Undertow from a
 Python application, a terminal or an MCP client. Each run has a fixed policy,
 bounded source reads, a durable receipt and an offline replay path.

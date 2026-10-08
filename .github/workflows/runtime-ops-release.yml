@@ -1,0 +1,58 @@
+name: runtime-ops-release
+
+on:
+  push:
+    tags:
+      - 'runtime-ops-v*'
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+      artifact-metadata: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify owner signatures and exact main source
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF_NAME" = "runtime-ops-v1.0.0"
+          signer_file="ops/release/financial-evidence.allowed_signers"
+          git -c gpg.format=ssh -c gpg.ssh.allowedSignersFile="$signer_file" verify-tag --raw "$GITHUB_REF_NAME"
+          release_commit="$(git rev-list -n 1 "$GITHUB_REF_NAME")"
+          git -c gpg.format=ssh -c gpg.ssh.allowedSignersFile="$signer_file" verify-commit --raw "$release_commit"
+          git fetch origin main --no-tags
+          test "$release_commit" = "$(git rev-parse origin/main)"
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - run: python -m pip install .
+      - run: sudo apt-get update -qq && sudo apt-get install -y restic
+      - run: python -m unittest discover -s tests -p test_runtime_operations.py -v
+      - run: python tests/integration_runtime_operations.py --output '${{ runner.temp }}/runtime-ops-release-acceptance'
+      - run: python scripts/build_runtime_operations.py --output '${{ runner.temp }}/runtime-ops-assets'
+      - uses: actions/attest-build-provenance@0f67c3f4856b2e3261c31976d6725780e5e4c373 # v4.1.1
+        with:
+          subject-path: '${{ runner.temp }}/runtime-ops-assets/financial-evidence-runtime-ops-1.0.0.tar'
+      - name: Publish the verified operations component
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ASSET_DIR: ${{ runner.temp }}/runtime-ops-assets
+        run: |
+          set -euo pipefail
+          gh release create "$GITHUB_REF_NAME" --verify-tag --title 'Runtime Operations 1.0.0' --notes-file integrations/agent-runtime/operations/RELEASE_NOTES.md \
+            "$ASSET_DIR/financial-evidence-runtime-ops-1.0.0.tar" "$ASSET_DIR/source.json" "$ASSET_DIR/SHA256SUMS"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: runtime-ops-release-acceptance
+          path: '${{ runner.temp }}/runtime-ops-release-acceptance'
+          retention-days: 30

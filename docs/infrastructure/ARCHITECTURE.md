@@ -7,7 +7,7 @@ It complements the separately owned trading copilot and execution connector.
 
 ## Requirements and implementation
 
-| Need | Implementation in this candidate | Boundary |
+| Need | Implementation | Boundary |
 |---|---|---|
 | Discover usable capabilities | Offline catalog generated from existing datasets, routes and presets | Listing is not adoption |
 | Connect many agent hosts | Python, CLI and standard private stdio MCP | No public multi-tenant runtime |
@@ -135,6 +135,15 @@ Integration acceptance should prove those two boundaries using the execution
 owner's simulator before any separate live activation procedure.
 
 ## Verification and operations
+
+The optional [Runtime Operations component](../../integrations/agent-runtime/operations/README.md)
+adds explicit systemd installation, a loopback console, persistent incident
+transitions, capacity/schedule checks, encrypted offsite snapshots and exact
+restoration after every backup. It pins the released runtime and workflow
+inventory. Its monitor reads the journal without creating or migrating state.
+Service health and source assessments remain separate. An uncertain upload is
+reconciled by a unique operation tag before any new upload; verified restore
+copies start stopped and preserve idempotency keys.
 
 Failure-oriented tests cover concurrency, duplicate keys, recovery, budgets,
 clock rollback, policy binding, metadata tampering, source gaps, row limits,

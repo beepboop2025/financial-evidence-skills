@@ -379,7 +379,7 @@ The [source-pinned integration guide](docs/agents/execution-setup.md) covers the
 
 ## Durable research workflows
 
-The [Financial Evidence Runtime source candidate](integrations/agent-runtime/README.md)
+The [Financial Evidence Runtime](integrations/agent-runtime/README.md)
 adds owner-registered workflows, atomic run limits, offline replay, ordered change
 events and backup recovery through Python, CLI and private stdio MCP. It reuses
 the existing product clients and preserves source clocks and missingness. See

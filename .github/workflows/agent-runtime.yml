@@ -5,6 +5,8 @@ on:
     paths:
       - 'src/financial_evidence/**'
       - 'tests/test_runtime.py'
+      - 'tests/test_runtime_operations.py'
+      - 'tests/integration_runtime_operations.py'
       - 'integrations/agent-runtime/**'
       - 'docs/infrastructure/**'
       - 'pyproject.toml'
@@ -15,6 +17,25 @@ permissions:
   contents: read
 
 jobs:
+  operations:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - run: python -m pip install .
+      - run: sudo apt-get update -qq && sudo apt-get install -y restic
+      - run: python -m unittest discover -s tests -p test_runtime_operations.py -v
+      - run: python tests/integration_runtime_operations.py --output '${{ runner.temp }}/runtime-operations-acceptance'
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: runtime-operations-acceptance
+          path: ${{ runner.temp }}/runtime-operations-acceptance
+          retention-days: 30
   core:
     runs-on: ubuntu-24.04
     timeout-minutes: 5

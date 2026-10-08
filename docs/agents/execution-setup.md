@@ -7,6 +7,52 @@ timeout and reconciliation without credentials. All of its data and fills are
 synthetic. For broker integration, use the separate Carrier source below.
 The Financial Evidence package and public research MCP remain read-only.
 
+## Evidence walkthrough
+
+The browser workbench contains five authored, synthetic examples. It makes no
+requests to a broker or product API and collects no interaction analytics.
+The scenario clock is fixed at **8 October 2026, 12:00 UTC**; source observation
+and retrieval timestamps are example inputs, not assertions about real data.
+Your proposal's separate 60-second expiry uses your browser clock.
+
+| Scenario | Product's role | Illustrated decision |
+| --- | --- | --- |
+| Eligible illustration | All three product checks satisfy the example policy | Pass for explicit simulated submission |
+| Funding pressure | Seiche SOFR/IORB and EFFR/IORB spreads produce 18 bp pressure | Hold under an experimental operator STRAIN rule |
+| Stale CP observation | LiquiLens CP rollover is older than eight days, despite a recent retrieval | Unavailable |
+| Missing permissions | Undertow venue rights are unknown | Unavailable |
+| Expensive SELL liquidation | Undertow hypothetical SELL cost is 38 bp against a 25 bp limit | Limit; no automatic resizing |
+
+These examples illustrate selected rules of `liquilens.paper-funding-exit.v1`.
+The funding pressure calculation is `max(SOFR-IORB, abs(EFFR-IORB))`, with
+CALM at ≤5 bp, EROSION above 5, STRAIN above 15 and STRESS above 25. STRAIN and
+STRESS hold the request. These are experimental operator bands, not Seiche's
+full composite, calibrated forecasts or investment recommendations.
+Both commercial-paper observation dates must be less than eight days old.
+Undertow observations must be less than 300 seconds old, with hypothetical
+SELL cost at most 25 bp and venue spread at most 15 bp.
+
+The original BUY or SELL proposal and its hypothetical SELL liquidation have
+distinct identities. Exit-cost evidence never becomes an executable BUY quote.
+Example permissions are assumed only inside the eligible examples and do not
+grant real venue rights. The browser supports illustrative notionals up to
+$1,000; the installed paper host has its own fixed $1,000 profile and complete
+source/account validators. No browser result is an authenticated Carrier receipt.
+
+Each retained assessment binds the exact side, notional, account sequence and
+evidence revision. Changing the scenario invalidates outstanding submissions;
+it does not erase history. Journal schema `liquilens.execution-walkthrough.v2`
+exports every retained assessment, including refusals, with a detached copy of
+its evidence and decision. The export also includes orders, account balances,
+STOP state and the current evidence. Invalid form inputs are not assessments.
+Timeout reconciliation and repeated submission use the original intent and
+never produce a second simulated fill. Export before reloading to retain the
+session; this in-memory walkthrough is not durable execution storage.
+
+For actual inputs, inspect [Seiche funding observations](../start/?dataset=money_markets&entity=USD),
+the [LiquiLens corporate-funding source](https://api.liquilens.in/api/public-signals/corporate-transmission)
+and [Undertow liquidity coverage](../start/?dataset=market_liquidity).
+
 ## Install the reviewed source
 
 The execution components currently ship from an exact source commit, not the
@@ -15,13 +61,62 @@ Financial Evidence wheel or a new PyPI release. Requires Python 3.11–3.14 and 
 ```sh
 git clone https://github.com/beepboop2025/liquilens-evidence-carrier.git
 cd liquilens-evidence-carrier
-git checkout --detach aebba668c55079b27b46c7584b3f0743c201a84f
+git checkout --detach 755c3280ce6a15c5fd285f9f396a07ac6e5e2a67
 uv sync --project integrations/trading-copilot --locked
 ```
 
 Review this commit before enabling any tool. Keep local state in a private,
 durable directory outside the agent's filesystem access. Do not put broker keys,
 host tokens, HMAC keys, private requests or account records into prompts or Git.
+
+## Observe the current product evidence
+
+After installing the reviewed Carrier source, collect a current, independent
+report for Seiche funding context, LiquiLens commercial-paper observations and
+Undertow hypothetical exit context:
+
+```sh
+uv run --project integrations/trading-copilot --locked \
+  liquilens-trading-copilot observe --format json
+```
+
+Use `--format markdown` for a readable report with the complete JSON included.
+The observer contacts the three configured public product endpoints. By default
+it loads no operator configuration or broker credentials, contacts no broker
+and opens or modifies no trading state. A denied or missing source stays in the
+report alongside the other products, with its reason, source clocks, retrieval
+clock, source hash and next action. Producer observation dates on rejected rows
+remain unadmitted claims; a recent retrieval does not make them eligible.
+
+The report uses a distinct diagnostic identity for a hypothetical **$1,000
+BTC/USD SELL** scenario. `source_checks_passed` reports source admission;
+`source_policy_checks_passed` additionally checks the selected funding and
+exit-cost limits. Neither is order readiness. `ready_for_order`,
+`receipt_issued`, `order_authorized`, `order_submitted` and `state_modified`
+always remain false. No executable request, receipt or submission is created.
+Check each report's evaluation time and source expiry before using it as a
+dated diagnostic; it is not a permanent health assertion.
+
+An optional paper-account readback requires explicit private configuration and
+credential files:
+
+```sh
+uv run --project integrations/trading-copilot --locked \
+  liquilens-trading-copilot observe --format json --check-account \
+  --config /absolute/private/operator-state/config.json \
+  --env-file /absolute/private/operator-state/paper.env
+```
+
+This opt-in check uses only fixed-origin GET requests for the paper account,
+positions and open orders. It verifies account binding and ACTIVE/USD/block
+flags, returning counts and flags without account identifiers, balances or
+secrets. Missing credentials affect only the account row. It does not use
+receipt-signing authority, write operator state or enable execution. Keep the
+input files private and provide them directly, never through a prompt.
+
+For recurring source checks, follow the [source observatory deployment guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/755c3280ce6a15c5fd285f9f396a07ac6e5e2a67/integrations/trading-copilot/OBSERVATORY-DEPLOYMENT.md).
+It installs a separate observer service and timer with bounded private history;
+it does not activate the trading service or grant order authority.
 
 ## Paper account
 
@@ -33,7 +128,7 @@ uv run --project integrations/trading-copilot --locked liquilens-agent-host init
 ```
 
 Provision your own paper account ID and paper credentials in the generated
-owner-only files. Follow the [complete host guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/aebba668c55079b27b46c7584b3f0743c201a84f/integrations/trading-copilot/AGENT-HOST.md)
+owner-only files. Follow the [complete host guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/755c3280ce6a15c5fd285f9f396a07ac6e5e2a67/integrations/trading-copilot/AGENT-HOST.md)
 for identity, network isolation, activation, recovery and supported limits.
 The default profile is exactly **$1,000 BTC/USD market IOC**. It requires the
 relevant product evidence and account checks before submission.
@@ -129,7 +224,7 @@ uv run --project integrations/trading-copilot --locked liquilens-live doctor \
 ```
 
 These commands contact no broker. Initialization leaves live execution off
-and all credentials blank. The [live connector contract](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/aebba668c55079b27b46c7584b3f0743c201a84f/integrations/trading-copilot/LIVE-CONNECTOR.md)
+and all credentials blank. The [live connector contract](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/755c3280ce6a15c5fd285f9f396a07ac6e5e2a67/integrations/trading-copilot/LIVE-CONNECTOR.md)
 specifies customer authorization, dedicated account ownership, trusted issuer
 binding, entitled execution-grade inputs and the verified broker-preview
 reference needed before a live order. Its local preflight does not create that

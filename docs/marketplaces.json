@@ -920,24 +920,22 @@
       "state": "listed_incomplete",
       "listing_url": "https://allmcps.com/mcp/undertow-market-liquidity-map-2",
       "cost": "free",
-      "detail": "Existing directory page resolved in the operator search results. This is a reconciliation, not a new submission or a native-install acceptance claim. A second older page also exists and cached tool counts differ from current public/subscriber scopes.",
-      "next_action": "Claim and reconcile the duplicate page and correct the public/subscriber tool inventory without creating another entry.",
+      "detail": "Repository ownership proof was verified and full editing access granted. Submitted the current 1.13.0 description, 16-public/8-subscriber scope, setup guide and hosted endpoint. Dashboard confirms Edit pending; the cached 22-tool inventory and older duplicate listing remain unresolved.",
+      "next_action": "Await the existing metadata correction and directory recrawl; reconcile the older duplicate through the operator without creating another entry.",
       "verified_at": "2026-10-07T08:12:09.589421+00:00",
       "audit_batch": "2026-10-07-marketplace-sweep",
       "outcome": "existing_listing_reconciled",
       "evidence_file": "allmcps-dedupe-undertow.txt",
       "latest_surface_check": {
-        "observed_at": "2026-10-08T11:16:09.262943+00:00",
-        "url": "https://allmcps.com/mcp/undertow-market-liquidity-map-2",
-        "http_status": 200,
-        "final_url": "https://allmcps.com/mcp/undertow-market-liquidity-map-2",
-        "readback": "retrieved_not_acceptance",
-        "sha256": "ea28c2c512801ff5740424a7217a5aa1f34303b3ffcbc825ef1fe46e87f02abe",
-        "title": "Undertow \u2014 market liquidity map MCP Server | AllMCPs",
-        "mentioned_versions": [
-          "1.13.0"
-        ]
-      }
+        "observed_at": "2026-10-08T12:54:41.064999+00:00",
+        "readback": "ownership_verified_metadata_edit_pending",
+        "current_public_tool_count": 16,
+        "subscriber_tool_count": 8,
+        "cached_directory_tool_count": 22
+      },
+      "ownership_state": "claimed",
+      "updated_at": "2026-10-08T12:54:41.064999+00:00",
+      "metadata_freshness": "public_subscriber_scope_correction_pending_directory_review"
     },
     {
       "id": "allmcps-palimpsest",
@@ -1058,9 +1056,9 @@
       "state": "live",
       "submission_url": "https://allmcps.com/submit",
       "cost": "free",
-      "detail": "Existing eight-tool Research Desk is public with its hosted /openbb/mcp endpoint, active directory health and a verified ownership badge. The published website meta tag was accepted and full owner editing access granted. Updated financial-agent description, tags, license text and explicit remote endpoint were submitted; the dashboard shows Edit pending. Public metadata approval remains separate.",
-      "next_action": "Read back the revised public metadata after AllMCPs review; do not resubmit. Older router and Undertow entries still need separate ownership and correction.",
-      "verified_at": "2026-10-07T19:45:34.333Z",
+      "detail": "Claimed public listing exposes the hosted /openbb/mcp endpoint and eight read-only tools. Rendered metadata retains provenance, unavailable values, seven dataset views and its distinction from the three-tool router. The dashboard no longer shows a pending edit for this entry.",
+      "next_action": "Monitor independently useful research use and future metadata drift; directory activity is not customer adoption.",
+      "verified_at": "2026-10-08T12:54:41.064999+00:00",
       "audit_batch": "2026-10-08-financial-agents",
       "outcome": "ownership_verified_update_submitted",
       "evidence_file": "allmcps-public-after-claim.txt",
@@ -1077,7 +1075,8 @@
         "sha256": "bbb660e9ef5586e3bcd53bbb592d8a421ba04d338e0f297c5f0fe06f02275ddb",
         "title": "Financial Evidence Research Desk MCP Server | AllMCPs",
         "mentioned_versions": []
-      }
+      },
+      "metadata_freshness": "current_endpoint_and_eight_tool_scope_verified"
     },
     {
       "id": "battlefin-company-map",
@@ -1489,10 +1488,64 @@
       "metadata_freshness": "current_release_and_setup_guidance",
       "updated_at": "2026-10-08T12:25:18.882263+00:00",
       "verified_at": "2026-10-08T12:12:14.387221+00:00"
+    },
+    {
+      "id": "noisefloor-pypi",
+      "name": "NoiseFloor \u2014 PyPI",
+      "channel": "python-package-index",
+      "state": "live",
+      "listing_url": "https://pypi.org/project/noisefloor/0.3.1/",
+      "cost": "free",
+      "version": "0.3.1",
+      "source_commit": "dd887a3ddb60adb948f324ae2e645524366b660f",
+      "verified_at": "2026-10-08T12:40:06.001811+00:00",
+      "detail": "Release owner verified 0.3.1 publication and exact package/registry identity. Surface sync independently observed the matching eight-tool MCP, REST schema and implementation fingerprint. Predictive utility and adoption remain unproven.",
+      "next_action": "Keep future accepted package, registry and hosted releases aligned; preserve observation and rights boundaries.",
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.3.1.json",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T12:54:41.064999+00:00",
+        "readback": "accepted_owner_publication_reconciled_with_independent_hosted_discovery"
+      }
+    },
+    {
+      "id": "noisefloor-mcp-registry",
+      "name": "NoiseFloor \u2014 Official MCP Registry",
+      "channel": "mcp-registry",
+      "state": "live",
+      "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fnoisefloor/versions/0.3.1",
+      "cost": "free",
+      "version": "0.3.1",
+      "source_commit": "dd887a3ddb60adb948f324ae2e645524366b660f",
+      "verified_at": "2026-10-08T12:40:06.001811+00:00",
+      "detail": "Release owner verified 0.3.1 publication and exact package/registry identity. Surface sync independently observed the matching eight-tool MCP, REST schema and implementation fingerprint. Predictive utility and adoption remain unproven.",
+      "next_action": "Keep future accepted package, registry and hosted releases aligned; preserve observation and rights boundaries.",
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.3.1.json",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T12:54:41.064999+00:00",
+        "readback": "accepted_owner_publication_reconciled_with_independent_hosted_discovery"
+      }
+    },
+    {
+      "id": "noisefloor-github-release",
+      "name": "NoiseFloor \u2014 GitHub Release",
+      "channel": "release-artifacts",
+      "state": "live",
+      "listing_url": "https://github.com/beepboop2025/noisefloor/releases/tag/v0.3.1",
+      "cost": "free",
+      "version": "0.3.1",
+      "source_commit": "dd887a3ddb60adb948f324ae2e645524366b660f",
+      "verified_at": "2026-10-08T12:40:06.001811+00:00",
+      "detail": "Release owner verified 0.3.1 publication and exact package/registry identity. Surface sync independently observed the matching eight-tool MCP, REST schema and implementation fingerprint. Predictive utility and adoption remain unproven.",
+      "next_action": "Keep future accepted package, registry and hosted releases aligned; preserve observation and rights boundaries.",
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.3.1.json",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T12:54:41.064999+00:00",
+        "readback": "accepted_owner_publication_reconciled_with_independent_hosted_discovery"
+      }
     }
   ],
   "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
-  "updated_at": "2026-10-08T12:25:18.882263+00:00",
+  "updated_at": "2026-10-08T12:54:41.064999+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -1528,6 +1581,7 @@
     "entries_without_public_listing_url": 30,
     "receipt_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/surface-sync-20261008.json",
     "scope": "Discovery metadata and prior submission reconciliation. HTTP success alone does not change listing acceptance or establish adoption.",
-    "tracked_entries": 67
+    "tracked_entries": 70,
+    "counts_scope": "The initial anonymous sweep covered 58 records; its readback counters are retained. Tracked entries include the subsequent API listings and accepted NoiseFloor release records."
   }
 }

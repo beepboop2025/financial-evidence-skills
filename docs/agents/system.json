@@ -125,7 +125,9 @@
       "source_commit": "4c5e9939cc0973da9f10353c3eed7dffe060f775",
       "guide_url": "https://github.com/beepboop2025/liquilens-evidence-carrier/blob/4c5e9939cc0973da9f10353c3eed7dffe060f775/integrations/trading-copilot/LIVE-CONNECTOR.md",
       "command": "liquilens-live check-account --state-dir <customer-private-state>",
-      "http_methods": ["GET"],
+      "http_methods": [
+        "GET"
+      ],
       "requires_customer_credentials": true,
       "public_hosted_endpoint": null,
       "execution_authority": false,
@@ -144,26 +146,37 @@
     },
     {
       "id": "noisefloor",
-      "name": "NoiseFloor statistical diagnostics",
-      "version": "0.2.0",
+      "name": "NoiseFloor market attention and evidence checks",
+      "version": "0.3.1",
       "access": "public",
       "authentication": "none",
       "transport": "streamable-http",
       "mcp_url": "https://api.seiche.info/noisefloor/mcp",
       "protocol": "2025-06-18",
-      "tool_count": 6,
+      "tool_count": 8,
       "tools": [
         "ab_test",
         "did_it_change",
         "forecast_next",
+        "market_assessment",
+        "narrative_triage",
         "real_or_sampling",
         "score_forecasts",
         "which_metrics_matter"
       ],
-      "guide_url": "https://github.com/beepboop2025/noisefloor",
-      "observed_at": "2026-10-08T12:21:13.323907+00:00",
+      "guide_url": "https://github.com/beepboop2025/noisefloor/blob/dd887a3ddb60adb948f324ae2e645524366b660f/docs/INTEGRATIONS.md",
+      "observed_at": "2026-10-08T12:46:42.981789+00:00",
       "execution_authority": false,
-      "qualification": "Descriptive statistical diagnostics. This observation does not verify market performance or future releases."
+      "qualification": "Descriptive analysis of caller-supplied series and headlines. Package and interface checks do not establish predictive performance, universal product integration or adoption.",
+      "source_commit": "dd887a3ddb60adb948f324ae2e645524366b660f",
+      "implementation_sha256": "ea4b57f927c9e4e9a15007b4bc0b0ec18b5b3bce660b8079ab6db935d6950925",
+      "api_base": "https://api.seiche.info/noisefloor",
+      "openapi_url": "https://api.seiche.info/noisefloor/openapi.json",
+      "capabilities_url": "https://api.seiche.info/noisefloor/v1/capabilities",
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.3.1.json",
+      "local_install": "pip install noisefloor==0.3.1",
+      "stdio_command": "uvx --from noisefloor==0.3.1 noisefloor-mcp",
+      "collects_market_feeds": false
     }
   ],
   "product_roles": {

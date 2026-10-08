@@ -1,8 +1,8 @@
 {
   "schema": "financial-evidence.distribution-surface-sync.v1",
-  "observed_at": "2026-10-08T12:25:18.882263+00:00",
+  "observed_at": "2026-10-08T12:54:41.064999+00:00",
   "scope": "Existing product listings and submissions; discovery and publication are separate from usage, source eligibility and independent adoption.",
-  "tracked_entries": 67,
+  "tracked_entries": 70,
   "record_count_is_not_new_publications": true,
   "entries": [
     {
@@ -615,8 +615,7 @@
         ]
       },
       "metadata_freshness": "0.1.7_correction_pending_directory_review",
-      "next_action": "Await AllMCPs edit review, then verify the served install command and endpoint without resubmitting.",
-      "edit_state": "submitted_pending_review"
+      "next_action": "Await AllMCPs edit review, then verify the served install command and endpoint without resubmitting."
     },
     {
       "id": "allmcps-liquilens",
@@ -664,19 +663,14 @@
       "state": "listed_incomplete",
       "url": "https://allmcps.com/mcp/undertow-market-liquidity-map-2",
       "latest_surface_check": {
-        "observed_at": "2026-10-08T11:16:09.262943+00:00",
-        "url": "https://allmcps.com/mcp/undertow-market-liquidity-map-2",
-        "http_status": 200,
-        "final_url": "https://allmcps.com/mcp/undertow-market-liquidity-map-2",
-        "readback": "retrieved_not_acceptance",
-        "sha256": "ea28c2c512801ff5740424a7217a5aa1f34303b3ffcbc825ef1fe46e87f02abe",
-        "title": "Undertow \u2014 market liquidity map MCP Server | AllMCPs",
-        "mentioned_versions": [
-          "1.13.0"
-        ]
+        "observed_at": "2026-10-08T12:54:41.064999+00:00",
+        "readback": "ownership_verified_metadata_edit_pending",
+        "current_public_tool_count": 16,
+        "subscriber_tool_count": 8,
+        "cached_directory_tool_count": 22
       },
-      "metadata_freshness": null,
-      "next_action": "Claim and reconcile the duplicate page and correct the public/subscriber tool inventory without creating another entry."
+      "metadata_freshness": "public_subscriber_scope_correction_pending_directory_review",
+      "next_action": "Await the existing metadata correction and directory recrawl; reconcile the older duplicate through the operator without creating another entry."
     },
     {
       "id": "allmcps-palimpsest",
@@ -776,8 +770,8 @@
         "title": "Financial Evidence Research Desk MCP Server | AllMCPs",
         "mentioned_versions": []
       },
-      "metadata_freshness": null,
-      "next_action": "Read back the revised public metadata after AllMCPs review; do not resubmit. Older router and Undertow entries still need separate ownership and correction."
+      "metadata_freshness": "current_endpoint_and_eight_tool_scope_verified",
+      "next_action": "Monitor independently useful research use and future metadata drift; directory activity is not customer adoption."
     },
     {
       "id": "battlefin-company-map",
@@ -1065,6 +1059,39 @@
       },
       "metadata_freshness": "current_release_and_setup_guidance",
       "next_action": "Keep the existing definition and setup links aligned with the product API."
+    },
+    {
+      "id": "noisefloor-pypi",
+      "state": "live",
+      "url": "https://pypi.org/project/noisefloor/0.3.1/",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T12:54:41.064999+00:00",
+        "readback": "accepted_owner_publication_reconciled_with_independent_hosted_discovery"
+      },
+      "metadata_freshness": null,
+      "next_action": "Keep future accepted package, registry and hosted releases aligned; preserve observation and rights boundaries."
+    },
+    {
+      "id": "noisefloor-mcp-registry",
+      "state": "live",
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fnoisefloor/versions/0.3.1",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T12:54:41.064999+00:00",
+        "readback": "accepted_owner_publication_reconciled_with_independent_hosted_discovery"
+      },
+      "metadata_freshness": null,
+      "next_action": "Keep future accepted package, registry and hosted releases aligned; preserve observation and rights boundaries."
+    },
+    {
+      "id": "noisefloor-github-release",
+      "state": "live",
+      "url": "https://github.com/beepboop2025/noisefloor/releases/tag/v0.3.1",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T12:54:41.064999+00:00",
+        "readback": "accepted_owner_publication_reconciled_with_independent_hosted_discovery"
+      },
+      "metadata_freshness": null,
+      "next_action": "Keep future accepted package, registry and hosted releases aligned; preserve observation and rights boundaries."
     }
   ]
 }

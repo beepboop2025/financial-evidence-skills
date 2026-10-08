@@ -47,3 +47,23 @@ attention first, then review changed observations. Saving `revision` and
 passing it as `previous_revision` on the same supported query can reduce
 duplicate rows. Unchanged evidence still needs its source clocks checked.
 This attention order never approves a trade or a transfer.
+
+## Optional market and headline analysis
+
+[NoiseFloor 0.3.1](https://github.com/beepboop2025/noisefloor/tree/v0.3.1)
+provides eight descriptive tools, including `market_assessment` and
+`narrative_triage`. Supply your own market series and headlines with source,
+observation, availability and rights context. It does not collect market feeds
+or authorize orders. Missing visibility and statistical assumptions remain
+explicit; repeated headlines do not establish truth.
+
+- Hosted MCP: `https://api.seiche.info/noisefloor/mcp`
+- [REST OpenAPI](https://api.seiche.info/noisefloor/openapi.json) and
+  [capabilities](https://api.seiche.info/noisefloor/v1/capabilities)
+- Local stdio: `uvx --from noisefloor==0.3.1 noisefloor-mcp`
+- [Python, CLI and offline adapter examples](https://github.com/beepboop2025/noisefloor/blob/dd887a3ddb60adb948f324ae2e645524366b660f/docs/INTEGRATIONS.md)
+- [Accepted release and independent discovery record](../distribution/noisefloor-0.3.1.json)
+
+Connect this optional analysis explicitly. The three product connections above
+do not automatically invoke it, and package/API consistency does not establish
+predictive performance, validated market usefulness or customer adoption.

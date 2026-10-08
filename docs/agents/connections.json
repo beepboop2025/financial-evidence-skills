@@ -176,5 +176,17 @@
     "Client configuration examples were checked against documented formats; installation in each client was not exercised by this observation.",
     "Preserve separate product scopes, original observation dates, rights and null values."
   ],
-  "system_interfaces_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/system.json"
+  "system_interfaces_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/system.json",
+  "optional_analysis": [
+    {
+      "id": "noisefloor",
+      "version": "0.3.1",
+      "mcp_url": "https://api.seiche.info/noisefloor/mcp",
+      "openapi_url": "https://api.seiche.info/noisefloor/openapi.json",
+      "guide_url": "https://github.com/beepboop2025/noisefloor/blob/dd887a3ddb60adb948f324ae2e645524366b660f/docs/INTEGRATIONS.md",
+      "observed_at": "2026-10-08T12:46:42.981789+00:00",
+      "advertised_tool_count": 8,
+      "scope": "Caller-supplied market series and headlines; no feed collection or trading authority. Integrate explicitly; these product connections do not automatically invoke NoiseFloor."
+    }
+  ]
 }

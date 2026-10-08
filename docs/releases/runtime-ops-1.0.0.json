@@ -1,0 +1,79 @@
+{
+  "schema": "financial-evidence.runtime-ops-verification.v1",
+  "component": "Runtime Operations",
+  "version": "1.0.0",
+  "runtime_package_version": "0.1.7",
+  "source_commit": "e7fa30de7d93d8e32733a7152d19c8b799d80571",
+  "tag_object": "7b84e2e62679439c1fcc2f8c7fcf7b1136f0b85e",
+  "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/runtime-ops-v1.0.0",
+  "published_at": "2026-10-08T08:48:03Z",
+  "workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/37752179722",
+  "verification_status": "verified",
+  "source_and_tag_signatures": "verified_existing_owner_SSH_policy",
+  "checksums": "verified_SHA256SUMS_and_GitHub_asset_digests",
+  "archive_attestation": "verified_release_workflow_source_ref_and_source_digest",
+  "archive_matches_reviewed_source": true,
+  "assets": [
+    {
+      "name": "financial-evidence-runtime-ops-1.0.0.tar",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/runtime-ops-v1.0.0/financial-evidence-runtime-ops-1.0.0.tar",
+      "size": 81920,
+      "sha256": "7e18472af3dc666b27fdaa79198e9df2a71ce956390e9e0564bdebb128a18876"
+    },
+    {
+      "name": "SHA256SUMS",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/runtime-ops-v1.0.0/SHA256SUMS",
+      "size": 185,
+      "sha256": "4435617b9c8b3c285ae0b61a8fd07ece966d2f86a80cb10ac9f0e44d46ac0d46"
+    },
+    {
+      "name": "source.json",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/runtime-ops-v1.0.0/source.json",
+      "size": 1360,
+      "sha256": "e5fb73a1fed682736883d884293b0765cf9be8365ad54d81a37233192b34f24d"
+    }
+  ],
+  "acceptance": {
+    "focused_failure_tests": 21,
+    "full_python_tests": 392,
+    "optional_skips": 3,
+    "macos_real_encrypted_restic": {
+      "broker_orders": 0,
+      "exact_snapshots_verified": 2,
+      "full_repository_check": true,
+      "native_systemd_unit_verification": false,
+      "package_version": "0.1.7",
+      "real_restic": true,
+      "restic_version": "restic 0.19.1 compiled with go1.26.5 on darwin/arm64",
+      "restored_admission_stopped": true,
+      "retry_keys_preserved": true,
+      "source_network_calls": 0,
+      "status": "PASS",
+      "traffic_class": "synthetic"
+    },
+    "linux_real_encrypted_restic": {
+      "broker_orders": 0,
+      "exact_snapshots_verified": 2,
+      "full_repository_check": true,
+      "native_systemd_unit_verification": true,
+      "package_version": "0.1.7",
+      "real_restic": true,
+      "restic_version": "restic 0.16.4 compiled with go1.22.2 on linux/amd64",
+      "restored_admission_stopped": true,
+      "retry_keys_preserved": true,
+      "source_network_calls": 0,
+      "status": "PASS",
+      "traffic_class": "synthetic"
+    }
+  },
+  "boundaries": {
+    "deployment": "private single Linux/systemd host",
+    "dashboard": "read-only loopback HTTP through existing SSH access",
+    "source_eligibility": "separately assessed; retained source blocks remain visible",
+    "execution_authority": false,
+    "coverage_complete": false,
+    "external_active_users": null,
+    "paid_customers": null,
+    "managed_uptime_sla": false
+  }
+}

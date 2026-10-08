@@ -5,7 +5,7 @@
   "tag_object": "22303f36ef8e573c1db7864c284f40096a4da3d2",
   "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.7",
   "published_at": "2026-10-08T04:53:54Z",
-  "verification_status": "consumer_acceptance_pending",
+  "verification_status": "verified",
   "workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/37729485895",
   "source_and_tag_signatures": "verified_existing_owner_SSH_policy",
   "checksums": "verified_SHA256SUMS_and_GitHub_asset_digests",
@@ -56,14 +56,23 @@
       "linux/arm64"
     ],
     "source_labels": "verified",
-    "runtime_check": "pending"
+    "runtime_check": "PASS",
+    "tested_platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ],
+    "consumer_workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/37730042077",
+    "runtime_catalog": "PASS"
   },
   "runtime_checks": {
     "wheel": "PASS",
     "offline_acceptance": "PASS",
     "router_mcp": "PASS",
-    "private_runtime_mcp": "pending",
-    "mcpb_exact_manifest_entry": "pending"
+    "private_runtime_mcp": "PASS",
+    "mcpb_exact_manifest_entry": "PASS",
+    "version": "0.1.7",
+    "tools_sha256": "23f68eaf19f7328616cf66f49bc908e81b0779b65695201a415301595660817f",
+    "topics": 8
   },
   "remote_mcp": {
     "url": "https://liquilens.in/mcp/financial-evidence",
@@ -73,14 +82,49 @@
     "verification": "PASS"
   },
   "homebrew": {
-    "candidate_version": "0.1.7",
-    "candidate_commit": "39c27764914cdc6c89aa1d6ea723f50be669cab8",
-    "status": "consumer_acceptance_pending"
+    "version": "0.1.7",
+    "reviewed_source_commit": "39c27764914cdc6c89aa1d6ea723f50be669cab8",
+    "published_main_commit": "cd6c3e7ca3185d228cdfcf005ba94a1436234f9e",
+    "formula_sha256": "c159e1f48449d63454b64dee938615fa6ee1d43e406eceed079b828ea87f5e0f",
+    "public_formula_url": "https://raw.githubusercontent.com/beepboop2025/homebrew-tap/main/Formula/financial-evidence.rb",
+    "public_formula_matches_reviewed_bytes": true,
+    "verified_at": "2026-10-08T05:07:23.627927+00:00",
+    "consumer_job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/37730042077/job/113156857387",
+    "checks": [
+      "strict_online_audit",
+      "style",
+      "actual_install",
+      "formula_test",
+      "installed_runtime_catalog",
+      "private_state_initialization",
+      "published_mcp_contract"
+    ],
+    "status": "PASS",
+    "native_tap_actions": "disabled_unchanged_not_claimed_passed",
+    "local_user_install": "unchanged"
   },
   "boundaries": [
     "Verification is operator work, not independent adoption.",
     "The private runtime grants no execution authority.",
     "Hosted Workspace and packet services retain their independent versions.",
     "The earlier 0.1.6 tag, contracts and verification record remain unchanged."
-  ]
+  ],
+  "verified_at": "2026-10-08T05:07:23.627927+00:00",
+  "private_runtime_server_info": {
+    "name": "Financial Evidence Runtime",
+    "title": null,
+    "version": "1.30.0",
+    "websiteUrl": null,
+    "icons": null
+  },
+  "private_runtime_contract_version": "1.0.0",
+  "paper_host_acceptance": {
+    "status": "PASS",
+    "carrier_commit": "aebba668c55079b27b46c7584b3f0743c201a84f",
+    "workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/37730042106",
+    "network_calls": 0,
+    "broker_orders": 0,
+    "traffic_class": "synthetic",
+    "external_adoption_verified": false
+  }
 }

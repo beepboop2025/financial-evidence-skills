@@ -14,7 +14,7 @@ API key. The host application may require its own account or entitlement.
 | Bloomberg BQuant | Administrator evaluates the notebook and approved own-data import route | Import a cited capture in an entitled sandbox | Requires native validation; no App Portal acceptance is claimed |
 | LSEG/FactSet/FDC3 desktops | Administrator selects the permitted import or context interface | Use the cited CSV/JSON or FDC3 reference app | Vendor acceptance, security review and entitlements are separate |
 
-The released v0.1.6 package remains unchanged and pins the V4-era OpenBB core.
+The released v0.1.7 package remains unchanged and pins the V4-era OpenBB core.
 V5 support is in current repository source; use a fresh environment as OpenBB's
 migration guide recommends. Do not upgrade an existing V4 analysis environment
 in place just to try this desk.

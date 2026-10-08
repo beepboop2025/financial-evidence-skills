@@ -79,7 +79,7 @@ def build(out=OUT):
                       f"docs {{\n  {BOUNDARY}\n}}\n"))
         http.append(f"### {name}\n# {BOUNDARY}\nGET {BASE}{suffix}\nAccept: application/json\nX-Liquilens-Traffic-Class: developer\n")
     collection = {
-        "info": {"name": "LiquiLens Financial Evidence Research API", "description": BOUNDARY + " Public reads; no API key. Operator validation must set traffic_class=synthetic. These headers are diagnostic labels, not verified customer identities.",
+        "info": {"name": "LiquiLens Financial Evidence Research API", "description": BOUNDARY + " Public reads; no API key. Current public and private interfaces: https://beepboop2025.github.io/financial-evidence-skills/agents/system.json . Setup guide: https://liquilens.in/agents/infrastructure/ . Private runtimes are separately installed and grant no public execution authority. Operator validation must set traffic_class=synthetic. These headers are diagnostic labels, not verified customer identities.",
                  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},
         "variable": [{"key": "base_url", "value": BASE},
                      {"key": "traffic_class", "value": "developer"}],

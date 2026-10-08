@@ -1,0 +1,137 @@
+{
+  "schema": "financial-evidence.system-interfaces.v1",
+  "operator": "LIQUILENS PRIVATE LIMITED",
+  "updated_at": "2026-10-08",
+  "guide_url": "https://liquilens.in/agents/infrastructure/",
+  "public_discovery_observation": {
+    "observed_at": "2026-10-08T11:12:59.038376+00:00",
+    "scope": "Anonymous initialize and complete tools/list, plus API schema and release GETs. Discovery does not verify every tool, source freshness, financial eligibility or adoption.",
+    "receipt_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/public-observations-20261008.json"
+  },
+  "interfaces": [
+    {
+      "id": "public-router",
+      "name": "Financial Evidence router",
+      "version": "0.1.7",
+      "access": "public",
+      "authentication": "none",
+      "transport": "streamable-http",
+      "mcp_url": "https://liquilens.in/mcp/financial-evidence",
+      "tool_count": 3,
+      "tools": [
+        "financial_evidence_topics",
+        "financial_evidence_route",
+        "financial_evidence_fetch"
+      ],
+      "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.7",
+      "execution_authority": false,
+      "local_state_writes": false
+    },
+    {
+      "id": "research-desk",
+      "name": "Financial Evidence Research Desk",
+      "version": "1.1.3",
+      "access": "public",
+      "authentication": "none_for_data_reads",
+      "transport": "streamable-http",
+      "mcp_url": "https://api.seiche.info/openbb/mcp",
+      "api_base": "https://api.seiche.info/openbb",
+      "openapi_url": "https://api.seiche.info/openbb/openapi.json",
+      "tool_count": 8,
+      "tools": [
+        "financial_evidence_datasets",
+        "financial_evidence_funding_review",
+        "financial_evidence_query",
+        "financial_evidence_sources",
+        "financial_evidence_route",
+        "financial_evidence_packet",
+        "financial_evidence_agent_query",
+        "financial_evidence_review"
+      ],
+      "release_identity": {
+        "schema": "financial-evidence.workspace-release.v1",
+        "release_id": "workspace-1.1.3+e6ad3584290b",
+        "workspace_version": "1.1.3",
+        "package_version": "0.1.6",
+        "source_commit": "e6ad3584290b8aa1d4f0d54f184ea959fe27465b",
+        "contract": "financial-evidence.workspace.v1",
+        "source_repository": "https://github.com/beepboop2025/financial-evidence-skills",
+        "identity_scope": "operator_supplied_build_revision",
+        "institutional_readiness": "not_certified"
+      },
+      "client_kit_url": "https://beepboop2025.github.io/financial-evidence-skills/api/",
+      "execution_authority": false
+    },
+    {
+      "id": "local-runtime",
+      "name": "Financial Evidence Runtime",
+      "package_version": "0.1.7",
+      "contract_version": "1.0.0",
+      "access": "customer_operated_local",
+      "transport": "stdio",
+      "command": "financial-evidence-runtime-mcp",
+      "public_hosted_endpoint": null,
+      "tool_count": 6,
+      "tools": [
+        "financial_runtime_catalog",
+        "financial_runtime_jobs",
+        "financial_runtime_run",
+        "financial_runtime_replay",
+        "financial_runtime_events",
+        "financial_runtime_metrics"
+      ],
+      "guide_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/runtime.html",
+      "local_state_writes": true,
+      "installation_starts_scheduler": false,
+      "execution_authority": false,
+      "operations": {
+        "version": "1.0.3",
+        "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/runtime-ops-v1.0.3",
+        "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/releases/runtime-ops-1.0.3.json",
+        "dashboard": "private_loopback_via_operator_ssh",
+        "encrypted_backup": true,
+        "restore_preserves_retry_keys": true
+      }
+    },
+    {
+      "id": "private-paper-host",
+      "name": "Customer-operated paper assessment host",
+      "access": "private_authenticated_customer_operated",
+      "transports": [
+        "authenticated_http",
+        "private_stdio_mcp"
+      ],
+      "public_hosted_endpoint": null,
+      "default_execution_enabled": false,
+      "guide_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/execution-setup.md",
+      "capability_catalog_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/execution.json",
+      "qualification": "Source freshness, rights and exact-order qualification remain separate from hosting and account access."
+    },
+    {
+      "id": "execution-walkthrough",
+      "name": "Execution evidence walkthrough",
+      "access": "public_browser",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/agents/execution.html",
+      "market_data": "synthetic",
+      "broker_contacted": false,
+      "execution_authority": false
+    }
+  ],
+  "product_roles": {
+    "liquilens": "Bank disclosures, counterparty and funding-transmission evidence",
+    "seiche": "Funding, money-market and cross-market context",
+    "undertow": "Market depth and hypothetical size-specific exit evidence"
+  },
+  "boundaries": [
+    "Package, hosted workspace, runtime contract and operations release versions are independent.",
+    "Private runtime and paper-host interfaces are not added to public read-only MCP configurations.",
+    "Source dates, rights, unavailable values and evidence refusals remain explicit.",
+    "Public research endpoints cannot submit orders.",
+    "The live connector still needs qualified preview, quote and receipt-issuer integrations; account access alone does not close those gates."
+  ],
+  "adoption": {
+    "coverage_complete": false,
+    "independent_activated_organizations": null,
+    "verified_paying_customers": null
+  }
+}

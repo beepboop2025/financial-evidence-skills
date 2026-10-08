@@ -47,3 +47,5 @@ interpreting changed values; this order does not approve financial actions.
 [Terms](https://beepboop2025.github.io/financial-evidence-skills/terms/) ·
 [Privacy](https://beepboop2025.github.io/financial-evidence-skills/privacy/) ·
 [Support](https://beepboop2025.github.io/financial-evidence-skills/support/)
+
+For scheduled research, use the [local runtime](https://beepboop2025.github.io/financial-evidence-skills/agents/runtime.html) and Runtime Operations 1.0.3. The [system interface catalog](https://beepboop2025.github.io/financial-evidence-skills/agents/system.json) separates the public router, hosted research API, local runtime and private paper host. Their versions and access requirements are independent; the public collection contains only research reads.

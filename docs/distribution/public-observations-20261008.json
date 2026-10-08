@@ -1,0 +1,452 @@
+{
+  "schema": "financial-evidence.public-discovery-observations.v1",
+  "scope": "Anonymous initialize and complete tools/list, plus API schema and release GETs. Discovery does not verify every tool, source freshness, financial eligibility or adoption.",
+  "observations": [
+    {
+      "kind": "mcp",
+      "name": "liquilens",
+      "url": "https://api.liquilens.in/mcp",
+      "observed_at": "2026-10-08T11:12:54.885875+00:00",
+      "status": "observed",
+      "server": {
+        "name": "liquilens",
+        "title": "LiquiLens Failure Radar",
+        "version": "1.8.1",
+        "websiteUrl": "https://liquilens.in"
+      },
+      "protocol": "2025-11-25",
+      "tools": [
+        "bank_asset_quality_review",
+        "bank_npa_reconciliation",
+        "banking_specialisation_coverage",
+        "corporate_transmission_board",
+        "crypto_exposure_board",
+        "crypto_regime_board",
+        "evidence_europe",
+        "evidence_india",
+        "evidence_institution",
+        "evidence_markets",
+        "evidence_us",
+        "failure_radar_board",
+        "failure_radar_institution",
+        "forward_odds",
+        "household_credit_board",
+        "institution_research_coverage",
+        "institution_review_packet",
+        "latest_article",
+        "rbi_supervisory_tape",
+        "research_network",
+        "stablecoin_rails_board",
+        "universe_search",
+        "verify_published_record"
+      ],
+      "tool_count": 23,
+      "sha256": "355edb0158006d62eaf9cc0252539ee2676a7f08813ed94e94dd49020df52c41"
+    },
+    {
+      "kind": "mcp",
+      "name": "financial-evidence",
+      "url": "https://liquilens.in/mcp/financial-evidence",
+      "observed_at": "2026-10-08T11:12:54.886166+00:00",
+      "status": "observed",
+      "server": {
+        "name": "financial-evidence",
+        "version": "0.1.7"
+      },
+      "protocol": "2025-11-25",
+      "tools": [
+        "financial_evidence_topics",
+        "financial_evidence_route",
+        "financial_evidence_fetch"
+      ],
+      "tool_count": 3,
+      "sha256": "d60122012d4c7b73ccbffe259635563cf5a0ce51a52f48627ceabd68a09a7085"
+    },
+    {
+      "kind": "mcp",
+      "name": "research-desk",
+      "url": "https://api.seiche.info/openbb/mcp",
+      "observed_at": "2026-10-08T11:12:54.886251+00:00",
+      "status": "observed",
+      "server": {
+        "name": "Financial Evidence Workspace",
+        "version": "1.1.3"
+      },
+      "protocol": "2025-11-25",
+      "tools": [
+        "financial_evidence_datasets",
+        "financial_evidence_funding_review",
+        "financial_evidence_query",
+        "financial_evidence_sources",
+        "financial_evidence_route",
+        "financial_evidence_packet",
+        "financial_evidence_agent_query",
+        "financial_evidence_review"
+      ],
+      "tool_count": 8,
+      "sha256": "2f2b0741ee03a012eae805a690d31a46368054392daacc2d20c919823b4c3df0"
+    },
+    {
+      "kind": "mcp",
+      "name": "seiche",
+      "url": "https://api.seiche.info/mcp",
+      "observed_at": "2026-10-08T11:12:54.886304+00:00",
+      "status": "observed",
+      "server": {
+        "name": "seiche",
+        "title": "Seiche — funding-stress terminal",
+        "version": "0.16.2",
+        "websiteUrl": "https://seiche.info"
+      },
+      "protocol": "2025-11-25",
+      "tools": [
+        "gift_city_context",
+        "gold_inventory_carry",
+        "market_workbench",
+        "research_network",
+        "latest_article",
+        "funding_stress_now",
+        "trade_safety_risk_context",
+        "money_market_context",
+        "world_markets_context",
+        "historical_analogs",
+        "proof_backtest",
+        "data_health",
+        "crypto_stress_record",
+        "institutional_flows",
+        "oil_funding_context",
+        "fx_materials_passage"
+      ],
+      "tool_count": 16,
+      "sha256": "e12f32eeec92502b5c9fb443d8ca293b014b79277bdbd10341168156a8ea4552"
+    },
+    {
+      "kind": "mcp",
+      "name": "seiche-corpus",
+      "url": "https://api.seiche.info/api/v2/corpus/mcp",
+      "observed_at": "2026-10-08T11:12:54.886349+00:00",
+      "status": "observed",
+      "server": {
+        "name": "liquilens-market-corpus",
+        "version": "1.0.0"
+      },
+      "protocol": "2025-03-26",
+      "tools": [
+        "corpus_catalog",
+        "list_datasets",
+        "inspect_dataset",
+        "bis_observations",
+        "bis_records",
+        "bis_flow_manifest",
+        "seiche_markets",
+        "seiche_observations",
+        "corpus_health"
+      ],
+      "tool_count": 9,
+      "sha256": "7e3ba63fae1e2cf2463beb776e6711a371229e32c6b3c608e42fbad003c8a6f6"
+    },
+    {
+      "kind": "mcp",
+      "name": "undertow",
+      "url": "https://api.seiche.info/undertow/mcp",
+      "observed_at": "2026-10-08T11:12:55.967184+00:00",
+      "status": "observed",
+      "server": {
+        "name": "undertow",
+        "title": "Undertow market liquidity map",
+        "version": "1.13.0",
+        "websiteUrl": "https://liquilens-undertow.com/"
+      },
+      "protocol": "2025-11-25",
+      "tools": [
+        "agent_access_status",
+        "crypto_exit_check",
+        "crypto_funding_cost",
+        "crypto_portfolio_stress",
+        "depth_episodes",
+        "exit_cost",
+        "gold_cash_realisation",
+        "latest_article",
+        "liquidity_tiers",
+        "market_corpus_context",
+        "research_network",
+        "sealed_record",
+        "trade_safety_exit_context",
+        "unwind_watch",
+        "venue_concentration",
+        "venue_price_reconciliation"
+      ],
+      "tool_count": 16,
+      "sha256": "55cf624d4c25daede67d17b2954f4183856d92dc4ce445026200dc11676a7b95"
+    },
+    {
+      "kind": "mcp",
+      "name": "palimpsest",
+      "url": "https://api.seiche.info/palimpsest/mcp",
+      "observed_at": "2026-10-08T11:12:55.983328+00:00",
+      "status": "observed",
+      "server": {
+        "name": "palimpsest",
+        "title": "Palimpsest — censorship, China economy and model evals",
+        "version": "1.9.3",
+        "websiteUrl": "https://palimpsest.info"
+      },
+      "protocol": "2025-06-18",
+      "tools": [
+        "research_catalog",
+        "list_signals",
+        "get_signal",
+        "get_newsroom",
+        "query_economic_observations",
+        "whats_happening",
+        "gfw_reading"
+      ],
+      "tool_count": 7,
+      "sha256": "2e8549dd44c8a6129830d20697939c5cb971c6ad34397ba5a8158d830f76e795"
+    },
+    {
+      "kind": "mcp",
+      "name": "riptide",
+      "url": "https://api.seiche.info/riptide/mcp",
+      "observed_at": "2026-10-08T11:12:56.268231+00:00",
+      "status": "observed",
+      "server": {
+        "name": "riptide",
+        "version": "1.3.0",
+        "title": "Riptide public risk and event research",
+        "websiteUrl": "https://api.seiche.info/riptide"
+      },
+      "protocol": "2025-11-25",
+      "tools": [
+        "riptide_allocation",
+        "riptide_crypto_record",
+        "riptide_event_markets",
+        "riptide_methodology",
+        "riptide_overview",
+        "riptide_paper_record",
+        "riptide_risk_evidence"
+      ],
+      "tool_count": 7,
+      "sha256": "6288df47dfc7e479060dc7fb2dc71bb5be74bcfa78391df3c3240452a0b2a6fe"
+    },
+    {
+      "kind": "mcp",
+      "name": "trade-safety",
+      "url": "https://trade-safety.liquilens.in/mcp",
+      "observed_at": "2026-10-08T11:12:56.524692+00:00",
+      "status": "observed",
+      "server": {
+        "name": "liquilens-trade-safety-gateway",
+        "title": "LiquiLens Trade Safety Gateway",
+        "version": "0.2.2"
+      },
+      "protocol": "2025-11-25",
+      "tools": [
+        "assess_trade_safety",
+        "trade_safety_capabilities"
+      ],
+      "tool_count": 2,
+      "sha256": "5c277bb10687245d97f1d64c8b88edfe7eb632feee61a70363a808069aa009a2"
+    },
+    {
+      "kind": "mcp",
+      "name": "myquant-editorial",
+      "url": "https://myquantdoesntspeakenglish.com/mcp",
+      "observed_at": "2026-10-08T11:12:57.058026+00:00",
+      "status": "observed",
+      "server": {
+        "name": "myquant-editorial",
+        "title": "my quant doesn’t speak english",
+        "version": "2.1.1",
+        "description": "Read-only discovery and bounded editorial content for the finite, evidence-bounded market briefing.",
+        "websiteUrl": "https://myquantdoesntspeakenglish.com"
+      },
+      "protocol": "2025-11-25",
+      "tools": [
+        "list_capabilities",
+        "get_health",
+        "latest_stories",
+        "get_story",
+        "search_stories"
+      ],
+      "tool_count": 5,
+      "sha256": "a12384d63266e038ed3ade4a8889d2e6fc9d2b0f8f517ecf18e2a977dd2ea1c3"
+    },
+    {
+      "kind": "mcp",
+      "name": "myquant-app",
+      "url": "https://myquant-app.vercel.app/mcp",
+      "observed_at": "2026-10-08T11:12:57.104886+00:00",
+      "status": "observed",
+      "server": {
+        "name": "myquant-app",
+        "title": "my quant app",
+        "version": "2.0.0",
+        "description": "Read-only discovery for the finite, offline-capable market briefing app.",
+        "websiteUrl": "https://myquant-app.vercel.app"
+      },
+      "protocol": "2025-11-25",
+      "tools": [
+        "list_capabilities",
+        "get_health"
+      ],
+      "tool_count": 2,
+      "sha256": "e7629e80ebf3ebd99fa8a5cf37599f9cde9fc23a6c0fb2529d3763153a20d956"
+    },
+    {
+      "kind": "mcp",
+      "name": "narcoscope",
+      "url": "https://www.narcoscope.com/mcp",
+      "observed_at": "2026-10-08T11:12:57.253157+00:00",
+      "status": "observed",
+      "server": {
+        "name": "narcoscope",
+        "title": "NarcoScope evidence explorer",
+        "version": "1.6.0"
+      },
+      "protocol": "2025-06-18",
+      "tools": [
+        "research_network",
+        "list_capabilities",
+        "get_overview",
+        "get_atlas",
+        "get_entities",
+        "get_federation",
+        "get_newsroom",
+        "get_story",
+        "get_palimpsest_bridge",
+        "get_palimpsest_corridors",
+        "get_palimpsest_bri_context",
+        "get_connected_research",
+        "get_market_catalog",
+        "query_market_observations"
+      ],
+      "tool_count": 14,
+      "sha256": "6edf2022ed21fd4b33e09232568558ab7084061c68d220e506bfe69d42819ede"
+    },
+    {
+      "kind": "get",
+      "name": "research-openapi",
+      "url": "https://api.seiche.info/openbb/openapi.json",
+      "observed_at": "2026-10-08T11:12:57.428659+00:00",
+      "status": "observed",
+      "http_status": 200,
+      "sha256": "23c8b117d8779e966393823adc618e964a9206bb5f2ead006afa6de151947707",
+      "final_url": "https://api.seiche.info/openbb/openapi.json",
+      "api_version": "1.1.3",
+      "path_count": 14
+    },
+    {
+      "kind": "get",
+      "name": "research-release",
+      "url": "https://api.seiche.info/openbb/api/v1/release",
+      "observed_at": "2026-10-08T11:12:57.682416+00:00",
+      "status": "observed",
+      "http_status": 200,
+      "sha256": "caa65e4e8ed970da5c1cfa8beafa7799e0801b5e231fc0693044fba163b2a06c",
+      "final_url": "https://api.seiche.info/openbb/api/v1/release"
+    },
+    {
+      "kind": "get",
+      "name": "seiche-discovery",
+      "url": "https://api.seiche.info/.well-known/mcp.json",
+      "observed_at": "2026-10-08T11:12:58.015404+00:00",
+      "status": "observed",
+      "http_status": 200,
+      "sha256": "f25f9814b569ef05265aef9fa36311c1d5b284084bdc904504d291f68a5e0a75",
+      "final_url": "https://api.seiche.info/.well-known/mcp.json"
+    },
+    {
+      "kind": "get",
+      "name": "seiche-product",
+      "url": "https://seiche.info/product-card.json",
+      "observed_at": "2026-10-08T11:12:58.041981+00:00",
+      "status": "observed",
+      "http_status": 200,
+      "sha256": "8ddadef582e38853a83fabb9d2ab60c1ab6dd7ea13c19d4417ba958416b3327d",
+      "final_url": "https://seiche.info/product-card.json"
+    },
+    {
+      "kind": "get",
+      "name": "undertow-product",
+      "url": "https://liquilens-undertow.com/product-card.json",
+      "observed_at": "2026-10-08T11:12:58.303439+00:00",
+      "status": "observed",
+      "http_status": 200,
+      "sha256": "02a5206300710dbee7b4692850bac761548e884ad1917b17e33cdb8005d1f05d",
+      "final_url": "https://liquilens-undertow.com/product-card.json"
+    },
+    {
+      "kind": "get",
+      "name": "liquilens-openapi",
+      "url": "https://api.liquilens.in/api/openapi.json",
+      "observed_at": "2026-10-08T11:12:58.318974+00:00",
+      "status": "observed",
+      "http_status": 200,
+      "sha256": "8f91c7127751f6e117cd2f0e63f099ae7aa30a1d6165afefd9e0a1f34607ad0f",
+      "final_url": "https://api.liquilens.in/api/openapi.json",
+      "api_version": "1.0.0",
+      "path_count": 11
+    },
+    {
+      "kind": "get",
+      "name": "seiche-openapi",
+      "url": "https://api.seiche.info/api/openapi.json",
+      "observed_at": "2026-10-08T11:12:58.564232+00:00",
+      "status": "observed",
+      "http_status": 200,
+      "sha256": "cbb9c6330a3924e01d51bf66264b7aaddf0cb06ea49f66184b94ae399ebdc72c",
+      "final_url": "https://api.seiche.info/api/openapi.json",
+      "api_version": "0.16.2",
+      "path_count": 27
+    },
+    {
+      "kind": "get",
+      "name": "narcoscope-openapi",
+      "url": "https://narcoscope.com/openapi.json",
+      "observed_at": "2026-10-08T11:12:58.788585+00:00",
+      "status": "observed",
+      "http_status": 200,
+      "sha256": "f70cc53e639d9df90f1538bbecc47ec8ebcd71a043e50d1b3571c647a1e37734",
+      "final_url": "https://www.narcoscope.com/openapi.json",
+      "api_version": "1.6.0",
+      "path_count": 14
+    },
+    {
+      "kind": "get",
+      "name": "myquant-openapi",
+      "url": "https://myquantdoesntspeakenglish.com/openapi.json",
+      "observed_at": "2026-10-08T11:12:58.883135+00:00",
+      "status": "observed",
+      "http_status": 200,
+      "sha256": "ca0403516cb55c6a26035b95a4de9719592705deacad4b8a8a1de1b65944c5f6",
+      "final_url": "https://myquantdoesntspeakenglish.com/openapi.json",
+      "api_version": "1.1.0",
+      "path_count": 2
+    },
+    {
+      "kind": "get",
+      "name": "myquant-app-openapi",
+      "url": "https://myquant-app.vercel.app/openapi.json",
+      "observed_at": "2026-10-08T11:12:59.035337+00:00",
+      "status": "observed",
+      "http_status": 200,
+      "sha256": "5e33941119e5c4cab8d06471673d13edf1258ff3784a8dd83b7edbee0cf07d4f",
+      "final_url": "https://myquant-app.vercel.app/openapi.json",
+      "api_version": "myquant.app/1.1",
+      "path_count": 2
+    },
+    {
+      "kind": "get",
+      "name": "riptide-openapi",
+      "url": "https://api.seiche.info/riptide/openapi.json",
+      "observed_at": "2026-10-08T11:12:59.038376+00:00",
+      "status": "observed",
+      "http_status": 200,
+      "sha256": "d50341b774a1598fb4a9c9919a108eb9e20f7fa330ec16cd18ce8c34af131a12",
+      "final_url": "https://api.seiche.info/riptide/openapi.json",
+      "api_version": "1.3.0",
+      "path_count": 7
+    }
+  ]
+}

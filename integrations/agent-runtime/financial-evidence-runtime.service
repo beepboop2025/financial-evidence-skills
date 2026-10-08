@@ -1,0 +1,18 @@
+[Unit]
+Description=One bounded Financial Evidence research tick
+
+[Service]
+Type=oneshot
+User=financial-research
+Group=financial-research
+UMask=0077
+ExecStart=/opt/financial-evidence/.venv/bin/financial-evidence-runtime --root /var/lib/financial-research tick --limit 1
+TimeoutStartSec=60
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/financial-research
+RestrictSUIDSGID=true
+StandardOutput=journal
+StandardError=journal

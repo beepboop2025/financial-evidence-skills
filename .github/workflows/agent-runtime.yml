@@ -1,0 +1,52 @@
+name: agent-runtime
+
+on:
+  pull_request:
+    paths:
+      - 'src/financial_evidence/**'
+      - 'tests/test_runtime.py'
+      - 'integrations/agent-runtime/**'
+      - 'docs/infrastructure/**'
+      - 'pyproject.toml'
+      - '.github/workflows/agent-runtime.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  core:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.10', '3.13']
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install .
+      - run: python -m unittest discover -s tests -p test_runtime.py -v
+      - run: python integrations/agent-runtime/offline_acceptance.py --output '${{ runner.temp }}/runtime-acceptance'
+      - run: financial-evidence-runtime verify '${{ runner.temp }}/runtime-acceptance/receipt.json'
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: runtime-core-${{ matrix.python }}
+          path: ${{ runner.temp }}/runtime-acceptance
+          retention-days: 30
+  mcp:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - run: python -m pip install '.[workspace]' 'mcp==1.30.0'
+      - run: python -m unittest discover -s tests -p test_runtime.py -v

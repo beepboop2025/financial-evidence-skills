@@ -53,8 +53,6 @@ jobs:
   paper-host:
     runs-on: ubuntu-24.04
     timeout-minutes: 8
-    env:
-      UV_PROJECT_ENVIRONMENT: ${{ runner.temp }}/runtime-paper-host-env
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -68,6 +66,8 @@ jobs:
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: '3.13'
+      - name: Select the isolated test environment after a runner exists
+        run: printf 'UV_PROJECT_ENVIRONMENT=%s/runtime-paper-host-env\n' "$RUNNER_TEMP" >> "$GITHUB_ENV"
       - run: python -m pip install 'uv==0.10.0'
       - run: uv sync --project carrier-fixture/integrations/trading-copilot --locked --extra test --python 3.13
       - run: uv pip install --python "$UV_PROJECT_ENVIRONMENT/bin/python" .

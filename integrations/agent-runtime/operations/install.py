@@ -57,6 +57,15 @@ def render(cfg, *, python, code, config_path, credentials, user):
     return result
 
 
+def activate(files):
+    """An existing console must adopt the newly installed immutable release."""
+    subprocess.run(["systemctl", "enable", "--now", *[name for name in files if name.endswith(".timer")]], check=True)
+    subprocess.run(["systemctl", "enable", "financial-evidence-runtime-dashboard.service"], check=True)
+    # enable --now does not restart an already active service. Only this
+    # read-only console is restarted; research and backup workers are not.
+    subprocess.run(["systemctl", "restart", "financial-evidence-runtime-dashboard.service"], check=True)
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", required=True)
@@ -107,6 +116,9 @@ def main(argv=None):
         if state in {"active", "activating", "deactivating"}:
             raise ValueError("owned service busy; reconcile before installation")
     previously_active = []
+    dashboard = "financial-evidence-runtime-dashboard.service"
+    dashboard_was_active = subprocess.run(["systemctl", "show", dashboard, "--property=ActiveState", "--value"],
+                                          check=True, capture_output=True, text=True).stdout.strip() == "active"
     written = []
     try:
         for name in files:
@@ -128,15 +140,13 @@ def main(argv=None):
             (current / name).chmod(0o644)
             written.append(name)
         subprocess.run(["systemctl", "daemon-reload"], check=True)
-        subprocess.run(["systemctl", "enable", "--now", "financial-evidence-runtime-dashboard.service",
-                        *[name for name in files if name.endswith(".timer")]], check=True)
+        activate(files)
     except Exception:
         # Restore only the files this attempt wrote. Do not stop a source worker
         # or a possibly accepted backup; any active intent remains inspectable.
         for name in written:
             if name.endswith(".timer"):
                 subprocess.run(["systemctl", "stop", name], check=False)
-        dashboard = "financial-evidence-runtime-dashboard.service"
         if dashboard in written and not (old / dashboard).exists():
             subprocess.run(["systemctl", "stop", dashboard], check=False)
         for name in written:
@@ -148,10 +158,12 @@ def main(argv=None):
         subprocess.run(["systemctl", "daemon-reload"], check=False)
         if previously_active:
             subprocess.run(["systemctl", "start", *previously_active], check=False)
+        if dashboard_was_active and dashboard in written:
+            subprocess.run(["systemctl", "restart", dashboard], check=False)
         plan.update(applied=False, failed_at=utc(), prior_timers_resumed=previously_active)
         atomic(output / "plan.json", plan)
         raise
-    plan.update(applied=True, applied_at=utc(), prior_units_retained=str(old))
+    plan.update(applied=True, applied_at=utc(), prior_units_retained=str(old), dashboard_restarted=True)
     atomic(output / "plan.json", plan)
     print(json.dumps(plan, indent=2))
     return 0

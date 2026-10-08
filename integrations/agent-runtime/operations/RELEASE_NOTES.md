@@ -1,19 +1,11 @@
-Runtime Operations 1.0.0 adds unattended operation around Financial Evidence 0.1.7:
+Runtime Operations 1.0.1 closes disaster-recovery and source-diagnosis gaps around the unchanged Financial Evidence 0.1.7 runtime.
 
-- Private live dashboard and expiring machine-readable health.
-- Schedule, interrupted-attempt, service and capacity checks, with separate source-data blocks.
-- Persistent incident opening/resolution records and Prometheus metrics.
-- Encrypted offsite backup every 15 minutes with exact snapshot restoration and complete journal verification.
-- Durable upload intent and acceptance reconciliation without blind upload replay.
-- Recovery into a new stopped directory, preserving retry keys and source dates.
-- A release-bound configuration helper and reviewable systemd installation plan.
+- Discover candidate encrypted snapshots when host-local receipts are lost, with an explicit distinction between a listing and restore verification.
+- Restore an exact snapshot using the independently retained configuration and repository credentials, without the original research or operations directories.
+- Validate repository, installation, runtime, workflow, payload, receipt and retry-key identities before publishing a stopped copy and reconstructed receipt.
+- Publish the recovered database only after its stopped state is durable, including when recovery is interrupted.
+- Explain retained source blocks with affected-row counts, representative fields and remediation guidance in the private console and diagnostics endpoint.
+- Replace malformed prior monitor state with an explicit critical incident and a new bounded report.
+- Restart the read-only console on upgrade so it adopts the new release; preserve rollback to the prior owned console.
 
-The source archive includes installation and recovery instructions. It is a
-separate operations component; the runtime wheel remains 0.1.7. Source and tag
-signatures use the existing owner policy, and the archive carries a GitHub build
-attestation. CI exercises failure paths and two actual encrypted Restic snapshots.
-
-This is a private, single-host research system. It does not grant trading
-authority, establish source eligibility, prove customer adoption or offer a
-managed uptime SLA. Existing encrypted storage credentials and an initialized
-research installation are prerequisites.
+Acceptance includes real encrypted Restic recovery with both original state paths inaccessible, preserved retry keys, a stopped replacement and unchanged repository snapshot inventory. Operations 1.0.0 snapshots remain readable. Runtime policies, source rights and execution authority are unchanged. No automatic snapshot selection, source repair, broker action or customer telemetry is added.

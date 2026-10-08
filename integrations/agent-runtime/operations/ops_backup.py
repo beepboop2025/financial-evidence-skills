@@ -195,6 +195,11 @@ def recover(cfg, receipt_path, target, *, restic=None):
     receipt = decode(regular(receipt_path, 65536), limit=65536)
     if receipt.get("status") != "verified" or receipt["repository_id"] != cfg["repository_id"] or receipt["installation_id"] != cfg["installation_id"]:
         raise ValueError("verified installation receipt required")
+    return restore_stopped(cfg, receipt, target, restic=restic)
+
+
+def restore_stopped(cfg, receipt, target, *, restic, selection="retained_verified_receipt"):
+    """Common full verification and stopped admission for both recovery paths."""
     target = Path(target).absolute()
     if target.exists() or target.is_symlink():
         raise ValueError("restore target must not exist")
@@ -203,7 +208,9 @@ def recover(cfg, receipt_path, target, *, restic=None):
     with tempfile.TemporaryDirectory(prefix=".recovery-", dir=target) as temporary:
         payload, manifest = restored_payload(restic, receipt, Path(temporary))
         bound_identity(manifest["journal"], cfg)
-        database = target / "runtime.sqlite"
+        # Only publish a database after its stop flag is durable. A crash or
+        # failed stop transaction cannot leave an apparently usable live copy.
+        database = Path(temporary) / "stopped.sqlite"
         fd = os.open(database, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
         with os.fdopen(fd, "wb") as stream:
             stream.write(regular(payload / "runtime.sqlite", MAX_DATABASE))
@@ -217,9 +224,12 @@ def recover(cfg, receipt_path, target, *, restic=None):
         restored = inspect_journal(database, full=True)
         if restored["keys_sha256"] != receipt["keys_sha256"] or not restored["stopped"]:
             raise ValueError("recovery did not preserve retry keys and stop state")
+        with database.open("rb") as stream:
+            os.fsync(stream.fileno())
+        os.replace(database, target / "runtime.sqlite")
         report = {"schema": "financial-evidence.runtime-recovery.v1", "status": "verified", "restored_at": utc(),
                   "snapshot_id": receipt["snapshot_id"], "installation_id": receipt["installation_id"],
                   "restored_receipts": restored["verified_receipts"], "keys_sha256": restored["keys_sha256"],
-                  "source_network_calls": 0, "admission_stopped": True, "target": str(target)}
+                  "source_network_calls": 0, "admission_stopped": True, "target": str(target), "selection": selection}
         atomic(target / "recovery.json", report)
         return report

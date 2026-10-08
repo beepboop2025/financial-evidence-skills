@@ -182,7 +182,9 @@ def verify(url: str, expected_worker_tag: str) -> None:
             "method": "tools/call",
             "params": {
                 "name": "financial_evidence_fetch",
-                "arguments": {"topics": ["money-market"]},
+                # The country atlas exceeds the conservative 1 MiB default.
+                # Request the same explicit, bounded allowance as EvidenceService.
+                "arguments": {"topics": ["money-market"], "max_bytes": 4_194_304},
             },
         },
         protocol_version=protocol_version,

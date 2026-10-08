@@ -15,7 +15,7 @@ Financial Evidence wheel or a new PyPI release. Requires Python 3.11–3.14 and 
 ```sh
 git clone https://github.com/beepboop2025/liquilens-evidence-carrier.git
 cd liquilens-evidence-carrier
-git checkout --detach 328832ee996734ec2a2d5f27ad458e528d7f33ef
+git checkout --detach aebba668c55079b27b46c7584b3f0743c201a84f
 uv sync --project integrations/trading-copilot --locked
 ```
 
@@ -33,10 +33,22 @@ uv run --project integrations/trading-copilot --locked liquilens-agent-host init
 ```
 
 Provision your own paper account ID and paper credentials in the generated
-owner-only files. Follow the [complete host guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/328832ee996734ec2a2d5f27ad458e528d7f33ef/integrations/trading-copilot/AGENT-HOST.md)
+owner-only files. Follow the [complete host guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/aebba668c55079b27b46c7584b3f0743c201a84f/integrations/trading-copilot/AGENT-HOST.md)
 for identity, network isolation, activation, recovery and supported limits.
 The default profile is exactly **$1,000 BTC/USD market IOC**. It requires the
 relevant product evidence and account checks before submission.
+
+Check the local setup without contacting the broker or changing any files:
+
+```sh
+uv run --project integrations/trading-copilot --locked liquilens-agent-host doctor \
+  --state-dir /absolute/private/paper-state
+```
+
+The report identifies missing configuration, credentials, token scopes and
+private-file requirements without printing secrets. Exit code 2 means local
+setup has blockers. Passing local checks does not establish current source
+eligibility, an authorized account or execution readiness.
 
 ```sh
 uv run --project integrations/trading-copilot --locked liquilens-agent-host serve \
@@ -112,15 +124,62 @@ uv run --project integrations/trading-copilot --locked liquilens-live init \
   --state-dir /absolute/private/live-state
 uv run --project integrations/trading-copilot --locked liquilens-live capabilities \
   --state-dir /absolute/private/live-state
+uv run --project integrations/trading-copilot --locked liquilens-live doctor \
+  --state-dir /absolute/private/live-state
 ```
 
-These two commands contact no broker. Initialization leaves live execution off
-and all credentials blank. The [live connector contract](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/328832ee996734ec2a2d5f27ad458e528d7f33ef/integrations/trading-copilot/LIVE-CONNECTOR.md)
+These commands contact no broker. Initialization leaves live execution off
+and all credentials blank. The [live connector contract](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/aebba668c55079b27b46c7584b3f0743c201a84f/integrations/trading-copilot/LIVE-CONNECTOR.md)
 specifies customer authorization, dedicated account ownership, trusted issuer
 binding, entitled execution-grade inputs and the verified broker-preview
 reference needed before a live order. Its local preflight does not create that
 preview. Paper receipts, public research data and simulator results cannot
 authorize live orders. There is no public managed live execution endpoint.
+
+The offline doctor checks local configuration and explains the outstanding
+qualification requirements. It always reports `live_ready=false`; neither
+nonempty credentials nor a local activation flag prove live eligibility.
+Alpaca's documented Broker API estimation endpoint is indicative and excludes
+crypto and limit orders, so it cannot supply the preview required by this
+Trading API limit-order connector. [Broker estimation scope](https://docs.alpaca.markets/us/reference/get-v1-trading-accounts-account_id-orders-estimation).
+
+Local recovery remains available when credentials are removed:
+
+```sh
+uv run --project integrations/trading-copilot --locked liquilens-live orders \
+  --state-dir /absolute/private/live-state --unresolved-only
+uv run --project integrations/trading-copilot --locked liquilens-live status \
+  --state-dir /absolute/private/live-state --request-hash <saved-hash>
+```
+
+These read an existing private journal without a broker connection. They report
+the last observed outcome; they cannot confirm a new fill or cancellation.
+The `export` operation emits a bounded page of sanitized journal metadata.
+Keep any exported account/order records private. This export is not a full
+database backup; use the connector's documented recovery procedure.
+
+## Start without an existing broker account
+
+The [browser simulator](execution.html) is usable immediately with synthetic
+balances and quotes. It requires no broker account and places no broker orders.
+
+For a dedicated paper account, follow [Alpaca paper signup](https://app.alpaca.markets/signup)
+and complete the account-owner verification prompts and required MFA. Signup
+and MFA create a paper account; live-account applications are separate.
+Generate **paper** keys in the paper dashboard and provision them directly into
+the private installation described in the host guide. Never paste credentials
+into an agent prompt or a public issue. [Official signup requirements](https://alpaca.markets/learn/live-trading-account-non-us),
+[paper account API](https://docs.alpaca.markets/us/docs/paper-trading).
+
+Account setup alone does not admit source evidence. The default product-evidence
+profile also requires current observations and the applicable data permissions.
+Its doctor explains local blockers; an execution assessment must still pass the
+source and account checks at the time of the request.
+
+Platforms connecting existing customers through OAuth need their own approved
+Alpaca Connect application and explicit paper-environment authorization. This
+source integration does not provide a shared approved OAuth application or a
+managed credential service. [App registration and review](https://docs.alpaca.markets/us/docs/registering-your-app).
 
 ## Evaluate a recurring workflow
 

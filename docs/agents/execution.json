@@ -5,7 +5,7 @@
   "guide": "https://beepboop2025.github.io/financial-evidence-skills/agents/execution-setup.md",
   "source": {
     "repository": "https://github.com/beepboop2025/liquilens-evidence-carrier",
-    "commit": "aebba668c55079b27b46c7584b3f0743c201a84f",
+    "commit": "755c3280ce6a15c5fd285f9f396a07ac6e5e2a67",
     "path": "integrations/trading-copilot",
     "status": "integration_candidate"
   },
@@ -33,6 +33,37 @@
       "hypothetical_sell_scenario_is_distinct_from_order": true,
       "issues_authenticated_receipt": false,
       "full_source_validator": false
+    },
+    {
+      "kind": "read_only_source_observer",
+      "deployment_guide": "https://github.com/beepboop2025/liquilens-evidence-carrier/blob/755c3280ce6a15c5fd285f9f396a07ac6e5e2a67/integrations/trading-copilot/OBSERVATORY-DEPLOYMENT.md",
+      "command": "uv run --project integrations/trading-copilot --locked liquilens-trading-copilot observe --format json",
+      "formats": ["json", "markdown"],
+      "report_schema": "liquilens.execution-observatory.v1",
+      "products": ["seiche", "liquilens", "undertow"],
+      "network_scope": "three_configured_public_product_endpoints",
+      "default_loads_operator_config": false,
+      "default_loads_broker_credentials": false,
+      "default_contacts_broker": false,
+      "opens_trading_journal": false,
+      "state_modified": false,
+      "scenario": "distinct_diagnostic_identity_for_hypothetical_USD_1000_BTC_USD_sell",
+      "preserves_individual_source_refusals": true,
+      "source_admission_field": "source_checks_passed",
+      "source_policy_field": "source_policy_checks_passed",
+      "ready_for_order": false,
+      "receipt_issued": false,
+      "order_authorized": false,
+      "order_submitted": false,
+      "optional_account_check": {
+        "flag": "--check-account",
+        "requires_explicit_private_files": ["--config", "--env-file"],
+        "broker": "Alpaca paper",
+        "http_methods": ["GET"],
+        "reads": ["account", "positions", "open_orders"],
+        "output": "counts_and_flags_without_account_identifiers_balances_or_secrets",
+        "grants_execution_authority": false
+      }
     },
     {
       "kind": "customer_operated_paper_host",

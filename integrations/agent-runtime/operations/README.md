@@ -14,6 +14,26 @@ service or public administration API.
 
 ## Bind and install
 
+Download the [Runtime Operations 1.0.0 release](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/runtime-ops-v1.0.0),
+including the archive, `source.json` and `SHA256SUMS`. The
+[verification record](../../../docs/releases/runtime-ops-1.0.0.json) pins the
+signed source and the archive digest. On Linux, verify the downloaded bytes and
+their build provenance before extracting them into a new administrator-owned
+release directory:
+
+```sh
+sha256sum --check SHA256SUMS
+gh attestation verify financial-evidence-runtime-ops-1.0.0.tar \
+  --repo beepboop2025/financial-evidence-skills \
+  --signer-workflow beepboop2025/financial-evidence-skills/.github/workflows/runtime-ops-release.yml \
+  --source-digest e7fa30de7d93d8e32733a7152d19c8b799d80571 \
+  --source-ref refs/tags/runtime-ops-v1.0.0
+```
+
+The archive contains one `financial-evidence-runtime-ops-1.0.0` directory.
+The `/opt/runtime-ops` paths below stand for its verified installation path.
+Keep the immutable release files and the verification record with your plan.
+
 Install the [verified runtime wheel](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.7)
 in an isolated environment, initialize private research state and register your
 workflows using the [runtime guide](../README.md). `runtime-release.json` pins
@@ -61,10 +81,15 @@ initializes a repository and never deletes, prunes or unlocks remote snapshots.
 | Component | Behavior |
 | --- | --- |
 | Research scheduler | One bounded tick per minute; each workflow keeps its own cadence and keys |
-| Offsite backup | First scheduled attempt 45 seconds after activation, then every 15 minutes |
+| Offsite backup | Startup attempt within 45 seconds, then every 15 minutes from service activation |
 | Restore verification | Every accepted backup restores its exact snapshot and verifies the complete journal |
 | Monitor | Every minute; reports expire after 180 seconds |
 | Private console | Read-only loopback HTTP, refreshing every 20 seconds |
+
+When replacing an existing backup timer, systemd can run an immediate overdue
+attempt and another at the 45-second startup deadline. These have distinct
+operation IDs and snapshots. Do not count both startup attempts as proof of
+15-minute recurrence; observe the next complete interval as well.
 
 The backup target recovery point is one interval plus transfer time during
 healthy operation; it is not a contractual SLA. Backups older than one hour,
@@ -162,4 +187,5 @@ verifies two snapshots with the actual Restic binary, checks stopped recovery
 and same-key deduplication, and performs a full repository integrity check.
 Linux also validates all seven systemd units. No source request or broker order
 is made. Production acceptance separately checks the actual offsite repository,
-private HTTP readback and two natural scheduled backup cycles.
+private HTTP readback, stopped recovery, preserved retry keys and two natural
+scheduled backup cycles separated by a complete 15-minute interval.

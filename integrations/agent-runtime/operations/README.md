@@ -25,14 +25,14 @@ including the archive, `source.json` and `SHA256SUMS`. The
 [verification record](../../../docs/releases/runtime-ops-1.0.3.json) pins the
 signed source and the archive digest. On Linux, verify the downloaded bytes and
 their build provenance before extracting them into a new administrator-owned
-release directory. Use the exact source commit from the published verification record:
+release directory. The following source pin matches the published verification record:
 
 ```sh
 sha256sum --check SHA256SUMS
 gh attestation verify financial-evidence-runtime-ops-1.0.3.tar \
   --repo beepboop2025/financial-evidence-skills \
   --signer-workflow beepboop2025/financial-evidence-skills/.github/workflows/runtime-ops-release.yml \
-  --source-digest EXPECTED_SOURCE_COMMIT \
+  --source-digest 32d26fbb217234e2c6a3d5a334a8ea0ff6f7cf35 \
   --source-ref refs/tags/runtime-ops-v1.0.3
 ```
 

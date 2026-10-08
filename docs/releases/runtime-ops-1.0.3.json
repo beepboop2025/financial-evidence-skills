@@ -1,0 +1,125 @@
+{
+  "schema": "financial-evidence.runtime-ops-verification.v1",
+  "component": "Runtime Operations",
+  "version": "1.0.3",
+  "runtime_package_version": "0.1.7",
+  "source_commit": "32d26fbb217234e2c6a3d5a334a8ea0ff6f7cf35",
+  "tag_object": "ee665b950a2712e76c2344acc3b92581b8e9bc3d",
+  "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/runtime-ops-v1.0.3",
+  "published_at": "2026-10-08T10:58:40Z",
+  "workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/37766933618",
+  "verification_status": "verified",
+  "source_and_tag_signatures": "verified_existing_owner_SSH_policy",
+  "checksums": "verified_SHA256SUMS_and_GitHub_asset_digests",
+  "archive_attestation": "verified_release_workflow_source_ref_and_source_digest",
+  "archive_matches_reviewed_source": true,
+  "assets": [
+    {
+      "name": "financial-evidence-runtime-ops-1.0.3.tar",
+      "sha256": "a79b7613de96b384bfa1e9b7ae6ec31f98e3c12e7770fbac6fbb3d0e95755efe",
+      "size": 112640,
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/runtime-ops-v1.0.3/financial-evidence-runtime-ops-1.0.3.tar"
+    },
+    {
+      "name": "SHA256SUMS",
+      "sha256": "f0516fb57e3e3b81b0dc91e4598eabbb254800193dae4f95222ca6b32f8c91e2",
+      "size": 185,
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/runtime-ops-v1.0.3/SHA256SUMS"
+    },
+    {
+      "name": "source.json",
+      "sha256": "10c6b8e63b421ea1fde09a7fca6792b040ead93f21694f17cd3b8926633fce6d",
+      "size": 1545,
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/runtime-ops-v1.0.3/source.json"
+    }
+  ],
+  "acceptance": {
+    "focused_failure_tests": 32,
+    "full_python_tests": 403,
+    "optional_skips": 3,
+    "macos_real_encrypted_restic": {
+      "broker_orders": 0,
+      "exact_snapshots_verified": 2,
+      "explicit_snapshot_disaster_recovery": true,
+      "full_repository_check": true,
+      "host_journal_and_receipts_inaccessible": true,
+      "native_backup_calendar_boundaries_verified": false,
+      "native_systemd_unit_verification": false,
+      "operations_version": "1.0.3",
+      "package_version": "0.1.7",
+      "real_restic": true,
+      "repository_snapshot_inventory_unchanged_by_recovery": true,
+      "restic_version": "restic 0.19.1 compiled with go1.26.5 on darwin/arm64",
+      "restored_admission_stopped": true,
+      "retry_keys_preserved": true,
+      "source_network_calls": 0,
+      "status": "PASS",
+      "traffic_class": "synthetic"
+    },
+    "linux_real_encrypted_restic": {
+      "broker_orders": 0,
+      "exact_snapshots_verified": 2,
+      "explicit_snapshot_disaster_recovery": true,
+      "full_repository_check": true,
+      "host_journal_and_receipts_inaccessible": true,
+      "native_backup_calendar_boundaries_verified": true,
+      "native_systemd_unit_verification": true,
+      "operations_version": "1.0.3",
+      "package_version": "0.1.7",
+      "real_restic": true,
+      "repository_snapshot_inventory_unchanged_by_recovery": true,
+      "restic_version": "restic 0.16.4 compiled with go1.22.2 on linux/amd64",
+      "restored_admission_stopped": true,
+      "retry_keys_preserved": true,
+      "source_network_calls": 0,
+      "status": "PASS",
+      "traffic_class": "synthetic"
+    },
+    "private_deployment": {
+      "observed_at": "2026-10-08T11:03:06.985476+00:00",
+      "source_and_unit_hashes_verified": true,
+      "console_running_released_version": true,
+      "operations_status": "healthy",
+      "source_status": "blocked",
+      "original_journal_and_receipts_hidden_during_recovery": true,
+      "restored_receipts": 31,
+      "same_keys_return_original_run_ids": 31,
+      "new_key_refused_while_stopped": true,
+      "live_prior_runs_preserved": 31,
+      "live_prior_events_preserved": 65,
+      "source_network_calls_during_recovery": 0,
+      "broker_orders": 0,
+      "traffic_class": "internal",
+      "clean_runtime_from_retained_wheel": true,
+      "original_runtime_and_operations_code_masked_during_recovery": true,
+      "bank_six_hour_repeat_observed": true,
+      "bank_repeat_interval_seconds": 21635.247206926346
+    }
+  },
+  "upgrade": {
+    "prior_applied_plan_required": true,
+    "all_existing_unit_hashes_verified": true,
+    "read_only_console_restarted": true,
+    "research_and_backup_workers_not_interrupted": true,
+    "supersedes": "1.0.2",
+    "superseded_issue": "startup-relative backup trigger rearmed following shared-host daemon reloads"
+  },
+  "boundaries": {
+    "deployment": "private single Linux/systemd host",
+    "dashboard": "read-only loopback HTTP through existing SSH access",
+    "source_eligibility": "separately assessed; retained source blocks remain visible",
+    "execution_authority": false,
+    "coverage_complete": false,
+    "external_active_users": null,
+    "paid_customers": null,
+    "managed_uptime_sla": false
+  },
+  "backup_schedule": {
+    "calendar": "*-*-* *:00/15:00 UTC",
+    "persistent_missed_run_catch_up": true,
+    "startup_relative_trigger": false,
+    "first_regular_slot_observed": "2026-10-08T11:00:00.487709+00:00",
+    "first_slot_restore_verified_at": "2026-10-08T11:00:09.730570+00:00",
+    "full_calendar_recurrence": "observed separately in retained deployment evidence"
+  }
+}

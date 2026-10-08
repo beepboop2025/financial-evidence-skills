@@ -2,9 +2,9 @@
   "schema": "liquidity-lab.financial-evidence-integrations.v1",
   "name": "Financial Evidence",
   "version": "0.1.7",
-  "release_state": "candidate",
-  "last_verified_release": "0.1.6",
-  "updated_at": "2026-10-05",
+  "release_state": "verified",
+  "last_verified_release": "0.1.7",
+  "updated_at": "2026-10-08",
   "license": "MIT",
   "account_required": false,
   "api_key_required": false,
@@ -30,7 +30,7 @@
       "name": "Agent Skills",
       "kind": "agent-skill",
       "identifier": "financial-evidence",
-      "install": "npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.6/financial-evidence --skill financial-evidence",
+      "install": "npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.7/financial-evidence --skill financial-evidence",
       "directory_url": "https://skills.sh/beepboop2025/financial-evidence-skills/financial-evidence",
       "activation_topics": [
         "money-market",
@@ -43,7 +43,7 @@
         "gold"
       ],
       "candidate_version": "0.1.7",
-      "published_version": "0.1.6",
+      "published_version": "0.1.7",
       "status": "public",
       "candidate_activation_topics": [
         "money-market",
@@ -61,25 +61,25 @@
       "kind": "terminal-package",
       "install": "brew install beepboop2025/tap/financial-evidence",
       "candidate_version": "0.1.7",
-      "published_version": "0.1.6",
+      "published_version": "0.1.7",
       "status": "public",
-      "verified_at": "2026-10-04T21:36:19.672601+00:00",
-      "publication_url": "https://github.com/beepboop2025/homebrew-tap/pull/7",
-      "consumer_verification_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/37236552465/job/111536689494"
+      "verified_at": "2026-10-08T05:07:23.627927+00:00",
+      "publication_url": "https://github.com/beepboop2025/homebrew-tap/pull/8",
+      "consumer_verification_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/37730042077/job/113156857387"
     },
     {
       "name": "uvx",
       "kind": "terminal-runner",
-      "install": "uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.6 financial-evidence",
+      "install": "uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.7 financial-evidence",
       "candidate_version": "0.1.7",
-      "published_version": "0.1.6",
+      "published_version": "0.1.7",
       "status": "public"
     },
     {
       "name": "Model Context Protocol",
       "kind": "mcp-registry",
       "identifier": "io.github.beepboop2025/financial-evidence",
-      "config": "https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.6/.mcp.json",
+      "config": "https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.7/.mcp.json",
       "candidate_config": "https://github.com/beepboop2025/financial-evidence-skills/blob/main/.mcp.json",
       "transports": [
         "streamable-http",
@@ -88,7 +88,7 @@
       "portable_agent_host": true,
       "tools": 3,
       "candidate_version": "0.1.7",
-      "published_version": "0.1.6",
+      "published_version": "0.1.7",
       "status": "official-registry-active"
     },
     {
@@ -99,19 +99,19 @@
       "tools": 3,
       "account_required": false,
       "status": "public",
-      "published_version": "0.1.6",
-      "verified_at": "2026-10-04T21:06:06Z"
+      "published_version": "0.1.7",
+      "verified_at": "2026-10-08T05:07:23.627927+00:00"
     },
     {
       "name": "Gemini CLI",
       "kind": "gemini-cli-extension",
-      "manifest": "https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.6/gemini-extension.json",
+      "manifest": "https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.7/gemini-extension.json",
       "candidate_manifest": "https://github.com/beepboop2025/financial-evidence-skills/blob/main/gemini-extension.json",
-      "install": "gemini extensions install https://github.com/beepboop2025/financial-evidence-skills --ref v0.1.6",
+      "install": "gemini extensions install https://github.com/beepboop2025/financial-evidence-skills --ref v0.1.7",
       "remote_mcp": "https://liquilens.in/mcp/financial-evidence",
       "bundled_skill": "financial-evidence",
       "candidate_version": "0.1.7",
-      "published_version": "0.1.6",
+      "published_version": "0.1.7",
       "status": "self-installable"
     },
     {
@@ -122,52 +122,52 @@
       "bundled_skill": "financial-evidence",
       "source_ref": "mutable-default-branch",
       "candidate_version": "0.1.7",
-      "published_version": "0.1.6",
+      "published_version": "0.1.7",
       "status": "self-installable-mutable-main"
     },
     {
       "name": "Codex plugin and ChatGPT submission",
       "kind": "openai-plugin",
-      "manifest": "https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.6/.codex-plugin/plugin.json",
+      "manifest": "https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.7/.codex-plugin/plugin.json",
       "candidate_manifest": "https://github.com/beepboop2025/financial-evidence-skills/blob/main/.codex-plugin/plugin.json",
-      "install": "codex plugin marketplace add beepboop2025/financial-evidence-skills --ref v0.1.6 && codex plugin add financial-evidence@liquidity-lab",
+      "install": "codex plugin marketplace add beepboop2025/financial-evidence-skills --ref v0.1.7 && codex plugin add financial-evidence@liquidity-lab",
       "remote_mcp": "https://liquilens.in/mcp/financial-evidence",
       "bundled_skill": "financial-evidence",
       "codex_status": "repo-installable",
       "chatgpt_status": "submission-not-started",
       "candidate_version": "0.1.7",
-      "published_version": "0.1.6",
+      "published_version": "0.1.7",
       "status": "codex-repo-installable-chatgpt-submission-not-started"
     },
     {
       "name": "Visual Studio Code",
       "kind": "editor-mcp-stdio",
-      "config": "https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.6/.vscode/mcp.json",
+      "config": "https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.7/.vscode/mcp.json",
       "candidate_config": "https://github.com/beepboop2025/financial-evidence-skills/blob/main/.vscode/mcp.json",
-      "install_url": "vscode:mcp/install?%7B%22name%22%3A%22financial-evidence%22%2C%22type%22%3A%22stdio%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22--from%22%2C%22git%2Bhttps%3A%2F%2Fgithub.com%2Fbeepboop2025%2Ffinancial-evidence-skills.git%40v0.1.6%22%2C%22financial-evidence-mcp%22%5D%7D",
-      "cli_install": "code --add-mcp '{\"name\":\"financial-evidence\",\"type\":\"stdio\",\"command\":\"uvx\",\"args\":[\"--from\",\"git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.6\",\"financial-evidence-mcp\"]}'",
+      "install_url": "vscode:mcp/install?%7B%22name%22%3A%22financial-evidence%22%2C%22type%22%3A%22stdio%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22--from%22%2C%22git%2Bhttps%3A%2F%2Fgithub.com%2Fbeepboop2025%2Ffinancial-evidence-skills.git%40v0.1.7%22%2C%22financial-evidence-mcp%22%5D%7D",
+      "cli_install": "code --add-mcp '{\"name\":\"financial-evidence\",\"type\":\"stdio\",\"command\":\"uvx\",\"args\":[\"--from\",\"git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.7\",\"financial-evidence-mcp\"]}'",
       "review_before_start": true,
       "candidate_version": "0.1.7",
-      "published_version": "0.1.6",
+      "published_version": "0.1.7",
       "status": "self-installable-not-vendor-listing"
     },
     {
       "name": "Cursor",
       "kind": "editor-mcp-stdio",
-      "config": "https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.6/.cursor/mcp.json",
+      "config": "https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.7/.cursor/mcp.json",
       "candidate_config": "https://github.com/beepboop2025/financial-evidence-skills/blob/main/.cursor/mcp.json",
-      "install_url": "cursor://anysphere.cursor-deeplink/mcp/install?name=financial-evidence&config=eyJ0eXBlIjoic3RkaW8iLCJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyItLWZyb20iLCJnaXQraHR0cHM6Ly9naXRodWIuY29tL2JlZXBib29wMjAyNS9maW5hbmNpYWwtZXZpZGVuY2Utc2tpbGxzLmdpdEB2MC4xLjYiLCJmaW5hbmNpYWwtZXZpZGVuY2UtbWNwIl19",
+      "install_url": "cursor://anysphere.cursor-deeplink/mcp/install?name=financial-evidence&config=eyJ0eXBlIjoic3RkaW8iLCJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyItLWZyb20iLCJnaXQraHR0cHM6Ly9naXRodWIuY29tL2JlZXBib29wMjAyNS9maW5hbmNpYWwtZXZpZGVuY2Utc2tpbGxzLmdpdEB2MC4xLjciLCJmaW5hbmNpYWwtZXZpZGVuY2UtbWNwIl19",
       "review_before_start": true,
       "candidate_version": "0.1.7",
-      "published_version": "0.1.6",
+      "published_version": "0.1.7",
       "status": "self-installable-not-vendor-listing"
     },
     {
       "name": "MCP Bundle",
       "kind": "desktop-bundle",
-      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.6/financial-evidence-0.1.6.mcpb",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.7/financial-evidence-0.1.7.mcpb",
       "candidate_version": "0.1.7",
-      "published_version": "0.1.6",
+      "published_version": "0.1.7",
       "status": "public"
     },
     {
@@ -212,5 +212,18 @@
     "forex",
     "gold"
   ],
-  "release_verified_at": "2026-10-04T21:36:19.672601+00:00"
+  "release_verified_at": "2026-10-04T21:36:19.672601+00:00",
+  "local_runtime": {
+    "runtime_contract_version": "1.0.0",
+    "package_version": "0.1.7",
+    "guide": "https://beepboop2025.github.io/financial-evidence-skills/agents/runtime.html",
+    "cli": "financial-evidence-runtime",
+    "private_stdio_command": "financial-evidence-runtime-mcp",
+    "mcp_tools": 6,
+    "public_hosted_endpoint": null,
+    "local_state_writes": true,
+    "execution_authority": false,
+    "installation_starts_scheduler": false,
+    "external_user_counts": "not_inferred_from_local_runs"
+  }
 }

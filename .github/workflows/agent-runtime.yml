@@ -60,7 +60,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: beepboop2025/liquilens-evidence-carrier
-          ref: 328832ee996734ec2a2d5f27ad458e528d7f33ef
+          ref: aebba668c55079b27b46c7584b3f0743c201a84f
           path: carrier-fixture
           persist-credentials: false
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0

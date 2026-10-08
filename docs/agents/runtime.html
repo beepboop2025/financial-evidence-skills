@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Run recurring financial research | Financial Evidence</title>
+<meta name="description" content="Schedule source-cited research across LiquiLens, Seiche and Undertow. Private state, bounded jobs, replayable receipts and explicit source gaps.">
+<link rel="canonical" href="https://beepboop2025.github.io/financial-evidence-skills/agents/runtime.html">
+<link rel="stylesheet" href="../styles.css"><link rel="icon" href="data:,">
+<style>main{max-width:1000px;margin:auto;padding:2rem}h1{font-size:clamp(2.4rem,6vw,4rem);line-height:1.12}section{margin:3rem 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;overflow:auto;background:#f1f5f0;padding:1rem;border:1px solid #ccd8ca}table{border-collapse:collapse;width:100%}td,th{padding:.8rem;text-align:left;border-bottom:1px solid #ccd8ca}nav{display:flex;gap:1.2rem;flex-wrap:wrap}a:focus-visible{outline:3px solid #438500;outline-offset:3px}.notice{border-left:4px solid #466a2e;padding:1rem;background:#edf4e9}</style></head>
+<body><main><nav aria-label="Research"><a href="./">Agent tools</a><a href="../start/">Try the data</a><a href="execution.html">Execution integration</a><a href="../releases/0.1.7.json">Release proof</a></nav>
+<h1>Give your agent a research routine.</h1>
+<p>Run a fixed research question, retain the evidence and pick up where you left off. Financial Evidence 0.1.7 connects LiquiLens bank disclosures, Seiche funding context and Undertow market-liquidity observations to a private, durable workflow.</p>
+<p>No data API key is required for the public research inputs. Your state stays on your machine. Package installation starts no service and sends no installation telemetry.</p>
+<section><h2>Install the published package</h2><p>Use Python 3.10 or newer and a local filesystem. Downloaded release artifacts carry checksums and GitHub build attestations; <a href="../releases/0.1.7.json">inspect the verification record</a>.</p>
+<pre>python3 -m venv .venv
+.venv/bin/python -m pip install 'https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.7/financial_evidence-0.1.7-py3-none-any.whl'
+.venv/bin/financial-evidence-runtime catalog</pre>
+<p>The core CLI has no package dependencies. <a href="https://github.com/beepboop2025/financial-evidence-skills/blob/main/integrations/agent-runtime/README.md">The full guide</a> covers optional private MCP, offline acceptance, scheduling and recovery.</p></section>
+<section><h2>Make one recurring question concrete</h2><p>Download <a href="runtime-funding-watch.json" download>the US-dollar funding workflow</a>. It checks source dates, values, units, rights and whether the returned page is complete. Review its limits, then register it using a private state path:</p>
+<pre>.venv/bin/financial-evidence-runtime --root /absolute/private/research-state init
+.venv/bin/financial-evidence-runtime --root /absolute/private/research-state register runtime-funding-watch.json
+.venv/bin/financial-evidence-runtime --root /absolute/private/research-state run funding-watch --key first-review
+.venv/bin/financial-evidence-runtime --root /absolute/private/research-state metrics</pre>
+<p>Retain the returned run ID. Reusing the same key returns the same attempt. A blocked result includes its reasons; missing or old evidence remains explicit. A completed research check grants no trading permission.</p></section>
+<section><h2>Choose the product for the question</h2><table><thead><tr><th>Question</th><th>Product</th><th>Runtime preset</th></tr></thead><tbody><tr><td>What do the published funding observations show?</td><td><a href="https://seiche.info/">Seiche</a></td><td><code>funding-watch</code></td></tr><tr><td>What do covered banks disclose?</td><td><a href="https://liquilens.in/">LiquiLens</a></td><td><code>bank-evidence</code></td></tr><tr><td>What market-liquidity evidence is available?</td><td><a href="https://liquilens-undertow.com/">Undertow</a></td><td><code>liquidity-watch</code></td></tr></tbody></table><p>These products have different observation clocks and coverage. Narrow broad presets to your question; a broad query may correctly remain blocked by missing rows, rights or incomplete pagination.</p></section>
+<section><h2>Schedule, replay and recover</h2><pre># Invoke from your scheduler once a minute; at most one due job runs.
+.venv/bin/financial-evidence-runtime --root /absolute/private/research-state tick --limit 1
+
+# Replace RUN_ID with the retained identifier.
+.venv/bin/financial-evidence-runtime --root /absolute/private/research-state replay RUN_ID
+.venv/bin/financial-evidence-runtime --root /absolute/private/research-state backup --output /absolute/new/runtime-backup.sqlite
+.venv/bin/financial-evidence-runtime --root /absolute/private/research-state stop</pre><p>Replay uses the captured bytes without network access. It preserves the original source dates. Backups retain policies, idempotency keys and event cursors. Restore to a new private directory and resume only one copy of the installation.</p></section>
+<section><h2>Connect a private MCP client</h2><p>Install the package’s <code>workspace</code> extra to use <code>financial-evidence-runtime-mcp --root /absolute/private/research-state</code> as a stdio server. It exposes six tools for catalog, registered jobs, bounded runs, replay, events and metrics. The owner controls job registration and policy; an agent can call only registered jobs.</p><p><a href="https://github.com/beepboop2025/financial-evidence-skills/blob/main/integrations/agent-runtime/README.md#connect-an-mcp-client">Copy the configuration and installation commands</a>.</p></section>
+<section><h2>Evaluate a useful repeat task</h2><p>Start with one question. Record time to the first useful result, then run it again when a new observation is expected. Use the <a href="pilot-scorecard.md">14-day scorecard</a> to track useful outcomes and returns. Local runs and package downloads do not establish independent users or revenue.</p><p class="notice">The runtime stores research evidence. A separate execution host must acquire eligible evidence and enforce its own account and order permissions. <a href="execution.html">Explore that integration</a>.</p></section>
+<footer><p>LIQUILENS PRIVATE LIMITED · Financial Evidence 0.1.7 · <a href="../privacy/">Privacy</a> · <a href="../support/">Support</a></p></footer></main></body></html>

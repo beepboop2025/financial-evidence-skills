@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://beepboop2025.github.io/financial-evidence-skills/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -73,4 +73,5 @@
   <url><loc>https://beepboop2025.github.io/financial-evidence-skills/partners/</loc><lastmod>2026-10-07</lastmod></url>
   <url><loc>https://beepboop2025.github.io/financial-evidence-skills/start/</loc><lastmod>2026-10-07</lastmod></url>
   <url><loc>https://beepboop2025.github.io/financial-evidence-skills/distribution/</loc><lastmod>2026-10-07</lastmod></url>
+<url><loc>https://beepboop2025.github.io/financial-evidence-skills/agents/runtime.html</loc><lastmod>2026-10-08</lastmod></url>
 </urlset>

@@ -4,31 +4,41 @@ Run repeatable research workflows across LiquiLens, Seiche and Undertow from a
 Python application, a terminal or an MCP client. Each run has a fixed policy,
 bounded source reads, a durable receipt and an offline replay path.
 
-This is a **source candidate**, not a claim that the published `financial-evidence`
-0.1.6 package already contains these commands. Install the reviewed commit below.
-The runtime contract version is 1.0.0; it is separate from the package version.
+The runtime is included in **Financial Evidence 0.1.7**. Its runtime contract
+version is 1.0.0, separate from the package version. The [release record](../../docs/releases/0.1.7.json)
+retains artifact and independent consumer verification.
 
 ## Install and prove the installation
 
 Use a local disk and Python 3.10 or newer. These commands are for macOS/Linux.
-Choose an isolated checkout and a private state directory. On the development
+Choose an isolated environment and a private state directory. On the development
 Mac, use the mounted SSD workspace for both.
 
 ```sh
-git clone --branch feat/agent-infrastructure-20261008 https://github.com/beepboop2025/financial-evidence-skills.git
-cd financial-evidence-skills
-git rev-parse HEAD  # Retain this exact candidate identity with acceptance evidence.
 python3 -m venv .venv
-.venv/bin/python -m pip install '.[workspace]'
+.venv/bin/python -m pip install 'https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.7/financial_evidence-0.1.7-py3-none-any.whl'
 .venv/bin/financial-evidence-runtime catalog
-.venv/bin/python integrations/agent-runtime/offline_acceptance.py --output /ABSOLUTE/NEW/acceptance
 ```
 
-The last command uses synthetic observations, denies the network access paths
-used by this client, and verifies an installed package. It retains a receipt,
-backup, restored database and JSON report. PASS establishes local behavior;
-it says nothing about current market data, trading returns or outside users.
-The core CLI needs no dependencies; omit `[workspace]` if MCP is not needed.
+For the private stdio MCP server, install the optional dependencies in the same
+environment:
+
+```sh
+.venv/bin/python -m pip install 'financial-evidence[workspace] @ https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.7/financial_evidence-0.1.7-py3-none-any.whl'
+```
+
+Checksums, build attestations and the source archive are attached to the
+[GitHub release](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.7).
+The core CLI has no package dependencies. Homebrew includes the core runtime
+CLI; optional runtime MCP dependencies use the isolated Python installation.
+
+To reproduce offline acceptance, check out tag `v0.1.7` in a separate source
+directory and invoke its `integrations/agent-runtime/offline_acceptance.py`
+using the installed environment's Python interpreter, with
+`--output /ABSOLUTE/NEW/acceptance`. It uses synthetic observations, denies the
+client's network access paths and retains a receipt, backup, restored database
+and JSON report. PASS establishes local behavior; it says nothing about current
+market data, trading returns or outside users.
 
 ## Register and run a workflow
 
@@ -199,7 +209,7 @@ and [adoption measurements](../../docs/infrastructure/ADOPTION.md).
 ## Verify the paper-host boundary
 
 `paper_host_acceptance.py` uses the real Carrier ASGI service and its synthetic
-test rig at commit `328832ee996734ec2a2d5f27ad458e528d7f33ef`. Its explicit
+test rig at commit `aebba668c55079b27b46c7584b3f0743c201a84f`. Its explicit
 `--carrier-root` must be a clean checkout of that commit. Install the Carrier
 trading-copilot locked test environment, then install this package in the same
 environment, as shown in the `agent-runtime` CI workflow. Run:

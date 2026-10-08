@@ -2,8 +2,8 @@
   "schema": "liquidity-lab.financial-evidence-marketplaces.v1",
   "name": "Financial Evidence",
   "version": "0.1.7",
-  "release_state": "candidate",
-  "last_verified_release": "0.1.6",
+  "release_state": "verified",
+  "last_verified_release": "0.1.7",
   "checked_at": "2026-08-25T19:53:54Z",
   "state_definitions": {
     "live": "A public listing or install surface was independently resolved.",
@@ -25,11 +25,11 @@
       "name": "Official MCP Registry",
       "channel": "mcp-registry",
       "state": "live",
-      "listing_url": "https://registry.modelcontextprotocol.io/v0/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.6",
+      "listing_url": "https://registry.modelcontextprotocol.io/v0/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.7",
       "cost": "free",
-      "detail": "Version 0.1.6 is active with the public remote endpoint and OCI package.",
+      "detail": "Version 0.1.7 is active with the public remote endpoint and OCI package.",
       "next_action": "Monitor future release publication.",
-      "verified_at": "2026-10-04T21:13:52.129339+00:00"
+      "verified_at": "2026-10-08T05:07:23.627927+00:00"
     },
     {
       "id": "skills-sh",

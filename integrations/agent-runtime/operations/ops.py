@@ -3,23 +3,24 @@
 
 import argparse
 from datetime import datetime, timezone
-import hashlib
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-import json
 import os
 from pathlib import Path
-import socket
 import sys
 import time
 
 from ops_backup import backup, recover
-from ops_common import OPS_VERSION, atomic, config, decode, encode, private, regular, runtime_identity
+from ops_common import OPS_VERSION, config, decode, encode, private, regular
 from ops_monitor import dashboard, monitor
 
 
 def handler(cfg):
     class Handler(BaseHTTPRequestHandler):
         server_version = "FinancialEvidenceOperations/" + OPS_VERSION
+
+        def setup(self):
+            super().setup()
+            self.connection.settimeout(5)
 
         def log_message(self, *_):
             pass  # Do not retain access URLs or invent application/user telemetry.

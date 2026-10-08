@@ -49,7 +49,7 @@ jobs:
           ASSET_DIR: ${{ runner.temp }}/runtime-ops-assets
         run: |
           set -euo pipefail
-          gh release create "$GITHUB_REF_NAME" --verify-tag --title 'Runtime Operations 1.0.0' --notes-file integrations/agent-runtime/operations/RELEASE_NOTES.md \
+          gh release create "$GITHUB_REF_NAME" --verify-tag --latest=false --title 'Runtime Operations 1.0.0' --notes-file integrations/agent-runtime/operations/RELEASE_NOTES.md \
             "$ASSET_DIR/financial-evidence-runtime-ops-1.0.0.tar" "$ASSET_DIR/source.json" "$ASSET_DIR/SHA256SUMS"
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:

@@ -1,8 +1,6 @@
 """Operational health, source readiness and local incident transitions."""
 
 from datetime import datetime, timezone
-import html
-import json
 from pathlib import Path
 import shutil
 import sqlite3

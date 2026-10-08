@@ -8,7 +8,6 @@ import os
 from pathlib import Path
 import pwd
 import re
-import shutil
 import subprocess
 import time
 
@@ -54,7 +53,7 @@ def render(cfg, *, python, code, config_path, credentials, user):
     timer("financial-evidence-runtime-monitor", "Refresh private runtime health every minute", "10s", "60s")
     service("financial-evidence-runtime-dashboard", "Private read-only Financial Evidence operations console",
             f"Type=simple\nUser=root\nExecStart={prefix} serve --port 8768\nRestart=on-failure\nRestartSec=10s\n"
-            f"MemoryMax=128M\nReadOnlyPaths={state}\nRestrictAddressFamilies=AF_UNIX AF_INET\nIPAddressDeny=any\nIPAddressAllow=localhost\n")
+            f"MemoryMax=128M\nTasksMax=32\nReadOnlyPaths={state}\nRestrictAddressFamilies=AF_UNIX AF_INET\nIPAddressDeny=any\nIPAddressAllow=localhost\n")
     return result
 
 

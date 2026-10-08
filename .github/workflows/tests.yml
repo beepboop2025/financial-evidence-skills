@@ -21,7 +21,7 @@ jobs:
     env:
       HOMEBREW_NO_AUTO_UPDATE: "1"
       HOMEBREW_NO_ANALYTICS: "1"
-      TAP_SOURCE: "d10d67b30e6d93e2e0b65e8798ef6b6ebf33266c"
+      TAP_SOURCE: "39c27764914cdc6c89aa1d6ea723f50be669cab8"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: beepboop2025/homebrew-tap
-          ref: d10d67b30e6d93e2e0b65e8798ef6b6ebf33266c
+          ref: 39c27764914cdc6c89aa1d6ea723f50be669cab8
           path: tap-candidate
           persist-credentials: false
       - name: Register only the exact public candidate tap
@@ -43,7 +43,7 @@ jobs:
       - run: brew test beepboop2025/tap/financial-evidence
       - name: Verify installed MCP and retain the separate candidate identity
         run: |
-          python3 scripts/verify_published_mcp.py --contract integrations/financial-evidence-mcp-v0.1.6.json --receipt homebrew-mcp-receipt.json -- \
+          python3 scripts/verify_published_mcp.py --contract integrations/financial-evidence-mcp-v0.1.7.json --receipt homebrew-mcp-receipt.json -- \
             "$(brew --prefix financial-evidence)/bin/financial-evidence-mcp"
           python3 - <<'PY'
           import hashlib, json, os, pathlib, subprocess
@@ -85,28 +85,37 @@ jobs:
         with:
           persist-credentials: false
       - name: Pull the immutable public release
-        run: docker pull --platform '${{ matrix.platform }}' ghcr.io/beepboop2025/financial-evidence-skills@sha256:5d4cff428c8ad95d57217c2e2a9dd55be4ecb570a072e57c949ddaef567365f1
+        run: docker pull --platform '${{ matrix.platform }}' ghcr.io/beepboop2025/financial-evidence-skills@sha256:f16737ad3b43c3b107c721a574f77bbd5e8b64fe9df3a6a1f564a8f4995cb3d1
       - name: Exercise the published stdio contract without network access
         env:
           TESTED_PLATFORM: ${{ matrix.platform }}
         run: |
-          python3 scripts/verify_published_mcp.py --contract integrations/financial-evidence-mcp-v0.1.6.json --receipt published-mcp-receipt.json -- \
+          python3 scripts/verify_published_mcp.py --contract integrations/financial-evidence-mcp-v0.1.7.json --receipt published-mcp-receipt.json -- \
             docker run --rm --interactive --platform "$TESTED_PLATFORM" --pull never --read-only --network none \
             --cap-drop ALL --security-opt no-new-privileges --pids-limit 64 \
             --memory 128m --cpus 1 \
-            ghcr.io/beepboop2025/financial-evidence-skills@sha256:5d4cff428c8ad95d57217c2e2a9dd55be4ecb570a072e57c949ddaef567365f1
+            ghcr.io/beepboop2025/financial-evidence-skills@sha256:f16737ad3b43c3b107c721a574f77bbd5e8b64fe9df3a6a1f564a8f4995cb3d1
           python3 - <<'PY'
           import json, os, pathlib, subprocess
-          image = "ghcr.io/beepboop2025/financial-evidence-skills@sha256:5d4cff428c8ad95d57217c2e2a9dd55be4ecb570a072e57c949ddaef567365f1"
+          image = "ghcr.io/beepboop2025/financial-evidence-skills@sha256:f16737ad3b43c3b107c721a574f77bbd5e8b64fe9df3a6a1f564a8f4995cb3d1"
           details = json.loads(subprocess.check_output(["docker", "image", "inspect", image]))[0]
           platform = details["Os"] + "/" + details["Architecture"]
           assert platform == os.environ["TESTED_PLATFORM"]
-          assert details["Config"]["Labels"]["org.opencontainers.image.revision"] == "5435c9c8d8acba9a2d3e170469976b6cac2fb4b4"
+          assert details["Config"]["Labels"]["org.opencontainers.image.revision"] == "286e86bcc011dbc8c1108fcbda8505f6c40e2283"
           assert details["Config"]["User"] == "65532:65532"
           path = pathlib.Path("published-mcp-receipt.json")
           receipt = json.loads(path.read_text())
           receipt.update(tested_platform=platform, image=image, image_id=details["Id"],
                          source_commit=details["Config"]["Labels"]["org.opencontainers.image.revision"])
+          runtime = json.loads(subprocess.check_output([
+              "docker", "run", "--rm", "--platform", os.environ["TESTED_PLATFORM"],
+              "--pull", "never", "--read-only", "--network", "none",
+              "--cap-drop", "ALL", "--security-opt", "no-new-privileges",
+              "--pids-limit", "64", "--memory", "128m", "--cpus", "1",
+              "--entrypoint", "financial-evidence-runtime", image, "catalog",
+          ]))
+          assert runtime["schema"] == "financial-evidence.runtime-capabilities.v1"
+          receipt["runtime_catalog"] = "PASS"
           path.write_text(json.dumps(receipt, indent=2) + "\n")
           PY
       - name: Retain the published artifact receipt

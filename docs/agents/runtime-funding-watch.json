@@ -1,0 +1,18 @@
+{
+  "daily_run_limit": 96,
+  "id": "funding-watch",
+  "interval_seconds": 900,
+  "operation": "query",
+  "parameters": {
+    "dataset": "money_markets",
+    "limit": 25,
+    "entity": "US-USD"
+  },
+  "requirements": {
+    "max_observation_age_seconds": 345600,
+    "require_complete_page": true,
+    "require_known_rights": true,
+    "require_numeric_rows": true
+  },
+  "schema": "financial-evidence.workflow.v1"
+}

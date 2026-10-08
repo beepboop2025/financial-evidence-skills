@@ -91,3 +91,7 @@ Packet `status` equals `transport_status` and describes retrieval only. Every pa
 
 - [API client kit](https://beepboop2025.github.io/financial-evidence-skills/api/): Postman, Bruno, OpenAPI and HTTP clients; twelve bounded requests across seven datasets.
 - [Platform evaluation](https://beepboop2025.github.io/financial-evidence-skills/partners/): institutional evaluation brief, rights boundaries and a proposed analyst pilot.
+
+## Durable research workflows
+
+[Financial Evidence Runtime](https://beepboop2025.github.io/financial-evidence-skills/agents/runtime.html) supplies bounded local scheduling, fixed research policies, idempotency, retained source clocks, private MCP and backup recovery across LiquiLens, Seiche and Undertow. It grants no order permission. Internal checks are not external adoption.

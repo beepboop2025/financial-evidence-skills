@@ -17,7 +17,22 @@
       "broker_contacted": false,
       "credentials_required": false,
       "analytics_collected": false,
-      "state": "in_memory_until_reload"
+      "state": "in_memory_until_reload",
+      "evidence": "authored_synthetic_examples_not_current_product_health",
+      "illustrated_policy": "liquilens.paper-funding-exit.v1",
+      "scenario_evaluated_at": "2026-10-08T12:00:00Z",
+      "scenario_ids": ["eligible", "funding-pressure", "stale-cp", "missing-rights", "expensive-exit"],
+      "product_roles": {
+        "seiche": "experimental_operator_funding_pressure_from_exact_date_spreads",
+        "liquilens": "commercial_paper_spread_and_rollover_observation_age",
+        "undertow": "rights_and_hypothetical_sell_liquidation_cost"
+      },
+      "journal_schema": "liquilens.execution-walkthrough.v2",
+      "retains_refused_assessments": true,
+      "assessment_binds_evidence_revision": true,
+      "hypothetical_sell_scenario_is_distinct_from_order": true,
+      "issues_authenticated_receipt": false,
+      "full_source_validator": false
     },
     {
       "kind": "customer_operated_paper_host",

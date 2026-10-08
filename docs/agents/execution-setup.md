@@ -7,6 +7,52 @@ timeout and reconciliation without credentials. All of its data and fills are
 synthetic. For broker integration, use the separate Carrier source below.
 The Financial Evidence package and public research MCP remain read-only.
 
+## Evidence walkthrough
+
+The browser workbench contains five authored, synthetic examples. It makes no
+requests to a broker or product API and collects no interaction analytics.
+The scenario clock is fixed at **8 October 2026, 12:00 UTC**; source observation
+and retrieval timestamps are example inputs, not assertions about real data.
+Your proposal's separate 60-second expiry uses your browser clock.
+
+| Scenario | Product's role | Illustrated decision |
+| --- | --- | --- |
+| Eligible illustration | All three product checks satisfy the example policy | Pass for explicit simulated submission |
+| Funding pressure | Seiche SOFR/IORB and EFFR/IORB spreads produce 18 bp pressure | Hold under an experimental operator STRAIN rule |
+| Stale CP observation | LiquiLens CP rollover is older than eight days, despite a recent retrieval | Unavailable |
+| Missing permissions | Undertow venue rights are unknown | Unavailable |
+| Expensive SELL liquidation | Undertow hypothetical SELL cost is 38 bp against a 25 bp limit | Limit; no automatic resizing |
+
+These examples illustrate selected rules of `liquilens.paper-funding-exit.v1`.
+The funding pressure calculation is `max(SOFR-IORB, abs(EFFR-IORB))`, with
+CALM at ≤5 bp, EROSION above 5, STRAIN above 15 and STRESS above 25. STRAIN and
+STRESS hold the request. These are experimental operator bands, not Seiche's
+full composite, calibrated forecasts or investment recommendations.
+Both commercial-paper observation dates must be less than eight days old.
+Undertow observations must be less than 300 seconds old, with hypothetical
+SELL cost at most 25 bp and venue spread at most 15 bp.
+
+The original BUY or SELL proposal and its hypothetical SELL liquidation have
+distinct identities. Exit-cost evidence never becomes an executable BUY quote.
+Example permissions are assumed only inside the eligible examples and do not
+grant real venue rights. The browser supports illustrative notionals up to
+$1,000; the installed paper host has its own fixed $1,000 profile and complete
+source/account validators. No browser result is an authenticated Carrier receipt.
+
+Each retained assessment binds the exact side, notional, account sequence and
+evidence revision. Changing the scenario invalidates outstanding submissions;
+it does not erase history. Journal schema `liquilens.execution-walkthrough.v2`
+exports every retained assessment, including refusals, with a detached copy of
+its evidence and decision. The export also includes orders, account balances,
+STOP state and the current evidence. Invalid form inputs are not assessments.
+Timeout reconciliation and repeated submission use the original intent and
+never produce a second simulated fill. Export before reloading to retain the
+session; this in-memory walkthrough is not durable execution storage.
+
+For actual inputs, inspect [Seiche funding observations](../start/?dataset=money_markets&entity=USD),
+the [LiquiLens corporate-funding source](https://api.liquilens.in/api/public-signals/corporate-transmission)
+and [Undertow liquidity coverage](../start/?dataset=market_liquidity).
+
 ## Install the reviewed source
 
 The execution components currently ship from an exact source commit, not the

@@ -61,7 +61,7 @@ Financial Evidence wheel or a new PyPI release. Requires Python 3.11–3.14 and 
 ```sh
 git clone https://github.com/beepboop2025/liquilens-evidence-carrier.git
 cd liquilens-evidence-carrier
-git checkout --detach 942596b55277e002d940fb1fa482b7282212b330
+git checkout --detach 8be2261f46bfbde390d277bc60c49d75a9c315aa
 uv sync --project integrations/trading-copilot --locked
 ```
 
@@ -114,13 +114,32 @@ secrets. Missing credentials affect only the account row. It does not use
 receipt-signing authority, write operator state or enable execution. Keep the
 input files private and provide them directly, never through a prompt.
 
-For recurring source checks, follow the [source observatory deployment guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/942596b55277e002d940fb1fa482b7282212b330/integrations/trading-copilot/OBSERVATORY-DEPLOYMENT.md).
-It installs a separate observer service and timer with bounded private history;
-it does not activate the trading service or grant order authority.
-The timer collects fifteen minutes after the preceding run completes, with up
-to fifteen seconds of jitter. Account for startup/manual checks and shared
-endpoint quotas before increasing cadence; monitoring snapshots do not replace
-fresh order-specific evidence.
+For recurring source checks, follow the [source observatory deployment guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/8be2261f46bfbde390d277bc60c49d75a9c315aa/integrations/trading-copilot/OBSERVATORY-DEPLOYMENT.md).
+It installs a separate observer service and timer with bounded private history.
+The timer collects **thirty minutes** after the preceding run completes, with
+up to fifteen seconds of jitter: at most 48 scheduled calls per day, leaving
+room beneath Undertow's separate 60-call proof and 200-call public-tool limits.
+Startup and manual checks also count. Monitoring snapshots do not replace fresh
+order-specific evidence or grant order authority.
+
+The scheduled service template requires a dedicated Undertow identity issued by
+the source operator. It supplies the private token with systemd `LoadCredential`;
+the observer and paper host use separate identities and retain their normal
+quotas across token rotation. A service name alone is not registration. For an
+operator-issued token, the explicit local command is:
+
+```sh
+uv run --project integrations/trading-copilot --locked \
+  liquilens-trading-copilot observe --format json \
+  --undertow-token-file /absolute/private/source-access.token
+```
+
+The token is sent only to the fixed Undertow exit-context route. It is separate
+from broker credentials and grants neither venue-data rights nor order authority.
+An unreadable or rejected configured token produces an unavailable source;
+the client never retries anonymously. The deployment guide covers registration,
+private storage and rotation. These instructions describe a private installation,
+not a public managed execution endpoint.
 
 A completed capture may still report `source_quota_exhausted` for a validated
 MCP quota refusal or `source_clock_in_future` when an upstream clock exceeds
@@ -130,7 +149,19 @@ clocks; do not retry repeatedly or relax eligibility limits to obtain a pass.
 
 ## Paper account
 
-Initialize a disabled host with generated read/execution tokens:
+**Existing bound paper account:** follow the [same-state host attachment guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/8be2261f46bfbde390d277bc60c49d75a9c315aa/integrations/trading-copilot/HOST-ATTACH.md).
+The guarded check/prepare/apply flow preserves the existing account, broker/HMAC
+credentials, limits, lock and audit history. It adds private agent access without
+initializing another account directory. It requires disabled paper configuration,
+an inactive prior owner and no execution history; interrupted publication resumes
+only from its reviewed manifest. Do not run `init` against an existing account.
+
+The attached unit requires `--require-disabled` at startup. It can serve private
+capability and source-assessment requests while refusing trading activation.
+Future activation requires a deliberate reviewed unit change as well as every
+source/account gate; routine credential renewal cannot remove that requirement.
+
+**New installation:** initialize a disabled host with generated read/execution tokens:
 
 ```sh
 uv run --project integrations/trading-copilot --locked liquilens-agent-host init \
@@ -138,7 +169,7 @@ uv run --project integrations/trading-copilot --locked liquilens-agent-host init
 ```
 
 Provision your own paper account ID and paper credentials in the generated
-owner-only files. Follow the [complete host guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/942596b55277e002d940fb1fa482b7282212b330/integrations/trading-copilot/AGENT-HOST.md)
+owner-only files. Follow the [complete host guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/8be2261f46bfbde390d277bc60c49d75a9c315aa/integrations/trading-copilot/AGENT-HOST.md)
 for identity, network isolation, activation, recovery and supported limits.
 The default profile is exactly **$1,000 BTC/USD market IOC**. It requires the
 relevant product evidence and account checks before submission.
@@ -157,7 +188,7 @@ eligibility, an authorized account or execution readiness.
 
 ```sh
 uv run --project integrations/trading-copilot --locked liquilens-agent-host serve \
-  --state-dir /absolute/private/paper-state --port 8766
+  --state-dir /absolute/private/paper-state --port 8766 --require-disabled
 ```
 
 In another terminal:
@@ -234,7 +265,7 @@ uv run --project integrations/trading-copilot --locked liquilens-live doctor \
 ```
 
 These commands contact no broker. Initialization leaves live execution off
-and all credentials blank. The [live connector contract](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/942596b55277e002d940fb1fa482b7282212b330/integrations/trading-copilot/LIVE-CONNECTOR.md)
+and all credentials blank. The [live connector contract](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/8be2261f46bfbde390d277bc60c49d75a9c315aa/integrations/trading-copilot/LIVE-CONNECTOR.md)
 specifies customer authorization, dedicated account ownership, trusted issuer
 binding, entitled execution-grade inputs and the verified broker-preview
 reference needed before a live order. Its local preflight does not create that

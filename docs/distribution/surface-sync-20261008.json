@@ -1,0 +1,1090 @@
+{
+  "schema": "financial-evidence.distribution-surface-sync.v1",
+  "observed_at": "2026-10-08T11:44:54.209471+00:00",
+  "scope": "Existing product listings and submissions; discovery and publication are separate from usage, source eligibility and independent adoption.",
+  "tracked_entries": 67,
+  "record_count_is_not_new_publications": true,
+  "entries": [
+    {
+      "id": "official-mcp-registry",
+      "state": "live",
+      "url": "https://registry.modelcontextprotocol.io/v0/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.7",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.164744+00:00",
+        "url": "https://registry.modelcontextprotocol.io/v0/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.7",
+        "http_status": 200,
+        "final_url": "https://registry.modelcontextprotocol.io/v0/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.7",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "7ae5c13232aa003d6974a5ca03bf6b9515f91cba2cc2bd3f898bfc06c6e2d655",
+        "title": "",
+        "mentioned_versions": [
+          "0.1.7"
+        ]
+      },
+      "metadata_freshness": null,
+      "next_action": "Monitor future release publication."
+    },
+    {
+      "id": "skills-sh",
+      "state": "live",
+      "url": "https://skills.sh/beepboop2025/financial-evidence-skills/financial-evidence",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.165022+00:00",
+        "url": "https://skills.sh/beepboop2025/financial-evidence-skills/financial-evidence",
+        "http_status": 200,
+        "final_url": "https://www.skills.sh/beepboop2025/financial-evidence-skills/financial-evidence",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "6c54f6331d851cc3311298a5d04fcdc86dccbd968a827a57af5b2ed429c02b5f",
+        "title": "financial-evidence \u2014 beepboop2025/financial-evidence-skills",
+        "mentioned_versions": []
+      },
+      "metadata_freshness": null,
+      "next_action": "Monitor directory security scans after releases."
+    },
+    {
+      "id": "glama",
+      "state": "live",
+      "url": "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.165102+00:00",
+        "url": "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills",
+        "http_status": 200,
+        "final_url": "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "96eed552ca855ea4952d5c2697f74e85f8991a8bcd59c235e9b66ba51e90fe19",
+        "title": "financial-evidence by beepboop2025 | Glama",
+        "mentioned_versions": [
+          "0.1.5",
+          "0.1.6",
+          "1.0.0",
+          "1.1.1",
+          "v0.1.5",
+          "v0.1.6"
+        ]
+      },
+      "metadata_freshness": "cached_install_instructions_0.1.6",
+      "next_action": "Refresh the existing repository crawl to published 0.1.7; retain public listing status separately from cached metadata freshness."
+    },
+    {
+      "id": "docker-mcp-catalog",
+      "state": "submitted",
+      "url": "https://github.com/docker/mcp-registry/pull/4765",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.165150+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Await Docker maintainer build approval and catalog acceptance."
+    },
+    {
+      "id": "awesome-mcp-servers",
+      "state": "submitted",
+      "url": "https://github.com/punkpeye/awesome-mcp-servers/pull/12771",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.165201+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Await independent maintainer review; acceptance is not yet claimed."
+    },
+    {
+      "id": "awesome-copilot",
+      "state": "closed_unmerged",
+      "url": "https://github.com/github/awesome-copilot/pull/2785",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.165191+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Review the maintainer outcome before deciding whether a materially revised resubmission is appropriate."
+    },
+    {
+      "id": "finos-fdc3-app-directory",
+      "state": "submitted",
+      "url": "https://github.com/finos-labs/FDC3-App-Directory/pull/40",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.165460+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Await FINOS directory review."
+    },
+    {
+      "id": "awesome-openbb",
+      "state": "submitted",
+      "url": "https://github.com/OpenBB-finance/awesome-openbb/pull/12",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.165498+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Maintainer must reopen the archived upstream repository for review and description refresh."
+    },
+    {
+      "id": "gemini-cli-extension-gallery",
+      "state": "eligible_automatic",
+      "url": "https://geminicli.com/extensions/",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.165465+00:00",
+        "url": "https://geminicli.com/extensions/",
+        "http_status": 200,
+        "final_url": "https://geminicli.com/extensions/",
+        "readback": "unavailable",
+        "error": "response over budget"
+      },
+      "metadata_freshness": null,
+      "next_action": "Wait for the daily gallery crawl and verify the listing."
+    },
+    {
+      "id": "openai-plugin-directory",
+      "state": "ready_account_action",
+      "url": "https://platform.openai.com/plugins",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.165504+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Complete publisher identity, install the exact portal-issued challenge token, record the required demo, submit, and publish only after approval."
+    },
+    {
+      "id": "claude-plugin-directory",
+      "state": "ready_account_action",
+      "url": "https://platform.claude.com/plugins/submit",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.165507+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Submit through the publisher's Claude Console account and await review."
+    },
+    {
+      "id": "smithery",
+      "state": "live",
+      "url": "https://smithery.ai/servers/mrinallovesbhature/financial-evidence",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.165509+00:00",
+        "url": "https://smithery.ai/servers/mrinallovesbhature/financial-evidence",
+        "http_status": 200,
+        "final_url": "https://smithery.ai/servers/mrinallovesbhature/financial-evidence",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "8e6c61e24ce5f736c68dac727d1726cbd38182080c62b33559960652cc1eb48f",
+        "title": "Financial Evidence by LiquiLens - MCP | Smithery",
+        "mentioned_versions": []
+      },
+      "metadata_freshness": null,
+      "next_action": "Track independently useful use; repeat the scan after relevant tool changes."
+    },
+    {
+      "id": "cline-mcp-marketplace",
+      "state": "ready_validation",
+      "url": "https://github.com/cline/mcp-marketplace/issues/new?template=mcp-server-submission.yml",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.661357+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Run a real Cline install from the public guide before checking the submission attestation."
+    },
+    {
+      "id": "stackshare",
+      "state": "ready_account_action",
+      "url": "https://stackshare.io/",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.661367+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Attach the prepared PNG through the existing form, then submit once and retain the receipt."
+    },
+    {
+      "id": "saashub",
+      "state": "submitted",
+      "url": "https://www.saashub.com/liquilens/added",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.661371+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Complete logo/screenshots and domain verification, then await review; do not duplicate the submission."
+    },
+    {
+      "id": "alternativeto",
+      "state": "ready_account_action",
+      "url": "https://alternativeto.net/faq/",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.661373+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Verify the account email, refresh the profile and submit the prepared product through the normal queue."
+    },
+    {
+      "id": "zenodo",
+      "state": "conditional_artifact",
+      "url": "https://zenodo.org/uploads/new",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.661376+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "On the next genuine software release, verify the archive metadata and its public DOI. Do not create a version solely to trigger archiving."
+    },
+    {
+      "id": "hugging-face-spaces",
+      "state": "live",
+      "url": "https://huggingface.co/spaces/oldmacdonaldhadafarm/financial-evidence-packet-inspector",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.661378+00:00",
+        "url": "https://huggingface.co/spaces/oldmacdonaldhadafarm/financial-evidence-packet-inspector",
+        "http_status": 200,
+        "final_url": "https://huggingface.co/spaces/oldmacdonaldhadafarm/financial-evidence-packet-inspector",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "1559765d96ae4b6461c1a016888e1c8da8b0baca8af26192dc08880e9608ff7c",
+        "title": "Financial Evidence Packet Inspector - a Hugging Face Space by oldmacdonaldhadafarm",
+        "mentioned_versions": []
+      },
+      "metadata_freshness": null,
+      "next_action": "Monitor real use and keep source changes synchronized; no paid hardware is needed."
+    },
+    {
+      "id": "pulsemcp",
+      "state": "paused_external",
+      "url": "https://www.pulsemcp.com/submit",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.901786+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Monitor reopening and ingestion of the existing official-registry entry; do not replay or invent a submission receipt."
+    },
+    {
+      "id": "mcp-so",
+      "state": "skipped_paid",
+      "url": "https://mcp.so/submit?type=server",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.901799+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Require separate authorization for the exact USD 39 spend before reconsidering."
+    },
+    {
+      "id": "smithery-liquilens",
+      "state": "live",
+      "url": "https://smithery.ai/servers/mrinallovesbhature/liquilens",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:05.901803+00:00",
+        "url": "https://smithery.ai/servers/mrinallovesbhature/liquilens",
+        "http_status": 200,
+        "final_url": "https://smithery.ai/servers/mrinallovesbhature/liquilens",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "f54fcbf3a116289be95402e3d1e52cbc85d5b92cf806874fe88d3c2d5c0c4354",
+        "title": "LiquiLens, the Failure Radar - MCP | Smithery",
+        "mentioned_versions": []
+      },
+      "metadata_freshness": null,
+      "next_action": "Measure independent useful first tasks and return use; preserve source and per-tool access boundaries."
+    },
+    {
+      "id": "smithery-seiche",
+      "state": "live",
+      "url": "https://smithery.ai/servers/mrinallovesbhature/seiche",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:06.055131+00:00",
+        "url": "https://smithery.ai/servers/mrinallovesbhature/seiche",
+        "http_status": 200,
+        "final_url": "https://smithery.ai/servers/mrinallovesbhature/seiche",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "10a97c41c271e21055bfddea998dd6cbdbc8d1639996f2ae599ffa84ff6b3a76",
+        "title": "Seiche \u2014 Money Markets and Funding Evidence - MCP | Smithery",
+        "mentioned_versions": []
+      },
+      "metadata_freshness": null,
+      "next_action": "Measure independent useful first tasks and return use; preserve source and per-tool access boundaries."
+    },
+    {
+      "id": "smithery-undertow",
+      "state": "live",
+      "url": "https://smithery.ai/servers/mrinallovesbhature/undertow",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:06.098859+00:00",
+        "url": "https://smithery.ai/servers/mrinallovesbhature/undertow",
+        "http_status": 200,
+        "final_url": "https://smithery.ai/servers/mrinallovesbhature/undertow",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "0436eb7182070b23226795a7914df33d2e88b370ade268f11757ac3474af2994",
+        "title": "Undertow \u2014 Market Liquidity Evidence - MCP | Smithery",
+        "mentioned_versions": []
+      },
+      "metadata_freshness": null,
+      "next_action": "Measure independent useful first tasks and return use; preserve source and per-tool access boundaries."
+    },
+    {
+      "id": "postman-research-api",
+      "state": "live",
+      "url": "https://documenter.getpostman.com/view/58772927/2sBYHPz2Jm",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:06.200937+00:00",
+        "url": "https://documenter.getpostman.com/view/58772927/2sBYHPz2Jm",
+        "http_status": 200,
+        "final_url": "https://documenter.getpostman.com/view/58772927/2sBYHPz2Jm",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "150c441005eca269fa21c3b206d9f6003687d0271757c36ccb7cc5cc90beb0e6",
+        "title": "LiquiLens Financial Evidence Research API | Source-cited market data",
+        "mentioned_versions": []
+      },
+      "metadata_freshness": null,
+      "next_action": "Measure independent task completion and return use."
+    },
+    {
+      "id": "smithery-research-desk",
+      "state": "live",
+      "url": "https://smithery.ai/servers/mrinallovesbhature/financial-evidence-research",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:06.465262+00:00",
+        "url": "https://smithery.ai/servers/mrinallovesbhature/financial-evidence-research",
+        "http_status": 200,
+        "final_url": "https://smithery.ai/servers/mrinallovesbhature/financial-evidence-research",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "2adbdff622b5bd382c004ca4319f931b772b17e89368accdd20d26ebe40ac8c1",
+        "title": "LiquiLens Financial Evidence Research Desk - MCP | Smithery",
+        "mentioned_versions": []
+      },
+      "metadata_freshness": null,
+      "next_action": "Measure independent first tasks and return use; installation counts are not monthly people."
+    },
+    {
+      "id": "apis-guru-research-api",
+      "state": "submitted",
+      "url": "https://github.com/APIs-guru/openapi-directory/issues/3568",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:06.717905+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Await maintainer review and verify the listing if accepted."
+    },
+    {
+      "id": "awesome-remote-mcp-servers",
+      "state": "live",
+      "url": "https://github.com/punkpeye/awesome-remote-mcp-servers#readme",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:06.717916+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Keep the canonical remote and linked setup guide current."
+    },
+    {
+      "id": "freepublicapis-research-api",
+      "state": "live",
+      "url": "https://www.freepublicapis.com/financial-evidence-api",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:06.717918+00:00",
+        "url": "https://www.freepublicapis.com/financial-evidence-api",
+        "http_status": 200,
+        "final_url": "https://www.freepublicapis.com/financial-evidence-api",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "3d698b94b4b49698e9002f590d0170c7698fbcde357dead17bab0b42320fc764",
+        "title": "\ud83d\udcca Financial Evidence API - Tested Every Single Day.",
+        "mentioned_versions": []
+      },
+      "metadata_freshness": null,
+      "next_action": "Keep the existing public endpoints aligned with the canonical API contract. Measure referral activation separately."
+    },
+    {
+      "id": "apislist-research",
+      "state": "submitted",
+      "url": "https://apislist.com/api/add",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:06.923545+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Wait for operator review and independently resolve the accepted public URL before marking live."
+    },
+    {
+      "id": "apislist-liquilens",
+      "state": "submitted",
+      "url": "https://apislist.com/api/add",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:06.923558+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Wait for operator review and independently resolve the accepted public URL before marking live."
+    },
+    {
+      "id": "apislist-seiche",
+      "state": "submitted",
+      "url": "https://apislist.com/api/add",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:06.923561+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Wait for operator review and independently resolve the accepted public URL before marking live."
+    },
+    {
+      "id": "apislist-undertow",
+      "state": "submitted",
+      "url": "https://apislist.com/api/add",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:06.923563+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Wait for operator review and independently resolve the accepted public URL before marking live."
+    },
+    {
+      "id": "apisio-company",
+      "state": "submitted",
+      "url": "https://apis.io/add/",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:06.923564+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Await review and the next directory build; do not resubmit the company entry."
+    },
+    {
+      "id": "mcpservers-org-research-desk",
+      "state": "submitted",
+      "url": "https://mcpservers.org/submit",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:06.923566+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Wait for the operator review and verify the research endpoint and public listing if accepted."
+    },
+    {
+      "id": "mcpservers-org-financial-evidence",
+      "state": "live",
+      "url": "https://mcpservers.org/servers/beepboop2025/financial-evidence-skills",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:06.923568+00:00",
+        "url": "https://mcpservers.org/servers/beepboop2025/financial-evidence-skills",
+        "http_status": 200,
+        "final_url": "https://mcpservers.org/servers/beepboop2025/financial-evidence-skills",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "7f852f5b00350e567ba6aea35a7492d270131353d14b84cfd4b216407dd6346f",
+        "title": "Financial Evidence MCP Server | Awesome MCP Servers",
+        "mentioned_versions": [
+          "0.1.5",
+          "0.1.6",
+          "1.0.0",
+          "1.1.1",
+          "v0.1.5",
+          "v0.1.6"
+        ]
+      },
+      "metadata_freshness": "cached_install_instructions_0.1.6",
+      "next_action": "Refresh the existing repository crawl to published 0.1.7; retain public listing status separately from cached metadata freshness."
+    },
+    {
+      "id": "mcpservers-org-liquilens",
+      "state": "live",
+      "url": "https://mcpservers.org/servers/beepboop2025/liquilens-mcp",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:07.329089+00:00",
+        "url": "https://mcpservers.org/servers/beepboop2025/liquilens-mcp",
+        "http_status": 200,
+        "final_url": "https://mcpservers.org/servers/beepboop2025/liquilens-mcp",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "b665328a6c147258aad5998c4123cd4fb46eb7c67734f1757a5f5a374867467c",
+        "title": "LiquiLens MCP Server | Awesome MCP Servers",
+        "mentioned_versions": [
+          "1.1.0",
+          "1.8.1"
+        ]
+      },
+      "metadata_freshness": null,
+      "next_action": "Review operator-cached metadata after future product releases."
+    },
+    {
+      "id": "mcpservers-org-seiche",
+      "state": "live",
+      "url": "https://mcpservers.org/servers/beepboop2025/seiche",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:07.430978+00:00",
+        "url": "https://mcpservers.org/servers/beepboop2025/seiche",
+        "http_status": 200,
+        "final_url": "https://mcpservers.org/servers/beepboop2025/seiche",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "edec2e4bb1b481368ee7330dce3a47ba58642cf0800fa4ec294203ce03a367f2",
+        "title": "Seiche MCP Server | Awesome MCP Servers",
+        "mentioned_versions": [
+          "0.1.0",
+          "0.16.1",
+          "127.0.0"
+        ]
+      },
+      "metadata_freshness": null,
+      "next_action": "Review operator-cached metadata after future product releases."
+    },
+    {
+      "id": "mcpservers-org-undertow",
+      "state": "live",
+      "url": "https://mcpservers.org/servers/beepboop2025/undertow-mcp",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:07.494817+00:00",
+        "url": "https://mcpservers.org/servers/beepboop2025/undertow-mcp",
+        "http_status": 200,
+        "final_url": "https://mcpservers.org/servers/beepboop2025/undertow-mcp",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "95563b2c78dc5db4a6bb9b88582b40273b6fa0cbf8491a69f4f22e2095b26b7e",
+        "title": "Undertow MCP Server | Awesome MCP Servers",
+        "mentioned_versions": [
+          "0.2.0",
+          "1.13.0"
+        ]
+      },
+      "metadata_freshness": null,
+      "next_action": "Review operator-cached metadata after future product releases."
+    },
+    {
+      "id": "mcpservers-org-palimpsest",
+      "state": "live",
+      "url": "https://mcpservers.org/servers/beepboop2025/palimpsest",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:07.838745+00:00",
+        "url": "https://mcpservers.org/servers/beepboop2025/palimpsest",
+        "http_status": 200,
+        "final_url": "https://mcpservers.org/servers/beepboop2025/palimpsest",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "0df44686c17ade1d54b785d455ba146778aeac9f13fb522b391173f533ebb5df",
+        "title": "Palimpsest MCP Server | Awesome MCP Servers",
+        "mentioned_versions": [
+          "1.9.3"
+        ]
+      },
+      "metadata_freshness": null,
+      "next_action": "Review operator-cached metadata after future product releases."
+    },
+    {
+      "id": "mcpservers-org-evidence-carrier",
+      "state": "live",
+      "url": "https://mcpservers.org/servers/beepboop2025/liquilens-evidence-carrier",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:08.179555+00:00",
+        "url": "https://mcpservers.org/servers/beepboop2025/liquilens-evidence-carrier",
+        "http_status": 200,
+        "final_url": "https://mcpservers.org/servers/beepboop2025/liquilens-evidence-carrier",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "7131072668ac8e9a2e9bce143bf9a156dcb3530e4bc7fa115d0db372fbbd630b",
+        "title": "LiquiLens Evidence Carrier MCP Server | Awesome MCP Servers",
+        "mentioned_versions": [
+          "0.1.2",
+          "0.1.3",
+          "0.14.0",
+          "0.15.0",
+          "0.17.0",
+          "0.17.1",
+          "0.18.0",
+          "0.19.0",
+          "0.2.0",
+          "0.20.0",
+          "0.20.1",
+          "v0.1.3",
+          "v0.17.0",
+          "v0.17.1",
+          "v0.18.0"
+        ]
+      },
+      "metadata_freshness": null,
+      "next_action": "Review operator-cached metadata after future product releases."
+    },
+    {
+      "id": "allmcps-financial-evidence",
+      "state": "listed_incomplete",
+      "url": "https://allmcps.com/mcp/financial-evidence",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:08.652287+00:00",
+        "url": "https://allmcps.com/mcp/financial-evidence",
+        "http_status": 200,
+        "final_url": "https://allmcps.com/mcp/financial-evidence",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "b54d857c2c25fbae24e9f477ba72e1f49fd36b0621cf9e601cdcf18faaa658a4",
+        "title": "Financial Evidence MCP: Config &amp; Tools | AllMCPs",
+        "mentioned_versions": [
+          "0.1.5",
+          "0.1.7",
+          "1.1.1",
+          "v0.1.5",
+          "v0.1.7"
+        ]
+      },
+      "metadata_freshness": null,
+      "next_action": "Refresh the stale install pin and complete operator enrichment after ownership verification."
+    },
+    {
+      "id": "allmcps-liquilens",
+      "state": "live",
+      "url": "https://allmcps.com/mcp/liquilens-the-failure-radar",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:08.872186+00:00",
+        "url": "https://allmcps.com/mcp/liquilens-the-failure-radar",
+        "http_status": 200,
+        "final_url": "https://allmcps.com/mcp/liquilens-the-failure-radar",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "88b1a597873fc2a6052ab0ffb31fab9774f8c9c5323d2622fe0e731e5bb16c72",
+        "title": "LiquiLens \u2014 the Failure Radar MCP Server | AllMCPs",
+        "mentioned_versions": [
+          "1.1.0",
+          "1.8.1"
+        ]
+      },
+      "metadata_freshness": null,
+      "next_action": "Claim the existing listing through the operator flow and keep cached metadata current."
+    },
+    {
+      "id": "allmcps-seiche",
+      "state": "live",
+      "url": "https://allmcps.com/mcp/seiche-funding-stress-terminal",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:08.993039+00:00",
+        "url": "https://allmcps.com/mcp/seiche-funding-stress-terminal",
+        "http_status": 200,
+        "final_url": "https://allmcps.com/mcp/seiche-funding-stress-terminal",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "c2434473312e0d1241b81ed128b1e0f48613c509cab87448de3edb7c35235c60",
+        "title": "Seiche \u2014 funding Stress terminal MCP Server | AllMCPs",
+        "mentioned_versions": [
+          "0.1.0",
+          "0.16.1",
+          "0.16.2"
+        ]
+      },
+      "metadata_freshness": null,
+      "next_action": "Claim the existing listing through the operator flow and keep cached metadata current."
+    },
+    {
+      "id": "allmcps-undertow",
+      "state": "listed_incomplete",
+      "url": "https://allmcps.com/mcp/undertow-market-liquidity-map-2",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:09.262943+00:00",
+        "url": "https://allmcps.com/mcp/undertow-market-liquidity-map-2",
+        "http_status": 200,
+        "final_url": "https://allmcps.com/mcp/undertow-market-liquidity-map-2",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "ea28c2c512801ff5740424a7217a5aa1f34303b3ffcbc825ef1fe46e87f02abe",
+        "title": "Undertow \u2014 market liquidity map MCP Server | AllMCPs",
+        "mentioned_versions": [
+          "1.13.0"
+        ]
+      },
+      "metadata_freshness": null,
+      "next_action": "Claim and reconcile the duplicate page and correct the public/subscriber tool inventory without creating another entry."
+    },
+    {
+      "id": "allmcps-palimpsest",
+      "state": "live",
+      "url": "https://allmcps.com/mcp/palimpsest-censorship-observatory",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:10.333844+00:00",
+        "url": "https://allmcps.com/mcp/palimpsest-censorship-observatory",
+        "http_status": 200,
+        "final_url": "https://allmcps.com/mcp/palimpsest-censorship-observatory",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "30d447a0eab83ff6cb44d296dd08fef410a7774b7eb908ea84d843dcd3709378",
+        "title": "Palimpsest \u2014 censorship observatory MCP Server | AllMCPs",
+        "mentioned_versions": []
+      },
+      "metadata_freshness": null,
+      "next_action": "Claim the existing listing through the operator flow and keep cached metadata current."
+    },
+    {
+      "id": "allmcps-evidence-carrier",
+      "state": "live",
+      "url": "https://allmcps.com/mcp/liquilens-evidence-carrier",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:10.877368+00:00",
+        "url": "https://allmcps.com/mcp/liquilens-evidence-carrier",
+        "http_status": 200,
+        "final_url": "https://allmcps.com/mcp/liquilens-evidence-carrier",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "b3b0ca3cd1990cc836b3b7379f1cec78a36d5e5621392ca4c23bd0afc44f1acf",
+        "title": "LiquiLens Evidence Carrier MCP: Config &amp; Tools | AllMCPs",
+        "mentioned_versions": [
+          "0.1.2",
+          "0.1.3",
+          "0.14.0",
+          "0.15.0",
+          "0.17.0",
+          "0.17.1",
+          "0.18.0",
+          "0.19.0",
+          "0.2.0",
+          "0.20.0",
+          "0.20.1",
+          "v0.1.3",
+          "v0.17.0",
+          "v0.18.0",
+          "v0.19.0"
+        ]
+      },
+      "metadata_freshness": null,
+      "next_action": "Claim the existing listing through the operator flow and keep cached metadata current."
+    },
+    {
+      "id": "allmcps-narcoscope",
+      "state": "live",
+      "url": "https://allmcps.com/mcp/narcoscope-official-drug-market-evidence-explorer",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:11.315128+00:00",
+        "url": "https://allmcps.com/mcp/narcoscope-official-drug-market-evidence-explorer",
+        "http_status": 200,
+        "final_url": "https://allmcps.com/mcp/narcoscope-official-drug-market-evidence-explorer",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "fde71252390ed4b40e4f62ff736b4992f2816a7c16846e38bf26abb6181e91ff",
+        "title": "NarcoScope \u2014 official drug Market evidence ex | AllMCPs",
+        "mentioned_versions": []
+      },
+      "metadata_freshness": null,
+      "next_action": "Claim the existing listing through the operator flow and keep cached metadata current."
+    },
+    {
+      "id": "mcpmarket-financial-evidence",
+      "state": "live",
+      "url": "https://mcpmarket.com/server/financial-evidence",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:11.589591+00:00",
+        "url": "https://mcpmarket.com/server/financial-evidence",
+        "http_status": 200,
+        "final_url": "https://mcpmarket.com/server/financial-evidence",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "809387118cf281ddaa96f787ddea922dcc230c89744c196f273b5c603088f0d3",
+        "title": "Financial Evidence: AI Agent Financial Research &amp; Data Routing",
+        "mentioned_versions": []
+      },
+      "metadata_freshness": null,
+      "next_action": "Claim the existing listing before requesting metadata changes."
+    },
+    {
+      "id": "allmcps-research-desk",
+      "state": "live",
+      "url": "https://allmcps.com/mcp/financial-evidence-research-desk",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:11.950474+00:00",
+        "url": "https://allmcps.com/mcp/financial-evidence-research-desk",
+        "http_status": 200,
+        "final_url": "https://allmcps.com/mcp/financial-evidence-research-desk",
+        "readback": "retrieved_not_acceptance",
+        "sha256": "bbb660e9ef5586e3bcd53bbb592d8a421ba04d338e0f297c5f0fe06f02275ddb",
+        "title": "Financial Evidence Research Desk MCP Server | AllMCPs",
+        "mentioned_versions": []
+      },
+      "metadata_freshness": null,
+      "next_action": "Read back the revised public metadata after AllMCPs review; do not resubmit. Older router and Undertow entries still need separate ownership and correction."
+    },
+    {
+      "id": "battlefin-company-map",
+      "state": "submitted",
+      "url": "https://battlefin-global-data-maps.lovable.app/submit",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:12.649365+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Await BattleFin review and independently verify a public firm page before marking live."
+    },
+    {
+      "id": "apyhub-seiche-reference-fx",
+      "state": "submitted",
+      "url": "https://apyhub.com/workspace/mrinallovesbhature/publishing/035397d7-9b8c-450b-86fa-cc14eb66d0d4",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:12.649383+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Wait for the existing submitted draft to be reviewed. After approval verify the public catalog, gateway response, attribution, pricing and acquisition attribution; do not resubmit."
+    },
+    {
+      "id": "saashub-seiche",
+      "state": "submitted",
+      "url": "https://www.saashub.com/seiche/added",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:12.649388+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Complete logo/screenshots and domain verification, then await review; do not duplicate the submission."
+    },
+    {
+      "id": "saashub-undertow",
+      "state": "paused_external",
+      "url": "https://www.saashub.com/services/submit",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:12.649392+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Wait for a LiquiLens or Seiche review outcome, then continue the prepared Undertow entry."
+    },
+    {
+      "id": "g2-liquilens",
+      "state": "listed_incomplete",
+      "url": "https://www.g2.com/products/liquilens/reviews",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:12.649395+00:00",
+        "url": "https://www.g2.com/products/liquilens/reviews",
+        "readback": "unavailable",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      "metadata_freshness": null,
+      "next_action": "Monitor the existing category case without resubmitting; complete logo attachment and verify the category decision before closing enrichment."
+    },
+    {
+      "id": "g2-seiche",
+      "state": "approved_pending_public",
+      "url": "https://www.g2.com/add_product_requests/new",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:12.729186+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Verify the public G2 link after propagation and check any network-site verification results without resubmitting."
+    },
+    {
+      "id": "g2-undertow",
+      "state": "approved_pending_public",
+      "url": "https://www.g2.com/add_product_requests/new",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:12.729224+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Verify the public G2 link and any network-site verification results without resubmitting."
+    },
+    {
+      "id": "api-market-seiche-reference-fx",
+      "state": "submitted",
+      "url": "https://api.market/seller/liquilens/products/seiche-reference-fx",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:12.729232+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Await the existing resubmission decision. After approval verify the public catalog and displayed plan terms; do not resubmit while review is pending."
+    },
+    {
+      "id": "datarade-company",
+      "state": "submitted",
+      "url": "https://providers.datarade.ai/apply/confirm/success",
+      "latest_surface_check": {
+        "observed_at": "2026-10-08T11:16:12.729239+00:00",
+        "readback": "no_public_listing_url"
+      },
+      "metadata_freshness": null,
+      "next_action": "Await the provider qualification decision and review any later delivery or commercial requirements. Do not resubmit."
+    },
+    {
+      "id": "swagger-liquilens",
+      "state": "live",
+      "url": "https://api.swaggerhub.com/apis/liquilens/liquilens/1.0.0",
+      "latest_surface_check": {
+        "id": "swagger-liquilens",
+        "url": "https://api.swaggerhub.com/apis/liquilens/liquilens/1.0.0",
+        "observed_at": "2026-10-08T11:37:43.585158+00:00",
+        "authentication_used": false,
+        "http_status": 200,
+        "final_url": "https://api.swaggerhub.com/apis/liquilens/liquilens/1.0.0",
+        "content_type": "application/json",
+        "sha256": "8f91c7127751f6e117cd2f0e63f099ae7aa30a1d6165afefd9e0a1f34607ad0f",
+        "bytes": 6130,
+        "title": "LiquiLens Public API",
+        "version": "1.0.0",
+        "path_count": 11,
+        "schema_matches_live_api": true
+      },
+      "metadata_freshness": "schema_matches_current_api",
+      "next_action": "Keep the existing definition aligned with the product API."
+    },
+    {
+      "id": "swagger-seiche",
+      "state": "live",
+      "url": "https://api.swaggerhub.com/apis/liquilens/seiche/0.16.2",
+      "latest_surface_check": {
+        "id": "swagger-seiche",
+        "url": "https://api.swaggerhub.com/apis/liquilens/seiche/0.16.2",
+        "observed_at": "2026-10-08T11:37:43.585413+00:00",
+        "authentication_used": false,
+        "http_status": 200,
+        "final_url": "https://api.swaggerhub.com/apis/liquilens/seiche/0.16.2",
+        "content_type": "application/json",
+        "sha256": "cbb9c6330a3924e01d51bf66264b7aaddf0cb06ea49f66184b94ae399ebdc72c",
+        "bytes": 30136,
+        "title": "Seiche Public API",
+        "version": "0.16.2",
+        "path_count": 27,
+        "schema_matches_live_api": true
+      },
+      "metadata_freshness": "schema_matches_current_api",
+      "next_action": "Keep the existing definition aligned with the product API."
+    },
+    {
+      "id": "swagger-undertow",
+      "state": "live",
+      "url": "https://api.swaggerhub.com/apis/liquilens/undertow/1.13.0",
+      "latest_surface_check": {
+        "id": "swagger-undertow",
+        "url": "https://api.swaggerhub.com/apis/liquilens/undertow/1.13.0",
+        "observed_at": "2026-10-08T11:37:43.585493+00:00",
+        "authentication_used": false,
+        "http_status": 200,
+        "final_url": "https://api.swaggerhub.com/apis/liquilens/undertow/1.13.0",
+        "content_type": "application/json",
+        "sha256": "8cbe38c3651800ab8403c65387f6ab8a8840487ad6abc0ecfe39069a08c8e3ae",
+        "bytes": 5510,
+        "title": "Undertow Attested Feed API",
+        "version": "1.13.0",
+        "path_count": 10
+      },
+      "metadata_freshness": "schema_matches_current_api",
+      "next_action": "Keep the existing definition aligned with the product API."
+    },
+    {
+      "id": "postman-liquilens",
+      "state": "live",
+      "url": "https://documenter.getpostman.com/view/58772927/2sBYHPz25W",
+      "latest_surface_check": {
+        "id": "postman-liquilens",
+        "url": "https://documenter.getpostman.com/view/58772927/2sBYHPz25W",
+        "observed_at": "2026-10-08T11:37:43.585541+00:00",
+        "authentication_used": false,
+        "http_status": 200,
+        "final_url": "https://documenter.getpostman.com/view/58772927/2sBYHPz25W",
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "af0cbf13407db1bd3d3c9738db0ad4d0aa79056c520a0d2e03db968367bf57d2",
+        "bytes": 40434,
+        "title": "LiquiLens Public API: Bank and Lender Evidence",
+        "mentioned_versions": [
+          "1.37.2",
+          "3.27.0"
+        ]
+      },
+      "metadata_freshness": "publisher_authentication_pending",
+      "next_action": "Refresh the existing collection using its publisher account; current Chrome account does not own it."
+    },
+    {
+      "id": "postman-seiche",
+      "state": "live",
+      "url": "https://documenter.getpostman.com/view/58772927/2sBYHPz25X",
+      "latest_surface_check": {
+        "id": "postman-seiche",
+        "url": "https://documenter.getpostman.com/view/58772927/2sBYHPz25X",
+        "observed_at": "2026-10-08T11:37:43.585585+00:00",
+        "authentication_used": false,
+        "http_status": 200,
+        "final_url": "https://documenter.getpostman.com/view/58772927/2sBYHPz25X",
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "dd87f3a011b362e9f902c5f833e6c0ca1a20fd71e07a176f0a9d4c2ff31fa7eb",
+        "bytes": 40437,
+        "title": "Seiche Public API: Funding and Money Market Evidence",
+        "mentioned_versions": [
+          "1.37.2",
+          "3.27.0"
+        ]
+      },
+      "metadata_freshness": "publisher_authentication_pending",
+      "next_action": "Refresh the existing collection using its publisher account; current Chrome account does not own it."
+    },
+    {
+      "id": "postman-undertow",
+      "state": "live",
+      "url": "https://documenter.getpostman.com/view/58772927/2sBYHPz25a",
+      "latest_surface_check": {
+        "id": "postman-undertow",
+        "url": "https://documenter.getpostman.com/view/58772927/2sBYHPz25a",
+        "observed_at": "2026-10-08T11:37:44.472011+00:00",
+        "authentication_used": false,
+        "http_status": 200,
+        "final_url": "https://documenter.getpostman.com/view/58772927/2sBYHPz25a",
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "0ef6f3821e074e6ead3837c998abd8cb70017b54207c22588d3d60a5c5a7c3e3",
+        "bytes": 40506,
+        "title": "Undertow Attested Feed API: Liquidity and Exit-Cost Evidence",
+        "mentioned_versions": [
+          "1.37.2",
+          "3.27.0"
+        ]
+      },
+      "metadata_freshness": "publisher_authentication_pending",
+      "next_action": "Refresh the existing collection using its publisher account; current Chrome account does not own it."
+    },
+    {
+      "id": "rapidapi-liquilens",
+      "state": "live",
+      "url": "https://rapidapi.com/beepboop2025/api/liquilens-public-api",
+      "latest_surface_check": {
+        "id": "rapidapi-liquilens",
+        "url": "https://rapidapi.com/beepboop2025/api/liquilens-public-api",
+        "observed_at": "2026-10-08T11:37:44.485315+00:00",
+        "authentication_used": false,
+        "http_status": 200,
+        "final_url": "https://rapidapi.com/beepboop2025/api/liquilens-public-api",
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "162205635cb5f9c4b0eb62ac77c7cf1f18e92832f81b23202ffc717a8a751df1",
+        "bytes": 260798,
+        "title": "LiquiLens Public API",
+        "mentioned_versions": [
+          "0.9.7",
+          "1.0.0",
+          "3.1.0"
+        ]
+      },
+      "metadata_freshness": null,
+      "next_action": "Keep the existing definition aligned with the product API."
+    },
+    {
+      "id": "rapidapi-seiche",
+      "state": "live",
+      "url": "https://rapidapi.com/beepboop2025/api/seiche-public-api1",
+      "latest_surface_check": {
+        "id": "rapidapi-seiche",
+        "url": "https://rapidapi.com/beepboop2025/api/seiche-public-api1",
+        "observed_at": "2026-10-08T11:37:44.618428+00:00",
+        "authentication_used": false,
+        "http_status": 200,
+        "final_url": "https://rapidapi.com/beepboop2025/api/seiche-public-api1",
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "ce80bc800d75955e24b46fc4fdb6f26aab39f959270b11f4b7384105a3fe6574",
+        "bytes": 348929,
+        "title": "Seiche Public API",
+        "mentioned_versions": [
+          "0.16.1",
+          "0.9.7",
+          "3.0.3"
+        ]
+      },
+      "metadata_freshness": "version_refresh_in_progress",
+      "next_action": "Keep the existing definition aligned with the product API."
+    },
+    {
+      "id": "rapidapi-undertow",
+      "state": "live",
+      "url": "https://rapidapi.com/beepboop2025/api/undertow-attested-feed-api",
+      "latest_surface_check": {
+        "id": "rapidapi-undertow",
+        "url": "https://rapidapi.com/beepboop2025/api/undertow-attested-feed-api",
+        "observed_at": "2026-10-08T11:37:44.722903+00:00",
+        "authentication_used": false,
+        "http_status": 200,
+        "final_url": "https://rapidapi.com/beepboop2025/api/undertow-attested-feed-api",
+        "content_type": "text/html; charset=utf-8",
+        "sha256": "99a004673e4c2a3824b7875329616e09b92c2c433c5411169df0efb61b6480f3",
+        "bytes": 265839,
+        "title": "Undertow Attested Feed API",
+        "mentioned_versions": [
+          "0.9.7",
+          "1.13.0",
+          "3.0.3"
+        ]
+      },
+      "metadata_freshness": null,
+      "next_action": "Keep the existing definition aligned with the product API."
+    }
+  ]
+}

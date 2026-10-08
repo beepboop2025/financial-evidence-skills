@@ -212,7 +212,7 @@
     "forex",
     "gold"
   ],
-  "release_verified_at": "2026-10-04T21:36:19.672601+00:00",
+  "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
   "local_runtime": {
     "runtime_contract_version": "1.0.0",
     "package_version": "0.1.7",
@@ -224,6 +224,21 @@
     "local_state_writes": true,
     "execution_authority": false,
     "installation_starts_scheduler": false,
-    "external_user_counts": "not_inferred_from_local_runs"
+    "external_user_counts": "not_inferred_from_local_runs",
+    "operations": {
+      "version": "1.0.3",
+      "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/runtime-ops-v1.0.3",
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/releases/runtime-ops-1.0.3.json",
+      "dashboard": "private_loopback_via_operator_ssh",
+      "encrypted_backup": true,
+      "restore_preserves_retry_keys": true
+    }
+  },
+  "system_interfaces_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/system.json",
+  "execution_integration": {
+    "guide": "https://beepboop2025.github.io/financial-evidence-skills/agents/execution-setup.md",
+    "capability_catalog": "https://beepboop2025.github.io/financial-evidence-skills/agents/execution.json",
+    "public_hosted_endpoint": null,
+    "default_execution_enabled": false
   }
 }

@@ -1,8 +1,8 @@
 {
   "schema": "financial-evidence.agent-connections.v1",
   "operator": "LIQUILENS PRIVATE LIMITED",
-  "observed_at": "2026-10-07T19:18:07.169074+00:00",
-  "observation_scope": "Synthetic public MCP initialize and tools/list, plus bounded research API GETs. This is a dated connection inventory, not a test of every tool or a source freshness assessment.",
+  "observed_at": "2026-10-08T11:12:59.038376+00:00",
+  "observation_scope": "Dated anonymous MCP initialize and complete tools/list for the product connections. Prior bounded research example retains its own observation clock. No source freshness or financial eligibility is inferred.",
   "financial_authority": "none",
   "guide_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/",
   "configurations": {
@@ -20,12 +20,42 @@
       "smithery_url": "https://smithery.ai/servers/mrinallovesbhature/liquilens",
       "observed_server_version": "1.8.1",
       "advertised_tool_count": 23,
-      "tools_list_body_sha256": "6fe1fc4f669af8263ed5be621d7aeb6ed30610f02b42dcdea5098a4bf934801d",
+      "tools_list_body_sha256": "cfa871c9f5240aae1360e47cc1b90bf6c4ea41f059da4909880f93cfd75e4d8e",
       "start_with": {
         "name": "institution_research_coverage",
-        "arguments": {"scope": "dossiers", "limit": 3}
+        "arguments": {
+          "scope": "dossiers",
+          "limit": 3
+        }
       },
-      "access": "Public read-only research. Coverage differs by institution and source; discovery does not establish current evidence for every bank."
+      "access": "Public read-only research. Coverage differs by institution and source; discovery does not establish current evidence for every bank.",
+      "observed_at": "2026-10-08T11:12:54.885875+00:00",
+      "tools_list_hash_encoding": "JSON-RPC response parsed and serialized as compact UTF-8 JSON plus newline",
+      "tools": [
+        "bank_asset_quality_review",
+        "bank_npa_reconciliation",
+        "banking_specialisation_coverage",
+        "corporate_transmission_board",
+        "crypto_exposure_board",
+        "crypto_regime_board",
+        "evidence_europe",
+        "evidence_india",
+        "evidence_institution",
+        "evidence_markets",
+        "evidence_us",
+        "failure_radar_board",
+        "failure_radar_institution",
+        "forward_odds",
+        "household_credit_board",
+        "institution_research_coverage",
+        "institution_review_packet",
+        "latest_article",
+        "rbi_supervisory_tape",
+        "research_network",
+        "stablecoin_rails_board",
+        "universe_search",
+        "verify_published_record"
+      ]
     },
     {
       "id": "seiche",
@@ -37,9 +67,32 @@
       "smithery_url": "https://smithery.ai/servers/mrinallovesbhature/seiche",
       "observed_server_version": "0.16.2",
       "advertised_tool_count": 16,
-      "tools_list_body_sha256": "72d02416c52b3db90e808e2ab0cc55a3dabc98210dc6e7f6cf425c67f23c35f4",
-      "start_with": {"name": "data_health", "arguments": {}},
-      "access": "Public research. Source clocks, units, availability and redistribution rights remain source-specific."
+      "tools_list_body_sha256": "5d42133de7084c7b9adeb9eca97f50724160031a66dcd21daaa16d15617a1f36",
+      "start_with": {
+        "name": "data_health",
+        "arguments": {}
+      },
+      "access": "Public research. Source clocks, units, availability and redistribution rights remain source-specific.",
+      "observed_at": "2026-10-08T11:12:54.886304+00:00",
+      "tools_list_hash_encoding": "JSON-RPC response parsed and serialized as compact UTF-8 JSON plus newline",
+      "tools": [
+        "gift_city_context",
+        "gold_inventory_carry",
+        "market_workbench",
+        "research_network",
+        "latest_article",
+        "funding_stress_now",
+        "trade_safety_risk_context",
+        "money_market_context",
+        "world_markets_context",
+        "historical_analogs",
+        "proof_backtest",
+        "data_health",
+        "crypto_stress_record",
+        "institutional_flows",
+        "oil_funding_context",
+        "fx_materials_passage"
+      ]
     },
     {
       "id": "undertow",
@@ -51,9 +104,32 @@
       "smithery_url": "https://smithery.ai/servers/mrinallovesbhature/undertow",
       "observed_server_version": "1.13.0",
       "advertised_tool_count": 16,
-      "tools_list_body_sha256": "dc423b2f048ed387b175e12830d46258042080e9b7fba6efb8c615a606f537db",
-      "start_with": {"name": "agent_access_status", "arguments": {}},
-      "access": "Public discovery and summaries; full-fidelity and subscriber tools keep their own entitlements. Advertised tool count does not mean every tool is freely callable."
+      "tools_list_body_sha256": "65000d89c04d42bf1abb9e0d80bdf7973cdbb6fdf5ff04692b237a09ac3af8ab",
+      "start_with": {
+        "name": "agent_access_status",
+        "arguments": {}
+      },
+      "access": "Public discovery and summaries; full-fidelity and subscriber tools keep their own entitlements. Advertised tool count does not mean every tool is freely callable.",
+      "observed_at": "2026-10-08T11:12:55.967184+00:00",
+      "tools_list_hash_encoding": "JSON-RPC response parsed and serialized as compact UTF-8 JSON plus newline",
+      "tools": [
+        "agent_access_status",
+        "crypto_exit_check",
+        "crypto_funding_cost",
+        "crypto_portfolio_stress",
+        "depth_episodes",
+        "exit_cost",
+        "gold_cash_realisation",
+        "latest_article",
+        "liquidity_tiers",
+        "market_corpus_context",
+        "research_network",
+        "sealed_record",
+        "trade_safety_exit_context",
+        "unwind_watch",
+        "venue_concentration",
+        "venue_price_reconciliation"
+      ]
     }
   ],
   "research_api": {
@@ -66,14 +142,32 @@
       "url": "https://api.seiche.info/openbb/api/v1/agent-review?limit=3",
       "observed_schema": "financial-evidence.agent-result.v1",
       "observed_body_sha256": "73a54c82aa16794a9b8fbb6ada756c30c9570cc92f97287b7e9ee27256a05d19",
-      "scope": "At most three rows per selected dataset; next_offset indicates more rows. Preserve unavailable and withheld values."
+      "scope": "At most three rows per selected dataset; next_offset indicates more rows. Preserve unavailable and withheld values.",
+      "observed_at": "2026-10-07T19:18:07.169074+00:00"
     },
     "data_read_authentication": "none",
-    "optional_measurement": "Separate opt-in enrollment and deletion routes exist; these connection examples do not enroll installations."
+    "optional_measurement": "Separate opt-in enrollment and deletion routes exist; these connection examples do not enroll installations.",
+    "release_identity": {
+      "schema": "financial-evidence.workspace-release.v1",
+      "release_id": "workspace-1.1.3+e6ad3584290b",
+      "workspace_version": "1.1.3",
+      "package_version": "0.1.6",
+      "source_commit": "e6ad3584290b8aa1d4f0d54f184ea959fe27465b",
+      "contract": "financial-evidence.workspace.v1",
+      "source_repository": "https://github.com/beepboop2025/financial-evidence-skills",
+      "identity_scope": "operator_supplied_build_revision",
+      "institutional_readiness": "not_certified"
+    },
+    "release_observed_at": "2026-10-08T11:12:57.682416+00:00"
   },
   "review_workflow": {
     "purpose": "Recurring human review of covered-bank, funding and liquidity evidence",
-    "attention_priority": ["missing evidence", "stale evidence", "changed evidence", "unchanged evidence"],
+    "attention_priority": [
+      "missing evidence",
+      "stale evidence",
+      "changed evidence",
+      "unchanged evidence"
+    ],
     "boundary": "Attention ordering is not approval of a financial action. Check coverage, source dates, rights and gaps before interpreting values."
   },
   "limitations": [
@@ -81,5 +175,6 @@
     "These public research tools do not place orders, transfer funds or provide executable quotes.",
     "Client configuration examples were checked against documented formats; installation in each client was not exercised by this observation.",
     "Preserve separate product scopes, original observation dates, rights and null values."
-  ]
+  ],
+  "system_interfaces_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/system.json"
 }

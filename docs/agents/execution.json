@@ -5,7 +5,7 @@
   "guide": "https://beepboop2025.github.io/financial-evidence-skills/agents/execution-setup.md",
   "source": {
     "repository": "https://github.com/beepboop2025/liquilens-evidence-carrier",
-    "commit": "328832ee996734ec2a2d5f27ad458e528d7f33ef",
+    "commit": "aebba668c55079b27b46c7584b3f0743c201a84f",
     "path": "integrations/trading-copilot",
     "status": "integration_candidate"
   },
@@ -27,6 +27,7 @@
       "default_enabled": false,
       "public_managed_endpoint": null,
       "durable_order_intents": true,
+      "offline_setup_diagnostics": true,
       "automatic_submit_retries": false,
       "requires_current_eligible_source_evidence": true
     },
@@ -40,6 +41,9 @@
       "default_enabled": false,
       "public_managed_endpoint": null,
       "durable_order_intents": true,
+      "offline_setup_diagnostics": true,
+      "credential_independent_local_recovery": ["status", "orders", "export"],
+      "broker_preview_compatibility": "documented_alpaca_estimation_does_not_support_this_limit_order_scope",
       "automatic_submit_retries": false,
       "requires": [
         "customer_account_mandate_and_credentials",

@@ -5,7 +5,7 @@
   "guide": "https://beepboop2025.github.io/financial-evidence-skills/agents/execution-setup.md",
   "source": {
     "repository": "https://github.com/beepboop2025/liquilens-evidence-carrier",
-    "commit": "755c3280ce6a15c5fd285f9f396a07ac6e5e2a67",
+    "commit": "942596b55277e002d940fb1fa482b7282212b330",
     "path": "integrations/trading-copilot",
     "status": "integration_candidate"
   },
@@ -36,7 +36,7 @@
     },
     {
       "kind": "read_only_source_observer",
-      "deployment_guide": "https://github.com/beepboop2025/liquilens-evidence-carrier/blob/755c3280ce6a15c5fd285f9f396a07ac6e5e2a67/integrations/trading-copilot/OBSERVATORY-DEPLOYMENT.md",
+      "deployment_guide": "https://github.com/beepboop2025/liquilens-evidence-carrier/blob/942596b55277e002d940fb1fa482b7282212b330/integrations/trading-copilot/OBSERVATORY-DEPLOYMENT.md",
       "command": "uv run --project integrations/trading-copilot --locked liquilens-trading-copilot observe --format json",
       "formats": ["json", "markdown"],
       "report_schema": "liquilens.execution-observatory.v1",
@@ -49,6 +49,13 @@
       "state_modified": false,
       "scenario": "distinct_diagnostic_identity_for_hypothetical_USD_1000_BTC_USD_sell",
       "preserves_individual_source_refusals": true,
+      "diagnostic_reasons": ["source_quota_exhausted", "source_clock_in_future"],
+      "scheduled_service": {
+        "interval_after_completion_seconds": 900,
+        "maximum_jitter_seconds": 15,
+        "sends_notifications": false,
+        "replaces_fresh_order_specific_evidence": false
+      },
       "source_admission_field": "source_checks_passed",
       "source_policy_field": "source_policy_checks_passed",
       "ready_for_order": false,

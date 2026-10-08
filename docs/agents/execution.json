@@ -93,13 +93,36 @@
       "profile": "BTC/USD market IOC, USD 1000",
       "default_enabled": false,
       "public_managed_endpoint": null,
+      "source_commit": "ee6bdd549e4ac478342e64551f755f5a6389e36a",
+      "default_mcp_tools": ["paper_capabilities", "assess_paper_order", "paper_order_status"],
+      "default_mcp_can_submit": false,
+      "assessment_semantics": "Retains and evaluates source evidence for a paper proposal; submission separately checks account controls.",
+      "assessment_and_status_append_durable_audit_events": true,
+      "assessment_submission_authorized": false,
       "durable_order_intents": true,
       "offline_setup_diagnostics": true,
       "existing_state_attach_guide": "https://github.com/beepboop2025/liquilens-evidence-carrier/blob/ee6bdd549e4ac478342e64551f755f5a6389e36a/integrations/trading-copilot/HOST-ATTACH.md",
       "existing_state_attach_preserves_account_and_history": true,
       "attached_service_requires_disabled_startup": true,
       "automatic_submit_retries": false,
-      "requires_current_eligible_source_evidence": true
+      "requires_current_eligible_source_evidence": true,
+      "backup_recovery": {
+        "source_commit": "9988d2301d041ab94f21f0b04c991a5e3bc5c836",
+        "guide": "https://github.com/beepboop2025/liquilens-evidence-carrier/blob/9988d2301d041ab94f21f0b04c991a5e3bc5c836/integrations/trading-copilot/HOST-BACKUP.md",
+        "requires_disabled_host": true,
+        "schedule_hours": 6,
+        "startup_recovery": "guarded_resume_of_previously_active_disabled_host",
+        "encrypted": true,
+        "isolated_restore_checks": ["downloaded_bytes", "decryption", "file_hashes", "database_integrity", "identity_bindings"],
+        "production_restore_is_separate_manual_procedure": true,
+        "operator_acceptance": {
+          "observed_at": "2026-10-08T12:21:12Z",
+          "scheduled_verification_at": "2026-10-08T12:20:08Z",
+          "scheduled_recurrence_verified": true,
+          "full_production_disaster_recovery_exercise_verified": false,
+          "scope": "one_private_disabled_installation_not_customer_or_live_execution_qualification"
+        }
+      }
     },
     {
       "kind": "customer_owned_live_connector",
@@ -112,6 +135,20 @@
       "public_managed_endpoint": null,
       "durable_order_intents": true,
       "offline_setup_diagnostics": true,
+      "read_only_account_diagnostic": {
+        "source_commit": "4c5e9939cc0973da9f10353c3eed7dffe060f775",
+        "guide": "https://github.com/beepboop2025/liquilens-evidence-carrier/blob/4c5e9939cc0973da9f10353c3eed7dffe060f775/integrations/trading-copilot/LIVE-CONNECTOR.md",
+        "command": "uv run --project integrations/trading-copilot --locked liquilens-live check-account --state-dir <customer-private-state>",
+        "requires_customer_credentials": true,
+        "http_methods": ["GET"],
+        "reads": ["account", "positions", "open_orders"],
+        "output": "redacted_checks_counts_flags_and_failure_reasons",
+        "works_with_execution_disabled_or_STOP": true,
+        "state_modified": false,
+        "grants_execution_authority": false,
+        "live_ready": false,
+        "validation": "synthetic_http_doubles_no_provisioned_live_account"
+      },
       "credential_independent_local_recovery": ["status", "orders", "export"],
       "broker_preview_compatibility": "documented_alpaca_estimation_does_not_support_this_limit_order_scope",
       "automatic_submit_retries": false,

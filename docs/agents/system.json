@@ -103,9 +103,35 @@
       ],
       "public_hosted_endpoint": null,
       "default_execution_enabled": false,
+      "source_commit": "ee6bdd549e4ac478342e64551f755f5a6389e36a",
+      "default_mcp_tools": [
+        "paper_capabilities",
+        "assess_paper_order",
+        "paper_order_status"
+      ],
+      "default_mcp_can_submit": false,
+      "assessment_semantics": "Retains and evaluates source evidence for a paper proposal; submission separately checks account controls.",
+      "assessment_and_status_append_durable_audit_events": true,
       "guide_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/execution-setup.md",
       "capability_catalog_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/execution.json",
+      "backup_recovery_guide": "https://github.com/beepboop2025/liquilens-evidence-carrier/blob/9988d2301d041ab94f21f0b04c991a5e3bc5c836/integrations/trading-copilot/HOST-BACKUP.md",
       "qualification": "Source freshness, rights and exact-order qualification remain separate from hosting and account access."
+    },
+    {
+      "id": "local-live-account-diagnostic",
+      "name": "Customer-operated live account diagnostic",
+      "access": "private_customer_operated",
+      "transport": "local_cli",
+      "source_commit": "4c5e9939cc0973da9f10353c3eed7dffe060f775",
+      "guide_url": "https://github.com/beepboop2025/liquilens-evidence-carrier/blob/4c5e9939cc0973da9f10353c3eed7dffe060f775/integrations/trading-copilot/LIVE-CONNECTOR.md",
+      "command": "liquilens-live check-account --state-dir <customer-private-state>",
+      "http_methods": ["GET"],
+      "requires_customer_credentials": true,
+      "public_hosted_endpoint": null,
+      "execution_authority": false,
+      "local_state_writes": false,
+      "live_ready": false,
+      "qualification": "Released and tested with synthetic HTTP doubles. Momentary account checks do not qualify a live deployment or authorize a later order."
     },
     {
       "id": "execution-walkthrough",
@@ -115,6 +141,29 @@
       "market_data": "synthetic",
       "broker_contacted": false,
       "execution_authority": false
+    },
+    {
+      "id": "noisefloor",
+      "name": "NoiseFloor statistical diagnostics",
+      "version": "0.2.0",
+      "access": "public",
+      "authentication": "none",
+      "transport": "streamable-http",
+      "mcp_url": "https://api.seiche.info/noisefloor/mcp",
+      "protocol": "2025-06-18",
+      "tool_count": 6,
+      "tools": [
+        "ab_test",
+        "did_it_change",
+        "forecast_next",
+        "real_or_sampling",
+        "score_forecasts",
+        "which_metrics_matter"
+      ],
+      "guide_url": "https://github.com/beepboop2025/noisefloor",
+      "observed_at": "2026-10-08T12:21:13.323907+00:00",
+      "execution_authority": false,
+      "qualification": "Descriptive statistical diagnostics. This observation does not verify market performance or future releases."
     }
   ],
   "product_roles": {

@@ -15,7 +15,7 @@ Financial Evidence wheel or a new PyPI release. Requires Python 3.11–3.14 and 
 ```sh
 git clone https://github.com/beepboop2025/liquilens-evidence-carrier.git
 cd liquilens-evidence-carrier
-git checkout --detach a7113447414a7b7699fcc04fc29c9f08f0d4adc0
+git checkout --detach 328832ee996734ec2a2d5f27ad458e528d7f33ef
 uv sync --project integrations/trading-copilot --locked
 ```
 
@@ -33,7 +33,7 @@ uv run --project integrations/trading-copilot --locked liquilens-agent-host init
 ```
 
 Provision your own paper account ID and paper credentials in the generated
-owner-only files. Follow the [complete host guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/a7113447414a7b7699fcc04fc29c9f08f0d4adc0/integrations/trading-copilot/AGENT-HOST.md)
+owner-only files. Follow the [complete host guide](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/328832ee996734ec2a2d5f27ad458e528d7f33ef/integrations/trading-copilot/AGENT-HOST.md)
 for identity, network isolation, activation, recovery and supported limits.
 The default profile is exactly **$1,000 BTC/USD market IOC**. It requires the
 relevant product evidence and account checks before submission.
@@ -115,7 +115,7 @@ uv run --project integrations/trading-copilot --locked liquilens-live capabiliti
 ```
 
 These two commands contact no broker. Initialization leaves live execution off
-and all credentials blank. The [live connector contract](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/a7113447414a7b7699fcc04fc29c9f08f0d4adc0/integrations/trading-copilot/LIVE-CONNECTOR.md)
+and all credentials blank. The [live connector contract](https://github.com/beepboop2025/liquilens-evidence-carrier/blob/328832ee996734ec2a2d5f27ad458e528d7f33ef/integrations/trading-copilot/LIVE-CONNECTOR.md)
 specifies customer authorization, dedicated account ownership, trusted issuer
 binding, entitled execution-grade inputs and the verified broker-preview
 reference needed before a live order. Its local preflight does not create that

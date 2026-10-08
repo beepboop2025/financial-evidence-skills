@@ -5,7 +5,7 @@
   "guide": "https://beepboop2025.github.io/financial-evidence-skills/agents/execution-setup.md",
   "source": {
     "repository": "https://github.com/beepboop2025/liquilens-evidence-carrier",
-    "commit": "a7113447414a7b7699fcc04fc29c9f08f0d4adc0",
+    "commit": "328832ee996734ec2a2d5f27ad458e528d7f33ef",
     "path": "integrations/trading-copilot",
     "status": "integration_candidate"
   },

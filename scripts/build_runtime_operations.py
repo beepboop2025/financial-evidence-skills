@@ -21,7 +21,7 @@ def main():
     output = Path(args.output).absolute()
     output.mkdir(parents=True, exist_ok=False)
     commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
-    version = "1.0.2"
+    version = "1.0.3"
     names = ("ops.py", "ops_common.py", "ops_backup.py", "ops_monitor.py", "install.py", "configure.py",
              "ops_recovery.py", "ops_diagnostics.py", "README.md", "RELEASE_NOTES.md", "runtime-release.json")
     entries = {name: (source / name).read_bytes() for name in names}

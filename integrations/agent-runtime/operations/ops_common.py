@@ -17,7 +17,7 @@ import uuid
 from financial_evidence.runtime.contracts import Workflow, decode, encode
 from financial_evidence.runtime.engine import implementation, verify_bundle
 
-OPS_VERSION = "1.0.2"
+OPS_VERSION = "1.0.3"
 MAX_DATABASE = 134_217_728
 HEX = re.compile(r"[0-9a-f]{64}\Z")
 IDENTITY = re.compile(r"[0-9a-f]{32}\Z")

@@ -1,6 +1,6 @@
 # Operate a private research installation
 
-Runtime Operations 1.0.2 operates the separately published Financial Evidence
+Runtime Operations 1.0.3 operates the separately published Financial Evidence
 0.1.7 runtime. It adds service supervision, a private console, capacity and
 schedule monitoring, persistent incident transitions, encrypted offsite backup
 and verified restoration. Source eligibility and external adoption remain
@@ -12,30 +12,31 @@ The console listens only on `127.0.0.1:8768`. Package installation alone starts
 no service. This is an individually operated installation, not a hosted tenant
 service or public administration API.
 
-Version 1.0.2 verifies upgrades using the prior applied unit hashes, including
+Version 1.0.3 schedules backups on UTC quarter-hours with persistent catch-up,
+so service-manager reloads cannot rearm a startup backup delay. It verifies upgrades using the prior applied unit hashes, including
 legacy monitor units that 1.0.1 did not recognize. It also adds recovery after host-local receipt loss and retained-row source
-diagnostics. Use a published 1.0.2 archive for these commands; the 1.0.0 archive
+diagnostics. Use a published 1.0.3 archive for these commands; the 1.0.0 archive
 remains available as the earlier release and does not include them.
 
 ## Bind and install
 
-Download Runtime Operations 1.0.2 from the [1.0.2 release](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/runtime-ops-v1.0.2),
+Download Runtime Operations 1.0.3 from the [1.0.3 release](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/runtime-ops-v1.0.3),
 including the archive, `source.json` and `SHA256SUMS`. The
-[verification record](../../../docs/releases/runtime-ops-1.0.2.json) pins the
+[verification record](../../../docs/releases/runtime-ops-1.0.3.json) pins the
 signed source and the archive digest. On Linux, verify the downloaded bytes and
 their build provenance before extracting them into a new administrator-owned
-release directory. The following source pin matches the published verification record:
+release directory. Use the exact source commit from the published verification record:
 
 ```sh
 sha256sum --check SHA256SUMS
-gh attestation verify financial-evidence-runtime-ops-1.0.2.tar \
+gh attestation verify financial-evidence-runtime-ops-1.0.3.tar \
   --repo beepboop2025/financial-evidence-skills \
   --signer-workflow beepboop2025/financial-evidence-skills/.github/workflows/runtime-ops-release.yml \
-  --source-digest 54858fd2d5ebfe0dcfd3258bb23acdde64c8c85a \
-  --source-ref refs/tags/runtime-ops-v1.0.2
+  --source-digest EXPECTED_SOURCE_COMMIT \
+  --source-ref refs/tags/runtime-ops-v1.0.3
 ```
 
-The archive contains one `financial-evidence-runtime-ops-1.0.2` directory.
+The archive contains one `financial-evidence-runtime-ops-1.0.3` directory.
 The `/opt/runtime-ops` paths below stand for its verified installation path.
 Keep the immutable release files and the verification record with your plan.
 
@@ -92,15 +93,16 @@ initializes a repository and never deletes, prunes or unlocks remote snapshots.
 | Component | Behavior |
 | --- | --- |
 | Research scheduler | One bounded tick per minute; each workflow keeps its own cadence and keys |
-| Offsite backup | Startup attempt within 45 seconds, then every 15 minutes from service activation |
+| Offsite backup | UTC quarter-hours; persistent catch-up after a missed calendar slot |
 | Restore verification | Every accepted backup restores its exact snapshot and verifies the complete journal |
 | Monitor | Every minute; reports expire after 180 seconds |
 | Private console | Read-only loopback HTTP, refreshing every 20 seconds |
 
-When replacing an existing backup timer, systemd can run an immediate overdue
-attempt and another at the 45-second startup deadline. These have distinct
-operation IDs and snapshots. Do not count both startup attempts as proof of
-15-minute recurrence; observe the next complete interval as well.
+A fresh installation waits for the next UTC quarter-hour (or a persistent
+missed-run catch-up) for its first backup. Monitoring correctly reports a missing
+verified backup until that succeeds. Upgrades retain existing verified recovery
+proof. An immediate catch-up is not steady recurrence; observe later calendar
+slots. There is no startup-relative backup trigger to rearm on daemon reloads.
 
 The backup target recovery point is one interval plus transfer time during
 healthy operation; it is not a contractual SLA. Backups older than one hour,

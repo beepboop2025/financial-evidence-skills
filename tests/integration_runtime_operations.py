@@ -1,6 +1,7 @@
 """Actual encrypted Restic backup/restore with installed runtime and no source calls."""
 
 import argparse
+import configparser
 import json
 import os
 from pathlib import Path
@@ -91,13 +92,27 @@ def main():
                 (unit_dir / name).write_text(body)
             if sys.platform.startswith("linux"):
                 subprocess.run(["systemd-analyze", "verify", *map(str, unit_dir.iterdir())], check=True, capture_output=True)
+                timer = configparser.ConfigParser()
+                timer.read_string(rendered["financial-evidence-runtime-backup.timer"])
+                assert set(timer['Timer']) == {'oncalendar', 'persistent', 'accuracysec', 'unit'}
+                assert timer['Timer'].getboolean('persistent')
+                # Native parser: loading at different times before the same
+                # quarter-hour must not create a fresh 45-second deadline.
+                cases = [('10:36:14', '10:45:00'), ('10:36:59', '10:45:00'),
+                         ('10:42:14', '10:45:00'), ('10:47:25', '11:00:00')]
+                for base, expected in cases:
+                    native = subprocess.check_output(['systemd-analyze', 'calendar',
+                        '--base-time=2026-10-08 ' + base + ' UTC', timer['Timer']['OnCalendar']], text=True)
+                    next_line = next(line for line in native.splitlines() if 'Next elapse:' in line)
+                    assert '2026-10-08 ' + expected + ' UTC' in next_line
             report = {"status": "PASS", "package_version": "0.1.7", "real_restic": True,
                       "restic_version": subprocess.check_output(["restic", "version"], text=True).strip(),
                       "exact_snapshots_verified": 2, "restored_admission_stopped": True, "retry_keys_preserved": True,
-                      "operations_version": "1.0.2", "host_journal_and_receipts_inaccessible": True,
+                      "operations_version": "1.0.3", "host_journal_and_receipts_inaccessible": True,
                       "explicit_snapshot_disaster_recovery": True, "repository_snapshot_inventory_unchanged_by_recovery": True,
                       "source_network_calls": 0, "broker_orders": 0, "full_repository_check": True,
                       "native_systemd_unit_verification": sys.platform.startswith("linux"), "traffic_class": "synthetic"}
+            report['native_backup_calendar_boundaries_verified'] = sys.platform.startswith('linux')
             atomic(output / "report.json", report)
             print(json.dumps(report, indent=2))
 

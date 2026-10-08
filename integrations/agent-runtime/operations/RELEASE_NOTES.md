@@ -1,5 +1,6 @@
-Runtime Operations 1.0.2 closes disaster-recovery and source-diagnosis gaps around the unchanged Financial Evidence 0.1.7 runtime.
+Runtime Operations 1.0.3 closes disaster-recovery and source-diagnosis gaps around the unchanged Financial Evidence 0.1.7 runtime.
 
+- Schedule backups at fixed UTC quarter-hours with persistent missed-run catch-up, removing startup-relative triggers that rearmed during shared-host service-manager reloads.
 - Discover candidate encrypted snapshots when host-local receipts are lost, with an explicit distinction between a listing and restore verification.
 - Restore an exact snapshot using the independently retained configuration and repository credentials, without the original research or operations directories.
 - Validate repository, installation, runtime, workflow, payload, receipt and retry-key identities before publishing a stopped copy and reconstructed receipt.

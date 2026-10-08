@@ -25,7 +25,7 @@ jobs:
       - name: Verify owner signatures and exact main source
         run: |
           set -euo pipefail
-          test "$GITHUB_REF_NAME" = "runtime-ops-v1.0.1"
+          test "$GITHUB_REF_NAME" = "runtime-ops-v1.0.2"
           signer_file="ops/release/financial-evidence.allowed_signers"
           git -c gpg.format=ssh -c gpg.ssh.allowedSignersFile="$signer_file" verify-tag --raw "$GITHUB_REF_NAME"
           release_commit="$(git rev-list -n 1 "$GITHUB_REF_NAME")"
@@ -42,15 +42,15 @@ jobs:
       - run: python scripts/build_runtime_operations.py --output '${{ runner.temp }}/runtime-ops-assets'
       - uses: actions/attest-build-provenance@0f67c3f4856b2e3261c31976d6725780e5e4c373 # v4.1.1
         with:
-          subject-path: '${{ runner.temp }}/runtime-ops-assets/financial-evidence-runtime-ops-1.0.1.tar'
+          subject-path: '${{ runner.temp }}/runtime-ops-assets/financial-evidence-runtime-ops-1.0.2.tar'
       - name: Publish the verified operations component
         env:
           GH_TOKEN: ${{ github.token }}
           ASSET_DIR: ${{ runner.temp }}/runtime-ops-assets
         run: |
           set -euo pipefail
-          gh release create "$GITHUB_REF_NAME" --verify-tag --latest=false --title 'Runtime Operations 1.0.1' --notes-file integrations/agent-runtime/operations/RELEASE_NOTES.md \
-            "$ASSET_DIR/financial-evidence-runtime-ops-1.0.1.tar" "$ASSET_DIR/source.json" "$ASSET_DIR/SHA256SUMS"
+          gh release create "$GITHUB_REF_NAME" --verify-tag --latest=false --title 'Runtime Operations 1.0.2' --notes-file integrations/agent-runtime/operations/RELEASE_NOTES.md \
+            "$ASSET_DIR/financial-evidence-runtime-ops-1.0.2.tar" "$ASSET_DIR/source.json" "$ASSET_DIR/SHA256SUMS"
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
           name: runtime-ops-release-acceptance

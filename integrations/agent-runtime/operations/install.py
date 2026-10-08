@@ -11,7 +11,7 @@ import re
 import subprocess
 import time
 
-from ops_common import atomic, bound_identity, config, inspect_journal, private, runtime_identity, utc
+from ops_common import HEX, atomic, bound_identity, config, decode, inspect_journal, private, regular, runtime_identity, utc
 
 
 def absolute(value):
@@ -66,6 +66,41 @@ def activate(files):
     subprocess.run(["systemctl", "restart", "financial-evidence-runtime-dashboard.service"], check=True)
 
 
+def previous_units(path, cfg, files):
+    if path is None:
+        return {}
+    path = Path(path)
+    private(path.parent)
+    plan = decode(regular(path, 65536), limit=65536)
+    if not isinstance(plan, dict):
+        raise ValueError("prior applied plan must be an object")
+    hashes = plan.get("unit_sha256", {})
+    if (plan.get("schema") != "financial-evidence.runtime-ops-installation.v1"
+            or plan.get("applied") is not True or plan.get("installation_id") != cfg["installation_id"]
+            or not isinstance(hashes, dict) or set(hashes) != set(files)
+            or not all(isinstance(value, str) and HEX.fullmatch(value) for value in hashes.values())):
+        raise ValueError("prior applied plan does not bind this installation and unit inventory")
+    return hashes
+
+
+def owned_units(directory, files, hashes):
+    """Descriptions are not ownership evidence; require the prior applied bytes."""
+    result = {}
+    for name in files:
+        path = Path(directory) / name
+        if path.is_symlink():
+            raise ValueError("existing unit is symlinked")
+        if not path.exists():
+            if name in hashes:
+                raise ValueError("prior installed unit is missing")
+            continue
+        raw = regular(path, 65536)
+        if hashlib.sha256(raw).hexdigest() != hashes.get(name):
+            raise ValueError("existing unit differs from --previous-plan; reconcile ownership")
+        result[name] = raw
+    return result
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", required=True)
@@ -73,6 +108,7 @@ def main(argv=None):
     parser.add_argument("--credentials", required=True, help="Existing root-private restic EnvironmentFile; contents are never copied")
     parser.add_argument("--runtime-user", default="financial-research")
     parser.add_argument("--output", required=True)
+    parser.add_argument("--previous-plan", help="Prior applied plan.json, required when replacing installed units")
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args(argv)
     os.umask(0o077)
@@ -82,6 +118,7 @@ def main(argv=None):
     bound_identity(value, cfg)
     files = render(cfg, python=args.runtime_python, code=Path(__file__).resolve().parent,
                    config_path=args.config, credentials=args.credentials, user=args.runtime_user)
+    prior_hashes = previous_units(args.previous_plan, cfg, files)
     output = Path(args.output)
     output.mkdir(mode=0o700, exist_ok=False)
     for name, body in files.items():
@@ -89,7 +126,8 @@ def main(argv=None):
     plan = {"schema": "financial-evidence.runtime-ops-installation.v1", "prepared_at": utc(),
             "installation_id": cfg["installation_id"], "unit_sha256": {k: hashlib.sha256(v.encode()).hexdigest() for k, v in files.items()},
             "source_writes": False, "credentials_copied": False, "broker_authority": False,
-            "backup_interval_seconds": 900, "monitor_interval_seconds": 60, "dashboard_bind": "127.0.0.1:8768", "applied": False}
+            "backup_interval_seconds": 900, "monitor_interval_seconds": 60, "dashboard_bind": "127.0.0.1:8768", "applied": False,
+            "previous_plan": str(Path(args.previous_plan).absolute()) if args.previous_plan else None}
     atomic(output / "plan.json", plan)
     if not args.apply:
         print(json.dumps(plan, indent=2))
@@ -101,14 +139,10 @@ def main(argv=None):
     if credentials.is_symlink() or not credentials.is_file() or credentials.stat().st_uid != 0 or credentials.stat().st_mode & 0o077:
         raise ValueError("existing root-private credential file required")
     current = Path("/etc/systemd/system")
+    previous = owned_units(current, files, prior_hashes)
     old = private(output / "previous", create=True)
-    for name in files:
-        path = current / name
-        if path.exists():
-            text = path.read_text()
-            if path.is_symlink() or "Financial Evidence" not in text and "research" not in text:
-                raise ValueError("existing unit ownership not established")
-            atomic(old / name, path.read_bytes(), raw=True)
+    for name, raw in previous.items():
+        atomic(old / name, raw, raw=True)
     subprocess.run(["systemd-analyze", "verify", *[str(output / name) for name in files]], check=True, capture_output=True)
     # Never interrupt an active backup or research attempt to install helpers.
     for unit in ("financial-evidence-runtime.service", "financial-evidence-runtime-backup.service"):

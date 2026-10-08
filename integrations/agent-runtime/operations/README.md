@@ -1,6 +1,6 @@
 # Operate a private research installation
 
-Runtime Operations 1.0.1 operates the separately published Financial Evidence
+Runtime Operations 1.0.2 operates the separately published Financial Evidence
 0.1.7 runtime. It adds service supervision, a private console, capacity and
 schedule monitoring, persistent incident transitions, encrypted offsite backup
 and verified restoration. Source eligibility and external adoption remain
@@ -12,15 +12,16 @@ The console listens only on `127.0.0.1:8768`. Package installation alone starts
 no service. This is an individually operated installation, not a hosted tenant
 service or public administration API.
 
-Version 1.0.1 adds recovery after host-local receipt loss and retained-row source
-diagnostics. Use a published 1.0.1 archive for these commands; the 1.0.0 archive
+Version 1.0.2 verifies upgrades using the prior applied unit hashes, including
+legacy monitor units that 1.0.1 did not recognize. It also adds recovery after host-local receipt loss and retained-row source
+diagnostics. Use a published 1.0.2 archive for these commands; the 1.0.0 archive
 remains available as the earlier release and does not include them.
 
 ## Bind and install
 
-Download Runtime Operations 1.0.1 from the [operations releases](https://github.com/beepboop2025/financial-evidence-skills/releases),
+Download Runtime Operations 1.0.2 from the [operations releases](https://github.com/beepboop2025/financial-evidence-skills/releases),
 including the archive, `source.json` and `SHA256SUMS`. The
-[verification records](../../../docs/releases/) pins the
+[verification record](../../../docs/releases/runtime-ops-1.0.2.json) pins the
 signed source and the archive digest. On Linux, verify the downloaded bytes and
 their build provenance before extracting them into a new administrator-owned
 release directory. Replace `EXPECTED_SOURCE_COMMIT` with the exact commit in
@@ -28,14 +29,14 @@ the published verification record:
 
 ```sh
 sha256sum --check SHA256SUMS
-gh attestation verify financial-evidence-runtime-ops-1.0.1.tar \
+gh attestation verify financial-evidence-runtime-ops-1.0.2.tar \
   --repo beepboop2025/financial-evidence-skills \
   --signer-workflow beepboop2025/financial-evidence-skills/.github/workflows/runtime-ops-release.yml \
   --source-digest EXPECTED_SOURCE_COMMIT \
-  --source-ref refs/tags/runtime-ops-v1.0.1
+  --source-ref refs/tags/runtime-ops-v1.0.2
 ```
 
-The archive contains one `financial-evidence-runtime-ops-1.0.1` directory.
+The archive contains one `financial-evidence-runtime-ops-1.0.2` directory.
 The `/opt/runtime-ops` paths below stand for its verified installation path.
 Keep the immutable release files and the verification record with your plan.
 
@@ -69,7 +70,13 @@ install -d -m 700 /etc/financial-evidence-runtime-ops
 ```
 
 After checking the plan, run the same installer with a **new** output directory
-and `--apply`. It verifies the runtime account, implementation and workflow
+and `--apply`. When upgrading an existing installation, also pass
+`--previous-plan /absolute/path/to/prior-applied/plan.json` in both invocations.
+The prior plan must be applied, private and bound to the same installation. Every
+existing unit must match its recorded hash; missing, modified or symlinked units
+are refused. Keep the prior plan independently with the recovery configuration.
+
+The installer verifies the runtime account, implementation and workflow
 inventory, checks the native systemd units, retains prior owned unit files and
 refuses to interrupt an active research or backup process. Retain its plan with
 the deployment receipt. Paths containing spaces or systemd substitutions are

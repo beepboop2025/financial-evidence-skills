@@ -175,14 +175,48 @@
     },
     {
       "id": "datarade-company",
-      "state": "ready_account_action",
-      "detail": "The company/provider account approval email dated 8 October 2026 was verified in authenticated mail. Initial password setup is still required to activate access. This establishes account approval only; a public provider page, dataset listing, distribution rights and commercial acceptance remain unverified.",
-      "observed_at": "2026-10-09T18:55:18.467Z",
+      "state": "approved_pending_public",
+      "detail": "The approved company account and marketplace channel are active. Provider Studio shows the Seiche Reference FX product Published, with 1 published and 0 unpublished products. Frankfurt upload storage and the 20-row, 22-attribute ECB USD sample are saved. Public provider and product searches returned no LiquiLens results at the latest check, so public listing availability remains unverified. The earlier approval email is retained as historical evidence; no independent customer or revenue is established.",
+      "observed_at": "2026-10-09T19:49:00Z",
       "latest_observation": {
-        "observed_at": "2026-10-09T18:55:18.467Z",
-        "readback": "provider_account_approved_no_public_listing_verified"
+        "observed_at": "2026-10-09T19:49:00Z",
+        "readback": "provider_studio_published_public_listing_unverified",
+        "account_active": true,
+        "marketplace_channel_active": true,
+        "studio_status": "Published",
+        "studio_published_count": 1,
+        "studio_unpublished_count": 0,
+        "product_id": "5981ec90-5419-486a-ae80-a8275ad5f9cb",
+        "public_listing_verified": false,
+        "canonical_public_url": null,
+        "public_checks": [
+          {
+            "url": "https://datarade.ai/search/providers?search_type=navbar&search_context=providers&keywords=LiquiLens",
+            "result": "No provider results for LiquiLens"
+          },
+          {
+            "url": "https://datarade.ai/search/products?keywords=LiquiLens",
+            "result": "No product results for LiquiLens"
+          }
+        ],
+        "storage_region": "Frankfurt",
+        "sample": {
+          "uploaded": true,
+          "parsed_rows": 20,
+          "parsed_attributes": 22,
+          "latest_source_observation": "2026-10-09",
+          "sha256": "d2cf0f92797a9e0093f14d61673a2e460d9f845fe11fb5a53393acd071fe4f52"
+        },
+        "plan": {
+          "name": "Commission-only",
+          "annual_price_usd": 0,
+          "commission_percent": 30,
+          "paid_upgrade_purchased": false,
+          "product_price_set": false
+        },
+        "final_activation_actor_verified": false
       },
-      "pending_action": "Initial account activation question remains with the owner; no activation or public listing claimed."
+      "pending_action": "Verify canonical public provider and product pages when propagation is observable; preserve the existing account and product without replaying activation or submission."
     },
     {
       "id": "allmcps-financial-evidence",
@@ -425,10 +459,14 @@
       "observed_at": "2026-10-09T19:10:01.131Z"
     },
     "datarade": {
-      "state": "ready_account_action",
+      "state": "approved_pending_public",
       "account_approved": true,
-      "activation_question": "pending with owner",
-      "public_listing_verified": false
+      "account_active": true,
+      "marketplace_channel_active": true,
+      "studio_status": "Published",
+      "public_listing_verified": false,
+      "observed_at": "2026-10-09T19:49:00Z",
+      "next_action": "Verify canonical public pages for the existing provider and product; do not replay activation or submission."
     }
   },
   "limits": [
@@ -436,7 +474,7 @@
     "API.market public identity is verified; current checkout rendering, gateway freshness and payment are not.",
     "LobeHub card text and tool metadata are unvalidated; no native installation is claimed.",
     "AllMCPs semantic gaps remain open; public tool inventories are not live-server checks.",
-    "Datarade account approval is not public provider or dataset publication.",
+    "Datarade Provider Studio shows Published; independent public provider and dataset availability remain unverified.",
     "Verification calls and directory views do not establish independent use, retention or paid adoption.",
     "Prior full-ledger observation dates, release versions and historical audit counts remain unchanged.",
     "Fintech Sandbox acknowledged a non-binding provider enquiry; partnership, trial access, expanded licences and paid sponsorship were not agreed.",

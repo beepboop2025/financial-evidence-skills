@@ -259,17 +259,18 @@
       "cost": "no-checkout-observed",
       "detail": "The prepared signed-in List a Tool form was submitted through the actual UI and rejected with \"Bot access denied\". No accepted submission or public listing was observed. The existing form is retained for an account-owner handoff.",
       "next_action": "Have the account owner continue from the preserved prepared form and resolve the platform access gate; retain a genuine submission receipt before marking submitted. Do not replay the failed automated attempt or bypass its access control.",
-      "verified_at": "2026-10-07T17:46:37.218560+00:00",
+      "verified_at": "2026-10-09T19:10:01.131Z",
       "latest_surface_check": {
         "observed_at": "2026-10-08T11:16:05.661367+00:00",
         "readback": "no_public_listing_url"
       },
       "latest_attempt": {
-        "recorded_at": "2026-10-09T19:08:19.729953+00:00",
-        "evidence_source": "submission browser owner handoff in the current session",
+        "observed_at": "2026-10-09T19:10:01.131Z",
+        "evidence_source": "retained authenticated browser dialog readback",
         "result": "Bot access denied",
         "submission_accepted": false,
-        "prepared_form_preserved": true
+        "prepared_form_preserved": true,
+        "logo_preview_present": true
       },
       "evidence_receipt": "distribution/platform-expansion-20261010.json"
     },
@@ -1920,7 +1921,7 @@
     }
   ],
   "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
-  "updated_at": "2026-10-09T19:08:19.729953+00:00",
+  "updated_at": "2026-10-09T19:10:41.267368+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",

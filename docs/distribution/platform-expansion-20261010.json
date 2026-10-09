@@ -1,7 +1,7 @@
 {
   "schema": "liquilens.platform-expansion-receipts.v1",
   "observed_date_asia_kolkata": "2026-10-10",
-  "recorded_at": "2026-10-09T19:08:19.729953+00:00",
+  "recorded_at": "2026-10-09T19:10:41.267368+00:00",
   "source_base_commit": "15e21cb9dbd9931f6121a298589e449de0e84cd0",
   "scope": "New catalog submissions and existing placement reconciliation; sanitized handoff, not adoption evidence.",
   "new_actions": [
@@ -221,12 +221,14 @@
       "state": "ready_account_action",
       "detail": "The prepared signed-in List a Tool form was submitted through the actual UI and rejected with \"Bot access denied\". No accepted submission or public listing was observed. The existing form is retained for an account-owner handoff.",
       "latest_attempt": {
-        "recorded_at": "2026-10-09T19:08:19.729953+00:00",
-        "evidence_source": "submission browser owner handoff in the current session",
+        "observed_at": "2026-10-09T19:10:01.131Z",
+        "evidence_source": "retained authenticated browser dialog readback",
         "result": "Bot access denied",
         "submission_accepted": false,
-        "prepared_form_preserved": true
-      }
+        "prepared_form_preserved": true,
+        "logo_preview_present": true
+      },
+      "observed_at": "2026-10-09T19:10:01.131Z"
     }
   ],
   "public_apis_ci": {
@@ -341,6 +343,16 @@
       "filename": "toolhive-submission/REPORT.md",
       "sha256": "b892b01543d2171cb9ee2afe1a4dbe8f803055a691fb82b6a9b566e73122cac3",
       "storage": "retained private audit artifact; no activation URLs or credentials published"
+    },
+    {
+      "filename": "toolhive-submission/colima-feasibility-audit.json",
+      "sha256": "c2af7087cd05c5736242c8afa31d76f9a4513ac30d4e24e13c2626929b1b828d",
+      "storage": "retained private audit artifact; no activation URLs or credentials published"
+    },
+    {
+      "filename": "stackshare-receipt.json",
+      "sha256": "75ed6609af60abd0c9444485ce7cee02eff2e4ccb2766b13819c61f17e5cc160",
+      "storage": "retained private audit artifact; no activation URLs or credentials published"
     }
   ],
   "added_ledger_ids": [
@@ -396,13 +408,21 @@
       "public_candidate_url": null,
       "external_submissions": 0,
       "runtime_started": false,
-      "next_action": "Establish an authorized native runtime without disturbing other VM ownership, then pass the unmodified proxy acceptance and recheck duplicates before a contribution."
+      "next_action": "Establish an authorized native runtime without disturbing other VM ownership, then pass the unmodified proxy acceptance and recheck duplicates before a contribution.",
+      "runtime_feasibility": {
+        "observed_at": "2026-10-09T19:08:26.351234+00:00",
+        "result": "not_started_after_host_resource_check",
+        "detail": "An existing UTM workload, elevated host memory pressure and nearly exhausted swap made an additional isolated Colima runtime unsuitable during this attempt. Existing workload ownership was preserved.",
+        "new_profile_created": false,
+        "runtime_started": false
+      }
     },
     "stackshare": {
       "state": "ready_account_action",
       "submission_accepted": false,
       "result": "Bot access denied",
-      "prepared_form_preserved": true
+      "prepared_form_preserved": true,
+      "observed_at": "2026-10-09T19:10:01.131Z"
     },
     "datarade": {
       "state": "ready_account_action",

@@ -75,7 +75,9 @@ its ledger state remains `ready_account_action`.
 Direct MCP discovery matched version 0.1.7 and the three router tools. The
 unmodified ToolHive 0.51.4 CLI nevertheless requires an available container or
 Kubernetes runtime before starting the remote proxy. No active local runtime was
-available, so startup exited 1; no runtime was started and no PR was submitted.
+available, so startup exited 1. A retained host-resource audit found elevated
+memory pressure and nearly exhausted swap alongside an existing VM workload;
+no additional runtime was started and no PR was submitted.
 The candidate remains local only, with no public source URL and no new ledger
 placement. Native proxy acceptance must pass before a contribution attestation.
 These checks are synthetic/operator verification, not platform adoption.

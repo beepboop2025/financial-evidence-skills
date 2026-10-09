@@ -1,0 +1,310 @@
+{
+  "schema": "liquilens.distribution-execution.v1",
+  "recorded_at": "2026-10-09T20:37:39.660676+00:00",
+  "observed_date_asia_kolkata": "2026-10-10",
+  "source_base_commit": "c1880c115f6c9f8250b298984e567095f149dd98",
+  "scope": "Provider intake, native framework distribution and account/payment gates; not customer acquisition evidence.",
+  "entries": [
+    {
+      "id": "neudata-company",
+      "name": "Neudata \u2014 LiquiLens provider application",
+      "channel": "institutional-data-provider-directory",
+      "state": "submitted",
+      "submission_url": "https://www.neudata.co/data_providers/sign_up?requested_subscription_status=pending_free",
+      "cost": "Standard provider listing free; no paid option selected.",
+      "detail": "The data-provider application was acknowledged as submitted for review. This records provider intake only; account approval, dataset questionnaires and a buyer-facing listing remain unverified. LiquiLens, Seiche and Undertow research roles retain separate source and rights boundaries.",
+      "next_action": "Await provider review and continue the existing application; do not replay signup.",
+      "public_listing_verified": false,
+      "verified_at": "2026-10-09T20:31:08.304305+00:00",
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+    },
+    {
+      "id": "eagle-alpha-company",
+      "name": "Eagle Alpha \u2014 LiquiLens provider application",
+      "channel": "institutional-data-provider-directory",
+      "state": "submitted",
+      "submission_url": "https://app.selldata.eaglealpha.com/signup",
+      "cost": "Free provider intake; no paid service or optional AWS data profiling selected.",
+      "detail": "Business email verification completed and the portal acknowledged the provider request, pending team review by email. Account approval and dataset/profile publication are not established. The broad content licence is separate from any source-specific dataset redistribution permission.",
+      "next_action": "Await approval of the existing verified provider request; qualify each dataset before upload.",
+      "public_listing_verified": false,
+      "verified_at": "2026-10-09T20:31:08.304305+00:00",
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+    },
+    {
+      "id": "crozdesk-liquilens",
+      "name": "Crozdesk / Revleads \u2014 LiquiLens software application",
+      "channel": "software-directory",
+      "state": "submitted",
+      "submission_url": "https://vendor.revleads.com/user/signup",
+      "cost": "Free application with No Budget; optional PPC email unchecked.",
+      "detail": "Application 373489 was received but not accepted automatically. The portal requires manual review, reported as taking up to three days. This is the LiquiLens B2B institution-research software application; no public software listing is verified.",
+      "next_action": "Await manual review, then log in and complete the product listing if eligible; do not resubmit the application.",
+      "public_listing_verified": false,
+      "application_id": "373489",
+      "verified_at": "2026-10-09T20:31:08.304305+00:00",
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+    },
+    {
+      "id": "softwaresuggest-liquilens",
+      "name": "SoftwareSuggest \u2014 LiquiLens software listing",
+      "channel": "software-directory",
+      "state": "ready_account_action",
+      "submission_url": "https://www.softwaresuggest.com/vendors",
+      "cost": "Free listing intake; no paid promotion selected.",
+      "detail": "Business email was verified and the second product form is prepared for LiquiLens financial-analytics software. The required customer-count selector starts at 1\u201325; no actual customer count has been established. Employee count and API traffic are not a valid substitute. Final form submission and a public listing remain unverified.",
+      "next_action": "Supply a factual customer-count answer or obtain a supported zero-customer route, complete other required fields truthfully, then submit the existing form.",
+      "public_listing_verified": false,
+      "verified_at": "2026-10-09T20:31:08.304305+00:00",
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+    },
+    {
+      "id": "gumloop-financial-evidence",
+      "name": "Gumloop \u2014 Financial Evidence community template",
+      "channel": "workflow-template-directory",
+      "state": "skipped_paid",
+      "submission_url": "https://www.gumloop.com/",
+      "cost": "Onboarding offers a 14-day Pro trial followed by USD37/month; the user declined to start it.",
+      "detail": "Signup reached a required trial offer before native template creation. Optional Gmail and Calendar connections were left unchecked. The user explicitly chose to leave Gumloop pending and finish free routes. No trial, paid plan or public template was started.",
+      "next_action": "Keep the account pending and do not start the trial unless the user later changes the decision.",
+      "public_listing_verified": false,
+      "trial_started": false,
+      "verified_at": "2026-10-09T20:31:08.304305+00:00",
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+    },
+    {
+      "id": "haystack-financial-evidence",
+      "name": "Haystack integrations \u2014 Financial Evidence",
+      "channel": "framework-integration-directory",
+      "state": "submitted",
+      "submission_url": "https://github.com/deepset-ai/haystack-integrations/pull/650",
+      "cost": "Free community catalog contribution; no model call or paid service used for verification.",
+      "detail": "Native FinancialEvidenceQuery component and ComponentTool support were merged in family PR92. Exact public Git installation at 3abcc45d7a429d26ed185d1ca845b078041f54f3, 15 native tests and a bounded synthetic pipeline query passed. Catalog PR650 is open for maintainer review; its public PR is not an accepted catalog listing.",
+      "next_action": "Await maintainer review of PR650 and verify the public catalog page after acceptance.",
+      "public_listing_verified": false,
+      "source_commit": "3abcc45d7a429d26ed185d1ca845b078041f54f3",
+      "verified_at": "2026-10-09T20:31:08.304305+00:00",
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+    },
+    {
+      "id": "langchain-financial-evidence",
+      "name": "LangChain integration directory \u2014 Financial Evidence",
+      "channel": "framework-integration-directory",
+      "state": "submitted",
+      "submission_url": "https://github.com/langchain-ai/docs/issues/6593",
+      "cost": "Free integration submission route; model/runtime costs are separate.",
+      "detail": "Native tools and toolkit are published as langchain-financial-evidence 0.1.0 on PyPI and GitHub. An anonymous registry download and fresh public pip install matched the released source; pip check, 47 offline tests and 6 bounded live SDK tests passed. Official integration issue 6593 is open for maintainer triage and review; package availability is separate from catalog acceptance.",
+      "next_action": "Await maintainer triage and review of issue 6593 and verify the public integration page after acceptance.",
+      "public_listing_verified": false,
+      "version": "0.1.0",
+      "verified_at": "2026-10-09T20:37:39.660676+00:00",
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+    },
+    {
+      "id": "langchain-financial-evidence-github-release",
+      "name": "Financial Evidence for LangChain \u2014 GitHub release",
+      "channel": "release-artifacts",
+      "state": "live",
+      "listing_url": "https://github.com/beepboop2025/langchain-financial-evidence/releases/tag/v0.1.0",
+      "cost": "Free MIT code release; source-data rights and any added model usage remain separate.",
+      "detail": "Public non-draft v0.1.0 release resolves to source 173b09fb0a361cbceb83d1f3b5d8744b98d27938. Anonymous wheel and source-distribution downloads matched GitHub asset digests. This is a live release/install surface, separate from PyPI publication, the LangChain directory and independent adoption.",
+      "next_action": "Keep exact release artifacts aligned with PyPI; track directory review separately.",
+      "version": "0.1.0",
+      "source_commit": "173b09fb0a361cbceb83d1f3b5d8744b98d27938",
+      "release_published_at": "2026-10-09T20:25:40Z",
+      "public_install_surface_verified": true,
+      "verified_at": "2026-10-09T20:31:08.304305+00:00",
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+    },
+    {
+      "id": "langchain-financial-evidence-pypi",
+      "name": "Financial Evidence for LangChain \u2014 PyPI",
+      "channel": "python-package-index",
+      "state": "live",
+      "listing_url": "https://pypi.org/project/langchain-financial-evidence/0.1.0/",
+      "cost": "Free MIT package; source-data rights and any added model usage remain separate.",
+      "detail": "Version 0.1.0 was published through the configured GitHub trusted publisher. Anonymous PyPI distribution hashes match the GitHub release. A fresh install from the public PyPI index matched released source, passed pip check, 47 offline tests and 6 bounded live SDK tests with no model calls. This verifies package availability and operation, not catalog acceptance or adoption.",
+      "next_action": "Preserve versioned artifact integrity and source boundaries; await separate LangChain catalog review.",
+      "version": "0.1.0",
+      "source_commit": "173b09fb0a361cbceb83d1f3b5d8744b98d27938",
+      "public_install_surface_verified": true,
+      "verified_at": "2026-10-09T20:37:39.660676+00:00",
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+    }
+  ],
+  "family_implementation": {
+    "pr_url": "https://github.com/beepboop2025/financial-evidence-skills/pull/92",
+    "state": "MERGED",
+    "merged_at": "2026-10-09T20:26:29Z",
+    "merge_commit": "c1880c115f6c9f8250b298984e567095f149dd98",
+    "root_release_version_unchanged": "0.1.7"
+  },
+  "haystack": {
+    "catalog_pr_url": "https://github.com/deepset-ai/haystack-integrations/pull/650",
+    "catalog_pr_state": "OPEN",
+    "catalog_head_sha": "d763bd607a1eb105d9b943052cf74a5d3360646a",
+    "catalog_listing_live": false,
+    "public_install_commit": "3abcc45d7a429d26ed185d1ca845b078041f54f3",
+    "git_install_verified": true,
+    "native_tests_passed": 15,
+    "synthetic_live_query": {
+      "transport_status": "complete",
+      "rows": 1,
+      "source_observation_date": "2026-10-08",
+      "freshness_or_validation_claimed": false,
+      "model_calls": 0
+    }
+  },
+  "langchain": {
+    "release_url": "https://github.com/beepboop2025/langchain-financial-evidence/releases/tag/v0.1.0",
+    "version": "0.1.0",
+    "source_commit": "173b09fb0a361cbceb83d1f3b5d8744b98d27938",
+    "draft": false,
+    "prerelease": false,
+    "published_at": "2026-10-09T20:25:40Z",
+    "anonymous_downloads_verified": true,
+    "assets": [
+      {
+        "filename": "langchain_financial_evidence-0.1.0-py3-none-any.whl",
+        "bytes": 8842,
+        "sha256": "ef59e5749a1f83f9b358ae1d70e6bead6b3882eda495c2ca7652f363c7398fbe",
+        "download_url": "https://github.com/beepboop2025/langchain-financial-evidence/releases/download/v0.1.0/langchain_financial_evidence-0.1.0-py3-none-any.whl"
+      },
+      {
+        "filename": "langchain_financial_evidence-0.1.0.tar.gz",
+        "bytes": 12015,
+        "sha256": "e60f97cf4641baef72e1002225f33d4ad118a37b9e2ea2aa47e0afaf9193e717",
+        "download_url": "https://github.com/beepboop2025/langchain-financial-evidence/releases/download/v0.1.0/langchain_financial_evidence-0.1.0.tar.gz"
+      }
+    ],
+    "native_tests_passed": 47,
+    "tested_core_versions": [
+      "1.6.6",
+      "1.6.9"
+    ],
+    "finite_number_fix_reviewed": true,
+    "pypi_state": "live_verified",
+    "directory_state": "submitted_pending_maintainer_triage_review",
+    "directory_issue_url": "https://github.com/langchain-ai/docs/issues/6593",
+    "directory_issue_state": "OPEN",
+    "directory_issue_created_at": "2026-10-09T20:36:09Z",
+    "catalog_listing_live": false,
+    "pypi": {
+      "project_url": "https://pypi.org/project/langchain-financial-evidence/0.1.0/",
+      "version": "0.1.0",
+      "verified_at": "2026-10-09T20:35:41.912919+00:00",
+      "publish_workflow_url": "https://github.com/beepboop2025/langchain-financial-evidence/actions/runs/37987675506",
+      "publish_workflow_conclusion": "success",
+      "publisher_source_commit": "173b09fb0a361cbceb83d1f3b5d8744b98d27938",
+      "anonymous_files": [
+        {
+          "filename": "langchain_financial_evidence-0.1.0-py3-none-any.whl",
+          "url": "https://files.pythonhosted.org/packages/40/af/7d2739ad20e2cb195ceb89fb92c1fe07968b27914023a66614015bf6ae6f/langchain_financial_evidence-0.1.0-py3-none-any.whl",
+          "http_status": 200,
+          "sha256": "ef59e5749a1f83f9b358ae1d70e6bead6b3882eda495c2ca7652f363c7398fbe",
+          "bytes": 8842,
+          "registry_digest_match": true
+        },
+        {
+          "filename": "langchain_financial_evidence-0.1.0.tar.gz",
+          "url": "https://files.pythonhosted.org/packages/11/e7/f546f0b5fab241209c45a5c443bb720b666c04c37e7d0633c91f2cb99024/langchain_financial_evidence-0.1.0.tar.gz",
+          "http_status": 200,
+          "sha256": "e60f97cf4641baef72e1002225f33d4ad118a37b9e2ea2aa47e0afaf9193e717",
+          "bytes": 12015,
+          "registry_digest_match": true
+        }
+      ],
+      "registry_artifacts_match_github_release": true,
+      "clean_public_index_install": true,
+      "installed_source_matches_released_source": true,
+      "pip_check": "passed",
+      "offline_tests_passed": 47,
+      "live_tests_passed": 6,
+      "langchain_core": "1.6.9",
+      "langchain_tests": "1.1.9",
+      "llm_calls": 0,
+      "freshness_status": "not_evaluated"
+    },
+    "directory_labels_observed": [
+      "external"
+    ],
+    "directory_maintainer_routing_verified": false
+  },
+  "source_receipts": [
+    {
+      "filename": "browser/neudata-submitted.jpg",
+      "sha256": "815f2682ba8f501684eb9f817c48d59da2ec70f8e03ef1f16d7a2498d8fd3366",
+      "storage": "Private retained browser evidence; no contact details or authentication links published"
+    },
+    {
+      "filename": "browser/eagle-pending-review.jpg",
+      "sha256": "49bed6629db50361ae7f6f4ce319fe99f2ccb9674485b074f4245b451556381e",
+      "storage": "Private retained browser evidence; no contact details or authentication links published"
+    },
+    {
+      "filename": "browser/crozdesk-manual-review.jpg",
+      "sha256": "6e1938471b55848a82ef6e1bc8cd9333e008a321dbe3e54e8d570b4f96d0ceb0",
+      "storage": "Private retained browser evidence; no contact details or authentication links published"
+    },
+    {
+      "filename": "browser/softwaresuggest-verified.jpg",
+      "sha256": "95ed5477f39273c8adc34319488f084ab69248cd02f59b79faaa48ce239950f6",
+      "storage": "Private retained browser evidence; no contact details or authentication links published"
+    },
+    {
+      "filename": "browser/softwaresuggest-customer-field.jpg",
+      "sha256": "0895a6a7027ff2e9000ad65b81fe8d5c9dfbb691beac96873797741537d776dd",
+      "storage": "Private retained browser evidence; no contact details or authentication links published"
+    },
+    {
+      "filename": "browser/gumloop-paid-gate.jpg",
+      "sha256": "93ff12f051f9a8552a82b5a9464434b8a68c346a2dd204478170ab9cd4ef7cce",
+      "storage": "Private retained browser evidence; no contact details or authentication links published"
+    },
+    {
+      "filename": "haystack/verification.json",
+      "sha256": "5bc4a6ff435c41fe5e29c0a599fdb332acd254abf19355905a51282e597457bd",
+      "storage": "Private retained installation, native test and public catalog PR receipt"
+    },
+    {
+      "filename": "langchain/pypi-files-verified.json",
+      "sha256": "1d5a8a16fb96b933e8c31737d078f5d8fdaff085504578795990daee77d00147",
+      "storage": "Private retained publisher, anonymous package download or clean public installation verification receipt"
+    },
+    {
+      "filename": "langchain/pypi-install-verified.json",
+      "sha256": "2de6714b46d554501795681075e9977e9d767e12ab9c73e407a8c36dff9987e9",
+      "storage": "Private retained publisher, anonymous package download or clean public installation verification receipt"
+    },
+    {
+      "filename": "langchain/pypi-workflow.json",
+      "sha256": "7749d81a6c6c64869549533b3d16d7d4c5e7f5e62a4df9c17ef48c331dbf8c58",
+      "storage": "Private retained publisher, anonymous package download or clean public installation verification receipt"
+    }
+  ],
+  "limits": [
+    "Provider applications are received, not approved accounts or public listings.",
+    "SoftwareSuggest requires actual customer information; employee count and API traffic are not customer evidence.",
+    "Gumloop is intentionally pending at the paid gate; the user explicitly declined starting the trial.",
+    "Native tests and public source/release availability do not establish maintainer catalog acceptance or independent adoption.",
+    "Underlying dataset rights remain source-specific and are not granted by MIT package licences.",
+    "No phone, personal account, credential or authentication/verification URL is included.",
+    "Existing ledger dates, prior channel states, root release version and AWS/Amazon pause remain unchanged."
+  ],
+  "new_public_third_party_directory_listings_verified": 0,
+  "new_public_release_surfaces_verified": 2,
+  "new_paid_placement_cost": 0,
+  "verified_independent_customers": null,
+  "verified_revenue": null,
+  "added_ledger_ids": [
+    "neudata-company",
+    "eagle-alpha-company",
+    "crozdesk-liquilens",
+    "softwaresuggest-liquilens",
+    "gumloop-financial-evidence",
+    "haystack-financial-evidence",
+    "langchain-financial-evidence",
+    "langchain-financial-evidence-github-release",
+    "langchain-financial-evidence-pypi"
+  ]
+}

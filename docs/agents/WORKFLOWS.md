@@ -114,8 +114,13 @@ Do not place an order or treat a funding measure as a trading signal.
 and which source is needed next. **Next use:** repeat the same sizes and funding
 review before the next research session, preserving comparability.
 
-Use [NoiseFloor 0.3.1](CONNECT.md#optional-market-and-headline-analysis) when you
+Use [NoiseFloor 0.4.0](CONNECT.md#optional-market-and-headline-analysis) when you
 have your own entitled series or headlines to assess. It does not supply feeds.
+For comparable series, the [correlation workbench](https://liquilens.in/agents/correlation/)
+and [API/local Python kit](../api/noisefloor/) expose the same spectral assessment
+with source-rights, freshness and missingness gates. Keep each product's panel
+separate. The Dyson demonstration is synthetic, and the random-matrix reference
+does not establish statistical significance or predictive market performance.
 The [paper walkthrough](execution.html) separately rehearses expiry, duplicate
 prevention, STOP and reconciliation with synthetic prices. It is not a live
 execution service.

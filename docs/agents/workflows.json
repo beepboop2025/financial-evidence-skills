@@ -1,0 +1,125 @@
+{
+  "schema": "financial-evidence.activation-workflows.v1",
+  "operator": "LIQUILENS PRIVATE LIMITED",
+  "reviewed_on": "2026-10-09",
+  "guide_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/WORKFLOWS.md",
+  "financial_authority": "none",
+  "account_required_for_examples": false,
+  "automatic_scheduling": false,
+  "automatic_enrollment": false,
+  "workflows": [
+    {
+      "id": "developers",
+      "audience": "Finance-agent developers",
+      "task": "Add a cited USD funding observation to an existing research step",
+      "products": [
+        "Seiche",
+        "Financial Evidence Research Desk"
+      ],
+      "mcp_url": "https://api.seiche.info/openbb/mcp",
+      "first_call": {
+        "name": "financial_evidence_agent_query",
+        "arguments": {
+          "dataset": "money_markets",
+          "entity": "USD",
+          "limit": 5
+        }
+      },
+      "rest_example": "https://api.seiche.info/openbb/api/v1/agent-query?dataset=money_markets&entity=USD&limit=5",
+      "observed_example_schema": "financial-evidence.agent-result.v1",
+      "first_use_evidence": "Developer retains a cited response and explains its use in their own task; a transport response alone is insufficient",
+      "repeat_task": "Repeat the same query on another day with previous_revision; inspect source clocks and next_offset even when unchanged",
+      "boundary": "Funding context does not authorize a trade, establish a forecast or qualify a historical backtest"
+    },
+    {
+      "id": "risk-teams",
+      "audience": "Treasury and bank-risk teams",
+      "task": "Review supported changes and evidence gaps for selected counterparties",
+      "products": [
+        "LiquiLens",
+        "Seiche"
+      ],
+      "browser_url": "https://liquilens.in/banking/monitoring/",
+      "mcp_url": "https://api.liquilens.in/mcp",
+      "first_call": {
+        "name": "institution_evidence_monitor",
+        "arguments": {
+          "slugs": [
+            "au-sfb",
+            "bajaj-finance"
+          ]
+        }
+      },
+      "rest_example": "https://api.liquilens.in/api/experimental/v1/banking/monitoring/watchlist?slugs=au-sfb,bajaj-finance",
+      "observed_example_schema": "liquilens.institution-monitoring.v1",
+      "first_use_evidence": "Named reviewer retains a sourced follow-up queue for their own watchlist",
+      "repeat_task": "Review changed disclosures and unresolved gaps on the next working day; retain policy version, cutoff and record hash",
+      "boundary": "Illustrative institutions are not recommendations. Missing data does not establish safety, and disappearance of a warning does not establish recovery"
+    },
+    {
+      "id": "traders",
+      "audience": "Individual traders and researchers",
+      "task": "Retain a funding-and-exit research note for two illustrative BTC sell sizes",
+      "products": [
+        "Seiche",
+        "Undertow"
+      ],
+      "browser_url": "https://liquilens-undertow.com/exit/",
+      "mcp_url": "https://api.seiche.info/undertow/mcp",
+      "preflight_calls": [
+        {
+          "mcp_url": "https://api.seiche.info/mcp",
+          "name": "data_health",
+          "arguments": {}
+        },
+        {
+          "mcp_url": "https://api.seiche.info/undertow/mcp",
+          "name": "agent_access_status",
+          "arguments": {}
+        }
+      ],
+      "first_call": {
+        "name": "crypto_exit_check",
+        "arguments": {
+          "sizes_usd": [
+            10000,
+            100000
+          ],
+          "max_age_seconds": 7200
+        }
+      },
+      "companion_call": {
+        "mcp_url": "https://api.seiche.info/mcp",
+        "name": "money_market_context",
+        "arguments": {
+          "section": "summary"
+        }
+      },
+      "observed_example_schema": "undertow.crypto-workbench.v1",
+      "first_use_evidence": "Participant retains a note and identifies a useful observation or coverage blocker",
+      "repeat_task": "Repeat the same sizes and funding review on another day with source dates, coverage and withheld values intact",
+      "boundary": "Indicative BTC sell estimates exclude fees and are not executable quotes or order permission"
+    }
+  ],
+  "observation_scope": "Selected public REST requests and MCP tool calls exercised on 2026-10-09; optional client installations, delivered alerts, customer adoption and live execution are not established",
+  "measurement": {
+    "cohorts": [
+      "developers",
+      "risk-teams",
+      "traders"
+    ],
+    "requires_participant_consent": true,
+    "installation_is_not_person": true,
+    "individual_is_not_organization": true,
+    "scorecard_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/pilot-scorecard.md",
+    "actual_activated_participants": null,
+    "actual_returning_participants": null,
+    "actual_paying_customers": null,
+    "coverage_complete": false
+  },
+  "optional_next_steps": {
+    "recurring_research": "https://beepboop2025.github.io/financial-evidence-skills/agents/runtime.html",
+    "caller_supplied_analysis": "https://beepboop2025.github.io/financial-evidence-skills/agents/CONNECT.md#optional-market-and-headline-analysis",
+    "synthetic_paper_rehearsal": "https://beepboop2025.github.io/financial-evidence-skills/agents/execution.html"
+  }
+}

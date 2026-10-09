@@ -1,5 +1,11 @@
 # Financial Evidence Agent Skills
 
+**Turn the recent upgrades into a daily task:** [start with your workflow](https://beepboop2025.github.io/financial-evidence-skills/agents/).
+Agent developers can retrieve a cited USD funding observation; treasury and
+bank-risk teams can use the new institution monitor; traders and researchers
+can retain a funding-and-exit review. Each path includes working calls, source
+boundaries and a next-day task. [Copy the instructions](docs/agents/WORKFLOWS.md).
+
 **Verified release 0.1.7:** the published package and public MCP router support
 `gift-city`, `forex` and `gold` alongside the five existing research topics.
 GIFT City serves gold and treasury desks, investors/fund managers, and banks/IFSC

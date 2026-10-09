@@ -1,7 +1,7 @@
 {
   "schema": "financial-evidence.agent-connections.v1",
   "operator": "LIQUILENS PRIVATE LIMITED",
-  "observed_at": "2026-10-08T11:12:59.038376+00:00",
+  "observed_at": "2026-10-09T07:39:42.285579+00:00",
   "observation_scope": "Dated anonymous MCP initialize and complete tools/list for the product connections. Prior bounded research example retains its own observation clock. No source freshness or financial eligibility is inferred.",
   "financial_authority": "none",
   "guide_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/",
@@ -19,8 +19,8 @@
       "developer_url": "https://liquilens.in/developers/",
       "smithery_url": "https://smithery.ai/servers/mrinallovesbhature/liquilens",
       "observed_server_version": "1.8.1",
-      "advertised_tool_count": 23,
-      "tools_list_body_sha256": "cfa871c9f5240aae1360e47cc1b90bf6c4ea41f059da4909880f93cfd75e4d8e",
+      "advertised_tool_count": 24,
+      "tools_list_body_sha256": "5990364e69ebeb3ef47d5d5559d9529b74e6a7a3bacea748fb08b59cba2c9c13",
       "start_with": {
         "name": "institution_research_coverage",
         "arguments": {
@@ -29,7 +29,7 @@
         }
       },
       "access": "Public read-only research. Coverage differs by institution and source; discovery does not establish current evidence for every bank.",
-      "observed_at": "2026-10-08T11:12:54.885875+00:00",
+      "observed_at": "2026-10-09T07:39:41.598982+00:00",
       "tools_list_hash_encoding": "JSON-RPC response parsed and serialized as compact UTF-8 JSON plus newline",
       "tools": [
         "bank_asset_quality_review",
@@ -47,6 +47,7 @@
         "failure_radar_institution",
         "forward_odds",
         "household_credit_board",
+        "institution_evidence_monitor",
         "institution_research_coverage",
         "institution_review_packet",
         "latest_article",
@@ -67,13 +68,13 @@
       "smithery_url": "https://smithery.ai/servers/mrinallovesbhature/seiche",
       "observed_server_version": "0.16.2",
       "advertised_tool_count": 16,
-      "tools_list_body_sha256": "5d42133de7084c7b9adeb9eca97f50724160031a66dcd21daaa16d15617a1f36",
+      "tools_list_body_sha256": "26ae38c851ab4e3803fa9fcd177eded6a75af14c368aa86c87d810e697214efb",
       "start_with": {
         "name": "data_health",
         "arguments": {}
       },
       "access": "Public research. Source clocks, units, availability and redistribution rights remain source-specific.",
-      "observed_at": "2026-10-08T11:12:54.886304+00:00",
+      "observed_at": "2026-10-09T07:39:42.285579+00:00",
       "tools_list_hash_encoding": "JSON-RPC response parsed and serialized as compact UTF-8 JSON plus newline",
       "tools": [
         "gift_city_context",
@@ -104,13 +105,13 @@
       "smithery_url": "https://smithery.ai/servers/mrinallovesbhature/undertow",
       "observed_server_version": "1.13.0",
       "advertised_tool_count": 16,
-      "tools_list_body_sha256": "65000d89c04d42bf1abb9e0d80bdf7973cdbb6fdf5ff04692b237a09ac3af8ab",
+      "tools_list_body_sha256": "9b75df5139cbd90bfcdc57fc83780592239a97a89ccdbc2df7b2086a1ec9a49e",
       "start_with": {
         "name": "agent_access_status",
         "arguments": {}
       },
       "access": "Public discovery and summaries; full-fidelity and subscriber tools keep their own entitlements. Advertised tool count does not mean every tool is freely callable.",
-      "observed_at": "2026-10-08T11:12:55.967184+00:00",
+      "observed_at": "2026-10-09T07:39:41.578005+00:00",
       "tools_list_hash_encoding": "JSON-RPC response parsed and serialized as compact UTF-8 JSON plus newline",
       "tools": [
         "agent_access_status",
@@ -158,7 +159,7 @@
       "identity_scope": "operator_supplied_build_revision",
       "institutional_readiness": "not_certified"
     },
-    "release_observed_at": "2026-10-08T11:12:57.682416+00:00"
+    "release_observed_at": "2026-10-09T07:48:46.948982+00:00"
   },
   "review_workflow": {
     "purpose": "Recurring human review of covered-bank, funding and liquidity evidence",
@@ -188,5 +189,6 @@
       "advertised_tool_count": 8,
       "scope": "Caller-supplied market series and headlines; no feed collection or trading authority. Integrate explicitly; these product connections do not automatically invoke NoiseFloor."
     }
-  ]
+  ],
+  "workflows_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/workflows.json"
 }

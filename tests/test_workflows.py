@@ -53,6 +53,7 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(value['evidence']['financial_authority'],'none')
         self.assertFalse(workflows.run(self.service,'funding','ZZZ')['prepared_response'])
 
+    @unittest.skipUnless(importlib.util.find_spec("fastapi"), "workspace dependency required")
     def test_workflow_return_cohorts_and_deletion(self):
         from financial_evidence.workspace_usage import report
         with tempfile.TemporaryDirectory() as root:

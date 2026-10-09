@@ -105,3 +105,5 @@ Packet `status` equals `transport_status` and describes retrieval only. Every pa
 [Three audience workflows](https://beepboop2025.github.io/financial-evidence-skills/agents/WORKFLOWS.md) cover a cited USD funding query for developers, the new institution monitor for treasury and bank-risk teams, and a funding-and-exit review for traders and researchers. [Machine-readable calls and repeat-use criteria](https://beepboop2025.github.io/financial-evidence-skills/agents/workflows.json). Interface checks dated 9 October 2026; source freshness remains per observation. No automatic enrollment, scheduling or trading authority.
 
 - [Runnable funding, institution and BTC exit workflows](https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html): free browser checks, locally saved comparisons, cited JSON, optional review reminders and matching REST requests.
+
+- [Python workflow starter](https://beepboop2025.github.io/financial-evidence-skills/start/AUTOMATE.md): one bounded research check, original evidence captures and repeat comparison without dependencies.

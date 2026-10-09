@@ -1,7 +1,7 @@
 {
   "schema": "financial-evidence.system-interfaces.v1",
   "operator": "LIQUILENS PRIVATE LIMITED",
-  "updated_at": "2026-10-08",
+  "updated_at": "2026-10-09",
   "guide_url": "https://liquilens.in/agents/infrastructure/",
   "public_discovery_observation": {
     "observed_at": "2026-10-08T11:12:59.038376+00:00",
@@ -30,7 +30,7 @@
     {
       "id": "research-desk",
       "name": "Financial Evidence Research Desk",
-      "version": "1.1.3",
+      "version": "1.2.0",
       "access": "public",
       "authentication": "none_for_data_reads",
       "transport": "streamable-http",
@@ -50,17 +50,19 @@
       ],
       "release_identity": {
         "schema": "financial-evidence.workspace-release.v1",
-        "release_id": "workspace-1.1.3+e6ad3584290b",
-        "workspace_version": "1.1.3",
-        "package_version": "0.1.6",
-        "source_commit": "e6ad3584290b8aa1d4f0d54f184ea959fe27465b",
+        "release_id": "workspace-1.2.0+c7c72ed82f8b",
+        "workspace_version": "1.2.0",
+        "package_version": "0.1.7",
+        "source_commit": "c7c72ed82f8b00683080d6cd9ec61a5bd1bd538d",
         "contract": "financial-evidence.workspace.v1",
         "source_repository": "https://github.com/beepboop2025/financial-evidence-skills",
         "identity_scope": "operator_supplied_build_revision",
         "institutional_readiness": "not_certified"
       },
       "client_kit_url": "https://beepboop2025.github.io/financial-evidence-skills/api/",
-      "execution_authority": false
+      "execution_authority": false,
+      "workflow_url": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html",
+      "release_observed_at": "2026-10-09T10:55:33.884321+00:00"
     },
     {
       "id": "local-runtime",

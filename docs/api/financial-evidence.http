@@ -69,3 +69,21 @@ X-Liquilens-Traffic-Class: developer
 GET https://api.seiche.info/openbb/api/v1/agent-review?limit=3
 Accept: application/json
 X-Liquilens-Traffic-Class: developer
+
+### Funding watch
+# Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture.
+GET https://api.seiche.info/openbb/api/v1/workflow?workflow=funding&selection=USD
+Accept: application/json
+X-Liquilens-Traffic-Class: developer
+
+### Institution watch
+# Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture.
+GET https://api.seiche.info/openbb/api/v1/workflow?workflow=institutions&selection=au-sfb%2Cbajaj-finance
+Accept: application/json
+X-Liquilens-Traffic-Class: developer
+
+### BTC exit check
+# Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture.
+GET https://api.seiche.info/openbb/api/v1/workflow?workflow=exit&selection=10000%2C100000
+Accept: application/json
+X-Liquilens-Traffic-Class: developer

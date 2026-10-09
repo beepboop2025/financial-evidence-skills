@@ -1,17 +1,14 @@
 {
   "openapi": "3.1.0",
-  "x-financial-agent-connections": "https://beepboop2025.github.io/financial-evidence-skills/agents/connections.json",
   "info": {
-    "title": "LiquiLens Financial Evidence Research API",
+    "title": "Financial Evidence for OpenBB",
     "description": "Source-cited financial research across LiquiLens, Seiche and Undertow. Public financial-data reads need no API key. Optional installation measurement enrollment and deletion are separate from data access. Preserve source dates, availability, rights and pagination; retrieval success does not validate the evidence.",
-    "version": "1.1.3",
+    "version": "1.2.0",
     "contact": {
       "name": "LIQUILENS PRIVATE LIMITED",
       "url": "https://beepboop2025.github.io/financial-evidence-skills/support/"
     },
-    "termsOfService": "https://beepboop2025.github.io/financial-evidence-skills/terms/",
-    "x-providerName": "seiche.info",
-    "x-serviceName": "financial-evidence"
+    "termsOfService": "https://beepboop2025.github.io/financial-evidence-skills/terms/"
   },
   "paths": {
     "/api/v1/applications": {
@@ -540,6 +537,60 @@
           }
         }
       }
+    },
+    "/api/v1/workflow": {
+      "get": {
+        "summary": "Workflow",
+        "description": "Run one bounded audience workflow, preserving the original product response.",
+        "operationId": "workflow_api_v1_workflow_get",
+        "parameters": [
+          {
+            "name": "workflow",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^(funding|institutions|exit)$",
+              "title": "Workflow"
+            }
+          },
+          {
+            "name": "selection",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 160,
+              "default": "",
+              "title": "Selection"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Workflow Api V1 Workflow Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -926,19 +977,18 @@
       "description": "Public hosted research API"
     }
   ],
+  "externalDocs": {
+    "url": "https://beepboop2025.github.io/financial-evidence-skills/api/",
+    "description": "Runnable collections and first research task"
+  },
   "x-source-observation": {
     "url": "https://api.seiche.info/openbb/openapi.json",
-    "retrieved_at": "2026-10-08T11:12:57.428659+00:00",
-    "sha256": "23c8b117d8779e966393823adc618e964a9206bb5f2ead006afa6de151947707",
+    "retrieved_at": "2026-10-09T10:50:51.646693+00:00",
+    "sha256": "dfbbfd45a3628dae0b7c0ac984e4355de6b76005cda3ba6221e739ff2724777d",
     "changes": [
       "absolute public server URL",
       "discovery metadata only"
     ],
     "api_version_semantics": "Hosted workspace version, separate from the CLI package release."
-  },
-  "externalDocs": {
-    "url": "https://beepboop2025.github.io/financial-evidence-skills/api/",
-    "description": "Runnable collections and first research task"
-  },
-  "x-financial-evidence-system": "https://beepboop2025.github.io/financial-evidence-skills/agents/system.json"
+  }
 }

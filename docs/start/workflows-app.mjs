@@ -38,12 +38,21 @@ function render() {
   const link = element('a',task.product+' response ↗'); const safe = safeSource(current.source_url); if (safe) { link.href = safe; link.target = '_blank'; link.rel = 'noopener noreferrer'; } $('source-summary').append(link);
   const e = current.evidence;
   text('requests-summary',workflow === 'exit' ? (e.requests || []).map(item => `$${item.requested_size_usd}: ${item.match}; estimate ${item.estimate_at_requested_size}.`).join(' ') + ' ' + (e.method || '') : workflow === 'institutions' ? `Not covered: ${(e.not_covered || []).map(item => typeof item === 'string' ? item : JSON.stringify(item)).join(', ') || 'none in this selection'}. Full coverage: ${e.coverage_complete === true ? 'reported complete' : 'not established'}.` : `Transport: ${e.transport_status}. Evidence eligibility: ${e.evidence_status}. ${e.diagnostics?.length || 0} diagnostic entries retained below.`);
-  text('comparison',changes ? `Compared with your saved review from ${prior.captured_at}: ${changes.changed.length} changed rows, ${changes.added.length} added, ${changes.removed.length} no longer returned. Comparison covers displayed values, dates and states; unchanged does not mean fresh.` : 'No baseline for this exact selection. Save this review to compare the next check.');
+  text('comparison',changes ? `Compared with your saved review from ${prior.captured_at}: ${changes.changed.length} changed rows, ${changes.added.length} added, ${changes.removed.length} no longer returned. Unchanged does not mean fresh.${changes.legacy ? ' This older baseline covers displayed fields only. Save a new baseline to include institution evidence fingerprints.' : ' Institution fingerprints also reflect aging and policy; review the underlying record before interpreting a change.'}` : 'No baseline for this exact selection. Save this review to compare the next check.');
+  $('change-list').replaceChildren();
+  for (const change of changes?.details || []) {
+    const item = document.createElement('li'); item.append(element('strong',change.name));
+    for (const field of change.fields) item.append(element('p',`${field.label}: ${field.before} → ${field.after}`));
+    $('change-list').append(item);
+  }
+  for (const id of changes?.removed || []) $('change-list').append(element('li',`${id}: no longer returned. Missing evidence does not establish recovery.`));
+  $('change-details').hidden = !$('change-list').children.length;
   $('columns').replaceChildren(...task.headers.map(value => { const th = element('th',value); th.scope = 'col'; return th; }));
   $('rows').replaceChildren();
   for (const entry of entries) {
     const tr = document.createElement('tr'); if (changes?.changed.includes(entry.id) || changes?.added.includes(entry.id)) tr.className = 'changed';
     for (const cell of entry.cells) tr.append(element('td',cell));
+    if (entry.url) { const record = element('a','Open full institution record ↗'); record.href = entry.url; record.target = '_blank'; record.rel = 'noopener noreferrer'; tr.firstChild.append(document.createElement('br'),record); }
     const details = document.createElement('details'); details.append(element('summary','Evidence details'),element('pre',JSON.stringify(entry.details,null,2))); tr.lastChild.append(details); $('rows').append(tr);
   }
   text('original',JSON.stringify(current.evidence,null,2)); $('empty').hidden = entries.length > 0;

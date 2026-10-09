@@ -4,6 +4,9 @@ Choose a task, retain its first result, then repeat the same review on another
 day. Public research needs no data API key. Each product keeps its source dates,
 coverage and authority; connecting them does not produce a combined risk score.
 
+For a first result without setup, [run the three workflows in your browser](../start/workflows.html).
+For a recurring agent or local job, use the [package-free Python starter](../start/AUTOMATE.md).
+
 ## Finance-agent developers: add a cited funding check
 
 Start with a small, named dataset before adding a larger tool catalog:
@@ -125,8 +128,9 @@ would prevent continued use. With the participant's consent, use the
 researchers are separate cohorts; an individual is not an organization.
 
 Optional [Research Desk measurement](../start/measurement.md) covers only its
-REST query route. The agent-query route, direct product MCP calls and institution
-monitor are outside that coverage. The examples above do not enroll a user,
+REST query and guided workflow routes when a visitor explicitly opts in.
+The agent-query route, direct product MCP calls, direct institution monitor and
+anonymous Python starter runs are outside linked installation coverage. The examples above do not enroll a user,
 send separate analytics events or configure background jobs. Successful operator checks must
 remain outside customer activation and retention counts.
 

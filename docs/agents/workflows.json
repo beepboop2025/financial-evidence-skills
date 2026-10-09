@@ -126,6 +126,7 @@
   "optional_next_steps": {
     "recurring_research": "https://beepboop2025.github.io/financial-evidence-skills/agents/runtime.html",
     "caller_supplied_analysis": "https://beepboop2025.github.io/financial-evidence-skills/agents/CONNECT.md#optional-market-and-headline-analysis",
-    "synthetic_paper_rehearsal": "https://beepboop2025.github.io/financial-evidence-skills/agents/execution.html"
+    "synthetic_paper_rehearsal": "https://beepboop2025.github.io/financial-evidence-skills/agents/execution.html",
+    "python_starter": "https://beepboop2025.github.io/financial-evidence-skills/start/AUTOMATE.md"
   }
 }

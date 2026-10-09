@@ -36,3 +36,18 @@ test('browser uses bounded same-origin-independent read and rejects changed iden
  await run(funding,{fetcher,synthetic:true}); assert.equal(options.headers['X-Liquilens-Traffic-Class'],'synthetic'); assert.equal(options.credentials,'omit'); assert.equal(options.redirect,'error');
  await assert.rejects(()=>run({...funding,selection:'EUR'},{fetcher}));
 });
+test('institution fingerprint detects evidence changes behind identical summary counts',async () => {
+ const {baseline,compare,rows}=await mod;
+ const initial={workflow:'institutions',selection:'au-sfb',evidence:{schema:'liquilens.institution-monitoring.v1',rows:[{slug:'au-sfb',name:'AU',current_metrics:2,gaps:[],status:'insufficient_visibility',content_sha256:'a'.repeat(64)}]}};
+ const saved=baseline(initial), next=structuredClone(initial); next.evidence.rows[0].content_sha256='b'.repeat(64);
+ const result=compare(saved,next);
+ assert.deepEqual(result.changed,['au-sfb']); assert.ok(result.details[0].fields[0].label.includes('aging'));
+ assert.equal(rows(next)[0].url,'https://api.liquilens.in/api/experimental/v1/banking/monitoring/institutions/au-sfb');
+ assert.equal(compare(saved,initial).changed.length,0);
+});
+test('old baselines disclose reduced comparison and corrupt baselines are ignored',async () => {
+ const {baseline,compare}=await mod; const saved=baseline(funding);
+ saved.schema='financial-evidence.local-review.v1'; assert.equal(compare(saved,funding).legacy,true);
+ saved.rows=[null]; assert.equal(compare(saved,funding),null);
+ saved.rows=[{id:'x',cells:[]}]; assert.equal(compare(saved,funding),null);
+});

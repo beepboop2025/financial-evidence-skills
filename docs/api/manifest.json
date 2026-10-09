@@ -1,12 +1,13 @@
 {
   "schema": "financial-evidence.api-kit.v1",
-  "request_count": 12,
+  "request_count": 15,
   "dataset_count": 7,
+  "workflow_count": 3,
   "api_base": "https://api.seiche.info/openbb",
   "source_observation": {
     "url": "https://api.seiche.info/openbb/openapi.json",
-    "retrieved_at": "2026-10-08T11:12:57.428659+00:00",
-    "sha256": "23c8b117d8779e966393823adc618e964a9206bb5f2ead006afa6de151947707",
+    "retrieved_at": "2026-10-09T10:50:51.646693+00:00",
+    "sha256": "dfbbfd45a3628dae0b7c0ac984e4355de6b76005cda3ba6221e739ff2724777d",
     "changes": [
       "absolute public server URL",
       "discovery metadata only"
@@ -14,10 +15,10 @@
     "api_version_semantics": "Hosted workspace version, separate from the CLI package release."
   },
   "files": {
-    "openapi.json": "d6f34b5bb350b1fdcd349d2879d0e6f2886bda7c86d17ae82136068eebf1c483",
-    "financial-evidence.postman_collection.json": "9366cc6aeb9b322c6c85216eb660ce9e9d5dfdd89111d5d2ea3bebd3b4614622",
-    "financial-evidence.http": "f6eb6cf89b25bb0ee8ce31dc776a05efbed98f682539c5a5a6c0925a8c706a4d",
-    "README.md": "f2bb452e84aba1d1cc151598f0dcdd65434bfe4a6737a01d430bbf241e241dcd",
+    "openapi.json": "790a5ef0476fb26ec85c6f1234ae62ef7f4aba8102318e1d94d705e33be93bca",
+    "financial-evidence.postman_collection.json": "b764cca5f2d1a00f91b30ce26dd01ae8a4a2b07baf7a1432edd3e05fa7481f4e",
+    "financial-evidence.http": "c64b90526811effa4e48b43507e7059231a0b810cdb572090adb9dafc41f9d2b",
+    "README.md": "2949de7bde477c5dea6e6dae0746d6aade0bb493dbf4c43339eadf157c3abefa",
     "bruno/01-release-identity.bru": "3fcfe6f48de095051f0ca7ff301ec0c4929c02f3c21671bfe89ef0cf43545d57",
     "bruno/02-dataset-coverage.bru": "22b4bd82f3d3c6f94599bc8e7f5b7f3112cfb63bd297c13ab5828adf5066d5a0",
     "bruno/03-source-status-and-clocks.bru": "e6c825e5889fe769dff2f429299caef26ca01727d3ce2bc26ec84d4113f036b1",
@@ -30,6 +31,9 @@
     "bruno/10-source-health.bru": "a4f30f3e979c3a9f6d5ce302b64a4a6e2a3b3c1da02d090e7390b4a97b757238",
     "bruno/11-funding-review.bru": "2f5482fc29d7aabeef6bc4627b21a29444b85acb602c5f104e1a5f22f5660329",
     "bruno/12-agent-research-review.bru": "cb6aaf67145b37487db3aefa1c5c732e6bb4caa22fd71d96f23490ccb05102eb",
+    "bruno/13-funding-watch.bru": "56d99778c7c5ccca14824970cd2b86bcdbb0407ef9984919ff3a865ea8c8a861",
+    "bruno/14-institution-watch.bru": "3021759fb7c40235786248a375d5f3843357bfc30ee156b6dca205455ee62fc0",
+    "bruno/15-btc-exit-check.bru": "783fcfe18963a7cd85e60452685309da849fb9b3c1a4c28d5f64a8ca044f9902",
     "bruno/collection.bru": "b0315c23fcaef48af80f229256c4d24042166bda24d8269fcfe532c8d4bec62a",
     "bruno/bruno.json": "142d13c35c109d6fcf09d0aceda953fd803f229e579f6bf3fef0b5245de4d9af"
   }

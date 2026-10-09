@@ -1,7 +1,7 @@
 {
   "info": {
     "name": "LiquiLens Financial Evidence Research API",
-    "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture. Public reads; no API key. Current public and private interfaces: https://beepboop2025.github.io/financial-evidence-skills/agents/system.json . Setup guide: https://liquilens.in/agents/infrastructure/ . Private runtimes are separately installed and grant no public execution authority. Operator validation must set traffic_class=synthetic. These headers are diagnostic labels, not verified customer identities.",
+    "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture. Public reads; no API key. Research Desk 1.2.0 includes three working tasks: Seiche funding watch, LiquiLens institution watch and Undertow BTC exit check. Run them in the browser at https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html or import these fifteen requests. Current public and private interfaces: https://beepboop2025.github.io/financial-evidence-skills/agents/system.json . Setup guide: https://liquilens.in/agents/infrastructure/ . Private runtimes are separately installed and grant no public execution authority. Operator validation must set traffic_class=synthetic. These headers are diagnostic labels, not verified customer identities.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -514,6 +514,132 @@
             "type": "text/javascript",
             "exec": [
               "pm.test(\"HTTP response succeeded\", function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Funding watch",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Liquilens-Traffic-Class",
+            "value": "{{traffic_class}}"
+          }
+        ],
+        "url": "{{base_url}}/api/v1/workflow?workflow=funding&selection=USD",
+        "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP response succeeded\", function () { pm.response.to.have.status(200); });",
+              "const body = pm.response.json();",
+              "pm.test(\"Original workflow evidence is retained\", function () {",
+              "  pm.expect(body.schema).to.eql(\"financial-evidence.workflow-result.v1\");",
+              "  pm.expect(body.workflow).to.eql(\"funding\");",
+              "  pm.expect(body.selection).to.eql(\"USD\");",
+              "  pm.expect(body.content_sha256).to.match(/^[a-f0-9]{64}$/);",
+              "  pm.expect(body.prepared_response).to.be.a(\"boolean\");",
+              "  pm.expect(body.evidence).to.be.an(\"object\");",
+              "  pm.expect(body.scope).to.include(\"research only\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Institution watch",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Liquilens-Traffic-Class",
+            "value": "{{traffic_class}}"
+          }
+        ],
+        "url": "{{base_url}}/api/v1/workflow?workflow=institutions&selection=au-sfb%2Cbajaj-finance",
+        "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP response succeeded\", function () { pm.response.to.have.status(200); });",
+              "const body = pm.response.json();",
+              "pm.test(\"Original workflow evidence is retained\", function () {",
+              "  pm.expect(body.schema).to.eql(\"financial-evidence.workflow-result.v1\");",
+              "  pm.expect(body.workflow).to.eql(\"institutions\");",
+              "  pm.expect(body.selection).to.eql(\"au-sfb,bajaj-finance\");",
+              "  pm.expect(body.content_sha256).to.match(/^[a-f0-9]{64}$/);",
+              "  pm.expect(body.prepared_response).to.be.a(\"boolean\");",
+              "  pm.expect(body.evidence).to.be.an(\"object\");",
+              "  pm.expect(body.scope).to.include(\"research only\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "BTC exit check",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Liquilens-Traffic-Class",
+            "value": "{{traffic_class}}"
+          }
+        ],
+        "url": "{{base_url}}/api/v1/workflow?workflow=exit&selection=10000%2C100000",
+        "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP response succeeded\", function () { pm.response.to.have.status(200); });",
+              "const body = pm.response.json();",
+              "pm.test(\"Original workflow evidence is retained\", function () {",
+              "  pm.expect(body.schema).to.eql(\"financial-evidence.workflow-result.v1\");",
+              "  pm.expect(body.workflow).to.eql(\"exit\");",
+              "  pm.expect(body.selection).to.eql(\"10000,100000\");",
+              "  pm.expect(body.content_sha256).to.match(/^[a-f0-9]{64}$/);",
+              "  pm.expect(body.prepared_response).to.be.a(\"boolean\");",
+              "  pm.expect(body.evidence).to.be.an(\"object\");",
+              "  pm.expect(body.scope).to.include(\"research only\");",
+              "});"
             ]
           }
         }

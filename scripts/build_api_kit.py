@@ -49,6 +49,12 @@ def examples(spec):
              for name in datasets]
     rows += [("Funding review", "/api/v1/funding-review", {}, False),
              ("Agent research review", "/api/v1/agent-review", {"limit": "3"}, False)]
+    rows += [(name, "/api/v1/workflow", {"workflow": workflow, "selection": selection}, False)
+             for name, workflow, selection in [
+                 ("Funding watch", "funding", "USD"),
+                 ("Institution watch", "institutions", "au-sfb,bajaj-finance"),
+                 ("BTC exit check", "exit", "10000,100000"),
+             ]]
     for _, path, _, _ in rows:
         if "get" not in spec["paths"].get(path, {}):
             raise ValueError(f"Example is missing from the public read contract: {path}")
@@ -64,6 +70,19 @@ def build(out=OUT):
         suffix = path + ("?" + urlencode(query) if query else "")
         checks = ['pm.test("HTTP response succeeded", function () { pm.response.to.have.status(200); });']
         checks += TABLE_TESTS if table else []
+        if path == "/api/v1/workflow":
+            checks += [
+                'const body = pm.response.json();',
+                'pm.test("Original workflow evidence is retained", function () {',
+                '  pm.expect(body.schema).to.eql("financial-evidence.workflow-result.v1");',
+                f'  pm.expect(body.workflow).to.eql({json.dumps(query["workflow"])});',
+                f'  pm.expect(body.selection).to.eql({json.dumps(query["selection"])});',
+                '  pm.expect(body.content_sha256).to.match(/^[a-f0-9]{64}$/);',
+                '  pm.expect(body.prepared_response).to.be.a("boolean");',
+                '  pm.expect(body.evidence).to.be.an("object");',
+                '  pm.expect(body.scope).to.include("research only");',
+                '});',
+            ]
         items.append({"name": name, "request": {
             "method": "GET", "auth": {"type": "noauth"},
             "header": [{"key": "Accept", "value": "application/json"},
@@ -79,7 +98,7 @@ def build(out=OUT):
                       f"docs {{\n  {BOUNDARY}\n}}\n"))
         http.append(f"### {name}\n# {BOUNDARY}\nGET {BASE}{suffix}\nAccept: application/json\nX-Liquilens-Traffic-Class: developer\n")
     collection = {
-        "info": {"name": "LiquiLens Financial Evidence Research API", "description": BOUNDARY + " Public reads; no API key. Current public and private interfaces: https://beepboop2025.github.io/financial-evidence-skills/agents/system.json . Setup guide: https://liquilens.in/agents/infrastructure/ . Private runtimes are separately installed and grant no public execution authority. Operator validation must set traffic_class=synthetic. These headers are diagnostic labels, not verified customer identities.",
+        "info": {"name": "LiquiLens Financial Evidence Research API", "description": BOUNDARY + " Public reads; no API key. Research Desk 1.2.0 includes three working tasks: Seiche funding watch, LiquiLens institution watch and Undertow BTC exit check. Run them in the browser at https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html or import these fifteen requests. Current public and private interfaces: https://beepboop2025.github.io/financial-evidence-skills/agents/system.json . Setup guide: https://liquilens.in/agents/infrastructure/ . Private runtimes are separately installed and grant no public execution authority. Operator validation must set traffic_class=synthetic. These headers are diagnostic labels, not verified customer identities.",
                  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},
         "variable": [{"key": "base_url", "value": BASE},
                      {"key": "traffic_class", "value": "developer"}],
@@ -96,7 +115,8 @@ def build(out=OUT):
     paths = [out / "openapi.json", out / "financial-evidence.postman_collection.json",
              out / "financial-evidence.http", out / "README.md", *sorted(folder.glob("*.bru")), folder / "bruno.json"]
     manifest = {"schema": "financial-evidence.api-kit.v1", "request_count": len(items),
-                "dataset_count": len(items) - 5, "api_base": BASE,
+                "dataset_count": sum(path == "/api/v1/query" for _, path, _, _ in examples(spec)),
+                "workflow_count": 3, "api_base": BASE,
                 "source_observation": spec["x-source-observation"],
                 "files": {str(p.relative_to(out)): hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}}
     (out / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")

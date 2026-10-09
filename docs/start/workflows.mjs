@@ -42,7 +42,7 @@ export function rows(capture) {
   if (capture.workflow === 'funding' && e.schema === 'financial-evidence.agent-result.v1' && Array.isArray(e.results)) {
     result = e.results.map(row => ({id:`${row.entity_id}/${row.metric}/${row.source_field}`, cells:[`${row.entity_name} / ${row.metric}`, row.value === null ? 'Unavailable' : `${display(row.value)} ${row.unit || ''}`, row.as_of || 'Not reported', `${row.availability || 'Unknown'} / rights: ${row.rights_status || 'unknown'}`], details:row}));
   } else if (capture.workflow === 'institutions' && e.schema === 'liquilens.institution-monitoring.v1' && Array.isArray(e.rows)) {
-    result = e.rows.map(row => ({id:row.slug, cells:[row.name, `${display(row.current_metrics)} reviewed / ${row.gaps?.length ?? 'unknown'} gaps`, row.latest_period || 'Not reported', row.status || 'Unknown'], details:{categories:row.categories, gaps:row.gaps, warnings:row.warnings, coverage_complete:row.coverage_complete, content_sha256:row.content_sha256}, url:`https://liquilens.in/banking/monitoring/?institution=${encodeURIComponent(row.slug)}`}));
+    result = e.rows.map(row => ({id:row.slug, cells:[row.name, `${display(row.current_metrics)} reviewed / ${row.gaps?.length ?? 'unknown'} gaps`, row.latest_period || 'Not reported', row.status || 'Unknown'], details:{categories:row.categories, gaps:row.gaps, warnings:row.warnings, coverage_complete:row.coverage_complete, content_sha256:row.content_sha256}, record_sha256:/^[a-f0-9]{64}$/.test(row.content_sha256 || '') ? row.content_sha256 : null, url:/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(row.slug) ? `https://api.liquilens.in/api/experimental/v1/banking/monitoring/institutions/${row.slug}` : null}));
   } else if (capture.workflow === 'exit' && e.schema === 'undertow.crypto-workbench.v1' && Array.isArray(e.rungs)) {
     result = e.rungs.flatMap(rung => (rung.venues || []).map(venue => ({id:`${rung.published_size_usd}/${venue.venue}`, cells:[`$${rung.published_size_usd} / ${venue.venue}`, venue.sell_cost_bps === null || venue.sell_cost_bps === undefined ? 'Unavailable' : `${venue.sell_cost_bps} bps · $${display(venue.estimated_cost_usd)}`, e.venue_freshness?.[venue.venue]?.observed_at || 'Not reported', `${venue.status} / ${venue.quote_currency || 'unknown'}`], details:{...venue, freshness:e.venue_freshness?.[venue.venue], rung_status:rung.status}})));
   } else throw new Error('The original product evidence format changed.');
@@ -50,14 +50,22 @@ export function rows(capture) {
   return result;
 }
 export function baseline(value) {
-  return {schema:'financial-evidence.local-review.v1', request:settings(value.workflow,value.selection), captured_at:value.retrieved_at, rows:rows(value).map(row => ({id:row.id,cells:row.cells})), scope:'Displayed values, observation dates and states only; source details are retained in the downloaded JSON.'};
+  return {schema:'financial-evidence.local-review.v2', request:settings(value.workflow,value.selection), captured_at:value.retrieved_at, rows:rows(value).map(row => ({id:row.id,cells:row.cells,record_sha256:row.record_sha256 ?? null})), scope:'Displayed values, dates and states, plus institution record fingerprints. Fingerprints include review aging and policy; a change does not by itself establish a new financial event.'};
 }
 export function compare(previous, current) {
   const next = baseline(current);
-  if (!previous || previous.schema !== next.schema || JSON.stringify(previous.request) !== JSON.stringify(next.request) || !Array.isArray(previous.rows) || previous.rows.length > 100) return null;
-  const before = new Map(previous.rows.map(row => [row.id, JSON.stringify(row.cells)]));
-  const after = new Map(next.rows.map(row => [row.id, JSON.stringify(row.cells)]));
-  return {added:[...after.keys()].filter(id => !before.has(id)), removed:[...before.keys()].filter(id => !after.has(id)), changed:[...after.keys()].filter(id => before.has(id) && before.get(id) !== after.get(id)), scope:next.scope};
+  if (!previous || !['financial-evidence.local-review.v1',next.schema].includes(previous.schema) || JSON.stringify(previous.request) !== JSON.stringify(next.request) || !Array.isArray(previous.rows) || previous.rows.length > 100 || previous.rows.some(row => !row || typeof row.id !== 'string' || !Array.isArray(row.cells) || row.cells.length !== 4 || row.cells.some(cell => typeof cell !== 'string'))) return null;
+  const before = new Map(previous.rows.map(row => [row.id,row]));
+  if (before.size !== previous.rows.length) return null;
+  const after = new Map(next.rows.map(row => [row.id,row]));
+  const legacy = previous.schema !== next.schema, details = [];
+  for (const [id,row] of after) {
+    const prior = before.get(id); if (!prior) continue;
+    const fields = row.cells.flatMap((value,index) => value === prior.cells[index] ? [] : [{label:TASKS[current.workflow].headers[index],before:prior.cells[index],after:value}]);
+    if (!legacy && (prior.record_sha256 ?? null) !== row.record_sha256) fields.push({label:'Evidence fingerprint (includes review aging and policy)',before:prior.record_sha256 || 'Unavailable',after:row.record_sha256 || 'Unavailable'});
+    if (fields.length) details.push({id,name:row.cells[0],fields});
+  }
+  return {added:[...after.keys()].filter(id => !before.has(id)), removed:[...before.keys()].filter(id => !after.has(id)), changed:details.map(row => row.id), details, legacy, scope:next.scope};
 }
 export function reminder(request, now = new Date()) {
   const stamp = now.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');

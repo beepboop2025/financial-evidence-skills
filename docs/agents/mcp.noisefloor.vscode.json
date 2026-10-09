@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "noisefloor": {
+      "type": "http",
+      "url": "https://api.seiche.info/noisefloor/mcp"
+    }
+  }
+}

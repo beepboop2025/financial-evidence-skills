@@ -1,0 +1,45 @@
+{
+  "schema": "noisefloor.release-acceptance.v1",
+  "version": "0.4.0",
+  "source_commit": "18e7290a022c7cba0d1e5e417a4a467cccfaa7a0",
+  "tag": "v0.4.0",
+  "implementation_sha256": "a66b2ce516e5d9fb257e348c183cb489ac25b7c2a1af1cb30663f007a44159fa",
+  "artifacts": {
+    "noisefloor-0.4.0-py3-none-any.whl": "bd2714a8adf2a15ff72d2fd846a12178faccd2205756bbf83cab16207a78b594",
+    "noisefloor-0.4.0.tar.gz": "e620bd1250b664d8e6924277e0a73b0a7c0e022cc063e09997bab9b33724e665"
+  },
+  "runtime_dependencies": [],
+  "market_performance_validated": false,
+  "status": "accepted",
+  "observed_at": "2026-10-09T13:36:25.538503+00:00",
+  "api_base": "https://api.seiche.info/noisefloor",
+  "mcp_url": "https://api.seiche.info/noisefloor/mcp",
+  "tools": [
+    "ab_test",
+    "did_it_change",
+    "dyson_reference",
+    "forecast_next",
+    "market_assessment",
+    "narrative_triage",
+    "real_or_sampling",
+    "score_forecasts",
+    "spectral_assessment",
+    "which_metrics_matter"
+  ],
+  "tool_count": 10,
+  "checks": {
+    "public_version_and_fingerprint": true,
+    "spectral_rest_mcp_parity": true,
+    "restricted_source_blocks_panel": true,
+    "dyson_synthetic": true,
+    "cors": true,
+    "pypi_artifact_hashes": true,
+    "official_registry_version": true
+  },
+  "pypi_url": "https://pypi.org/project/noisefloor/0.4.0/",
+  "registry_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fnoisefloor/versions/0.4.0",
+  "execution_authority": false,
+  "traffic_class": "operator_synthetic_acceptance",
+  "independent_adoption_proven": false,
+  "qualification": "Transport and numerical research checks; no predictive-performance or market-utility validation."
+}

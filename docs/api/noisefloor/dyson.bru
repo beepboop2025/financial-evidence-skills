@@ -1,0 +1,24 @@
+meta {
+  name: Synthetic Dyson reference
+  type: http
+  seq: 2
+}
+
+post {
+  url: https://api.seiche.info/noisefloor/v1/research/dyson
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+{
+  "dimension": 6,
+  "steps": 40,
+  "dt": 0.05,
+  "seed": 6117
+}
+}

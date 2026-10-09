@@ -62,20 +62,54 @@ This attention order never approves a trade or a transfer.
 
 ## Optional market and headline analysis
 
-[NoiseFloor 0.3.1](https://github.com/beepboop2025/noisefloor/tree/v0.3.1)
-provides eight descriptive tools, including `market_assessment` and
-`narrative_triage`. Supply your own market series and headlines with source,
+[NoiseFloor 0.4.0](https://github.com/beepboop2025/noisefloor/tree/v0.4.0)
+provides ten tools, including `spectral_assessment`, `dyson_reference`,
+`market_assessment` and `narrative_triage`. Supply your own market series and headlines with source,
 observation, availability and rights context. It does not collect market feeds
 or authorize orders. Missing visibility and statistical assumptions remain
 explicit; repeated headlines do not establish truth.
 
+- [Portable MCP config](mcp.noisefloor.json) · [VS Code config](mcp.noisefloor.vscode.json)
 - Hosted MCP: `https://api.seiche.info/noisefloor/mcp`
 - [REST OpenAPI](https://api.seiche.info/noisefloor/openapi.json) and
   [capabilities](https://api.seiche.info/noisefloor/v1/capabilities)
-- Local stdio: `uvx --from noisefloor==0.3.1 noisefloor-mcp`
-- [Python, CLI and offline adapter examples](https://github.com/beepboop2025/noisefloor/blob/dd887a3ddb60adb948f324ae2e645524366b660f/docs/INTEGRATIONS.md)
-- [Accepted release and independent discovery record](../distribution/noisefloor-0.3.1.json)
+- Local stdio: `uvx --from noisefloor==0.4.0 noisefloor-mcp`
+- [Python, CLI and offline adapter examples](https://github.com/beepboop2025/noisefloor/blob/18e7290a022c7cba0d1e5e417a4a467cccfaa7a0/docs/INTEGRATIONS.md)
+- [Accepted release and independent discovery record](../distribution/noisefloor-0.4.0.json)
 
 Connect this optional analysis explicitly. The three product connections above
 do not automatically invoke it, and package/API consistency does not establish
 predictive performance, validated market usefulness or customer adoption.
+
+
+## Correlation research across products
+
+Open the [correlation workbench](https://liquilens.in/agents/correlation/) to
+inspect concentration and rolling eigenvalues, or explore a separate synthetic
+Dyson reference. Six clearly synthetic profiles cover LiquiLens peer funding,
+Seiche benchmarks, Undertow venue liquidity, Riptide scenarios, trading-agent
+returns and Palimpsest source coverage. They demonstrate contracts, not actual
+product observations or validated performance.
+
+For a complete retained Financial Evidence table, download
+[spectral_review.py](spectral_review.py) and run locally:
+
+```sh
+pip install noisefloor==0.4.0
+python spectral_review.py retained-table.json --product seiche --kind rate \
+  --as-of 2026-10-09T12:00:00Z --max-age-seconds 345600 \
+  --max-gap-seconds 345600 --window-points 60 --allow-date-only \
+  --output new-correlation-review.json
+```
+
+Set the clock and cadence for your actual retained data. Select a complete panel
+with one comparable metric, unit and product. Short current snapshots cannot
+supply a correlation history. Partial pagination, source holds, missing rights
+and gaps are retained or refused; no missing value is filled. Date-only labels
+do not establish historical knowability. The output retains the original table,
+adapter issues, request, report and input digest. Import `review` from the script
+as an explicit local agent callback; it performs no network or broker calls.
+
+Use the separate [NoiseFloor API client kit](../api/noisefloor/) for Postman,
+Bruno and HTTP requests. Existing Financial Evidence retrieval requests retain
+their own API contract.

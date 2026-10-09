@@ -181,13 +181,14 @@
   "optional_analysis": [
     {
       "id": "noisefloor",
-      "version": "0.3.1",
+      "version": "0.4.0",
       "mcp_url": "https://api.seiche.info/noisefloor/mcp",
       "openapi_url": "https://api.seiche.info/noisefloor/openapi.json",
-      "guide_url": "https://github.com/beepboop2025/noisefloor/blob/dd887a3ddb60adb948f324ae2e645524366b660f/docs/INTEGRATIONS.md",
-      "observed_at": "2026-10-08T12:46:42.981789+00:00",
-      "advertised_tool_count": 8,
-      "scope": "Caller-supplied market series and headlines; no feed collection or trading authority. Integrate explicitly; these product connections do not automatically invoke NoiseFloor."
+      "guide_url": "https://github.com/beepboop2025/noisefloor/blob/18e7290a022c7cba0d1e5e417a4a467cccfaa7a0/docs/SPECTRAL_RISK.md",
+      "observed_at": "2026-10-09T13:36:25.538503+00:00",
+      "advertised_tool_count": 10,
+      "scope": "Explicit caller-supplied correlation, market and narrative research; synthetic Dyson reference. No feed collection or execution authority.",
+      "workbench_url": "https://liquilens.in/agents/correlation/"
     }
   ],
   "workflows_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/workflows.json"

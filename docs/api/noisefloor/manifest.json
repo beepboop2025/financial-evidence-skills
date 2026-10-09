@@ -1,0 +1,25 @@
+{
+  "schema": "noisefloor.api-client-kit.v1",
+  "version": "0.4.0",
+  "source_commit": "18e7290a022c7cba0d1e5e417a4a467cccfaa7a0",
+  "traffic_class": "synthetic_examples",
+  "execution_authority": false,
+  "files": {
+    "README.md": "44bd09a11fd37614ac2c31cb9c7ba4e76838c65ebef88cb3dd3813bcba2a8f24",
+    "bruno.json": "ef41a31f2c39379c88bed81f68e6428eb04ab56af11f533cf719af929e53074a",
+    "dyson.bru": "8090f7493f90845cdde90804f25d7098ed27a9955fd1729ac5f8530cdc172b32",
+    "dyson.json": "6c3ff3ba41d2353feb7316d0a4486f59c5a6d2d25775cb4de498ba8af89fbc15",
+    "index.html": "12917259f29f28ec5459b1cf73cf9134e658484275d532635694c167bb31e082",
+    "liquilens.json": "8e3216ed91dc545a5af93201c05d4bfd6b31b41a712f913bae0cc1be707f8499",
+    "noisefloor.http": "d753419a2db115735aa49cccb22e3a455a68de38dfa543143d7262e4b77ad818",
+    "noisefloor.postman_collection.json": "65661edb3f851646300dbfae013515e6be15aad65f603a1f45c6291a1b0b1606",
+    "openapi.json": "b4ecda79ab39dc7e8be7316d7386837bd4d3c185a6981ebf849d2ff8a127e373",
+    "palimpsest.json": "eabd99f08891464d759c4539f33cceaad8e1e7c7ea97d002ca7b5a5388c4de98",
+    "riptide.json": "f6b0f8373e727407d5897574bfb896bb1c45a870ffd96d0c4fb9debb3911bd01",
+    "seiche.json": "b6c6b78418ac9d22bbd2be7a3d67558797df41c886223b439d8ae6f29f234c5a",
+    "spectral.bru": "4a2a178a3ec8bb6a8b74adb5301253c1292842be247dec84219913a84b4e09b1",
+    "spectral_review.py": "4422bde82f4b14f35218279c343d08af47467cc1bf8be1614ee3e2d35bc37847",
+    "trading_agents.json": "c03b2cd9a1e8c7a7538a38f3a757ce4f6ad0a9f702d9d4aaa70afc444dc7b95d",
+    "undertow.json": "a65c94642645f7274dfa1ef0a33bb04fff51d1be9cefc5dce5ab62c1603616f3"
+  }
+}

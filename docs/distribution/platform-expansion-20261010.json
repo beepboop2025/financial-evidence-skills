@@ -326,7 +326,7 @@
     },
     {
       "filename": "toolhive-submission/status.json",
-      "sha256": "192398336ef92db203b2dd36b70fde8885cd787ea98a4f13cb6ac6f9fe6bc7b6",
+      "sha256": "cace26272a5fe2132540f3fb3febf08edeb175f5f85e042cc2d7f69971750628",
       "storage": "retained private audit artifact; no activation URLs or credentials published"
     },
     {
@@ -341,7 +341,7 @@
     },
     {
       "filename": "toolhive-submission/REPORT.md",
-      "sha256": "b892b01543d2171cb9ee2afe1a4dbe8f803055a691fb82b6a9b566e73122cac3",
+      "sha256": "c92af55bd76ec185e4297a7793a8273b809a7639d8d9d5a91ca71d6f9dd5f32c",
       "storage": "retained private audit artifact; no activation URLs or credentials published"
     },
     {

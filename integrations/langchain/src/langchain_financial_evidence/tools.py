@@ -7,6 +7,7 @@ or replacing source observation clocks with retrieval time.
 from __future__ import annotations
 
 import json
+import math
 from datetime import date
 from typing import Any, Literal
 from urllib.error import HTTPError, URLError
@@ -73,6 +74,13 @@ def _reject_nonfinite(value: str) -> None:
     raise ValueError(f"Nonfinite JSON number: {value}")
 
 
+def _finite_float(value: str) -> float:
+    number = float(value)
+    if not math.isfinite(number):
+        raise ValueError("JSON number exceeds finite floating-point range")
+    return number
+
+
 def _fetch(route: str, parameters: dict[str, Any], timeout: float, max_bytes: int) -> Any:
     """One bounded request, no redirects, retries, auth, arbitrary URL or polling."""
     url = API_BASE + route
@@ -87,7 +95,7 @@ def _fetch(route: str, parameters: dict[str, Any], timeout: float, max_bytes: in
             raw = response.read(max_bytes + 1)
         if len(raw) > max_bytes:
             raise ToolException("Financial Evidence response exceeded the byte limit; reduce the row limit.")
-        return json.loads(raw.decode("utf-8"), parse_constant=_reject_nonfinite)
+        return json.loads(raw.decode("utf-8"), parse_constant=_reject_nonfinite, parse_float=_finite_float)
     except HTTPError as exc:
         status = exc.code
         exc.close()

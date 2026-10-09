@@ -122,6 +122,15 @@ def test_invalid_json_is_explicit_error(raw):
             FinancialEvidenceQueryTool().invoke({"dataset": "money_markets"})
 
 
+@pytest.mark.parametrize("number", ["1e999", "-1e999"])
+def test_valid_envelope_with_overflowing_json_number_is_rejected(number):
+    raw = json.dumps(QUERY).replace('"value": 0', '"value": ' + number, 1).encode()
+    with patch("langchain_financial_evidence.tools.build_opener") as opener:
+        opener.return_value.open.return_value = io.BytesIO(raw)
+        with pytest.raises(ToolException, match="invalid JSON"):
+            FinancialEvidenceQueryTool().invoke({"dataset": "money_markets"})
+
+
 def test_response_byte_and_row_limits_and_schema():
     with patch("langchain_financial_evidence.tools.build_opener") as opener:
         for payload, message in [(b" " * 1025, "byte limit"), (b"{}", "schema"),

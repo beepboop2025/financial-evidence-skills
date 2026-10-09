@@ -6,7 +6,7 @@ from pathlib import Path
 import shutil
 import tempfile
 import unittest
-from urllib.parse import urlsplit
+from urllib.parse import parse_qs, urlencode, urlsplit
 from zipfile import ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,6 +14,24 @@ API = ROOT / "docs/api"
 
 
 class ApiKitTests(unittest.TestCase):
+    def test_selection_survives_postman_parameter_encoding(self):
+        collection = json.loads((API / "financial-evidence.postman_collection.json").read_text())
+        expected = {"Funding watch": "USD", "Institution watch": "au-sfb,bajaj-finance",
+                    "BTC exit check": "10000,100000"}
+        seen = set()
+        for item in collection["item"]:
+            if item["name"] not in expected:
+                continue
+            seen.add(item["name"])
+            query = urlsplit(item["request"]["url"]).query
+            raw = dict(field.split("=", 1) for field in query.split("&"))
+            # The importing client treats the parameter as an unencoded value.
+            # One client encoding and one server decoding must keep the selection.
+            server_value = parse_qs(urlencode(raw))["selection"]
+            self.assertEqual(server_value, [expected[item["name"]]])
+            self.assertEqual(parse_qs(query)["selection"], server_value)
+        self.assertEqual(seen, set(expected))
+
     def test_imports_only_read_the_published_contract(self):
         spec = json.loads((API / "openapi.json").read_text())
         collection = json.loads((API / "financial-evidence.postman_collection.json").read_text())

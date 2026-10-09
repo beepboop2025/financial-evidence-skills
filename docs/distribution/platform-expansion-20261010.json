@@ -1,0 +1,336 @@
+{
+  "schema": "liquilens.platform-expansion-receipts.v1",
+  "observed_date_asia_kolkata": "2026-10-10",
+  "recorded_at": "2026-10-09T19:02:44.703651+00:00",
+  "source_base_commit": "15e21cb9dbd9931f6121a298589e449de0e84cd0",
+  "scope": "New catalog submissions and existing placement reconciliation; sanitized handoff, not adoption evidence.",
+  "new_actions": [
+    {
+      "id": "mcpserver-cc-financial-evidence",
+      "state": "submitted",
+      "url": "https://mcpserver.cc/submit",
+      "observed_at": "2026-10-09T18:55:18.467Z",
+      "detail": "The standard form returned an explicit submission-received confirmation for the Financial Evidence repository and LiquiLens, Seiche and Undertow research workflows. Editorial approval and a public listing are not yet observed."
+    },
+    {
+      "id": "public-apis-financial-evidence-mcp",
+      "state": "submitted",
+      "url": "https://github.com/public-apis/public-apis/pull/7884",
+      "observed_at": "2026-10-09T18:58:50.792482+00:00",
+      "detail": "PR 7884 adds one Financial Evidence entry to the separate MCP Servers section with a public Glama install link and anonymous HTTP transport. New-row and link checks passed. Upstream README CI fails because its existing formatter treats MCP Transport/Install cells as REST HTTPS/CORS; the untouched base has 604 diagnostics and this change has 606. Validation-package tests pass. No catalog acceptance is claimed."
+    },
+    {
+      "id": "apivault-financial-evidence",
+      "state": "submitted",
+      "url": "https://github.com/exa-studio/ApiVault/issues/327",
+      "observed_at": "2026-10-09T18:57:45.492982+00:00",
+      "detail": "Official Add Your API issue 327 was created once and its author, exact body and OPEN state were read back. The submission describes public read-only funding, institution and liquidity research and explicitly does not claim unrestricted browser CORS. Directory acceptance and public listing remain unverified."
+    },
+    {
+      "id": "mcpserverfinder-financial-evidence",
+      "state": "sent_delivery_unverified",
+      "url": "https://mcpserverfinder.com/",
+      "observed_at": "2026-10-09T18:57:39Z",
+      "detail": "A directory-submission email from mrinal@liquilens.in to the publicly advertised submission contact was verified in Titan Sent. It requests the standard free editorial listing. Recipient delivery, operator review and publication remain unverified."
+    }
+  ],
+  "existing_directory_cards": [
+    {
+      "id": "mcpmarket-liquilens",
+      "state": "live",
+      "url": "https://mcpmarket.com/server/liquilens",
+      "observed_at": "2026-10-09T18:55:18.467Z",
+      "native_installation_verified": false,
+      "scope": "The existing product listing was reconciled through the directory. Its free GitHub submission action reported already listed, so no new submission or placement is claimed. Public listing presence does not verify native installation, directory metadata accuracy or independent adoption."
+    },
+    {
+      "id": "mcpmarket-seiche",
+      "state": "live",
+      "url": "https://mcpmarket.com/server/seiche",
+      "observed_at": "2026-10-09T18:55:18.467Z",
+      "native_installation_verified": false,
+      "scope": "The existing product listing was reconciled through the directory. Its free GitHub submission action reported already listed, so no new submission or placement is claimed. Public listing presence does not verify native installation, directory metadata accuracy or independent adoption."
+    },
+    {
+      "id": "mcpmarket-undertow",
+      "state": "live",
+      "url": "https://mcpmarket.com/server/undertow",
+      "observed_at": "2026-10-09T18:55:18.467Z",
+      "native_installation_verified": false,
+      "scope": "The existing product listing was reconciled through the directory. Its free GitHub submission action reported already listed, so no new submission or placement is claimed. Public listing presence does not verify native installation, directory metadata accuracy or independent adoption."
+    },
+    {
+      "id": "lobehub-liquilens",
+      "state": "listed_incomplete",
+      "url": "https://lobehub.com/mcp/beepboop2025-liquilens-mcp",
+      "observed_at": "2026-10-09T18:58:50.727Z",
+      "native_installation_verified": false,
+      "scope": "An existing public search card is indexed under the product repository and marked Unvalidated. This records directory discoverability only. The imported description, claimed tool counts, transport details, publisher verification and native installation have not been validated by this observation."
+    },
+    {
+      "id": "lobehub-seiche",
+      "state": "listed_incomplete",
+      "url": "https://lobehub.com/mcp/beepboop2025-seiche",
+      "observed_at": "2026-10-09T18:58:50.727Z",
+      "native_installation_verified": false,
+      "scope": "An existing public search card is indexed under the product repository and marked Unvalidated. This records directory discoverability only. The imported description, claimed tool counts, transport details, publisher verification and native installation have not been validated by this observation."
+    },
+    {
+      "id": "lobehub-undertow",
+      "state": "listed_incomplete",
+      "url": "https://lobehub.com/mcp/beepboop2025-undertow-mcp",
+      "observed_at": "2026-10-09T18:58:50.727Z",
+      "native_installation_verified": false,
+      "scope": "An existing public search card is indexed under the product repository and marked Unvalidated. This records directory discoverability only. The imported description, claimed tool counts, transport details, publisher verification and native installation have not been validated by this observation."
+    },
+    {
+      "id": "lobehub-palimpsest",
+      "state": "listed_incomplete",
+      "url": "https://lobehub.com/mcp/beepboop2025-palimpsest",
+      "observed_at": "2026-10-09T18:58:50.727Z",
+      "native_installation_verified": false,
+      "scope": "An existing public search card is indexed under the product repository and marked Unvalidated. This records directory discoverability only. The imported description, claimed tool counts, transport details, publisher verification and native installation have not been validated by this observation."
+    },
+    {
+      "id": "lobehub-riptide",
+      "state": "listed_incomplete",
+      "url": "https://lobehub.com/mcp/beepboop2025-riptide-mcp",
+      "observed_at": "2026-10-09T18:58:50.727Z",
+      "native_installation_verified": false,
+      "scope": "An existing public search card is indexed under the product repository and marked Unvalidated. This records directory discoverability only. The imported description, claimed tool counts, transport details, publisher verification and native installation have not been validated by this observation."
+    },
+    {
+      "id": "lobehub-noisefloor",
+      "state": "listed_incomplete",
+      "url": "https://lobehub.com/mcp/beepboop2025-noisefloor",
+      "observed_at": "2026-10-09T18:58:50.727Z",
+      "native_installation_verified": false,
+      "scope": "An existing public search card is indexed under the product repository and marked Unvalidated. This records directory discoverability only. The imported description, claimed tool counts, transport details, publisher verification and native installation have not been validated by this observation."
+    },
+    {
+      "id": "lobehub-evidence-carrier",
+      "state": "listed_incomplete",
+      "url": "https://lobehub.com/mcp/beepboop2025-liquilens-evidence-carrier",
+      "observed_at": "2026-10-09T18:58:50.727Z",
+      "native_installation_verified": false,
+      "scope": "An existing public search card is indexed under the product repository and marked Unvalidated. This records directory discoverability only. The imported description, claimed tool counts, transport details, publisher verification and native installation have not been validated by this observation."
+    }
+  ],
+  "existing_rest_prs": [
+    {
+      "number": 7067,
+      "title": "Add LiquiLens API",
+      "state": "closed",
+      "merged_at": "2026-08-26T10:10:36Z",
+      "html_url": "https://github.com/public-apis/public-apis/pull/7067",
+      "created_at": "2026-08-26T04:15:25Z",
+      "updated_at": "2026-08-26T10:10:36Z"
+    },
+    {
+      "number": 7801,
+      "title": "Add Seiche API",
+      "state": "open",
+      "merged_at": null,
+      "html_url": "https://github.com/public-apis/public-apis/pull/7801",
+      "created_at": "2026-10-07T00:25:59Z",
+      "updated_at": "2026-10-07T00:25:59Z"
+    },
+    {
+      "number": 7802,
+      "title": "Add Undertow API",
+      "state": "open",
+      "merged_at": null,
+      "html_url": "https://github.com/public-apis/public-apis/pull/7802",
+      "created_at": "2026-10-07T00:26:57Z",
+      "updated_at": "2026-10-07T00:26:57Z"
+    }
+  ],
+  "reconciled_entries": [
+    {
+      "id": "api-market-seiche-reference-fx",
+      "state": "live",
+      "detail": "The existing Seiche Reference FX offer is now publicly visible without authentication on its product page and in API.market homepage discovery. The offer covers four ECB EUR-base reference-rate CSV histories. Earlier saved plan terms and 7 October gateway tests retain their own dates; current client-rendered checkout, gateway freshness, complete-history parity and independent paid use were not checked. This is reconciliation of an earlier submission, not a new offer or customer.",
+      "observed_at": "2026-10-09T18:50:51.832297+00:00",
+      "latest_observation": {
+        "observed_at": "2026-10-09T18:50:51.832297+00:00",
+        "url": "https://api.market/store/liquilens/seiche-reference-fx",
+        "http_status": 200,
+        "sha256": "fe3e30661f7135d5a1e5c8c5b34e9df2095678b246e7cf50a17fe8cfabac5b77",
+        "readback": "public_product_identity_and_homepage_card_verified",
+        "client_rendered_checkout_verified": false,
+        "current_gateway_freshness_verified": false
+      }
+    },
+    {
+      "id": "datarade-company",
+      "state": "ready_account_action",
+      "detail": "The company/provider account approval email dated 8 October 2026 was verified in authenticated mail. Initial password setup is still required to activate access. This establishes account approval only; a public provider page, dataset listing, distribution rights and commercial acceptance remain unverified.",
+      "observed_at": "2026-10-09T18:55:18.467Z",
+      "latest_observation": {
+        "observed_at": "2026-10-09T18:55:18.467Z",
+        "readback": "provider_account_approved_no_public_listing_verified"
+      }
+    },
+    {
+      "id": "allmcps-financial-evidence",
+      "state": "listed_incomplete",
+      "detail": "Public readback now shows the 0.1.7 description, canonical remote endpoint and tag-pinned install command, with verified ownership. Exact requested wheel-command propagation and native installation remain unproved; the directory sandbox check is not yet automatically verified. This supersedes the prior assertion that no current install pin had propagated without asserting every requested edit was accepted.",
+      "observed_at": "2026-10-09T18:50:51.122098+00:00",
+      "latest_observation": {
+        "observed_at": "2026-10-09T18:50:51.122098+00:00",
+        "url": "https://allmcps.com/mcp/financial-evidence",
+        "http_status": 200,
+        "sha256": "8faa237a936f9df91d1819ba77686aecb8241cccc9050d71233aa8798adf7557",
+        "readback": "current_description_remote_and_tag_pin_observed",
+        "native_installation_verified": false,
+        "requested_wheel_command_verified": false
+      }
+    },
+    {
+      "id": "allmcps-undertow",
+      "state": "listed_incomplete",
+      "detail": "Public readback now shows a 24-tool inventory with public/subscriber distinctions and the hosted endpoint. The count is self-reported from the repository, not a live-server verification. The older duplicate remains public and transport labels disagree between Streamable HTTP and SSE. Preserve incomplete status; no new submission or independently verified subscriber count is claimed.",
+      "observed_at": "2026-10-09T18:50:50.921237+00:00",
+      "latest_observation": {
+        "observed_at": "2026-10-09T18:50:50.921237+00:00",
+        "url": "https://allmcps.com/mcp/undertow-market-liquidity-map-2",
+        "http_status": 200,
+        "sha256": "d2a8b2e88ec5138154c55deb92553f0225b59c45f2ead2858b759023a32f386f",
+        "readback": "24_self_reported_tools_observed_semantic_gaps_remain",
+        "displayed_tool_count": 24,
+        "live_tool_inventory_verified": false,
+        "duplicate_url": "https://allmcps.com/mcp/undertow-market-liquidity-map",
+        "duplicate_html_sha256": "e35a3948daa9e48a80df6476dda65dd6a446870eee2e42abfc4fdffcb388fb2e"
+      }
+    }
+  ],
+  "public_apis_ci": {
+    "conclusion": "failure",
+    "url": "https://github.com/public-apis/public-apis/actions/runs/37976867468",
+    "head_sha": "37981073b91e271819c2dd8787694bafb0a9211d",
+    "failed_steps": [
+      {
+        "job": "Validate README.md changes",
+        "step": "Validate Markdown format"
+      }
+    ],
+    "documented_mcp_cell_incompatibility_confirmed": true,
+    "log_diagnostic_count": 606
+  },
+  "public_apis_discovery": {
+    "observed_at": "2026-10-09T18:56:01.526684+00:00",
+    "endpoint": "https://liquilens.in/mcp/financial-evidence",
+    "authentication": "none",
+    "traffic_class": "synthetic",
+    "scope": "Protocol discovery only; no financial research tool calls",
+    "calls": [
+      {
+        "method": "initialize",
+        "status": 200,
+        "content_type": "text/event-stream",
+        "body_sha256": "122f5a27ed1643b4c6eb9c11fb17169130e5b8209de453f0bb5e7333d52d1af5",
+        "serverInfo": {
+          "name": "financial-evidence",
+          "version": "0.1.7"
+        },
+        "protocolVersion": "2025-11-25"
+      },
+      {
+        "method": "tools/list",
+        "status": 200,
+        "content_type": "text/event-stream",
+        "body_sha256": "1118b2620057173bb527e870aaae1cd99ab046b60261cde4298069598c291891",
+        "tools": [
+          "financial_evidence_topics",
+          "financial_evidence_route",
+          "financial_evidence_fetch"
+        ]
+      }
+    ],
+    "source_freshness_verified": false,
+    "adoption_verified": false
+  },
+  "submission_confirmation": "Submission received. Thank you — we will review it shortly.",
+  "finder_mail": {
+    "sender": "mrinal@liquilens.in",
+    "recipient": "info@mcpserverfinder.com",
+    "subject": "Directory submission: Financial Evidence by LiquiLens",
+    "sent_at": "2026-10-09T18:57:39Z",
+    "verification": "Titan Sent full sender, recipient, subject and body readback",
+    "recipient_delivery": "unverified",
+    "operator_acceptance": "unverified",
+    "public_listing": "unverified"
+  },
+  "source_receipts": [
+    {
+      "filename": "browser-submission-receipts.json",
+      "sha256": "d35fe549d640ae870c4289708664f4cc0d64443e72b6af1352776878d850dfec",
+      "storage": "retained private audit artifact; no activation URLs or credentials published"
+    },
+    {
+      "filename": "public-reconciliation.json",
+      "sha256": "bf0c42175039009b4c9037dc2701d9adaeaa168dd214a299c138ddc6d215aaaf",
+      "storage": "retained private audit artifact; no activation URLs or credentials published"
+    },
+    {
+      "filename": "lobehub-reconciliation.json",
+      "sha256": "87fe87ff2ee3537e0e306f810ba8c1d4be267832ab160b059f2a651872a8962d",
+      "storage": "retained private audit artifact; no activation URLs or credentials published"
+    },
+    {
+      "filename": "apivault-submission.json",
+      "sha256": "ba966c3618dfc4fa23878718b53379724a6b870f60df61cec0c29012eb08bfe4",
+      "storage": "retained private audit artifact; no activation URLs or credentials published"
+    },
+    {
+      "filename": "mcpserverfinder-send-receipt.json",
+      "sha256": "3670e3c0d561fc61c69bed8cb05f6aacf112fd23f6c11a8d9d4aed801ae4acfd",
+      "storage": "retained private audit artifact; no activation URLs or credentials published"
+    },
+    {
+      "filename": "public-apis-submission.json",
+      "sha256": "0135d940ef6d2e274ae9bd2a8eddb615597db0f21ad027924c2c124ce4e13404",
+      "storage": "retained private audit artifact; no activation URLs or credentials published"
+    }
+  ],
+  "added_ledger_ids": [
+    "mcpserver-cc-financial-evidence",
+    "public-apis-financial-evidence-mcp",
+    "apivault-financial-evidence",
+    "mcpserverfinder-financial-evidence",
+    "mcpmarket-liquilens",
+    "mcpmarket-seiche",
+    "mcpmarket-undertow",
+    "lobehub-liquilens",
+    "lobehub-seiche",
+    "lobehub-undertow",
+    "lobehub-palimpsest",
+    "lobehub-riptide",
+    "lobehub-noisefloor",
+    "lobehub-evidence-carrier",
+    "public-apis-liquilens-rest",
+    "public-apis-seiche-rest",
+    "public-apis-undertow-rest"
+  ],
+  "updated_ledger_ids": [
+    "api-market-seiche-reference-fx",
+    "datarade-company",
+    "allmcps-financial-evidence",
+    "allmcps-undertow"
+  ],
+  "pending_lanes": {
+    "toolhive": "Awaiting owning agent outcome; excluded from these submission counts."
+  },
+  "limits": [
+    "Existing cards and prior REST submissions are not new submissions or customer acquisitions.",
+    "API.market public identity is verified; current checkout rendering, gateway freshness and payment are not.",
+    "LobeHub card text and tool metadata are unvalidated; no native installation is claimed.",
+    "AllMCPs semantic gaps remain open; public tool inventories are not live-server checks.",
+    "Datarade account approval is not public provider or dataset publication.",
+    "Verification calls and directory views do not establish independent use, retention or paid adoption.",
+    "Prior full-ledger observation dates, release versions and historical audit counts remain unchanged."
+  ],
+  "new_paid_placement_cost": 0,
+  "verified_independent_organizations": null,
+  "verified_paid_customers": null
+}

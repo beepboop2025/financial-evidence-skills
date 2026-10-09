@@ -16,11 +16,10 @@ python -m pip install ./integrations/haystack
 
 The package declares an exact public Git commit of the MIT `financial-evidence`
 client as a dependency. It does not require a separately published PyPI package.
-For a Git installation, replace `COMMIT_SHA` with the full commit containing
-this integration:
+Install the public integration revision directly from Git:
 
 ```sh
-python -m pip install "git+https://github.com/beepboop2025/financial-evidence-skills.git@COMMIT_SHA#subdirectory=integrations/haystack"
+python -m pip install "git+https://github.com/beepboop2025/financial-evidence-skills.git@3abcc45d7a429d26ed185d1ca845b078041f54f3#subdirectory=integrations/haystack"
 ```
 
 ## Run a pipeline

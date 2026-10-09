@@ -13,6 +13,13 @@ refusal is a measurable integration result, not an executed order.
 | Quant-agent developer | Add funding, covered-bank or liquidity context to a research step | Developer retains a cited result with source dates and explains how it informed the task |
 | Trading-platform builder | Connect the private paper host through REST or MCP | Their own paper account is assessed; when eligible, an order is submitted once and reconciled |
 | Financial AI infrastructure team | Embed exact-intent and timeout handling in an existing runtime | Their runtime preserves request identity and refuses a duplicate or unavailable assessment |
+| Treasury or bank-risk team | Review its own institution watchlist with the new monitor | Named reviewer retains source-dated changes and an actionable queue of missing disclosures |
+| Individual trader or researcher | Save a funding-and-exit research note | Participant explains a useful observation or coverage blocker and repeats the same review on another day |
+
+The [working task guide](WORKFLOWS.md) supplies current starting calls and
+repeat-use instructions. Keep three acquisition cohorts separate: developers,
+treasury/bank-risk teams, and individuals. A team or organization can have many
+installations; an individual participant is not an organization.
 
 Do not require all three product datasets for a task that needs only one. Never
 relax source rights, freshness or account controls to make a pilot pass.
@@ -34,7 +41,7 @@ records the participant agrees to share. Delete them when no longer needed.
 Suggested private CSV columns:
 
 ```text
-organization_alias,consent_recorded,workflow,source_version,first_independent_use_at,first_useful_result_at,second_task_at,day_seven_use_at,setup_minutes,blocker_code,continuation_decision,payment_verified
+participant_alias,participant_type,cohort,discovery_source,consent_recorded,workflow,source_version,first_independent_use_at,first_useful_result_at,second_task_at,day_seven_use_at,setup_minutes,blocker_code,continuation_decision,payment_verified
 ```
 
 ## Initial targets, not traction claims
@@ -49,6 +56,13 @@ Report conversion with both numerator and denominator. Measure activation from
 consenting independent evaluators, and retention from organizations that have
 had enough time to reach the checkpoint. Record product, workflow and first
 discovery source separately so the team can prioritize the useful route.
+
+When evaluating all three audiences, use five consenting independent evaluators
+per cohort as a planning target, with three useful returns and one agreed paid
+continuation per cohort. These targets extend the organization-only pilot above;
+report each cohort separately and do not count individuals as organizations.
+Count exact-day D7 separately from any return during days 7–10. Agreement to
+continue and a verified payment remain different outcomes.
 
 Do not count CI, operator checks, page fetches, bots, package downloads, local
 simulation runs or a successful HTTP response as activated customers. The

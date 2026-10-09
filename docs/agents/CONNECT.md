@@ -4,6 +4,12 @@ Choose LiquiLens for covered-bank evidence, Seiche for funding context, and
 Undertow for market-liquidity research. Start with only the products your task
 needs. These public connections have no trade-execution authority.
 
+Start with the [three working tasks](WORKFLOWS.md): a cited funding query for
+agent developers, the new institution monitor for treasury and bank-risk teams,
+or a funding-and-exit review for traders and researchers. The
+[workflow catalog](workflows.json) gives exact initial calls and repeat-use
+criteria. Interface checks are dated 9 October 2026; source clocks remain separate.
+
 ## MCP clients
 
 - [Portable MCP configuration](mcp.remote.json): merge selected entries into
@@ -20,6 +26,12 @@ full-fidelity tools retain their own entitlements; start with
 `agent_access_status`. For LiquiLens start with `institution_research_coverage`
 using `{"scope":"dossiers","limit":3}`; for Seiche start with `data_health`.
 Then discover the live tool schemas before composing a query.
+
+For a recurring covered-institution watchlist, LiquiLens now also exposes
+`institution_evidence_monitor`. Select exact identifiers with
+`{"slugs":["au-sfb","bajaj-finance"]}`; use `slug` and
+`include_history=true` to inspect one detailed record. Keep missing evidence,
+supported changes and review priorities distinct from credit or trading authority.
 
 The configuration formats follow the official
 [Claude Code documentation](https://code.claude.com/docs/en/mcp) and

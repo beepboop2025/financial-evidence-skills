@@ -29,7 +29,9 @@
       "observed_example_schema": "financial-evidence.agent-result.v1",
       "first_use_evidence": "Developer retains a cited response and explains its use in their own task; a transport response alone is insufficient",
       "repeat_task": "Repeat the same query on another day with previous_revision; inspect source clocks and next_offset even when unchanged",
-      "boundary": "Funding context does not authorize a trade, establish a forecast or qualify a historical backtest"
+      "boundary": "Funding context does not authorize a trade, establish a forecast or qualify a historical backtest",
+      "guided_browser_url": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?workflow=funding",
+      "workflow_api": "https://api.seiche.info/openbb/api/v1/workflow?workflow=funding"
     },
     {
       "id": "risk-teams",
@@ -54,7 +56,9 @@
       "observed_example_schema": "liquilens.institution-monitoring.v1",
       "first_use_evidence": "Named reviewer retains a sourced follow-up queue for their own watchlist",
       "repeat_task": "Review changed disclosures and unresolved gaps on the next working day; retain policy version, cutoff and record hash",
-      "boundary": "Illustrative institutions are not recommendations. Missing data does not establish safety, and disappearance of a warning does not establish recovery"
+      "boundary": "Illustrative institutions are not recommendations. Missing data does not establish safety, and disappearance of a warning does not establish recovery",
+      "guided_browser_url": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?workflow=institutions",
+      "workflow_api": "https://api.seiche.info/openbb/api/v1/workflow?workflow=institutions"
     },
     {
       "id": "traders",
@@ -98,7 +102,9 @@
       "observed_example_schema": "undertow.crypto-workbench.v1",
       "first_use_evidence": "Participant retains a note and identifies a useful observation or coverage blocker",
       "repeat_task": "Repeat the same sizes and funding review on another day with source dates, coverage and withheld values intact",
-      "boundary": "Indicative BTC sell estimates exclude fees and are not executable quotes or order permission"
+      "boundary": "Indicative BTC sell estimates exclude fees and are not executable quotes or order permission",
+      "guided_browser_url": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?workflow=exit",
+      "workflow_api": "https://api.seiche.info/openbb/api/v1/workflow?workflow=exit"
     }
   ],
   "observation_scope": "Selected public REST requests and MCP tool calls exercised on 2026-10-09; optional client installations, delivered alerts, customer adoption and live execution are not established",

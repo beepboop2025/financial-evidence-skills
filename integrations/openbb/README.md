@@ -4,7 +4,7 @@ Use Seiche, LiquiLens, Undertow and Palimpsest from one OpenBB research desk.
 The Workspace release adds seven datasets, nine Workspace widgets, seven dashboard
 tabs, eight SDK-backed MCP tools, two research prompts and a typed REST API.
 
-Workspace is independently versioned as **workspace-1.1.3**, with the exact source
+Workspace is independently versioned as **workspace-1.2.0**, with the exact source
 commit exposed at `/api/v1/release`. The published **v0.1.5 artifacts and public
 three-tool MCP endpoint retain their existing contract**. A hosted custom backend
 is separate from acceptance in OpenBB's directory.
@@ -193,3 +193,17 @@ Read the [semantic contract](../../SEMANTIC_CONTRACT.md) for evidence boundaries
 ## Browser research and optional measurement
 
 The [Research Desk](https://beepboop2025.github.io/financial-evidence-skills/start/) uses the same typed query endpoint without installation. The GitHub Pages origin is explicitly allowed; arbitrary browser origins remain blocked. Optional, revocable measurement uses `/api/v1/applications` and a separate private usage mount. See [measurement scope, storage, limits and the private scorecard](../../docs/start/measurement.md). Install the workspace usage expiry service/timer alongside the API only when this measurement mount is enabled.
+
+## Guided workflows
+
+`GET /api/v1/workflow?workflow=funding|institutions|exit&selection=...` returns
+`financial-evidence.workflow-result.v1` with the original product response, a
+source link and content hash. Defaults are USD, au-sfb/bajaj-finance, and
+10,000/100,000 USD BTC sells. Select up to five institutions or four sizes.
+The route uses fixed upstream endpoints, a 1 MiB response bound for direct
+product calls, no redirects and no forwarded caller credentials. Existing
+funding source caching and bounds remain in place.
+
+The browser desk can save a local summary baseline and export the full JSON.
+Optional workflow measurement uses the existing revocable installation key;
+prepared responses are not completed tasks, independent people or paid users.

@@ -11,7 +11,7 @@ from contextlib import asynccontextmanager
 from typing import Annotated, Any
 from urllib.parse import urlsplit
 
-from fastapi import FastAPI, Query, Request
+from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, PlainTextResponse, Response
 from starlette.middleware.trustedhost import TrustedHostMiddleware
@@ -26,6 +26,8 @@ from .tables import Dataset, dataset_catalog
 from .workspace_config import SCOPE, THUMBNAIL, apps, widgets
 from .workspace_mcp import create_mcp
 from .workspace_usage import install as install_usage
+from . import workflows
+from .application_usage import excluded
 
 
 def create_app(
@@ -281,6 +283,26 @@ def create_app(
     ) -> dict[str, Any]:
         """Seiche funding, LiquiLens bank research and Undertow liquidity; no trade decision."""
         return await asyncio.to_thread(agent_client.review, bank, limit, previous_revision)
+
+    @app.get("/api/v1/workflow")
+    async def workflow(
+        request: Request, response: Response,
+        workflow: Annotated[str, Query(pattern=r"^(funding|institutions|exit)$")],
+        selection: Annotated[str, Query(max_length=160)] = "",
+    ) -> dict[str, Any]:
+        """Run one bounded audience workflow, preserving the original product response."""
+        import httpx
+
+        selected = workflows.selection_for(workflow, selection)
+        try:
+            result = await asyncio.to_thread(workflows.run, service, workflow, selected, synthetic=excluded(request.headers))
+        except (ValueError, KeyError, TypeError, OSError) as error:
+            raise HTTPException(502, "The source could not provide a valid research response. Retry later.") from error
+        except httpx.HTTPError as error:
+            raise HTTPException(502, "The research source is unavailable. Retry later.") from error
+        response.headers["X-Financial-Evidence-Measurement"] = await record_usage(request, result, workflow=workflow)
+        response.headers["Cache-Control"] = "no-store"
+        return result
 
     # Mount at root last so /mcp keeps the SDK's exact transport path.
     app.mount("/", mcp_app)

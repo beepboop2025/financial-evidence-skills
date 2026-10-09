@@ -16,7 +16,11 @@
       "next_action": "Await provider review and continue the existing application; do not replay signup.",
       "public_listing_verified": false,
       "verified_at": "2026-10-09T20:31:08.304305+00:00",
-      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json",
+      "latest_recheck": {
+        "observed_at": "2026-10-09T21:17:28.263568+00:00",
+        "result": "Existing application acknowledgment still states submitted for team review; no account or public listing approval verified."
+      }
     },
     {
       "id": "eagle-alpha-company",
@@ -29,7 +33,11 @@
       "next_action": "Await approval of the existing verified provider request; qualify each dataset before upload.",
       "public_listing_verified": false,
       "verified_at": "2026-10-09T20:31:08.304305+00:00",
-      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json",
+      "latest_recheck": {
+        "observed_at": "2026-10-09T21:17:28.263568+00:00",
+        "result": "Portal still states Request received, pending team review."
+      }
     },
     {
       "id": "crozdesk-liquilens",
@@ -43,7 +51,11 @@
       "public_listing_verified": false,
       "application_id": "373489",
       "verified_at": "2026-10-09T20:31:08.304305+00:00",
-      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json",
+      "latest_recheck": {
+        "observed_at": "2026-10-09T21:17:28.263568+00:00",
+        "result": "Existing application remains in manual review; account details must be completed after eligibility before software listing creation."
+      }
     },
     {
       "id": "softwaresuggest-liquilens",
@@ -52,11 +64,18 @@
       "state": "ready_account_action",
       "submission_url": "https://www.softwaresuggest.com/vendors",
       "cost": "Free listing intake; no paid promotion selected.",
-      "detail": "Business email was verified and the second product form is prepared for LiquiLens financial-analytics software. The required customer-count selector starts at 1\u201325; no actual customer count has been established. Employee count and API traffic are not a valid substitute. Final form submission and a public listing remain unverified.",
-      "next_action": "Supply a factual customer-count answer or obtain a supported zero-customer route, complete other required fields truthfully, then submit the existing form.",
+      "detail": "The existing vendor portal is accessible and company details were saved with the supported Undisclosed customer option. Product details and the official logo are prepared, but Save & Next requires a billing choice: Yearly, Monthly, Onetime or Transaction. The offer is quote-specific with no fixed billing period, so the product remains unsaved and unsubmitted. A support request for truthful quote-only handling or manual free completion was acknowledged; no public listing is verified.",
+      "next_action": "Await support guidance, then use a truthful supported billing option to save the existing product and complete the free listing. Do not select an inaccurate billing period or create a duplicate registration.",
       "public_listing_verified": false,
-      "verified_at": "2026-10-09T20:31:08.304305+00:00",
-      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+      "verified_at": "2026-10-09T21:17:28.263568+00:00",
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json",
+      "account_access_verified": true,
+      "company_profile_saved": true,
+      "customer_count_disclosure": "Undisclosed",
+      "product_form_prepared": true,
+      "product_form_saved": false,
+      "product_submission_verified": false,
+      "support_request_state": "acknowledged_pending_response"
     },
     {
       "id": "gumloop-financial-evidence",
@@ -84,7 +103,12 @@
       "public_listing_verified": false,
       "source_commit": "3abcc45d7a429d26ed185d1ca845b078041f54f3",
       "verified_at": "2026-10-09T20:31:08.304305+00:00",
-      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json",
+      "latest_recheck": {
+        "observed_at": "2026-10-09T20:53:19Z",
+        "result": "PR remains open and requires maintainer review; no contributor change requests. Vercel preview awaits authorization by a deepset team member.",
+        "upstream_comment_url": "https://github.com/deepset-ai/haystack-integrations/pull/650#issuecomment-6088695364"
+      }
     },
     {
       "id": "langchain-financial-evidence",
@@ -98,7 +122,11 @@
       "public_listing_verified": false,
       "version": "0.1.0",
       "verified_at": "2026-10-09T20:37:39.660676+00:00",
-      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json",
+      "latest_recheck": {
+        "observed_at": "2026-10-09T20:53:19Z",
+        "result": "Issue remains open with only the automated external label; no comments or actionable maintainer requests."
+      }
     },
     {
       "id": "langchain-financial-evidence-github-release",
@@ -153,7 +181,8 @@
       "source_observation_date": "2026-10-08",
       "freshness_or_validation_claimed": false,
       "model_calls": 0
-    }
+    },
+    "last_review_checked_at": "2026-10-09T20:53:19Z"
   },
   "langchain": {
     "release_url": "https://github.com/beepboop2025/langchain-financial-evidence/releases/tag/v0.1.0",
@@ -228,7 +257,8 @@
     "directory_labels_observed": [
       "external"
     ],
-    "directory_maintainer_routing_verified": false
+    "directory_maintainer_routing_verified": false,
+    "last_review_checked_at": "2026-10-09T20:53:19Z"
   },
   "source_receipts": [
     {
@@ -280,11 +310,41 @@
       "filename": "langchain/pypi-workflow.json",
       "sha256": "7749d81a6c6c64869549533b3d16d7d4c5e7f5e62a4df9c17ef48c331dbf8c58",
       "storage": "Private retained publisher, anonymous package download or clean public installation verification receipt"
+    },
+    {
+      "label": "SoftwareSuggest support request sent",
+      "sha256": "dcaa177b700178130e420e1bb14d5845ce6cb164f71046853e90b26276eaa257",
+      "storage": "Private retained evidence; account identifiers, message bodies and authentication links are not published."
+    },
+    {
+      "label": "SoftwareSuggest support acknowledgment",
+      "sha256": "3eddad935699e25fca15229ef7fc2aa54a165a896f06e5fada6ca00c6cb2f911",
+      "storage": "Private retained evidence; account identifiers, message bodies and authentication links are not published."
+    },
+    {
+      "label": "SoftwareSuggest prepared product form",
+      "sha256": "5a9378d385530c172c9bd9755880a4f5b1587489e9110b6201b3fe6c1613e08f",
+      "storage": "Private retained evidence; account identifiers, message bodies and authentication links are not published."
+    },
+    {
+      "label": "Eagle Alpha provider review recheck",
+      "sha256": "49bed6629db50361ae7f6f4ce319fe99f2ccb9674485b074f4245b451556381e",
+      "storage": "Private retained evidence; account identifiers, message bodies and authentication links are not published."
+    },
+    {
+      "label": "Crozdesk manual review recheck",
+      "sha256": "6e1938471b55848a82ef6e1bc8cd9333e008a321dbe3e54e8d570b4f96d0ceb0",
+      "storage": "Private retained evidence; account identifiers, message bodies and authentication links are not published."
+    },
+    {
+      "label": "LangChain and Haystack maintainer-review audit",
+      "sha256": "f365021d8317c7a835d89c6ec0ddec7196a69d8169ad8bdf4093830736e2ef0f",
+      "storage": "Private retained evidence; account identifiers, message bodies and authentication links are not published."
     }
   ],
   "limits": [
     "Provider applications are received, not approved accounts or public listings.",
-    "SoftwareSuggest requires actual customer information; employee count and API traffic are not customer evidence.",
+    "SoftwareSuggest company details use its supported Undisclosed customer option. Product creation remains blocked on quote-specific billing; an acknowledged support request is not a submitted or accepted listing.",
     "Gumloop is intentionally pending at the paid gate; the user explicitly declined starting the trial.",
     "Native tests and public source/release availability do not establish maintainer catalog acceptance or independent adoption.",
     "Underlying dataset rights remain source-specific and are not granted by MIT package licences.",
@@ -306,5 +366,35 @@
     "langchain-financial-evidence",
     "langchain-financial-evidence-github-release",
     "langchain-financial-evidence-pypi"
-  ]
+  ],
+  "updated_at": "2026-10-09T21:17:28.263568+00:00",
+  "last_rechecked_from_commit": "6beebd9f1144808190ee66c568c5741ba02beba4",
+  "softwaresuggest": {
+    "rechecked_at": "2026-10-09T21:17:28.263568+00:00",
+    "account_access_verified": true,
+    "company_profile_saved": true,
+    "customer_count_disclosure": "Undisclosed",
+    "earlier_customer_count_blocker_resolved": true,
+    "customer_count_inferred_from_usage": false,
+    "product_form_prepared": true,
+    "official_logo_accepted_in_form": true,
+    "product_form_saved": false,
+    "product_submission_verified": false,
+    "public_listing_verified": false,
+    "current_blocker": "Required Subscriptions Plans selector has no quote-specific or unspecified billing-period option.",
+    "available_billing_options": [
+      "Yearly",
+      "Monthly",
+      "Onetime",
+      "Transaction"
+    ],
+    "actual_offer_billing": "Quote-specific; no fixed billing period",
+    "support_request": {
+      "state": "acknowledged_pending_response",
+      "sent_once": true,
+      "response_window_reported": "1-2 business working days",
+      "private_ticket_identifier_published": false
+    },
+    "next_action": "Await support guidance on truthful quote-specific billing or manual free completion; preserve the existing registration and prepared form."
+  }
 }

@@ -1,9 +1,11 @@
-import {BASE, capture, citations, csv, querySettings, readJSON, safeSource, summary, viewLink} from './desk.mjs';
+import {capture, citations, csv, querySettings, safeSource, summary, viewLink} from './desk.mjs';
+
+import {createMeasurement} from './measurement.mjs';
 
 const $ = id => document.getElementById(id);
 const operator = new URLSearchParams(location.search).get('operator') === '1';
-const STORAGE = 'financial-evidence-research-measurement-v1';
-let current = null, controller = null, shown = 0, identity = null;
+const measurement = createMeasurement({operator});
+let current = null, controller = null, shown = 0;
 const presets = {bank: {dataset:'bank_risk', entity:'ESAF'}, funding: {dataset:'money_markets', entity:'USD'}, liquidity: {dataset:'market_liquidity', entity:''}};
 
 function message(id, text) { $(id).textContent = text; }
@@ -11,16 +13,6 @@ function element(name, text, className = '') { const node = document.createEleme
 function sourceLink(url, text) { const link = element('a', text); const safe = safeSource(url); if (safe) { link.href = safe; link.target = '_blank'; link.rel = 'noopener noreferrer'; } return link; }
 function settings() { return querySettings(Object.fromEntries(['dataset','entity','start_date','end_date'].map(key => [key, $(key).value]))); }
 function apply(value) { for (const key of ['dataset','entity','start_date','end_date']) $(key).value = value[key] || ''; }
-function saveIdentity() { try { if (identity) localStorage.setItem(STORAGE, JSON.stringify(identity)); else localStorage.removeItem(STORAGE); } catch { message('measurement-status', 'Browser storage is unavailable. Your choice applies to this visit only.'); } }
-try {
-  const saved = JSON.parse(localStorage.getItem(STORAGE) || 'null');
-  if (saved && /^fe_[A-Za-z0-9_-]{43}$/.test(saved.token) && Number.isFinite(saved.created)) {
-    identity = saved;
-    identity.enabled = saved.enabled === true && Date.now() - saved.created < 30 * 86400000 && saved.created <= Date.now();
-  }
-} catch { /* Optional storage cannot prevent research. */ }
-$('measurement').checked = !operator && identity?.enabled === true;
-if (operator) { $('measurement').disabled = true; message('measurement-status', 'Operator verification: optional visitor measurement is disabled; requests are labelled synthetic.'); }
 try {
   const params = Object.fromEntries(new URLSearchParams(location.search));
   if (params.dataset) apply(querySettings(params));
@@ -48,7 +40,7 @@ $('research-form').addEventListener('submit', async event => {
   current = null; $('result-section').hidden = true; $('status').classList.remove('error'); busy(true);
   message('status', 'Retrieving the selected evidence and checking source identities…');
   try {
-    const result = await capture(selected, {signal: active.signal, synthetic: operator, token: !operator && $('measurement').checked && identity?.enabled ? identity.token : '', progress: (count, total) => message('status', `Retrieved ${count} of ${total} rows. Checking pagination and source consistency…`)});
+    const result = await capture(selected, {signal: active.signal, synthetic: operator, token: measurement.token, progress: (count, total) => message('status', `Retrieved ${count} of ${total} rows. Checking pagination and source consistency…`)});
     if (active !== controller || active.signal.aborted) return;
     current = result; render(result);
     message('status', result.returned_rows ? 'Capture ready. Review the observation dates and gaps before using the values.' : 'No covered observations match this filter. This does not establish a low-risk or empty market.');
@@ -115,31 +107,3 @@ async function copy(text, done) {
 }
 $('copy-citation').addEventListener('click', () => current && copy(citations(current), 'Source note copied. It includes observation dates and source hashes.'));
 $('share').addEventListener('click', () => current && copy(viewLink(current.request), 'Research-view link copied. It shares the dataset and filter, without your measurement key.'));
-
-$('measurement').addEventListener('change', async () => {
-  if (operator) return;
-  if (!$('measurement').checked) { if (identity) { identity.enabled = false; saveIdentity(); } message('measurement-status', 'Measurement disabled. Use the delete action below to remove previous linked records.'); return; }
-  $('measurement').disabled = true;
-  try {
-    if (!identity) {
-      const response = await fetch(`${BASE}/api/v1/applications`, {method:'POST', credentials:'omit', redirect:'error', headers:{'Content-Type':'application/json'}, body:JSON.stringify({measurement_consent:true}), signal:AbortSignal.timeout(12000)});
-      const value = await readJSON(response);
-      if (!/^fe_[A-Za-z0-9_-]{43}$/.test(value.token)) throw new Error('Measurement enrollment returned an invalid key.');
-      identity = {token:value.token, created:Date.now(), enabled:false};
-    }
-    identity.enabled = true; identity.created = Date.now(); saveIdentity();
-    message('measurement-status', 'Optional measurement enabled for future research requests. Past anonymous activity is not linked.');
-  } catch (error) { $('measurement').checked = false; if (identity) identity.enabled = false; saveIdentity(); message('measurement-status', `${error.message} Research still works with measurement off.`); }
-  finally { $('measurement').disabled = false; }
-});
-$('forget').addEventListener('click', async () => {
-  $('measurement').checked = false;
-  if (!identity) { message('measurement-status', 'Measurement is off. This browser has no measurement key.'); return; }
-  identity.enabled = false; saveIdentity(); $('forget').disabled = true;
-  try {
-    const response = await fetch(`${BASE}/api/v1/applications/current`, {method:'DELETE', credentials:'omit', redirect:'error', headers:{Authorization:`Bearer ${identity.token}`}, signal:AbortSignal.timeout(12000)});
-    if (response.status !== 401) { const value = await readJSON(response); if (value.deleted !== true) throw new Error('Deletion was not confirmed.'); }
-    identity = null; saveIdentity(); message('measurement-status', 'Linked measurement deleted or already expired. Measurement stays off. Anonymous aggregate counts remain.');
-  } catch { message('measurement-status', 'Measurement is off. Deletion could not be confirmed; your disabled key remains here so you can retry.'); }
-  finally { $('forget').disabled = false; }
-});

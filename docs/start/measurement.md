@@ -18,7 +18,8 @@ that more visitors become repeat users. Measure that outcome before scaling a ch
 
 The desk sends **no separate click or download telemetry**. Anonymous query
 counts store only day, traffic class, outcome and a bounded count. Optional keys
-attribute ordinary query responses. Page loads, source-health checks, empty
+attribute ordinary query and workflow responses. Workflow records also retain
+one of three fixed labels; they never store the selected institutions or sizes. Page loads, source-health checks, empty
 matches and rows containing only unavailable values cannot start a research cohort.
 The server deduplicates the same installation/day/response/class. Different
 filters or source revisions can produce different responses.
@@ -40,8 +41,13 @@ docker exec financial-evidence-workspace python -m financial_evidence.workspace_
 
 The result separates unverified, internal, synthetic and reviewed external
 installations. `monthly_active_people` and `paying_customers` stay null: this
-store cannot verify either. It covers the Workspace REST query endpoint only,
-not all family sites, MCP traffic, or external marketplace usage.
+store cannot verify either. It covers the Workspace REST query and workflow endpoints only,
+not direct MCP traffic, all family sites, or external marketplace usage. The v2
+report separates funding, institution and exit workflow installations. These
+labels identify the requested task, not a verified audience or profession.
+Prepared institution responses require at least one current reviewed metric;
+exit responses require at least one available numeric estimate. Source gaps,
+rights and limitations are still retained; neither condition qualifies a decision.
 
 Storage lives separately at `/var/lib/financial-evidence-workspace/usage`.
 Completions and aggregates expire after 90 UTC dates; inactive keys and cohorts

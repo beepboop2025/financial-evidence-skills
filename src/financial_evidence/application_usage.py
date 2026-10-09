@@ -56,6 +56,12 @@ def connect(root):
         CREATE INDEX IF NOT EXISTS completion_day ON completions(day);
         CREATE INDEX IF NOT EXISTS application_created ON applications(created_day);
         CREATE INDEX IF NOT EXISTS application_last_seen ON applications(last_seen_day);
+        CREATE TABLE IF NOT EXISTS workflow_completions (
+          application TEXT NOT NULL REFERENCES applications(id) ON DELETE CASCADE,
+          day TEXT NOT NULL, workflow TEXT NOT NULL, packet TEXT NOT NULL,
+          traffic_class TEXT NOT NULL,
+          PRIMARY KEY(application, day, workflow, packet, traffic_class));
+        CREATE INDEX IF NOT EXISTS workflow_completion_day ON workflow_completions(day);
         """
         )
         db.execute(
@@ -66,6 +72,7 @@ def connect(root):
             "DELETE FROM aggregates WHERE day < ?",
             ((day() - timedelta(days=89)).isoformat(),),
         )
+        db.execute("DELETE FROM workflow_completions WHERE day < ?", ((day() - timedelta(days=89)).isoformat(),))
         db.execute(
             "DELETE FROM applications WHERE last_seen_day < ?",
             ((day() - timedelta(days=179)).isoformat(),),
@@ -151,9 +158,11 @@ def identify(root, authorization, headers):
     return {"id": row[0], "traffic_class": "synthetic" if excluded(headers) else row[1]}
 
 
-def record(root, identity, packet, *, unchanged=False):
+def record(root, identity, packet, *, unchanged=False, workflow=None):
     """Count prepared data responses; deduplicate same app/day/packet across routes."""
     today = day().isoformat()
+    if workflow is not None and workflow not in {"funding", "institutions", "exit"}:
+        raise ValueError("Invalid research workflow")
     classification = identity["traffic_class"]
     outcome = "not_modified" if unchanged else "data_response"
     with connect(root) as db:
@@ -185,6 +194,8 @@ def record(root, identity, packet, *, unchanged=False):
             "INSERT OR IGNORE INTO cohorts VALUES (?, ?, ?)",
             (identity["id"], classification, today),
         )
+        if workflow and db.execute("SELECT count(*) FROM workflow_completions WHERE day=?", (today,)).fetchone()[0] < 50000:
+            db.execute("INSERT OR IGNORE INTO workflow_completions VALUES (?, ?, ?, ?, ?)", (identity["id"], today, workflow, packet, classification))
         return bool(changed)
 
 

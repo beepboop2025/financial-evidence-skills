@@ -60,24 +60,28 @@ def install(app, root, origins):
         except (OSError, ValueError, sqlite3.Error) as error:
             raise HTTPException(503, "Deletion is unavailable; keep measurement disabled and retry") from error
 
-    async def record(request, result):
+    async def record(request, result, *, workflow=None):
         if root is None:
             return "disabled"
         # Empty, failed and diagnostic-only results do not become a research cohort.
-        if result.transport_status != "complete" or not result.results or result.dataset == "source_health":
-            return "not_eligible"
-        if not any(row.value is not None and row.availability.lower() in {"published", "available"} for row in result.results):
-            return "not_eligible"
+        if workflow:
+            if result.get("prepared_response") is not True:
+                return "not_eligible"
+        else:
+            if result.transport_status != "complete" or not result.results or result.dataset == "source_health":
+                return "not_eligible"
+            if not any(row.value is not None and row.availability.lower() in {"published", "available"} for row in result.results):
+                return "not_eligible"
         try:
             identity = await asyncio.to_thread(usage.identify, root, request.headers.get("authorization"), request.headers)
             # No entity query text, IP, referrer, user agent or source content is stored.
-            signature = {
+            signature = {"workflow": workflow, "content_sha256": result["content_sha256"]} if workflow else {
                 "dataset": result.dataset,
                 "sources": sorted((item.get("source_url", ""), item.get("content_sha256", "")) for item in result.sources),
                 "rows": [(row.entity_id, row.metric, row.as_of, row.value) for row in result.results],
             }
             digest = hashlib.sha256(json.dumps(signature, sort_keys=True, allow_nan=False).encode()).hexdigest()
-            recorded = await asyncio.to_thread(usage.record, root, identity, digest)
+            recorded = await asyncio.to_thread(usage.record, root, identity, digest, workflow=workflow)
             return "recorded" if recorded else "aggregate_or_duplicate"
         except PermissionError:
             return "invalid_measurement_key"
@@ -96,14 +100,25 @@ def report(root):
             "SELECT application, traffic_class, count(DISTINCT day) FROM completions "
             "WHERE day>=? GROUP BY application, traffic_class", (cutoff,)
         ).fetchall()
+        workflow_rows = db.execute(
+            "SELECT application, traffic_class, workflow, count(DISTINCT day) FROM workflow_completions "
+            "WHERE day>=? GROUP BY application, traffic_class, workflow", (cutoff,)
+        ).fetchall()
     return {
-        "schema": "financial-evidence.research-growth.v1",
+        "schema": "financial-evidence.research-growth.v2",
         "evaluated_at": usage.now(),
         "window_start_utc": cutoff,
         "window_days": 30,
-        "coverage": "workspace_REST_query_only; consented_installations_are_not_people; MCP_and_other_products_excluded",
+        "coverage": "workspace_REST_query_and_workflow_only; consented_installations_are_not_people; direct_MCP_and_other_products_excluded",
+        "coverage_complete": False,
         "monthly_active_people": None,
         "paying_customers": None,
+        "workflows": {
+            workflow: {group: {
+                "active": sum(1 for row in workflow_rows if row[1] == group and row[2] == workflow),
+                "returned_on_multiple_dates": sum(1 for row in workflow_rows if row[1] == group and row[2] == workflow and row[3] >= 2),
+            } for group in usage.CLASSES} for workflow in ("funding", "institutions", "exit")
+        },
         "installations": {
             group: {
                 "active": sum(1 for row in rows if row[1] == group),

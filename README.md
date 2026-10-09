@@ -1,6 +1,6 @@
 # Financial Evidence Agent Skills
 
-**Turn the recent upgrades into a daily task:** [start with your workflow](https://beepboop2025.github.io/financial-evidence-skills/agents/).
+**Run the new workflows:** [funding watch, institution monitoring and BTC exit research](https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html). Save a local baseline, compare your next review, or copy the API request into your agent.
 Agent developers can retrieve a cited USD funding observation; treasury and
 bank-risk teams can use the new institution monitor; traders and researchers
 can retain a funding-and-exit review. Each path includes working calls, source

@@ -18,7 +18,14 @@ Operator: **LIQUILENS PRIVATE LIMITED**. Public reads require no API key.
    not establish fresh sources, redistribution permission or financial suitability.
    Check the actual source clocks and status; missing or held values stay null.
 
-The twelve examples cover seven datasets and five discovery/review requests.
+The fifteen examples cover seven datasets, five discovery/review requests and
+three guided workflows: **Funding watch**, **Institution watch** and **BTC exit check**.
+The workflow responses retain the original product document, source dates,
+coverage gaps and content digest. `prepared_response` means evidence was prepared,
+not that a customer task was completed or a financial action approved.
+
+[Try the same workflows in your browser](../start/workflows.html), or use the
+[Python starter](../start/AUTOMATE.md) in an existing agent or scheduler.
 They do not create accounts, subscribe users, send messages or execute trades.
 Requests go directly to `https://api.seiche.info/openbb`. No intermediary or
 marketplace key is embedded. Never add a personal key to a public collection.

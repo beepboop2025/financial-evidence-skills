@@ -58,6 +58,7 @@ jobs:
                 "https://beepboop2025.github.io/financial-evidence-skills/tools/",
                 "https://beepboop2025.github.io/financial-evidence-skills/api/",
                 "https://beepboop2025.github.io/financial-evidence-skills/start/",
+                "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html",
                 "https://beepboop2025.github.io/financial-evidence-skills/agents/",
                 "https://beepboop2025.github.io/financial-evidence-skills/agents/execution.html",
                 "https://beepboop2025.github.io/financial-evidence-skills/partners/",
@@ -83,4 +84,4 @@ jobs:
             echo "IndexNow returned HTTP $response_code" >&2
             exit 1
           fi
-          echo "IndexNow accepted the sixteen-URL discovery update with HTTP $response_code"
+          echo "IndexNow accepted the seventeen-URL discovery update with HTTP $response_code"

@@ -367,13 +367,30 @@
       "state": "live",
       "listing_url": "https://smithery.ai/servers/mrinallovesbhature/liquilens",
       "cost": "free",
-      "detail": "Existing LiquiLens description and developer homepage updated for financial AI-agent workflows; saved copy and links independently read on the public listing. Native tool inventory was separately checked. No execution capability or user adoption is claimed.",
-      "next_action": "Measure independent useful first tasks and return use; preserve source and per-tool access boundaries.",
-      "verified_at": "2026-10-07T19:36:00.067Z",
+      "detail": "Monitor selected banks and lenders with institution_evidence_monitor: inspect reviewed disclosures, coverage gaps, supported changes and dated source records. Start with the no-account institution watch, retain a local baseline, then connect the same research task through MCP or REST. Source periods and knowledge dates remain explicit. Partial visibility is not safety; evidence-review states are not credit ratings or lending approvals. Operated by LIQUILENS PRIVATE LIMITED. Public description and workflow link independently verified. Native scan completed successfully and the public tool inventory now includes 24 tools, including institution_evidence_monitor.",
+      "next_action": "Measure independent useful first tasks and repeat use; a listing or tool scan does not establish adoption.",
+      "verified_at": "2026-10-09T11:11:23.522602+00:00",
       "outcome": "existing_listing_updated",
-      "audit_batch": "2026-10-08-financial-agents",
-      "evidence_file": "smithery-public-receipts.json",
+      "audit_batch": "2026-10-09-workflow-adoption",
+      "evidence_file": "distribution/workflow-distribution-20261009.json",
       "latest_surface_check": {
+        "slug": "liquilens",
+        "url": "https://smithery.ai/servers/mrinallovesbhature/liquilens",
+        "observed_at": "2026-10-09T11:11:23.522602+00:00",
+        "description_matches": true,
+        "homepage_matches": true,
+        "sha256": "b3573135b0823da29799d111e0087fafd167567ce2315c85189814ef621f210a",
+        "authentication_used": false,
+        "readback": "updated_public_description_and_workflow_link_verified",
+        "homepage": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?workflow=institutions&utm_source=smithery&utm_medium=marketplace&utm_campaign=workflow_adoption_20261009",
+        "native_tool_inventory": {
+          "count": 24,
+          "new_tool": "institution_evidence_monitor",
+          "native_scan": "success",
+          "observed_date": "2026-10-09"
+        }
+      },
+      "previous_surface_check": {
         "observed_at": "2026-10-08T11:16:05.901803+00:00",
         "url": "https://smithery.ai/servers/mrinallovesbhature/liquilens",
         "http_status": 200,
@@ -382,7 +399,9 @@
         "sha256": "f54fcbf3a116289be95402e3d1e52cbc85d5b92cf806874fe88d3c2d5c0c4354",
         "title": "LiquiLens, the Failure Radar - MCP | Smithery",
         "mentioned_versions": []
-      }
+      },
+      "updated_at": "2026-10-09T11:11:23.522602+00:00",
+      "metadata_freshness": "current_workflow_start_and_public_description"
     },
     {
       "id": "smithery-seiche",
@@ -391,13 +410,24 @@
       "state": "live",
       "listing_url": "https://smithery.ai/servers/mrinallovesbhature/seiche",
       "cost": "free",
-      "detail": "Existing Seiche description and developer homepage updated for financial AI-agent workflows; saved copy and links independently read on the public listing. Native tool inventory was separately checked. No execution capability or user adoption is claimed.",
-      "next_action": "Measure independent useful first tasks and return use; preserve source and per-tool access boundaries.",
-      "verified_at": "2026-10-07T19:36:00.200Z",
+      "detail": "Add cited funding evidence to a financial research agent. Review published money-market benchmarks, source health and jurisdiction-specific funding context; start with the no-account funding watch, then reuse the response through MCP or REST. Keep native units, source observation dates, rights and unavailable states attached. A benchmark level alone does not establish stress or authorize a trade. Operated by LIQUILENS PRIVATE LIMITED. Public description and workflow link independently verified.",
+      "next_action": "Measure independent useful first tasks and repeat use; a listing or tool scan does not establish adoption.",
+      "verified_at": "2026-10-09T11:11:23.243553+00:00",
       "outcome": "existing_listing_updated",
-      "audit_batch": "2026-10-08-financial-agents",
-      "evidence_file": "smithery-public-receipts.json",
+      "audit_batch": "2026-10-09-workflow-adoption",
+      "evidence_file": "distribution/workflow-distribution-20261009.json",
       "latest_surface_check": {
+        "slug": "seiche",
+        "url": "https://smithery.ai/servers/mrinallovesbhature/seiche",
+        "observed_at": "2026-10-09T11:11:23.243553+00:00",
+        "description_matches": true,
+        "homepage_matches": true,
+        "sha256": "c28ad4cc06f3ca6daa020f3b9d8b0e0379ce7a0f6367e1c2d744068c3fd0e43d",
+        "authentication_used": false,
+        "readback": "updated_public_description_and_workflow_link_verified",
+        "homepage": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?workflow=funding&utm_source=smithery&utm_medium=marketplace&utm_campaign=workflow_adoption_20261009"
+      },
+      "previous_surface_check": {
         "observed_at": "2026-10-08T11:16:06.055131+00:00",
         "url": "https://smithery.ai/servers/mrinallovesbhature/seiche",
         "http_status": 200,
@@ -406,7 +436,9 @@
         "sha256": "10a97c41c271e21055bfddea998dd6cbdbc8d1639996f2ae599ffa84ff6b3a76",
         "title": "Seiche \u2014 Money Markets and Funding Evidence - MCP | Smithery",
         "mentioned_versions": []
-      }
+      },
+      "updated_at": "2026-10-09T11:11:23.243553+00:00",
+      "metadata_freshness": "current_workflow_start_and_public_description"
     },
     {
       "id": "smithery-undertow",
@@ -415,13 +447,24 @@
       "state": "live",
       "listing_url": "https://smithery.ai/servers/mrinallovesbhature/undertow",
       "cost": "free",
-      "detail": "Existing Undertow description and developer homepage updated for financial AI-agent workflows; saved copy and links independently read on the public listing. Native tool inventory was separately checked. No execution capability or user adoption is claimed.",
-      "next_action": "Measure independent useful first tasks and return use; preserve source and per-tool access boundaries.",
-      "verified_at": "2026-10-07T19:36:00.333Z",
+      "detail": "Review indicative BTC sell liquidity at selected sizes with crypto_exit_check. Start with the no-account browser exit check, inspect venue observation times and withheld values, then connect the research task through MCP or the public REST check. Unsupported sizes retain bounding published rungs. Estimates exclude fees, transfers and latency and are not executable quotes. Subscriber tools retain separate access requirements. Operated by LIQUILENS PRIVATE LIMITED. Public description and workflow link independently verified.",
+      "next_action": "Measure independent useful first tasks and repeat use; a listing or tool scan does not establish adoption.",
+      "verified_at": "2026-10-09T11:11:23.489034+00:00",
       "outcome": "existing_listing_updated",
-      "audit_batch": "2026-10-08-financial-agents",
-      "evidence_file": "smithery-public-receipts.json",
+      "audit_batch": "2026-10-09-workflow-adoption",
+      "evidence_file": "distribution/workflow-distribution-20261009.json",
       "latest_surface_check": {
+        "slug": "undertow",
+        "url": "https://smithery.ai/servers/mrinallovesbhature/undertow",
+        "observed_at": "2026-10-09T11:11:23.489034+00:00",
+        "description_matches": true,
+        "homepage_matches": true,
+        "sha256": "267759fada1cc609ec02c754dab30c90e172ced5507088210c2f725302eedae4",
+        "authentication_used": false,
+        "readback": "updated_public_description_and_workflow_link_verified",
+        "homepage": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?workflow=exit&utm_source=smithery&utm_medium=marketplace&utm_campaign=workflow_adoption_20261009"
+      },
+      "previous_surface_check": {
         "observed_at": "2026-10-08T11:16:06.098859+00:00",
         "url": "https://smithery.ai/servers/mrinallovesbhature/undertow",
         "http_status": 200,
@@ -430,19 +473,42 @@
         "sha256": "0436eb7182070b23226795a7914df33d2e88b370ade268f11757ac3474af2994",
         "title": "Undertow \u2014 Market Liquidity Evidence - MCP | Smithery",
         "mentioned_versions": []
-      }
+      },
+      "updated_at": "2026-10-09T11:11:23.489034+00:00",
+      "metadata_freshness": "current_workflow_start_and_public_description"
     },
     {
       "id": "postman-research-api",
       "name": "Financial Evidence Research API on Postman",
       "channel": "api-directory",
       "state": "live",
-      "listing_url": "https://documenter.getpostman.com/view/58772927/2sBYHPz2Jm",
+      "listing_url": "https://documenter.getpostman.com/view/58772927/2sBYHQ237y",
       "cost": "free",
-      "detail": "Existing published collection updated in the owner workspace; current versions, source-clock boundaries and agent setup links independently read from the public documentation.",
-      "next_action": "Keep this existing collection aligned with the corresponding product schema; preserve its public URL.",
-      "verified_at": "2026-10-08T12:25:18.882263+00:00",
+      "detail": "Published fifteen public requests, including funding watch, institution watch and BTC exit check, with Research Desk 1.2.0 guidance. Import Replace changed the collection identity; restoration recovered the prior content under another identity but did not restore its old documentation URL. The current owned entry point targets the new verified publication.",
+      "next_action": "Use the stable owned entry URL for future references. Preserve the publication history and measure independent task completion and return use.",
+      "verified_at": "2026-10-09T11:15:24.310Z",
       "latest_surface_check": {
+        "id": "postman-research-api",
+        "url": "https://documenter.getpostman.com/view/58772927/2sBYHQ237y",
+        "observed_at": "2026-10-09T11:15:24.310Z",
+        "readback": "rendered_public_documentation_verified",
+        "publisher_user_id": "58772927",
+        "versions": [
+          "1.2.0"
+        ],
+        "request_count": 15,
+        "workflow_requests": [
+          "Funding watch",
+          "Institution watch",
+          "BTC exit check"
+        ],
+        "sha256": "faf7135e0b6a5cd5d81f8b0c703d2ed1008e4e537d9e61120cbafd5fc5af53f4",
+        "current_guide_visible": true,
+        "interface_catalog_visible": true
+      },
+      "metadata_freshness": "current_release_and_three_workflow_requests",
+      "updated_at": "2026-10-09T11:15:24.310Z",
+      "previous_surface_check": {
         "id": "postman-research-api",
         "url": "https://documenter.getpostman.com/view/58772927/2sBYHPz2Jm",
         "observed_at": "2026-10-08T12:25:18.882263+00:00",
@@ -456,8 +522,14 @@
         "current_guide_visible": true,
         "interface_catalog_visible": true
       },
-      "metadata_freshness": "current_release_and_setup_guidance",
-      "updated_at": "2026-10-08T12:25:18.882263+00:00"
+      "owned_entry_url": "https://beepboop2025.github.io/financial-evidence-skills/api/postman.html",
+      "publication_change": {
+        "previous_url": "https://documenter.getpostman.com/view/58772927/2sBYHPz2Jm",
+        "previous_url_state": "unavailable_after_import_replace",
+        "current_url": "https://documenter.getpostman.com/view/58772927/2sBYHQ237y",
+        "previous_url_restored": false,
+        "observed_date": "2026-10-09"
+      }
     },
     {
       "id": "smithery-research-desk",
@@ -466,10 +538,21 @@
       "state": "live",
       "listing_url": "https://smithery.ai/servers/mrinallovesbhature/financial-evidence-research",
       "cost": "free",
-      "detail": "Workspace 1.1.3 is live with eight read-only financial research tools, two prompts and two resources. The existing public listing now links directly to the no-install browser research desk. Optional REST measurement enrollment does not add a data-access requirement or an MCP tool.",
-      "next_action": "Measure independent first tasks and return use; installation counts are not monthly people.",
-      "verified_at": "2026-10-07T06:46:30.193821+00:00",
+      "detail": "Start a recurring financial research task: check Seiche funding benchmarks, monitor LiquiLens institution evidence or review Undertow BTC exit liquidity. Research Desk 1.2.0 offers eight read-only MCP tools plus companion REST/browser workflows. No data API key is required. Keep source dates, rights, coverage gaps and withheld values attached. China coverage remains source-dependent. Research evidence provides no credit rating or execution authority. Operated by LIQUILENS PRIVATE LIMITED. Public description and workflow link independently verified.",
+      "next_action": "Measure independent useful first tasks and repeat use; a listing or tool scan does not establish adoption.",
+      "verified_at": "2026-10-09T11:11:23.289985+00:00",
       "latest_surface_check": {
+        "slug": "financial-evidence-research",
+        "url": "https://smithery.ai/servers/mrinallovesbhature/financial-evidence-research",
+        "observed_at": "2026-10-09T11:11:23.289985+00:00",
+        "description_matches": true,
+        "homepage_matches": true,
+        "sha256": "3e99fdfb1bf69d652504476f591bb2b12d758b5734fa82812be867af0c7c4edb",
+        "authentication_used": false,
+        "readback": "updated_public_description_and_workflow_link_verified",
+        "homepage": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?utm_source=smithery&utm_medium=marketplace&utm_campaign=workflow_adoption_20261009"
+      },
+      "previous_surface_check": {
         "observed_at": "2026-10-08T11:16:06.465262+00:00",
         "url": "https://smithery.ai/servers/mrinallovesbhature/financial-evidence-research",
         "http_status": 200,
@@ -478,7 +561,11 @@
         "sha256": "2adbdff622b5bd382c004ca4319f931b772b17e89368accdd20d26ebe40ac8c1",
         "title": "LiquiLens Financial Evidence Research Desk - MCP | Smithery",
         "mentioned_versions": []
-      }
+      },
+      "updated_at": "2026-10-09T11:11:23.289985+00:00",
+      "audit_batch": "2026-10-09-workflow-adoption",
+      "evidence_file": "distribution/workflow-distribution-20261009.json",
+      "metadata_freshness": "current_workflow_start_and_public_description"
     },
     {
       "id": "apis-guru-research-api",
@@ -1545,7 +1632,7 @@
     }
   ],
   "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
-  "updated_at": "2026-10-08T12:54:41.064999+00:00",
+  "updated_at": "2026-10-09T11:15:24.310Z",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -1583,5 +1670,10 @@
     "scope": "Discovery metadata and prior submission reconciliation. HTTP success alone does not change listing acceptance or establish adoption.",
     "tracked_entries": 70,
     "counts_scope": "The initial anonymous sweep covered 58 records; its readback counters are retained. Tracked entries include the subsequent API listings and accepted NoiseFloor release records."
+  },
+  "latest_workflow_distribution": {
+    "observed_at": "2026-10-09T11:15:24.310Z",
+    "scope": "Four Smithery descriptions and workflow links; LiquiLens 24-tool inventory; research Postman fifteen-request publication and URL migration.",
+    "receipt": "distribution/workflow-distribution-20261009.json"
   }
 }

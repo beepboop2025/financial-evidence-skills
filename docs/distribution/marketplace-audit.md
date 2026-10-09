@@ -1,6 +1,6 @@
 # Marketplace and distribution audit — 7 October 2026
 
-> Later results: see the [marketplace retries](marketplace-retry.md) for G2 approvals, LiquiLens ownership and category-case receipt, API.market and Datarade reviews, and Zenodo preservation. The [non-Amazon follow-through](non-amazon-follow-through.md) covers the live Hugging Face demo, two SaaSHub receipts and native-integration candidates. The audit below preserves its original observation time.
+> Later results: see the [marketplace retries](marketplace-retry.md) for G2 approvals, LiquiLens ownership and category-case receipt, API.market and Datarade reviews, and Zenodo preservation. The [non-Amazon follow-through](non-amazon-follow-through.md) covers the live Hugging Face demo, two SaaSHub receipts and native-integration candidates. The [9 October workflow distribution receipt](workflow-distribution-20261009.json) records four updated Smithery listings and the new fifteen-request Postman publication. Its old Postman URL was not restored after an import identity change; the link below now uses the stable owned entry point. The audit below otherwise preserves its original observation time.
 
 **67 platform and product routes tracked: 44 examined in this sweep and 23 inherited from dated records.**
 This is a bounded audit, not a claim that every marketplace on the internet has
@@ -86,7 +86,7 @@ The [publication ledger](../marketplaces.json) retains product-level states.
 | [Hugging Face Spaces](https://huggingface.co/spaces/launch) | ready account action | inherited per entry ledger | Authenticate the owner account, create a free static Space, upload integrations/huggingface-space, then verify anonymous served bytes and the browser-only privacy boundary. |
 | [PulseMCP](https://www.pulsemcp.com/submit) | paused external | inherited per entry ledger | Recheck when submissions reopen; the official MCP Registry record is already live. |
 | [MCP.so](https://mcp.so/submit?type=server) | skipped paid | inherited per entry ledger | Require separate authorization for the exact USD 39 spend before reconsidering. |
-| [Financial Evidence Research API on Postman](https://documenter.getpostman.com/view/58772927/2sBYHPz2Jm) | live | inherited per entry ledger | Measure independent task completion and return use. |
+| [Financial Evidence Research API on Postman](../api/postman.html) | live | inherited per entry ledger | Measure independent task completion and return use. |
 | [Financial Evidence Research API on APIs.guru](https://github.com/APIs-guru/openapi-directory/issues/3568) | submitted | inherited per entry ledger | Await maintainer review and verify the listing if accepted. |
 | [Awesome Remote MCP Servers](https://github.com/punkpeye/awesome-remote-mcp-servers/pull/1318) | submitted | inherited per entry ledger | Await maintainer review and verify the listing if accepted. |
 | [FreePublicAPIs](https://www.freepublicapis.com/financial-evidence-api) | live and partial | browser public page and parser | Keep shared listing; validate individual-product copy and retain parser failures before another submission. |

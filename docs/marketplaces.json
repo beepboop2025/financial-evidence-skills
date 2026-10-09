@@ -257,13 +257,21 @@
       "state": "ready_account_action",
       "submission_url": "https://stackshare.io/",
       "cost": "no-checkout-observed",
-      "detail": "The signed-in List a Tool flow is usable. LiquiLens metadata is prepared, but the automatically imported SVG was rejected because the form requires JPEG, PNG or WebP. No accepted submission exists.",
-      "next_action": "Attach the prepared PNG through the existing form, then submit once and retain the receipt.",
+      "detail": "The prepared signed-in List a Tool form was submitted through the actual UI and rejected with \"Bot access denied\". No accepted submission or public listing was observed. The existing form is retained for an account-owner handoff.",
+      "next_action": "Have the account owner continue from the preserved prepared form and resolve the platform access gate; retain a genuine submission receipt before marking submitted. Do not replay the failed automated attempt or bypass its access control.",
       "verified_at": "2026-10-07T17:46:37.218560+00:00",
       "latest_surface_check": {
         "observed_at": "2026-10-08T11:16:05.661367+00:00",
         "readback": "no_public_listing_url"
-      }
+      },
+      "latest_attempt": {
+        "recorded_at": "2026-10-09T19:08:19.729953+00:00",
+        "evidence_source": "submission browser owner handoff in the current session",
+        "result": "Bot access denied",
+        "submission_accepted": false,
+        "prepared_form_preserved": true
+      },
+      "evidence_receipt": "distribution/platform-expansion-20261010.json"
     },
     {
       "id": "saashub",
@@ -1339,7 +1347,7 @@
       "submission_url": "https://providers.datarade.ai/apply/confirm/success",
       "cost": "no-payment-or-commercial-plan-selected",
       "detail": "The company/provider account approval email dated 8 October 2026 was verified in authenticated mail. Initial password setup is still required to activate access. This establishes account approval only; a public provider page, dataset listing, distribution rights and commercial acceptance remain unverified.",
-      "next_action": "Activate the approved account through its existing invitation and review any later provider requirements; do not resubmit the company application or publish unapproved datasets.",
+      "next_action": "The account activation question is pending with the owner. Complete initial password setup through the existing invitation once resolved; do not resubmit the company application or publish unapproved datasets.",
       "verified_at": "2026-10-09T18:55:18.467Z",
       "latest_surface_check": {
         "observed_at": "2026-10-09T18:55:18.467Z",
@@ -1893,10 +1901,26 @@
       "detail": "Existing Undertow REST PR 7802 remains open and unmerged on current GitHub readback. This records the earlier submission; no new PR, catalog approval or adoption is claimed.",
       "next_action": "Await review of the existing REST PR; do not open a duplicate.",
       "evidence_receipt": "distribution/platform-expansion-20261010.json"
+    },
+    {
+      "id": "fintech-sandbox-provider-intake",
+      "name": "Fintech Sandbox \u2014 LiquiLens provider enquiry",
+      "channel": "financial-data-partner-intake",
+      "state": "submitted",
+      "submission_url": "https://www.fintechsandbox.org/become-a-data-partner/",
+      "cost": "no-paid-sponsorship-or-commercial-commitment",
+      "detail": "The official Become a Data Partner form explicitly acknowledged the LIQUILENS PRIVATE LIMITED provider enquiry for existing public LiquiLens, Seiche and Undertow research interfaces. This is non-binding qualification intake, not partnership acceptance, an expanded data licence, unrestricted third-party redistribution, a trial commitment or paid sponsorship.",
+      "next_action": "Await qualification review on the existing intake; scope any service, trial or licence terms separately before committing access or source rights.",
+      "verified_at": "2026-10-09T19:05:09.516Z",
+      "submission_confirmation": "Thanks for submitting the form. A member of our\u00a0 team will reach out to you shortly.",
+      "partnership_accepted": false,
+      "free_trial_or_licence_commitment": false,
+      "paid_sponsorship": false,
+      "evidence_receipt": "distribution/platform-expansion-20261010.json"
     }
   ],
   "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
-  "updated_at": "2026-10-09T19:02:44.703651+00:00",
+  "updated_at": "2026-10-09T19:08:19.729953+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -1943,8 +1967,8 @@
   "latest_platform_expansion": {
     "observed_date_asia_kolkata": "2026-10-10",
     "receipt": "distribution/platform-expansion-20261010.json",
-    "scope": "Three new received catalog submissions, one verified outbound submission email with delivery unverified, and reconciliation of existing public cards, REST PRs and provider account states. No native integration or adoption claim.",
-    "new_received_submissions": 3,
+    "scope": "Four new received catalog/provider submissions, one verified outbound submission email with delivery unverified, and reconciliation of existing public cards, REST PRs and provider account states. StackShare submission failed; ToolHive native validation remains blocked. No native integration or adoption claim.",
+    "new_received_submissions": 4,
     "submission_emails_sent_delivery_unverified": 1,
     "existing_api_market_publication_reconciled": 1,
     "existing_mcpmarket_cards_added_to_ledger": 3,

@@ -12,11 +12,17 @@ and hashes of the retained private evidence.
 | [MCPServer.cc](https://mcpserver.cc/submit) | The Financial Evidence submission form explicitly acknowledged receipt | Editorial review and an independently verified public listing |
 | [Public APIs MCP section, PR 7884](https://github.com/public-apis/public-apis/pull/7884) | One Financial Evidence MCP entry submitted; public PR readback verified | Maintainer review and resolution of the upstream MCP-format validation mismatch |
 | [API Vault, issue 327](https://github.com/exa-studio/ApiVault/issues/327) | Official Add Your API issue created and exact text read back | Maintainer approval and public catalog inclusion |
+| [Fintech Sandbox](https://www.fintechsandbox.org/become-a-data-partner/) | Provider enquiry explicitly acknowledged for existing public research interfaces | Qualification review; partnership and access or licensing terms are not agreed |
 | [MCP Server Finder](https://mcpserverfinder.com/) | Submission email from `mrinal@liquilens.in` verified in the sender's Sent mailbox | Recipient delivery, review and listing remain unverified |
 
-The first three have operator or repository submission receipts. The fourth is
+The first four have operator or repository submission receipts. The fifth is
 recorded as `sent_delivery_unverified`; a sender-side receipt does not prove
 recipient delivery. No paid placement was purchased.
+
+The Fintech Sandbox enquiry is a non-binding provider qualification request for
+LIQUILENS PRIVATE LIMITED. It proposes the existing public funding, institution
+and liquidity research interfaces. It commits no expanded data licence,
+unrestricted third-party redistribution, trial access or paid sponsorship.
 
 Public APIs PR 7884 uses anonymous HTTP transport and the actual Glama install
 listing. New-row checks, link checks and protocol discovery passed. The public
@@ -34,7 +40,8 @@ No financial research tool was invoked in its synthetic protocol check.
   gateway freshness, complete-history parity and paid adoption remain unverified.
   Earlier saved prices and gateway tests retain their original observation dates.
 - **Datarade:** authenticated mail confirms company/provider account approval.
-  Initial password setup remains, so the state is `ready_account_action`.
+  The initial password-activation question remains with the account owner, so
+  the state is `ready_account_action`.
   No public provider page or dataset publication is claimed.
 - **MCP Market:** existing [LiquiLens](https://mcpmarket.com/server/liquilens),
   [Seiche](https://mcpmarket.com/server/seiche) and
@@ -60,7 +67,19 @@ SourceForge retains its separate owner, AWS remains paused, and the Claude
 publisher flow still requires an account-owned review of the displayed terms.
 None of those gates was bypassed by this work.
 
-ToolHive work is owned separately and is excluded from this record's submission
-counts until its outcome is reconciled. Release versions, historical audit counts
-and prior full-ledger observation clocks are preserved. Only the specified
-per-entry observations and this expansion record are new.
+**StackShare:** the actual UI rejected the prepared form with **Bot access denied**.
+No submission was accepted. The prepared form is retained for the account owner;
+its ledger state remains `ready_account_action`.
+
+**ToolHive:** the local candidate passed the official catalog validator and build.
+Direct MCP discovery matched version 0.1.7 and the three router tools. The
+unmodified ToolHive 0.51.4 CLI nevertheless requires an available container or
+Kubernetes runtime before starting the remote proxy. No active local runtime was
+available, so startup exited 1; no runtime was started and no PR was submitted.
+The candidate remains local only, with no public source URL and no new ledger
+placement. Native proxy acceptance must pass before a contribution attestation.
+These checks are synthetic/operator verification, not platform adoption.
+
+Release versions, historical audit counts and prior full-ledger observation
+clocks are preserved. Only the specified per-entry observations and this
+expansion record are new.

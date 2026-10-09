@@ -1,7 +1,7 @@
 {
   "schema": "liquilens.platform-expansion-receipts.v1",
   "observed_date_asia_kolkata": "2026-10-10",
-  "recorded_at": "2026-10-09T19:02:44.703651+00:00",
+  "recorded_at": "2026-10-09T19:08:19.729953+00:00",
   "source_base_commit": "15e21cb9dbd9931f6121a298589e449de0e84cd0",
   "scope": "New catalog submissions and existing placement reconciliation; sanitized handoff, not adoption evidence.",
   "new_actions": [
@@ -25,6 +25,18 @@
       "url": "https://github.com/exa-studio/ApiVault/issues/327",
       "observed_at": "2026-10-09T18:57:45.492982+00:00",
       "detail": "Official Add Your API issue 327 was created once and its author, exact body and OPEN state were read back. The submission describes public read-only funding, institution and liquidity research and explicitly does not claim unrestricted browser CORS. Directory acceptance and public listing remain unverified."
+    },
+    {
+      "id": "fintech-sandbox-provider-intake",
+      "state": "submitted",
+      "url": "https://www.fintechsandbox.org/become-a-data-partner/",
+      "observed_at": "2026-10-09T19:05:09.516Z",
+      "detail": "The official Become a Data Partner form explicitly acknowledged the LIQUILENS PRIVATE LIMITED provider enquiry for existing public LiquiLens, Seiche and Undertow research interfaces. This is non-binding qualification intake, not partnership acceptance, an expanded data licence, unrestricted third-party redistribution, a trial commitment or paid sponsorship.",
+      "scope": "Non-binding provider qualification enquiry for existing public research interfaces",
+      "submission_confirmation": "Thanks for submitting the form. A member of our  team will reach out to you shortly.",
+      "partnership_accepted": false,
+      "free_trial_or_licence_commitment": false,
+      "paid_sponsorship": false
     },
     {
       "id": "mcpserverfinder-financial-evidence",
@@ -169,7 +181,8 @@
       "latest_observation": {
         "observed_at": "2026-10-09T18:55:18.467Z",
         "readback": "provider_account_approved_no_public_listing_verified"
-      }
+      },
+      "pending_action": "Initial account activation question remains with the owner; no activation or public listing claimed."
     },
     {
       "id": "allmcps-financial-evidence",
@@ -201,6 +214,18 @@
         "live_tool_inventory_verified": false,
         "duplicate_url": "https://allmcps.com/mcp/undertow-market-liquidity-map",
         "duplicate_html_sha256": "e35a3948daa9e48a80df6476dda65dd6a446870eee2e42abfc4fdffcb388fb2e"
+      }
+    },
+    {
+      "id": "stackshare",
+      "state": "ready_account_action",
+      "detail": "The prepared signed-in List a Tool form was submitted through the actual UI and rejected with \"Bot access denied\". No accepted submission or public listing was observed. The existing form is retained for an account-owner handoff.",
+      "latest_attempt": {
+        "recorded_at": "2026-10-09T19:08:19.729953+00:00",
+        "evidence_source": "submission browser owner handoff in the current session",
+        "result": "Bot access denied",
+        "submission_accepted": false,
+        "prepared_form_preserved": true
       }
     }
   ],
@@ -291,6 +316,31 @@
       "filename": "public-apis-submission.json",
       "sha256": "0135d940ef6d2e274ae9bd2a8eddb615597db0f21ad027924c2c124ce4e13404",
       "storage": "retained private audit artifact; no activation URLs or credentials published"
+    },
+    {
+      "filename": "fintech-sandbox-receipt.json",
+      "sha256": "5e28cc3a8182c5929668a74a2fdf37773a7630d4f1d3932d2ca3ea25d36b05cc",
+      "storage": "retained private audit artifact; no activation URLs or credentials published"
+    },
+    {
+      "filename": "toolhive-submission/status.json",
+      "sha256": "192398336ef92db203b2dd36b70fde8885cd787ea98a4f13cb6ac6f9fe6bc7b6",
+      "storage": "retained private audit artifact; no activation URLs or credentials published"
+    },
+    {
+      "filename": "toolhive-submission/native-proxy-attempt.json",
+      "sha256": "dff73c8bb12ba2d9473e7e67638062d75c1905466e3500665efb910711ed7d75",
+      "storage": "retained private audit artifact; no activation URLs or credentials published"
+    },
+    {
+      "filename": "toolhive-submission/direct-protocol-readback.json",
+      "sha256": "57eb6dba5cadc512d64df41640a86260381325b7e1b5c7109f683ece3366c253",
+      "storage": "retained private audit artifact; no activation URLs or credentials published"
+    },
+    {
+      "filename": "toolhive-submission/REPORT.md",
+      "sha256": "b892b01543d2171cb9ee2afe1a4dbe8f803055a691fb82b6a9b566e73122cac3",
+      "storage": "retained private audit artifact; no activation URLs or credentials published"
     }
   ],
   "added_ledger_ids": [
@@ -310,16 +360,56 @@
     "lobehub-evidence-carrier",
     "public-apis-liquilens-rest",
     "public-apis-seiche-rest",
-    "public-apis-undertow-rest"
+    "public-apis-undertow-rest",
+    "fintech-sandbox-provider-intake"
   ],
   "updated_ledger_ids": [
     "api-market-seiche-reference-fx",
     "datarade-company",
     "allmcps-financial-evidence",
-    "allmcps-undertow"
+    "allmcps-undertow",
+    "stackshare"
   ],
   "pending_lanes": {
-    "toolhive": "Awaiting owning agent outcome; excluded from these submission counts."
+    "toolhive": {
+      "state": "candidate_validated_native_proxy_blocked",
+      "observed_at": "2026-10-09T19:04:57.628372+00:00",
+      "catalog_upstream_sha": "b9ceabf8a67392cafc9a34243a6bb13c3690ac93",
+      "financial_evidence_source_sha": "15e21cb9dbd9931f6121a298589e449de0e84cd0",
+      "catalog_validate_exit": 0,
+      "catalog_build_exit": 0,
+      "direct_protocol_observation": {
+        "endpoint": "https://liquilens.in/mcp/financial-evidence",
+        "server_version": "0.1.7",
+        "tools": [
+          "financial_evidence_topics",
+          "financial_evidence_route",
+          "financial_evidence_fetch"
+        ],
+        "scope": "Synthetic/operator initialize and tools/list; not native ToolHive acceptance or financial-source freshness."
+      },
+      "native_proxy_passed": false,
+      "official_cli_version": "0.51.4",
+      "native_proxy_exit": 1,
+      "blocker": "The official CLI checks for a Docker-compatible or Kubernetes runtime before starting its remote proxy. No active local runtime was available; no Docker, Podman or Colima runtime was started.",
+      "candidate_scope": "Local-only catalog candidate; no public candidate source URL exists and no ready_validation ledger row is claimed.",
+      "public_candidate_url": null,
+      "external_submissions": 0,
+      "runtime_started": false,
+      "next_action": "Establish an authorized native runtime without disturbing other VM ownership, then pass the unmodified proxy acceptance and recheck duplicates before a contribution."
+    },
+    "stackshare": {
+      "state": "ready_account_action",
+      "submission_accepted": false,
+      "result": "Bot access denied",
+      "prepared_form_preserved": true
+    },
+    "datarade": {
+      "state": "ready_account_action",
+      "account_approved": true,
+      "activation_question": "pending with owner",
+      "public_listing_verified": false
+    }
   },
   "limits": [
     "Existing cards and prior REST submissions are not new submissions or customer acquisitions.",
@@ -328,9 +418,14 @@
     "AllMCPs semantic gaps remain open; public tool inventories are not live-server checks.",
     "Datarade account approval is not public provider or dataset publication.",
     "Verification calls and directory views do not establish independent use, retention or paid adoption.",
-    "Prior full-ledger observation dates, release versions and historical audit counts remain unchanged."
+    "Prior full-ledger observation dates, release versions and historical audit counts remain unchanged.",
+    "Fintech Sandbox acknowledged a non-binding provider enquiry; partnership, trial access, expanded licences and paid sponsorship were not agreed.",
+    "ToolHive catalog validation and direct MCP discovery passed; native proxy startup did not. No ToolHive submission or native compatibility claim.",
+    "StackShare rejected the actual UI submission with Bot access denied; the prepared form is retained for the account owner and no acceptance is counted."
   ],
   "new_paid_placement_cost": 0,
   "verified_independent_organizations": null,
-  "verified_paid_customers": null
+  "verified_paid_customers": null,
+  "new_received_submissions": 4,
+  "submission_emails_sent_delivery_unverified": 1
 }

@@ -1939,7 +1939,11 @@
       "next_action": "Await provider review and continue the existing application; do not replay signup.",
       "public_listing_verified": false,
       "verified_at": "2026-10-09T20:31:08.304305+00:00",
-      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json",
+      "latest_recheck": {
+        "observed_at": "2026-10-09T21:17:28.263568+00:00",
+        "result": "Existing application acknowledgment still states submitted for team review; no account or public listing approval verified."
+      }
     },
     {
       "id": "eagle-alpha-company",
@@ -1952,7 +1956,11 @@
       "next_action": "Await approval of the existing verified provider request; qualify each dataset before upload.",
       "public_listing_verified": false,
       "verified_at": "2026-10-09T20:31:08.304305+00:00",
-      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json",
+      "latest_recheck": {
+        "observed_at": "2026-10-09T21:17:28.263568+00:00",
+        "result": "Portal still states Request received, pending team review."
+      }
     },
     {
       "id": "crozdesk-liquilens",
@@ -1966,7 +1974,11 @@
       "public_listing_verified": false,
       "application_id": "373489",
       "verified_at": "2026-10-09T20:31:08.304305+00:00",
-      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json",
+      "latest_recheck": {
+        "observed_at": "2026-10-09T21:17:28.263568+00:00",
+        "result": "Existing application remains in manual review; account details must be completed after eligibility before software listing creation."
+      }
     },
     {
       "id": "softwaresuggest-liquilens",
@@ -1975,11 +1987,18 @@
       "state": "ready_account_action",
       "submission_url": "https://www.softwaresuggest.com/vendors",
       "cost": "Free listing intake; no paid promotion selected.",
-      "detail": "Business email was verified and the second product form is prepared for LiquiLens financial-analytics software. The required customer-count selector starts at 1\u201325; no actual customer count has been established. Employee count and API traffic are not a valid substitute. Final form submission and a public listing remain unverified.",
-      "next_action": "Supply a factual customer-count answer or obtain a supported zero-customer route, complete other required fields truthfully, then submit the existing form.",
+      "detail": "The existing vendor portal is accessible and company details were saved with the supported Undisclosed customer option. Product details and the official logo are prepared, but Save & Next requires a billing choice: Yearly, Monthly, Onetime or Transaction. The offer is quote-specific with no fixed billing period, so the product remains unsaved and unsubmitted. A support request for truthful quote-only handling or manual free completion was acknowledged; no public listing is verified.",
+      "next_action": "Await support guidance, then use a truthful supported billing option to save the existing product and complete the free listing. Do not select an inaccurate billing period or create a duplicate registration.",
       "public_listing_verified": false,
-      "verified_at": "2026-10-09T20:31:08.304305+00:00",
-      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+      "verified_at": "2026-10-09T21:17:28.263568+00:00",
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json",
+      "account_access_verified": true,
+      "company_profile_saved": true,
+      "customer_count_disclosure": "Undisclosed",
+      "product_form_prepared": true,
+      "product_form_saved": false,
+      "product_submission_verified": false,
+      "support_request_state": "acknowledged_pending_response"
     },
     {
       "id": "gumloop-financial-evidence",
@@ -2007,7 +2026,12 @@
       "public_listing_verified": false,
       "source_commit": "3abcc45d7a429d26ed185d1ca845b078041f54f3",
       "verified_at": "2026-10-09T20:31:08.304305+00:00",
-      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json",
+      "latest_recheck": {
+        "observed_at": "2026-10-09T20:53:19Z",
+        "result": "PR remains open and requires maintainer review; no contributor change requests. Vercel preview awaits authorization by a deepset team member.",
+        "upstream_comment_url": "https://github.com/deepset-ai/haystack-integrations/pull/650#issuecomment-6088695364"
+      }
     },
     {
       "id": "langchain-financial-evidence",
@@ -2021,7 +2045,11 @@
       "public_listing_verified": false,
       "version": "0.1.0",
       "verified_at": "2026-10-09T20:37:39.660676+00:00",
-      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json",
+      "latest_recheck": {
+        "observed_at": "2026-10-09T20:53:19Z",
+        "result": "Issue remains open with only the automated external label; no comments or actionable maintainer requests."
+      }
     },
     {
       "id": "langchain-financial-evidence-github-release",
@@ -2056,7 +2084,7 @@
     }
   ],
   "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
-  "updated_at": "2026-10-09T20:37:39.660676+00:00",
+  "updated_at": "2026-10-09T21:17:28.263568+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -2121,6 +2149,9 @@
     "new_framework_catalog_submissions": 2,
     "new_public_release_surfaces_verified": 2,
     "new_public_third_party_directory_listings_verified": 0,
-    "independent_adoption_verified": false
+    "independent_adoption_verified": false,
+    "last_rechecked_at": "2026-10-09T21:17:28.263568+00:00",
+    "recheck_scope": "SoftwareSuggest company profile saved using Undisclosed; product form awaits quote-specific billing guidance after an acknowledged support request. Provider and framework reviews remain pending.",
+    "support_requests_acknowledged": 1
   }
 }

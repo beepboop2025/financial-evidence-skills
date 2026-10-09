@@ -67,7 +67,9 @@ def build(out=OUT):
         raise ValueError("Distribution imports must target the explicit public API origin")
     items, bruno, http = [], [], []
     for index, (name, path, query, table) in enumerate(examples(spec), 1):
-        suffix = path + ("?" + urlencode(query) if query else "")
+        # Postman imports URL query values literally before code generation.
+        # Leave selection commas visible so the client encodes them only once.
+        suffix = path + ("?" + urlencode(query, safe=",") if query else "")
         checks = ['pm.test("HTTP response succeeded", function () { pm.response.to.have.status(200); });']
         checks += TABLE_TESTS if table else []
         if path == "/api/v1/workflow":

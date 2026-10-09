@@ -1,0 +1,95 @@
+{
+  "schema": "liquilens.workflow-distribution-readback.v1",
+  "observed_date": "2026-10-09",
+  "scope": "Four existing Smithery listings and the published research API collection; no adoption claim.",
+  "smithery": [
+    {
+      "id": "smithery-research-desk",
+      "slug": "financial-evidence-research",
+      "url": "https://smithery.ai/servers/mrinallovesbhature/financial-evidence-research",
+      "observed_at": "2026-10-09T11:11:23.289985+00:00",
+      "description_matches": true,
+      "homepage_matches": true,
+      "sha256": "3e99fdfb1bf69d652504476f591bb2b12d758b5734fa82812be867af0c7c4edb",
+      "authentication_used": false,
+      "readback": "updated_public_description_and_workflow_link_verified",
+      "homepage": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?utm_source=smithery&utm_medium=marketplace&utm_campaign=workflow_adoption_20261009"
+    },
+    {
+      "id": "smithery-liquilens",
+      "slug": "liquilens",
+      "url": "https://smithery.ai/servers/mrinallovesbhature/liquilens",
+      "observed_at": "2026-10-09T11:11:23.522602+00:00",
+      "description_matches": true,
+      "homepage_matches": true,
+      "sha256": "b3573135b0823da29799d111e0087fafd167567ce2315c85189814ef621f210a",
+      "authentication_used": false,
+      "readback": "updated_public_description_and_workflow_link_verified",
+      "homepage": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?workflow=institutions&utm_source=smithery&utm_medium=marketplace&utm_campaign=workflow_adoption_20261009",
+      "native_tool_inventory": {
+        "count": 24,
+        "new_tool": "institution_evidence_monitor",
+        "native_scan": "success",
+        "observed_date": "2026-10-09"
+      }
+    },
+    {
+      "id": "smithery-seiche",
+      "slug": "seiche",
+      "url": "https://smithery.ai/servers/mrinallovesbhature/seiche",
+      "observed_at": "2026-10-09T11:11:23.243553+00:00",
+      "description_matches": true,
+      "homepage_matches": true,
+      "sha256": "c28ad4cc06f3ca6daa020f3b9d8b0e0379ce7a0f6367e1c2d744068c3fd0e43d",
+      "authentication_used": false,
+      "readback": "updated_public_description_and_workflow_link_verified",
+      "homepage": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?workflow=funding&utm_source=smithery&utm_medium=marketplace&utm_campaign=workflow_adoption_20261009"
+    },
+    {
+      "id": "smithery-undertow",
+      "slug": "undertow",
+      "url": "https://smithery.ai/servers/mrinallovesbhature/undertow",
+      "observed_at": "2026-10-09T11:11:23.489034+00:00",
+      "description_matches": true,
+      "homepage_matches": true,
+      "sha256": "267759fada1cc609ec02c754dab30c90e172ced5507088210c2f725302eedae4",
+      "authentication_used": false,
+      "readback": "updated_public_description_and_workflow_link_verified",
+      "homepage": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?workflow=exit&utm_source=smithery&utm_medium=marketplace&utm_campaign=workflow_adoption_20261009"
+    }
+  ],
+  "postman": {
+    "id": "postman-research-api",
+    "url": "https://documenter.getpostman.com/view/58772927/2sBYHQ237y",
+    "observed_at": "2026-10-09T11:15:24.310Z",
+    "readback": "rendered_public_documentation_verified",
+    "publisher_user_id": "58772927",
+    "versions": [
+      "1.2.0"
+    ],
+    "request_count": 15,
+    "workflow_requests": [
+      "Funding watch",
+      "Institution watch",
+      "BTC exit check"
+    ],
+    "sha256": "faf7135e0b6a5cd5d81f8b0c703d2ed1008e4e537d9e61120cbafd5fc5af53f4",
+    "current_guide_visible": true,
+    "interface_catalog_visible": true,
+    "publication_change": {
+      "previous_url": "https://documenter.getpostman.com/view/58772927/2sBYHPz2Jm",
+      "previous_url_state": "unavailable_after_import_replace",
+      "current_url": "https://documenter.getpostman.com/view/58772927/2sBYHQ237y",
+      "previous_url_restored": false,
+      "observed_date": "2026-10-09"
+    },
+    "owned_entry_url": "https://beepboop2025.github.io/financial-evidence-skills/api/postman.html"
+  },
+  "traction": {
+    "verified_new_users": null,
+    "retained_users": null,
+    "paying_customers": null,
+    "coverage_complete": false,
+    "note": "Publication and synthetic validation are not user acquisition or retention."
+  }
+}

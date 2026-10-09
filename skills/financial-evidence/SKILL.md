@@ -47,10 +47,11 @@ python3 financial-evidence/scripts/fetch_evidence.py \
   --topic gift-city --topic forex --topic gold
 ```
 
-The new topics require the 0.1.6 candidate helper or package. The published
-0.1.5 helper and remote router may still expose five topics; inspect their
-topic list before requesting a new topic. A source checkout does not upgrade
-a hosted MCP endpoint.
+The verified 0.1.7 package and public MCP router support all eight topics,
+including `gift-city`, `forex`, and `gold`; see the
+[release verification record](https://github.com/beepboop2025/financial-evidence-skills/blob/main/docs/releases/0.1.7.json). Inspect the topic
+list when using an older installation. A source checkout does not upgrade a
+hosted MCP endpoint.
 
 If the skill is installed into a different directory, resolve the script
 relative to this `SKILL.md` file. The helper emits one canonical JSON shape

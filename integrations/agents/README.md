@@ -121,3 +121,7 @@ Suggested research instruction: “Discover covered datasets, then review fundin
 the named covered bank and market liquidity. Report each source's date, native
 unit, coverage and limitations. Cite the original rows. Identify missing or
 restricted evidence before drawing a research conclusion.”
+
+## Optional shared-factor review
+
+Use the [NoiseFloor 0.4.0 integration](../../docs/agents/CONNECT.md#correlation-research-across-products) to assess a retained, comparable panel. The downloadable `spectral_review.py` callback preserves source permissions and returns explicit insufficient visibility for short or restricted history. [Open the browser workbench](https://liquilens.in/agents/correlation/) or connect the separate ten-tool MCP at `https://api.seiche.info/noisefloor/mcp`.

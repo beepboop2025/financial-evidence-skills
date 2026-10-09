@@ -107,3 +107,13 @@ Packet `status` equals `transport_status` and describes retrieval only. Every pa
 - [Runnable funding, institution and BTC exit workflows](https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html): free browser checks, locally saved comparisons, cited JSON, optional review reminders and matching REST requests.
 
 - [Python workflow starter](https://beepboop2025.github.io/financial-evidence-skills/start/AUTOMATE.md): one bounded research check, original evidence captures and repeat comparison without dependencies.
+
+## Optional correlation research
+
+- NoiseFloor 0.4.0: https://api.seiche.info/noisefloor/mcp (10 tools, including spectral_assessment and dyson_reference).
+- Workbench: https://liquilens.in/agents/correlation/ (caller-supplied observations and labeled synthetic examples).
+- Local Financial Evidence adapter: https://beepboop2025.github.io/financial-evidence-skills/agents/spectral_review.py
+- API client kit: https://beepboop2025.github.io/financial-evidence-skills/api/noisefloor/
+- Release verification: https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.0.json
+
+Source dates, rights and missingness remain explicit. Dyson paths are synthetic; reference bands are not significance tests. No trading authority.

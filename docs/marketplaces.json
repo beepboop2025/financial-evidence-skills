@@ -1581,17 +1581,17 @@
       "name": "NoiseFloor \u2014 PyPI",
       "channel": "python-package-index",
       "state": "live",
-      "listing_url": "https://pypi.org/project/noisefloor/0.3.1/",
+      "listing_url": "https://pypi.org/project/noisefloor/0.4.0/",
       "cost": "free",
-      "version": "0.3.1",
-      "source_commit": "dd887a3ddb60adb948f324ae2e645524366b660f",
-      "verified_at": "2026-10-08T12:40:06.001811+00:00",
-      "detail": "Release owner verified 0.3.1 publication and exact package/registry identity. Surface sync independently observed the matching eight-tool MCP, REST schema and implementation fingerprint. Predictive utility and adoption remain unproven.",
+      "version": "0.4.0",
+      "source_commit": "18e7290a022c7cba0d1e5e417a4a467cccfaa7a0",
+      "verified_at": "2026-10-09T13:36:25.538503+00:00",
+      "detail": "NoiseFloor 0.4.0 package hashes, official registry and ten-tool hosted MCP verified. Spectral REST/MCP parity and source refusal checked with synthetic inputs; predictive utility and adoption remain unproven.",
       "next_action": "Keep future accepted package, registry and hosted releases aligned; preserve observation and rights boundaries.",
-      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.3.1.json",
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.0.json",
       "latest_surface_check": {
-        "observed_at": "2026-10-08T12:54:41.064999+00:00",
-        "readback": "accepted_owner_publication_reconciled_with_independent_hosted_discovery"
+        "observed_at": "2026-10-09T13:36:25.538503+00:00",
+        "readback": "public_release_artifacts_registry_and_host_verified"
       }
     },
     {
@@ -1599,17 +1599,17 @@
       "name": "NoiseFloor \u2014 Official MCP Registry",
       "channel": "mcp-registry",
       "state": "live",
-      "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fnoisefloor/versions/0.3.1",
+      "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fnoisefloor/versions/0.4.0",
       "cost": "free",
-      "version": "0.3.1",
-      "source_commit": "dd887a3ddb60adb948f324ae2e645524366b660f",
-      "verified_at": "2026-10-08T12:40:06.001811+00:00",
-      "detail": "Release owner verified 0.3.1 publication and exact package/registry identity. Surface sync independently observed the matching eight-tool MCP, REST schema and implementation fingerprint. Predictive utility and adoption remain unproven.",
+      "version": "0.4.0",
+      "source_commit": "18e7290a022c7cba0d1e5e417a4a467cccfaa7a0",
+      "verified_at": "2026-10-09T13:36:25.538503+00:00",
+      "detail": "NoiseFloor 0.4.0 package hashes, official registry and ten-tool hosted MCP verified. Spectral REST/MCP parity and source refusal checked with synthetic inputs; predictive utility and adoption remain unproven.",
       "next_action": "Keep future accepted package, registry and hosted releases aligned; preserve observation and rights boundaries.",
-      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.3.1.json",
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.0.json",
       "latest_surface_check": {
-        "observed_at": "2026-10-08T12:54:41.064999+00:00",
-        "readback": "accepted_owner_publication_reconciled_with_independent_hosted_discovery"
+        "observed_at": "2026-10-09T13:36:25.538503+00:00",
+        "readback": "public_release_artifacts_registry_and_host_verified"
       }
     },
     {
@@ -1617,22 +1617,22 @@
       "name": "NoiseFloor \u2014 GitHub Release",
       "channel": "release-artifacts",
       "state": "live",
-      "listing_url": "https://github.com/beepboop2025/noisefloor/releases/tag/v0.3.1",
+      "listing_url": "https://github.com/beepboop2025/noisefloor/releases/tag/v0.4.0",
       "cost": "free",
-      "version": "0.3.1",
-      "source_commit": "dd887a3ddb60adb948f324ae2e645524366b660f",
-      "verified_at": "2026-10-08T12:40:06.001811+00:00",
-      "detail": "Release owner verified 0.3.1 publication and exact package/registry identity. Surface sync independently observed the matching eight-tool MCP, REST schema and implementation fingerprint. Predictive utility and adoption remain unproven.",
+      "version": "0.4.0",
+      "source_commit": "18e7290a022c7cba0d1e5e417a4a467cccfaa7a0",
+      "verified_at": "2026-10-09T13:36:25.538503+00:00",
+      "detail": "NoiseFloor 0.4.0 package hashes, official registry and ten-tool hosted MCP verified. Spectral REST/MCP parity and source refusal checked with synthetic inputs; predictive utility and adoption remain unproven.",
       "next_action": "Keep future accepted package, registry and hosted releases aligned; preserve observation and rights boundaries.",
-      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.3.1.json",
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.0.json",
       "latest_surface_check": {
-        "observed_at": "2026-10-08T12:54:41.064999+00:00",
-        "readback": "accepted_owner_publication_reconciled_with_independent_hosted_discovery"
+        "observed_at": "2026-10-09T13:36:25.538503+00:00",
+        "readback": "public_release_artifacts_registry_and_host_verified"
       }
     }
   ],
   "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
-  "updated_at": "2026-10-09T11:15:24.310Z",
+  "updated_at": "2026-10-09T13:36:25.538503+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",

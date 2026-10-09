@@ -5,13 +5,12 @@ native LangChain integration for Seiche funding evidence, LiquiLens covered-bank
 research and Undertow market liquidity. It calls the existing public evidence
 API and preserves citations, source clocks, missing values, rights and errors.
 
-From a checkout of this repository:
+Install the verified [PyPI release 0.1.0](https://pypi.org/project/langchain-financial-evidence/0.1.0/):
 
 ```sh
-python -m pip install ./integrations/langchain
+python -m pip install langchain-financial-evidence==0.1.0
 ```
 
-After PyPI publication, use `python -m pip install langchain-financial-evidence`.
 No data API key is needed. This distribution does not depend on a PyPI release
 of the separate `financial-evidence` package.
 
@@ -39,6 +38,6 @@ input contract, sync/async use, error handling, installation and verification.
 See [agent research workflows](../integrations/agents/README.md) for the broader
 evidence contract and other supported frameworks.
 
-LangChain's external catalog requires a published package and maintainer review.
-Availability in this repository alone does not establish catalog acceptance,
-production adoption, users or revenue.
+The [LangChain catalog submission](https://github.com/langchain-ai/docs/issues/6593)
+is open for maintainer triage and review. The published package and its verified clean
+install do not establish catalog acceptance, production adoption, users or revenue.

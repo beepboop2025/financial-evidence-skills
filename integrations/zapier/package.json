@@ -4,5 +4,6 @@
   "engines": {"node": ">=22"},
   "scripts": {"test": "node --test tests/*.test.cjs", "validate": "zapier-platform validate"},
   "dependencies": {"zapier-platform-core": "19.2.0"},
-  "devDependencies": {"zapier-platform-cli": "19.2.0", "nock": "14.0.10"}
+  "devDependencies": {"zapier-platform-cli": "19.2.0", "nock": "14.0.10"},
+  "overrides": {"form-data": "4.0.6"}
 }

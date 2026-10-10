@@ -57,6 +57,10 @@ def assets() -> dict[str, bytes]:
                 DEST / "agent-clients.md", DEST / "datarade.md", DEST / "routes.json",
                 DEST / "pilot-scorecard.csv", DEST / "native-packages.md",
                 DEST / "native-packages.json"]
+    # Explicit public allowlist: never collect the native runtime or its state.
+    flowise_files = ("README.md", "NOTICE.md", "FLOWISE-LICENSE.md", "publication.json",
+                     "native-proof.json", "financial-evidence-flowise-marketplace-candidate.json")
+    selected.extend(DEST / "flowise" / name for name in flowise_files)
     native = json.loads((DEST / "native-packages.json").read_text())
     downloads = {}
     expected_names = {"n8n-nodes-financial-evidence-0.1.0.tgz", "financial_evidence-0.1.1.difypkg"}
@@ -89,12 +93,15 @@ Forward quant examples: integrations/finance-research/README.md.
 Desktop candidate: integrations/finance-desktop/README.md.
 Institutional packets: docs/distribution/provider-packets-20261011/README.md.
 Native automation candidates and receipts: docs/platforms/native-packages.md.
+Existing Flowise 3.1.4 users: docs/platforms/flowise/README.md (upstream is EOL).
 Python research client and Power Query: docs/tools/.
 The shared Python package source and pyproject.toml are included, so the setup
 commands in the forward-research README work from this extracted directory.
 
 This is an evaluation kit, not a claim of marketplace acceptance or adoption.
-Software licence is in LICENSE. Upstream data retains its source-specific terms.
+Our software licence is in LICENSE. Flowise-derived template metadata retains
+the upstream licence and attribution in docs/platforms/flowise/.
+Upstream data retains its source-specific terms.
 Retain observation and availability clocks; never backfill current captures into
 historical decisions. No broker credentials or order execution is included.
 """
@@ -108,6 +115,7 @@ historical decisions. No broker credentials or order execution is included.
             info.external_attr = 0o100644 << 16
             archive.writestr(info, data)
     result = {"index.html": page(manifest), "finance-platform-kit.zip": buffer.getvalue(), **downloads}
+    result.update({f"flowise/{name}": (DEST / "flowise" / name).read_bytes() for name in flowise_files})
     for name in ("index.html", "panel.css", "panel.mjs", "reference-fx.mjs"):
         result[f"desktop/{name}"] = (ROOT / "integrations/finance-desktop" / name).read_bytes()
     result["SHA256SUMS"] = "".join(f"{hashlib.sha256(data).hexdigest()}  {name}\n"

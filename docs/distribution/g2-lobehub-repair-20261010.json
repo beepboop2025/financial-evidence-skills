@@ -1,0 +1,178 @@
+{
+  "schema": "financial-evidence.listing-repair.v1",
+  "recorded_at": "2026-10-10T09:20:24.007181+00:00",
+  "scope": "G2 and LobeHub, including the two network URLs already covered by G2 support.",
+  "new_submissions": 0,
+  "new_listings_created": 0,
+  "new_public_profiles_verified": 2,
+  "profiles_enriched": 1,
+  "paid_placement_cost_inr": 0,
+  "coverage_complete": false,
+  "independent_adoption_verified": false,
+  "g2": {
+    "public_profile": "https://www.g2.com/products/liquilens/reviews",
+    "screenshot": {
+      "title": "Institution monitoring and evidence review",
+      "source_url": "https://liquilens.in/banking/monitoring/",
+      "image_url": "https://images.g2crowd.com/uploads/attachment/file/1935265/liquilens-institution-monitoring.png",
+      "captured_date": "2026-10-10",
+      "public_readback_verified": true
+    },
+    "category_case": {
+      "case_number": "00642455",
+      "state": "in_progress",
+      "decision": "in_evaluation",
+      "observed_at": "2026-10-10T09:14:41.884793+00:00",
+      "estimated_resolution_date": "2026-10-14"
+    },
+    "seller_description_case": {
+      "case_number": "00643368",
+      "state": "new",
+      "decision": "pending",
+      "assigned_queue": "Intake Queue",
+      "direct_save_result": "support_required_no_change",
+      "observed_at": "2026-10-10T09:14:41.884793+00:00"
+    },
+    "duplicate_cases_created": 0,
+    "network_profiles": [
+      {
+        "platform": "Capterra",
+        "url": "https://www.capterra.com/p/10266227/LiquiLens/",
+        "public": true,
+        "category": "Survey"
+      },
+      {
+        "platform": "GetApp",
+        "url": "https://www.getapp.com/all-software/a/liquilens/",
+        "public": true,
+        "category": "Survey"
+      }
+    ]
+  },
+  "lobehub": {
+    "publisher_cli_version": "0.0.41",
+    "publisher_login_completed": true,
+    "github_grant_owner_approved": true,
+    "github_connected": false,
+    "owned_plugins": 0,
+    "publisher_updates_applied": 0,
+    "cards": [
+      {
+        "id": "lobehub-liquilens",
+        "url": "https://lobehub.com/mcp/beepboop2025-liquilens-mcp",
+        "public_version": "1.0.0",
+        "validation_label": "Unvalidated",
+        "prepared_version": "1.8.1",
+        "public_tools_discovered": 24
+      },
+      {
+        "id": "lobehub-seiche",
+        "url": "https://lobehub.com/mcp/beepboop2025-seiche",
+        "public_version": "1.0.0",
+        "validation_label": "Unvalidated",
+        "prepared_version": "0.16.2",
+        "public_tools_discovered": 16
+      },
+      {
+        "id": "lobehub-undertow",
+        "url": "https://lobehub.com/mcp/beepboop2025-undertow-mcp",
+        "public_version": "1.9.0",
+        "validation_label": "Unvalidated",
+        "prepared_version": "1.13.0",
+        "public_tools_discovered": 16
+      },
+      {
+        "id": "lobehub-palimpsest",
+        "url": "https://lobehub.com/mcp/beepboop2025-palimpsest",
+        "public_version": "1.0.0",
+        "validation_label": "Unvalidated",
+        "prepared_version": "1.9.3",
+        "public_tools_discovered": 7
+      },
+      {
+        "id": "lobehub-riptide",
+        "url": "https://lobehub.com/mcp/beepboop2025-riptide-mcp",
+        "public_version": "1.3.0",
+        "validation_label": "Unvalidated",
+        "prepared_version": "1.3.0",
+        "public_tools_discovered": 7
+      },
+      {
+        "id": "lobehub-noisefloor",
+        "url": "https://lobehub.com/mcp/beepboop2025-noisefloor",
+        "public_version": "0.1.2",
+        "validation_label": "Unvalidated",
+        "prepared_version": "0.4.0",
+        "public_tools_discovered": 10
+      },
+      {
+        "id": "lobehub-evidence-carrier",
+        "url": "https://lobehub.com/mcp/beepboop2025-liquilens-evidence-carrier",
+        "public_version": "0.19.0",
+        "validation_label": "Unvalidated",
+        "prepared_version": "0.20.1",
+        "public_tools_discovered": 4
+      }
+    ],
+    "public_refresh_attempts": {
+      "identifiers": [
+        "beepboop2025-noisefloor",
+        "beepboop2025-liquilens-mcp",
+        "beepboop2025-seiche"
+      ],
+      "one_attempt_per_card": true,
+      "acknowledgement_verified": false,
+      "public_change_verified": false,
+      "rechecked_after_stated_processing_window": true,
+      "last_readback_at": "2026-10-10T09:17:18.525494+00:00"
+    },
+    "support_message_sent": true,
+    "badge_ownership_attempt": {
+      "listing": "beepboop2025-noisefloor",
+      "badge_pull_request": "https://github.com/beepboop2025/noisefloor/pull/6",
+      "badge_merge_commit": "cb6d800a43f59d729efe433a1d3d5c1378c0869d",
+      "badge_merged_at": "2026-10-10T09:15:16Z",
+      "default_branch_badge_verified": true,
+      "start_check_disabled": true,
+      "claim_check_submitted": false,
+      "ownership_claim_verified": false,
+      "badge_rollout_to_other_repositories": false
+    },
+    "support_message_state": "sent_delivery_unverified",
+    "support_message": {
+      "recipient": "support@lobehub.com",
+      "subject": "Marketplace ownership flow blocked for seven existing beepboop2025 listings",
+      "sent_at": "2026-10-10T09:19:37Z",
+      "owner_authorized": true,
+      "sent_folder_readback_verified": true,
+      "delivery_verified": false,
+      "provider_response_observed": false,
+      "approved_message_sha256": "fa4dd84079e241b6ebe56db4588a19f969480223653c04c2092a6c850985036a"
+    }
+  },
+  "evidence_hashes": {
+    "lobehub-noisefloor-after-refresh.txt": "c9d09e7cdbe71fdfa11bd29e1de437ed662e24077ba09981822c4df375825bef",
+    "beepboop2025-undertow-mcp-public.txt": "be988a992030adedd87e376a5fbd71b6a0b87933c7c2a65be408e86b9715446a",
+    "g2-public-after-screenshot.txt": "b631b4bf23fe434192337cc82469336ca0ba8f04ec53ca4bb00d68a99e851b94",
+    "g2-category-case-00642455.txt": "440de1e871c009230c336be720a3099d6cafcfd4dd630e9526eba526b63a972c",
+    "beepboop2025-noisefloor-after-refresh.txt": "c9d09e7cdbe71fdfa11bd29e1de437ed662e24077ba09981822c4df375825bef",
+    "beepboop2025-riptide-mcp-public.txt": "b30f1415ab885d7b72680d1c0c137e21fa0867d1408e6558ba3c1ce43d1d6659",
+    "beepboop2025-liquilens-evidence-carrier-public.txt": "10ead21dc3dbb0c9a40cc9b116dc7c9b8df8ca2fb5ccaa53f108f528dc0f2851",
+    "getapp-public.txt": "137cd9667f285d4db7f700f61cbaab0d3fd71cc721eb6ad1a481767e9442ce6c",
+    "g2-support-cases.txt": "b1d4cce6f62cfb7d5553f80fa5c6d11488abb7048d96c3238c54055441b80d9a",
+    "g2-description-rejected.txt": "b0739704edc6d1a3ee6cd1088e7a5231d24d6ae938c02e8daeae58b263294eea",
+    "beepboop2025-seiche-after-refresh.txt": "4845df2e960cafc4fdc820e24700de3078d9adf23f3426e8ef7f50f4767672ed",
+    "lobehub-noisefloor-score.txt": "fa0d2e9b840c03d5f1f91844d4f10b437ff71ce75fbd5b6a1f03a16170f73c64",
+    "lobehub-github-disabled.txt": "fbfa2964e0c72d5f7dd00350edbe434735b8842efc2b3da09b35e1ca786e3e77",
+    "lobehub-noisefloor-refresh-response.txt": "bc256291beb36819e6ae52c31485706d29a681645c7c38a1e15ce1e2937ddaf9",
+    "g2-category-controls.txt": "bf9bd2caa74df026d6d19d4331054851b0a3e8823c87c7628ab2783fb54075dd",
+    "beepboop2025-palimpsest-public.txt": "944f3dcf93596b48221c9dbbc999eb0ad44e66e9e990225f99f32fe38cbcd9d1",
+    "lobehub-seiche-refresh-response.txt": "9ca50e717762109f52238a3254dba9bf76f55d34babcc39e6f641822b6bf96dc",
+    "lobehub-liquilens-refresh-response.txt": "c0d5b34b2f8bc8218989e42b1d699131b7e4857732d47058bbcbcffb6cadb3e3",
+    "lobehub-badge-check.txt": "9dae0ce9ebf7070df447e69a1436a04b203e0457a4bb8677611d8b15059b9354",
+    "g2-description-case-00643368.txt": "a1b05c8a63fec3f82a40b06bb801d8c399871811df4d974e23957d6994f3a68c",
+    "capterra-public.txt": "6142c0d2b52cf4660d0c58f34a992d95089a4bb7cdf3f00d11201dc99890174e",
+    "beepboop2025-liquilens-mcp-after-refresh.txt": "45a18967cb7b54c46d2845b06e456a60923596fcad97f0aa5f2859a2386909bf",
+    "lobehub-seiche-before.txt": "4845df2e960cafc4fdc820e24700de3078d9adf23f3426e8ef7f50f4767672ed"
+  }
+}

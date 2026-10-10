@@ -29,9 +29,22 @@ bundle installation and user-selected evidence-root requirement; it has no
 hosted endpoint.
 
 [Inventory and per-file hashes](index.json) identify the prepared declarations.
-NoiseFloor's public card was still marked Unvalidated and displayed version
-0.1.2, while native discovery returned 0.4.0 and ten tools. The other cards'
-public metadata has not been fully revalidated in this pass.
+All seven public cards were rechecked on 10 October. Each still showed
+Unvalidated. Their displayed versions were LiquiLens 1.0.0, Seiche 1.0.0,
+Undertow 1.9.0, Palimpsest 1.0.0, Riptide 1.3.0, NoiseFloor 0.1.2 and
+Evidence Carrier 0.19.0. These directory versions are separate from the native
+versions in the table above. NoiseFloor's score was 45/100, with 2/4 required
+items recorded by LobeHub.
+
+The public Refresh Metadata control was tried once each for NoiseFloor,
+LiquiLens and Seiche. No success confirmation was observed, and no changed
+public metadata was verified. These attempts are not recorded as accepted
+publisher updates. [Current correction receipt](../g2-lobehub-repair-20261010.json).
+
+NoiseFloor also has the documented ownership badge on its public README after
+[PR 6](https://github.com/beepboop2025/noisefloor/pull/6) merged. LobeHub's
+Check Claim Status dialog showed Start Check disabled, so this did not submit
+or complete a claim. The badge route was not extended to the other repositories.
 
 ## Account steps
 
@@ -46,6 +59,11 @@ reported GitHub disconnected and an empty owned-plugin list. This is a
 provider-interface blocker, not a request for another owner approval. No card
 has been claimed or updated, and no restriction was bypassed. Retain the seven
 prepared declarations until the official ownership flow becomes available.
+
+An owner-approved support request covering all seven cards was sent to
+[support@lobehub.com](https://lobehub.com/contact) at 09:19 UTC on 10 October.
+Sent-folder readback confirms the send; delivery and a provider response remain
+unverified. See the [current correction report](../g2-lobehub-repair-20261010.md).
 
 The [publisher follow-through receipt](../publisher-completion-20261010.json)
 tracks this later account state separately from the initial preparation.

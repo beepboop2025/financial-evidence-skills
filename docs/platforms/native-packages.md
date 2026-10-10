@@ -37,13 +37,16 @@ reviewed. If your workspace cannot load unverified community packages, use the
 The public tarball matches the native-tested archive exactly. Native n8n 2.42.6
 executed one bounded bank, funding and liquidity request. Cryptographic Sigstore
 provenance verification, anonymous consumer installation and npm signature
-verification passed. **n8n Creator verification and official node-directory
-acceptance remain pending; no Creator Portal submission is claimed.** This does
-not establish n8n Cloud availability or independent-user adoption.
+verification passed. The [Creator Portal submission was received](n8n-creator-submission-20261011.json)
+after ownership verification. Automated checks passed; manual review is
+**awaiting a demo video**. n8n verification and official node-directory acceptance
+remain pending. The Approved For Publish step is not complete. This does not
+establish n8n Cloud availability or independent-user adoption.
 
 The immutable 0.1.0 package README preserves its prepublication wording, including
 the former "not yet published" statement and older release-workflow description.
-The current publication receipt above supersedes those status statements.
+The current npm publication receipt above supersedes those status statements;
+the separate Creator receipt records the later portal submission.
 The archive's bytes are unchanged. The recorded native validation is also a
 historical test; its earlier `npm_published: false` field is not the current
 registry state.

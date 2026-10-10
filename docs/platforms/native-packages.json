@@ -1,7 +1,7 @@
 {
   "schema": "financial-evidence.native-package-downloads.v2",
-  "checked_at": "2026-10-10T22:50:51.612914+00:00",
-  "scope": "Versioned automation packages with per-package provenance and current publication state. n8n 0.1.0 is published on npm; n8n Creator verification remains pending. Dify Cloud remote-debug runtime passed three bounded draft workflows; its marketplace PR remains under review. No independent adoption is established.",
+  "checked_at": "2026-10-10T23:03:58.915233+00:00",
+  "scope": "Versioned automation packages with per-package provenance and current publication state. n8n 0.1.0 is published on npm; The n8n Creator submission passed automated checks and manual review awaits a demo video; verification remains pending. Dify Cloud remote-debug runtime passed three bounded draft workflows; its marketplace PR remains under review. No independent adoption is established.",
   "packages": [
     {
       "kind": "n8n",
@@ -62,6 +62,16 @@
         "anonymous_consumer_install_passed": true,
         "native_archive_byte_match": true,
         "historical_validation_note": "The validation object above records the prepublication native test. Its npm_published=false field is historical; this npm_publication object records the later release."
+      },
+      "creator_submission": {
+        "state": "submitted_pending_review",
+        "submission_url": "https://creators.n8n.io/nodes/n8n-nodes-financial-evidence/integration",
+        "observed_at": "2026-10-10T23:03:58.915233+00:00",
+        "automated_review": "complete",
+        "receipt_url": "https://beepboop2025.github.io/financial-evidence-skills/platforms/n8n-creator-submission-20261011.json",
+        "n8n_verified": false,
+        "marketplace_published": false,
+        "manual_review": "awaiting_demo_video"
       }
     },
     {

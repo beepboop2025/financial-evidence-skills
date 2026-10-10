@@ -1,0 +1,41 @@
+name: Flowise native acceptance
+
+on:
+  pull_request:
+    paths: ['integrations/flowise/**', '.github/workflows/flowise-native-acceptance.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  saved-agentflows:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '24.14.0'
+      - name: Check receipt assertions
+        run: python3 -m unittest discover -s integrations/flowise -p 'test_*.py' -v
+      - name: Install isolated pinned Flowise OSS runtime
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: 'true'
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+        run: npm install --prefix "$RUNNER_TEMP/flowise-runtime" --omit=optional --no-audit --no-fund --save-exact flowise@3.1.4
+      - name: Save, read back and execute native research Agentflows
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: python3 integrations/flowise/native_acceptance.py --runtime-dir "$RUNNER_TEMP/flowise-runtime" --evidence-dir "$RUNNER_TEMP/flowise-evidence" --generated-candidate
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: flowise-native-${{ github.sha }}
+          # No credentials, database, cookies, raw API results or logs are uploaded.
+          path: |
+            ${{ runner.temp }}/flowise-evidence/public/native-proof.json
+            ${{ runner.temp }}/flowise-evidence/public/financial-evidence-flowise-*.json
+          if-no-files-found: error

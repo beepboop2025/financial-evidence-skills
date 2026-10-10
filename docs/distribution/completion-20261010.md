@@ -1,9 +1,10 @@
 # Distribution completion pass — 10 October 2026
 
-Two more free submissions were received: LiquiLens on AlternativeTo and
-Financial Evidence in Cline's MCP marketplace. Together with the
-[earlier expansion](wide-distribution-20261010.md), this is **11 submission
-operations requesting 12 product placements across nine destinations**.
+Three more free submissions were received: LiquiLens on AlternativeTo,
+Financial Evidence in Cline's MCP marketplace and the Financial Evidence
+Research Desk on SourceForge. Together with the
+[earlier expansion](wide-distribution-20261010.md), this is **12 submission
+operations requesting 13 product placements across ten destinations**.
 The requested new listings remain in review. Paid placement spend was **₹0**.
 
 This report records the work that can be completed by the publisher and the
@@ -15,6 +16,7 @@ new users, retention, revenue or complete distribution coverage.
 | Destination | Work completed | Current result |
 | --- | --- | --- |
 | AlternativeTo | Verified the existing account email; submitted LiquiLens with official logo, genuine research screenshot, free public access, company details and OpenBB Terminal as a relevant alternative | Submission `824b49e3-8bc3-49df-9a2f-93e2066b332b` acknowledged. The product is visible only to its owner while awaiting moderation. Optional paid priority declined. |
+| SourceForge | Recovered the previously authorized Research Desk draft after reconciling the old session and receipt history; attached the official logo and corrected its no-URLs description rule | Request Received; the Financial Research application is pending review. No paid package selected. |
 | [Cline MCP marketplace](https://github.com/cline/mcp-marketplace/issues/2903) | Registered the endpoint using Cline 3.0.70, verified the native MCP client connection, discovered all three router tools and successfully called the topics tool; submitted with accurate install attestations | Issue 2903 open for review. No paid model was used and no end-user chat workflow is claimed. |
 | [Cline installation guide](https://github.com/beepboop2025/financial-evidence-skills/blob/main/llms-install.md) | Updated the public install pin to 0.1.7 and added the tested Cline remote configuration | [PR 96](https://github.com/beepboop2025/financial-evidence-skills/pull/96) merged after all 18 checks passed; served main-branch guide matched the source bytes. |
 | [AllMCPs Financial Evidence](https://allmcps.com/mcp/financial-evidence) | Submitted its canonical remote endpoint, MIT license, current description and verified Cline compatibility; preserved the versioned wheel configuration | Edit pending. Public propagation and AllMCPs' own sandbox verification remain unproved. |
@@ -70,11 +72,11 @@ not be attributed to this fleet.
 | PulseMCP | Intake and edits are paused externally; existing Official MCP Registry publication remains the supported ingestion route. |
 | StackShare | The form explicitly denied bot access. No retry or bypass was attempted. |
 | ToolHive | Native validation still needs an available container runtime. The prior catalog validation does not prove native startup. |
-| SourceForge | The prior draft belongs to a separate concurrent session; its latest outcome is unverified here and no duplicate was created. |
 | AWS and Gumloop | AWS remains paused by the owner. Gumloop's paid trial remains declined. |
 
-The [product ledger](../marketplaces.json) retains 112 product/channel records
-with per-entry observation dates. These are records, not 112 unique platforms.
+The [product ledger](../marketplaces.json) retains 113 product/channel records
+with per-entry observation dates. These are records, not 113 unique platforms.
 The [sanitized completion receipt](completion-20261010.json) records counts,
 artifact identities and remaining gates. Earlier dated reports are historical;
-this report supersedes their completed email, upload and Cline-validation steps.
+this report supersedes their completed email, upload and Cline-validation steps,
+including the former SourceForge upload and session-ownership hold.

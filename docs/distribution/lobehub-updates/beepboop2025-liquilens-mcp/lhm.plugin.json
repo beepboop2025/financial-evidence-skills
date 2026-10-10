@@ -1,0 +1,719 @@
+{
+  "cloudEndpoint": "https://api.liquilens.in/mcp",
+  "description": "Free bank-filing and counterparty research; cited evidence limits; public MCP needs no API key.",
+  "homepage": "https://liquilens.in",
+  "identifier": "beepboop2025-liquilens-mcp",
+  "name": "LiquiLens Failure Radar",
+  "prompts": [
+    {
+      "name": "bank_asset_quality_brief",
+      "title": "Bank asset-quality brief",
+      "description": "Review NPA movements and capital scope using cited bank filings.",
+      "arguments": [
+        {
+          "name": "institution",
+          "description": "Bank name or exact coverage slug",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "crypto_liquidity_briefing",
+      "title": "Crypto liquidity briefing",
+      "description": "BTC/ETH regime, stablecoin rails and disclosed bank links in one display-only evidence pack.",
+      "arguments": []
+    },
+    {
+      "name": "failure_radar_briefing",
+      "title": "Failure-radar briefing",
+      "description": "The board-level read: which institutions sit hottest on the radar today, with transmission context from the US boards.",
+      "arguments": []
+    },
+    {
+      "name": "institution_health_check",
+      "title": "Institution health check",
+      "description": "Failure-radar read on one bank, NBFC or microlender, with the historical-evidence boundary and the honest uncertainty attached.",
+      "arguments": [
+        {
+          "name": "institution",
+          "description": "Institution name (e.g. 'Yes Bank', 'SVB'). failure_radar_board lists the scored Indian slugs and evidence_us covers the US names; universe_search is the RBI NBFC register only.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "stress_evidence_pack",
+      "title": "Stress evidence pack for a region",
+      "description": "The evidence layer for one region (india, us, europe, markets): what the radar sees and where each series comes from.",
+      "arguments": [
+        {
+          "name": "region",
+          "description": "One of: india, us, europe, markets.",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "resources": [],
+  "tools": [
+    {
+      "name": "bank_asset_quality_review",
+      "title": "NPA, SFB and cooperative-bank review",
+      "description": "Cited NPA changes, PCR definitions and capital scope for banks/SFBs/UCBs. No score, credit or execution authority.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string"
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "description": "End-of-day cutoff; not future."
+          },
+          "include_history": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "slug"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "NPA, SFB and cooperative-bank review",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "bank_npa_reconciliation",
+      "title": "Reconcile a disclosed NPA movement",
+      "description": "Reconcile supplied NPA movements; keep recoveries/write-offs/sales/upgrades distinct. Arithmetic, not input authentication.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "statement": {
+            "type": "object",
+            "properties": {
+              "period_start": {
+                "type": "string",
+                "format": "date"
+              },
+              "period_end": {
+                "type": "string",
+                "format": "date"
+              },
+              "amount_unit": {
+                "type": "string",
+                "enum": [
+                  "INR_crore",
+                  "INR_lakh",
+                  "INR",
+                  "INR_thousand"
+                ]
+              },
+              "opening_gnpa": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1000000000000000000
+              },
+              "additions": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1000000000000000000
+              },
+              "closing_gnpa": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1000000000000000000
+              },
+              "rounding_decimals": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 6
+              },
+              "complete": {
+                "type": "boolean"
+              },
+              "reductions": {
+                "type": "array",
+                "maxItems": 16,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "cash_recoveries",
+                        "upgrades",
+                        "write_offs",
+                        "asset_sales",
+                        "compromise_settlements",
+                        "combined_reductions",
+                        "other_reductions"
+                      ]
+                    },
+                    "amount": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1000000000000000000
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "amount"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "period_start",
+              "period_end",
+              "amount_unit",
+              "opening_gnpa",
+              "additions",
+              "closing_gnpa",
+              "reductions",
+              "complete",
+              "rounding_decimals"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "statement"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Reconcile a disclosed NPA movement",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "banking_specialisation_coverage",
+      "title": "Indian banking evidence coverage",
+      "description": "Bank/SFB/UCB coverage with stale and missing evidence. Research, not a census or rating.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sector": {
+            "type": "string",
+            "enum": [
+              "all",
+              "bank",
+              "sfb",
+              "ucb"
+            ]
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date",
+            "description": "End-of-day cutoff; not future."
+          }
+        },
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Indian banking evidence coverage",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "corporate_transmission_board",
+      "title": "Corporate Transmission board (US)",
+      "description": "Answers ONE question: is US funding stress reaching nonfinancial firms? Use household_credit_board for households. CP, bank credit lines and real-economy confirmation; cannot_see preserves gaps. Seiche context never enters regime or transmission. Display-only; no institution score or tier. full:true adds methods.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "full": {
+            "type": "boolean",
+            "description": "also return method_note, thresholds and per-leg basis prose (larger payload); default false",
+            "default": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Corporate Transmission board (US)",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "crypto_exposure_board",
+      "title": "Bank/crypto exposure register",
+      "description": "Read the compact cited bank/crypto exposure register: disclosed quantum, stablecoin and venue links, exposure channels, Undertow run-risk cross-read and compound flags. Detailed disclosures stay on the public REST detail route. Takes no arguments; display-only, never an institution score or investment advice.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Bank/crypto exposure register",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "crypto_regime_board",
+      "title": "Crypto Regime board (BTC/ETH)",
+      "description": "Read the compact BTC/ETH Crypto Regime board: current change-point state, log-SR statistic, last shift, observation count and the display-only cross-read against disclosed bank exposure. Time-series paths stay on the public REST detail route. Takes no arguments; feeds no institution score and is not investment advice.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Crypto Regime board (BTC/ETH)",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "evidence_europe",
+      "title": "Historical evidence: European named case files",
+      "description": "Read seven cited European retrospective case files through unrecalibrated Indian lenses. Named case studies, not a cohort: no European recall percentage to quote. Omit slug for summaries, or supply a returned slug for a full quarterly case file.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "optional kebab-case case-file slug, e.g. 'credit-suisse'; omit for all seven summaries"
+          }
+        },
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Historical evidence: European named case files",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "evidence_india",
+      "title": "Historical diagnostic: India construction-PIT replay",
+      "description": "Read the 48-institution Indian construction-PIT crisis diagnostic, including misses and false alarms. Uses publication clocks where present and a +60-day filing-lag proxy otherwise; overwritten amendments are unreconstructable. evidence_institution returns a full replay.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Historical diagnostic: India construction-PIT replay",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "evidence_institution",
+      "title": "Historical diagnostic: one Indian case replay",
+      "description": "Read a sourced Indian construction-PIT quarterly replay, lens alert timing and hit/miss/false-alarm verdict. Use evidence_india for exact slugs. Filing-availability proxies do not establish a validated backtest.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "kebab-case slug of a replayed institution, e.g. 'dhfl' or 'global-trust-bank'"
+          }
+        },
+        "required": [
+          "slug"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Historical diagnostic: one Indian case replay",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "evidence_markets",
+      "title": "Historical evidence status: all markets",
+      "description": "Historical evidence: India (48-institution construction-PIT diagnostic), US (industry-wide current-amended vintage), Europe (named cases, no cohort claim). Start here, then evidence_india, evidence_us or evidence_europe for details.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Historical evidence status: all markets",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "evidence_us",
+      "title": "Historical diagnostic: US construction-PIT watchlist",
+      "description": "Read US bank current-amended-vintage diagnostics and named replays, including misses. Not a validated point-in-time backtest. Report the quarterly top-decile budgeted watchlist beside recall, uncertainty and lead times; it is not an individual-bank verdict. include_trajectories:true adds histories.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "include_trajectories": {
+            "type": "boolean",
+            "description": "also return per-quarter score series for the marquee replays (large payload); default false",
+            "default": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Historical diagnostic: US construction-PIT watchlist",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "failure_radar_board",
+      "title": "Failure Radar board (India)",
+      "description": "Vetted Indian lender PDs, PCA/SAF and funding. market_dd requires tier authority; diagnostic clocks/refusals stay in market_dd_evidence. Slugs for failure_radar_institution. Research, not a rating.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Failure Radar board (India)",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "failure_radar_institution",
+      "title": "Failure Radar institution dossier",
+      "description": "Read one Indian lender dossier: quarterly PDs and drivers, PCA/SAF headroom, funding, forensic and listed-market evidence. Discover slugs with failure_radar_board. Uncovered institutions remain absent, never scored from memory.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "kebab-case institution slug from a failure_radar_board row, e.g. 'esaf-sfb'"
+          }
+        },
+        "required": [
+          "slug"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Failure Radar institution dossier",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "forward_odds",
+      "title": "Markov forward odds per layer",
+      "description": "Read counted Markov transitions and empirical 5/20-day reach odds. Odds are withheld until 60 observed days; counts stay visible and absence is never precision. Historical frequencies are not calibrated forecasts. Display-only, never a state driver.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Markov forward odds per layer",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "household_credit_board",
+      "title": "Household Credit board (US)",
+      "description": "Answers ONE question: is stress reaching US household credit? Use corporate_transmission_board for firms. Delinquency, charge-offs, revolving credit and unscored debt-service context; gaps stay in cannot_see. Display-only; no institution score or watchlist tier. full:true adds methods and histories.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "full": {
+            "type": "boolean",
+            "description": "also return method_note, thresholds, labels and full sparklines (larger payload); default false",
+            "default": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Household Credit board (US)",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "institution_evidence_monitor",
+      "title": "Institution evidence monitor",
+      "description": "Bank/NBFC evidence, gaps and review alerts. slug: one record; slugs: watchlist; neither: all tracked. End-of-day as_of. No scoring or delivery authority.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date"
+          },
+          "include_history": {
+            "type": "boolean",
+            "default": false
+          },
+          "slugs": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "maxLength": 100
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Institution evidence monitor",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "institution_research_coverage",
+      "title": "Institution coverage",
+      "description": "Search Indian dossiers or RBI rows. Overlapping populations; registry presence grants no financial coverage or score.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "scope": {
+            "type": "string",
+            "enum": [
+              "dossiers",
+              "rbi_registry"
+            ]
+          },
+          "q": {
+            "type": "string",
+            "maxLength": 150
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 500
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100000
+          }
+        },
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Institution coverage",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "institution_review_packet",
+      "title": "Institution review packet (India)",
+      "description": "Cited human review packet for an exact slug or unique normalized full name. No fuzzy match or new score; stale/dark gaps retained. Content hash detects alteration, not attestation or publication-time proof.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "institution": {
+            "type": "string",
+            "description": "exact Failure Radar slug or full institution name"
+          }
+        },
+        "required": [
+          "institution"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Institution review packet (India)",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "latest_article",
+      "title": "Latest evidence-led article",
+      "description": "Read today's exact full-text LiquiLens editorial: current institution-risk analysis when the evidence moved, or a labelled historical replay when it did not. Returns the canonical headline, dek, Markdown, evidence clock and passing publication receipt; quote it without regenerating facts.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Latest evidence-led article",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "rbi_supervisory_tape",
+      "title": "RBI supervisory tape",
+      "description": "Read the latest RBI enforcement and supervisory actions — monetary penalties, licence cancellations and supervisory directions — parsed from rbi.org.in press releases, newest first, each item carrying the RBI's own source URL. Takes no arguments. When no tape snapshot exists on the deployment, says so in a stated note instead of returning silent emptiness.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "RBI supervisory tape",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "research_network",
+      "title": "research_network",
+      "description": "Route to Palimpsest sources, Seiche funding, Undertow exit liquidity and NarcoScope data. Set limit for full metadata. Rights remain attached; no identity, score or eligibility changes.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string",
+            "enum": [
+              "all",
+              "china",
+              "regions",
+              "information_controls",
+              "model_evaluations",
+              "funding",
+              "institutions",
+              "liquidity",
+              "global_data"
+            ],
+            "default": "all"
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000,
+            "default": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 25,
+            "default": 2
+          }
+        },
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "research_network",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "stablecoin_rails_board",
+      "title": "Stablecoin Rails board",
+      "description": "Issuer pegs, redemption runs, chain liabilities, coverage-gated reserves and exits, concentration and tripwires. Full receipts on REST. Partial evidence never makes the oracle CALM; separate peg/run compatibility alerts remain. No arguments; not investment advice.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Stablecoin Rails board",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "universe_search",
+      "title": "RBI NBFC register search",
+      "description": "Search the RBI NBFC register by name/CIN substring, classification or regulation layer. Returns official register rows. Supply q or a filter; a filter without q browses that slice. Registration does not establish creditworthiness.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "q": {
+            "type": "string",
+            "description": "case-insensitive substring of the registered name or CIN"
+          },
+          "classification": {
+            "type": "string",
+            "description": "exact RBI classification as it appears in the register, e.g. 'MFI' or 'HFC'"
+          },
+          "layer": {
+            "type": "string",
+            "enum": [
+              "Upper",
+              "Middle",
+              "Base"
+            ],
+            "description": "Scale Based Regulation layer filter"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 50,
+            "description": "maximum rows to return (default 20, capped at 50)",
+            "default": 20
+          }
+        },
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "RBI NBFC register search",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "verify_published_record",
+      "title": "Verify the published record",
+      "description": "Verify a ledger stream by recomputing hash-chain commitments and checking enabled signatures and anchors. Returns the actual verifier verdict, including failures. Verifies record integrity, not economic accuracy.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "stream": {
+            "type": "string",
+            "description": "ledger stream name to verify (default 'mfi_watchlist')",
+            "default": "mfi_watchlist"
+          }
+        },
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Verify the published record",
+        "readOnlyHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    }
+  ],
+  "version": "1.8.1"
+}

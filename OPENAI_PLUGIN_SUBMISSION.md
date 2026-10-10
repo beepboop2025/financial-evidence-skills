@@ -1,11 +1,24 @@
 # OpenAI public plugin submission packet
 
 Status: the form copy and local assets are prepared in the repository. The
-v0.1.5 public logo and release URL are independently verified from the signed
+v0.1.7 public logo and release URL are independently verified from the signed
 release.
 The account owner must still record the required cross-platform demo, complete
 identity and domain verification, and enter the materials in the portal. The
 plugin has not been submitted, approved, listed, or published by OpenAI.
+
+On 10 October 2026 the signed-in portal required verified publisher identity
+before enabling even a draft upload. Neither available organization showed
+completed verification. Business verification must be completed by the account
+owner for LIQUILENS PRIVATE LIMITED before the remaining portal steps can run.
+
+The minimal [v0.1.7 upload ZIP](docs/distribution/downloads/financial-evidence-openai-plugin-v0.1.7.zip)
+is ready. It contains eight public files copied byte-for-byte from release
+commit `286e86bcc011dbc8c1108fcbda8505f6c40e2283`: the plugin and MCP manifests,
+skill, retrieval helper, routing reference, two logos and MIT license. The
+[file inventory and checksums](docs/distribution/downloads/financial-evidence-openai-plugin-v0.1.7.json)
+record the exact contents. ZIP SHA-256:
+`3fdce4c151874309ffbffcc414fa33415be485415be3cf917079164dbded4ab5`.
 
 ## Public listing
 
@@ -15,9 +28,11 @@ plugin has not been submitted, approved, listed, or published by OpenAI.
 - Short description: Read-only financial evidence
 - Long description: Route sourced research across LiquiLens, Undertow, Seiche,
   and Palimpsest for money markets, capital markets, China economy, covered bank
-  risk, and market liquidity without flattening evidence into one score.
+  risk, market liquidity, GIFT City, forex and gold without flattening evidence
+  into one score.
 - Logo upload: `assets/logo-400.png` (400 by 400 PNG)
-- Public logo: https://raw.githubusercontent.com/beepboop2025/financial-evidence-skills/v0.1.5/assets/logo-400.png
+- Public logo: https://raw.githubusercontent.com/beepboop2025/financial-evidence-skills/v0.1.7/assets/logo-400.png
+- Release: https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.7
 - Website: https://beepboop2025.github.io/financial-evidence-skills/
 - Support: https://beepboop2025.github.io/financial-evidence-skills/support/
 - Privacy: https://beepboop2025.github.io/financial-evidence-skills/privacy/
@@ -46,8 +61,8 @@ permission.
 
 ## Release notes
 
-Initial submission, plugin version 0.1.5. Financial Evidence adds a read-only
-Agent Skill and Universal MCP route over five deterministic topics and four
+Initial submission, plugin version 0.1.7. Financial Evidence adds a read-only
+Agent Skill and Universal MCP route over eight deterministic topics and four
 public products. The three tools list topics, explain routing, or retrieve up
 to five topics while retaining source URLs, retrieval clocks, hashes, and
 explicit unavailable states. Packet status is transport-only; evidence
@@ -185,11 +200,11 @@ context. Reviewers can run them against the public Universal MCP endpoint.
 ## Account-owned publication gates
 
 Before a public-directory submission, the OpenAI account owner must have Apps
-Management write access, complete publisher identity verification, confirm the
-portal's country/region selections, and install the exact portal-issued token at
-`https://liquilens.in/.well-known/openai-apps-challenge`. The owner must then
-verify the publisher domain, create the portal draft, enter these materials,
-scan the server and imported
+Management write access and complete publisher identity verification. Then
+upload the prepared ZIP to create the portal draft, confirm the portal's
+country/region selections, and install the exact portal-issued token at
+`https://liquilens.in/.well-known/openai-apps-challenge`. Verify the publisher
+domain, enter these materials, scan the server and imported
 skill, record and host the required demo across supported platforms, enter the
 nine annotation justifications, run the five positive and three negative tests,
 complete the policy attestations, submit for review, and manually publish after

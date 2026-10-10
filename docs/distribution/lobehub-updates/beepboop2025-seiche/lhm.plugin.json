@@ -1,0 +1,2818 @@
+{
+  "cloudEndpoint": "https://api.seiche.info/mcp",
+  "description": "Money, FX, capital-market and metadata-only China macro evidence with source clocks and limits.",
+  "homepage": "https://seiche.info",
+  "identifier": "beepboop2025-seiche",
+  "name": "Seiche — funding-stress terminal",
+  "prompts": [
+    {
+      "name": "is_now_dangerous",
+      "title": "Is now a dangerous moment in money markets?",
+      "description": "A direct, evidence-backed answer on whether current funding conditions are dangerous, with the honest track record attached.",
+      "arguments": []
+    },
+    {
+      "name": "money_market_deep_dive",
+      "title": "Deep dive into the USD money-market desk",
+      "description": "A granular but bounded read of overnight rates, secured and unsecured funding, bills, official liquidity buffers, and MMF repo plumbing.",
+      "arguments": []
+    },
+    {
+      "name": "world_markets_briefing",
+      "title": "Brief money, FX and capital markets",
+      "description": "A broad, source-clock-aware financial-market briefing with explicit coverage boundaries.",
+      "arguments": []
+    },
+    {
+      "name": "cross_market_cash_pressure",
+      "title": "Trace oil, FX and material pressure into funding",
+      "description": "A context-first cross-market read that keeps observed funding stress, holdout-tested associations and scenario arithmetic separate.",
+      "arguments": []
+    }
+  ],
+  "resources": [],
+  "tools": [
+    {
+      "name": "gift_city_context",
+      "title": "GIFT City and India–UAE funding desk",
+      "description": "Read dated USD/INR funding, separate ECB and CBUAE VAT FX references, and CFTC COMEX gold positioning. Cache-only research with source clocks; no executable prices or regulatory eligibility determination.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "description": "False for a tool failure."
+          },
+          "status": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "schema": {
+            "type": "string"
+          },
+          "generated_at": {
+            "type": "string"
+          },
+          "context_only": {
+            "type": "boolean"
+          },
+          "funding": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "forex": {
+            "type": "object"
+          },
+          "gold": {
+            "type": "object"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "methodology": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "eligibility": {
+            "type": "object"
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "description": "Dated India–UAE funding, FX and gold evidence.",
+        "anyOf": [
+          {
+            "required": [
+              "schema",
+              "status",
+              "generated_at",
+              "context_only",
+              "funding",
+              "forex",
+              "gold",
+              "sources",
+              "methodology",
+              "eligibility"
+            ],
+            "properties": {
+              "schema": {
+                "const": "seiche.gift-city.v1"
+              },
+              "context_only": {
+                "const": true
+              }
+            }
+          },
+          {
+            "required": [
+              "ok",
+              "status",
+              "category",
+              "reason"
+            ],
+            "properties": {
+              "ok": {
+                "const": false
+              },
+              "status": {
+                "const": "FAILED"
+              }
+            }
+          }
+        ],
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "GIFT City and India–UAE funding desk",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "gold_inventory_carry",
+      "title": "Gold inventory financing scenario",
+      "description": "Calculate fine gold, simple financing cost and INR per fine gram from explicit decimal-string assumptions. All inputs are caller supplied, no quote is verified, and inputs are not persisted.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "quantity_kg": {
+            "type": "string",
+            "pattern": "^[0-9]{1,12}(\\.[0-9]{1,12})?$",
+            "maxLength": 25
+          },
+          "fineness": {
+            "type": "string",
+            "pattern": "^[0-9]{1,12}(\\.[0-9]{1,12})?$",
+            "maxLength": 25
+          },
+          "price_usd_per_oz": {
+            "type": "string",
+            "pattern": "^[0-9]{1,12}(\\.[0-9]{1,12})?$",
+            "maxLength": 25
+          },
+          "annual_rate_pct": {
+            "type": "string",
+            "pattern": "^[0-9]{1,12}(\\.[0-9]{1,12})?$",
+            "maxLength": 25
+          },
+          "fx_inr_per_usd": {
+            "type": "string",
+            "pattern": "^[0-9]{1,12}(\\.[0-9]{1,12})?$",
+            "maxLength": 25
+          },
+          "fees_usd": {
+            "type": "string",
+            "pattern": "^[0-9]{1,12}(\\.[0-9]{1,12})?$",
+            "maxLength": 25
+          },
+          "days": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3660
+          },
+          "day_count": {
+            "type": "integer",
+            "enum": [
+              360,
+              365
+            ],
+            "default": 360
+          }
+        },
+        "required": [
+          "quantity_kg",
+          "fineness",
+          "price_usd_per_oz",
+          "annual_rate_pct",
+          "fx_inr_per_usd",
+          "fees_usd",
+          "days"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "description": "False for a tool failure."
+          },
+          "status": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "schema": {
+            "type": "string"
+          },
+          "context_only": {
+            "type": "boolean"
+          },
+          "inputs": {
+            "type": "object"
+          },
+          "outputs": {
+            "type": "object"
+          },
+          "assumptions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "eligibility": {
+            "type": "object"
+          },
+          "persisted": {
+            "type": "boolean"
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "description": "Explicit caller-assumption gold financing scenario.",
+        "anyOf": [
+          {
+            "required": [
+              "schema",
+              "status",
+              "context_only",
+              "inputs",
+              "outputs",
+              "assumptions",
+              "eligibility",
+              "persisted"
+            ],
+            "properties": {
+              "schema": {
+                "const": "seiche.gold-carry.v1"
+              },
+              "status": {
+                "const": "scenario"
+              },
+              "context_only": {
+                "const": true
+              },
+              "persisted": {
+                "const": false
+              }
+            }
+          },
+          {
+            "required": [
+              "ok",
+              "status",
+              "category",
+              "reason"
+            ],
+            "properties": {
+              "ok": {
+                "const": false
+              },
+              "status": {
+                "const": "FAILED"
+              }
+            }
+          }
+        ],
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Gold inventory financing scenario",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "market_workbench",
+      "title": "Structured money-market, forex and China research",
+      "description": "Read cached official FX reference histories and same-date currency crosses, with native units, provenance, age and observed-interval changes. Inspect owner-accepted Palimpsest China annual economic series and revision-aware history beside the CNY reference. Daily fixings, annual context and licensed gaps remain distinct. No collection, model fitting, executable quotes or scoring.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "type": "string",
+            "enum": [
+              "h10",
+              "ecb"
+            ],
+            "default": "h10"
+          },
+          "base": {
+            "type": "string",
+            "enum": [
+              "AUD",
+              "BRL",
+              "CAD",
+              "CHF",
+              "CNY",
+              "CZK",
+              "DKK",
+              "EUR",
+              "GBP",
+              "HKD",
+              "HUF",
+              "IDR",
+              "ILS",
+              "INR",
+              "ISK",
+              "JPY",
+              "KRW",
+              "LKR",
+              "MXN",
+              "MYR",
+              "NOK",
+              "NZD",
+              "PHP",
+              "PLN",
+              "RON",
+              "SEK",
+              "SGD",
+              "THB",
+              "TRY",
+              "TWD",
+              "USD",
+              "ZAR"
+            ],
+            "default": "USD"
+          },
+          "quote": {
+            "type": "string",
+            "enum": [
+              "AUD",
+              "BRL",
+              "CAD",
+              "CHF",
+              "CNY",
+              "CZK",
+              "DKK",
+              "EUR",
+              "GBP",
+              "HKD",
+              "HUF",
+              "IDR",
+              "ILS",
+              "INR",
+              "ISK",
+              "JPY",
+              "KRW",
+              "LKR",
+              "MXN",
+              "MYR",
+              "NOK",
+              "NZD",
+              "PHP",
+              "PLN",
+              "RON",
+              "SEK",
+              "SGD",
+              "THB",
+              "TRY",
+              "TWD",
+              "USD",
+              "ZAR"
+            ],
+            "default": "CNY"
+          },
+          "days": {
+            "type": "integer",
+            "minimum": 30,
+            "maximum": 3650,
+            "default": 365
+          },
+          "china_series": {
+            "type": "string",
+            "maxLength": 120
+          }
+        },
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "description": "False for a tool failure."
+          },
+          "status": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "schema": {
+            "type": "string"
+          },
+          "generated_at": {
+            "type": "string"
+          },
+          "context_only": {
+            "type": "boolean"
+          },
+          "selection": {
+            "type": "object"
+          },
+          "forex": {
+            "type": "object"
+          },
+          "china": {
+            "type": "object"
+          },
+          "money_markets": {
+            "type": "object"
+          },
+          "eligibility": {
+            "type": "object"
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "description": "Dated reference FX history and accepted annual China structural evidence.",
+        "anyOf": [
+          {
+            "required": [
+              "schema",
+              "status",
+              "generated_at",
+              "context_only",
+              "selection",
+              "forex",
+              "china",
+              "money_markets",
+              "eligibility"
+            ],
+            "properties": {
+              "schema": {
+                "const": "seiche.market-workbench.v1"
+              },
+              "context_only": {
+                "const": true
+              }
+            }
+          },
+          {
+            "required": [
+              "ok",
+              "status",
+              "category",
+              "reason"
+            ],
+            "properties": {
+              "ok": {
+                "const": false
+              },
+              "status": {
+                "const": "FAILED"
+              }
+            }
+          }
+        ],
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Structured money-market, forex and China research",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "research_network",
+      "title": "Connected evidence across Palimpsest, Seiche and the product family",
+      "description": "Explore every Palimpsest dataset by topic, with source clocks, rights, freshness and pagination. Includes Seiche's separately completed funding context and explicit research steps into institution filings, exit liquidity and NarcoScope's granular global data. Source metadata and funding interpretations stay distinct. No source collection, score changes, causal joins or trading authority.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string",
+            "enum": [
+              "all",
+              "china",
+              "regions",
+              "information_controls",
+              "model_evaluations",
+              "funding",
+              "institutions",
+              "liquidity",
+              "global_data"
+            ],
+            "default": "all"
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000,
+            "default": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 25,
+            "default": 12
+          }
+        },
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "description": "False for a tool failure."
+          },
+          "status": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "schema": {
+            "type": "string"
+          },
+          "context_only": {
+            "type": "boolean"
+          },
+          "selection": {
+            "type": "object"
+          },
+          "datasets": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "source": {
+            "type": "object"
+          },
+          "next_steps": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "funding_context": {
+            "type": "object"
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "description": "Paginated source catalog and separate completed funding context.",
+        "anyOf": [
+          {
+            "required": [
+              "schema",
+              "status",
+              "context_only",
+              "selection",
+              "datasets",
+              "source",
+              "next_steps",
+              "funding_context"
+            ],
+            "properties": {
+              "schema": {
+                "const": "seiche.research-network.v1"
+              },
+              "context_only": {
+                "const": true
+              }
+            }
+          },
+          {
+            "required": [
+              "ok",
+              "status",
+              "category",
+              "reason"
+            ],
+            "properties": {
+              "ok": {
+                "const": false
+              },
+              "status": {
+                "const": "FAILED"
+              }
+            }
+          }
+        ],
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Connected evidence across Palimpsest, Seiche and the product family",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "latest_article",
+      "title": "Latest evidence-led article",
+      "description": "The exact full-text Seiche editorial published today: current funding analysis when the evidence moved, or a clearly labelled historical replay on a quiet day. Returns the canonical headline, dek, Markdown, evidence clock, generation mode and passing publication receipt. Use this for 'what did Seiche write today?' and quote it without regenerating facts.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "description": "False for a tool failure."
+          },
+          "status": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "summary": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "content_text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "date_published": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "_liquidity_lab": {
+            "type": "object"
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "description": "Canonical full-text article plus its publication-quality receipt.",
+        "anyOf": [
+          {
+            "required": [
+              "content_text",
+              "_liquidity_lab"
+            ]
+          },
+          {
+            "required": [
+              "ok",
+              "status",
+              "category",
+              "reason"
+            ],
+            "properties": {
+              "ok": {
+                "const": false
+              },
+              "status": {
+                "const": "FAILED"
+              }
+            }
+          }
+        ],
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Latest evidence-led article",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "funding_stress_now",
+      "title": "Current funding-stress read",
+      "description": "The live money-market funding-stress reading: a 0-100 composite index, the regime (CALM/EROSION/STRAIN/STRESS), per-component decomposition, the market-stress 'Tell', and any data faults. Ask this whenever an analysis touches US dollar funding, repo, reserves, the Fed's balance sheet, or liquidity conditions.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "description": "False for a tool failure."
+          },
+          "status": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "schema": {
+            "type": "string"
+          },
+          "generated_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "conclusion": {
+            "type": "object"
+          },
+          "proof": {
+            "type": "object"
+          },
+          "editorial": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "data_quality": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "delivery": {
+            "type": "object"
+          },
+          "as_of": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "headline": {
+            "type": "string"
+          },
+          "composite": {
+            "type": "object"
+          },
+          "tell": {
+            "type": "object"
+          },
+          "faults": {
+            "type": "array"
+          },
+          "version": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reading": {
+            "type": "string"
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "description": "Either the public conclusion/proof envelope or the full board read.",
+        "anyOf": [
+          {
+            "required": [
+              "schema",
+              "generated_at",
+              "conclusion",
+              "proof",
+              "delivery"
+            ],
+            "properties": {
+              "schema": {
+                "const": "seiche.public.v2"
+              }
+            }
+          },
+          {
+            "required": [
+              "as_of",
+              "headline",
+              "composite",
+              "tell",
+              "faults",
+              "version",
+              "reading"
+            ]
+          },
+          {
+            "required": [
+              "ok",
+              "status",
+              "category",
+              "reason"
+            ],
+            "properties": {
+              "ok": {
+                "const": false
+              },
+              "status": {
+                "const": "FAILED"
+              }
+            }
+          }
+        ],
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Current funding-stress read",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "trade_safety_risk_context",
+      "title": "Cache-only Seiche context for trade-safety guards",
+      "description": "A deterministic, bounded projection of the last completed Seiche board: funding regime, 0-100 stress index, coverage, source staleness counts, snapshot clock, and conservative evidence clock. It repeats the rights check and never collects, fits, calls a network source, reads a notary ledger, or contacts a broker. This is metadata-only derived context, not order-bound, non-executable, never real-money eligible, and it does not evaluate stream attestations or treat them as per-order authority.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "unavailable",
+              "FAILED"
+            ]
+          },
+          "category": {
+            "type": "string"
+          },
+          "reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "schema": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "context_only",
+              "unavailable"
+            ]
+          },
+          "evidence_class": {
+            "type": "string",
+            "enum": [
+              "derived",
+              "unavailable"
+            ]
+          },
+          "rights_status": {
+            "const": "metadata_only"
+          },
+          "context_only": {
+            "const": true
+          },
+          "executable": {
+            "const": false
+          },
+          "executable_quote": {
+            "const": false
+          },
+          "real_money_eligible": {
+            "const": false
+          },
+          "can_authorize_order": {
+            "const": false
+          },
+          "projection_mode": {
+            "const": "cache_only"
+          },
+          "request_time_collection": {
+            "const": false
+          },
+          "request_time_model_fitting": {
+            "const": false
+          },
+          "request_time_network": {
+            "const": false
+          },
+          "request_time_notary": {
+            "const": false
+          },
+          "request_time_broker": {
+            "const": false
+          },
+          "attestation_state": {
+            "const": "not_evaluated"
+          },
+          "source_url": {
+            "const": "https://api.seiche.info/api/trade-safety/risk-context"
+          },
+          "source_snapshot_version": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "regime": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "stress_index": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "coverage_pct": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "fault_count": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "staleness": {
+            "type": "object",
+            "required": [
+              "fresh",
+              "aging",
+              "stale",
+              "dead",
+              "unknown",
+              "total"
+            ],
+            "properties": {
+              "fresh": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "aging": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "stale": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "dead": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "unknown": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "total": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": false
+          },
+          "clocks": {
+            "type": "object",
+            "required": [
+              "snapshot_generated_at",
+              "evidence_as_of",
+              "evaluated_at",
+              "snapshot_age_seconds",
+              "evidence_age_seconds",
+              "all_provenance_as_of",
+              "retired_sources",
+              "basis"
+            ],
+            "properties": {
+              "snapshot_generated_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "evidence_as_of": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "all_provenance_as_of": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "retired_sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "source",
+                    "mnemonic",
+                    "as_of",
+                    "last_observation",
+                    "retired_from",
+                    "replacement",
+                    "source_url"
+                  ],
+                  "properties": {
+                    "source": {
+                      "type": "string"
+                    },
+                    "mnemonic": {
+                      "type": "string"
+                    },
+                    "as_of": {
+                      "type": "string"
+                    },
+                    "last_observation": {
+                      "type": "string"
+                    },
+                    "retired_from": {
+                      "type": "string"
+                    },
+                    "replacement": {
+                      "type": "string"
+                    },
+                    "source_url": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "evaluated_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "snapshot_age_seconds": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "evidence_age_seconds": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "basis": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "attestation": {
+            "type": "object",
+            "required": [
+              "status",
+              "ed25519_status",
+              "ots_status",
+              "bitcoin_anchor_claimed",
+              "ledger_read",
+              "reason",
+              "disclosure"
+            ],
+            "properties": {
+              "status": {
+                "const": "not_evaluated"
+              },
+              "ed25519_status": {
+                "const": "not_evaluated"
+              },
+              "ots_status": {
+                "const": "not_evaluated"
+              },
+              "bitcoin_anchor_claimed": {
+                "const": false
+              },
+              "ledger_read": {
+                "const": false
+              },
+              "reason": {
+                "const": "attestation_ledger_not_evaluated_by_this_projection"
+              },
+              "disclosure": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "limitations": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "disclaimer": {
+            "type": "string"
+          },
+          "projection_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "canonicalization": {
+            "const": "python-json-sort-keys-utf8-no-nan-server-internal-v1"
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "description": "Cache-only Seiche risk context with fail-closed execution boundaries.",
+        "anyOf": [
+          {
+            "required": [
+              "ok",
+              "schema",
+              "status",
+              "reason",
+              "state",
+              "evidence_class",
+              "rights_status",
+              "context_only",
+              "executable",
+              "executable_quote",
+              "real_money_eligible",
+              "can_authorize_order",
+              "projection_mode",
+              "request_time_collection",
+              "request_time_model_fitting",
+              "request_time_network",
+              "request_time_notary",
+              "request_time_broker",
+              "attestation_state",
+              "source_url",
+              "source_snapshot_version",
+              "regime",
+              "stress_index",
+              "coverage_pct",
+              "fault_count",
+              "staleness",
+              "clocks",
+              "attestation",
+              "limitations",
+              "disclaimer",
+              "projection_sha256",
+              "canonicalization"
+            ],
+            "properties": {
+              "ok": {
+                "const": true
+              },
+              "schema": {
+                "const": "seiche.risk-context.v1"
+              },
+              "status": {
+                "const": "available"
+              },
+              "state": {
+                "const": "context_only"
+              },
+              "evidence_class": {
+                "const": "derived"
+              }
+            }
+          },
+          {
+            "required": [
+              "ok",
+              "schema",
+              "status",
+              "reason",
+              "state",
+              "evidence_class",
+              "rights_status",
+              "context_only",
+              "executable",
+              "executable_quote",
+              "real_money_eligible",
+              "can_authorize_order",
+              "projection_mode",
+              "request_time_collection",
+              "request_time_model_fitting",
+              "request_time_network",
+              "request_time_notary",
+              "request_time_broker",
+              "attestation_state",
+              "source_url",
+              "source_snapshot_version",
+              "regime",
+              "stress_index",
+              "coverage_pct",
+              "fault_count",
+              "staleness",
+              "clocks",
+              "attestation",
+              "limitations",
+              "disclaimer",
+              "projection_sha256",
+              "canonicalization"
+            ],
+            "properties": {
+              "ok": {
+                "const": false
+              },
+              "schema": {
+                "const": "seiche.risk-context.v1"
+              },
+              "status": {
+                "const": "unavailable"
+              },
+              "state": {
+                "const": "unavailable"
+              },
+              "evidence_class": {
+                "const": "unavailable"
+              }
+            }
+          },
+          {
+            "required": [
+              "ok",
+              "status",
+              "category",
+              "reason"
+            ],
+            "properties": {
+              "ok": {
+                "const": false
+              },
+              "status": {
+                "const": "FAILED"
+              }
+            }
+          }
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Cache-only Seiche context for trade-safety guards",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "money_market_context",
+      "title": "USD, India and country funding desks",
+      "description": "Use section='countries' for the public-source country catalog, or add country='JP' (a supported ISO alpha-2 code; UK is an alias for GB) for dated policy, funding, liquidity and sovereign references. Country coverage is partial and monthly references are explicitly separate from daily curves. Granular, descriptive USD money-market context from the already assembled desk: policy corridor and overnight spreads; SOFR/TGCR/BGCR distributions and tails; repo-segment rates and volumes; CP-Treasury spreads; bills and cash curve; liquidity buffers and Fed facilities; and MMF repo plumbing. Use section='india' for the India funding, RBI liquidity, policy and sovereign-curve desk from a bounded canonical observation read. It keeps benchmark identities, date alignment, curve movements and mechanism hypotheses separate. Otherwise use optional `section` to request a compact summary, one named USD desk section, diagnostics, sources, methodology, or all context. Diagnostics count funding persistence, compare secured/unsecured benchmarks and show calendar cohorts with sample limits, without changing any score. Returns exact-date alignment, native-cadence changes, empirical own-history statistics, freshness, coverage, formulas, sources, and caveats as applicable. Chart history is always omitted. USD reads only an already completed cached or persisted snapshot; it never triggers collection or engine recomputation, while freshness is re-evaluated at response time. Context only: no causal, predictive, probability, or trade claim.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "section": {
+            "type": "string",
+            "description": "Projection to return; defaults to the compact desk summary.",
+            "enum": [
+              "summary",
+              "india",
+              "countries",
+              "diagnostics",
+              "policy_corridor",
+              "secured_distributions",
+              "repo_segments",
+              "unsecured_funding",
+              "bills_cash_curve",
+              "liquidity_buffers",
+              "mmf_plumbing",
+              "sources",
+              "methodology",
+              "all"
+            ],
+            "default": "summary"
+          },
+          "country": {
+            "type": "string",
+            "pattern": "^[A-Za-z]{2}$",
+            "description": "Country code for section=countries only. Omit to list supported countries; UK aliases GB."
+          }
+        },
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "schema": {
+            "type": "string"
+          },
+          "asof": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "snapshot_generated_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "context_only": {
+            "type": "boolean"
+          },
+          "selection": {
+            "type": "string",
+            "enum": [
+              "summary",
+              "india",
+              "countries",
+              "diagnostics",
+              "policy_corridor",
+              "secured_distributions",
+              "repo_segments",
+              "unsecured_funding",
+              "bills_cash_curve",
+              "liquidity_buffers",
+              "mmf_plumbing",
+              "sources",
+              "methodology",
+              "all"
+            ]
+          },
+          "chart_history_included": {
+            "type": "boolean"
+          },
+          "plain_language": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "quant_read": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "strongest_signal": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "countercase": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "regime": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "coverage": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "freshness": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "caveats": {
+            "type": "array"
+          },
+          "section_catalog": {
+            "type": "array"
+          },
+          "available_selectors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "summary",
+                "india",
+                "countries",
+                "diagnostics",
+                "policy_corridor",
+                "secured_distributions",
+                "repo_segments",
+                "unsecured_funding",
+                "bills_cash_curve",
+                "liquidity_buffers",
+                "mmf_plumbing",
+                "sources",
+                "methodology",
+                "all"
+              ]
+            }
+          },
+          "sections": {
+            "type": "array"
+          },
+          "source_metadata": {
+            "type": "array"
+          },
+          "sources": {
+            "type": "array"
+          },
+          "legal_notices": {
+            "type": "array"
+          },
+          "methodology": {
+            "type": "object"
+          },
+          "formulas": {
+            "type": "array"
+          },
+          "diagnostics": {
+            "type": "object"
+          },
+          "india": {
+            "type": "object"
+          },
+          "countries": {
+            "type": "object"
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "description": "Chartless USD, India and country funding envelopes for supported selectors.",
+        "anyOf": [
+          {
+            "required": [
+              "ok",
+              "schema",
+              "context_only",
+              "selection",
+              "chart_history_included",
+              "caveats",
+              "section_catalog",
+              "available_selectors"
+            ],
+            "properties": {
+              "schema": {
+                "const": "seiche.money-market-desk.v1"
+              },
+              "context_only": {
+                "const": true
+              },
+              "chart_history_included": {
+                "const": false
+              }
+            }
+          },
+          {
+            "required": [
+              "ok",
+              "status",
+              "category",
+              "reason"
+            ],
+            "properties": {
+              "ok": {
+                "const": false
+              },
+              "status": {
+                "const": "FAILED"
+              }
+            }
+          }
+        ],
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "USD, India and country funding desks",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "world_markets_context",
+      "title": "Seiche World Markets: money, FX, macro-capital and China evidence",
+      "description": "Unified, chartless context for broad financial-market questions. It projects only completed/public state into money_markets, forex, macro-capital transmission, China macro evidence, official references, methodology, or a compact summary. Every response carries snapshot/as-of clocks, canonical Seiche citation URLs, and explicit observed, derived, structural, restricted, and unavailable boundaries. The China structural catalog is unsigned; only status=restricted represents a verified Seiche owner-attested revision; both states keep NBS values, raw evidence, and history withheld. A separately operator-accepted economic_context may publish licensed World Bank WDI values with annual/structural freshness, distinct release, Palimpsest collection, and Seiche acceptance clocks. Those values are context only and never a live print, score, gauge, forecast, or signal. The sources selector is reference-only; use all when verified China context and its NBS source linkage must appear together. Coverage is curated and partial rather than exhaustive or uniformly live. It never triggers collection, repository history reads, or model fitting. Its named-field whitelist omits chart and history arrays for data minimization; that is not a per-record licensing audit. Capital coverage is limited to public positioning proxies, Treasury primary-market absorption, market stress, official liquidity and global dollar credit—not a security master, issuer-data service or consolidated tape. Use Undertow instead when the question is specifically about executable depth, liquidity-provider concentration, or position-sized exit cost.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "section": {
+            "type": "string",
+            "description": "Projection to return; defaults to the compact cross-market summary.",
+            "enum": [
+              "summary",
+              "money_markets",
+              "forex",
+              "capital_markets",
+              "china_macro",
+              "sources",
+              "methodology",
+              "all"
+            ],
+            "default": "summary"
+          }
+        },
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "observed",
+              "derived",
+              "structural",
+              "restricted",
+              "unavailable",
+              "FAILED"
+            ]
+          },
+          "category": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "schema": {
+            "type": "string"
+          },
+          "selection": {
+            "type": "string",
+            "enum": [
+              "summary",
+              "money_markets",
+              "forex",
+              "capital_markets",
+              "china_macro",
+              "sources",
+              "methodology",
+              "all"
+            ]
+          },
+          "generated_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "as_of": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "clocks": {
+            "type": "object",
+            "required": [
+              "snapshot_generated_at",
+              "evaluation_at",
+              "latest_domain_as_of",
+              "selected_evidence_as_of",
+              "domains",
+              "boundary"
+            ],
+            "properties": {
+              "snapshot_generated_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "evaluation_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "latest_domain_as_of": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "selected_evidence_as_of": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "domains": {
+                "type": "object"
+              },
+              "boundary": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          },
+          "context_only": {
+            "type": "boolean"
+          },
+          "chart_history_included": {
+            "type": "boolean"
+          },
+          "available_selectors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "summary",
+                "money_markets",
+                "forex",
+                "capital_markets",
+                "china_macro",
+                "sources",
+                "methodology",
+                "all"
+              ]
+            }
+          },
+          "canonical_urls": {
+            "type": "object",
+            "required": [
+              "world_markets",
+              "china_macro",
+              "api",
+              "mcp"
+            ],
+            "properties": {
+              "world_markets": {
+                "type": "string"
+              },
+              "china_macro": {
+                "type": "string"
+              },
+              "api": {
+                "type": "string"
+              },
+              "mcp": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          },
+          "citation": {
+            "type": "object",
+            "required": [
+              "publisher",
+              "title",
+              "canonical_url",
+              "topic_url",
+              "api_url",
+              "generated_at",
+              "evidence_as_of"
+            ],
+            "properties": {
+              "publisher": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "canonical_url": {
+                "type": "string"
+              },
+              "topic_url": {
+                "type": "string",
+                "description": "Selector-specific human citation page; china_macro routes to the dedicated China macro evidence catalog."
+              },
+              "api_url": {
+                "type": "string"
+              },
+              "generated_at": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "evidence_as_of": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": true
+          },
+          "scope": {
+            "type": "object",
+            "required": [
+              "coverage_claim",
+              "included",
+              "not_claimed"
+            ],
+            "properties": {
+              "coverage_claim": {
+                "const": "curated_partial_non_exhaustive"
+              },
+              "included": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "not_claimed": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": true
+          },
+          "coverage": {
+            "type": "object",
+            "required": [
+              "domains",
+              "available_domains",
+              "declared_domains",
+              "status_counts",
+              "boundaries"
+            ],
+            "properties": {
+              "domains": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "available_domains": {
+                "type": "integer"
+              },
+              "declared_domains": {
+                "type": "integer"
+              },
+              "status_counts": {
+                "type": "object"
+              },
+              "boundaries": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "additionalProperties": true
+          },
+          "status_definitions": {
+            "type": "object",
+            "required": [
+              "observed",
+              "derived",
+              "structural",
+              "restricted",
+              "unavailable"
+            ],
+            "properties": {
+              "observed": {
+                "type": "string"
+              },
+              "derived": {
+                "type": "string"
+              },
+              "structural": {
+                "type": "string"
+              },
+              "restricted": {
+                "type": "string"
+              },
+              "unavailable": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          },
+          "disclaimer": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "object"
+          },
+          "money_markets": {
+            "type": "object"
+          },
+          "forex": {
+            "type": "object"
+          },
+          "capital_markets": {
+            "type": "object"
+          },
+          "china_macro": {
+            "type": "object",
+            "description": "Metadata-only NBS catalog. Structural is an unsigned code-owned catalog; restricted means a Seiche owner-attested revision was verified. A separate optional economic_context contains only operator-accepted annual World Bank WDI observations and remains ineligible for scores and gauges.",
+            "required": [
+              "status",
+              "evidence_status",
+              "as_of",
+              "available",
+              "context_only",
+              "scoring_eligible",
+              "cn_cny_gauge_eligible",
+              "values_published",
+              "raw_evidence_included",
+              "history_included",
+              "series_catalog",
+              "series_count"
+            ],
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "structural",
+                  "restricted"
+                ]
+              },
+              "evidence_status": {
+                "type": "string",
+                "enum": [
+                  "unavailable",
+                  "restricted"
+                ]
+              },
+              "as_of": {
+                "const": null
+              },
+              "available": {
+                "type": "boolean"
+              },
+              "context_only": {
+                "const": true
+              },
+              "scoring_eligible": {
+                "const": false
+              },
+              "cn_cny_gauge_eligible": {
+                "const": false
+              },
+              "values_published": {
+                "const": false
+              },
+              "raw_evidence_included": {
+                "const": false
+              },
+              "history_included": {
+                "const": false
+              },
+              "series_catalog": {
+                "type": "array",
+                "minItems": 4,
+                "maxItems": 4,
+                "items": {
+                  "type": "object"
+                }
+              },
+              "series_count": {
+                "const": 4
+              },
+              "revision_id": {
+                "type": "string"
+              },
+              "knowledge_time": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "economic_context": {
+                "type": "object",
+                "required": [
+                  "schema",
+                  "status",
+                  "available",
+                  "context_only",
+                  "scoring_eligible",
+                  "cn_cny_gauge_eligible",
+                  "market_observation_eligible",
+                  "clocks",
+                  "freshness",
+                  "channel_families"
+                ],
+                "properties": {
+                  "schema": {
+                    "const": "seiche.palimpsest-china-economic-context.v1"
+                  },
+                  "status": {
+                    "const": "structural"
+                  },
+                  "available": {
+                    "const": true
+                  },
+                  "context_only": {
+                    "const": true
+                  },
+                  "scoring_eligible": {
+                    "const": false
+                  },
+                  "cn_cny_gauge_eligible": {
+                    "const": false
+                  },
+                  "market_observation_eligible": {
+                    "const": false
+                  },
+                  "clocks": {
+                    "type": "object"
+                  },
+                  "freshness": {
+                    "type": "object",
+                    "properties": {
+                      "native_cadence": {
+                        "const": "annual"
+                      },
+                      "classification": {
+                        "const": "structural"
+                      },
+                      "state": {
+                        "const": "annual_structural"
+                      }
+                    },
+                    "required": [
+                      "native_cadence",
+                      "classification",
+                      "state"
+                    ]
+                  },
+                  "channel_families": {
+                    "type": "object",
+                    "required": [
+                      "money_market",
+                      "capital_market"
+                    ]
+                  }
+                },
+                "additionalProperties": true
+              }
+            },
+            "oneOf": [
+              {
+                "properties": {
+                  "status": {
+                    "const": "structural"
+                  },
+                  "evidence_status": {
+                    "const": "unavailable"
+                  },
+                  "available": {
+                    "const": false
+                  }
+                }
+              },
+              {
+                "required": [
+                  "revision_id",
+                  "knowledge_time"
+                ],
+                "properties": {
+                  "status": {
+                    "const": "restricted"
+                  },
+                  "evidence_status": {
+                    "const": "restricted"
+                  },
+                  "available": {
+                    "const": true
+                  }
+                }
+              }
+            ],
+            "additionalProperties": true
+          },
+          "sources": {
+            "type": "array"
+          },
+          "methodology": {
+            "type": "object"
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "description": "Versioned, chartless world-markets envelope with explicit clocks, coverage, citation, scope, and evidence-status boundaries.",
+        "anyOf": [
+          {
+            "required": [
+              "ok",
+              "schema",
+              "status",
+              "selection",
+              "generated_at",
+              "as_of",
+              "clocks",
+              "context_only",
+              "chart_history_included",
+              "available_selectors",
+              "canonical_urls",
+              "citation",
+              "scope",
+              "coverage",
+              "status_definitions",
+              "disclaimer"
+            ],
+            "properties": {
+              "schema": {
+                "const": "seiche.world-markets.v1"
+              },
+              "context_only": {
+                "const": true
+              },
+              "chart_history_included": {
+                "const": false
+              }
+            }
+          },
+          {
+            "required": [
+              "ok",
+              "status",
+              "category",
+              "reason"
+            ],
+            "properties": {
+              "ok": {
+                "const": false
+              },
+              "status": {
+                "const": "FAILED"
+              }
+            }
+          }
+        ],
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Seiche World Markets: money, FX, macro-capital and China evidence",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "historical_analogs",
+      "title": "Nearest historical analogs",
+      "description": "The historical days most similar to today's funding conditions, and how often those analogs led to a stress event, plus a novelty flag for whether today has any close precedent. Use to ground a 'what usually happens from here' question in real history.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "description": "False for a tool failure."
+          },
+          "status": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "as_of": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "event_odds": {
+            "type": "object"
+          },
+          "novelty": {
+            "type": "object"
+          },
+          "hindcast_skill": {
+            "type": "object"
+          },
+          "nearest_analogs": {
+            "type": "array"
+          },
+          "forward_fan": {
+            "type": "array"
+          },
+          "horizon_bd": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "historical_evidence": {
+            "type": "object"
+          },
+          "reading": {
+            "type": "string"
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "description": "Nearest historical analogs, outcome frequencies, and evidence boundary.",
+        "anyOf": [
+          {
+            "required": [
+              "as_of",
+              "event_odds",
+              "novelty",
+              "hindcast_skill",
+              "nearest_analogs",
+              "forward_fan",
+              "horizon_bd",
+              "historical_evidence",
+              "reading"
+            ]
+          },
+          {
+            "required": [
+              "ok",
+              "status",
+              "category",
+              "reason"
+            ],
+            "properties": {
+              "ok": {
+                "const": false
+              },
+              "status": {
+                "const": "FAILED"
+              }
+            }
+          }
+        ],
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Nearest historical analogs",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "proof_backtest",
+      "title": "PROOF: the honest track record",
+      "description": "The backtest scoreboard, stated honestly: recall and precision with 95% confidence intervals over labelled funding events, an orthogonal robustness test, every named episode (hits and misses), and the caveats. Use to judge how much to trust the readings.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "description": "False for a tool failure."
+          },
+          "status": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "as_of": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "sample": {
+            "type": "object"
+          },
+          "event_capture": {
+            "type": "object"
+          },
+          "orthogonal": {
+            "type": "object"
+          },
+          "episodes": {
+            "type": "array"
+          },
+          "caveats": {
+            "type": "array"
+          },
+          "historical_evidence": {
+            "type": "object"
+          },
+          "reading": {
+            "type": "string"
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "description": "Diagnostic scoreboard, misses, caveats, and eligibility boundary.",
+        "anyOf": [
+          {
+            "required": [
+              "as_of",
+              "sample",
+              "event_capture",
+              "orthogonal",
+              "episodes",
+              "caveats",
+              "historical_evidence",
+              "reading"
+            ]
+          },
+          {
+            "required": [
+              "ok",
+              "status",
+              "category",
+              "reason"
+            ],
+            "properties": {
+              "ok": {
+                "const": false
+              },
+              "status": {
+                "const": "FAILED"
+              }
+            }
+          }
+        ],
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "PROOF: the honest track record",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "data_health",
+      "title": "Data freshness & provenance",
+      "description": "Freshness, provenance, and fault status for every underlying series (FRED, NY Fed, OFR, Treasury). Call this to confirm the board is current before relying on a reading.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "description": "False for a tool failure."
+          },
+          "status": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "generated_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "version": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "faults": {
+            "type": "array"
+          },
+          "provenance": {
+            "type": [
+              "object",
+              "array",
+              "null"
+            ]
+          },
+          "reading": {
+            "type": "string"
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "description": "Current source freshness, provenance, and fail-loud fault ledger.",
+        "anyOf": [
+          {
+            "required": [
+              "generated_at",
+              "version",
+              "faults",
+              "provenance",
+              "reading"
+            ]
+          },
+          {
+            "required": [
+              "ok",
+              "status",
+              "category",
+              "reason"
+            ],
+            "properties": {
+              "ok": {
+                "const": false
+              },
+              "status": {
+                "const": "FAILED"
+              }
+            }
+          }
+        ],
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Data freshness & provenance",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "crypto_stress_record",
+      "title": "Wrecks: crypto episodes vs the funding board",
+      "description": "Labelled crypto stress episodes (Black Thursday 2020, Terra, FTX, the SVB/USDC weekend, the Oct-2025 liquidation cascade, the Ethena unwind) replayed with causal truncation but final/current-vintage inputs against the dollar-funding board. External wrecks show transmission; crypto-native wrecks show the board correctly staying quiet. Use for any 'does TradFi funding stress reach crypto' question, grounded in the record.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "description": "False for a tool failure."
+          },
+          "status": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "reading": {
+            "type": "string"
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "description": "The stored crypto episode case table with Seiche's interpretation boundary.",
+        "anyOf": [
+          {
+            "required": [
+              "reading"
+            ]
+          },
+          {
+            "required": [
+              "ok",
+              "status",
+              "category",
+              "reason"
+            ],
+            "properties": {
+              "ok": {
+                "const": false
+              },
+              "status": {
+                "const": "FAILED"
+              }
+            }
+          }
+        ],
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Wrecks: crypto episodes vs the funding board",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "institutional_flows",
+      "title": "Institutional flows: who is positioned where",
+      "description": "Hedge-fund / pension / sovereign positioning nowcast from public prints: the Treasury basis-trade size proxy (CFTC leveraged-fund net short, with a funding-fragility flag), asset-manager duration demand, foreign-official custody flows (H.4.1), a mixed-frequency fused positioning index with uncertainty bands, and how self-exciting stress events currently are (Hawkes branching ratio). Weekly cadence, point-in-time. Ask this when a question involves hedge fund leverage, the basis trade, pension duration bids, or sovereigns buying/selling Treasuries. Built from free public data.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "description": "False for a tool failure."
+          },
+          "status": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "as_of": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reading": {
+            "type": "string"
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "description": "Public-print institutional positioning nowcasts and their interpretation.",
+        "anyOf": [
+          {
+            "required": [
+              "reading"
+            ]
+          },
+          {
+            "required": [
+              "ok",
+              "status",
+              "category",
+              "reason"
+            ],
+            "properties": {
+              "ok": {
+                "const": false
+              },
+              "status": {
+                "const": "FAILED"
+              }
+            }
+          }
+        ],
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Institutional flows: who is positioned where",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "oil_funding_context",
+      "title": "Oil × Funding transmission context",
+      "description": "Observed WTI/Brent, commercial-paper and SOFR−IORB evidence; Ballast's WTI/Henry Hub CFTC positioning, gross mark-displacement proxy, paying-side concentration and EIA inventory ledger; live Cushing stocks and the Brent−WTI spread kept separate from dated capacity, benchmark and chokepoint references; the change-on-change oil/CP association; plus explicitly scenario-only cargo-credit, margin and India cash arithmetic. Use when a question asks how oil or energy futures can transmit cash pressure into dollar funding. Ballast is not an observed margin call; dated structure is not live transit data; nothing here is a forecast, trade signal, or Seiche composite input.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "schema": {
+            "type": "string"
+          },
+          "generated_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "context_only": {
+            "type": "boolean"
+          },
+          "as_of": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "oil": {
+            "type": "object"
+          },
+          "funding": {
+            "type": "object"
+          },
+          "india": {
+            "type": "object"
+          },
+          "inflation_policy": {
+            "type": "object"
+          },
+          "official_dollar_parking": {
+            "type": "object"
+          },
+          "coupling": {
+            "type": "object"
+          },
+          "scenario": {
+            "type": "object"
+          },
+          "market_structure": {
+            "type": "object"
+          },
+          "ballast": {
+            "type": "object"
+          },
+          "channel_directions": {
+            "type": "object"
+          },
+          "sources": {
+            "type": "array"
+          },
+          "caveats": {
+            "type": "array"
+          },
+          "reading": {
+            "type": "string"
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "description": "Observed oil/funding evidence with scenario arithmetic kept separate.",
+        "anyOf": [
+          {
+            "required": [
+              "ok",
+              "schema",
+              "generated_at",
+              "context_only",
+              "as_of",
+              "oil",
+              "funding",
+              "scenario",
+              "sources",
+              "caveats",
+              "reading"
+            ],
+            "properties": {
+              "ok": {
+                "const": true
+              },
+              "schema": {
+                "const": "seiche.oil-funding.v1"
+              },
+              "context_only": {
+                "const": true
+              }
+            }
+          },
+          {
+            "required": [
+              "ok",
+              "status",
+              "category",
+              "reason"
+            ],
+            "properties": {
+              "ok": {
+                "const": false
+              },
+              "status": {
+                "const": "FAILED"
+              }
+            }
+          }
+        ],
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Oil × Funding transmission context",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "fx_materials_passage",
+      "title": "The Estuary: FX/material pressure and Passage",
+      "description": "The live upstream FX and physical-material pressure read versus funding already priced in SOFR and commercial paper, with the Passage's discovery/holdout ledger, de-clustered analogs, dollar-system context and settlement scenarios. Use for currency weakness, commodity working capital, FX settlement, or whether trade-flow cash pressure is reaching money markets. Context only; an earned link is stable association, not causation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "schema": {
+            "type": "string"
+          },
+          "generated_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "context_only": {
+            "type": "boolean"
+          },
+          "as_of": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "headline": {
+            "type": "object"
+          },
+          "leaders": {
+            "type": "object"
+          },
+          "fx_breadth": {
+            "type": "object"
+          },
+          "materials_breadth": {
+            "type": "object"
+          },
+          "passage": {
+            "type": "object"
+          },
+          "analogs": {
+            "type": "object"
+          },
+          "dollar_system": {
+            "type": "object"
+          },
+          "settlement_structure": {
+            "type": "object"
+          },
+          "scenario": {
+            "type": "object"
+          },
+          "coverage_matrix": {
+            "type": "array"
+          },
+          "sources": {
+            "type": "array"
+          },
+          "caveats": {
+            "type": "array"
+          },
+          "reading": {
+            "type": "string"
+          }
+        },
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "description": "FX/material pressure, holdout-tested Passage links, and settlement context.",
+        "anyOf": [
+          {
+            "required": [
+              "ok",
+              "schema",
+              "generated_at",
+              "context_only",
+              "as_of",
+              "headline",
+              "leaders",
+              "passage",
+              "scenario",
+              "sources",
+              "caveats",
+              "reading"
+            ],
+            "properties": {
+              "ok": {
+                "const": true
+              },
+              "schema": {
+                "const": "seiche.estuary.v1"
+              },
+              "context_only": {
+                "const": true
+              }
+            }
+          },
+          {
+            "required": [
+              "ok",
+              "status",
+              "category",
+              "reason"
+            ],
+            "properties": {
+              "ok": {
+                "const": false
+              },
+              "status": {
+                "const": "FAILED"
+              }
+            }
+          }
+        ],
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "The Estuary: FX/material pressure and Passage",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    }
+  ],
+  "version": "0.16.2"
+}

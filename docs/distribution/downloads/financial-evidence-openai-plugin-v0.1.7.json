@@ -1,0 +1,54 @@
+{
+  "schema": "financial-evidence.plugin-upload.v1",
+  "source_repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "source_tag": "v0.1.7",
+  "source_commit": "286e86bcc011dbc8c1108fcbda8505f6c40e2283",
+  "archive": "financial-evidence-openai-plugin-v0.1.7.zip",
+  "sha256": "3fdce4c151874309ffbffcc414fa33415be485415be3cf917079164dbded4ab5",
+  "bytes": 38409,
+  "files": [
+    {
+      "path": ".codex-plugin/plugin.json",
+      "bytes": 1788,
+      "sha256": "05241935cd5677f23c1513eff9635a15ec3d13ac8a0c156aa4b5fb64e5423e4f"
+    },
+    {
+      "path": ".mcp.json",
+      "bytes": 141,
+      "sha256": "6bec3a55d0537dd3c834e6384c38daf3df272a943bf1f33306094e687e80a9ce"
+    },
+    {
+      "path": "skills/financial-evidence/SKILL.md",
+      "bytes": 6779,
+      "sha256": "c2e9262fd2175c8181f59ef6b428fe91e3167ebc4fe24a33a1076c7243ed27ab"
+    },
+    {
+      "path": "skills/financial-evidence/scripts/fetch_evidence.py",
+      "bytes": 19087,
+      "sha256": "31decd53b876cd4e0b2d09892e3a09c122bbe58ea1c1dce8928228e724882580"
+    },
+    {
+      "path": "skills/financial-evidence/references/routing.md",
+      "bytes": 7287,
+      "sha256": "29b75f91618e264bc811584b34fb14c50b7c4f8d06f2c9e43b9c1ef6f209d37c"
+    },
+    {
+      "path": "assets/logo-400.png",
+      "bytes": 25539,
+      "sha256": "63ab857d98d9b9b9d39301ae176065885170524bcc09e9d7025c226fdb01a09b"
+    },
+    {
+      "path": "assets/logo.svg",
+      "bytes": 811,
+      "sha256": "79622aa12574bd2b24fb992daf25c6d6b651b8377366976cc35a0b3402793829"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1083,
+      "sha256": "33813f6d443a15c6d5842b2d706c175e904fe34174df440cf2b5f3932d32316a"
+    }
+  ],
+  "portal_upload_completed": false,
+  "identity_verification_completed": false,
+  "demo_recorded": false
+}

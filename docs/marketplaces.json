@@ -1412,30 +1412,201 @@
       "id": "g2-seiche",
       "name": "G2 \u2014 Seiche",
       "channel": "software-directory",
-      "state": "approved_pending_public",
+      "state": "listed_incomplete",
       "submission_url": "https://www.g2.com/add_product_requests/new",
       "cost": "free-standard-listing",
-      "detail": "The operator returned Profile Approved for Seiche. Public propagation and category assignment are pending; the record URL returned 404 at 17:45 UTC and public search did not expose an exact Seiche listing. Optional network placements remain subject to verification.",
-      "next_action": "Verify the public G2 link after propagation and check any network-site verification results without resubmitting.",
-      "verified_at": "2026-10-07T17:45:23.691515+00:00",
+      "detail": "The existing Seiche G2 profile is publicly verified and claimed at its canonical product URL. Buyer-view readback confirms the financial-research description, product logo, English language, $0 Public research tier and a real product screenshot. Founder onboarding and deployment settings are saved. Consumer Insights Platforms remains the wrong category. No new product submission was made.",
+      "next_action": "Await G2 confirmation of the existing-case addendum covering the financial-research category and missing network pages, then verify the provider response and corrected public outcomes.",
+      "verified_at": "2026-10-10T09:46:10.817709+00:00",
       "latest_surface_check": {
-        "observed_at": "2026-10-08T11:16:12.729186+00:00",
-        "readback": "no_public_listing_url"
+        "observed_at": "2026-10-10T09:46:10.817709+00:00",
+        "url": "https://www.g2.com/products/seiche/reviews",
+        "readback": "public_claimed_profile_logo_free_pricing_and_screenshot_verified",
+        "observed_category": "Consumer Insights Platforms"
+      },
+      "listing_url": "https://www.g2.com/products/seiche/reviews",
+      "ownership_state": "claimed",
+      "updated_at": "2026-10-10T09:50:12.475Z",
+      "listing_followthrough_receipt": "distribution/g2-lobehub-followthrough-20261010.json",
+      "profile_enrichment": {
+        "logo_saved": true,
+        "languages": [
+          "English"
+        ],
+        "hosted_deployment": true,
+        "on_premise_deployment": true,
+        "public_screenshot_verified": true,
+        "public_logo_readback_verified": true,
+        "saved_settings_verified": true,
+        "public_logo_url": "https://images.g2crowd.com/uploads/product/image/7b9266ac0c52957ce5be1a6f5d635fa2/seiche.png",
+        "public_screenshots": [
+          {
+            "title": "Seiche overnight funding corridor",
+            "image_url": "https://images.g2crowd.com/uploads/attachment/file/1935295/seiche-funding-corridor.jpg",
+            "captured_date": "2026-10-10",
+            "public_readback_verified": true
+          }
+        ],
+        "onboarding_role": "Founder"
+      },
+      "observed_category": "Consumer Insights Platforms",
+      "pricing_state": "free_tier_rendered",
+      "pricing_tier_id": 204260,
+      "pricing_url": "https://www.g2.com/products/seiche/pricing",
+      "pricing": {
+        "tier_id": 204260,
+        "tier_name": "Public research",
+        "price_usd": 0,
+        "save_verified": true,
+        "free_version": true,
+        "free_trial": false,
+        "public_readback_verified": true,
+        "public_readback_at": "2026-10-10T09:46:10.817709+00:00"
+      },
+      "network_publication": {
+        "observed_at": "2026-10-10T09:39:14.779521+00:00",
+        "profiles": [
+          {
+            "platform": "Capterra",
+            "url": "https://www.capterra.com/p/10266230/Seiche/",
+            "admin_status": "Published",
+            "public_readback_verified": false,
+            "public_readback": "not_found_or_missing"
+          },
+          {
+            "platform": "GetApp",
+            "url": "https://www.getapp.com/all-software/a/seiche/",
+            "admin_status": "Published",
+            "public_readback_verified": false,
+            "public_readback": "not_found_or_missing"
+          },
+          {
+            "platform": "Software Advice",
+            "url": "https://www.softwareadvice.com/product/773578-Seiche/",
+            "admin_status": "Published",
+            "public_readback_verified": false,
+            "public_readback": "not_found_or_missing"
+          }
+        ]
+      },
+      "support_followup": {
+        "case_number": "00642455",
+        "related_case": "00643368",
+        "state": "existing_case_addendum_posted_scope_confirmation_pending",
+        "posted_at": "2026-10-10T09:50:12.475Z",
+        "post_readback_verified": true,
+        "provider_resolution_verified": false,
+        "scope_extension_acknowledged": false,
+        "receipt": "distribution/g2-lobehub-followthrough-20261010.json"
       }
     },
     {
       "id": "g2-undertow",
       "name": "G2 \u2014 Undertow",
       "channel": "software-directory",
-      "state": "approved_pending_public",
+      "state": "listed_incomplete",
       "submission_url": "https://www.g2.com/add_product_requests/new",
       "cost": "free-standard-listing",
-      "detail": "The operator returned Profile Approved for Undertow. Public propagation and category assignment remain unverified; optional Capterra/GetApp/Software Advice placements remain subject to verification.",
-      "next_action": "Verify the public G2 link and any network-site verification results without resubmitting.",
-      "verified_at": "2026-10-07T17:45:32.093730+00:00",
+      "detail": "The existing Undertow G2 profile is publicly verified and claimed at its canonical product URL. Buyer-view readback confirms the financial-research description, product logo, English language, $0 Public research tier and a real product screenshot. Founder onboarding and deployment settings are saved. Consumer Insights Platforms remains the wrong category. No new product submission was made.",
+      "next_action": "Await G2 confirmation of the existing-case addendum covering the financial-research category and unsupported survey features, then verify the corrected public profile.",
+      "verified_at": "2026-10-10T09:46:10.894003+00:00",
       "latest_surface_check": {
-        "observed_at": "2026-10-08T11:16:12.729224+00:00",
-        "readback": "no_public_listing_url"
+        "observed_at": "2026-10-10T09:46:10.894003+00:00",
+        "url": "https://www.g2.com/products/liquilens-private-limited-undertow/reviews",
+        "readback": "public_claimed_profile_logo_free_pricing_and_screenshot_verified",
+        "observed_category": "Consumer Insights Platforms"
+      },
+      "listing_url": "https://www.g2.com/products/liquilens-private-limited-undertow/reviews",
+      "ownership_state": "claimed",
+      "updated_at": "2026-10-10T09:50:12.475Z",
+      "listing_followthrough_receipt": "distribution/g2-lobehub-followthrough-20261010.json",
+      "profile_enrichment": {
+        "logo_saved": true,
+        "languages": [
+          "English"
+        ],
+        "hosted_deployment": true,
+        "on_premise_deployment": false,
+        "public_screenshot_verified": true,
+        "public_logo_readback_verified": true,
+        "saved_settings_verified": true,
+        "public_logo_url": "https://images.g2crowd.com/uploads/product/image/293824b7c0c4743acb63349c141c217b/liquilens-private-limited-undertow.png",
+        "public_screenshots": [
+          {
+            "title": "Undertow public exit-liquidity comparison",
+            "image_url": "https://images.g2crowd.com/uploads/attachment/file/1935294/undertow-exit-comparison.jpg",
+            "captured_date": "2026-10-10",
+            "public_readback_verified": true
+          }
+        ],
+        "onboarding_role": "Founder"
+      },
+      "observed_category": "Consumer Insights Platforms",
+      "pricing_state": "free_tier_rendered",
+      "pricing_tier_id": 204261,
+      "pricing_url": "https://www.g2.com/products/liquilens-private-limited-undertow/pricing",
+      "pricing": {
+        "tier_id": 204261,
+        "tier_name": "Public research",
+        "price_usd": 0,
+        "save_verified": true,
+        "free_version": true,
+        "free_trial": false,
+        "public_readback_verified": true,
+        "public_readback_at": "2026-10-10T09:46:10.894003+00:00"
+      },
+      "network_publication": {
+        "observed_at": "2026-10-10T09:39:14.779521+00:00",
+        "profiles": [
+          {
+            "platform": "Capterra",
+            "url": "https://www.capterra.com/p/10266232/Undertow/",
+            "admin_status": "Published",
+            "public_readback_verified": true,
+            "category_correction_pending": true,
+            "product_copy_correction_pending": false,
+            "product_copy_admin_save_verified": true,
+            "product_copy_admin_readback_verified": true,
+            "product_copy_public_readback_verified": true
+          },
+          {
+            "platform": "GetApp",
+            "url": "https://www.getapp.com/all-software/a/undertow-1/",
+            "admin_status": "Published",
+            "public_readback_verified": true,
+            "category_correction_pending": true,
+            "product_copy_correction_pending": false,
+            "product_copy_admin_save_verified": true,
+            "product_copy_admin_readback_verified": true,
+            "product_copy_public_readback_verified": true
+          },
+          {
+            "platform": "Software Advice",
+            "url": "https://www.softwareadvice.com/product/773580-Undertow/",
+            "admin_status": "Published",
+            "public_readback_verified": true,
+            "category_correction_pending": true,
+            "product_copy_correction_pending": false,
+            "product_copy_admin_save_verified": true,
+            "product_copy_admin_readback_verified": true,
+            "product_copy_public_readback_verified": true
+          }
+        ]
+      },
+      "feature_correction": {
+        "saved": false,
+        "result": "editor_control_attempt_did_not_persist",
+        "survey_features_remain_unresolved": true
+      },
+      "support_followup": {
+        "case_number": "00642455",
+        "related_case": "00643368",
+        "state": "existing_case_addendum_posted_scope_confirmation_pending",
+        "posted_at": "2026-10-10T09:50:12.475Z",
+        "post_readback_verified": true,
+        "provider_resolution_verified": false,
+        "scope_extension_acknowledged": false,
+        "receipt": "distribution/g2-lobehub-followthrough-20261010.json"
       }
     },
     {
@@ -1908,9 +2079,9 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-liquilens-mcp",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "Public card rechecked on 10 October 2026: version 1.0.0, labelled Unvalidated. The prepared update declares native streamable-http discovery version 1.8.1 with 24 public tools. Publisher login is complete and the GitHub grant is owner-approved, but the official authorization control remains disabled. The CLI reports GitHub disconnected and no owned plugins. Publisher updates have not been applied.",
-      "next_action": "Await the supported ownership/validation route requested from LobeHub support on 10 October, then apply the prepared updates to the existing cards and verify public readback. Existing account-access approvals remain valid.",
-      "verified_at": "2026-10-09T18:58:50.727Z",
+      "detail": "The existing LobeHub record was claimed and its update accepted by the official CLI on 10 October 2026. The authenticated owned-list readback verifies version 1.8.1 and provider status published on the same record ID; no new listing was created. Anonymous public readback at 09:46 UTC still showed version 1.0.0, Unvalidated and an unclaimed flag in the public route data. The accepted update has not been independently verified on the public card.",
+      "next_action": "Await public catalog synchronization and validation, then recheck the exact existing card against the accepted update receipt. The earlier support request is preserved; no duplicate claim or listing is needed.",
+      "verified_at": "2026-10-10T09:46:11.968125+00:00",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
       "native_installation_verified": false,
@@ -1925,21 +2096,27 @@
         "tool_count": 24,
         "transport": "streamable-http"
       },
-      "edit_state": "prepared_provider_authorization_ui_blocked",
-      "updated_at": "2026-10-10T09:20:24.007181+00:00",
+      "edit_state": "accepted_public_metadata_still_stale",
+      "updated_at": "2026-10-10T09:46:11.968125+00:00",
       "completion_receipt": "distribution/completion-20261010.json",
       "publisher_login_completed": true,
-      "github_ownership_verified": false,
+      "github_ownership_verified": true,
       "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
       "github_grant_owner_approved": true,
-      "publisher_updates_submitted": 0,
+      "publisher_updates_submitted": 1,
       "public_version": "1.0.0",
       "latest_surface_check": {
-        "observed_at": "2026-10-10T09:14:41.884793+00:00",
+        "observed_at": "2026-10-10T09:46:11.968125+00:00",
         "url": "https://lobehub.com/mcp/beepboop2025-liquilens-mcp",
-        "readback": "public_card_verified",
+        "readback": "anonymous_public_card_verified_update_not_propagated",
+        "http_status": 200,
         "version": "1.0.0",
-        "validation_label": "Unvalidated"
+        "validation_label": "Unvalidated",
+        "public_is_claimed": false,
+        "public_is_validated": false,
+        "public_version_matches_owned": false,
+        "public_metadata_update_verified": false,
+        "response_sha256": "3614deb7bfce9b114f62cc19353b99b6f45cef64ac04cc0ef7b581e7f28a76bb"
       },
       "listing_repair_receipt": "distribution/g2-lobehub-repair-20261010.json",
       "public_refresh_attempt": {
@@ -1955,6 +2132,23 @@
         "state": "sent_delivery_unverified",
         "sent_folder_readback_verified": true,
         "receipt": "distribution/g2-lobehub-repair-20261010.json"
+      },
+      "ownership_state": "claimed",
+      "publisher_update_accepted": true,
+      "owned_catalog_version": "1.8.1",
+      "provider_owned_status": "published",
+      "existing_record_id": 78889,
+      "existing_record_preserved": true,
+      "listing_followthrough_receipt": "distribution/g2-lobehub-followthrough-20261010.json",
+      "publisher_update": {
+        "accepted_at": "2026-10-10T09:32:12.278220+00:00",
+        "cli": "@lobehub/market-cli@0.0.41",
+        "submitted_version": "1.8.1",
+        "owned_current_version": "1.8.1",
+        "owned_readback_verified": true,
+        "manifest_sha256": "b47762cda8a1cc36e5d24be957078ebb5b2c565cfc381a535b38eb3b09ad83ea",
+        "public_metadata_update_verified": false,
+        "new_listing_created": false
       }
     },
     {
@@ -1964,9 +2158,9 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-seiche",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "Public card rechecked on 10 October 2026: version 1.0.0, labelled Unvalidated. The prepared update declares native streamable-http discovery version 0.16.2 with 16 public tools. Publisher login is complete and the GitHub grant is owner-approved, but the official authorization control remains disabled. The CLI reports GitHub disconnected and no owned plugins. Publisher updates have not been applied.",
-      "next_action": "Await the supported ownership/validation route requested from LobeHub support on 10 October, then apply the prepared updates to the existing cards and verify public readback. Existing account-access approvals remain valid.",
-      "verified_at": "2026-10-09T18:58:50.727Z",
+      "detail": "The existing LobeHub record was claimed and its update accepted by the official CLI on 10 October 2026. The authenticated owned-list readback verifies version 0.16.2 and provider status published on the same record ID; no new listing was created. Anonymous public readback at 09:46 UTC still showed version 1.0.0, Unvalidated and an unclaimed flag in the public route data. The accepted update has not been independently verified on the public card.",
+      "next_action": "Await public catalog synchronization and validation, then recheck the exact existing card against the accepted update receipt. The earlier support request is preserved; no duplicate claim or listing is needed.",
+      "verified_at": "2026-10-10T09:46:12.576501+00:00",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
       "native_installation_verified": false,
@@ -1981,21 +2175,27 @@
         "tool_count": 16,
         "transport": "streamable-http"
       },
-      "edit_state": "prepared_provider_authorization_ui_blocked",
-      "updated_at": "2026-10-10T09:20:24.007181+00:00",
+      "edit_state": "accepted_public_metadata_still_stale",
+      "updated_at": "2026-10-10T09:46:12.576501+00:00",
       "completion_receipt": "distribution/completion-20261010.json",
       "publisher_login_completed": true,
-      "github_ownership_verified": false,
+      "github_ownership_verified": true,
       "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
       "github_grant_owner_approved": true,
-      "publisher_updates_submitted": 0,
+      "publisher_updates_submitted": 1,
       "public_version": "1.0.0",
       "latest_surface_check": {
-        "observed_at": "2026-10-10T09:14:41.884793+00:00",
+        "observed_at": "2026-10-10T09:46:12.576501+00:00",
         "url": "https://lobehub.com/mcp/beepboop2025-seiche",
-        "readback": "public_card_verified",
+        "readback": "anonymous_public_card_verified_update_not_propagated",
+        "http_status": 200,
         "version": "1.0.0",
-        "validation_label": "Unvalidated"
+        "validation_label": "Unvalidated",
+        "public_is_claimed": false,
+        "public_is_validated": false,
+        "public_version_matches_owned": false,
+        "public_metadata_update_verified": false,
+        "response_sha256": "1fc164c680e45f562ae87eb7a461704681fb651894bb13673ebd35d0fcd678d6"
       },
       "listing_repair_receipt": "distribution/g2-lobehub-repair-20261010.json",
       "public_refresh_attempt": {
@@ -2011,6 +2211,23 @@
         "state": "sent_delivery_unverified",
         "sent_folder_readback_verified": true,
         "receipt": "distribution/g2-lobehub-repair-20261010.json"
+      },
+      "ownership_state": "claimed",
+      "publisher_update_accepted": true,
+      "owned_catalog_version": "0.16.2",
+      "provider_owned_status": "published",
+      "existing_record_id": 85736,
+      "existing_record_preserved": true,
+      "listing_followthrough_receipt": "distribution/g2-lobehub-followthrough-20261010.json",
+      "publisher_update": {
+        "accepted_at": "2026-10-10T09:33:39.038576+00:00",
+        "cli": "@lobehub/market-cli@0.0.41",
+        "submitted_version": "0.16.2",
+        "owned_current_version": "0.16.2",
+        "owned_readback_verified": true,
+        "manifest_sha256": "e232aacb3ba070b82c8bb3ac6d94dc5f9b11347b1beb8489ef92776b12b7bd63",
+        "public_metadata_update_verified": false,
+        "new_listing_created": false
       }
     },
     {
@@ -2020,9 +2237,9 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-undertow-mcp",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "Public card rechecked on 10 October 2026: version 1.9.0, labelled Unvalidated. The prepared update declares native streamable-http discovery version 1.13.0 with 16 public tools. Publisher login is complete and the GitHub grant is owner-approved, but the official authorization control remains disabled. The CLI reports GitHub disconnected and no owned plugins. Publisher updates have not been applied.",
-      "next_action": "Await the supported ownership/validation route requested from LobeHub support on 10 October, then apply the prepared updates to the existing cards and verify public readback. Existing account-access approvals remain valid.",
-      "verified_at": "2026-10-09T18:58:50.727Z",
+      "detail": "The existing LobeHub record was claimed and its update accepted by the official CLI on 10 October 2026. The authenticated owned-list readback verifies version 1.13.0 and provider status published on the same record ID; no new listing was created. Anonymous public readback at 09:46 UTC still showed version 1.9.0, Unvalidated and an unclaimed flag in the public route data. The accepted update has not been independently verified on the public card.",
+      "next_action": "Await public catalog synchronization and validation, then recheck the exact existing card against the accepted update receipt. The earlier support request is preserved; no duplicate claim or listing is needed.",
+      "verified_at": "2026-10-10T09:46:12.041482+00:00",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
       "native_installation_verified": false,
@@ -2037,21 +2254,27 @@
         "tool_count": 16,
         "transport": "streamable-http"
       },
-      "edit_state": "prepared_provider_authorization_ui_blocked",
-      "updated_at": "2026-10-10T09:20:24.007181+00:00",
+      "edit_state": "accepted_public_metadata_still_stale",
+      "updated_at": "2026-10-10T09:46:12.041482+00:00",
       "completion_receipt": "distribution/completion-20261010.json",
       "publisher_login_completed": true,
-      "github_ownership_verified": false,
+      "github_ownership_verified": true,
       "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
       "github_grant_owner_approved": true,
-      "publisher_updates_submitted": 0,
+      "publisher_updates_submitted": 1,
       "public_version": "1.9.0",
       "latest_surface_check": {
-        "observed_at": "2026-10-10T09:14:41.884793+00:00",
+        "observed_at": "2026-10-10T09:46:12.041482+00:00",
         "url": "https://lobehub.com/mcp/beepboop2025-undertow-mcp",
-        "readback": "public_card_verified",
+        "readback": "anonymous_public_card_verified_update_not_propagated",
+        "http_status": 200,
         "version": "1.9.0",
-        "validation_label": "Unvalidated"
+        "validation_label": "Unvalidated",
+        "public_is_claimed": false,
+        "public_is_validated": false,
+        "public_version_matches_owned": false,
+        "public_metadata_update_verified": false,
+        "response_sha256": "5826005393f6b793459b9e706c9033337d97fb8f0ce5d3cf1c101616b1645917"
       },
       "listing_repair_receipt": "distribution/g2-lobehub-repair-20261010.json",
       "support_request": {
@@ -2060,6 +2283,23 @@
         "state": "sent_delivery_unverified",
         "sent_folder_readback_verified": true,
         "receipt": "distribution/g2-lobehub-repair-20261010.json"
+      },
+      "ownership_state": "claimed",
+      "publisher_update_accepted": true,
+      "owned_catalog_version": "1.13.0",
+      "provider_owned_status": "published",
+      "existing_record_id": 90099,
+      "existing_record_preserved": true,
+      "listing_followthrough_receipt": "distribution/g2-lobehub-followthrough-20261010.json",
+      "publisher_update": {
+        "accepted_at": "2026-10-10T09:33:43.385685+00:00",
+        "cli": "@lobehub/market-cli@0.0.41",
+        "submitted_version": "1.13.0",
+        "owned_current_version": "1.13.0",
+        "owned_readback_verified": true,
+        "manifest_sha256": "d15122f58526961cd5c36e2bb9573d4ba5d3fbf8ba43ec9b7edf40a191be0286",
+        "public_metadata_update_verified": false,
+        "new_listing_created": false
       }
     },
     {
@@ -2069,9 +2309,9 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-palimpsest",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "Public card rechecked on 10 October 2026: version 1.0.0, labelled Unvalidated. The prepared update declares native streamable-http discovery version 1.9.3 with 7 public tools. Publisher login is complete and the GitHub grant is owner-approved, but the official authorization control remains disabled. The CLI reports GitHub disconnected and no owned plugins. Publisher updates have not been applied.",
-      "next_action": "Await the supported ownership/validation route requested from LobeHub support on 10 October, then apply the prepared updates to the existing cards and verify public readback. Existing account-access approvals remain valid.",
-      "verified_at": "2026-10-09T18:58:50.727Z",
+      "detail": "The existing LobeHub record was claimed and its update accepted by the official CLI on 10 October 2026. The authenticated owned-list readback verifies version 1.9.3 and provider status published on the same record ID; no new listing was created. Anonymous public readback at 09:46 UTC still showed version 1.0.0, Unvalidated and an unclaimed flag in the public route data. The accepted update has not been independently verified on the public card.",
+      "next_action": "Await public catalog synchronization and validation, then recheck the exact existing card against the accepted update receipt. The earlier support request is preserved; no duplicate claim or listing is needed.",
+      "verified_at": "2026-10-10T09:46:13.143200+00:00",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
       "native_installation_verified": false,
@@ -2086,21 +2326,27 @@
         "tool_count": 7,
         "transport": "streamable-http"
       },
-      "edit_state": "prepared_provider_authorization_ui_blocked",
-      "updated_at": "2026-10-10T09:20:24.007181+00:00",
+      "edit_state": "accepted_public_metadata_still_stale",
+      "updated_at": "2026-10-10T09:46:13.143200+00:00",
       "completion_receipt": "distribution/completion-20261010.json",
       "publisher_login_completed": true,
-      "github_ownership_verified": false,
+      "github_ownership_verified": true,
       "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
       "github_grant_owner_approved": true,
-      "publisher_updates_submitted": 0,
+      "publisher_updates_submitted": 1,
       "public_version": "1.0.0",
       "latest_surface_check": {
-        "observed_at": "2026-10-10T09:14:41.884793+00:00",
+        "observed_at": "2026-10-10T09:46:13.143200+00:00",
         "url": "https://lobehub.com/mcp/beepboop2025-palimpsest",
-        "readback": "public_card_verified",
+        "readback": "anonymous_public_card_verified_update_not_propagated",
+        "http_status": 200,
         "version": "1.0.0",
-        "validation_label": "Unvalidated"
+        "validation_label": "Unvalidated",
+        "public_is_claimed": false,
+        "public_is_validated": false,
+        "public_version_matches_owned": false,
+        "public_metadata_update_verified": false,
+        "response_sha256": "a88ba604b29ce427538f661496e8fffa8904b5d85915de9c7e07f7c2a226d5a6"
       },
       "listing_repair_receipt": "distribution/g2-lobehub-repair-20261010.json",
       "support_request": {
@@ -2109,6 +2355,23 @@
         "state": "sent_delivery_unverified",
         "sent_folder_readback_verified": true,
         "receipt": "distribution/g2-lobehub-repair-20261010.json"
+      },
+      "ownership_state": "claimed",
+      "publisher_update_accepted": true,
+      "owned_catalog_version": "1.9.3",
+      "provider_owned_status": "published",
+      "existing_record_id": 85728,
+      "existing_record_preserved": true,
+      "listing_followthrough_receipt": "distribution/g2-lobehub-followthrough-20261010.json",
+      "publisher_update": {
+        "accepted_at": "2026-10-10T09:33:47.660169+00:00",
+        "cli": "@lobehub/market-cli@0.0.41",
+        "submitted_version": "1.9.3",
+        "owned_current_version": "1.9.3",
+        "owned_readback_verified": true,
+        "manifest_sha256": "1e3fa9e9d683a1b941c6f8e14e746e23a291010fae000bc70e573aa8bae0f6f2",
+        "public_metadata_update_verified": false,
+        "new_listing_created": false
       }
     },
     {
@@ -2118,9 +2381,9 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-riptide-mcp",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "Public card rechecked on 10 October 2026: version 1.3.0, labelled Unvalidated. The prepared update declares native streamable-http discovery version 1.3.0 with 7 public tools. Publisher login is complete and the GitHub grant is owner-approved, but the official authorization control remains disabled. The CLI reports GitHub disconnected and no owned plugins. Publisher updates have not been applied.",
-      "next_action": "Await the supported ownership/validation route requested from LobeHub support on 10 October, then apply the prepared updates to the existing cards and verify public readback. Existing account-access approvals remain valid.",
-      "verified_at": "2026-10-09T18:58:50.727Z",
+      "detail": "The existing LobeHub record was claimed and its update accepted by the official CLI on 10 October 2026. The authenticated owned-list readback verifies version 1.3.0 and provider status published on the same record ID; no new listing was created. Anonymous public readback at 09:46 UTC still showed version 1.3.0, Unvalidated and an unclaimed flag in the public route data. The accepted update has not been independently verified on the public card. Its unchanged 1.3.0 version alone does not prove metadata propagation.",
+      "next_action": "Await public catalog synchronization and validation, then recheck the exact existing card against the accepted update receipt. The earlier support request is preserved; no duplicate claim or listing is needed.",
+      "verified_at": "2026-10-10T09:46:13.028558+00:00",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
       "native_installation_verified": false,
@@ -2135,21 +2398,27 @@
         "tool_count": 7,
         "transport": "streamable-http"
       },
-      "edit_state": "prepared_provider_authorization_ui_blocked",
-      "updated_at": "2026-10-10T09:20:24.007181+00:00",
+      "edit_state": "accepted_public_metadata_still_stale",
+      "updated_at": "2026-10-10T09:46:13.028558+00:00",
       "completion_receipt": "distribution/completion-20261010.json",
       "publisher_login_completed": true,
-      "github_ownership_verified": false,
+      "github_ownership_verified": true,
       "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
       "github_grant_owner_approved": true,
-      "publisher_updates_submitted": 0,
+      "publisher_updates_submitted": 1,
       "public_version": "1.3.0",
       "latest_surface_check": {
-        "observed_at": "2026-10-10T09:14:41.884793+00:00",
+        "observed_at": "2026-10-10T09:46:13.028558+00:00",
         "url": "https://lobehub.com/mcp/beepboop2025-riptide-mcp",
-        "readback": "public_card_verified",
+        "readback": "anonymous_public_card_verified_update_not_propagated",
+        "http_status": 200,
         "version": "1.3.0",
-        "validation_label": "Unvalidated"
+        "validation_label": "Unvalidated",
+        "public_is_claimed": false,
+        "public_is_validated": false,
+        "public_version_matches_owned": true,
+        "public_metadata_update_verified": false,
+        "response_sha256": "badf3e3919e518b0c7e675acc7e13857787e049f0d1175fcdef3c8a30e381a85"
       },
       "listing_repair_receipt": "distribution/g2-lobehub-repair-20261010.json",
       "support_request": {
@@ -2158,6 +2427,23 @@
         "state": "sent_delivery_unverified",
         "sent_folder_readback_verified": true,
         "receipt": "distribution/g2-lobehub-repair-20261010.json"
+      },
+      "ownership_state": "claimed",
+      "publisher_update_accepted": true,
+      "owned_catalog_version": "1.3.0",
+      "provider_owned_status": "published",
+      "existing_record_id": 96525,
+      "existing_record_preserved": true,
+      "listing_followthrough_receipt": "distribution/g2-lobehub-followthrough-20261010.json",
+      "publisher_update": {
+        "accepted_at": "2026-10-10T09:33:51.570096+00:00",
+        "cli": "@lobehub/market-cli@0.0.41",
+        "submitted_version": "1.3.0",
+        "owned_current_version": "1.3.0",
+        "owned_readback_verified": true,
+        "manifest_sha256": "d6187a91a7c49e917f29928eca019b7fb205fc09ec1f6da3058b0f7747ced44f",
+        "public_metadata_update_verified": false,
+        "new_listing_created": false
       }
     },
     {
@@ -2167,9 +2453,9 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-noisefloor",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "Public card rechecked on 10 October 2026: version 0.1.2, labelled Unvalidated. The prepared update declares native streamable-http discovery version 0.4.0 with 10 public tools. Publisher login is complete and the GitHub grant is owner-approved, but the official authorization control remains disabled. The CLI reports GitHub disconnected and no owned plugins. Publisher updates have not been applied. The documented ownership badge is now on the public default-branch README, but Start Check is disabled in the claim-status dialog; badge ownership has not been verified.",
-      "next_action": "Await the supported ownership/validation route requested from LobeHub support on 10 October, then apply the prepared updates to the existing cards and verify public readback. Existing account-access approvals remain valid.",
-      "verified_at": "2026-10-09T18:58:50.727Z",
+      "detail": "The existing LobeHub record was claimed and its update accepted by the official CLI on 10 October 2026. The authenticated owned-list readback verifies version 0.4.0 and provider status published on the same record ID; no new listing was created. Anonymous public readback at 09:46 UTC still showed version 0.1.2, Unvalidated and an unclaimed flag in the public route data. The accepted update has not been independently verified on the public card.",
+      "next_action": "Await public catalog synchronization and validation, then recheck the exact existing card against the accepted update receipt. The earlier support request is preserved; no duplicate claim or listing is needed.",
+      "verified_at": "2026-10-10T09:46:11.996015+00:00",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
       "native_installation_verified": false,
@@ -2184,21 +2470,27 @@
         "tool_count": 10,
         "transport": "streamable-http"
       },
-      "edit_state": "prepared_provider_authorization_ui_blocked",
-      "updated_at": "2026-10-10T09:20:24.007181+00:00",
+      "edit_state": "accepted_public_metadata_still_stale",
+      "updated_at": "2026-10-10T09:46:11.996015+00:00",
       "completion_receipt": "distribution/completion-20261010.json",
       "publisher_login_completed": true,
-      "github_ownership_verified": false,
+      "github_ownership_verified": true,
       "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
       "github_grant_owner_approved": true,
-      "publisher_updates_submitted": 0,
+      "publisher_updates_submitted": 1,
       "public_version": "0.1.2",
       "latest_surface_check": {
-        "observed_at": "2026-10-10T09:14:41.884793+00:00",
+        "observed_at": "2026-10-10T09:46:11.996015+00:00",
         "url": "https://lobehub.com/mcp/beepboop2025-noisefloor",
-        "readback": "public_card_verified",
+        "readback": "anonymous_public_card_verified_update_not_propagated",
+        "http_status": 200,
         "version": "0.1.2",
-        "validation_label": "Unvalidated"
+        "validation_label": "Unvalidated",
+        "public_is_claimed": false,
+        "public_is_validated": false,
+        "public_version_matches_owned": false,
+        "public_metadata_update_verified": false,
+        "response_sha256": "c99af827336a107219668854aebe67c369b0bf1160eb6e300d15ff9b9d6ccfe0"
       },
       "listing_repair_receipt": "distribution/g2-lobehub-repair-20261010.json",
       "public_refresh_attempt": {
@@ -2233,6 +2525,31 @@
         "state": "sent_delivery_unverified",
         "sent_folder_readback_verified": true,
         "receipt": "distribution/g2-lobehub-repair-20261010.json"
+      },
+      "ownership_state": "claimed",
+      "publisher_update_accepted": true,
+      "owned_catalog_version": "0.4.0",
+      "provider_owned_status": "published",
+      "existing_record_id": 83313,
+      "existing_record_preserved": true,
+      "listing_followthrough_receipt": "distribution/g2-lobehub-followthrough-20261010.json",
+      "publisher_update": {
+        "accepted_at": "2026-10-10T09:31:28.272659+00:00",
+        "cli": "@lobehub/market-cli@0.0.41",
+        "submitted_version": "0.4.0",
+        "owned_current_version": "0.4.0",
+        "owned_readback_verified": true,
+        "manifest_sha256": "ed7f02dc75e5ed2db33f5cdb096e36343214abf88a72a7b2d15dc9da836b01a4",
+        "public_metadata_update_verified": false,
+        "new_listing_created": false
+      },
+      "latest_badge_check_attempt": {
+        "observed_date": "2026-10-10",
+        "button_became_enabled": true,
+        "clicks": 1,
+        "completion_confirmed": false,
+        "result": "single_attempt_unconfirmed",
+        "separate_from_completed_cli_claim": true
       }
     },
     {
@@ -2242,9 +2559,9 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-liquilens-evidence-carrier",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "Public card rechecked on 10 October 2026: version 0.19.0, labelled Unvalidated. The prepared update declares native stdio discovery version 0.20.1 with 4 public tools. Publisher login is complete and the GitHub grant is owner-approved, but the official authorization control remains disabled. The CLI reports GitHub disconnected and no owned plugins. Publisher updates have not been applied.",
-      "next_action": "Await the supported ownership/validation route requested from LobeHub support on 10 October, then apply the prepared updates to the existing cards and verify public readback. Existing account-access approvals remain valid.",
-      "verified_at": "2026-10-09T18:58:50.727Z",
+      "detail": "The existing LobeHub record was claimed and its update accepted by the official CLI on 10 October 2026. The authenticated owned-list readback verifies version 0.20.1 and provider status published on the same record ID; no new listing was created. Anonymous public readback at 09:46 UTC still showed version 0.19.0, Unvalidated and an unclaimed flag in the public route data. The accepted update has not been independently verified on the public card.",
+      "next_action": "Await public catalog synchronization and validation, then recheck the exact existing card against the accepted update receipt. The earlier support request is preserved; no duplicate claim or listing is needed.",
+      "verified_at": "2026-10-10T09:46:13.042976+00:00",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
       "native_installation_verified": false,
@@ -2259,21 +2576,27 @@
         "tool_count": 4,
         "transport": "stdio"
       },
-      "edit_state": "prepared_provider_authorization_ui_blocked",
-      "updated_at": "2026-10-10T09:20:24.007181+00:00",
+      "edit_state": "accepted_public_metadata_still_stale",
+      "updated_at": "2026-10-10T09:46:13.042976+00:00",
       "completion_receipt": "distribution/completion-20261010.json",
       "publisher_login_completed": true,
-      "github_ownership_verified": false,
+      "github_ownership_verified": true,
       "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
       "github_grant_owner_approved": true,
-      "publisher_updates_submitted": 0,
+      "publisher_updates_submitted": 1,
       "public_version": "0.19.0",
       "latest_surface_check": {
-        "observed_at": "2026-10-10T09:14:41.884793+00:00",
+        "observed_at": "2026-10-10T09:46:13.042976+00:00",
         "url": "https://lobehub.com/mcp/beepboop2025-liquilens-evidence-carrier",
-        "readback": "public_card_verified",
+        "readback": "anonymous_public_card_verified_update_not_propagated",
+        "http_status": 200,
         "version": "0.19.0",
-        "validation_label": "Unvalidated"
+        "validation_label": "Unvalidated",
+        "public_is_claimed": false,
+        "public_is_validated": false,
+        "public_version_matches_owned": false,
+        "public_metadata_update_verified": false,
+        "response_sha256": "6a839b2383443c4a378d086529af527c29407f250fc0731f4e99004d29e96ad7"
       },
       "listing_repair_receipt": "distribution/g2-lobehub-repair-20261010.json",
       "support_request": {
@@ -2282,6 +2605,23 @@
         "state": "sent_delivery_unverified",
         "sent_folder_readback_verified": true,
         "receipt": "distribution/g2-lobehub-repair-20261010.json"
+      },
+      "ownership_state": "claimed",
+      "publisher_update_accepted": true,
+      "owned_catalog_version": "0.20.1",
+      "provider_owned_status": "published",
+      "existing_record_id": 96206,
+      "existing_record_preserved": true,
+      "listing_followthrough_receipt": "distribution/g2-lobehub-followthrough-20261010.json",
+      "publisher_update": {
+        "accepted_at": "2026-10-10T09:33:55.548368+00:00",
+        "cli": "@lobehub/market-cli@0.0.41",
+        "submitted_version": "0.20.1",
+        "owned_current_version": "0.20.1",
+        "owned_readback_verified": true,
+        "manifest_sha256": "00dd80ccbd5cf9bbbebabee36cccab05b5ecd3ab654cb711cf877ffa6210161e",
+        "public_metadata_update_verified": false,
+        "new_listing_created": false
       }
     },
     {
@@ -2776,10 +3116,100 @@
         "00643368"
       ],
       "listing_repair_receipt": "distribution/g2-lobehub-repair-20261010.json"
+    },
+    {
+      "id": "capterra-undertow",
+      "name": "Capterra \u2014 Undertow",
+      "channel": "software-directory",
+      "state": "listed_incomplete",
+      "listing_url": "https://www.capterra.com/p/10266232/Undertow/",
+      "cost": "free network listing; no paid placement purchased",
+      "detail": "Existing syndicated Undertow page independently verified. Financial-research product copy was corrected through G2 and the corrected copy was independently read back on this public network page. Unrelated categories and survey features still require correction. This is a newly verified existing page, not a new submission.",
+      "next_action": "Await G2 routing or resolution of the network category and survey-feature issues raised in the existing-case addendum, then verify the public page again.",
+      "verified_at": "2026-10-10T09:46:12.466421+00:00",
+      "updated_at": "2026-10-10T09:50:12.475Z",
+      "category_correction_pending": true,
+      "listing_followthrough_receipt": "distribution/g2-lobehub-followthrough-20261010.json",
+      "product_copy_correction": {
+        "admin_save_verified": true,
+        "admin_field_readback_verified": true,
+        "public_readback_verified": true,
+        "public_readback_at": "2026-10-10T09:46:12.466421+00:00"
+      },
+      "support_followup": {
+        "case_number": "00642455",
+        "related_case": "00643368",
+        "state": "existing_case_addendum_posted_scope_confirmation_pending",
+        "posted_at": "2026-10-10T09:50:12.475Z",
+        "post_readback_verified": true,
+        "provider_resolution_verified": false,
+        "scope_extension_acknowledged": false,
+        "receipt": "distribution/g2-lobehub-followthrough-20261010.json"
+      }
+    },
+    {
+      "id": "getapp-undertow",
+      "name": "GetApp \u2014 Undertow",
+      "channel": "software-directory",
+      "state": "listed_incomplete",
+      "listing_url": "https://www.getapp.com/all-software/a/undertow-1/",
+      "cost": "free network listing; no paid placement purchased",
+      "detail": "Existing syndicated Undertow page independently verified. Financial-research product copy was corrected through G2 and the corrected copy was independently read back on this public network page. Unrelated categories and survey features still require correction. This is a newly verified existing page, not a new submission.",
+      "next_action": "Await G2 routing or resolution of the network category and survey-feature issues raised in the existing-case addendum, then verify the public page again.",
+      "verified_at": "2026-10-10T09:46:13.379064+00:00",
+      "updated_at": "2026-10-10T09:50:12.475Z",
+      "category_correction_pending": true,
+      "listing_followthrough_receipt": "distribution/g2-lobehub-followthrough-20261010.json",
+      "product_copy_correction": {
+        "admin_save_verified": true,
+        "admin_field_readback_verified": true,
+        "public_readback_verified": true,
+        "public_readback_at": "2026-10-10T09:46:13.379064+00:00"
+      },
+      "support_followup": {
+        "case_number": "00642455",
+        "related_case": "00643368",
+        "state": "existing_case_addendum_posted_scope_confirmation_pending",
+        "posted_at": "2026-10-10T09:50:12.475Z",
+        "post_readback_verified": true,
+        "provider_resolution_verified": false,
+        "scope_extension_acknowledged": false,
+        "receipt": "distribution/g2-lobehub-followthrough-20261010.json"
+      }
+    },
+    {
+      "id": "softwareadvice-undertow",
+      "name": "Software Advice \u2014 Undertow",
+      "channel": "software-directory",
+      "state": "listed_incomplete",
+      "listing_url": "https://www.softwareadvice.com/product/773580-Undertow/",
+      "cost": "free network listing; no paid placement purchased",
+      "detail": "Existing syndicated Undertow page independently verified. Financial-research product copy was corrected through G2 and the corrected copy was independently read back on this public network page. Unrelated categories and survey features still require correction. This is a newly verified existing page, not a new submission.",
+      "next_action": "Await G2 routing or resolution of the network category and survey-feature issues raised in the existing-case addendum, then verify the public page again.",
+      "verified_at": "2026-10-10T09:46:27.046627+00:00",
+      "updated_at": "2026-10-10T09:50:12.475Z",
+      "category_correction_pending": true,
+      "listing_followthrough_receipt": "distribution/g2-lobehub-followthrough-20261010.json",
+      "product_copy_correction": {
+        "admin_save_verified": true,
+        "admin_field_readback_verified": true,
+        "public_readback_verified": true,
+        "public_readback_at": "2026-10-10T09:46:27.046627+00:00"
+      },
+      "support_followup": {
+        "case_number": "00642455",
+        "related_case": "00643368",
+        "state": "existing_case_addendum_posted_scope_confirmation_pending",
+        "posted_at": "2026-10-10T09:50:12.475Z",
+        "post_readback_verified": true,
+        "provider_resolution_verified": false,
+        "scope_extension_acknowledged": false,
+        "receipt": "distribution/g2-lobehub-followthrough-20261010.json"
+      }
     }
   ],
   "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
-  "updated_at": "2026-10-10T09:20:24.007181+00:00",
+  "updated_at": "2026-10-10T09:51:21.090402+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -2950,5 +3380,11 @@
     "receipt": "distribution/g2-lobehub-repair-20261010.json",
     "report": "distribution/g2-lobehub-repair-20261010.md",
     "scope": "G2 profile enrichment and existing case status; two syndicated public pages verified; seven LobeHub cards rechecked. Other channel records were not re-audited."
+  },
+  "latest_listing_followthrough": {
+    "recorded_at": "2026-10-10T09:51:21.090402+00:00",
+    "receipt": "distribution/g2-lobehub-followthrough-20261010.json",
+    "report": "distribution/g2-lobehub-followthrough-20261010.md",
+    "scope": "Five existing public G2/network profiles verified, two G2 claims and profile enrichments completed, three Undertow network descriptions corrected publicly, and seven existing LobeHub updates accepted with owned-version readback. LobeHub public metadata and G2 taxonomy remain incomplete."
   }
 }

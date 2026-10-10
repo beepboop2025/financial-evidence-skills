@@ -21,9 +21,11 @@ Three existing Undertow network pages were independently verified:
 | GetApp | [Undertow](https://www.getapp.com/all-software/a/undertow-1/) | Unrelated category and survey features |
 | Software Advice | [Undertow](https://www.softwareadvice.com/product/773580-Undertow/) | Unrelated category and survey features |
 
-Corrected financial-research copy was saved in the G2 editors and independently verified on all three public Undertow network pages. The unrelated categories and survey features still need correction. The feature-editor attempt did not persist any change, so no feature correction is claimed and no new support request was sent in this continuation. These pages retain `listed_incomplete`. Seiche's three network profiles show Published in the administrator portal, but their public routes returned missing pages. They are recorded as nested verification outcomes and are not counted as public placements.
+Corrected financial-research copy was saved in the G2 editors and independently verified on all three public Undertow network pages. The unrelated categories and survey features still need correction. The feature-editor attempt did not persist any change, so no feature correction is claimed. These pages retain `listed_incomplete`. Seiche's three network profiles show Published in the administrator portal, but their public routes returned missing pages. They are recorded as nested verification outcomes and are not counted as public placements.
 
-The earlier LiquiLens category case 00642455 and seller-description case 00643368 remain separate. The [previous report](g2-lobehub-repair-20261010.md) preserves their last observed status and the earlier verified LiquiLens Capterra/GetApp pages.
+The owner-approved addendum was posted once to existing G2 case **00642455** at **09:50 UTC**, and its case-feed readback was verified. It requests category review for Seiche and Undertow, removal of unsupported survey features, and routing for Undertow network taxonomy and Seiche’s missing pages. No new case was created. The shared seller-description issue remains linked to **00643368**.
+
+Case 00642455 remains In Progress. Its 14 October estimate belongs to the original case; G2 has not yet acknowledged the extended scope or a resolution date for these additional issues. The [previous report](g2-lobehub-repair-20261010.md) preserves the earlier case history and verified LiquiLens Capterra/GetApp pages.
 
 ## LobeHub
 
@@ -53,4 +55,4 @@ This continuation verified five existing public profiles: two on G2 and three Un
 
 The ledger contains 118 product/channel records, including 66 with public presence: 49 `live` and 17 `listed_incomplete`. Those public URLs use 20 distinct hosts after removing `www.`, with GitHub directories and releases grouped under `github.com`. This is a cumulative ledger count; other destinations were not re-audited in this continuation. Listing administration and protocol discovery do not establish new customers, retention or paid adoption.
 
-Next, resolve the G2 categories, unrelated survey features and Seiche’s three missing network pages, and verify all seven public LobeHub versions, transports and validation labels. [Update declarations](lobehub-updates/README.md) · [Sanitized receipt](g2-lobehub-followthrough-20261010.json) · [Product/channel ledger](../marketplaces.json)
+Next, await G2 confirmation and routing of the existing-case addendum, verify the corrected categories, survey features and Seiche network pages, and recheck all seven public LobeHub versions, transports and validation labels. [Update declarations](lobehub-updates/README.md) · [Sanitized receipt](g2-lobehub-followthrough-20261010.json) · [Product/channel ledger](../marketplaces.json)

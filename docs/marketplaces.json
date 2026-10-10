@@ -1416,7 +1416,7 @@
       "submission_url": "https://www.g2.com/add_product_requests/new",
       "cost": "free-standard-listing",
       "detail": "The existing Seiche G2 profile is publicly verified and claimed at its canonical product URL. Buyer-view readback confirms the financial-research description, product logo, English language, $0 Public research tier and a real product screenshot. Founder onboarding and deployment settings are saved. Consumer Insights Platforms remains the wrong category. No new product submission was made.",
-      "next_action": "Resolve the incorrect Consumer Insights Platforms category and the three missing syndicated network pages through the supported G2 route, then independently verify those public outcomes.",
+      "next_action": "Await G2 confirmation of the existing-case addendum covering the financial-research category and missing network pages, then verify the provider response and corrected public outcomes.",
       "verified_at": "2026-10-10T09:46:10.817709+00:00",
       "latest_surface_check": {
         "observed_at": "2026-10-10T09:46:10.817709+00:00",
@@ -1426,7 +1426,7 @@
       },
       "listing_url": "https://www.g2.com/products/seiche/reviews",
       "ownership_state": "claimed",
-      "updated_at": "2026-10-10T09:46:10.817709+00:00",
+      "updated_at": "2026-10-10T09:50:12.475Z",
       "listing_followthrough_receipt": "distribution/g2-lobehub-followthrough-20261010.json",
       "profile_enrichment": {
         "logo_saved": true,
@@ -1488,6 +1488,16 @@
             "public_readback": "not_found_or_missing"
           }
         ]
+      },
+      "support_followup": {
+        "case_number": "00642455",
+        "related_case": "00643368",
+        "state": "existing_case_addendum_posted_scope_confirmation_pending",
+        "posted_at": "2026-10-10T09:50:12.475Z",
+        "post_readback_verified": true,
+        "provider_resolution_verified": false,
+        "scope_extension_acknowledged": false,
+        "receipt": "distribution/g2-lobehub-followthrough-20261010.json"
       }
     },
     {
@@ -1498,7 +1508,7 @@
       "submission_url": "https://www.g2.com/add_product_requests/new",
       "cost": "free-standard-listing",
       "detail": "The existing Undertow G2 profile is publicly verified and claimed at its canonical product URL. Buyer-view readback confirms the financial-research description, product logo, English language, $0 Public research tier and a real product screenshot. Founder onboarding and deployment settings are saved. Consumer Insights Platforms remains the wrong category. No new product submission was made.",
-      "next_action": "Resolve the incorrect Consumer Insights Platforms category through the supported G2 correction route, then independently verify the corrected public taxonomy.",
+      "next_action": "Await G2 confirmation of the existing-case addendum covering the financial-research category and unsupported survey features, then verify the corrected public profile.",
       "verified_at": "2026-10-10T09:46:10.894003+00:00",
       "latest_surface_check": {
         "observed_at": "2026-10-10T09:46:10.894003+00:00",
@@ -1508,7 +1518,7 @@
       },
       "listing_url": "https://www.g2.com/products/liquilens-private-limited-undertow/reviews",
       "ownership_state": "claimed",
-      "updated_at": "2026-10-10T09:46:10.894003+00:00",
+      "updated_at": "2026-10-10T09:50:12.475Z",
       "listing_followthrough_receipt": "distribution/g2-lobehub-followthrough-20261010.json",
       "profile_enrichment": {
         "logo_saved": true,
@@ -1587,6 +1597,16 @@
         "saved": false,
         "result": "editor_control_attempt_did_not_persist",
         "survey_features_remain_unresolved": true
+      },
+      "support_followup": {
+        "case_number": "00642455",
+        "related_case": "00643368",
+        "state": "existing_case_addendum_posted_scope_confirmation_pending",
+        "posted_at": "2026-10-10T09:50:12.475Z",
+        "post_readback_verified": true,
+        "provider_resolution_verified": false,
+        "scope_extension_acknowledged": false,
+        "receipt": "distribution/g2-lobehub-followthrough-20261010.json"
       }
     },
     {
@@ -3105,9 +3125,9 @@
       "listing_url": "https://www.capterra.com/p/10266232/Undertow/",
       "cost": "free network listing; no paid placement purchased",
       "detail": "Existing syndicated Undertow page independently verified. Financial-research product copy was corrected through G2 and the corrected copy was independently read back on this public network page. Unrelated categories and survey features still require correction. This is a newly verified existing page, not a new submission.",
-      "next_action": "Resolve unrelated categories and survey features through the supported G2 correction route, then verify the network page again.",
+      "next_action": "Await G2 routing or resolution of the network category and survey-feature issues raised in the existing-case addendum, then verify the public page again.",
       "verified_at": "2026-10-10T09:46:12.466421+00:00",
-      "updated_at": "2026-10-10T09:46:12.466421+00:00",
+      "updated_at": "2026-10-10T09:50:12.475Z",
       "category_correction_pending": true,
       "listing_followthrough_receipt": "distribution/g2-lobehub-followthrough-20261010.json",
       "product_copy_correction": {
@@ -3115,6 +3135,16 @@
         "admin_field_readback_verified": true,
         "public_readback_verified": true,
         "public_readback_at": "2026-10-10T09:46:12.466421+00:00"
+      },
+      "support_followup": {
+        "case_number": "00642455",
+        "related_case": "00643368",
+        "state": "existing_case_addendum_posted_scope_confirmation_pending",
+        "posted_at": "2026-10-10T09:50:12.475Z",
+        "post_readback_verified": true,
+        "provider_resolution_verified": false,
+        "scope_extension_acknowledged": false,
+        "receipt": "distribution/g2-lobehub-followthrough-20261010.json"
       }
     },
     {
@@ -3125,9 +3155,9 @@
       "listing_url": "https://www.getapp.com/all-software/a/undertow-1/",
       "cost": "free network listing; no paid placement purchased",
       "detail": "Existing syndicated Undertow page independently verified. Financial-research product copy was corrected through G2 and the corrected copy was independently read back on this public network page. Unrelated categories and survey features still require correction. This is a newly verified existing page, not a new submission.",
-      "next_action": "Resolve unrelated categories and survey features through the supported G2 correction route, then verify the network page again.",
+      "next_action": "Await G2 routing or resolution of the network category and survey-feature issues raised in the existing-case addendum, then verify the public page again.",
       "verified_at": "2026-10-10T09:46:13.379064+00:00",
-      "updated_at": "2026-10-10T09:46:13.379064+00:00",
+      "updated_at": "2026-10-10T09:50:12.475Z",
       "category_correction_pending": true,
       "listing_followthrough_receipt": "distribution/g2-lobehub-followthrough-20261010.json",
       "product_copy_correction": {
@@ -3135,6 +3165,16 @@
         "admin_field_readback_verified": true,
         "public_readback_verified": true,
         "public_readback_at": "2026-10-10T09:46:13.379064+00:00"
+      },
+      "support_followup": {
+        "case_number": "00642455",
+        "related_case": "00643368",
+        "state": "existing_case_addendum_posted_scope_confirmation_pending",
+        "posted_at": "2026-10-10T09:50:12.475Z",
+        "post_readback_verified": true,
+        "provider_resolution_verified": false,
+        "scope_extension_acknowledged": false,
+        "receipt": "distribution/g2-lobehub-followthrough-20261010.json"
       }
     },
     {
@@ -3145,9 +3185,9 @@
       "listing_url": "https://www.softwareadvice.com/product/773580-Undertow/",
       "cost": "free network listing; no paid placement purchased",
       "detail": "Existing syndicated Undertow page independently verified. Financial-research product copy was corrected through G2 and the corrected copy was independently read back on this public network page. Unrelated categories and survey features still require correction. This is a newly verified existing page, not a new submission.",
-      "next_action": "Resolve unrelated categories and survey features through the supported G2 correction route, then verify the network page again.",
+      "next_action": "Await G2 routing or resolution of the network category and survey-feature issues raised in the existing-case addendum, then verify the public page again.",
       "verified_at": "2026-10-10T09:46:27.046627+00:00",
-      "updated_at": "2026-10-10T09:46:27.046627+00:00",
+      "updated_at": "2026-10-10T09:50:12.475Z",
       "category_correction_pending": true,
       "listing_followthrough_receipt": "distribution/g2-lobehub-followthrough-20261010.json",
       "product_copy_correction": {
@@ -3155,11 +3195,21 @@
         "admin_field_readback_verified": true,
         "public_readback_verified": true,
         "public_readback_at": "2026-10-10T09:46:27.046627+00:00"
+      },
+      "support_followup": {
+        "case_number": "00642455",
+        "related_case": "00643368",
+        "state": "existing_case_addendum_posted_scope_confirmation_pending",
+        "posted_at": "2026-10-10T09:50:12.475Z",
+        "post_readback_verified": true,
+        "provider_resolution_verified": false,
+        "scope_extension_acknowledged": false,
+        "receipt": "distribution/g2-lobehub-followthrough-20261010.json"
       }
     }
   ],
   "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
-  "updated_at": "2026-10-10T09:48:26.083360+00:00",
+  "updated_at": "2026-10-10T09:51:21.090402+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -3332,7 +3382,7 @@
     "scope": "G2 profile enrichment and existing case status; two syndicated public pages verified; seven LobeHub cards rechecked. Other channel records were not re-audited."
   },
   "latest_listing_followthrough": {
-    "recorded_at": "2026-10-10T09:48:26.083360+00:00",
+    "recorded_at": "2026-10-10T09:51:21.090402+00:00",
     "receipt": "distribution/g2-lobehub-followthrough-20261010.json",
     "report": "distribution/g2-lobehub-followthrough-20261010.md",
     "scope": "Five existing public G2/network profiles verified, two G2 claims and profile enrichments completed, three Undertow network descriptions corrected publicly, and seven existing LobeHub updates accepted with owned-version readback. LobeHub public metadata and G2 taxonomy remain incomplete."

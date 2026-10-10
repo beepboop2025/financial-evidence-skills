@@ -1,6 +1,6 @@
 {
   "schema": "liquidity-lab.g2-lobehub-followthrough.v1",
-  "recorded_at": "2026-10-10T09:48:26.083360+00:00",
+  "recorded_at": "2026-10-10T09:51:21.090402+00:00",
   "scope": "Existing G2 profiles and seven existing LobeHub cards only",
   "prior_report": "g2-lobehub-repair-20261010.json",
   "new_product_submissions": 0,
@@ -209,7 +209,31 @@
       "result": "editor_controls_did_not_persist_changed_selection",
       "category_and_survey_features_remain_unresolved": true
     },
-    "new_support_requests_sent": 0
+    "support_addendum": {
+      "case_number": "00642455",
+      "related_seller_description_case": "00643368",
+      "owner_approved": true,
+      "posted_once": true,
+      "post_readback_verified": true,
+      "observed_at": "2026-10-10T09:50:12.475Z",
+      "feed_url": "https://support.g2.com/s/feed/0D5Nw000013Shr7KAC",
+      "case_status": "in_progress",
+      "requested_scope": [
+        "Seiche and Undertow financial-research category review",
+        "Removal of unsupported survey, poll and panel features",
+        "Routing correction requests for Undertow network categories and features",
+        "Routing Seiche missing public network pages"
+      ],
+      "scope_extension_acknowledged": false,
+      "provider_resolution_verified": false,
+      "original_case_estimated_resolution_date": "2026-10-14",
+      "estimate_applies_to_scope_extension": false,
+      "body_sha256": "6a488d778496174126d3e066af2a902a86eba8174ff05a62b4115da1a04c3dbb",
+      "new_cases_created": 0,
+      "existing_case_comments_posted": 1
+    },
+    "new_support_cases_created": 0,
+    "existing_case_comments_posted": 1
   },
   "lobehub": {
     "publisher_cli": "@lobehub/market-cli@0.0.41",
@@ -465,7 +489,7 @@
       "intent": "Correct stale catalog metadata to the verified real release and native MCP discovery; no deployed software downgrade."
     },
     "verification_limits": [
-      "The provider owned-list readback verifies acceptance, ownership and current catalog version. Root separately owns public-page readback.",
+      "The authenticated owned-list readback verifies acceptance, ownership and catalog version. Anonymous public-page readback is recorded separately.",
       "MCP discovery counts came from the prepared manifests; no model chat, subscriber access or production software changes occurred.",
       "Badge validation and provider quality labels are separate from ownership and metadata update acceptance.",
       "Evidence Carrier remains local stdio with evidence-root configuration; no hosted endpoint was introduced.",
@@ -508,7 +532,10 @@
     "softwareadvice-undertow-public-after-copy.txt": "8bb7d9a2f5a701861ed1cfa91920213a7bd118d216be513d2352698bcf29adab",
     "capterra-seiche-public.txt": "72212282c7957b7fc874635ca840e1fe1191535d5605ee6fadfdd00632065c9e",
     "getapp-seiche-public.txt": "690b813cf29874500a20f0a7e537e7aee5b613e383e1dad60396d9fc3072e3c3",
-    "softwareadvice-seiche-public.txt": "c4ba50931958a81e512006490d3aad49a4ed2fdece48f2577f6e92eadf173846"
+    "softwareadvice-seiche-public.txt": "c4ba50931958a81e512006490d3aad49a4ed2fdece48f2577f6e92eadf173846",
+    "G2_SUPPORT_POST_RECEIPT.json": "93ab5e1c1cbded3dd3aae2087e801cde85f524912d7b888e2a51d7e8df2267ca",
+    "g2-support-addendum.txt": "6a488d778496174126d3e066af2a902a86eba8174ff05a62b4115da1a04c3dbb",
+    "g2-support-addendum-posted.txt": "bb33a1e40d1492403de3c50386b5ddb62f6765b9148d914bb6995a73e9ed6ff4"
   },
   "ledger_records": 118,
   "new_ledger_records": 3,

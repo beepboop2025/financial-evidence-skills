@@ -3242,10 +3242,31 @@
       "source_rights_expanded": false,
       "marketing_opt_in": false,
       "evidence_receipt": "distribution/provider-inquiries-20261011.json"
+    },
+    {
+      "id": "dify-financial-evidence",
+      "name": "Dify Marketplace \u2014 Financial Evidence",
+      "product": "Financial Evidence",
+      "channel": "agent-plugin-marketplace",
+      "state": "submitted",
+      "submission_url": "https://github.com/langgenius/dify-plugins/pull/3278",
+      "cost": "Free upstream plugin submission; no paid placement selected.",
+      "detail": "The official plugin-repository PR received Financial Evidence 0.1.1. Three bounded remote-debug workflows passed in Dify Cloud for funding, bank and liquidity evidence; the final archive preserves the tested runtime files and updates only PRIVACY.md after registration. Marketplace review and publication remain pending. Workflow success does not validate source completeness, freshness, rights or independent customer adoption.",
+      "next_action": "Await maintainer review and approval of the existing upstream PR and its action-required precheck; do not resubmit. Verify the published plugin URL before changing this record to live.",
+      "verified_at": "2026-10-10T21:21:06.372878+00:00",
+      "package_version": "0.1.1",
+      "package_sha256": "b94f1c080ddd8e8e592acf41c80c3177660044fd71ee8badb239b6fce72e9f6c",
+      "native_remote_debug_verified": true,
+      "native_validation_scope": "Dify Cloud SANDBOX; three draft workflow runs with limit 1 and offset 0. Community Edition and installed-archive execution were not tested.",
+      "public_listing_verified": false,
+      "marketplace_published": false,
+      "independent_adoption_verified": false,
+      "evidence_receipt": "distribution/dify-submission-20261011.json",
+      "native_proof": "integrations/dify-native-proof-20261011.json"
     }
   ],
   "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
-  "updated_at": "2026-10-10T21:10:44.173121+00:00",
+  "updated_at": "2026-10-10T21:21:06.372878+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -3436,5 +3457,14 @@
       "factset-provider-inquiry",
       "nasdaq-data-link-provider-inquiry"
     ]
+  },
+  "latest_dify_submission": {
+    "verified_at": "2026-10-10T21:21:06.372878+00:00",
+    "receipt": "distribution/dify-submission-20261011.json",
+    "submission_url": "https://github.com/langgenius/dify-plugins/pull/3278",
+    "new_received_submissions": 1,
+    "new_public_listings_verified": 0,
+    "native_draft_workflows_passed": 3,
+    "independent_adoption_verified": false
   }
 }

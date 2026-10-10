@@ -62,8 +62,10 @@ Native Flowise execution remains to be verified.
 ## Dify
 
 Use a remote MCP connection where supported, or evaluate the repository's native
-tool plugin in `integrations/dify`. The native plugin is a separate package and
-requires a successful Dify debug session before marketplace submission.
+tool plugin in `integrations/dify`. Version 0.1.1 passed three bounded Dify Cloud
+remote-debug workflows. Its [Marketplace submission](https://github.com/langgenius/dify-plugins/pull/3278)
+remains under review; [package and validation scope](native-packages.md#dify)
+are available for evaluation.
 [Plugin source](https://github.com/beepboop2025/financial-evidence-skills/tree/main/integrations/dify).
 
 ## Haystack

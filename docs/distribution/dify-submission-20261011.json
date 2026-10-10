@@ -1,0 +1,42 @@
+{
+  "schema": "financial-evidence.dify-submission.v1",
+  "observed_at": "2026-10-10T21:21:06.372878+00:00",
+  "status": "submitted_pending_review",
+  "marketplace_published": false,
+  "pr_url": "https://github.com/langgenius/dify-plugins/pull/3278",
+  "pr_number": 3278,
+  "pr_state": "OPEN",
+  "pr_draft": false,
+  "submission_head_revision": "e68833393c395a28b3f9ea9e4a753e7b5cfc6d14",
+  "package_path": "beepboop2025/financial_evidence/financial_evidence-0.1.1.difypkg",
+  "package_bytes": 7307,
+  "package_sha256": "b94f1c080ddd8e8e592acf41c80c3177660044fd71ee8badb239b6fce72e9f6c",
+  "github_blob_sha": "146114ee86289eefc44306e5f09a29291a3dbf7f",
+  "remote_package_matches_local": true,
+  "source_revision": "debf49d4cfaad6d0db677909e27b58351aa0fde9",
+  "source_pr_url": "https://github.com/beepboop2025/financial-evidence-skills/pull/105",
+  "validator_revision": "57a21d1304b1108df3e6b90a15a4f5dd9f0915f9",
+  "native_proof_sha256": "05ac0791c74de2007bbe73db81f8d417bd6fe486d532011b415d1eceabef451f",
+  "source_merged_revision": "f01984ffa621e317b9fa3615e07aa7a218686830",
+  "merged_source_matches_package": true,
+  "verified_package_files": {
+    "PRIVACY.md": "4e1f723d39d3ee2bebc54241151714998695e9c7df7cba51bae4f5484994fb32",
+    "README.md": "1f68f896a356ef29f7552d89a0c6d84d71fa0d9011144ae4ff387362883a85f0",
+    "_assets/icon.svg": "c80fead76a1695cf1c874998954cee0dc382d52869ca019c1e6ddd1692ef6f65",
+    "main.py": "633d495584320e93e569501bf0fce9cc47ad05ba888db5538fe3476cb241ed19",
+    "manifest.yaml": "7d8ce3d3e0afd32f107f1f379dabaad7c20f17bb3bff371f1278fa19cf668dcf",
+    "provider/financial_evidence.py": "815ce98a1be0a6b242bef63f7835013eb16c5cc113472ab140c700ab4f20c529",
+    "provider/financial_evidence.yaml": "31667830e0e9bc41d4997118d6dfda352a8d8ca19d1703d97c84fe0ee9c4bde0",
+    "requirements.txt": "33b131d54972ea4340c57ac88d86d95837b160e039cec5ec1e9b350dc4d4474e",
+    "tools/evidence_page.py": "da687f4a4f9529e43488cfc4341036a03d4c9168adc6a4109a283dc56a5f6aa2",
+    "tools/evidence_page.yaml": "30bc721e4ecf1551f5e38e23a091fc3a115aed796f302189cd4615cf640e5777"
+  },
+  "private_key_absent_from_package_and_log": true,
+  "upstream_precheck": {
+    "run_id": 38086988045,
+    "conclusion": "action_required",
+    "jobs_executed": false
+  },
+  "upstream_risk_label": "risk: medium",
+  "initial_submission_observed_at": "2026-10-10T21:17:12.993063+00:00"
+}

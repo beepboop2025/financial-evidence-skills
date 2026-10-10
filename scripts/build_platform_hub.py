@@ -59,7 +59,7 @@ def assets() -> dict[str, bytes]:
                 DEST / "native-packages.json"]
     native = json.loads((DEST / "native-packages.json").read_text())
     downloads = {}
-    expected_names = {"n8n-nodes-financial-evidence-0.1.0.tgz", "financial_evidence-0.1.0.difypkg"}
+    expected_names = {"n8n-nodes-financial-evidence-0.1.0.tgz", "financial_evidence-0.1.1.difypkg"}
     if {item["filename"] for item in native["packages"]} != expected_names or len(native["packages"]) != 2:
         raise ValueError("unexpected native package set")
     for item in native["packages"]:

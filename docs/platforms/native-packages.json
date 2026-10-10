@@ -1,12 +1,7 @@
 {
-  "schema": "financial-evidence.native-package-downloads.v1",
-  "checked_at": "2026-10-10T19:39:32.683713+00:00",
-  "ci_run": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38080327701",
-  "pull_request_head_revision": "b2d7ee3ea9a86e3479e77702f4b9354fb16a94c0",
-  "tested_merge_revision": "f5f90eaf0a374e0cbbc17747d0dc4801e53ab111",
-  "source_files_compared_to_local_revision": "b2d7ee3ea9a86e3479e77702f4b9354fb16a94c0",
-  "source_file_bytes_match": true,
-  "scope": "Developer evaluation candidates. No marketplace publication or independent adoption is established. Dify native remote-debug is still required.",
+  "schema": "financial-evidence.native-package-downloads.v2",
+  "checked_at": "2026-10-10T21:21:06.372878+00:00",
+  "scope": "Versioned developer evaluation packages with per-package provenance. Dify Cloud remote-debug runtime passed three bounded draft workflows; its marketplace PR remains under review. No independent adoption is established.",
   "packages": [
     {
       "kind": "n8n",
@@ -48,34 +43,76 @@
         "n8n_verified": false,
         "independent_adoption_proven": false
       },
-      "marketplace_published": false
+      "marketplace_published": false,
+      "build_provenance": {
+        "ci_run": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38080327701",
+        "pull_request_head_revision": "b2d7ee3ea9a86e3479e77702f4b9354fb16a94c0",
+        "tested_merge_revision": "f5f90eaf0a374e0cbbc17747d0dc4801e53ab111",
+        "source_files_compared_to_local_revision": "b2d7ee3ea9a86e3479e77702f4b9354fb16a94c0",
+        "source_file_bytes_match": true
+      }
     },
     {
       "kind": "dify",
-      "filename": "financial_evidence-0.1.0.difypkg",
-      "sha256": "e9447fc08ec13d428aad4acc20be80c00aab11901818a81dd57907363ca7a68c",
-      "bytes": 5583,
+      "filename": "financial_evidence-0.1.1.difypkg",
+      "sha256": "b94f1c080ddd8e8e592acf41c80c3177660044fd71ee8badb239b6fce72e9f6c",
+      "bytes": 7307,
       "validation": {
-        "schema": "financial-evidence.dify-package.v1",
+        "schema": "financial-evidence.dify-package.v2",
         "status": "passed",
-        "package": "financial_evidence.difypkg",
-        "sha256": "e9447fc08ec13d428aad4acc20be80c00aab11901818a81dd57907363ca7a68c",
+        "package": "financial_evidence-0.1.1.difypkg",
+        "sha256": "b94f1c080ddd8e8e592acf41c80c3177660044fd71ee8badb239b6fce72e9f6c",
         "files": {
-          "PRIVACY.md": "b5173cd7492bc3e806e741089a5efe763431952ef8e86fc8f2a098c7c9f547b4",
-          "README.md": "a562a1eb12154ac3c9849068224c4411e8ac59cda7d2fec11b76cfc1c4317762",
+          "PRIVACY.md": "4e1f723d39d3ee2bebc54241151714998695e9c7df7cba51bae4f5484994fb32",
+          "README.md": "1f68f896a356ef29f7552d89a0c6d84d71fa0d9011144ae4ff387362883a85f0",
           "_assets/icon.svg": "c80fead76a1695cf1c874998954cee0dc382d52869ca019c1e6ddd1692ef6f65",
           "main.py": "633d495584320e93e569501bf0fce9cc47ad05ba888db5538fe3476cb241ed19",
-          "manifest.yaml": "083329fbd7d98a6abf95b7fb6412cc2ce1a376b93607ef85fb43d5b56f2a1005",
+          "manifest.yaml": "7d8ce3d3e0afd32f107f1f379dabaad7c20f17bb3bff371f1278fa19cf668dcf",
           "provider/financial_evidence.py": "815ce98a1be0a6b242bef63f7835013eb16c5cc113472ab140c700ab4f20c529",
           "provider/financial_evidence.yaml": "31667830e0e9bc41d4997118d6dfda352a8d8ca19d1703d97c84fe0ee9c4bde0",
-          "requirements.txt": "127db2c80ad4577e4a6c2c28a30c4fa52632a2b226cb67d87de750c8f66ef1fb",
+          "requirements.txt": "33b131d54972ea4340c57ac88d86d95837b160e039cec5ec1e9b350dc4d4474e",
           "tools/evidence_page.py": "da687f4a4f9529e43488cfc4341036a03d4c9168adc6a4109a283dc56a5f6aa2",
           "tools/evidence_page.yaml": "30bc721e4ecf1551f5e38e23a091fc3a115aed796f302189cd4615cf640e5777"
         },
-        "native_remote_debug_passed": false,
-        "marketplace_published": false
+        "checks_performed": [
+          "package_file_allowlist",
+          "source_byte_equality"
+        ],
+        "native_remote_debug": "not_checked",
+        "marketplace_publication": "not_checked"
       },
-      "marketplace_published": false
+      "marketplace_published": false,
+      "native_validation": {
+        "proof_url": "https://beepboop2025.github.io/financial-evidence-skills/integrations/dify-native-proof-20261011.json",
+        "proof_sha256": "05ac0791c74de2007bbe73db81f8d417bd6fe486d532011b415d1eceabef451f",
+        "platform": "Dify Cloud SANDBOX",
+        "native_remote_debug_passed": true,
+        "datasets": [
+          "money_markets",
+          "bank_risk",
+          "market_liquidity"
+        ],
+        "runtime_identity_matches_final_package": true,
+        "post_registration_packaged_changes": [
+          "PRIVACY.md"
+        ],
+        "installed_archive_execution_tested": false,
+        "community_edition_tested": false,
+        "workflow_published": false,
+        "independent_adoption_verified": false
+      },
+      "build_provenance": {
+        "source_revision": "debf49d4cfaad6d0db677909e27b58351aa0fde9",
+        "merged_source_revision": "f01984ffa621e317b9fa3615e07aa7a218686830",
+        "source_pull_request": "https://github.com/beepboop2025/financial-evidence-skills/pull/105",
+        "archive_files_match_source": true
+      },
+      "marketplace_submission": {
+        "state": "submitted_pending_review",
+        "url": "https://github.com/langgenius/dify-plugins/pull/3278",
+        "head_revision": "e68833393c395a28b3f9ea9e4a753e7b5cfc6d14",
+        "receipt_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/dify-submission-20261011.json"
+      }
     }
   ]
 }

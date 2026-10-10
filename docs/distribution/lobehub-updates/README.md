@@ -35,13 +35,22 @@ public metadata has not been fully revalidated in this pass.
 
 ## Account steps
 
-The publisher CLI has no existing credentials. Its login requests LobeHub
-profile, email and persistent sign-in (`offline_access`). This new grant awaits
-owner approval. GitHub ownership access, if requested next, needs its displayed
-scope reviewed separately. Do not create a machine identity or publish duplicate
-cards to work around account ownership.
+Owner-approved publisher CLI login is complete, including LobeHub profile,
+email and persistent sign-in (`offline_access`). The owner also approved the
+separate GitHub grant for `gist`, `read:org`, `read:user`, `repo`, `user:email`
+and `workflow`.
 
-After authorized sign-in and GitHub ownership verification, inspect
+The GitHub authorization button remained disabled while organization access
+loaded, including after reload and a fresh official CLI request. The CLI still
+reported GitHub disconnected and an empty owned-plugin list. This is a
+provider-interface blocker, not a request for another owner approval. No card
+has been claimed or updated, and no restriction was bypassed. Retain the seven
+prepared declarations until the official ownership flow becomes available.
+
+The [publisher follow-through receipt](../publisher-completion-20261010.json)
+tracks this later account state separately from the initial preparation.
+
+Once the official GitHub ownership flow completes, inspect
 `lhm plugin list --output json`. For each existing identifier, claim it only
 if necessary and then use its corresponding prepared directory:
 

@@ -202,8 +202,8 @@
       "state": "ready_account_action",
       "submission_url": "https://platform.openai.com/plugins",
       "cost": "free",
-      "detail": "The v0.1.7 listing packet and minimal ZIP with per-file checksums are prepared from exact release files. The signed-in portal requires verified publisher identity before enabling even draft upload; neither available organization was verified. No ZIP has been uploaded, domain token installed, real cross-platform demo recorded or review submission made.",
-      "next_action": "Owner completes business identity verification for LIQUILENS PRIVATE LIMITED. Then upload the prepared ZIP, install the exact domain token, test and record a real ChatGPT/Codex demo, complete attestations and submit.",
+      "detail": "The exact v0.1.7 listing packet and minimal ZIP remain prepared. Verified publisher identity has not been observed, and the owner has explicitly deferred this channel. No ZIP upload, domain challenge, real cross-platform demo or review submission is claimed.",
+      "next_action": "Retain the exact prepared ZIP and submission packet; resume identity verification and the remaining portal steps when the owner lifts the deferral.",
       "latest_surface_check": {
         "observed_at": "2026-10-08T11:16:05.165504+00:00",
         "readback": "no_public_listing_url"
@@ -212,24 +212,64 @@
       "archive_sha256": "3fdce4c151874309ffbffcc414fa33415be485415be3cf917079164dbded4ab5",
       "identity_verification_completed": false,
       "portal_upload_completed": false,
-      "updated_at": "2026-10-10T06:28:14.840174+00:00",
-      "completion_receipt": "distribution/completion-20261010.json"
+      "updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "completion_receipt": "distribution/completion-20261010.json",
+      "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
+      "owner_deferred": true
     },
     {
       "id": "claude-plugin-directory",
       "name": "Claude Plugin Directory",
       "channel": "agent-plugin-directory",
       "state": "ready_account_action",
-      "submission_url": "https://platform.claude.com/plugins/submit",
-      "cost": "free",
-      "detail": "The self-hosted plugin and marketplace manifests pass strict Claude validation. The publisher portal requires sign-in accepting its displayed Commercial Terms and Usage Policy; approval has been requested and remains pending. No community-directory submission is claimed.",
-      "next_action": "After owner approval of the displayed sign-in terms, continue the prepared publisher application and retain its receipt.",
+      "submission_url": "https://claude.ai/directory/manage/new",
+      "cost": "A paid Claude Pro, Max, Team or Enterprise account is required for directory submission; no plan purchased.",
+      "detail": "Owner-approved publisher sign-in and directory terms are complete. The former Console form now states that submissions have moved to claude.ai. The current directory manager requires a paid Pro, Max, Team or Enterprise account, and no qualifying account or submission receipt was observed. The owner has explicitly deferred this channel. Separately, native Claude Code 2.1.228 installed Financial Evidence 0.1.7 and passed skill/MCP inventory and a no-auth HTTP MCP connection; Cowork and model-mediated tool use remain untested.",
+      "next_action": "Retain the portable submission packet and existing consent approvals; resume publisher work when the owner lifts the deferral. A qualifying paid publisher account remains required.",
       "latest_surface_check": {
         "observed_at": "2026-10-08T11:16:05.165507+00:00",
         "readback": "no_public_listing_url"
       },
-      "updated_at": "2026-10-10T06:28:14.840174+00:00",
-      "completion_receipt": "distribution/completion-20261010.json"
+      "updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "completion_receipt": "distribution/completion-20261010.json",
+      "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
+      "sign_in_terms_approved": true,
+      "latest_native_check": {
+        "observed_at": "2026-10-10T08:48:53.350977+00:00",
+        "client": "Claude Code",
+        "client_version": "2.1.228",
+        "plugin_version": "0.1.7",
+        "source_commit": "3e13efae890d832adc76b776b785c4132fa34974",
+        "native_marketplace_add": "passed",
+        "native_plugin_install": "passed",
+        "native_plugin_inventory": {
+          "skills": [
+            "financial-evidence"
+          ],
+          "mcp_servers": [
+            "financial-evidence"
+          ]
+        },
+        "native_http_mcp_connection": "passed",
+        "native_server_version": "0.1.7",
+        "auth_required": false,
+        "model_calls": 0,
+        "model_mediated_tool_call": "not_performed",
+        "native_mcp_tool_call": "not_performed_cli_has_no_model_free_call_subcommand",
+        "cowork": "not_tested",
+        "installed_helper_manual_tests": {
+          "bank_risk_default_1mb": "passed",
+          "money_market_default_1mb": "unavailable_response_exceeds_cap",
+          "money_market_4mb": "passed"
+        }
+      },
+      "native_installation_verified": true,
+      "publisher_submission_completed": false,
+      "paid_account_required": true,
+      "paid_plan_purchased": false,
+      "directory_terms_approved": true,
+      "owner_deferred": true,
+      "publisher_packet": "https://github.com/beepboop2025/financial-evidence-skills/blob/main/CLAUDE_PLUGIN_SUBMISSION.md"
     },
     {
       "id": "smithery",
@@ -1850,8 +1890,8 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-liquilens-mcp",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public card is indexed under the repository. The official publisher CLI generated a current update manifest from native streamable-http discovery: version 1.8.1, 24 tools. The prepared update has not been published; account access and ownership authorization remain. Directory validation and a complete LobeHub chat installation are unverified.",
-      "next_action": "After owner-approved publisher sign-in and GitHub ownership review, update the existing card with the prepared declaration and verify its public version and validation result.",
+      "detail": "An existing public card is indexed under the repository. The official publisher CLI prepared a current update from native streamable-http discovery: version 1.8.1, 24 tools. Publisher login and the separate GitHub grant are owner-approved. GitHub's authorization button remained disabled while organization access loaded, including after a fresh official CLI request; the CLI still reports GitHub disconnected and no owned plugins. No card has been claimed or updated. Directory validation and a complete LobeHub chat installation remain unverified.",
+      "next_action": "Retry the official GitHub ownership flow after the provider interface becomes available, then claim only existing unowned cards, apply the prepared updates and verify each public readback. Existing owner approvals remain in force.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
@@ -1867,9 +1907,14 @@
         "tool_count": 24,
         "transport": "streamable-http"
       },
-      "edit_state": "prepared_account_authorization_required",
-      "updated_at": "2026-10-10T06:28:14.840174+00:00",
-      "completion_receipt": "distribution/completion-20261010.json"
+      "edit_state": "prepared_provider_authorization_ui_blocked",
+      "updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "completion_receipt": "distribution/completion-20261010.json",
+      "publisher_login_completed": true,
+      "github_ownership_verified": false,
+      "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
+      "github_grant_owner_approved": true,
+      "publisher_updates_submitted": 0
     },
     {
       "id": "lobehub-seiche",
@@ -1878,8 +1923,8 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-seiche",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public card is indexed under the repository. The official publisher CLI generated a current update manifest from native streamable-http discovery: version 0.16.2, 16 tools. The prepared update has not been published; account access and ownership authorization remain. Directory validation and a complete LobeHub chat installation are unverified.",
-      "next_action": "After owner-approved publisher sign-in and GitHub ownership review, update the existing card with the prepared declaration and verify its public version and validation result.",
+      "detail": "An existing public card is indexed under the repository. The official publisher CLI prepared a current update from native streamable-http discovery: version 0.16.2, 16 tools. Publisher login and the separate GitHub grant are owner-approved. GitHub's authorization button remained disabled while organization access loaded, including after a fresh official CLI request; the CLI still reports GitHub disconnected and no owned plugins. No card has been claimed or updated. Directory validation and a complete LobeHub chat installation remain unverified.",
+      "next_action": "Retry the official GitHub ownership flow after the provider interface becomes available, then claim only existing unowned cards, apply the prepared updates and verify each public readback. Existing owner approvals remain in force.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
@@ -1895,9 +1940,14 @@
         "tool_count": 16,
         "transport": "streamable-http"
       },
-      "edit_state": "prepared_account_authorization_required",
-      "updated_at": "2026-10-10T06:28:14.840174+00:00",
-      "completion_receipt": "distribution/completion-20261010.json"
+      "edit_state": "prepared_provider_authorization_ui_blocked",
+      "updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "completion_receipt": "distribution/completion-20261010.json",
+      "publisher_login_completed": true,
+      "github_ownership_verified": false,
+      "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
+      "github_grant_owner_approved": true,
+      "publisher_updates_submitted": 0
     },
     {
       "id": "lobehub-undertow",
@@ -1906,8 +1956,8 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-undertow-mcp",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public card is indexed under the repository. The official publisher CLI generated a current update manifest from native streamable-http discovery: version 1.13.0, 16 tools. The prepared update has not been published; account access and ownership authorization remain. Directory validation and a complete LobeHub chat installation are unverified.",
-      "next_action": "After owner-approved publisher sign-in and GitHub ownership review, update the existing card with the prepared declaration and verify its public version and validation result.",
+      "detail": "An existing public card is indexed under the repository. The official publisher CLI prepared a current update from native streamable-http discovery: version 1.13.0, 16 tools. Publisher login and the separate GitHub grant are owner-approved. GitHub's authorization button remained disabled while organization access loaded, including after a fresh official CLI request; the CLI still reports GitHub disconnected and no owned plugins. No card has been claimed or updated. Directory validation and a complete LobeHub chat installation remain unverified.",
+      "next_action": "Retry the official GitHub ownership flow after the provider interface becomes available, then claim only existing unowned cards, apply the prepared updates and verify each public readback. Existing owner approvals remain in force.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
@@ -1923,9 +1973,14 @@
         "tool_count": 16,
         "transport": "streamable-http"
       },
-      "edit_state": "prepared_account_authorization_required",
-      "updated_at": "2026-10-10T06:28:14.840174+00:00",
-      "completion_receipt": "distribution/completion-20261010.json"
+      "edit_state": "prepared_provider_authorization_ui_blocked",
+      "updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "completion_receipt": "distribution/completion-20261010.json",
+      "publisher_login_completed": true,
+      "github_ownership_verified": false,
+      "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
+      "github_grant_owner_approved": true,
+      "publisher_updates_submitted": 0
     },
     {
       "id": "lobehub-palimpsest",
@@ -1934,8 +1989,8 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-palimpsest",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public card is indexed under the repository. The official publisher CLI generated a current update manifest from native streamable-http discovery: version 1.9.3, 7 tools. The prepared update has not been published; account access and ownership authorization remain. Directory validation and a complete LobeHub chat installation are unverified.",
-      "next_action": "After owner-approved publisher sign-in and GitHub ownership review, update the existing card with the prepared declaration and verify its public version and validation result.",
+      "detail": "An existing public card is indexed under the repository. The official publisher CLI prepared a current update from native streamable-http discovery: version 1.9.3, 7 tools. Publisher login and the separate GitHub grant are owner-approved. GitHub's authorization button remained disabled while organization access loaded, including after a fresh official CLI request; the CLI still reports GitHub disconnected and no owned plugins. No card has been claimed or updated. Directory validation and a complete LobeHub chat installation remain unverified.",
+      "next_action": "Retry the official GitHub ownership flow after the provider interface becomes available, then claim only existing unowned cards, apply the prepared updates and verify each public readback. Existing owner approvals remain in force.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
@@ -1951,9 +2006,14 @@
         "tool_count": 7,
         "transport": "streamable-http"
       },
-      "edit_state": "prepared_account_authorization_required",
-      "updated_at": "2026-10-10T06:28:14.840174+00:00",
-      "completion_receipt": "distribution/completion-20261010.json"
+      "edit_state": "prepared_provider_authorization_ui_blocked",
+      "updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "completion_receipt": "distribution/completion-20261010.json",
+      "publisher_login_completed": true,
+      "github_ownership_verified": false,
+      "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
+      "github_grant_owner_approved": true,
+      "publisher_updates_submitted": 0
     },
     {
       "id": "lobehub-riptide",
@@ -1962,8 +2022,8 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-riptide-mcp",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public card is indexed under the repository. The official publisher CLI generated a current update manifest from native streamable-http discovery: version 1.3.0, 7 tools. The prepared update has not been published; account access and ownership authorization remain. Directory validation and a complete LobeHub chat installation are unverified.",
-      "next_action": "After owner-approved publisher sign-in and GitHub ownership review, update the existing card with the prepared declaration and verify its public version and validation result.",
+      "detail": "An existing public card is indexed under the repository. The official publisher CLI prepared a current update from native streamable-http discovery: version 1.3.0, 7 tools. Publisher login and the separate GitHub grant are owner-approved. GitHub's authorization button remained disabled while organization access loaded, including after a fresh official CLI request; the CLI still reports GitHub disconnected and no owned plugins. No card has been claimed or updated. Directory validation and a complete LobeHub chat installation remain unverified.",
+      "next_action": "Retry the official GitHub ownership flow after the provider interface becomes available, then claim only existing unowned cards, apply the prepared updates and verify each public readback. Existing owner approvals remain in force.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
@@ -1979,9 +2039,14 @@
         "tool_count": 7,
         "transport": "streamable-http"
       },
-      "edit_state": "prepared_account_authorization_required",
-      "updated_at": "2026-10-10T06:28:14.840174+00:00",
-      "completion_receipt": "distribution/completion-20261010.json"
+      "edit_state": "prepared_provider_authorization_ui_blocked",
+      "updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "completion_receipt": "distribution/completion-20261010.json",
+      "publisher_login_completed": true,
+      "github_ownership_verified": false,
+      "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
+      "github_grant_owner_approved": true,
+      "publisher_updates_submitted": 0
     },
     {
       "id": "lobehub-noisefloor",
@@ -1990,8 +2055,8 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-noisefloor",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public card is indexed under the repository. The official publisher CLI generated a current update manifest from native streamable-http discovery: version 0.4.0, 10 tools. The prepared update has not been published; account access and ownership authorization remain. Directory validation and a complete LobeHub chat installation are unverified. NoiseFloor public card still showed 0.1.2 and Unvalidated, while native discovery returned 0.4.0 and ten tools.",
-      "next_action": "After owner-approved publisher sign-in and GitHub ownership review, update the existing card with the prepared declaration and verify its public version and validation result.",
+      "detail": "An existing public card is indexed under the repository. The official publisher CLI prepared a current update from native streamable-http discovery: version 0.4.0, 10 tools. Publisher login and the separate GitHub grant are owner-approved. GitHub's authorization button remained disabled while organization access loaded, including after a fresh official CLI request; the CLI still reports GitHub disconnected and no owned plugins. No card has been claimed or updated. Directory validation and a complete LobeHub chat installation remain unverified. The last public card readback displayed version 0.1.2 and Unvalidated; native discovery returned 0.4.0 and ten tools.",
+      "next_action": "Retry the official GitHub ownership flow after the provider interface becomes available, then claim only existing unowned cards, apply the prepared updates and verify each public readback. Existing owner approvals remain in force.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
@@ -2007,9 +2072,14 @@
         "tool_count": 10,
         "transport": "streamable-http"
       },
-      "edit_state": "prepared_account_authorization_required",
-      "updated_at": "2026-10-10T06:28:14.840174+00:00",
-      "completion_receipt": "distribution/completion-20261010.json"
+      "edit_state": "prepared_provider_authorization_ui_blocked",
+      "updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "completion_receipt": "distribution/completion-20261010.json",
+      "publisher_login_completed": true,
+      "github_ownership_verified": false,
+      "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
+      "github_grant_owner_approved": true,
+      "publisher_updates_submitted": 0
     },
     {
       "id": "lobehub-evidence-carrier",
@@ -2018,8 +2088,8 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-liquilens-evidence-carrier",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public card is indexed under the repository. The official publisher CLI generated a current update manifest from native stdio discovery: version 0.20.1, 4 tools. The prepared update has not been published; account access and ownership authorization remain. Directory validation and a complete LobeHub chat installation are unverified.",
-      "next_action": "After owner-approved publisher sign-in and GitHub ownership review, update the existing card with the prepared declaration and verify its public version and validation result.",
+      "detail": "An existing public card is indexed under the repository. The official publisher CLI prepared a current update from native stdio discovery: version 0.20.1, 4 tools. Publisher login and the separate GitHub grant are owner-approved. GitHub's authorization button remained disabled while organization access loaded, including after a fresh official CLI request; the CLI still reports GitHub disconnected and no owned plugins. No card has been claimed or updated. Directory validation and a complete LobeHub chat installation remain unverified.",
+      "next_action": "Retry the official GitHub ownership flow after the provider interface becomes available, then claim only existing unowned cards, apply the prepared updates and verify each public readback. Existing owner approvals remain in force.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
@@ -2035,9 +2105,14 @@
         "tool_count": 4,
         "transport": "stdio"
       },
-      "edit_state": "prepared_account_authorization_required",
-      "updated_at": "2026-10-10T06:28:14.840174+00:00",
-      "completion_receipt": "distribution/completion-20261010.json"
+      "edit_state": "prepared_provider_authorization_ui_blocked",
+      "updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "completion_receipt": "distribution/completion-20261010.json",
+      "publisher_login_completed": true,
+      "github_ownership_verified": false,
+      "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
+      "github_grant_owner_approved": true,
+      "publisher_updates_submitted": 0
     },
     {
       "id": "public-apis-liquilens-rest",
@@ -2297,14 +2372,25 @@
       "name": "Awesome AI4Finance \u2014 Financial Evidence",
       "product": "Financial Evidence",
       "channel": "research-directory",
-      "state": "submitted",
+      "state": "live",
       "submission_url": "https://github.com/AI4Finance-Foundation/Awesome_AI4Finance/pull/37",
       "cost": "free",
-      "detail": "A public maintainer-disclosed contribution PR is open. Catalog inclusion awaits upstream review. Developers building source-linked financial research agents.",
-      "next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "detail": "Upstream merged PR 37, and an unauthenticated read of the default-branch README independently resolved the Financial Evidence row. This is verified public catalog placement; usage, retention and revenue attributable to it remain unverified.",
+      "next_action": "Monitor attributable research and installation usage from the live listing; do not resubmit.",
       "submitted_at": "2026-10-10T05:30:53.903883+00:00",
-      "verified_at": "2026-10-10T05:30:53.903883+00:00",
-      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/wide-distribution-20261010.json"
+      "verified_at": "2026-10-10T08:45:09.379097+00:00",
+      "verification_url": "https://raw.githubusercontent.com/AI4Finance-Foundation/Awesome_AI4Finance/main/README.md",
+      "listing_url": "https://github.com/AI4Finance-Foundation/Awesome_AI4Finance/blob/main/README.md",
+      "merged_at": "2026-10-10T08:35:49Z",
+      "merge_commit": "9dda444b19bc9c0376d015bd5d7497ea81060efe",
+      "updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
+      "latest_surface_check": {
+        "observed_at": "2026-10-10T08:45:09.379097+00:00",
+        "readback": "public_default_branch_row_verified",
+        "readme_blob_sha": "e1d3bdbadb7a9c0a63913a66b746a61a6dd29544",
+        "readme_sha256": "52dac20dc0532839c758a2cf0d73b45fc071b818fc66b870e15dcb45130daf86"
+      }
     },
     {
       "id": "osint-collection-palimpsest",
@@ -2422,17 +2508,23 @@
       "state": "submitted",
       "submission_url": "https://github.com/AI4Finance-Foundation/Awesome_AI4Finance/pull/26",
       "cost": "free",
-      "detail": "The existing PR merge conflict was repaired by merging current upstream main into the owned branch without force-push. The diff remains exactly one added Market Brief entry. Head 684931b2644b361c441da59c225666947df22e1f is mergeable; upstream review remains pending.",
-      "next_action": "Await maintainer review on the repaired existing PR 26.",
+      "detail": "After Financial Evidence PR 37 merged upstream, the existing Market Brief PR was refreshed again with the new upstream main. Its diff remains exactly one added Market Brief row, with the Financial Evidence row retained. The normal push is recorded; GitHub subsequently reports the PR mergeable and clean. Editorial review remains pending.",
+      "next_action": "Await maintainer review of existing PR 26; do not resubmit.",
       "verified_at": "2026-10-10T05:30:53.903883+00:00",
       "reconciled_existing": true,
       "latest_recheck": {
-        "observed_at": "2026-10-10T06:28:14.840174+00:00",
-        "head": "684931b2644b361c441da59c225666947df22e1f",
-        "mergeable": true
+        "observed_at": "2026-10-10T08:52Z",
+        "head": "4f497643e46f8731e845c8ce91230be45bfd7dfc",
+        "upstream_base": "9dda444b19bc9c0376d015bd5d7497ea81060efe",
+        "mergeable": true,
+        "mergeable_state": "clean",
+        "diff": "one README row added",
+        "force_push": false,
+        "observation_time_precision": "minute"
       },
-      "updated_at": "2026-10-10T06:28:14.840174+00:00",
-      "completion_receipt": "distribution/completion-20261010.json"
+      "updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "completion_receipt": "distribution/completion-20261010.json",
+      "publisher_completion_receipt": "distribution/publisher-completion-20261010.json"
     },
     {
       "id": "cursor-directory-financial-evidence",
@@ -2481,7 +2573,7 @@
     }
   ],
   "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
-  "updated_at": "2026-10-10T06:36:07.109531+00:00",
+  "updated_at": "2026-10-10T08:53:25.433536+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -2622,5 +2714,29 @@
       "approved_pending_public": 3,
       "sent_delivery_unverified": 1
     }
+  },
+  "latest_publisher_completion": {
+    "recorded_at": "2026-10-10T08:53:25.433536+00:00",
+    "receipt": "distribution/publisher-completion-20261010.json",
+    "report": "distribution/publisher-completion-20261010.md",
+    "scope": "One existing submission verified publicly live, a refreshed mergeable Market Brief PR, native Claude Code installation evidence and preserved publisher packets. Claude and OpenAI are owner-deferred; LobeHub ownership authorization is blocked by the provider interface after approval.",
+    "new_received_submissions": 0,
+    "new_live_listings_verified": 1,
+    "paid_placement_cost_inr": 0,
+    "coverage_complete": false,
+    "independent_adoption_verified": false,
+    "updated_entry_ids": [
+      "ai4finance-financial-evidence",
+      "ai4finance-market-brief",
+      "claude-plugin-directory",
+      "openai-plugin-directory",
+      "lobehub-liquilens",
+      "lobehub-seiche",
+      "lobehub-undertow",
+      "lobehub-palimpsest",
+      "lobehub-riptide",
+      "lobehub-noisefloor",
+      "lobehub-evidence-carrier"
+    ]
   }
 }

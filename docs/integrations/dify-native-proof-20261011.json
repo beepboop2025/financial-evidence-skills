@@ -1,0 +1,170 @@
+{
+  "schema": "financial-evidence.dify-native-acceptance.v1",
+  "observed_at": "2026-10-10T21:13:47.292771+00:00",
+  "platform": "Dify Cloud",
+  "plan": "SANDBOX",
+  "workflow_published": false,
+  "native_remote_debug_passed": true,
+  "workflow_shape": [
+    "User Input",
+    "Financial Evidence / Get Evidence Page",
+    "Output (evidence=json,run_id=sys.workflow_run_id)"
+  ],
+  "plugin_version": "0.1.1",
+  "sdk_version": "0.10.2",
+  "registered_source_equivalent_revision": "5fcefc542c51cd3fe3b982142e9fe5801c75fd7c",
+  "registered_candidate_package_sha256": "8929480aa1553bed501d5c8470f29d44c397f5222263e9fc8f2c0c38cdbba625",
+  "final_candidate_package_sha256": "b94f1c080ddd8e8e592acf41c80c3177660044fd71ee8badb239b6fce72e9f6c",
+  "post_registration_packaged_changes": [
+    "PRIVACY.md"
+  ],
+  "runtime_identity_matches_final_package": true,
+  "runtime_source_sha256": {
+    "_assets/icon.svg": "c80fead76a1695cf1c874998954cee0dc382d52869ca019c1e6ddd1692ef6f65",
+    "main.py": "633d495584320e93e569501bf0fce9cc47ad05ba888db5538fe3476cb241ed19",
+    "manifest.yaml": "7d8ce3d3e0afd32f107f1f379dabaad7c20f17bb3bff371f1278fa19cf668dcf",
+    "provider/financial_evidence.py": "815ce98a1be0a6b242bef63f7835013eb16c5cc113472ab140c700ab4f20c529",
+    "provider/financial_evidence.yaml": "31667830e0e9bc41d4997118d6dfda352a8d8ca19d1703d97c84fe0ee9c4bde0",
+    "requirements.txt": "33b131d54972ea4340c57ac88d86d95837b160e039cec5ec1e9b350dc4d4474e",
+    "tools/evidence_page.py": "da687f4a4f9529e43488cfc4341036a03d4c9168adc6a4109a283dc56a5f6aa2",
+    "tools/evidence_page.yaml": "30bc721e4ecf1551f5e38e23a091fc3a115aed796f302189cd4615cf640e5777"
+  },
+  "runs": [
+    {
+      "dataset": "money_markets",
+      "run_id": "298f3331-6b4d-4dec-ad79-1299965c52fb",
+      "workflow_status": "SUCCESS",
+      "elapsed_seconds": 8.81,
+      "total_tokens": 0,
+      "run_steps": 3,
+      "inputs": {
+        "dataset": "money_markets",
+        "entity": "",
+        "limit": 1,
+        "offset": 0
+      },
+      "returned_rows": 1,
+      "sources": 1,
+      "diagnostics": 0,
+      "next_offset": 1,
+      "transport_status": "complete",
+      "evidence_status": "not_evaluated",
+      "carrier_verification": "not_performed",
+      "first_row": {
+        "entity_id": "AU-AUD",
+        "metric": "AONIA",
+        "value": 4.6,
+        "unit": "%",
+        "as_of": "2026-10-08",
+        "availability": "AVAILABLE",
+        "rights_status": "allowed"
+      },
+      "source_reported_states": [
+        {
+          "name": "response_status",
+          "path": "/status",
+          "provenance": {
+            "content_sha256": "sha256:d702d0248b9bfeadb09735729cb4590d7ceda97afb540a29e67c5388a9eb5028",
+            "kind": "source_document",
+            "source_url": "https://api.seiche.info/api/v2/money-markets"
+          },
+          "value": "PARTIAL"
+        }
+      ],
+      "output_sha256": "2d1aec0df6992eb6868e9a9742ad80cc32640ca5bcc1577eead16ffbee5d6d8d"
+    },
+    {
+      "dataset": "bank_risk",
+      "run_id": "33d313d5-4e18-4d56-8047-f5540886edd9",
+      "workflow_status": "SUCCESS",
+      "elapsed_seconds": 1.365,
+      "total_tokens": 0,
+      "run_steps": 3,
+      "inputs": {
+        "dataset": "bank_risk",
+        "entity": "",
+        "limit": 1,
+        "offset": 0
+      },
+      "returned_rows": 1,
+      "sources": 1,
+      "diagnostics": 0,
+      "next_offset": 1,
+      "transport_status": "complete",
+      "evidence_status": "not_evaluated",
+      "carrier_verification": "not_performed",
+      "first_row": {
+        "entity_id": "au-sfb",
+        "metric": "gnpa_pct",
+        "value": 2.1,
+        "unit": "percent",
+        "as_of": "2026-06-30",
+        "availability": "published",
+        "rights_status": null
+      },
+      "source_reported_states": [
+        {
+          "name": "historical_evidence_status",
+          "path": "/historical_evidence/status",
+          "provenance": {
+            "content_sha256": "sha256:6d3f5317bc257522ac1beb871e2fa6e4221225ee2ff2e10600fdba79e585a471",
+            "kind": "source_document",
+            "source_url": "https://api.liquilens.in/api/failure-radar/board"
+          },
+          "value": "PERIOD_END_PROXY_CONSTRUCTION_PIT"
+        }
+      ],
+      "output_sha256": "bf5732c5c6665fbeb1b1598928bb806e77cf688da7474d2686f5487e4f842e6c"
+    },
+    {
+      "dataset": "market_liquidity",
+      "run_id": "312ea7e4-b4cc-4acf-8601-5e3afdc9062b",
+      "workflow_status": "SUCCESS",
+      "elapsed_seconds": 1.472,
+      "total_tokens": 0,
+      "run_steps": 3,
+      "inputs": {
+        "dataset": "market_liquidity",
+        "entity": "",
+        "limit": 1,
+        "offset": 0
+      },
+      "returned_rows": 1,
+      "sources": 1,
+      "diagnostics": 0,
+      "next_offset": 1,
+      "transport_status": "complete",
+      "evidence_status": "not_evaluated",
+      "carrier_verification": "not_performed",
+      "first_row": {
+        "entity_id": "UST",
+        "metric": "stress_percentile",
+        "value": null,
+        "unit": "ratio",
+        "as_of": "2026-10-08",
+        "availability": "unavailable",
+        "rights_status": null
+      },
+      "source_reported_states": [
+        {
+          "name": "funding_regime",
+          "path": "/funding_regime",
+          "provenance": {
+            "content_sha256": "sha256:9ae11c3327e283d3e74c39fd31ce404a66bdcd06d1daa2af3145984080fb90bd",
+            "kind": "source_document",
+            "source_url": "https://api.seiche.info/undertow/x402/summary"
+          },
+          "value": "EROSION"
+        }
+      ],
+      "output_sha256": "9b5efb23bb032d2505f47f51008b5c9a6180197b329b714624041c902b938517"
+    }
+  ],
+  "limitations": [
+    "Current Dify Cloud only; Community Edition was not tested.",
+    "No LLM node, trade, transaction or published app was used.",
+    "Workflow success proves bounded tool execution and envelope preservation; source validity, freshness, rights and adoption remain unverified.",
+    "Only PRIVACY.md changed after native registration; executable code, dependencies, manifest and definitions are byte-identical."
+  ],
+  "marketplace_published": false
+}

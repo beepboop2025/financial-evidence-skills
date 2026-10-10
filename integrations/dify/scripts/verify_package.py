@@ -24,9 +24,10 @@ def verify(archive: Path, source: Path) -> dict:
             if body != (source / name).read_bytes():
                 raise ValueError(f'Packaged source differs: {name}')
             hashes[name] = hashlib.sha256(body).hexdigest()
-    return {'schema': 'financial-evidence.dify-package.v1', 'status': 'passed',
+    return {'schema': 'financial-evidence.dify-package.v2', 'status': 'passed',
             'package': archive.name, 'sha256': hashlib.sha256(archive.read_bytes()).hexdigest(),
-            'files': hashes, 'native_remote_debug_passed': False, 'marketplace_published': False}
+            'files': hashes, 'checks_performed': ['package_file_allowlist', 'source_byte_equality'],
+            'native_remote_debug': 'not_checked', 'marketplace_publication': 'not_checked'}
 
 
 if __name__ == '__main__':

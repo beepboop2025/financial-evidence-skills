@@ -1,0 +1,56 @@
+{
+  "schema": "financial-evidence.n8n-publication.v1",
+  "observed_at": "2026-10-10T22:50:51.612914+00:00",
+  "package": "n8n-nodes-financial-evidence",
+  "version": "0.1.0",
+  "npm_published": true,
+  "public_url": "https://www.npmjs.com/package/n8n-nodes-financial-evidence",
+  "registry_url": "https://registry.npmjs.org/n8n-nodes-financial-evidence/0.1.0",
+  "published_at": "2026-10-10T22:49:32.663Z",
+  "dist_tag": "latest",
+  "archive_sha256": "9d2fa6ba3950c41a68e025ea6f5c57922697c0b311ef6d77ce52412267b392ae",
+  "archive_bytes": 4445,
+  "provenance": {
+    "observed_at": "2026-10-10T22:49:52.115Z",
+    "package": "n8n-nodes-financial-evidence",
+    "version": "0.1.0",
+    "archive_sha256": "9d2fa6ba3950c41a68e025ea6f5c57922697c0b311ef6d77ce52412267b392ae",
+    "public_bytes_match_reviewed_archive": true,
+    "sha512_integrity_verified": true,
+    "cryptographic_sigstore_verification": "passed",
+    "certificate_identity_verified": true,
+    "signed_subject_digest_verified": true,
+    "source_sha": "c4712a222c5906a6d871327a460d98dddf17a531",
+    "workflow": ".github/workflows/native-marketplace-npm-publish.yml",
+    "invocation": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38092473390/attempts/1",
+    "transparency_log_index": "3194952828",
+    "published": true,
+    "n8n_verified": false,
+    "independent_adoption_proven": false
+  },
+  "anonymous_consumer": {
+    "observed_at": "2026-10-10T22:49:57.399891+00:00",
+    "package": "n8n-nodes-financial-evidence",
+    "version": "0.1.0",
+    "anonymous_install": "passed",
+    "credentials_configured": false,
+    "lifecycle_scripts_executed": false,
+    "npm_audit_signatures": "passed",
+    "n8n_nodes_api_version": 1,
+    "node_entries": [
+      "dist/nodes/FinancialEvidence/FinancialEvidence.node.js"
+    ],
+    "n8n_verified": false,
+    "independent_adoption_proven": false
+  },
+  "post_publication_ci": {
+    "url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38092869178",
+    "source_revision": "35bbdba5c6404291d9055c562a48cea802159664",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "n8n_verified": false,
+  "creator_portal_submission_verified": false,
+  "independent_adoption_proven": false,
+  "historical_readme_note": "The immutable 0.1.0 archive README retains prepublication wording. This receipt records the later npm publication; n8n verification remains pending."
+}

@@ -3263,6 +3263,25 @@
       "independent_adoption_verified": false,
       "evidence_receipt": "distribution/dify-submission-20261011.json",
       "native_proof": "integrations/dify-native-proof-20261011.json"
+    },
+    {
+      "id": "n8n-financial-evidence-npm",
+      "name": "Financial Evidence for n8n \u2014 npm",
+      "channel": "javascript-package-index",
+      "state": "live",
+      "listing_url": "https://www.npmjs.com/package/n8n-nodes-financial-evidence",
+      "cost": "Free MIT package; self-hosted n8n infrastructure and source-data rights remain separate.",
+      "detail": "Version 0.1.0 is public on npm with latest pointing to 0.1.0. The anonymous registry tarball exactly matches the native-tested archive. Cryptographic Sigstore signature, signed subject digest, source/workflow/run identity, anonymous consumer installation and npm audit signatures passed. This is a public package install surface; n8n Creator verification, official node-directory acceptance and independent adoption remain unproven. The immutable shipped README retains prepublication wording; the linked receipt records current status.",
+      "next_action": "Use the current versioned installation guide and receipt. Complete the separate n8n Creator Portal verification route when available; no submission or acceptance is claimed here.",
+      "version": "0.1.0",
+      "source_commit": "c4712a222c5906a6d871327a460d98dddf17a531",
+      "public_install_surface_verified": true,
+      "verified_at": "2026-10-10T22:50:51.612914+00:00",
+      "release_published_at": "2026-10-10T22:49:32.663Z",
+      "archive_sha256": "9d2fa6ba3950c41a68e025ea6f5c57922697c0b311ef6d77ce52412267b392ae",
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/platforms/n8n-publication-20261011.json",
+      "n8n_verified": false,
+      "independent_adoption_verified": false
     }
   ],
   "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
@@ -3465,6 +3484,16 @@
     "new_received_submissions": 1,
     "new_public_listings_verified": 0,
     "native_draft_workflows_passed": 3,
+    "independent_adoption_verified": false
+  },
+  "latest_npm_publication": {
+    "verified_at": "2026-10-10T22:50:51.612914+00:00",
+    "receipt": "platforms/n8n-publication-20261011.json",
+    "package": "n8n-nodes-financial-evidence",
+    "version": "0.1.0",
+    "new_public_install_surfaces_verified": 1,
+    "new_operator_submissions": 0,
+    "n8n_verified": false,
     "independent_adoption_verified": false
   }
 }

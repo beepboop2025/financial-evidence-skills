@@ -1,7 +1,7 @@
 {
   "schema": "financial-evidence.native-package-downloads.v2",
-  "checked_at": "2026-10-10T21:21:06.372878+00:00",
-  "scope": "Versioned developer evaluation packages with per-package provenance. Dify Cloud remote-debug runtime passed three bounded draft workflows; its marketplace PR remains under review. No independent adoption is established.",
+  "checked_at": "2026-10-10T22:50:51.612914+00:00",
+  "scope": "Versioned automation packages with per-package provenance and current publication state. n8n 0.1.0 is published on npm; n8n Creator verification remains pending. Dify Cloud remote-debug runtime passed three bounded draft workflows; its marketplace PR remains under review. No independent adoption is established.",
   "packages": [
     {
       "kind": "n8n",
@@ -50,6 +50,18 @@
         "tested_merge_revision": "f5f90eaf0a374e0cbbc17747d0dc4801e53ab111",
         "source_files_compared_to_local_revision": "b2d7ee3ea9a86e3479e77702f4b9354fb16a94c0",
         "source_file_bytes_match": true
+      },
+      "npm_publication": {
+        "state": "published",
+        "version": "0.1.0",
+        "url": "https://www.npmjs.com/package/n8n-nodes-financial-evidence",
+        "registry_url": "https://registry.npmjs.org/n8n-nodes-financial-evidence/0.1.0",
+        "published_at": "2026-10-10T22:49:32.663Z",
+        "receipt_url": "https://beepboop2025.github.io/financial-evidence-skills/platforms/n8n-publication-20261011.json",
+        "cryptographic_provenance_verified": true,
+        "anonymous_consumer_install_passed": true,
+        "native_archive_byte_match": true,
+        "historical_validation_note": "The validation object above records the prepublication native test. Its npm_published=false field is historical; this npm_publication object records the later release."
       }
     },
     {

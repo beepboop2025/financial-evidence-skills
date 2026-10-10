@@ -1,27 +1,52 @@
-# Evaluate the native automation packages
+# Install and evaluate the native automation packages
 
-These downloads are candidate packages for a development workspace. They are
-separate from marketplace publication. Check the file digest and the validation
-scope in [package receipts](native-packages.json).
+The n8n package is published on npm; the Dify package remains a marketplace
+submission candidate. Check each package's publication state, file digest and
+validation scope in [package receipts](native-packages.json).
 
 ## n8n
 
-[Download n8n-nodes-financial-evidence 0.1.0](downloads/n8n-nodes-financial-evidence-0.1.0.tgz).
+**n8n-nodes-financial-evidence 0.1.0 is published on npm.**
+[npm package](https://www.npmjs.com/package/n8n-nodes-financial-evidence) ·
+[Publication and provenance receipt](n8n-publication-20261011.json) ·
+[Exact tested archive](downloads/n8n-nodes-financial-evidence-0.1.0.tgz).
 
-The package contains the built Financial Evidence node. Its native check loads
-the exact npm tarball into an isolated n8n 2.42.6 CLI and executes one bounded
-bank, funding and liquidity request. npm publication and n8n verification are
-still pending.
+This unverified community package is currently for **self-hosted n8n only**;
+unverified community nodes are unavailable on n8n Cloud.
+[Official availability rules](https://docs.n8n.io/integrations/community-nodes/installation-and-management/).
 
-Use the [source setup and native test procedure](https://github.com/beepboop2025/financial-evidence-skills/tree/main/integrations/n8n-node)
-to evaluate it in a separate self-hosted development instance. Your administrator
-must decide whether an unpublished community package may be loaded. The
-[official manual-installation guide](https://docs.n8n.io/integrations/community-nodes/installation-and-management/manual-installation/)
-describes the community-node installation location and restart requirements.
+An owner or administrator can open **Settings → Community Nodes → Install** and
+enter `n8n-nodes-financial-evidence@0.1.0` in a permitted self-hosted development
+instance. [Official GUI procedure](https://docs.n8n.io/integrations/community-nodes/installation-and-management/gui-installation/).
 
-If your workspace cannot load unpublished packages, use the existing
+If the instance requires manual installation, follow the
+[official command-line procedure](https://docs.n8n.io/integrations/community-nodes/installation-and-management/manual-installation/).
+From its community-node directory (`~/.n8n/nodes`), install the specific version,
+then restart n8n:
+
+```sh
+npm install n8n-nodes-financial-evidence@0.1.0
+```
+
+Add **Financial Evidence**, choose `money_markets`, set limit `1` and offset `0`,
+then run once and inspect the complete response. The public research API needs
+no financial-data API key. Keep the workflow inactive until its first result is
+reviewed. If your workspace cannot load unverified community packages, use the
 [importable research workflows](https://beepboop2025.github.io/financial-evidence-skills/automations/) with ordinary HTTP nodes.
-Keep a workflow inactive until its first result is reviewed.
+
+The public tarball matches the native-tested archive exactly. Native n8n 2.42.6
+executed one bounded bank, funding and liquidity request. Cryptographic Sigstore
+provenance verification, anonymous consumer installation and npm signature
+verification passed. **n8n Creator verification and official node-directory
+acceptance remain pending; no Creator Portal submission is claimed.** This does
+not establish n8n Cloud availability or independent-user adoption.
+
+The immutable 0.1.0 package README preserves its prepublication wording, including
+the former "not yet published" statement and older release-workflow description.
+The current publication receipt above supersedes those status statements.
+The archive's bytes are unchanged. The recorded native validation is also a
+historical test; its earlier `npm_published: false` field is not the current
+registry state.
 
 ## Dify
 

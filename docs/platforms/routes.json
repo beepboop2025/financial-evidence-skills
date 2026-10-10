@@ -86,10 +86,10 @@
         "LiquiLens"
       ],
       "audience": "Finance operations and automation builders",
-      "workflow": "Import an inactive research workflow; test before enabling a schedule.",
-      "artifact_label": "Download evaluated node candidate",
+      "workflow": "Install the published Financial Evidence community node in a permitted self-hosted n8n instance and run a bounded research page.",
+      "artifact_label": "Published npm package and install guide",
       "artifact_url": "native-packages.md#n8n",
-      "status": "Packaged node executed in native n8n 2.42.6. npm publication and platform verification remain pending.",
+      "status": "Version 0.1.0 is public on npm with verified provenance and anonymous installation. The exact archive passed native n8n 2.42.6 execution; n8n Creator verification remains pending.",
       "official_source": "https://docs.n8n.io/connect/create-nodes/deploy-your-node/submit-community-nodes.md",
       "verified_customer_adoption": null
     },

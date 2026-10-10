@@ -10,8 +10,8 @@ notifications or execute trades.
 
 | Route | Artifact and check | External acceptance still required |
 | --- | --- | --- |
-| n8n | `integrations/n8n-node`; build/lint/SDK tests; `scripts/native_smoke.py` executes the npm tarball in an isolated real n8n 2.42.6 CLI | npm publication under the publisher account, then Creator Portal review |
-| Dify | `integrations/dify`; SDK tests, actual manifest registration, official CLI 0.6.11 packaging, exact archive-file verification | Native Dify remote-debug workflow and Marketplace publisher submission |
+| n8n | Passed build, lint, four SDK tests and execution of the exact npm tarball through the custom-extension loader in an isolated real n8n 2.42.6 CLI | npm publication under the publisher account, then Creator Portal review |
+| Dify | Passed five SDK/package tests, actual manifest registration, official CLI 0.6.11 packaging and exact archive-file verification | Native Dify remote-debug workflow and Marketplace publisher submission |
 
 `native-marketplace-build.yml` runs both lanes on a clean GitHub runner and
 retains installable artifacts with receipts. Its n8n test makes exactly three
@@ -48,6 +48,33 @@ Dify account has executed the plugin.
 
 ## Local evidence from this execution
 
+Both jobs in [native CI run 38080327701](https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38080327701)
+passed. The PR head was `b2d7ee3ea9a86e3479e77702f4b9354fb16a94c0`; GitHub
+checked out and tested PR merge revision
+`f5f90eaf0a374e0cbbc17747d0dc4801e53ab111`. The retained manifest distinguishes
+these identities. All seven n8n package files match the corresponding local
+built/source bytes, and all ten Dify package files match the source bytes.
+
+The native n8n receipt, observed at `2026-10-10T19:36:56Z`, contains:
+
+| Dataset | Rows | Sources | Diagnostics | Next offset | Transport status |
+| --- | ---: | ---: | ---: | ---: | --- |
+| `bank_risk` | 1 | 1 | 0 | 1 | `complete` |
+| `money_markets` | 1 | 1 | 0 | 1 | `complete` |
+| `market_liquidity` | 1 | 1 | 0 | 1 | `complete` |
+
+This proves that the packaged node loads and makes bounded native requests
+while preserving the expected response envelope. The native check accepts
+partial or empty pages when the envelope is valid; it does not validate source
+freshness, evidence validity, rights or financial fitness. It also does not
+demonstrate the user-interface installation flow or independent adoption.
+
+The exact retained files are `n8n-nodes-financial-evidence-0.1.0.tgz`
+(4,445 bytes, SHA-256 `9d2fa6ba3950c41a68e025ea6f5c57922697c0b311ef6d77ce52412267b392ae`)
+and `financial_evidence.difypkg`
+(5,583 bytes, SHA-256 `e9447fc08ec13d428aad4acc20be80c00aab11901818a81dd57907363ca7a68c`).
+They remain downloadable candidates, not accepted marketplace listings.
+
 The official Darwin ARM64 Dify CLI download matched release digest
 `9f302d7bcad0d9efb6e1b3b620e7f3f309ea26c206c062f5ae569621ae53f654`.
 It successfully packaged the plugin, and the archive check accepted exactly
@@ -55,13 +82,19 @@ the ten intended files. Evidence is retained under
 `SSDWorkspace/artifacts/finance-platform-execution-20261011/native-automation/`.
 Final archive hashes are in `dify-package-receipt.json`.
 
-The five Dify tests passed, and actual manifest/provider registration exited
-successfully. The SDK emitted an ignored gevent/greenlet finalization warning
-during interpreter shutdown; those logs are retained. This does not prove
-remote-debug execution. Local npm installation and compilation encountered
-macOS uninterruptible I/O waits and remain pending at preparation time. The
-clean-runner workflow is the reproducible completion path; consult its
-exact-commit result and native receipt before promoting that status.
+The five Dify tests passed locally, and actual manifest/provider registration
+exited successfully. The SDK also fetched one live page for each of the three
+datasets above. It emitted an ignored gevent/greenlet finalization warning at
+interpreter shutdown; those logs are retained. This does not prove remote-debug
+execution. Local n8n build, lint and four SDK tests passed; its redundant full
+host installation was stopped during macOS I/O waits after clean-runner testing
+was available. Native host proof comes from the successful CI run above.
+
+Complete final CI artifacts, package hashes, run metadata, source-byte checks
+and installation notes are retained in the evidence directory's
+`final-ci-packages/` subdirectory. Earlier failed receipts remain available:
+the first harness hid n8n's raw JSON by using error-only logging. The fixed
+run preserves information-level output and verifies the execution result.
 
 ## Primary references
 

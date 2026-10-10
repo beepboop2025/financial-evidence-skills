@@ -55,7 +55,21 @@ def assets() -> dict[str, bytes]:
                 ROOT / "docs/tools/FinancialEvidenceRows.pq",
                 ROOT / "tests/test_finance_research_forward.py",
                 DEST / "agent-clients.md", DEST / "datarade.md", DEST / "routes.json",
-                DEST / "pilot-scorecard.csv"]
+                DEST / "pilot-scorecard.csv", DEST / "native-packages.md",
+                DEST / "native-packages.json"]
+    native = json.loads((DEST / "native-packages.json").read_text())
+    downloads = {}
+    expected_names = {"n8n-nodes-financial-evidence-0.1.0.tgz", "financial_evidence-0.1.0.difypkg"}
+    if {item["filename"] for item in native["packages"]} != expected_names or len(native["packages"]) != 2:
+        raise ValueError("unexpected native package set")
+    for item in native["packages"]:
+        name = "downloads/" + item["filename"]
+        path = DEST / name
+        data = path.read_bytes()
+        if hashlib.sha256(data).hexdigest() != item["sha256"]:
+            raise ValueError(f"Native package checksum mismatch: {name}")
+        selected.append(path)
+        downloads[name] = data
     # Only authored source formats. Never include environments, credentials,
     # runtime captures, debug keys or dependency trees in a public download.
     for folder in ("src/financial_evidence", "integrations/finance-research", "integrations/finance-desktop",
@@ -74,6 +88,7 @@ Start at docs/platforms/agent-clients.md or choose a platform in routes.json.
 Forward quant examples: integrations/finance-research/README.md.
 Desktop candidate: integrations/finance-desktop/README.md.
 Institutional packets: docs/distribution/provider-packets-20261011/README.md.
+Native automation candidates and receipts: docs/platforms/native-packages.md.
 Python research client and Power Query: docs/tools/.
 The shared Python package source and pyproject.toml are included, so the setup
 commands in the forward-research README work from this extracted directory.
@@ -92,7 +107,7 @@ historical decisions. No broker credentials or order execution is included.
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o100644 << 16
             archive.writestr(info, data)
-    result = {"index.html": page(manifest), "finance-platform-kit.zip": buffer.getvalue()}
+    result = {"index.html": page(manifest), "finance-platform-kit.zip": buffer.getvalue(), **downloads}
     for name in ("index.html", "panel.css", "panel.mjs", "reference-fx.mjs"):
         result[f"desktop/{name}"] = (ROOT / "integrations/finance-desktop" / name).read_bytes()
     result["SHA256SUMS"] = "".join(f"{hashlib.sha256(data).hexdigest()}  {name}\n"

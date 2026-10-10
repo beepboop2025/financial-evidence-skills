@@ -1,6 +1,6 @@
 {
   "schema": "financial-evidence.finance-research-validation.v1",
-  "observed_at": "2026-10-10T19:22:30Z",
+  "observed_at": "2026-10-10T19:34:40Z",
   "traffic_class": "synthetic_internal_validation",
   "coverage_complete": false,
   "core_tests": {
@@ -18,10 +18,44 @@
     "langchain_core": "1.6.9",
     "langgraph": "1.2.14",
     "crewai": "1.15.27",
-    "version_evidence": "Resolved distribution metadata in isolated SSD environment",
-    "status": "pending_native_tests_local_install_waiting_on_filesystem_io",
+    "version_evidence": "Installed distribution metadata and actual native tool invocations in isolated SSD environment",
+    "status": "passed_native_tool_invocations_with_synthetic_fixtures",
+    "tests_run": 11,
+    "passed": 11,
+    "skipped": 0,
+    "failures": 0,
+    "duration_seconds": 261.415,
+    "source_revision": "7e6f4371bcdb717878d6d87c244b0549223330ef",
+    "checks": [
+      "Compiled LangGraph StateGraph and ToolNode execute one bounded evidence query",
+      "CrewAI native tool schema resolves Dataset and executes the query",
+      "TradingAgents-compatible LangChain extension rejects past/future dates before query",
+      "Forward captures preserve clocks, missingness, rights and integrity"
+    ],
     "ci_workflow": "../../.github/workflows/finance-platforms.yml",
     "model_calls": 0
+  },
+  "ci_acceptance": {
+    "status": "success",
+    "source_revision": "7e6f4371bcdb717878d6d87c244b0549223330ef",
+    "workflow": "Finance platform examples",
+    "job": "research-frameworks",
+    "tests_run": 11,
+    "passed": 11,
+    "skipped": 0,
+    "failures": 0,
+    "duration_seconds": 3.497,
+    "completed_at": "2026-10-10T19:33:46Z",
+    "job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38080235547/job/114295461541",
+    "scope": "Pinned native framework installation, finance research test suite and generated kit consistency"
+  },
+  "existing_agent_contract": {
+    "status": "passed_with_native_langchain_and_crewai",
+    "tests_run": 7,
+    "passed": 7,
+    "failures": 0,
+    "duration_seconds": 259.063,
+    "regression_checked": "CrewAI postponed Dataset type alias is resolved before tool schema construction and actual invocation"
   },
   "public_probe": {
     "observed_at": "2026-10-10T19:14:50Z",

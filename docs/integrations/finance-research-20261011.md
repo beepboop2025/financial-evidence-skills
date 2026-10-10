@@ -21,7 +21,10 @@ establish independent timing or rights approval.
 
 The [validation record](https://github.com/beepboop2025/financial-evidence-skills/blob/main/integrations/finance-research/validation.json)
 separates actual framework runtime checks, the synthetic public API probe, and
-platform work still needing a native environment. The companion does not read
+platform work still needing a native environment. All 11 forward-research checks
+and seven existing agent-contract checks passed in Python 3.12.12 with CrewAI
+1.15.27, LangGraph 1.2.14 and LangChain Core 1.6.9. These native calls use synthetic
+fixtures and no model. The companion does not read
 broker credentials or create execution hooks. No independent-user, recurring
 use, marketplace acceptance or revenue claim follows from these checks.
 

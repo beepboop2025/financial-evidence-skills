@@ -53,7 +53,7 @@
       "workflow": "Install the public toolkit and run a bounded evidence task.",
       "artifact_label": "Published package",
       "artifact_url": "https://pypi.org/project/langchain-financial-evidence/0.1.0/",
-      "status": "Native tool examples supplied; upstream directory review pending.",
+      "status": "Native graph and tool execution validated; upstream directory review remains pending.",
       "official_source": "https://docs.langchain.com/oss/python/langchain/mcp",
       "verified_customer_adoption": null
     },
@@ -71,7 +71,7 @@
       "workflow": "Run the CrewAI funding researcher tool with source dates retained.",
       "artifact_label": "Source example",
       "artifact_url": "https://github.com/beepboop2025/financial-evidence-skills/tree/main/integrations/finance-research",
-      "status": "Native framework validation pending; a model-driven Crew task also requires your model credentials.",
+      "status": "Native tool invocation validated. Running a model-driven Crew also needs your model credentials and task evaluation.",
       "official_source": "https://docs.crewai.com/en/mcp/overview",
       "verified_customer_adoption": null
     },
@@ -87,9 +87,9 @@
       ],
       "audience": "Finance operations and automation builders",
       "workflow": "Import an inactive research workflow; test before enabling a schedule.",
-      "artifact_label": "Workflow and node candidate",
-      "artifact_url": "../automations/",
-      "status": "Native node publication requires npm authentication and platform review.",
+      "artifact_label": "Download evaluated node candidate",
+      "artifact_url": "native-packages.md#n8n",
+      "status": "Packaged node executed in native n8n 2.42.6. npm publication and platform verification remain pending.",
       "official_source": "https://docs.n8n.io/connect/create-nodes/deploy-your-node/submit-community-nodes.md",
       "verified_customer_adoption": null
     },
@@ -105,9 +105,9 @@
       ],
       "audience": "Analysts building internal AI applications",
       "workflow": "Package the native tools and test in your Dify workspace.",
-      "artifact_label": "Plugin candidate",
-      "artifact_url": "https://github.com/beepboop2025/financial-evidence-skills/tree/main/integrations/dify",
-      "status": "Native debug session and marketplace review pending.",
+      "artifact_label": "Download plugin candidate",
+      "artifact_url": "native-packages.md#dify",
+      "status": "Official archive and SDK checks passed. Native Dify debug session and marketplace review remain pending.",
       "official_source": "https://docs.dify.ai/en/develop-plugin/publishing/standards/contributor-covenant-code-of-conduct",
       "verified_customer_adoption": null
     },
@@ -210,7 +210,7 @@
       "workflow": "Retain a capture and use it only after its recorded availability time.",
       "artifact_label": "Forward research example",
       "artifact_url": "https://github.com/beepboop2025/financial-evidence-skills/tree/main/integrations/finance-research",
-      "status": "Research companion or importer candidate; native platform execution requires separate validation.",
+      "status": "Local tool and date guard validated; full upstream TradingAgents graph execution remains unverified.",
       "official_source": "https://github.com/TauricResearch/TradingAgents/blob/main/tradingagents/agents/tools.py",
       "verified_customer_adoption": null
     },

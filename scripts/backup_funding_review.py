@@ -32,10 +32,19 @@ print(json.dumps({'current':base64.b64encode(current).decode(),'captures':captur
 """
 
 
+def artifact_limit(name):
+    """Match capture limits, including the retained byte proving an oversize response."""
+    if Path(name).name in {"manifest.json", "current.json"}:
+        return 131072
+    response_limit = 4 * 1024 * 1024 if Path(name).name == "atlas.response" else 2 * 1024 * 1024
+    return response_limit + 1
+
+
 def digest(path, limit):
     if path.is_symlink() or not path.is_file():
         raise ValueError("backup artifact is not a regular file")
-    raw = path.read_bytes()
+    with path.open("rb") as stream:
+        raw = stream.read(limit + 1)
     if len(raw) > limit:
         raise ValueError("backup artifact exceeds bound")
     return hashlib.sha256(raw).hexdigest()
@@ -125,7 +134,7 @@ def backup(host, output):
             if digest(folder / "manifest.json", 131072) != capture["manifest_sha256"]:
                 raise ValueError("manifest hash mismatch")
             for name, sha in capture["artifacts"].items():
-                if digest(folder / name, 2 * 1024 * 1024 + 1) != sha:
+                if digest(folder / name, artifact_limit(name)) != sha:
                     raise ValueError("artifact hash mismatch: " + name)
         receipt = {
             "schema": "financial-evidence.funding-backup.v1",

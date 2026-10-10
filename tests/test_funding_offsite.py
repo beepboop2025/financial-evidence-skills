@@ -43,6 +43,34 @@ def fixture(root):
 
 
 class OffsiteTests(unittest.TestCase):
+    def test_atlas_capture_bound_applies_to_staging_and_exact_restore(self):
+        for name, size, accepted in (
+            ("atlas.response", 4 * 1024 * 1024 + 1, True),
+            ("atlas.response", 4 * 1024 * 1024 + 2, False),
+            ("health.response", 2 * 1024 * 1024 + 2, False),
+        ):
+            with self.subTest(name=name, size=size), tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary)
+                folder = fixture(root / "source")
+                raw = b"x" * size
+                (folder / name).write_bytes(raw)
+                manifest = json.loads((folder / "manifest.json").read_bytes())
+                manifest["artifact_sha256"][name] = hashlib.sha256(raw).hexdigest()
+                manifest_raw = offsite.encoded(manifest)
+                (folder / "manifest.json").write_bytes(manifest_raw)
+                current = json.loads((root / "source/current.json").read_bytes())
+                current["latest"]["manifest_sha256"] = hashlib.sha256(manifest_raw).hexdigest()
+                (root / "source/current.json").write_bytes(offsite.encoded(current))
+                stage = root / "stage"
+                stage.mkdir()
+                if accepted:
+                    result = offsite.stage_archive(root / "source", stage)
+                    self.assertEqual(result["files"]["captures/example-1/" + name], hashlib.sha256(raw).hexdigest())
+                    offsite.verify_restore(stage, result["files"])
+                else:
+                    with self.assertRaisesRegex(ValueError, "bounded regular data"):
+                        offsite.stage_archive(root / "source", stage)
+
     def test_stages_only_completed_captures_and_keeps_original_current(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

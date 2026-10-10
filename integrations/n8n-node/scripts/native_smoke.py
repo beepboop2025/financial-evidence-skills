@@ -38,7 +38,8 @@ def main():
            'N8N_DIAGNOSTICS_ENABLED': 'false', 'N8N_VERSION_NOTIFICATIONS_ENABLED': 'false',
            'N8N_TEMPLATES_ENABLED': 'false', 'N8N_PERSONALIZATION_ENABLED': 'false',
            'N8N_COMMUNITY_PACKAGES_PREVENT_LOADING': 'false',
-           'N8N_RUNNERS_ENABLED': 'false', 'N8N_LOG_LEVEL': 'error',
+           # n8n routes --rawOutput through logger.info; error would hide the result.
+           'N8N_RUNNERS_ENABLED': 'false', 'N8N_LOG_LEVEL': 'info',
            'NODE_OPTIONS': '--max-old-space-size=768'}
 
     def run(label, *arguments):
@@ -72,7 +73,8 @@ def main():
         if character == '{':
             try:
                 candidate, _ = decoder.raw_decode(stdout[index:])
-                if isinstance(candidate, dict) and 'resultData' in candidate.get('data', {}):
+                if (isinstance(candidate, dict) and isinstance(candidate.get('data'), dict)
+                        and 'resultData' in candidate['data']):
                     execution = candidate
                     break
             except json.JSONDecodeError:

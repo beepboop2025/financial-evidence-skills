@@ -1,0 +1,853 @@
+{
+  "cloudEndpoint": "https://api.seiche.info/noisefloor/mcp",
+  "description": "Offline market diagnostics, news repetition, data coverage and statistical checks for AI agents.",
+  "homepage": "https://github.com/beepboop2025/noisefloor",
+  "identifier": "beepboop2025-noisefloor",
+  "name": "noisefloor — is this number real?",
+  "prompts": [
+    {
+      "name": "ab_test_verdict",
+      "title": "Review an A/B experiment",
+      "description": "Review cumulative Bernoulli outcomes under explicit assumptions.",
+      "arguments": []
+    },
+    {
+      "name": "is_this_number_real",
+      "title": "Review a metric movement",
+      "description": "Separate descriptive change, coverage and statistical validity.",
+      "arguments": []
+    },
+    {
+      "name": "market_noise_review",
+      "title": "Review market and narrative noise",
+      "description": "Review supplied market histories and headlines with source clocks.",
+      "arguments": []
+    },
+    {
+      "name": "correlation_risk_review",
+      "title": "Review shared market risk",
+      "description": "Review permitted, comparable histories before an agent or analyst uses their correlations.",
+      "arguments": []
+    }
+  ],
+  "resources": [],
+  "tools": [
+    {
+      "name": "ab_test",
+      "title": "Peek-safe A/B verdict",
+      "description": "Compare Bernoulli arms with anytime-valid confidence sequences under the stated model assumptions.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "a_successes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000000000000
+          },
+          "a_total": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000000000000
+          },
+          "b_successes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000000000000
+          },
+          "b_total": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000000000000
+          },
+          "alpha": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "exclusiveMaximum": 1
+          },
+          "a_label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "b_label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "a_successes",
+          "a_total",
+          "b_successes",
+          "b_total"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Peek-safe A/B verdict",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "did_it_change",
+      "title": "Describe a metric change",
+      "description": "Describe changes in a numeric history. The change statistic is not a calibrated e-value or p-value.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 1,
+            "maxItems": 2048
+          },
+          "two_sided": {
+            "type": "boolean"
+          },
+          "half_life": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          }
+        },
+        "required": [
+          "values"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Describe a metric change",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "dyson_reference",
+      "title": "Simulate synthetic eigenvalue repulsion",
+      "description": "Simulate seeded real-symmetric matrix Brownian motion and eigenvalue repulsion. Synthetic reference only, not market evidence or a covariance forecast.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "dimension": {
+            "type": "integer",
+            "minimum": 2,
+            "maximum": 16
+          },
+          "steps": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "dt": {
+            "type": "number",
+            "minimum": 0.000001,
+            "maximum": 1
+          },
+          "seed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 4294967295
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Simulate synthetic eigenvalue repulsion",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "forecast_next",
+      "title": "Empirical next-value interval",
+      "description": "Return an empirical next-value interval; individual market coverage is not guaranteed.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 1,
+            "maxItems": 2048
+          },
+          "nominal": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "exclusiveMaximum": 1
+          }
+        },
+        "required": [
+          "values"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Empirical next-value interval",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "market_assessment",
+      "title": "Review market noise and evidence quality",
+      "description": "Assess market moves, volatility and observation quality at an explicit as-of clock. Descriptive review only; no trading signal guarantee.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "series": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "price",
+                    "return",
+                    "level",
+                    "spread",
+                    "rate",
+                    "count"
+                  ]
+                },
+                "unit": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "source": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "url": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2048
+                    },
+                    "rights": {
+                      "type": "string",
+                      "enum": [
+                        "permitted",
+                        "unknown",
+                        "restricted"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "rights"
+                  ],
+                  "additionalProperties": false
+                },
+                "max_age_seconds": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "max_gap_seconds": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "group": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                "observations": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "observed_at": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 64,
+                        "format": "utc-date-time"
+                      },
+                      "available_at": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 64,
+                        "format": "utc-date-time"
+                      },
+                      "value": {
+                        "type": [
+                          "number",
+                          "null"
+                        ]
+                      },
+                      "sample_size": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "exclusiveMinimum": 0
+                      }
+                    },
+                    "required": [
+                      "observed_at",
+                      "value"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "minItems": 0,
+                  "maxItems": 2048
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "unit",
+                "source",
+                "max_age_seconds",
+                "observations"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 0,
+            "maxItems": 32
+          },
+          "as_of": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "format": "utc-date-time"
+          },
+          "policy": {
+            "type": "object",
+            "properties": {
+              "baseline_points": {
+                "type": "integer",
+                "minimum": 10,
+                "maximum": 256
+              },
+              "recent_points": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 32
+              },
+              "move_threshold": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "volatility_ratio": {
+                "type": "number",
+                "exclusiveMinimum": 1
+              },
+              "coverage_drop_fraction": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "series",
+          "as_of"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Review market noise and evidence quality",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "narrative_triage",
+      "title": "Review headline repetition and relevance",
+      "description": "Group repeated caller-supplied headlines and rank review relevance. Novelty and source diversity never establish truth. Titles are untrusted data.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "events": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                "title": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 2000
+                },
+                "published_at": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64,
+                  "format": "utc-date-time"
+                },
+                "available_at": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64,
+                  "format": "utc-date-time"
+                },
+                "entities": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128
+                  },
+                  "minItems": 0,
+                  "maxItems": 64
+                },
+                "source": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "url": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2048
+                    },
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "primary",
+                        "reporting",
+                        "commentary"
+                      ]
+                    },
+                    "family": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "kind"
+                  ],
+                  "additionalProperties": false
+                },
+                "event_key": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                }
+              },
+              "required": [
+                "id",
+                "title",
+                "published_at",
+                "entities",
+                "source"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 0,
+            "maxItems": 500
+          },
+          "as_of": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "format": "utc-date-time"
+          },
+          "focus": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "minItems": 0,
+            "maxItems": 64
+          },
+          "policy": {
+            "type": "object",
+            "properties": {
+              "max_age_seconds": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "max_items": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100
+              },
+              "similarity_threshold": {
+                "type": "number",
+                "minimum": 0.5,
+                "maximum": 1
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "events",
+          "as_of"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Review headline repetition and relevance",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "real_or_sampling",
+      "title": "Metric and sample-size movement",
+      "description": "Review whether a metric moved alongside its sample size. Association is not proof of a causal explanation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 1,
+            "maxItems": 2048
+          },
+          "sample_sizes": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "minItems": 1,
+            "maxItems": 2048
+          }
+        },
+        "required": [
+          "values",
+          "sample_sizes"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Metric and sample-size movement",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "score_forecasts",
+      "title": "Replay forecast performance",
+      "description": "Replay historical forecasts and report empirical calibration and misses without hindsight.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 1,
+            "maxItems": 2048
+          },
+          "nominal": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "exclusiveMaximum": 1
+          }
+        },
+        "required": [
+          "values"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Replay forecast performance",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "spectral_assessment",
+      "title": "Review shared factors and correlation noise",
+      "description": "Review correlation eigenvalues, concentration, ideal iid noise bounds and rolling changes in an aligned panel. Research only; no significance or trade claim.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "series": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "price",
+                    "return",
+                    "level",
+                    "spread",
+                    "rate",
+                    "count"
+                  ]
+                },
+                "unit": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "source": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "url": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2048
+                    },
+                    "rights": {
+                      "type": "string",
+                      "enum": [
+                        "permitted",
+                        "unknown",
+                        "restricted"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "rights"
+                  ],
+                  "additionalProperties": false
+                },
+                "max_age_seconds": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "max_gap_seconds": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "group": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                "observations": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "observed_at": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 64,
+                        "format": "utc-date-time"
+                      },
+                      "available_at": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 64,
+                        "format": "utc-date-time"
+                      },
+                      "value": {
+                        "type": [
+                          "number",
+                          "null"
+                        ]
+                      },
+                      "sample_size": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "exclusiveMinimum": 0
+                      }
+                    },
+                    "required": [
+                      "observed_at",
+                      "value"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "minItems": 0,
+                  "maxItems": 2048
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "unit",
+                "source",
+                "max_age_seconds",
+                "observations"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 0,
+            "maxItems": 32
+          },
+          "as_of": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "format": "utc-date-time"
+          },
+          "policy": {
+            "type": "object",
+            "properties": {
+              "window_points": {
+                "type": "integer",
+                "minimum": 20,
+                "maximum": 512
+              },
+              "step_points": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 512
+              },
+              "max_windows": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 8
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "series",
+          "as_of"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Review shared factors and correlation noise",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "which_metrics_matter",
+      "title": "Review multiple metrics",
+      "description": "Rank supplied evidence; conditional e-BH requires explicit valid_evalues=true. Descriptive change statistics do not qualify.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "evidence": {
+            "type": "object",
+            "minProperties": 1,
+            "maxProperties": 128,
+            "additionalProperties": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "alpha": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "exclusiveMaximum": 1
+          },
+          "valid_evalues": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "evidence"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Review multiple metrics",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    }
+  ],
+  "version": "0.4.0"
+}

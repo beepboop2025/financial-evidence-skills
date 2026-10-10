@@ -113,13 +113,21 @@
       "state": "submitted",
       "submission_url": "https://github.com/punkpeye/awesome-mcp-servers/pull/12771",
       "cost": "free",
-      "detail": "Existing submission refreshed against current upstream on 7 October 2026. The one-line catalogue addition is mergeable and its submission check passes; the public Glama schema exposes all three tools.",
-      "next_action": "Await independent maintainer review; acceptance is not yet claimed.",
+      "detail": "The maintainer requested a merge-conflict repair on the existing PR. Current upstream main was merged into the owned branch without force-push; the catalog diff remains exactly one added Financial Evidence entry. Head 400d01f1968f87db8c572831f72572150b2ac420 is mergeable and the submission check passed. The PR remains open for review.",
+      "next_action": "Await maintainer review on PR 12771 and verify the upstream entry after merge.",
       "verified_at": "2026-10-07T06:54:25.977088+00:00",
       "latest_surface_check": {
         "observed_at": "2026-10-08T11:16:05.165201+00:00",
         "readback": "no_public_listing_url"
-      }
+      },
+      "latest_recheck": {
+        "observed_at": "2026-10-10T06:28:14.840174+00:00",
+        "head": "400d01f1968f87db8c572831f72572150b2ac420",
+        "mergeable": true,
+        "submission_check": "success"
+      },
+      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "completion_receipt": "distribution/completion-20261010.json"
     },
     {
       "id": "awesome-copilot",
@@ -174,16 +182,18 @@
       "state": "eligible_automatic",
       "listing_url": "https://geminicli.com/extensions/",
       "cost": "free",
-      "detail": "The public repository has the required topic and root manifest; the gallery crawler has not produced an observed listing.",
-      "next_action": "Wait for the daily gallery crawl and verify the listing.",
+      "detail": "The repository retains its required topic and root manifest. The full 15,728,180-byte gallery response was fetched on 10 October 2026 and checked for the owner, repository name and tool prefix; no Financial Evidence listing was found.",
+      "next_action": "Await automatic indexing and verify a future public gallery entry without inventing an acceptance.",
       "latest_surface_check": {
-        "observed_at": "2026-10-08T11:16:05.165465+00:00",
+        "observed_at": "2026-10-10T06:14:40.366534+00:00",
         "url": "https://geminicli.com/extensions/",
         "http_status": 200,
-        "final_url": "https://geminicli.com/extensions/",
-        "readback": "unavailable",
-        "error": "response over budget"
-      }
+        "readback": "full_response_checked_listing_not_observed",
+        "response_bytes": 15728180,
+        "exact_repo_present": false
+      },
+      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "completion_receipt": "distribution/completion-20261010.json"
     },
     {
       "id": "openai-plugin-directory",
@@ -192,12 +202,18 @@
       "state": "ready_account_action",
       "submission_url": "https://platform.openai.com/plugins",
       "cost": "free",
-      "detail": "The v0.1.5 public logo and release URL are verified. The listing packet, legal pages, prompts, tests, and fail-closed challenge route are prepared; no portal token is installed and no submission has entered review.",
-      "next_action": "Complete publisher identity, install the exact portal-issued challenge token, record the required demo, submit, and publish only after approval.",
+      "detail": "The v0.1.7 listing packet and minimal ZIP with per-file checksums are prepared from exact release files. The signed-in portal requires verified publisher identity before enabling even draft upload; neither available organization was verified. No ZIP has been uploaded, domain token installed, real cross-platform demo recorded or review submission made.",
+      "next_action": "Owner completes business identity verification for LIQUILENS PRIVATE LIMITED. Then upload the prepared ZIP, install the exact domain token, test and record a real ChatGPT/Codex demo, complete attestations and submit.",
       "latest_surface_check": {
         "observed_at": "2026-10-08T11:16:05.165504+00:00",
         "readback": "no_public_listing_url"
-      }
+      },
+      "prepared_archive": "https://beepboop2025.github.io/financial-evidence-skills/distribution/downloads/financial-evidence-openai-plugin-v0.1.7.zip",
+      "archive_sha256": "3fdce4c151874309ffbffcc414fa33415be485415be3cf917079164dbded4ab5",
+      "identity_verification_completed": false,
+      "portal_upload_completed": false,
+      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "completion_receipt": "distribution/completion-20261010.json"
     },
     {
       "id": "claude-plugin-directory",
@@ -206,12 +222,14 @@
       "state": "ready_account_action",
       "submission_url": "https://platform.claude.com/plugins/submit",
       "cost": "free",
-      "detail": "The self-hosted plugin and marketplace manifests pass strict Claude validation; no community-directory submission is claimed.",
-      "next_action": "Submit through the publisher's Claude Console account and await review.",
+      "detail": "The self-hosted plugin and marketplace manifests pass strict Claude validation. The publisher portal requires sign-in accepting its displayed Commercial Terms and Usage Policy; approval has been requested and remains pending. No community-directory submission is claimed.",
+      "next_action": "After owner approval of the displayed sign-in terms, continue the prepared publisher application and retain its receipt.",
       "latest_surface_check": {
         "observed_at": "2026-10-08T11:16:05.165507+00:00",
         "readback": "no_public_listing_url"
-      }
+      },
+      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "completion_receipt": "distribution/completion-20261010.json"
     },
     {
       "id": "smithery",
@@ -240,15 +258,27 @@
       "id": "cline-mcp-marketplace",
       "name": "Cline MCP Marketplace",
       "channel": "mcp-marketplace",
-      "state": "ready_validation",
-      "submission_url": "https://github.com/cline/mcp-marketplace/issues/new?template=mcp-server-submission.yml",
+      "state": "submitted",
+      "submission_url": "https://github.com/cline/mcp-marketplace/issues/2903",
       "cost": "free",
-      "detail": "A dedicated install guide and 400 by 400 PNG are ready; the required Cline install attestation has not been made.",
-      "next_action": "Run a real Cline install from the public guide before checking the submission attestation.",
+      "detail": "Cline 3.0.70 registered the remote endpoint in isolated configuration. Its native @cline/core 0.0.92 MCP client connected without authentication, discovered the three router tools and successfully called financial_evidence_topics. The public guide is updated to 0.1.7. Submission issue 2903 is open with truthful installation attestations; no model chat was tested.",
+      "next_action": "Await review of issue 2903 and verify the public marketplace entry if accepted. Do not create a duplicate issue.",
       "latest_surface_check": {
         "observed_at": "2026-10-08T11:16:05.661357+00:00",
         "readback": "no_public_listing_url"
-      }
+      },
+      "native_validation": {
+        "client": "Cline 3.0.70 / @cline/core 0.0.92",
+        "observed_at": "2026-10-10T06:06:42.533Z",
+        "connected": true,
+        "authorization_required": false,
+        "tool_count": 3,
+        "successful_call": "financial_evidence_topics",
+        "model_chat_tested": false
+      },
+      "public_listing_verified": false,
+      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "completion_receipt": "distribution/completion-20261010.json"
     },
     {
       "id": "stackshare",
@@ -281,28 +311,37 @@
       "state": "submitted",
       "submission_url": "https://www.saashub.com/liquilens/added",
       "cost": "free-standard-listing",
-      "detail": "The operator acknowledged the free LiquiLens submission. Research categories and extended description were saved; approval is pending.",
-      "next_action": "Complete logo/screenshots and domain verification, then await review; do not duplicate the submission.",
+      "detail": "The existing free LiquiLens submission has saved official logo, genuine product screenshot, accurate free-access pricing, three product-specific features and Web support. The free Verify action returned an explicit verification receipt. Directory approval is still pending; verification does not establish publication.",
+      "next_action": "Await the existing review outcome and independently verify the public listing. Enrichment and the free verification step are complete; do not resubmit.",
       "verified_at": "2026-10-07T16:53:30.231429+00:00",
       "latest_surface_check": {
         "observed_at": "2026-10-08T11:16:05.661371+00:00",
         "readback": "no_public_listing_url"
-      }
+      },
+      "profile_enrichment_completed": true,
+      "operator_verification_received": true,
+      "public_listing_verified": false,
+      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "completion_receipt": "distribution/completion-20261010.json"
     },
     {
       "id": "alternativeto",
       "name": "AlternativeTo",
       "channel": "software-directory",
-      "state": "ready_account_action",
-      "submission_url": "https://alternativeto.net/faq/",
+      "state": "submitted",
+      "submission_url": "https://alternativeto.net/software/liquilens/",
       "cost": "free-standard-queue",
-      "detail": "The owner is signed in, but the site reports an unverified email and disables new-app submission.",
-      "next_action": "Verify the account email, refresh the profile and submit the prepared product through the normal queue.",
+      "detail": "LiquiLens was submitted after verifying the existing account email, with official logo, genuine product screenshot, free public access, company details and OpenBB Terminal as a relevant alternative. The operator acknowledged submission 824b49e3-8bc3-49df-9a2f-93e2066b332b and says only the owner can see it while review is pending. Optional paid priority was declined.",
+      "next_action": "Await moderation of the existing submission, then verify an independently accessible public product page. Do not resubmit.",
       "verified_at": "2026-10-07T17:16:48.425349+00:00",
       "latest_surface_check": {
         "observed_at": "2026-10-08T11:16:05.661373+00:00",
         "readback": "no_public_listing_url"
-      }
+      },
+      "submission_id": "824b49e3-8bc3-49df-9a2f-93e2066b332b",
+      "public_listing_verified": false,
+      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "completion_receipt": "distribution/completion-20261010.json"
     },
     {
       "id": "zenodo",
@@ -927,8 +966,8 @@
       "state": "listed_incomplete",
       "listing_url": "https://allmcps.com/mcp/financial-evidence",
       "cost": "free",
-      "detail": "Public readback now shows the 0.1.7 description, canonical remote endpoint and tag-pinned install command, with verified ownership. Exact requested wheel-command propagation and native installation remain unproved; the directory sandbox check is not yet automatically verified. This supersedes the prior assertion that no current install pin had propagated without asserting every requested edit was accepted.",
-      "next_action": "Verify the intended install configuration and native behavior on the existing listing; keep incomplete status until remaining semantic checks pass.",
+      "detail": "The existing public listing received another metadata correction: canonical remote endpoint, MIT license, current 0.1.7 description and Cline compatibility. The versioned wheel configuration was preserved. Dashboard shows Edit pending. Native Cline connection and three-tool discovery passed, but public propagation and AllMCPs sandbox verification remain unproved.",
+      "next_action": "Verify public propagation of the pending edit and AllMCPs own sandbox result before closing listing completeness.",
       "verified_at": "2026-10-09T18:50:51.122098+00:00",
       "audit_batch": "2026-10-07-marketplace-sweep",
       "outcome": "existing_listing_reconciled",
@@ -944,10 +983,18 @@
       },
       "ownership": "verified_claimed",
       "ownership_verified_at": "2026-10-08T12:25:18.882263+00:00",
-      "metadata_freshness": "0.1.7_description_and_tag_pin_observed_wheel_and_native_checks_open",
-      "edit_state": "public_metadata_partially_reconciled_operator_edit_status_unverified",
-      "updated_at": "2026-10-08T12:25:18.882263+00:00",
-      "evidence_receipt": "distribution/platform-expansion-20261010.json"
+      "metadata_freshness": "current_metadata_submitted_public_propagation_pending",
+      "edit_state": "edit_pending",
+      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "evidence_receipt": "distribution/platform-expansion-20261010.json",
+      "latest_native_check": {
+        "observed_at": "2026-10-10T06:06:42.533Z",
+        "client": "Cline core 0.0.92",
+        "tool_count": 3,
+        "topics_call_passed": true,
+        "directory_sandbox_verified": false
+      },
+      "completion_receipt": "distribution/completion-20261010.json"
     },
     {
       "id": "allmcps-liquilens",
@@ -1011,8 +1058,8 @@
       "state": "listed_incomplete",
       "listing_url": "https://allmcps.com/mcp/undertow-market-liquidity-map-2",
       "cost": "free",
-      "detail": "Public readback now shows a 24-tool inventory with public/subscriber distinctions and the hosted endpoint. The count is self-reported from the repository, not a live-server verification. The older duplicate remains public and transport labels disagree between Streamable HTTP and SSE. Preserve incomplete status; no new submission or independently verified subscriber count is claimed.",
-      "next_action": "Reconcile the older duplicate and transport labels through the existing listing; independently validate native behavior before closing metadata work.",
+      "detail": "Native Streamable HTTP discovery verified 16 public tools at https://api.seiche.info/undertow/mcp. The anonymous access-status response separately lists eight subscriber tools; subscriber access was not tested. Current endpoint, support URL and this access distinction were submitted to the existing listing. Dashboard shows Edit pending. The older duplicate and conflicting transport labels remain unresolved.",
+      "next_action": "Verify propagation of the pending edit and have the directory reconcile its duplicate and transport labels. Do not attribute subscriber access to the public discovery test.",
       "verified_at": "2026-10-09T18:50:50.921237+00:00",
       "audit_batch": "2026-10-07-marketplace-sweep",
       "outcome": "existing_listing_reconciled",
@@ -1029,9 +1076,17 @@
         "duplicate_html_sha256": "e35a3948daa9e48a80df6476dda65dd6a446870eee2e42abfc4fdffcb388fb2e"
       },
       "ownership_state": "claimed",
-      "updated_at": "2026-10-08T12:54:41.064999+00:00",
-      "metadata_freshness": "24_self_reported_tools_observed_duplicate_and_transport_labels_unresolved",
-      "evidence_receipt": "distribution/platform-expansion-20261010.json"
+      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "metadata_freshness": "16_public_tools_verified_current_edit_pending_duplicate_and_transport_labels_unresolved",
+      "evidence_receipt": "distribution/platform-expansion-20261010.json",
+      "edit_state": "edit_pending",
+      "latest_native_check": {
+        "client": "Cline core 0.0.92",
+        "public_tool_count": 16,
+        "subscriber_tools_advertised": 8,
+        "subscriber_access_tested": false
+      },
+      "completion_receipt": "distribution/completion-20261010.json"
     },
     {
       "id": "allmcps-palimpsest",
@@ -1152,8 +1207,8 @@
       "state": "live",
       "submission_url": "https://allmcps.com/submit",
       "cost": "free",
-      "detail": "Claimed public listing exposes the hosted /openbb/mcp endpoint and eight read-only tools. Rendered metadata retains provenance, unavailable values, seven dataset views and its distinction from the three-tool router. The dashboard no longer shows a pending edit for this entry.",
-      "next_action": "Monitor independently useful research use and future metadata drift; directory activity is not customer adoption.",
+      "detail": "The claimed public eight-tool listing retains its hosted /openbb/mcp endpoint and source-preserving scope. The official Financial Evidence logo was uploaded; the dashboard explicitly reports Logo pending review. Logo publication is not yet verified.",
+      "next_action": "Verify that the approved logo appears publicly and monitor future metadata drift.",
       "verified_at": "2026-10-08T12:54:41.064999+00:00",
       "audit_batch": "2026-10-08-financial-agents",
       "outcome": "ownership_verified_update_submitted",
@@ -1161,7 +1216,7 @@
       "listing_url": "https://allmcps.com/mcp/financial-evidence-research-desk",
       "submission_evidence_file": "allmcps-review-receipt.txt",
       "ownership_state": "verified_active",
-      "metadata_update_state": "pending_review",
+      "metadata_update_state": "current_text_observed_logo_pending_review",
       "latest_surface_check": {
         "observed_at": "2026-10-08T11:16:11.950474+00:00",
         "url": "https://allmcps.com/mcp/financial-evidence-research-desk",
@@ -1172,7 +1227,10 @@
         "title": "Financial Evidence Research Desk MCP Server | AllMCPs",
         "mentioned_versions": []
       },
-      "metadata_freshness": "current_endpoint_and_eight_tool_scope_verified"
+      "metadata_freshness": "current_endpoint_and_eight_tool_scope_verified",
+      "logo_state": "pending_admin_review",
+      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "completion_receipt": "distribution/completion-20261010.json"
     },
     {
       "id": "battlefin-company-map",
@@ -1216,13 +1274,18 @@
       "state": "submitted",
       "submission_url": "https://www.saashub.com/seiche/added",
       "cost": "free-standard-listing",
-      "detail": "The operator acknowledged the free Seiche submission. Research categories and extended description were saved; approval is pending.",
-      "next_action": "Complete logo/screenshots and domain verification, then await review; do not duplicate the submission.",
+      "detail": "The existing free Seiche submission has saved official logo, genuine product screenshot, accurate free-access pricing, three product-specific features and Web support. The free Verify action returned an explicit verification receipt. Directory approval is still pending; verification does not establish publication.",
+      "next_action": "Await the existing review outcome and independently verify the public listing. Enrichment and the free verification step are complete; do not resubmit.",
       "verified_at": "2026-10-07T16:53:30.231429+00:00",
       "latest_surface_check": {
         "observed_at": "2026-10-08T11:16:12.649388+00:00",
         "readback": "no_public_listing_url"
-      }
+      },
+      "profile_enrichment_completed": true,
+      "operator_verification_received": true,
+      "public_listing_verified": false,
+      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "completion_receipt": "distribution/completion-20261010.json"
     },
     {
       "id": "saashub-undertow",
@@ -1246,8 +1309,8 @@
       "state": "listed_incomplete",
       "submission_url": "https://www.g2.com/add_product_requests/new",
       "cost": "free-standard-listing",
-      "detail": "Public profile and company catalog verified under LIQUILENS PRIVATE LIMITED; administrator access and Claimed status confirmed. The Free Version setting and bounded public-access description are saved in My.G2. A Public research pricing tier is now saved and the buyer-facing pricing route displays Free / $0; no free trial or paid tier is advertised. G2 received category-correction case 00642455 to remove Survey and assess Financial Data APIs / Financial Research; the case is New in the Intake Queue. Category correction, logo enrichment and optional network listings remain unverified.",
-      "next_action": "Monitor the existing category case without resubmitting; complete logo attachment and verify the category decision before closing enrichment.",
+      "detail": "Public claimed profile and free research pricing were previously verified. Official logo, English language and hosted-only deployment settings are now saved in the administrator profile. Wrong Survey category and contact-lens seller description remain covered by existing cases 00642455 and 00643368; no duplicate case was sent. Capterra and GetApp show Published in the administrator view, but independent public readback remains unverified.",
+      "next_action": "Await the existing category and seller-description cases, then verify corrected public copy and network profiles without resubmitting.",
       "verified_at": "2026-10-07T18:36:41.571266+00:00",
       "listing_url": "https://www.g2.com/products/liquilens/reviews",
       "ownership_state": "claimed",
@@ -1264,7 +1327,28 @@
         "url": "https://www.g2.com/products/liquilens/reviews",
         "readback": "unavailable",
         "error": "HTTP Error 403: Forbidden"
-      }
+      },
+      "profile_enrichment": {
+        "logo_saved": true,
+        "languages": [
+          "English"
+        ],
+        "hosted_deployment": true,
+        "on_premise_deployment": false
+      },
+      "seller_description_correction": {
+        "case_number": "00643368",
+        "state": "previously_submitted",
+        "decision": "pending"
+      },
+      "network_publication": {
+        "capterra_admin_status": "Published",
+        "getapp_admin_status": "Published",
+        "software_advice_admin_status": "Unpublished",
+        "public_readback_verified": false
+      },
+      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "completion_receipt": "distribution/completion-20261010.json"
     },
     {
       "id": "g2-seiche",
@@ -1766,14 +1850,26 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-liquilens-mcp",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public search card is indexed under the product repository and marked Unvalidated. This records directory discoverability only. The imported description, claimed tool counts, transport details, publisher verification and native installation have not been validated by this observation.",
-      "next_action": "Validate the existing card metadata and native setup before claiming compatibility; do not submit a duplicate card.",
+      "detail": "An existing public card is indexed under the repository. The official publisher CLI generated a current update manifest from native streamable-http discovery: version 1.8.1, 24 tools. The prepared update has not been published; account access and ownership authorization remain. Directory validation and a complete LobeHub chat installation are unverified.",
+      "next_action": "After owner-approved publisher sign-in and GitHub ownership review, update the existing card with the prepared declaration and verify its public version and validation result.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
       "native_installation_verified": false,
       "metadata_accuracy_verified": false,
-      "evidence_receipt": "distribution/platform-expansion-20261010.json"
+      "evidence_receipt": "distribution/platform-expansion-20261010.json",
+      "prepared_update_manifest": "https://beepboop2025.github.io/financial-evidence-skills/distribution/lobehub-updates/beepboop2025-liquilens-mcp/lhm.plugin.json",
+      "native_mcp_discovery_verified": true,
+      "latest_native_check": {
+        "observed_date": "2026-10-10",
+        "client": "@lobehub/market-cli 0.0.41",
+        "version": "1.8.1",
+        "tool_count": 24,
+        "transport": "streamable-http"
+      },
+      "edit_state": "prepared_account_authorization_required",
+      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "completion_receipt": "distribution/completion-20261010.json"
     },
     {
       "id": "lobehub-seiche",
@@ -1782,14 +1878,26 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-seiche",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public search card is indexed under the product repository and marked Unvalidated. This records directory discoverability only. The imported description, claimed tool counts, transport details, publisher verification and native installation have not been validated by this observation.",
-      "next_action": "Validate the existing card metadata and native setup before claiming compatibility; do not submit a duplicate card.",
+      "detail": "An existing public card is indexed under the repository. The official publisher CLI generated a current update manifest from native streamable-http discovery: version 0.16.2, 16 tools. The prepared update has not been published; account access and ownership authorization remain. Directory validation and a complete LobeHub chat installation are unverified.",
+      "next_action": "After owner-approved publisher sign-in and GitHub ownership review, update the existing card with the prepared declaration and verify its public version and validation result.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
       "native_installation_verified": false,
       "metadata_accuracy_verified": false,
-      "evidence_receipt": "distribution/platform-expansion-20261010.json"
+      "evidence_receipt": "distribution/platform-expansion-20261010.json",
+      "prepared_update_manifest": "https://beepboop2025.github.io/financial-evidence-skills/distribution/lobehub-updates/beepboop2025-seiche/lhm.plugin.json",
+      "native_mcp_discovery_verified": true,
+      "latest_native_check": {
+        "observed_date": "2026-10-10",
+        "client": "@lobehub/market-cli 0.0.41",
+        "version": "0.16.2",
+        "tool_count": 16,
+        "transport": "streamable-http"
+      },
+      "edit_state": "prepared_account_authorization_required",
+      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "completion_receipt": "distribution/completion-20261010.json"
     },
     {
       "id": "lobehub-undertow",
@@ -1798,14 +1906,26 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-undertow-mcp",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public search card is indexed under the product repository and marked Unvalidated. This records directory discoverability only. The imported description, claimed tool counts, transport details, publisher verification and native installation have not been validated by this observation.",
-      "next_action": "Validate the existing card metadata and native setup before claiming compatibility; do not submit a duplicate card.",
+      "detail": "An existing public card is indexed under the repository. The official publisher CLI generated a current update manifest from native streamable-http discovery: version 1.13.0, 16 tools. The prepared update has not been published; account access and ownership authorization remain. Directory validation and a complete LobeHub chat installation are unverified.",
+      "next_action": "After owner-approved publisher sign-in and GitHub ownership review, update the existing card with the prepared declaration and verify its public version and validation result.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
       "native_installation_verified": false,
       "metadata_accuracy_verified": false,
-      "evidence_receipt": "distribution/platform-expansion-20261010.json"
+      "evidence_receipt": "distribution/platform-expansion-20261010.json",
+      "prepared_update_manifest": "https://beepboop2025.github.io/financial-evidence-skills/distribution/lobehub-updates/beepboop2025-undertow-mcp/lhm.plugin.json",
+      "native_mcp_discovery_verified": true,
+      "latest_native_check": {
+        "observed_date": "2026-10-10",
+        "client": "@lobehub/market-cli 0.0.41",
+        "version": "1.13.0",
+        "tool_count": 16,
+        "transport": "streamable-http"
+      },
+      "edit_state": "prepared_account_authorization_required",
+      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "completion_receipt": "distribution/completion-20261010.json"
     },
     {
       "id": "lobehub-palimpsest",
@@ -1814,14 +1934,26 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-palimpsest",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public search card is indexed under the product repository and marked Unvalidated. This records directory discoverability only. The imported description, claimed tool counts, transport details, publisher verification and native installation have not been validated by this observation.",
-      "next_action": "Validate the existing card metadata and native setup before claiming compatibility; do not submit a duplicate card.",
+      "detail": "An existing public card is indexed under the repository. The official publisher CLI generated a current update manifest from native streamable-http discovery: version 1.9.3, 7 tools. The prepared update has not been published; account access and ownership authorization remain. Directory validation and a complete LobeHub chat installation are unverified.",
+      "next_action": "After owner-approved publisher sign-in and GitHub ownership review, update the existing card with the prepared declaration and verify its public version and validation result.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
       "native_installation_verified": false,
       "metadata_accuracy_verified": false,
-      "evidence_receipt": "distribution/platform-expansion-20261010.json"
+      "evidence_receipt": "distribution/platform-expansion-20261010.json",
+      "prepared_update_manifest": "https://beepboop2025.github.io/financial-evidence-skills/distribution/lobehub-updates/beepboop2025-palimpsest/lhm.plugin.json",
+      "native_mcp_discovery_verified": true,
+      "latest_native_check": {
+        "observed_date": "2026-10-10",
+        "client": "@lobehub/market-cli 0.0.41",
+        "version": "1.9.3",
+        "tool_count": 7,
+        "transport": "streamable-http"
+      },
+      "edit_state": "prepared_account_authorization_required",
+      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "completion_receipt": "distribution/completion-20261010.json"
     },
     {
       "id": "lobehub-riptide",
@@ -1830,14 +1962,26 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-riptide-mcp",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public search card is indexed under the product repository and marked Unvalidated. This records directory discoverability only. The imported description, claimed tool counts, transport details, publisher verification and native installation have not been validated by this observation.",
-      "next_action": "Validate the existing card metadata and native setup before claiming compatibility; do not submit a duplicate card.",
+      "detail": "An existing public card is indexed under the repository. The official publisher CLI generated a current update manifest from native streamable-http discovery: version 1.3.0, 7 tools. The prepared update has not been published; account access and ownership authorization remain. Directory validation and a complete LobeHub chat installation are unverified.",
+      "next_action": "After owner-approved publisher sign-in and GitHub ownership review, update the existing card with the prepared declaration and verify its public version and validation result.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
       "native_installation_verified": false,
       "metadata_accuracy_verified": false,
-      "evidence_receipt": "distribution/platform-expansion-20261010.json"
+      "evidence_receipt": "distribution/platform-expansion-20261010.json",
+      "prepared_update_manifest": "https://beepboop2025.github.io/financial-evidence-skills/distribution/lobehub-updates/beepboop2025-riptide-mcp/lhm.plugin.json",
+      "native_mcp_discovery_verified": true,
+      "latest_native_check": {
+        "observed_date": "2026-10-10",
+        "client": "@lobehub/market-cli 0.0.41",
+        "version": "1.3.0",
+        "tool_count": 7,
+        "transport": "streamable-http"
+      },
+      "edit_state": "prepared_account_authorization_required",
+      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "completion_receipt": "distribution/completion-20261010.json"
     },
     {
       "id": "lobehub-noisefloor",
@@ -1846,14 +1990,26 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-noisefloor",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public search card is indexed under the product repository and marked Unvalidated. This records directory discoverability only. The imported description, claimed tool counts, transport details, publisher verification and native installation have not been validated by this observation.",
-      "next_action": "Validate the existing card metadata and native setup before claiming compatibility; do not submit a duplicate card.",
+      "detail": "An existing public card is indexed under the repository. The official publisher CLI generated a current update manifest from native streamable-http discovery: version 0.4.0, 10 tools. The prepared update has not been published; account access and ownership authorization remain. Directory validation and a complete LobeHub chat installation are unverified. NoiseFloor public card still showed 0.1.2 and Unvalidated, while native discovery returned 0.4.0 and ten tools.",
+      "next_action": "After owner-approved publisher sign-in and GitHub ownership review, update the existing card with the prepared declaration and verify its public version and validation result.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
       "native_installation_verified": false,
       "metadata_accuracy_verified": false,
-      "evidence_receipt": "distribution/platform-expansion-20261010.json"
+      "evidence_receipt": "distribution/platform-expansion-20261010.json",
+      "prepared_update_manifest": "https://beepboop2025.github.io/financial-evidence-skills/distribution/lobehub-updates/beepboop2025-noisefloor/lhm.plugin.json",
+      "native_mcp_discovery_verified": true,
+      "latest_native_check": {
+        "observed_date": "2026-10-10",
+        "client": "@lobehub/market-cli 0.0.41",
+        "version": "0.4.0",
+        "tool_count": 10,
+        "transport": "streamable-http"
+      },
+      "edit_state": "prepared_account_authorization_required",
+      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "completion_receipt": "distribution/completion-20261010.json"
     },
     {
       "id": "lobehub-evidence-carrier",
@@ -1862,14 +2018,26 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-liquilens-evidence-carrier",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public search card is indexed under the product repository and marked Unvalidated. This records directory discoverability only. The imported description, claimed tool counts, transport details, publisher verification and native installation have not been validated by this observation.",
-      "next_action": "Validate the existing card metadata and native setup before claiming compatibility; do not submit a duplicate card.",
+      "detail": "An existing public card is indexed under the repository. The official publisher CLI generated a current update manifest from native stdio discovery: version 0.20.1, 4 tools. The prepared update has not been published; account access and ownership authorization remain. Directory validation and a complete LobeHub chat installation are unverified.",
+      "next_action": "After owner-approved publisher sign-in and GitHub ownership review, update the existing card with the prepared declaration and verify its public version and validation result.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
       "native_installation_verified": false,
       "metadata_accuracy_verified": false,
-      "evidence_receipt": "distribution/platform-expansion-20261010.json"
+      "evidence_receipt": "distribution/platform-expansion-20261010.json",
+      "prepared_update_manifest": "https://beepboop2025.github.io/financial-evidence-skills/distribution/lobehub-updates/beepboop2025-liquilens-evidence-carrier/lhm.plugin.json",
+      "native_mcp_discovery_verified": true,
+      "latest_native_check": {
+        "observed_date": "2026-10-10",
+        "client": "@lobehub/market-cli 0.0.41",
+        "version": "0.20.1",
+        "tool_count": 4,
+        "transport": "stdio"
+      },
+      "edit_state": "prepared_account_authorization_required",
+      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "completion_receipt": "distribution/completion-20261010.json"
     },
     {
       "id": "public-apis-liquilens-rest",
@@ -2254,10 +2422,17 @@
       "state": "submitted",
       "submission_url": "https://github.com/AI4Finance-Foundation/Awesome_AI4Finance/pull/26",
       "cost": "free",
-      "detail": "Existing September 2026 contribution remains open and unmerged. Reconciled without a duplicate submission.",
-      "next_action": "Await maintainer review on the existing PR.",
+      "detail": "The existing PR merge conflict was repaired by merging current upstream main into the owned branch without force-push. The diff remains exactly one added Market Brief entry. Head 684931b2644b361c441da59c225666947df22e1f is mergeable; upstream review remains pending.",
+      "next_action": "Await maintainer review on the repaired existing PR 26.",
       "verified_at": "2026-10-10T05:30:53.903883+00:00",
-      "reconciled_existing": true
+      "reconciled_existing": true,
+      "latest_recheck": {
+        "observed_at": "2026-10-10T06:28:14.840174+00:00",
+        "head": "684931b2644b361c441da59c225666947df22e1f",
+        "mergeable": true
+      },
+      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "completion_receipt": "distribution/completion-20261010.json"
     },
     {
       "id": "cursor-directory-financial-evidence",
@@ -2287,7 +2462,7 @@
     }
   ],
   "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
-  "updated_at": "2026-10-10T05:36:59.863294+00:00",
+  "updated_at": "2026-10-10T06:28:14.840174+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -2371,5 +2546,61 @@
     "paid_placement_cost_inr": 0,
     "independent_adoption_verified": false,
     "coverage_complete": false
+  },
+  "latest_completion": {
+    "recorded_at": "2026-10-10T06:28:14.840174+00:00",
+    "receipt": "distribution/completion-20261010.json",
+    "report": "distribution/completion-20261010.md",
+    "scope": "Two new free submission receipts; profile enrichment; two upstream conflict repairs; exact OpenAI upload package and seven LobeHub update declarations. Account and operator gates remain explicit.",
+    "new_received_submissions": 2,
+    "new_product_placements_submitted": 2,
+    "new_destinations_submitted": 2,
+    "combined_with_wide_distribution": {
+      "received_submission_operations": 11,
+      "new_product_placements_submitted": 12,
+      "destinations": 9
+    },
+    "new_live_listings_verified": 0,
+    "existing_pr_conflicts_repaired": 2,
+    "lobehub_updates_prepared": 7,
+    "lobehub_updates_published": 0,
+    "paid_placement_cost_inr": 0,
+    "coverage_complete": false,
+    "independent_adoption_verified": false,
+    "updated_entry_ids": [
+      "alternativeto",
+      "cline-mcp-marketplace",
+      "saashub",
+      "saashub-seiche",
+      "allmcps-financial-evidence",
+      "allmcps-undertow",
+      "allmcps-research-desk",
+      "g2-liquilens",
+      "openai-plugin-directory",
+      "claude-plugin-directory",
+      "awesome-mcp-servers",
+      "ai4finance-market-brief",
+      "gemini-cli-extension-gallery",
+      "lobehub-evidence-carrier",
+      "lobehub-liquilens",
+      "lobehub-noisefloor",
+      "lobehub-palimpsest",
+      "lobehub-riptide",
+      "lobehub-seiche",
+      "lobehub-undertow"
+    ],
+    "ledger_state_counts": {
+      "live": 48,
+      "submitted": 39,
+      "closed_unmerged": 1,
+      "eligible_automatic": 1,
+      "ready_account_action": 4,
+      "conditional_artifact": 1,
+      "paused_external": 2,
+      "skipped_paid": 2,
+      "listed_incomplete": 10,
+      "approved_pending_public": 3,
+      "sent_delivery_unverified": 1
+    }
   }
 }

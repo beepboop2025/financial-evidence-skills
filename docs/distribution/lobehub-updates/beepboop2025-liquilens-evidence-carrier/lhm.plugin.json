@@ -1,0 +1,236 @@
+{
+  "description": "Offline verification of local evidence carriers, fleet briefs, and hash-only trade-safety receipts.",
+  "homepage": "https://liquilens.in/protocol/",
+  "identifier": "beepboop2025-liquilens-evidence-carrier",
+  "name": "LiquiLens Evidence Carrier",
+  "prompts": [],
+  "resources": [
+    {
+      "name": "Evidence Carrier full schema",
+      "title": "Evidence Carrier full schema",
+      "uri": "liquilens-evidence://protocol/full-schema",
+      "description": "JSON Schema for fully disclosable evidence carriers.",
+      "mimeType": "application/schema+json",
+      "size": 5079
+    },
+    {
+      "name": "Evidence Carrier reference schema",
+      "title": "Evidence Carrier reference schema",
+      "uri": "liquilens-evidence://protocol/reference-schema",
+      "description": "JSON Schema for rights-bounded metadata-only references.",
+      "mimeType": "application/schema+json",
+      "size": 2262
+    },
+    {
+      "name": "LiquiLens Fleet Brief schema",
+      "title": "LiquiLens Fleet Brief schema",
+      "uri": "liquilens-evidence://protocol/fleet-brief-schema",
+      "description": "JSON Schema for four-product, rights-aware fleet briefs.",
+      "mimeType": "application/schema+json",
+      "size": 6562
+    },
+    {
+      "name": "Trade-Safety Request schema",
+      "title": "Trade-Safety Request schema",
+      "uri": "liquilens-evidence://protocol/trade-safety-request-schema",
+      "description": "JSON Schema for one exact, operator-authorized proposed order.",
+      "mimeType": "application/schema+json",
+      "size": 7611
+    },
+    {
+      "name": "Trade-Safety Policy schema",
+      "title": "Trade-Safety Policy schema",
+      "uri": "liquilens-evidence://protocol/trade-safety-policy-schema",
+      "description": "JSON Schema for fail-closed operator-authored policy constraints.",
+      "mimeType": "application/schema+json",
+      "size": 2831
+    },
+    {
+      "name": "Broker Preview Reference schema",
+      "title": "Broker Preview Reference schema",
+      "uri": "liquilens-evidence://protocol/broker-preview-reference-schema",
+      "description": "JSON Schema for a non-executable broker-owned preview reference.",
+      "mimeType": "application/schema+json",
+      "size": 3169
+    },
+    {
+      "name": "Trade-Safety Receipt schema",
+      "title": "Trade-Safety Receipt schema",
+      "uri": "liquilens-evidence://protocol/trade-safety-receipt-schema",
+      "description": "JSON Schema for deterministic, order-bound policy receipts.",
+      "mimeType": "application/schema+json",
+      "size": 17294
+    },
+    {
+      "name": "Evidence Carrier protocol catalog",
+      "title": "Evidence Carrier protocol catalog",
+      "uri": "liquilens-evidence://protocol/catalog",
+      "description": "Version and SHA-256 catalog for the installed protocol artifacts.",
+      "mimeType": "application/json",
+      "size": 4017
+    },
+    {
+      "name": "Trade Safety v1 adversarial conformance corpus",
+      "title": "Trade Safety v1 adversarial conformance corpus",
+      "uri": "liquilens-evidence://protocol/trade-safety-conformance",
+      "description": "Raw-byte pass, non-pass, tamper, lexical, expiry and replay vectors.",
+      "mimeType": "application/json",
+      "size": 165737
+    },
+    {
+      "name": "Connected product research routing",
+      "title": "Connected product research routing",
+      "uri": "liquilens-evidence://research/network-routing",
+      "description": "Read-only source discovery across Palimpsest, Seiche, LiquiLens, Undertow and NarcoScope; no network access or execution authority.",
+      "mimeType": "application/json",
+      "size": 1529
+    },
+    {
+      "name": "Connected research response schema",
+      "title": "Connected research response schema",
+      "uri": "liquilens-evidence://research/network-schema",
+      "description": "Schema for metadata discovery with separately completed funding context; not a signed evidence carrier.",
+      "mimeType": "application/schema+json",
+      "size": 1814
+    }
+  ],
+  "tools": [
+    {
+      "name": "verify_carrier",
+      "title": "Verify local evidence carrier",
+      "description": "Verify one local carrier JSON file under the configured root. Returns identity and rights-aware export disposition, never market advice.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Carrier JSON path, relative to the allowed root or absolute within it."
+          },
+          "evaluated_at": {
+            "type": "string",
+            "description": "Optional policy evaluation clock as an RFC 3339 UTC timestamp ending in Z. The current UTC time is recorded when omitted."
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "project_carrier",
+      "title": "Project verified evidence carrier",
+      "description": "Verify one local carrier and project it to a bounded transport format. Restricted, unsafe, or expired payloads remain blocked or redacted by policy.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Carrier JSON path, relative to the allowed root or absolute within it."
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "arrow",
+              "cloudevent",
+              "csl",
+              "fdc3",
+              "flat",
+              "jsonld",
+              "openlineage",
+              "otel"
+            ]
+          },
+          "evaluated_at": {
+            "type": "string",
+            "description": "Optional policy evaluation clock as an RFC 3339 UTC timestamp ending in Z. The current UTC time is recorded when omitted."
+          }
+        },
+        "required": [
+          "path",
+          "format"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "verify_fleet_brief",
+      "title": "Verify local LiquiLens fleet brief",
+      "description": "Verify one local, content-addressed fleet brief under the configured root. Replays the exact recorded evaluation clock without fetching or mutating data.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Fleet brief JSON path, relative to the allowed root or absolute within it."
+          },
+          "evaluated_at": {
+            "type": "string",
+            "description": "Required RFC 3339 UTC clock ending in Z; it must match the brief."
+          }
+        },
+        "required": [
+          "path",
+          "evaluated_at"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "verify_trade_safety_receipt",
+      "title": "Verify local hash-only trade-safety receipt",
+      "description": "Verify one local order-bound receipt under the configured root at an explicit clock. This v1 tool accepts no authentication secrets, so HMAC receipts fail closed and require tenant-local verification. It never fetches market data, recommends, or executes an order.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Receipt JSON path, relative to the allowed root or absolute within it."
+          },
+          "evaluated_at": {
+            "type": "string",
+            "description": "Required verification clock as an RFC 3339 UTC timestamp ending in Z."
+          }
+        },
+        "required": [
+          "path",
+          "evaluated_at"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    }
+  ],
+  "version": "0.20.1"
+}

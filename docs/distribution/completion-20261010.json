@@ -1,0 +1,116 @@
+{
+  "schema": "financial-evidence.distribution-completion.v1",
+  "recorded_at": "2026-10-10T06:28:14.840174+00:00",
+  "receipt": "distribution/completion-20261010.json",
+  "report": "distribution/completion-20261010.md",
+  "scope": "Two new free submission receipts; profile enrichment; two upstream conflict repairs; exact OpenAI upload package and seven LobeHub update declarations. Account and operator gates remain explicit.",
+  "new_received_submissions": 2,
+  "new_product_placements_submitted": 2,
+  "new_destinations_submitted": 2,
+  "combined_with_wide_distribution": {
+    "received_submission_operations": 11,
+    "new_product_placements_submitted": 12,
+    "destinations": 9
+  },
+  "new_live_listings_verified": 0,
+  "existing_pr_conflicts_repaired": 2,
+  "lobehub_updates_prepared": 7,
+  "lobehub_updates_published": 0,
+  "paid_placement_cost_inr": 0,
+  "coverage_complete": false,
+  "independent_adoption_verified": false,
+  "updated_entry_ids": [
+    "alternativeto",
+    "cline-mcp-marketplace",
+    "saashub",
+    "saashub-seiche",
+    "allmcps-financial-evidence",
+    "allmcps-undertow",
+    "allmcps-research-desk",
+    "g2-liquilens",
+    "openai-plugin-directory",
+    "claude-plugin-directory",
+    "awesome-mcp-servers",
+    "ai4finance-market-brief",
+    "gemini-cli-extension-gallery",
+    "lobehub-evidence-carrier",
+    "lobehub-liquilens",
+    "lobehub-noisefloor",
+    "lobehub-palimpsest",
+    "lobehub-riptide",
+    "lobehub-seiche",
+    "lobehub-undertow"
+  ],
+  "ledger_state_counts": {
+    "live": 48,
+    "submitted": 39,
+    "closed_unmerged": 1,
+    "eligible_automatic": 1,
+    "ready_account_action": 4,
+    "conditional_artifact": 1,
+    "paused_external": 2,
+    "skipped_paid": 2,
+    "listed_incomplete": 10,
+    "approved_pending_public": 3,
+    "sent_delivery_unverified": 1
+  },
+  "ledger_records": 112,
+  "new_submissions": [
+    {
+      "destination": "AlternativeTo",
+      "product": "LiquiLens",
+      "submission_id": "824b49e3-8bc3-49df-9a2f-93e2066b332b",
+      "state": "received_owner_only_pending_moderation"
+    },
+    {
+      "destination": "Cline MCP marketplace",
+      "product": "Financial Evidence",
+      "url": "https://github.com/cline/mcp-marketplace/issues/2903",
+      "state": "open_pending_review"
+    }
+  ],
+  "cline_native_validation": {
+    "client": "Cline 3.0.70 / @cline/core 0.0.92",
+    "observed_at": "2026-10-10T06:06:42.533Z",
+    "connected": true,
+    "authorization_required": false,
+    "tool_count": 3,
+    "successful_call": "financial_evidence_topics",
+    "model_chat_tested": false
+  },
+  "prepared_openai_zip": {
+    "source_tag": "v0.1.7",
+    "source_commit": "286e86bcc011dbc8c1108fcbda8505f6c40e2283",
+    "sha256": "3fdce4c151874309ffbffcc414fa33415be485415be3cf917079164dbded4ab5",
+    "uploaded": false
+  },
+  "profile_work": {
+    "saashub_liquilens": "enriched_web_platform_saved_verified_approval_pending",
+    "saashub_seiche": "enriched_web_platform_saved_verified_approval_pending",
+    "g2_liquilens": "logo_english_hosted_deployment_saved_existing_corrections_pending",
+    "allmcps_financial_evidence": "edit_pending",
+    "allmcps_undertow": "edit_pending",
+    "allmcps_research_desk": "logo_pending_review"
+  },
+  "remaining_owner_gates": [
+    "OpenAI business identity verification",
+    "Claude sign-in terms approval",
+    "LobeHub publisher access approval followed by review of any GitHub grant"
+  ],
+  "remaining_external_dependencies": [
+    "Directory moderation and upstream review",
+    "G2 cases 00642455 and 00643368",
+    "SoftwareSuggest ticket 82283",
+    "Datarade public visibility",
+    "SaaSHub earlier-listing approval",
+    "Gemini automatic indexing",
+    "AllMCPs duplicate and transport reconciliation"
+  ],
+  "preserved_holds": [
+    "AWS paused by owner",
+    "Gumloop trial declined",
+    "StackShare bot-access denial",
+    "ToolHive runtime unavailable",
+    "SourceForge separate concurrent ownership"
+  ]
+}

@@ -1,0 +1,474 @@
+{
+  "cloudEndpoint": "https://api.seiche.info/riptide/mcp",
+  "description": "Read-only paper risk evidence and policy-gated committed event research. No real orders.",
+  "homepage": "https://api.seiche.info/riptide",
+  "identifier": "beepboop2025-riptide-mcp",
+  "name": "Riptide public risk and event research",
+  "prompts": [],
+  "resources": [],
+  "tools": [
+    {
+      "name": "riptide_allocation",
+      "title": "Allocation",
+      "description": "Latest allocation committed by the independent daily paper job.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "schema": {
+            "const": "riptide.public.v1"
+          },
+          "product": {
+            "const": "riptide"
+          },
+          "kind": {
+            "type": "string",
+            "const": "allocation"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "execution_mode": {
+            "enum": [
+              "paper_only",
+              "read_only"
+            ]
+          },
+          "real_orders": {
+            "const": false
+          },
+          "disclaimer": {
+            "type": "string",
+            "minLength": 1
+          },
+          "available": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "schema",
+          "product",
+          "kind",
+          "generated_at",
+          "execution_mode",
+          "real_orders",
+          "disclaimer"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Latest allocation committed by the independent daily paper job",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "riptide_crypto_record",
+      "title": "Crypto Record",
+      "description": "Separate toy crypto strategy paper record and honesty boundary.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "schema": {
+            "const": "riptide.public.v1"
+          },
+          "product": {
+            "const": "riptide"
+          },
+          "kind": {
+            "type": "string",
+            "const": "crypto_record"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "execution_mode": {
+            "enum": [
+              "paper_only",
+              "read_only"
+            ]
+          },
+          "real_orders": {
+            "const": false
+          },
+          "disclaimer": {
+            "type": "string",
+            "minLength": 1
+          },
+          "available": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "schema",
+          "product",
+          "kind",
+          "generated_at",
+          "execution_mode",
+          "real_orders",
+          "disclaimer"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Separate toy crypto strategy paper record and honesty boundary",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "riptide_event_markets",
+      "title": "Event Markets",
+      "description": "Policy-gated committed Event Intelligence availability, eligible quotes, and gaps.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "schema": {
+            "const": "riptide.public.v1"
+          },
+          "product": {
+            "const": "riptide"
+          },
+          "kind": {
+            "type": "string",
+            "const": "event_markets"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "execution_mode": {
+            "enum": [
+              "paper_only",
+              "read_only"
+            ]
+          },
+          "real_orders": {
+            "const": false
+          },
+          "disclaimer": {
+            "type": "string",
+            "minLength": 1
+          },
+          "available": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "schema",
+          "product",
+          "kind",
+          "generated_at",
+          "execution_mode",
+          "real_orders",
+          "disclaimer"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Policy-gated committed Event Intelligence availability, eligible quotes, and gaps",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "riptide_methodology",
+      "title": "Methodology",
+      "description": "Public methodology, safety boundaries, and canonical links.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "schema": {
+            "const": "riptide.public.v1"
+          },
+          "product": {
+            "const": "riptide"
+          },
+          "kind": {
+            "type": "string",
+            "const": "methodology"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "execution_mode": {
+            "enum": [
+              "paper_only",
+              "read_only"
+            ]
+          },
+          "real_orders": {
+            "const": false
+          },
+          "disclaimer": {
+            "type": "string",
+            "minLength": 1
+          },
+          "available": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "schema",
+          "product",
+          "kind",
+          "generated_at",
+          "execution_mode",
+          "real_orders",
+          "disclaimer"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Public methodology, safety boundaries, and canonical links",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "riptide_overview",
+      "title": "Overview",
+      "description": "Riptide health, latest allocation, both paper records, and links.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "schema": {
+            "const": "riptide.public.v1"
+          },
+          "product": {
+            "const": "riptide"
+          },
+          "kind": {
+            "type": "string",
+            "const": "overview"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "execution_mode": {
+            "enum": [
+              "paper_only",
+              "read_only"
+            ]
+          },
+          "real_orders": {
+            "const": false
+          },
+          "disclaimer": {
+            "type": "string",
+            "minLength": 1
+          },
+          "available": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "schema",
+          "product",
+          "kind",
+          "generated_at",
+          "execution_mode",
+          "real_orders",
+          "disclaimer"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Riptide health, latest allocation, both paper records, and links",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "riptide_paper_record",
+      "title": "Paper Record",
+      "description": "Verified core paper equity, return, drawdown, and recent curve.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "schema": {
+            "const": "riptide.public.v1"
+          },
+          "product": {
+            "const": "riptide"
+          },
+          "kind": {
+            "type": "string",
+            "const": "paper_record"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "execution_mode": {
+            "enum": [
+              "paper_only",
+              "read_only"
+            ]
+          },
+          "real_orders": {
+            "const": false
+          },
+          "disclaimer": {
+            "type": "string",
+            "minLength": 1
+          },
+          "available": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "schema",
+          "product",
+          "kind",
+          "generated_at",
+          "execution_mode",
+          "real_orders",
+          "disclaimer"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Verified core paper equity, return, drawdown, and recent curve",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "riptide_risk_evidence",
+      "title": "Risk Evidence",
+      "description": "Latest defensive coverage aggregate, without raw breach text.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "schema": {
+            "const": "riptide.public.v1"
+          },
+          "product": {
+            "const": "riptide"
+          },
+          "kind": {
+            "type": "string",
+            "const": "risk_evidence"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "execution_mode": {
+            "enum": [
+              "paper_only",
+              "read_only"
+            ]
+          },
+          "real_orders": {
+            "const": false
+          },
+          "disclaimer": {
+            "type": "string",
+            "minLength": 1
+          },
+          "available": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "schema",
+          "product",
+          "kind",
+          "generated_at",
+          "execution_mode",
+          "real_orders",
+          "disclaimer"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "additionalProperties": true
+      },
+      "annotations": {
+        "title": "Latest defensive coverage aggregate, without raw breach text",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    }
+  ],
+  "version": "1.3.0"
+}

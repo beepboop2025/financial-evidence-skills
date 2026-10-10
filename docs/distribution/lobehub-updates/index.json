@@ -1,0 +1,92 @@
+{
+  "schema": "financial-evidence.lobehub-update-packet.v1",
+  "generated_with": "@lobehub/market-cli 0.0.41",
+  "observed_date": "2026-10-10",
+  "scope": "Native MCP initialization and tool, resource and prompt discovery using the official publisher CLI. No model chat or paid subscriber access was tested. Existing listing updates require account authorization.",
+  "entries": [
+    {
+      "identifier": "beepboop2025-liquilens-evidence-carrier",
+      "version": "0.20.1",
+      "public_tools_discovered": 4,
+      "resources_discovered": 11,
+      "prompts_discovered": 0,
+      "transport": "stdio",
+      "endpoint": null,
+      "sha256": "00dd80ccbd5cf9bbbebabee36cccab05b5ecd3ab654cb711cf877ffa6210161e",
+      "path": "distribution/lobehub-updates/beepboop2025-liquilens-evidence-carrier/lhm.plugin.json",
+      "published_update": false
+    },
+    {
+      "identifier": "beepboop2025-liquilens-mcp",
+      "version": "1.8.1",
+      "public_tools_discovered": 24,
+      "resources_discovered": 0,
+      "prompts_discovered": 5,
+      "transport": "streamable-http",
+      "endpoint": "https://api.liquilens.in/mcp",
+      "sha256": "b47762cda8a1cc36e5d24be957078ebb5b2c565cfc381a535b38eb3b09ad83ea",
+      "path": "distribution/lobehub-updates/beepboop2025-liquilens-mcp/lhm.plugin.json",
+      "published_update": false
+    },
+    {
+      "identifier": "beepboop2025-noisefloor",
+      "version": "0.4.0",
+      "public_tools_discovered": 10,
+      "resources_discovered": 0,
+      "prompts_discovered": 4,
+      "transport": "streamable-http",
+      "endpoint": "https://api.seiche.info/noisefloor/mcp",
+      "sha256": "ed7f02dc75e5ed2db33f5cdb096e36343214abf88a72a7b2d15dc9da836b01a4",
+      "path": "distribution/lobehub-updates/beepboop2025-noisefloor/lhm.plugin.json",
+      "published_update": false
+    },
+    {
+      "identifier": "beepboop2025-palimpsest",
+      "version": "1.9.3",
+      "public_tools_discovered": 7,
+      "resources_discovered": 1,
+      "prompts_discovered": 4,
+      "transport": "streamable-http",
+      "endpoint": "https://api.seiche.info/palimpsest/mcp",
+      "sha256": "1e3fa9e9d683a1b941c6f8e14e746e23a291010fae000bc70e573aa8bae0f6f2",
+      "path": "distribution/lobehub-updates/beepboop2025-palimpsest/lhm.plugin.json",
+      "published_update": false
+    },
+    {
+      "identifier": "beepboop2025-riptide-mcp",
+      "version": "1.3.0",
+      "public_tools_discovered": 7,
+      "resources_discovered": 0,
+      "prompts_discovered": 0,
+      "transport": "streamable-http",
+      "endpoint": "https://api.seiche.info/riptide/mcp",
+      "sha256": "d6187a91a7c49e917f29928eca019b7fb205fc09ec1f6da3058b0f7747ced44f",
+      "path": "distribution/lobehub-updates/beepboop2025-riptide-mcp/lhm.plugin.json",
+      "published_update": false
+    },
+    {
+      "identifier": "beepboop2025-seiche",
+      "version": "0.16.2",
+      "public_tools_discovered": 16,
+      "resources_discovered": 0,
+      "prompts_discovered": 4,
+      "transport": "streamable-http",
+      "endpoint": "https://api.seiche.info/mcp",
+      "sha256": "e232aacb3ba070b82c8bb3ac6d94dc5f9b11347b1beb8489ef92776b12b7bd63",
+      "path": "distribution/lobehub-updates/beepboop2025-seiche/lhm.plugin.json",
+      "published_update": false
+    },
+    {
+      "identifier": "beepboop2025-undertow-mcp",
+      "version": "1.13.0",
+      "public_tools_discovered": 16,
+      "resources_discovered": 0,
+      "prompts_discovered": 3,
+      "transport": "streamable-http",
+      "endpoint": "https://api.seiche.info/undertow/mcp",
+      "sha256": "d15122f58526961cd5c36e2bb9573d4ba5d3fbf8ba43ec9b7edf40a191be0286",
+      "path": "distribution/lobehub-updates/beepboop2025-undertow-mcp/lhm.plugin.json",
+      "published_update": false
+    }
+  ]
+}

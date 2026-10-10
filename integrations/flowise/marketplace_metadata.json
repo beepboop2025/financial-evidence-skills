@@ -1,0 +1,4 @@
+{
+  "description": "Retrieve one source-linked financial research page through Custom MCP without a model or data API key. Defaults to money_markets; retain source dates, diagnostics and unavailable values when reviewing the response.",
+  "usecases": ["Interacting with API"]
+}

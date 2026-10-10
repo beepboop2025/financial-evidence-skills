@@ -12,13 +12,10 @@ import tarfile
 from datetime import datetime, timezone
 
 
-def prepare_archive(package, evidence, existing=None, expected_sha256=None,
-                    allow_archived_readme=False):
+def prepare_archive(package, evidence, existing=None, expected_sha256=None):
     """Validate an immutable candidate before a host can load any of its code."""
     if (existing is None) != (expected_sha256 is None):
         raise ValueError('--archive and --expected-sha256 must be supplied together')
-    if allow_archived_readme and existing is None:
-        raise ValueError('--allow-archived-readme requires --archive')
     if existing is None:
         packed = subprocess.run(['npm', 'pack', '--json', '--pack-destination', str(evidence)],
                                 cwd=package, check=True, capture_output=True, text=True)
@@ -40,8 +37,7 @@ def prepare_archive(package, evidence, existing=None, expected_sha256=None,
                     or member.name in files):
                 raise ValueError(f'Unexpected archive member: {member.name}')
             files[member.name] = contents.extractfile(member).read()
-    # Everything shipped must match the current build. The only deliberate
-    # exception is older operator prose in README, requested explicitly by CI.
+    # Everything shipped, including README and metadata, must match the build.
     expected_files = {'package/package.json', 'package/LICENSE', 'package/README.md'}
     expected_files.update('package/' + path.relative_to(package).as_posix()
                           for path in (package / 'dist').rglob('*') if path.is_file())
@@ -49,8 +45,6 @@ def prepare_archive(package, evidence, existing=None, expected_sha256=None,
         raise ValueError('Archive file list differs from current package and build')
     readme_matches = files['package/README.md'] == (package / 'README.md').read_bytes()
     for name, data in files.items():
-        if name == 'package/README.md' and allow_archived_readme:
-            continue
         if data != (package / name.removeprefix('package/')).read_bytes():
             raise ValueError(f'Archive differs from current source/build: {name}')
     manifest = json.loads(files['package/package.json'])
@@ -68,7 +62,6 @@ def prepare_archive(package, evidence, existing=None, expected_sha256=None,
               'name': manifest['name'], 'version': manifest['version'], 'sha256': digest,
               'runtime_and_metadata_match_current_build': True,
               'readme_matches_current_source': readme_matches,
-              'archived_readme_explicitly_allowed': allow_archived_readme,
               'archive_readme_sha256': hashlib.sha256(files['package/README.md']).hexdigest(),
               'source_readme_sha256': hashlib.sha256((package / 'README.md').read_bytes()).hexdigest()}
     (evidence / 'archive-check.json').write_text(json.dumps(report, indent=2) + '\n')
@@ -81,8 +74,6 @@ def main():
     parser.add_argument('--evidence-dir', type=Path, required=True)
     parser.add_argument('--archive', type=Path, help='Test these existing bytes without npm pack')
     parser.add_argument('--expected-sha256', help='Required reviewed hash when --archive is supplied')
-    parser.add_argument('--allow-archived-readme', action='store_true',
-                        help='Permit and report an older README; all other files must match the build')
     args = parser.parse_args()
     evidence = args.evidence_dir.resolve()
     # Refuse reuse: an old database or receipt must never pass as this run.
@@ -90,7 +81,7 @@ def main():
     package = Path(__file__).resolve().parents[1]
     n8n = args.n8n_bin.resolve(strict=True)
     archive, unpacked, archive_check = prepare_archive(
-        package, evidence, args.archive, args.expected_sha256, args.allow_archived_readme)
+        package, evidence, args.archive, args.expected_sha256)
     # The custom loader uses the host's peer dependency, as an installed node does.
     (unpacked / 'package' / 'node_modules').symlink_to(n8n.parents[2], target_is_directory=True)
     # Do not inherit DB_*, N8N_* or external-hook settings from a real instance.

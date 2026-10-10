@@ -74,7 +74,7 @@ jobs:
         run: |
           python3 scripts/native_smoke.py --n8n-bin "$RUNNER_TEMP/n8n-runtime/node_modules/.bin/n8n" \
             --evidence-dir "$RUNNER_TEMP/n8n-evidence" --archive "$ARCHIVE" \
-            --expected-sha256 "$EXPECTED_ARCHIVE_SHA256" --allow-archived-readme
+            --expected-sha256 "$EXPECTED_ARCHIVE_SHA256"
       - name: Dry run the exact tested tarball
         run: npm stage publish "$RUNNER_TEMP"/n8n-evidence/*.tgz --access public --tag latest --dry-run --ignore-scripts
       - name: Verify public bytes and provenance metadata

@@ -11,13 +11,16 @@ The reviewed download is
 `9d2fa6ba3950c41a68e025ea6f5c57922697c0b311ef6d77ce52412267b392ae`.
 Its native n8n 2.42.6 execution passed in
 [run 38080327701](https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38080327701).
-The original tarball remains unchanged. Current source README prose includes
-later publication instructions; repacking that source produces a different
-candidate. The staging workflow rebuilds the runtime, compares every shipped
-file except the explicitly permitted README difference, records both README
-hashes, and executes the existing tarball in a fresh native profile. The current
+The original tarball remains unchanged. Exact comparison found that its README
+matches current package source: both have SHA-256
+`4f360e31bd4284f56f5ce487ff21d2e8b487b4a8935b83eab66a6e05cf571dd5`.
+The staging workflow rebuilds the runtime, requires every shipped file including
+README and metadata to match the current build, records both README hashes, and
+executes the existing tarball in a fresh native profile. Repacking is unnecessary
+and would not prove identity with the previously tested archive. The unchanged
 package README's older reference to a `publish` switch is superseded by this
-procedure and the workflow's `mode` input.
+procedure and the workflow's `mode` input. Any future package README change must
+be treated as a new candidate, not silently substituted in this release.
 
 ## Why a first-package bootstrap is necessary
 

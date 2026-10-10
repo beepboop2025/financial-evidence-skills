@@ -72,18 +72,14 @@ class ArchiveTests(unittest.TestCase):
                 altered = {**self.files, name: self.files[name] + b' changed'}
                 archive, digest = self.archive(altered)
                 with self.assertRaisesRegex(ValueError, 'differs from current source/build'):
-                    smoke.prepare_archive(self.package, self.evidence, archive, digest, True)
+                    smoke.prepare_archive(self.package, self.evidence, archive, digest)
 
-    def test_readme_difference_requires_explicit_exception_and_is_recorded(self):
+    def test_readme_difference_is_rejected_even_with_reviewed_archive_hash(self):
         archive, digest = self.archive()
         (self.package / 'README.md').write_text('Current publication instructions\n')
         with self.assertRaisesRegex(ValueError, 'README.md'):
             smoke.prepare_archive(self.package, self.evidence, archive, digest)
-        result, _, report = smoke.prepare_archive(self.package, self.evidence, archive, digest, True)
-        self.assertEqual(result.read_bytes(), archive.read_bytes())
-        self.assertFalse(report['readme_matches_current_source'])
-        self.assertNotEqual(report['archive_readme_sha256'], report['source_readme_sha256'])
-        self.assertTrue(report['runtime_and_metadata_match_current_build'])
+        self.assertEqual(list(self.evidence.iterdir()), [])
 
     def test_missing_and_extra_payload_files_are_rejected(self):
         for files in [{k: v for k, v in self.files.items() if k != 'LICENSE'},

@@ -23,8 +23,8 @@ Official Dify CLI 0.6.11 built the archive. Its Darwin ARM64 executable was
 verified against SHA-256
 `9f302d7bcad0d9efb6e1b3b620e7f3f309ea26c206c062f5ae569621ae53f654`.
 The source verifier checked all ten packaged files byte-for-byte and rejected
-any other entry. Initial 0.1.1 candidate SHA-256:
-`35cc08c3c26deb0c03bd3fd09336ef13e309e2dd16f9e704c787909d92e27002`.
+any other entry. Current 0.1.1 candidate SHA-256:
+`8929480aa1553bed501d5c8470f29d44c397f5222263e9fc8f2c0c38cdbba625`.
 Rebuild and record a new hash after any packaged-source change.
 
 The [official Marketplace toolkit](https://github.com/langgenius/dify-marketplace-toolkit)

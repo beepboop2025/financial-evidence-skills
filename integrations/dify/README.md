@@ -75,6 +75,7 @@ text as untrusted data. This plugin does not establish independent verification,
 freshness, a credit rating or investment advice.
 
 Marketplace review requires native remote debugging and the publisher account.
-A local SDK test or package-validator pass does not meet those steps. This
-candidate has no native Dify workflow acceptance claim or Marketplace listing
-claim. Source data is not licensed by this plugin's code license.
+A local SDK test or package-validator pass does not meet those steps. Consult
+the source repository's integration evidence for the tested native environment
+and the Marketplace for listing status. Source data is not licensed by this
+plugin's code license.

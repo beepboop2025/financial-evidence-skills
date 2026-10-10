@@ -7,7 +7,7 @@ const page = dataset => ({ schema: 'liquidity-lab.openbb-table.v1', dataset, res
 function execution(agent = false) {
   return { id: '12', status: 'success', finished: true, owner: { password: 'must-not-export' }, data: { resultData: { runData: {
     [agent ? 'Financial Evidence Tool' : 'Financial Evidence']: [{ executionStatus: 'success', data: { main: [[{ json: page('money_markets') }]] } }],
-    ...(agent ? { 'Local Qwen3': [{}], 'Research Agent': [{ data: { main: [[{ json: { output: 'Observed unavailable value.', intermediateSteps: [{ action: { tool: 'Financial_Evidence_Tool', toolInput: {} }, observation: 'actual tool result' }] } }]] } }] } : {}),
+    ...(agent ? { 'Local Qwen3': [{}], 'Research Agent': [{ data: { main: [[{ json: { output: 'Observed unavailable value.', intermediateSteps: [{ action: { tool: 'Financial_Evidence_Tool', toolInput: {} }, observation: JSON.stringify([page('money_markets')]) }] } }]] } }] } : {}),
   } } } };
 }
 function receipt() {
@@ -22,7 +22,7 @@ test('successful projections preserve unavailable values and source clocks, neve
   assert.ok(!JSON.stringify(result).includes('must-not-export'));
 });
 test('HTTP-success envelope fails without native finished success and real tool/model invocation', () => {
-  for (const mutate of [e => e.status = 'error', e => e.finished = false, e => e.data.resultData.error = {}, e => delete e.data.resultData.runData['Financial Evidence Tool'], e => delete e.data.resultData.runData['Local Qwen3'], e => e.data.resultData.runData['Research Agent'][0].data.main[0][0].json.intermediateSteps = []]) {
+  for (const mutate of [e => e.status = 'error', e => e.finished = false, e => e.data.resultData.error = {}, e => delete e.data.resultData.runData['Financial Evidence Tool'], e => delete e.data.resultData.runData['Local Qwen3'], e => e.data.resultData.runData['Research Agent'][0].data.main[0][0].json.intermediateSteps = [], e => e.data.resultData.runData['Research Agent'][0].data.main[0][0].json.intermediateSteps[0].observation = JSON.stringify([page('bank_risk')])]) {
     const e = execution(true); mutate(e);
     assert.throws(() => executionProjection(e, 'money_markets', { agent: true }));
   }
@@ -54,6 +54,8 @@ test('service environment cannot inherit real instance credentials or DB/hooks',
   const env = safeEnvironment('/tmp/disposable-demo');
   assert.ok(!JSON.stringify(env).includes('sentinel'));
   assert.equal(env.N8N_LISTEN_ADDRESS, '127.0.0.1');
+  assert.notEqual(env.N8N_PORT, env.N8N_RUNNERS_BROKER_PORT);
+  assert.equal(env.N8N_RUNNERS_BROKER_LISTEN_ADDRESS, '127.0.0.1');
   assert.equal(env.OLLAMA_HOST, '127.0.0.1:11435');
   assert.equal(env.N8N_DIAGNOSTICS_ENABLED, 'false');
 });

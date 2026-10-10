@@ -8,6 +8,7 @@ import { mkdir, readFile, writeFile, readdir, copyFile } from 'node:fs/promises'
 import { openSync, closeSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { createConnection } from 'node:net';
 
 export const PIN = Object.freeze({
   n8n: '2.42.6', package: 'n8n-nodes-financial-evidence', version: '0.1.0',
@@ -16,7 +17,7 @@ export const PIN = Object.freeze({
   modelDigest: '8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7',
   ollama: '0.40.2', playwright: '1.64.0',
 });
-const BASE = 'http://127.0.0.1:5679';
+const BASE = 'http://127.0.0.1:5687';
 const OLLAMA = 'http://127.0.0.1:11435';
 const DATASETS = ['money_markets', 'bank_risk', 'market_liquidity'];
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -28,13 +29,16 @@ export function safeEnvironment(privateDir) {
   return {
     ...env, HOME: privateDir, TMPDIR: join(privateDir, 'tmp'),
     N8N_USER_FOLDER: join(privateDir, 'profile'), DB_TYPE: 'sqlite',
-    N8N_HOST: '127.0.0.1', N8N_LISTEN_ADDRESS: '127.0.0.1', N8N_PORT: '5679',
+    N8N_HOST: '127.0.0.1', N8N_LISTEN_ADDRESS: '127.0.0.1', N8N_PORT: '5687',
     N8N_PROTOCOL: 'http', N8N_EDITOR_BASE_URL: BASE, N8N_SECURE_COOKIE: 'false',
     N8N_DIAGNOSTICS_ENABLED: 'false', N8N_VERSION_NOTIFICATIONS_ENABLED: 'false',
     N8N_TEMPLATES_ENABLED: 'false', N8N_PERSONALIZATION_ENABLED: 'false',
     N8N_HIRING_BANNER_ENABLED: 'false', N8N_AI_ENABLED: 'false',
     N8N_COMMUNITY_PACKAGES_ENABLED: 'true', N8N_UNVERIFIED_PACKAGES_ENABLED: 'true',
-    N8N_COMMUNITY_PACKAGES_PREVENT_LOADING: 'false', N8N_RUNNERS_ENABLED: 'false',
+    N8N_COMMUNITY_PACKAGES_PREVENT_LOADING: 'false',
+    N8N_RUNNERS_MODE: 'internal', N8N_RUNNERS_BROKER_PORT: '5688',
+    N8N_RUNNERS_BROKER_LISTEN_ADDRESS: '127.0.0.1', N8N_RUNNERS_MAX_CONCURRENCY: '1',
+    N8N_RUNNERS_MAX_OLD_SPACE_SIZE: '256',
     N8N_LOG_LEVEL: 'warn', EXECUTIONS_DATA_SAVE_ON_SUCCESS: 'all',
     EXECUTIONS_DATA_SAVE_ON_ERROR: 'all', EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS: 'true',
     OLLAMA_HOST: '127.0.0.1:11435', OLLAMA_MODELS: join(privateDir, 'models'),
@@ -76,8 +80,11 @@ export function executionProjection(execution, dataset, { agent = false } = {}) 
     assert.ok(typeof item?.output === 'string' && item.output.trim());
     assert.ok(Array.isArray(item.intermediateSteps) && item.intermediateSteps.length === 1, 'Agent must retain the real tool call');
     assert.match(item.intermediateSteps[0]?.action?.tool ?? '', /financial.*evidence/i);
+    const observed = JSON.parse(item.intermediateSteps[0].observation);
+    assert.ok(Array.isArray(observed) && observed.length === 1, 'Agent must observe exactly the executed tool page');
+    assert.deepEqual(observed[0], page, 'The model observation must equal the native tool output');
     output.model_output = item.output;
-    output.tool_calls = item.intermediateSteps.map(step => ({ tool: step.action.tool, tool_input: step.action.toolInput }));
+    output.tool_calls = item.intermediateSteps.map(step => ({ tool: step.action.tool, tool_input: step.action.toolInput, observation: pageProjection(observed[0], dataset) }));
   }
   return output;
 }
@@ -120,6 +127,7 @@ export function validatePublishable(receipt) {
   assert.equal(receipt.agent.status, 'success');
   pageProjection(receipt.agent.page, 'money_markets');
   assert.equal(receipt.agent.tool_calls.length, 1);
+  assert.deepEqual(receipt.agent.tool_calls[0].observation, receipt.agent.page);
   assert.equal(receipt.video.continuous, true);
   assert.equal(receipt.video.cuts, 0);
   assert.ok(receipt.video.duration_seconds > 0 && receipt.video.duration_seconds <= 300);
@@ -142,6 +150,7 @@ export function redactDiagnostic(text, secrets = []) {
 }
 
 async function main() {
+  assert.equal(process.env.GITHUB_ACTIONS, 'true', 'Owner setup is restricted to an ephemeral GitHub Actions runner');
   const [runtimeArg, ollamaArg, evidenceArg] = process.argv.slice(2);
   assert.ok(runtimeArg && ollamaArg && evidenceArg, 'usage: review_demo.mjs RUNTIME OLLAMA_BINARY NEW_EVIDENCE_DIR');
   const runtime = resolve(runtimeArg), ollamaBin = resolve(ollamaArg), evidence = resolve(evidenceArg);
@@ -165,14 +174,15 @@ async function main() {
   const receipt = { schema: 'financial-evidence.n8n-review-demo.v1', status: 'failed',
     source_revision: process.env.GITHUB_SHA ?? null, run_id: process.env.GITHUB_RUN_ID ?? null,
     observed_at: new Date().toISOString(), n8n_version: PIN.n8n, actions: {},
-    browser_ui_observed: true, model_is_real: true, external_model_api_used: false,
+    browser_ui_observed: false, model_is_real: false, external_model_api_used: false,
     internal_demo: true, request_parameters: { datasets: DATASETS, limit: 1, offset: 0, entity: '' },
     online_account_created: false, owner_scope: 'ephemeral local self-hosted demo only',
     n8n_verified: false, independent_adoption_proven: false };
   const mark = label => { stage = label; console.log(`Demo stage: ${label}`); };
   const start = (label, command, args) => {
     const fd = openSync(join(privateDir, `${label}.log`), 'wx', 0o600); logs.push(fd);
-    const child = spawn(command, args, { env, stdio: ['ignore', fd, fd], detached: false });
+    // Each task-owned service has its own process group, including model workers.
+    const child = spawn(command, args, { env, stdio: ['ignore', fd, fd], detached: true });
     processes.push(child); return child;
   };
   const waitHTTP = async (url, timeout = 120000) => {
@@ -191,9 +201,17 @@ async function main() {
     // This download checks identity; actual installation below is performed in the UI.
     await writeFile(join(privateDir, 'published.tgz'), archive, { mode: 0o600 });
     mark('start loopback services');
+    for (const port of [5687, 5688, 11435]) {
+      const occupied = await new Promise((done, reject) => {
+        const socket = createConnection({ host: '127.0.0.1', port });
+        socket.once('connect', () => { socket.destroy(); done(true); });
+        socket.once('error', error => error.code === 'ECONNREFUSED' ? done(false) : reject(error));
+      });
+      assert.equal(occupied, false, 'Refuse to use an existing local service');
+    }
     start('ollama', ollamaBin, ['serve']);
     start('n8n', process.execPath, [n8nBin, 'start']);
-    await Promise.all([waitHTTP(`${OLLAMA}/api/version`), waitHTTP(`${BASE}/healthz`)]);
+    await Promise.all([waitHTTP(`${OLLAMA}/api/version`), waitHTTP(`${BASE}/healthz/readiness`)]);
     assert.equal((await (await fetch(`${OLLAMA}/api/version`)).json()).version, PIN.ollama);
     mark('pull and prewarm real local model');
     const pull = await fetch(`${OLLAMA}/api/pull`, { method: 'POST', body: JSON.stringify({ model: PIN.model, stream: false }), signal: AbortSignal.timeout(600000) });
@@ -204,6 +222,9 @@ async function main() {
     receipt.model = { name: model.name, digest: model.digest, size: model.size, details: model.details, ollama_version: PIN.ollama, cpu_only: true };
     const warm = await fetch(`${OLLAMA}/api/chat`, { method: 'POST', body: JSON.stringify({ model: PIN.model, stream: false, think: false, messages: [{ role: 'user', content: 'Reply with Ready.' }], options: { num_ctx: 8192, num_predict: 12, num_thread: 2, num_gpu: 0, temperature: 0 } }), signal: AbortSignal.timeout(240000) });
     assert.ok(warm.ok); assert.ok((await warm.json()).done);
+    receipt.model_is_real = true;
+    assert.ok(processes.every(child => child.exitCode === null && child.signalCode === null), 'A local service exited before recording');
+    await waitHTTP(`${BASE}/rest/settings`, 15000);
     mark('prepare ephemeral local owner and model connection off camera');
     browser = await chromium.launch({ headless: true });
     const setup = await browser.newContext({ baseURL: BASE });
@@ -215,6 +236,12 @@ async function main() {
     assert.ok(credential.ok(), `Local model connection HTTP ${credential.status()}`);
     const credentialId = (await credential.json()).data.id;
     const agentDefinition = agentWorkflow(credentialId);
+    receipt.agent_workflow = {
+      name: agentDefinition.name, active: false, settings: agentDefinition.settings,
+      nodes: agentDefinition.nodes.map(({ credentials, ...node }) => node),
+      connections: agentDefinition.connections,
+      local_model_connection: { base_url: OLLAMA, api_key_required: false, credential_reference_omitted: true },
+    };
     const created = await setup.request.post('/rest/workflows', { data: agentDefinition });
     assert.ok(created.ok(), `Prepare agent workflow HTTP ${created.status()}`);
     const agentId = (await created.json()).data.id;
@@ -228,6 +255,7 @@ async function main() {
     page.setDefaultTimeout(20000);
     await page.goto('/settings/community-nodes');
     assert.equal(await page.locator('input[type=password]').count(), 0, 'Never record credential entry');
+    receipt.browser_ui_observed = true;
     await page.getByRole('button', { name: /Install/i }).first().click();
     await page.getByTestId('communityPackageInstall-modal').locator('input').first().fill(`${PIN.package}@${PIN.version}`);
     await sleep(1800);
@@ -247,7 +275,7 @@ async function main() {
     await page.getByTestId('node-creator-search-bar').fill('Manual Trigger');
     await page.getByTestId('node-creator-item-name').getByText('Manual Trigger', { exact: true }).click();
     if (await page.getByTestId('ndv-close-button').isVisible()) await page.getByTestId('ndv-close-button').click();
-    await page.getByTestId('node-creator-plus-button').click();
+    await page.locator('[data-test-id="canvas-node-output-handle"] [data-test-id="canvas-handle-plus"]').first().click();
     await page.getByTestId('node-creator-search-bar').fill('Financial Evidence');
     await page.getByTestId('node-creator-item-name').getByText('Financial Evidence', { exact: true }).click();
     await page.getByTestId('parameter-input-limit').locator('input').fill('1');
@@ -284,10 +312,11 @@ async function main() {
       await sleep(1200);
       receipt.actions[dataset] = await executeUI(dataset);
       await page.getByTestId('output-panel').getByTestId('radio-button-json').click();
-      await sleep(3500);
-      await page.getByTestId('output-panel').getByTestId('ndv-data-container').hover();
-      await page.mouse.wheel(0, 380);
       await sleep(2000);
+      for (const key of ['as_of', 'availability', 'value', 'sources', 'diagnostics']) {
+        const property = page.getByTestId('output-panel').locator('.json-data span').filter({ hasText: new RegExp(`^"${key}"$`) }).first();
+        if (await property.count()) { await property.scrollIntoViewIfNeeded(); await sleep(1400); }
+      }
     }
     await page.getByTestId('ndv-close-button').click();
     await sleep(1000);
@@ -330,6 +359,7 @@ async function main() {
     receipt.failure_stage = stage;
     receipt.failure_kind = error?.name ?? 'Error';
     receipt.failure_summary = redactDiagnostic(error?.message ?? 'Unknown failure', secrets);
+    receipt.service_exit_codes = processes.map(child => ({ code: child.exitCode, signal: child.signalCode }));
     console.error(`Demo failed at ${stage} (${receipt.failure_kind}); raw details remain private.`);
     await writeFile(join(privateDir, 'failure.txt'), String(error?.stack ?? error), { mode: 0o600 });
     if (page && !page.isClosed()) {
@@ -340,13 +370,15 @@ async function main() {
   } finally {
     if (context) await context.close().catch(() => {});
     if (browser) await browser.close().catch(() => {});
-    for (const child of processes) {
-      if (child.exitCode === null) child.kill('SIGTERM');
-    }
+    const stopGroup = (child, signal) => { try { process.kill(-child.pid, signal); } catch (error) { if (error.code !== 'ESRCH') throw error; } };
+    for (const child of processes) stopGroup(child, 'SIGTERM');
     await sleep(1000);
-    for (const child of processes) if (child.exitCode === null) child.kill('SIGKILL');
+    for (const child of processes) stopGroup(child, 'SIGKILL');
     await sleep(500);
-    receipt.services_stopped = processes.every(child => child.exitCode !== null || child.signalCode !== null);
+    const stoppedEndpoints = await Promise.all([BASE + '/healthz', 'http://127.0.0.1:5688/', OLLAMA + '/api/version'].map(async url => {
+      try { await fetch(url, { signal: AbortSignal.timeout(1000) }); return false; } catch { return true; }
+    }));
+    receipt.services_stopped = processes.every(child => child.exitCode !== null || child.signalCode !== null) && stoppedEndpoints.every(Boolean);
     for (const fd of logs) closeSync(fd);
     await mkdir(output, { mode: 0o700 });
     if (receipt.status === 'passed') {

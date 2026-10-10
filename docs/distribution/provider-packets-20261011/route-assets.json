@@ -70,15 +70,17 @@
     {
       "id": "factset",
       "platform": "FactSet \u2014 evidence workflow and dataset qualification",
-      "state": "packet_ready_provider_review",
+      "state": "qualification_inquiry_submitted_review_pending",
       "packet_path": "docs/distribution/provider-packets-20261011/factset.md",
       "instruction_path": "distribution/provider-packets-20261011/factset.md",
       "entry_url": "https://www.factset.com/contact-us",
       "artifact_ready": true,
-      "submitted_this_run": false,
+      "submitted_this_run": true,
       "native_platform_verified": false,
       "public_listing_verified": false,
-      "gate": "Screened provider admission, differentiated dataset or application fit, identifier mapping, delivery review and negotiated terms. Current public catalog/contact routes are verified, but an exact self-service provider application was not exposed. The standard partner brochure describes vendor-managed delivery; listing does not establish native workstation integration."
+      "gate": "Await the existing received qualification inquiry; do not resubmit. Screened provider admission, differentiated dataset or application fit, identifier mapping, delivery review and negotiated terms. Current public catalog/contact routes are verified, but an exact self-service provider application was not exposed. The standard partner brochure describes vendor-managed delivery; listing does not establish native workstation integration.",
+      "submission_receipt": "docs/distribution/provider-inquiries-20261011.json",
+      "verified_at": "2026-10-10T21:10:44.173121+00:00"
     },
     {
       "id": "talos",
@@ -96,15 +98,17 @@
     {
       "id": "nasdaq",
       "platform": "Nasdaq Data Link \u2014 narrow data-product qualification",
-      "state": "packet_ready_differentiation_required",
+      "state": "qualification_inquiry_submitted_review_pending",
       "packet_path": "docs/distribution/provider-packets-20261011/nasdaq.md",
       "instruction_path": "distribution/provider-packets-20261011/nasdaq.md",
       "entry_url": "https://www.nasdaq.com/products/data/alternative/monetize-your-data",
       "artifact_ready": true,
-      "submitted_this_run": false,
+      "submitted_this_run": true,
       "native_platform_verified": false,
       "public_listing_verified": false,
-      "gate": "Differentiation beyond public ECB observations, dataset QA, identifiers where appropriate, source rights and negotiated commercial terms. The public provider-marketing page is a qualification route, not guaranteed acceptance or platform-wide distribution. No exclusive rights or investment thesis is claimed for the sample."
+      "gate": "Await the existing received qualification inquiry; do not resubmit. Differentiation beyond public ECB observations, dataset QA, identifiers where appropriate, source rights and negotiated commercial terms. The public provider-marketing page is a qualification route, not guaranteed acceptance or platform-wide distribution. No exclusive rights or investment thesis is claimed for the sample.",
+      "submission_receipt": "docs/distribution/provider-inquiries-20261011.json",
+      "verified_at": "2026-10-10T21:10:44.173121+00:00"
     },
     {
       "id": "neudata",
@@ -212,6 +216,7 @@
     }
   ],
   "coverage_complete": false,
-  "new_submissions": 0,
-  "external_approval_verified": false
+  "new_submissions": 2,
+  "external_approval_verified": false,
+  "last_updated_at": "2026-10-10T21:10:44.173121+00:00"
 }

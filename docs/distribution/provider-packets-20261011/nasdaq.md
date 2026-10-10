@@ -1,12 +1,18 @@
 # Nasdaq Data Link — narrow data-product qualification
 
-Prepared 11 October 2026 IST. State: **packet ready differentiation required**. No new application, agreement or message was sent by this preparation work.
+Prepared 11 October 2026 IST. State: **qualification inquiry submitted; review pending**. The official form acknowledged receipt on 11 October 2026 IST. Marketplace approval and public listing remain unverified. Continue this existing inquiry; do not resubmit.
+
+## Received inquiry
+
+Success — Thank You!
+
+[Sanitized receipt](https://beepboop2025.github.io/financial-evidence-skills/distribution/provider-inquiries-20261011.json) · [Submission report](https://beepboop2025.github.io/financial-evidence-skills/distribution/provider-inquiries-20261011.md). This is a company-level qualification inquiry. The prepared narrative below is evaluation material, not a verbatim export of the submitted form.
 
 ## Proposed recurring use
 
 A data-sourcing team evaluates the reproducibility, provenance and delivery of a narrowly defined research table before considering a commercial data product.
 
-## Entry and prepared fields
+## Existing inquiry and prepared evaluation fields
 
 Official entry: https://www.nasdaq.com/products/data/alternative/monetize-your-data
 

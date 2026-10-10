@@ -1,12 +1,18 @@
 # FactSet — evidence workflow and dataset qualification
 
-Prepared 11 October 2026 IST. State: **packet ready provider review**. No new application, agreement or message was sent by this preparation work.
+Prepared 11 October 2026 IST. State: **qualification inquiry submitted; review pending**. The official form acknowledged receipt on 11 October 2026 IST. Marketplace approval and public listing remain unverified. Continue this existing inquiry; do not resubmit.
+
+## Received inquiry
+
+Thank you for your interest. We have received your request. A FactSet specialist will reach out shortly.
+
+[Sanitized receipt](https://beepboop2025.github.io/financial-evidence-skills/distribution/provider-inquiries-20261011.json) · [Submission report](https://beepboop2025.github.io/financial-evidence-skills/distribution/provider-inquiries-20261011.md). This is a company-level qualification inquiry. The prepared narrative below is evaluation material, not a verbatim export of the submitted form.
 
 ## Proposed recurring use
 
 An investment or treasury team evaluates institution-linked evidence and funding context using a bounded research task. Dataset delivery would begin only after identifier mapping and source-specific distribution scope are accepted.
 
-## Entry and prepared fields
+## Existing inquiry and prepared evaluation fields
 
 Official entry: https://www.factset.com/contact-us
 

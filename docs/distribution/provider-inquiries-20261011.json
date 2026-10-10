@@ -1,0 +1,79 @@
+{
+  "schema": "financial-evidence.provider-inquiries.v1",
+  "verified_at": "2026-10-10T21:10:44.173121+00:00",
+  "observed_date_asia_kolkata": "2026-10-11",
+  "scope": "Two received qualification inquiries; no marketplace approval, commercial agreement, native integration or customer adoption established.",
+  "new_received_inquiries": 2,
+  "new_ledger_records": 2,
+  "new_public_listings_verified": 0,
+  "independent_adoption_verified": false,
+  "paid_commitments": false,
+  "private_contact_fields_omitted": true,
+  "intent_receipt_sha256": "03d8cdf76ec218d8808c353138859f59fba7bc47fd003fe37507f33d75531411",
+  "entries": [
+    {
+      "id": "factset-provider-inquiry",
+      "platform": "factset",
+      "state": "submitted",
+      "submission_url": "https://www.factset.com/contact-us",
+      "submission_confirmation": "Thank you for your interest. We have received your request. A FactSet specialist will reach out shortly.",
+      "intent": "one partner qualification enquiry",
+      "qualification_scope": "Source-cited institution and funding research workflow qualification. A four-series ECB reference sample demonstrates provenance and delivery quality; it does not establish proprietary alpha or rights to unrelated sources.",
+      "scope_basis": "Prepared route packet and retained submission intent; post-submit receipts do not reproduce the submitted form comments.",
+      "verified_at": "2026-10-10T21:10:44.173121+00:00",
+      "marketing_opt_in": false,
+      "company": "LIQUILENS PRIVATE LIMITED",
+      "country": "India",
+      "public_listing_verified": false,
+      "partnership_accepted": false,
+      "native_platform_verified": false,
+      "source_rights_expanded": false,
+      "commercial_contract_accepted": false,
+      "private_contact_fields_omitted": true,
+      "receipt_evidence": [
+        {
+          "filename": "factset-submitted.txt",
+          "sha256": "a6670b43ac55531b620c5edf33aff91e857a2693bf27dbfffaacb204c0771073",
+          "retention": "Private SSD evidence; raw file not published"
+        },
+        {
+          "filename": "factset-submitted.png",
+          "sha256": "dcfca79d9ab7a65a76cc498d4b7ed8a61ccfaef1638152f845688516161af2a3",
+          "retention": "Private SSD evidence; raw file not published"
+        }
+      ]
+    },
+    {
+      "id": "nasdaq-data-link-provider-inquiry",
+      "platform": "nasdaq",
+      "state": "submitted",
+      "submission_url": "https://www.nasdaq.com/products/data/alternative/monetize-your-data",
+      "submission_confirmation": "Success — Thank You!",
+      "intent": "one provider fit enquiry",
+      "qualification_scope": "Fit review for a differentiated, source-qualified research dataset. The ECB reference sample is public, non-exclusive evaluation material; commercial field scope, source permissions, QA and delivery remain to be agreed.",
+      "scope_basis": "Prepared route packet and retained submission intent; post-submit receipts do not reproduce the submitted form comments.",
+      "verified_at": "2026-10-10T21:10:44.173121+00:00",
+      "marketing_opt_in": false,
+      "company": "LIQUILENS PRIVATE LIMITED",
+      "country": "India",
+      "public_listing_verified": false,
+      "partnership_accepted": false,
+      "native_platform_verified": false,
+      "source_rights_expanded": false,
+      "commercial_contract_accepted": false,
+      "private_contact_fields_omitted": true,
+      "receipt_evidence": [
+        {
+          "filename": "nasdaq-submitted.txt",
+          "sha256": "0f1a6726eb0807f8146d28eb585c9bbe658a58b31be3134b74b1f40525ede57e",
+          "retention": "Private SSD evidence; raw file not published"
+        },
+        {
+          "filename": "nasdaq-after-submit.png",
+          "sha256": "54bebfea26354125614efe2e35dbda241dd8705c2f99914ab4dd4ab1890c0202",
+          "retention": "Private SSD evidence; raw file not published"
+        }
+      ]
+    }
+  ]
+}

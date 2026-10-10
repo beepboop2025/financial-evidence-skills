@@ -1349,24 +1349,25 @@
       "state": "listed_incomplete",
       "submission_url": "https://www.g2.com/add_product_requests/new",
       "cost": "free-standard-listing",
-      "detail": "Public claimed profile and free research pricing were previously verified. Official logo, English language and hosted-only deployment settings are now saved in the administrator profile. Wrong Survey category and contact-lens seller description remain covered by existing cases 00642455 and 00643368; no duplicate case was sent. Capterra and GetApp show Published in the administrator view, but independent public readback remains unverified.",
-      "next_action": "Await the existing category and seller-description cases, then verify corrected public copy and network profiles without resubmitting.",
+      "detail": "Public claimed profile, financial-research product description, English language, logo and free Public research pricing rechecked. A real institution-monitoring screenshot was added and independently read back on the public page. Survey remains the wrong category: existing case 00642455 is In Progress, with an estimated resolution of 14 October 2026. Seller-description case 00643368 remains New in the Intake Queue; another direct save required support and did not change the contact-lens text. Capterra and GetApp public pages now resolve, but both retain the wrong Survey category.",
+      "next_action": "Await the existing category case, estimated for 14 October 2026, and seller-description case. Then verify corrected public copy and taxonomy across G2, Capterra and GetApp.",
       "verified_at": "2026-10-07T18:36:41.571266+00:00",
       "listing_url": "https://www.g2.com/products/liquilens/reviews",
       "ownership_state": "claimed",
       "category_correction": {
         "case_number": "00642455",
-        "state": "submitted",
-        "decision": "pending",
-        "observed_at": "2026-10-07T18:22:44.864968+00:00"
+        "state": "in_progress",
+        "decision": "in_evaluation",
+        "observed_at": "2026-10-10T09:14:41.884793+00:00",
+        "estimated_resolution_date": "2026-10-14"
       },
       "pricing_state": "free_tier_rendered",
       "pricing_url": "https://www.g2.com/products/liquilens/pricing",
       "latest_surface_check": {
-        "observed_at": "2026-10-08T11:16:12.649395+00:00",
+        "observed_at": "2026-10-10T09:14:41.884793+00:00",
         "url": "https://www.g2.com/products/liquilens/reviews",
-        "readback": "unavailable",
-        "error": "HTTP Error 403: Forbidden"
+        "readback": "public_profile_and_new_screenshot_verified",
+        "observed_category": "Survey"
       },
       "profile_enrichment": {
         "logo_saved": true,
@@ -1374,21 +1375,38 @@
           "English"
         ],
         "hosted_deployment": true,
-        "on_premise_deployment": false
+        "on_premise_deployment": false,
+        "public_screenshots": [
+          {
+            "title": "Institution monitoring and evidence review",
+            "source_url": "https://liquilens.in/banking/monitoring/",
+            "image_url": "https://images.g2crowd.com/uploads/attachment/file/1935265/liquilens-institution-monitoring.png",
+            "captured_date": "2026-10-10",
+            "public_readback_verified": true
+          }
+        ]
       },
       "seller_description_correction": {
         "case_number": "00643368",
-        "state": "previously_submitted",
-        "decision": "pending"
+        "state": "new",
+        "decision": "pending",
+        "assigned_queue": "Intake Queue",
+        "direct_save_result": "support_required_no_change",
+        "observed_at": "2026-10-10T09:14:41.884793+00:00"
       },
       "network_publication": {
         "capterra_admin_status": "Published",
         "getapp_admin_status": "Published",
         "software_advice_admin_status": "Unpublished",
-        "public_readback_verified": false
+        "public_readback_verified": true,
+        "capterra_url": "https://www.capterra.com/p/10266227/LiquiLens/",
+        "getapp_url": "https://www.getapp.com/all-software/a/liquilens/",
+        "category_correction_pending": true,
+        "observed_at": "2026-10-10T09:14:41.884793+00:00"
       },
-      "updated_at": "2026-10-10T06:28:14.840174+00:00",
-      "completion_receipt": "distribution/completion-20261010.json"
+      "updated_at": "2026-10-10T09:14:41.884793+00:00",
+      "completion_receipt": "distribution/completion-20261010.json",
+      "listing_repair_receipt": "distribution/g2-lobehub-repair-20261010.json"
     },
     {
       "id": "g2-seiche",
@@ -1890,8 +1908,8 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-liquilens-mcp",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public card is indexed under the repository. The official publisher CLI prepared a current update from native streamable-http discovery: version 1.8.1, 24 tools. Publisher login and the separate GitHub grant are owner-approved. GitHub's authorization button remained disabled while organization access loaded, including after a fresh official CLI request; the CLI still reports GitHub disconnected and no owned plugins. No card has been claimed or updated. Directory validation and a complete LobeHub chat installation remain unverified.",
-      "next_action": "Retry the official GitHub ownership flow after the provider interface becomes available, then claim only existing unowned cards, apply the prepared updates and verify each public readback. Existing owner approvals remain in force.",
+      "detail": "Public card rechecked on 10 October 2026: version 1.0.0, labelled Unvalidated. The prepared update declares native streamable-http discovery version 1.8.1 with 24 public tools. Publisher login is complete and the GitHub grant is owner-approved, but the official authorization control remains disabled. The CLI reports GitHub disconnected and no owned plugins. Publisher updates have not been applied.",
+      "next_action": "Await the supported ownership/validation route requested from LobeHub support on 10 October, then apply the prepared updates to the existing cards and verify public readback. Existing account-access approvals remain valid.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
@@ -1908,13 +1926,36 @@
         "transport": "streamable-http"
       },
       "edit_state": "prepared_provider_authorization_ui_blocked",
-      "updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "updated_at": "2026-10-10T09:20:24.007181+00:00",
       "completion_receipt": "distribution/completion-20261010.json",
       "publisher_login_completed": true,
       "github_ownership_verified": false,
       "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
       "github_grant_owner_approved": true,
-      "publisher_updates_submitted": 0
+      "publisher_updates_submitted": 0,
+      "public_version": "1.0.0",
+      "latest_surface_check": {
+        "observed_at": "2026-10-10T09:14:41.884793+00:00",
+        "url": "https://lobehub.com/mcp/beepboop2025-liquilens-mcp",
+        "readback": "public_card_verified",
+        "version": "1.0.0",
+        "validation_label": "Unvalidated"
+      },
+      "listing_repair_receipt": "distribution/g2-lobehub-repair-20261010.json",
+      "public_refresh_attempt": {
+        "observed_date": "2026-10-10",
+        "attempts": 1,
+        "acknowledgement_verified": false,
+        "public_change_verified": false,
+        "result": "Start Refresh returned to enabled with no success confirmation; no repeated submission"
+      },
+      "support_request": {
+        "recipient": "support@lobehub.com",
+        "sent_at": "2026-10-10T09:19:37Z",
+        "state": "sent_delivery_unverified",
+        "sent_folder_readback_verified": true,
+        "receipt": "distribution/g2-lobehub-repair-20261010.json"
+      }
     },
     {
       "id": "lobehub-seiche",
@@ -1923,8 +1964,8 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-seiche",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public card is indexed under the repository. The official publisher CLI prepared a current update from native streamable-http discovery: version 0.16.2, 16 tools. Publisher login and the separate GitHub grant are owner-approved. GitHub's authorization button remained disabled while organization access loaded, including after a fresh official CLI request; the CLI still reports GitHub disconnected and no owned plugins. No card has been claimed or updated. Directory validation and a complete LobeHub chat installation remain unverified.",
-      "next_action": "Retry the official GitHub ownership flow after the provider interface becomes available, then claim only existing unowned cards, apply the prepared updates and verify each public readback. Existing owner approvals remain in force.",
+      "detail": "Public card rechecked on 10 October 2026: version 1.0.0, labelled Unvalidated. The prepared update declares native streamable-http discovery version 0.16.2 with 16 public tools. Publisher login is complete and the GitHub grant is owner-approved, but the official authorization control remains disabled. The CLI reports GitHub disconnected and no owned plugins. Publisher updates have not been applied.",
+      "next_action": "Await the supported ownership/validation route requested from LobeHub support on 10 October, then apply the prepared updates to the existing cards and verify public readback. Existing account-access approvals remain valid.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
@@ -1941,13 +1982,36 @@
         "transport": "streamable-http"
       },
       "edit_state": "prepared_provider_authorization_ui_blocked",
-      "updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "updated_at": "2026-10-10T09:20:24.007181+00:00",
       "completion_receipt": "distribution/completion-20261010.json",
       "publisher_login_completed": true,
       "github_ownership_verified": false,
       "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
       "github_grant_owner_approved": true,
-      "publisher_updates_submitted": 0
+      "publisher_updates_submitted": 0,
+      "public_version": "1.0.0",
+      "latest_surface_check": {
+        "observed_at": "2026-10-10T09:14:41.884793+00:00",
+        "url": "https://lobehub.com/mcp/beepboop2025-seiche",
+        "readback": "public_card_verified",
+        "version": "1.0.0",
+        "validation_label": "Unvalidated"
+      },
+      "listing_repair_receipt": "distribution/g2-lobehub-repair-20261010.json",
+      "public_refresh_attempt": {
+        "observed_date": "2026-10-10",
+        "attempts": 1,
+        "acknowledgement_verified": false,
+        "public_change_verified": false,
+        "result": "Start Refresh returned to enabled with no success confirmation; no repeated submission"
+      },
+      "support_request": {
+        "recipient": "support@lobehub.com",
+        "sent_at": "2026-10-10T09:19:37Z",
+        "state": "sent_delivery_unverified",
+        "sent_folder_readback_verified": true,
+        "receipt": "distribution/g2-lobehub-repair-20261010.json"
+      }
     },
     {
       "id": "lobehub-undertow",
@@ -1956,8 +2020,8 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-undertow-mcp",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public card is indexed under the repository. The official publisher CLI prepared a current update from native streamable-http discovery: version 1.13.0, 16 tools. Publisher login and the separate GitHub grant are owner-approved. GitHub's authorization button remained disabled while organization access loaded, including after a fresh official CLI request; the CLI still reports GitHub disconnected and no owned plugins. No card has been claimed or updated. Directory validation and a complete LobeHub chat installation remain unverified.",
-      "next_action": "Retry the official GitHub ownership flow after the provider interface becomes available, then claim only existing unowned cards, apply the prepared updates and verify each public readback. Existing owner approvals remain in force.",
+      "detail": "Public card rechecked on 10 October 2026: version 1.9.0, labelled Unvalidated. The prepared update declares native streamable-http discovery version 1.13.0 with 16 public tools. Publisher login is complete and the GitHub grant is owner-approved, but the official authorization control remains disabled. The CLI reports GitHub disconnected and no owned plugins. Publisher updates have not been applied.",
+      "next_action": "Await the supported ownership/validation route requested from LobeHub support on 10 October, then apply the prepared updates to the existing cards and verify public readback. Existing account-access approvals remain valid.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
@@ -1974,13 +2038,29 @@
         "transport": "streamable-http"
       },
       "edit_state": "prepared_provider_authorization_ui_blocked",
-      "updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "updated_at": "2026-10-10T09:20:24.007181+00:00",
       "completion_receipt": "distribution/completion-20261010.json",
       "publisher_login_completed": true,
       "github_ownership_verified": false,
       "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
       "github_grant_owner_approved": true,
-      "publisher_updates_submitted": 0
+      "publisher_updates_submitted": 0,
+      "public_version": "1.9.0",
+      "latest_surface_check": {
+        "observed_at": "2026-10-10T09:14:41.884793+00:00",
+        "url": "https://lobehub.com/mcp/beepboop2025-undertow-mcp",
+        "readback": "public_card_verified",
+        "version": "1.9.0",
+        "validation_label": "Unvalidated"
+      },
+      "listing_repair_receipt": "distribution/g2-lobehub-repair-20261010.json",
+      "support_request": {
+        "recipient": "support@lobehub.com",
+        "sent_at": "2026-10-10T09:19:37Z",
+        "state": "sent_delivery_unverified",
+        "sent_folder_readback_verified": true,
+        "receipt": "distribution/g2-lobehub-repair-20261010.json"
+      }
     },
     {
       "id": "lobehub-palimpsest",
@@ -1989,8 +2069,8 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-palimpsest",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public card is indexed under the repository. The official publisher CLI prepared a current update from native streamable-http discovery: version 1.9.3, 7 tools. Publisher login and the separate GitHub grant are owner-approved. GitHub's authorization button remained disabled while organization access loaded, including after a fresh official CLI request; the CLI still reports GitHub disconnected and no owned plugins. No card has been claimed or updated. Directory validation and a complete LobeHub chat installation remain unverified.",
-      "next_action": "Retry the official GitHub ownership flow after the provider interface becomes available, then claim only existing unowned cards, apply the prepared updates and verify each public readback. Existing owner approvals remain in force.",
+      "detail": "Public card rechecked on 10 October 2026: version 1.0.0, labelled Unvalidated. The prepared update declares native streamable-http discovery version 1.9.3 with 7 public tools. Publisher login is complete and the GitHub grant is owner-approved, but the official authorization control remains disabled. The CLI reports GitHub disconnected and no owned plugins. Publisher updates have not been applied.",
+      "next_action": "Await the supported ownership/validation route requested from LobeHub support on 10 October, then apply the prepared updates to the existing cards and verify public readback. Existing account-access approvals remain valid.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
@@ -2007,13 +2087,29 @@
         "transport": "streamable-http"
       },
       "edit_state": "prepared_provider_authorization_ui_blocked",
-      "updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "updated_at": "2026-10-10T09:20:24.007181+00:00",
       "completion_receipt": "distribution/completion-20261010.json",
       "publisher_login_completed": true,
       "github_ownership_verified": false,
       "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
       "github_grant_owner_approved": true,
-      "publisher_updates_submitted": 0
+      "publisher_updates_submitted": 0,
+      "public_version": "1.0.0",
+      "latest_surface_check": {
+        "observed_at": "2026-10-10T09:14:41.884793+00:00",
+        "url": "https://lobehub.com/mcp/beepboop2025-palimpsest",
+        "readback": "public_card_verified",
+        "version": "1.0.0",
+        "validation_label": "Unvalidated"
+      },
+      "listing_repair_receipt": "distribution/g2-lobehub-repair-20261010.json",
+      "support_request": {
+        "recipient": "support@lobehub.com",
+        "sent_at": "2026-10-10T09:19:37Z",
+        "state": "sent_delivery_unverified",
+        "sent_folder_readback_verified": true,
+        "receipt": "distribution/g2-lobehub-repair-20261010.json"
+      }
     },
     {
       "id": "lobehub-riptide",
@@ -2022,8 +2118,8 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-riptide-mcp",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public card is indexed under the repository. The official publisher CLI prepared a current update from native streamable-http discovery: version 1.3.0, 7 tools. Publisher login and the separate GitHub grant are owner-approved. GitHub's authorization button remained disabled while organization access loaded, including after a fresh official CLI request; the CLI still reports GitHub disconnected and no owned plugins. No card has been claimed or updated. Directory validation and a complete LobeHub chat installation remain unverified.",
-      "next_action": "Retry the official GitHub ownership flow after the provider interface becomes available, then claim only existing unowned cards, apply the prepared updates and verify each public readback. Existing owner approvals remain in force.",
+      "detail": "Public card rechecked on 10 October 2026: version 1.3.0, labelled Unvalidated. The prepared update declares native streamable-http discovery version 1.3.0 with 7 public tools. Publisher login is complete and the GitHub grant is owner-approved, but the official authorization control remains disabled. The CLI reports GitHub disconnected and no owned plugins. Publisher updates have not been applied.",
+      "next_action": "Await the supported ownership/validation route requested from LobeHub support on 10 October, then apply the prepared updates to the existing cards and verify public readback. Existing account-access approvals remain valid.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
@@ -2040,13 +2136,29 @@
         "transport": "streamable-http"
       },
       "edit_state": "prepared_provider_authorization_ui_blocked",
-      "updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "updated_at": "2026-10-10T09:20:24.007181+00:00",
       "completion_receipt": "distribution/completion-20261010.json",
       "publisher_login_completed": true,
       "github_ownership_verified": false,
       "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
       "github_grant_owner_approved": true,
-      "publisher_updates_submitted": 0
+      "publisher_updates_submitted": 0,
+      "public_version": "1.3.0",
+      "latest_surface_check": {
+        "observed_at": "2026-10-10T09:14:41.884793+00:00",
+        "url": "https://lobehub.com/mcp/beepboop2025-riptide-mcp",
+        "readback": "public_card_verified",
+        "version": "1.3.0",
+        "validation_label": "Unvalidated"
+      },
+      "listing_repair_receipt": "distribution/g2-lobehub-repair-20261010.json",
+      "support_request": {
+        "recipient": "support@lobehub.com",
+        "sent_at": "2026-10-10T09:19:37Z",
+        "state": "sent_delivery_unverified",
+        "sent_folder_readback_verified": true,
+        "receipt": "distribution/g2-lobehub-repair-20261010.json"
+      }
     },
     {
       "id": "lobehub-noisefloor",
@@ -2055,8 +2167,8 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-noisefloor",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public card is indexed under the repository. The official publisher CLI prepared a current update from native streamable-http discovery: version 0.4.0, 10 tools. Publisher login and the separate GitHub grant are owner-approved. GitHub's authorization button remained disabled while organization access loaded, including after a fresh official CLI request; the CLI still reports GitHub disconnected and no owned plugins. No card has been claimed or updated. Directory validation and a complete LobeHub chat installation remain unverified. The last public card readback displayed version 0.1.2 and Unvalidated; native discovery returned 0.4.0 and ten tools.",
-      "next_action": "Retry the official GitHub ownership flow after the provider interface becomes available, then claim only existing unowned cards, apply the prepared updates and verify each public readback. Existing owner approvals remain in force.",
+      "detail": "Public card rechecked on 10 October 2026: version 0.1.2, labelled Unvalidated. The prepared update declares native streamable-http discovery version 0.4.0 with 10 public tools. Publisher login is complete and the GitHub grant is owner-approved, but the official authorization control remains disabled. The CLI reports GitHub disconnected and no owned plugins. Publisher updates have not been applied. The documented ownership badge is now on the public default-branch README, but Start Check is disabled in the claim-status dialog; badge ownership has not been verified.",
+      "next_action": "Await the supported ownership/validation route requested from LobeHub support on 10 October, then apply the prepared updates to the existing cards and verify public readback. Existing account-access approvals remain valid.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
@@ -2073,13 +2185,55 @@
         "transport": "streamable-http"
       },
       "edit_state": "prepared_provider_authorization_ui_blocked",
-      "updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "updated_at": "2026-10-10T09:20:24.007181+00:00",
       "completion_receipt": "distribution/completion-20261010.json",
       "publisher_login_completed": true,
       "github_ownership_verified": false,
       "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
       "github_grant_owner_approved": true,
-      "publisher_updates_submitted": 0
+      "publisher_updates_submitted": 0,
+      "public_version": "0.1.2",
+      "latest_surface_check": {
+        "observed_at": "2026-10-10T09:14:41.884793+00:00",
+        "url": "https://lobehub.com/mcp/beepboop2025-noisefloor",
+        "readback": "public_card_verified",
+        "version": "0.1.2",
+        "validation_label": "Unvalidated"
+      },
+      "listing_repair_receipt": "distribution/g2-lobehub-repair-20261010.json",
+      "public_refresh_attempt": {
+        "observed_date": "2026-10-10",
+        "attempts": 1,
+        "acknowledgement_verified": false,
+        "public_change_verified": false,
+        "result": "Start Refresh returned to enabled with no success confirmation; no repeated submission"
+      },
+      "public_score": {
+        "points": 45,
+        "maximum": 100,
+        "grade": "F",
+        "required_items_met": 2,
+        "required_items_total": 4,
+        "observed_at": "2026-10-10T09:14:41.884793+00:00"
+      },
+      "badge_ownership_attempt": {
+        "listing": "beepboop2025-noisefloor",
+        "badge_pull_request": "https://github.com/beepboop2025/noisefloor/pull/6",
+        "badge_merge_commit": "cb6d800a43f59d729efe433a1d3d5c1378c0869d",
+        "badge_merged_at": "2026-10-10T09:15:16Z",
+        "default_branch_badge_verified": true,
+        "start_check_disabled": true,
+        "claim_check_submitted": false,
+        "ownership_claim_verified": false,
+        "badge_rollout_to_other_repositories": false
+      },
+      "support_request": {
+        "recipient": "support@lobehub.com",
+        "sent_at": "2026-10-10T09:19:37Z",
+        "state": "sent_delivery_unverified",
+        "sent_folder_readback_verified": true,
+        "receipt": "distribution/g2-lobehub-repair-20261010.json"
+      }
     },
     {
       "id": "lobehub-evidence-carrier",
@@ -2088,8 +2242,8 @@
       "state": "listed_incomplete",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-liquilens-evidence-carrier",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "An existing public card is indexed under the repository. The official publisher CLI prepared a current update from native stdio discovery: version 0.20.1, 4 tools. Publisher login and the separate GitHub grant are owner-approved. GitHub's authorization button remained disabled while organization access loaded, including after a fresh official CLI request; the CLI still reports GitHub disconnected and no owned plugins. No card has been claimed or updated. Directory validation and a complete LobeHub chat installation remain unverified.",
-      "next_action": "Retry the official GitHub ownership flow after the provider interface becomes available, then claim only existing unowned cards, apply the prepared updates and verify each public readback. Existing owner approvals remain in force.",
+      "detail": "Public card rechecked on 10 October 2026: version 0.19.0, labelled Unvalidated. The prepared update declares native stdio discovery version 0.20.1 with 4 public tools. Publisher login is complete and the GitHub grant is owner-approved, but the official authorization control remains disabled. The CLI reports GitHub disconnected and no owned plugins. Publisher updates have not been applied.",
+      "next_action": "Await the supported ownership/validation route requested from LobeHub support on 10 October, then apply the prepared updates to the existing cards and verify public readback. Existing account-access approvals remain valid.",
       "verified_at": "2026-10-09T18:58:50.727Z",
       "outcome": "existing_public_search_card_reconciled",
       "directory_validation_label": "Unvalidated",
@@ -2106,13 +2260,29 @@
         "transport": "stdio"
       },
       "edit_state": "prepared_provider_authorization_ui_blocked",
-      "updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "updated_at": "2026-10-10T09:20:24.007181+00:00",
       "completion_receipt": "distribution/completion-20261010.json",
       "publisher_login_completed": true,
       "github_ownership_verified": false,
       "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
       "github_grant_owner_approved": true,
-      "publisher_updates_submitted": 0
+      "publisher_updates_submitted": 0,
+      "public_version": "0.19.0",
+      "latest_surface_check": {
+        "observed_at": "2026-10-10T09:14:41.884793+00:00",
+        "url": "https://lobehub.com/mcp/beepboop2025-liquilens-evidence-carrier",
+        "readback": "public_card_verified",
+        "version": "0.19.0",
+        "validation_label": "Unvalidated"
+      },
+      "listing_repair_receipt": "distribution/g2-lobehub-repair-20261010.json",
+      "support_request": {
+        "recipient": "support@lobehub.com",
+        "sent_at": "2026-10-10T09:19:37Z",
+        "state": "sent_delivery_unverified",
+        "sent_folder_readback_verified": true,
+        "receipt": "distribution/g2-lobehub-repair-20261010.json"
+      }
     },
     {
       "id": "public-apis-liquilens-rest",
@@ -2570,10 +2740,46 @@
       "free_version": true,
       "free_trial": false,
       "evidence_receipt": "distribution/completion-20261010.json"
+    },
+    {
+      "id": "capterra-liquilens",
+      "name": "Capterra \u2014 LiquiLens",
+      "channel": "software-directory",
+      "state": "listed_incomplete",
+      "listing_url": "https://www.capterra.com/p/10266227/LiquiLens/",
+      "cost": "free network listing; no paid placement purchased",
+      "detail": "Existing syndicated LiquiLens page independently read back on Capterra. Public presence is confirmed, but Survey remains the wrong category and syndicated product copy has not been fully validated. This is a newly verified existing page, not a new submission.",
+      "next_action": "Track the existing G2 category and profile cases, then recheck syndicated taxonomy and product copy.",
+      "verified_at": "2026-10-10T09:14:41.884793+00:00",
+      "updated_at": "2026-10-10T09:14:41.884793+00:00",
+      "observed_category": "Survey",
+      "related_g2_cases": [
+        "00642455",
+        "00643368"
+      ],
+      "listing_repair_receipt": "distribution/g2-lobehub-repair-20261010.json"
+    },
+    {
+      "id": "getapp-liquilens",
+      "name": "GetApp \u2014 LiquiLens",
+      "channel": "software-directory",
+      "state": "listed_incomplete",
+      "listing_url": "https://www.getapp.com/all-software/a/liquilens/",
+      "cost": "free network listing; no paid placement purchased",
+      "detail": "Existing syndicated LiquiLens page independently read back on GetApp. Public presence is confirmed, but Survey remains the wrong category and syndicated product copy has not been fully validated. This is a newly verified existing page, not a new submission.",
+      "next_action": "Track the existing G2 category and profile cases, then recheck syndicated taxonomy and product copy.",
+      "verified_at": "2026-10-10T09:14:41.884793+00:00",
+      "updated_at": "2026-10-10T09:14:41.884793+00:00",
+      "observed_category": "Survey",
+      "related_g2_cases": [
+        "00642455",
+        "00643368"
+      ],
+      "listing_repair_receipt": "distribution/g2-lobehub-repair-20261010.json"
     }
   ],
   "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
-  "updated_at": "2026-10-10T08:53:25.433536+00:00",
+  "updated_at": "2026-10-10T09:20:24.007181+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -2738,5 +2944,11 @@
       "lobehub-noisefloor",
       "lobehub-evidence-carrier"
     ]
+  },
+  "latest_listing_repair": {
+    "recorded_at": "2026-10-10T09:20:24.007181+00:00",
+    "receipt": "distribution/g2-lobehub-repair-20261010.json",
+    "report": "distribution/g2-lobehub-repair-20261010.md",
+    "scope": "G2 profile enrichment and existing case status; two syndicated public pages verified; seven LobeHub cards rechecked. Other channel records were not re-audited."
   }
 }

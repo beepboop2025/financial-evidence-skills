@@ -71,7 +71,7 @@
       "workflow": "Run the CrewAI funding researcher tool with source dates retained.",
       "artifact_label": "Source example",
       "artifact_url": "https://github.com/beepboop2025/financial-evidence-skills/tree/main/integrations/finance-research",
-      "status": "Native validation recorded in the research kit; model task requires your credentials.",
+      "status": "Native framework validation pending; a model-driven Crew task also requires your model credentials.",
       "official_source": "https://docs.crewai.com/en/mcp/overview",
       "verified_customer_adoption": null
     },

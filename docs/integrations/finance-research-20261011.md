@@ -1,6 +1,6 @@
 # Finance research integrations: 11 October 2026
 
-The [forward research kit](../../integrations/finance-research/README.md) adds
+The [forward research kit](https://github.com/beepboop2025/financial-evidence-skills/tree/main/integrations/finance-research) adds
 usable examples for LangChain/LangGraph, CrewAI, a local TradingAgents analyst,
 a QuantConnect custom-data candidate, and Hummingbot/Freqtrade operators.
 It reuses the existing public evidence client and framework adapters.
@@ -19,7 +19,7 @@ complete bounded request keeps `coverage_complete=false`; it does not establish
 complete market coverage. Hashes detect changes to retained content and do not
 establish independent timing or rights approval.
 
-The [validation record](../../integrations/finance-research/validation.json)
+The [validation record](https://github.com/beepboop2025/financial-evidence-skills/blob/main/integrations/finance-research/validation.json)
 separates actual framework runtime checks, the synthetic public API probe, and
 platform work still needing a native environment. The companion does not read
 broker credentials or create execution hooks. No independent-user, recurring

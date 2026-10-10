@@ -1,0 +1,225 @@
+{
+  "schema": "financial-evidence.publisher-completion.v1",
+  "recorded_at": "2026-10-10T08:53:25.433536+00:00",
+  "receipt": "distribution/publisher-completion-20261010.json",
+  "report": "distribution/publisher-completion-20261010.md",
+  "scope": "One existing submission verified publicly live, a refreshed mergeable Market Brief PR, native Claude Code installation evidence and preserved publisher packets. Claude and OpenAI are owner-deferred; LobeHub ownership authorization is blocked by the provider interface after approval.",
+  "new_received_submissions": 0,
+  "new_live_listings_verified": 1,
+  "previous_received_submission_operations": 12,
+  "previous_product_placements_submitted": 13,
+  "previous_submission_destinations": 10,
+  "paid_placement_cost_inr": 0,
+  "coverage_complete": false,
+  "independent_adoption_verified": false,
+  "updated_entry_ids": [
+    "ai4finance-financial-evidence",
+    "ai4finance-market-brief",
+    "claude-plugin-directory",
+    "openai-plugin-directory",
+    "lobehub-liquilens",
+    "lobehub-seiche",
+    "lobehub-undertow",
+    "lobehub-palimpsest",
+    "lobehub-riptide",
+    "lobehub-noisefloor",
+    "lobehub-evidence-carrier"
+  ],
+  "public_listing": {
+    "product": "Financial Evidence",
+    "channel": "Awesome AI4Finance",
+    "state": "live",
+    "pull_request": "https://github.com/AI4Finance-Foundation/Awesome_AI4Finance/pull/37",
+    "merged_at": "2026-10-10T08:35:49Z",
+    "merge_commit_sha": "9dda444b19bc9c0376d015bd5d7497ea81060efe",
+    "public_url": "https://github.com/AI4Finance-Foundation/Awesome_AI4Finance/blob/main/README.md",
+    "readme_blob_sha": "e1d3bdbadb7a9c0a63913a66b746a61a6dd29544"
+  },
+  "public_readback": {
+    "url": "https://raw.githubusercontent.com/AI4Finance-Foundation/Awesome_AI4Finance/main/README.md",
+    "status": 200,
+    "sha256": "52dac20dc0532839c758a2cf0d73b45fc071b818fc66b870e15dcb45130daf86",
+    "matches": [
+      {
+        "line": 211,
+        "text": "| [Financial Evidence](https://github.com/beepboop2025/financial-evidence-skills) | ![Stars](https://img.shields.io/github/stars/beepboop2025/financial-evidence-skills?style=flat-square) | Read-only MCP and Python router for public institution, money-market, and market-liquidity research, retaining source links, retrieval times, and unavailable states. Public reads require no API key. |"
+      }
+    ],
+    "observed_at": "2026-10-10T08:45:09.379097+00:00"
+  },
+  "market_brief_pr26": {
+    "observed_at": "2026-10-10T08:52Z",
+    "url": "https://github.com/AI4Finance-Foundation/Awesome_AI4Finance/pull/26",
+    "state": "open",
+    "merged": false,
+    "head": "4f497643e46f8731e845c8ce91230be45bfd7dfc",
+    "upstream_base": "9dda444b19bc9c0376d015bd5d7497ea81060efe",
+    "mergeable": true,
+    "mergeable_state": "clean",
+    "diff_stat": "README.md | 1 +\n 1 file changed, 1 insertion(+)",
+    "validation": [
+      "git diff --check passed",
+      "exactly one Market Brief row added relative to current upstream",
+      "Financial Evidence row retained exactly"
+    ],
+    "push": "normal fast-forward push; no force",
+    "pr_comments_sent": 0,
+    "pr_merged": false,
+    "observation_time_precision": "minute"
+  },
+  "claude": {
+    "state": "ready_account_action",
+    "publisher_url": "https://claude.ai/directory/manage/new",
+    "sign_in_terms_approved": true,
+    "legacy_form_moved": true,
+    "submission_completed": false,
+    "native_code_validation": {
+      "observed_at": "2026-10-10T08:48:53.350977+00:00",
+      "client": "Claude Code",
+      "client_version": "2.1.228",
+      "plugin": "financial-evidence@liquidity-lab",
+      "plugin_version": "0.1.7",
+      "source_commit": "3e13efae890d832adc76b776b785c4132fa34974",
+      "isolated_config": true,
+      "native_marketplace_add": "passed",
+      "native_plugin_install": "passed",
+      "native_plugin_inventory": {
+        "skills": [
+          "financial-evidence"
+        ],
+        "mcp_servers": [
+          "financial-evidence"
+        ]
+      },
+      "native_http_mcp_connection": "passed",
+      "native_server_version": "0.1.7",
+      "server_url": "https://liquilens.in/mcp/financial-evidence",
+      "auth_required": false,
+      "model_calls": 0,
+      "model_mediated_tool_call": "not_performed",
+      "native_mcp_tool_call": "not_performed_cli_has_no_model_free_call_subcommand",
+      "cowork": "not_tested",
+      "installed_helper_manual_tests": {
+        "bank_risk_default_1mb": "passed",
+        "money_market_default_1mb": "unavailable_response_exceeds_cap",
+        "money_market_4mb": "passed"
+      },
+      "successful_source_receipts": [
+        {
+          "topic": "money-market",
+          "product": "Seiche",
+          "bytes": 2180119,
+          "content_sha256": "sha256:b4a52c2c34c0b3af1abf665f209c777ceb898d25772bd1a801a84f522f2f9851",
+          "retrieved_at": "2026-10-10T08:48:30Z",
+          "source_url": "https://api.seiche.info/api/v2/money-markets"
+        },
+        {
+          "topic": "bank-risk",
+          "product": "LiquiLens",
+          "bytes": 109861,
+          "content_sha256": "sha256:997c9cf99b463e3993bea9b8e4287e41272a08b8d1516337cd40ac5fb70217c1",
+          "retrieved_at": "2026-10-10T08:48:30Z",
+          "source_url": "https://api.liquilens.in/api/failure-radar/board"
+        }
+      ],
+      "installed_helper_limit": "Current money-market source is 2,180,119 bytes: default 1 MB limit returns unavailable; explicit 4 MB limit succeeds. Bank-risk succeeds at the default limit."
+    },
+    "cowork_tested": false,
+    "directory_terms_approved": true,
+    "paid_account_required": true,
+    "paid_plan_purchased": false,
+    "publisher_gate": "directory_submission_requires_paid_plan",
+    "owner_deferred": true,
+    "publisher_packet": "https://github.com/beepboop2025/financial-evidence-skills/blob/main/CLAUDE_PLUGIN_SUBMISSION.md",
+    "qualifying_account_observed": false
+  },
+  "lobehub": {
+    "publisher_cli_version": "0.0.41",
+    "publisher_login_completed": true,
+    "github_ownership_verified": false,
+    "github_requested_scopes": [
+      "gist",
+      "read:org",
+      "read:user",
+      "repo",
+      "user:email",
+      "workflow"
+    ],
+    "github_grant_state": "owner_approved_provider_authorization_ui_blocked",
+    "updates_prepared": 7,
+    "updates_submitted": 0,
+    "updates_publicly_verified": 0,
+    "duplicate_cards_created": 0,
+    "github_grant_owner_approved": true,
+    "github_connected": false,
+    "authorization_ui_observation": "Authorize button disabled while organization access loads, including after reload and a fresh official CLI authorization request.",
+    "latest_github_status_observed_at": "2026-10-10T08:53Z",
+    "owned_plugins_observed": 0,
+    "claims_completed": 0
+  },
+  "openai": {
+    "state": "ready_account_action",
+    "owner_verification_in_progress": false,
+    "publisher_verification_observed": false,
+    "archive_uploaded": false,
+    "domain_challenge_completed": false,
+    "real_cross_platform_demo_recorded": false,
+    "review_submitted": false,
+    "prepared_archive_sha256": "3fdce4c151874309ffbffcc414fa33415be485415be3cf917079164dbded4ab5",
+    "owner_deferred": true
+  },
+  "review_refresh": {
+    "observed_at": "2026-10-10T08:42:53.144578+00:00",
+    "github_items_checked": 18,
+    "public_catalog_acceptances_observed": 1,
+    "new_comments_or_reminders_sent": 0
+  },
+  "remaining_owner_steps": [],
+  "remaining_publisher_work": [
+    "LobeHub official GitHub authorization after provider UI recovers, then existing-card claims and prepared updates"
+  ],
+  "remaining_external_dependencies": [
+    "LobeHub GitHub authorization interface remains disabled despite owner approval",
+    "Third-party directory moderation and upstream review",
+    "G2 existing category and description corrections",
+    "SoftwareSuggest quote-specific billing guidance",
+    "Datarade public visibility",
+    "SaaSHub earlier-listing approval",
+    "Gemini automatic indexing",
+    "AllMCPs duplicate and transport reconciliation"
+  ],
+  "ledger_records": 113,
+  "ledger_state_counts": {
+    "live": 49,
+    "submitted": 39,
+    "closed_unmerged": 1,
+    "eligible_automatic": 1,
+    "ready_account_action": 4,
+    "conditional_artifact": 1,
+    "paused_external": 2,
+    "skipped_paid": 2,
+    "listed_incomplete": 10,
+    "approved_pending_public": 3,
+    "sent_delivery_unverified": 1
+  },
+  "combined_with_previous_batches": {
+    "received_submission_operations": 12,
+    "product_placements_submitted": 13,
+    "submission_destinations": 10,
+    "new_public_listings_verified_from_these_submissions": 1
+  },
+  "owner_deferred_channels": [
+    "Claude Plugin Directory",
+    "OpenAI Plugin Directory"
+  ],
+  "deferred_publisher_work": {
+    "claude": "Qualifying paid account, application, validation and actual submission receipt after the owner resumes. Existing sign-in and directory approvals remain valid.",
+    "openai": "Identity verification, exact archive upload, domain challenge, native cross-platform demo and submission after the owner resumes."
+  },
+  "validation": {
+    "marketplace_and_editor_integration_tests": 19,
+    "result": "passed",
+    "git_diff_check": "passed",
+    "private_account_data_in_public_packet": false
+  }
+}

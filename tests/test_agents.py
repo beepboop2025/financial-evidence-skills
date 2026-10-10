@@ -99,6 +99,11 @@ class AgentTests(unittest.TestCase):
                 if name == "langchain":
                     self.assertIn("money_markets", tools[1].args_schema.model_json_schema()["properties"]["dataset"]["enum"])
                     self.assertEqual(len(tools[0].invoke({})["datasets"]), 7)
+                if name == "crewai":
+                    self.assertIn("money_markets", tools[1].args_schema.model_json_schema()["properties"]["dataset"]["enum"])
+                    result = tools[1].run(dataset="money_markets", limit=2)
+                    self.assertEqual(result["results"][0]["value"], 0)
+                    self.assertIsNone(result["results"][1]["value"])
                 if name == "openai":
                     self.assertIn("dataset", tools[1].params_json_schema["properties"])
         if not checked:

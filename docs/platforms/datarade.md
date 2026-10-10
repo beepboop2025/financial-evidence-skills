@@ -16,5 +16,5 @@ Use the [reference-FX evaluation packet](../distribution/provider-packets-202610
 for supporting metadata. Preserve source attribution, original values and dates.
 Any new upload, terms, price or product expansion needs its own concrete review.
 
-[Existing publication ledger](../marketplaces.json) ·
+[Existing publication ledger](https://beepboop2025.github.io/financial-evidence-skills/marketplaces.json) ·
 [Datarade provider portal](https://providers.datarade.ai/).

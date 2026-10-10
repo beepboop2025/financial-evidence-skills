@@ -39,7 +39,7 @@ codex mcp add financial-evidence --url https://api.seiche.info/openbb/mcp
 
 The repository also contains an installable Codex plugin. Universal directory
 publication remains pending; this guide does not claim a ChatGPT listing.
-[Plugin installation](../llms.txt) ·
+[Plugin installation](https://beepboop2025.github.io/financial-evidence-skills/llms.txt) ·
 [OpenAI submission documentation](https://developers.openai.com/plugins/deploy/submission).
 
 ## Microsoft Copilot Studio

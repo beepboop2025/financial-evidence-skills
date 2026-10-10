@@ -55,10 +55,13 @@ the ten intended files. Evidence is retained under
 `SSDWorkspace/artifacts/finance-platform-execution-20261011/native-automation/`.
 Final archive hashes are in `dify-package-receipt.json`.
 
-At preparation time, local SDK imports and npm installation remained in macOS
-uninterruptible I/O waits. They are not recorded as passes. The clean-runner
-workflow is the reproducible completion path; consult its exact-commit result
-and the native receipt before promoting this status.
+The five Dify tests passed, and actual manifest/provider registration exited
+successfully. The SDK emitted an ignored gevent/greenlet finalization warning
+during interpreter shutdown; those logs are retained. This does not prove
+remote-debug execution. Local npm installation and compilation encountered
+macOS uninterruptible I/O waits and remain pending at preparation time. The
+clean-runner workflow is the reproducible completion path; consult its
+exact-commit result and native receipt before promoting that status.
 
 ## Primary references
 

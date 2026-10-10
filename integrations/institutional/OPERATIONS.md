@@ -23,7 +23,12 @@ to the accepted Workspace release ID and its full source SHA. They must be a
 matching pair. Pass both into the packet API and capture containers, and use the
 same GitHub Actions variables for external reliability samples. The historical
 default remains Workspace 1.0.1; a new deployment must set its reviewed identity
-explicitly. A mismatch remains a failed sample and never becomes an availability
+explicitly. On each accepted Workspace upgrade, verify its full source SHA against
+the immutable image and public release endpoint, update both institutional
+environment values and both GitHub variables, restart only the packet API, and
+verify a newly captured packet plus an external observation. Updating the
+Workspace container alone leaves those consumers pinned to the previous release.
+A mismatch remains a failed sample and never becomes an availability
 or freshness success. Old packets retain their original release identity.
 Historical packet reads and backups verify each packet against its own stored
 release/source pair and artifact hashes. The current live capture still requires

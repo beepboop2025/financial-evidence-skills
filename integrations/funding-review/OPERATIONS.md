@@ -261,6 +261,12 @@ initializes repositories, or deletes snapshots. An interrupted capture without
 its final manifest is excluded. Failures update `status.json` while preserving
 earlier receipts, so consumers must inspect the current status and its timestamp.
 
+Backup staging, SSH pulls and exact restoration use the capture's per-artifact
+size bounds: 4 MiB for `atlas.response`, 2 MiB for other captured responses, and
+128 KiB for manifests. Response backups allow the one additional byte retained
+by a failed oversized acquisition; this preserves failure evidence without
+making it publishable. Hash, inventory and symlink checks still apply.
+
 The [offsite service](financial-evidence-funding-offsite.service) and
 [hourly timer](financial-evidence-funding-offsite.timer) run without a Mac or
 attached SSD. Install the reviewed source in

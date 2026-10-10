@@ -19,7 +19,7 @@ import subprocess
 import tempfile
 import uuid
 
-from backup_funding_review import validate_inventory
+from backup_funding_review import artifact_limit, validate_inventory
 
 
 def encoded(value):
@@ -89,9 +89,7 @@ def stage_archive(source, destination):
             raise ValueError("manifest cannot reference itself")
         for name, expected in names.items():
             relative = capture["path"] + "/" + name
-            raw = read_file(
-                source, relative, 131072 if name == "manifest.json" else 2097153
-            )
+            raw = read_file(source, relative, artifact_limit(name))
             if hashlib.sha256(raw).hexdigest() != expected:
                 raise ValueError("capture artifact hash mismatch")
             path = destination / relative
@@ -120,7 +118,7 @@ def verify_restore(directory, expected):
         raise ValueError("restored file inventory differs")
     for relative, digest in expected.items():
         if (
-            hashlib.sha256(read_file(directory, relative, 2097153)).hexdigest()
+            hashlib.sha256(read_file(directory, relative, artifact_limit(relative))).hexdigest()
             != digest
         ):
             raise ValueError("restored artifact hash mismatch")

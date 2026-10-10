@@ -43,6 +43,28 @@ def fixture():
 
 
 class BackupTests(unittest.TestCase):
+    def test_backup_limits_follow_capture_policy(self):
+        scripts = Path(__file__).resolve().parents[1] / "scripts"
+        policy_spec = importlib.util.spec_from_file_location("backup_test_policy", scripts / "check_funding_review.py")
+        policy = importlib.util.module_from_spec(policy_spec)
+        policy_spec.loader.exec_module(policy)
+        self.assertEqual(backup.artifact_limit("atlas.response"), policy.ATLAS_MAX_BYTES + 1)
+        self.assertEqual(backup.artifact_limit("health.response"), policy.MAX_BYTES + 1)
+        self.assertEqual(backup.artifact_limit("captures/example/atlas.response"), policy.ATLAS_MAX_BYTES + 1)
+
+    def test_pull_hashes_atlas_but_rejects_oversized_other_artifacts(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            raw = b"x" * (2 * 1024 * 1024 + 2)
+            for name in ("atlas.response", "health.response"):
+                path = root / name
+                path.write_bytes(raw)
+                if name == "atlas.response":
+                    self.assertEqual(backup.digest(path, backup.artifact_limit(name)), hashlib.sha256(raw).hexdigest())
+                else:
+                    with self.assertRaisesRegex(ValueError, "exceeds bound"):
+                        backup.digest(path, backup.artifact_limit(name))
+
     def test_invalid_inventory_is_rejected_before_transfer(self):
         for field, value in [
             ("path", "captures/../../secrets"),

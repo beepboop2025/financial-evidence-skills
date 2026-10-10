@@ -24,10 +24,14 @@ matching pair. Pass both into the packet API and capture containers, and use the
 same GitHub Actions variables for external reliability samples. The historical
 default remains Workspace 1.0.1; a new deployment must set its reviewed identity
 explicitly. On each accepted Workspace upgrade, verify its full source SHA against
-the immutable image and public release endpoint, update both institutional
-environment values and both GitHub variables, restart only the packet API, and
-verify a newly captured packet plus an external observation. Updating the
-Workspace container alone leaves those consumers pinned to the previous release.
+the immutable image and public release endpoint. Update the effective funding
+collector `--expected-release` argument, both institutional environment values,
+and both GitHub variables. Inspect `systemctl cat` and `systemctl show -p ExecStart`
+for the collector so a later drop-in cannot retain an older pin. Reload systemd
+after a unit change, restart only the packet API, and verify a new source capture,
+its matching CSV, a newly captured packet, and an external observation. Updating
+the Workspace container alone leaves those consumers pinned to the previous
+release.
 A mismatch remains a failed sample and never becomes an availability
 or freshness success. Old packets retain their original release identity.
 Historical packet reads and backups verify each packet against its own stored

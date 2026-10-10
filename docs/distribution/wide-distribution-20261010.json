@@ -1,0 +1,383 @@
+{
+  "recorded_at": "2026-10-10T05:36:59.863294+00:00",
+  "receipt": "distribution/wide-distribution-20261010.json",
+  "report": "distribution/wide-distribution-20261010.md",
+  "scope": "Nine received submissions requesting ten product placements across seven audience-specific directories; four older live placements and one older pending PR reconciled separately. Owner-approved Cursor and FinSkilz submissions are now received, with scan/evaluation pending.",
+  "received_submission_operations": 9,
+  "new_product_placements_submitted": 10,
+  "destinations_with_new_submissions": 7,
+  "new_live_listings_verified": 0,
+  "existing_live_placements_reconciled": 4,
+  "prepared_owner_permission_gates": 0,
+  "paid_placement_cost_inr": 0,
+  "independent_adoption_verified": false,
+  "coverage_complete": false,
+  "schema": "liquidity-lab.wide-distribution.v1",
+  "baseline_commit": "467dc5e8dfbcb413e734e858c8ef46568b3947c3",
+  "audiences": [
+    "financial-agent developers",
+    "quantitative and advisory research teams",
+    "public-interest OSINT researchers"
+  ],
+  "new_submissions": [
+    {
+      "id": "awesome-quant-seiche",
+      "name": "Awesome Quant \u2014 Seiche",
+      "product": "Seiche",
+      "channel": "research-directory",
+      "state": "submitted",
+      "submission_url": "https://github.com/wilsonfreitas/awesome-quant/pull/778",
+      "cost": "free",
+      "detail": "A public maintainer-disclosed contribution PR is open. Catalog inclusion awaits upstream review. Quantitative finance researchers; source-linked funding observations.",
+      "next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "submitted_at": "2026-10-10T05:30:53.903883+00:00",
+      "verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/wide-distribution-20261010.json"
+    },
+    {
+      "id": "awesome-quant-noisefloor",
+      "name": "Awesome Quant \u2014 NoiseFloor",
+      "product": "NoiseFloor",
+      "channel": "research-directory",
+      "state": "submitted",
+      "submission_url": "https://github.com/wilsonfreitas/awesome-quant/pull/778",
+      "cost": "free",
+      "detail": "A public maintainer-disclosed contribution PR is open. Catalog inclusion awaits upstream review. Quantitative finance researchers; offline time-series diagnostics.",
+      "next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "submitted_at": "2026-10-10T05:30:53.903883+00:00",
+      "verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/wide-distribution-20261010.json"
+    },
+    {
+      "id": "awesome-osint-narcoscope",
+      "name": "Awesome OSINT \u2014 NarcoScope",
+      "product": "NarcoScope",
+      "channel": "research-directory",
+      "state": "submitted",
+      "submission_url": "https://github.com/jivoi/awesome-osint/pull/1271",
+      "cost": "free",
+      "detail": "A public maintainer-disclosed contribution PR is open. Catalog inclusion awaits upstream review. Journalists and policy researchers using official aggregate drug-market evidence.",
+      "next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "submitted_at": "2026-10-10T05:30:53.903883+00:00",
+      "verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/wide-distribution-20261010.json"
+    },
+    {
+      "id": "ai4finance-financial-evidence",
+      "name": "Awesome AI4Finance \u2014 Financial Evidence",
+      "product": "Financial Evidence",
+      "channel": "research-directory",
+      "state": "submitted",
+      "submission_url": "https://github.com/AI4Finance-Foundation/Awesome_AI4Finance/pull/37",
+      "cost": "free",
+      "detail": "A public maintainer-disclosed contribution PR is open. Catalog inclusion awaits upstream review. Developers building source-linked financial research agents.",
+      "next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "submitted_at": "2026-10-10T05:30:53.903883+00:00",
+      "verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/wide-distribution-20261010.json"
+    },
+    {
+      "id": "osint-collection-palimpsest",
+      "name": "Cyber Detective OSINT tools \u2014 Palimpsest",
+      "product": "Palimpsest",
+      "channel": "research-directory",
+      "state": "submitted",
+      "submission_url": "https://github.com/cipher387/osint_stuff_tool_collection/pull/182",
+      "cost": "free",
+      "detail": "A public maintainer-disclosed contribution PR is open. Catalog inclusion awaits upstream review. Public-source censorship and reproducible-evaluation researchers.",
+      "next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "submitted_at": "2026-10-10T05:30:53.903883+00:00",
+      "verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/wide-distribution-20261010.json"
+    },
+    {
+      "id": "wealthmcp-financial-evidence",
+      "name": "WealthMCP \u2014 Financial Evidence",
+      "product": "Financial Evidence",
+      "channel": "research-directory",
+      "state": "submitted",
+      "submission_url": "https://wealthmcp.ai/submit",
+      "cost": "free",
+      "detail": "The free listing form explicitly acknowledged receipt with \"Thanks, submission noted\" and states that listings are reviewed before publication. Advisory technology teams routing public financial research.",
+      "next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "submitted_at": "2026-10-10T05:30:53.903883+00:00",
+      "verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/wide-distribution-20261010.json"
+    },
+    {
+      "id": "wealthmcp-seiche",
+      "name": "WealthMCP \u2014 Seiche",
+      "product": "Seiche",
+      "channel": "research-directory",
+      "state": "submitted",
+      "submission_url": "https://wealthmcp.ai/submit",
+      "cost": "free",
+      "detail": "The free listing form explicitly acknowledged receipt with \"Thanks, submission noted\" and states that listings are reviewed before publication. Macro analysts and advisor research teams following dollar funding.",
+      "next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "submitted_at": "2026-10-10T05:30:53.903883+00:00",
+      "verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/wide-distribution-20261010.json"
+    },
+    {
+      "id": "wealthmcp-noisefloor",
+      "name": "WealthMCP \u2014 NoiseFloor",
+      "product": "NoiseFloor",
+      "channel": "research-directory",
+      "state": "submitted",
+      "submission_url": "https://wealthmcp.ai/submit",
+      "cost": "free",
+      "detail": "The free listing form explicitly acknowledged receipt with \"Thanks, submission noted\" and states that listings are reviewed before publication. Analysts evaluating changes, forecasts and financial correlation structure.",
+      "next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "submitted_at": "2026-10-10T05:30:53.903883+00:00",
+      "verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/wide-distribution-20261010.json"
+    },
+    {
+      "id": "cursor-directory-financial-evidence",
+      "name": "Cursor Directory \u2014 Financial Evidence",
+      "product": "Financial Evidence",
+      "channel": "editor-directory",
+      "state": "submitted",
+      "submission_url": "https://cursor.directory/plugins/financial-evidence-by-liquilens",
+      "cost": "free",
+      "detail": "Owner-approved email-only GitHub sign-in completed. The Financial Evidence MCP plugin was submitted and has an owner-visible record. Cursor Directory says it is scanning and hidden from the public directory until the security agent finishes. The listing includes one self-contained remote MCP configuration; no incomplete inline skill bundle is distributed.",
+      "next_action": "Wait for the existing security scan and verify anonymous public visibility and the actual install configuration before claiming live publication.",
+      "verified_at": "2026-10-10T05:36:59.863294+00:00",
+      "submitted_at": "2026-10-10T05:36:59.863294+00:00"
+    },
+    {
+      "id": "finskilz-financial-evidence",
+      "name": "FinSkilz \u2014 Financial Evidence",
+      "product": "Financial Evidence",
+      "channel": "finance-mcp-directory",
+      "state": "submitted",
+      "submission_url": "https://finskilz.com/servers/submit/",
+      "cost": "free",
+      "detail": "After explicit owner approval of all displayed consents, the free Financial Evidence application returned \"Submission received!\". FinSkilz states that review and public evaluation will follow. No score or public listing is claimed.",
+      "next_action": "Await evaluation results and verify the public listing and actual supported-tool results; do not resubmit.",
+      "verified_at": "2026-10-10T05:36:16.700005+00:00",
+      "submitted_at": "2026-10-10T05:36:16.700005+00:00"
+    }
+  ],
+  "reconciled_existing": [
+    {
+      "id": "allmcps-noisefloor",
+      "name": "AllMCPs \u2014 NoiseFloor",
+      "product": "NoiseFloor",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://allmcps.com/mcp/noisefloor-is-this-number-real",
+      "cost": "free",
+      "detail": "Existing public catalog record found in the anonymous AllMCPs data.json snapshot. No new submission was made. Native installation, metadata accuracy and adoption are not established by directory presence.",
+      "next_action": "Monitor public metadata and distinguish catalog presence from independently verified use.",
+      "verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "reconciled_existing": true
+    },
+    {
+      "id": "allmcps-groundcheck",
+      "name": "AllMCPs \u2014 Groundcheck",
+      "product": "Groundcheck",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://allmcps.com/mcp/groundcheck",
+      "cost": "free",
+      "detail": "Existing public catalog record found in the anonymous AllMCPs data.json snapshot. No new submission was made. Native installation, metadata accuracy and adoption are not established by directory presence.",
+      "next_action": "Monitor public metadata and distinguish catalog presence from independently verified use.",
+      "verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "reconciled_existing": true
+    },
+    {
+      "id": "allmcps-data-breach-detector",
+      "name": "AllMCPs \u2014 Data Breach Detector",
+      "product": "Data Breach Detector",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://allmcps.com/mcp/data-breach-detector",
+      "cost": "free",
+      "detail": "Existing public catalog record found in the anonymous AllMCPs data.json snapshot. No new submission was made. Native installation, metadata accuracy and adoption are not established by directory presence.",
+      "next_action": "Monitor public metadata and distinguish catalog presence from independently verified use.",
+      "verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "reconciled_existing": true
+    },
+    {
+      "id": "awesome-quant-market-brief",
+      "name": "Awesome Quant \u2014 Market Brief",
+      "product": "Market Brief",
+      "channel": "research-directory",
+      "state": "live",
+      "listing_url": "https://github.com/wilsonfreitas/awesome-quant#market-data--data-sources",
+      "cost": "free",
+      "detail": "Existing Market Brief entry is present in the upstream README. PR 639 merged on 6 September 2026. Reconciled older coverage, not a new placement from this batch.",
+      "next_action": "Monitor public metadata and distinguish catalog presence from independently verified use.",
+      "verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "reconciled_existing": true
+    },
+    {
+      "id": "ai4finance-market-brief",
+      "name": "Awesome AI4Finance \u2014 Market Brief",
+      "product": "Market Brief",
+      "channel": "research-directory",
+      "state": "submitted",
+      "submission_url": "https://github.com/AI4Finance-Foundation/Awesome_AI4Finance/pull/26",
+      "cost": "free",
+      "detail": "Existing September 2026 contribution remains open and unmerged. Reconciled without a duplicate submission.",
+      "next_action": "Await maintainer review on the existing PR.",
+      "verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "reconciled_existing": true
+    }
+  ],
+  "prepared_gates": [],
+  "qualified_routes_not_submitted": [
+    {
+      "destination": "AI Agents List",
+      "reason": "Official page describes a paid listing after free eligibility review; no paid placement selected."
+    },
+    {
+      "destination": "AI Agents Directory",
+      "reason": "Submission requires sign-in; no new account or submission created."
+    },
+    {
+      "destination": "APITracker",
+      "reason": "Existing no-self-service-route finding retained; no unsolicited outreach sent."
+    }
+  ],
+  "validation": {
+    "awesome_quant": "Both added entries passed the upstream README validator, local site generation and parser checks. Both upstream validate jobs completed successfully on 0ee3245651ef798f7cbe64a8c8221188c584999d. Maintainer acceptance remains pending.",
+    "other_prs": "One factual entry each; current README and prior requests checked for duplicates; git diff --check passed. Public PR readback verified.",
+    "wealthmcp": "Three separate operator UI receipts retained. No public listing is claimed.",
+    "cursor": "Imported remote MCP config matches the public .mcp.json. Removed the auto-inlined skill because its adjacent scripts/references were not part of the detected inline component. Final listing is a self-contained remote MCP connection. No installed-client adoption or completed security scan is claimed.",
+    "finskilz": "All five displayed consents were explicitly owner-approved; final UI says Submission received."
+  },
+  "ledger_counts_after": {
+    "live": 48,
+    "submitted": 37,
+    "closed_unmerged": 1,
+    "eligible_automatic": 1,
+    "ready_account_action": 5,
+    "ready_validation": 1,
+    "conditional_artifact": 1,
+    "paused_external": 2,
+    "skipped_paid": 2,
+    "listed_incomplete": 10,
+    "approved_pending_public": 3,
+    "sent_delivery_unverified": 1
+  },
+  "ledger_total_after": 112,
+  "evidence_hashes": [
+    {
+      "file": "public-pr-receipts.json",
+      "sha256": "1b635f8acb68cc9974d8e2a2297b2d04d5c4e3a32b2196e1e662d65f9aa2d699",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "allmcps-catalog-before.json",
+      "sha256": "3d3ca629b0cfb49cf29175ed424bef589d65ee42f416d5d180245fc18cfc20e1",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "allmcps-family-existing.json",
+      "sha256": "654523b2ad24811faf407709cb56accaf17a2eba171084ba35a99f948e62fc87",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "wealthmcp-financial-evidence-receipt.txt",
+      "sha256": "48777d68a5d1b09c25b85fa055a58b98355bc10c9f46cea8a59ab4f973681e6b",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "wealthmcp-financial-evidence-receipt.png",
+      "sha256": "92b4edb246c0cd617d15c189398be9c815dbb3641a768fd2d5996fb7f86de5f3",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "wealthmcp-seiche-receipt.txt",
+      "sha256": "48777d68a5d1b09c25b85fa055a58b98355bc10c9f46cea8a59ab4f973681e6b",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "wealthmcp-seiche-receipt.png",
+      "sha256": "92b4edb246c0cd617d15c189398be9c815dbb3641a768fd2d5996fb7f86de5f3",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "wealthmcp-noisefloor-receipt.txt",
+      "sha256": "48777d68a5d1b09c25b85fa055a58b98355bc10c9f46cea8a59ab4f973681e6b",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "wealthmcp-noisefloor-receipt.png",
+      "sha256": "92b4edb246c0cd617d15c189398be9c815dbb3641a768fd2d5996fb7f86de5f3",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "cursor-oauth.png",
+      "sha256": "2fc5f15899b826ad9252b0db552b62ed73b2067e8dd58db77837e40ac53773a6",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "finskilz-prepared.txt",
+      "sha256": "1a9d52a203d24373de056d167841771c91bd472595ba7e5108f6c3fce681b31b",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "finskilz-prepared.png",
+      "sha256": "59dd48a7d48712aa382eefa6e55e106245e15bdecebd956e76ba9cd99d333a47",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "finskilz-receipt.txt",
+      "sha256": "30319ba1c2da9ff8ec3ec76020604bd85bc5d3256ffad0e94299351ac80ac98b",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "finskilz-receipt.png",
+      "sha256": "eeb63349a1288ea3a1841250b4d447ab17e227720471b2e4dc928a4735337994",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "cursor-prepared-submission.txt",
+      "sha256": "fffd0c498c60b38e8c402603e40ff8f458fc26e887e872fc7a5818291547d410",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "cursor-receipt.txt",
+      "sha256": "922aefed691736d06d835561b2538aa405539bc76f7cf1eed34e57232e105cd6",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "cursor-receipt.png",
+      "sha256": "ee5bd13c963711b5aac545b002aab8ffdbda988367d89e33b69bad9925f8cd31",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "narcoscope-homepage-correction.json",
+      "sha256": "f6ab1076debcaa1e5ea506c26c0099ad1a5c2ce4328015091b1b66b5fa72af7a",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    }
+  ],
+  "limits": [
+    "Submission receipts are not listing approval, customer acquisition, retention or payment.",
+    "Existing placements found during duplicate checks are not new distribution created by this batch.",
+    "Private form evidence, contact details and OAuth state are not published.",
+    "Previous release identifiers, per-entry observation clocks, commercial commitments and pending submissions remain unchanged."
+  ],
+  "completed_owner_permissions": [
+    {
+      "destination": "Cursor Directory",
+      "permission": "Read-only GitHub email addresses",
+      "approved_by_owner": true,
+      "result": "Sign-in completed and plugin submitted; security scan pending."
+    },
+    {
+      "destination": "FinSkilz",
+      "permission": "Displayed evaluation, public-score, listing-update-email and policy consents",
+      "approved_by_owner": true,
+      "result": "Submission received; review and evaluation pending."
+    }
+  ],
+  "additional_metadata_correction": {
+    "repository": "https://github.com/beepboop2025/narcoscope",
+    "homepage": "https://narcoscope.com",
+    "result": "Legacy Vercel homepage replaced with the canonical public domain after HTTP 200 verification; GitHub readback matches."
+  }
+}

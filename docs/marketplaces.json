@@ -2459,10 +2459,29 @@
       "next_action": "Await evaluation results and verify the public listing and actual supported-tool results; do not resubmit.",
       "verified_at": "2026-10-10T05:36:16.700005+00:00",
       "submitted_at": "2026-10-10T05:36:16.700005+00:00"
+    },
+    {
+      "id": "sourceforge-research-desk",
+      "name": "SourceForge \u2014 Financial Evidence Research Desk",
+      "product": "Financial Evidence Research Desk",
+      "channel": "software-directory",
+      "state": "submitted",
+      "submission_url": "https://sourceforge.net/software/vendors/new_submitted",
+      "cost": "Free business-software listing request; no paid promotion selected.",
+      "detail": "The previously authorized draft was recovered after confirming the old owner was idle and no accepted submission receipt existed. The official logo attached successfully. SourceForge rejected URLs in description text; after correcting that validation error, the completed Financial Research application returned Request Received and states that review will follow. No public listing is claimed.",
+      "next_action": "Await the existing request review and verify a public product page after approval. Create or connect an owner management account only if required by the approval flow; do not resubmit.",
+      "verified_at": "2026-10-10T06:36:07.109531+00:00",
+      "submitted_at": "2026-10-10T06:36:07.109531+00:00",
+      "public_listing_verified": false,
+      "logo_attached": true,
+      "category": "Financial Research",
+      "free_version": true,
+      "free_trial": false,
+      "evidence_receipt": "distribution/completion-20261010.json"
     }
   ],
   "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
-  "updated_at": "2026-10-10T06:28:14.840174+00:00",
+  "updated_at": "2026-10-10T06:36:07.109531+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -2548,17 +2567,17 @@
     "coverage_complete": false
   },
   "latest_completion": {
-    "recorded_at": "2026-10-10T06:28:14.840174+00:00",
+    "recorded_at": "2026-10-10T06:36:07.109531+00:00",
     "receipt": "distribution/completion-20261010.json",
     "report": "distribution/completion-20261010.md",
-    "scope": "Two new free submission receipts; profile enrichment; two upstream conflict repairs; exact OpenAI upload package and seven LobeHub update declarations. Account and operator gates remain explicit.",
-    "new_received_submissions": 2,
-    "new_product_placements_submitted": 2,
-    "new_destinations_submitted": 2,
+    "scope": "Three free submission receipts, including recovery of the previously authorized SourceForge draft; profile enrichment; two upstream conflict repairs; exact OpenAI upload package and seven LobeHub update declarations. Account and operator gates remain explicit.",
+    "new_received_submissions": 3,
+    "new_product_placements_submitted": 3,
+    "new_destinations_submitted": 3,
     "combined_with_wide_distribution": {
-      "received_submission_operations": 11,
-      "new_product_placements_submitted": 12,
-      "destinations": 9
+      "received_submission_operations": 12,
+      "new_product_placements_submitted": 13,
+      "destinations": 10
     },
     "new_live_listings_verified": 0,
     "existing_pr_conflicts_repaired": 2,
@@ -2587,11 +2606,12 @@
       "lobehub-palimpsest",
       "lobehub-riptide",
       "lobehub-seiche",
-      "lobehub-undertow"
+      "lobehub-undertow",
+      "sourceforge-research-desk"
     ],
     "ledger_state_counts": {
       "live": 48,
-      "submitted": 39,
+      "submitted": 40,
       "closed_unmerged": 1,
       "eligible_automatic": 1,
       "ready_account_action": 4,

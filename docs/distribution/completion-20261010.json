@@ -1,16 +1,16 @@
 {
   "schema": "financial-evidence.distribution-completion.v1",
-  "recorded_at": "2026-10-10T06:28:14.840174+00:00",
+  "recorded_at": "2026-10-10T06:36:07.109531+00:00",
   "receipt": "distribution/completion-20261010.json",
   "report": "distribution/completion-20261010.md",
-  "scope": "Two new free submission receipts; profile enrichment; two upstream conflict repairs; exact OpenAI upload package and seven LobeHub update declarations. Account and operator gates remain explicit.",
-  "new_received_submissions": 2,
-  "new_product_placements_submitted": 2,
-  "new_destinations_submitted": 2,
+  "scope": "Three free submission receipts, including recovery of the previously authorized SourceForge draft; profile enrichment; two upstream conflict repairs; exact OpenAI upload package and seven LobeHub update declarations. Account and operator gates remain explicit.",
+  "new_received_submissions": 3,
+  "new_product_placements_submitted": 3,
+  "new_destinations_submitted": 3,
   "combined_with_wide_distribution": {
-    "received_submission_operations": 11,
-    "new_product_placements_submitted": 12,
-    "destinations": 9
+    "received_submission_operations": 12,
+    "new_product_placements_submitted": 13,
+    "destinations": 10
   },
   "new_live_listings_verified": 0,
   "existing_pr_conflicts_repaired": 2,
@@ -39,11 +39,12 @@
     "lobehub-palimpsest",
     "lobehub-riptide",
     "lobehub-seiche",
-    "lobehub-undertow"
+    "lobehub-undertow",
+    "sourceforge-research-desk"
   ],
   "ledger_state_counts": {
     "live": 48,
-    "submitted": 39,
+    "submitted": 40,
     "closed_unmerged": 1,
     "eligible_automatic": 1,
     "ready_account_action": 4,
@@ -54,7 +55,7 @@
     "approved_pending_public": 3,
     "sent_delivery_unverified": 1
   },
-  "ledger_records": 112,
+  "ledger_records": 113,
   "new_submissions": [
     {
       "destination": "AlternativeTo",
@@ -67,6 +68,13 @@
       "product": "Financial Evidence",
       "url": "https://github.com/cline/mcp-marketplace/issues/2903",
       "state": "open_pending_review"
+    },
+    {
+      "destination": "SourceForge",
+      "product": "Financial Evidence Research Desk",
+      "receipt_url": "https://sourceforge.net/software/vendors/new_submitted",
+      "state": "request_received_pending_review",
+      "submitted_at": "2026-10-10T06:36:07.109531+00:00"
     }
   ],
   "cline_native_validation": {
@@ -110,7 +118,14 @@
     "AWS paused by owner",
     "Gumloop trial declined",
     "StackShare bot-access denial",
-    "ToolHive runtime unavailable",
-    "SourceForge separate concurrent ownership"
-  ]
+    "ToolHive runtime unavailable"
+  ],
+  "sourceforge_recovery": {
+    "previous_owner_idle": true,
+    "prior_submission_receipt_found": false,
+    "existing_submission_authorization_recovered": true,
+    "logo_attachment_completed": true,
+    "validation_error_corrected": "URLs are not allowed in product description",
+    "receipt": "Request Received"
+  }
 }

@@ -3206,10 +3206,46 @@
         "scope_extension_acknowledged": false,
         "receipt": "distribution/g2-lobehub-followthrough-20261010.json"
       }
+    },
+    {
+      "id": "factset-provider-inquiry",
+      "name": "FactSet \u2014 LIQUILENS PRIVATE LIMITED partner qualification enquiry",
+      "channel": "institutional-provider-qualification",
+      "state": "submitted",
+      "submission_url": "https://www.factset.com/contact-us",
+      "cost": "No paid placement, subscription or commercial commitment selected.",
+      "detail": "The official contact form acknowledged receipt of the company partner qualification request and said a specialist would follow up. This is one company-level qualification inquiry, not marketplace approval, a public product listing, a native integration, a data licence or customer adoption. Source-specific rights and the eventual offering remain separate.",
+      "next_action": "Await a response on this existing inquiry; do not submit a duplicate. Confirm provider fit, source-qualified offering, delivery requirements and any commercial terms before proceeding.",
+      "verified_at": "2026-10-10T21:10:44.173121+00:00",
+      "submission_confirmation": "Thank you for your interest. We have received your request. A FactSet specialist will reach out shortly.",
+      "public_listing_verified": false,
+      "partnership_accepted": false,
+      "native_platform_verified": false,
+      "source_rights_expanded": false,
+      "marketing_opt_in": false,
+      "evidence_receipt": "distribution/provider-inquiries-20261011.json"
+    },
+    {
+      "id": "nasdaq-data-link-provider-inquiry",
+      "name": "Nasdaq Data Link \u2014 LIQUILENS PRIVATE LIMITED provider fit enquiry",
+      "channel": "institutional-provider-qualification",
+      "state": "submitted",
+      "submission_url": "https://www.nasdaq.com/products/data/alternative/monetize-your-data",
+      "cost": "No paid placement, subscription or commercial commitment selected.",
+      "detail": "The official Monetize Your Data form displayed Success and Thank You after the company provider fit enquiry. This is one company-level qualification inquiry, not marketplace approval, a public product listing, a native integration, a data licence or customer adoption. Source-specific rights and the eventual offering remain separate.",
+      "next_action": "Await a response on this existing inquiry; do not submit a duplicate. Confirm provider fit, source-qualified offering, delivery requirements and any commercial terms before proceeding.",
+      "verified_at": "2026-10-10T21:10:44.173121+00:00",
+      "submission_confirmation": "Success \u2014 Thank You!",
+      "public_listing_verified": false,
+      "partnership_accepted": false,
+      "native_platform_verified": false,
+      "source_rights_expanded": false,
+      "marketing_opt_in": false,
+      "evidence_receipt": "distribution/provider-inquiries-20261011.json"
     }
   ],
   "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
-  "updated_at": "2026-10-10T09:51:21.090402+00:00",
+  "updated_at": "2026-10-10T21:10:44.173121+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -3386,5 +3422,19 @@
     "receipt": "distribution/g2-lobehub-followthrough-20261010.json",
     "report": "distribution/g2-lobehub-followthrough-20261010.md",
     "scope": "Five existing public G2/network profiles verified, two G2 claims and profile enrichments completed, three Undertow network descriptions corrected publicly, and seven existing LobeHub updates accepted with owned-version readback. LobeHub public metadata and G2 taxonomy remain incomplete."
+  },
+  "latest_provider_inquiries": {
+    "verified_at": "2026-10-10T21:10:44.173121+00:00",
+    "receipt": "distribution/provider-inquiries-20261011.json",
+    "report": "distribution/provider-inquiries-20261011.md",
+    "scope": "Two received qualification inquiries; no marketplace approval, commercial agreement, native integration or customer adoption established.",
+    "new_received_inquiries": 2,
+    "new_ledger_records": 2,
+    "new_public_listings_verified": 0,
+    "independent_adoption_verified": false,
+    "updated_entry_ids": [
+      "factset-provider-inquiry",
+      "nasdaq-data-link-provider-inquiry"
+    ]
   }
 }

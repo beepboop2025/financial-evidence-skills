@@ -454,7 +454,7 @@
       "workflow": "Entity-linked financial-institution evidence or funding observations.",
       "artifact_label": "Provider evaluation packet",
       "artifact_url": "../distribution/provider-packets-20261011/factset.md",
-      "status": "Platform admission, qualified data scope and native acceptance required.",
+      "status": "Qualification inquiry received; provider review and marketplace approval pending. No public operator listing verified.",
       "official_source": "https://www.factset.com/marketplace/catalog",
       "verified_customer_adoption": null
     },
@@ -505,7 +505,7 @@
       "workflow": "Consume a stable funding or institution dataset in research.",
       "artifact_label": "Provider evaluation packet",
       "artifact_url": "../distribution/provider-packets-20261011/nasdaq.md",
-      "status": "Platform admission, qualified data scope and native acceptance required.",
+      "status": "Qualification inquiry received; provider review and marketplace approval pending. No public operator listing verified.",
       "official_source": "https://www.nasdaq.com/products/data/alternative/monetize-your-data",
       "verified_customer_adoption": null
     },

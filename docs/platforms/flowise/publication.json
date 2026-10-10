@@ -1,0 +1,46 @@
+{
+  "schema": "financial-evidence.flowise-publication.v1",
+  "published_for": "Existing self-hosted Flowise 3.1.4 installations",
+  "native_run_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38091889136",
+  "native_source_pr": "https://github.com/beepboop2025/financial-evidence-skills/pull/110",
+  "native_source_merge": "270b0578f20e07e28b241a0fa68fde0e7b68b697",
+  "tested_merge_revision": "3e88db8d94296974a91b1c6ef77f6dcac4242187",
+  "artifact_id": 11684437633,
+  "artifact_archive_sha256": "5d6140ef73665d1568d984d11d7c1735e4ce6cc2403d789a2c02123dbee096a4",
+  "files": [
+    {
+      "path": "native-proof.json",
+      "bytes": 15148,
+      "sha256": "1733779ff3c7c0940db9981b4563c96aec2398fcbb8db0001eecbe160e6d6543"
+    },
+    {
+      "path": "financial-evidence-flowise-marketplace-candidate.json",
+      "bytes": 85723,
+      "sha256": "16b3080f0c2758cbf43c0ac73c02dc02cce8fba3a7b9ffc06e251fae88c81b6c"
+    },
+    {
+      "path": "FLOWISE-LICENSE.md",
+      "bytes": 10541,
+      "sha256": "eb8cc244c81eb4a556f9ac22edc3033ac4fa12f7ef7a8899bb5ddc4578c2dd73"
+    }
+  ],
+  "upstream_licence_source": "https://raw.githubusercontent.com/FlowiseAI/Flowise/flowise%403.1.4/LICENSE.md",
+  "upstream_route": {
+    "checked_at": "2026-10-10T22:36:10.970039+00:00",
+    "repository": "https://github.com/FlowiseAI/Flowise",
+    "repository_archived": true,
+    "archive_date": "2026-08-13",
+    "new_pr_acceptance_ended": "2026-07-29",
+    "official_core_team_support_ended": "2026-08-31",
+    "announcement": "https://github.com/FlowiseAI/Flowise/discussions/6727",
+    "official_successor_intake_identified": false,
+    "marketplace_submitted": false,
+    "marketplace_accepted": false
+  },
+  "scope": {
+    "operator_controlled": true,
+    "browser_ui_observed": false,
+    "independent_adoption_proven": false,
+    "listing_count_change": 0
+  }
+}

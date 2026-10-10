@@ -53,11 +53,15 @@ can restrict external servers. This setup has not been tested in your tenant.
 
 ## Flowise
 
-Add a Custom MCP tool with Streamable HTTP transport, point it at the URL above,
-refresh the tool list, and attach the research tools to your agent. Use your own
-model connection. Run the task and retain its tool response with the final note.
-Native Flowise execution remains to be verified.
-[Flowise instructions](https://docs.flowiseai.com/tutorials/tools-and-mcp).
+For an existing self-hosted Flowise 3.1.4 installation, use the
+[tested Start → Tool template](flowise/README.md). It retrieves one bounded
+financial research page without a model connection or financial-data API key.
+Four saved workflows passed through Flowise's authenticated APIs, including the
+exact download; browser UI import remains unobserved.
+
+Official Flowise is end-of-life and its upstream template intake is closed.
+This is a self-hosted compatibility download with [native proof](flowise/native-proof.json),
+not an official marketplace listing. [Maintainer announcement](https://github.com/FlowiseAI/Flowise/discussions/6727).
 
 ## Dify
 

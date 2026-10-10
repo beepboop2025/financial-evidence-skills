@@ -107,7 +107,7 @@
       "workflow": "Package the native tools and test in your Dify workspace.",
       "artifact_label": "Download plugin candidate",
       "artifact_url": "native-packages.md#dify",
-      "status": "Official archive and SDK checks passed. Native Dify debug session and marketplace review remain pending.",
+      "status": "Three bounded Dify Cloud draft workflows passed. Marketplace PR 3278 is submitted; review and publication remain pending.",
       "official_source": "https://docs.dify.ai/en/develop-plugin/publishing/standards/contributor-covenant-code-of-conduct",
       "verified_customer_adoption": null
     },
@@ -436,7 +436,7 @@
       "workflow": "Review dated funding and institution evidence within a desk's existing workspace.",
       "artifact_label": "Provider evaluation packet",
       "artifact_url": "../distribution/provider-packets-20261011/lseg.md",
-      "status": "Platform admission, qualified data scope and native acceptance required.",
+      "status": "Application draft prepared but not submitted. Company and legal declarations plus communications consent remain unresolved.",
       "official_source": "https://community.developers.lseg.com/discussion/133494/is-app-studio-still-available-for-sale",
       "verified_customer_adoption": null
     },
@@ -538,7 +538,7 @@
       "workflow": "An enterprise agent calls source-cited financial research through MCP.",
       "artifact_label": "Provider evaluation packet",
       "artifact_url": "../distribution/provider-packets-20261011/databricks.md",
-      "status": "Platform admission, qualified data scope and native acceptance required.",
+      "status": "Email verified; application remains an unsubmitted draft. Company details and an evidenced cloud specialization are still required.",
       "official_source": "https://docs.databricks.com/aws/en/marketplace/create-listing",
       "verified_customer_adoption": null
     },

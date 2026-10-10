@@ -25,11 +25,24 @@ Keep a workflow inactive until its first result is reviewed.
 
 ## Dify
 
-[Download Financial Evidence 0.1.0](downloads/financial_evidence-0.1.0.difypkg).
+[Download Financial Evidence 0.1.1](downloads/financial_evidence-0.1.1.difypkg).
 
 The official Dify CLI produced this archive. SDK tests, manifest registration
-and exact source-file checks passed. Native Dify remote-debug execution and
-marketplace review remain outstanding.
+and exact source-file checks passed. Three bounded draft workflows passed in
+Dify Cloud for `money_markets`, `bank_risk` and `market_liquidity`. The final
+archive has the same executable files, dependencies and manifest; only
+`PRIVACY.md` changed after remote-debug registration. The separate archive
+receipt checks its files; it does not prove installed-archive execution.
+
+[Native Cloud proof](https://beepboop2025.github.io/financial-evidence-skills/integrations/dify-native-proof-20261011.json)
+records the tested runtime identity. Community Edition and a published Dify app
+were not tested. The liquidity result retained a null/unavailable observation;
+a successful workflow is not evidence that every source value is available.
+
+[Marketplace PR 3278](https://github.com/langgenius/dify-plugins/pull/3278) is
+submitted and awaiting review; the plugin is not yet published in Marketplace.
+The [prior 0.1.0 receipt](https://github.com/beepboop2025/financial-evidence-skills/blob/c767edbf58e173b60b085cf637880b5bd9d4bb52/docs/platforms/native-packages.json)
+is historical and must not be relabeled as this 0.1.1 package.
 
 Evaluate the archive through your workspace's supported local-plugin or
 development flow. Ask the workspace administrator for permitted install/debug

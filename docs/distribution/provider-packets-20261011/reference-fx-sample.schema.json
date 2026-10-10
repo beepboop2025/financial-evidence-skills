@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://beepboop2025.github.io/financial-evidence-skills/distribution/provider-packets-20261011/reference-fx-sample.schema.json",
+  "title": "Seiche Reference FX sample",
+  "type": "object",
+  "required": [
+    "schema",
+    "captured_at",
+    "rights_scope",
+    "notice",
+    "transformation",
+    "point_in_time_eligible",
+    "row_count",
+    "rows"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "liquilens.reference-fx-sample.v1"
+    },
+    "captured_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "rights_scope": {
+      "const": "four_ecb_reference_fx_series_only"
+    },
+    "notice": {
+      "type": "string",
+      "minLength": 1
+    },
+    "transformation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "point_in_time_eligible": {
+      "const": false
+    },
+    "row_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "rows": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "series_id",
+          "base_currency",
+          "quote_currency",
+          "observation_date",
+          "value",
+          "unit",
+          "source_retrieved_at",
+          "sample_captured_at",
+          "source_staleness",
+          "vintage",
+          "first_available_at",
+          "source_publisher",
+          "source_url",
+          "delivery_url",
+          "rights_url",
+          "notice"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "series_id": {
+            "enum": [
+              "ECBFX_USD",
+              "ECBFX_GBP",
+              "ECBFX_JPY",
+              "ECBFX_INR"
+            ]
+          },
+          "base_currency": {
+            "const": "EUR"
+          },
+          "quote_currency": {
+            "enum": [
+              "USD",
+              "GBP",
+              "JPY",
+              "INR"
+            ]
+          },
+          "observation_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "value": {
+            "type": "string",
+            "pattern": "^\\d+(\\.\\d+)?$"
+          },
+          "unit": {
+            "enum": [
+              "USD/EUR",
+              "GBP/EUR",
+              "JPY/EUR",
+              "INR/EUR"
+            ]
+          },
+          "source_retrieved_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sample_captured_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "source_staleness": {
+            "type": "string"
+          },
+          "vintage": {
+            "const": "current_amended"
+          },
+          "first_available_at": {
+            "type": "null"
+          },
+          "source_publisher": {
+            "const": "European Central Bank"
+          },
+          "source_url": {
+            "type": "string"
+          },
+          "delivery_url": {
+            "type": "string"
+          },
+          "rights_url": {
+            "type": "string"
+          },
+          "notice": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

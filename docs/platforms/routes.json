@@ -1,0 +1,630 @@
+{
+  "schema": "financial-evidence.platform-routes.v1",
+  "reviewed_date": "2026-10-11",
+  "scope": "Installation assets, research companions and provider evaluation routes. Presence here does not imply endorsement, a marketplace listing or customer adoption.",
+  "routes": [
+    {
+      "id": "openbb",
+      "name": "OpenBB Workspace",
+      "category": "Research workstation",
+      "priority": "P1",
+      "products": [
+        "Seiche",
+        "LiquiLens",
+        "Undertow"
+      ],
+      "audience": "Macro, treasury and quantitative analysts",
+      "workflow": "Add the hosted Research Desk to an existing OpenBB Workspace.",
+      "artifact_label": "Custom backend",
+      "artifact_url": "../tools/#openbb",
+      "status": "Hosted metadata checked; native Workspace test pending.",
+      "official_source": "https://docs.openbb.co/workspace/developers/data-integration",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "excel",
+      "name": "Excel / Power BI",
+      "category": "Analyst spreadsheet",
+      "priority": "P1",
+      "products": [
+        "Seiche",
+        "LiquiLens"
+      ],
+      "audience": "Treasury, risk and finance analysts",
+      "workflow": "Import the Power Query function or cited CSV into your review workbook.",
+      "artifact_label": "Power Query download",
+      "artifact_url": "../tools/#excel",
+      "status": "Native Excel and Power BI refresh pending.",
+      "official_source": "https://learn.microsoft.com/en-us/power-query/connectors/web/web",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "langchain",
+      "name": "LangChain / LangGraph",
+      "category": "Agent framework",
+      "priority": "P1",
+      "products": [
+        "Financial Evidence",
+        "Seiche",
+        "LiquiLens",
+        "Undertow"
+      ],
+      "audience": "Developers of finance research agents",
+      "workflow": "Install the public toolkit and run a bounded evidence task.",
+      "artifact_label": "Published package",
+      "artifact_url": "https://pypi.org/project/langchain-financial-evidence/0.1.0/",
+      "status": "Native graph and tool execution validated; upstream directory review remains pending.",
+      "official_source": "https://docs.langchain.com/oss/python/langchain/mcp",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "crewai",
+      "name": "CrewAI",
+      "category": "Agent framework",
+      "priority": "P1",
+      "products": [
+        "Financial Evidence",
+        "Seiche",
+        "LiquiLens"
+      ],
+      "audience": "Teams building multi-agent financial research",
+      "workflow": "Run the CrewAI funding researcher tool with source dates retained.",
+      "artifact_label": "Source example",
+      "artifact_url": "https://github.com/beepboop2025/financial-evidence-skills/tree/main/integrations/finance-research",
+      "status": "Native tool invocation validated. Running a model-driven Crew also needs your model credentials and task evaluation.",
+      "official_source": "https://docs.crewai.com/en/mcp/overview",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "n8n",
+      "name": "n8n",
+      "category": "Workflow automation",
+      "priority": "P1",
+      "products": [
+        "Financial Evidence",
+        "Seiche",
+        "LiquiLens"
+      ],
+      "audience": "Finance operations and automation builders",
+      "workflow": "Import an inactive research workflow; test before enabling a schedule.",
+      "artifact_label": "Download evaluated node candidate",
+      "artifact_url": "native-packages.md#n8n",
+      "status": "Packaged node executed in native n8n 2.42.6. npm publication and platform verification remain pending.",
+      "official_source": "https://docs.n8n.io/connect/create-nodes/deploy-your-node/submit-community-nodes.md",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "dify",
+      "name": "Dify",
+      "category": "Agent builder",
+      "priority": "P2",
+      "products": [
+        "Financial Evidence",
+        "Seiche",
+        "LiquiLens"
+      ],
+      "audience": "Analysts building internal AI applications",
+      "workflow": "Package the native tools and test in your Dify workspace.",
+      "artifact_label": "Download plugin candidate",
+      "artifact_url": "native-packages.md#dify",
+      "status": "Official archive and SDK checks passed. Native Dify debug session and marketplace review remain pending.",
+      "official_source": "https://docs.dify.ai/en/develop-plugin/publishing/standards/contributor-covenant-code-of-conduct",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "claude",
+      "name": "Claude / Cowork",
+      "category": "General AI workspace",
+      "priority": "P1",
+      "products": [
+        "Financial Evidence",
+        "core research products"
+      ],
+      "audience": "Finance analysts using general AI assistants",
+      "workflow": "Connect the public MCP and request a cited research note.",
+      "artifact_label": "Custom connector",
+      "artifact_url": "agent-clients.md#claude--cowork",
+      "status": "Custom setup available; official directory publication separate.",
+      "official_source": "https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "chatgpt",
+      "name": "ChatGPT / Codex",
+      "category": "General AI workspace",
+      "priority": "P2",
+      "products": [
+        "Financial Evidence",
+        "core research products"
+      ],
+      "audience": "Finance analysts and agent developers",
+      "workflow": "Connect in an eligible client or install the Codex repository plugin.",
+      "artifact_label": "Custom connection / Codex plugin",
+      "artifact_url": "agent-clients.md#chatgpt--codex",
+      "status": "Official directory publication and identity verification remain pending.",
+      "official_source": "https://developers.openai.com/plugins/deploy/submission",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "copilot",
+      "name": "Microsoft Copilot Studio",
+      "category": "Enterprise agent builder",
+      "priority": "P2",
+      "products": [
+        "LiquiLens",
+        "Seiche",
+        "Financial Evidence"
+      ],
+      "audience": "Banking and corporate finance teams on Microsoft tools",
+      "workflow": "Add the evidence MCP as an agent tool in an approved tenant.",
+      "artifact_label": "MCP setup guide",
+      "artifact_url": "agent-clients.md#microsoft-copilot-studio",
+      "status": "Native tenant validation pending.",
+      "official_source": "https://learn.microsoft.com/microsoft-copilot-studio/agent-extend-action-mcp",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "flowise",
+      "name": "Flowise",
+      "category": "Agent builder",
+      "priority": "P2",
+      "products": [
+        "Financial Evidence",
+        "Seiche"
+      ],
+      "audience": "Developers of visual research workflows",
+      "workflow": "Attach a Streamable HTTP MCP tool to a research agent.",
+      "artifact_label": "MCP setup guide",
+      "artifact_url": "agent-clients.md#flowise",
+      "status": "Native Flowise validation pending.",
+      "official_source": "https://docs.flowiseai.com/tutorials/tools-and-mcp",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "haystack",
+      "name": "Haystack",
+      "category": "Agent framework",
+      "priority": "P2",
+      "products": [
+        "Financial Evidence"
+      ],
+      "audience": "Enterprise search and research-agent developers",
+      "workflow": "Use the existing pipeline component and retain the response evidence.",
+      "artifact_label": "Source component",
+      "artifact_url": "agent-clients.md#haystack",
+      "status": "Upstream PR 650 remains under review.",
+      "official_source": "https://docs.haystack.deepset.ai/docs/integrations",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "tradingagents",
+      "name": "TradingAgents",
+      "category": "Finance-specific agent framework",
+      "priority": "P2",
+      "products": [
+        "Seiche",
+        "LiquiLens",
+        "NoiseFloor"
+      ],
+      "audience": "Developers experimenting with multi-agent market research",
+      "workflow": "Retain a capture and use it only after its recorded availability time.",
+      "artifact_label": "Forward research example",
+      "artifact_url": "https://github.com/beepboop2025/financial-evidence-skills/tree/main/integrations/finance-research",
+      "status": "Local tool and date guard validated; full upstream TradingAgents graph execution remains unverified.",
+      "official_source": "https://github.com/TauricResearch/TradingAgents/blob/main/tradingagents/agents/tools.py",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "quantconnect",
+      "name": "QuantConnect / LEAN",
+      "category": "Quant research and backtesting",
+      "priority": "P2",
+      "products": [
+        "Seiche",
+        "NoiseFloor",
+        "eligible LiquiLens datasets"
+      ],
+      "audience": "Quant researchers",
+      "workflow": "Retain a capture and use it only after its recorded availability time.",
+      "artifact_label": "Forward research example",
+      "artifact_url": "https://github.com/beepboop2025/financial-evidence-skills/tree/main/integrations/finance-research",
+      "status": "Research companion or importer candidate; native platform execution requires separate validation.",
+      "official_source": "https://www.quantconnect.com/docs/v2/cloud-platform/datasets/vendors",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "hummingbot",
+      "name": "Hummingbot",
+      "category": "Crypto trading framework",
+      "priority": "P2",
+      "products": [
+        "Undertow",
+        "Seiche"
+      ],
+      "audience": "Crypto liquidity researchers and bot developers",
+      "workflow": "Retain a capture and use it only after its recorded availability time.",
+      "artifact_label": "Forward research example",
+      "artifact_url": "https://github.com/beepboop2025/financial-evidence-skills/tree/main/integrations/finance-research",
+      "status": "Research companion or importer candidate; native platform execution requires separate validation.",
+      "official_source": "https://hummingbot.org/strategies/v2-strategies/controllers/",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "freqtrade",
+      "name": "Freqtrade / FreqAI",
+      "category": "Crypto trading framework",
+      "priority": "P2",
+      "products": [
+        "Undertow",
+        "Seiche",
+        "NoiseFloor"
+      ],
+      "audience": "Python trading-system researchers",
+      "workflow": "Retain a capture and use it only after its recorded availability time.",
+      "artifact_label": "Forward research example",
+      "artifact_url": "https://github.com/beepboop2025/financial-evidence-skills/tree/main/integrations/finance-research",
+      "status": "Research companion or importer candidate; native platform execution requires separate validation.",
+      "official_source": "https://www.freqtrade.io/en/stable/strategy-customization/",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "tradingview",
+      "name": "TradingView",
+      "category": "Charting and trader workspace",
+      "priority": "P1",
+      "products": [
+        "Seiche",
+        "Undertow",
+        "LiquiLens"
+      ],
+      "audience": "Traders using AI research alongside charting",
+      "workflow": "Use a narrowly scoped watchlist review beside cited funding evidence.",
+      "artifact_label": "MCP companion",
+      "artifact_url": "agent-clients.md#tradingview-companion",
+      "status": "Eligible TradingView account and client tool permissions required.",
+      "official_source": "https://www.tradingview.com/mcp/docs",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "alpaca",
+      "name": "Alpaca",
+      "category": "Broker API ecosystem",
+      "priority": "P2",
+      "products": [
+        "Financial Evidence",
+        "Seiche",
+        "LiquiLens",
+        "NoiseFloor"
+      ],
+      "audience": "Developers of trading assistants",
+      "workflow": "Review the evidence beside an existing paper simulation.",
+      "artifact_label": "Research companion",
+      "artifact_url": "agent-clients.md#alpaca-companion",
+      "status": "No brokerage connection or native partner integration included.",
+      "official_source": "https://docs.alpaca.markets/us/docs/trading-api-mcp",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "ibkr",
+      "name": "Interactive Brokers",
+      "category": "Broker and research marketplace",
+      "priority": "P2",
+      "products": [
+        "LiquiLens",
+        "Seiche",
+        "Financial Evidence"
+      ],
+      "audience": "Active investors and institutional research users",
+      "workflow": "Recurring macro/counterparty research consumed alongside TWS.",
+      "artifact_label": "Provider evaluation packet",
+      "artifact_url": "../distribution/provider-packets-20261011/ibkr.md",
+      "status": "Platform admission, qualified data scope and native acceptance required.",
+      "official_source": "https://gdcdyn.interactivebrokers.com/aces/Marketplace/InvestorsMarketplace",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "ctrader",
+      "name": "cTrader Store",
+      "category": "Retail trading platform",
+      "priority": "P3",
+      "products": [
+        "Seiche",
+        "Undertow where instrument coverage fits"
+      ],
+      "audience": "FX and CFD traders",
+      "workflow": "Review reference FX alongside your existing cTrader workspace.",
+      "artifact_label": "Open research panel",
+      "artifact_url": "desktop/",
+      "status": "Native cTrader import and marketplace review pending.",
+      "official_source": "https://help.ctrader.com/plugins/developers/all-apps/build-a-plugin/",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "mql5",
+      "name": "MetaTrader / MQL5 Market",
+      "category": "Retail trading platform",
+      "priority": "P3",
+      "products": [
+        "Seiche"
+      ],
+      "audience": "FX and CFD traders",
+      "workflow": "Source-dated macro funding panel without trading signals or order routing.",
+      "artifact_label": "Provider evaluation packet",
+      "artifact_url": "../distribution/provider-packets-20261011/mql5.md",
+      "status": "Platform admission, qualified data scope and native acceptance required.",
+      "official_source": "https://www.mql5.com/en/market/rules",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "ninjatrader",
+      "name": "NinjaTrader Ecosystem",
+      "category": "Retail trading platform",
+      "priority": "P3",
+      "products": [
+        "Seiche",
+        "NoiseFloor"
+      ],
+      "audience": "Futures traders and tool developers",
+      "workflow": "Review funding context or user-supplied correlation diagnostics.",
+      "artifact_label": "Provider evaluation packet",
+      "artifact_url": "../distribution/provider-packets-20261011/ninjatrader.md",
+      "status": "Platform admission, qualified data scope and native acceptance required.",
+      "official_source": "https://ninjatraderecosystem.com/article/ninjatrader-vendor-program/",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "zerodha",
+      "name": "Zerodha / Kite Connect",
+      "category": "Indian broker API ecosystem",
+      "priority": "P3",
+      "products": [
+        "LiquiLens",
+        "Seiche"
+      ],
+      "audience": "India-focused finance app developers",
+      "workflow": "Indian institution evidence alongside a user's existing research process.",
+      "artifact_label": "Provider evaluation packet",
+      "artifact_url": "../distribution/provider-packets-20261011/zerodha.md",
+      "status": "Platform admission, qualified data scope and native acceptance required.",
+      "official_source": "https://zerodha.com/products/api/",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "upstox",
+      "name": "Upstox",
+      "category": "Indian broker API ecosystem",
+      "priority": "P3",
+      "products": [
+        "LiquiLens",
+        "Seiche"
+      ],
+      "audience": "India-focused trading app developers",
+      "workflow": "Covered-institution and macro context in a research app.",
+      "artifact_label": "Read-only MCP companion",
+      "artifact_url": "../distribution/provider-packets-20261011/upstox.md",
+      "status": "Account-holder OAuth and native combined-session validation required.",
+      "official_source": "https://upstox.com/developer/api-documentation/mcp-integration/",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "bloomberg",
+      "name": "Bloomberg institutional workflows",
+      "category": "Institutional terminal",
+      "priority": "P3",
+      "products": [
+        "LiquiLens",
+        "Seiche"
+      ],
+      "audience": "Institutional analysts and treasury desks",
+      "workflow": "Institution and funding research integrated into an analyst's terminal workflow.",
+      "artifact_label": "Provider evaluation packet",
+      "artifact_url": "../distribution/provider-packets-20261011/bloomberg.md",
+      "status": "Current partner route must be confirmed; legacy App Portal materials are insufficient.",
+      "official_source": "https://assets.bbhub.io/professional/sites/10/App-Portal-Overview-for-Developers.pdf",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "lseg",
+      "name": "LSEG Workspace",
+      "category": "Institutional terminal",
+      "priority": "P3",
+      "products": [
+        "Seiche",
+        "LiquiLens"
+      ],
+      "audience": "Institutional analysts and treasury teams",
+      "workflow": "Review dated funding and institution evidence within a desk's existing workspace.",
+      "artifact_label": "Provider evaluation packet",
+      "artifact_url": "../distribution/provider-packets-20261011/lseg.md",
+      "status": "Platform admission, qualified data scope and native acceptance required.",
+      "official_source": "https://community.developers.lseg.com/discussion/133494/is-app-studio-still-available-for-sale",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "factset",
+      "name": "FactSet Marketplace",
+      "category": "Institutional data/workflow marketplace",
+      "priority": "P3",
+      "products": [
+        "LiquiLens",
+        "Seiche",
+        "eligible Riptide research"
+      ],
+      "audience": "Investment and risk teams",
+      "workflow": "Entity-linked financial-institution evidence or funding observations.",
+      "artifact_label": "Provider evaluation packet",
+      "artifact_url": "../distribution/provider-packets-20261011/factset.md",
+      "status": "Platform admission, qualified data scope and native acceptance required.",
+      "official_source": "https://www.factset.com/marketplace/catalog",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "fdc3",
+      "name": "FINOS FDC3 desktops",
+      "category": "Financial desktop interoperability",
+      "priority": "P2",
+      "products": [
+        "Financial Evidence",
+        "Evidence Carrier"
+      ],
+      "audience": "Institutional desktop integration teams",
+      "workflow": "Open an evidence packet in the reference app for an FDC3 desktop.",
+      "artifact_label": "Reference application",
+      "artifact_url": "../integrations/fdc3/evidence-inspector/",
+      "status": "Reference implementation; directory PR 40 remains unmerged.",
+      "official_source": "https://fdc3.finos.org/",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "talos",
+      "name": "Talos Provider Network",
+      "category": "Institutional crypto platform",
+      "priority": "P3",
+      "products": [
+        "Undertow",
+        "Seiche"
+      ],
+      "audience": "Digital-asset execution and risk desks",
+      "workflow": "Review liquidity and funding context before a desk's own execution decision.",
+      "artifact_label": "Provider evaluation packet",
+      "artifact_url": "../distribution/provider-packets-20261011/talos.md",
+      "status": "Platform admission, qualified data scope and native acceptance required.",
+      "official_source": "https://www.talos.com/provider-network",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "nasdaq",
+      "name": "Nasdaq Data Link",
+      "category": "Institutional data marketplace",
+      "priority": "P3",
+      "products": [
+        "Seiche",
+        "eligible LiquiLens datasets"
+      ],
+      "audience": "Data-driven investment researchers",
+      "workflow": "Consume a stable funding or institution dataset in research.",
+      "artifact_label": "Provider evaluation packet",
+      "artifact_url": "../distribution/provider-packets-20261011/nasdaq.md",
+      "status": "Platform admission, qualified data scope and native acceptance required.",
+      "official_source": "https://www.nasdaq.com/products/data/alternative/monetize-your-data",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "snowflake",
+      "name": "Snowflake Marketplace",
+      "category": "Cloud data marketplace",
+      "priority": "P3",
+      "products": [
+        "Rights-qualified Seiche / LiquiLens datasets"
+      ],
+      "audience": "Enterprise data and quant teams",
+      "workflow": "Join approved evidence with a firm's own research tables.",
+      "artifact_label": "Provider evaluation packet",
+      "artifact_url": "../distribution/provider-packets-20261011/snowflake.md",
+      "status": "Platform admission, qualified data scope and native acceptance required.",
+      "official_source": "https://docs.snowflake.com/en/en/collaboration/provider-becoming",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "databricks",
+      "name": "Databricks Marketplace",
+      "category": "Cloud data and AI marketplace",
+      "priority": "P2",
+      "products": [
+        "Financial Evidence MCP",
+        "rights-qualified datasets"
+      ],
+      "audience": "Enterprise AI and data engineering teams",
+      "workflow": "An enterprise agent calls source-cited financial research through MCP.",
+      "artifact_label": "Provider evaluation packet",
+      "artifact_url": "../distribution/provider-packets-20261011/databricks.md",
+      "status": "Platform admission, qualified data scope and native acceptance required.",
+      "official_source": "https://docs.databricks.com/aws/en/marketplace/create-listing",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "datarade",
+      "name": "Datarade",
+      "category": "Data marketplace",
+      "priority": "P2",
+      "products": [
+        "Seiche Reference FX"
+      ],
+      "audience": "Buyers of documented reference-rate histories",
+      "workflow": "Use documented ECB-derived reference-rate history in research.",
+      "artifact_label": "Existing listing status",
+      "artifact_url": "datarade.md",
+      "status": "Existing provider portal says Published; canonical public listing remains unverified.",
+      "official_source": "https://providers.datarade.ai/apply",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "neudata",
+      "name": "Neudata",
+      "category": "Institutional dataset discovery",
+      "priority": "P2",
+      "products": [
+        "Rights-qualified LiquiLens / Seiche datasets"
+      ],
+      "audience": "Institutional data-sourcing teams",
+      "workflow": "Evaluate a narrow dataset for a financial research process.",
+      "artifact_label": "Provider evaluation packet",
+      "artifact_url": "../distribution/provider-packets-20261011/neudata.md",
+      "status": "Existing provider enquiry submitted; acceptance pending. No duplicate enquiry sent.",
+      "official_source": "https://www.neudata.co/data_providers/sign_up?requested_subscription_status=pending_free",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "eaglealpha",
+      "name": "Eagle Alpha",
+      "category": "Institutional dataset discovery",
+      "priority": "P2",
+      "products": [
+        "Rights-qualified LiquiLens / Seiche / Undertow datasets"
+      ],
+      "audience": "Funds, private equity and data-sourcing teams",
+      "workflow": "A buyer assesses a well-documented research dataset.",
+      "artifact_label": "Provider evaluation packet",
+      "artifact_url": "../distribution/provider-packets-20261011/eaglealpha.md",
+      "status": "Existing provider enquiry submitted; acceptance pending. No duplicate enquiry sent.",
+      "official_source": "https://www.eaglealpha.com/solutions/data-vendors/",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "fintechsandbox",
+      "name": "Fintech Sandbox",
+      "category": "Fintech developer access program",
+      "priority": "P2",
+      "products": [
+        "LiquiLens",
+        "Seiche",
+        "Undertow public research"
+      ],
+      "audience": "Fintech startups building financial workflows",
+      "workflow": "A fintech team integrates evidence into a working prototype.",
+      "artifact_label": "Provider evaluation packet",
+      "artifact_url": "../distribution/provider-packets-20261011/fintechsandbox.md",
+      "status": "Existing provider enquiry submitted; acceptance pending. No duplicate enquiry sent.",
+      "official_source": "https://www.fintechsandbox.org/become-a-data-partner/",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "huggingface",
+      "name": "Hugging Face Spaces",
+      "category": "Research demo distribution",
+      "priority": "P2",
+      "products": [
+        "Financial Evidence",
+        "Evidence Carrier",
+        "NoiseFloor where relevant"
+      ],
+      "audience": "AI researchers and finance-agent developers",
+      "workflow": "Inspect a saved evidence packet locally in the browser.",
+      "artifact_label": "Live packet inspector",
+      "artifact_url": "https://huggingface.co/spaces/oldmacdonaldhadafarm/financial-evidence-packet-inspector",
+      "status": "Public Space checked running; this does not establish independent use.",
+      "official_source": "https://huggingface.co/docs/hub/spaces-overview",
+      "verified_customer_adoption": null
+    }
+  ]
+}

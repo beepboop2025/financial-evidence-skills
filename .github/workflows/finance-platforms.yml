@@ -1,0 +1,58 @@
+name: Finance platform examples
+
+on:
+  pull_request:
+    paths:
+      - 'integrations/finance-research/**'
+      - 'integrations/finance-desktop/**'
+      - 'docs/platforms/**'
+      - 'docs/distribution/provider-packets-20261011/**'
+      - 'scripts/build_platform_hub.py'
+      - 'tests/test_finance_research_*.py'
+      - '.github/workflows/finance-platforms.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'integrations/finance-research/**'
+      - 'integrations/finance-desktop/**'
+      - 'docs/platforms/**'
+      - 'docs/distribution/provider-packets-20261011/**'
+      - 'scripts/build_platform_hub.py'
+      - 'tests/test_finance_research_*.py'
+      - '.github/workflows/finance-platforms.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  research-frameworks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      OTEL_SDK_DISABLED: 'true'
+      CREWAI_TELEMETRY_DISABLED: 'true'
+      LANGCHAIN_TRACING_V2: 'false'
+      LANGSMITH_TRACING: 'false'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: '3.12'
+      - run: python -m pip install . -r integrations/finance-research/requirements-native.txt
+      - run: python -m unittest discover -s tests -p 'test_finance_research_*.py' -v
+      - run: python scripts/build_platform_hub.py --check
+
+  desktop-companion:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '24'
+      - run: node --test integrations/finance-desktop/test_*.mjs

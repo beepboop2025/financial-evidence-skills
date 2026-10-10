@@ -1,0 +1,63 @@
+{
+  "captured_at": "2026-10-10T19:20:14.503085+00:00",
+  "sources": [
+    {
+      "currency": "USD",
+      "url": "https://api.seiche.info/api/series/ECBFX_USD.csv",
+      "sha256": "92eecd63721fbebab598461851dda8c59b3bb37530102ce95533555ccc28e148",
+      "rows": 7111,
+      "first_date": "1999-01-04",
+      "last_date": "2026-10-09",
+      "sample_rows": 20,
+      "sample_parity": "20/20",
+      "source_comments": "# Seiche series ECBFX_USD: USD per euro (ECB daily reference rate)\n# source: ecb_fx (remote id EXR/D.USD.EUR.SP00.A), unit: USD/EUR, cadence: daily, native lag: published same day to next business day\n# retrieved_at: 2026-10-10T16:07:22+00:00, last_observation: 2026-10-09, staleness: fresh\n# vintage: the upstream's current print, not a reconstructed as-of view; lightly revised series revise here too\n# cite: Seiche (https://seiche.info/methodology); credit for the data belongs to the source above\n# Source: European Central Bank. Reference data is freely available from the ECB; not executable quotes. https://www.ecb.europa.eu/services/using-our-site/disclaimer/html/index.en.html",
+      "cors": "*",
+      "release_sha": "10d8acd99add9aceed1eb3919c118f62005eefdf"
+    },
+    {
+      "currency": "GBP",
+      "url": "https://api.seiche.info/api/series/ECBFX_GBP.csv",
+      "sha256": "128157e6efe84adca029a816f5a09082fe314be3a3dd74fa0ac588212829ebdc",
+      "rows": 7111,
+      "first_date": "1999-01-04",
+      "last_date": "2026-10-09",
+      "sample_rows": 20,
+      "sample_parity": "20/20",
+      "source_comments": "# Seiche series ECBFX_GBP: GBP per euro (ECB daily reference rate)\n# source: ecb_fx (remote id EXR/D.GBP.EUR.SP00.A), unit: GBP/EUR, cadence: daily, native lag: published same day to next business day\n# retrieved_at: 2026-10-10T16:07:22+00:00, last_observation: 2026-10-09, staleness: fresh\n# vintage: the upstream's current print, not a reconstructed as-of view; lightly revised series revise here too\n# cite: Seiche (https://seiche.info/methodology); credit for the data belongs to the source above\n# Source: European Central Bank. Reference data is freely available from the ECB; not executable quotes. https://www.ecb.europa.eu/services/using-our-site/disclaimer/html/index.en.html",
+      "cors": "*",
+      "release_sha": "10d8acd99add9aceed1eb3919c118f62005eefdf"
+    },
+    {
+      "currency": "JPY",
+      "url": "https://api.seiche.info/api/series/ECBFX_JPY.csv",
+      "sha256": "937b8787f91e0858f4841c552a7e0fb122a0872bd29df692d57b7a717c025dee",
+      "rows": 7111,
+      "first_date": "1999-01-04",
+      "last_date": "2026-10-09",
+      "sample_rows": 20,
+      "sample_parity": "20/20",
+      "source_comments": "# Seiche series ECBFX_JPY: JPY per euro (ECB daily reference rate)\n# source: ecb_fx (remote id EXR/D.JPY.EUR.SP00.A), unit: JPY/EUR, cadence: daily, native lag: published same day to next business day\n# retrieved_at: 2026-10-10T16:07:22+00:00, last_observation: 2026-10-09, staleness: fresh\n# vintage: the upstream's current print, not a reconstructed as-of view; lightly revised series revise here too\n# cite: Seiche (https://seiche.info/methodology); credit for the data belongs to the source above\n# Source: European Central Bank. Reference data is freely available from the ECB; not executable quotes. https://www.ecb.europa.eu/services/using-our-site/disclaimer/html/index.en.html",
+      "cors": "*",
+      "release_sha": "10d8acd99add9aceed1eb3919c118f62005eefdf"
+    },
+    {
+      "currency": "INR",
+      "url": "https://api.seiche.info/api/series/ECBFX_INR.csv",
+      "sha256": "3febf426f0a29a41f2b4d8bacfb71703148e27daa3c990c40e2ec8d39450ef91",
+      "rows": 4551,
+      "first_date": "2009-01-02",
+      "last_date": "2026-10-09",
+      "sample_rows": 20,
+      "sample_parity": "20/20",
+      "source_comments": "# Seiche series ECBFX_INR: INR per euro (ECB daily reference rate)\n# source: ecb_fx (remote id EXR/D.INR.EUR.SP00.A), unit: INR/EUR, cadence: daily, native lag: published same day to next business day\n# retrieved_at: 2026-10-10T16:07:22+00:00, last_observation: 2026-10-09, staleness: fresh\n# vintage: the upstream's current print, not a reconstructed as-of view; lightly revised series revise here too\n# cite: Seiche (https://seiche.info/methodology); credit for the data belongs to the source above\n# Source: European Central Bank. Reference data is freely available from the ECB; not executable quotes. https://www.ecb.europa.eu/services/using-our-site/disclaimer/html/index.en.html",
+      "cors": "*",
+      "release_sha": "10d8acd99add9aceed1eb3919c118f62005eefdf"
+    }
+  ],
+  "ecb_xml_url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml",
+  "ecb_xml_sha256": "9be8fea98155a0897b7f933e982d7b5129a35369173fdd580a6d09f3369e6f5f",
+  "sample_parity_pass": true,
+  "sample_scope": "Last 20 published dates per currency; missing dates absent.",
+  "coverage_complete": false,
+  "independent_customer_use": null
+}

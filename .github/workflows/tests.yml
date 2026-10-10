@@ -185,6 +185,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - run: python3 -m unittest discover -s tests -v
       - run: node --test tests/*.test.js tests/*.test.cjs
+      - run: python3 scripts/build_platform_hub.py --check
       - run: python3 -m py_compile financial-evidence/scripts/fetch_evidence.py src/financial_evidence/*.py
       - run: python3 -m pip install .
       - run: financial-evidence route --topic money-market --format json

@@ -1,0 +1,5 @@
+# Direct framework versions observed in the 2026-10-11 validation environment.
+# The companion/capture/parser need only the root financial-evidence package.
+langchain-core==1.6.9
+langgraph==1.2.14
+crewai==1.15.27

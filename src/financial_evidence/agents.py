@@ -5,7 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
-from typing import Callable
+from typing import Callable, get_type_hints
 
 from .service import EvidenceService
 from .tables import DATASETS, Dataset, dataset_catalog, query_packet, validate_query
@@ -169,6 +169,11 @@ def framework_tools(framework: str, client: EvidenceAgentClient) -> list:
         return [tool(function) for function in functions]
     if framework == "crewai":
         from crewai.tools import tool
+        # CrewAI constructs a Pydantic schema from __annotations__. Resolve
+        # postponed aliases (notably Dataset) before they leave this module's
+        # namespace; otherwise registration succeeds but invocation fails.
+        for function in functions:
+            function.__annotations__ = get_type_hints(function)
         return [tool(function) for function in functions]
     if framework == "openai":
         from agents import function_tool

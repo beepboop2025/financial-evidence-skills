@@ -11,6 +11,8 @@ License: MIT for the software; source publishers retain rights in upstream data.
 
 ## Primary documentation
 
+- [Finance platform setup](https://beepboop2025.github.io/financial-evidence-skills/platforms/): connection instructions, forward-research examples and institutional evaluation packets for 36 finance and agent platforms. Each entry distinguishes available artifacts from native validation and marketplace acceptance.
+
 - [Browser Research Desk](https://beepboop2025.github.io/financial-evidence-skills/start/): no-install bank, funding and liquidity tasks, complete source-consistent captures, CSV/JSON and shareable research views. Optional installation measurement is separate from verified people.
 
 - [Research tool hub](https://beepboop2025.github.io/financial-evidence-skills/tools/): hosted OpenBB desk, complete paginated Python captures, a notebook, Excel/Power BI rows and MCP project instructions for LiquiLens, Seiche and Undertow. Institutional vendor acceptance is separate.

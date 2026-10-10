@@ -1,14 +1,14 @@
 {
-  "recorded_at": "2026-10-10T05:30:53.903883+00:00",
+  "recorded_at": "2026-10-10T05:36:59.863294+00:00",
   "receipt": "distribution/wide-distribution-20261010.json",
   "report": "distribution/wide-distribution-20261010.md",
-  "scope": "Seven received submissions requesting eight product placements across five audience-specific directories; four older live placements and one older pending PR reconciled separately.",
-  "received_submission_operations": 7,
-  "new_product_placements_submitted": 8,
-  "destinations_with_new_submissions": 5,
+  "scope": "Nine received submissions requesting ten product placements across seven audience-specific directories; four older live placements and one older pending PR reconciled separately. Owner-approved Cursor and FinSkilz submissions are now received, with scan/evaluation pending.",
+  "received_submission_operations": 9,
+  "new_product_placements_submitted": 10,
+  "destinations_with_new_submissions": 7,
   "new_live_listings_verified": 0,
   "existing_live_placements_reconciled": 4,
-  "prepared_owner_permission_gates": 2,
+  "prepared_owner_permission_gates": 0,
   "paid_placement_cost_inr": 0,
   "independent_adoption_verified": false,
   "coverage_complete": false,
@@ -131,6 +131,32 @@
       "submitted_at": "2026-10-10T05:30:53.903883+00:00",
       "verified_at": "2026-10-10T05:30:53.903883+00:00",
       "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/wide-distribution-20261010.json"
+    },
+    {
+      "id": "cursor-directory-financial-evidence",
+      "name": "Cursor Directory \u2014 Financial Evidence",
+      "product": "Financial Evidence",
+      "channel": "editor-directory",
+      "state": "submitted",
+      "submission_url": "https://cursor.directory/plugins/financial-evidence-by-liquilens",
+      "cost": "free",
+      "detail": "Owner-approved email-only GitHub sign-in completed. The Financial Evidence MCP plugin was submitted and has an owner-visible record. Cursor Directory says it is scanning and hidden from the public directory until the security agent finishes. The listing includes one self-contained remote MCP configuration; no incomplete inline skill bundle is distributed.",
+      "next_action": "Wait for the existing security scan and verify anonymous public visibility and the actual install configuration before claiming live publication.",
+      "verified_at": "2026-10-10T05:36:59.863294+00:00",
+      "submitted_at": "2026-10-10T05:36:59.863294+00:00"
+    },
+    {
+      "id": "finskilz-financial-evidence",
+      "name": "FinSkilz \u2014 Financial Evidence",
+      "product": "Financial Evidence",
+      "channel": "finance-mcp-directory",
+      "state": "submitted",
+      "submission_url": "https://finskilz.com/servers/submit/",
+      "cost": "free",
+      "detail": "After explicit owner approval of all displayed consents, the free Financial Evidence application returned \"Submission received!\". FinSkilz states that review and public evaluation will follow. No score or public listing is claimed.",
+      "next_action": "Await evaluation results and verify the public listing and actual supported-tool results; do not resubmit.",
+      "verified_at": "2026-10-10T05:36:16.700005+00:00",
+      "submitted_at": "2026-10-10T05:36:16.700005+00:00"
     }
   ],
   "reconciled_existing": [
@@ -200,32 +226,7 @@
       "reconciled_existing": true
     }
   ],
-  "prepared_gates": [
-    {
-      "id": "cursor-directory-financial-evidence",
-      "name": "Cursor Directory \u2014 Financial Evidence",
-      "product": "Financial Evidence",
-      "channel": "editor-directory",
-      "state": "ready_account_action",
-      "submission_url": "https://cursor.directory/plugins/new",
-      "cost": "free route under review",
-      "detail": "Listing copy is prepared. GitHub sign-in stopped at a new email-address read permission for Cursor Directory; no authorization or listing submission was made.",
-      "next_action": "Obtain owner approval for the displayed email-only OAuth grant, then inspect the native submission requirements before submitting.",
-      "verified_at": "2026-10-10T05:30:53.903883+00:00"
-    },
-    {
-      "id": "finskilz-financial-evidence",
-      "name": "FinSkilz \u2014 Financial Evidence",
-      "product": "Financial Evidence",
-      "channel": "finance-mcp-directory",
-      "state": "ready_account_action",
-      "submission_url": "https://finskilz.com/servers/submit/",
-      "cost": "free",
-      "detail": "The complete application is prepared with the Streamable HTTP endpoint and supported-tool limitations. Required consent for recurring public tests, score publication, listing-update email and legal policies awaits owner approval. Not submitted.",
-      "next_action": "Obtain approval for the displayed required consents, submit the retained form once, and verify the receipt.",
-      "verified_at": "2026-10-10T05:30:53.903883+00:00"
-    }
-  ],
+  "prepared_gates": [],
   "qualified_routes_not_submitted": [
     {
       "destination": "AI Agents List",
@@ -243,14 +244,16 @@
   "validation": {
     "awesome_quant": "Both added entries passed the upstream README validator, local site generation and parser checks. Both upstream validate jobs completed successfully on 0ee3245651ef798f7cbe64a8c8221188c584999d. Maintainer acceptance remains pending.",
     "other_prs": "One factual entry each; current README and prior requests checked for duplicates; git diff --check passed. Public PR readback verified.",
-    "wealthmcp": "Three separate operator UI receipts retained. No public listing is claimed."
+    "wealthmcp": "Three separate operator UI receipts retained. No public listing is claimed.",
+    "cursor": "Imported remote MCP config matches the public .mcp.json. Removed the auto-inlined skill because its adjacent scripts/references were not part of the detected inline component. Final listing is a self-contained remote MCP connection. No installed-client adoption or completed security scan is claimed.",
+    "finskilz": "All five displayed consents were explicitly owner-approved; final UI says Submission received."
   },
   "ledger_counts_after": {
     "live": 48,
-    "submitted": 35,
+    "submitted": 37,
     "closed_unmerged": 1,
     "eligible_automatic": 1,
-    "ready_account_action": 7,
+    "ready_account_action": 5,
     "ready_validation": 1,
     "conditional_artifact": 1,
     "paused_external": 2,
@@ -320,6 +323,36 @@
       "file": "finskilz-prepared.png",
       "sha256": "59dd48a7d48712aa382eefa6e55e106245e15bdecebd956e76ba9cd99d333a47",
       "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "finskilz-receipt.txt",
+      "sha256": "30319ba1c2da9ff8ec3ec76020604bd85bc5d3256ffad0e94299351ac80ac98b",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "finskilz-receipt.png",
+      "sha256": "eeb63349a1288ea3a1841250b4d447ab17e227720471b2e4dc928a4735337994",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "cursor-prepared-submission.txt",
+      "sha256": "fffd0c498c60b38e8c402603e40ff8f458fc26e887e872fc7a5818291547d410",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "cursor-receipt.txt",
+      "sha256": "922aefed691736d06d835561b2538aa405539bc76f7cf1eed34e57232e105cd6",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "cursor-receipt.png",
+      "sha256": "ee5bd13c963711b5aac545b002aab8ffdbda988367d89e33b69bad9925f8cd31",
+      "storage": "Private retained evidence; sanitized summary only is public."
+    },
+    {
+      "file": "narcoscope-homepage-correction.json",
+      "sha256": "f6ab1076debcaa1e5ea506c26c0099ad1a5c2ce4328015091b1b66b5fa72af7a",
+      "storage": "Private retained evidence; sanitized summary only is public."
     }
   ],
   "limits": [
@@ -327,5 +360,24 @@
     "Existing placements found during duplicate checks are not new distribution created by this batch.",
     "Private form evidence, contact details and OAuth state are not published.",
     "Previous release identifiers, per-entry observation clocks, commercial commitments and pending submissions remain unchanged."
-  ]
+  ],
+  "completed_owner_permissions": [
+    {
+      "destination": "Cursor Directory",
+      "permission": "Read-only GitHub email addresses",
+      "approved_by_owner": true,
+      "result": "Sign-in completed and plugin submitted; security scan pending."
+    },
+    {
+      "destination": "FinSkilz",
+      "permission": "Displayed evaluation, public-score, listing-update-email and policy consents",
+      "approved_by_owner": true,
+      "result": "Submission received; review and evaluation pending."
+    }
+  ],
+  "additional_metadata_correction": {
+    "repository": "https://github.com/beepboop2025/narcoscope",
+    "homepage": "https://narcoscope.com",
+    "result": "Legacy Vercel homepage replaced with the canonical public domain after HTTP 200 verification; GitHub readback matches."
+  }
 }

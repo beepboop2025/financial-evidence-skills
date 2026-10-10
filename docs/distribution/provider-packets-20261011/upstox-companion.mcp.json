@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "upstox-read-only": {
+      "type": "http",
+      "url": "https://mcp.upstox.com/mcp"
+    },
+    "financial-evidence": {
+      "type": "http",
+      "url": "https://api.seiche.info/openbb/mcp"
+    }
+  }
+}

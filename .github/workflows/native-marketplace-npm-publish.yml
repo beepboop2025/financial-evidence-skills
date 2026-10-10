@@ -1,0 +1,71 @@
+name: Publish native n8n package
+
+on:
+  workflow_dispatch:
+    inputs:
+      expected_sha:
+        description: Exact reviewed main commit (40 hexadecimal characters)
+        type: string
+        required: true
+      expected_version:
+        description: Exact package version to publish
+        type: string
+        required: true
+      publish:
+        description: Publish to npm using its configured trusted publisher
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: native-marketplace-npm-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    permissions:
+      contents: read
+      id-token: write
+    defaults:
+      run:
+        working-directory: integrations/n8n-node
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Verify reviewed source and version
+        env:
+          EXPECTED_SHA: ${{ inputs.expected_sha }}
+          EXPECTED_VERSION: ${{ inputs.expected_version }}
+        run: |
+          node -e 'const {execFileSync}=require("node:child_process"); const sha=process.env.EXPECTED_SHA; if (!/^[a-f0-9]{40}$/.test(sha) || sha !== execFileSync("git",["rev-parse","HEAD"],{encoding:"utf8"}).trim()) throw Error("Reviewed source mismatch"); if (require("./package.json").version !== process.env.EXPECTED_VERSION) throw Error("Package version mismatch")'
+      - run: npm install --global npm@11.6.2 --no-audit --no-fund
+      - run: npm ci --ignore-scripts --legacy-peer-deps --no-audit --no-fund
+      - run: npm run build && npm run lint && npm test
+      - run: npm install --prefix "$RUNNER_TEMP/n8n-runtime" n8n@2.42.6 --legacy-peer-deps --no-audit --no-fund
+      - run: python3 scripts/native_smoke.py --n8n-bin "$RUNNER_TEMP/n8n-runtime/node_modules/.bin/n8n" --evidence-dir "$RUNNER_TEMP/n8n-evidence"
+      - name: Dry run the exact tested tarball
+        run: npm publish "$RUNNER_TEMP"/n8n-evidence/*.tgz --access public --dry-run --ignore-scripts
+      - name: Publish with provenance
+        if: inputs.publish
+        run: npm publish "$RUNNER_TEMP"/n8n-evidence/*.tgz --access public --provenance --ignore-scripts
+      - name: Verify public bytes and provenance metadata
+        if: inputs.publish
+        run: node scripts/verify_published.mjs "$RUNNER_TEMP"/n8n-evidence/*.tgz "$RUNNER_TEMP/n8n-evidence/npm-readback.json"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: n8n-publish-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/n8n-evidence/*.json
+            ${{ runner.temp }}/n8n-evidence/*.stdout
+            ${{ runner.temp }}/n8n-evidence/*.stderr
+            ${{ runner.temp }}/n8n-evidence/*.tgz
+          if-no-files-found: error

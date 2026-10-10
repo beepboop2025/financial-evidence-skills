@@ -1,0 +1,52 @@
+{
+  "schema": "financial-evidence.finance-research-validation.v1",
+  "observed_at": "2026-10-10T19:22:30Z",
+  "traffic_class": "synthetic_internal_validation",
+  "coverage_complete": false,
+  "core_tests": {
+    "command": "python3 -m unittest discover -s tests -p 'test_finance_research_*.py' -v",
+    "python": "3.14.7",
+    "tests_run": 11,
+    "passed": 8,
+    "skipped_optional_framework_tests": 3,
+    "failures": 0,
+    "status": "passed_core_optional_frameworks_not_installed_in_system_python"
+  },
+  "native_frameworks": {
+    "python": "3.12.12",
+    "requirements": "requirements-native.txt",
+    "langchain_core": "1.6.9",
+    "langgraph": "1.2.14",
+    "crewai": "1.15.27",
+    "version_evidence": "Resolved distribution metadata in isolated SSD environment",
+    "status": "pending_native_tests_local_install_waiting_on_filesystem_io",
+    "ci_workflow": "../../.github/workflows/finance-platforms.yml",
+    "model_calls": 0
+  },
+  "public_probe": {
+    "observed_at": "2026-10-10T19:14:50Z",
+    "url": "https://api.seiche.info/openbb/api/v1/agent-query?dataset=money_markets&entity=USD&limit=2",
+    "user_agent": "financial-evidence-finance-research-synthetic-validation/0.1",
+    "status": "bounded_public_response_observed",
+    "transport_status": "complete",
+    "returned_rows": 1,
+    "next_offset": null,
+    "observation_date": "2026-10-08",
+    "source_knowledge_time": "2026-10-09T12:07:51+00:00",
+    "source_content_sha256": "0139007da441f5d323748b601f358c20aef04f7061e5de1482fb147fdbfec43d",
+    "source_document_reported_status": "PARTIAL",
+    "native_client_run": false
+  },
+  "route_limits": {
+    "tradingagents": "Local LangChain extension candidate; upstream graph not run or submitted",
+    "quantconnect": "PythonData reader candidate and shared parser checks; LEAN runtime not installed or run",
+    "hummingbot": "Standalone human research companion only; no native bot session",
+    "freqtrade": "Standalone human research companion only; no native bot session"
+  },
+  "adoption": {
+    "independent_users_observed": 0,
+    "returning_users_observed": 0,
+    "marketplace_acceptance_observed": false,
+    "financial_authority": "none"
+  }
+}

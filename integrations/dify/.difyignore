@@ -2,5 +2,10 @@
 __pycache__/
 *.pyc
 tests/
+scripts/
 .env
+.env.*
+.git/
+.gitignore
+.difyignore
 *.difypkg

@@ -1,0 +1,45 @@
+{
+  "checked_at": "2026-10-10T19:24:25.319Z",
+  "offline_tests": 6,
+  "offline_tests_pass": 6,
+  "live_csv_parsing": [
+    {
+      "currency": "USD",
+      "rows": 7111,
+      "last_observation": "2026-10-09",
+      "source_retrieved_at": "2026-10-10T16:07:22+00:00",
+      "staleness": "fresh"
+    },
+    {
+      "currency": "GBP",
+      "rows": 7111,
+      "last_observation": "2026-10-09",
+      "source_retrieved_at": "2026-10-10T16:07:22+00:00",
+      "staleness": "fresh"
+    },
+    {
+      "currency": "JPY",
+      "rows": 7111,
+      "last_observation": "2026-10-09",
+      "source_retrieved_at": "2026-10-10T16:07:22+00:00",
+      "staleness": "fresh"
+    },
+    {
+      "currency": "INR",
+      "rows": 4551,
+      "last_observation": "2026-10-09",
+      "source_retrieved_at": "2026-10-10T16:07:22+00:00",
+      "staleness": "fresh"
+    }
+  ],
+  "live_csv_parsing_pass": true,
+  "native_ctrader_verified": false,
+  "browser_rendering_verified": false,
+  "broker_connections": 0,
+  "orders_submitted": 0,
+  "independent_customer_use": null,
+  "sample_rows_checked_against_ecb": 80,
+  "sample_parity_pass": true,
+  "local_packet_links_pass": true,
+  "route_packets": 16
+}

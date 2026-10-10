@@ -10,6 +10,20 @@ connection in your private environment, run `python -m main`, and exercise
 **Get Evidence Page** in a real workflow. Never commit the debugging key.
 Package with the official Dify plugin CLI after native testing.
 
+Create and check the archive with:
+
+```sh
+dify plugin package . --output_path /path/to/financial_evidence.difypkg
+python scripts/verify_package.py /path/to/financial_evidence.difypkg
+```
+
+The verifier compares every packaged byte against this source directory and
+rejects extra files, including private debug configuration. The CI workflow
+`native-marketplace-build.yml` verifies the checksum of Dify CLI 0.6.11 before
+packaging and retains the archive and file-hash receipt. Packaging verifies the
+installable archive; Dify remote-debug workflow execution remains a separate
+acceptance step. Never attach a `.env` file or the debug key to a submission.
+
 Select `bank_risk` or `money_markets`, start with 25 rows, and preserve the JSON
 message in your research output. `next_offset` is explicit; no automatic data
 collection loop runs. Keep sources, observation dates, units, missing values,

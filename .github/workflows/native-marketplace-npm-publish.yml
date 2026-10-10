@@ -76,6 +76,7 @@ jobs:
             --evidence-dir "$RUNNER_TEMP/n8n-evidence" --archive "$ARCHIVE" \
             --expected-sha256 "$EXPECTED_ARCHIVE_SHA256"
       - name: Dry run the exact tested tarball
+        if: inputs.mode != 'verify-published'
         run: npm stage publish "$RUNNER_TEMP"/n8n-evidence/*.tgz --access public --tag latest --dry-run --ignore-scripts
       - name: Verify public bytes and provenance metadata
         if: inputs.mode == 'verify-published'

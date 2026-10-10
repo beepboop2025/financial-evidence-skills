@@ -93,7 +93,7 @@ and `expected_archive_sha256` must equal the reviewed archive hash. The modes ar
 | --- | --- |
 | `dry-run` (default) | Source/archive checks, unit tests, native n8n execution and npm staging dry run; no registry mutation or OIDC publishing permission |
 | `stage` | The same checks, then OIDC staging with provenance; uploads the npm stage result; awaits a separate human approval |
-| `verify-published` | The same candidate checks, plus anonymous registry identity, SHA-512 integrity, byte equality and provenance-metadata readback after approval |
+| `verify-published` | The same source and native checks, plus anonymous registry identity, SHA-512 integrity, byte equality and provenance-metadata readback after approval; skips staging dry run because npm rejects already-published versions |
 
 Run `dry-run` first and retain its `archive-check.json` and `receipt.json`.
 After the exact package trust is configured, run `stage`. Newly configured npm
@@ -103,9 +103,13 @@ hash and GitHub provenance from the successful run. The npm account holder
 then approves that stage separately in npm with 2FA. Never approve the earlier
 local bootstrap stage.
 
-After approval, run `verify-published`, inspect the linked provenance subject
-and workflow identity, and install the exact registry version in an isolated
-consumer to verify its n8n metadata. Only then record npm publication. Submit
+After approval, run `verify-published`. That script checks registry bytes and
+the presence of provenance metadata; it does not verify a signed attestation.
+Separately verify the attestation signature and subject digest against the
+reviewed tarball, repository `beepboop2025/financial-evidence-skills`, workflow
+`native-marketplace-npm-publish.yml`, and source SHA from the successful staging
+run. Install the exact registry version in an isolated consumer to verify its
+n8n metadata. Only then record npm publication. Submit
 that version to the [n8n Creator Portal](https://creators.n8n.io/nodes) for its
 separate review; [n8n requires GitHub Actions provenance for verified nodes](https://docs.n8n.io/connect/create-nodes/deploy-your-node/submit-community-nodes).
 Neither staging nor a successful registry readback proves n8n acceptance or

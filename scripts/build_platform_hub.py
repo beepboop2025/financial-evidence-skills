@@ -65,7 +65,8 @@ def assets() -> dict[str, bytes]:
                 ROOT / "tests/test_finance_research_forward.py",
                 DEST / "agent-clients.md", DEST / "datarade.md", DEST / "routes.json",
                 DEST / "pilot-scorecard.csv", DEST / "native-packages.md",
-                DEST / "native-packages.json", DEST / "n8n-publication-20261011.json",
+                DEST / "native-packages.json", DEST / "colab-verification-20261011.json",
+                DEST / "n8n-publication-20261011.json",
                 DEST / "n8n-creator-submission-20261011.json"]
     # Explicit public allowlist: never collect the native runtime or its state.
     flowise_files = ("README.md", "NOTICE.md", "FLOWISE-LICENSE.md", "publication.json",
@@ -128,6 +129,7 @@ historical decisions. No broker credentials or order execution is included.
             archive.writestr(info, data)
     result = {"index.html": page(manifest), "finance-platform-kit.zip": buffer.getvalue(),
               "platform-search.mjs": (DEST / "platform-search.mjs").read_bytes(), **downloads}
+    result["colab-verification-20261011.json"] = (DEST / "colab-verification-20261011.json").read_bytes()
     result["n8n-publication-20261011.json"] = (DEST / "n8n-publication-20261011.json").read_bytes()
     result["n8n-creator-submission-20261011.json"] = (DEST / "n8n-creator-submission-20261011.json").read_bytes()
     result.update({f"flowise/{name}": (DEST / "flowise" / name).read_bytes() for name in flowise_files})

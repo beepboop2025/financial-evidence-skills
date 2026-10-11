@@ -1,0 +1,57 @@
+{
+  "checked_at": "2026-10-11T00:55:11.109121+00:00",
+  "source_commit": "cba76e6c639346b3978455fb21aae71232798779",
+  "notebook_sha256": "6fbeb9fb2a9ed2a3f9aafe9c91825280031fb6cef668a36dec32c22b12699069",
+  "runtime": "Google Colab CPU",
+  "notebook_render_verified": true,
+  "pinned_helper_download_and_checksum_verified": true,
+  "all_four_code_cells_executed": true,
+  "synthetic": true,
+  "session_only_change": "SYNTHETIC = True",
+  "source_completeness_gates_unchanged": true,
+  "receipts": [
+    {
+      "task": "funding",
+      "dataset": "money_markets",
+      "captured_at": "2026-10-11T00:55:09.436811+00:00",
+      "row_count": 1,
+      "pages_read": 1,
+      "csv_policy": "nulls_empty_formula_strings_escaped_original_values_in_json",
+      "sha256": {
+        "evidence.json": "64522c02d0c4f1abff4e73dd21bc4254608430cbf004d32c0b2a3f7dd2cd4de3",
+        "rows.csv": "0c805fa6a6d8eb98c405c1be337b295db44bef8bbe073c90d7c9d2f4d3b16748"
+      },
+      "external_user_or_payment_verified": false
+    },
+    {
+      "task": "bank",
+      "dataset": "bank_risk",
+      "captured_at": "2026-10-11T00:55:10.590773+00:00",
+      "row_count": 7,
+      "pages_read": 1,
+      "csv_policy": "nulls_empty_formula_strings_escaped_original_values_in_json",
+      "sha256": {
+        "evidence.json": "e8738a4dd522668fa9a72e0f8ebeb1f46c044f5ccaa9098b0749e5e1c46385e3",
+        "rows.csv": "852e3193733b43245dcad3200e85790c42f2cda90a12693ee9ea0dd377154c82"
+      },
+      "external_user_or_payment_verified": false
+    },
+    {
+      "task": "liquidity",
+      "dataset": "market_liquidity",
+      "captured_at": "2026-10-11T00:55:11.109121+00:00",
+      "row_count": 18,
+      "pages_read": 1,
+      "csv_policy": "nulls_empty_formula_strings_escaped_original_values_in_json",
+      "sha256": {
+        "evidence.json": "28cfd669ee5f40918734848884eb4fe081642beed79906f0f4a8033c3dd98879",
+        "rows.csv": "b59bfc57343b672fa240843de79f70f53a0afa6188ca302d6b918b240c2bd521"
+      },
+      "external_user_or_payment_verified": false
+    }
+  ],
+  "independent_adoption_verified": false,
+  "initial_attempt": "Prior notebook refused an incomplete upstream retrieval; subsequent per-task notebook execution completed all three captures.",
+  "google_sheets_native_execution_verified": false,
+  "runtime_disconnected_and_deleted_after_check": true
+}

@@ -119,6 +119,31 @@ class DirectClientTests(unittest.IsolatedAsyncioTestCase):
             with self.assertRaises(ValueError):
                 ProductClient(measurement_timeout=deadline)
 
+    async def test_late_async_sink_exception_never_reaches_event_loop_logs(self):
+        loop = asyncio.get_running_loop()
+        previous_handler = loop.get_exception_handler()
+        exceptions = []
+        loop.set_exception_handler(lambda _loop, context: exceptions.append(context))
+        async def transport(*args): return {"result":{}}
+        async def sink(event):
+            try:
+                await asyncio.sleep(2)
+            except asyncio.CancelledError:
+                # Failure after the caller deadline exercises Python 3.14's
+                # shield logging path, including exception-text disclosure.
+                await asyncio.sleep(0.01)
+                raise RuntimeError("PRIVATE-SINK-CREDENTIAL-DO-NOT-LOG") from None
+        client = ProductClient(transport=transport, event_sink=sink, measurement=True,
+                               measurement_timeout=0.02)
+        try:
+            self.assertIn("payload", await client.call("seiche", "funding_stress_now"))
+            self.assertFalse(await asyncio.wait_for(client._measurement_task, 0.5))
+            await asyncio.sleep(0)
+            self.assertEqual(client.measurement_failures, 1)
+            self.assertEqual(exceptions, [])
+        finally:
+            loop.set_exception_handler(previous_handler)
+
     def test_blocked_optional_sink_does_not_hold_process_shutdown(self):
         script = """
 import asyncio, threading

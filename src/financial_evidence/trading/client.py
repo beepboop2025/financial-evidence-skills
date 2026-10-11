@@ -138,10 +138,17 @@ class ProductClient:
 
         self._measurement_thread = threading.Thread(target=invoke, daemon=True,
                                                      name="product-measurement")
-        self._measurement_thread.start()
-        sent = await result
-        if inspect.isawaitable(sent):
-            await asyncio.wait_for(sent, timeout=max(0, deadline - time.monotonic()))
+        try:
+            self._measurement_thread.start()
+            sent = await result
+            if inspect.isawaitable(sent):
+                await asyncio.wait_for(sent, timeout=max(0, deadline - time.monotonic()))
+            return True
+        except Exception:
+            # Python 3.14 may log an exception from a shielded task after its
+            # caller times out, even when a done callback retrieves it. Convert
+            # optional sink failures before they cross that task boundary.
+            return False
 
     async def _measure(self, event):
         deadline = time.monotonic() + self.measurement_timeout
@@ -161,7 +168,8 @@ class ProductClient:
                 # Observe late errors without logging sink contents or
                 # adding a second failure after the call deadline.
                 task.add_done_callback(lambda done: None if done.cancelled() else done.exception())
-                await asyncio.shield(task)
+                if not await asyncio.shield(task):
+                    self.measurement_failures += 1
 
         try:
             await asyncio.wait_for(serialized_delivery(), timeout=self.measurement_timeout)

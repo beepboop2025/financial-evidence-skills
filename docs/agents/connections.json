@@ -150,16 +150,16 @@
     "optional_measurement": "Separate opt-in enrollment and deletion routes exist; these connection examples do not enroll installations.",
     "release_identity": {
       "schema": "financial-evidence.workspace-release.v1",
-      "release_id": "workspace-1.1.3+e6ad3584290b",
-      "workspace_version": "1.1.3",
-      "package_version": "0.1.6",
-      "source_commit": "e6ad3584290b8aa1d4f0d54f184ea959fe27465b",
+      "release_id": "workspace-1.3.0+4802a9b3bfb9",
+      "workspace_version": "1.3.0",
+      "package_version": "0.1.7",
+      "source_commit": "4802a9b3bfb9d652199f25bf52852cb1e5db1cb3",
       "contract": "financial-evidence.workspace.v1",
       "source_repository": "https://github.com/beepboop2025/financial-evidence-skills",
       "identity_scope": "operator_supplied_build_revision",
       "institutional_readiness": "not_certified"
     },
-    "release_observed_at": "2026-10-09T07:48:46.948982+00:00"
+    "release_observed_at": "2026-10-11T09:31:16.844082+00:00"
   },
   "review_workflow": {
     "purpose": "Recurring human review of covered-bank, funding and liquidity evidence",

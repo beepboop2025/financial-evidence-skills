@@ -18,7 +18,7 @@ Operator: **LIQUILENS PRIVATE LIMITED**. Public reads require no API key.
    not establish fresh sources, redistribution permission or financial suitability.
    Check the actual source clocks and status; missing or held values stay null.
 
-The fifteen examples cover seven datasets, five discovery/review requests and
+The sixteen examples cover seven datasets, six discovery/review requests and
 three guided workflows: **Funding watch**, **Institution watch** and **BTC exit check**.
 The workflow responses retain the original product document, source dates,
 coverage gaps and content digest. `prepared_response` means evidence was prepared,

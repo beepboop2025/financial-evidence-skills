@@ -1,11 +1,11 @@
 meta {
-  name: Source status and clocks
+  name: Money Markets
   type: http
-  seq: 3
+  seq: 5
 }
 
 get {
-  url: https://api.seiche.info/openbb/api/v1/sources
+  url: https://api.seiche.info/openbb/api/v1/query?dataset=money_markets&limit=5&offset=0
   body: none
   auth: none
 }

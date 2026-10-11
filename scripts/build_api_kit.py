@@ -40,6 +40,7 @@ def examples(spec):
     params = spec["paths"]["/api/v1/query"]["get"]["parameters"]
     datasets = next(p["schema"]["enum"] for p in params if p["name"] == "dataset")
     rows = [
+        ("Choose a research task", "/api/v1/start", {}, False),
         ("Release identity", "/api/v1/release", {}, False),
         ("Dataset coverage", "/api/v1/datasets", {}, False),
         ("Source status and clocks", "/api/v1/sources", {}, True),
@@ -100,7 +101,7 @@ def build(out=OUT):
                       f"docs {{\n  {BOUNDARY}\n}}\n"))
         http.append(f"### {name}\n# {BOUNDARY}\nGET {BASE}{suffix}\nAccept: application/json\nX-Liquilens-Traffic-Class: developer\n")
     collection = {
-        "info": {"name": "LiquiLens Financial Evidence Research API", "description": BOUNDARY + " Public reads; no API key. Research Desk 1.2.0 includes three working tasks: Seiche funding watch, LiquiLens institution watch and Undertow BTC exit check. Run them in the browser at https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html or import these fifteen requests. Current public and private interfaces: https://beepboop2025.github.io/financial-evidence-skills/agents/system.json . Setup guide: https://liquilens.in/agents/infrastructure/ . Private runtimes are separately installed and grant no public execution authority. Operator validation must set traffic_class=synthetic. These headers are diagnostic labels, not verified customer identities.",
+        "info": {"name": "LiquiLens Financial Evidence Research API", "description": BOUNDARY + " Public reads; no API key. Research Desk 1.3.0 includes three working tasks: Seiche funding watch, LiquiLens institution watch and Undertow BTC exit check. Run them in the browser at https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html or import these sixteen requests. Current public and private interfaces: https://beepboop2025.github.io/financial-evidence-skills/agents/system.json . Setup guide: https://liquilens.in/agents/infrastructure/ . Private runtimes are separately installed and grant no public execution authority. Operator validation must set traffic_class=synthetic. These headers are diagnostic labels, not verified customer identities.",
                  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},
         "variable": [{"key": "base_url", "value": BASE},
                      {"key": "traffic_class", "value": "developer"}],
@@ -112,6 +113,10 @@ def build(out=OUT):
     folder.mkdir(exist_ok=True)
     (folder / "bruno.json").write_text(json.dumps({"version": "1", "name": "Financial Evidence", "type": "collection", "ignore": ["node_modules", ".git"]}, indent=2) + "\n")
     (folder / "collection.bru").write_text("vars:pre-request {\n  traffic_class: developer\n}\n")
+    expected_names = {name for name, _ in bruno}
+    for stale in folder.glob("[0-9][0-9]-*.bru"):
+        if stale.name not in expected_names:
+            stale.unlink()
     for name, content in bruno:
         (folder / name).write_text(content)
     paths = [out / "openapi.json", out / "financial-evidence.postman_collection.json",

@@ -1,0 +1,48 @@
+{
+  "schema": "financial-evidence.native-connections.v1",
+  "observation_url": "../distribution/native-discovery-20261011.json",
+  "products": [
+    {
+      "id": "liquilens",
+      "name": "LiquiLens",
+      "scope": "Covered institutions and disclosure review",
+      "mcp_url": "https://api.liquilens.in/mcp",
+      "guide_url": "https://liquilens.in/developers/"
+    },
+    {
+      "id": "seiche",
+      "name": "Seiche",
+      "scope": "Funding, money markets and source clocks",
+      "mcp_url": "https://api.seiche.info/mcp",
+      "guide_url": "https://seiche.info/developers.html"
+    },
+    {
+      "id": "undertow",
+      "name": "Undertow",
+      "scope": "Market liquidity and indicative BTC exits",
+      "mcp_url": "https://api.seiche.info/undertow/mcp",
+      "guide_url": "https://liquilens-undertow.com/developers/"
+    },
+    {
+      "id": "palimpsest",
+      "name": "Palimpsest",
+      "scope": "China, regional research and the public record",
+      "mcp_url": "https://api.seiche.info/palimpsest/mcp",
+      "guide_url": "https://palimpsest.info/developers.html"
+    },
+    {
+      "id": "narcoscope",
+      "name": "NarcoScope",
+      "scope": "Drug, arms and informal-economy evidence",
+      "mcp_url": "https://www.narcoscope.com/mcp",
+      "guide_url": "https://www.narcoscope.com/developers/"
+    },
+    {
+      "id": "noisefloor",
+      "name": "NoiseFloor",
+      "scope": "Statistical research using permitted observations",
+      "mcp_url": "https://api.seiche.info/noisefloor/mcp",
+      "guide_url": "https://liquilens.in/agents/correlation/#connect"
+    }
+  ]
+}

@@ -10,26 +10,20 @@ import html
 import io
 import json
 import struct
+import sys
 import zipfile
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+from financial_evidence.original_publishers import NYFED_NOTICE
+
 BASE = "https://beepboop2025.github.io/financial-evidence-skills/"
 MEDIA_URL = BASE + "media/"
 KIT_NAME = "newsroom-evaluation-kit-20261011.zip"
 ZIP_TIME = (2026, 10, 11, 0, 0, 0)
-NYFED_NOTICE = (
-    "Copyright 2026 Federal Reserve Bank of New York. Content from the New York Fed "
-    "subject to the Terms of Use at https://www.newyorkfed.org/privacy/termsofuse. "
-    "SOFR, EFFR and operation results are subject to those Terms of Use. The New York "
-    "Fed is not responsible for publication of these data by Liquidity Lab, does not "
-    "sanction or endorse this republication, and has no liability for your use. "
-    "Liquidity Lab is not affiliated with the New York Fed. The SOFR terms also "
-    "address DTCC Solutions LLC data used by the publisher; no ownership of that "
-    "underlying data is claimed here."
-)
 SPECS = {
     "2026-10-11-dollar-funding": {
         "observation_dates": ["2026-10-07", "2026-10-08"],
@@ -153,6 +147,11 @@ Each edition contains unchanged chart/data assets, source links, an HTML image
 embed, a preview and a caption. The online reuse page links the existing edition
 assets rather than duplicating their binaries. The ZIP includes those binaries
 for convenience, plus the existing source notices and an integrity manifest.
+
+The original funding assets retain an earlier source-notice summary naming
+Liquidity Lab. For republication, accompany those retained assets with the full
+current CAPTION.txt and source notices naming LIQUILENS PRIVATE LIMITED. The new
+caption updates notice wording; it does not revise observations or edition times.
 
 Read the live [reuse terms]({MEDIA_URL}rights.html),
 [correction log]({MEDIA_URL}corrections.html) and

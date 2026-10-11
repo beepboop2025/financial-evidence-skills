@@ -9,6 +9,11 @@ embed, a preview and a caption. The online reuse page links the existing edition
 assets rather than duplicating their binaries. The ZIP includes those binaries
 for convenience, plus the existing source notices and an integrity manifest.
 
+The original funding assets retain an earlier source-notice summary naming
+Liquidity Lab. For republication, accompany those retained assets with the full
+current CAPTION.txt and source notices naming LIQUILENS PRIVATE LIMITED. The new
+caption updates notice wording; it does not revise observations or edition times.
+
 Read the live [reuse terms](https://beepboop2025.github.io/financial-evidence-skills/media/rights.html),
 [correction log](https://beepboop2025.github.io/financial-evidence-skills/media/corrections.html) and
 [funding source attribution](https://beepboop2025.github.io/financial-evidence-skills/funding/sources.md) before using an asset.

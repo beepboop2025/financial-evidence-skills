@@ -2,8 +2,10 @@
 import importlib.util
 import json
 from pathlib import Path
+import sys
 import tempfile
 import unittest
+import xml.etree.ElementTree as ET
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -94,6 +96,29 @@ class SourceSelectionTests(unittest.TestCase):
         path.write_text(path.read_text().replace("Oct 7, 2026", "Oct 14, 2026"))
         with self.assertRaisesRegex(ValueError, "after horizon"):
             media.parse_originals(self.base, self.horizon)
+
+
+class ChartNoticeTests(unittest.TestCase):
+    @unittest.skipUnless(importlib.util.find_spec("matplotlib"), "optional chart renderer")
+    def test_full_publisher_notice_fits_rendered_canvas_and_survives_svg(self):
+        sys.path.insert(0, str(ROOT / "src"))
+        from financial_evidence.original_publishers import NYFED_NOTICE
+        checks = [{"metric_id": key, "value": value} for key, value in {
+            "policy.iorb": "3.90", "policy.sofr": "3.87", "policy.effr": "3.88",
+            "distribution.sofr.p99": "3.95"}.items()]
+        with tempfile.TemporaryDirectory(prefix=".notice-render-", dir=ROOT) as temporary:
+            output = Path(temporary)
+            media.chart(output, checks, NYFED_NOTICE)
+            svg = ET.parse(output / "funding-rate-comparison.svg").getroot()
+            notice = svg.find(".//*[@id='publisher-notice']")
+            self.assertIsNotNone(notice)
+            text = " ".join(" ".join(notice.itertext()).split())
+            self.assertIn("products or services offered by LIQUILENS PRIVATE LIMITED", text)
+            self.assertIn("parties from which they obtained data have no liability", text)
+            self.assertIn("transaction data is claimed.", text)
+            self.assertGreater(float(svg.attrib["viewBox"].split()[3]), 7.2 * 72)
+            for extension in ("svg", "png", "pdf"):
+                self.assertGreater((output / f"funding-rate-comparison.{extension}").stat().st_size, 1000)
 
 
 if __name__ == "__main__":

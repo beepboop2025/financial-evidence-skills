@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="777.6pt" height="518.4pt" viewBox="0 0 777.6 518.4" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-11</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Financial Evidence by LiquiLens</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 518.4 
+L 777.6 518.4 
+L 777.6 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 241.056 295.488 
+L 730.944 295.488 
+L 730.944 145.152 
+L 241.056 145.152 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 281.88 295.488 
+L 281.88 145.152 
+" clip-path="url(#p2ee47a9905)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2">
+      <defs>
+       <path id="md4ec70302c" d="M 0 0 
+L 0 3.5 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#md4ec70302c" x="281.88" y="295.488" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle" x="281.88" y="310.845422" transform="rotate(-0 281.88 310.845422)">−4</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 363.528 295.488 
+L 363.528 145.152 
+" clip-path="url(#p2ee47a9905)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#md4ec70302c" x="363.528" y="295.488" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle" x="363.528" y="310.845422" transform="rotate(-0 363.528 310.845422)">−2</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 445.176 295.488 
+L 445.176 145.152 
+" clip-path="url(#p2ee47a9905)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#md4ec70302c" x="445.176" y="295.488" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle" x="445.176" y="310.845422" transform="rotate(-0 445.176 310.845422)">0</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="M 526.824 295.488 
+L 526.824 145.152 
+" clip-path="url(#p2ee47a9905)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#md4ec70302c" x="526.824" y="295.488" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle" x="526.824" y="310.845422" transform="rotate(-0 526.824 310.845422)">2</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="M 608.472 295.488 
+L 608.472 145.152 
+" clip-path="url(#p2ee47a9905)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#md4ec70302c" x="608.472" y="295.488" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle" x="608.472" y="310.845422" transform="rotate(-0 608.472 310.845422)">4</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_11">
+      <path d="M 690.12 295.488 
+L 690.12 145.152 
+" clip-path="url(#p2ee47a9905)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#md4ec70302c" x="690.12" y="295.488" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle" x="690.12" y="310.845422" transform="rotate(-0 690.12 310.845422)">6</text>
+     </g>
+    </g>
+    <g id="text_7">
+     <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle" x="486" y="331.846281" transform="rotate(-0 486 331.846281)">Difference from IORB (basis points)</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_13">
+      <defs>
+       <path id="m9c78d545c7" d="M 0 0 
+L -3.5 0 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m9c78d545c7" x="241.056" y="165.652364" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'" transform="translate(204.443656 163.780537)">SOFR</text>
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'" transform="translate(199.112094 176.982686)">3.87%</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#m9c78d545c7" x="241.056" y="220.32" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'" transform="translate(83.991938 218.448604)">Effective federal funds rate</text>
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'" transform="translate(199.112094 231.650752)">3.88%</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_15">
+      <g>
+       <use xlink:href="#m9c78d545c7" x="241.056" y="274.987636" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'" transform="translate(117.158656 273.11624)">SOFR 99th percentile</text>
+      <text style="font-size: 11px; font-family: 'DejaVu Sans'" transform="translate(199.112094 286.318388)">3.95%</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 445.176 151.985455 
+L 322.704 151.985455 
+L 322.704 179.319273 
+L 445.176 179.319273 
+z
+" clip-path="url(#p2ee47a9905)" style="fill: #0072b2"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 445.176 206.653091 
+L 363.528 206.653091 
+L 363.528 233.986909 
+L 445.176 233.986909 
+z
+" clip-path="url(#p2ee47a9905)" style="fill: #56b4e9"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 445.176 261.320727 
+L 649.296 261.320727 
+L 649.296 288.654545 
+L 445.176 288.654545 
+z
+" clip-path="url(#p2ee47a9905)" style="fill: #d55e00"/>
+   </g>
+   <g id="line2d_16">
+    <path d="M 445.176 295.488 
+L 445.176 145.152 
+" clip-path="url(#p2ee47a9905)" style="fill: none; stroke: #263a34; stroke-linecap: square"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 241.056 295.488 
+L 241.056 145.152 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 241.056 295.488 
+L 730.944 295.488 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end" x="315.35568" y="168.510215" transform="rotate(-0 315.35568 168.510215)">-3 bp</text>
+   </g>
+   <g id="text_12">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end" x="356.17968" y="223.177852" transform="rotate(-0 356.17968 223.177852)">-2 bp</text>
+   </g>
+   <g id="text_13">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start" x="656.64432" y="277.845488" transform="rotate(-0 656.64432 277.845488)">+5 bp</text>
+   </g>
+  </g>
+  <g id="text_14">
+   <text style="font-weight: 700; font-size: 23px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #183229" x="50.544" y="40.804406" transform="rotate(-0 50.544 40.804406)">SOFR was 3 basis points below IORB</text>
+  </g>
+  <g id="text_15">
+   <text style="font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start" x="50.544" y="75.437813" transform="rotate(-0 50.544 75.437813)">8 October 2026 observations · IORB reference: 3.90%</text>
+  </g>
+  <g id="text_16">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'" transform="translate(50.544 102.523712)">The SOFR 99th percentile was 5 bp above IORB.</text>
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'" transform="translate(50.544 119.023712)">A same-date rate comparison; no institution-stress score is inferred.</text>
+  </g>
+  <g id="text_17">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(50.544 377.072437)">Calculation: (rate in percent − IORB in percent) × 100. One basis point = 0.01 percentage point.</text>
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(50.544 390.122437)">SOFR's 99th percentile describes its transaction-rate distribution; it is not another policy rate.</text>
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(50.544 403.172438)">Sources: New York Fed Markets API; Federal Reserve Board PRATES. Analysis: Seiche / LiquiLens.</text>
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'" transform="translate(50.544 416.222437)">Frozen review: 8 October; packet captured 11 October 2026. Newer dates exist for some other inputs.</text>
+  </g>
+  <g id="text_18">
+   <text style="font-size: 7.2px; font-family: 'DejaVu Sans'" transform="translate(50.544 458.21475)">Copyright 2026 Federal Reserve Bank of New York. Content from the New York Fed subject to the Terms of Use at newyorkfed.org. SOFR, EFFR and</text>
+   <text style="font-size: 7.2px; font-family: 'DejaVu Sans'" transform="translate(50.544 468.65475)">operation results are subject to those Terms of Use. The New York Fed is not responsible for publication of these data by Liquidity Lab, does not</text>
+   <text style="font-size: 7.2px; font-family: 'DejaVu Sans'" transform="translate(50.544 479.09475)">sanction or endorse this republication, and has no liability for your use. Liquidity Lab is not affiliated with the New York Fed.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p2ee47a9905">
+   <rect x="241.056" y="145.152" width="489.888" height="150.336"/>
+  </clipPath>
+ </defs>
+</svg>

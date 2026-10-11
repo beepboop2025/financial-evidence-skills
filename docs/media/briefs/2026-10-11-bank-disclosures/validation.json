@@ -1,0 +1,40 @@
+{
+  "schema": "liquilens.media-bank-validation.v1",
+  "status": "selected_facts_reconciled",
+  "prepared_at": "2026-10-11T01:09:33.929823+00:00",
+  "primary_source_text_reviewed": true,
+  "primary_source_pdf_bytes_independently_hashed": false,
+  "api_reconciled_rows": 10,
+  "primary_only_rows": 10,
+  "missing_rows_retained": 2,
+  "mismatches": [],
+  "nnpa_change_percentage_points": -1.0,
+  "gnpa_change_percentage_points_at_reported_precision": 0.0,
+  "gross_npa_balance_change_INR_crore": 39.4,
+  "matplotlib_version": "3.11.2",
+  "source_facts_sha256": "ff813c34b026c1ec3eb8a30f0513b084f369ecfd79139e09bff7984fb843a898",
+  "traffic_class": "synthetic",
+  "external_users_or_adoption_verified": false,
+  "checks": [
+    "exact issuer identity",
+    "same-period units",
+    "same-metric comparison basis",
+    "nulls retained",
+    "issuer source page per numerical fact",
+    "API publication timestamps not backdated",
+    "partial coverage retained",
+    "API values checked against retained primary transcription",
+    "PDF-byte verification limitation retained"
+  ],
+  "sha256": {
+    "brief.json": "6483d03a9365f8ca9b66fe822c13a934565f30e934967f225383c02f62b9e779",
+    "coverage.json": "62459454823b020fdcb98b56752aaa05fdea55fcc56ec26a045ba81f1cdcf7f0",
+    "data.csv": "7c7fe21705e270679ac3cbeab3a530fd9dff410ee010ee9e5a26cd22c0593082",
+    "data.json": "81a2e2914b5f094868564f0dba1bcf5d46a5485d5304335f7d872a7506116bcd",
+    "esaf-disclosure-comparison.pdf": "f7896a64eb864c467a8d3d98773c40f660dc2ce2de47c815828336afed1a66a0",
+    "esaf-disclosure-comparison.png": "a8ef6f53a07bb3ebbbac8e2c3961b68ca0b5f40ea98d2476560618f0151ecb1c",
+    "esaf-disclosure-comparison.svg": "380b44f44131d7ae2f423e1d3d37e69ca35b146d4598a4236317eb585cea7de5",
+    "index.html": "4ba75d39d698e177fbcf47bfd0d7190e2bca4bdd53d2be0e97f8c66869992914",
+    "source-facts.json": "ff813c34b026c1ec3eb8a30f0513b084f369ecfd79139e09bff7984fb843a898"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "id": "2026-10-11-bank-disclosures",
+  "title": "ESAF: net NPA ratio fell, gross ratio stayed at 5.4%",
+  "description": "A dated, source-linked comparison of ESAF's March and June 2026 disclosures, with editable data and original charts.",
+  "published_at": "2026-10-11T01:09:33.929823+00:00",
+  "observation_dates": [
+    "2026-03-31",
+    "2026-06-30"
+  ],
+  "headline_finding": "ESAF reported NNPA of 0.8% at June 2026 versus 1.8% in March. GNPA remained 5.4% at reported precision, while its gross NPA balance increased from INR 1,213.9 crore to INR 1,253.3 crore.",
+  "source_urls": [
+    "https://www.esaf.bank.in/wp-content/uploads/2026/07/Investor-Presentation-on-the-Unaudited-Standalone-Financial-Results-of-the-Bank-for-the-quarter-ended-June-30-2026.pdf",
+    "https://api.liquilens.in/api/experimental/v1/banking/monitoring/institutions/esaf-sfb?include_history=true",
+    "https://api.seiche.info/openbb/api/v1/query?dataset=bank_risk&entity=ESAF&limit=200&offset=0"
+  ],
+  "downloads": [
+    {
+      "label": "CSV data",
+      "url": "data.csv"
+    },
+    {
+      "label": "JSON data",
+      "url": "data.json"
+    },
+    {
+      "label": "SVG chart",
+      "url": "esaf-disclosure-comparison.svg"
+    },
+    {
+      "label": "PNG chart",
+      "url": "esaf-disclosure-comparison.png"
+    },
+    {
+      "label": "PDF chart",
+      "url": "esaf-disclosure-comparison.pdf"
+    },
+    {
+      "label": "Coverage",
+      "url": "coverage.json"
+    },
+    {
+      "label": "Validation",
+      "url": "validation.json"
+    }
+  ],
+  "coverage": {
+    "entities": [
+      "esaf-sfb"
+    ],
+    "coverage_complete": false,
+    "observed_numeric_facts": 20,
+    "unavailable_fields": [
+      "cet1_pct",
+      "lcr_pct"
+    ]
+  },
+  "limitations": [
+    "One selected issuer; not a census or representative bank sample.",
+    "Historical comparison is read in the July presentation; it is not a backdated publication-vintage dataset.",
+    "Ratios are displayed at issuer precision; gross and net NPA denominators differ.",
+    "A falling ratio does not identify recoveries or explain the contribution of provisions, sales, write-offs or loan growth.",
+    "No live withdrawal, complete counterparty exposure or intraday liquidity evidence is supplied.",
+    "CET1 and LCR are missing in the selected API projection, not proven absent from all issuer disclosures.",
+    "The PDF was checked through official-source web text. Direct local downloads returned HTTP 403; its API-reported hash is not independently verified in this run."
+  ]
+}

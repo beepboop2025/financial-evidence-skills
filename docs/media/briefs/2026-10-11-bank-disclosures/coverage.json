@@ -1,0 +1,39 @@
+{
+  "selected_entities": [
+    {
+      "id": "esaf-sfb",
+      "name": "ESAF Small Finance Bank",
+      "jurisdiction": "IN"
+    }
+  ],
+  "selection_basis": "One exact covered institution, esaf-sfb; same-issuer period comparison; not a peer ranking or complete banking universe.",
+  "covered_institution_count_in_this_brief": 1,
+  "coverage_complete": false,
+  "observation_dates": [
+    "2026-03-31",
+    "2026-06-30"
+  ],
+  "observed_numeric_facts": 20,
+  "api_reconciled_numeric_facts": 10,
+  "supplemental_primary_filing_numeric_facts": 10,
+  "unavailable_fields_in_selected_api": [
+    "cet1_pct",
+    "lcr_pct"
+  ],
+  "missing_not_zero": true,
+  "point_in_time_vintage_history": false,
+  "current_intraday_liquidity": false,
+  "credit_rating": false,
+  "api_status": "insufficient_visibility",
+  "publication_clock": "Issuer cover letter dated 2026-07-31; API publication timestamps unknown",
+  "latest_observation_age_days_at_brief_date": 103,
+  "limitations": [
+    "One selected issuer; not a census or representative bank sample.",
+    "Historical comparison is read in the July presentation; it is not a backdated publication-vintage dataset.",
+    "Ratios are displayed at issuer precision; gross and net NPA denominators differ.",
+    "A falling ratio does not identify recoveries or explain the contribution of provisions, sales, write-offs or loan growth.",
+    "No live withdrawal, complete counterparty exposure or intraday liquidity evidence is supplied.",
+    "CET1 and LCR are missing in the selected API projection, not proven absent from all issuer disclosures.",
+    "The PDF was checked through official-source web text. Direct local downloads returned HTTP 403; its API-reported hash is not independently verified in this run."
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "id": "2026-10-11-dollar-funding",
+  "title": "SOFR was 3 basis points below IORB on 8 October",
+  "description": "SOFR was 3.87%, compared with IORB at 3.90%, on 8 October 2026. The SOFR–IORB difference was −3 basis points; the SOFR 99th percentile was 3.95%, or 5 basis points above IORB.",
+  "published_at": "2026-10-11T01:07:50.859451+00:00",
+  "prepared_at": "2026-10-11T01:07:50.859451+00:00",
+  "observation_dates": [
+    "2026-10-07",
+    "2026-10-08"
+  ],
+  "headline_finding": "SOFR was 3.87%, compared with IORB at 3.90%, on 8 October 2026. The SOFR–IORB difference was −3 basis points; the SOFR 99th percentile was 3.95%, or 5 basis points above IORB.",
+  "canonical_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/",
+  "source_urls": [
+    "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/dts/operating_cash_balance?filter=record_date%3Agte%3A2026-10-01%2Caccount_type%3Aeq%3ATreasury+General+Account+%28TGA%29+Opening+Balance&fields=record_date%2Caccount_type%2Copen_today_bal&sort=-record_date&page%5Bsize%5D=100",
+    "https://markets.newyorkfed.org/api/rates/secured/sofr/last/10.json",
+    "https://markets.newyorkfed.org/api/rates/unsecured/effr/last/10.json",
+    "https://markets.newyorkfed.org/api/rp/repo/all/results/last/20.json",
+    "https://markets.newyorkfed.org/api/rp/reverserepo/all/results/last/10.json",
+    "https://www.federalreserve.gov/releases/h41/current/h41.htm",
+    "https://www.federalreserve.gov/releases/prates/data/FRB_PRATES_xml.zip"
+  ],
+  "downloads": {
+    "csv": "observations.csv",
+    "json": "data.json",
+    "chart_csv": "chart-data.csv",
+    "svg": "funding-rate-comparison.svg",
+    "png": "funding-rate-comparison.png",
+    "pdf": "funding-rate-comparison.pdf",
+    "packet": "review.json",
+    "manifest": "manifest.json",
+    "validation": "validation.json",
+    "provenance": "provenance.json"
+  },
+  "coverage": "Nine US dollar-funding inputs; eight observations dated 8 October 2026 and weekly-average reserves dated 7 October.",
+  "limitations": [
+    "A fixed 8 October funding review, not the latest observation for every instrument.",
+    "System funding evidence does not measure an individual institution's liquidity or probability of failure.",
+    "A rate difference alone does not establish rising or falling stress; this brief makes no historical trend claim.",
+    "Reserve balances are a weekly average for the week ended 7 October; other rows have separate source dates.",
+    "Archive time begins at first verified capture. This is not complete historical publisher-vintage data.",
+    "Publisher terms remain attached; chart and API availability do not grant blanket data redistribution rights."
+  ],
+  "revision": 1,
+  "corrections": []
+}

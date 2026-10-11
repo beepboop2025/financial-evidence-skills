@@ -1,0 +1,4 @@
+metric_id,observation_date,rate_percent,iorb_percent,difference_basis_points,source_url,iorb_source_url
+policy.sofr,2026-10-08,3.87,3.90,-3.00,https://markets.newyorkfed.org/api/rates/secured/sofr/last/10.json,https://www.federalreserve.gov/releases/prates/data/FRB_PRATES_xml.zip
+policy.effr,2026-10-08,3.88,3.90,-2.00,https://markets.newyorkfed.org/api/rates/unsecured/effr/last/10.json,https://www.federalreserve.gov/releases/prates/data/FRB_PRATES_xml.zip
+distribution.sofr.p99,2026-10-08,3.95,3.90,5.00,https://markets.newyorkfed.org/api/rates/secured/sofr/last/10.json,https://www.federalreserve.gov/releases/prates/data/FRB_PRATES_xml.zip

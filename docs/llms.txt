@@ -119,3 +119,8 @@ Packet `status` equals `transport_status` and describes retrieval only. Every pa
 - Release verification: https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.0.json
 
 Source dates, rights and missingness remain explicit. Dyson paths are synthetic; reference bands are not significance tests. No trading authority.
+
+## Dated media briefings
+
+- [LiquiLens Media Desk](https://beepboop2025.github.io/financial-evidence-skills/media/): fixed editions of dollar-funding and covered-bank disclosure research with charts, CSV/JSON, source dates, primary sources and verification records.
+- [Edition catalog](https://beepboop2025.github.io/financial-evidence-skills/media/catalog.json) and [RSS feed](https://beepboop2025.github.io/financial-evidence-skills/media/feed.xml). Preserve observation periods, source credit, reuse conditions and corrections; publication is not independent adoption.

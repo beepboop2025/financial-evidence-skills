@@ -1,0 +1,150 @@
+{
+  "schema": "liquilens.media.catalog.v1",
+  "publisher": "LIQUILENS PRIVATE LIMITED",
+  "contact": "mrinal@liquilens.in",
+  "editions": [
+    {
+      "id": "2026-10-11-dollar-funding",
+      "title": "SOFR was 3 basis points below IORB on 8 October",
+      "description": "SOFR was 3.87%, compared with IORB at 3.90%, on 8 October 2026. The SOFR–IORB difference was −3 basis points; the SOFR 99th percentile was 3.95%, or 5 basis points above IORB.",
+      "published_at": "2026-10-11T01:07:50.859451+00:00",
+      "prepared_at": "2026-10-11T01:07:50.859451+00:00",
+      "observation_dates": [
+        "2026-10-07",
+        "2026-10-08"
+      ],
+      "headline_finding": "SOFR was 3.87%, compared with IORB at 3.90%, on 8 October 2026. The SOFR–IORB difference was −3 basis points; the SOFR 99th percentile was 3.95%, or 5 basis points above IORB.",
+      "canonical_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/",
+      "source_urls": [
+        "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/dts/operating_cash_balance?filter=record_date%3Agte%3A2026-10-01%2Caccount_type%3Aeq%3ATreasury+General+Account+%28TGA%29+Opening+Balance&fields=record_date%2Caccount_type%2Copen_today_bal&sort=-record_date&page%5Bsize%5D=100",
+        "https://markets.newyorkfed.org/api/rates/secured/sofr/last/10.json",
+        "https://markets.newyorkfed.org/api/rates/unsecured/effr/last/10.json",
+        "https://markets.newyorkfed.org/api/rp/repo/all/results/last/20.json",
+        "https://markets.newyorkfed.org/api/rp/reverserepo/all/results/last/10.json",
+        "https://www.federalreserve.gov/releases/h41/current/h41.htm",
+        "https://www.federalreserve.gov/releases/prates/data/FRB_PRATES_xml.zip"
+      ],
+      "downloads": [
+        {
+          "label": "csv",
+          "url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/observations.csv"
+        },
+        {
+          "label": "json",
+          "url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/data.json"
+        },
+        {
+          "label": "chart_csv",
+          "url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/chart-data.csv"
+        },
+        {
+          "label": "svg",
+          "url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/funding-rate-comparison.svg"
+        },
+        {
+          "label": "png",
+          "url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/funding-rate-comparison.png"
+        },
+        {
+          "label": "pdf",
+          "url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/funding-rate-comparison.pdf"
+        },
+        {
+          "label": "packet",
+          "url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/review.json"
+        },
+        {
+          "label": "manifest",
+          "url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/manifest.json"
+        },
+        {
+          "label": "validation",
+          "url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/validation.json"
+        },
+        {
+          "label": "provenance",
+          "url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/provenance.json"
+        }
+      ],
+      "coverage": "Nine US dollar-funding inputs; eight observations dated 8 October 2026 and weekly-average reserves dated 7 October.",
+      "limitations": [
+        "A fixed 8 October funding review, not the latest observation for every instrument.",
+        "System funding evidence does not measure an individual institution's liquidity or probability of failure.",
+        "A rate difference alone does not establish rising or falling stress; this brief makes no historical trend claim.",
+        "Reserve balances are a weekly average for the week ended 7 October; other rows have separate source dates.",
+        "Archive time begins at first verified capture. This is not complete historical publisher-vintage data.",
+        "Publisher terms remain attached; chart and API availability do not grant blanket data redistribution rights."
+      ],
+      "revision": 1,
+      "corrections": [],
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/"
+    },
+    {
+      "id": "2026-10-11-bank-disclosures",
+      "title": "ESAF: net NPA ratio fell, gross ratio stayed at 5.4%",
+      "description": "A dated, source-linked comparison of ESAF's March and June 2026 disclosures, with editable data and original charts.",
+      "published_at": "2026-10-11T01:09:33.929823+00:00",
+      "observation_dates": [
+        "2026-03-31",
+        "2026-06-30"
+      ],
+      "headline_finding": "ESAF reported NNPA of 0.8% at June 2026 versus 1.8% in March. GNPA remained 5.4% at reported precision, while its gross NPA balance increased from INR 1,213.9 crore to INR 1,253.3 crore.",
+      "source_urls": [
+        "https://www.esaf.bank.in/wp-content/uploads/2026/07/Investor-Presentation-on-the-Unaudited-Standalone-Financial-Results-of-the-Bank-for-the-quarter-ended-June-30-2026.pdf",
+        "https://api.liquilens.in/api/experimental/v1/banking/monitoring/institutions/esaf-sfb?include_history=true",
+        "https://api.seiche.info/openbb/api/v1/query?dataset=bank_risk&entity=ESAF&limit=200&offset=0"
+      ],
+      "downloads": [
+        {
+          "label": "CSV data",
+          "url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/data.csv"
+        },
+        {
+          "label": "JSON data",
+          "url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/data.json"
+        },
+        {
+          "label": "SVG chart",
+          "url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/esaf-disclosure-comparison.svg"
+        },
+        {
+          "label": "PNG chart",
+          "url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/esaf-disclosure-comparison.png"
+        },
+        {
+          "label": "PDF chart",
+          "url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/esaf-disclosure-comparison.pdf"
+        },
+        {
+          "label": "Coverage",
+          "url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/coverage.json"
+        },
+        {
+          "label": "Validation",
+          "url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/validation.json"
+        }
+      ],
+      "coverage": {
+        "entities": [
+          "esaf-sfb"
+        ],
+        "coverage_complete": false,
+        "observed_numeric_facts": 20,
+        "unavailable_fields": [
+          "cet1_pct",
+          "lcr_pct"
+        ]
+      },
+      "limitations": [
+        "One selected issuer; not a census or representative bank sample.",
+        "Historical comparison is read in the July presentation; it is not a backdated publication-vintage dataset.",
+        "Ratios are displayed at issuer precision; gross and net NPA denominators differ.",
+        "A falling ratio does not identify recoveries or explain the contribution of provisions, sales, write-offs or loan growth.",
+        "No live withdrawal, complete counterparty exposure or intraday liquidity evidence is supplied.",
+        "CET1 and LCR are missing in the selected API projection, not proven absent from all issuer disclosures.",
+        "The PDF was checked through official-source web text. Direct local downloads returned HTTP 403; its API-reported hash is not independently verified in this run."
+      ],
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/"
+    }
+  ]
+}

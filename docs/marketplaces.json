@@ -3588,9 +3588,9 @@
       "listing_url": "https://datawrapper.dwcdn.net/Tdbzn/1/",
       "chart_url": "https://datawrapper.dwcdn.net/Tdbzn/1/",
       "cost": "Free chart publication and River contribution; no paid plan selected. Underlying source conditions remain attached.",
-      "detail": "Chart Tdbzn version 1 and its two-row CSV were verified without authentication, with exact values, dated title, source credit, full New York Fed / DTCC notices and the Seiche / LiquiLens byline. Native authenticated UI confirmed River placement and displayed a Reuse button; the River URL returned HTTP 401 to the anonymous probe. This is one historical reusable chart contribution for 8 October 2026, not a live feed, product API integration or evidence of independent use.",
+      "detail": "Chart Tdbzn version 1 and its two-row CSV were verified without authentication, with exact values, dated title, source credit, full New York Fed / DTCC notices and the Seiche / LiquiLens byline. A signed-out Safari Private Browsing check confirmed the River listing, Reuse button and discovery through River search. The earlier anonymous HTTP probe returned 401; this is a probe limitation, not an authentication requirement. This is one historical reusable chart contribution for 8 October 2026, not a live feed, product API integration or evidence of independent use.",
       "next_action": "Preserve source notices, dates, units and byline. Verify any additional required export formats and record independent reuse separately from the completed publisher-owned reuse check.",
-      "verified_at": "2026-10-11T11:32:10.276948+00:00",
+      "verified_at": "2026-10-11T11:37:21.986Z",
       "chart_id": "Tdbzn",
       "observation_date": "2026-10-08",
       "public_listing_verified": true,
@@ -3600,11 +3600,11 @@
       "evidence_receipt": "distribution/newsroom-distribution-20261011.json",
       "river_url": "https://app.datawrapper.de/river/_/Tdbzn",
       "dataset_url": "https://datawrapper.dwcdn.net/Tdbzn/1/dataset.csv",
-      "public_listing_verification_scope": "Published chart and CSV are accessible without authentication. River placement is verified only in the native authenticated UI.",
+      "public_listing_verification_scope": "Published chart and CSV are accessible without authentication. The River listing and search discovery were verified in a signed-out native browser.",
       "river_listing_verified": true,
-      "river_anonymous_listing_verified": false,
+      "river_anonymous_listing_verified": true,
       "river_anonymous_http_status": 401,
-      "river_listing_audience": "Datawrapper users through the authenticated River interface; anonymous River access was not verified.",
+      "river_listing_audience": "Anonymous visitors can view the River listing and find the chart through River search. Reuse-control presence is verified; completed reuse was checked separately in the publisher account.",
       "latest_surface_check": {
         "observed_at": "2026-10-11T11:32:10.276948+00:00",
         "url": "https://datawrapper.dwcdn.net/Tdbzn/1/",
@@ -3620,7 +3620,20 @@
       "native_reuse_check_verified": true,
       "native_reuse_check_scope": "One unpublished copy in the publisher account retained full notes after whitespace normalization, including source notices and the original attribution link. The source chart remains unchanged; this is operator verification.",
       "native_reuse_checked_at": "2026-10-11T11:33:41.714Z",
-      "independent_reuse_verified": false
+      "independent_reuse_verified": false,
+      "river_anonymous_http_probe_limitation": "Unauthenticated HTTP probe returned 401; later signed-out native browser successfully rendered listing and search. HTTP probe failure does not establish an authentication requirement.",
+      "river_anonymous_browser_check": {
+        "observed_at": "2026-10-11T11:37:21.986Z",
+        "browser": "Safari Private Browsing",
+        "signed_out_header_verified": true,
+        "listing_title_and_byline_verified": true,
+        "reuse_control_present": true,
+        "search_url": "https://app.datawrapper.de/river/search/Seiche",
+        "search_finds_chart": true,
+        "observed_reuse_count": 1,
+        "reuse_count_scope": "The one observed reuse is the known publisher-owned QA copy; it does not establish independent adoption.",
+        "operator_traffic": true
+      }
     },
     {
       "id": "opennews-source-financial-evidence",
@@ -3658,7 +3671,7 @@
     }
   ],
   "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
-  "updated_at": "2026-10-11T11:34:59.196466+00:00",
+  "updated_at": "2026-10-11T11:37:52.172893+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -3888,7 +3901,7 @@
     "independent_adoption_verified": false
   },
   "latest_newsroom_distribution": {
-    "recorded_at": "2026-10-11T11:34:59.196466+00:00",
+    "recorded_at": "2026-10-11T11:37:52.172893+00:00",
     "receipt": "distribution/newsroom-distribution-20261011.json",
     "report": "distribution/newsroom-distribution-20261011.md",
     "scope": "One published reusable chart with River placement; one received code-index submission and one received supplier qualification enquiry. Fourteen separate Sent-confirmed outreach emails are not counted as listings or recipient delivery.",

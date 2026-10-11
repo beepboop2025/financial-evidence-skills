@@ -1,6 +1,6 @@
 {
   "schema": "financial-evidence.newsroom-distribution.v1",
-  "recorded_at": "2026-10-11T11:34:59.196466+00:00",
+  "recorded_at": "2026-10-11T11:37:52.172893+00:00",
   "receipt": "distribution/newsroom-distribution-20261011.json",
   "report": "distribution/newsroom-distribution-20261011.md",
   "scope": "One published reusable chart with River placement; one received code-index submission and one received supplier qualification enquiry. Fourteen separate Sent-confirmed outreach emails are not counted as listings or recipient delivery.",
@@ -29,9 +29,9 @@
       "listing_url": "https://datawrapper.dwcdn.net/Tdbzn/1/",
       "chart_url": "https://datawrapper.dwcdn.net/Tdbzn/1/",
       "cost": "Free chart publication and River contribution; no paid plan selected. Underlying source conditions remain attached.",
-      "detail": "Chart Tdbzn version 1 and its two-row CSV were verified without authentication, with exact values, dated title, source credit, full New York Fed / DTCC notices and the Seiche / LiquiLens byline. Native authenticated UI confirmed River placement and displayed a Reuse button; the River URL returned HTTP 401 to the anonymous probe. This is one historical reusable chart contribution for 8 October 2026, not a live feed, product API integration or evidence of independent use.",
+      "detail": "Chart Tdbzn version 1 and its two-row CSV were verified without authentication, with exact values, dated title, source credit, full New York Fed / DTCC notices and the Seiche / LiquiLens byline. A signed-out Safari Private Browsing check confirmed the River listing, Reuse button and discovery through River search. The earlier anonymous HTTP probe returned 401; this is a probe limitation, not an authentication requirement. This is one historical reusable chart contribution for 8 October 2026, not a live feed, product API integration or evidence of independent use.",
       "next_action": "Preserve source notices, dates, units and byline. Verify any additional required export formats and record independent reuse separately from the completed publisher-owned reuse check.",
-      "verified_at": "2026-10-11T11:32:10.276948+00:00",
+      "verified_at": "2026-10-11T11:37:21.986Z",
       "chart_id": "Tdbzn",
       "observation_date": "2026-10-08",
       "public_listing_verified": true,
@@ -41,11 +41,11 @@
       "evidence_receipt": "distribution/newsroom-distribution-20261011.json",
       "river_url": "https://app.datawrapper.de/river/_/Tdbzn",
       "dataset_url": "https://datawrapper.dwcdn.net/Tdbzn/1/dataset.csv",
-      "public_listing_verification_scope": "Published chart and CSV are accessible without authentication. River placement is verified only in the native authenticated UI.",
+      "public_listing_verification_scope": "Published chart and CSV are accessible without authentication. The River listing and search discovery were verified in a signed-out native browser.",
       "river_listing_verified": true,
-      "river_anonymous_listing_verified": false,
+      "river_anonymous_listing_verified": true,
       "river_anonymous_http_status": 401,
-      "river_listing_audience": "Datawrapper users through the authenticated River interface; anonymous River access was not verified.",
+      "river_listing_audience": "Anonymous visitors can view the River listing and find the chart through River search. Reuse-control presence is verified; completed reuse was checked separately in the publisher account.",
       "latest_surface_check": {
         "observed_at": "2026-10-11T11:32:10.276948+00:00",
         "url": "https://datawrapper.dwcdn.net/Tdbzn/1/",
@@ -61,7 +61,20 @@
       "native_reuse_check_verified": true,
       "native_reuse_check_scope": "One unpublished copy in the publisher account retained full notes after whitespace normalization, including source notices and the original attribution link. The source chart remains unchanged; this is operator verification.",
       "native_reuse_checked_at": "2026-10-11T11:33:41.714Z",
-      "independent_reuse_verified": false
+      "independent_reuse_verified": false,
+      "river_anonymous_http_probe_limitation": "Unauthenticated HTTP probe returned 401; later signed-out native browser successfully rendered listing and search. HTTP probe failure does not establish an authentication requirement.",
+      "river_anonymous_browser_check": {
+        "observed_at": "2026-10-11T11:37:21.986Z",
+        "browser": "Safari Private Browsing",
+        "signed_out_header_verified": true,
+        "listing_title_and_byline_verified": true,
+        "reuse_control_present": true,
+        "search_url": "https://app.datawrapper.de/river/search/Seiche",
+        "search_finds_chart": true,
+        "observed_reuse_count": 1,
+        "reuse_count_scope": "The one observed reuse is the known publisher-owned QA copy; it does not establish independent adoption.",
+        "operator_traffic": true
+      }
     },
     {
       "id": "opennews-source-financial-evidence",
@@ -160,6 +173,36 @@
       "filename": "datawrapper-own-reuse-check.json",
       "sha256": "109cc43f07ee097d9ea4d211a46e1afe6602091d2893a1f074d439655f8db020",
       "retention": "Private operator evidence; unpublished copy identity omitted."
+    },
+    {
+      "filename": "datawrapper-river-anonymous-native-verification.json",
+      "sha256": "e9c7e2119e96ba906bfe34615b9b064b2efd49f53c25bf7d0125b53893861c77",
+      "retention": "Private operator evidence; anonymous listing and search verification facts summarized above."
+    },
+    {
+      "filename": "datawrapper-river-private-readback.txt",
+      "sha256": "c8178b801ba25cfb4f7a2565765258a8a7aaebba034006dd199af9d6d9a09210",
+      "retention": "Private operator evidence; anonymous listing and search verification facts summarized above."
+    },
+    {
+      "filename": "datawrapper-river-private.jpg",
+      "sha256": "24d40c5dac08474e59f831b52869b39bd44bd014cbe879712dd591dcf28fe6c3",
+      "retention": "Private operator evidence; anonymous listing and search verification facts summarized above."
+    },
+    {
+      "filename": "datawrapper-river-signed-out-header.txt",
+      "sha256": "3f7c7b7d04cffd8762f82f6875f37f90500ea24d446442b2c28fae80afab4f1d",
+      "retention": "Private operator evidence; anonymous listing and search verification facts summarized above."
+    },
+    {
+      "filename": "datawrapper-river-anonymous-search.txt",
+      "sha256": "5b6af8b1335a6342f2f9770019c75e33ef24b08fa0b826ae997aa58abc64b23f",
+      "retention": "Private operator evidence; anonymous listing and search verification facts summarized above."
+    },
+    {
+      "filename": "datawrapper-river-anonymous-search.jpg",
+      "sha256": "fd5a4a87813b7eca8bddbb09e20e7d6952fec4ddd44858665b8b4ae865f9b788",
+      "retention": "Private operator evidence; anonymous listing and search verification facts summarized above."
     }
   ],
   "datawrapper_verification": {
@@ -173,11 +216,16 @@
     "river_native_listing_verified": true,
     "river_reuse_control_observed": true,
     "river_anonymous_http_status": 401,
-    "river_anonymous_listing_verified": false,
+    "river_anonymous_listing_verified": true,
     "publication_timestamp_inferred": false,
     "downstream_adaptation_or_export_notice_persistence": "Full notes matched after whitespace normalization, including the complete source notice and original attribution link, in one unpublished publisher-owned River copy. Exported representations remain unverified.",
     "independent_use": "unknown_not_verified",
-    "verification_scope": "Anonymous operator HTTP checks and publisher-owned native UI checks; synthetic activity, not independent newsroom use."
+    "verification_scope": "Anonymous operator HTTP checks, signed-out native-browser listing and search checks, and publisher-owned native reuse checks; synthetic activity, not independent newsroom use.",
+    "river_anonymous_search_verified": true,
+    "river_anonymous_browser_verified_at": "2026-10-11T11:37:21.986Z",
+    "river_anonymous_http_probe_limitation": "Unauthenticated HTTP probe returned 401; later signed-out native browser successfully rendered listing and search. HTTP probe failure does not establish an authentication requirement.",
+    "observed_reuse_count": 1,
+    "observed_reuse_count_scope": "Known publisher-owned QA copy only; not evidence of independent reuse."
   },
   "operator_reuse_check": {
     "checked_at": "2026-10-11T11:33:41.714Z",

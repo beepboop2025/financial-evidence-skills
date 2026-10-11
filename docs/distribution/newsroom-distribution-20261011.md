@@ -8,7 +8,7 @@ and two `submitted` records with different review scopes.
 
 | Destination | Verified outcome | Remaining qualification |
 |---|---|---|
-| [Datawrapper chart Tdbzn](https://datawrapper.dwcdn.net/Tdbzn/1/) and [River route](https://app.datawrapper.de/river/_/Tdbzn) | Published chart and [two-row CSV](https://datawrapper.dwcdn.net/Tdbzn/1/dataset.csv) returned HTTP 200 without authentication. The native authenticated River interface confirmed the listing and displayed its Reuse control. | The anonymous River request returned HTTP 401. An unpublished publisher-owned reuse check retained full notes after whitespace normalization, including the source notice and original attribution link. Independent reuse and export presentation remain unverified. |
+| [Datawrapper chart Tdbzn](https://datawrapper.dwcdn.net/Tdbzn/1/) and [River route](https://app.datawrapper.de/river/_/Tdbzn) | Published chart and [two-row CSV](https://datawrapper.dwcdn.net/Tdbzn/1/dataset.csv) returned HTTP 200 without authentication. A signed-out Safari Private Browsing check confirmed the River listing, Reuse control and discovery through River search. | The earlier anonymous HTTP probe returned 401; the later browser verification shows that this probe failure does not establish an authentication requirement. An unpublished publisher-owned reuse check retained full notes after whitespace normalization, including the source notice and original attribution link. Independent reuse and export presentation remain unverified. |
 | [OpenNews Source Code Index](https://source.opennews.org/code/suggest/) | The project-suggestion form acknowledged the Financial Evidence submission. | Editorial review is pending; a canonical public project listing has not been verified. |
 | [ReutersAgency / Reuters Connect enquiry](https://reutersagency.com/contact-us/enquire/) | The official route acknowledged one company-level supplier qualification enquiry. | Supplier acceptance, content licensing, syndication and a Reuters Connect listing remain unverified. |
 
@@ -18,7 +18,8 @@ CSV match the authored two-row input. The dated title, byline, original source
 and full New York Fed / DTCC notices were checked in the published content. Its
 chart URL and River entry describe **one contribution**, not two independent
 placements or two users. Chart publication time is not inferred from HTTP
-Last-Modified metadata.
+Last-Modified metadata. The River listing displayed one reuse, attributable to
+the known publisher-owned QA copy; this is excluded from independent adoption.
 
 Preserve the underlying source conditions, dates, units, notices and attribution
 when adapting the original chart. Consult the [reviewed historical edition](../media/briefs/2026-10-11-dollar-funding/),

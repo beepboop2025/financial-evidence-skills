@@ -189,7 +189,7 @@
       "external_adoption": false
     }
   ],
-  "updated_at": "2026-10-11T12:16:32.582399Z",
+  "updated_at": "2026-10-11T12:21:00.808039+00:00",
   "mcp_so": {
     "id": "mcp-so-seiche",
     "name": "Seiche on MCP.so",
@@ -449,7 +449,14 @@
   "glama_undertow_repository_sync": {
     "requested": true,
     "acknowledgement": "Sync Scheduled",
-    "complete": false
+    "complete": true,
+    "provider_last_known_commit": "0cfa20c",
+    "public_readback": {
+      "url": "https://glama.ai/mcp/servers/beepboop2025/undertow-mcp",
+      "sha256": "acc9deca63a4ef291488bfbaf0c12b86779920fe99996da1fd6aa7193f418b58",
+      "observed_at": "2026-10-11T12:19:20.781203+00:00",
+      "new_quickstart_visible": true
+    }
   },
   "openbb": {
     "provider_package_version": "0.1.1",
@@ -463,8 +470,15 @@
   "glama_seiche_repository_sync": {
     "requested": true,
     "acknowledgement": "Sync Scheduled",
-    "complete": false,
-    "after_source_merge": "381da24f0c580b82cdde0238cb2859ad7b67b9e3"
+    "complete": true,
+    "after_source_merge": "381da24f0c580b82cdde0238cb2859ad7b67b9e3",
+    "provider_last_known_commit": "381da24",
+    "public_readback": {
+      "url": "https://glama.ai/mcp/servers/beepboop2025/seiche",
+      "sha256": "607b3524bd339bc08108352362f6d3db5ea0a7552aadef8a8185aab1f09a665b",
+      "observed_at": "2026-10-11T12:20:17.569155+00:00",
+      "new_quickstart_visible": true
+    }
   },
   "canonical_copy_readbacks": [
     {
@@ -483,5 +497,14 @@
       "sha256": "2c53224ee68fd24fbd34c550f8403df025cdda44db964c3ad8afcf1f1d914887",
       "observed_at": "2026-10-11T12:18:10.054529+00:00"
     }
-  ]
+  ],
+  "lobehub_seiche_install_correction": {
+    "recipient": "support@lobehub.com",
+    "subject": "Seiche listing: correct outdated local installation alternatives",
+    "sent_folder_readback_verified": true,
+    "sent_body_readback_verified": true,
+    "provider_delivery_verified": false,
+    "provider_response_observed": false,
+    "observed_at": "2026-10-11T12:21:00.777347+00:00"
+  }
 }

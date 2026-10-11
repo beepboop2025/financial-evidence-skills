@@ -26,10 +26,10 @@ Anonymous initialization, tool discovery and one actual call per product passed:
 | --- | --- | --- |
 | Official MCP Registry | All three active/latest records have the current versions and hosted URLs | Monitor future releases |
 | Smithery | All three public inventories match live tool names: 24 / 16 / 16 | Already current; no redundant republish |
-| LobeHub | Earlier accepted claims and updates now publicly show Claimed, validated, current versions and correct HTTP connections for all three | Seiche's generated local alternatives still need correction. Owner description/summary update accepted and read back; public propagation remains pending |
+| LobeHub | Earlier accepted claims and updates now publicly show Claimed, validated, current versions and correct HTTP connections for all three | Seiche's generated local alternatives still need correction. Owner description/summary update accepted and read back; a targeted support correction was sent and its body verified in Sent. Delivery, resolution and public propagation remain unverified |
 | MCP.so Seiche | Existing listing claimed. Hosted description, overview, commands, prompts, documentation link and kit links saved; fresh anonymous readback shows the new copy | Canonical cache propagation and nine-to-sixteen tool rescan remain pending. One support ticket is Open |
 | Glama connectors | All three existing hosted connectors are owner-verified, Healthy and expose 24 / 16 / 16 public tools | Tool-description grades update separately; LiquiLens has eight ungraded tools queued |
-| Glama repository entries | Seiche and Undertow repository syncs acknowledged as Scheduled | Verify the queued repository refreshes separately from the healthy remote connectors |
+| Glama repository entries | Seiche and Undertow repository syncs completed; new quickstarts verified on both public pages | Repository schema scores remain separate from the current remote tool inventories |
 
 These are corrections and reconciliation of existing listings, not new placements. The four newly recorded product/channel rows in the family ledger describe previously existing pages. Other ledger rows retain their own observation dates.
 

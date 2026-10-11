@@ -11,7 +11,7 @@
 </head>
 <body>
   <header class="hero">
-    <nav aria-label="Main navigation"><a class="brand" href="../">Financial Evidence</a><div><a href="#openbb">OpenBB</a><a href="#python">Python</a><a href="#excel">Excel</a><a href="#agents">Agents</a><a href="../platforms/">All platforms</a><a href="../api/">API clients</a></div></nav>
+    <nav aria-label="Main navigation"><a class="brand" href="../">Financial Evidence</a><div><a href="#openbb">OpenBB</a><a href="#python">Python</a><a href="#excel">Excel</a><a href="#sheets">Google Sheets</a><a href="#agents">Agents</a><a href="../platforms/">All platforms</a><a href="../api/">API clients</a></div></nav>
     <main>
       <p class="eyebrow">Your daily research desk</p>
       <h1>Bring the evidence into the tools you already use.</h1>
@@ -42,7 +42,7 @@
     <p>Download <a href="research_client.py" download>research_client.py</a>. Python 3.10 or newer is sufficient; the client has no package dependencies. It follows pagination, checks that source documents remain the same and saves JSON, CSV and a checksum receipt.</p>
     <pre><code>python3 research_client.py desk --output captures/first-review
 python3 research_client.py bank_risk --entity ESAF --output captures/esaf-review</code></pre>
-    <p>The first command creates separate funding, bank and liquidity tables. For notebooks, keep the client beside <a href="research_desk.ipynb" download>research_desk.ipynb</a>. Open the notebook and run the task you need.</p>
+    <p>The first command creates separate funding, bank and liquidity tables. For notebooks, <a href="https://colab.research.google.com/github/beepboop2025/financial-evidence-skills/blob/main/docs/tools/research_desk.ipynb">open the research desk in Colab</a> or <a href="research_desk.ipynb" download>download the notebook</a>. It loads the pinned helper automatically and verifies its checksum. Colab may require your Google account to run cells.</p>
     <pre><code>from research_client import collect
 funding = collect("money_markets", entity="USD")
 rows = funding["results"]</code></pre>
@@ -59,9 +59,17 @@ FinancialEvidenceRows("bank_risk", "ESAF")
 FinancialEvidenceRows("market_liquidity")</code></pre>
     <p>The function returns up to 2,000 rows and refuses to silently truncate a larger result. For larger histories or restricted network environments, import the Python client's saved CSV instead.</p>
   </section>
+  <section class="section" aria-labelledby="sheets">
+    <p class="eyebrow">Google Sheets</p><h2 id="sheets">Bring a cited research page into your spreadsheet.</h2>
+    <p>Paste the <a href="FinancialEvidenceSheets.gs" download>Apps Script function</a> into Extensions → Apps Script, save it, put the number <code>1</code> in cell <code>A1</code>, then enter the formula below in <code>A3</code>. Leave its output area empty. Keep the source, dates and availability columns with the values.</p>
+    <pre><code>=FINANCIAL_EVIDENCE("money_markets", "USD", 20, 0, A1)</code></pre>
+    <p>Change the plain value in A1 when you want a fresh request. The function retrieves one bounded page; its status rows show whether more rows exist. <a href="google-sheets.md">Setup, examples and limits</a>.</p>
+    <p class="note">This is a copy-and-paste script, not a Google Workspace Marketplace add-on. Google-hosted execution remains to be verified; local contract tests are recorded separately.</p>
+  </section>
   <section class="section" aria-labelledby="agents">
     <p class="eyebrow">MCP · Research agents</p><h2 id="agents">Give the agent a clear research starting point.</h2>
-    <p>Add a Streamable HTTP MCP connection with this URL:</p>
+    <div class="actions"><a class="button" href="vscode:mcp/install?%7B%22name%22%3A%22financial-evidence-remote%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fliquilens.in%2Fmcp%2Ffinancial-evidence%22%7D">Connect remote MCP in VS Code</a>
+        <a class="button" href="cursor://anysphere.cursor-deeplink/mcp/install?name=financial-evidence-remote&amp;config=eyJ1cmwiOiJodHRwczovL2xpcXVpbGVucy5pbi9tY3AvZmluYW5jaWFsLWV2aWRlbmNlIn0%3D">Connect remote MCP in Cursor</a></div><p>Manual setup: download the <a href="mcp.remote.vscode.json" download>VS Code configuration</a> or <a href="mcp.remote.cursor.json" download>Cursor configuration</a>. Merge its server entry into <code>.vscode/mcp.json</code> or <code>.cursor/mcp.json</code> in your project, keeping your existing servers.</p><p>The remote buttons connect the three-tool Financial Evidence MCP without a local Python install. Review the installation in your client. Your AI client and model may require their own account. For the broader research-desk toolset, add a Streamable HTTP MCP connection with this URL:</p>
     <pre><code>https://api.seiche.info/openbb/mcp</code></pre>
     <p>Download <a href="mcp.json" download>example configuration</a> and <a href="agent-instructions.md" download>project instructions</a>. Start with <code>financial_evidence_datasets</code>, then <code>financial_evidence_agent_review</code>. On a later review, pass the previous revision to identify changed published evidence.</p>
     <blockquote>Discover coverage, then review USD funding, the covered bank ESAF, and market liquidity. Cite the source, date and unit beside every observation. List gaps and the further evidence the analyst needs.</blockquote>
@@ -74,6 +82,6 @@ FinancialEvidenceRows("market_liquidity")</code></pre>
     <p>For LSEG Workspace, FactSet and other vendor platforms, use the firm's supported external-data process or the <a href="../integrations/fdc3/evidence-inspector/">FDC3 reference app</a> where supported. Platform acceptance and entitlements remain separate from portable file compatibility.</p>
     <p><a href="vendor-readiness.md">Technical evaluation and vendor submission materials</a> · <a href="setup.md">Setup, limits and repeat-use checklist</a></p>
   </section>
-  <footer><p>Financial Evidence · Last updated 7 October 2026 · <a href="../privacy/">Privacy</a> · <a href="../support/">Support</a></p><p>Use source dates, units, availability and rights status when interpreting every row. Retrieval success does not establish freshness or suitability.</p></footer>
+  <footer><p>Financial Evidence · Last updated 11 October 2026 · <a href="../privacy/">Privacy</a> · <a href="../support/">Support</a></p><p>Use source dates, units, availability and rights status when interpreting every row. Retrieval success does not establish freshness or suitability.</p></footer>
 </body>
 </html>

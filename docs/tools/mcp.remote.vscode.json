@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "financial-evidence-remote": {
+      "type": "http",
+      "url": "https://liquilens.in/mcp/financial-evidence"
+    }
+  }
+}

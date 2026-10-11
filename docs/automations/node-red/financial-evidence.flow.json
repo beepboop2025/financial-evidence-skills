@@ -1,0 +1,237 @@
+[
+  {
+    "id": "a43b6cb01e714321",
+    "type": "tab",
+    "label": "Financial Evidence research previews",
+    "disabled": false,
+    "info": "Click one Inject button, then inspect the Debug sidebar. Each click makes one bounded public GET. No timer, credentials, model, outbound message or trading action. Edit each Inject payload to choose a supported dataset, entity substring and limit (1–200). Synthetic is false for your research and must be true for operator/CI tests. Keep the full table with its sources, clocks, units, rights, missingness and partial state. MIT flow code does not grant source-data rights."
+  },
+  {
+    "id": "a43b6cb01e714330",
+    "type": "comment",
+    "z": "a43b6cb01e714321",
+    "name": "1. Click one task • 2. Inspect evidence + warnings in Debug",
+    "info": "Deploy does not fetch anything. Each manual click requests one page, never auto-follows pagination. The default bank is one currently covered institution, not universal bank coverage. BTC rows are indicative public research measures, not executable quotes or a validated composite.",
+    "x": 400,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "a43b6cb01e714322",
+    "type": "inject",
+    "z": "a43b6cb01e714321",
+    "name": "USD money-market preview",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"dataset\":\"money_markets\",\"entity\":\"USD\",\"limit\":25,\"synthetic\":false}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 160,
+    "wires": [
+      [
+        "a43b6cb01e714325"
+      ]
+    ]
+  },
+  {
+    "id": "a43b6cb01e714323",
+    "type": "inject",
+    "z": "a43b6cb01e714321",
+    "name": "AU SFB filing preview",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"dataset\":\"bank_risk\",\"entity\":\"au-sfb\",\"limit\":25,\"synthetic\":false}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 240,
+    "wires": [
+      [
+        "a43b6cb01e714325"
+      ]
+    ]
+  },
+  {
+    "id": "a43b6cb01e714324",
+    "type": "inject",
+    "z": "a43b6cb01e714321",
+    "name": "BTC indicative liquidity preview",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"dataset\":\"market_liquidity\",\"entity\":\"BTC\",\"limit\":25,\"synthetic\":false}",
+    "payloadType": "json",
+    "x": 190,
+    "y": 320,
+    "wires": [
+      [
+        "a43b6cb01e714325"
+      ]
+    ]
+  },
+  {
+    "id": "a43b6cb01e714325",
+    "type": "function",
+    "z": "a43b6cb01e714321",
+    "name": "Validate task + bounded GET",
+    "func": "// One user click makes one bounded GET to the fixed public research endpoint.\nfunction fail(detail) {\n    return [null, {payload: {status: \"request_rejected\", detail, financial_authority: \"none\"}}];\n}\nconst task = msg.payload;\nconst datasets = [\"money_markets\", \"bank_risk\", \"market_liquidity\"];\nif (!task || typeof task !== \"object\" || Array.isArray(task)) return fail(\"Choose a research task object.\");\nif (Object.keys(task).some(key => ![\"dataset\", \"entity\", \"limit\", \"synthetic\"].includes(key))) {\n    return fail(\"Supported task fields: dataset, entity, limit and synthetic.\");\n}\nif (!datasets.includes(task.dataset)) return fail(\"Choose money_markets, bank_risk or market_liquidity.\");\nif (typeof task.entity !== \"string\" || task.entity.length > 100) return fail(\"Entity must be a string of at most 100 characters.\");\nif (!Number.isInteger(task.limit) || task.limit < 1 || task.limit > 200) return fail(\"Limit must be an integer from 1 to 200.\");\nif (typeof task.synthetic !== \"boolean\") return fail(\"Synthetic must be true for operator tests, false for your own research.\");\nconst query = \"dataset=\" + encodeURIComponent(task.dataset) + \"&entity=\" + encodeURIComponent(task.entity) + \"&limit=\" + task.limit + \"&offset=0\";\n// Build a fresh message so upstream URL/header/payload properties cannot leak into HTTP.\nconst request = {\n    _msgid: msg._msgid,\n    task: {...task},\n    method: \"GET\",\n    url: \"https://api.seiche.info/openbb/api/v1/query?\" + query,\n    headers: {Accept: \"application/json\", \"User-Agent\": \"Financial-Evidence-Node-RED/1.0\"},\n    requestTimeout: 20000,\n    followRedirects: false\n};\nif (task.synthetic) {\n    request.headers[\"X-Liquilens-Traffic-Class\"] = \"synthetic\";\n    request.headers[\"User-Agent\"] = \"Financial-Evidence-Operator-Verification/1.0\";\n}\nreturn [request, null];\n",
+    "outputs": 2,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 500,
+    "y": 240,
+    "wires": [
+      [
+        "a43b6cb01e714326"
+      ],
+      [
+        "a43b6cb01e714329"
+      ]
+    ]
+  },
+  {
+    "id": "a43b6cb01e714326",
+    "type": "http request",
+    "z": "a43b6cb01e714321",
+    "name": "Public research table (20s)",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 780,
+    "y": 240,
+    "wires": [
+      [
+        "a43b6cb01e714327"
+      ]
+    ]
+  },
+  {
+    "id": "a43b6cb01e714327",
+    "type": "function",
+    "z": "a43b6cb01e714321",
+    "name": "Keep provenance + partial state",
+    "func": "// Keep the full table envelope. This is a bounded preview, not a credit or trade decision.\nfunction fail(detail) {\n    return [null, {payload: {status: \"response_rejected\", detail, task: msg.task, financial_authority: \"none\"}}];\n}\nif (msg.statusCode !== 200) return fail(\"Research endpoint returned HTTP \" + msg.statusCode + \". No evidence preview was accepted.\");\nconst mime = String((msg.headers || {})[\"content-type\"] || \"\").split(\";\")[0].trim().toLowerCase();\nif (mime !== \"application/json\") return fail(\"Expected JSON; received unexpected content.\");\nif (typeof msg.payload !== \"string\" || Buffer.byteLength(msg.payload, \"utf8\") > 2 * 1024 * 1024) {\n    return fail(\"Response is not text JSON or exceeds the 2 MiB preview check.\");\n}\nlet page;\ntry { page = JSON.parse(msg.payload); } catch (_) { return fail(\"Response is not valid JSON.\"); }\nfunction finite(value) {\n    if (typeof value === \"number\") return Number.isFinite(value);\n    if (Array.isArray(value)) return value.every(finite);\n    if (value && typeof value === \"object\") return Object.values(value).every(finite);\n    return true;\n}\nif (!finite(page)) return fail(\"Response contains non-finite numbers.\");\nconst task = msg.task;\nif (!task || !page || Array.isArray(page) || page.schema !== \"liquidity-lab.openbb-table.v1\" || page.dataset !== task.dataset) {\n    return fail(\"Unexpected table schema or dataset identity.\");\n}\nif (page.evidence_status !== \"not_evaluated\" || page.carrier_verification !== \"not_performed\" || page.status_semantics !== \"transport_only\") {\n    return fail(\"Unexpected evidence authority contract.\");\n}\nif (![\"complete\", \"partial\", \"failed\"].includes(page.transport_status)) return fail(\"Unknown transport state.\");\nif (!Array.isArray(page.results) || !Number.isInteger(page.total_rows) || page.total_rows < 0 ||\n    page.offset !== 0 || page.limit !== task.limit || page.returned_rows !== page.results.length ||\n    page.results.length > task.limit || page.total_rows < page.results.length) return fail(\"Invalid preview pagination.\");\nconst next = page.next_offset;\nif (!(next === null ? page.total_rows === page.results.length :\n    Number.isInteger(next) && page.results.length > 0 && next === page.results.length && next < page.total_rows)) {\n    return fail(\"Inconsistent pagination; a partial page must not look complete.\");\n}\nconst https = value => typeof value === \"string\" && /^https:\\/\\/[^/\\s]+(?:\\/|$)/.test(value);\nconst digest = value => typeof value === \"string\" && /^(?:sha256:)?[a-f0-9]{64}$/.test(value);\nif (!Array.isArray(page.sources) || !page.sources.length || page.sources.some(source =>\n    !source || !https(source.source_url) || !digest(source.content_sha256) || typeof source.retrieved_at !== \"string\")) {\n    return fail(\"Missing source provenance or content identity.\");\n}\nif (!Array.isArray(page.diagnostics) || typeof page.absence_policy !== \"string\") return fail(\"Missing diagnostics or absence policy.\");\nconst metadata = [\"entity_id\", \"entity_name\", \"metric\", \"unit\", \"as_of\", \"source_status\", \"availability\", \"source_field\", \"observation_url\", \"retrieved_at\", \"published_at\", \"knowledge_time\", \"rights_status\", \"context\"];\nfor (const row of page.results) {\n    if (!row || row.dataset !== task.dataset || metadata.some(key => !(key in row) || (row[key] !== null && typeof row[key] !== \"string\")) ||\n        !(\"value\" in row) || (row.value !== null && (typeof row.value !== \"number\" || !Number.isFinite(row.value))) ||\n        !https(row.source_url) || !digest(row.content_sha256) ||\n        !page.sources.some(source => source.source_url === row.source_url && source.content_sha256 === row.content_sha256) ||\n        row.evidence_status !== \"not_evaluated\" || row.carrier_verification !== \"not_performed\" || row.financial_authority !== \"none\") {\n        return fail(\"A row lost its provenance, units, clocks, missingness or authority fields.\");\n    }\n    if (/restricted|withheld|unavailable|missing|refus|failed/i.test(row.availability || \"\") && row.value !== null) {\n        return fail(\"Unavailable or restricted evidence unexpectedly contains a number.\");\n    }\n}\nconst sourceStates = page.sources.flatMap(source => ((source.source_reported || {}).state || [])\n    .map(state => ({source_url: source.source_url, ...state})));\nconst sourcePartial = page.sources.some(source => source.ok === false) || sourceStates.some(state => /partial|incomplete|unavailable|failed/i.test(String(state.value)));\nconst warnings = [\"Research preview only: retrieval does not establish freshness, rights, fitness, credit quality or executable liquidity.\"];\nif (page.transport_status !== \"complete\") warnings.push(\"Source retrieval is incomplete; review transport_status and diagnostics.\");\nif (sourcePartial) warnings.push(\"The source reports partial or unavailable evidence. Read sources[].source_reported alongside each row.\");\nif (next !== null) warnings.push(\"More matching rows exist. This is the first page only; narrow the entity or use the bounded Python capture for a full export.\");\nif (!page.results.length) warnings.push(\"No matching rows were returned. Missing coverage is not zero risk or calm markets.\");\nif (page.results.some(row => row.rights_status === null)) warnings.push(\"Some source-data rights are unspecified; do not infer redistribution permission.\");\nconst preview = {\n    schema: \"financial-evidence.node-red-preview.v1\",\n    task, captured_at: new Date().toISOString(),\n    pagination_complete: next === null,\n    transport_complete: page.transport_status === \"complete\",\n    source_partial_reported: sourcePartial,\n    financial_authority: \"none\",\n    warnings,\n    table: page\n};\nreturn [{payload: preview}, null];\n",
+    "outputs": 2,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1080,
+    "y": 240,
+    "wires": [
+      [
+        "a43b6cb01e714328"
+      ],
+      [
+        "a43b6cb01e714329"
+      ]
+    ]
+  },
+  {
+    "id": "a43b6cb01e714328",
+    "type": "debug",
+    "z": "a43b6cb01e714321",
+    "name": "Evidence preview — expand table + warnings",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1110,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "a43b6cb01e714331",
+    "type": "catch",
+    "z": "a43b6cb01e714321",
+    "name": "Transport / runtime errors",
+    "scope": [
+      "a43b6cb01e714325",
+      "a43b6cb01e714326",
+      "a43b6cb01e714327"
+    ],
+    "uncaught": false,
+    "x": 500,
+    "y": 400,
+    "wires": [
+      [
+        "a43b6cb01e714332"
+      ]
+    ]
+  },
+  {
+    "id": "a43b6cb01e714332",
+    "type": "function",
+    "z": "a43b6cb01e714321",
+    "name": "Readable failure (no raw payload)",
+    "func": "return {payload: {status: \"request_failed\", detail: msg.error && msg.error.message || \"Network or processing error\", task: msg.task || null, financial_authority: \"none\"}};",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 820,
+    "y": 400,
+    "wires": [
+      [
+        "a43b6cb01e714329"
+      ]
+    ]
+  },
+  {
+    "id": "a43b6cb01e714329",
+    "type": "debug",
+    "z": "a43b6cb01e714321",
+    "name": "Research request needs attention",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1110,
+    "y": 480,
+    "wires": []
+  }
+]

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Financial research in Node-RED | Financial Evidence</title>
+  <meta name="description" content="Import a free Node-RED flow for USD money markets, covered-bank filings and indicative BTC liquidity. Three manual research previews with sources, dates and missingness preserved.">
+  <link rel="canonical" href="https://beepboop2025.github.io/financial-evidence-skills/automations/node-red/">
+  <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+  <div class="hero"><header><nav aria-label="Primary"><a class="brand" href="../../">Financial Evidence</a><div><a href="#setup">Start in three steps</a><a href="#evidence">Read your result</a><a href="../../support/">Help</a></div></nav></header>
+  <main><p class="eyebrow">Node-RED · Seiche · LiquiLens · Undertow</p><h1>Click a task.<br>Inspect the evidence.</h1>
+  <p class="lede">Bring dollar money-market observations, a covered bank's filings and indicative BTC liquidity measures into your Node-RED workspace.</p>
+  <p>No product account, API key, model or extra Node-RED nodes required. Public usage limits and your own hosting costs apply.</p>
+  <p><a class="button" href="financial-evidence.flow.json" download>Download the Node-RED flow</a></p></main></div>
+  <section id="setup" class="section"><h2>Start in three steps.</h2>
+    <ol><li><strong>Import.</strong> Download the JSON above. In Node-RED, choose <strong>Menu → Import → select a file to import</strong>, then import it into a new flow.</li>
+    <li><strong>Run one task.</strong> Select <strong>Deploy</strong>, then click the small Inject button next to <strong>USD money-market preview</strong>, <strong>AU SFB filing preview</strong> or <strong>BTC indicative liquidity preview</strong>. Deploying alone does not fetch data.</li>
+    <li><strong>Inspect.</strong> Open the Debug sidebar. Expand <strong>Evidence preview</strong>, read <code>warnings</code>, then expand <code>table.results</code> and <code>table.sources</code>. Errors appear separately under <strong>Research request needs attention</strong>.</li></ol>
+    <p>Each click makes one read-only public query. Nothing runs on a timer, sends a message or places a trade.</p>
+  </section>
+  <section class="section muted"><h2>Choose the research question.</h2><div class="grid">
+    <article><h3>USD money markets</h3><p>Inspect published USD benchmark observations with their native units and source dates. Rate levels alone do not establish funding stress.</p><p>Default: <code>money_markets</code>, entity <code>USD</code>.</p></article>
+    <article><h3>Covered-bank filings</h3><p>Inspect AU Small Finance Bank's covered filing evidence. Keep reporting periods, citations and interpretation limits. Coverage is limited and these are not credit ratings.</p><p>Default: <code>bank_risk</code>, entity <code>au-sfb</code>.</p></article>
+    <article><h3>Indicative BTC liquidity</h3><p>Inspect published BTC-related research measures with their coverage and validation limits. These are not executable quotes or a sized order estimate.</p><p>Default: <code>market_liquidity</code>, entity <code>BTC</code>.</p></article>
+  </div><p>Double-click a task's Inject node to change its JSON payload. <code>entity</code> matches a substring; choose a supported dataset and a limit from 1 to 200. The default limit is 25. Use <code>synthetic: true</code> for operator or CI tests; leave it false for your own research.</p></section>
+  <section id="evidence" class="section"><h2>Keep the result's limits visible.</h2>
+    <p>The full response remains in <code>table</code>: source URLs, content hashes, observation and retrieval dates, units, rights, missing values, diagnostics and source-reported states are retained.</p>
+    <p><code>pagination_complete</code> says whether more matching rows exist. <code>transport_complete</code> describes retrieval. <code>source_partial_reported</code> flags a source reporting partial or unavailable evidence. Successful retrieval does not prove freshness or complete coverage.</p>
+    <p>This flow reads one page per click and does not automatically follow pagination. Narrow the entity filter if more rows exist, or use the <a href="../../tools/#python">bounded Python capture</a> for a full export.</p>
+    <p>Missing and restricted values remain null. Unknown rights remain unknown; public access and MIT flow code do not grant source-data redistribution permission. Review each row's dates and interpretation limits before using it in your work.</p>
+  </section>
+  <section class="section muted"><h2>Verification and availability.</h2>
+    <p>This is an importable, first-party flow using only core Node-RED nodes. On 11 October 2026, all three tasks passed native Node-RED 5.0.8 runtime checks, alongside 33 offline checks. Verification used synthetic operator traffic and is not evidence of independent adoption. Reproducible checks are documented in the <a href="https://github.com/beepboop2025/financial-evidence-skills/tree/main/integrations/node-red">integration source</a>. A Node-RED Flow Library listing is a separate submission and review; no acceptance is claimed here.</p>
+    <p><a href="https://nodered.org/docs/user-guide/editor/workspace/import-export">Official import instructions</a> · <a href="https://nodered.org/docs/user-guide/nodes">Core-node guide</a> · <a href="../../tools/">Other ways to use the research tools</a></p>
+  </section>
+  <footer><p><a href="../../">Financial Evidence</a> · <a href="../../privacy/">Privacy</a> · <a href="../../terms/">Terms</a> · <a href="../../support/">Support</a></p></footer>
+</body>
+</html>

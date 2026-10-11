@@ -60,7 +60,10 @@ def build():
         ET.SubElement(node, 'guid', isPermaLink='true').text = item['url']
         timestamp = datetime.fromisoformat(item['published_at'].replace('Z', '+00:00'))
         ET.SubElement(node, 'pubDate').text = format_datetime(timestamp.astimezone(timezone.utc))
-        cards.append(f'''<article class="card"><p class="eyebrow">Edition · {escape(timestamp.date().isoformat())}</p><h3><a href="briefs/{escape(item['id'])}/">{escape(item['title'])}</a></h3><p>{escape(item['description'])}</p><a class="button" href="briefs/{escape(item['id'])}/">Read and download</a></article>''')
+        chart = next((download['url'] for download in item['downloads'] if download['url'].endswith('.svg')), None)
+        preview = (f'<a href="briefs/{escape(item["id"])}/"><img class="edition-preview" src="{escape(chart)}" '
+                   f'alt="Chart preview: {escape(item["title"])}" loading="lazy" width="900" height="520"></a>') if chart else ''
+        cards.append(f'''<article class="card">{preview}<p class="eyebrow">Edition · {escape(timestamp.date().isoformat())}</p><h3><a href="briefs/{escape(item['id'])}/">{escape(item['title'])}</a></h3><p>{escape(item['description'])}</p><a class="button" href="briefs/{escape(item['id'])}/">Read and download</a></article>''')
     ET.indent(rss)
     ET.ElementTree(rss).write(MEDIA / 'feed.xml', encoding='utf-8', xml_declaration=True)
     header = (MEDIA / '_header.txt').read_text().format(title='Source-ready financial research', description='Download dated dollar-funding and bank-disclosure briefings with charts, data, original sources and transparent calculations.', file='')

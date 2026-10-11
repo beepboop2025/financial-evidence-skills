@@ -2,10 +2,10 @@
 
 Use Seiche, LiquiLens, Undertow and Palimpsest from one OpenBB research desk.
 The Workspace release adds seven datasets, nine Workspace widgets, seven dashboard
-tabs, eight SDK-backed MCP tools, two research prompts and a typed REST API.
+tabs, nine SDK-backed MCP tools, three research prompts and a typed REST API.
 
-Workspace is independently versioned as **workspace-1.2.0**, with the exact source
-commit exposed at `/api/v1/release`. The published **v0.1.5 artifacts and public
+Workspace is independently versioned as **workspace-1.3.0**, with the exact source
+commit exposed at `/api/v1/release`. The published **v0.1.7 artifacts and public
 three-tool MCP endpoint retain their existing contract**. A hosted custom backend
 is separate from acceptance in OpenBB's directory.
 
@@ -14,6 +14,15 @@ URL as a custom backend in OpenBB Workspace. Its MCP endpoint is
 `https://api.seiche.info/openbb/mcp`; interactive documentation is at
 `https://api.seiche.info/openbb/docs`. Check the release and source status before
 relying on any current deployment.
+
+## Choose a first task
+
+Open the [connection guide](https://beepboop2025.github.io/financial-evidence-skills/connect/)
+to choose a funding review, an institution watch or a BTC exit check.
+The offline `GET /api/v1/start` catalog, `evidence://start` MCP resource and
+`research_task` prompt describe the same starting points. Call
+`financial_evidence_workflow` to retrieve the browser task through MCP.
+Check `/api/v1/release` for the version actually running at your chosen endpoint.
 
 ## Start the Workspace backend
 

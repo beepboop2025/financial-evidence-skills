@@ -1,5 +1,7 @@
 # Financial Evidence Agent Skills
 
+Start with one task: https://beepboop2025.github.io/financial-evidence-skills/connect/ — browser, REST, Python and remote MCP setup for funding, covered institutions and BTC exit research. Public reads need no account or API key; retain source dates and unavailable evidence.
+
 **Run the new workflows:** [funding watch, institution monitoring and BTC exit research](https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html). Save a local baseline, compare your next review, or copy the API request into your agent.
 Agent developers can retrieve a cited USD funding observation; treasury and
 bank-risk teams can use the new institution monitor; traders and researchers
@@ -18,7 +20,7 @@ provides a complete capture client, notebook, flat Excel/Power BI query and MCP
 project defaults for LiquiLens, Seiche and Undertow. Download the kit or connect
 the hosted OpenBB desk. Institutional vendor acceptance remains separate.
 
-**[OpenBB Research Desk](integrations/openbb/README.md), hosted Workspace 1.1.1.**
+**[OpenBB Research Desk](integrations/openbb/README.md), Workspace 1.3.0 source.**
 Seven cited datasets, a seven-tab Workspace app, an archived USD funding review,
 benchmark history charts, typed REST responses and an eight-tool MCP server connect
 all four projects. The hosted service is `https://api.seiche.info/openbb`.

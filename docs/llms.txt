@@ -1,5 +1,7 @@
 # Financial Evidence
 
+Start with one task: https://beepboop2025.github.io/financial-evidence-skills/connect/ — browser, REST, Python and remote MCP setup for funding, covered institutions and BTC exit research. Public reads need no account or API key; retain source dates and unavailable evidence.
+
 > Financial Evidence is a free, read-only terminal and MCP router for public money-market, capital-market, china-economy, bank-risk, market-liquidity, GIFT City, forex and gold evidence. It connects LiquiLens, Undertow, Seiche, and Palimpsest while preserving separate sources and explicit unavailable states.
 
 Published source version: 0.1.7

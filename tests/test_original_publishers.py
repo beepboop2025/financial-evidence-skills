@@ -117,6 +117,19 @@ class PublisherTests(unittest.TestCase):
             self.assertTrue(lineage["original_publisher_acquisition"])
             self.assertNotIn("fred.stlouisfed.org", lineage["source_url"])
 
+    def test_generated_packet_carries_actual_publisher_and_complete_reference_rate_notices(self):
+        review, _, _ = self.build()
+        notice = review["publisher_notice"]
+        self.assertIn("© 2026 Federal Reserve Bank of New York", notice)
+        self.assertIn("publication of the SOFR and EFFR reference-rate data by LIQUILENS PRIVATE LIMITED", notice)
+        self.assertIn("does not sanction or endorse any particular republication, and has no liability for your use", notice)
+        self.assertIn("LIQUILENS PRIVATE LIMITED is not affiliated with the New York Fed", notice)
+        self.assertIn("does not sanction, endorse, or recommend any products or services offered by LIQUILENS PRIVATE LIMITED", notice)
+        self.assertIn("license granted to the New York Fed by DTCC Solutions LLC", notice)
+        self.assertIn("Solutions, its affiliates, and third parties from which they obtained data have no liability for the content of this material", notice)
+        self.assertIn(source.NYFED_TERMS, notice)
+        self.assertNotIn("Liquidity Lab", notice)
+
     def test_missing_source_never_falls_back_to_reference(self):
         self.documents.pop("tga")
         with self.assertRaises(KeyError):

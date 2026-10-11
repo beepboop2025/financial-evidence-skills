@@ -125,6 +125,7 @@ Source dates, rights and missingness remain explicit. Dyson paths are synthetic;
 ## Dated media briefings
 
 - [LiquiLens Media Desk](https://beepboop2025.github.io/financial-evidence-skills/media/): fixed editions of dollar-funding and covered-bank disclosure research with charts, CSV/JSON, source dates, primary sources and verification records.
+- [Chart and data reuse kit](https://beepboop2025.github.io/financial-evidence-skills/media/reuse/) and [asset manifest](https://beepboop2025.github.io/financial-evidence-skills/media/reuse/manifest.json): dated captions, copyable image embeds, original downloads and a ZIP with file hashes. These are retained historical editions; check each asset's source conditions and live corrections before reuse.
 - [Edition catalog](https://beepboop2025.github.io/financial-evidence-skills/media/catalog.json) and [RSS feed](https://beepboop2025.github.io/financial-evidence-skills/media/feed.xml). Preserve observation periods, source credit, reuse conditions and corrections; publication is not independent adoption.
 
 ## Dollar-funding workflow evaluation

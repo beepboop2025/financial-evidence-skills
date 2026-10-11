@@ -152,6 +152,31 @@ def verify(evidence):
     return latest, manifest, review, acquisition, checks
 
 
+def fit_notice_footer(figure, axes, notice_artist, source_artist):
+    """Add canvas below the chart so the complete notice has a visible margin."""
+    figure.canvas.draw()
+    bounds = notice_artist.get_window_extent(figure.canvas.get_renderer())
+    margin = figure.dpi * .2
+    extra_inches = max(0, margin - bounds.y0) / figure.dpi
+    if extra_inches:
+        width, old_height = figure.get_size_inches()
+        new_height = old_height + extra_inches
+        position = axes.get_position()
+        for artist in figure.texts:
+            x, y = artist.get_position()
+            artist.set_position((x, (y * old_height + extra_inches) / new_height))
+        figure.set_size_inches(width, new_height)
+        axes.set_position([position.x0, (position.y0 * old_height + extra_inches) / new_height,
+                           position.width, position.height * old_height / new_height])
+    figure.canvas.draw()
+    renderer = figure.canvas.get_renderer()
+    bounds = notice_artist.get_window_extent(renderer)
+    require(bounds.x0 >= 0 and bounds.x1 <= figure.bbox.width and bounds.y0 >= margin - 1,
+            "Publisher notice extends outside the chart canvas")
+    require(bounds.y1 < source_artist.get_window_extent(renderer).y0,
+            "Publisher notice overlaps the source or calculation note")
+
+
 def chart(output, checks, notice):
     import matplotlib
     matplotlib.use("Agg")
@@ -180,8 +205,9 @@ def chart(output, checks, notice):
     figure.text(.065, .955, "SOFR was 3 basis points below IORB", fontsize=23, weight="bold", color="#183229", va="top")
     figure.text(.065, .875, "8 October 2026 observations · IORB reference: 3.90%", fontsize=14, va="top")
     figure.text(.065, .824, "The SOFR 99th percentile was 5 bp above IORB.\nA same-date rate comparison; no institution-stress score is inferred.", fontsize=11, linespacing=1.5, va="top")
-    figure.text(.065, .29, "Calculation: (rate in percent − IORB in percent) × 100. One basis point = 0.01 percentage point.\nSOFR's 99th percentile describes its transaction-rate distribution; it is not another policy rate.\nSources: New York Fed Markets API; Federal Reserve Board PRATES. Analysis: Seiche / LiquiLens.\nFrozen review: 8 October; packet captured 11 October 2026. Newer dates exist for some other inputs.", fontsize=9, linespacing=1.45, va="top")
-    figure.text(.065, .13, "\n".join(textwrap.wrap(notice, 145)), fontsize=7.2, linespacing=1.45, va="top")
+    source_artist = figure.text(.065, .29, "Calculation: (rate in percent − IORB in percent) × 100. One basis point = 0.01 percentage point.\nSOFR's 99th percentile describes its transaction-rate distribution; it is not another policy rate.\nSources: New York Fed Markets API; Federal Reserve Board PRATES. Analysis: Seiche / LiquiLens.\nFrozen review: 8 October; packet captured 11 October 2026. Newer dates exist for some other inputs.", fontsize=9, linespacing=1.45, va="top")
+    notice_artist = figure.text(.065, .13, "\n".join(textwrap.wrap(notice, 145)), fontsize=7.2, linespacing=1.45, va="top", gid="publisher-notice")
+    fit_notice_footer(figure, axes, notice_artist, source_artist)
     for extension in ("svg", "png", "pdf"):
         metadata = {"Creator": "Financial Evidence by LiquiLens"}
         if extension == "svg": metadata["Date"] = "2026-10-11"

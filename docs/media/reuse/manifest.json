@@ -1,0 +1,348 @@
+{
+  "schema": "liquilens.newsroom.reuse-kit.v1",
+  "edition_ids": [
+    "2026-10-11-dollar-funding",
+    "2026-10-11-bank-disclosures"
+  ],
+  "market_data_refreshed": false,
+  "freshness": "Historical editions; packaging time is not observation or publisher-release time.",
+  "source": "https://beepboop2025.github.io/financial-evidence-skills/media/",
+  "native_cms_or_platform_acceptance_verified": false,
+  "source_notices": [
+    {
+      "path": "notices/rights.html",
+      "public_url": "https://beepboop2025.github.io/financial-evidence-skills/media/rights.html",
+      "sha256": "9d223acd4dcb1db3ebd95b9ad3a8072dbbcd744d34f6deb06400fd7efa7bff22"
+    },
+    {
+      "path": "notices/corrections.html",
+      "public_url": "https://beepboop2025.github.io/financial-evidence-skills/media/corrections.html",
+      "sha256": "ce73ea9a4ce1eaecca8ee63d92c6007285395c3e6a6ff5ad21628b8a1823e053"
+    },
+    {
+      "path": "notices/corrections.json",
+      "public_url": "https://beepboop2025.github.io/financial-evidence-skills/media/corrections.json",
+      "sha256": "723eb8943cca439506aed23e1326658ac43fa79f6eb10224e37e65ea59784671"
+    },
+    {
+      "path": "notices/sources.md",
+      "public_url": "https://beepboop2025.github.io/financial-evidence-skills/funding/sources.md",
+      "sha256": "cbb60168312300b758860bd969d958db543c4f8989d4c03091756cadef63b503"
+    }
+  ],
+  "editions": [
+    {
+      "id": "2026-10-11-dollar-funding",
+      "title": "SOFR was 3 basis points below IORB on 8 October",
+      "description": "SOFR was 3.87%, compared with IORB at 3.90%, on 8 October 2026. The SOFR–IORB difference was −3 basis points; the SOFR 99th percentile was 3.95%, or 5 basis points above IORB.",
+      "published_at": "2026-10-11T01:07:50.859451+00:00",
+      "prepared_at": "2026-10-11T01:07:50.859451+00:00",
+      "observation_dates": [
+        "2026-10-07",
+        "2026-10-08"
+      ],
+      "headline_finding": "SOFR was 3.87%, compared with IORB at 3.90%, on 8 October 2026. The SOFR–IORB difference was −3 basis points; the SOFR 99th percentile was 3.95%, or 5 basis points above IORB.",
+      "canonical_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/",
+      "source_urls": [
+        "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/dts/operating_cash_balance?filter=record_date%3Agte%3A2026-10-01%2Caccount_type%3Aeq%3ATreasury+General+Account+%28TGA%29+Opening+Balance&fields=record_date%2Caccount_type%2Copen_today_bal&sort=-record_date&page%5Bsize%5D=100",
+        "https://markets.newyorkfed.org/api/rates/secured/sofr/last/10.json",
+        "https://markets.newyorkfed.org/api/rates/unsecured/effr/last/10.json",
+        "https://markets.newyorkfed.org/api/rp/repo/all/results/last/20.json",
+        "https://markets.newyorkfed.org/api/rp/reverserepo/all/results/last/10.json",
+        "https://www.federalreserve.gov/releases/h41/current/h41.htm",
+        "https://www.federalreserve.gov/releases/prates/data/FRB_PRATES_xml.zip"
+      ],
+      "downloads": {
+        "csv": "observations.csv",
+        "json": "data.json",
+        "chart_csv": "chart-data.csv",
+        "svg": "funding-rate-comparison.svg",
+        "png": "funding-rate-comparison.png",
+        "pdf": "funding-rate-comparison.pdf",
+        "packet": "review.json",
+        "manifest": "manifest.json",
+        "validation": "validation.json",
+        "provenance": "provenance.json"
+      },
+      "coverage": "Nine US dollar-funding inputs; eight observations dated 8 October 2026 and weekly-average reserves dated 7 October.",
+      "limitations": [
+        "A fixed 8 October funding review, not the latest observation for every instrument.",
+        "System funding evidence does not measure an individual institution's liquidity or probability of failure.",
+        "A rate difference alone does not establish rising or falling stress; this brief makes no historical trend claim.",
+        "Reserve balances are a weekly average for the week ended 7 October; other rows have separate source dates.",
+        "Archive time begins at first verified capture. This is not complete historical publisher-vintage data.",
+        "Publisher terms remain attached; chart and API availability do not grant blanket data redistribution rights."
+      ],
+      "revision": 1,
+      "corrections": [],
+      "assets": [
+        {
+          "filename": "observations.csv",
+          "label": "csv",
+          "format": "csv",
+          "bytes": 2139,
+          "sha256": "b761d66403be261d0fa80253c8094ab9ed414589999f9a3de05195716d09b417",
+          "public_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/observations.csv",
+          "archive_path": "2026-10-11-dollar-funding/observations.csv",
+          "reuse_scope": "Edition-specific numerical extract or verification metadata. Publisher terms remain attached; software MIT licensing does not confer additional data rights."
+        },
+        {
+          "filename": "data.json",
+          "label": "json",
+          "format": "json",
+          "bytes": 6737,
+          "sha256": "5d6fbbb8464f96ab157548fd5cdca2058fe514e64370670d4ccbf80190c2b0ff",
+          "public_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/data.json",
+          "archive_path": "2026-10-11-dollar-funding/data.json",
+          "reuse_scope": "Edition-specific numerical extract or verification metadata. Publisher terms remain attached; software MIT licensing does not confer additional data rights."
+        },
+        {
+          "filename": "chart-data.csv",
+          "label": "chart_csv",
+          "format": "csv",
+          "bytes": 650,
+          "sha256": "5cd5c3ed285a89bede3a29a71d98c10828db8290460f9b8040fd69372cc313e8",
+          "public_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/chart-data.csv",
+          "archive_path": "2026-10-11-dollar-funding/chart-data.csv",
+          "reuse_scope": "Edition-specific numerical extract or verification metadata. Publisher terms remain attached; software MIT licensing does not confer additional data rights."
+        },
+        {
+          "filename": "funding-rate-comparison.svg",
+          "label": "svg",
+          "format": "svg",
+          "bytes": 11166,
+          "sha256": "4c58108be37a114e51df9dd7be130cf23b7162db4fdb53e01a6d71800ac0e8b1",
+          "public_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/funding-rate-comparison.svg",
+          "archive_path": "2026-10-11-dollar-funding/funding-rate-comparison.svg",
+          "reuse_scope": "Original LiquiLens chart; attribution required, with underlying-source notices retained. No original issuer document is included."
+        },
+        {
+          "filename": "funding-rate-comparison.png",
+          "label": "png",
+          "format": "png",
+          "bytes": 304918,
+          "sha256": "17176dc3df3c15179f5d15df95d5a424c2cd114cc82e7219539082510241d008",
+          "public_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/funding-rate-comparison.png",
+          "archive_path": "2026-10-11-dollar-funding/funding-rate-comparison.png",
+          "reuse_scope": "Original LiquiLens chart; attribution required, with underlying-source notices retained. No original issuer document is included.",
+          "width": 3240,
+          "height": 2160
+        },
+        {
+          "filename": "funding-rate-comparison.pdf",
+          "label": "pdf",
+          "format": "pdf",
+          "bytes": 35577,
+          "sha256": "9d6a10c9e6d821fea836c2775faa23b156d5f973226c784f4bde58bdeea609a7",
+          "public_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/funding-rate-comparison.pdf",
+          "archive_path": "2026-10-11-dollar-funding/funding-rate-comparison.pdf",
+          "reuse_scope": "Original LiquiLens chart; attribution required, with underlying-source notices retained. No original issuer document is included."
+        },
+        {
+          "filename": "review.json",
+          "label": "packet",
+          "format": "json",
+          "bytes": 14510,
+          "sha256": "24ef45ea13ab1650b190ca87ffdff3f93f64538503643b1a10fdbb18075a5bc5",
+          "public_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/review.json",
+          "archive_path": "2026-10-11-dollar-funding/review.json",
+          "reuse_scope": "Edition-specific numerical extract or verification metadata. Publisher terms remain attached; software MIT licensing does not confer additional data rights."
+        },
+        {
+          "filename": "manifest.json",
+          "label": "manifest",
+          "format": "json",
+          "bytes": 3778,
+          "sha256": "2768a534c37a4f006c7592287117f3a6ee29eddf67517bff368c37325619f284",
+          "public_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/manifest.json",
+          "archive_path": "2026-10-11-dollar-funding/manifest.json",
+          "reuse_scope": "Edition-specific numerical extract or verification metadata. Publisher terms remain attached; software MIT licensing does not confer additional data rights."
+        },
+        {
+          "filename": "validation.json",
+          "label": "validation",
+          "format": "json",
+          "bytes": 6752,
+          "sha256": "b59bd8fad03930cc92a02f1c1fd519a967881a7def0c5d31f2451d54309fa45c",
+          "public_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/validation.json",
+          "archive_path": "2026-10-11-dollar-funding/validation.json",
+          "reuse_scope": "Edition-specific numerical extract or verification metadata. Publisher terms remain attached; software MIT licensing does not confer additional data rights."
+        },
+        {
+          "filename": "provenance.json",
+          "label": "provenance",
+          "format": "json",
+          "bytes": 7342,
+          "sha256": "926af9f3fb3a16ea29bdb48c403981edb9e5efbc3581230937b877a929b99843",
+          "public_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/provenance.json",
+          "archive_path": "2026-10-11-dollar-funding/provenance.json",
+          "reuse_scope": "Edition-specific numerical extract or verification metadata. Publisher terms remain attached; software MIT licensing does not confer additional data rights."
+        }
+      ],
+      "caption": "SOFR was 3 basis points below IORB on 8 October\nEdition: 2026-10-11-dollar-funding; published 2026-10-11T01:07:50.859451+00:00.\nChart: 8 October 2026. Full packet: eight observations dated 8 October; weekly-average reserves dated 7 October.\nSource: New York Fed and Federal Reserve Board, 8 October 2026; calculation and chart: Seiche / LiquiLens, 11 October 2026.\nFixed historical rate comparison; not a current market reading, stress trend, or measure of an individual bank’s solvency.\n© 2026 Federal Reserve Bank of New York. Content from the New York Fed subject to the Terms of Use at newyorkfed.org. The SOFR and EFFR reference-rate data, including SOFR percentile and volume data, is subject to the Terms of Use posted at newyorkfed.org. The New York Fed is not responsible for publication of the SOFR and EFFR reference-rate data by LIQUILENS PRIVATE LIMITED, does not sanction or endorse any particular republication, and has no liability for your use. LIQUILENS PRIVATE LIMITED is not affiliated with the New York Fed. The New York Fed does not sanction, endorse, or recommend any products or services offered by LIQUILENS PRIVATE LIMITED. The Secured Overnight Financing Rate (SOFR) Data and Broad General Collateral Rate (BGCR) Data are calculated using data provided under a license granted to the New York Fed by DTCC Solutions LLC (“Solutions”), an affiliate of The Depository Trust & Clearing Corporation. Solutions, its affiliates, and third parties from which they obtained data have no liability for the content of this material. Terms: https://www.newyorkfed.org/privacy/termsofuse. This packet uses SOFR, not BGCR; no ownership of underlying transaction data is claimed.\nData, original sources and methodology: https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/\nReuse terms: https://beepboop2025.github.io/financial-evidence-skills/media/rights.html\nFull funding source notices: https://beepboop2025.github.io/financial-evidence-skills/funding/sources.md\nCheck corrections before reuse: https://beepboop2025.github.io/financial-evidence-skills/media/corrections.html\n",
+      "source_notice": "© 2026 Federal Reserve Bank of New York. Content from the New York Fed subject to the Terms of Use at newyorkfed.org. The SOFR and EFFR reference-rate data, including SOFR percentile and volume data, is subject to the Terms of Use posted at newyorkfed.org. The New York Fed is not responsible for publication of the SOFR and EFFR reference-rate data by LIQUILENS PRIVATE LIMITED, does not sanction or endorse any particular republication, and has no liability for your use. LIQUILENS PRIVATE LIMITED is not affiliated with the New York Fed. The New York Fed does not sanction, endorse, or recommend any products or services offered by LIQUILENS PRIVATE LIMITED. The Secured Overnight Financing Rate (SOFR) Data and Broad General Collateral Rate (BGCR) Data are calculated using data provided under a license granted to the New York Fed by DTCC Solutions LLC (“Solutions”), an affiliate of The Depository Trust & Clearing Corporation. Solutions, its affiliates, and third parties from which they obtained data have no liability for the content of this material. Terms: https://www.newyorkfed.org/privacy/termsofuse. This packet uses SOFR, not BGCR; no ownership of underlying transaction data is claimed.",
+      "reuse_scope": "Original chart design and commentary may be reproduced with attribution, subject to the attached source notices. Numerical data remains subject to publisher terms; this is not an unrestricted data licence.",
+      "source_clock": "Chart: 8 October 2026. Full packet: eight observations dated 8 October; weekly-average reserves dated 7 October.",
+      "corrections_url": "https://beepboop2025.github.io/financial-evidence-skills/media/corrections.html",
+      "rights_url": "https://beepboop2025.github.io/financial-evidence-skills/media/rights.html",
+      "brief_sha256": "a6a6a8ff0fedbf7a0fed494ec238b7c55c67a9f15698e5b91f2b2c9c4e682105",
+      "embed": "<!-- Fixed historical edition. Keep the dates, limitations, credit and source notice. -->\n<figure style=\"max-width:960px;margin:1rem auto\">\n  <a href=\"https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/\"><img src=\"https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/funding-rate-comparison.png\" width=\"3240\" height=\"2160\" alt=\"SOFR was 3.87%, compared with IORB at 3.90%, on 8 October 2026. The SOFR–IORB difference was −3 basis points; the SOFR 99th percentile was 3.95%, or 5 basis points above IORB.\" style=\"display:block;width:100%;height:auto\" loading=\"lazy\"></a>\n  <figcaption>\n    <p><strong>SOFR was 3 basis points below IORB on 8 October</strong></p>\n    <p>Edition: 2026-10-11-dollar-funding; published 2026-10-11T01:07:50.859451+00:00.</p>\n    <p>Chart: 8 October 2026. Full packet: eight observations dated 8 October; weekly-average reserves dated 7 October.</p>\n    <p>Source: New York Fed and Federal Reserve Board, 8 October 2026; calculation and chart: Seiche / LiquiLens, 11 October 2026.</p>\n    <p>Fixed historical rate comparison; not a current market reading, stress trend, or measure of an individual bank’s solvency.</p>\n    <p>© 2026 Federal Reserve Bank of New York. Content from the New York Fed subject to the Terms of Use at newyorkfed.org. The SOFR and EFFR reference-rate data, including SOFR percentile and volume data, is subject to the Terms of Use posted at newyorkfed.org. The New York Fed is not responsible for publication of the SOFR and EFFR reference-rate data by LIQUILENS PRIVATE LIMITED, does not sanction or endorse any particular republication, and has no liability for your use. LIQUILENS PRIVATE LIMITED is not affiliated with the New York Fed. The New York Fed does not sanction, endorse, or recommend any products or services offered by LIQUILENS PRIVATE LIMITED. The Secured Overnight Financing Rate (SOFR) Data and Broad General Collateral Rate (BGCR) Data are calculated using data provided under a license granted to the New York Fed by DTCC Solutions LLC (“Solutions”), an affiliate of The Depository Trust &amp; Clearing Corporation. Solutions, its affiliates, and third parties from which they obtained data have no liability for the content of this material. Terms: https://www.newyorkfed.org/privacy/termsofuse. This packet uses SOFR, not BGCR; no ownership of underlying transaction data is claimed.</p>\n    <p><a href=\"https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/\">Data, original sources and methodology</a> · <a href=\"https://beepboop2025.github.io/financial-evidence-skills/media/rights.html\">Reuse terms and source notices</a> · <a href=\"https://beepboop2025.github.io/financial-evidence-skills/funding/sources.md\">Funding source attribution</a> · <a href=\"https://beepboop2025.github.io/financial-evidence-skills/media/corrections.html\">Check corrections before reuse</a></p>\n  </figcaption>\n</figure>\n"
+    },
+    {
+      "id": "2026-10-11-bank-disclosures",
+      "title": "ESAF: net NPA ratio fell, gross ratio stayed at 5.4%",
+      "description": "A dated, source-linked comparison of ESAF's March and June 2026 disclosures, with editable data and original charts.",
+      "published_at": "2026-10-11T01:09:33.929823+00:00",
+      "observation_dates": [
+        "2026-03-31",
+        "2026-06-30"
+      ],
+      "headline_finding": "ESAF reported NNPA of 0.8% at June 2026 versus 1.8% in March. GNPA remained 5.4% at reported precision, while its gross NPA balance increased from INR 1,213.9 crore to INR 1,253.3 crore.",
+      "source_urls": [
+        "https://www.esaf.bank.in/wp-content/uploads/2026/07/Investor-Presentation-on-the-Unaudited-Standalone-Financial-Results-of-the-Bank-for-the-quarter-ended-June-30-2026.pdf",
+        "https://api.liquilens.in/api/experimental/v1/banking/monitoring/institutions/esaf-sfb?include_history=true",
+        "https://api.seiche.info/openbb/api/v1/query?dataset=bank_risk&entity=ESAF&limit=200&offset=0"
+      ],
+      "downloads": [
+        {
+          "label": "CSV data",
+          "url": "data.csv"
+        },
+        {
+          "label": "JSON data",
+          "url": "data.json"
+        },
+        {
+          "label": "SVG chart",
+          "url": "esaf-disclosure-comparison.svg"
+        },
+        {
+          "label": "PNG chart",
+          "url": "esaf-disclosure-comparison.png"
+        },
+        {
+          "label": "PDF chart",
+          "url": "esaf-disclosure-comparison.pdf"
+        },
+        {
+          "label": "Coverage",
+          "url": "coverage.json"
+        },
+        {
+          "label": "Validation",
+          "url": "validation.json"
+        }
+      ],
+      "coverage": {
+        "entities": [
+          "esaf-sfb"
+        ],
+        "coverage_complete": false,
+        "observed_numeric_facts": 20,
+        "unavailable_fields": [
+          "cet1_pct",
+          "lcr_pct"
+        ]
+      },
+      "limitations": [
+        "One selected issuer; not a census or representative bank sample.",
+        "Historical comparison is read in the July presentation; it is not a backdated publication-vintage dataset.",
+        "Ratios are displayed at issuer precision; gross and net NPA denominators differ.",
+        "A falling ratio does not identify recoveries or explain the contribution of provisions, sales, write-offs or loan growth.",
+        "No live withdrawal, complete counterparty exposure or intraday liquidity evidence is supplied.",
+        "CET1 and LCR are missing in the selected API projection, not proven absent from all issuer disclosures.",
+        "The PDF was checked through official-source web text. Direct local downloads returned HTTP 403; its API-reported hash is not independently verified in this run."
+      ],
+      "canonical_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/",
+      "assets": [
+        {
+          "filename": "data.csv",
+          "label": "CSV data",
+          "format": "csv",
+          "bytes": 10820,
+          "sha256": "7c7fe21705e270679ac3cbeab3a530fd9dff410ee010ee9e5a26cd22c0593082",
+          "public_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/data.csv",
+          "archive_path": "2026-10-11-bank-disclosures/data.csv",
+          "reuse_scope": "Edition-specific numerical extract or verification metadata. Publisher terms remain attached; software MIT licensing does not confer additional data rights."
+        },
+        {
+          "filename": "data.json",
+          "label": "JSON data",
+          "format": "json",
+          "bytes": 24894,
+          "sha256": "81a2e2914b5f094868564f0dba1bcf5d46a5485d5304335f7d872a7506116bcd",
+          "public_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/data.json",
+          "archive_path": "2026-10-11-bank-disclosures/data.json",
+          "reuse_scope": "Edition-specific numerical extract or verification metadata. Publisher terms remain attached; software MIT licensing does not confer additional data rights."
+        },
+        {
+          "filename": "esaf-disclosure-comparison.svg",
+          "label": "SVG chart",
+          "format": "svg",
+          "bytes": 108123,
+          "sha256": "380b44f44131d7ae2f423e1d3d37e69ca35b146d4598a4236317eb585cea7de5",
+          "public_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/esaf-disclosure-comparison.svg",
+          "archive_path": "2026-10-11-bank-disclosures/esaf-disclosure-comparison.svg",
+          "reuse_scope": "Original LiquiLens chart; attribution required, with underlying-source notices retained. No original issuer document is included."
+        },
+        {
+          "filename": "esaf-disclosure-comparison.png",
+          "label": "PNG chart",
+          "format": "png",
+          "bytes": 158328,
+          "sha256": "a8ef6f53a07bb3ebbbac8e2c3961b68ca0b5f40ea98d2476560618f0151ecb1c",
+          "public_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/esaf-disclosure-comparison.png",
+          "archive_path": "2026-10-11-bank-disclosures/esaf-disclosure-comparison.png",
+          "reuse_scope": "Original LiquiLens chart; attribution required, with underlying-source notices retained. No original issuer document is included.",
+          "width": 2160,
+          "height": 1044
+        },
+        {
+          "filename": "esaf-disclosure-comparison.pdf",
+          "label": "PDF chart",
+          "format": "pdf",
+          "bytes": 40378,
+          "sha256": "f7896a64eb864c467a8d3d98773c40f660dc2ce2de47c815828336afed1a66a0",
+          "public_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/esaf-disclosure-comparison.pdf",
+          "archive_path": "2026-10-11-bank-disclosures/esaf-disclosure-comparison.pdf",
+          "reuse_scope": "Original LiquiLens chart; attribution required, with underlying-source notices retained. No original issuer document is included."
+        },
+        {
+          "filename": "coverage.json",
+          "label": "Coverage",
+          "format": "json",
+          "bytes": 1759,
+          "sha256": "62459454823b020fdcb98b56752aaa05fdea55fcc56ec26a045ba81f1cdcf7f0",
+          "public_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/coverage.json",
+          "archive_path": "2026-10-11-bank-disclosures/coverage.json",
+          "reuse_scope": "Edition-specific numerical extract or verification metadata. Publisher terms remain attached; software MIT licensing does not confer additional data rights."
+        },
+        {
+          "filename": "validation.json",
+          "label": "Validation",
+          "format": "json",
+          "bytes": 1936,
+          "sha256": "5c4a14f52a8a10f247850e5c1e28bb68bb1f9c8e361de62d8d6a6bc079fa07d2",
+          "public_url": "https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/validation.json",
+          "archive_path": "2026-10-11-bank-disclosures/validation.json",
+          "reuse_scope": "Edition-specific numerical extract or verification metadata. Publisher terms remain attached; software MIT licensing does not confer additional data rights."
+        }
+      ],
+      "caption": "ESAF: net NPA ratio fell, gross ratio stayed at 5.4%\nEdition: 2026-10-11-bank-disclosures; published 2026-10-11T01:09:33.929823+00:00.\nReported periods: 31 March and 30 June 2026. Source presentation: 31 July 2026.\nSource: ESAF Small Finance Bank, Q1 FY2027 investor presentation, dated 31 July 2026. Chart and extraction: LiquiLens, 11 October 2026.\nOne covered issuer and historical March/June disclosures; not current liquidity, a representative bank sample, or a rating. The source PDF was checked via official web text; its reported hash was not independently verified.\nIssuer documents, branding and third-party material retain their own rights; no licence to redistribute them is granted by this brief. Link to the original filing. No original issuer PDF is included in this kit.\nData, original sources and methodology: https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/\nReuse terms: https://beepboop2025.github.io/financial-evidence-skills/media/rights.html\nOriginal source: https://www.esaf.bank.in/wp-content/uploads/2026/07/Investor-Presentation-on-the-Unaudited-Standalone-Financial-Results-of-the-Bank-for-the-quarter-ended-June-30-2026.pdf\nCheck corrections before reuse: https://beepboop2025.github.io/financial-evidence-skills/media/corrections.html\n",
+      "source_notice": "Issuer documents, branding and third-party material retain their own rights; no licence to redistribute them is granted by this brief. Link to the original filing. No original issuer PDF is included in this kit.",
+      "reuse_scope": "Original chart design and commentary may be reproduced with attribution. Factual extracts retain source credit; issuer documents, branding and commercial data-feed redistribution require separate qualification.",
+      "source_clock": "Reported periods: 31 March and 30 June 2026. Source presentation: 31 July 2026.",
+      "corrections_url": "https://beepboop2025.github.io/financial-evidence-skills/media/corrections.html",
+      "rights_url": "https://beepboop2025.github.io/financial-evidence-skills/media/rights.html",
+      "brief_sha256": "6483d03a9365f8ca9b66fe822c13a934565f30e934967f225383c02f62b9e779",
+      "embed": "<!-- Fixed historical edition. Keep the dates, limitations, credit and source notice. -->\n<figure style=\"max-width:960px;margin:1rem auto\">\n  <a href=\"https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/\"><img src=\"https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/esaf-disclosure-comparison.png\" width=\"2160\" height=\"1044\" alt=\"ESAF reported NNPA of 0.8% at June 2026 versus 1.8% in March. GNPA remained 5.4% at reported precision, while its gross NPA balance increased from INR 1,213.9 crore to INR 1,253.3 crore.\" style=\"display:block;width:100%;height:auto\" loading=\"lazy\"></a>\n  <figcaption>\n    <p><strong>ESAF: net NPA ratio fell, gross ratio stayed at 5.4%</strong></p>\n    <p>Edition: 2026-10-11-bank-disclosures; published 2026-10-11T01:09:33.929823+00:00.</p>\n    <p>Reported periods: 31 March and 30 June 2026. Source presentation: 31 July 2026.</p>\n    <p>Source: ESAF Small Finance Bank, Q1 FY2027 investor presentation, dated 31 July 2026. Chart and extraction: LiquiLens, 11 October 2026.</p>\n    <p>One covered issuer and historical March/June disclosures; not current liquidity, a representative bank sample, or a rating. The source PDF was checked via official web text; its reported hash was not independently verified.</p>\n    <p>Issuer documents, branding and third-party material retain their own rights; no licence to redistribute them is granted by this brief. Link to the original filing. No original issuer PDF is included in this kit.</p>\n    <p><a href=\"https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/\">Data, original sources and methodology</a> · <a href=\"https://beepboop2025.github.io/financial-evidence-skills/media/rights.html\">Reuse terms and source notices</a> · <a href=\"https://beepboop2025.github.io/financial-evidence-skills/funding/sources.md\">Funding source attribution</a> · <a href=\"https://beepboop2025.github.io/financial-evidence-skills/media/corrections.html\">Check corrections before reuse</a></p>\n  </figcaption>\n</figure>\n"
+    }
+  ],
+  "archive": {
+    "filename": "newsroom-evaluation-kit-20261011.zip",
+    "bytes": 529274,
+    "sha256": "0ecc59527a82640ae5ac561dc0651528bcfd8bd70b4ae10bafd988ecd4a200fa",
+    "contents_prefix": "newsroom-kit/",
+    "checksum_scope": "Every archive file except checksums.json itself; archive manifest excludes its own ZIP hash."
+  }
+}

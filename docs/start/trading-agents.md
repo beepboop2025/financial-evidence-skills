@@ -6,10 +6,13 @@ direct endpoints and a configured central product gateway. Financial Evidence
 provides optional local decision captures and a separate learning ledger; it is
 not a mandatory replacement for the named product interfaces.
 
-This is implementation and operator setup documentation. The new central agent
-network/learning stack is not represented here as a publicly deployed service,
-a broker integration or a validated trading strategy. Existing free product
-features remain usable without learning enrollment or training contributions.
+The central platform is available as a pilot at
+[agents.seiche.info](https://agents.seiche.info). Public product routes can be used
+anonymously; no enrollment or token is required. Agent messaging requires a
+provisioned network identity, and optional learning uses separate enrollment.
+Existing free product features remain usable without training contributions.
+Pilot availability does not establish a validated trading strategy or capacity
+for unrestricted production workloads.
 
 ## Install and inspect
 
@@ -18,9 +21,14 @@ From this repository, use a Python environment on approved development storage:
 ```sh
 python -m pip install -e '.[workspace]'
 python -m financial_evidence.trading.cli catalog
-python -m financial_evidence.trading.cli mcp-config
-python -m financial_evidence.trading.cli review --mode test
+python -m financial_evidence.trading.cli --platform-url https://agents.seiche.info mcp-config
+python -m financial_evidence.trading.cli --platform-url https://agents.seiche.info review --mode test
 ```
+
+The explicit central URL is the recommended setup for new pilot integrations.
+With no `--platform-url` and no `SEICHE_AGENT_PLATFORM_URL` environment variable,
+the CLI continues to use each product's direct public endpoint. Existing
+configurations are not rerouted automatically.
 
 `catalog` reports each named product and its first tool. `mcp-config` generates
 editable MCP entries for an agent host; the host/operator decides which tools to
@@ -37,26 +45,35 @@ not evidence that a trade occurred. Test traffic is labelled synthetic to produc
 transports. This adapter does not place orders, access a brokerage account or
 grant execution authority.
 
-To use a provisioned central gateway, have the operator's secret manager inject
-`SEICHE_NETWORK_TOKEN` into the process environment, and configure
-`SEICHE_AGENT_PLATFORM_URL` to the reviewed deployment's HTTPS base URL. Then:
+Check the public [source status](https://agents.seiche.info/v1/data-status) before
+selecting inputs. It distinguishes transport availability from scoped source
+states: `fresh`, `stale`, `restricted` and `unknown`. `monitor_current: false`
+means the report itself is out of date or unavailable. A fresh source clock does
+not grant publication, training or execution rights; inspect the accompanying
+scope and reasons. The pilot does not imply that every product or source is
+currently healthy.
+
+Public central product calls work without credentials. To associate calls with
+an enrolled network identity, optionally have the operator's secret manager
+inject `SEICHE_NETWORK_TOKEN` into the process environment. Configure the base
+URL explicitly or set `SEICHE_AGENT_PLATFORM_URL` for repeated use:
 
 ```sh
-python -m financial_evidence.trading.cli --platform-url "$SEICHE_AGENT_PLATFORM_URL" review --mode shadow
-python -m financial_evidence.trading.cli --platform-url "$SEICHE_AGENT_PLATFORM_URL" mcp-config
+python -m financial_evidence.trading.cli --platform-url https://agents.seiche.info review --mode shadow
+python -m financial_evidence.trading.cli --platform-url https://agents.seiche.info mcp-config
 ```
 
 The token is read from the environment and never written into a generated
 configuration, receipt or source file. Central product routes are
-`/products/{product}/mcp`; the operator's gateway credential authorizes those
-routes. Direct public product endpoints retain their own access rules. The
-learning credential described below is separate.
+`/products/{product}/mcp`. An optional network credential identifies the caller;
+it is not required for public data and does not grant source rights or learning
+permission. Direct public product endpoints retain their own access rules.
 
 For a central platform, `mcp-config` emits local stdio entries invoking
 `financial-evidence-product-mcp --product PRODUCT --platform-url URL`. Install the
-package in an environment available to the agent host, and let the host inherit
-`SEICHE_NETWORK_TOKEN` from its configured secret environment. This adapter passes
-the token to the gateway without copying it into the JSON. It discovers and
+package in an environment available to the agent host. If a token is provisioned,
+let the host inherit `SEICHE_NETWORK_TOKEN` from its configured secret environment.
+This adapter passes the optional token to the gateway without copying it into the JSON. It discovers and
 preserves the native tool schemas for the reviewed read-only subset. A host that
 does not inherit the configured environment needs its own documented secret
 injection mechanism. With no platform URL, the generated entries use the direct
@@ -84,14 +101,14 @@ followed. Cached results retain their original capture time. A cache hit is usef
 local reuse, not another server request. Operators select cache duration and
 apply observation-age checks independently.
 
-The constructor accepts `platform_url` and `credential` when the central gateway
-is desired. Supply these from the environment, not literals or URL credentials:
+For the central pilot, set `platform_url` explicitly. An optional credential comes
+from the secret environment; never embed a token in source or a URL:
 
 ```python
 import os
 client = ProductClient(
-    platform_url=os.environ["SEICHE_AGENT_PLATFORM_URL"],
-    credential=os.environ["SEICHE_NETWORK_TOKEN"],
+    platform_url="https://agents.seiche.info",
+    credential=os.environ.get("SEICHE_NETWORK_TOKEN"),
     mode="shadow",
 )
 ```
@@ -163,7 +180,10 @@ historical timestamp. The existing runtime's v1 bundles remain unchanged.
 
 ## Optional measurement, separately enrolled
 
-The default is off, even if a sink was supplied. To enable a local ledger, first
+The optional learning ledger is off by default, even if a sink was supplied.
+Central requests have bounded operational metadata recorded as described in the
+[pilot privacy notice](https://agents.seiche.info/privacy); this does not enroll
+the caller for shared model training. To enable a local learning ledger, first
 enroll the operator for the actual purposes and policy version. This example
 chooses only measurement and sends no network traffic:
 
@@ -184,20 +204,22 @@ client = ProductClient(
 )
 ```
 
-For an explicitly provisioned remote learning service, inject the endpoint and
-separate learning credential through the operator's secret environment:
+The pilot learning service is available at `https://agents.seiche.info/learning`.
+It requires separate, purpose-specific enrollment; a network token cannot be
+used as a learning credential. After enrollment, inject the learning credential
+through the operator's secret environment:
 
 ```python
 from financial_evidence.learning.client import RemoteLearningClient
 
 learning = RemoteLearningClient(
-    os.environ["FINANCIAL_LEARNING_ENDPOINT"],
+    "https://agents.seiche.info/learning",
     os.environ["FINANCIAL_LEARNING_CREDENTIAL"],
 )
 client = ProductClient(
     mode="shadow", measurement=True, event_sink=learning.record_tool,
-    platform_url=os.environ["SEICHE_AGENT_PLATFORM_URL"],
-    credential=os.environ["SEICHE_NETWORK_TOKEN"],
+    platform_url="https://agents.seiche.info",
+    credential=os.environ.get("SEICHE_NETWORK_TOKEN"),
 )
 ```
 
@@ -221,10 +243,11 @@ a substitute for reviewed outcome pairs.
 
 The network client uses a provisioned agent token to contact the hosted network's
 REST API. It needs no server SQLite file, server signing key or institutional
-owner credential. With the same approved platform environment:
+owner credential. Have the operator provision an agent and inject its
+`SEICHE_NETWORK_TOKEN` through the agent host's secret environment, then run:
 
 ```sh
-python -m financial_evidence.trading.network --endpoint "$SEICHE_AGENT_PLATFORM_URL"
+python -m financial_evidence.trading.network --endpoint https://agents.seiche.info
 ```
 
 This starts a local stdio MCP adapter for the operator's agent host. The exposed
@@ -237,9 +260,9 @@ training by default.
 
 The service implementation is maintained separately in the Seiche repository at
 `services/agent-network`, on the development branch
-`feat/stage-one-agent-network-20261011`. Its intended
+`feat/stage-one-agent-network-20261011`. Its
 [branch source location](https://github.com/beepboop2025/seiche/tree/feat/stage-one-agent-network-20261011/services/agent-network)
-may require that branch to be published; this document does not claim the branch
-has merged to main or that a production endpoint is available. Operators should
-use its reviewed deployment/operations instructions and provision credentials
-before distributing a central configuration.
+contains deployment and operations instructions. The hosted pilot is available
+independently of whether that development branch has merged to main. Operators
+provision network and learning permissions separately; public product tools
+remain accessible without either enrollment.

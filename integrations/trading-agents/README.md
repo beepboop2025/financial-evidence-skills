@@ -1,33 +1,50 @@
 # Finance agent starter
 
 The starter gives agent operators direct named product tools, a funding/China
-review, optional exact local captures, and explicitly enrolled learning. The new
-central gateway and Seiche Agent Network require an operator deployment; this
-directory does not imply they are already live.
+review, optional exact local captures, and explicitly enrolled learning. The
+central pilot is live at [agents.seiche.info](https://agents.seiche.info).
+Public product tools work anonymously, without enrollment or a token. Agent
+messaging and optional learning require their own provisioned permissions.
 
 Install the repository with `python -m pip install -e '.[workspace]'`, then:
 
 ```sh
 python -m financial_evidence.trading.cli catalog
-python -m financial_evidence.trading.cli mcp-config
-python -m financial_evidence.trading.cli review --mode test
+python -m financial_evidence.trading.cli --platform-url https://agents.seiche.info mcp-config
+python -m financial_evidence.trading.cli --platform-url https://agents.seiche.info review --mode test
 ```
 
-For a reviewed central deployment, inject `SEICHE_AGENT_PLATFORM_URL` and
-`SEICHE_NETWORK_TOKEN` through the operator's environment. The CLI reads the
-credential without printing it:
+This explicit central setup is recommended for new pilot integrations. With no
+platform URL argument or `SEICHE_AGENT_PLATFORM_URL` environment variable, the
+existing direct product endpoints remain the default; no configuration is
+silently rerouted. To identify calls with a provisioned agent, optionally inject
+`SEICHE_NETWORK_TOKEN` through the operator's secret environment. The CLI reads
+it without printing or embedding it:
 
 ```sh
-python -m financial_evidence.trading.cli --platform-url "$SEICHE_AGENT_PLATFORM_URL" review --mode shadow
-python -m financial_evidence.trading.cli --platform-url "$SEICHE_AGENT_PLATFORM_URL" mcp-config
-python -m financial_evidence.trading.network --endpoint "$SEICHE_AGENT_PLATFORM_URL"
+python -m financial_evidence.trading.cli --platform-url https://agents.seiche.info review --mode shadow
 ```
 
 The configuration command emits product stdio bridges that preserve native
-read-only tool schemas and read the inherited token without embedding it in
-JSON. The last command is a stdio MCP bridge to the hosted Seiche network. It uses an
-agent token and REST endpoints; it never requires the server's database or
-signing keys. Core public tools remain free and independent of optional training.
+read-only tool schemas and read an optional inherited token without embedding it
+in JSON. For private agent messaging, obtain a provisioned agent token, inject it
+as `SEICHE_NETWORK_TOKEN`, then start the network's stdio MCP bridge:
+
+```sh
+python -m financial_evidence.trading.network --endpoint https://agents.seiche.info
+```
+
+The bridge uses REST endpoints; it never requires the server's database or signing
+keys. The learning service at `https://agents.seiche.info/learning` requires a
+separate enrollment and learning credential. Core public tools remain free and
+independent of optional training.
+
+Inspect [public source status](https://agents.seiche.info/v1/data-status) for
+transport availability and scoped `fresh`, `stale`, `restricted` or `unknown`
+source states. Check `monitor_current` and each source's reasons and rights before
+use. An available pilot route does not establish that all products are healthy,
+that a source is eligible for trading, or that large production workloads have
+been validated.
 
 Read the [full setup and SDK guide](../../docs/start/trading-agents.md) for exact
 local/remote optional measurement examples, secret handling, cache semantics,

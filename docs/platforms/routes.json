@@ -39,6 +39,63 @@
       "verified_customer_adoption": null
     },
     {
+      "id": "google-sheets",
+      "name": "Google Sheets",
+      "category": "Analyst spreadsheet",
+      "priority": "P1",
+      "products": [
+        "Financial Evidence",
+        "Seiche",
+        "LiquiLens",
+        "Undertow"
+      ],
+      "audience": "Analysts and small research teams using shared spreadsheets",
+      "workflow": "Paste one custom function and request a bounded page of funding, bank or liquidity evidence. Change a referenced refresh cell for another review.",
+      "artifact_label": "Google Sheets setup and script",
+      "artifact_url": "../tools/#sheets",
+      "status": "Source and local contract tests available. Google-hosted execution and Workspace Marketplace acceptance remain unverified.",
+      "official_source": "https://developers.google.com/apps-script/guides/sheets/functions",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "colab",
+      "name": "Google Colab / Jupyter",
+      "category": "Research notebook",
+      "priority": "P1",
+      "products": [
+        "Financial Evidence",
+        "Seiche",
+        "LiquiLens",
+        "Undertow"
+      ],
+      "audience": "Researchers, students and analysts using Python notebooks",
+      "workflow": "Open a notebook, run a source-linked research capture, and retain JSON, spreadsheet-safe CSV and a checksum receipt.",
+      "artifact_label": "Open in Colab",
+      "artifact_url": "https://colab.research.google.com/github/beepboop2025/financial-evidence-skills/blob/main/docs/tools/research_desk.ipynb",
+      "status": "The notebook verifies a pinned helper and needs no package install. Colab may require a Google account to run; Google-hosted execution is not yet verified.",
+      "official_source": "https://research.google.com/colaboratory/faq.html",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "node-red",
+      "name": "Node-RED",
+      "category": "Workflow automation",
+      "priority": "P1",
+      "products": [
+        "Financial Evidence",
+        "Seiche",
+        "LiquiLens",
+        "Undertow"
+      ],
+      "audience": "Researchers and automation builders using visual flows",
+      "workflow": "Import a core-node flow and trigger one bounded funding, bank or liquidity research preview manually. Inspect its sources, status and pagination in Debug.",
+      "artifact_label": "Import the research flow",
+      "artifact_url": "../automations/node-red/",
+      "status": "Downloadable flow verified in native Node-RED 5.0.8: all three manual tasks and two error paths passed. Flow Library publication and independent adoption remain unverified.",
+      "official_source": "https://nodered.org/docs/user-guide/editor/workspace/import-export",
+      "verified_customer_adoption": null
+    },
+    {
       "id": "langchain",
       "name": "LangChain / LangGraph",
       "category": "Agent framework",
@@ -143,7 +200,12 @@
       "artifact_url": "agent-clients.md#chatgpt--codex",
       "status": "Official directory publication and identity verification remain pending.",
       "official_source": "https://developers.openai.com/plugins/deploy/submission",
-      "verified_customer_adoption": null
+      "verified_customer_adoption": null,
+      "search_terms": [
+        "MCP",
+        "remote",
+        "plugin"
+      ]
     },
     {
       "id": "copilot",

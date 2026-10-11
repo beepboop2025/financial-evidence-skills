@@ -1,0 +1,66 @@
+{
+  "schema": "financial-evidence.node-red-acceptance.v1",
+  "started_at": "2026-10-11T00:43:34.043Z",
+  "stopped_at": "2026-10-11T00:43:37.796Z",
+  "node_red": "5.0.8",
+  "node": "v25.6.0",
+  "public_flow_sha256": "42838aea8c85380c0480777ff3c0f3e8e550902472ea46d00940439554f8fd98",
+  "synthetic": true,
+  "public_flow_changed": false,
+  "native_results": [
+    {
+      "dataset": "money_markets",
+      "entity": "USD",
+      "returned_rows": 1,
+      "total_rows": 1,
+      "transport_complete": true,
+      "pagination_complete": true,
+      "source_partial_reported": true,
+      "sources_retained": 1,
+      "warnings": [
+        "Research preview only: retrieval does not establish freshness, rights, fitness, credit quality or executable liquidity.",
+        "The source reports partial or unavailable evidence. Read sources[].source_reported alongside each row."
+      ]
+    },
+    {
+      "dataset": "bank_risk",
+      "entity": "au-sfb",
+      "returned_rows": 7,
+      "total_rows": 7,
+      "transport_complete": true,
+      "pagination_complete": true,
+      "source_partial_reported": false,
+      "sources_retained": 1,
+      "warnings": [
+        "Research preview only: retrieval does not establish freshness, rights, fitness, credit quality or executable liquidity.",
+        "Some source-data rights are unspecified; do not infer redistribution permission."
+      ]
+    },
+    {
+      "dataset": "market_liquidity",
+      "entity": "BTC",
+      "returned_rows": 2,
+      "total_rows": 2,
+      "transport_complete": true,
+      "pagination_complete": true,
+      "source_partial_reported": false,
+      "sources_retained": 1,
+      "warnings": [
+        "Research preview only: retrieval does not establish freshness, rights, fitness, credit quality or executable liquidity.",
+        "Some source-data rights are unspecified; do not infer redistribution permission."
+      ]
+    }
+  ],
+  "failures_checked": [
+    "Unsupported task rejected by native Function node before HTTP",
+    "HTML challenge rejected by native Function node"
+  ],
+  "flow_library_accepted": false,
+  "external_user_verified": false,
+  "no_automatic_execution": true,
+  "status": "passed",
+  "runtime_stopped": true,
+  "offline_checks_passed": 33,
+  "runtime_scope": "Fresh isolated user directory; temporary admin HTTP port bound to 127.0.0.1 only; stopped after verification.",
+  "native_scope": "Flow loaded by Node-RED runtime and three core Inject nodes invoked via native loopback admin endpoints. This is not a visual editor usability test or Flow Library acceptance."
+}

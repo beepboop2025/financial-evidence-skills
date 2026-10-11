@@ -22,7 +22,7 @@ the hosted OpenBB desk. Institutional vendor acceptance remains separate.
 
 **[OpenBB Research Desk](integrations/openbb/README.md), Workspace 1.3.0 source.**
 Seven cited datasets, a seven-tab Workspace app, an archived USD funding review,
-benchmark history charts, typed REST responses and an eight-tool MCP server connect
+benchmark history charts, typed REST responses and a nine-tool MCP server connect
 all four projects. The hosted service is `https://api.seiche.info/openbb`.
 Install
 `.[openbb,workspace]` from this checkout, then run `openbb-build` and

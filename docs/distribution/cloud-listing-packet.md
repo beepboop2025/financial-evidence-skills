@@ -1,7 +1,7 @@
 # Cloud and institutional marketplace listing packet
 
 Prepared 7 October 2026 for **LIQUILENS PRIVATE LIMITED**, public brand
-**LiquiLens**. This is submission material, not evidence of vendor approval.
+**LiquiLens**. Product copy refreshed 11 October 2026 for hosted Workspace 1.3.0. This is submission material, not evidence of vendor approval.
 The public research service and individual product APIs already exist. Cloud
 seller onboarding, commercial delivery and native platform acceptance remain
 separate work.
@@ -30,11 +30,11 @@ separate work.
 
 **Short description:** Read-only tools for source-cited bank, funding and
 market-liquidity research. Query seven dataset views through a browser, REST
-or MCP while preserving observation dates, units and unavailable values.
+or MCP while preserving observation dates, units and unavailable values. Start with a funding review, covered institution or BTC exit workflow through the [connection guide](https://beepboop2025.github.io/financial-evidence-skills/connect/).
 
 **Long description:** Financial Evidence Research Desk brings public financial
 evidence into analysts' existing research tools. Its browser desk, typed REST
-interface and eight-tool MCP service support covered-bank disclosures,
+interface and nine-tool MCP service support covered-bank disclosures,
 money-market benchmarks and history, capital-market context, liquidity
 evidence and source-health checks. The service connects the LiquiLens, Seiche,
 Undertow and Palimpsest research surfaces.

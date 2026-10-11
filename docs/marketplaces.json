@@ -166,14 +166,66 @@
       "submission_url": "https://github.com/OpenBB-finance/awesome-openbb/pull/12",
       "cost": "free",
       "detail": "Existing PR branch now links 0.1.7 wheel and eight-tool Research Desk 1.1.3. Upstream repository is archived; GitHub rejected the PR-description update as read-only.",
-      "next_action": "Maintainer must reopen the archived upstream repository for review and description refresh.",
+      "next_action": "Retain this unmerged archived PR as historical evidence. Continue the separate openbb-app-marketplace application for current Marketplace review; do not create a duplicate directory PR.",
       "latest_surface_check": {
         "observed_at": "2026-10-08T11:16:05.165498+00:00",
         "readback": "no_public_listing_url"
       },
       "upstream_state": "archived_read_only",
+      "upstream_archived_verified_at": "2026-10-11T11:09:00Z",
+      "current_review_entry": "openbb-app-marketplace",
       "submitted_source_commit": "05bb94300b3807af3a1b785f9067ae5b0274cd9c",
       "updated_at": "2026-10-08T11:44:54.209471+00:00"
+    },
+    {
+      "id": "openbb-app-marketplace",
+      "name": "OpenBB App Marketplace — Financial Evidence Research Desk",
+      "product": "Financial Evidence Research Desk",
+      "products": [
+        "Seiche",
+        "LiquiLens",
+        "Undertow"
+      ],
+      "channel": "financial-workspace-marketplace",
+      "state": "submitted",
+      "submission_url": "https://app.formbricks.com/s/cms3erjhmnwz901shu03176vk",
+      "official_entry_url": "https://openbb.co/solutions/marketplace/",
+      "cost": "USD 1,000/year published; first-year waiver requested. No paid listing, invoice or automatic renewal authorized.",
+      "detail": "The official Become a Marketplace Partner form accepted one completed application for the existing Research Desk app and MCP server on 11 October 2026. It named Seiche, LiquiLens and Undertow as contributing products, identified Palimpsest coverage as metadata-only, and asked whether separate product entries are appropriate. The submission explicitly requested a first-year fee waiver and made participation conditional on that waiver. The form confirmed that the team will reach out. This is an application receipt, not approval, three separate product listings, a waiver grant or adoption.",
+      "next_action": "Await the current Marketplace review owner and the fee-waiver decision at the submitted company contact. Supply a native Workspace walkthrough if requested; separately approve any future paid terms. Reconcile this receipt before any resubmission and verify a public app page before marking live.",
+      "submitted_at": "2026-10-11T11:08:46Z",
+      "verified_at": "2026-10-11T11:09:34Z",
+      "submission_completed": true,
+      "submission_receipt_text": "Thank you for your interest in the OpenBB App Marketplace. Our team will reach out to you soon.",
+      "submission_receipt_sha256": "3a96bf7913b753ab962c12e0859c6d129097ae03fa4bcdf46e09bea0e6f10491",
+      "fee_waiver_requested": true,
+      "fee_waiver_approved": false,
+      "paid_commitment_authorized": false,
+      "marketplace_approved": false,
+      "public_listing_verified": false,
+      "native_workspace_verified": false,
+      "native_workspace_gate": "The official pro.openbb.co/login route redirects to the BQ Workspace Coming Soon page; no hosted Workspace session is available through that route.",
+      "successor_workspace_url": "https://workspace.brightquery.com/",
+      "backend_contract_verification": {
+        "observed_at": "2026-10-11T11:05:42.006219+00:00",
+        "backend": "https://api.seiche.info/openbb",
+        "release_id": "workspace-1.3.0+4802a9b3bfb9",
+        "reported_source_commit": "4802a9b3bfb9d652199f25bf52852cb1e5db1cb3",
+        "identity_scope": "operator_supplied_build_revision",
+        "dataset_count": 7,
+        "widget_count": 9,
+        "read_only_mcp_tool_count": 9,
+        "contract_checks": "passed",
+        "operator_traffic": true,
+        "receipt_sha256": "63aa63a90b4304075ef3777041ceb82390879567480fca5edc6f20303b1dda4c"
+      },
+      "latest_surface_check": {
+        "observed_at": "2026-10-11T11:07:30.567Z",
+        "url": "https://openbb.co/solutions/marketplace/",
+        "readback": "no_matching_family_app_in_public_catalogue"
+      },
+      "evidence_summary": "distribution/openbb-marketplace-20261011.md",
+      "updated_at": "2026-10-11T11:09:34Z"
     },
     {
       "id": "gemini-cli-extension-gallery",

@@ -14,10 +14,10 @@
         "Undertow"
       ],
       "audience": "Macro, treasury and quantitative analysts",
-      "workflow": "Add the hosted Research Desk to an existing OpenBB Workspace.",
+      "workflow": "Inspect the hosted Research Desk integration and connect it when supported Workspace access is available during the BQ transition.",
       "artifact_label": "Custom backend",
       "artifact_url": "../tools/#openbb",
-      "status": "Hosted metadata checked; native Workspace test pending.",
+      "status": "Hosted HTTP/MCP contract checked on 11 October 2026. Official Marketplace app and MCP application submitted with a first-year fee-waiver request; approval and public listing remain pending. OpenBB login redirects to BQ Workspace Coming Soon, preventing hosted native acceptance through that route.",
       "official_source": "https://docs.openbb.co/workspace/developers/data-integration",
       "verified_customer_adoption": null
     },

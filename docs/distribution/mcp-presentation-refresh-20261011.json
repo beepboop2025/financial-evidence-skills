@@ -1,0 +1,569 @@
+{
+  "schema": "financial-evidence.mcp-presentation-refresh.v1",
+  "observed_at": "2026-10-11T13:52:10.017543+00:00",
+  "scope": [
+    "LiquiLens",
+    "Seiche",
+    "Undertow"
+  ],
+  "operator_traffic": true,
+  "external_adoption_verified": false,
+  "mcp_first_calls": [
+    {
+      "product": "liquilens",
+      "server": {
+        "name": "liquilens",
+        "title": "LiquiLens Failure Radar",
+        "version": "1.8.1",
+        "websiteUrl": "https://liquilens.in"
+      },
+      "tools": 24,
+      "tool": "bank_asset_quality_review",
+      "isError": false,
+      "rpcError": null,
+      "bytes": 48916,
+      "observed_at": "2026-10-11T12:50:54.003819+00:00"
+    },
+    {
+      "product": "seiche",
+      "server": {
+        "name": "seiche",
+        "title": "Seiche \u2014 funding-stress terminal",
+        "version": "0.16.2",
+        "websiteUrl": "https://seiche.info"
+      },
+      "tools": 16,
+      "tool": "funding_stress_now",
+      "isError": false,
+      "rpcError": null,
+      "bytes": 14467,
+      "observed_at": "2026-10-11T12:50:56.484083+00:00"
+    },
+    {
+      "product": "undertow",
+      "server": {
+        "name": "undertow",
+        "title": "Undertow market liquidity map",
+        "version": "1.13.0",
+        "websiteUrl": "https://liquilens-undertow.com/"
+      },
+      "tools": 16,
+      "tool": "crypto_exit_check",
+      "isError": false,
+      "rpcError": null,
+      "bytes": 5787,
+      "observed_at": "2026-10-11T12:50:53.613159+00:00"
+    }
+  ],
+  "browser_checks": [
+    {
+      "name": "liquilens-home",
+      "url": "https://liquilens.in/",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "errors": [],
+      "observedAt": "2026-10-11T12:50:34.078Z"
+    },
+    {
+      "name": "liquilens-home",
+      "url": "https://liquilens.in/",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "errors": [],
+      "observedAt": "2026-10-11T12:50:39.872Z"
+    },
+    {
+      "name": "seiche-home",
+      "url": "https://seiche.info/",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "errors": [],
+      "observedAt": "2026-10-11T12:50:52.105Z"
+    },
+    {
+      "name": "seiche-home",
+      "url": "https://seiche.info/",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "errors": [],
+      "observedAt": "2026-10-11T12:51:05.273Z"
+    },
+    {
+      "name": "undertow-home",
+      "url": "https://liquilens-undertow.com/",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "errors": [],
+      "observedAt": "2026-10-11T12:51:08.096Z"
+    },
+    {
+      "name": "undertow-home",
+      "url": "https://liquilens-undertow.com/",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "errors": [],
+      "observedAt": "2026-10-11T12:51:10.324Z"
+    },
+    {
+      "name": "liquilens-developers",
+      "url": "https://liquilens.in/developers/",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "errors": [],
+      "observedAt": "2026-10-11T12:51:12.952Z"
+    },
+    {
+      "name": "liquilens-developers",
+      "url": "https://liquilens.in/developers/",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "errors": [],
+      "observedAt": "2026-10-11T12:51:15.340Z"
+    },
+    {
+      "name": "seiche-developers",
+      "url": "https://seiche.info/developers",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "errors": [],
+      "observedAt": "2026-10-11T12:51:20.673Z"
+    },
+    {
+      "name": "seiche-developers",
+      "url": "https://seiche.info/developers",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "errors": [],
+      "observedAt": "2026-10-11T12:51:25.946Z"
+    },
+    {
+      "name": "undertow-developers",
+      "url": "https://liquilens-undertow.com/developers/",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "errors": [],
+      "observedAt": "2026-10-11T12:51:27.956Z"
+    },
+    {
+      "name": "undertow-developers",
+      "url": "https://liquilens-undertow.com/developers/",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "errors": [],
+      "observedAt": "2026-10-11T12:51:29.906Z"
+    },
+    {
+      "name": "kit",
+      "url": "https://liquilens.in/agents/",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "errors": [],
+      "observedAt": "2026-10-11T12:51:32.057Z"
+    },
+    {
+      "name": "kit",
+      "url": "https://liquilens.in/agents/",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "errors": [],
+      "observedAt": "2026-10-11T12:51:33.612Z"
+    },
+    {
+      "name": "try-funding",
+      "url": "https://liquilens.in/start/?task=funding",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "errors": [],
+      "observedAt": "2026-10-11T12:51:36.972Z"
+    },
+    {
+      "name": "try-funding",
+      "url": "https://liquilens.in/start/?task=funding",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "errors": [],
+      "observedAt": "2026-10-11T12:51:39.532Z"
+    },
+    {
+      "name": "try-bank",
+      "url": "https://liquilens.in/start/?task=bank",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "errors": [],
+      "observedAt": "2026-10-11T12:51:42.542Z"
+    },
+    {
+      "name": "try-bank",
+      "url": "https://liquilens.in/start/?task=bank",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "errors": [],
+      "observedAt": "2026-10-11T12:51:45.362Z"
+    },
+    {
+      "name": "try-exit",
+      "url": "https://liquilens.in/start/?task=exit&size=100000",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "errors": [],
+      "observedAt": "2026-10-11T12:51:48.256Z"
+    },
+    {
+      "name": "try-exit",
+      "url": "https://liquilens.in/start/?task=exit&size=100000",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "errors": [],
+      "observedAt": "2026-10-11T12:51:51.121Z"
+    }
+  ],
+  "browser_tasks": [
+    {
+      "task": "bank",
+      "question": "What changed in Cosmos Bank\u2019s NPAs?",
+      "state": "received",
+      "title": "Cosmos Co-operative Bank",
+      "facts": "Reporting period ends\n2026-03-31\nAvailable to this service\n2026-10-04T17:34:22.036315Z\nGross NPA ratio\n3.11%\nNet NPA ratio\n0.91%",
+      "pass": true,
+      "observedAt": "2026-10-11T12:53:41.366Z"
+    },
+    {
+      "task": "funding",
+      "question": "What is driving dollar funding stress?",
+      "state": "received",
+      "title": "The plumbing looks tighter than markets price, but divergence is a warning to investigate, not proof of a squeeze.",
+      "facts": "Board regime\nEROSION\nBoard value (0\u2013100)\n42.5\nGenerated at\n2026-10-11T12:47:39+00:00\nEditorial confidence\nguarded",
+      "pass": true,
+      "observedAt": "2026-10-11T12:53:43.722Z"
+    },
+    {
+      "task": "exit",
+      "question": "What does a BTC exit cost across venues?",
+      "state": "received",
+      "title": "BTC sell-cost estimates at 100,000 USD",
+      "facts": "Requested size\n100,000 USD\nPublished size rung\n100,000 USD\nSnapshot generated\n2026-10-11T12:01:29+00:00\nObservation date\n2026-10-11",
+      "pass": true,
+      "observedAt": "2026-10-11T12:53:44.704Z"
+    }
+  ],
+  "combined_brief_download_verified": true,
+  "client_configs": {
+    "claude": "https://liquilens.in/agents/claude.txt",
+    "codex": "https://liquilens.in/agents/codex.txt",
+    "cursor": "https://liquilens.in/agents/cursor.json",
+    "same_server_configs_as_browser": true
+  },
+  "directory_snapshot": "Smithery and Glama hosted tool names match live 24/16/16 inventories. Official MCP Registry versions are 1.8.1/0.16.2/1.13.0. LobeHub generated local alternatives and MCP.so public copy/tools remain incomplete.",
+  "lobehub_support_supplement": {
+    "sent_at": "2026-10-11T12:59:32.172Z",
+    "to": "support@lobehub.com",
+    "thread": "Seiche listing: correct outdated local installation alternatives",
+    "body_readback_verified": true,
+    "provider_delivery_verified": false,
+    "provider_resolution_verified": false
+  },
+  "liquilens_polish": {
+    "pull_request": "https://github.com/beepboop2025/liquilens-site/pull/167",
+    "source": "ca526e426469b6c147702ca7b0f29bd2e77bcd4f",
+    "deployment": "https://github.com/beepboop2025/liquilens-site/actions/runs/38141448446",
+    "state": "deployed_public_text_verified"
+  },
+  "seiche_static_page": {
+    "observed_at": "2026-10-11T13:51:35.025175+00:00",
+    "deployment": "d2ff07e0-4524-4695-9047-31d453612487",
+    "source": "a843425f5e6d45745301fc638152e6fb765930e4",
+    "site": "8f29a67a159f39f9840a79fee83c77f2971f5ef8",
+    "controller_digest": "39137f00b0882d54de88a894977825150ad2d2e0e350bc06f5e5205f57252ac2",
+    "publication_receipt_tag": "market-corpus-receipt-corpus-7cb1695c6affa707-r33",
+    "native_pass_at": "2026-10-11T13:49:17.727470228Z",
+    "native_pass_verified": true,
+    "public_readback_verified": true,
+    "catalog_exact_source_bytes_both_domains": true,
+    "origin_developer_page_exact_source_bytes": true,
+    "canonical_developer_page_exact_after_cloudflare_email_protection_only": true,
+    "backend_release_unchanged": true,
+    "backend_identity_headers": {
+      "x-seiche-railway-deployment": "d0974f4e-628c-4367-a74b-ff12ea2603c6",
+      "x-seiche-release-sha": "10d8acd99add9aceed1eb3919c118f62005eefdf"
+    },
+    "browser_checks": [
+      {
+        "headline": "Bring funding evidence into your agent.",
+        "copy": "claude mcp add --transport http seiche https://api.seiche.info/mcp\nclaude mcp add --transport http liquilens https://api.liquilens.in/mcp\nclaude mcp add --transport http undertow https://api.seiche.info/undertow/mcp",
+        "overflow": false,
+        "width": 390,
+        "status": 200,
+        "url": "https://seiche.info/developers?verification=1",
+        "errors": [],
+        "observed_at": "2026-10-11T13:49:36.718Z",
+        "pass": true
+      },
+      {
+        "headline": "Bring funding evidence into your agent.",
+        "copy": "claude mcp add --transport http seiche https://api.seiche.info/mcp\nclaude mcp add --transport http liquilens https://api.liquilens.in/mcp\nclaude mcp add --transport http undertow https://api.seiche.info/undertow/mcp",
+        "overflow": false,
+        "width": 1440,
+        "status": 200,
+        "url": "https://seiche.info/developers?verification=1",
+        "errors": [],
+        "observed_at": "2026-10-11T13:49:40.017Z",
+        "pass": true
+      },
+      {
+        "headline": "Bring funding evidence into your agent.",
+        "copy": "claude mcp add --transport http seiche https://api.seiche.info/mcp\nclaude mcp add --transport http liquilens https://api.liquilens.in/mcp\nclaude mcp add --transport http undertow https://api.seiche.info/undertow/mcp",
+        "overflow": false,
+        "width": 390,
+        "status": 200,
+        "url": "https://seiche.pages.dev/developers?verification=1",
+        "errors": [],
+        "observed_at": "2026-10-11T13:49:36.542Z",
+        "pass": true
+      },
+      {
+        "headline": "Bring funding evidence into your agent.",
+        "copy": "claude mcp add --transport http seiche https://api.seiche.info/mcp\nclaude mcp add --transport http liquilens https://api.liquilens.in/mcp\nclaude mcp add --transport http undertow https://api.seiche.info/undertow/mcp",
+        "overflow": false,
+        "width": 1440,
+        "status": 200,
+        "url": "https://seiche.pages.dev/developers?verification=1",
+        "errors": [],
+        "observed_at": "2026-10-11T13:49:38.918Z",
+        "pass": true
+      }
+    ],
+    "recovery_identity": {
+      "source": "a843425f5e6d45745301fc638152e6fb765930e4",
+      "previous_site": "cf91668d7b434078d894dd2141c9229c448b5cf2"
+    },
+    "durable_recovery_path": "/evidence/a843425f5e6d45745301fc638152e6fb765930e4-seiche-publication-rpcawi33",
+    "durable_current_file_captured": false,
+    "acceptance_evidence_note": "The native PASS is emitted only after public verification and atomic durable current.json replacement. The read-only receipt observer captured the recovery identity and exact controller files, but its SSH process ended with the one-shot container before it copied current.json. No publication replay was used.",
+    "native_log_sha256": "fc64485b3cd8de10bbb4c6ef9cd297586260b454c7d90c787b487e3bd10726a2",
+    "state": "published_native_pass_and_public_readback_verified",
+    "public_updated": true,
+    "pull_request": "https://github.com/beepboop2025/seiche/pull/334",
+    "scheduled_refresh_restored_at": "2026-10-11T13:51:38.846656+00:00",
+    "scheduled_refresh": "23 2,6,10,14,18,22 * * *",
+    "test_results": {
+      "passed": 5238,
+      "skipped": 30,
+      "subtests_passed": 139,
+      "controller_unit_tests": 52
+    }
+  },
+  "openbb": {
+    "package_version": "0.1.1",
+    "official_marketplace_application": "submitted_2026-10-11",
+    "review_and_fee_waiver": "pending",
+    "new_submission": false,
+    "upstream_ecosystem_repository_archived": true,
+    "fresh_mail_check": "No review or waiver approval found in the existing company inbox search on 2026-10-11."
+  },
+  "mobile_browser_tasks": [
+    {
+      "question": "What changed in Cosmos Bank\u2019s NPAs?",
+      "state": "received",
+      "horizontal_overflow": false,
+      "observed_at": "2026-10-11T13:12:28.944Z"
+    },
+    {
+      "question": "What is driving dollar funding stress?",
+      "state": "received",
+      "horizontal_overflow": false,
+      "observed_at": "2026-10-11T13:12:28.944Z"
+    },
+    {
+      "question": "What does a BTC exit cost across venues?",
+      "state": "received",
+      "horizontal_overflow": false,
+      "observed_at": "2026-10-11T13:12:28.944Z"
+    }
+  ],
+  "mobile_combined_brief_download_verified": true,
+  "operator_analytics_requests": [],
+  "liquilens_final_polish": {
+    "source": "adeefccfc60aad41f920217d511a27ed962c6aec",
+    "deployment": "https://github.com/beepboop2025/liquilens-site/actions/runs/38143053361",
+    "served_script_sha256": "c93fb59263af0ee405ac5166a75f97e4cc71d34f83a223c6c878dff8c8698813",
+    "served_script_matches_source": true,
+    "rows": [
+      {
+        "width": 390,
+        "observed_at": "2026-10-11T13:26:33.456Z",
+        "state": "received",
+        "displayedCaveats": 6,
+        "rawCaveats": 7,
+        "readableBriefVerified": true,
+        "overflow": false,
+        "errors": []
+      },
+      {
+        "width": 1440,
+        "observed_at": "2026-10-11T13:26:36.833Z",
+        "state": "received",
+        "displayedCaveats": 6,
+        "rawCaveats": 7,
+        "readableBriefVerified": true,
+        "overflow": false,
+        "errors": []
+      }
+    ],
+    "pull_request": "https://github.com/beepboop2025/liquilens-site/pull/168"
+  },
+  "liquilens_keyboard_accessibility": {
+    "source": "897ce0e1829585be932762bc14300bc4b0cf6538",
+    "pull_request": "https://github.com/beepboop2025/liquilens-site/pull/169",
+    "deployment": "https://github.com/beepboop2025/liquilens-site/actions/runs/38143906207",
+    "css_sha256": "512647dd22ab8e9876b00792f853300a1acff21995f14730d0e6cd766ace3b6a",
+    "served_css_matches_source": true,
+    "rows": [
+      {
+        "width": 390,
+        "focused": {
+          "active": "research-skip",
+          "color": "rgb(9, 10, 12)",
+          "background": "rgb(171, 199, 255)",
+          "top": 12
+        },
+        "hovered": {
+          "active": "research-skip",
+          "color": "rgb(9, 10, 12)",
+          "background": "rgb(171, 199, 255)",
+          "top": 12
+        },
+        "target": "#main",
+        "pass": true,
+        "observed_at": "2026-10-11T13:39:03.182Z"
+      },
+      {
+        "width": 1440,
+        "focused": {
+          "active": "research-skip",
+          "color": "rgb(9, 10, 12)",
+          "background": "rgb(171, 199, 255)",
+          "top": 12
+        },
+        "hovered": {
+          "active": "research-skip",
+          "color": "rgb(9, 10, 12)",
+          "background": "rgb(171, 199, 255)",
+          "top": 12
+        },
+        "target": "#main",
+        "pass": true,
+        "observed_at": "2026-10-11T13:39:04.349Z"
+      }
+    ]
+  },
+  "final_directory_checks": [
+    {
+      "name": "lobehub-liquilens",
+      "url": "https://lobehub.com/mcp/beepboop2025-liquilens-mcp",
+      "status": 200,
+      "observed_at": "2026-10-11T13:42:28.550369+00:00",
+      "sha256": "d7e23b0871d09d6c00cf851733b2e6114388d825db1b607203412ca9af265550",
+      "loader_keys": [
+        "root",
+        "mcp.detail.default"
+      ],
+      "version": "1.8.1",
+      "tool_count": 24,
+      "public_description": "Free bank-filing and counterparty research; cited evidence limits; public MCP needs no API key.",
+      "generated_local_alternatives_correct": false,
+      "hosted_connection": {
+        "configSchema": null,
+        "type": "http",
+        "url": "https://api.liquilens.in/mcp"
+      }
+    },
+    {
+      "name": "lobehub-seiche",
+      "url": "https://lobehub.com/mcp/beepboop2025-seiche",
+      "status": 200,
+      "observed_at": "2026-10-11T13:42:28.707535+00:00",
+      "sha256": "5cec22a90e3b162e872bce1672a7a8769d27bfca024d01208223589535956bb2",
+      "loader_keys": [
+        "root",
+        "mcp.detail.default"
+      ],
+      "version": "0.16.2",
+      "tool_count": 16,
+      "public_description": "Money, FX, capital-market and metadata-only China macro evidence with source clocks and limits.",
+      "generated_local_alternatives_correct": false,
+      "hosted_connection": {
+        "type": "http",
+        "url": "https://api.seiche.info/mcp"
+      }
+    },
+    {
+      "name": "mcp-so-seiche",
+      "url": "https://mcp.so/servers/seiche",
+      "status": 200,
+      "observed_at": "2026-10-11T13:42:28.049971+00:00",
+      "sha256": "8fd1b0ca10c3e7cdb5f89420faa6630d8e7ba58d42c85ffb32ed6739f59d39b0",
+      "public_tool_count": 9,
+      "live_tool_count": 16,
+      "canonical_copy_current": false
+    },
+    {
+      "name": "glama-liquilens",
+      "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/liquilens",
+      "status": 200,
+      "observed_at": "2026-10-11T13:42:28.306125+00:00",
+      "sha256": "2e80eb7dfc0176e3295b6eaae97c8079e7c480873430c808dcecaf7ccb2fdfae",
+      "loader_keys": [
+        "root",
+        "routes/_public/_layout",
+        "routes/_public/mcp/connectors/~namespace/~slug/_route"
+      ],
+      "tool_count": 24,
+      "ungraded_tool_count": 8,
+      "ungraded_tool_names": [
+        "bank_asset_quality_review",
+        "banking_specialisation_coverage",
+        "bank_npa_reconciliation",
+        "failure_radar_board",
+        "institution_evidence_monitor",
+        "institution_research_coverage",
+        "institution_review_packet",
+        "stablecoin_rails_board"
+      ]
+    }
+  ],
+  "mcp_so_ticket": {
+    "subject": "Refresh tools for claimed Seiche listing (16 public tools)",
+    "state": "Open",
+    "latest_reply": null,
+    "observed_at": "2026-10-11T13:48:16.083322+00:00",
+    "new_submission": false
+  },
+  "all_three_developer_pages_public_verified": true,
+  "owned_presentation_work_complete": true,
+  "external_pending": [
+    "LobeHub generated local installation alternatives and updated owner-copy propagation",
+    "MCP.so Seiche canonical copy propagation and 9-to-16 tool rescan",
+    "Glama LiquiLens eight ungraded tools",
+    "OpenBB Marketplace application review, fee waiver and public listing"
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "financial-evidence.start.v1",
+  "guide_url": "https://beepboop2025.github.io/financial-evidence-skills/connect/",
+  "api_base": "https://api.seiche.info/openbb",
+  "mcp_url": "https://api.seiche.info/openbb/mcp",
+  "authentication": "none_for_public_reads",
+  "network_access_performed": false,
+  "tasks": [
+    {
+      "id": "funding",
+      "title": "Review funding conditions",
+      "product": "Seiche",
+      "question": "What do the published dollar-funding observations show, and what is missing?",
+      "selection": "USD",
+      "dataset": "money_markets",
+      "topic": "money-market",
+      "tool": "financial_evidence_workflow",
+      "arguments": {
+        "workflow": "funding",
+        "selection": "USD"
+      },
+      "scope": "System funding context. Each series retains its own observation date; this is not a company's cash position.",
+      "browser_url": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?workflow=funding&selection=USD",
+      "api_url": "https://api.seiche.info/openbb/api/v1/workflow?workflow=funding&selection=USD",
+      "connect_url": "https://beepboop2025.github.io/financial-evidence-skills/connect/?task=funding"
+    },
+    {
+      "id": "institutions",
+      "title": "Review a covered institution",
+      "product": "LiquiLens",
+      "question": "Which disclosures are available for AU Small Finance Bank, and where are the evidence gaps?",
+      "selection": "au-sfb",
+      "dataset": "bank_risk",
+      "topic": "bank-risk",
+      "tool": "financial_evidence_workflow",
+      "arguments": {
+        "workflow": "institutions",
+        "selection": "au-sfb"
+      },
+      "scope": "Covered public disclosures and research diagnostics. Check coverage first; no credit rating or deposit-safety conclusion.",
+      "browser_url": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?workflow=institutions&selection=au-sfb",
+      "api_url": "https://api.seiche.info/openbb/api/v1/workflow?workflow=institutions&selection=au-sfb",
+      "connect_url": "https://beepboop2025.github.io/financial-evidence-skills/connect/?task=institutions"
+    },
+    {
+      "id": "exit",
+      "title": "Inspect BTC exit liquidity",
+      "product": "Undertow",
+      "question": "What indicative BTC exit evidence is available for the published sizes and venues?",
+      "selection": "10000,100000",
+      "dataset": "market_liquidity",
+      "topic": "market-liquidity",
+      "tool": "financial_evidence_workflow",
+      "arguments": {
+        "workflow": "exit",
+        "selection": "10000,100000"
+      },
+      "scope": "Indicative BTC research at supported sizes and venues. No executable quote, order routing or guaranteed fill.",
+      "browser_url": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?workflow=exit&selection=10000%2C100000",
+      "api_url": "https://api.seiche.info/openbb/api/v1/workflow?workflow=exit&selection=10000%2C100000",
+      "connect_url": "https://beepboop2025.github.io/financial-evidence-skills/connect/?task=exit"
+    }
+  ],
+  "first_steps": [
+    "Choose one task and inspect dataset coverage.",
+    "Read the source dates, units, missing values and limitations with the result.",
+    "Save the evidence and return to the same task for your next review."
+  ],
+  "unavailable_help": "An empty, stale or unavailable result is not zero or a safety signal. Inspect source diagnostics, try a covered selection, or retain the gap in your review.",
+  "scope": "Connection guidance only; no network probe, freshness verdict, platform endorsement or financial authority."
+}

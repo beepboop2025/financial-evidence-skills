@@ -1,5 +1,7 @@
 # Connect financial research agents
 
+Start with one task: https://beepboop2025.github.io/financial-evidence-skills/connect/ — browser, REST, Python and remote MCP setup for funding, covered institutions and BTC exit research. Public reads need no account or API key; retain source dates and unavailable evidence.
+
 Choose LiquiLens for covered-bank evidence, Seiche for funding context, and
 Undertow for market-liquidity research. Start with only the products your task
 needs. These public connections have no trade-execution authority.

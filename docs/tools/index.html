@@ -43,6 +43,7 @@
     <pre><code>python3 research_client.py desk --output captures/first-review
 python3 research_client.py bank_risk --entity ESAF --output captures/esaf-review</code></pre>
     <p>The first command creates separate funding, bank and liquidity tables. For notebooks, <a href="https://colab.research.google.com/github/beepboop2025/financial-evidence-skills/blob/main/docs/tools/research_desk.ipynb">open the research desk in Colab</a> or <a href="research_desk.ipynb" download>download the notebook</a>. It loads the pinned helper automatically and verifies its checksum. Colab may require your Google account to run cells.</p>
+    <p>All four notebook cells and three capture exports passed a Google Colab CPU runtime check on 11 October 2026. If one source is incomplete, its task shows an error while other tasks continue. <a href="../platforms/colab-verification-20261011.json">Read the verification receipt</a>.</p>
     <pre><code>from research_client import collect
 funding = collect("money_markets", entity="USD")
 rows = funding["results"]</code></pre>

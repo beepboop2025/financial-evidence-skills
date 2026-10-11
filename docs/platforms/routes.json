@@ -72,7 +72,7 @@
       "workflow": "Open a notebook, run a source-linked research capture, and retain JSON, spreadsheet-safe CSV and a checksum receipt.",
       "artifact_label": "Open in Colab",
       "artifact_url": "https://colab.research.google.com/github/beepboop2025/financial-evidence-skills/blob/main/docs/tools/research_desk.ipynb",
-      "status": "The notebook verifies a pinned helper and needs no package install. Colab may require a Google account to run; Google-hosted execution is not yet verified.",
+      "status": "All four cells and three complete capture exports verified in a Google Colab CPU runtime on 11 October 2026. Each task reports source failures separately; only complete captures are exported. A Google account may be required. No independent adoption is claimed.",
       "official_source": "https://research.google.com/colaboratory/faq.html",
       "verified_customer_adoption": null
     },

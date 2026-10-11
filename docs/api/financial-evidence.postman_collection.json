@@ -1,7 +1,7 @@
 {
   "info": {
     "name": "LiquiLens Financial Evidence Research API",
-    "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture. Public reads; no API key. Research Desk 1.2.0 includes three working tasks: Seiche funding watch, LiquiLens institution watch and Undertow BTC exit check. Run them in the browser at https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html or import these fifteen requests. Current public and private interfaces: https://beepboop2025.github.io/financial-evidence-skills/agents/system.json . Setup guide: https://liquilens.in/agents/infrastructure/ . Private runtimes are separately installed and grant no public execution authority. Operator validation must set traffic_class=synthetic. These headers are diagnostic labels, not verified customer identities.",
+    "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture. Public reads; no API key. Research Desk 1.3.0 includes three working tasks: Seiche funding watch, LiquiLens institution watch and Undertow BTC exit check. Run them in the browser at https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html or import these sixteen requests. Current public and private interfaces: https://beepboop2025.github.io/financial-evidence-skills/agents/system.json . Setup guide: https://liquilens.in/agents/infrastructure/ . Private runtimes are separately installed and grant no public execution authority. Operator validation must set traffic_class=synthetic. These headers are diagnostic labels, not verified customer identities.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -15,6 +15,38 @@
     }
   ],
   "item": [
+    {
+      "name": "Choose a research task",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "X-Liquilens-Traffic-Class",
+            "value": "{{traffic_class}}"
+          }
+        ],
+        "url": "{{base_url}}/api/v1/start",
+        "description": "Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP response succeeded\", function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
     {
       "name": "Release identity",
       "request": {

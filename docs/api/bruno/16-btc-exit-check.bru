@@ -1,11 +1,11 @@
 meta {
-  name: Agent research review
+  name: BTC exit check
   type: http
-  seq: 12
+  seq: 16
 }
 
 get {
-  url: https://api.seiche.info/openbb/api/v1/agent-review?limit=3
+  url: https://api.seiche.info/openbb/api/v1/workflow?workflow=exit&selection=10000,100000
   body: none
   auth: none
 }

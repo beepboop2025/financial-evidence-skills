@@ -1,11 +1,11 @@
 meta {
-  name: Release identity
+  name: Market Liquidity
   type: http
-  seq: 1
+  seq: 9
 }
 
 get {
-  url: https://api.seiche.info/openbb/api/v1/release
+  url: https://api.seiche.info/openbb/api/v1/query?dataset=market_liquidity&limit=5&offset=0
   body: none
   auth: none
 }

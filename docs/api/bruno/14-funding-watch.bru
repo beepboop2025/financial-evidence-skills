@@ -1,11 +1,11 @@
 meta {
-  name: Funding review
+  name: Funding watch
   type: http
-  seq: 11
+  seq: 14
 }
 
 get {
-  url: https://api.seiche.info/openbb/api/v1/funding-review
+  url: https://api.seiche.info/openbb/api/v1/workflow?workflow=funding&selection=USD
   body: none
   auth: none
 }

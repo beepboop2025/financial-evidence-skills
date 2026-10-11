@@ -1,11 +1,11 @@
 meta {
-  name: Market Liquidity
+  name: Institution watch
   type: http
-  seq: 8
+  seq: 15
 }
 
 get {
-  url: https://api.seiche.info/openbb/api/v1/query?dataset=market_liquidity&limit=5&offset=0
+  url: https://api.seiche.info/openbb/api/v1/workflow?workflow=institutions&selection=au-sfb,bajaj-finance
   body: none
   auth: none
 }

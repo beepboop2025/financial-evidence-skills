@@ -1,14 +1,9 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Financial Evidence for OpenBB",
-    "description": "Source-cited financial research across LiquiLens, Seiche and Undertow. Public financial-data reads need no API key. Optional installation measurement enrollment and deletion are separate from data access. Preserve source dates, availability, rights and pagination; retrieval success does not validate the evidence.",
-    "version": "1.2.0",
-    "contact": {
-      "name": "LIQUILENS PRIVATE LIMITED",
-      "url": "https://beepboop2025.github.io/financial-evidence-skills/support/"
-    },
-    "termsOfService": "https://beepboop2025.github.io/financial-evidence-skills/terms/"
+    "title": "Financial Evidence Research API",
+    "description": "Start at /api/v1/start to choose a funding, institution or BTC liquidity review. Run the same task in a browser, REST client or MCP agent. Public reads need no API key. Seven dataset views preserve sources, observation dates, native units and missing values. Coverage and source permissions vary; research evidence does not authorize financial decisions.",
+    "version": "1.3.0"
   },
   "paths": {
     "/api/v1/applications": {
@@ -56,6 +51,30 @@
                   "additionalProperties": true,
                   "type": "object",
                   "title": "Response Index  Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/start": {
+      "get": {
+        "tags": [
+          "Start here"
+        ],
+        "summary": "Choose your first research task",
+        "description": "Offline examples, browser links and MCP calls for the same three bounded workflows.",
+        "operationId": "start_api_v1_start_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Start Api V1 Start Get"
                 }
               }
             }
@@ -973,22 +992,14 @@
   },
   "servers": [
     {
-      "url": "https://api.seiche.info/openbb",
-      "description": "Public hosted research API"
+      "url": "https://api.seiche.info/openbb"
     }
   ],
-  "externalDocs": {
-    "url": "https://beepboop2025.github.io/financial-evidence-skills/api/",
-    "description": "Runnable collections and first research task"
-  },
   "x-source-observation": {
     "url": "https://api.seiche.info/openbb/openapi.json",
-    "retrieved_at": "2026-10-09T10:50:51.646693+00:00",
-    "sha256": "dfbbfd45a3628dae0b7c0ac984e4355de6b76005cda3ba6221e739ff2724777d",
-    "changes": [
-      "absolute public server URL",
-      "discovery metadata only"
-    ],
-    "api_version_semantics": "Hosted workspace version, separate from the CLI package release."
+    "retrieved_at": "2026-10-11T09:31:16.844082+00:00",
+    "sha256": "19c954c40fc3642cb153f5717f79413d9b596d5c5835989cb2060bf9cb476c65",
+    "changes": "Absolute public server URL and source-observation metadata only.",
+    "scope": "Observed public API schema. Discovery is not source freshness, coverage or financial validation."
   }
 }

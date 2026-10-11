@@ -49,6 +49,10 @@ financial-evidence-workspace-mcp = "financial_evidence.workspace_mcp:main"
 financial-evidence-agent-mcp = "financial_evidence.workspace_mcp:main"
 financial-evidence-runtime = "financial_evidence.runtime.cli:main"
 financial-evidence-runtime-mcp = "financial_evidence.runtime.mcp:main"
+financial-evidence-learning = "financial_evidence.learning.cli:main"
+financial-evidence-trading = "financial_evidence.trading.cli:main"
+seiche-network-client-mcp = "financial_evidence.trading.network:main"
+financial-evidence-product-mcp = "financial_evidence.trading.product_mcp:main"
 
 [project.entry-points.openbb_core_extension]
 financial_evidence = "financial_evidence.openbb_router:router"

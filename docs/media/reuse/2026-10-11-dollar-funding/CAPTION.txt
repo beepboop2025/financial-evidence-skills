@@ -1,0 +1,10 @@
+SOFR was 3 basis points below IORB on 8 October
+Edition: 2026-10-11-dollar-funding; published 2026-10-11T01:07:50.859451+00:00.
+Chart: 8 October 2026. Full packet: eight observations dated 8 October; weekly-average reserves dated 7 October.
+Source: New York Fed and Federal Reserve Board, 8 October 2026; calculation and chart: Seiche / LiquiLens, 11 October 2026.
+Fixed historical rate comparison; not a current market reading, stress trend, or measure of an individual bank’s solvency.
+Copyright 2026 Federal Reserve Bank of New York. Content from the New York Fed subject to the Terms of Use at https://www.newyorkfed.org/privacy/termsofuse. SOFR, EFFR and operation results are subject to those Terms of Use. The New York Fed is not responsible for publication of these data by Liquidity Lab, does not sanction or endorse this republication, and has no liability for your use. Liquidity Lab is not affiliated with the New York Fed. The SOFR terms also address DTCC Solutions LLC data used by the publisher; no ownership of that underlying data is claimed here.
+Data, original sources and methodology: https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/
+Reuse terms: https://beepboop2025.github.io/financial-evidence-skills/media/rights.html
+Full funding source notices: https://beepboop2025.github.io/financial-evidence-skills/funding/sources.md
+Check corrections before reuse: https://beepboop2025.github.io/financial-evidence-skills/media/corrections.html

@@ -369,7 +369,10 @@
       "passed": 5238,
       "skipped": 30,
       "subtests_passed": 139,
-      "controller_unit_tests": 52
+      "controller_unit_tests": 52,
+      "controller_unit_passed": 46,
+      "controller_unit_skipped": 6,
+      "controller_unit_skip_scope": "Original release/proof integrations require a repository checkout; the controller image contains only the assembled controller bundle. Full repository release tests and the live original publication verifier passed separately."
     }
   },
   "openbb": {

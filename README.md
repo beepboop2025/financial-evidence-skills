@@ -1,5 +1,27 @@
 # Financial Evidence Agent Skills
 
+## Connect and ask one question
+
+Hosted Streamable HTTP MCP; no local server or API key for public read-only tools.
+Add the products you need to Claude Code:
+
+```sh
+claude mcp add --transport http seiche https://api.seiche.info/mcp
+claude mcp add --transport http liquilens https://api.liquilens.in/mcp
+claude mcp add --transport http undertow https://api.seiche.info/undertow/mcp
+```
+
+**Try this first:** What is the current US funding stress regime, and which dated funding events are next? Cite source dates and missing evidence.
+
+[Try it in your browser](https://liquilens.in/start/?task=funding) ·
+[Cursor configuration](https://liquilens.in/agents/cursor.json) ·
+[Codex commands](https://liquilens.in/agents/codex.txt) ·
+[Free three-product starter kit and skill](https://liquilens.in/agents/#connect)
+
+For a connected review, ask for institution evidence → funding context → BTC
+exit estimates, with each source date, coverage gap and limitation kept separate.
+Client/model costs and fair-use limits may apply. Research calls do not execute trades.
+
 Start with one task: https://beepboop2025.github.io/financial-evidence-skills/connect/ — browser, REST, Python and remote MCP setup for funding, covered institutions and BTC exit research. Public reads need no account or API key; retain source dates and unavailable evidence.
 
 **Run the new workflows:** [funding watch, institution monitoring and BTC exit research](https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html). Save a local baseline, compare your next review, or copy the API request into your agent.

@@ -37,7 +37,8 @@ class RemoteLearningClient:
         if raw is not None and len(raw) > 65536:
             raise ValueError("learning record exceeds 64 KiB")
         request = urllib.request.Request(self.endpoint + route, data=raw, method=method,
-                                         headers={"Authorization": "Bearer " + self._credential, "Content-Type": "application/json"})
+                                         headers={"Authorization": "Bearer " + self._credential, "Content-Type": "application/json",
+                                                  "User-Agent": "Financial-Evidence-Learning/0.1"})
         try:
             with self._opener.open(request, timeout=self.timeout) as response:
                 content = response.read(1048577)

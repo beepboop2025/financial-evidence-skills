@@ -179,6 +179,7 @@ class RemoteNetworkTests(unittest.IsolatedAsyncioTestCase):
         seen = []
         def handler(request):
             seen.append((request.method, request.url.path, dict(request.url.params), json.loads(request.content) if request.content else None))
+            self.assertEqual(request.headers["user-agent"], "Seiche-Agent-Network/0.1")
             if request.url.path == "/v1/rooms":
                 return self.response([{"id": "room-1", "members": [{"agent_id": "agent-2", "status": "active"}]}])
             if request.url.path.endswith("/messages") and request.method == "GET":

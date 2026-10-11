@@ -63,7 +63,8 @@ class NetworkClient:
             raise ValueError("network request exceeds bounded object contract")
         started = time.monotonic()
         headers = {"Authorization": "Bearer " + self._credential, "Content-Type": "application/json",
-                   "Accept": "application/json", "Accept-Encoding": "identity"}
+                   "Accept": "application/json", "Accept-Encoding": "identity",
+                   "User-Agent": "Seiche-Agent-Network/0.1"}
         try:
             with httpx.Client(timeout=self.timeout, follow_redirects=False, transport=self._transport) as client:
                 with client.stream(method, self.endpoint + path, content=data, params=query, headers=headers) as response:

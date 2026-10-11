@@ -1,6 +1,7 @@
 """Optional ingestion never exposes local administration or another tenant."""
 
 import importlib.util
+import io
 import json
 from pathlib import Path
 import tempfile
@@ -139,6 +140,14 @@ class LearningAPITests(unittest.TestCase):
 
 
 class RemoteClientTests(unittest.TestCase):
+    def test_remote_requests_identify_the_learning_client(self):
+        client = RemoteLearningClient("https://example.test/learning", "x" * 43)
+        with patch.object(client._opener, "open", return_value=io.BytesIO(b'{}')) as opened:
+            self.assertEqual(client.report(), {})
+        request = opened.call_args.args[0]
+        self.assertEqual(request.get_header("User-agent"), "Financial-Evidence-Learning/0.1")
+        self.assertEqual(request.full_url, "https://example.test/learning/v1/report")
+
     def test_construction_is_quiet_and_transport_requires_secure_destination(self):
         with patch("urllib.request.OpenerDirector.open", side_effect=AssertionError("network must not run")):
             RemoteLearningClient("https://example.test/learning", "x" * 43)

@@ -1,0 +1,22 @@
+{
+  "at_utc": "2026-10-11T00:15:45.686276+00:00",
+  "url": "https://liquilens.in/mcp/financial-evidence",
+  "server_info": {
+    "name": "financial-evidence",
+    "version": "0.1.7"
+  },
+  "tools": [
+    "financial_evidence_topics",
+    "financial_evidence_route",
+    "financial_evidence_fetch"
+  ],
+  "remote_contract_verified": true,
+  "bounded_money_market_fetch_verified": true,
+  "source_provenance_verified": true,
+  "worker_tag_observed": "eaefa73e6bf7f983da8f32c6fdbd0687dba47a5b",
+  "worker_source_commit_independently_verified": false,
+  "kilo_cli_version": "7.8.8",
+  "kilo_cli_native_connection": "connected",
+  "kilo_llm_workflow_executed": false,
+  "independent_adoption_verified": false
+}

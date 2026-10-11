@@ -1,0 +1,487 @@
+{
+  "schema": "financial-evidence.mcp-discovery-reconciliation.v1",
+  "observed_at": "2026-10-11T12:01:23.385338+00:00",
+  "scope": [
+    "LiquiLens",
+    "Seiche",
+    "Undertow"
+  ],
+  "new_listings": 0,
+  "external_adoption_verified": false,
+  "public_lobehub": [
+    {
+      "id": "lobehub-liquilens",
+      "observed_at": "2026-10-11T11:54:00.559614+00:00",
+      "url": "https://lobehub.com/mcp/beepboop2025-liquilens-mcp",
+      "readback": "anonymous_public_claim_version_remote_and_tool_inventory_verified",
+      "http_status": 200,
+      "version": "1.8.1",
+      "tool_count": 24,
+      "validation_label": "A / Premium",
+      "public_is_claimed": true,
+      "public_is_validated": true,
+      "public_version_matches_owned": true,
+      "public_metadata_update_verified": true,
+      "remote_url": "https://api.liquilens.in/mcp",
+      "live_tool_names_match": true,
+      "response_sha256": "7a5d5f451305a93d013fac6453a477ff88fd0c52b93dc81e5efa4f21ffe3ba67"
+    },
+    {
+      "id": "lobehub-seiche",
+      "observed_at": "2026-10-11T11:54:00.559686+00:00",
+      "url": "https://lobehub.com/mcp/beepboop2025-seiche",
+      "readback": "anonymous_public_claim_version_remote_and_tool_inventory_verified",
+      "http_status": 200,
+      "version": "0.16.2",
+      "tool_count": 16,
+      "validation_label": "A / Premium",
+      "public_is_claimed": true,
+      "public_is_validated": true,
+      "public_version_matches_owned": true,
+      "public_metadata_update_verified": true,
+      "remote_url": "https://api.seiche.info/mcp",
+      "live_tool_names_match": true,
+      "response_sha256": "bed7eb5300b15e139b3e95a405c39a033f1a1048d2f19e729f9060fc5f747fbc"
+    },
+    {
+      "id": "lobehub-undertow",
+      "observed_at": "2026-10-11T11:54:00.559731+00:00",
+      "url": "https://lobehub.com/mcp/beepboop2025-undertow-mcp",
+      "readback": "anonymous_public_claim_version_remote_and_tool_inventory_verified",
+      "http_status": 200,
+      "version": "1.13.0",
+      "tool_count": 16,
+      "validation_label": "A / Premium",
+      "public_is_claimed": true,
+      "public_is_validated": true,
+      "public_version_matches_owned": true,
+      "public_metadata_update_verified": true,
+      "remote_url": "https://api.seiche.info/undertow/mcp",
+      "live_tool_names_match": true,
+      "response_sha256": "7e1cd767e8891cd060443a83ba542877989789405f780cce8068e819cd4a08ce"
+    }
+  ],
+  "smithery": [
+    {
+      "id": "smithery-liquilens",
+      "observed_at": "2026-10-11T11:54:03.504299+00:00",
+      "url": "https://registry.smithery.ai/servers/mrinallovesbhature/liquilens",
+      "tool_count": 24,
+      "live_tool_names_match": true,
+      "response_sha256": "3dff64c0da58d4d60a78ee887999703d9ca177061a29c0bec290741c7794d3aa"
+    },
+    {
+      "id": "smithery-seiche",
+      "observed_at": "2026-10-11T11:54:03.441889+00:00",
+      "url": "https://registry.smithery.ai/servers/mrinallovesbhature/seiche",
+      "tool_count": 16,
+      "live_tool_names_match": true,
+      "response_sha256": "3ff5d73f349eb05f574cea3031df1a128c387ab352eecf53142a17a9fc1c65b0"
+    },
+    {
+      "id": "smithery-undertow",
+      "observed_at": "2026-10-11T11:54:03.582026+00:00",
+      "url": "https://registry.smithery.ai/servers/mrinallovesbhature/undertow",
+      "tool_count": 16,
+      "live_tool_names_match": true,
+      "response_sha256": "b383a4b01b2548b07a13c4709b1f97cc62d89976078e5ef86d6a8ca5d4092904"
+    }
+  ],
+  "mcp_first_calls": [
+    {
+      "product": "seiche",
+      "tool": "funding_stress_now",
+      "arguments": {},
+      "jsonrpc_error": null,
+      "isError": false,
+      "response_sha256": "fed1a90d1bb065020ad1775835db7f0f71a429c74343c7d913c12c0067aa7c96",
+      "response_bytes": 14467,
+      "value_keys": [
+        "schema",
+        "generated_at",
+        "conclusion",
+        "proof",
+        "editorial",
+        "data_quality",
+        "delivery"
+      ],
+      "observed_at": "2026-10-11T11:55:13.853834+00:00",
+      "operator_traffic": true,
+      "external_adoption": false
+    },
+    {
+      "product": "liquilens",
+      "tool": "bank_asset_quality_review",
+      "arguments": {
+        "slug": "esaf-sfb",
+        "include_history": true
+      },
+      "jsonrpc_error": null,
+      "isError": false,
+      "response_sha256": "ad7b72e4136a394e91ff2dcf0ebaa5da4ec24ce126d499de04430c6fb442bf38",
+      "response_bytes": 48916,
+      "value_keys": [
+        "schema",
+        "slug",
+        "name",
+        "sector",
+        "as_of",
+        "status",
+        "scope",
+        "score_authority",
+        "can_authorize_credit",
+        "exclusions",
+        "historical_evidence",
+        "period_end",
+        "quarter",
+        "available_at",
+        "retrieved_at",
+        "publication_date",
+        "age_days",
+        "freshness_limit_days",
+        "sources",
+        "metrics",
+        "source_documents",
+        "changes",
+        "default_event",
+        "interpretation_limits",
+        "next_disclosures",
+        "comparability_notes",
+        "regulatory_comparison",
+        "npa_movement",
+        "history"
+      ],
+      "observed_at": "2026-10-11T11:55:12.162808+00:00",
+      "operator_traffic": true,
+      "external_adoption": false
+    },
+    {
+      "product": "undertow",
+      "tool": "crypto_exit_check",
+      "arguments": {
+        "sizes_usd": [
+          100000
+        ]
+      },
+      "jsonrpc_error": null,
+      "isError": false,
+      "response_sha256": "3f0f40f4b7afa2c208a5c8035ed8ee25af5b7615a951a4fd9658d2ad78774132",
+      "response_bytes": 5801,
+      "value_keys": [
+        "schema",
+        "kind",
+        "asset",
+        "side",
+        "status",
+        "evaluated_at",
+        "source",
+        "max_age_seconds",
+        "requests",
+        "rungs",
+        "venue_freshness",
+        "method",
+        "limits",
+        "boundary",
+        "context"
+      ],
+      "observed_at": "2026-10-11T11:55:11.877561+00:00",
+      "operator_traffic": true,
+      "external_adoption": false
+    }
+  ],
+  "updated_at": "2026-10-11T12:16:32.582399Z",
+  "mcp_so": {
+    "id": "mcp-so-seiche",
+    "name": "Seiche on MCP.so",
+    "channel": "mcp-directory",
+    "state": "listed_incomplete",
+    "listing_url": "https://mcp.so/servers/seiche",
+    "cost": "existing listing claimed and edited free; no paid submission",
+    "detail": "Claimed the existing Seiche listing and saved hosted setup, description, documentation URL, tags, prompts and combined kit links. Anonymous readback with a fresh query verifies the new copy; the canonical cached page and nine-tool inventory still need propagation/rescan. One support ticket is Open.",
+    "next_action": "Await the existing rescan ticket and verify canonical public metadata plus all 16 public tools before closing.",
+    "verified_at": "2026-10-11T12:16:32.582399Z",
+    "existing_record_id": "usr_22b07a0f-60ef-42c6-859a-09b3e419e32e",
+    "ownership_state": "claimed",
+    "owner_edit_saved": true,
+    "anonymous_updated_copy_verified": true,
+    "anonymous_updated_copy_url": "https://mcp.so/servers/seiche?refresh=20261011",
+    "canonical_cache_current": false,
+    "cached_tool_count": 9,
+    "live_tool_count": 16,
+    "new_listing_created": false,
+    "support_ticket": {
+      "subject": "Refresh tools for claimed Seiche listing (16 public tools)",
+      "state": "Open",
+      "submitted_at": "2026-10-11T12:08:12Z",
+      "readback_verified": true
+    },
+    "evidence_receipt": "distribution/mcp-discovery-20261011.json"
+  },
+  "glama": [
+    {
+      "id": "glama-liquilens-connector",
+      "name": "LiquiLens on Glama (remote connector)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/liquilens",
+      "cost": "free; no paid boost purchased",
+      "detail": "Existing owner-verified, Healthy hosted connector with 24 public tool links, observed on 11 October 2026. Directory quality grades have separate observation clocks and are not tool counts or adoption evidence.",
+      "next_action": "Monitor schema and grading refresh independently of hosted availability.",
+      "verified_at": "2026-10-11T12:15:27.251164+00:00",
+      "latest_surface_check": {
+        "id": "glama-liquilens-connector",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/liquilens",
+        "http_status": 200,
+        "sha256": "2e47c5c7243808d9e212c966c0d16889ca03cb12a37b6d7b20610cc4300e4d4f",
+        "observed_at": "2026-10-11T12:15:27.251164+00:00",
+        "authentication_used": false
+      },
+      "public_tool_count": 24,
+      "new_listing_created": false,
+      "evidence_receipt": "distribution/mcp-discovery-20261011.json"
+    },
+    {
+      "id": "glama-seiche-connector",
+      "name": "Seiche on Glama (remote connector)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/seiche",
+      "cost": "free; no paid boost purchased",
+      "detail": "Existing owner-verified, Healthy hosted connector with 16 public tool links, observed on 11 October 2026. Directory quality grades have separate observation clocks and are not tool counts or adoption evidence.",
+      "next_action": "Monitor schema and grading refresh independently of hosted availability.",
+      "verified_at": "2026-10-11T12:15:28.273537+00:00",
+      "latest_surface_check": {
+        "id": "glama-seiche-connector",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/seiche",
+        "http_status": 200,
+        "sha256": "b640e04b83a06d01399e43b88306f71b5eae738187a4330a8ac488c5fc4b2a63",
+        "observed_at": "2026-10-11T12:15:28.273537+00:00",
+        "authentication_used": false
+      },
+      "public_tool_count": 16,
+      "new_listing_created": false,
+      "evidence_receipt": "distribution/mcp-discovery-20261011.json"
+    },
+    {
+      "id": "glama-undertow-connector",
+      "name": "Undertow on Glama (remote connector)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/undertow",
+      "cost": "free; no paid boost purchased",
+      "detail": "Existing owner-verified, Healthy hosted connector with 16 public tool links, observed on 11 October 2026. Directory quality grades have separate observation clocks and are not tool counts or adoption evidence.",
+      "next_action": "Monitor schema and grading refresh independently of hosted availability.",
+      "verified_at": "2026-10-11T12:15:29.196139+00:00",
+      "latest_surface_check": {
+        "id": "glama-undertow-connector",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/undertow",
+        "http_status": 200,
+        "sha256": "dd265abed1d70d5c626fd5d947beefd93b3d41ad6133ea47700bd73189360b67",
+        "observed_at": "2026-10-11T12:15:29.196139+00:00",
+        "authentication_used": false
+      },
+      "public_tool_count": 16,
+      "new_listing_created": false,
+      "evidence_receipt": "distribution/mcp-discovery-20261011.json"
+    }
+  ],
+  "social_posts": [
+    {
+      "channel": "LiquidityLabDesk",
+      "channel_id": 4297805949,
+      "created_at": "2026-10-11T12:11:02.115062+00:00",
+      "body_sha256": "7bfd0035d5ac1c3cc49e518d13f11c93bc9ea7f117f33ecd115b37136ec619ba",
+      "ownership_verified": true,
+      "message_id": 411,
+      "public_url": "https://t.me/LiquidityLabDesk/411",
+      "sent_at": "2026-10-11T12:11:02+00:00",
+      "readback_verified": true,
+      "published_text": "Connect Claude Code to three public research desks:\n\nsh\nclaude mcp add --transport http liquilens https://api.liquilens.in/mcp\nclaude mcp add --transport http seiche https://api.seiche.info/mcp\nclaude mcp add --transport http undertow https://api.seiche.info/undertow/mcp\n\n\nNo API key or local server for the public tools.\n\nTry one question:\n• LiquiLens: What changed in ESAF Small Finance Bank’s NPAs? Show the reporting periods and sources.\n• Seiche: What is the current US funding-stress regime, and what is on the calendar? Cite source dates and coverage limits.\n• Undertow: What is the estimated exit cost for a $100k BTC position? Show venue coverage, timestamps and excluded fees.\n\nFree Claude, Cursor and Codex configs + the combined research skill:\nhttps://liquilens.in/agents/?utm_source=telegram&utm_medium=owned_channel&utm_campaign=mcp_first_use_20261011\n\nTry a cited result in your browser:\nhttps://liquilens.in/start/?utm_source=telegram&utm_medium=owned_channel&utm_campaign=mcp_first_use_20261011\n\nFor a combined review, keep institution, funding and exit evidence separate. Research only; no trade execution.",
+      "code_entity_count": 1
+    },
+    {
+      "public_url": "https://x.com/LiquiLens/status/2109256192430403720",
+      "account": "LiquiLens",
+      "published_text": "LiquiLens\n@LiquiLens\n·\nNow\nAsk your agent: “What is the US funding-stress regime, and what is on the calendar?”\n\nclaude mcp add --transport http seiche https://api.seiche.info/mcp\n\nFree public MCP. Sources + dates.\n\nAll 3 desks, Cursor/Codex configs + skill:\nhttps://liquilens.in/agents/?utm_source=x&utm_medium=owned_profile&utm_campaign=mcp_first_use_20261011…",
+      "readback_verified": true,
+      "new_post": true
+    }
+  ],
+  "live_page_checks": [
+    {
+      "sectionPresent": true,
+      "sectionExact": true,
+      "commands": [
+        "claude mcp add --transport http liquilens https://api.liquilens.in/mcp\nclaude mcp add --transport http seiche https://api.seiche.info/mcp\nclaude mcp add --transport http undertow https://api.seiche.info/undertow/mcp\nCopy commands"
+      ],
+      "overflow": false,
+      "kitLinks": [],
+      "copied": "claude mcp add --transport http liquilens https://api.liquilens.in/mcp\nclaude mcp add --transport http seiche https://api.seiche.info/mcp\nclaude mcp add --transport http undertow https://api.seiche.info/undertow/mcp",
+      "product": "liquilens",
+      "url": "https://liquilens.in/developers/",
+      "width": 390,
+      "status": 200,
+      "observed_at": "2026-10-11T12:12:00.920Z",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "sectionPresent": true,
+      "sectionExact": true,
+      "commands": [
+        "claude mcp add --transport http liquilens https://api.liquilens.in/mcp\nclaude mcp add --transport http seiche https://api.seiche.info/mcp\nclaude mcp add --transport http undertow https://api.seiche.info/undertow/mcp\nCopy commands"
+      ],
+      "overflow": false,
+      "kitLinks": [],
+      "copied": "claude mcp add --transport http liquilens https://api.liquilens.in/mcp\nclaude mcp add --transport http seiche https://api.seiche.info/mcp\nclaude mcp add --transport http undertow https://api.seiche.info/undertow/mcp",
+      "product": "liquilens",
+      "url": "https://liquilens.in/developers/",
+      "width": 1440,
+      "status": 200,
+      "observed_at": "2026-10-11T12:12:02.025Z",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "sectionPresent": true,
+      "sectionExact": true,
+      "commands": [
+        "claude mcp add --transport http undertow https://api.seiche.info/undertow/mcp\nclaude mcp add --transport http liquilens https://api.liquilens.in/mcp\nclaude mcp add --transport http seiche https://api.seiche.info/mcp\nCopy commands"
+      ],
+      "overflow": false,
+      "kitLinks": [],
+      "copied": "claude mcp add --transport http undertow https://api.seiche.info/undertow/mcp\nclaude mcp add --transport http liquilens https://api.liquilens.in/mcp\nclaude mcp add --transport http seiche https://api.seiche.info/mcp",
+      "product": "undertow",
+      "url": "https://liquilens-undertow.com/developers/",
+      "width": 390,
+      "status": 200,
+      "observed_at": "2026-10-11T12:12:02.925Z",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "sectionPresent": true,
+      "sectionExact": true,
+      "commands": [
+        "claude mcp add --transport http undertow https://api.seiche.info/undertow/mcp\nclaude mcp add --transport http liquilens https://api.liquilens.in/mcp\nclaude mcp add --transport http seiche https://api.seiche.info/mcp\nCopy commands"
+      ],
+      "overflow": false,
+      "kitLinks": [],
+      "copied": "claude mcp add --transport http undertow https://api.seiche.info/undertow/mcp\nclaude mcp add --transport http liquilens https://api.liquilens.in/mcp\nclaude mcp add --transport http seiche https://api.seiche.info/mcp",
+      "product": "undertow",
+      "url": "https://liquilens-undertow.com/developers/",
+      "width": 1440,
+      "status": 200,
+      "observed_at": "2026-10-11T12:12:03.825Z",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "sectionPresent": false,
+      "sectionExact": false,
+      "commands": [],
+      "overflow": false,
+      "kitLinks": [
+        "https://liquilens.in/agents/trading-research-kit.zip",
+        "https://liquilens.in/agents/codex.txt",
+        "https://liquilens.in/agents/cursor.json",
+        "https://clawhub.ai/beepboop2025/skills/liquilens-trading-research",
+        "https://liquilens.in/agents/trading-research/SKILL.md",
+        "https://liquilens.in/agents/trading-research/SKILL.md"
+      ],
+      "product": "kit",
+      "url": "https://liquilens.in/agents/",
+      "width": 390,
+      "status": 200,
+      "observed_at": "2026-10-11T12:12:05.564Z",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "sectionPresent": false,
+      "sectionExact": false,
+      "commands": [],
+      "overflow": false,
+      "kitLinks": [
+        "https://liquilens.in/agents/trading-research-kit.zip",
+        "https://liquilens.in/agents/codex.txt",
+        "https://liquilens.in/agents/cursor.json",
+        "https://clawhub.ai/beepboop2025/skills/liquilens-trading-research",
+        "https://liquilens.in/agents/trading-research/SKILL.md",
+        "https://liquilens.in/agents/trading-research/SKILL.md"
+      ],
+      "product": "kit",
+      "url": "https://liquilens.in/agents/",
+      "width": 1440,
+      "status": 200,
+      "observed_at": "2026-10-11T12:12:06.706Z",
+      "errors": [],
+      "pass": true
+    }
+  ],
+  "seiche_static_page": {
+    "state": "prepared_release_gated",
+    "pr": "https://github.com/beepboop2025/seiche/pull/333",
+    "source": "5cdab104401dfa590e1ca2a89b5c79224a223cf6",
+    "reason": "Unchanged signed frontend verifier excludes frontend/public/developers.html from its frontend-only allowlist.",
+    "publisher_changed": false,
+    "runtime_changed": false,
+    "documentation_pr_state": "merged",
+    "merge_commit": "381da24f0c580b82cdde0238cb2859ad7b67b9e3"
+  },
+  "lobehub_seiche_localization": {
+    "accepted": true,
+    "version": "0.16.2",
+    "locale": "en-US",
+    "owned_readback_verified": true,
+    "anonymous_public_propagation_verified": false,
+    "fields": [
+      "description",
+      "summary"
+    ]
+  },
+  "glama_liquilens_grading": {
+    "scored_tools": 16,
+    "live_tools": 24,
+    "ungraded_tools_queued": 8,
+    "paid_boost_purchased": false
+  },
+  "glama_undertow_repository_sync": {
+    "requested": true,
+    "acknowledgement": "Sync Scheduled",
+    "complete": false
+  },
+  "openbb": {
+    "provider_package_version": "0.1.1",
+    "provider_package_public": true,
+    "official_marketplace_application": "submitted_2026-10-11T11:08:46Z",
+    "review": "pending",
+    "fee_waiver": "pending",
+    "duplicate_application_submitted": false,
+    "receipt": "openbb-marketplace-20261011.md"
+  },
+  "glama_seiche_repository_sync": {
+    "requested": true,
+    "acknowledgement": "Sync Scheduled",
+    "complete": false,
+    "after_source_merge": "381da24f0c580b82cdde0238cb2859ad7b67b9e3"
+  },
+  "canonical_copy_readbacks": [
+    {
+      "name": "mcpso",
+      "url": "https://mcp.so/servers/seiche",
+      "status": 200,
+      "updated_copy_visible": false,
+      "sha256": "e0eb96a669bc96258979517c1ddda0ba056d1fdc428629ebe724a3106bc395aa",
+      "observed_at": "2026-10-11T12:18:07.473163+00:00"
+    },
+    {
+      "name": "lobehub",
+      "url": "https://lobehub.com/mcp/beepboop2025-seiche",
+      "status": 200,
+      "updated_copy_visible": false,
+      "sha256": "2c53224ee68fd24fbd34c550f8403df025cdda44db964c3ad8afcf1f1d914887",
+      "observed_at": "2026-10-11T12:18:10.054529+00:00"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 import asyncio
 from dataclasses import replace
 import json
+import os
 import tempfile
 import threading
 import time
@@ -132,8 +133,14 @@ async def main():
 asyncio.run(main())
 print("returned-and-exited")
 """
+        # The stdlib-only CI job runs before package installation. Parent test
+        # imports may amend sys.path, which a fresh interpreter does not inherit.
+        source = str(Path(__file__).resolve().parents[1] / "src")
+        child_env = {**os.environ, "PYTHONPATH": os.pathsep.join(filter(None,
+                     [source, os.environ.get("PYTHONPATH")]))}
         result = subprocess.run([sys.executable, "-c", script], capture_output=True,
-                                text=True, timeout=3, check=True)
+                                text=True, timeout=3, env=child_env)
+        self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(result.stdout.strip(), "returned-and-exited")
 
     async def test_bounds_reject_unreviewed_tools_and_task_payload(self):

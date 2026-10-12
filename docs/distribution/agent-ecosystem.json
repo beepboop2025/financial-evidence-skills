@@ -386,7 +386,7 @@
       "name": "Virtuals Protocol ACP",
       "segment": "shopping",
       "kind": "agent commerce ecosystem",
-      "source_url": "https://docs.virtuals.io/",
+      "source_url": "https://github.com/Virtual-Protocol/acp-node-v2",
       "workflow": "Qualify agent-to-agent service-commerce contributors.",
       "data_opportunity": "Public capability metadata and explicitly permitted service-job outcomes.",
       "qualification": "research_opportunity",

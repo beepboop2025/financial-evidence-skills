@@ -59,6 +59,8 @@ def repository_candidates(payload):
         raise ValueError("invalid repository search response")
     candidates = []
     for item in payload["items"]:
+        if not isinstance(item, dict):
+            raise ValueError("invalid public repository record")
         name, url = item.get("full_name"), item.get("html_url")
         if not isinstance(name, str) or not isinstance(url, str) or not url.startswith("https://github.com/"):
             raise ValueError("invalid public repository record")
@@ -170,7 +172,12 @@ def markdown(report):
              f"- Relevant public directory candidates: {len(report['directory']['candidates']) if report['directory']['status'] == 'observed' else 'unknown'} (overlap with repository candidates is not deduplicated)", "",
              "## Public discovery", "", "| Search | Observation | Returned | Query complete |", "|---|---|---:|---|"]
     for row in report["repository_searches"]:
-        lines.append(f"| {row['id']} | {row['status']} | {len(row['candidates']) if row['status'] == 'observed' else 'unknown'} | {row['query_complete']} |")
+        lines.append(f"| GitHub: {row['id']} | {row['status']} | {len(row['candidates']) if row['status'] == 'observed' else 'unknown'} | {row['query_complete']} |")
+    for row in report["registry_searches"]:
+        lines.append(f"| MCP registry: {row['id']} | {row['status']} | {len(row['servers']) if row['status'] == 'observed' else 'unknown'} | {row['query_complete']} |")
+    if report["registry_observation"] == "not_checked":
+        lines += ["", "MCP registry searches: not checked."]
+    lines += ["", f"AgentNDX catalog: {report['directory']['status']}. Matching entries are unreviewed candidates; global coverage remains unknown."]
     lines += ["", "An absent result in a bounded search is not evidence of inactivity. Marketplace HTTP responses never change the verified ledger state.", "",
               "## Endpoint observations", "", "| Group | Record | HTTP | Observation |", "|---|---|---:|---|"]
     for group in ("targets", "marketplaces"):

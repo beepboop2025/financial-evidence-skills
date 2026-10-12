@@ -120,8 +120,8 @@
     }
   ],
   "validation": {
-    "focused_tests": 12,
-    "local_suite_ran": 478,
+    "focused_tests": 15,
+    "local_suite_ran": 483,
     "local_suite_skipped": 48,
     "browser_widths": [
       390,
@@ -129,6 +129,9 @@
     ],
     "connections": 8,
     "registry_records_verified": 2,
-    "ci_checks_passed_before_receipt_update": 19
+    "ci_evidence": {
+      "commit": "7e13aa3fbdcfb450490425643fcee4f1a3c1fd04",
+      "passed": 19
+    }
   }
 }

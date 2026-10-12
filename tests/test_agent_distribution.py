@@ -1,5 +1,5 @@
 import unittest
-from scripts.observe_agent_distribution import compare, discover_directory, discover_registry, discover_repositories, repository_candidates
+from scripts.observe_agent_distribution import compare, discover_directory, discover_registry, discover_repositories, markdown, repository_candidates
 
 
 class AgentDiscoveryEvidenceTests(unittest.TestCase):
@@ -52,9 +52,21 @@ class AgentDiscoveryEvidenceTests(unittest.TestCase):
         self.assertFalse(result["removals_evaluable"])
 
     def test_schema_failure_preserves_unknown(self):
-        def malformed(url):
-            return {"status": "retrieved", "url": url, "http_status": 200}, b'{"message":"rate limited"}'
-        self.assertTrue(all(r["status"] == "invalid_response" for r in discover_repositories(malformed)))
+        for body in (b'{"message":"rate limited"}', b'{"total_count":1,"items":[null]}'):
+            with self.subTest(body=body):
+                def malformed(url):
+                    return {"status": "retrieved", "url": url, "http_status": 200}, body
+                self.assertTrue(all(r["status"] == "invalid_response" for r in discover_repositories(malformed)))
+
+    def test_readable_report_exposes_registry_and_directory_failures(self):
+        report = {"observed_at": "2026-10-12T00:00:00Z", "targets": [], "marketplaces": [],
+                  "ledger_record_count": 0, "repository_candidate_count": None, "repository_searches": [],
+                  "registry_observation": "attempted", "registry_searches": [
+                      {"id": "finance", "status": "unavailable", "servers": [], "query_complete": False}],
+                  "directory": {"status": "invalid_response", "candidates": []}}
+        rendered = markdown(report)
+        self.assertIn("| MCP registry: finance | unavailable | unknown | False |", rendered)
+        self.assertIn("AgentNDX catalog: invalid_response", rendered)
 
     def test_repository_metadata_does_not_imply_users_or_data_access(self):
         item = repository_candidates({"total_count": 1, "items": [{"full_name": "owner/project", "html_url": "https://github.com/owner/project"}]})[0]

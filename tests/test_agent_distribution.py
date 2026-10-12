@@ -1,8 +1,20 @@
 import unittest
-from scripts.observe_agent_distribution import compare, discover_directory, discover_repositories, repository_candidates
+from scripts.observe_agent_distribution import compare, discover_directory, discover_registry, discover_repositories, repository_candidates
 
 
 class AgentDiscoveryEvidenceTests(unittest.TestCase):
+    def test_registry_schema_drift_is_reported_without_aborting_other_sources(self):
+        for body in (b'[]', b'{"servers":[{"server":null}]}', b'{"servers":[],"metadata":null}'):
+            with self.subTest(body=body):
+                def response(url):
+                    return {"status": "retrieved", "url": url}, body
+                self.assertTrue(all(row["status"] == "invalid_response" for row in discover_registry(response)))
+
+    def test_registry_without_pagination_metadata_does_not_claim_complete_search(self):
+        def response(url):
+            return {"status": "retrieved", "url": url}, b'{"servers":[]}'
+        self.assertTrue(all(not row["query_complete"] for row in discover_registry(response)))
+
     def test_directory_records_are_metadata_and_commands_are_never_executed(self):
         def response(url):
             return {"status": "retrieved", "url": url}, b'{"servers":[{"id":"finance","name":"Finance tool","endpoint":"malicious command","install_cmd":"do not run"},{"id":"unrelated","name":"Image tool"}]}'

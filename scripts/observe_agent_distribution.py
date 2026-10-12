@@ -97,15 +97,18 @@ def discover_registry(fetcher=fetch):
         if meta["status"] == "retrieved":
             try:
                 payload = json.loads(body)
-                if not isinstance(payload.get("servers"), list):
+                if not isinstance(payload, dict) or not isinstance(payload.get("servers"), list):
                     raise ValueError("missing servers")
                 for entry in payload["servers"]:
                     server = entry["server"]
-                    if not isinstance(server.get("name"), str) or not isinstance(server.get("version"), str):
+                    if not isinstance(server, dict) or not isinstance(server.get("name"), str) or not isinstance(server.get("version"), str):
                         raise ValueError("invalid server identity")
                     row["servers"].append({"name": server["name"], "version": server["version"],
                                            "description": server.get("description"), "qualification": "unreviewed_candidate"})
-                row["query_complete"] = not payload.get("metadata", {}).get("nextCursor")
+                metadata = payload.get("metadata", {})
+                if not isinstance(metadata, dict):
+                    raise ValueError("invalid pagination metadata")
+                row["query_complete"] = "metadata" in payload and not metadata.get("nextCursor")
                 row["status"] = "observed"
             except (ValueError, TypeError, KeyError):
                 row.update(status="invalid_response", servers=[], error="invalid_registry_schema")

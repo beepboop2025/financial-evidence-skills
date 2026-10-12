@@ -58,18 +58,32 @@ class LearningAPITests(unittest.TestCase):
         from fastapi.testclient import TestClient
         from financial_evidence.learning.api import create_app
         broken = threading.Event()
+        failure_entered = threading.Event()
+        release_failure = threading.Event()
         original = self.store.expire
         def flaky():
             if broken.is_set():
+                failure_entered.set()
+                if not release_failure.wait(timeout=2):
+                    raise AssertionError("Test did not release the failing retention check")
                 raise OSError("PRIVATE-CUSTOMER-CREDENTIAL-DO-NOT-LOG")
             return original()
         app = create_app(self.store, purge_interval=.02)
         with patch.object(self.store, "expire", side_effect=flaky), TestClient(app) as client:
             initial = client.get("/health")
             self.assertEqual(initial.status_code, 200)
-            before = initial.json()["retention"]["last_successful_check_at"]
             with self.assertLogs("financial_evidence.learning.api", level="WARNING") as logs:
                 broken.set()
+                try:
+                    # The serial worker cannot enter its next expire call until
+                    # any prior healthy check has recorded its success. Hold
+                    # this failing call while capturing that settled baseline.
+                    self.assertTrue(failure_entered.wait(timeout=2))
+                    baseline = client.get("/health")
+                    self.assertEqual(baseline.status_code, 200)
+                    before = baseline.json()["retention"]["last_successful_check_at"]
+                finally:
+                    release_failure.set()
                 deadline = time.monotonic() + 2
                 while time.monotonic() < deadline:
                     response = client.get("/health")
@@ -80,6 +94,7 @@ class LearningAPITests(unittest.TestCase):
                 self.assertTrue(response.json()["retention"]["worker_running"])
                 self.assertEqual(response.json()["retention"]["last_successful_check_at"], before)
                 broken.clear()
+                deadline = time.monotonic() + 2
                 while time.monotonic() < deadline:
                     response = client.get("/health")
                     if response.status_code == 200:

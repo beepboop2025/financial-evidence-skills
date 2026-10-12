@@ -15,7 +15,7 @@ from urllib.parse import urlencode, urlparse
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "docs/distribution/agent-ecosystem.json"
 LEDGER = ROOT / "docs/marketplaces.json"
-MAX_BYTES = 2_000_000
+MAX_BYTES = 5_000_000
 SEARCHES = {
     "finance": "finance agent in:name,description,topics archived:false",
     "trading": "trading agent in:name,description,topics archived:false",
@@ -47,7 +47,7 @@ def fetch(url):
         if meta["status"] == "retrieved":
             meta.update(sha256=hashlib.sha256(body).hexdigest(), bytes=len(body))
             return meta, body
-        meta["error"] = "http_error" if status else "transport_error"
+        meta["error"] = "response_size_limit" if result.returncode == 63 else ("http_error" if status else "transport_error")
         return meta, b""
     except (subprocess.TimeoutExpired, OSError, ValueError):
         return {"url": url, "observed_at": utc_now(), "status": "unavailable", "error": "transport_error"}, b""
@@ -113,6 +113,34 @@ def discover_registry(fetcher=fetch):
     return results
 
 
+def discover_directory(fetcher=fetch):
+    """Read the free curated index; never execute its commands or MCP endpoints."""
+    meta, body = fetcher("https://agentndx.ai/api/servers.json")
+    result = {**meta, "candidates": [], "catalog_entries": None, "global_coverage_complete": False}
+    if meta["status"] != "retrieved":
+        return result
+    try:
+        payload = json.loads(body)
+        servers = payload["servers"]
+        if not isinstance(servers, list):
+            raise ValueError("invalid index")
+        selected = []
+        for server in servers:
+            if not isinstance(server, dict) or not isinstance(server.get("id"), str) or not isinstance(server.get("name"), str):
+                raise ValueError("invalid server metadata")
+            description = json.dumps({k: server.get(k) for k in ("name", "description", "category", "tags", "use_cases")})
+            if re.search(r"financ|trading|arbitrage|commerce|shopping|payment|cryptocurrency", description, re.I):
+                selected.append({"id": server["id"], "name": server["name"],
+                                 "description": server.get("description"), "homepage_url": server.get("homepage_url"),
+                                 "github_url": server.get("github_url"), "protocols": server.get("protocols", []),
+                                 "qualification": "unreviewed_candidate", "private_activity_access": False})
+        result.update(status="observed", catalog_entries=len(servers), candidates=selected,
+                      provider_updated_at=payload.get("updated"))
+    except (ValueError, TypeError, KeyError):
+        result.update(status="invalid_response", error="invalid_directory_schema")
+    return result
+
+
 def compare(previous, current):
     """A failed or truncated observation cannot prove a project disappeared."""
     old_rows = {r["id"]: r for r in previous.get("repository_searches", [])}
@@ -136,6 +164,7 @@ def markdown(report):
              f"- Curated opportunities: {len(report['targets'])}",
              f"- Product/channel ledger records: {report['ledger_record_count']}",
              f"- Distinct public repository candidates: {report['repository_candidate_count']}", "",
+             f"- Relevant public directory candidates: {len(report['directory']['candidates']) if report['directory']['status'] == 'observed' else 'unknown'} (overlap with repository candidates is not deduplicated)", "",
              "## Public discovery", "", "| Search | Observation | Returned | Query complete |", "|---|---|---:|---|"]
     for row in report["repository_searches"]:
         lines.append(f"| {row['id']} | {row['status']} | {len(row['candidates']) if row['status'] == 'observed' else 'unknown'} | {row['query_complete']} |")
@@ -162,6 +191,7 @@ def main():
         observations = dict(zip(urls, pool.map(lambda url: fetch(url)[0], urls)))
     repository_searches = discover_repositories()
     registry_searches = [] if args.skip_registry else discover_registry()
+    directory = discover_directory()
     report = {"schema": "liquilens.agent-distribution-observation.v1", "observed_at": utc_now(),
               "catalog_sha256": hashlib.sha256(CATALOG.read_bytes()).hexdigest(),
               "coverage_complete": False, "private_activity_access": False,
@@ -171,7 +201,8 @@ def main():
               "targets": [{"id": t["id"], "segment": t["segment"], **observations[t["source_url"]]} for t in targets],
               "marketplaces": [{"id": e["id"], "ledger_state": e["state"], **observations[e["listing_url"]]} for e in marketplaces],
               "repository_searches": repository_searches,
-              "repository_candidate_count": len({c["id"] for r in repository_searches for c in r["candidates"]}),
+              "repository_candidate_count": len({c["id"] for r in repository_searches for c in r["candidates"]}) if any(r["status"] == "observed" for r in repository_searches) else None,
+              "directory": directory,
               "registry_observation": "not_checked" if args.skip_registry else "attempted",
               "registry_searches": registry_searches}
     previous = json.loads(args.previous.read_text()) if args.previous and args.previous.is_file() else {}

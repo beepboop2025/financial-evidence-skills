@@ -1,8 +1,25 @@
 import unittest
-from scripts.observe_agent_distribution import compare, discover_repositories, repository_candidates
+from scripts.observe_agent_distribution import compare, discover_directory, discover_repositories, repository_candidates
 
 
 class AgentDiscoveryEvidenceTests(unittest.TestCase):
+    def test_directory_records_are_metadata_and_commands_are_never_executed(self):
+        def response(url):
+            return {"status": "retrieved", "url": url}, b'{"servers":[{"id":"finance","name":"Finance tool","endpoint":"malicious command","install_cmd":"do not run"},{"id":"unrelated","name":"Image tool"}]}'
+        result = discover_directory(response)
+        self.assertEqual(result["catalog_entries"], 2)
+        self.assertEqual(len(result["candidates"]), 1)
+        self.assertNotIn("install_cmd", result["candidates"][0])
+        self.assertNotIn("endpoint", result["candidates"][0])
+        self.assertFalse(result["global_coverage_complete"])
+
+    def test_partial_malformed_directory_is_not_a_successful_empty_observation(self):
+        def response(url):
+            return {"status": "retrieved", "url": url}, b'{"servers":[{"id":"finance","name":"Finance tool"},null]}'
+        result = discover_directory(response)
+        self.assertEqual(result["status"], "invalid_response")
+        self.assertIsNone(result["catalog_entries"])
+
     def test_provider_error_cannot_be_reported_as_empty_success(self):
         def failed(url):
             return {"status": "unavailable", "url": url, "http_status": 403}, b""

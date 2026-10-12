@@ -69,5 +69,22 @@
       "query_complete": false,
       "observed_at": "2026-10-12T16:12:43.974642Z"
     }
+  ],
+  "public_directory_entries": 1606,
+  "public_directory_relevant_candidates": 198,
+  "directory_and_repository_counts_overlap": true,
+  "submitted_for_review": [
+    {
+      "platform": "AgentNDX",
+      "product": "Wake Agent Economy",
+      "state": "submitted",
+      "receipt": "https://agentndx.ai/submit?success=1"
+    },
+    {
+      "platform": "AgentNDX",
+      "product": "Seiche Agent Community",
+      "state": "submitted",
+      "receipt": "https://agentndx.ai/submit?success=1"
+    }
   ]
 }

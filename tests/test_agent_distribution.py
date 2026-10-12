@@ -1,8 +1,30 @@
 import unittest
-from scripts.observe_agent_distribution import compare, discover_directory, discover_registry, discover_repositories, markdown, repository_candidates
+from unittest.mock import patch
+from types import SimpleNamespace
+from scripts.observe_agent_distribution import SEARCHES, compare, discover_directory, discover_registry, discover_repositories, fetch, markdown, repository_candidates
 
 
 class AgentDiscoveryEvidenceTests(unittest.TestCase):
+    def test_github_credentials_cannot_reach_other_hosts_or_api_routes(self):
+        for url in ("https://example.com/search/repositories", "https://api.github.com/user", "https://api.github.com.example.com/search/repositories"):
+            with self.subTest(url=url), patch("scripts.observe_agent_distribution.subprocess.run") as run:
+                with self.assertRaises(ValueError):
+                    fetch(url, github_token="test-token")
+                run.assert_not_called()
+
+    def test_github_token_is_not_in_arguments_or_environment_and_redirects_are_disabled(self):
+        url = "https://api.github.com/search/repositories?q=finance"
+        result = SimpleNamespace(returncode=0, stdout=b'{}\n200\n' + url.encode())
+        with patch.dict("os.environ", {"AGENT_DISCOVERY_GITHUB_TOKEN": "test-token"}), patch("scripts.observe_agent_distribution.subprocess.run", return_value=result) as run:
+            meta, _ = fetch(url, github_token="test-token")
+        arguments, = run.call_args.args
+        self.assertNotIn("test-token", str(arguments))
+        self.assertNotIn("AGENT_DISCOVERY_GITHUB_TOKEN", run.call_args.kwargs["env"])
+        self.assertIn(b"Authorization: Bearer test-token", run.call_args.kwargs["input"])
+        self.assertEqual(arguments[arguments.index("--max-redirs") + 1], "0")
+        self.assertNotIn("test-token", str(meta))
+        self.assertTrue(all("is:public" in query for query in SEARCHES.values()))
+
     def test_registry_schema_drift_is_reported_without_aborting_other_sources(self):
         for body in (b'[]', b'{"servers":[{"server":null}]}', b'{"servers":[],"metadata":null}'):
             with self.subTest(body=body):

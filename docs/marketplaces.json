@@ -60,7 +60,7 @@
         "final_url": "https://www.skills.sh/beepboop2025/financial-evidence-skills/financial-evidence",
         "readback": "retrieved_not_acceptance",
         "sha256": "6c54f6331d851cc3311298a5d04fcdc86dccbd968a827a57af5b2ed429c02b5f",
-        "title": "financial-evidence \u2014 beepboop2025/financial-evidence-skills",
+        "title": "financial-evidence — beepboop2025/financial-evidence-skills",
         "mentioned_versions": []
       }
     },
@@ -179,7 +179,7 @@
     },
     {
       "id": "openbb-app-marketplace",
-      "name": "OpenBB App Marketplace \u2014 Financial Evidence Research Desk",
+      "name": "OpenBB App Marketplace — Financial Evidence Research Desk",
       "product": "Financial Evidence Research Desk",
       "products": [
         "Seiche",
@@ -398,7 +398,7 @@
     },
     {
       "id": "saashub",
-      "name": "SaaSHub \u2014 LiquiLens",
+      "name": "SaaSHub — LiquiLens",
       "channel": "software-directory",
       "state": "submitted",
       "submission_url": "https://www.saashub.com/liquilens/added",
@@ -583,7 +583,7 @@
         "final_url": "https://smithery.ai/servers/mrinallovesbhature/seiche",
         "readback": "retrieved_not_acceptance",
         "sha256": "10a97c41c271e21055bfddea998dd6cbdbc8d1639996f2ae599ffa84ff6b3a76",
-        "title": "Seiche \u2014 Money Markets and Funding Evidence - MCP | Smithery",
+        "title": "Seiche — Money Markets and Funding Evidence - MCP | Smithery",
         "mentioned_versions": []
       },
       "updated_at": "2026-10-11T12:01:23.385338+00:00",
@@ -628,7 +628,7 @@
         "final_url": "https://smithery.ai/servers/mrinallovesbhature/undertow",
         "readback": "retrieved_not_acceptance",
         "sha256": "0436eb7182070b23226795a7914df33d2e88b370ade268f11757ac3474af2994",
-        "title": "Undertow \u2014 Market Liquidity Evidence - MCP | Smithery",
+        "title": "Undertow — Market Liquidity Evidence - MCP | Smithery",
         "mentioned_versions": []
       },
       "updated_at": "2026-10-11T12:01:23.385338+00:00",
@@ -766,7 +766,7 @@
     },
     {
       "id": "freepublicapis-research-api",
-      "name": "FreePublicAPIs \u2014 Financial Evidence API",
+      "name": "FreePublicAPIs — Financial Evidence API",
       "channel": "api-directory",
       "state": "live",
       "listing_url": "https://www.freepublicapis.com/financial-evidence-api",
@@ -786,13 +786,13 @@
         "final_url": "https://www.freepublicapis.com/financial-evidence-api",
         "readback": "retrieved_not_acceptance",
         "sha256": "3d698b94b4b49698e9002f590d0170c7698fbcde357dead17bab0b42320fc764",
-        "title": "\ud83d\udcca Financial Evidence API - Tested Every Single Day.",
+        "title": "📊 Financial Evidence API - Tested Every Single Day.",
         "mentioned_versions": []
       }
     },
     {
       "id": "apislist-research",
-      "name": "APIsList \u2014 Financial Evidence Research API",
+      "name": "APIsList — Financial Evidence Research API",
       "channel": "api-directory",
       "state": "submitted",
       "submission_url": "https://apislist.com/api/add",
@@ -810,7 +810,7 @@
     },
     {
       "id": "apislist-liquilens",
-      "name": "APIsList \u2014 LiquiLens Public Research API",
+      "name": "APIsList — LiquiLens Public Research API",
       "channel": "api-directory",
       "state": "submitted",
       "submission_url": "https://apislist.com/api/add",
@@ -828,7 +828,7 @@
     },
     {
       "id": "apislist-seiche",
-      "name": "APIsList \u2014 Seiche Public Research API",
+      "name": "APIsList — Seiche Public Research API",
       "channel": "api-directory",
       "state": "submitted",
       "submission_url": "https://apislist.com/api/add",
@@ -846,7 +846,7 @@
     },
     {
       "id": "apislist-undertow",
-      "name": "APIsList \u2014 Undertow Market Liquidity API",
+      "name": "APIsList — Undertow Market Liquidity API",
       "channel": "api-directory",
       "state": "submitted",
       "submission_url": "https://apislist.com/api/add",
@@ -864,7 +864,7 @@
     },
     {
       "id": "apisio-company",
-      "name": "APIs.io \u2014 LIQUILENS PRIVATE LIMITED",
+      "name": "APIs.io — LIQUILENS PRIVATE LIMITED",
       "channel": "api-company-directory",
       "state": "submitted",
       "submission_url": "https://apis.io/add/",
@@ -882,7 +882,7 @@
     },
     {
       "id": "mcpservers-org-research-desk",
-      "name": "MCPServers.org \u2014 Financial Evidence Research Desk",
+      "name": "MCPServers.org — Financial Evidence Research Desk",
       "channel": "mcp-directory",
       "state": "submitted",
       "submission_url": "https://mcpservers.org/submit",
@@ -900,7 +900,7 @@
     },
     {
       "id": "mcpservers-org-financial-evidence",
-      "name": "MCPServers.org \u2014 Financial Evidence",
+      "name": "MCPServers.org — Financial Evidence",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://mcpservers.org/servers/beepboop2025/financial-evidence-skills",
@@ -932,7 +932,7 @@
     },
     {
       "id": "mcpservers-org-liquilens",
-      "name": "MCPServers.org \u2014 LiquiLens",
+      "name": "MCPServers.org — LiquiLens",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://mcpservers.org/servers/beepboop2025/liquilens-mcp",
@@ -958,7 +958,7 @@
     },
     {
       "id": "mcpservers-org-seiche",
-      "name": "MCPServers.org \u2014 Seiche",
+      "name": "MCPServers.org — Seiche",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://mcpservers.org/servers/beepboop2025/seiche",
@@ -987,7 +987,7 @@
     },
     {
       "id": "mcpservers-org-undertow",
-      "name": "MCPServers.org \u2014 Undertow",
+      "name": "MCPServers.org — Undertow",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://mcpservers.org/servers/beepboop2025/undertow-mcp",
@@ -1013,7 +1013,7 @@
     },
     {
       "id": "mcpservers-org-palimpsest",
-      "name": "MCPServers.org \u2014 Palimpsest",
+      "name": "MCPServers.org — Palimpsest",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://mcpservers.org/servers/beepboop2025/palimpsest",
@@ -1038,7 +1038,7 @@
     },
     {
       "id": "mcpservers-org-evidence-carrier",
-      "name": "MCPServers.org \u2014 Evidence Carrier",
+      "name": "MCPServers.org — Evidence Carrier",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://mcpservers.org/servers/beepboop2025/liquilens-evidence-carrier",
@@ -1077,7 +1077,7 @@
     },
     {
       "id": "allmcps-financial-evidence",
-      "name": "AllMCPs \u2014 Financial Evidence",
+      "name": "AllMCPs — Financial Evidence",
       "channel": "mcp-directory",
       "state": "listed_incomplete",
       "listing_url": "https://allmcps.com/mcp/financial-evidence",
@@ -1114,7 +1114,7 @@
     },
     {
       "id": "allmcps-liquilens",
-      "name": "AllMCPs \u2014 LiquiLens",
+      "name": "AllMCPs — LiquiLens",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://allmcps.com/mcp/liquilens-the-failure-radar",
@@ -1132,7 +1132,7 @@
         "final_url": "https://allmcps.com/mcp/liquilens-the-failure-radar",
         "readback": "retrieved_not_acceptance",
         "sha256": "88b1a597873fc2a6052ab0ffb31fab9774f8c9c5323d2622fe0e731e5bb16c72",
-        "title": "LiquiLens \u2014 the Failure Radar MCP Server | AllMCPs",
+        "title": "LiquiLens — the Failure Radar MCP Server | AllMCPs",
         "mentioned_versions": [
           "1.1.0",
           "1.8.1"
@@ -1141,7 +1141,7 @@
     },
     {
       "id": "allmcps-seiche",
-      "name": "AllMCPs \u2014 Seiche",
+      "name": "AllMCPs — Seiche",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://allmcps.com/mcp/seiche-funding-stress-terminal",
@@ -1159,7 +1159,7 @@
         "final_url": "https://allmcps.com/mcp/seiche-funding-stress-terminal",
         "readback": "retrieved_not_acceptance",
         "sha256": "c2434473312e0d1241b81ed128b1e0f48613c509cab87448de3edb7c35235c60",
-        "title": "Seiche \u2014 funding Stress terminal MCP Server | AllMCPs",
+        "title": "Seiche — funding Stress terminal MCP Server | AllMCPs",
         "mentioned_versions": [
           "0.1.0",
           "0.16.1",
@@ -1169,7 +1169,7 @@
     },
     {
       "id": "allmcps-undertow",
-      "name": "AllMCPs \u2014 Undertow",
+      "name": "AllMCPs — Undertow",
       "channel": "mcp-directory",
       "state": "listed_incomplete",
       "listing_url": "https://allmcps.com/mcp/undertow-market-liquidity-map-2",
@@ -1206,7 +1206,7 @@
     },
     {
       "id": "allmcps-palimpsest",
-      "name": "AllMCPs \u2014 Palimpsest",
+      "name": "AllMCPs — Palimpsest",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://allmcps.com/mcp/palimpsest-censorship-observatory",
@@ -1224,13 +1224,13 @@
         "final_url": "https://allmcps.com/mcp/palimpsest-censorship-observatory",
         "readback": "retrieved_not_acceptance",
         "sha256": "30d447a0eab83ff6cb44d296dd08fef410a7774b7eb908ea84d843dcd3709378",
-        "title": "Palimpsest \u2014 censorship observatory MCP Server | AllMCPs",
+        "title": "Palimpsest — censorship observatory MCP Server | AllMCPs",
         "mentioned_versions": []
       }
     },
     {
       "id": "allmcps-evidence-carrier",
-      "name": "AllMCPs \u2014 Evidence Carrier",
+      "name": "AllMCPs — Evidence Carrier",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://allmcps.com/mcp/liquilens-evidence-carrier",
@@ -1270,7 +1270,7 @@
     },
     {
       "id": "allmcps-narcoscope",
-      "name": "AllMCPs \u2014 NarcoScope",
+      "name": "AllMCPs — NarcoScope",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://allmcps.com/mcp/narcoscope-official-drug-market-evidence-explorer",
@@ -1288,13 +1288,13 @@
         "final_url": "https://allmcps.com/mcp/narcoscope-official-drug-market-evidence-explorer",
         "readback": "retrieved_not_acceptance",
         "sha256": "fde71252390ed4b40e4f62ff736b4992f2816a7c16846e38bf26abb6181e91ff",
-        "title": "NarcoScope \u2014 official drug Market evidence ex | AllMCPs",
+        "title": "NarcoScope — official drug Market evidence ex | AllMCPs",
         "mentioned_versions": []
       }
     },
     {
       "id": "mcpmarket-financial-evidence",
-      "name": "MCP Market \u2014 Financial Evidence",
+      "name": "MCP Market — Financial Evidence",
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://mcpmarket.com/server/financial-evidence",
@@ -1318,7 +1318,7 @@
     },
     {
       "id": "allmcps-research-desk",
-      "name": "AllMCPs \u2014 Financial Evidence Research Desk",
+      "name": "AllMCPs — Financial Evidence Research Desk",
       "channel": "mcp-directory",
       "state": "live",
       "submission_url": "https://allmcps.com/submit",
@@ -1350,7 +1350,7 @@
     },
     {
       "id": "battlefin-company-map",
-      "name": "BattleFin Data Maps \u2014 LIQUILENS PRIVATE LIMITED",
+      "name": "BattleFin Data Maps — LIQUILENS PRIVATE LIMITED",
       "channel": "institutional-data-provider-directory",
       "state": "submitted",
       "submission_url": "https://battlefin-global-data-maps.lovable.app/submit",
@@ -1385,7 +1385,7 @@
     },
     {
       "id": "saashub-seiche",
-      "name": "SaaSHub \u2014 Seiche",
+      "name": "SaaSHub — Seiche",
       "channel": "software-directory",
       "state": "submitted",
       "submission_url": "https://www.saashub.com/seiche/added",
@@ -1405,7 +1405,7 @@
     },
     {
       "id": "saashub-undertow",
-      "name": "SaaSHub \u2014 Undertow",
+      "name": "SaaSHub — Undertow",
       "channel": "software-directory",
       "state": "paused_external",
       "submission_url": "https://www.saashub.com/services/submit",
@@ -1420,7 +1420,7 @@
     },
     {
       "id": "g2-liquilens",
-      "name": "G2 \u2014 LiquiLens",
+      "name": "G2 — LiquiLens",
       "channel": "software-directory",
       "state": "listed_incomplete",
       "submission_url": "https://www.g2.com/add_product_requests/new",
@@ -1486,7 +1486,7 @@
     },
     {
       "id": "g2-seiche",
-      "name": "G2 \u2014 Seiche",
+      "name": "G2 — Seiche",
       "channel": "software-directory",
       "state": "listed_incomplete",
       "submission_url": "https://www.g2.com/add_product_requests/new",
@@ -1578,7 +1578,7 @@
     },
     {
       "id": "g2-undertow",
-      "name": "G2 \u2014 Undertow",
+      "name": "G2 — Undertow",
       "channel": "software-directory",
       "state": "listed_incomplete",
       "submission_url": "https://www.g2.com/add_product_requests/new",
@@ -1687,7 +1687,7 @@
     },
     {
       "id": "api-market-seiche-reference-fx",
-      "name": "API.market \u2014 Seiche Reference FX API",
+      "name": "API.market — Seiche Reference FX API",
       "channel": "api-marketplace",
       "state": "live",
       "submission_url": "https://api.market/seller/liquilens/products/seiche-reference-fx",
@@ -1731,7 +1731,7 @@
     },
     {
       "id": "datarade-company",
-      "name": "Datarade \u2014 LIQUILENS PRIVATE LIMITED",
+      "name": "Datarade — LIQUILENS PRIVATE LIMITED",
       "channel": "data-provider-application",
       "state": "approved_pending_public",
       "submission_url": "https://providers.datarade.ai/apply/confirm/success",
@@ -1999,7 +1999,7 @@
     },
     {
       "id": "noisefloor-pypi",
-      "name": "NoiseFloor \u2014 PyPI",
+      "name": "NoiseFloor — PyPI",
       "channel": "python-package-index",
       "state": "live",
       "listing_url": "https://pypi.org/project/noisefloor/0.4.0/",
@@ -2017,7 +2017,7 @@
     },
     {
       "id": "noisefloor-mcp-registry",
-      "name": "NoiseFloor \u2014 Official MCP Registry",
+      "name": "NoiseFloor — Official MCP Registry",
       "channel": "mcp-registry",
       "state": "live",
       "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fnoisefloor/versions/0.4.0",
@@ -2035,7 +2035,7 @@
     },
     {
       "id": "noisefloor-github-release",
-      "name": "NoiseFloor \u2014 GitHub Release",
+      "name": "NoiseFloor — GitHub Release",
       "channel": "release-artifacts",
       "state": "live",
       "listing_url": "https://github.com/beepboop2025/noisefloor/releases/tag/v0.4.0",
@@ -2053,7 +2053,7 @@
     },
     {
       "id": "mcpserver-cc-financial-evidence",
-      "name": "MCPServer.cc \u2014 Financial Evidence by LiquiLens",
+      "name": "MCPServer.cc — Financial Evidence by LiquiLens",
       "channel": "mcp-directory",
       "state": "submitted",
       "submission_url": "https://mcpserver.cc/submit",
@@ -2061,12 +2061,12 @@
       "detail": "The standard form returned an explicit submission-received confirmation for the Financial Evidence repository and LiquiLens, Seiche and Undertow research workflows. Editorial approval and a public listing are not yet observed.",
       "next_action": "Await review of the existing submission; verify a canonical public listing before marking live.",
       "verified_at": "2026-10-09T18:55:18.467Z",
-      "submission_confirmation": "Submission received. Thank you \u2014 we will review it shortly.",
+      "submission_confirmation": "Submission received. Thank you — we will review it shortly.",
       "evidence_receipt": "distribution/platform-expansion-20261010.json"
     },
     {
       "id": "public-apis-financial-evidence-mcp",
-      "name": "Public APIs \u2014 Financial Evidence MCP",
+      "name": "Public APIs — Financial Evidence MCP",
       "channel": "mcp-directory",
       "state": "submitted",
       "submission_url": "https://github.com/public-apis/public-apis/pull/7884",
@@ -2081,7 +2081,7 @@
     },
     {
       "id": "apivault-financial-evidence",
-      "name": "API Vault \u2014 Financial Evidence Research API",
+      "name": "API Vault — Financial Evidence Research API",
       "channel": "api-directory",
       "state": "submitted",
       "submission_url": "https://github.com/exa-studio/ApiVault/issues/327",
@@ -2094,7 +2094,7 @@
     },
     {
       "id": "mcpserverfinder-financial-evidence",
-      "name": "MCP Server Finder \u2014 Financial Evidence by LiquiLens",
+      "name": "MCP Server Finder — Financial Evidence by LiquiLens",
       "channel": "mcp-directory",
       "state": "sent_delivery_unverified",
       "submission_url": "https://mcpserverfinder.com/",
@@ -2805,7 +2805,7 @@
     },
     {
       "id": "public-apis-liquilens-rest",
-      "name": "Public APIs \u2014 LiquiLens REST API",
+      "name": "Public APIs — LiquiLens REST API",
       "channel": "api-directory",
       "state": "live",
       "submission_url": "https://github.com/public-apis/public-apis/pull/7067",
@@ -2820,7 +2820,7 @@
     },
     {
       "id": "public-apis-seiche-rest",
-      "name": "Public APIs \u2014 Seiche REST API",
+      "name": "Public APIs — Seiche REST API",
       "channel": "api-directory",
       "state": "submitted",
       "submission_url": "https://github.com/public-apis/public-apis/pull/7801",
@@ -2833,7 +2833,7 @@
     },
     {
       "id": "public-apis-undertow-rest",
-      "name": "Public APIs \u2014 Undertow REST API",
+      "name": "Public APIs — Undertow REST API",
       "channel": "api-directory",
       "state": "submitted",
       "submission_url": "https://github.com/public-apis/public-apis/pull/7802",
@@ -2846,7 +2846,7 @@
     },
     {
       "id": "fintech-sandbox-provider-intake",
-      "name": "Fintech Sandbox \u2014 LiquiLens provider enquiry",
+      "name": "Fintech Sandbox — LiquiLens provider enquiry",
       "channel": "financial-data-partner-intake",
       "state": "submitted",
       "submission_url": "https://www.fintechsandbox.org/become-a-data-partner/",
@@ -2854,7 +2854,7 @@
       "detail": "The official Become a Data Partner form explicitly acknowledged the LIQUILENS PRIVATE LIMITED provider enquiry for existing public LiquiLens, Seiche and Undertow research interfaces. This is non-binding qualification intake, not partnership acceptance, an expanded data licence, unrestricted third-party redistribution, a trial commitment or paid sponsorship.",
       "next_action": "Await qualification review on the existing intake; scope any service, trial or licence terms separately before committing access or source rights.",
       "verified_at": "2026-10-09T19:05:09.516Z",
-      "submission_confirmation": "Thanks for submitting the form. A member of our\u00a0 team will reach out to you shortly.",
+      "submission_confirmation": "Thanks for submitting the form. A member of our  team will reach out to you shortly.",
       "partnership_accepted": false,
       "free_trial_or_licence_commitment": false,
       "paid_sponsorship": false,
@@ -2862,7 +2862,7 @@
     },
     {
       "id": "neudata-company",
-      "name": "Neudata \u2014 LiquiLens provider application",
+      "name": "Neudata — LiquiLens provider application",
       "channel": "institutional-data-provider-directory",
       "state": "submitted",
       "submission_url": "https://www.neudata.co/data_providers/sign_up?requested_subscription_status=pending_free",
@@ -2879,7 +2879,7 @@
     },
     {
       "id": "eagle-alpha-company",
-      "name": "Eagle Alpha \u2014 LiquiLens provider application",
+      "name": "Eagle Alpha — LiquiLens provider application",
       "channel": "institutional-data-provider-directory",
       "state": "submitted",
       "submission_url": "https://app.selldata.eaglealpha.com/signup",
@@ -2896,7 +2896,7 @@
     },
     {
       "id": "crozdesk-liquilens",
-      "name": "Crozdesk / Revleads \u2014 LiquiLens software application",
+      "name": "Crozdesk / Revleads — LiquiLens software application",
       "channel": "software-directory",
       "state": "submitted",
       "submission_url": "https://vendor.revleads.com/user/signup",
@@ -2914,7 +2914,7 @@
     },
     {
       "id": "softwaresuggest-liquilens",
-      "name": "SoftwareSuggest \u2014 LiquiLens software listing",
+      "name": "SoftwareSuggest — LiquiLens software listing",
       "channel": "software-directory",
       "state": "ready_account_action",
       "submission_url": "https://www.softwaresuggest.com/vendors",
@@ -2934,7 +2934,7 @@
     },
     {
       "id": "gumloop-financial-evidence",
-      "name": "Gumloop \u2014 Financial Evidence community template",
+      "name": "Gumloop — Financial Evidence community template",
       "channel": "workflow-template-directory",
       "state": "skipped_paid",
       "submission_url": "https://www.gumloop.com/",
@@ -2948,7 +2948,7 @@
     },
     {
       "id": "haystack-financial-evidence",
-      "name": "Haystack integrations \u2014 Financial Evidence",
+      "name": "Haystack integrations — Financial Evidence",
       "channel": "framework-integration-directory",
       "state": "submitted",
       "submission_url": "https://github.com/deepset-ai/haystack-integrations/pull/650",
@@ -2967,7 +2967,7 @@
     },
     {
       "id": "langchain-financial-evidence",
-      "name": "LangChain integration directory \u2014 Financial Evidence",
+      "name": "LangChain integration directory — Financial Evidence",
       "channel": "framework-integration-directory",
       "state": "submitted",
       "submission_url": "https://github.com/langchain-ai/docs/issues/6593",
@@ -2985,7 +2985,7 @@
     },
     {
       "id": "langchain-financial-evidence-github-release",
-      "name": "Financial Evidence for LangChain \u2014 GitHub release",
+      "name": "Financial Evidence for LangChain — GitHub release",
       "channel": "release-artifacts",
       "state": "live",
       "listing_url": "https://github.com/beepboop2025/langchain-financial-evidence/releases/tag/v0.1.0",
@@ -3001,7 +3001,7 @@
     },
     {
       "id": "langchain-financial-evidence-pypi",
-      "name": "Financial Evidence for LangChain \u2014 PyPI",
+      "name": "Financial Evidence for LangChain — PyPI",
       "channel": "python-package-index",
       "state": "live",
       "listing_url": "https://pypi.org/project/langchain-financial-evidence/0.1.0/",
@@ -3016,7 +3016,7 @@
     },
     {
       "id": "awesome-quant-seiche",
-      "name": "Awesome Quant \u2014 Seiche",
+      "name": "Awesome Quant — Seiche",
       "product": "Seiche",
       "channel": "research-directory",
       "state": "submitted",
@@ -3030,7 +3030,7 @@
     },
     {
       "id": "awesome-quant-noisefloor",
-      "name": "Awesome Quant \u2014 NoiseFloor",
+      "name": "Awesome Quant — NoiseFloor",
       "product": "NoiseFloor",
       "channel": "research-directory",
       "state": "submitted",
@@ -3044,7 +3044,7 @@
     },
     {
       "id": "awesome-osint-narcoscope",
-      "name": "Awesome OSINT \u2014 NarcoScope",
+      "name": "Awesome OSINT — NarcoScope",
       "product": "NarcoScope",
       "channel": "research-directory",
       "state": "submitted",
@@ -3058,7 +3058,7 @@
     },
     {
       "id": "ai4finance-financial-evidence",
-      "name": "Awesome AI4Finance \u2014 Financial Evidence",
+      "name": "Awesome AI4Finance — Financial Evidence",
       "product": "Financial Evidence",
       "channel": "research-directory",
       "state": "live",
@@ -3083,7 +3083,7 @@
     },
     {
       "id": "osint-collection-palimpsest",
-      "name": "Cyber Detective OSINT tools \u2014 Palimpsest",
+      "name": "Cyber Detective OSINT tools — Palimpsest",
       "product": "Palimpsest",
       "channel": "research-directory",
       "state": "submitted",
@@ -3097,7 +3097,7 @@
     },
     {
       "id": "wealthmcp-financial-evidence",
-      "name": "WealthMCP \u2014 Financial Evidence",
+      "name": "WealthMCP — Financial Evidence",
       "product": "Financial Evidence",
       "channel": "research-directory",
       "state": "submitted",
@@ -3111,7 +3111,7 @@
     },
     {
       "id": "wealthmcp-seiche",
-      "name": "WealthMCP \u2014 Seiche",
+      "name": "WealthMCP — Seiche",
       "product": "Seiche",
       "channel": "research-directory",
       "state": "submitted",
@@ -3125,7 +3125,7 @@
     },
     {
       "id": "wealthmcp-noisefloor",
-      "name": "WealthMCP \u2014 NoiseFloor",
+      "name": "WealthMCP — NoiseFloor",
       "product": "NoiseFloor",
       "channel": "research-directory",
       "state": "submitted",
@@ -3139,7 +3139,7 @@
     },
     {
       "id": "allmcps-noisefloor",
-      "name": "AllMCPs \u2014 NoiseFloor",
+      "name": "AllMCPs — NoiseFloor",
       "product": "NoiseFloor",
       "channel": "mcp-directory",
       "state": "live",
@@ -3152,7 +3152,7 @@
     },
     {
       "id": "allmcps-groundcheck",
-      "name": "AllMCPs \u2014 Groundcheck",
+      "name": "AllMCPs — Groundcheck",
       "product": "Groundcheck",
       "channel": "mcp-directory",
       "state": "live",
@@ -3165,7 +3165,7 @@
     },
     {
       "id": "allmcps-data-breach-detector",
-      "name": "AllMCPs \u2014 Data Breach Detector",
+      "name": "AllMCPs — Data Breach Detector",
       "product": "Data Breach Detector",
       "channel": "mcp-directory",
       "state": "live",
@@ -3178,7 +3178,7 @@
     },
     {
       "id": "awesome-quant-market-brief",
-      "name": "Awesome Quant \u2014 Market Brief",
+      "name": "Awesome Quant — Market Brief",
       "product": "Market Brief",
       "channel": "research-directory",
       "state": "live",
@@ -3191,7 +3191,7 @@
     },
     {
       "id": "ai4finance-market-brief",
-      "name": "Awesome AI4Finance \u2014 Market Brief",
+      "name": "Awesome AI4Finance — Market Brief",
       "product": "Market Brief",
       "channel": "research-directory",
       "state": "submitted",
@@ -3217,7 +3217,7 @@
     },
     {
       "id": "cursor-directory-financial-evidence",
-      "name": "Cursor Directory \u2014 Financial Evidence",
+      "name": "Cursor Directory — Financial Evidence",
       "product": "Financial Evidence",
       "channel": "editor-directory",
       "state": "submitted",
@@ -3230,7 +3230,7 @@
     },
     {
       "id": "finskilz-financial-evidence",
-      "name": "FinSkilz \u2014 Financial Evidence",
+      "name": "FinSkilz — Financial Evidence",
       "product": "Financial Evidence",
       "channel": "finance-mcp-directory",
       "state": "submitted",
@@ -3243,7 +3243,7 @@
     },
     {
       "id": "sourceforge-research-desk",
-      "name": "SourceForge \u2014 Financial Evidence Research Desk",
+      "name": "SourceForge — Financial Evidence Research Desk",
       "product": "Financial Evidence Research Desk",
       "channel": "software-directory",
       "state": "submitted",
@@ -3262,7 +3262,7 @@
     },
     {
       "id": "capterra-liquilens",
-      "name": "Capterra \u2014 LiquiLens",
+      "name": "Capterra — LiquiLens",
       "channel": "software-directory",
       "state": "listed_incomplete",
       "listing_url": "https://www.capterra.com/p/10266227/LiquiLens/",
@@ -3280,7 +3280,7 @@
     },
     {
       "id": "getapp-liquilens",
-      "name": "GetApp \u2014 LiquiLens",
+      "name": "GetApp — LiquiLens",
       "channel": "software-directory",
       "state": "listed_incomplete",
       "listing_url": "https://www.getapp.com/all-software/a/liquilens/",
@@ -3298,7 +3298,7 @@
     },
     {
       "id": "capterra-undertow",
-      "name": "Capterra \u2014 Undertow",
+      "name": "Capterra — Undertow",
       "channel": "software-directory",
       "state": "listed_incomplete",
       "listing_url": "https://www.capterra.com/p/10266232/Undertow/",
@@ -3328,7 +3328,7 @@
     },
     {
       "id": "getapp-undertow",
-      "name": "GetApp \u2014 Undertow",
+      "name": "GetApp — Undertow",
       "channel": "software-directory",
       "state": "listed_incomplete",
       "listing_url": "https://www.getapp.com/all-software/a/undertow-1/",
@@ -3358,7 +3358,7 @@
     },
     {
       "id": "softwareadvice-undertow",
-      "name": "Software Advice \u2014 Undertow",
+      "name": "Software Advice — Undertow",
       "channel": "software-directory",
       "state": "listed_incomplete",
       "listing_url": "https://www.softwareadvice.com/product/773580-Undertow/",
@@ -3388,7 +3388,7 @@
     },
     {
       "id": "factset-provider-inquiry",
-      "name": "FactSet \u2014 LIQUILENS PRIVATE LIMITED partner qualification enquiry",
+      "name": "FactSet — LIQUILENS PRIVATE LIMITED partner qualification enquiry",
       "channel": "institutional-provider-qualification",
       "state": "submitted",
       "submission_url": "https://www.factset.com/contact-us",
@@ -3406,7 +3406,7 @@
     },
     {
       "id": "nasdaq-data-link-provider-inquiry",
-      "name": "Nasdaq Data Link \u2014 LIQUILENS PRIVATE LIMITED provider fit enquiry",
+      "name": "Nasdaq Data Link — LIQUILENS PRIVATE LIMITED provider fit enquiry",
       "channel": "institutional-provider-qualification",
       "state": "submitted",
       "submission_url": "https://www.nasdaq.com/products/data/alternative/monetize-your-data",
@@ -3414,7 +3414,7 @@
       "detail": "The official Monetize Your Data form displayed Success and Thank You after the company provider fit enquiry. This is one company-level qualification inquiry, not marketplace approval, a public product listing, a native integration, a data licence or customer adoption. Source-specific rights and the eventual offering remain separate.",
       "next_action": "Await a response on this existing inquiry; do not submit a duplicate. Confirm provider fit, source-qualified offering, delivery requirements and any commercial terms before proceeding.",
       "verified_at": "2026-10-10T21:10:44.173121+00:00",
-      "submission_confirmation": "Success \u2014 Thank You!",
+      "submission_confirmation": "Success — Thank You!",
       "public_listing_verified": false,
       "partnership_accepted": false,
       "native_platform_verified": false,
@@ -3424,7 +3424,7 @@
     },
     {
       "id": "dify-financial-evidence",
-      "name": "Dify Marketplace \u2014 Financial Evidence",
+      "name": "Dify Marketplace — Financial Evidence",
       "product": "Financial Evidence",
       "channel": "agent-plugin-marketplace",
       "state": "submitted",
@@ -3445,7 +3445,7 @@
     },
     {
       "id": "n8n-financial-evidence-npm",
-      "name": "Financial Evidence for n8n \u2014 npm",
+      "name": "Financial Evidence for n8n — npm",
       "channel": "javascript-package-index",
       "state": "live",
       "listing_url": "https://www.npmjs.com/package/n8n-nodes-financial-evidence",
@@ -3464,7 +3464,7 @@
     },
     {
       "id": "n8n-creator-financial-evidence",
-      "name": "n8n Creator Portal \u2014 Financial Evidence",
+      "name": "n8n Creator Portal — Financial Evidence",
       "channel": "workflow-community-node-directory",
       "state": "submitted",
       "submission_url": "https://creators.n8n.io/nodes/n8n-nodes-financial-evidence/integration",
@@ -3480,7 +3480,7 @@
     },
     {
       "id": "pipedream-financial-evidence",
-      "name": "Pipedream \u2014 Financial Evidence",
+      "name": "Pipedream — Financial Evidence",
       "product": "Financial Evidence",
       "channel": "workflow-app-request",
       "state": "submitted",
@@ -3495,7 +3495,7 @@
     },
     {
       "id": "mcp-directory-financial-evidence",
-      "name": "MCP.Directory \u2014 Financial Evidence",
+      "name": "MCP.Directory — Financial Evidence",
       "product": "Financial Evidence",
       "channel": "mcp-directory",
       "state": "submitted",
@@ -3510,7 +3510,7 @@
     },
     {
       "id": "agentndx-financial-evidence",
-      "name": "AgentNDX \u2014 Financial Evidence",
+      "name": "AgentNDX — Financial Evidence",
       "product": "Financial Evidence",
       "channel": "mcp-directory",
       "state": "submitted",
@@ -3525,7 +3525,7 @@
     },
     {
       "id": "mcp-directory-seiche",
-      "name": "MCP.Directory \u2014 Seiche",
+      "name": "MCP.Directory — Seiche",
       "product": "Seiche",
       "channel": "mcp-directory",
       "state": "submitted",
@@ -3540,7 +3540,7 @@
     },
     {
       "id": "agentndx-seiche",
-      "name": "AgentNDX \u2014 Seiche",
+      "name": "AgentNDX — Seiche",
       "product": "Seiche",
       "channel": "mcp-directory",
       "state": "submitted",
@@ -3555,7 +3555,7 @@
     },
     {
       "id": "mcp-directory-liquilens",
-      "name": "MCP.Directory \u2014 LiquiLens",
+      "name": "MCP.Directory — LiquiLens",
       "product": "LiquiLens",
       "channel": "mcp-directory",
       "state": "submitted",
@@ -3570,7 +3570,7 @@
     },
     {
       "id": "agentndx-liquilens",
-      "name": "AgentNDX \u2014 LiquiLens",
+      "name": "AgentNDX — LiquiLens",
       "product": "LiquiLens",
       "channel": "mcp-directory",
       "state": "submitted",
@@ -3585,7 +3585,7 @@
     },
     {
       "id": "mcp-directory-undertow",
-      "name": "MCP.Directory \u2014 Undertow",
+      "name": "MCP.Directory — Undertow",
       "product": "Undertow",
       "channel": "mcp-directory",
       "state": "submitted",
@@ -3600,7 +3600,7 @@
     },
     {
       "id": "agentndx-undertow",
-      "name": "AgentNDX \u2014 Undertow",
+      "name": "AgentNDX — Undertow",
       "product": "Undertow",
       "channel": "mcp-directory",
       "state": "submitted",
@@ -3615,7 +3615,7 @@
     },
     {
       "id": "apidirectory-seiche",
-      "name": "APIDirectory \u2014 Seiche Dollar Funding Research API",
+      "name": "APIDirectory — Seiche Dollar Funding Research API",
       "product": "Seiche Dollar Funding Research API",
       "channel": "api-directory",
       "state": "submitted",
@@ -3630,7 +3630,7 @@
     },
     {
       "id": "apidirectory-undertow",
-      "name": "APIDirectory \u2014 Undertow Market Liquidity Research API",
+      "name": "APIDirectory — Undertow Market Liquidity Research API",
       "product": "Undertow Market Liquidity Research API",
       "channel": "api-directory",
       "state": "submitted",
@@ -3645,7 +3645,7 @@
     },
     {
       "id": "mcp-find-financial-evidence",
-      "name": "MCP Find \u2014 Financial Evidence",
+      "name": "MCP Find — Financial Evidence",
       "product": "Financial Evidence",
       "channel": "mcp-directory",
       "state": "submitted",
@@ -3660,7 +3660,7 @@
     },
     {
       "id": "kilo-financial-evidence",
-      "name": "Kilo Marketplace \u2014 Financial Evidence",
+      "name": "Kilo Marketplace — Financial Evidence",
       "product": "Financial Evidence",
       "channel": "agent-mcp-marketplace",
       "state": "submitted",
@@ -3675,7 +3675,7 @@
     },
     {
       "id": "apidirectory-liquilens",
-      "name": "APIDirectory \u2014 LiquiLens",
+      "name": "APIDirectory — LiquiLens",
       "product": "LiquiLens",
       "channel": "api-directory",
       "state": "listed_incomplete",
@@ -3692,7 +3692,7 @@
     },
     {
       "id": "apidirectory-financial-evidence",
-      "name": "APIDirectory \u2014 Financial Evidence API",
+      "name": "APIDirectory — Financial Evidence API",
       "product": "Financial Evidence",
       "channel": "api-directory",
       "state": "live",
@@ -3709,7 +3709,7 @@
     },
     {
       "id": "datawrapper-river-dollar-funding",
-      "name": "Datawrapper River \u2014 Seiche / LiquiLens dollar-funding chart",
+      "name": "Datawrapper River — Seiche / LiquiLens dollar-funding chart",
       "channel": "reusable-chart-gallery",
       "state": "live",
       "listing_url": "https://datawrapper.dwcdn.net/Tdbzn/1/",
@@ -3764,7 +3764,7 @@
     },
     {
       "id": "opennews-source-financial-evidence",
-      "name": "OpenNews Source Code Index \u2014 Financial Evidence",
+      "name": "OpenNews Source Code Index — Financial Evidence",
       "channel": "research-directory",
       "state": "submitted",
       "submission_url": "https://source.opennews.org/code/suggest/",
@@ -3772,7 +3772,7 @@
       "detail": "The Source Code Index suggestion form acknowledged the Financial Evidence research toolkit submission. The submitted scope is source-linked financial research with historical money-market and covered-bank examples. Editorial acceptance and a canonical public code-index listing remain unverified.",
       "next_action": "Await review of this existing submission and verify the canonical public project page if accepted; do not send a duplicate code-index introduction.",
       "verified_at": "2026-10-11T11:15:50.042Z",
-      "submission_confirmation": "Thank you! We appreciate you letting us know about this project, and we\u2019ll get in touch if we have any questions.",
+      "submission_confirmation": "Thank you! We appreciate you letting us know about this project, and we’ll get in touch if we have any questions.",
       "public_listing_verified": false,
       "editorial_acceptance_verified": false,
       "independent_adoption_verified": false,
@@ -3780,7 +3780,7 @@
     },
     {
       "id": "reuters-connect-supplier-inquiry",
-      "name": "ReutersAgency / Reuters Connect \u2014 LIQUILENS PRIVATE LIMITED supplier enquiry",
+      "name": "ReutersAgency / Reuters Connect — LIQUILENS PRIVATE LIMITED supplier enquiry",
       "channel": "content-supplier-qualification",
       "state": "submitted",
       "submission_url": "https://reutersagency.com/contact-us/enquire/",
@@ -3903,10 +3903,32 @@
         "ticket_observed_at": "2026-10-11T13:48:16.083322+00:00"
       },
       "updated_at": "2026-10-11T13:42:28.049971+00:00"
+    },
+    {
+      "id": "official-mcp-registry-wake",
+      "name": "Wake Agent Economy — Official MCP Registry",
+      "channel": "mcp-registry",
+      "state": "live",
+      "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fwake/versions/0.4.0",
+      "cost": "free",
+      "verified_at": "2026-10-12T16:18:03.025432Z",
+      "detail": "Official registry accepted version 0.4.0; independent anonymous readback verifies the active server name, version and hosted URL. Hosted discovery returned 3 tools.",
+      "next_action": "Monitor downstream indexing and independently contributed useful tasks; registry publication alone does not establish adoption."
+    },
+    {
+      "id": "official-mcp-registry-seiche-agent-community",
+      "name": "Seiche Agent Community — Official MCP Registry",
+      "channel": "mcp-registry",
+      "state": "live",
+      "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fseiche-agent-community/versions/0.1.0",
+      "cost": "free",
+      "verified_at": "2026-10-12T16:18:03.025432Z",
+      "detail": "Official registry accepted version 0.1.0; independent anonymous readback verifies the active server name, version and hosted URL. Hosted discovery returned 5 tools.",
+      "next_action": "Monitor downstream indexing and independently contributed useful tasks; registry publication alone does not establish adoption."
     }
   ],
   "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
-  "updated_at": "2026-10-11T13:52:10.017543+00:00",
+  "updated_at": "2026-10-12T16:18:03.025432Z",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -4182,5 +4204,9 @@
       "Glama LiquiLens eight ungraded tools",
       "OpenBB Marketplace application review, fee waiver and public listing"
     ]
+  },
+  "latest_agent_expansion": {
+    "report": "https://beepboop2025.github.io/financial-evidence-skills/distribution/agent-expansion-20261012.json",
+    "observed_at": "2026-10-12T16:18:03.025432Z"
   }
 }

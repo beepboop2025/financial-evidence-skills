@@ -7,7 +7,7 @@ import math
 import re
 from urllib.parse import urlsplit
 
-PRODUCTS = {"seiche", "liquilens", "undertow", "palimpsest", "noisefloor", "narcoscope"}
+PRODUCTS = {"seiche", "liquilens", "undertow", "palimpsest", "noisefloor", "narcoscope", "wake"}
 
 
 def timestamp(value: str) -> datetime:

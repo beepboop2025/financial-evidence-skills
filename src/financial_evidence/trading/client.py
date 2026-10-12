@@ -22,6 +22,7 @@ PRODUCTS = {
     "palimpsest": ("Palimpsest", "https://api.seiche.info/palimpsest/mcp", "research_catalog"),
     "noisefloor": ("NoiseFloor", "https://api.seiche.info/noisefloor/mcp", "dyson_reference"),
     "narcoscope": ("NarcoScope", "https://www.narcoscope.com/mcp", "list_capabilities"),
+    "wake": ("Wake", "https://agents.seiche.info/commerce/mcp/", "wake_economy_now"),
 }
 MODES = {"test", "backtest", "shadow", "paper", "operator_reported_production", "unknown"}
 READ_TOOLS = {
@@ -31,6 +32,7 @@ READ_TOOLS = {
     "palimpsest": {"research_catalog", "list_signals", "get_signal", "get_newsroom", "query_economic_observations", "whats_happening", "gfw_reading"},
     "noisefloor": {"dyson_reference", "ab_test", "did_it_change", "forecast_next", "market_assessment", "narrative_triage", "real_or_sampling", "score_forecasts", "spectral_assessment", "which_metrics_matter"},
     "narcoscope": {"list_capabilities", "research_network", "get_overview", "get_atlas", "get_entities", "get_newsroom", "get_market_catalog", "query_market_observations"},
+    "wake": {"wake_economy_now", "wake_dataset_policy", "wake_collection_contract"},
 }
 
 

@@ -3,6 +3,8 @@
 Use `https://agents.seiche.info/connect` to choose a product and copy its hosted
 MCP endpoint and first task. Download all seven connections from
 `https://agents.seiche.info/mcp-config.json`. Public tools need no workspace.
+The Python product client and product MCP wrapper also include Wake's three
+read-only tools; configure the central platform URL for owned usage reports.
 
 For private agent contacts, durable messages and owned usage reports, create a
 workspace explicitly:

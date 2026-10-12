@@ -1,0 +1,137 @@
+{
+  "schema": "liquilens.agent-distribution-expansion.v1",
+  "observed_at": "2026-10-12T16:18:03.025432Z",
+  "registry_publications": [
+    {
+      "product": "Wake Agent Economy",
+      "state": "live",
+      "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fwake/versions/0.4.0",
+      "version": "0.4.0",
+      "published_at": "2026-10-12T16:14:49.471679Z",
+      "hosted_url": "https://agents.seiche.info/products/wake/mcp",
+      "tools": 3,
+      "public_readback_sha256": "8caf434182c88686b6f1ab20001e8a7856d3a6216d9e2f74d22265a16f07dc4b"
+    },
+    {
+      "product": "Seiche Agent Community",
+      "state": "live",
+      "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fseiche-agent-community/versions/0.1.0",
+      "version": "0.1.0",
+      "published_at": "2026-10-12T16:15:00.284735Z",
+      "hosted_url": "https://agents.seiche.info/social/mcp",
+      "tools": 5,
+      "public_readback_sha256": "e79afadcfe373760c6d38de9fda2c8d12f353741e38bddb8b381ca74342f5a7c"
+    }
+  ],
+  "curated_opportunities": 24,
+  "repository_candidates": 199,
+  "repository_candidates_qualified": false,
+  "monitored_marketplace_pages": 75,
+  "retrieved_marketplace_pages": 59,
+  "unavailable_marketplace_pages": 16,
+  "http_responses_change_ledger_states": false,
+  "coverage_complete": false,
+  "private_activity_access": false,
+  "new_independent_agents_observed": null,
+  "purchase_data_acquired": null,
+  "config": "https://beepboop2025.github.io/financial-evidence-skills/distribution/agent-mcp-config.json",
+  "daily_workflow": "https://github.com/beepboop2025/financial-evidence-skills/actions/workflows/agent-distribution.yml",
+  "first_run_queries": [
+    {
+      "id": "finance",
+      "query": "finance agent in:name,description,topics archived:false",
+      "url": "https://api.github.com/search/repositories?q=finance+agent+in%3Aname%2Cdescription%2Ctopics+archived%3Afalse&sort=updated&per_page=50",
+      "total_matches": 8478,
+      "query_complete": false,
+      "observed_at": "2026-10-12T16:12:37.841731Z"
+    },
+    {
+      "id": "trading",
+      "query": "trading agent in:name,description,topics archived:false",
+      "url": "https://api.github.com/search/repositories?q=trading+agent+in%3Aname%2Cdescription%2Ctopics+archived%3Afalse&sort=updated&per_page=50",
+      "total_matches": 16168,
+      "query_complete": false,
+      "observed_at": "2026-10-12T16:12:40.848750Z"
+    },
+    {
+      "id": "shopping",
+      "query": "shopping agent in:name,description,topics archived:false",
+      "url": "https://api.github.com/search/repositories?q=shopping+agent+in%3Aname%2Cdescription%2Ctopics+archived%3Afalse&sort=updated&per_page=50",
+      "total_matches": 4660,
+      "query_complete": false,
+      "observed_at": "2026-10-12T16:12:42.529709Z"
+    },
+    {
+      "id": "arbitrage",
+      "query": "arbitrage in:name,description,topics archived:false",
+      "url": "https://api.github.com/search/repositories?q=arbitrage+in%3Aname%2Cdescription%2Ctopics+archived%3Afalse&sort=updated&per_page=50",
+      "total_matches": 21556,
+      "query_complete": false,
+      "observed_at": "2026-10-12T16:12:43.974642Z"
+    }
+  ],
+  "public_directory_entries": 1606,
+  "public_directory_relevant_candidates": 198,
+  "directory_and_repository_counts_overlap": true,
+  "submitted_for_review": [
+    {
+      "platform": "AgentNDX",
+      "product": "Wake Agent Economy",
+      "state": "submitted",
+      "receipt": "https://agentndx.ai/submit?success=1"
+    },
+    {
+      "platform": "AgentNDX",
+      "product": "Seiche Agent Community",
+      "state": "submitted",
+      "receipt": "https://agentndx.ai/submit?success=1"
+    },
+    {
+      "platform": "MCPServers.org",
+      "product": "Wake Agent Economy",
+      "state": "submitted",
+      "receipt": "https://mcpservers.org/submit",
+      "confirmation": "Submission Successful! The named server has been submitted successfully."
+    },
+    {
+      "platform": "MCPServers.org",
+      "product": "Seiche Agent Community",
+      "state": "submitted",
+      "receipt": "https://mcpservers.org/submit",
+      "confirmation": "Submission Successful! The named server has been submitted successfully."
+    }
+  ],
+  "remaining": [
+    {
+      "platform": "AllMCPs",
+      "product": "Wake Agent Economy",
+      "state": "acceptance_unverified",
+      "next_action": "Reconcile the saved intent and normal security verification before retry."
+    },
+    {
+      "platform": "Smithery",
+      "state": "publisher_session_required",
+      "next_action": "Use the existing owner publisher session when available; current isolated browser reaches sign-in."
+    },
+    {
+      "platform": "Glama",
+      "state": "downstream_indexing_unverified",
+      "next_action": "Recheck canonical connector pages after official-registry ingestion; both returned 404 during this run."
+    }
+  ],
+  "validation": {
+    "focused_tests": 15,
+    "local_suite_ran": 483,
+    "local_suite_skipped": 48,
+    "browser_widths": [
+      390,
+      1440
+    ],
+    "connections": 8,
+    "registry_records_verified": 2,
+    "ci_evidence": {
+      "commit": "7e13aa3fbdcfb450490425643fcee4f1a3c1fd04",
+      "passed": 19
+    }
+  }
+}

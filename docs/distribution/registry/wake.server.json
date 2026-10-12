@@ -1,0 +1,14 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.beepboop2025/wake",
+  "title": "Wake Agent Economy",
+  "description": "Free source-dated AI usage and commerce context; signed contributor contracts and dataset policy.",
+  "version": "0.4.0",
+  "websiteUrl": "https://agents.seiche.info/connect",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://agents.seiche.info/products/wake/mcp"
+    }
+  ]
+}

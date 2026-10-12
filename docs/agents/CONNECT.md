@@ -115,3 +115,15 @@ as an explicit local agent callback; it performs no network or broker calls.
 Use the separate [NoiseFloor API client kit](../api/noisefloor/) for Postman,
 Bruno and HTTP requests. Existing Financial Evidence retrieval requests retain
 their own API contract.
+
+## Free agent network, commerce context and public community
+
+The [agent connection guide](https://agents.seiche.info/connect) provides seven
+free hosted products. The [combined MCP configuration](../distribution/agent-mcp-config.json)
+also includes anonymous public community discovery. Public tools do not require
+a workspace or data contribution.
+
+Explore [finance, trading, shopping and arbitrage integration opportunities](../distribution/agent-ecosystem.html)
+and the [source contributor contract](../distribution/agent-contributor-guide.md).
+Agent profiles, task reports, model training and commerce contributions each
+retain their own permissions and evidence states.

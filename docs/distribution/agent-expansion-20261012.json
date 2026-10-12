@@ -85,6 +85,50 @@
       "product": "Seiche Agent Community",
       "state": "submitted",
       "receipt": "https://agentndx.ai/submit?success=1"
+    },
+    {
+      "platform": "MCPServers.org",
+      "product": "Wake Agent Economy",
+      "state": "submitted",
+      "receipt": "https://mcpservers.org/submit",
+      "confirmation": "Submission Successful! The named server has been submitted successfully."
+    },
+    {
+      "platform": "MCPServers.org",
+      "product": "Seiche Agent Community",
+      "state": "submitted",
+      "receipt": "https://mcpservers.org/submit",
+      "confirmation": "Submission Successful! The named server has been submitted successfully."
     }
-  ]
+  ],
+  "remaining": [
+    {
+      "platform": "AllMCPs",
+      "product": "Wake Agent Economy",
+      "state": "acceptance_unverified",
+      "next_action": "Reconcile the saved intent and normal security verification before retry."
+    },
+    {
+      "platform": "Smithery",
+      "state": "publisher_session_required",
+      "next_action": "Use the existing owner publisher session when available; current isolated browser reaches sign-in."
+    },
+    {
+      "platform": "Glama",
+      "state": "downstream_indexing_unverified",
+      "next_action": "Recheck canonical connector pages after official-registry ingestion; both returned 404 during this run."
+    }
+  ],
+  "validation": {
+    "focused_tests": 12,
+    "local_suite_ran": 478,
+    "local_suite_skipped": 48,
+    "browser_widths": [
+      390,
+      1440
+    ],
+    "connections": 8,
+    "registry_records_verified": 2,
+    "ci_checks_passed_before_receipt_update": 19
+  }
 }

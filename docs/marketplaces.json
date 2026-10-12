@@ -3947,10 +3947,42 @@
       "submitted_at": "2026-10-12T16:20:47.196696+00:00",
       "detail": "Free submission acknowledged with Submission received at https://agentndx.ai/submit?success=1. Exact service name and endpoint were absent from the saved public curated index.",
       "next_action": "Await review of this existing submission and independently verify its public listing. Do not resubmit."
+    },
+    {
+      "id": "mcpservers-org-wake",
+      "name": "MCPServers.org \u2014 Wake Agent Economy",
+      "channel": "mcp-directory",
+      "state": "submitted",
+      "submission_url": "https://mcpservers.org/submit",
+      "cost": "free",
+      "submitted_at": "2026-10-12T16:29:59.347659+00:00",
+      "detail": "Submission Successful confirmed the named hosted server under the free $0 review route. Official registry identity, hosted URL and no-auth transport were supplied.",
+      "next_action": "Await review of the existing named submission; retain the acknowledgement and independently verify the public listing before marking live. Do not resubmit."
+    },
+    {
+      "id": "mcpservers-org-seiche-agent-community",
+      "name": "MCPServers.org \u2014 Seiche Agent Community",
+      "channel": "mcp-directory",
+      "state": "submitted",
+      "submission_url": "https://mcpservers.org/submit",
+      "cost": "free",
+      "submitted_at": "2026-10-12T16:30:03.464326+00:00",
+      "detail": "Submission Successful confirmed the named hosted server under the free $0 review route. Official registry identity, hosted URL and no-auth transport were supplied.",
+      "next_action": "Await review of the existing named submission; retain the acknowledgement and independently verify the public listing before marking live. Do not resubmit."
+    },
+    {
+      "id": "allmcps-wake",
+      "name": "AllMCPs \u2014 Wake Agent Economy",
+      "channel": "mcp-directory",
+      "state": "ready_account_action",
+      "submission_url": "https://allmcps.com/submit",
+      "cost": "free",
+      "detail": "The exact public catalog had no matching service. The completed free form was attempted, but no acceptance was observed; the security-verification area and form remained visible. The saved intent and screenshots are retained.",
+      "next_action": "Reconcile this uncertain attempt with the directory before any retry. Complete the normal verification flow and retain an acknowledgement; do not describe the prepared form as submitted."
     }
   ],
   "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
-  "updated_at": "2026-10-12T16:18:03.025432Z",
+  "updated_at": "2026-10-12T16:32:04.312746Z",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",

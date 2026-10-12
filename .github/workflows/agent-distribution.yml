@@ -39,6 +39,8 @@ jobs:
           fi
       - name: Observe public sources and existing listing pages
         if: github.event_name != 'pull_request'
+        env:
+          AGENT_DISCOVERY_GITHUB_TOKEN: ${{ github.token }}
         run: python3 scripts/observe_agent_distribution.py --output observation --previous previous/observation.json
       - name: Publish the run summary
         if: github.event_name != 'pull_request' && always()

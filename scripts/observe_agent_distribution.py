@@ -7,6 +7,7 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import subprocess
@@ -17,10 +18,10 @@ CATALOG = ROOT / "docs/distribution/agent-ecosystem.json"
 LEDGER = ROOT / "docs/marketplaces.json"
 MAX_BYTES = 5_000_000
 SEARCHES = {
-    "finance": "finance agent in:name,description,topics archived:false",
-    "trading": "trading agent in:name,description,topics archived:false",
-    "shopping": "shopping agent in:name,description,topics archived:false",
-    "arbitrage": "arbitrage in:name,description,topics archived:false",
+    "finance": "finance agent in:name,description,topics archived:false is:public",
+    "trading": "trading agent in:name,description,topics archived:false is:public",
+    "shopping": "shopping agent in:name,description,topics archived:false is:public",
+    "arbitrage": "arbitrage in:name,description,topics archived:false is:public",
 }
 
 
@@ -28,18 +29,29 @@ def utc_now():
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
 
-def fetch(url):
-    """Only HTTPS GETs. No cookies, tokens, remote tools or external code execution."""
+def fetch(url, *, github_token=None):
+    """HTTPS GETs only; an optional token is restricted to GitHub public search."""
     parsed = urlparse(url)
     if parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password:
         raise ValueError("public observation URL must use HTTPS without credentials")
-    command = ["curl", "--silent", "--show-error", "--location", "--max-redirs", "3",
+    curl_config = None
+    if github_token:
+        if parsed.netloc != "api.github.com" or parsed.path != "/search/repositories":
+            raise ValueError("GitHub token is restricted to repository search")
+        if "\r" in github_token or "\n" in github_token:
+            raise ValueError("invalid GitHub token format")
+        curl_config = ("header = " + json.dumps("Authorization: Bearer " + github_token) + "\n").encode()
+    command = ["curl", "--disable", "--silent", "--show-error", "--location", "--max-redirs", "0" if github_token else "3",
                "--connect-timeout", "5", "--max-time", "15", "--max-filesize", str(MAX_BYTES),
                "--proto", "=https", "--proto-redir", "=https", "--user-agent",
                "FinancialEvidence-Discovery/1.0 (+https://agents.seiche.info/privacy)",
                "--write-out", "\n%{http_code}\n%{url_effective}", url]
+    if curl_config:
+        command += ["--config", "-"]
+    environment = os.environ.copy()
+    environment.pop("AGENT_DISCOVERY_GITHUB_TOKEN", None)
     try:
-        result = subprocess.run(command, capture_output=True, timeout=18)
+        result = subprocess.run(command, capture_output=True, timeout=18, input=curl_config, env=environment)
         body, code, final = result.stdout.rsplit(b"\n", 2)
         status = int(code)
         meta = {"url": url, "final_url": final.decode(), "http_status": status,
@@ -71,7 +83,9 @@ def repository_candidates(payload):
     return candidates
 
 
-def discover_repositories(fetcher=fetch):
+def discover_repositories(fetcher=None):
+    if fetcher is None:
+        fetcher = lambda url: fetch(url, github_token=os.environ.get("AGENT_DISCOVERY_GITHUB_TOKEN"))
     results = []
     for segment, query in SEARCHES.items():
         url = "https://api.github.com/search/repositories?" + urlencode({"q": query, "sort": "updated", "per_page": 50})

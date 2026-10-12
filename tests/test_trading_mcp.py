@@ -187,7 +187,7 @@ class RemoteNetworkTests(unittest.IsolatedAsyncioTestCase):
             return self.response({"id": "test-only", "next_cursor": 13})
         server = create_mcp(self.client(handler))
         inventory = {tool.name: tool for tool in await server.list_tools()}
-        self.assertEqual(len(inventory), 25)
+        self.assertEqual(len(inventory), 29)
         self.assertTrue(inventory["seiche_network_revoke_contact"].annotations.destructiveHint)
         self.assertTrue(inventory["seiche_network_messages"].annotations.readOnlyHint)
         await server.call_tool("seiche_network_inbox", {"after": 12, "limit": 2})

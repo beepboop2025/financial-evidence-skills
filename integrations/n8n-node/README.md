@@ -47,3 +47,9 @@ No runtime dependencies are bundled. Source data retains its publisher rights.
 
 Docs: https://beepboop2025.github.io/financial-evidence-skills/start/
 Support: mrinal@liquilens.in — LIQUILENS PRIVATE LIMITED.
+
+Current source routes requests through `https://agents.seiche.info`. Hosted
+operational measurement counts bounded product/tool/dataset demand; optional
+learning is separate. Operational counters exclude private selector values,
+prompts, credentials and response bodies. Previously published versioned
+packages keep their original transport until a new package is released.

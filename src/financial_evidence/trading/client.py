@@ -1,4 +1,4 @@
-"""Owner-configured direct MCP clients. Optional events contain no arguments/results."""
+"""Hosted product clients. Optional learning events contain no arguments/results."""
 from __future__ import annotations
 
 import asyncio
@@ -13,9 +13,10 @@ import uuid
 import inspect
 import threading
 from functools import partial
-from urllib.parse import urlsplit
+from ..hosted import PLATFORM_URL, platform_base
+from .additional_products import EXTRA_PRODUCTS
 
-PRODUCTS = {
+NATIVE_PRODUCTS = {
     "seiche": ("Seiche", "https://api.seiche.info/mcp", "funding_stress_now"),
     "liquilens": ("LiquiLens", "https://api.liquilens.in/mcp", "institution_research_coverage"),
     "undertow": ("Undertow", "https://api.seiche.info/undertow/mcp", "liquidity_tiers"),
@@ -24,21 +25,31 @@ PRODUCTS = {
     "narcoscope": ("NarcoScope", "https://www.narcoscope.com/mcp", "list_capabilities"),
     "wake": ("Wake", "https://agents.seiche.info/commerce/mcp/", "wake_economy_now"),
 }
+NATIVE_PRODUCTS.update({key: (value["name"], value["url"], value["first_tool"])
+                        for key, value in EXTRA_PRODUCTS.items()})
+PRODUCTS = {key: (value[0], PLATFORM_URL + f"/products/{key}/mcp", value[2])
+            for key, value in NATIVE_PRODUCTS.items()}
 MODES = {"test", "backtest", "shadow", "paper", "operator_reported_production", "unknown"}
 READ_TOOLS = {
     "seiche": {"funding_stress_now", "money_market_context", "data_health", "research_network", "trade_safety_risk_context", "world_markets_context", "institutional_flows", "historical_analogs", "latest_article"},
-    "liquilens": {"institution_research_coverage", "institution_review_packet", "evidence_institution", "universe_search", "failure_radar_board", "failure_radar_institution", "institution_evidence_monitor", "research_network", "latest_article"},
+    "liquilens": {"institution_research_coverage", "institution_review_packet", "evidence_institution", "universe_search", "failure_radar_board", "failure_radar_institution", "institution_evidence_monitor", "bank_asset_quality_review", "research_network", "latest_article"},
     "undertow": {"liquidity_tiers", "crypto_exit_check", "exit_cost", "venue_concentration", "venue_price_reconciliation", "market_corpus_context", "research_network", "trade_safety_exit_context"},
     "palimpsest": {"research_catalog", "list_signals", "get_signal", "get_newsroom", "query_economic_observations", "whats_happening", "gfw_reading"},
     "noisefloor": {"dyson_reference", "ab_test", "did_it_change", "forecast_next", "market_assessment", "narrative_triage", "real_or_sampling", "score_forecasts", "spectral_assessment", "which_metrics_matter"},
     "narcoscope": {"list_capabilities", "research_network", "get_overview", "get_atlas", "get_entities", "get_newsroom", "get_market_catalog", "query_market_observations"},
     "wake": {"wake_economy_now", "wake_dataset_policy", "wake_collection_contract"},
 }
+READ_TOOLS.update({key: set(value["read_tools"]) for key, value in EXTRA_PRODUCTS.items()})
 
 
-def product_catalog():
-    return [{"id": key, "name": data[0], "mcp_url": data[1], "first_tool": data[2],
-             "free_core": True, "measurement_default": "off"} for key, data in PRODUCTS.items()]
+def product_catalog(platform_url=None):
+    base = platform_base(platform_url)
+    return [{"id": key, "name": data[0], "mcp_url": base + f"/products/{key}/mcp", "first_tool": data[2],
+             "free_core": True, "measurement_default": "off", "optional_learning_default": "off",
+             "hosted_operational_measurement": True,
+             "kind": EXTRA_PRODUCTS.get(key, {}).get("kind", "core_product"),
+             "request_counts_are_unique_users": False,
+             "nested_requests_are_additive": False} for key, data in PRODUCTS.items()]
 
 
 def _encode(value):
@@ -69,11 +80,14 @@ class _Cached:
 
 
 class ProductClient:
-    """Call named products directly, with bounded cache and separately enabled events.
+    """Call hosted products, with bounded cache and separately enabled learning events.
 
     event_sink receives only a bounded tool-completion record. Configure an enrolled
     LearningStore or an operator-controlled destination explicitly to retain it.
-    Neither prompts, tool arguments, results nor private model reasoning are sent.
+    Optional events exclude prompts, arguments, results and private reasoning.
+    Product requests themselves reach the hosted service, which counts bounded
+    product/tool/dataset demand. A failed hosted request never falls back locally
+    or to a native origin.
     """
 
     def __init__(self, *, transport=mcp_call, event_sink=None, measurement=False,
@@ -89,16 +103,11 @@ class ProductClient:
             raise ValueError("measurement requires an explicitly configured sink")
         if type(measurement_timeout) not in {int, float} or not 0 < measurement_timeout <= 5:
             raise ValueError("measurement timeout must be between zero and five seconds")
-        self.endpoints = {k:v[1] for k,v in PRODUCTS.items()}
-        if platform_url:
-            base = urlsplit(platform_url)
-            if (base.scheme not in {"http", "https"} or not base.hostname or base.username or base.password
-                    or base.query or base.fragment or ".." in base.path or "%" in base.path
-                    or (base.scheme == "http" and base.hostname not in {"127.0.0.1", "localhost", "::1"})):
-                raise ValueError("platform URL requires HTTPS (or loopback) and no credentials or unsafe path")
-            self.endpoints = {k:platform_url.rstrip("/")+f"/products/{k}/mcp" for k in PRODUCTS}
-        if credential and not platform_url:
-            raise ValueError("platform credentials require a configured platform URL")
+        self.platform_url = platform_base(platform_url)
+        self.endpoints = {key: self.platform_url + f"/products/{key}/mcp" for key in PRODUCTS}
+        if credential is not None and (not isinstance(credential, str) or not 20 <= len(credential) <= 256
+                                       or any(ch.isspace() for ch in credential)):
+            raise ValueError("invalid platform credential")
         self.transport = partial(mcp_call, traffic_class="synthetic" if mode == "test" else mode, credential=credential) if transport is mcp_call else transport
         self.event_sink, self.measurement = event_sink, measurement
         self.mode, self.timeout, self.cache_seconds, self.clock = mode, timeout, cache_seconds, clock
@@ -208,7 +217,8 @@ class ProductClient:
                            "captured_at": datetime.fromtimestamp(self.clock(), timezone.utc).isoformat(),
                            "payload": payload, "payload_sha256": hashlib.sha256(_encode(payload)).hexdigest(),
                            "freshness": "requires_observation_policy", "execution_authority": "none",
-                           "training_permission": "not_inferred"}
+                           "training_permission": "not_inferred", "transport_mode": "hosted",
+                           "hosted_operational_measurement": True}
                 if not payload.get("result", {}).get("isError", False) and self.cache_seconds:
                     if len(self.cache) >= 128:
                         self.cache.pop(next(iter(self.cache)))

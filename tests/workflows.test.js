@@ -32,8 +32,8 @@ test('withheld exit costs remain unavailable and risk gaps stay visible',async (
 test('browser uses bounded same-origin-independent read and rejects changed identity',async () => {
  const {run}=await mod; let options;
  const response={...funding,schema:'financial-evidence.workflow-result.v1',content_sha256:'a'.repeat(64)};
- const fetcher=async(url,opts)=>{options=opts; return new Response(JSON.stringify(response),{headers:{'content-type':'application/json'}});};
- await run(funding,{fetcher,synthetic:true}); assert.equal(options.headers['X-Liquilens-Traffic-Class'],'synthetic'); assert.equal(options.credentials,'omit'); assert.equal(options.redirect,'error');
+ const fetcher=async(url,opts)=>{assert.equal(new URL(url).origin,'https://agents.seiche.info'); assert.equal(new URL(url).pathname,'/v1/research/api/v1/workflow'); options=opts; return new Response(JSON.stringify(response),{headers:{'content-type':'application/json'}});};
+ await run(funding,{fetcher,synthetic:true,token:'legacy-secret'}); assert.equal(options.headers.Authorization,undefined); assert.equal(options.headers['X-Financial-Evidence-Traffic-Class'],'synthetic'); assert.equal(options.headers['X-Liquilens-Traffic-Class'],'synthetic'); assert.equal(options.credentials,'omit'); assert.equal(options.redirect,'error');
  await assert.rejects(()=>run({...funding,selection:'EUR'},{fetcher}));
 });
 test('institution fingerprint detects evidence changes behind identical summary counts',async () => {

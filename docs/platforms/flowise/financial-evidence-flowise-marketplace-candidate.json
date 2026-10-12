@@ -2625,7 +2625,7 @@
         "inputs": {
           "toolAgentflowSelectedTool": "customMCP",
           "toolAgentflowSelectedToolConfig": {
-            "mcpServerConfig": "{\"url\":\"https://api.seiche.info/openbb/mcp\"}",
+            "mcpServerConfig": "{\"url\":\"https://agents.seiche.info/products/financial-evidence/mcp\"}",
             "mcpActions": [
               "financial_evidence_query"
             ],

@@ -2,7 +2,7 @@
   "mcpServers": {
     "palimpsest": {
       "type": "http",
-      "url": "https://api.seiche.info/palimpsest/mcp"
+      "url": "https://agents.seiche.info/products/palimpsest/mcp"
     }
   }
 }

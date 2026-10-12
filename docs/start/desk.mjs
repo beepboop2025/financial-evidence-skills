@@ -1,4 +1,4 @@
-export const BASE = 'https://api.seiche.info/openbb';
+export const BASE = 'https://agents.seiche.info/v1/research';
 export const DATASETS = ['money_markets', 'money_market_history', 'bank_risk', 'market_liquidity', 'capital_markets', 'china_economy', 'source_health'];
 export const MAX_BYTES = 4 * 1024 * 1024;
 
@@ -50,14 +50,13 @@ function signature(page) {
   }).sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b))));
 }
 
-export async function capture(settings, {fetcher = fetch, token = '', synthetic = false, signal, progress = () => {}} = {}) {
+export async function capture(settings, {fetcher = fetch, synthetic = false, signal, progress = () => {}} = {}) {
   const request = querySettings(settings), results = [], pages = [];
   const limit = 200; let offset = 0, firstSignature, expectedTotal;
   for (let number = 0; number < 20; number++) {
     const params = new URLSearchParams({...request, limit, offset});
     const headers = {Accept: 'application/json'};
-    if (token) headers.Authorization = `Bearer ${token}`;
-    if (synthetic) headers['X-Liquilens-Traffic-Class'] = 'synthetic';
+    if (synthetic) { headers['X-Liquilens-Traffic-Class'] = 'synthetic'; headers['X-Financial-Evidence-Traffic-Class'] = 'synthetic'; }
     const response = await fetcher(`${BASE}/api/v1/query?${params}`, {headers, signal: signal || AbortSignal.timeout(20000), credentials: 'omit', redirect: 'error', cache: 'no-store'});
     const page = await readJSON(response);
     if (page?.schema !== 'liquidity-lab.openbb-table.v1' || page.dataset !== request.dataset || page.transport_status !== 'complete' || page.status_semantics !== 'transport_only' || page.evidence_status !== 'not_evaluated' || page.carrier_verification !== 'not_performed') throw new Error('The source response is incomplete or its evidence contract changed. Inspect source status before retrying.');

@@ -3,7 +3,7 @@
 Use the public Streamable HTTP server:
 
 ```text
-https://api.seiche.info/openbb/mcp
+https://agents.seiche.info/products/financial-evidence/mcp
 ```
 
 Our connection needs no API key. Your agent platform may require its own account,
@@ -22,7 +22,7 @@ In Settings → Connectors, add a custom connector with the URL above. For Claud
 Code, run:
 
 ```sh
-claude mcp add --transport http financial-evidence https://api.seiche.info/openbb/mcp
+claude mcp add --transport http financial-evidence https://agents.seiche.info/products/financial-evidence/mcp
 ```
 
 This uses a custom connection. Official connector-directory publication is a
@@ -34,7 +34,7 @@ Use a custom Streamable HTTP MCP connection where your account and administrator
 permit it. For the Codex CLI:
 
 ```sh
-codex mcp add financial-evidence --url https://api.seiche.info/openbb/mcp
+codex mcp add financial-evidence --url https://agents.seiche.info/products/financial-evidence/mcp
 ```
 
 The repository also contains an installable Codex plugin. Universal directory

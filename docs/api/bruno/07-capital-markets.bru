@@ -5,7 +5,7 @@ meta {
 }
 
 get {
-  url: https://api.seiche.info/openbb/api/v1/query?dataset=capital_markets&limit=5&offset=0
+  url: https://agents.seiche.info/v1/research/api/v1/query?dataset=capital_markets&limit=5&offset=0
   body: none
   auth: none
 }
@@ -13,6 +13,7 @@ get {
 headers {
   Accept: application/json
   X-Liquilens-Traffic-Class: {{traffic_class}}
+  X-Financial-Evidence-Traffic-Class: {{traffic_class}}
 }
 
 tests {

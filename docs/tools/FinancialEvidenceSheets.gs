@@ -73,7 +73,7 @@ function financialEvidenceRequest_(dataset, entity, limit, offset, refreshCell) 
   // refreshCell is a Sheets recalculation dependency; its value is never sent.
   return {
     dataset: dataset, limit: limit, offset: offset,
-    url: "https://api.seiche.info/openbb/api/v1/query?dataset=" + encodeURIComponent(dataset) +
+    url: "https://agents.seiche.info/v1/research/api/v1/query?dataset=" + encodeURIComponent(dataset) +
       "&entity=" + encodeURIComponent(entity) + "&limit=" + limit + "&offset=" + offset
   };
 }

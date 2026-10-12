@@ -23,7 +23,7 @@ $('workflow-form').addEventListener('submit',async event => {
   controller?.abort(); const active = new AbortController(); controller = active;
   const timer = setTimeout(() => active.abort(),45000); current = null; $('result-section').hidden = true; $('status').classList.remove('error'); busy(true); text('status','Retrieving original product evidence…');
   try {
-    const value = await run(request,{token:measurement.token,synthetic:operator,signal:active.signal});
+    const value = await run(request,{synthetic:operator,signal:active.signal});
     if (active !== controller || active.signal.aborted) return;
     current = value; render(); text('status','Response ready. Inspect the source dates, coverage and limitations before using it.');
     $('results-title').focus({preventScroll:true}); $('result-section').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',block:'start'});

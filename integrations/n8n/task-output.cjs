@@ -26,7 +26,7 @@ function formatTaskResponse(product, response, settings, now = new Date()) {
     return age < -300 ? 'FUTURE_SOURCE_CLOCK' : age > settings.maxAgeSeconds ? 'STALE_SNAPSHOT' : 'WITHIN_SNAPSHOT_AGE_LIMIT';
   };
   if (product === 'seiche') {
-    endpoint = 'https://api.seiche.info/mcp'; tool = 'funding_stress_now';
+    endpoint = 'https://agents.seiche.info/products/seiche/mcp'; tool = 'funding_stress_now';
     if (evidence.schema !== 'seiche.public.v2' || !object(evidence.data_quality) || !object(evidence.conclusion)) {
       throw new Error('Unexpected Seiche funding contract');
     }
@@ -48,7 +48,7 @@ function formatTaskResponse(product, response, settings, now = new Date()) {
     lines.push('Board generation time is not the date of every observation. Inspect headline_ages and proof limits in the retained evidence.');
     lines.push('https://seiche.info/');
   } else if (product === 'liquilens') {
-    endpoint = 'https://api.liquilens.in/mcp'; tool = 'bank_asset_quality_review';
+    endpoint = 'https://agents.seiche.info/products/liquilens/mcp'; tool = 'bank_asset_quality_review';
     if (evidence.schema !== 'liquilens.bank-specialisation.v1' || evidence.slug !== settings.toolInput.slug ||
         !['observed', 'stale', 'historical', 'unavailable'].includes(evidence.status) || evidence.scope !== 'research' ||
         evidence.score_authority !== false || evidence.can_authorize_credit !== false) {
@@ -82,7 +82,7 @@ function formatTaskResponse(product, response, settings, now = new Date()) {
     lines.push('Filing dates, cited PDF pages, PCR basis and missing disclosures remain in the full record.');
     lines.push('https://liquilens.in/banking/?institution=' + encodeURIComponent(evidence.slug));
   } else if (product === 'undertow') {
-    endpoint = 'https://api.seiche.info/undertow/mcp'; tool = 'exit_cost';
+    endpoint = 'https://agents.seiche.info/products/undertow/mcp'; tool = 'exit_cost';
     if (evidence.asset !== 'BTC' || !number(settings.toolInput.size_usd) || settings.toolInput.size_usd <= 0 ||
         evidence.requested_size_usd !== settings.toolInput.size_usd || !number(evidence.published_rung_used_usd) ||
         evidence.published_rung_used_usd <= 0 || !object(evidence.sell_cost_bp_by_venue) ||

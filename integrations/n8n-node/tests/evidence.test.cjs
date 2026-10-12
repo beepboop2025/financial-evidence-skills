@@ -7,7 +7,7 @@ function context(data, options = {}) {
     getInputData: () => [{}], getNode: () => ({name: 'test', type: 'financialEvidence', typeVersion: 1, position: [0,0], parameters: {}}),
     getNodeParameter: key => ({dataset: 'bank_risk', entity: '', limit: 25, offset: 0, ...options}[key]),
     continueOnFail: () => false,
-    helpers: {httpRequest: async req => { assert.equal(req.method, 'GET'); assert.equal(req.url, 'https://api.seiche.info/openbb/api/v1/query'); return data; }},
+    helpers: {httpRequest: async req => { assert.equal(req.method, 'GET'); assert.equal(req.url, 'https://agents.seiche.info/v1/research/api/v1/query'); return data; }},
   };
 }
 test('retains nulls, restrictions, diagnostics, next page and item identity', async () => {

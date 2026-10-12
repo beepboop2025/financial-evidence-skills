@@ -419,7 +419,7 @@ class CacheTests(unittest.TestCase):
             response = io.BytesIO(body)
             response.headers = Message()
             response.headers["Content-Type"] = "application/json"
-            response.geturl = lambda: source.url
+            response.geturl = lambda: core.source_endpoint(source.url)
             return core.fetch_source(source, opener=lambda *a, **k: response, **kwargs)
 
         service = EvidenceService(fetcher=fetcher)
@@ -438,7 +438,7 @@ class CacheTests(unittest.TestCase):
             response = io.BytesIO(b" " * 4_194_305)
             response.headers = Message()
             response.headers["Content-Type"] = "application/json"
-            response.geturl = lambda: source.url
+            response.geturl = lambda: core.source_endpoint(source.url)
             return core.fetch_source(source, opener=lambda *a, **k: response, **kwargs)
 
         service = EvidenceService(fetcher=fetcher)
@@ -459,7 +459,7 @@ class CacheTests(unittest.TestCase):
                 raise TimeoutError("test did not release fetch")
             return source_result(source)
 
-        service = EvidenceService(fetcher=fetcher)
+        service = EvidenceService(fetcher=fetcher, ttl=60)
         self.addCleanup(service.close)
         with ThreadPoolExecutor(max_workers=12) as pool:
             futures = [pool.submit(service.query, "money_markets") for _ in range(12)]

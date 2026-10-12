@@ -122,7 +122,7 @@ class ProductBridgeTests(unittest.IsolatedAsyncioTestCase):
         server = create_server("seiche", PRODUCTS["seiche"][1], session_factory=factory, timeout=.01)
         with self.assertRaises(BridgeError):
             await self.inventory(server)
-        for endpoint, platform in ((PRODUCTS["seiche"][1], None), ("https://other.example/products/seiche/mcp", "https://approved.example")):
+        for endpoint, platform in (("https://api.seiche.info/mcp", None), ("https://other.example/products/seiche/mcp", "https://approved.example")):
             with self.assertRaises(ValueError):
                 create_server("seiche", endpoint, "private-provisioned-token", platform_url=platform, session_factory=factory)
         factory, calls = self.factory()
@@ -148,7 +148,8 @@ class Upstream:
         return CallToolResult(content=[TextContent(type="text",text="Native structured result: Δ")],structuredContent={"rows":[1.25,2.5]},isError=False,_meta={"source_revision":"test-only"})
 @asynccontextmanager
 async def factory(endpoint, credential):
-    assert credential is None, "direct product must not receive inherited network credential"
+    assert endpoint == "https://agents.seiche.info/products/seiche/mcp"
+    assert credential == "secret-not-for-public-product", "only the configured central gateway receives the token"
     yield Upstream()
 product_mcp.create_server.__kwdefaults__["session_factory"] = factory
 product_mcp.main(["--product","seiche"])

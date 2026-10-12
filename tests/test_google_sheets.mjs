@@ -128,8 +128,8 @@ test("fixed endpoint, encoded entity, no redirects, and refresh values are never
   const {run, calls} = runtime();
   run("money_markets", "US&dataset=bank_risk", 50, 0, "private manual refresh counter");
   const url = new URL(calls[0].url);
-  assert.equal(url.origin, "https://api.seiche.info");
-  assert.equal(url.pathname, "/openbb/api/v1/query");
+  assert.equal(url.origin, "https://agents.seiche.info");
+  assert.equal(url.pathname, "/v1/research/api/v1/query");
   assert.equal(url.searchParams.get("entity"), "US&dataset=bank_risk");
   assert.equal(url.searchParams.get("dataset"), "money_markets");
   assert.deepEqual([...url.searchParams.keys()].sort(), ["dataset", "entity", "limit", "offset"]);
@@ -184,7 +184,7 @@ test("oversized provenance is rejected rather than silently truncated", () => {
 test("live public response passes the same Apps Script parser (not a Google-native execution)", {
   skip: process.env.FINANCIAL_EVIDENCE_LIVE_CHECK !== "1",
 }, async () => {
-  const url = "https://api.seiche.info/openbb/api/v1/query?dataset=money_markets&entity=&limit=2&offset=0";
+  const url = "https://agents.seiche.info/v1/research/api/v1/query?dataset=money_markets&entity=&limit=2&offset=0";
   const response = await fetch(url, {redirect: "error", signal: AbortSignal.timeout(20000), headers: {
     Accept: "application/json", "User-Agent": "Financial-Evidence-Operator-Verification/1.0",
     "X-Liquilens-Traffic-Class": "synthetic",

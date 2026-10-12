@@ -63,7 +63,7 @@ class WorkflowCaptureTests(unittest.TestCase):
 
     def test_partial_failure_retains_both_sources_and_nonzero_exit(self):
         def opener(request, **_):
-            if "liquilens.in" in request.full_url:
+            if request.full_url.endswith("/v1/data/liquilens.failure_radar"):
                 raise OSError("upstream unavailable")
             return Response(request.full_url, {"status": "ok"})
         with tempfile.TemporaryDirectory() as directory:

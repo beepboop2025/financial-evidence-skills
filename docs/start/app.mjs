@@ -40,7 +40,7 @@ $('research-form').addEventListener('submit', async event => {
   current = null; $('result-section').hidden = true; $('status').classList.remove('error'); busy(true);
   message('status', 'Retrieving the selected evidence and checking source identities…');
   try {
-    const result = await capture(selected, {signal: active.signal, synthetic: operator, token: measurement.token, progress: (count, total) => message('status', `Retrieved ${count} of ${total} rows. Checking pagination and source consistency…`)});
+    const result = await capture(selected, {signal: active.signal, synthetic: operator, progress: (count, total) => message('status', `Retrieved ${count} of ${total} rows. Checking pagination and source consistency…`)});
     if (active !== controller || active.signal.aborted) return;
     current = result; render(result);
     message('status', result.returned_rows ? 'Capture ready. Review the observation dates and gaps before using the values.' : 'No covered observations match this filter. This does not establish a low-risk or empty market.');

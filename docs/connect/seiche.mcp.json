@@ -2,7 +2,7 @@
   "mcpServers": {
     "seiche": {
       "type": "http",
-      "url": "https://api.seiche.info/mcp"
+      "url": "https://agents.seiche.info/products/seiche/mcp"
     }
   }
 }

@@ -11,7 +11,7 @@ is separate from acceptance in OpenBB's directory.
 
 The hosted production backend is **https://api.seiche.info/openbb**. Add that
 URL as a custom backend in OpenBB Workspace. Its MCP endpoint is
-`https://api.seiche.info/openbb/mcp`; interactive documentation is at
+`https://agents.seiche.info/products/financial-evidence/mcp`; interactive documentation is at
 `https://api.seiche.info/openbb/docs`. Check the release and source status before
 relying on any current deployment.
 

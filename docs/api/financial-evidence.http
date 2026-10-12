@@ -1,95 +1,111 @@
 ### Choose a research task
 # Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture.
-GET https://api.seiche.info/openbb/api/v1/start
+GET https://agents.seiche.info/v1/research/api/v1/start
 Accept: application/json
 X-Liquilens-Traffic-Class: developer
+X-Financial-Evidence-Traffic-Class: unverified
 
 ### Release identity
 # Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture.
-GET https://api.seiche.info/openbb/api/v1/release
+GET https://agents.seiche.info/v1/research/api/v1/release
 Accept: application/json
 X-Liquilens-Traffic-Class: developer
+X-Financial-Evidence-Traffic-Class: unverified
 
 ### Dataset coverage
 # Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture.
-GET https://api.seiche.info/openbb/api/v1/datasets
+GET https://agents.seiche.info/v1/research/api/v1/datasets
 Accept: application/json
 X-Liquilens-Traffic-Class: developer
+X-Financial-Evidence-Traffic-Class: unverified
 
 ### Source status and clocks
 # Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture.
-GET https://api.seiche.info/openbb/api/v1/sources
+GET https://agents.seiche.info/v1/research/api/v1/sources
 Accept: application/json
 X-Liquilens-Traffic-Class: developer
+X-Financial-Evidence-Traffic-Class: unverified
 
 ### Money Markets
 # Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture.
-GET https://api.seiche.info/openbb/api/v1/query?dataset=money_markets&limit=5&offset=0
+GET https://agents.seiche.info/v1/research/api/v1/query?dataset=money_markets&limit=5&offset=0
 Accept: application/json
 X-Liquilens-Traffic-Class: developer
+X-Financial-Evidence-Traffic-Class: unverified
 
 ### Money Market History
 # Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture.
-GET https://api.seiche.info/openbb/api/v1/query?dataset=money_market_history&limit=5&offset=0
+GET https://agents.seiche.info/v1/research/api/v1/query?dataset=money_market_history&limit=5&offset=0
 Accept: application/json
 X-Liquilens-Traffic-Class: developer
+X-Financial-Evidence-Traffic-Class: unverified
 
 ### Capital Markets
 # Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture.
-GET https://api.seiche.info/openbb/api/v1/query?dataset=capital_markets&limit=5&offset=0
+GET https://agents.seiche.info/v1/research/api/v1/query?dataset=capital_markets&limit=5&offset=0
 Accept: application/json
 X-Liquilens-Traffic-Class: developer
+X-Financial-Evidence-Traffic-Class: unverified
 
 ### Bank Risk
 # Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture.
-GET https://api.seiche.info/openbb/api/v1/query?dataset=bank_risk&limit=5&offset=0
+GET https://agents.seiche.info/v1/research/api/v1/query?dataset=bank_risk&limit=5&offset=0
 Accept: application/json
 X-Liquilens-Traffic-Class: developer
+X-Financial-Evidence-Traffic-Class: unverified
 
 ### Market Liquidity
 # Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture.
-GET https://api.seiche.info/openbb/api/v1/query?dataset=market_liquidity&limit=5&offset=0
+GET https://agents.seiche.info/v1/research/api/v1/query?dataset=market_liquidity&limit=5&offset=0
 Accept: application/json
 X-Liquilens-Traffic-Class: developer
+X-Financial-Evidence-Traffic-Class: unverified
 
 ### China Economy
 # Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture.
-GET https://api.seiche.info/openbb/api/v1/query?dataset=china_economy&limit=5&offset=0
+GET https://agents.seiche.info/v1/research/api/v1/query?dataset=china_economy&limit=5&offset=0
 Accept: application/json
 X-Liquilens-Traffic-Class: developer
+X-Financial-Evidence-Traffic-Class: unverified
 
 ### Source Health
 # Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture.
-GET https://api.seiche.info/openbb/api/v1/query?dataset=source_health&limit=5&offset=0
+GET https://agents.seiche.info/v1/research/api/v1/query?dataset=source_health&limit=5&offset=0
 Accept: application/json
 X-Liquilens-Traffic-Class: developer
+X-Financial-Evidence-Traffic-Class: unverified
 
 ### Funding review
 # Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture.
-GET https://api.seiche.info/openbb/api/v1/funding-review
+GET https://agents.seiche.info/v1/research/api/v1/funding-review
 Accept: application/json
 X-Liquilens-Traffic-Class: developer
+X-Financial-Evidence-Traffic-Class: unverified
 
 ### Agent research review
 # Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture.
-GET https://api.seiche.info/openbb/api/v1/agent-review?limit=3
+GET https://agents.seiche.info/v1/research/api/v1/agent-review?limit=3
 Accept: application/json
 X-Liquilens-Traffic-Class: developer
+X-Financial-Evidence-Traffic-Class: unverified
 
 ### Funding watch
 # Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture.
-GET https://api.seiche.info/openbb/api/v1/workflow?workflow=funding&selection=USD
+GET https://agents.seiche.info/v1/research/api/v1/workflow?workflow=funding&selection=USD
 Accept: application/json
 X-Liquilens-Traffic-Class: developer
+X-Financial-Evidence-Traffic-Class: unverified
 
 ### Institution watch
 # Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture.
-GET https://api.seiche.info/openbb/api/v1/workflow?workflow=institutions&selection=au-sfb,bajaj-finance
+GET https://agents.seiche.info/v1/research/api/v1/workflow?workflow=institutions&selection=au-sfb,bajaj-finance
 Accept: application/json
 X-Liquilens-Traffic-Class: developer
+X-Financial-Evidence-Traffic-Class: unverified
 
 ### BTC exit check
 # Keep source dates, units, nulls, rights and diagnostics with every result. HTTP success is transport only. next_offset means more rows exist; use the research kit for a complete, source-consistent capture.
-GET https://api.seiche.info/openbb/api/v1/workflow?workflow=exit&selection=10000,100000
+GET https://agents.seiche.info/v1/research/api/v1/workflow?workflow=exit&selection=10000,100000
 Accept: application/json
 X-Liquilens-Traffic-Class: developer
+X-Financial-Evidence-Traffic-Class: unverified

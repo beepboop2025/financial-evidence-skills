@@ -18,13 +18,14 @@ const request = {
     _msgid: msg._msgid,
     task: {...task},
     method: "GET",
-    url: "https://api.seiche.info/openbb/api/v1/query?" + query,
+    url: "https://agents.seiche.info/v1/research/api/v1/query?" + query,
     headers: {Accept: "application/json", "User-Agent": "Financial-Evidence-Node-RED/1.0"},
     requestTimeout: 20000,
     followRedirects: false
 };
 if (task.synthetic) {
     request.headers["X-Liquilens-Traffic-Class"] = "synthetic";
+    request.headers["X-Financial-Evidence-Traffic-Class"] = "synthetic";
     request.headers["User-Agent"] = "Financial-Evidence-Operator-Verification/1.0";
 }
 return [request, null];

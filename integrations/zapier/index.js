@@ -8,7 +8,7 @@ const perform = async (z, bundle) => {
     throw new z.errors.Error('Use a listed dataset, entity up to 100 characters, limit 1–100 and offset 0–100000.', 'InvalidInput');
   }
   const response = await z.request({
-    url: 'https://api.seiche.info/openbb/api/v1/query', method: 'GET',
+    url: 'https://agents.seiche.info/v1/research/api/v1/query', method: 'GET',
     params: {dataset, entity, limit, offset}, headers: {Accept: 'application/json'},
   });
   response.throwForStatus();

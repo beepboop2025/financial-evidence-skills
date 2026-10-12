@@ -1,7 +1,7 @@
 # Financial Evidence plugin privacy
 
 This read-only plugin sends the selected dataset, optional entity filter, limit
-and offset to `https://api.seiche.info/openbb/api/v1/query`, operated by LIQUILENS
+and offset to `https://agents.seiche.info/v1/research/api/v1/query`, operated by LIQUILENS
 PRIVATE LIMITED. Enter only public entity identifiers. Do not enter private
 customer, account or personal data. The plugin needs no API key or model
 permission, adds no separate telemetry and writes no local data.

@@ -21,7 +21,7 @@ python -m unittest discover -s tests -v
 ```
 
 The tool requires outbound HTTPS to the fixed public endpoint
-`https://api.seiche.info/openbb/api/v1/query`. It needs no service account,
+`https://agents.seiche.info/v1/research/api/v1/query`. It needs no service account,
 API key, LLM provider or billing credential. Dataset, entity filter, limit and
 offset are transmitted to this endpoint; use public entity identifiers only.
 Requests have a 30-second timeout and do not follow redirects. The endpoint
@@ -79,3 +79,9 @@ A local SDK test or package-validator pass does not meet those steps. Consult
 the source repository's integration evidence for the tested native environment
 and the Marketplace for listing status. Source data is not licensed by this
 plugin's code license.
+
+Current source routes requests through `https://agents.seiche.info`. Hosted
+operational measurement counts bounded product/tool/dataset demand; optional
+learning is separate. Operational counters exclude private selector values,
+prompts, credentials and response bodies. Previously published versioned
+packages keep their original transport until a new package is released.

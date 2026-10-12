@@ -46,3 +46,9 @@ On 11 October 2026, native Node-RED 5.0.8 execution passed for all three tasks, 
 The downloadable flow is separate from Node-RED Flow Library inclusion. The library's [submission route](https://flows.nodered.org/add) requires GitHub sign-in; this repository does not claim acceptance.
 
 Official references: [JSON import/export](https://nodered.org/docs/user-guide/editor/workspace/import-export), [core nodes](https://nodered.org/docs/user-guide/nodes), [embedding Node-RED](https://nodered.org/docs/user-guide/runtime/embedding).
+
+Current source routes requests through `https://agents.seiche.info`. Hosted
+operational measurement counts bounded product/tool/dataset demand; optional
+learning is separate. Operational counters exclude private selector values,
+prompts, credentials and response bodies. Previously published versioned
+packages keep their original transport until a new package is released.

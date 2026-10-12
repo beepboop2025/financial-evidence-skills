@@ -5,8 +5,8 @@ from copy import deepcopy
 from urllib.parse import urlencode
 
 GUIDE = "https://beepboop2025.github.io/financial-evidence-skills/connect/"
-API_BASE = "https://api.seiche.info/openbb"
-MCP_URL = API_BASE + "/mcp"
+API_BASE = "https://agents.seiche.info/v1/research"
+MCP_URL = "https://agents.seiche.info/products/financial-evidence/mcp"
 TASKS = (
     {
         "id": "funding", "title": "Review funding conditions", "product": "Seiche",

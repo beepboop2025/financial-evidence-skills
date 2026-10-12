@@ -44,14 +44,14 @@ class ObservationTests(unittest.TestCase):
 
 
 class DirectClientTests(unittest.IsolatedAsyncioTestCase):
-    async def test_default_no_measurement_and_direct_endpoint(self):
+    async def test_default_no_optional_measurement_and_hosted_endpoint(self):
         calls, events = [], []
         async def transport(url, tool, args, timeout):
             calls.append((url, tool, args)); return {"result":{"content":[]}}
         client=ProductClient(transport=transport,event_sink=events.append)
         await client.call("seiche","funding_stress_now")
         self.assertEqual(events,[])
-        self.assertEqual(calls[0][0],"https://api.seiche.info/mcp")
+        self.assertEqual(calls[0][0],"https://agents.seiche.info/products/seiche/mcp")
 
     async def test_cache_has_original_capture_and_optional_safe_event(self):
         calls, events, now = [], [], [1000.0]

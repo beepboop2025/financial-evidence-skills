@@ -1,10 +1,10 @@
 # Financial-agent product inputs
 
-The Finance starter calls Seiche, LiquiLens, Undertow, Palimpsest, NoiseFloor and
-NarcoScope by name through their reviewed read-only tools. It supports their
-direct endpoints and a configured central product gateway. Financial Evidence
-provides optional local decision captures and a separate learning ledger; it is
-not a mandatory replacement for the named product interfaces.
+The Finance starter calls seven core products and five additional hosted surfaces
+through the central product gateway by default. The catalog labels research
+products, editorial archives, metadata-only discovery, the read-only Trade Safety
+sandbox and the Financial Evidence research wrapper separately. Local decision
+captures and optional learning remain separate from hosted requests.
 
 The central platform is available as a pilot at
 [agents.seiche.info](https://agents.seiche.info). Public product routes can be used
@@ -25,10 +25,10 @@ python -m financial_evidence.trading.cli --platform-url https://agents.seiche.in
 python -m financial_evidence.trading.cli --platform-url https://agents.seiche.info review --mode test
 ```
 
-The explicit central URL is the recommended setup for new pilot integrations.
-With no `--platform-url` and no `SEICHE_AGENT_PLATFORM_URL` environment variable,
-the CLI continues to use each product's direct public endpoint. Existing
-configurations are not rerouted automatically.
+With no override, the SDK and CLI use `https://agents.seiche.info`. An explicit
+`--platform-url` or `SEICHE_AGENT_PLATFORM_URL` selects an operator-controlled
+host; failure never triggers a direct-origin, local or anonymous fallback.
+Previously installed version pins retain their old behavior until upgraded.
 
 `catalog` reports each named product and its first tool. `mcp-config` generates
 editable MCP entries for an agent host; the host/operator decides which tools to
@@ -55,8 +55,8 @@ currently healthy.
 
 Public central product calls work without credentials. To associate calls with
 an enrolled network identity, optionally have the operator's secret manager
-inject `SEICHE_NETWORK_TOKEN` into the process environment. Configure the base
-URL explicitly or set `SEICHE_AGENT_PLATFORM_URL` for repeated use:
+inject `SEICHE_NETWORK_TOKEN` into the process environment. The default gateway receives this token. Set `SEICHE_AGENT_PLATFORM_URL` only
+when deliberately selecting another trusted host:
 
 ```sh
 python -m financial_evidence.trading.cli --platform-url https://agents.seiche.info review --mode shadow
@@ -67,17 +67,20 @@ The token is read from the environment and never written into a generated
 configuration, receipt or source file. Central product routes are
 `/products/{product}/mcp`. An optional network credential identifies the caller;
 it is not required for public data and does not grant source rights or learning
-permission. Direct public product endpoints retain their own access rules.
+permission. The gateway records bounded operational product, tool and dataset
+demand separately from optional learning. Raw prompts, arbitrary selectors and
+response contents are not learning events. Wrapper requests and nested source
+requests are separate measurements and must not be added as unique users.
 
-For a central platform, `mcp-config` emits local stdio entries invoking
+With an explicit platform URL or environment token, `mcp-config` emits stdio entries invoking
 `financial-evidence-product-mcp --product PRODUCT --platform-url URL`. Install the
 package in an environment available to the agent host. If a token is provisioned,
 let the host inherit `SEICHE_NETWORK_TOKEN` from its configured secret environment.
 This adapter passes the optional token to the gateway without copying it into the JSON. It discovers and
 preserves the native tool schemas for the reviewed read-only subset. A host that
 does not inherit the configured environment needs its own documented secret
-injection mechanism. With no platform URL, the generated entries use the direct
-public HTTP MCP endpoints.
+injection mechanism. With no explicit platform URL or token, the generated
+entries use public central HTTP MCP endpoints and need no local process.
 
 ## Use the Python SDK directly
 
@@ -101,8 +104,9 @@ followed. Cached results retain their original capture time. A cache hit is usef
 local reuse, not another server request. Operators select cache duration and
 apply observation-age checks independently.
 
-For the central pilot, set `platform_url` explicitly. An optional credential comes
-from the secret environment; never embed a token in source or a URL:
+`ProductClient` uses the central platform by default. Set `platform_url` only
+for an explicitly chosen custom deployment. An optional credential comes from
+the secret environment; never embed a token in source or a URL:
 
 ```python
 import os

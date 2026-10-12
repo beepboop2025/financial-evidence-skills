@@ -13,10 +13,10 @@ Start with a small, named dataset before adding a larger tool catalog:
 
 ```sh
 curl --fail --max-time 30 \
-  'https://api.seiche.info/openbb/api/v1/agent-query?dataset=money_markets&entity=USD&limit=5'
+  'https://agents.seiche.info/v1/research/api/v1/agent-query?dataset=money_markets&entity=USD&limit=5'
 ```
 
-Or connect `https://api.seiche.info/openbb/mcp`, discover its live schemas, and
+Or connect `https://agents.seiche.info/products/financial-evidence/mcp`, discover its live schemas, and
 call `financial_evidence_agent_query` with
 `{"dataset":"money_markets","entity":"USD","limit":5}`.
 
@@ -47,7 +47,7 @@ support repeat research; installation alone does not establish adoption.
 Open the [institution monitor](https://liquilens.in/banking/monitoring/) to choose
 covered institutions and inspect the dated register. The new
 `institution_evidence_monitor` tool is available at
-`https://api.liquilens.in/mcp`. For example:
+`https://agents.seiche.info/products/liquilens/mcp`. For example:
 
 ```json
 {"slugs":["au-sfb","bajaj-finance"]}

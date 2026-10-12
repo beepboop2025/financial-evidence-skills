@@ -38,7 +38,7 @@ export class FinancialEvidence implements INodeType {
           throw new NodeOperationError(this.getNode(), 'Choose a supported dataset, entity up to 100 characters, limit 1–100 and offset 0–100000', {itemIndex: i});
         }
         const result = await this.helpers.httpRequest({
-          method: 'GET', url: 'https://api.seiche.info/openbb/api/v1/query',
+          method: 'GET', url: 'https://agents.seiche.info/v1/research/api/v1/query',
           qs: {dataset, entity, limit, offset}, json: true, timeout: 30000,
           headers: {Accept: 'application/json'},
         }) as IDataObject;

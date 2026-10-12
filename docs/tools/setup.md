@@ -1,7 +1,10 @@
 # A reusable research desk
 
 Choose the workflow that fits your existing tools. Public data access needs no
-API key. The host application may require its own account or entitlement.
+API key. The host application may require its own account or entitlement. Current Python,
+spreadsheet and MCP downloads request data through `https://agents.seiche.info`.
+The gateway counts fixed product/tool/dataset demand without retaining raw query
+text. Optional installation measurement and learning are separate.
 
 | Tool | Setup | First useful result | Repeat workflow |
 | --- | --- | --- | --- |
@@ -11,7 +14,7 @@ API key. The host application may require its own account or entitlement.
 | Excel/Power BI | Paste `FinancialEvidenceRows.pq` into a blank Power Query; Anonymous authentication | `FinancialEvidenceRows("money_markets", "USD")` | Refresh deliberately and retain prior exports when comparing dates |
 | Google Sheets | [Paste the custom function](google-sheets.md); put a refresh counter in A1 and the formula in A3 | `=FINANCIAL_EVIDENCE("money_markets","USD",20,0,A1)` | Change A1 deliberately; retain visible sources and page status. Google-native execution remains unverified |
 | Node-RED | [Import the core-node flow](../automations/node-red/) | Trigger one research preview and inspect Debug | Manual requests only; inspect page and source status each time |
-| MCP clients | Add the URL from `mcp.json` using your client's HTTP configuration | Discover datasets, then call `financial_evidence_agent_review` | Pass `previous_revision`; retain diagnostics and evaluate dates |
+| MCP clients | Add the URL from `mcp.json` using your client's HTTP configuration | Discover datasets, then call `financial_evidence_review` | Pass `previous_revision`; retain diagnostics and evaluate dates |
 | R/DuckDB | Read a captured `rows.csv`; retain its original JSON and receipt | Inspect source-linked rows in a dataframe or SQL query | Store dated captures, without turning missing values into zero |
 | Bloomberg BQuant | Administrator evaluates the notebook and approved own-data import route | Import a cited capture in an entitled sandbox | Requires native validation; no App Portal acceptance is claimed |
 | LSEG/FactSet/FDC3 desktops | Administrator selects the permitted import or context interface | Use the cited CSV/JSON or FDC3 reference app | Vendor acceptance, security review and entitlements are separate |

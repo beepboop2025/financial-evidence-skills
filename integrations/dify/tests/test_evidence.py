@@ -13,6 +13,7 @@ class EvidenceTests(unittest.TestCase):
     def test_retains_partial_research_and_pagination(self):
         with patch('tools.evidence_page.httpx.get', return_value=httpx.Response(200, json=PAGE, request=httpx.Request('GET', URL))) as get:
             self.assertEqual(fetch_page({'dataset': 'bank_risk'}), PAGE)
+            self.assertEqual(get.call_args.args[0], 'https://agents.seiche.info/v1/research/api/v1/query')
             self.assertEqual(get.call_args.kwargs['params']['limit'], 25)
             self.assertFalse(get.call_args.kwargs['follow_redirects'])
 

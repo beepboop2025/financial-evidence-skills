@@ -29,7 +29,7 @@ test('download identical and source embedded exactly', () => {
 test('request fixes host method headers and timeout', () => {
  const [m, e] = run(prepareCode, {payload: task, url: 'https://evil.example', headers: {Authorization: 'secret'}, arbitrary: 'x'});
  assert.equal(e, null); assert.equal(m.method, 'GET'); assert.equal(m.requestTimeout, 20000); assert.equal(m.followRedirects, false);
- assert.equal(new URL(m.url).origin, 'https://api.seiche.info'); assert.equal(m.headers['X-Liquilens-Traffic-Class'], 'synthetic'); assert.equal(m.headers.Authorization, undefined); assert.equal(m.arbitrary, undefined); assert.equal(m.payload, undefined);
+ assert.equal(new URL(m.url).origin, 'https://agents.seiche.info'); assert.equal(new URL(m.url).pathname, '/v1/research/api/v1/query'); assert.equal(m.headers['X-Financial-Evidence-Traffic-Class'], 'synthetic'); assert.equal(m.headers['X-Liquilens-Traffic-Class'], 'synthetic'); assert.equal(m.headers.Authorization, undefined); assert.equal(m.arbitrary, undefined); assert.equal(m.payload, undefined);
 });
 for (const patch of [{dataset: 'unknown'}, {limit: 0}, {limit: 201}, {limit: 1.5}, {entity: 'a'.repeat(101)}, {synthetic: 'true'}, {url: 'https://evil.example'}]) {
  test('bad configuration: ' + JSON.stringify(patch), () => assert.equal(run(prepareCode, {payload: {...task, ...patch}})[1].payload.status, 'request_rejected'));

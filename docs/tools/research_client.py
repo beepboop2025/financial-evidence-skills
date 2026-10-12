@@ -16,7 +16,7 @@ import re
 from urllib.parse import urlencode
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
-BASE_URL = "https://api.seiche.info/openbb"
+BASE_URL = "https://agents.seiche.info/v1/research"
 DATASETS = (
     "money_markets", "money_market_history", "capital_markets", "bank_risk",
     "market_liquidity", "china_economy", "source_health",
@@ -44,7 +44,8 @@ def _json(raw):
 
 
 def _page(params, *, synthetic=False, opener=None):
-    headers = {"Accept": "application/json", "User-Agent": "Financial-Evidence-Research-Desk/1.0"}
+    headers = {"Accept": "application/json", "User-Agent": "Financial-Evidence-Research-Desk/1.0",
+               "X-Financial-Evidence-Traffic-Class": "synthetic" if synthetic else "unverified"}
     if synthetic:
         headers.update({"User-Agent": "Financial-Evidence-Operator-Verification/1.0",
                         "X-Liquilens-Traffic-Class": "synthetic"})
@@ -60,7 +61,7 @@ def _page(params, *, synthetic=False, opener=None):
     if not isinstance(result, dict) or result.get("schema") != "liquidity-lab.openbb-table.v1":
         raise EvidenceError("Unsupported table schema")
     if result.get("transport_status") != "complete":
-        raise EvidenceError("Source retrieval is incomplete; inspect /api/v1/sources before capturing")
+        raise EvidenceError("Source retrieval is incomplete; inspect https://agents.seiche.info/v1/data-status before capturing")
     if result.get("evidence_status") != "not_evaluated" or result.get("carrier_verification") != "not_performed":
         raise EvidenceError("Unexpected evidence authority contract")
     return result

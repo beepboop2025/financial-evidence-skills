@@ -21,10 +21,10 @@ def main(argv=None):
     client=ProductClient(platform_url=args.platform_url,mode=getattr(args,"mode","unknown"),
                          credential=os.environ.get("SEICHE_NETWORK_TOKEN"))
     if args.command=="catalog":
-        print(json.dumps(product_catalog(),indent=2));return 0
+        print(json.dumps(product_catalog(client.platform_url),indent=2));return 0
     if args.command=="mcp-config":
-        if args.platform_url:
-            servers={row["id"]:{"command":"financial-evidence-product-mcp","args":["--product",row["id"],"--platform-url",args.platform_url]} for row in product_catalog()}
+        if args.platform_url or os.environ.get("SEICHE_NETWORK_TOKEN"):
+            servers={row["id"]:{"command":"financial-evidence-product-mcp","args":["--product",row["id"],"--platform-url",client.platform_url]} for row in product_catalog()}
         else:
             servers={row["id"]:{"type":"http","url":client.endpoints[row["id"]]} for row in product_catalog()}
         print(json.dumps({"mcpServers":servers},indent=2));return 0

@@ -19,6 +19,7 @@ def main():
         def opener(request, **kwargs):
             request.add_header("User-Agent", "Financial-Evidence-Runtime/1.0.0")
             request.add_header("X-Liquilens-Traffic-Class", args.traffic_class)
+            request.add_header("X-Financial-Evidence-Traffic-Class", args.traffic_class)
             return FIXED_ROUTE_OPENER(request, **kwargs)
 
         def fetcher(source, **kwargs):

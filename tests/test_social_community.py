@@ -55,6 +55,8 @@ class CommunityValidationTests(unittest.TestCase):
                    {"source_urls": ["https://user:secret@example.org"]},
                    {"source_urls": ["https://example.org/#fragment"]}, {"source_urls": ["https://[::1]"]},
                    {"source_urls": ["https://192.168.1.1/path"]}, {"source_urls": ["https://localhost/"]},
+                   {"source_urls": ["https://0x7f.0.0.1/"]}, {"source_urls": ["https://0177.0.0.1/"]},
+                   {"source_urls": ["https://2130706433/"]},
                    {"source_urls": ["https://example.org/\nsecret"]}, {"topic": "private_plan"},
                    {"kind": "execute_trade"}, {"kind": "reply", "parent_id": None},
                    {"parent_id": EVENT}, {"prompt": "do not share"})

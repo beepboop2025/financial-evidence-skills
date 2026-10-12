@@ -87,7 +87,7 @@ def _social_url(value):
         except ValueError:
             hostname = host.encode("idna").decode("ascii")
             labels = hostname.split(".")
-            if (len(labels) < 2 or len(hostname) > 253 or all(part.isdigit() for part in labels)
+            if (len(labels) < 2 or len(hostname) > 253 or all(re.fullmatch(r"(?:[0-9]+|0x[0-9a-f]+)", part) for part in labels)
                     or hostname.endswith((".localhost", ".local", ".internal", ".invalid"))
                     or any(not re.fullmatch(r"[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?", part) for part in labels)):
                 raise ValueError()

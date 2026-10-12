@@ -68,7 +68,7 @@ TOOLS = [
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 4_194_304,
-                    "default": 1_048_576,
+                    "default": 4_194_304,
                 },
                 "timeout": {
                     "type": "number",
@@ -128,7 +128,7 @@ def call_tool(name: str, arguments: dict[str, Any]) -> dict[str, Any]:
         return _tool_result(route_manifest(_validated_topics(arguments)))
     if name == "financial_evidence_fetch":
         topics = _validated_topics(arguments)
-        max_bytes = arguments.get("max_bytes", 1_048_576)
+        max_bytes = arguments.get("max_bytes", 4_194_304)
         timeout = arguments.get("timeout", 10.0)
         if not isinstance(max_bytes, int) or isinstance(max_bytes, bool):
             raise ValueError("max_bytes must be an integer")

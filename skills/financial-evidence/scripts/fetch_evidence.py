@@ -575,7 +575,7 @@ def main(argv: list[str] | None = None) -> int:
         default=[],
         help="repeat or comma-separate topic aliases",
     )
-    parser.add_argument("--max-bytes", type=int, default=1_048_576)
+    parser.add_argument("--max-bytes", type=int, default=4_194_304)
     parser.add_argument("--timeout", type=float, default=10.0)
     args = parser.parse_args(argv)
     if not 1 <= args.max_bytes <= 4_194_304:

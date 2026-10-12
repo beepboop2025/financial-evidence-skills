@@ -543,7 +543,7 @@ def fetch_source(
 def build_packet(
     topics: Iterable[str],
     *,
-    max_bytes: int = 1_048_576,
+    max_bytes: int = 4_194_304,
     timeout: float = 10.0,
     opener: Callable[..., Any] = FIXED_ROUTE_OPENER,
 ) -> dict[str, Any]:

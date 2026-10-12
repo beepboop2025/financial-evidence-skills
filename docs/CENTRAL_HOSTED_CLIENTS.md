@@ -24,7 +24,10 @@ tools, OpenBB extension and research runtime fetch eight fixed datasets at
 `/v1/data/{dataset_id}`. The gateway selects the reviewed upstream; no arbitrary
 URL is accepted. `Source.url`, source adapters, original bytes, hashes and source
 clocks keep their original meaning. `resolved_url` identifies the actual central
-transport. `EvidenceService` defaults to zero success/error cache time: sequential
+transport. Packet, CLI, stdio MCP and standalone helper reads default to a
+4 MiB per-source allowance so the money-market atlas fits. An explicitly smaller
+`max_bytes`/`--max-bytes` allowance remains a hard limit; oversized responses
+remain unavailable. `EvidenceService` defaults to zero success/error cache time: sequential
 reads request the service again. Concurrent in-flight requests and repeated source
 references within one packet still share a fetch. Explicit local cache durations
 remain available; cache hits are not server requests or unique completed tasks. Local projections and cached receipts do not become new source facts.

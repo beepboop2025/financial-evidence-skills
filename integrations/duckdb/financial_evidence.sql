@@ -18,7 +18,7 @@ CREATE OR REPLACE MACRO financial_evidence_fetch(
 SELECT
   topic_name AS topic,
   product_name AS product,
-  source_url,
+  source_url AS source_url,
   hosted_url AS resolved_url,
   current_timestamp AS retrieved_at,
   response.status = 200 AS ok,

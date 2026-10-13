@@ -6,10 +6,12 @@ backup and a restore command that preserves retry keys and stops the new copy.
 
 Run repeatable research workflows across LiquiLens, Seiche and Undertow from a
 Python application, a terminal or an MCP client. Each run has a fixed policy,
-bounded source reads, a durable receipt and an offline replay path.
+bounded source reads, a durable receipt and an offline replay path. Fresh data
+reads use the central hosted service; private workflow state and captured-evidence
+replay stay local.
 
-The runtime is included in **Financial Evidence 0.1.7**. Its runtime contract
-version is 1.0.0, separate from the package version. The [release record](../../docs/releases/0.1.7.json)
+The runtime is included in **Financial Evidence 0.1.8**. Its runtime contract
+version is 1.0.0, separate from the package version. The [release record](../../docs/releases/0.1.8.json)
 retains artifact and independent consumer verification.
 
 ## Install and prove the installation
@@ -20,7 +22,7 @@ Mac, use the mounted SSD workspace for both.
 
 ```sh
 python3 -m venv .venv
-.venv/bin/python -m pip install 'https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.7/financial_evidence-0.1.7-py3-none-any.whl'
+.venv/bin/python -m pip install 'https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.8/financial_evidence-0.1.8-py3-none-any.whl'
 .venv/bin/financial-evidence-runtime catalog
 ```
 
@@ -28,15 +30,17 @@ For the private stdio MCP server, install the optional dependencies in the same
 environment:
 
 ```sh
-.venv/bin/python -m pip install 'financial-evidence[workspace] @ https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.7/financial_evidence-0.1.7-py3-none-any.whl'
+.venv/bin/python -m pip install 'financial-evidence[workspace] @ https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.8/financial_evidence-0.1.8-py3-none-any.whl'
 ```
 
 Checksums, build attestations and the source archive are attached to the
-[GitHub release](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.7).
-The core CLI has no package dependencies. Homebrew includes the core runtime
-CLI; optional runtime MCP dependencies use the isolated Python installation.
+[GitHub release](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.8).
+The core CLI has no package dependencies. Homebrew currently provides the
+separately verified 0.1.7 formula while its 0.1.8 upgrade is qualified. Use the
+0.1.8 wheel above for this release; optional runtime MCP dependencies use the
+isolated Python installation.
 
-To reproduce offline acceptance, check out tag `v0.1.7` in a separate source
+To reproduce offline acceptance, check out tag `v0.1.8` in a separate source
 directory and invoke its `integrations/agent-runtime/offline_acceptance.py`
 using the installed environment's Python interpreter, with
 `--output /ABSOLUTE/NEW/acceptance`. It uses synthetic observations, denies the

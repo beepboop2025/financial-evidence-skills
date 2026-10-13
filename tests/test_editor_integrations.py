@@ -37,13 +37,8 @@ class EditorIntegrationTests(unittest.TestCase):
         manifest = _json("docs/integrations.json")
         self.published_version = manifest["last_verified_release"]
         self.public_config = {
-            "type": "stdio",
-            "command": "uvx",
-            "args": [
-                "--from",
-                f"git+{REPOSITORY}@v{self.published_version}",
-                "financial-evidence-mcp",
-            ],
+            "type": "http",
+            "url": "https://agents.seiche.info/products/financial-evidence/mcp",
         }
         self.public_named_config = {"name": SERVER_NAME, **self.public_config}
         self.interfaces = {item["name"]: item for item in manifest["interfaces"]}
@@ -142,11 +137,11 @@ class EditorIntegrationTests(unittest.TestCase):
         )
         manifest = _json("docs/integrations.json")
         self.assertEqual(manifest["version"], self.version)
-        self.assertEqual(manifest["release_state"], "candidate")
-        self.assertEqual(manifest["last_verified_release"], "0.1.7")
+        self.assertEqual(manifest["release_state"], "published")
+        self.assertEqual(manifest["last_verified_release"], "0.1.8")
         homebrew = self.interfaces["Homebrew"]
         self.assertEqual(homebrew["candidate_version"], self.version)
-        self.assertEqual(homebrew["published_version"], self.published_version)
+        self.assertEqual(homebrew["published_version"], "0.1.7")
         self.assertEqual(homebrew["status"], "public")
         mcp_interface = self.interfaces["Model Context Protocol"]
         self.assertTrue(mcp_interface["portable_agent_host"])
@@ -319,7 +314,7 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertEqual(integration["kind"], "openai-plugin")
         self.assertEqual(
             integration["remote_mcp"],
-            "https://liquilens.in/mcp/financial-evidence",
+            self.public_config["url"],
         )
         self.assertEqual(
             integration["status"],

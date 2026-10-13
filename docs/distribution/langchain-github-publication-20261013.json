@@ -1,0 +1,42 @@
+{
+  "schema": "langchain-financial-evidence.github-publication.v1",
+  "observed_at": "2026-10-13T06:51:23.759765+00:00",
+  "version": "0.1.1",
+  "status": "public_release_and_anonymous_artifact_bytes_verified",
+  "release_url": "https://github.com/beepboop2025/langchain-financial-evidence/releases/tag/v0.1.1",
+  "release_id": 411373635,
+  "published_at": "2026-10-13T06:51:03Z",
+  "source_commit": "a23f9f83db497949fc18ed081614c200fcc2b548",
+  "tag_object": "48f8c821efbe2724681de81fd4181c75848b9423",
+  "tag_type": "annotated",
+  "tag_signature": "unsigned_existing_tag_preserved",
+  "assets": [
+    {
+      "name": "langchain_financial_evidence-0.1.1-py3-none-any.whl",
+      "url": "https://github.com/beepboop2025/langchain-financial-evidence/releases/download/v0.1.1/langchain_financial_evidence-0.1.1-py3-none-any.whl",
+      "sha256": "cff5c6d76728154b3f29fa661b0e0534606904bff67ecb7ab4eef6bf6558beb2",
+      "bytes": 9324,
+      "github_digest": "sha256:cff5c6d76728154b3f29fa661b0e0534606904bff67ecb7ab4eef6bf6558beb2",
+      "pypi_url": "https://files.pythonhosted.org/packages/32/b1/00d51291b4e1967e00fb6ee0138bb6069ef5bfa3ee7e4a20c728b51dc73a/langchain_financial_evidence-0.1.1-py3-none-any.whl",
+      "matches_verified_pypi_bytes": true
+    },
+    {
+      "name": "langchain_financial_evidence-0.1.1.tar.gz",
+      "url": "https://github.com/beepboop2025/langchain-financial-evidence/releases/download/v0.1.1/langchain_financial_evidence-0.1.1.tar.gz",
+      "sha256": "cc8c40b114f3766ef751839745aed240f150c78bd488a8d47eff97936bd94e72",
+      "bytes": 13294,
+      "github_digest": "sha256:cc8c40b114f3766ef751839745aed240f150c78bd488a8d47eff97936bd94e72",
+      "pypi_url": "https://files.pythonhosted.org/packages/a3/b8/7dfa630b5cb4a0737ac9eb0fac194599f84d89d5523c4ebeaff4cc0789de/langchain_financial_evidence-0.1.1.tar.gz",
+      "matches_verified_pypi_bytes": true
+    }
+  ],
+  "anonymous_public_readback": true,
+  "pypi_publication_receipt": "langchain-pypi-publication-20261013.json",
+  "installed_consumer_receipt": "langchain-pypi-consumer-20261013.json",
+  "langchain_directory_acceptance": false,
+  "external_adoption_verified": false,
+  "boundaries": [
+    "Existing PyPI artifacts and Git tag were not changed.",
+    "This verifies software release availability, not directory acceptance or independent adoption."
+  ]
+}

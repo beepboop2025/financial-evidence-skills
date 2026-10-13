@@ -4,10 +4,10 @@ Start with one task: https://beepboop2025.github.io/financial-evidence-skills/co
 
 > Financial Evidence is a free, read-only terminal and MCP router for public money-market, capital-market, china-economy, bank-risk, market-liquidity, GIFT City, forex and gold evidence. It connects LiquiLens, Undertow, Seiche, and Palimpsest while preserving separate sources and explicit unavailable states.
 
-Published source version: 0.1.7
-Last verified release: 0.1.7
+Published source version: 0.1.8
+Last verified release: 0.1.8
 Published topics: money-market, capital-market, china-economy, bank-risk, market-liquidity, gift-city, forex, gold.
-Last updated: 2026-10-09
+Last updated: 2026-10-13
 Publisher: LIQUILENS PRIVATE LIMITED
 License: MIT for the software; source publishers retain rights in upstream data.
 
@@ -24,7 +24,7 @@ License: MIT for the software; source publishers retain rights in upstream data.
 - [Overview and integration matrix](https://beepboop2025.github.io/financial-evidence-skills/)
 - [Recurring research workflows](https://beepboop2025.github.io/financial-evidence-skills/workflows/): funding, bank-context and liquidity-context captures with a CSV source index, optional scheduling template and private pilot scorecard; examples use package 0.1.5 and keep transport success separate from evidence validity.
 - [Source repository and full README](https://github.com/beepboop2025/financial-evidence-skills)
-- [Last verified release v0.1.7](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.7)
+- [Last verified release v0.1.8](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.8)
 - [v0.1.5 semantic contract](https://github.com/beepboop2025/financial-evidence-skills/blob/main/SEMANTIC_CONTRACT.md)
 - [Machine-readable integration manifest](https://beepboop2025.github.io/financial-evidence-skills/integrations.json)
 - [Machine-readable marketplace ledger](https://beepboop2025.github.io/financial-evidence-skills/marketplaces.json)
@@ -43,13 +43,14 @@ License: MIT for the software; source publishers retain rights in upstream data.
 
 ## Interfaces
 
-- Agent Skills: public `financial-evidence` skill with domain-triggered routing for compatible agents; install the last verified release with `npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.7/financial-evidence --skill financial-evidence`.
-- Terminal: Homebrew, uvx and persistent uv tool (0.1.7), Bash/Zsh/Fish completions, JSON/NDJSON/CSV/table output.
-- MCP: three read-only tools, official registry metadata, portable root `.mcp.json` for the public remote, pinned local stdio editor configs, MCP Bundle, and multi-architecture OCI image.
-- Remote MCP: public Streamable HTTP at `https://liquilens.in/mcp/financial-evidence`; no local install, account, API key, or write action.
-- Gemini CLI: root `gemini-extension.json` matches v0.1.7; install the verified release with `gemini extensions install https://github.com/beepboop2025/financial-evidence-skills --ref v0.1.7`.
+- Agent Skills: public `financial-evidence` skill with domain-triggered routing for compatible agents; install the last verified release with `npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.8/financial-evidence --skill financial-evidence`.
+- Terminal: uvx and persistent uv tool (0.1.8); Homebrew 0.1.7 pending separate upgrade qualification, Bash/Zsh/Fish completions, JSON/NDJSON/CSV/table output.
+- Current MCP: the root `.mcp.json`, Gemini, Codex, Claude Code and editor configurations connect to the central nine-tool read-only Research Desk.
+- Remote MCP: public Streamable HTTP at `https://agents.seiche.info/products/financial-evidence/mcp`; no local install, account, API key, or write action. Start with `financial_evidence_datasets`, then `financial_evidence_workflow` with `{"workflow":"funding","selection":"USD"}`.
+- Legacy compatibility interface: `https://liquilens.in/mcp/financial-evidence` retains `financial_evidence_topics`, `financial_evidence_route` and `financial_evidence_fetch`. The local stdio command, MCP Bundle, OCI image and Registry record retain this separate three-tool contract. Fresh source retrieval uses the central data service.
+- Gemini CLI: root `gemini-extension.json` matches v0.1.8; install the verified release with `gemini extensions install https://github.com/beepboop2025/financial-evidence-skills --ref v0.1.8`.
 - Claude Code: self-hosted `liquidity-lab` plugin marketplace bundles the same Agent Skill and root MCP configuration; add with `claude plugin marketplace add beepboop2025/financial-evidence-skills`, then `claude plugin install financial-evidence@liquidity-lab`. This command follows mutable default-branch source; review its checked-out commit before enabling the plugin.
-- Codex: repository-installable OpenAI plugin bundles the same Agent Skill and public remote MCP route; install the last verified release with `codex plugin marketplace add beepboop2025/financial-evidence-skills --ref v0.1.7`, then `codex plugin add financial-evidence@liquidity-lab`.
+- Codex: repository-installable OpenAI plugin bundles the same Agent Skill and public remote MCP route; install the last verified release with `codex plugin marketplace add beepboop2025/financial-evidence-skills --ref v0.1.8`, then `codex plugin add financial-evidence@liquidity-lab`.
 - ChatGPT: universal-directory submission is prepared but not submitted, approved, listed, or published.
 - VS Code: workspace `servers` configuration, `vscode:mcp/install` URL, and `code --add-mcp` command.
 - Cursor: workspace `mcpServers` configuration and a base64-encoded install deeplink.
@@ -60,12 +61,12 @@ License: MIT for the software; source publishers retain rights in upstream data.
 
 ## Editor installation
 
-- VS Code URL: `vscode:mcp/install?%7B%22name%22%3A%22financial-evidence%22%2C%22type%22%3A%22stdio%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22--from%22%2C%22git%2Bhttps%3A%2F%2Fgithub.com%2Fbeepboop2025%2Ffinancial-evidence-skills.git%40v0.1.7%22%2C%22financial-evidence-mcp%22%5D%7D`
-- VS Code CLI: `code --add-mcp '{"name":"financial-evidence","type":"stdio","command":"uvx","args":["--from","git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.7","financial-evidence-mcp"]}'`
-- Cursor deeplink: `cursor://anysphere.cursor-deeplink/mcp/install?name=financial-evidence&config=eyJ0eXBlIjoic3RkaW8iLCJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyItLWZyb20iLCJnaXQraHR0cHM6Ly9naXRodWIuY29tL2JlZXBib29wMjAyNS9maW5hbmNpYWwtZXZpZGVuY2Utc2tpbGxzLmdpdEB2MC4xLjciLCJmaW5hbmNpYWwtZXZpZGVuY2UtbWNwIl19`
+- VS Code URL: `vscode:mcp/install?%7B%22name%22%3A%22financial-evidence%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fagents.seiche.info%2Fproducts%2Ffinancial-evidence%2Fmcp%22%7D`
+- VS Code CLI: `code --add-mcp '{"name":"financial-evidence","type":"http","url":"https://agents.seiche.info/products/financial-evidence/mcp"}'`
+- Cursor deeplink: `cursor://anysphere.cursor-deeplink/mcp/install?name=financial-evidence&config=eyJ0eXBlIjoiaHR0cCIsInVybCI6Imh0dHBzOi8vYWdlbnRzLnNlaWNoZS5pbmZvL3Byb2R1Y3RzL2ZpbmFuY2lhbC1ldmlkZW5jZS9tY3AifQ==`
 
-These routes register a local stdio server and require `uvx`. Review the
-source and exact configuration before accepting editor installation, trust,
+These routes connect to the central nine-tool HTTP service without `uvx` or a
+local Python process. Review the hosted URL and configuration before accepting editor installation, trust,
 or tool-use prompts. They are compatibility artifacts, not claims of a VS Code
 or Cursor marketplace listing or endorsement.
 
@@ -102,7 +103,7 @@ Packet `status` equals `transport_status` and describes retrieval only. Every pa
 
 ## Current system interfaces
 
-[System interface catalog](https://beepboop2025.github.io/financial-evidence-skills/agents/system.json) separates the public three-tool router 0.1.7, nine-tool hosted Research Desk 1.3.0, six-tool local Runtime contract 1.0.0 (package 0.1.7), Runtime Operations 1.0.3 and the private authenticated paper host. [Choose an interface](https://liquilens.in/agents/infrastructure/). Public MCP endpoints retain their read-only authority; local scheduling and paper-host installation require the operator-controlled setup described by their guides.
+[System interface catalog](https://beepboop2025.github.io/financial-evidence-skills/agents/system.json) separates the public three-tool router 0.1.8, nine-tool hosted Research Desk 1.3.0 (upstream package 0.1.7, source `4802a9b3bfb9d652199f25bf52852cb1e5db1cb3`), six-tool local Runtime contract 1.0.0 (package 0.1.8), Runtime Operations 1.0.3 and the private authenticated paper host. [Choose an interface](https://liquilens.in/agents/infrastructure/). Public MCP endpoints retain their read-only authority; local scheduling and paper-host installation require the operator-controlled setup described by their guides.
 
 ## Start a recurring task
 

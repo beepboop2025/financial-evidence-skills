@@ -1,7 +1,7 @@
 {
   "schema": "financial-evidence.system-interfaces.v1",
   "operator": "LIQUILENS PRIVATE LIMITED",
-  "updated_at": "2026-10-11",
+  "updated_at": "2026-10-13",
   "guide_url": "https://liquilens.in/agents/infrastructure/",
   "public_discovery_observation": {
     "observed_at": "2026-10-08T11:12:59.038376+00:00",
@@ -12,7 +12,7 @@
     {
       "id": "public-router",
       "name": "Financial Evidence router",
-      "version": "0.1.7",
+      "version": "0.1.8",
       "access": "public",
       "authentication": "none",
       "transport": "streamable-http",
@@ -23,7 +23,7 @@
         "financial_evidence_route",
         "financial_evidence_fetch"
       ],
-      "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.7",
+      "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.8",
       "execution_authority": false,
       "local_state_writes": false
     },
@@ -70,7 +70,7 @@
     {
       "id": "local-runtime",
       "name": "Financial Evidence Runtime",
-      "package_version": "0.1.7",
+      "package_version": "0.1.8",
       "contract_version": "1.0.0",
       "access": "customer_operated_local",
       "transport": "stdio",
@@ -204,5 +204,13 @@
     "coverage_complete": false,
     "independent_activated_organizations": null,
     "verified_paying_customers": null
+  },
+  "central_gateway": {
+    "url": "https://agents.seiche.info",
+    "network_revision": "623f094f83d4519ce21849f25d8c5f795ed4ae8c",
+    "hub_revision": "27d7ba5991ac57bb538770c9984c4b1d48ba790f",
+    "hosted_connections": 14,
+    "verified_at": "2026-10-13T07:00:34.293310+00:00",
+    "release_proof": "https://beepboop2025.github.io/financial-evidence-skills/releases/0.1.8.json"
   }
 }

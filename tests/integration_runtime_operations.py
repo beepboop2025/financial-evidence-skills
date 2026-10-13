@@ -12,6 +12,7 @@ import tempfile
 from unittest.mock import patch
 
 from test_runtime_operations import ROOT, NOW, result, workflow
+from financial_evidence import __version__
 from financial_evidence.runtime.engine import Runtime, implementation
 from financial_evidence.runtime.store import Store
 from ops_backup import Restic, backup, recover
@@ -44,7 +45,7 @@ def main():
             restic("init")  # Only this isolated synthetic test may initialize a repository.
             repository_id = json.loads(restic("cat", "config"))["id"]
             cfg = {"schema": "financial-evidence.runtime-ops.v1", "root": str(source), "state": str(state),
-                   "installation_id": store.report()["installation_id"], "package_version": "0.1.7",
+                   "installation_id": store.report()["installation_id"], "package_version": __version__,
                    "implementation_sha256": implementation()["sha256"], "repository_id": repository_id,
                    "jobs": {spec.id: spec.sha256}, "due_grace_seconds": 180, "backup_max_age_seconds": 3600,
                    "monitor_max_age_seconds": 180, "min_free_bytes": 1048576}
@@ -105,7 +106,7 @@ def main():
                         '--base-time=2026-10-08 ' + base + ' UTC', timer['Timer']['OnCalendar']], text=True)
                     next_line = next(line for line in native.splitlines() if 'Next elapse:' in line)
                     assert '2026-10-08 ' + expected + ' UTC' in next_line
-            report = {"status": "PASS", "package_version": "0.1.7", "real_restic": True,
+            report = {"status": "PASS", "package_version": __version__, "real_restic": True,
                       "restic_version": subprocess.check_output(["restic", "version"], text=True).strip(),
                       "exact_snapshots_verified": 2, "restored_admission_stopped": True, "retry_keys_preserved": True,
                       "operations_version": "1.0.3", "host_journal_and_receipts_inaccessible": True,

@@ -6,7 +6,7 @@ URLs and source-reported states while obtaining fresh bytes through the fixed
 dataset catalog at `agents.seiche.info`. A failed central request remains an
 explicit failure. Public reads remain free and do not require an account.
 
-The release includes the twelve-product agent client, public community and
+The release includes the fourteen-product agent client, public community and
 owner-granted workspace client. Public contributions, private messages, service
 usage, learning permissions and resale permissions remain separate. The package
 does not change existing source licenses or previously downloaded copies.

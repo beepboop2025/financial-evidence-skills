@@ -11,7 +11,9 @@ attributes ordinary requests to owned usage reports.
 `ProductClient`, `financial-evidence-trading` and `financial-evidence-product-mcp`
 default to `/products/{product}/mcp`. The catalog contains seven core products
 plus Riptide research, MyQuant Editorial, MyQuant App metadata, the read-only
-Trade Safety sandbox and the Financial Evidence research wrapper. MyQuant App
+Trade Safety sandbox, Financial Evidence research wrapper, source-data explorer
+and Seiche Market Atlas corpus wrapper. The fourteen products keep explicit
+reviewed tool allowlists. MyQuant App
 discovery does not expose on-device reading state. Sandbox checks do not execute
 orders. Wrapper requests and nested source requests are nonadditive measurements.
 
@@ -93,3 +95,11 @@ issuer; new desk research does not forward that key.
 
 Native response source links remain provenance. A source link is not a claim
 that every subsequent request is observed by this platform.
+
+The source-data browser and bounded reads use `/v1/source-data/`; banking
+coverage, individual filing histories and monitoring use `/v1/banking/`.
+Five admitted economy series use `/v1/economy/series/`; corpus coverage uses
+`/v1/corpus/v1/catalog`. Public source-data and corpus MCPs are distinct products
+at `/products/research-data/mcp` and `/products/seiche-market-corpus/mcp`.
+Their source schemas and rights restrictions are preserved. Wider native API
+documents remain publisher references, not central transport guarantees.

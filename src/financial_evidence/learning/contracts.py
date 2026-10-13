@@ -10,7 +10,7 @@ import re
 PURPOSES = frozenset({"measurement", "private_evidence", "research_training", "commercial_training"})
 TRAINING = frozenset({"research_training", "commercial_training"})
 PRODUCTS = frozenset({"liquilens", "seiche", "undertow", "palimpsest", "noisefloor", "narcoscope", "wake", "financial_evidence",
-                      "riptide", "myquant-editorial", "myquant-app", "trade-safety", "financial-evidence"})
+                      "riptide", "myquant-editorial", "myquant-app", "trade-safety", "financial-evidence", "research-data", "seiche-market-corpus"})
 TASKS = frozenset({"money_markets", "funding_review", "liquidity", "institution_evidence", "china_macro", "research", "other"})
 MODES = frozenset({"unknown", "test", "backtest", "shadow", "paper", "operator_reported_production"})
 LABEL = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.:/-]{0,95}\Z")

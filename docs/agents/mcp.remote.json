@@ -47,6 +47,14 @@
     "financial-evidence": {
       "type": "http",
       "url": "https://agents.seiche.info/products/financial-evidence/mcp"
+    },
+    "research-data": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/research-data/mcp"
+    },
+    "seiche-market-corpus": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/seiche-market-corpus/mcp"
     }
   }
 }

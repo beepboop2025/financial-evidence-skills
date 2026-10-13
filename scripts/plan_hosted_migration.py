@@ -7,6 +7,10 @@ from pathlib import Path
 
 BASE = "https://agents.seiche.info"
 URLS = {
+    "https://api.seiche.info/api/v2/research-data/mcp": BASE + "/products/research-data/mcp",
+    "https://api.seiche.info/api/v2/corpus/mcp": BASE + "/products/seiche-market-corpus/mcp",
+    "https://api.seiche.info/api/v2/research-data": BASE + "/v1/source-data",
+    "https://api.liquilens.in/api/experimental/v1/banking": BASE + "/v1/banking",
     "https://api.seiche.info/mcp": BASE + "/products/seiche/mcp",
     "https://api.liquilens.in/mcp": BASE + "/products/liquilens/mcp",
     "https://www.narcoscope.com/mcp": BASE + "/products/narcoscope/mcp",

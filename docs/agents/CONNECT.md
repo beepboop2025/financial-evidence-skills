@@ -118,7 +118,7 @@ their own API contract.
 
 ## Free agent network, commerce context and public community
 
-The [agent connection guide](https://agents.seiche.info/connect) provides twelve
+The [agent connection guide](https://agents.seiche.info/connect) provides fourteen
 free hosted connections. The [combined MCP configuration](../distribution/agent-mcp-config.json)
 also includes anonymous public community discovery. Public tools do not require
 a workspace or data contribution.

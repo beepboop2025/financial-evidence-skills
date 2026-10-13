@@ -60,10 +60,10 @@ class HostedMigrationTests(unittest.TestCase):
         for name in ("noisefloor.http", "spectral.bru", "dyson.bru"):
             self.assertIn("X-Financial-Evidence-Traffic-Class: synthetic", (builder.OUT / name).read_text())
 
-    def test_distribution_config_contains_twelve_products_and_public_community(self):
+    def test_distribution_config_contains_fourteen_products_and_public_community(self):
         config = json.loads((ROOT / "docs/distribution/agent-mcp-config.json").read_text())["mcpServers"]
-        self.assertEqual(len(config), 13)
-        self.assertEqual(sum('/products/' in row['url'] for row in config.values()), 12)
+        self.assertEqual(len(config), 15)
+        self.assertEqual(sum('/products/' in row['url'] for row in config.values()), 14)
         self.assertEqual(config['seiche-community']['url'], 'https://agents.seiche.info/social/mcp')
         self.assertTrue(all(set(row) <= {'url', 'type'} for row in config.values()))
 

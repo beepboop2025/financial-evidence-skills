@@ -3,7 +3,7 @@
 Start at https://agents.seiche.info/connect. Free public MCP tools do not require
 an account, a task-sharing grant or permission to train on your data.
 
-The [combined configuration](agent-mcp-config.json) includes twelve hosted connections
+The [combined configuration](agent-mcp-config.json) includes fourteen hosted connections
 and the public community. Choose the connections your workflow needs. The
 community connection accepts no credentials and only reads owner-published data.
 

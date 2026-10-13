@@ -138,7 +138,7 @@
   ],
   "research_api": {
     "base_url": "https://agents.seiche.info/v1/research",
-    "live_openapi_url": "https://api.seiche.info/openbb/openapi.json",
+    "live_openapi_url": "https://agents.seiche.info/v1/research/openapi.json",
     "import_openapi_url": "https://beepboop2025.github.io/financial-evidence-skills/api/openapi.json",
     "client_kit_url": "https://beepboop2025.github.io/financial-evidence-skills/api/",
     "example": {
@@ -188,13 +188,14 @@
       "id": "noisefloor",
       "version": "0.4.0",
       "mcp_url": "https://agents.seiche.info/products/noisefloor/mcp",
-      "openapi_url": "https://api.seiche.info/noisefloor/openapi.json",
+      "openapi_url": "https://agents.seiche.info/v1/noisefloor/openapi.json",
       "guide_url": "https://github.com/beepboop2025/noisefloor/blob/18e7290a022c7cba0d1e5e417a4a467cccfaa7a0/docs/SPECTRAL_RISK.md",
       "observed_at": "2026-10-09T13:36:25.538503+00:00",
       "advertised_tool_count": 10,
       "scope": "Explicit caller-supplied correlation, market and narrative research; synthetic Dyson reference. No feed collection or execution authority.",
       "workbench_url": "https://liquilens.in/agents/correlation/",
-      "observed_native_mcp_url": "https://api.seiche.info/noisefloor/mcp"
+      "observed_native_mcp_url": "https://api.seiche.info/noisefloor/mcp",
+      "current_hosted_kit_url": "https://beepboop2025.github.io/financial-evidence-skills/api/noisefloor-hosted/"
     }
   ],
   "workflows_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/workflows.json"

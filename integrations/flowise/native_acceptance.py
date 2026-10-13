@@ -22,7 +22,7 @@ import urllib.error
 import urllib.request
 
 DATASETS = ("money_markets", "bank_risk", "market_liquidity")
-ENDPOINT = "https://api.seiche.info/openbb/mcp"
+ENDPOINT = "https://agents.seiche.info/products/financial-evidence/mcp"
 
 
 def sha256(data: bytes) -> str:

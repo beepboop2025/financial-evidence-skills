@@ -35,8 +35,8 @@
       "authentication": "none_for_data_reads",
       "transport": "streamable-http",
       "mcp_url": "https://agents.seiche.info/products/financial-evidence/mcp",
-      "api_base": "https://api.seiche.info/openbb",
-      "openapi_url": "https://api.seiche.info/openbb/openapi.json",
+      "api_base": "https://agents.seiche.info/v1/research",
+      "openapi_url": "https://agents.seiche.info/v1/research/openapi.json",
       "tool_count": 9,
       "tools": [
         "financial_evidence_datasets",
@@ -65,7 +65,7 @@
       "workflow_url": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html",
       "release_observed_at": "2026-10-11T09:31:16.844082+00:00",
       "connection_guide_url": "https://beepboop2025.github.io/financial-evidence-skills/connect/",
-      "start_catalog_url": "https://api.seiche.info/openbb/api/v1/start"
+      "start_catalog_url": "https://agents.seiche.info/v1/research/api/v1/start"
     },
     {
       "id": "local-runtime",
@@ -177,9 +177,9 @@
       "qualification": "Descriptive analysis of caller-supplied series and headlines. Package and interface checks do not establish predictive performance, universal product integration or adoption.",
       "source_commit": "18e7290a022c7cba0d1e5e417a4a467cccfaa7a0",
       "implementation_sha256": "a66b2ce516e5d9fb257e348c183cb489ac25b7c2a1af1cb30663f007a44159fa",
-      "api_base": "https://api.seiche.info/noisefloor",
-      "openapi_url": "https://api.seiche.info/noisefloor/openapi.json",
-      "capabilities_url": "https://api.seiche.info/noisefloor/v1/capabilities",
+      "api_base": "https://agents.seiche.info/v1/noisefloor",
+      "openapi_url": "https://agents.seiche.info/v1/noisefloor/openapi.json",
+      "capabilities_url": "https://agents.seiche.info/v1/noisefloor/v1/capabilities",
       "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.0.json",
       "local_install": "pip install noisefloor==0.4.0",
       "stdio_command": "uvx --from noisefloor==0.4.0 noisefloor-mcp",

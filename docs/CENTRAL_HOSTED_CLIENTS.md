@@ -72,39 +72,24 @@ They remain outside central coverage until their operators upgrade. Native
 product services retain their own deployment authorities and source contracts;
 this client release does not turn the central service into universal visibility.
 
-## Current native surfaces still outside central coverage
+## Current hosted surface migration
 
-These are explicit exceptions in current public instructions, in addition to
-immutable older releases. This migration does not claim whole-fleet coverage.
+OpenBB Workspace now uses `https://agents.seiche.info/v1/research` as its custom
+backend. Its root, widget/app manifests, guide, thumbnail, API docs, OpenAPI,
+health, reviewed research reads and funding CSV export use the same central
+namespace. Public MCP remains `/products/financial-evidence/mcp`.
 
-- **OpenBB Workspace custom backend:** `https://api.seiche.info/openbb`, still
-  linked by `docs/tools/index.html`, `docs/tools/setup.md` and
-  `integrations/openbb/README.md`. Its UI contract uses `GET /`, `/widgets.json`,
-  `/apps.json`, `/guide`, `/thumbnail.svg`, `/docs`, `/openapi.json` and `/healthz`
-  without query parameters. Widget definitions use `GET /api/v1/query` with
-  dataset, entity, start_date, end_date, limit and offset, and
-  `GET /api/v1/funding-review` without parameters. Those two research reads have
-  central equivalents, but the custom-backend UI still resolves its relative
-  widget URLs against the native base. `/api/v1/funding-review.csv` is a native
-  CSV export with no parameters; the central JSON gateway does not proxy it.
-  Source: `src/financial_evidence/workspace.py` and `workspace_config.py`.
-- **NoiseFloor REST client kit 0.4.0:** `docs/api/noisefloor/` is a versioned,
-  source-hash-bound bundle advertised by the current site. Its Postman, Bruno
-  and HTTP examples still call `POST https://api.seiche.info/noisefloor/v1/spectral/assess`
-  and `/v1/research/dyson`, with JSON bodies and no query parameters. Spectral
-  input contains at most 32 series of at most 2,048 observations each, `as_of`
-  and bounded window/step policy. Dyson input contains dimension 2–16, steps
-  1–100, dt 0.000001–1 and a 32-bit unsigned seed. Its included schema also
-  describes `POST /v1/market/assess`, `POST /v1/narrative/triage`, and
-  `GET /v1/capabilities` and `/healthz`. These numeric/text input contracts need
-  their own reviewed POST gateway and retention boundaries before migration;
-  the original kit and manifest have not been silently rewritten. Current
-  NoiseFloor MCP connections already use `/products/noisefloor/mcp`.
-- **Legacy browser deletion:** only explicit
-  `DELETE https://api.seiche.info/openbb/api/v1/applications/current` uses a
-  saved legacy `fe_` key, sent exclusively to its original issuer. New desk
-  research does not enroll or forward that key.
+The [current hosted NoiseFloor kit](api/noisefloor-hosted/) uses
+`https://agents.seiche.info/v1/noisefloor` for capabilities, schema and the four
+reviewed research POST operations. Input is explicitly selected by the caller.
+Operation demand excludes request bodies, arbitrary selector text and credentials.
+The [verified 0.4.0 archive](api/noisefloor/) retains its original bytes and
+local implementation; it is not silently relabeled as a current hosted release.
 
-Native backend responses can still contain native documentation, resource or
-source links as returned provenance. The central proxy does not rewrite source
-identity or claim that every link is an independently observed central request.
+See [the migration guide](HOSTED_MIGRATION.md) to review an older JSON config
+before replacing connections. Published old packages do not update themselves.
+Legacy browser deletion still sends its saved `fe_` key only to its original
+issuer; new desk research does not forward that key.
+
+Native response source links remain provenance. A source link is not a claim
+that every subsequent request is observed by this platform.

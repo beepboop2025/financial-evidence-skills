@@ -16,12 +16,12 @@
     <main><p class="eyebrow">Financial research · Open API</p><h1>From API discovery to a cited research result.</h1>
     <p class="lede">Seven dataset views connect LiquiLens bank evidence, Seiche funding and capital markets, Undertow market liquidity, and source availability. Keep the source, observation date, unit and missing values with every result.</p>
     <div class="actions"><a class="button primary" href="../start/workflows.html">Try three workflows</a><a class="button" href="postman.html">Open in Postman</a><a class="button" href="api-kit.zip" download>Download all API clients</a></div>
-    <p>Public reads · No API key · No account required · No trade execution</p></main>
+    <p>Public reads · No API key · No account required · No trade execution</p><section class="section"><h2>NoiseFloor research</h2><p><a href="noisefloor-hosted/">Use the current hosted research kit</a> for explicitly selected correlation, market and narrative inputs.</p></section></main>
   </header><aside class="quick-start-ribbon" data-audience-entry><p><strong>One task, your tools.</strong> Open a public example, then use the same evidence through API or MCP.</p><a href="../connect/">Choose your connection</a></aside>
   <section class="section" aria-labelledby="first-task"><p class="eyebrow">First useful task</p><h2 id="first-task">Check funding, a covered bank, and liquidity.</h2>
     <ol class="steps"><li><strong>Check coverage first.</strong> Run Release identity, Dataset coverage and Source status. Check the returned source dates and limits.</li><li><strong>Run one research request.</strong> Choose Money Markets, Bank Risk or Market Liquidity. Examples return up to five rows so you can inspect the contract.</li><li><strong>Keep the evidence together.</strong> Cite source URLs and native dates. Preserve unavailable values and rights labels. Follow pagination with the <a href="../tools/">complete-capture research kit</a>.</li><li><strong>Return for your next review.</strong> Compare saved captures on another day and identify which source observations changed.</li></ol>
     <pre><code>curl 'https://agents.seiche.info/v1/research/api/v1/query?dataset=money_markets&amp;limit=5'</code></pre>
-    <p><a href="https://api.seiche.info/openbb/docs">Interactive API documentation</a> · <a href="README.md">Setup and interpretation guide</a></p>
+    <p><a href="https://agents.seiche.info/v1/research/docs">Interactive API documentation</a> · <a href="README.md">Setup and interpretation guide</a></p>
   </section>
   <section class="section muted" aria-labelledby="clients"><p class="eyebrow">Use your existing client</p><h2 id="clients">One contract, familiar tools.</h2>
     <table><thead><tr><th scope="col">Client</th><th scope="col">Import</th></tr></thead><tbody>

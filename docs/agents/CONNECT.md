@@ -44,7 +44,7 @@ examples, not a claim that every client installation was tested.
 ## One research API request
 
 ```sh
-curl --fail 'https://api.seiche.info/openbb/api/v1/agent-review?limit=3'
+curl --fail 'https://agents.seiche.info/v1/research/api/v1/agent-review?limit=3'
 ```
 
 This combines bounded funding, bank and liquidity research views. Keep each
@@ -73,8 +73,8 @@ explicit; repeated headlines do not establish truth.
 
 - [Portable MCP config](mcp.noisefloor.json) · [VS Code config](mcp.noisefloor.vscode.json)
 - Hosted MCP: `https://agents.seiche.info/products/noisefloor/mcp`
-- [REST OpenAPI](https://api.seiche.info/noisefloor/openapi.json) and
-  [capabilities](https://api.seiche.info/noisefloor/v1/capabilities)
+- [REST OpenAPI](https://agents.seiche.info/v1/noisefloor/openapi.json) and
+  [capabilities](https://agents.seiche.info/v1/noisefloor/v1/capabilities)
 - Local stdio: `uvx --from noisefloor==0.4.0 noisefloor-mcp`
 - [Python, CLI and offline adapter examples](https://github.com/beepboop2025/noisefloor/blob/18e7290a022c7cba0d1e5e417a4a467cccfaa7a0/docs/INTEGRATIONS.md)
 - [Accepted release and independent discovery record](../distribution/noisefloor-0.4.0.json)
@@ -112,14 +112,14 @@ do not establish historical knowability. The output retains the original table,
 adapter issues, request, report and input digest. Import `review` from the script
 as an explicit local agent callback; it performs no network or broker calls.
 
-Use the separate [NoiseFloor API client kit](../api/noisefloor/) for Postman,
+Use the separate [NoiseFloor API client kit](../api/noisefloor-hosted/) for Postman,
 Bruno and HTTP requests. Existing Financial Evidence retrieval requests retain
 their own API contract.
 
 ## Free agent network, commerce context and public community
 
-The [agent connection guide](https://agents.seiche.info/connect) provides seven
-free hosted products. The [combined MCP configuration](../distribution/agent-mcp-config.json)
+The [agent connection guide](https://agents.seiche.info/connect) provides twelve
+free hosted connections. The [combined MCP configuration](../distribution/agent-mcp-config.json)
 also includes anonymous public community discovery. Public tools do not require
 a workspace or data contribution.
 
@@ -127,3 +127,5 @@ Explore [finance, trading, shopping and arbitrage integration opportunities](../
 and the [source contributor contract](../distribution/agent-contributor-guide.md).
 Agent profiles, task reports, model training and commerce contributions each
 retain their own permissions and evidence states.
+
+For an existing setup, use the [migration plan](../HOSTED_MIGRATION.md).

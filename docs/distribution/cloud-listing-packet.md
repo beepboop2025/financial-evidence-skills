@@ -17,16 +17,16 @@ separate work.
 | Demonstration | https://beepboop2025.github.io/financial-evidence-skills/start/ |
 | Documentation | https://beepboop2025.github.io/financial-evidence-skills/api/ |
 | OpenAPI | https://beepboop2025.github.io/financial-evidence-skills/api/openapi.json |
-| REST base | https://api.seiche.info/openbb |
-| Research MCP | https://api.seiche.info/openbb/mcp |
+| REST base | https://agents.seiche.info/v1/research |
+| Research MCP | https://agents.seiche.info/products/financial-evidence/mcp |
 | Source router MCP | https://liquilens.in/mcp/financial-evidence |
 | Support | mrinal@liquilens.in |
 | Support page | https://beepboop2025.github.io/financial-evidence-skills/support/ |
 | Privacy | https://beepboop2025.github.io/financial-evidence-skills/privacy/ |
 | Terms | https://beepboop2025.github.io/financial-evidence-skills/terms/ |
 | Public logo source | https://raw.githubusercontent.com/beepboop2025/financial-evidence-skills/v0.1.6/assets/logo-400.png |
-| Source status | https://api.seiche.info/openbb/api/v1/sources |
-| Deployment identity | https://api.seiche.info/openbb/api/v1/release |
+| Source status | https://agents.seiche.info/v1/research/api/v1/sources |
+| Deployment identity | https://agents.seiche.info/v1/research/api/v1/release |
 
 **Short description:** Read-only tools for source-cited bank, funding and
 market-liquidity research. Query seven dataset views through a browser, REST

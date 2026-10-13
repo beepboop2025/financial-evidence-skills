@@ -114,7 +114,7 @@ Packet `status` equals `transport_status` and describes retrieval only. Every pa
 
 ## Optional correlation research
 
-- NoiseFloor 0.4.0: https://api.seiche.info/noisefloor/mcp (10 tools, including spectral_assessment and dyson_reference).
+- NoiseFloor 0.4.0: https://agents.seiche.info/products/noisefloor/mcp (10 tools, including spectral_assessment and dyson_reference).
 - Workbench: https://liquilens.in/agents/correlation/ (caller-supplied observations and labeled synthetic examples).
 - Local Financial Evidence adapter: https://beepboop2025.github.io/financial-evidence-skills/agents/spectral_review.py
 - API client kit: https://beepboop2025.github.io/financial-evidence-skills/api/noisefloor/

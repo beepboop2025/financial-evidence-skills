@@ -13,12 +13,11 @@ end user's network address. See the operator's
 [Financial Evidence privacy policy](https://beepboop2025.github.io/financial-evidence-skills/privacy/)
 and [Hetzner privacy policy](https://www.hetzner.com/legal/privacy-policy/).
 
-The operator's published policy limits ordinary operational logs to 30 days,
-with exceptions for legal requirements or active abuse investigations, and
-anonymous aggregate counters to 90 UTC dates. Provider-managed logs follow the
-provider's lifecycle and policy. Aggregate counts do not identify active people.
-These are the service policy commitments; the plugin does not control the
-hosting infrastructure's retention settings.
+The central service retains ordinary operation/tool/dataset demand for 30 days.
+Demand dimensions exclude the entity filter, request bodies and credentials.
+This observation is separate from optional learning or training enrollment.
+Read the [central service notice](https://agents.seiche.info/privacy) for current
+operational handling. Aggregate counts do not identify active people.
 
 The backend retrieves fixed public source documents and filters the results
 locally. It does not forward the incoming entity, limit, offset or Dify request

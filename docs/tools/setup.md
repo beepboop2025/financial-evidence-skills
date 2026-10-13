@@ -8,7 +8,7 @@ text. Optional installation measurement and learning are separate.
 
 | Tool | Setup | First useful result | Repeat workflow |
 | --- | --- | --- | --- |
-| OpenBB Workspace | Add `https://api.seiche.info/openbb` as a custom backend | Open Financial Evidence Research Desk; inspect funding, a covered bank and liquidity | Save your own layout; revisit the source dates and source audit |
+| OpenBB Workspace | Add `https://agents.seiche.info/v1/research` as a custom backend | Open Financial Evidence Research Desk; inspect funding, a covered bank and liquidity | Save your own layout; revisit the source dates and source audit |
 | OpenBB Python V4/V5 | Install current repository source with `.[openbb,workspace]` in a clean environment; run `openbb-build` | `obb.financial_evidence.query(dataset="money_markets", entity="USD")` | Keep `extra.financial_evidence` alongside your dataframe |
 | Python/Jupyter/Colab | [Open in Colab](https://colab.research.google.com/github/beepboop2025/financial-evidence-skills/blob/main/docs/tools/research_desk.ipynb) or download the notebook; Python 3.10+, pinned helper loads automatically | `collect("bank_risk", entity="ESAF")` | Save each capture into a new directory and compare observation dates and content hashes |
 | Excel/Power BI | Paste `FinancialEvidenceRows.pq` into a blank Power Query; Anonymous authentication | `FinancialEvidenceRows("money_markets", "USD")` | Refresh deliberately and retain prior exports when comparing dates |

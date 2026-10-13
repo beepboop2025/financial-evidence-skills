@@ -31,6 +31,26 @@
     "seiche-community": {
       "type": "http",
       "url": "https://agents.seiche.info/social/mcp"
+    },
+    "riptide": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/riptide/mcp"
+    },
+    "myquant-editorial": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/myquant-editorial/mcp"
+    },
+    "myquant-app": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/myquant-app/mcp"
+    },
+    "trade-safety": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/trade-safety/mcp"
+    },
+    "financial-evidence": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/financial-evidence/mcp"
     }
   }
 }

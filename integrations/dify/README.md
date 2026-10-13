@@ -5,9 +5,10 @@ plugin requests tool permission only; it has no LLM, storage or transaction
 permission. Read [PRIVACY.md](PRIVACY.md) before installation.
 
 Source repository: [financial-evidence-skills](https://github.com/beepboop2025/financial-evidence-skills),
-under `integrations/dify`. Support: mrinal@liquilens.in. Version 0.1.1 updates
-the Python SDK to 0.10.2 and adds Marketplace repository, contact and outbound
-domain metadata; the evidence tool inputs and output contract are unchanged.
+under `integrations/dify`. Support: mrinal@liquilens.in. Version 0.1.2 routes
+research through the central hosted service and declares its outbound domain.
+The evidence tool inputs and output contract are unchanged. This is a new
+package candidate; the prior 0.1.1 marketplace submission is separate.
 
 ## Setup and connection requirements
 

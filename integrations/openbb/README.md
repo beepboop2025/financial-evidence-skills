@@ -9,10 +9,10 @@ commit exposed at `/api/v1/release`. The published **v0.1.7 artifacts and public
 three-tool MCP endpoint retain their existing contract**. A hosted custom backend
 is separate from acceptance in OpenBB's directory.
 
-The hosted production backend is **https://api.seiche.info/openbb**. Add that
+The hosted production backend is **https://agents.seiche.info/v1/research**. Add that
 URL as a custom backend in OpenBB Workspace. Its MCP endpoint is
 `https://agents.seiche.info/products/financial-evidence/mcp`; interactive documentation is at
-`https://api.seiche.info/openbb/docs`. Check the release and source status before
+`https://agents.seiche.info/v1/research/docs`. Check the release and source status before
 relying on any current deployment.
 
 ## Choose a first task

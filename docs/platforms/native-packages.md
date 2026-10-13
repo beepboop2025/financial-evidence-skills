@@ -5,25 +5,31 @@
 Use these versions for the central service at
 `https://agents.seiche.info/v1/research`. The exact downloaded bytes passed
 the checks in [current package receipts](hosted-native-packages.json).
-These are qualified downloads; the new versions are not yet published to npm
-or Dify Marketplace.
+n8n 0.1.1 is published on npm. Dify 0.1.2 remains a qualified download candidate.
 
 ### n8n hosted 0.1.1
 
 [Download n8n 0.1.1](downloads/n8n-nodes-financial-evidence-0.1.1.tgz).
+Install from [npm](https://www.npmjs.com/package/n8n-nodes-financial-evidence/v/0.1.1)
+or use this exact archive. Public bytes, anonymous installation, cryptographic
+provenance and native execution passed the
+[publication checks](n8n-publication-20261013.json).
 The archive loaded in native n8n 2.42.6 on Node 24.12.0 and returned one bounded
 bank, funding and liquidity page. Build, lint, unit tests and archive source
 checks passed. Tests used synthetic labels and removed their temporary database.
 
-For a permitted self-hosted instance, install the downloaded archive from its
+For a permitted self-hosted instance, install the package from its
 community-node directory, then restart n8n:
 
 ```sh
-npm install /absolute/path/to/n8n-nodes-financial-evidence-0.1.1.tgz
+npm install n8n-nodes-financial-evidence@0.1.1
 ```
 
 Use Node 24 or another version supported by your installed n8n release.
-The new candidate has not been published to npm or verified by n8n.
+n8n Creator verification remains pending; npm publication does not establish
+n8n Cloud availability. Add **Financial Evidence**, select `money_markets`, set
+limit `1` and offset `0`, then run once and inspect the sources and diagnostics.
+The public research API requires no financial-data API key.
 
 ### Dify hosted 0.1.2
 
@@ -38,7 +44,7 @@ No new marketplace submission or acceptance is claimed.
 ## Previous native releases
 
 The following versioned downloads and observations remain historical.
-For new central connections, choose the current hosted candidates above.
+For new central connections, choose the current hosted clients above.
 
 The n8n package is published on npm; the Dify package remains a marketplace
 submission candidate. Check each package's publication state, file digest and

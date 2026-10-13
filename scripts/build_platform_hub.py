@@ -72,6 +72,7 @@ def assets() -> dict[str, bytes]:
                 ROOT / "docs/distribution/langchain-pypi-consumer-20261013.json",
                 DEST / "colab-verification-20261011.json",
                 DEST / "n8n-publication-20261011.json",
+                DEST / "n8n-publication-20261013.json",
                 DEST / "n8n-creator-submission-20261011.json"]
     # Explicit public allowlist: never collect the native runtime or its state.
     flowise_files = ("README.md", "NOTICE.md", "FLOWISE-LICENSE.md", "publication.json",

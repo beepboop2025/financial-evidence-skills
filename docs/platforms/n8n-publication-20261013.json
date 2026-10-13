@@ -1,0 +1,96 @@
+{
+  "schema": "financial-evidence.n8n-publication.v2",
+  "observed_at": "2026-10-13T11:20:50.520388+00:00",
+  "package": "n8n-nodes-financial-evidence",
+  "version": "0.1.1",
+  "npm_published": true,
+  "public_url": "https://www.npmjs.com/package/n8n-nodes-financial-evidence/v/0.1.1",
+  "registry_url": "https://registry.npmjs.org/n8n-nodes-financial-evidence/0.1.1",
+  "published_at": "2026-10-13T11:14:13.122Z",
+  "dist_tag": "latest",
+  "archive_sha256": "173cace788d93d599d97de5d65eb998876af41dc2b244916e421950969a44a6a",
+  "archive_bytes": 4683,
+  "provenance": {
+    "cryptographic_sigstore_verification": "passed",
+    "verifier": "npm 11.21.0 audit signatures --json --include-attestations",
+    "certificate_identity_verified": true,
+    "certificate_identity": "https://github.com/beepboop2025/financial-evidence-skills/.github/workflows/native-marketplace-npm-publish.yml@refs/heads/main",
+    "signed_subject_digest_verified": true,
+    "public_bytes_match_reviewed_archive": true,
+    "source_sha": "27d7ba5991ac57bb538770c9984c4b1d48ba790f",
+    "workflow": ".github/workflows/native-marketplace-npm-publish.yml",
+    "invocation": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38358240580/attempts/1",
+    "audit_receipt_sha256": "c02495f4beda47a92927278fbb0c9f42125e2cd68309f9c64d7b7f03c1c2b1b7"
+  },
+  "post_publication_ci": {
+    "url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38388877783",
+    "source_revision": "0567e95887f962ac16ef946bab2444cdd08993fc",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "n8n_verified": false,
+  "independent_adoption_proven": false,
+  "historical_readme_note": "The immutable archive retains its prepublication status wording; this receipt records the subsequent npm publication.",
+  "anonymous_consumer": {
+    "observed_at": "2026-10-13T11:20:53.366144+00:00",
+    "anonymous_install": "passed",
+    "credentials_configured": false,
+    "lifecycle_scripts_executed": false,
+    "npm_audit_signatures": "passed",
+    "n8n_nodes_api_version": 1,
+    "node_entries": [
+      "dist/nodes/FinancialEvidence/FinancialEvidence.node.js"
+    ],
+    "runtime_execution": "verified_separately_in_Node_24_CI"
+  },
+  "native_validation": {
+    "schema": "financial-evidence.n8n-native-smoke.v1",
+    "observed_at": "2026-10-13T11:17:41.859428+00:00",
+    "status": "passed",
+    "n8n_version": "2.42.6",
+    "package": "n8n-nodes-financial-evidence-0.1.1.tgz",
+    "sha256": "173cace788d93d599d97de5d65eb998876af41dc2b244916e421950969a44a6a",
+    "archive_check": {
+      "schema": "financial-evidence.n8n-archive-check.v1",
+      "origin": "existing_archive",
+      "name": "n8n-nodes-financial-evidence",
+      "version": "0.1.1",
+      "sha256": "173cace788d93d599d97de5d65eb998876af41dc2b244916e421950969a44a6a",
+      "runtime_and_metadata_match_current_build": true,
+      "readme_matches_current_source": true,
+      "archive_readme_sha256": "de49d400c76a1621b72329eda21ad94b48250fdad1449e7d9d9e06ede5568dbc",
+      "source_readme_sha256": "de49d400c76a1621b72329eda21ad94b48250fdad1449e7d9d9e06ede5568dbc"
+    },
+    "loader": "native_custom_extension_from_npm_tarball",
+    "pages": {
+      "bank_risk": {
+        "rows": 1,
+        "sources": 1,
+        "diagnostics": 0,
+        "next_offset": 1,
+        "transport_status": "complete"
+      },
+      "money_markets": {
+        "rows": 1,
+        "sources": 1,
+        "diagnostics": 0,
+        "next_offset": 1,
+        "transport_status": "complete"
+      },
+      "market_liquidity": {
+        "rows": 1,
+        "sources": 1,
+        "diagnostics": 0,
+        "next_offset": 1,
+        "transport_status": "complete"
+      }
+    },
+    "traffic_class": "synthetic",
+    "measurement_instrumentation": "isolated_https_request_header",
+    "package_bytes_modified_by_instrumentation": false,
+    "temporary_runtime_state_retained": false,
+    "npm_published": false,
+    "n8n_verified": false,
+    "independent_adoption_proven": false
+  }
+}

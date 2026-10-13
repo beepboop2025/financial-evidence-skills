@@ -52,7 +52,7 @@
           ]
         }
       },
-      "rest_example": "https://api.liquilens.in/api/experimental/v1/banking/monitoring/watchlist?slugs=au-sfb,bajaj-finance",
+      "rest_example": "https://agents.seiche.info/v1/data/liquilens.institution_watchlist?slugs=au-sfb,bajaj-finance",
       "observed_example_schema": "liquilens.institution-monitoring.v1",
       "first_use_evidence": "Named reviewer retains a sourced follow-up queue for their own watchlist",
       "repeat_task": "Review changed disclosures and unresolved gaps on the next working day; retain policy version, cutoff and record hash",

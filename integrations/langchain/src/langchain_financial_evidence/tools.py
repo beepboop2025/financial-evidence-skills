@@ -88,7 +88,7 @@ def _fetch(route: str, parameters: dict[str, Any], timeout: float, max_bytes: in
         url += "?" + urlencode(parameters)
     request = Request(url, headers={
         "Accept": "application/json",
-        "User-Agent": "langchain-financial-evidence/0.1.0",
+        "User-Agent": "langchain-financial-evidence/0.1.1",
     }, method="GET")
     try:
         with build_opener(_RejectRedirects()).open(request, timeout=timeout) as response:

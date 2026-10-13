@@ -113,6 +113,8 @@ def test_network_errors_never_turn_into_empty_success_or_expose_error_bodies(err
             FinancialEvidenceQueryTool().invoke({"dataset": "money_markets"})
         assert "secret" not in str(caught.value)
         assert opener.return_value.open.call_count == 1
+        request = opener.return_value.open.call_args.args[0]
+        assert request.full_url.startswith("https://agents.seiche.info/v1/research/api/v1/agent-query?")
 
 
 @pytest.mark.parametrize("raw", [b"<html>error</html>", b'{"value": NaN}', b"\xff"])
@@ -162,3 +164,34 @@ def test_catalog_is_a_live_metadata_request_and_preserves_catalog_limits():
     with patch("langchain_financial_evidence.tools.build_opener") as opener:
         opener.return_value.open.return_value = reply(payload)
         assert FinancialEvidenceDatasetsTool().invoke({}) == payload
+
+
+@pytest.mark.parametrize("index, route, arguments", [
+    (0, "datasets", {}),
+    (1, "agent-query", {"dataset": "money_markets", "limit": 2}),
+    (2, "agent-review", {"bank": "A&B / €", "limit": 1}),
+])
+def test_every_tool_uses_one_central_request_and_preserves_evidence(index, route, arguments):
+    review = copy.deepcopy(QUERY)
+    review.pop("dataset")
+    review.pop("results")
+    review["sections"] = [{"dataset": dataset, "results": [{"value": None}]}
+                          for dataset in ["money_markets", "bank_risk", "market_liquidity"]]
+    payload = [[{"id": "money_markets", "maximum_limit": 2000}], QUERY, review][index]
+    with patch("langchain_financial_evidence.tools.build_opener") as opener:
+        opener.return_value.open.return_value = reply(payload)
+        result = FinancialEvidenceToolkit(timeout=12).get_tools()[index].invoke(arguments)
+        opener.return_value.open.assert_called_once()
+        request = opener.return_value.open.call_args.args[0]
+        assert opener.return_value.open.call_args.kwargs["timeout"] == 12
+    parsed = urlsplit(request.full_url)
+    assert parsed.scheme == "https"
+    assert parsed.netloc == "agents.seiche.info"
+    assert parsed.path == "/v1/research/api/v1/" + route
+    assert request.get_method() == "GET"
+    assert request.get_header("User-agent") == "langchain-financial-evidence/0.1.1"
+    assert request.get_header("Authorization") is None
+    assert request.data is None
+    if "bank" in arguments:
+        assert parse_qs(parsed.query)["bank"] == [arguments["bank"]]
+    assert result == payload

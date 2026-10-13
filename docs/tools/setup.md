@@ -9,7 +9,7 @@ text. Optional installation measurement and learning are separate.
 | Tool | Setup | First useful result | Repeat workflow |
 | --- | --- | --- | --- |
 | OpenBB Workspace | Add `https://agents.seiche.info/v1/research` as a custom backend | Open Financial Evidence Research Desk; inspect funding, a covered bank and liquidity | Save your own layout; revisit the source dates and source audit |
-| OpenBB Python V4/V5 | Install current repository source with `.[openbb,workspace]` in a clean environment; run `openbb-build` | `obb.financial_evidence.query(dataset="money_markets", entity="USD")` | Keep `extra.financial_evidence` alongside your dataframe |
+| OpenBB Python V4/V5 | Install release 0.1.8 with its `openbb` and `workspace` extras in a clean environment; run `openbb-build` | `obb.financial_evidence.query(dataset="money_markets", entity="USD")` | Keep `extra.financial_evidence` alongside your dataframe |
 | Python/Jupyter/Colab | [Open in Colab](https://colab.research.google.com/github/beepboop2025/financial-evidence-skills/blob/main/docs/tools/research_desk.ipynb) or download the notebook; Python 3.10+, pinned helper loads automatically | `collect("bank_risk", entity="ESAF")` | Save each capture into a new directory and compare observation dates and content hashes |
 | Excel/Power BI | Paste `FinancialEvidenceRows.pq` into a blank Power Query; Anonymous authentication | `FinancialEvidenceRows("money_markets", "USD")` | Refresh deliberately and retain prior exports when comparing dates |
 | Google Sheets | [Paste the custom function](google-sheets.md); put a refresh counter in A1 and the formula in A3 | `=FINANCIAL_EVIDENCE("money_markets","USD",20,0,A1)` | Change A1 deliberately; retain visible sources and page status. Google-native execution remains unverified |
@@ -19,9 +19,10 @@ text. Optional installation measurement and learning are separate.
 | Bloomberg BQuant | Administrator evaluates the notebook and approved own-data import route | Import a cited capture in an entitled sandbox | Requires native validation; no App Portal acceptance is claimed |
 | LSEG/FactSet/FDC3 desktops | Administrator selects the permitted import or context interface | Use the cited CSV/JSON or FDC3 reference app | Vendor acceptance, security review and entitlements are separate |
 
-The released v0.1.7 package remains unchanged and pins the V4-era OpenBB core.
-V5 support is in current repository source; use a fresh environment as OpenBB's
-migration guide recommends. Do not upgrade an existing V4 analysis environment
+Version 0.1.8 supports the qualified V4 and V5 OpenBB core ranges.
+Install its optional OpenBB extra in a clean environment and run `openbb-build`.
+Use a fresh environment as OpenBB's migration guide recommends. Do not upgrade
+an existing V4 analysis environment
 in place just to try this desk.
 
 ## Capture all three products

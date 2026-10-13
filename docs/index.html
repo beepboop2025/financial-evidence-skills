@@ -26,7 +26,7 @@
             "description": "A free, read-only terminal and MCP router for money markets, capital markets, China economy, bank risk, market liquidity, GIFT City, forex and gold evidence from LiquiLens, Undertow, Seiche, and Palimpsest.",
             "inLanguage": "en",
             "datePublished": "2026-08-24",
-            "dateModified": "2026-10-08",
+            "dateModified": "2026-10-13",
             "mainEntity": {
               "@id": "https://beepboop2025.github.io/financial-evidence-skills/#software"
             }
@@ -37,8 +37,8 @@
             "name": "Financial Evidence",
             "description": "A free, read-only terminal and MCP router for public money-market, capital-market, China-economy, bank-risk, market-liquidity, GIFT City, forex and gold evidence.",
             "url": "https://beepboop2025.github.io/financial-evidence-skills/",
-            "downloadUrl": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.7",
-            "softwareVersion": "0.1.7",
+            "downloadUrl": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.8",
+            "softwareVersion": "0.1.8",
             "applicationCategory": "FinanceApplication",
             "applicationSubCategory": "Financial research infrastructure",
             "operatingSystem": "macOS, Linux, Windows",
@@ -136,12 +136,12 @@
     <section id="install" class="section muted">
       <p class="eyebrow">Agent and terminal</p>
       <h2>How do I install Financial Evidence?</h2>
-      <p>v0.1.7 is a signed, independently verified release. The hosted research workspace evolves separately; use its release endpoint to check the running source.</p>
-      <p class="answer">Install the Agent Skill to let compatible agents activate this router for matching financial research. For direct terminal use, install the checksum-pinned Homebrew formula on macOS or Linux, or run the signed Git tag on any system with uv. Homebrew and the Git commands below install 0.1.7.</p>
+      <p>v0.1.8 is a signed, independently verified release. The hosted research workspace evolves separately; use its release endpoint to check the running source.</p>
+      <p class="answer">Install the Agent Skill to let compatible agents activate this router for matching financial research. For direct terminal use, install the checksum-pinned Homebrew formula on macOS or Linux, or run the signed Git tag on any system with uv. The Git commands and independently verified Homebrew formula install 0.1.8.</p>
       <div class="commands">
         <div>
           <h3>Agent Skills</h3>
-          <pre><code>npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.7/financial-evidence \
+          <pre><code>npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.8/financial-evidence \
   --skill financial-evidence</code></pre>
         </div>
         <div>
@@ -151,7 +151,7 @@ financial-evidence fetch --topic money-market --topic china-economy</code></pre>
         </div>
         <div>
           <h3>Run without installing</h3>
-          <pre><code>uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.7 \
+          <pre><code>uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.8 \
   financial-evidence route --topic capital-market --format table</code></pre>
         </div>
         <div>
@@ -171,35 +171,34 @@ financial-evidence fetch --topic money-market --topic china-economy</code></pre>
       <div class="grid">
         <article><h3>Agent Skills</h3><p>A public <code>SKILL.md</code> teaches compatible agents when to route money-market, capital-market, China-economy, bank-risk, and market-liquidity research across the four products.</p><p><a href="https://skills.sh/beepboop2025/financial-evidence-skills/financial-evidence">Open the public skill listing</a></p></article>
         <article><h3>Terminal</h3><p>Homebrew, uvx, persistent uv tools, completions for Bash, Zsh, and Fish, and stable pipeline exit codes.</p></article>
-        <article><h3>MCP</h3><p>Three read-only tools, an official registry record, multi-architecture container, root <code>.mcp.json</code> for Copilot Agent Host and compatible clients, and a one-click MCP Bundle.</p></article>
+        <article><h3>MCP</h3><p>The root <code>.mcp.json</code> connects compatible clients to the central nine-tool Research Desk. The local stdio command, official Registry record, multi-architecture container and MCP Bundle retain the separate three-tool compatibility interface.</p></article>
         <article><h3>Connected infrastructure</h3><p>Choose public research APIs and MCP, a private recurring research runtime, or an authenticated paper assessment host. Each interface preserves its own version, source clocks and access boundary.</p><p><a href="https://liquilens.in/agents/infrastructure/">Connection guide</a> · <a href="agents/system.json">Current interface catalog</a></p></article>
         <article><h3>Remote MCP</h3>
-          <p>Manual remote setup: <a href="tools/mcp.remote.vscode.json" download>VS Code JSON</a> · <a href="tools/mcp.remote.cursor.json" download>Cursor JSON</a>. Merge the server entry into your project’s <code>.vscode/mcp.json</code> or <code>.cursor/mcp.json</code>, keeping your existing servers.</p><p>Public Streamable HTTP at <code>https://liquilens.in/mcp/financial-evidence</code>, with no local runtime, account, API key, or write action.</p></article>
-        <article><h3>Gemini CLI</h3><p>A root extension manifest bundles the Agent Skill and allowlists the three tools from the public remote MCP endpoint.</p></article>
+          <p>Manual remote setup: <a href="tools/mcp.remote.vscode.json" download>VS Code JSON</a> · <a href="tools/mcp.remote.cursor.json" download>Cursor JSON</a>. Merge the server entry into your project’s <code>.vscode/mcp.json</code> or <code>.cursor/mcp.json</code>, keeping your existing servers.</p><p>Public Streamable HTTP at <code>https://agents.seiche.info/products/financial-evidence/mcp</code>, with nine read-only tools and no local runtime, account or API key.</p></article>
+        <article><h3>Gemini CLI</h3><p>A root extension manifest bundles the Agent Skill and allowlists the nine tools from the central Research Desk.</p></article>
         <article><h3>Claude Code</h3><p>A self-hosted <code>liquidity-lab</code> marketplace installs the versioned plugin, Agent Skill, and MCP configuration directly from the source repository.</p></article>
         <article><h3>Codex and ChatGPT</h3><p>Codex can install the repository plugin, which combines the same Agent Skill and public remote MCP route. ChatGPT availability remains pending account-owned universal-directory verification, submission, review, and publication.</p></article>
-        <article><h3>VS Code</h3><p>A workspace <code>servers</code> config, protocol install URL, and <code>code --add-mcp</code> command, currently pinned to verified v0.1.7.</p></article>
-        <article><h3>Cursor</h3><p>A workspace <code>mcpServers</code> config and base64-encoded install deeplink pinned to the same stdio server.</p></article>
+        <article><h3>VS Code</h3><p>A workspace <code>servers</code> config, protocol install URL, and <code>code --add-mcp</code> command, connected to the central nine-tool workspace.</p></article>
+        <article><h3>Cursor</h3><p>A workspace <code>mcpServers</code> config and base64-encoded install deeplink connect to the same central nine-tool HTTP service without a local Python process.</p></article>
         <article><h3>OpenBB</h3><p>Registered routes for Python, notebook, REST, and MCP surfaces after installing the optional extension.</p></article>
         <article><h3>DuckDB</h3><p>Six HTTP-backed views that keep the four products separate and queryable with SQL.</p></article>
         <article><h3>Excel</h3><p>A Power Query function that returns topic evidence to ordinary workbooks without a custom add-in.</p></article>
         <article><h3>FDC3</h3><p>A public Evidence Inspector receives and broadcasts declared standard contexts through <code>window.fdc3</code>, with a matching FDC3 2.0 app-directory record.</p><p><a href="integrations/fdc3/evidence-inspector/">Open the FDC3 Evidence Inspector</a> · <a href="integrations/fdc3/appd-record.json">Read the AppD record</a></p></article>
       </div>
+      <p>The legacy compatibility endpoint <code>https://liquilens.in/mcp/financial-evidence</code> retains three topic-routing tools: <code>financial_evidence_topics</code>, <code>financial_evidence_route</code> and <code>financial_evidence_fetch</code>. Current editor downloads and buttons below use the central nine-tool workspace.</p>
       <div class="actions">
-        <a class="button" href="vscode:mcp/install?%7B%22name%22%3A%22financial-evidence-remote%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fliquilens.in%2Fmcp%2Ffinancial-evidence%22%7D">Connect remote MCP in VS Code</a>
-        <a class="button" href="cursor://anysphere.cursor-deeplink/mcp/install?name=financial-evidence-remote&amp;config=eyJ1cmwiOiJodHRwczovL2xpcXVpbGVucy5pbi9tY3AvZmluYW5jaWFsLWV2aWRlbmNlIn0%3D">Connect remote MCP in Cursor</a>
-        <a class="button primary" href="vscode:mcp/install?%7B%22name%22%3A%22financial-evidence%22%2C%22type%22%3A%22stdio%22%2C%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22--from%22%2C%22git%2Bhttps%3A%2F%2Fgithub.com%2Fbeepboop2025%2Ffinancial-evidence-skills.git%40v0.1.7%22%2C%22financial-evidence-mcp%22%5D%7D">Install verified v0.1.7 in VS Code</a>
-        <a class="button" href="cursor://anysphere.cursor-deeplink/mcp/install?name=financial-evidence&amp;config=eyJ0eXBlIjoic3RkaW8iLCJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyItLWZyb20iLCJnaXQraHR0cHM6Ly9naXRodWIuY29tL2JlZXBib29wMjAyNS9maW5hbmNpYWwtZXZpZGVuY2Utc2tpbGxzLmdpdEB2MC4xLjciLCJmaW5hbmNpYWwtZXZpZGVuY2UtbWNwIl19">Install verified v0.1.7 in Cursor</a>
+        <a class="button primary" href="vscode:mcp/install?%7B%22name%22%3A%22financial-evidence%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fagents.seiche.info%2Fproducts%2Ffinancial-evidence%2Fmcp%22%7D">Connect VS Code</a>
+        <a class="button" href="cursor://anysphere.cursor-deeplink/mcp/install?name=financial-evidence&amp;config=eyJ0eXBlIjoiaHR0cCIsInVybCI6Imh0dHBzOi8vYWdlbnRzLnNlaWNoZS5pbmZvL3Byb2R1Y3RzL2ZpbmFuY2lhbC1ldmlkZW5jZS9tY3AifQ==">Connect Cursor</a>
       </div>
       <div class="commands">
         <div>
-          <h3>Remote MCP</h3>
-          <pre><code>https://liquilens.in/mcp/financial-evidence</code></pre>
+          <h3>Central Research Desk MCP</h3>
+          <pre><code>https://agents.seiche.info/products/financial-evidence/mcp</code></pre>
         </div>
         <div>
           <h3>Gemini CLI</h3>
           <pre><code>gemini extensions install https://github.com/beepboop2025/financial-evidence-skills \
-  --ref v0.1.7</code></pre>
+  --ref v0.1.8</code></pre>
         </div>
         <div>
           <h3>Claude Code · mutable default branch</h3>
@@ -208,12 +207,12 @@ claude plugin install financial-evidence@liquidity-lab</code></pre>
         </div>
         <div>
           <h3>Codex</h3>
-          <pre><code>codex plugin marketplace add beepboop2025/financial-evidence-skills --ref v0.1.7
+          <pre><code>codex plugin marketplace add beepboop2025/financial-evidence-skills --ref v0.1.8
 codex plugin add financial-evidence@liquidity-lab</code></pre>
         </div>
         <div>
           <h3>VS Code CLI</h3>
-          <pre><code>code --add-mcp '{"name":"financial-evidence","type":"stdio","command":"uvx","args":["--from","git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.7","financial-evidence-mcp"]}'</code></pre>
+          <pre><code>code --add-mcp '{"name":"financial-evidence","type":"http","url":"https://agents.seiche.info/products/financial-evidence/mcp"}'</code></pre>
         </div>
       </div>
       <p>Install <code>uv</code> first, then review the exact local command and source before accepting editor install, trust, or tool-use prompts. Cursor asks for tool approval by default. VS Code normally asks you to trust a server on first start, but its inline <code>mcp.json</code> start action can skip that prompt. These are self-install routes, not vendor marketplace listings. The FDC3 record likewise does not imply FINOS review or directory acceptance.</p>
@@ -232,13 +231,13 @@ codex plugin add financial-evidence@liquidity-lab</code></pre>
         <li>Routes declare no financial authority and no published Carrier URL.</li>
         <li>No account, API key, write action, trade action, or custody action.</li>
       </ul>
-      <p><a href="releases/0.1.7.json">Release verification record</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/blob/main/SEMANTIC_CONTRACT.md">Read the v0.1.5 semantic contract</a>.</p>
+      <p><a href="releases/0.1.8.json">Release verification record</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/blob/main/SEMANTIC_CONTRACT.md">Read the v0.1.5 semantic contract</a>.</p>
     </section>
 
     </details>
     <footer>
-      <p>Last updated 8 October 2026 · MIT-licensed software by LIQUILENS PRIVATE LIMITED.</p>
-      <p><a href="https://github.com/beepboop2025/financial-evidence-skills">Source and documentation</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.7">Last verified release v0.1.7</a> · <a href="support/">Support</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/security/policy">Security policy</a> · <a href="privacy/">Privacy</a> · <a href="terms/">Terms</a></p>
+      <p>Last updated 13 October 2026 · MIT-licensed software by LIQUILENS PRIVATE LIMITED.</p>
+      <p><a href="https://github.com/beepboop2025/financial-evidence-skills">Source and documentation</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.8">Last verified release v0.1.8</a> · <a href="support/">Support</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/security/policy">Security policy</a> · <a href="privacy/">Privacy</a> · <a href="terms/">Terms</a></p>
     </footer>
   </body>
 </html>

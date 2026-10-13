@@ -3451,24 +3451,27 @@
       "state": "live",
       "listing_url": "https://www.npmjs.com/package/n8n-nodes-financial-evidence",
       "cost": "Free MIT package; self-hosted n8n infrastructure and source-data rights remain separate.",
-      "detail": "Version 0.1.0 is public on npm with latest pointing to 0.1.0. The anonymous registry tarball exactly matches the native-tested archive. Cryptographic Sigstore signature, signed subject digest, source/workflow/run identity, anonymous consumer installation and npm audit signatures passed. This is a public package install surface; n8n Creator verification, official node-directory acceptance and independent adoption remain unproven. The immutable shipped README retains prepublication wording; the linked receipt records current status.",
+      "detail": "Version 0.1.1 is public on npm with latest pointing to 0.1.1 and the central hosted research API configured. Public bytes match the tested archive. Native n8n execution, anonymous installation, npm signature verification and signed subject/source/workflow/run bindings passed. The provenance remains bound to original stage commit 27d7ba5 and run 38358240580; the later validation run is recorded separately. n8n Creator verification, official node-directory acceptance and independent adoption remain unproven.",
       "next_action": "Use the versioned installation guide and npm receipt. Track the separately received n8n Creator submission under n8n-creator-financial-evidence; await review without resubmitting.",
-      "version": "0.1.0",
-      "source_commit": "c4712a222c5906a6d871327a460d98dddf17a531",
+      "version": "0.1.1",
+      "source_commit": "27d7ba5991ac57bb538770c9984c4b1d48ba790f",
       "public_install_surface_verified": true,
-      "verified_at": "2026-10-10T22:50:51.612914+00:00",
-      "release_published_at": "2026-10-10T22:49:32.663Z",
-      "archive_sha256": "9d2fa6ba3950c41a68e025ea6f5c57922697c0b311ef6d77ce52412267b392ae",
-      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/platforms/n8n-publication-20261011.json",
+      "verified_at": "2026-10-13T11:20:50.520388+00:00",
+      "release_published_at": "2026-10-13T11:14:13.122Z",
+      "archive_sha256": "173cace788d93d599d97de5d65eb998876af41dc2b244916e421950969a44a6a",
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/platforms/n8n-publication-20261013.json",
       "n8n_verified": false,
       "independent_adoption_verified": false,
-      "staged_candidate": {
+      "previous_publication_receipt": "https://beepboop2025.github.io/financial-evidence-skills/platforms/n8n-publication-20261011.json",
+      "staging_history": {
         "version": "0.1.1",
-        "status": "staged_pending_maintainer_2fa",
+        "status": "approved_and_published",
         "source_commit": "27d7ba5991ac57bb538770c9984c4b1d48ba790f",
         "workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38358240580",
         "archive_sha256": "173cace788d93d599d97de5d65eb998876af41dc2b244916e421950969a44a6a",
-        "native_runtime_verification": "passed"
+        "native_runtime_verification": "passed",
+        "published_at": "2026-10-13T11:14:13.122Z",
+        "publication_receipt": "https://beepboop2025.github.io/financial-evidence-skills/platforms/n8n-publication-20261013.json"
       }
     },
     {
@@ -4193,14 +4196,15 @@
     "independent_adoption_verified": false
   },
   "latest_npm_publication": {
-    "verified_at": "2026-10-10T22:50:51.612914+00:00",
-    "receipt": "platforms/n8n-publication-20261011.json",
+    "verified_at": "2026-10-13T11:20:50.520388+00:00",
+    "receipt": "platforms/n8n-publication-20261013.json",
     "package": "n8n-nodes-financial-evidence",
-    "version": "0.1.0",
-    "new_public_install_surfaces_verified": 1,
+    "version": "0.1.1",
+    "new_public_install_surfaces_verified": 0,
     "new_operator_submissions": 0,
     "n8n_verified": false,
-    "independent_adoption_verified": false
+    "independent_adoption_verified": false,
+    "new_package_versions_verified": 1
   },
   "latest_n8n_creator_submission": {
     "verified_at": "2026-10-10T23:03:58.915233+00:00",

@@ -1,6 +1,6 @@
 {
   "schema": "financial-evidence.hosted-native-package-downloads.v1",
-  "scope": "Current hosted clients qualified against the central service. These new versions are downloadable candidates; qualification does not publish them to npm or Dify Marketplace. Historical release receipts remain in native-packages.json.",
+  "scope": "Current hosted clients qualified against the central service. n8n 0.1.1 is published on npm with verified bytes and cryptographic provenance. Dify 0.1.2 remains a qualified download candidate. Platform verification and independent adoption remain separate.",
   "packages": [
     {
       "kind": "n8n",
@@ -8,8 +8,8 @@
       "filename": "n8n-nodes-financial-evidence-0.1.1.tgz",
       "sha256": "173cace788d93d599d97de5d65eb998876af41dc2b244916e421950969a44a6a",
       "bytes": 4683,
-      "publication_state": "qualified_download_candidate",
-      "registry_published": false,
+      "publication_state": "published_on_npm",
+      "registry_published": true,
       "marketplace_published": false,
       "package_source_revision": "65cfb5437f3c3aad9f6270808d00e3392b12b42e",
       "api_base": "https://agents.seiche.info/v1/research",
@@ -80,6 +80,21 @@
         "harness_revision": "2b994fe",
         "traffic_class": "synthetic",
         "raw_payloads_retained": false
+      },
+      "publication_receipt": "n8n-publication-20261013.json",
+      "npm_publication": {
+        "state": "published",
+        "version": "0.1.1",
+        "verified_at": "2026-10-13T11:20:50.520388+00:00",
+        "published_at": "2026-10-13T11:14:13.122Z",
+        "url": "https://www.npmjs.com/package/n8n-nodes-financial-evidence/v/0.1.1",
+        "registry_url": "https://registry.npmjs.org/n8n-nodes-financial-evidence/0.1.1",
+        "archive_sha256": "173cace788d93d599d97de5d65eb998876af41dc2b244916e421950969a44a6a",
+        "cryptographic_provenance_verified": true,
+        "anonymous_consumer_install_passed": true,
+        "native_archive_byte_match": true,
+        "post_publication_ci": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38388877783",
+        "historical_validation_note": "The native_validation object retains its prepublication observation; this npm_publication object records the later public release."
       }
     },
     {

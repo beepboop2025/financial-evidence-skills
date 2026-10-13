@@ -97,7 +97,7 @@ def main():
            'N8N_COMMUNITY_PACKAGES_PREVENT_LOADING': 'false',
            # n8n routes --rawOutput through logger.info; error would hide the result.
            'N8N_RUNNERS_ENABLED': 'false', 'N8N_LOG_LEVEL': 'info',
-           'NODE_OPTIONS': '--max-old-space-size=768 --require=' + str(package / 'scripts/synthetic_traffic.cjs')}
+           'NODE_OPTIONS': '--max-old-space-size=768 --no-node-snapshot --require=' + str(package / 'scripts/synthetic_traffic.cjs')}
 
     def run(label, *arguments):
         result = subprocess.run([str(n8n), *arguments], env=env, cwd=package,

@@ -15,10 +15,10 @@ use your own provider and may incur charges.
 
 Python 3.10+ and `langchain-core` 1.6.6 through 1.x are supported.
 
-Install the verified [PyPI release 0.1.0](https://pypi.org/project/langchain-financial-evidence/0.1.0/):
+Install the verified [PyPI release 0.1.1](https://pypi.org/project/langchain-financial-evidence/0.1.1/):
 
 ```sh
-python -m pip install langchain-financial-evidence==0.1.0
+python -m pip install langchain-financial-evidence==0.1.1
 ```
 
 For development from this directory:

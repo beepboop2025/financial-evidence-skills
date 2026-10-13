@@ -1,0 +1,67 @@
+{
+  "schema": "langchain-financial-evidence.pypi-consumer.v1",
+  "observed_at": "2026-10-13T06:00:48.344723+00:00",
+  "version": "0.1.1",
+  "langchain_core": "1.6.10",
+  "installed_from_public_pypi_index": true,
+  "fresh_environment": true,
+  "download_cache_disabled": true,
+  "installed_code_matches_source": true,
+  "code_sha256": "20a34a931e180a626c7f200ba2de6368bcf87171f80b0e06f79126ea48f9c2ce",
+  "requests": [
+    {
+      "origin": "https://agents.seiche.info",
+      "path": "/v1/research/api/v1/datasets",
+      "method": "GET",
+      "http_status": 200,
+      "dataset_id": "financial-evidence.discovery",
+      "catalog_version": "central-data-2026-10-12",
+      "traffic": "synthetic"
+    },
+    {
+      "origin": "https://agents.seiche.info",
+      "path": "/v1/research/api/v1/agent-query",
+      "method": "GET",
+      "http_status": 200,
+      "dataset_id": "research.money_markets",
+      "catalog_version": "central-data-2026-10-12",
+      "traffic": "synthetic"
+    },
+    {
+      "origin": "https://agents.seiche.info",
+      "path": "/v1/research/api/v1/agent-review",
+      "method": "GET",
+      "http_status": 200,
+      "dataset_id": "research.agent_review",
+      "catalog_version": "central-data-2026-10-12",
+      "traffic": "synthetic"
+    }
+  ],
+  "results": [
+    {
+      "tool": "financial_evidence_datasets",
+      "catalog_entries": 7
+    },
+    {
+      "tool": "financial_evidence_query",
+      "schema": "financial-evidence.agent-result.v1",
+      "transport_status": "complete",
+      "freshness_status": "not_evaluated",
+      "financial_authority": "none",
+      "rows": 1,
+      "sections": 0
+    },
+    {
+      "tool": "financial_evidence_review",
+      "schema": "financial-evidence.agent-result.v1",
+      "transport_status": "complete",
+      "freshness_status": "not_evaluated",
+      "financial_authority": "none",
+      "rows": 0,
+      "sections": 3
+    }
+  ],
+  "response_payloads_retained": false,
+  "query_values_retained": false,
+  "adoption_proven": false
+}

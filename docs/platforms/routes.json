@@ -109,8 +109,8 @@
       "audience": "Developers of finance research agents",
       "workflow": "Install the public toolkit and run a bounded evidence task.",
       "artifact_label": "Published package",
-      "artifact_url": "https://pypi.org/project/langchain-financial-evidence/0.1.0/",
-      "status": "Native graph and tool execution validated; upstream directory review remains pending.",
+      "artifact_url": "https://pypi.org/project/langchain-financial-evidence/0.1.1/",
+      "status": "Version 0.1.1 is public on PyPI; a fresh installation passed all three central tools. Upstream directory review remains separate.",
       "official_source": "https://docs.langchain.com/oss/python/langchain/mcp",
       "verified_customer_adoption": null
     },
@@ -143,10 +143,10 @@
         "LiquiLens"
       ],
       "audience": "Finance operations and automation builders",
-      "workflow": "Install the published Financial Evidence community node in a permitted self-hosted n8n instance and run a bounded research page.",
-      "artifact_label": "Published npm package and install guide",
+      "workflow": "Download the hosted 0.1.1 candidate for a permitted self-hosted n8n instance and run a bounded research page.",
+      "artifact_label": "Hosted candidate and prior npm release",
       "artifact_url": "native-packages.md#n8n",
-      "status": "Version 0.1.0 is public on npm with verified provenance and native n8n 2.42.6 execution. Creator submission received; automated checks passed and manual review awaits a demo video. Not yet verified by n8n.",
+      "status": "Hosted 0.1.1 passed native n8n 2.42.6 qualification. It is not published on npm; prior 0.1.0 remains the published release. Creator verification remains pending.",
       "official_source": "https://docs.n8n.io/connect/create-nodes/deploy-your-node/submit-community-nodes.md",
       "verified_customer_adoption": null
     },
@@ -164,7 +164,7 @@
       "workflow": "Package the native tools and test in your Dify workspace.",
       "artifact_label": "Download plugin candidate",
       "artifact_url": "native-packages.md#dify",
-      "status": "Three bounded Dify Cloud draft workflows passed. Marketplace PR 3278 is submitted; review and publication remain pending.",
+      "status": "Hosted 0.1.2 passed packaged SDK registration and three central requests. Remote workspace installation was not retested. Prior 0.1.1 Cloud evidence and marketplace submission remain historical.",
       "official_source": "https://docs.dify.ai/en/develop-plugin/publishing/standards/contributor-covenant-code-of-conduct",
       "verified_customer_adoption": null
     },

@@ -67,26 +67,33 @@ def assets() -> dict[str, bytes]:
                 ROOT / "tests/test_finance_research_forward.py",
                 DEST / "agent-clients.md", DEST / "datarade.md", DEST / "routes.json",
                 DEST / "pilot-scorecard.csv", DEST / "native-packages.md",
-                DEST / "native-packages.json", DEST / "colab-verification-20261011.json",
+                DEST / "native-packages.json", DEST / "hosted-native-packages.json",
+                ROOT / "docs/distribution/langchain-pypi-publication-20261013.json",
+                ROOT / "docs/distribution/langchain-pypi-consumer-20261013.json",
+                DEST / "colab-verification-20261011.json",
                 DEST / "n8n-publication-20261011.json",
                 DEST / "n8n-creator-submission-20261011.json"]
     # Explicit public allowlist: never collect the native runtime or its state.
     flowise_files = ("README.md", "NOTICE.md", "FLOWISE-LICENSE.md", "publication.json",
                      "native-proof.json", "financial-evidence-flowise-marketplace-candidate.json")
     selected.extend(DEST / "flowise" / name for name in flowise_files)
-    native = json.loads((DEST / "native-packages.json").read_text())
     downloads = {}
-    expected_names = {"n8n-nodes-financial-evidence-0.1.0.tgz", "financial_evidence-0.1.1.difypkg"}
-    if {item["filename"] for item in native["packages"]} != expected_names or len(native["packages"]) != 2:
-        raise ValueError("unexpected native package set")
-    for item in native["packages"]:
-        name = "downloads/" + item["filename"]
-        path = DEST / name
-        data = path.read_bytes()
-        if hashlib.sha256(data).hexdigest() != item["sha256"]:
-            raise ValueError(f"Native package checksum mismatch: {name}")
-        selected.append(path)
-        downloads[name] = data
+    package_sets = {
+        "native-packages.json": {"n8n-nodes-financial-evidence-0.1.0.tgz", "financial_evidence-0.1.1.difypkg"},
+        "hosted-native-packages.json": {"n8n-nodes-financial-evidence-0.1.1.tgz", "financial_evidence-0.1.2.difypkg"},
+    }
+    for manifest_name, expected_names in package_sets.items():
+        native = json.loads((DEST / manifest_name).read_text())
+        if {item["filename"] for item in native["packages"]} != expected_names or len(native["packages"]) != 2:
+            raise ValueError(f"unexpected native package set: {manifest_name}")
+        for item in native["packages"]:
+            name = "downloads/" + item["filename"]
+            path = DEST / name
+            data = path.read_bytes()
+            if hashlib.sha256(data).hexdigest() != item["sha256"] or len(data) != item["bytes"]:
+                raise ValueError(f"Native package checksum or size mismatch: {name}")
+            selected.append(path)
+            downloads[name] = data
     # Only authored source formats. Never include environments, credentials,
     # runtime captures, debug keys or dependency trees in a public download.
     for folder in ("src/financial_evidence", "integrations/finance-research", "integrations/finance-desktop",
@@ -131,6 +138,7 @@ historical decisions. No broker credentials or order execution is included.
             archive.writestr(info, data)
     result = {"index.html": page(manifest), "finance-platform-kit.zip": buffer.getvalue(),
               "platform-search.mjs": (DEST / "platform-search.mjs").read_bytes(), **downloads}
+    result["hosted-native-packages.json"] = (DEST / "hosted-native-packages.json").read_bytes()
     result["colab-verification-20261011.json"] = (DEST / "colab-verification-20261011.json").read_bytes()
     result["n8n-publication-20261011.json"] = (DEST / "n8n-publication-20261011.json").read_bytes()
     result["n8n-creator-submission-20261011.json"] = (DEST / "n8n-creator-submission-20261011.json").read_bytes()

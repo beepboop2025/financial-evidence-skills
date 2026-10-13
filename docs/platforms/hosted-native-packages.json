@@ -1,0 +1,210 @@
+{
+  "schema": "financial-evidence.hosted-native-package-downloads.v1",
+  "scope": "Current hosted clients qualified against the central service. These new versions are downloadable candidates; qualification does not publish them to npm or Dify Marketplace. Historical release receipts remain in native-packages.json.",
+  "packages": [
+    {
+      "kind": "n8n",
+      "version": "0.1.1",
+      "filename": "n8n-nodes-financial-evidence-0.1.1.tgz",
+      "sha256": "173cace788d93d599d97de5d65eb998876af41dc2b244916e421950969a44a6a",
+      "bytes": 4683,
+      "publication_state": "qualified_download_candidate",
+      "registry_published": false,
+      "marketplace_published": false,
+      "package_source_revision": "65cfb5437f3c3aad9f6270808d00e3392b12b42e",
+      "api_base": "https://agents.seiche.info/v1/research",
+      "validation": {
+        "schema": "financial-evidence.n8n-archive-check.v1",
+        "origin": "existing_archive",
+        "name": "n8n-nodes-financial-evidence",
+        "version": "0.1.1",
+        "sha256": "173cace788d93d599d97de5d65eb998876af41dc2b244916e421950969a44a6a",
+        "runtime_and_metadata_match_current_build": true,
+        "readme_matches_current_source": true,
+        "archive_readme_sha256": "de49d400c76a1621b72329eda21ad94b48250fdad1449e7d9d9e06ede5568dbc",
+        "source_readme_sha256": "de49d400c76a1621b72329eda21ad94b48250fdad1449e7d9d9e06ede5568dbc"
+      },
+      "native_validation": {
+        "schema": "financial-evidence.n8n-native-smoke.v1",
+        "observed_at": "2026-10-13T06:11:17.488257+00:00",
+        "status": "passed",
+        "n8n_version": "2.42.6",
+        "package": "n8n-nodes-financial-evidence-0.1.1.tgz",
+        "sha256": "173cace788d93d599d97de5d65eb998876af41dc2b244916e421950969a44a6a",
+        "archive_check": {
+          "schema": "financial-evidence.n8n-archive-check.v1",
+          "origin": "existing_archive",
+          "name": "n8n-nodes-financial-evidence",
+          "version": "0.1.1",
+          "sha256": "173cace788d93d599d97de5d65eb998876af41dc2b244916e421950969a44a6a",
+          "runtime_and_metadata_match_current_build": true,
+          "readme_matches_current_source": true,
+          "archive_readme_sha256": "de49d400c76a1621b72329eda21ad94b48250fdad1449e7d9d9e06ede5568dbc",
+          "source_readme_sha256": "de49d400c76a1621b72329eda21ad94b48250fdad1449e7d9d9e06ede5568dbc"
+        },
+        "loader": "native_custom_extension_from_npm_tarball",
+        "pages": {
+          "bank_risk": {
+            "rows": 1,
+            "sources": 1,
+            "diagnostics": 0,
+            "next_offset": 1,
+            "transport_status": "complete"
+          },
+          "money_markets": {
+            "rows": 1,
+            "sources": 1,
+            "diagnostics": 0,
+            "next_offset": 1,
+            "transport_status": "complete"
+          },
+          "market_liquidity": {
+            "rows": 1,
+            "sources": 1,
+            "diagnostics": 0,
+            "next_offset": 1,
+            "transport_status": "complete"
+          }
+        },
+        "traffic_class": "synthetic",
+        "measurement_instrumentation": "isolated_https_request_header",
+        "package_bytes_modified_by_instrumentation": false,
+        "temporary_runtime_state_retained": false,
+        "npm_published": false,
+        "n8n_verified": false,
+        "independent_adoption_proven": false
+      },
+      "qualification_runtime": {
+        "n8n": "2.42.6",
+        "node": "24.12.0",
+        "harness_revision": "2b994fe",
+        "traffic_class": "synthetic",
+        "raw_payloads_retained": false
+      }
+    },
+    {
+      "kind": "dify",
+      "version": "0.1.2",
+      "filename": "financial_evidence-0.1.2.difypkg",
+      "sha256": "350d20409d9a3287d0ddc1b939d2cbb5f577ca632f2c20be75a5c7d046f0ba96",
+      "bytes": 7477,
+      "publication_state": "qualified_download_candidate",
+      "registry_published": false,
+      "marketplace_published": false,
+      "package_source_revision": "65cfb5437f3c3aad9f6270808d00e3392b12b42e",
+      "api_base": "https://agents.seiche.info/v1/research",
+      "validation": {
+        "schema": "financial-evidence.dify-package.v2",
+        "status": "passed",
+        "package": "financial_evidence-0.1.2.difypkg",
+        "sha256": "350d20409d9a3287d0ddc1b939d2cbb5f577ca632f2c20be75a5c7d046f0ba96",
+        "files": {
+          "PRIVACY.md": "199f6b1325f23c9f830277943b66a48497ef59070a410585af85c3ff9c00fe50",
+          "README.md": "7649cc94a1b6f6d4ed2f3b0cbf6945bebd11fdbd948e8a8c6894cc2a859c7049",
+          "_assets/icon.svg": "c80fead76a1695cf1c874998954cee0dc382d52869ca019c1e6ddd1692ef6f65",
+          "main.py": "633d495584320e93e569501bf0fce9cc47ad05ba888db5538fe3476cb241ed19",
+          "manifest.yaml": "0c03924d6618a37172fe65d2e006565cbf5f763e3adb9b62f771e6723ae2698c",
+          "provider/financial_evidence.py": "815ce98a1be0a6b242bef63f7835013eb16c5cc113472ab140c700ab4f20c529",
+          "provider/financial_evidence.yaml": "31667830e0e9bc41d4997118d6dfda352a8d8ca19d1703d97c84fe0ee9c4bde0",
+          "requirements.txt": "33b131d54972ea4340c57ac88d86d95837b160e039cec5ec1e9b350dc4d4474e",
+          "tools/evidence_page.py": "da7f3cc9ab735709b0ad2c34e8a9c9185b591a13fc846acc2008f2493deb1f54",
+          "tools/evidence_page.yaml": "30bc721e4ecf1551f5e38e23a091fc3a115aed796f302189cd4615cf640e5777"
+        },
+        "checks_performed": [
+          "package_file_allowlist",
+          "source_byte_equality"
+        ],
+        "native_remote_debug": "not_checked",
+        "marketplace_publication": "not_checked"
+      },
+      "native_validation": {
+        "schema": "financial-evidence.dify-native-consumer.v1",
+        "observed_at": "2026-10-13T06:02:21.131882+00:00",
+        "package": "financial_evidence-0.1.2.difypkg",
+        "sha256": "350d20409d9a3287d0ddc1b939d2cbb5f577ca632f2c20be75a5c7d046f0ba96",
+        "plugin_version": "0.1.2",
+        "dify_plugin_sdk": "0.10.2",
+        "unpacked_source_hashes_verified": true,
+        "plugin_registration": "passed",
+        "native_tool_invocation": "passed",
+        "requests": [
+          {
+            "origin": "https://agents.seiche.info",
+            "path": "/v1/research/api/v1/query",
+            "http_status": 200,
+            "dataset_id": "research.bank_risk",
+            "traffic_class": "synthetic"
+          },
+          {
+            "origin": "https://agents.seiche.info",
+            "path": "/v1/research/api/v1/query",
+            "http_status": 200,
+            "dataset_id": "research.money_markets",
+            "traffic_class": "synthetic"
+          },
+          {
+            "origin": "https://agents.seiche.info",
+            "path": "/v1/research/api/v1/query",
+            "http_status": 200,
+            "dataset_id": "research.market_liquidity",
+            "traffic_class": "synthetic"
+          }
+        ],
+        "pages": [
+          {
+            "dataset": "bank_risk",
+            "rows": 1,
+            "sources": 1,
+            "diagnostics": 0,
+            "transport_status": "complete"
+          },
+          {
+            "dataset": "money_markets",
+            "rows": 1,
+            "sources": 1,
+            "diagnostics": 0,
+            "transport_status": "complete"
+          },
+          {
+            "dataset": "market_liquidity",
+            "rows": 1,
+            "sources": 1,
+            "diagnostics": 0,
+            "transport_status": "complete"
+          }
+        ],
+        "raw_payloads_retained": false,
+        "remote_debug_instance_tested": false,
+        "marketplace_publication": false
+      },
+      "qualification": {
+        "schema": "financial-evidence.dify-qualification.v1",
+        "observed_at": "2026-10-13T06:09:10.506665+00:00",
+        "status": "passed",
+        "package_source_revision": "65cfb5437f3c3aad9f6270808d00e3392b12b42e",
+        "package": "financial_evidence-0.1.2.difypkg",
+        "sha256": "350d20409d9a3287d0ddc1b939d2cbb5f577ca632f2c20be75a5c7d046f0ba96",
+        "official_cli_version": "0.6.11",
+        "official_cli_sha256": "e68208928fbd8e7bc2c4cf0943f5091f8fbd0a25119ab4f36d6071b94a69a6fc",
+        "checks": {
+          "unit_tests": {
+            "passed": 5,
+            "failed": 0
+          },
+          "plugin_registration": "passed",
+          "official_cli_package": "passed",
+          "source_file_allowlist_and_byte_equality": "passed",
+          "packaged_native_sdk_tool_invocation": "passed",
+          "synthetic_central_dataset_requests": 3
+        },
+        "evidence": [
+          "#/packages/1/validation",
+          "#/packages/1/native_validation"
+        ],
+        "raw_payloads_retained": false,
+        "remote_debug_instance_tested": false,
+        "marketplace_publication": false
+      }
+    }
+  ]
+}

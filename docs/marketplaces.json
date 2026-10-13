@@ -3004,15 +3004,15 @@
       "name": "Financial Evidence for LangChain \u2014 PyPI",
       "channel": "python-package-index",
       "state": "live",
-      "listing_url": "https://pypi.org/project/langchain-financial-evidence/0.1.0/",
+      "listing_url": "https://pypi.org/project/langchain-financial-evidence/0.1.1/",
       "cost": "Free MIT package; source-data rights and any added model usage remain separate.",
-      "detail": "Version 0.1.0 was published through the configured GitHub trusted publisher. Anonymous PyPI distribution hashes match the GitHub release. A fresh install from the public PyPI index matched released source, passed pip check, 47 offline tests and 6 bounded live SDK tests with no model calls. This verifies package availability and operation, not catalog acceptance or adoption.",
+      "detail": "Version 0.1.1 was published through the configured trusted publisher. Public artifact hashes match tested bytes. A fresh no-cache installation passed dependency checks and all three tools against the central hosted API with synthetic traffic labels. Package operation does not establish catalog acceptance or independent adoption.",
       "next_action": "Preserve versioned artifact integrity and source boundaries; await separate LangChain catalog review.",
-      "version": "0.1.0",
-      "source_commit": "173b09fb0a361cbceb83d1f3b5d8744b98d27938",
+      "version": "0.1.1",
+      "source_commit": "a23f9f83db497949fc18ed081614c200fcc2b548",
       "public_install_surface_verified": true,
-      "verified_at": "2026-10-09T20:37:39.660676+00:00",
-      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json"
+      "verified_at": "2026-10-13T05:58:46.780818+00:00",
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/langchain-pypi-publication-20261013.json"
     },
     {
       "id": "awesome-quant-seiche",

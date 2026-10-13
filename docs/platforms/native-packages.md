@@ -1,5 +1,45 @@
 # Install and evaluate the native automation packages
 
+## Current hosted clients
+
+Use these versions for the central service at
+`https://agents.seiche.info/v1/research`. The exact downloaded bytes passed
+the checks in [current package receipts](hosted-native-packages.json).
+These are qualified downloads; the new versions are not yet published to npm
+or Dify Marketplace.
+
+### n8n hosted 0.1.1
+
+[Download n8n 0.1.1](downloads/n8n-nodes-financial-evidence-0.1.1.tgz).
+The archive loaded in native n8n 2.42.6 on Node 24.12.0 and returned one bounded
+bank, funding and liquidity page. Build, lint, unit tests and archive source
+checks passed. Tests used synthetic labels and removed their temporary database.
+
+For a permitted self-hosted instance, install the downloaded archive from its
+community-node directory, then restart n8n:
+
+```sh
+npm install /absolute/path/to/n8n-nodes-financial-evidence-0.1.1.tgz
+```
+
+Use Node 24 or another version supported by your installed n8n release.
+The new candidate has not been published to npm or verified by n8n.
+
+### Dify hosted 0.1.2
+
+[Download Dify 0.1.2](downloads/financial_evidence-0.1.2.difypkg).
+The official CLI built the archive. Packaged files matched reviewed source,
+Dify SDK 0.10.2 registered the plugin, and its actual packaged tools completed
+three central requests. This qualification did not install the archive in a
+Dify Cloud or Community Edition workspace. Evaluate it through the supported
+local-plugin flow in your permitted workspace and run Get Evidence Page once.
+No new marketplace submission or acceptance is claimed.
+
+## Previous native releases
+
+The following versioned downloads and observations remain historical.
+For new central connections, choose the current hosted candidates above.
+
 The n8n package is published on npm; the Dify package remains a marketplace
 submission candidate. Check each package's publication state, file digest and
 validation scope in [package receipts](native-packages.json).

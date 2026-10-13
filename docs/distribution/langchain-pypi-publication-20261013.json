@@ -1,0 +1,34 @@
+{
+  "schema": "langchain-financial-evidence.pypi-publication.v1",
+  "observed_at": "2026-10-13T05:58:46.780818+00:00",
+  "version": "0.1.1",
+  "url": "https://pypi.org/project/langchain-financial-evidence/0.1.1/",
+  "workflow": {
+    "conclusion": "success",
+    "event": "workflow_dispatch",
+    "headSha": "a23f9f83db497949fc18ed081614c200fcc2b548",
+    "status": "completed",
+    "url": "https://github.com/beepboop2025/langchain-financial-evidence/actions/runs/38353964142"
+  },
+  "distributions": [
+    {
+      "filename": "langchain_financial_evidence-0.1.1-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/32/b1/00d51291b4e1967e00fb6ee0138bb6069ef5bfa3ee7e4a20c728b51dc73a/langchain_financial_evidence-0.1.1-py3-none-any.whl",
+      "sha256": "cff5c6d76728154b3f29fa661b0e0534606904bff67ecb7ab4eef6bf6558beb2",
+      "bytes": 9324,
+      "matches_tested_and_publisher_artifacts": true,
+      "upload_time": "2026-10-13T05:57:04.130920Z"
+    },
+    {
+      "filename": "langchain_financial_evidence-0.1.1.tar.gz",
+      "url": "https://files.pythonhosted.org/packages/a3/b8/7dfa630b5cb4a0737ac9eb0fac194599f84d89d5523c4ebeaff4cc0789de/langchain_financial_evidence-0.1.1.tar.gz",
+      "sha256": "cc8c40b114f3766ef751839745aed240f150c78bd488a8d47eff97936bd94e72",
+      "bytes": 13294,
+      "matches_tested_and_publisher_artifacts": true,
+      "upload_time": "2026-10-13T05:57:05.492502Z"
+    }
+  ],
+  "published": true,
+  "installed_consumer_verified": true,
+  "consumer_evidence": "langchain-pypi-consumer-20261013.json"
+}

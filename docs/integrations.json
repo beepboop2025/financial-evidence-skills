@@ -62,11 +62,11 @@
       "kind": "terminal-package",
       "install": "brew install beepboop2025/tap/financial-evidence",
       "candidate_version": "0.1.8",
-      "published_version": "0.1.7",
+      "published_version": "0.1.8",
       "status": "public",
-      "verified_at": "2026-10-08T05:07:23.627927+00:00",
-      "publication_url": "https://github.com/beepboop2025/homebrew-tap/pull/8",
-      "consumer_verification_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/37730042077/job/113156857387"
+      "verified_at": "2026-10-13T07:18:32.222649+00:00",
+      "publication_url": "https://github.com/beepboop2025/homebrew-tap/pull/9",
+      "consumer_verification_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38360583841/job/115173560943"
     },
     {
       "name": "uvx",

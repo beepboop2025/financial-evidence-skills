@@ -141,7 +141,7 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertEqual(manifest["last_verified_release"], "0.1.8")
         homebrew = self.interfaces["Homebrew"]
         self.assertEqual(homebrew["candidate_version"], self.version)
-        self.assertEqual(homebrew["published_version"], "0.1.7")
+        self.assertEqual(homebrew["published_version"], self.published_version)
         self.assertEqual(homebrew["status"], "public")
         mcp_interface = self.interfaces["Model Context Protocol"]
         self.assertTrue(mcp_interface["portable_agent_host"])

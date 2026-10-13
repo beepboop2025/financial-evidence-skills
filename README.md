@@ -101,7 +101,7 @@ status, source-reported adapter metadata, and the explicit non-Carrier boundary.
 Version 0.1.8 is a signed, independently verified release. Its versioned
 Agent Skill, terminal, Codex, Gemini, editor, and bundle installs use the same
 release, with published artifacts, container and Registry record. Homebrew
-0.1.7 remains separately verified until its 0.1.8 consumer check completes. The Claude
+0.1.8 is published after an independent macOS installation and contract check. The Claude
 self-hosted marketplace command follows the repository's mutable default branch; review the checked-out commit before enabling it.
 
 Open, read-only Agent Skills for routing financial research to bounded public
@@ -153,7 +153,7 @@ financial-evidence fetch --topic money-market --topic china-economy
 ```
 
 The formula installs `financial-evidence`, `financial-evidence-mcp`, and native
-Bash, Zsh, and Fish completions for 0.1.7; its 0.1.8 upgrade is being qualified.
+Bash, Zsh, and Fish completions for 0.1.8. Its hosted clients use the central service.
 Run 0.1.8 directly from
 GitHub without installing:
 

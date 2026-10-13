@@ -62,13 +62,31 @@
       "linux/arm64"
     ],
     "tested_platforms": [
-      "linux/amd64"
+      "linux/amd64",
+      "linux/arm64"
     ],
     "runtime_check": "PASS",
     "source_files_verified": 53,
     "image_digest_bound_to_successful_release_build": true,
     "signed_image_attestation": false,
-    "arm64_runtime": "pending_independent_consumer_ci"
+    "arm64_runtime": "PASS",
+    "consumer_workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38360583841",
+    "consumer_workflow_head": "7a95a933b954ad8da7fadd2cb8db9756d3ad1be3",
+    "consumer_jobs": [
+      {
+        "platform": "linux/amd64",
+        "job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38360583841/job/115173560888",
+        "image_id": "sha256:a737425856e090354adfa7e221aaae88f5416a94a0f619f75a3332441afec48d",
+        "status": "PASS"
+      },
+      {
+        "platform": "linux/arm64",
+        "job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38360583841/job/115173561270",
+        "image_id": "sha256:ee0719f60c28784b6e99dedce5c612185addacd34002818d95d9a64e2897272a",
+        "status": "PASS"
+      }
+    ],
+    "artifact_zip_digests_verified": true
   },
   "runtime_checks": {
     "wheel": "PASS",
@@ -85,9 +103,12 @@
   "remote_mcp": {
     "url": "https://liquilens.in/mcp/financial-evidence",
     "version": "0.1.8",
-    "worker_source_commit": "8d59e1f354112ab6ae49422f87ddb1c174134c2e",
-    "worker_version": "367c9721-60db-4569-9ff7-f4847f768132",
-    "verification": "PASS"
+    "worker_source_commit": "1219e7a5bae55fd407af7389a81fe038c55797a8",
+    "worker_version": "8f414b0b-f413-4a4e-a97d-c9dcb720217a",
+    "verification": "PASS",
+    "verified_at": "2026-10-13T07:15:55.511304+00:00",
+    "transient_unavailable_observed": true,
+    "verification_note": "The independent check passed on retry after one unavailable upstream response; the strict contract was unchanged."
   },
   "central_platform": {
     "url": "https://agents.seiche.info",
@@ -99,13 +120,31 @@
     "data_route_checks": 21,
     "public_client_browser_checks": "PASS",
     "raw_arguments_retained": false,
-    "raw_responses_retained": false
+    "raw_responses_retained": false,
+    "measurement_scope": "Raw argument and response retention flags describe operational usage measurement. Separately authorized dataset archives and voluntary contributions retain their own access and retention rules."
   },
   "homebrew": {
-    "version": "0.1.7",
-    "upgrade_candidate": "0.1.8",
-    "status": "awaiting_independent_consumer_qualification",
-    "native_tap_actions": "disabled_unchanged"
+    "version": "0.1.8",
+    "status": "PASS",
+    "pull_request": "https://github.com/beepboop2025/homebrew-tap/pull/9",
+    "reviewed_source_commit": "024dcc42b6b966aa9fdd53113619ef93e36ae5db",
+    "published_main_commit": "39a8cdd228aeb8d32ceb7b13b7dea87ff36b89e0",
+    "formula_sha256": "2c6b2c736f39d423a1595b3b1cbd32d20bbca64e8f6596b958c73ee82176601d",
+    "public_formula_url": "https://raw.githubusercontent.com/beepboop2025/homebrew-tap/main/Formula/financial-evidence.rb",
+    "anonymous_public_readback": true,
+    "consumer_job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38360583841/job/115173560943",
+    "consumer_workflow_head": "7a95a933b954ad8da7fadd2cb8db9756d3ad1be3",
+    "checks": [
+      "strict_online_audit",
+      "style",
+      "actual_install",
+      "formula_test",
+      "published_mcp_contract",
+      "all_11_entrypoints_load",
+      "installed_central_client_identity"
+    ],
+    "verified_at": "2026-10-13T07:18:32.222649+00:00",
+    "native_tap_actions": "disabled_unchanged_not_claimed_passed"
   },
   "boundaries": [
     "Verification is operator work, not independent adoption.",
@@ -114,5 +153,5 @@
     "Source clocks, rights restrictions and missing data remain visible.",
     "Historical releases, licenses and verification receipts remain unchanged."
   ],
-  "verified_at": "2026-10-13T07:00:34.293310+00:00"
+  "verified_at": "2026-10-13T07:16:26.589130+00:00"
 }

@@ -8,6 +8,8 @@ python hosted_review.py spectral seiche.json --synthetic --output review.json
 python hosted_review.py dyson dyson.json --synthetic --output reference.json
 ```
 
+The collections label their sample requests as synthetic. For your own data,
+remove that label or change it to unverified before running a collection.
 The six sample panels and Dyson request are synthetic examples. For your own
 permitted input, select one JSON request and omit `--synthetic`. The client
 sends that selected JSON to our server; no data is fetched from your files

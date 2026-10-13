@@ -23,6 +23,18 @@ def assets():
                 "noisefloor.postman_collection.json", "palimpsest.json", "riptide.json",
                 "seiche.json", "spectral.bru", "trading_agents.json", "undertow.json")
     result = {name: (ARCHIVE / name).read_text().replace(NATIVE, BASE).encode() for name in selected}
+    collection = json.loads(result["noisefloor.postman_collection.json"])
+    collection["info"]["name"] = "Hosted NoiseFloor research examples"
+    for item in collection["item"]:
+        item["request"]["header"].append({"key": "X-Financial-Evidence-Traffic-Class", "value": "synthetic"})
+    result["noisefloor.postman_collection.json"] = (json.dumps(collection, indent=2) + "\n").encode()
+    for name in ("noisefloor.http", "spectral.bru", "dyson.bru"):
+        body = result[name].decode()
+        if name.endswith(".http"):
+            body = body.replace("Content-Type: application/json", "Content-Type: application/json\nX-Financial-Evidence-Traffic-Class: synthetic")
+        else:
+            body = body.replace("Content-Type: application/json", "Content-Type: application/json\n  X-Financial-Evidence-Traffic-Class: synthetic")
+        result[name] = body.encode()
     spec = json.loads((ARCHIVE / "openapi.json").read_text())
     paths = {"/healthz", "/v1/capabilities", "/v1/market/assess", "/v1/narrative/triage",
              "/v1/spectral/assess", "/v1/research/dyson"}
@@ -44,6 +56,8 @@ python hosted_review.py spectral seiche.json --synthetic --output review.json
 python hosted_review.py dyson dyson.json --synthetic --output reference.json
 ```
 
+The collections label their sample requests as synthetic. For your own data,
+remove that label or change it to unverified before running a collection.
 The six sample panels and Dyson request are synthetic examples. For your own
 permitted input, select one JSON request and omit `--synthetic`. The client
 sends that selected JSON to our server; no data is fetched from your files

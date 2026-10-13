@@ -1,6 +1,6 @@
 {
   "info": {
-    "name": "NoiseFloor 0.4.0 research",
+    "name": "Hosted NoiseFloor research examples",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": "Two synthetic research requests. Use the separate files for product profiles."
   },
@@ -17,6 +17,10 @@
           {
             "key": "Content-Type",
             "value": "application/json"
+          },
+          {
+            "key": "X-Financial-Evidence-Traffic-Class",
+            "value": "synthetic"
           }
         ],
         "body": {
@@ -55,6 +59,10 @@
           {
             "key": "Content-Type",
             "value": "application/json"
+          },
+          {
+            "key": "X-Financial-Evidence-Traffic-Class",
+            "value": "synthetic"
           }
         ],
         "body": {

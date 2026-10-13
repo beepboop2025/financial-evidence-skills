@@ -54,6 +54,11 @@ class HostedMigrationTests(unittest.TestCase):
         self.assertEqual(spec["servers"], [{"url": client.BASE}])
         self.assertNotIn("spectral_review.py", manifest["files"])
         self.assertIn("hosted_review.py", manifest["files"])
+        collection = json.loads((builder.OUT / "noisefloor.postman_collection.json").read_text())
+        for item in collection["item"]:
+            self.assertIn({"key": "X-Financial-Evidence-Traffic-Class", "value": "synthetic"}, item["request"]["header"])
+        for name in ("noisefloor.http", "spectral.bru", "dyson.bru"):
+            self.assertIn("X-Financial-Evidence-Traffic-Class: synthetic", (builder.OUT / name).read_text())
 
     def test_distribution_config_contains_twelve_products_and_public_community(self):
         config = json.loads((ROOT / "docs/distribution/agent-mcp-config.json").read_text())["mcpServers"]

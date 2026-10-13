@@ -4,7 +4,6 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
-from urllib.parse import urlsplit
 
 BASE = "https://agents.seiche.info"
 URLS = {
@@ -35,7 +34,7 @@ def plan(data):
                 if key in {"url", "baseUrl", "base_url", "api_base"} and isinstance(item, str):
                     if item in URLS:
                         counts[item] = counts.get(item, 0) + 1
-                    elif urlsplit(item).scheme in {"http", "https"} and not item.startswith(BASE + "/"):
+                    elif item.startswith(("http://", "https://")) and not item.startswith(BASE + "/"):
                         unsupported += 1
                 elif isinstance(item, (list, dict)) and str(key).lower() not in {"headers", "authorization", "token", "apikey", "api_key", "env"}:
                     inspect(item)

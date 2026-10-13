@@ -1,6 +1,7 @@
 ### Synthetic Seiche correlation panel
 POST https://agents.seiche.info/v1/noisefloor/v1/spectral/assess
 Content-Type: application/json
+X-Financial-Evidence-Traffic-Class: synthetic
 
 {
   "as_of": "2026-05-01T00:00:00+00:00",
@@ -2492,6 +2493,7 @@ Content-Type: application/json
 ### Synthetic Dyson reference
 POST https://agents.seiche.info/v1/noisefloor/v1/research/dyson
 Content-Type: application/json
+X-Financial-Evidence-Traffic-Class: synthetic
 
 {
   "dimension": 6,

@@ -61,6 +61,8 @@ def assets() -> dict[str, bytes]:
                 ROOT / "docs/tools/FinancialEvidenceRows.pq",
                 ROOT / "docs/tools/FinancialEvidenceSheets.gs", ROOT / "docs/tools/google-sheets.md",
                 ROOT / "docs/tools/research_desk.ipynb", ROOT / "docs/tools/mcp.remote.vscode.json",
+                ROOT / "docs/HOSTED_MIGRATION.md", ROOT / "scripts/plan_hosted_migration.py",
+                ROOT / "docs/api/noisefloor-hosted/noisefloor-hosted-kit.zip",
                 ROOT / "docs/tools/mcp.remote.cursor.json", DEST / "platform-search.mjs",
                 ROOT / "tests/test_finance_research_forward.py",
                 DEST / "agent-clients.md", DEST / "datarade.md", DEST / "routes.json",

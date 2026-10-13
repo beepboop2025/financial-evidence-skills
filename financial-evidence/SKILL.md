@@ -34,6 +34,22 @@ institution's private ALM position, or availability of a funding facility.
 For exact public endpoints, topic aliases, evidence classes, and citation
 rules, read [references/routing.md](references/routing.md).
 
+## Use the current hosted MCP workspace
+
+Current connection files use `https://agents.seiche.info/products/financial-evidence/mcp`.
+Start with `financial_evidence_datasets`. For a first task, call
+`financial_evidence_workflow` with `workflow: "funding"` and `selection: "USD"`.
+For custom cited rows use `financial_evidence_agent_query` with a dataset and
+bounded limit; use `financial_evidence_review` for the funding, covered-bank and
+liquidity review. Inspect source clocks, gaps and restrictions before drawing a
+conclusion. `financial_evidence_packet` retrieves original documents when needed.
+
+This workspace exposes nine reviewed tools. The older three-tool stdio router
+uses `financial_evidence_fetch`; that name is not part of the hosted workspace.
+Hosted requests produce bounded operational product/tool/dataset counts. Optional
+learning is a separate owner-authorized choice; private prompts and query values
+are not retained in those operational counts.
+
 ## Retrieve bounded context
 
 When current public context would help, run the standard-library helper with
@@ -46,6 +62,8 @@ python3 financial-evidence/scripts/fetch_evidence.py \
 python3 financial-evidence/scripts/fetch_evidence.py \
   --topic gift-city --topic forex --topic gold
 ```
+
+Current-source helpers retrieve fixed source bytes through `https://agents.seiche.info/v1/data/`. The original publisher URL, content hash and source clocks remain in the receipt. Requests produce bounded operational dataset counts; optional learning stays separate and no direct-origin fallback occurs.
 
 The verified 0.1.7 package and public MCP router support all eight topics,
 including `gift-city`, `forex`, and `gold`; see the

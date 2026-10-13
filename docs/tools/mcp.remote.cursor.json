@@ -1,7 +1,8 @@
 {
   "mcpServers": {
-    "financial-evidence-remote": {
-      "url": "https://liquilens.in/mcp/financial-evidence"
+    "financial-evidence": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/financial-evidence/mcp"
     }
   }
 }

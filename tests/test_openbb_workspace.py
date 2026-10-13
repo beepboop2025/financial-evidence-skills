@@ -212,7 +212,7 @@ class WorkspaceTests(unittest.TestCase):
         structured = result["result"]["structuredContent"]
         self.assertEqual(structured["results"], rest["results"])
         self.assertEqual(structured["schema"], rest["schema"])
-        self.assertEqual(len(self.calls), 1)
+        self.assertEqual(len(self.calls), 2)  # Each default hosted read is observed.
 
     def test_mcp_rejects_invalid_input_and_exposes_prompts_and_resources(self):
         result = self.rpc(

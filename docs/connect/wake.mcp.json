@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "wake": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/wake/mcp"
+    }
+  }
+}

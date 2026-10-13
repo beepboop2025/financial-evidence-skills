@@ -35,7 +35,10 @@ class ApiKitTests(unittest.TestCase):
     def test_imports_only_read_the_published_contract(self):
         spec = json.loads((API / "openapi.json").read_text())
         collection = json.loads((API / "financial-evidence.postman_collection.json").read_text())
-        self.assertEqual(spec["servers"][0]["url"], "https://api.seiche.info/openbb")
+        self.assertEqual(spec["servers"][0]["url"], "https://agents.seiche.info/v1/research")
+        self.assertEqual({method for path in spec["paths"].values() for method in path}, {"get"})
+        self.assertEqual(spec["x-source-observation"]["url"], "https://api.seiche.info/openbb/openapi.json")
+        self.assertEqual(collection["variable"][0]["value"], "https://agents.seiche.info/v1/research")
         for item in collection["item"]:
             request = item["request"]
             self.assertEqual(request["method"], "GET")

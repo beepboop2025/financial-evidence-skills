@@ -16,7 +16,7 @@ Public technical interfaces:
 
 - OpenBB backend: `https://api.seiche.info/openbb`
 - Typed API: `https://api.seiche.info/openbb/openapi.json`
-- MCP: `https://api.seiche.info/openbb/mcp`
+- MCP: `https://agents.seiche.info/products/financial-evidence/mcp`
 - Release identity: `https://api.seiche.info/openbb/api/v1/release`
 - Source status: `https://api.seiche.info/openbb/api/v1/sources`
 - FDC3 reference app: `https://beepboop2025.github.io/financial-evidence-skills/integrations/fdc3/evidence-inspector/`

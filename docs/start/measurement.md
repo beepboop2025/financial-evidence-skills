@@ -1,4 +1,21 @@
-# Research Desk measurement
+# Current Research Desk measurement
+
+The current desk uses central hosted research. Operational counters record fixed
+product/tool/dataset labels, request outcomes, traffic class and coarse timing.
+They do not retain private filter values, prompts, credentials or response bodies.
+Requests and prepared responses are not unique people or completed financial tasks.
+
+Optional learning and task sharing require separate owner authorization; see
+[learning choices](learning.md) and [connect an agent](https://agents.seiche.info/connect).
+Legacy `fe_` installation keys are no longer attached to research requests.
+A saved key is disabled and can be deleted explicitly through its original service
+using the desk's “Delete legacy measurement records” action. Failed deletion keeps
+the disabled key for a deliberate retry. No old identity is migrated automatically.
+
+The historical measurement definitions below describe older installations and
+existing records, not new enrollment from the current desk.
+
+## Historical Research Desk measurement
 
 The [browser desk](https://beepboop2025.github.io/financial-evidence-skills/start/)
 reduces first-use friction for LiquiLens, Seiche and Undertow. It does not prove

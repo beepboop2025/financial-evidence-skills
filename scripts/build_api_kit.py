@@ -10,7 +10,7 @@ from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "docs/api"
-BASE = "https://api.seiche.info/openbb"
+BASE = "https://agents.seiche.info/v1/research"
 BOUNDARY = (
     "Keep source dates, units, nulls, rights and diagnostics with every result. "
     "HTTP success is transport only. next_offset means more rows exist; use the "
@@ -89,17 +89,18 @@ def build(out=OUT):
         items.append({"name": name, "request": {
             "method": "GET", "auth": {"type": "noauth"},
             "header": [{"key": "Accept", "value": "application/json"},
-                       {"key": "X-Liquilens-Traffic-Class", "value": "{{traffic_class}}"}],
+                       {"key": "X-Liquilens-Traffic-Class", "value": "{{traffic_class}}"},
+                       {"key": "X-Financial-Evidence-Traffic-Class", "value": "{{traffic_class}}"}],
             "url": "{{base_url}}" + suffix,
             "description": BOUNDARY,
         }, "event": [{"listen": "test", "script": {"type": "text/javascript", "exec": checks}}]})
         bruno.append((f"{index:02d}-{name.lower().replace(' ', '-')}.bru",
                       f"meta {{\n  name: {name}\n  type: http\n  seq: {index}\n}}\n\n"
                       f"get {{\n  url: {BASE}{suffix}\n  body: none\n  auth: none\n}}\n\n"
-                      "headers {\n  Accept: application/json\n  X-Liquilens-Traffic-Class: {{traffic_class}}\n}\n\n"
+                      "headers {\n  Accept: application/json\n  X-Liquilens-Traffic-Class: {{traffic_class}}\n  X-Financial-Evidence-Traffic-Class: {{traffic_class}}\n}\n\n"
                       "tests {\n  test(\"HTTP response succeeded\", function () {\n    expect(res.getStatus()).to.equal(200);\n  });\n}\n\n"
                       f"docs {{\n  {BOUNDARY}\n}}\n"))
-        http.append(f"### {name}\n# {BOUNDARY}\nGET {BASE}{suffix}\nAccept: application/json\nX-Liquilens-Traffic-Class: developer\n")
+        http.append(f"### {name}\n# {BOUNDARY}\nGET {BASE}{suffix}\nAccept: application/json\nX-Liquilens-Traffic-Class: developer\nX-Financial-Evidence-Traffic-Class: unverified\n")
     collection = {
         "info": {"name": "LiquiLens Financial Evidence Research API", "description": BOUNDARY + " Public reads; no API key. Research Desk 1.3.0 includes three working tasks: Seiche funding watch, LiquiLens institution watch and Undertow BTC exit check. Run them in the browser at https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html or import these sixteen requests. Current public and private interfaces: https://beepboop2025.github.io/financial-evidence-skills/agents/system.json . Setup guide: https://liquilens.in/agents/infrastructure/ . Private runtimes are separately installed and grant no public execution authority. Operator validation must set traffic_class=synthetic. These headers are diagnostic labels, not verified customer identities.",
                  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},

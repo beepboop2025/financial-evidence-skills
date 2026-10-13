@@ -5,7 +5,7 @@ meta {
 }
 
 get {
-  url: https://api.seiche.info/openbb/api/v1/workflow?workflow=exit&selection=10000,100000
+  url: https://agents.seiche.info/v1/research/api/v1/workflow?workflow=exit&selection=10000,100000
   body: none
   auth: none
 }
@@ -13,6 +13,7 @@ get {
 headers {
   Accept: application/json
   X-Liquilens-Traffic-Class: {{traffic_class}}
+  X-Financial-Evidence-Traffic-Class: {{traffic_class}}
 }
 
 tests {

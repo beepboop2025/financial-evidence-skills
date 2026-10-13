@@ -27,6 +27,10 @@
 The last three topic groups are additions in the 0.1.6 candidate. Published
 0.1.5 installs retain their five-topic contract until explicitly upgraded.
 
+The URLs above identify original publishers for provenance. Current helpers fetch
+them through fixed central `/v1/data/{dataset_id}` routes. They do not accept
+arbitrary source URLs or fall back to the original publisher.
+
 ## GIFT City audience and scenario routing
 
 | Audience or question | Context first | Explicit next step and boundary |
@@ -36,10 +40,12 @@ The last three topic groups are additions in the 0.1.6 candidate. Published
 | Bank or IFSC institution | `gift-city`, `bank-risk`, `money-market` | Use covered legal-entity disclosures and dated funding evidence; private facilities, collateral, ALM and supervisory conclusions remain outside public context. |
 | Gold weight, purity or conversion | `gold`, `forex` | Normalise the stated unit and fineness; use the user's actual price and FX assumptions for a requested calculation. Weekly futures positions cannot supply a bullion price. |
 
-The helper never executes these scenario steps. Native Seiche tools are at
-`https://api.seiche.info/mcp`; Undertow tools are at
-`https://liquilens-undertow.com/mcp`. Inspect `tools/list` for the current input
-contract. Gold calculations require explicit user inputs; missing quote dates,
+The helper never executes these scenario steps. Current hosted connections are
+`https://agents.seiche.info/products/seiche/mcp` and
+`https://agents.seiche.info/products/undertow/mcp`. Inspect `tools/list` for the
+reviewed input contract. The specialist scenarios listed above are source
+capabilities, not a promise that every native tool is admitted to the hosted
+allowlist; report an unavailable tool explicitly. Gold calculations require explicit user inputs; missing quote dates,
 fees, FX, settlement or access assertions cannot be silently invented.
 Seiche `gift_city_context` reads the same dated desk. Its `market_workbench`
 selects H.10/ECB provider, currency pair and bounded history; the fixed helper

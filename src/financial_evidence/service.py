@@ -39,8 +39,8 @@ class EvidenceService:
     def __init__(
         self,
         *,
-        ttl: float = 60,
-        error_ttl: float = 5,
+        ttl: float = 0,
+        error_ttl: float = 0,
         fetcher: Callable = fetch_source,
         clock: Callable = time.monotonic,
     ):
@@ -68,13 +68,14 @@ class EvidenceService:
     def packet(self, topics) -> dict:
         selected = normalize_topics(topics)
         pending = []
+        selected_futures = {}
         with self._lock:
             if self._closed:
                 raise RuntimeError("Evidence service is closed")
             for topic in selected:
                 for source in ROUTES[topic]:
-                    future = self._cache.get(source.url)
-                    if future is not None and future.done():
+                    future = selected_futures.get(source.url, self._cache.get(source.url))
+                    if source.url not in selected_futures and future is not None and future.done():
                         if future.exception() is not None:
                             future = None
                         else:
@@ -86,6 +87,7 @@ class EvidenceService:
                     if future is None:
                         future = self._pool.submit(self._load, source)
                         self._cache[source.url] = future
+                    selected_futures[source.url] = future
                     pending.append((topic, future, hit))
         results = []
         for topic, future, hit in pending:

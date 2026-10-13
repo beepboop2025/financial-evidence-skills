@@ -56,7 +56,8 @@ def test_native_invoke_preserves_source_clocks_missingness_and_partial_diagnosti
     assert result["results"][0]["value"] == 0
     assert result["results"][1]["value"] is None
     assert request.get_method() == "GET"
-    assert urlsplit(request.full_url).netloc == "api.seiche.info"
+    assert urlsplit(request.full_url).netloc == "agents.seiche.info"
+    assert urlsplit(request.full_url).path == "/v1/research/api/v1/agent-query"
     assert parse_qs(urlsplit(request.full_url).query)["entity"] == ["A&B / €"]
     assert request.data is None
 

@@ -195,7 +195,7 @@ def _add_topic_argument(parser: argparse.ArgumentParser) -> None:
 
 
 def _add_fetch_limits(parser: argparse.ArgumentParser) -> None:
-    parser.add_argument("--max-bytes", type=int, default=1_048_576)
+    parser.add_argument("--max-bytes", type=int, default=4_194_304)
     parser.add_argument("--timeout", type=float, default=10.0)
 
 

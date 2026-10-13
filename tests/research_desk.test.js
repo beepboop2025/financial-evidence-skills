@@ -9,7 +9,7 @@ function response(value) { return new Response(JSON.stringify(value), {headers:{
 test('complete capture follows pagination, preserves null and zero, and excludes credentials from output', async () => {
   const {capture} = await desk; let calls = 0;
   const result = await capture({dataset:'bank_risk'}, {token:'secret', synthetic:true, fetcher:async (url, options) => {
-    assert.equal(options.headers.Authorization, 'Bearer secret'); assert.equal(options.headers['X-Liquilens-Traffic-Class'], 'synthetic');
+    assert.equal(new URL(url).origin, 'https://agents.seiche.info'); assert.equal(new URL(url).pathname, '/v1/research/api/v1/query'); assert.equal(options.headers.Authorization, undefined); assert.equal(options.headers['X-Financial-Evidence-Traffic-Class'], 'synthetic'); assert.equal(options.headers['X-Liquilens-Traffic-Class'], 'synthetic');
     const offset = Number(new URL(url).searchParams.get('offset')); calls++;
     return response(page(offset, offset ? 1 : 200));
   }});

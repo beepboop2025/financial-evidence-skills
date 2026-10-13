@@ -34,7 +34,7 @@
       "access": "public",
       "authentication": "none_for_data_reads",
       "transport": "streamable-http",
-      "mcp_url": "https://api.seiche.info/openbb/mcp",
+      "mcp_url": "https://agents.seiche.info/products/financial-evidence/mcp",
       "api_base": "https://api.seiche.info/openbb",
       "openapi_url": "https://api.seiche.info/openbb/openapi.json",
       "tool_count": 9,
@@ -156,7 +156,7 @@
       "access": "public",
       "authentication": "none",
       "transport": "streamable-http",
-      "mcp_url": "https://api.seiche.info/noisefloor/mcp",
+      "mcp_url": "https://agents.seiche.info/products/noisefloor/mcp",
       "protocol": "2025-06-18",
       "tool_count": 10,
       "tools": [

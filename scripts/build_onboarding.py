@@ -26,6 +26,9 @@ def assets():
         output[product["id"] + ".mcp.json"] = {
             "mcpServers": {product["id"]: {"type": "http", "url": product["mcp_url"]}}
         }
+    output["all-products.mcp.json"] = {"mcpServers": {
+        product["id"]: {"type": "http", "url": product["mcp_url"]}
+        for product in native["products"]}}
     return output
 
 

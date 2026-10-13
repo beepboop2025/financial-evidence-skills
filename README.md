@@ -3,6 +3,14 @@
 ## Connect and ask one question
 
 Hosted Streamable HTTP MCP; no local server or API key for public read-only tools.
+
+Current-source connections use [the central agent platform](https://agents.seiche.info/connect).
+[Download the hosted product configurations](docs/connect/all-products.mcp.json):
+seven core products plus five clearly labeled research, editorial, metadata or
+sandbox surfaces. Python product clients, fixed-source helpers and current editor
+configs use the same platform. Requests produce bounded operational demand
+counts; optional learning remains off. Old package pins are historical releases
+and do not change automatically. See [the routing contract](docs/CENTRAL_HOSTED_CLIENTS.md).
 Add the products you need to Claude Code:
 
 ```sh
@@ -181,46 +189,50 @@ financial-evidence completion zsh > ~/.zfunc/_financial-evidence
 
 ## Use as MCP infrastructure
 
-The public Streamable HTTP endpoint requires no local install, account, or API
-key:
+The current hosted Streamable HTTP workspace requires no local install, account,
+or API key:
 
 ```text
-https://liquilens.in/mcp/financial-evidence
+https://agents.seiche.info/products/financial-evidence/mcp
 ```
 
-It exposes the same three read-only `topics`, `route`, and `fetch` tools for
-clients that support remote MCP. The root [`.mcp.json`](.mcp.json) is the
-portable plugin configuration for that public remote:
+Start with `financial_evidence_datasets`, then call
+`financial_evidence_workflow` with `{"workflow":"funding","selection":"USD"}`.
+For custom rows use `financial_evidence_agent_query`; for a combined funding,
+covered-bank and liquidity review use `financial_evidence_review`. Original
+source documents are available through `financial_evidence_packet`. The
+workspace exposes nine reviewed read-only tools.
+
+The root [`.mcp.json`](.mcp.json), editor configs and
+[`integrations/mcp-config.json`](integrations/mcp-config.json) use this service:
 
 ```json
 {
   "mcpServers": {
     "financial-evidence": {
       "type": "http",
-      "url": "https://liquilens.in/mcp/financial-evidence"
+      "url": "https://agents.seiche.info/products/financial-evidence/mcp"
     }
   }
 }
 ```
 
-The package also includes a dependency-free stdio server for local or
-offline-compatible client setups. Its pinned configuration is in
-[`integrations/mcp-config.json`](integrations/mcp-config.json). Both transports
-accept the MCP `2025-11-25` initialization flow and the stateless `2026-07-28`
-discovery flow. Local stdio messages use newline-delimited JSON-RPC; nothing
-except protocol messages is written to standard output.
-
-The official MCP Registry record publishes both the multi-architecture OCI
-package and the public Streamable HTTP endpoint. Remote clients do not need
-`uv`, Docker, a credential, or a local subprocess.
+Hosted operational measurement records bounded product/tool/dataset demand;
+optional learning is separate and off by default. The package's dependency-free
+stdio router retains its three-tool `topics`, `route`, and `fetch` contract.
+Its fresh source retrieval also uses the central data service; normalization and
+replay of captured evidence can run locally. There is no automatic direct-origin
+fallback. Historical versioned releases and registry records retain their original
+configuration until a separately verified release updates them.
 
 ### Install in Gemini CLI or Claude Code
 
 Gemini CLI can install this repository as an extension. Its root
 [`gemini-extension.json`](gemini-extension.json) connects only to the fixed
-public remote MCP endpoint and allowlists the three read-only tools; the
+hosted workspace and allowlists its nine read-only tools; the
 mirrored `skills/financial-evidence` folder gives Gemini the domain routing
-instructions as well:
+instructions as well. The following historical install remains pinned to the
+verified 0.1.7 release and retains that release's original three-tool router:
 
 ```bash
 gemini extensions install https://github.com/beepboop2025/financial-evidence-skills \
@@ -261,17 +273,17 @@ owner. See [`OPENAI_PLUGIN_SUBMISSION.md`](OPENAI_PLUGIN_SUBMISSION.md) for the
 listing copy and required positive and negative tests.
 
 The root `.mcp.json` is the portable plugin form for the public remote MCP
-server. VS Code and Cursor retain separate workspace files for the pinned local
-stdio server, so plugin installs do not depend on a local Python process while
-editor workspaces can still use one.
+server. The current VS Code and Cursor workspace files use the same hosted
+workspace without a local Python process.
 
 ### Install in VS Code or Cursor
 
 The repository also includes editor-specific workspace configuration:
 [`.vscode/mcp.json`](.vscode/mcp.json) uses VS Code's top-level `servers`
 object, while [`.cursor/mcp.json`](.cursor/mcp.json) uses Cursor's top-level
-`mcpServers` object. Public install links currently launch the verified v0.1.7
-stdio server through `uvx`, matching the repository manifests.
+`mcpServers` object. Both current files use the hosted nine-tool workspace.
+The historical install links below still launch the verified v0.1.7 stdio router
+through `uvx`; they do not install the current hosted configuration.
 
 VS Code can install the server through its protocol handler:
 
@@ -307,10 +319,10 @@ cross-platform `uv` runtime and requires no API key or configuration.
 ## Finance-tool integrations
 
 - **Remote MCP:** connect any Streamable HTTP client to
-  `https://liquilens.in/mcp/financial-evidence`; no local runtime, account, or
+  `https://agents.seiche.info/products/financial-evidence/mcp`; no local runtime, account, or
   API key is required.
 - **Gemini CLI:** the root extension manifest bundles the Agent Skill and
-  allowlists the three tools exposed by the public remote MCP endpoint.
+  allowlists the nine tools exposed by the hosted research workspace.
 - **Claude Code:** the self-hosted `liquidity-lab` marketplace installs the
   versioned plugin, Agent Skill, and MCP configuration from this repository.
 - **Codex:** the repository marketplace installs the Agent Skill and public

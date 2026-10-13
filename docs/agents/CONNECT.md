@@ -72,7 +72,7 @@ or authorize orders. Missing visibility and statistical assumptions remain
 explicit; repeated headlines do not establish truth.
 
 - [Portable MCP config](mcp.noisefloor.json) · [VS Code config](mcp.noisefloor.vscode.json)
-- Hosted MCP: `https://api.seiche.info/noisefloor/mcp`
+- Hosted MCP: `https://agents.seiche.info/products/noisefloor/mcp`
 - [REST OpenAPI](https://api.seiche.info/noisefloor/openapi.json) and
   [capabilities](https://api.seiche.info/noisefloor/v1/capabilities)
 - Local stdio: `uvx --from noisefloor==0.4.0 noisefloor-mcp`

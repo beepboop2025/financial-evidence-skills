@@ -1,37 +1,39 @@
-import {BASE, readJSON} from './desk.mjs';
+import {readJSON} from './desk.mjs';
 const STORAGE = 'financial-evidence-research-measurement-v1';
+const LEGACY_DELETE = 'https://api.seiche.info/openbb/api/v1/applications/current';
+
+// Legacy keys belong only to their issuing service. They never authenticate
+// central research or new learning enrollment.
 export function createMeasurement({operator = false} = {}) {
-  const $ = id => document.getElementById(id), message = text => { $('measurement-status').textContent = text; };
+  const $ = id => document.getElementById(id);
+  const message = text => { $('measurement-status').textContent = text; };
   let identity = null;
-  try { const saved = JSON.parse(localStorage.getItem(STORAGE) || 'null'); if (saved && /^fe_[A-Za-z0-9_-]{43}$/.test(saved.token) && Number.isFinite(saved.created)) identity = saved; } catch { /* Optional storage never prevents research. */ }
-  const valid = () => !operator && identity?.enabled === true && Date.now() - identity.created < 30 * 86400000 && identity.created <= Date.now();
-  const save = () => { try { if (identity) localStorage.setItem(STORAGE, JSON.stringify(identity)); else localStorage.removeItem(STORAGE); } catch { message('Browser storage is unavailable. This choice applies to this visit only.'); } };
-  $('measurement').checked = valid();
-  if (operator) { $('measurement').disabled = true; message('Operator verification: visitor measurement is disabled; research requests are labelled synthetic.'); }
-  $('measurement').addEventListener('change', async () => {
-    if (operator) return;
-    if (!$('measurement').checked) { if (identity) identity.enabled = false; save(); message('Measurement disabled. You can delete earlier linked records below.'); return; }
-    $('measurement').disabled = true;
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE) || 'null');
+    if (saved && /^fe_[A-Za-z0-9_-]{43}$/.test(saved.token)) identity = saved;
+  } catch { /* Storage is optional; public research stays available. */ }
+  const save = () => {
     try {
-      if (!identity) {
-        const value = await readJSON(await fetch(`${BASE}/api/v1/applications`, {method:'POST',credentials:'omit',redirect:'error',headers:{'Content-Type':'application/json'},body:JSON.stringify({measurement_consent:true}),signal:AbortSignal.timeout(12000)}));
-        if (!/^fe_[A-Za-z0-9_-]{43}$/.test(value.token)) throw new Error('Enrollment returned an invalid key.');
-        identity = {token:value.token, created:Date.now(), enabled:false};
-      }
-      identity.enabled = true; identity.created = Date.now(); save(); message('Measurement enabled for future research requests. Past anonymous activity is not linked.');
-    } catch (error) { $('measurement').checked = false; if (identity) identity.enabled = false; save(); message(`${error.message} Research still works with measurement off.`); }
-    finally { $('measurement').disabled = false; }
-  });
+      if (identity) localStorage.setItem(STORAGE, JSON.stringify(identity));
+      else localStorage.removeItem(STORAGE);
+    } catch { message('Browser storage is unavailable. Public research still works.'); }
+  };
+  if (identity) { identity.enabled = false; save(); }
+  $('forget').hidden = !identity;
+  message(operator
+    ? 'Operator verification: research requests are labelled synthetic.'
+    : 'Public research uses bounded hosted operational counts. Optional learning requires a separate owner-authorized enrollment.');
   $('forget').addEventListener('click', async () => {
-    $('measurement').checked = false;
-    if (!identity) { message('Measurement is off. This browser has no measurement key.'); return; }
-    identity.enabled = false; save(); $('forget').disabled = true;
+    if (!identity) { message('This browser has no legacy measurement key.'); return; }
+    $('forget').disabled = true;
     try {
-      const response = await fetch(`${BASE}/api/v1/applications/current`, {method:'DELETE',credentials:'omit',redirect:'error',headers:{Authorization:`Bearer ${identity.token}`},signal:AbortSignal.timeout(12000)});
+      const response = await fetch(LEGACY_DELETE, {method:'DELETE', credentials:'omit', redirect:'error', headers:{Authorization:`Bearer ${identity.token}`}, signal:AbortSignal.timeout(12000)});
       if (response.status !== 401 && (await readJSON(response)).deleted !== true) throw new Error('Deletion was not confirmed.');
-      identity = null; save(); message('Linked measurement deleted or already expired. Anonymous aggregate counts remain.');
-    } catch { message('Measurement is off. Deletion could not be confirmed; the disabled key remains here so you can retry.'); }
-    finally { $('forget').disabled = false; }
+      identity = null; save(); $('forget').hidden = true;
+      message('Legacy linked measurement deleted or already expired. Anonymous aggregate counts remain.');
+    } catch {
+      message('Legacy attribution is off. Deletion could not be confirmed; the disabled key remains here so you can retry.');
+    } finally { $('forget').disabled = false; }
   });
-  return {get token() { return valid() && $('measurement').checked ? identity.token : ''; }};
+  return {get token() { return ''; }};
 }

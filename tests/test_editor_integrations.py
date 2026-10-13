@@ -48,22 +48,11 @@ class EditorIntegrationTests(unittest.TestCase):
         self.public_named_config = {"name": SERVER_NAME, **self.public_config}
         self.interfaces = {item["name"]: item for item in manifest["interfaces"]}
 
-    def test_workspace_configs_share_one_exact_stdio_contract(self):
-        expected = {
-            "type": "stdio",
-            "command": "uvx",
-            "args": [
-                "--from",
-                f"git+{REPOSITORY}@v{self.version}",
-                "financial-evidence-mcp",
-            ],
-        }
+    def test_current_workspace_configs_share_the_central_hosted_contract(self):
+        expected = {"type": "http", "url": "https://agents.seiche.info/products/financial-evidence/mcp"}
         self.assertEqual(self.config, expected)
         self.assertEqual(_json(".cursor/mcp.json"), self.canonical)
-        self.assertEqual(
-            _json(".vscode/mcp.json"),
-            {"servers": self.canonical["mcpServers"]},
-        )
+        self.assertEqual(_json(".vscode/mcp.json"), {"servers": self.canonical["mcpServers"]})
 
     def test_root_plugin_mcp_uses_the_public_remote(self):
         self.assertEqual(
@@ -72,7 +61,7 @@ class EditorIntegrationTests(unittest.TestCase):
                 "mcpServers": {
                     SERVER_NAME: {
                         "type": "http",
-                        "url": "https://liquilens.in/mcp/financial-evidence",
+                        "url": "https://agents.seiche.info/products/financial-evidence/mcp",
                     }
                 }
             },
@@ -221,16 +210,22 @@ class EditorIntegrationTests(unittest.TestCase):
         remote = extension["mcpServers"][SERVER_NAME]
         self.assertEqual(
             remote["httpUrl"],
-            "https://liquilens.in/mcp/financial-evidence",
+            "https://agents.seiche.info/products/financial-evidence/mcp",
         )
         self.assertEqual(remote["timeout"], 30000)
         self.assertNotIn("trust", remote)
         self.assertEqual(
             remote["includeTools"],
             [
-                "financial_evidence_topics",
+                "financial_evidence_workflow",
+                "financial_evidence_datasets",
+                "financial_evidence_funding_review",
+                "financial_evidence_query",
+                "financial_evidence_sources",
                 "financial_evidence_route",
-                "financial_evidence_fetch",
+                "financial_evidence_packet",
+                "financial_evidence_agent_query",
+                "financial_evidence_review",
             ],
         )
         integration = self.interfaces["Gemini CLI"]
@@ -278,7 +273,7 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertEqual(plugin["mcpServers"], "./.mcp.json")
         self.assertEqual(
             _json(plugin["mcpServers"])["mcpServers"][SERVER_NAME]["url"],
-            "https://liquilens.in/mcp/financial-evidence",
+            "https://agents.seiche.info/products/financial-evidence/mcp",
         )
         self.assertEqual(
             plugin["interface"]["privacyPolicyURL"],

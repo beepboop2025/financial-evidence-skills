@@ -4,6 +4,10 @@ Use Seiche funding benchmarks, LiquiLens covered-bank diagnostics and Undertow
 market-liquidity observations from one source-cited interface. No data API key
 is needed. Your model provider may require its own account and key.
 
+For trading research, use the [readiness guide](../../docs/agents/readiness.md)
+to check anonymous MCP sessions, source-monitor clocks and the separate paper
+outcome-sharing path.
+
 ## First result
 
 ```sh

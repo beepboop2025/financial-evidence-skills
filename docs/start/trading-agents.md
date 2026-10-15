@@ -1,6 +1,6 @@
 # Financial-agent product inputs
 
-The Finance starter calls seven core products and five additional hosted surfaces
+The Finance starter calls the catalogued core products and additional hosted surfaces
 through the central product gateway by default. The catalog labels research
 products, editorial archives, metadata-only discovery, the read-only Trade Safety
 sandbox and the Financial Evidence research wrapper separately. Local decision
@@ -13,6 +13,10 @@ provisioned network identity, and optional learning uses separate enrollment.
 Existing free product features remain usable without training contributions.
 Pilot availability does not establish a validated trading strategy or capacity
 for unrestricted production workloads.
+
+Run the [connection readiness check](../agents/readiness.md) before adding these
+inputs to an agent. It reports connection, source-monitor and adoption boundaries
+separately.
 
 ## Install and inspect
 

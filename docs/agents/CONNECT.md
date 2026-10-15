@@ -12,6 +12,10 @@ or a funding-and-exit review for traders and researchers. The
 [workflow catalog](workflows.json) gives exact initial calls and repeat-use
 criteria. Interface checks are dated 9 October 2026; source clocks remain separate.
 
+The [trading-agent readiness guide](readiness.md) includes a bounded anonymous
+connection diagnostic, tested framework versions and the private paper-outcome
+sharing path.
+
 ## MCP clients
 
 - [Portable MCP configuration](mcp.remote.json): merge selected entries into
@@ -25,7 +29,11 @@ criteria. Interface checks are dated 9 October 2026; source clocks remain separa
 Preserve existing configuration. Review the chosen endpoints before accepting
 client trust prompts. No credentials are embedded. Undertow's subscriber and
 full-fidelity tools retain their own entitlements; start with
-`agent_access_status`. For LiquiLens start with `institution_research_coverage`
+`liquidity_tiers` through the hosted gateway. `agent_access_status` describes
+the native anonymous caller's allowance, which may be exhausted independently
+of the gateway's authorized public research route. It is not a gateway
+readiness check, and the gateway never exposes its operator identity through it.
+For LiquiLens start with `institution_research_coverage`
 using `{"scope":"dossiers","limit":3}`; for Seiche start with `data_health`.
 Then discover the live tool schemas before composing a query.
 

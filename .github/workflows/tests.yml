@@ -162,7 +162,21 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        sdk: ["langchain-core==1.6.6", "crewai==1.6.1", "openai-agents==0.22.3", "pydantic-ai-slim==2.52.0"]
+        include:
+          - framework: langchain
+            sdk: langchain-core==1.6.6
+          - framework: crewai
+            sdk: crewai==1.6.1
+          - framework: openai
+            sdk: openai-agents==0.22.3
+          - framework: pydantic-ai
+            sdk: pydantic-ai-slim==2.52.0
+    env:
+      FINANCIAL_EVIDENCE_REQUIRED_FRAMEWORK: ${{ matrix.framework }}
+      OTEL_SDK_DISABLED: 'true'
+      CREWAI_TELEMETRY_DISABLED: 'true'
+      LANGCHAIN_TRACING_V2: 'false'
+      LANGSMITH_TRACING: 'false'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

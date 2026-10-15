@@ -1,7 +1,10 @@
 """Agent output semantics and real optional-framework registration."""
 
+import asyncio
 import copy
 import importlib.util
+import json
+import os
 import unittest
 
 from test_openbb_tables import MONEY, source_result
@@ -88,17 +91,18 @@ class AgentTests(unittest.TestCase):
             framework_tools("unknown", self.client)
 
     def test_optional_native_tool_schemas_with_installed_frameworks(self):
-        checked = 0
+        checked = set()
         for name, module in [("langchain", "langchain_core"), ("crewai", "crewai"), ("openai", "agents"), ("pydantic-ai", "pydantic_ai")]:
             if importlib.util.find_spec(module) is None:
                 continue
             with self.subTest(framework=name):
                 tools = framework_tools(name, self.client)
                 self.assertEqual(len(tools), 3)
-                checked += 1
+                checked.add(name)
                 if name == "langchain":
                     self.assertIn("money_markets", tools[1].args_schema.model_json_schema()["properties"]["dataset"]["enum"])
                     self.assertEqual(len(tools[0].invoke({})["datasets"]), 7)
+                    result = tools[1].invoke({"dataset": "money_markets", "limit": 2})
                 if name == "crewai":
                     self.assertIn("money_markets", tools[1].args_schema.model_json_schema()["properties"]["dataset"]["enum"])
                     result = tools[1].run(dataset="money_markets", limit=2)
@@ -106,6 +110,22 @@ class AgentTests(unittest.TestCase):
                     self.assertIsNone(result["results"][1]["value"])
                 if name == "openai":
                     self.assertIn("dataset", tools[1].params_json_schema["properties"])
+                    from agents.tool_context import ToolContext
+                    arguments = json.dumps({"dataset": "money_markets", "limit": 2})
+                    context = ToolContext(context=None, tool_name=tools[1].name,
+                                          tool_call_id="fixture-query", tool_arguments=arguments)
+                    result = asyncio.run(tools[1].on_invoke_tool(context, arguments))
+                    if isinstance(result, str):
+                        result = json.loads(result)
+                if name == "pydantic-ai":
+                    self.assertIn("dataset", tools[1].function_schema.json_schema["properties"])
+                    result = asyncio.run(tools[1].function_schema.call({"dataset": "money_markets", "limit": 2}, None))
+                self.assertEqual(result["results"][0]["value"], 0)
+                self.assertIsNone(result["results"][1]["value"])
+                self.assertEqual(result["financial_authority"], "none")
+        required = os.environ.get("FINANCIAL_EVIDENCE_REQUIRED_FRAMEWORK")
+        if required:
+            self.assertIn(required, checked, "Required framework must be installed and exercised")
         if not checked:
             self.skipTest("Optional agent SDKs are not installed")
 

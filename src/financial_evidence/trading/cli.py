@@ -14,10 +14,22 @@ def main(argv=None):
     sub=parser.add_subparsers(dest="command",required=True)
     sub.add_parser("catalog")
     sub.add_parser("mcp-config")
+    doctor=sub.add_parser("doctor",help="Check anonymous MCP connections and source-monitor status; no order authority")
+    from .readiness import PROBES
+    doctor.add_argument("--product",action="append",choices=list(PROBES),help="Repeat to select products; defaults to all four research connections")
+    doctor.add_argument("--timeout",type=float,default=30,help="Per-connection deadline in seconds (maximum 120)")
     review=sub.add_parser("review")
     review.add_argument("--mode",choices=["test","shadow","paper","unknown"],default="test")
     review.add_argument("--capture-dir",help="Explicit local capture of permitted returned evidence; no upload")
     args=parser.parse_args(argv)
+    if args.command=="doctor":
+        from .readiness import check_readiness, exit_code
+        try:
+            result=asyncio.run(check_readiness(platform_url=args.platform_url,products=args.product,timeout=args.timeout))
+        except ValueError as exc:
+            parser.error(str(exc))
+        print(json.dumps(result,indent=2,allow_nan=False))
+        return exit_code(result)
     client=ProductClient(platform_url=args.platform_url,mode=getattr(args,"mode","unknown"),
                          credential=os.environ.get("SEICHE_NETWORK_TOKEN"))
     if args.command=="catalog":

@@ -6,8 +6,9 @@ Two read-only actions for public financial research:
 - **Get Evidence Page** returns one page from bank risk, money markets, money-market history, capital markets, market liquidity, China publication coverage or source health.
 
 The fixed public service is `https://agents.seiche.info/v1/research/api/v1`.
-No API key, LLM credential or broker account is required. This is source code for
-a native piece candidate; it is not yet published on npm or accepted upstream.
+No API key, LLM credential or broker account is required. Native qualification,
+registry publication and upstream acceptance have separate
+[receipts and current status](https://beepboop2025.github.io/financial-evidence-skills/platforms/activepieces.md).
 
 ## Build and verify
 

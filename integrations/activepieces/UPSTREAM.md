@@ -23,7 +23,7 @@ that instance afterward. This is distinct from browser interaction and npm
 registry installation; see the generated receipt for actual results.
 
 Before npm publication, authenticate with the intended publisher account and
-verify its ownership of the `@liquilens` scope. Publish only the exact qualified
+verify its ownership of the `@moomoo202020` scope. Publish only the exact qualified
 tarball. Read back the registry version and tarball and compare their SHA-256
 with the native receipt before recording publication. No credentials belong in
 the source, artifact, workflow logs or public receipt.
@@ -69,7 +69,7 @@ response preservation, invalid input rejection, schema drift and failure behavio
    review and merge it before upstream package availability.
 
 An independent npm publication is a different distribution route. Do not infer
-ownership of the `@liquilens` npm scope from this package name, and do not claim
+ownership of the `@moomoo202020` npm scope from this package name, and do not claim
 an upstream `@activepieces` package before maintainer publication.
 
 ## Official references

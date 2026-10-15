@@ -1,0 +1,51 @@
+{
+  "schema": "financial-evidence.hosted-registry-contracts.v1",
+  "contracts": [
+    {
+      "manifest": "financial-evidence-workspace.json",
+      "product": "financial-evidence",
+      "server_info": {
+        "name": "Financial Evidence Workspace",
+        "version": "1.3.0"
+      },
+      "protocol_version": "2025-11-25",
+      "tool_names": [
+        "financial_evidence_agent_query",
+        "financial_evidence_datasets",
+        "financial_evidence_funding_review",
+        "financial_evidence_packet",
+        "financial_evidence_query",
+        "financial_evidence_review",
+        "financial_evidence_route",
+        "financial_evidence_sources",
+        "financial_evidence_workflow"
+      ],
+      "tools_sha256": "62b4cccb2a7ca081ade28bb8ca4a6691c27d8f083b03249917becdb49001f95e",
+      "first_tool": "financial_evidence_datasets",
+      "observed_at": "2026-10-15T15:35:00.302296+00:00"
+    },
+    {
+      "manifest": "seiche-market-corpus.json",
+      "product": "seiche-market-corpus",
+      "server_info": {
+        "name": "liquilens-market-corpus",
+        "version": "1.0.0"
+      },
+      "protocol_version": "2025-03-26",
+      "tool_names": [
+        "bis_flow_manifest",
+        "bis_observations",
+        "bis_records",
+        "corpus_catalog",
+        "corpus_health",
+        "inspect_dataset",
+        "list_datasets",
+        "seiche_markets",
+        "seiche_observations"
+      ],
+      "tools_sha256": "7dbacf90fd3d899e3b2e33684553126b547df4d80419c91777bad9fcaa7c8713",
+      "first_tool": "corpus_catalog",
+      "observed_at": "2026-10-15T15:34:48.669568+00:00"
+    }
+  ]
+}

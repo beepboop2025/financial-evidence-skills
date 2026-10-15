@@ -21,7 +21,7 @@ jobs:
     env:
       HOMEBREW_NO_AUTO_UPDATE: "1"
       HOMEBREW_NO_ANALYTICS: "1"
-      TAP_SOURCE: "024dcc42b6b966aa9fdd53113619ef93e36ae5db"
+      TAP_SOURCE: "f1d5870af8798697d948cacde3ec797edf46f385"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: beepboop2025/homebrew-tap
-          ref: 024dcc42b6b966aa9fdd53113619ef93e36ae5db
+          ref: f1d5870af8798697d948cacde3ec797edf46f385
           path: tap-candidate
           persist-credentials: false
       - name: Register only the exact public candidate tap
@@ -43,7 +43,7 @@ jobs:
       - run: brew test beepboop2025/tap/financial-evidence
       - name: Verify installed MCP and retain the separate candidate identity
         run: |
-          python3 scripts/verify_published_mcp.py --contract integrations/financial-evidence-mcp-v0.1.8.json --receipt homebrew-mcp-receipt.json -- \
+          python3 scripts/verify_published_mcp.py --contract integrations/financial-evidence-mcp-v0.1.9.json --receipt homebrew-mcp-receipt.json -- \
             "$(brew --prefix financial-evidence)/bin/financial-evidence-mcp"
           python3 - <<'PY'
           import hashlib, json, os, pathlib, re, subprocess
@@ -55,8 +55,8 @@ jobs:
           formula_text = formula.read_text()
           release_url = re.search(r'^  url "([^"]+)"', formula_text, re.M).group(1)
           release_sha256 = re.search(r'^  sha256 "([^"]+)"', formula_text, re.M).group(1)
-          assert release_url == "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.8/financial_evidence-0.1.8.tar.gz"
-          assert release_sha256 == "7165c192628555e9c76f832f2e87ad7d39d2a71530fac96b3d8dc0b7552baa91"
+          assert release_url == "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.9/financial_evidence-0.1.9.tar.gz"
+          assert release_sha256 == "87bd5c9fa7de6198367af333ca26bb302533f93a12bbcf1ca7ffca753c1cc210"
           prefix = subprocess.check_output(["brew", "--prefix", "financial-evidence"], text=True).strip()
           python = pathlib.Path(prefix) / "libexec/bin/python"
           installed = json.loads(subprocess.check_output([str(python), "-c", '''
@@ -76,13 +76,13 @@ jobs:
               "all_entrypoints_load": True, "platform_url": financial_evidence.hosted.PLATFORM_URL,
               "hosted_module_sha256": hashlib.sha256(Path(financial_evidence.hosted.__file__).read_bytes()).hexdigest()}))
           '''], text=True))
-          assert installed["version"] == "0.1.8"
+          assert installed["version"] == "0.1.9"
           assert installed["platform_url"] == "https://agents.seiche.info"
           assert installed["hosted_module_sha256"] == "108b87f1c8129084bbb394ffcf0932636f58f6c1942918e7103796be8dd98fa7"
           receipt = {"schema": "financial-evidence.homebrew-candidate-acceptance.v1",
                      "observed_at": datetime.now(timezone.utc).isoformat(),
                      "source_commit": source, "formula_sha256": hashlib.sha256(formula.read_bytes()).hexdigest(),
-                     "release_source_commit": "27d7ba5991ac57bb538770c9984c4b1d48ba790f",
+                     "release_source_commit": "e4a0440798d78e3352af613400f4262efc604b39",
                      "release_url": release_url, "release_sha256": release_sha256, "installed": installed,
                      "checks": ["strict_online_audit", "style", "actual_install", "formula_test", "published_mcp_contract",
                                 "all_11_entrypoints_load", "installed_central_client_identity"],
@@ -115,24 +115,24 @@ jobs:
         with:
           persist-credentials: false
       - name: Pull the immutable public release
-        run: docker pull --platform '${{ matrix.platform }}' ghcr.io/beepboop2025/financial-evidence-skills@sha256:cddf3c8bdcbad9f5a681a1f2e0f922ab378a5af85f2d25d988af16bdd1ec0b4e
+        run: docker pull --platform '${{ matrix.platform }}' ghcr.io/beepboop2025/financial-evidence-skills@sha256:1676ed4ae6acda47746eaa88ee2dddab037493437218b6f331ddd29f4c1698cc
       - name: Exercise the published stdio contract without network access
         env:
           TESTED_PLATFORM: ${{ matrix.platform }}
         run: |
-          python3 scripts/verify_published_mcp.py --contract integrations/financial-evidence-mcp-v0.1.8.json --receipt published-mcp-receipt.json -- \
+          python3 scripts/verify_published_mcp.py --contract integrations/financial-evidence-mcp-v0.1.9.json --receipt published-mcp-receipt.json -- \
             docker run --rm --interactive --platform "$TESTED_PLATFORM" --pull never --read-only --network none \
             --cap-drop ALL --security-opt no-new-privileges --pids-limit 64 \
             --memory 128m --cpus 1 \
-            ghcr.io/beepboop2025/financial-evidence-skills@sha256:cddf3c8bdcbad9f5a681a1f2e0f922ab378a5af85f2d25d988af16bdd1ec0b4e
+            ghcr.io/beepboop2025/financial-evidence-skills@sha256:1676ed4ae6acda47746eaa88ee2dddab037493437218b6f331ddd29f4c1698cc
           python3 - <<'PY'
           import json, os, pathlib, subprocess
-          image = "ghcr.io/beepboop2025/financial-evidence-skills@sha256:cddf3c8bdcbad9f5a681a1f2e0f922ab378a5af85f2d25d988af16bdd1ec0b4e"
+          image = "ghcr.io/beepboop2025/financial-evidence-skills@sha256:1676ed4ae6acda47746eaa88ee2dddab037493437218b6f331ddd29f4c1698cc"
           details = json.loads(subprocess.check_output(["docker", "image", "inspect", image]))[0]
           platform = details["Os"] + "/" + details["Architecture"]
           assert platform == os.environ["TESTED_PLATFORM"]
-          assert details["Config"]["Labels"]["org.opencontainers.image.revision"] == "27d7ba5991ac57bb538770c9984c4b1d48ba790f"
-          assert details["Config"]["Labels"]["org.opencontainers.image.version"] == "0.1.8"
+          assert details["Config"]["Labels"]["org.opencontainers.image.revision"] == "e4a0440798d78e3352af613400f4262efc604b39"
+          assert details["Config"]["Labels"]["org.opencontainers.image.version"] == "0.1.9"
           assert details["Config"]["User"] == "65532:65532"
           path = pathlib.Path("published-mcp-receipt.json")
           receipt = json.loads(path.read_text())

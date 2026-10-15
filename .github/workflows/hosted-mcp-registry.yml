@@ -1,0 +1,69 @@
+name: Hosted MCP Registry publication
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hosted-mcp-registry-publication
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify the exact signed publication source
+        run: |
+          git -c gpg.format=ssh -c gpg.ssh.allowedSignersFile=ops/release/financial-evidence.allowed_signers verify-commit "$GITHUB_SHA"
+          git fetch origin main --no-tags
+          test "$GITHUB_SHA" = "$(git rev-parse origin/main)"
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+      - run: python3 -m pip install '.[workspace]'
+      - name: Verify both hosted MCP contracts and catalog calls
+        run: python3 scripts/verify_hosted_registry.py --receipt hosted-registry-runtime.json
+      - name: Install the pinned MCP publisher
+        run: |
+          curl --fail --location --silent --show-error --output mcp-publisher.tar.gz \
+            https://github.com/modelcontextprotocol/registry/releases/download/v1.8.1/mcp-publisher_linux_amd64.tar.gz
+          printf '%s  %s\n' a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc mcp-publisher.tar.gz | sha256sum --check --strict
+          tar --extract --gzip --file mcp-publisher.tar.gz mcp-publisher
+      - name: Publish the distinct hosted interfaces
+        run: |
+          ./mcp-publisher login github-oidc
+          for manifest in financial-evidence-workspace seiche-market-corpus; do
+            file="integrations/mcp-registry/$manifest.json"
+            ./mcp-publisher validate "$file"
+            version="$(jq --raw-output .version "$file")"
+            url="https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2F${manifest}/versions/${version}"
+            status="$(curl --silent --show-error --max-time 30 --output existing.json --write-out '%{http_code}' "$url")"
+            if test "$status" = 200; then
+              jq --sort-keys .server existing.json > existing-server.json
+              jq --sort-keys . "$file" > expected-server.json
+              diff --unified expected-server.json existing-server.json
+              test "$(jq --raw-output '._meta["io.modelcontextprotocol.registry/official"].status' existing.json)" = active
+              echo "Exact active version is already published: $manifest $version"
+            elif test "$status" = 404; then
+              ./mcp-publisher publish "$file"
+            else
+              echo "Registry verification returned HTTP $status" >&2
+              exit 1
+            fi
+          done
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: hosted-registry-runtime
+          path: hosted-registry-runtime.json
+          if-no-files-found: error

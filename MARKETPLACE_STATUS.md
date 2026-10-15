@@ -17,8 +17,9 @@ release acceptance. Updating the ledger does not refresh every observation.
   LiquiLens.in and Seiche.info are approved on SaaSHub. The free Undertow by
   LiquiLens submission and official Cursor publisher application received
   acknowledgements and remain under review. Cursor/Insomnia handoffs and a
-  tested Activepieces SDK candidate are available; native client/editor
-  acceptance remains separate. Six researched platform opportunities were
+  published Activepieces 0.1.0 package are available. Activepieces archive and
+  native npm-registry installation both passed with both worker actions;
+  browser interaction remains unverified. Six researched platform opportunities were
   added without claiming partnerships. See the [dated results and remaining
   steps](docs/distribution/expansion-20261015.md).
 

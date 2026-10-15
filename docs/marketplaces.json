@@ -71,7 +71,7 @@
       "listing_url": "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills",
       "cost": "free",
       "detail": "Existing repository listing refreshed to source d1e8cdf5a4d8020e3d0df91565fb9541a449686d. Public README now advertises Financial Evidence 0.1.7; the three-tool inventory remains separately verified.",
-      "next_action": "Monitor repository crawl after future releases.",
+      "next_action": "Monitor public source propagation and retain separate source, tool-inventory and deployed-runtime checks.",
       "verified_at": "2026-10-08T12:12:14.387221+00:00",
       "verification_url": "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills/schema",
       "latest_surface_check": {
@@ -88,7 +88,37 @@
       },
       "metadata_freshness": "current_release_and_setup_guidance",
       "updated_at": "2026-10-08T12:25:18.882263+00:00",
-      "source_commit": "d1e8cdf5a4d8020e3d0df91565fb9541a449686d"
+      "source_commit": "d1e8cdf5a4d8020e3d0df91565fb9541a449686d",
+      "latest_agent_tools_refresh": {
+        "observed_at": "2026-10-15T14:56:19.950Z",
+        "state": "existing_listing_metadata_and_source_refreshed",
+        "description": "Public MCP research for AI finance and trading agents: funding, bank risk and liquidity evidence. Companion SDK: persistent Python MCP sessions and Python/JS source-status streams. Setup: https://beepboop2025.github.io/financial-evidence-skills/distribution/ai-trading-tools.html. No data API key. Keep source dates, rights and gaps. No live quotes or execution.",
+        "public_readback": {
+          "observed_at": "2026-10-15T14:55:53.526950+00:00",
+          "url": "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills",
+          "http_status": 200,
+          "sha256": "e918aeaf1e83a7d25d8811a62a7d90ed23aad10632612b33164e59f00c07640a",
+          "authentication_used": false,
+          "new_description_verified": true,
+          "setup_page_link_verified": true,
+          "source_sdk_tag_visible": false,
+          "scope": "public description and README readback; no tool calls generated"
+        },
+        "repository_sync": {
+          "observed_at": "2026-10-15T14:56:19.950Z",
+          "state": "owner_repository_sync_readback_verified",
+          "verification_surface": "authenticated owner repository page",
+          "before_commit": "5cbb612fa28e09b3a7b3a48b7c465245c98eb5ff",
+          "after_commit": "a0b77be3e1f73786176eb1a3474041999cbf5920",
+          "public_source_sdk_tag_visible": false,
+          "scope": "Owner repository readback confirms the synchronized source commit; this does not verify the deployed package or container version."
+        },
+        "existing_router_tool_count": 3,
+        "tool_inventory_change_claimed": false,
+        "runtime_upgrade_claimed": false,
+        "independent_adoption_verified": false,
+        "evidence_receipt": "distribution/agent-tools-distribution-20261015.json"
+      }
     },
     {
       "id": "docker-mcp-catalog",
@@ -4433,7 +4463,7 @@
     "observed_at": "2026-10-15T14:54:00.970578Z",
     "receipt": "distribution/agent-tools-distribution-20261015.json",
     "report": "distribution/agent-tools-distribution-20261015.md",
-    "scope": "Two new directory submissions and two existing-record updates; other entries and historic verification clocks were not re-audited.",
+    "scope": "Two new directory submissions and three existing-record updates; other entries and historic verification clocks were not re-audited.",
     "source_release": "agent-infrastructure-v1.1.0",
     "new_ledger_records": 2,
     "new_directory_submissions_received": 2,
@@ -4460,7 +4490,11 @@
       "laplace-awesome-agent-trading-financial-evidence",
       "aowang-awesome-finance-agents-financial-evidence",
       "ai4finance-financial-evidence",
-      "kilo-financial-evidence"
-    ]
+      "kilo-financial-evidence",
+      "glama"
+    ],
+    "updated_at": "2026-10-15T14:56:19.950Z",
+    "existing_public_metadata_refreshes_verified": 1,
+    "existing_repository_syncs_verified": 1
   }
 }

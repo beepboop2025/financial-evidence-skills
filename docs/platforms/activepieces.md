@@ -21,9 +21,14 @@ dataset descriptions and one money-market evidence row with its source and
 diagnostics. The tested observation was dated 13 October and marked `AGING`;
 successful execution does not make that observation fresh.
 
-For an instance that permits independently maintained pieces, open Settings,
-My Pieces, Install Piece and select the npm package
-`@moomoo202020/piece-financial-evidence`, version `0.1.0`. See the
+On a self-hosted instance that permits independently maintained pieces, sign in
+as a platform administrator. In Activepieces 0.92.3, open **Platform → Catalogue
+→ Pieces → Install Piece**, choose **NPM Registry**, and enter
+`@moomoo202020/piece-financial-evidence`, version `0.1.0`. The route is
+`/platform/pieces`; older documentation calls it **Settings → My Pieces**.
+These navigation labels were checked against the
+[0.92.3 frontend source](https://github.com/activepieces/activepieces/blob/0.92.3/packages/web/src/app/components/sidebar/platform/index.tsx#L95),
+and browser interaction remains unverified. See the
 [official independent package instructions](https://www.activepieces.com/docs/build-pieces/sharing-pieces/community).
 For a separate Node environment, the exact package is available with:
 

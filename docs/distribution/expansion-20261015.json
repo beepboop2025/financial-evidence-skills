@@ -1,0 +1,58 @@
+{
+  "schema": "financial-evidence.distribution-expansion.v1",
+  "observed_at": "2026-10-15T09:05:44.381099Z",
+  "scope": "Selected new distribution routes and prior acceptance closeout; not a fleet-wide recertification.",
+  "actions": [
+    {
+      "channel": "SaaSHub LiquiLens.in and Seiche.info",
+      "state": "live",
+      "urls": [
+        "https://www.saashub.com/liquilens-in",
+        "https://www.saashub.com/seiche-info"
+      ]
+    },
+    {
+      "channel": "SaaSHub Undertow by LiquiLens",
+      "state": "submitted",
+      "operator_verification": true,
+      "editorial_approval": false,
+      "url": "https://www.saashub.com/undertow-by-liquilens"
+    },
+    {
+      "channel": "Cursor official marketplace",
+      "state": "submitted",
+      "receipt": "Thanks for applying; submission received",
+      "url": "https://cursor.com/marketplace/publish"
+    },
+    {
+      "channel": "Dify",
+      "state": "live",
+      "version": "0.1.1",
+      "url": "https://marketplace.dify.ai/plugin/beepboop2025/financial_evidence",
+      "native_installed_archive_tested": false
+    },
+    {
+      "channel": "Activepieces",
+      "state": "sdk_candidate_validated",
+      "receipt": "../platforms/activepieces-verification-20261015.json",
+      "upstream_submitted": false
+    },
+    {
+      "channel": "Cursor and Insomnia MCP handoffs",
+      "state": "link_contract_verified",
+      "native_client_import_verified": false
+    }
+  ],
+  "research_opportunities_added": [
+    "Composio",
+    "Domo",
+    "Hex",
+    "Vellum",
+    "Agno",
+    "Paragon"
+  ],
+  "partnerships_accepted": 0,
+  "independent_adoption_verified": false,
+  "spend": 0,
+  "live_mcp_scope": "Eight servers initialized and listed tools; seven bounded calls passed. Undertow refused this verification caller at the daily quota (200/200). Transport and tool discovery do not prove source freshness."
+}

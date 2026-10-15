@@ -13,6 +13,15 @@ release acceptance. Updating the ledger does not refresh every observation.
 
 ## Latest marketplace retries
 
+- **15 October expansion:** Dify 0.1.1 is publicly listed and verified;
+  LiquiLens.in and Seiche.info are approved on SaaSHub. The free Undertow by
+  LiquiLens submission and official Cursor publisher application received
+  acknowledgements and remain under review. Cursor/Insomnia handoffs and a
+  tested Activepieces SDK candidate are available; native client/editor
+  acceptance remains separate. Six researched platform opportunities were
+  added without claiming partnerships. See the [dated results and remaining
+  steps](docs/distribution/expansion-20261015.md).
+
 - **OpenBB App Marketplace (11 October UTC):** the official partner form
   received one application for the Research Desk app and MCP server, naming
   Seiche, LiquiLens and Undertow as contributing products. The application

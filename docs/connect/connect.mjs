@@ -1,13 +1,25 @@
 const $ = id => document.getElementById(id);
 const clients = new Set(['mcp', 'api', 'python']);
-const params = new URLSearchParams(location.search);
+const params = new URLSearchParams(globalThis.location?.search || '');
 let client = clients.has(params.get('client')) ? params.get('client') : 'mcp';
-let catalog, task;
+let catalog, task, mcpConfig;
 
 export function connectionText(kind, item, endpoint) {
   if (kind === 'api') return `curl --fail --show-error '${item.api_url}'`;
   if (kind === 'python') return `import json\nfrom urllib.request import urlopen\n\nurl = ${JSON.stringify(item.api_url)}\nwith urlopen(url, timeout=30) as response:\n    evidence = json.load(response)\nprint(json.dumps(evidence, indent=2))`;
   return endpoint;
+}
+
+export function mcpHandoffs(endpoint, config) {
+  const entry = Object.entries(config?.mcpServers || {}).find(([, server]) => server.url === endpoint);
+  if (!entry) throw new Error('No matching MCP configuration');
+  const [name, server] = entry;
+  const cursor = new URL('cursor://anysphere.cursor-deeplink/mcp/install');
+  cursor.searchParams.set('name', name);
+  cursor.searchParams.set('config', btoa(JSON.stringify({url: server.url})));
+  const insomnia = new URL('https://app.insomnia.rest/run');
+  insomnia.searchParams.set('mcp', server.url);
+  return {cursor: cursor.href, insomnia: insomnia.href};
 }
 
 function render() {
@@ -25,6 +37,13 @@ function render() {
     python: 'Run with Python 3. No extra packages or API key are needed. This prints the complete response so the source dates and unavailable values stay visible.'
   }[client];
   $('mcp-downloads').hidden = client !== 'mcp';
+  $('mcp-handoff').hidden = true;
+  if (client === 'mcp' && mcpConfig) {
+    const links = mcpHandoffs(catalog.mcp_url, mcpConfig);
+    $('open-cursor').href = links.cursor;
+    $('open-insomnia').href = links.insomnia;
+    $('mcp-handoff').hidden = false;
+  }
   $('copy-status').textContent = '';
   $('copy-fallback').hidden = true;
   const next = new URL(location.href);
@@ -37,11 +56,18 @@ async function copy(value, success) {
   catch { const fallback = $('copy-fallback'); fallback.value = value; fallback.hidden = false; fallback.focus(); fallback.select(); $('copy-status').textContent = 'Select and copy the text below.'; }
 }
 
-try {
+if (typeof document !== 'undefined') try {
   const response = await fetch('catalog.json', {cache: 'no-cache'});
   if (!response.ok) throw new Error('Catalog unavailable');
   catalog = await response.json();
   if (catalog.schema !== 'financial-evidence.start.v1' || !Array.isArray(catalog.tasks)) throw new Error('Catalog unavailable');
+  try {
+    const configResponse = await fetch('mcp.json', {cache: 'no-cache'});
+    if (!configResponse.ok) throw new Error('Client configuration unavailable');
+    const config = await configResponse.json();
+    mcpHandoffs(catalog.mcp_url, config);
+    mcpConfig = config;
+  } catch { /* Copyable setup remains available if optional client links cannot load. */ }
   task = catalog.tasks.find(item => item.id === params.get('task')) || catalog.tasks[0];
   render();
   for (const button of document.querySelectorAll('[data-task]')) button.addEventListener('click', () => { task = catalog.tasks.find(item => item.id === button.dataset.task); render(); });

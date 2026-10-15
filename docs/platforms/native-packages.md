@@ -113,8 +113,11 @@ records the tested runtime identity. Community Edition and a published Dify app
 were not tested. The liquidity result retained a null/unavailable observation;
 a successful workflow is not evidence that every source value is available.
 
-[Marketplace PR 3278](https://github.com/langgenius/dify-plugins/pull/3278) is
-submitted and awaiting review; the plugin is not yet published in Marketplace.
+[Marketplace PR 3278](https://github.com/langgenius/dify-plugins/pull/3278) was
+approved and merged on 11 October. The [public Marketplace listing](https://marketplace.dify.ai/plugin/beepboop2025/financial_evidence)
+was verified on 15 October: version 0.1.1, Verified by Dify, with an install link.
+This does not establish installed-archive execution or publication of the
+separate central-hosted 0.1.2 candidate.
 The [prior 0.1.0 receipt](https://github.com/beepboop2025/financial-evidence-skills/blob/c767edbf58e173b60b085cf637880b5bd9d4bb52/docs/platforms/native-packages.json)
 is historical and must not be relabeled as this 0.1.1 package.
 

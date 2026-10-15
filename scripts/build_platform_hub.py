@@ -132,6 +132,9 @@ def assets() -> dict[str, bytes]:
         raise ValueError("Activepieces registry qualification differs from publication")
     selected.append(DEST / registry_name)
     downloads[registry_name] = (DEST / registry_name).read_bytes()
+    worker_name = "activepieces-worker-attestation-20261015.json"
+    selected.append(DEST / worker_name)
+    downloads[worker_name] = (DEST / worker_name).read_bytes()
     package_sets = {
         "native-packages.json": {"n8n-nodes-financial-evidence-0.1.0.tgz", "financial_evidence-0.1.1.difypkg"},
         "hosted-native-packages.json": {"n8n-nodes-financial-evidence-0.1.1.tgz", "financial_evidence-0.1.2.difypkg"},

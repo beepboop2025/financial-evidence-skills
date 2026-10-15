@@ -57,14 +57,14 @@ class DiscoveryDocsTests(unittest.TestCase):
     def test_machine_readable_manifest_tracks_release(self):
         manifest = json.loads((DOCS / "integrations.json").read_text())
         self.assertEqual(manifest["version"], _package_version())
-        self.assertEqual(manifest["release_state"], "candidate")
-        self.assertEqual(manifest["last_verified_release"], "0.1.8")
+        self.assertEqual(manifest["release_state"], "published")
+        self.assertEqual(manifest["last_verified_release"], "0.1.9")
         self.assertFalse(manifest["account_required"])
         self.assertFalse(manifest["api_key_required"])
         self.assertFalse(manifest["write_actions"])
         self.assertEqual(len(manifest["products"]), 4)
         self.assertEqual(len(manifest["topics"]), 8)
-        self.assertEqual(len(manifest["interfaces"]), 15)
+        self.assertEqual(len(manifest["interfaces"]), 18)
         agent_skill = next(
             interface
             for interface in manifest["interfaces"]
@@ -76,8 +76,8 @@ class DiscoveryDocsTests(unittest.TestCase):
         self.assertEqual(len(manifest["published_topics"]), 8)
         self.assertEqual(agent_skill["status"], "public")
         self.assertEqual(agent_skill["candidate_version"], _package_version())
-        self.assertEqual(agent_skill["published_version"], "0.1.8")
-        self.assertIn("/tree/v0.1.8/", agent_skill["install"])
+        self.assertEqual(agent_skill["published_version"], "0.1.9")
+        self.assertIn("/tree/v0.1.9/", agent_skill["install"])
         registry = next(
             interface
             for interface in manifest["interfaces"]
@@ -89,7 +89,7 @@ class DiscoveryDocsTests(unittest.TestCase):
         )
         self.assertEqual(
             registry["transports"],
-            ["streamable-http", "stdio-oci"],
+            ["streamable-http", "stdio-oci", "stdio-pypi"],
         )
         remote_mcp = next(
             interface
@@ -145,7 +145,7 @@ class DiscoveryDocsTests(unittest.TestCase):
 
         software = nodes[software_id]
         self.assertEqual(software["@type"], "SoftwareApplication")
-        self.assertEqual(software["softwareVersion"], "0.1.8")
+        self.assertEqual(software["softwareVersion"], "0.1.9")
         self.assertTrue(software["isAccessibleForFree"])
         self.assertNotIn("codeRepository", software)
         self.assertEqual(software["publisher"]["@id"], publisher_id)
@@ -163,7 +163,7 @@ class DiscoveryDocsTests(unittest.TestCase):
 
         self.assertEqual(nodes[publisher_id]["@type"], "Organization")
         self.assertEqual(nodes[publisher_id]["name"], "LIQUILENS PRIVATE LIMITED")
-        self.assertIn("v0.1.8 is a signed, independently verified release", page.read_text())
+        self.assertIn("v0.1.9 is a signed, independently verified release", page.read_text())
 
         for href in parser.hrefs:
             if href.startswith("#"):
@@ -274,7 +274,7 @@ class DiscoveryDocsTests(unittest.TestCase):
         self.assertIn("source publishers retain rights", llms.lower())
         self.assertIn(
             "npx skills add https://github.com/beepboop2025/"
-            "financial-evidence-skills/tree/v0.1.8/financial-evidence",
+            "financial-evidence-skills/tree/v0.1.9/financial-evidence",
             llms,
         )
         self.assertIn("Allow: /", robots)

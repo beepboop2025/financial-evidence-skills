@@ -1,0 +1,73 @@
+{
+  "schema": "financial-evidence.directory-refresh.v1",
+  "observed_at": "2026-10-15T15:56:07.046768+00:00",
+  "release": {
+    "version": "0.1.9",
+    "source_commit": "e4a0440798d78e3352af613400f4262efc604b39",
+    "oci_digest": "sha256:1676ed4ae6acda47746eaa88ee2dddab037493437218b6f331ddd29f4c1698cc"
+  },
+  "submissions": [
+    {
+      "name": "docker",
+      "pr": {
+        "base_sha": "8c773729f13f036da8c909be503fe433923a9aa2",
+        "head_ref": "add-financial-evidence",
+        "head_repo": "beepboop2025/mcp-registry",
+        "head_sha": "601089fa55f57828f7b66544be205a792c3d3764",
+        "mergeable": true,
+        "mergeable_state": "blocked",
+        "merged": false,
+        "state": "open",
+        "updated_at": "2026-10-15T15:54:35Z",
+        "url": "https://github.com/docker/mcp-registry/pull/4765"
+      },
+      "public_files": [
+        {
+          "bytes": 631,
+          "equals_local_and_signed_commit": true,
+          "http_status": 200,
+          "path": "servers/financial-evidence/server.yaml",
+          "sha256": "26ba8f0e7c985307dd3a75d32cdcb3d3d33598e0ff46b2e0f98942d147563137",
+          "url": "https://raw.githubusercontent.com/beepboop2025/mcp-registry/601089fa55f57828f7b66544be205a792c3d3764/servers/financial-evidence/server.yaml"
+        }
+      ],
+      "classification": "submitted_pending_maintainer_review",
+      "upstream_actions_require_maintainer_approval": true
+    },
+    {
+      "name": "kilo",
+      "pr": {
+        "base_sha": "ff51758b06b8249007116184096765d47bdb7505",
+        "head_ref": "add-financial-evidence-20261011",
+        "head_repo": "beepboop2025/kilo-marketplace",
+        "head_sha": "6d782e1845344339bbd22c6a7c0d182c513d851d",
+        "mergeable": true,
+        "mergeable_state": "blocked",
+        "merged": false,
+        "state": "open",
+        "updated_at": "2026-10-15T15:54:38Z",
+        "url": "https://github.com/Kilo-Org/kilo-marketplace/pull/366"
+      },
+      "public_files": [
+        {
+          "bytes": 770,
+          "equals_local_and_signed_commit": true,
+          "http_status": 200,
+          "path": "mcps/financial-evidence/MCP.yaml",
+          "sha256": "f7563f7ac204ecd7f74a6d8de5c0939edb30d599ff84cefee52310a1e06fc7be",
+          "url": "https://raw.githubusercontent.com/beepboop2025/kilo-marketplace/6d782e1845344339bbd22c6a7c0d182c513d851d/mcps/financial-evidence/MCP.yaml"
+        },
+        {
+          "bytes": 165735,
+          "equals_local_and_signed_commit": true,
+          "http_status": 200,
+          "path": "mcps/marketplace.yaml",
+          "sha256": "098f01ddd653246a76e36e7047c0165d8967f6984243efa85680c9ed6c3be716",
+          "url": "https://raw.githubusercontent.com/beepboop2025/kilo-marketplace/6d782e1845344339bbd22c6a7c0d182c513d851d/mcps/marketplace.yaml"
+        }
+      ],
+      "classification": "submitted_pending_maintainer_review",
+      "upstream_actions_require_maintainer_approval": true
+    }
+  ]
+}

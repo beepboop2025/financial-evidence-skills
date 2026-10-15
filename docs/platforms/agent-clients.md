@@ -64,10 +64,13 @@ handoff format was verified; import inside the native application remains untest
 
 ## Activepieces
 
-Evaluate the [native piece source](activepieces.md) for dataset discovery and
-bounded evidence-page requests. Both actions passed published-SDK invocation,
-five tests and live source-preserving reads. Native editor installation,
-upstream review and package publication remain separate steps.
+Install the [published custom piece](activepieces.md)
+`@moomoo202020/piece-financial-evidence@0.1.0` for dataset discovery and bounded
+evidence-page requests. Both actions passed installation through the native API
+and execution in the Activepieces worker. Browser editor interaction remains
+untested, and upstream submission is paused by the maintainer's intake policy.
+[Native npm-installation receipt](activepieces-registry-20261015.json) ·
+[Publication receipt](activepieces-publication-20261015.json).
 
 ## Microsoft Copilot Studio
 

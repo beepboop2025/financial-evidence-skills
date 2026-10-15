@@ -292,6 +292,8 @@ class DistributionGapTests(unittest.TestCase):
             "liquilens-trade-safety-gateway": "official-mcp-registry-liquilens-trade-safety-gateway",
             "noisefloor": "noisefloor-mcp-registry",
             "wake": "official-mcp-registry-wake",
+            "financial-evidence-workspace": "official-mcp-registry-financial-evidence-workspace",
+            "seiche-market-corpus": "official-mcp-registry-seiche-market-corpus",
         }
         registry = [c for c in catalog["channels"] if c["kind"] == "mcp_registry"]
         for name, ledger_id in published.items():

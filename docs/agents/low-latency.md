@@ -7,11 +7,11 @@ prices, establish source redistribution permission, or authorize an order.
 
 ## Install and verify
 
-Use a dedicated Python 3.10+ environment. The source package retains version
-0.1.8, so force replacement of an older wheel or source checkout:
+Use a dedicated Python 3.10+ environment. The published PyPI package is version
+0.1.9 and includes the clients introduced by source tag `agent-infrastructure-v1.1.0`:
 
 ```sh
-python3 -m pip install --force-reinstall 'financial-evidence[workspace] @ git+https://github.com/beepboop2025/financial-evidence-skills.git@agent-infrastructure-v1.1.0'
+python3 -m pip install 'financial-evidence[workspace]==0.1.9'
 financial-evidence-trading doctor
 financial-evidence-trading latency --samples 3
 financial-evidence-trading context

@@ -38,12 +38,19 @@ bank-risk teams can use the new institution monitor; traders and researchers
 can retain a funding-and-exit review. Each path includes working calls, source
 boundaries and a next-day task. [Copy the instructions](docs/agents/WORKFLOWS.md).
 
-**Verified release 0.1.8:** the published package and public MCP router support
+**Verified package 0.1.9:** install `financial-evidence[workspace]==0.1.9` from
+[PyPI](https://pypi.org/project/financial-evidence/0.1.9/) for persistent MCP sessions,
+source-status snapshots and SSE clients. The separately deployed public router
+retains version 0.1.8. Both router versions support
 `gift-city`, `forex` and `gold` alongside the five existing research topics.
 GIFT City serves gold and treasury desks, investors/fund managers, and banks/IFSC
 institutions. The helper reads fixed public context; gold/FX calculations remain
 explicit user-input steps. See [topic routing](financial-evidence/references/routing.md)
-and the [release verification record](docs/releases/0.1.8.json).
+and the [release verification record](docs/releases/0.1.9.json).
+
+**JavaScript agents:** install `@moomoo202020/financial-evidence-ai-sdk@0.1.0`
+from npm for typed AI SDK research and source-status tools.
+[Copy the verified setup](docs/platforms/ai-sdk.md).
 
 **Use your existing tools:** the [research tool hub](https://beepboop2025.github.io/financial-evidence-skills/tools/)
 provides a complete capture client, notebook, flat Excel/Power BI query and MCP
@@ -56,7 +63,7 @@ benchmark history charts, typed REST responses and a nine-tool MCP server connec
 all four projects. The hosted service is `https://agents.seiche.info/v1/research`.
 Install
 `.[openbb,workspace]` from this checkout, then run `openbb-build` and
-`financial-evidence-api`. The optional modules are included in the v0.1.8 wheel;
+`financial-evidence-api`. The optional modules are included in the v0.1.9 wheel;
 the public router retains its separate three-tool contract. The hosted Workspace release identifies
 its exact source commit independently at `/api/v1/release`.
 
@@ -69,7 +76,7 @@ institutional-readiness certification.
 
 **Run recurring research:** [install the durable runtime](https://beepboop2025.github.io/financial-evidence-skills/agents/runtime.html) for fixed policies, bounded scheduling, retained receipts, private MCP and backup recovery across LiquiLens, Seiche and Undertow.
 
-**Automate funding research:** [versioned packets, captured changes, Python, OpenBB and a local agent tool](https://beepboop2025.github.io/financial-evidence-skills/funding/automate/). Public access requires no account; optional application keys use explicit measurement consent. The hosted packet API and downloadable templates are versioned separately from the v0.1.8 wheel.
+**Automate funding research:** [versioned packets, captured changes, Python, OpenBB and a local agent tool](https://beepboop2025.github.io/financial-evidence-skills/funding/automate/). Public access requires no account; optional application keys use explicit measurement consent. The hosted packet API and downloadable templates are versioned separately from the v0.1.9 wheel.
 
 **Three concrete jobs:** [funding review, Cosmos Bank NPAs and a $100k BTC exit](https://beepboop2025.github.io/financial-evidence-skills/automations/)
 with native n8n workflows and optional Slack/Telegram delivery. The
@@ -98,10 +105,10 @@ integration metadata, and a dated
 [third-party marketplace ledger](MARKETPLACE_STATUS.md).
 The [v0.1.5 semantic contract](SEMANTIC_CONTRACT.md) defines transport-only
 status, source-reported adapter metadata, and the explicit non-Carrier boundary.
-Version 0.1.8 is a signed, independently verified release. Its versioned
+Version 0.1.9 is a signed, independently verified release. Its versioned
 Agent Skill, terminal, Codex, Gemini, editor, and bundle installs use the same
 release, with published artifacts, container and Registry record. Homebrew
-0.1.8 is published after an independent macOS installation and contract check. The Claude
+0.1.9 is published after an independent macOS installation and contract check. The Claude
 self-hosted marketplace command follows the repository's mutable default branch; review the checked-out commit before enabling it.
 
 Open, read-only Agent Skills for routing financial research to bounded public
@@ -128,7 +135,7 @@ Palimpsest. Use the versioned install below for this four-product routing skill.
 ## Install the agent skill
 
 ```bash
-npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.8/financial-evidence \
+npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.9/financial-evidence \
   --skill financial-evidence
 ```
 
@@ -153,19 +160,18 @@ financial-evidence fetch --topic money-market --topic china-economy
 ```
 
 The formula installs `financial-evidence`, `financial-evidence-mcp`, and native
-Bash, Zsh, and Fish completions for 0.1.8. Its hosted clients use the central service.
-Run 0.1.8 directly from
-GitHub without installing:
+Bash, Zsh, and Fish completions for 0.1.9. Its hosted clients use the central service.
+Run the pinned PyPI release without a persistent installation:
 
 ```bash
-uvx --from git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.8 \
+uvx --from financial-evidence==0.1.9 \
   financial-evidence fetch --topic money-market --topic china-economy
 ```
 
 Or install it as a persistent command:
 
 ```bash
-uv tool install git+https://github.com/beepboop2025/financial-evidence-skills.git@v0.1.8
+uv tool install financial-evidence==0.1.9
 financial-evidence topics
 financial-evidence route --topic capital-market --format table
 financial-evidence fetch --topic bank-risk --format ndjson
@@ -232,12 +238,12 @@ Gemini CLI can install this repository as an extension. Its root
 [`gemini-extension.json`](gemini-extension.json) connects only to the fixed
 hosted workspace and allowlists its nine read-only tools; the
 mirrored `skills/financial-evidence` folder gives Gemini the domain routing
-instructions as well. Install the signed 0.1.8 release to use the
+instructions as well. Install the signed 0.1.9 release to use the
 central nine-tool workspace:
 
 ```bash
 gemini extensions install https://github.com/beepboop2025/financial-evidence-skills \
-  --ref v0.1.8
+  --ref v0.1.9
 ```
 
 Claude Code can add this repository as a self-hosted marketplace and install
@@ -261,7 +267,7 @@ they do not imply inclusion in a vendor-operated marketplace or endorsement.
 Codex can add the repository's plugin marketplace and then install the plugin:
 
 ```bash
-codex plugin marketplace add beepboop2025/financial-evidence-skills --ref v0.1.8
+codex plugin marketplace add beepboop2025/financial-evidence-skills --ref v0.1.9
 codex plugin add financial-evidence@liquidity-lab
 ```
 
@@ -313,7 +319,7 @@ before using its inline start action. These are self-installable compatibility
 artifacts, not claims of a VS Code or Cursor marketplace listing or endorsement.
 
 For desktop clients that support one-click MCP Bundles, download
-`financial-evidence-0.1.8.mcpb` from the last verified GitHub release. The bundle uses the
+`financial-evidence-0.1.9.mcpb` from the last verified GitHub release. The bundle uses the
 cross-platform `uv` runtime and requires no API key or configuration.
 
 ## Finance-tool integrations
@@ -431,7 +437,7 @@ adds owner-registered workflows, atomic run limits, offline replay, ordered chan
 events and backup recovery through Python, CLI and private stdio MCP. It reuses
 the existing product clients and preserves source clocks and missingness. See
 the [architecture](docs/infrastructure/ARCHITECTURE.md) and
-[adoption measurements](docs/infrastructure/ADOPTION.md). Version 0.1.8 includes
+[adoption measurements](docs/infrastructure/ADOPTION.md). Version 0.1.9 includes
 the runtime, workspace, trading-research and learning commands. Research data
 requests use the central service by default. Local run counts do not establish
 external users or paid adoption.

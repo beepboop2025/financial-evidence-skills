@@ -9,6 +9,7 @@ on:
       - 'scripts/audit_distribution_gaps.py'
       - 'tests/test_distribution_gaps.py'
       - 'docs/distribution/channel-contracts.json'
+      - 'docs/connect/native-connections.json'
       - 'docs/distribution/gap-monitor.md'
       - 'docs/marketplaces.json'
       - 'docs/integrations.json'

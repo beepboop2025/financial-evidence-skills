@@ -277,9 +277,9 @@ class DistributionGapTests(unittest.TestCase):
         self.assertEqual(report["status"], "not_checked")
         self.assertEqual(exit_status(report), 0)
 
-    def test_central_published_registry_coverage_uses_independent_ledger_versions(self):
+    def test_admitted_product_registry_contracts_use_independent_ledger_versions(self):
         catalog = json.loads((ROOT / "docs/distribution/channel-contracts.json").read_text())
-        published = {
+        central = {
             "seiche": "official-mcp-registry-seiche",
             "liquilens": "official-mcp-registry-liquilens",
             "undertow": "official-mcp-registry-undertow",
@@ -292,12 +292,24 @@ class DistributionGapTests(unittest.TestCase):
             "liquilens-trade-safety-gateway": "official-mcp-registry-liquilens-trade-safety-gateway",
             "noisefloor": "noisefloor-mcp-registry",
             "wake": "official-mcp-registry-wake",
+            "financial-evidence-workspace": "official-mcp-registry-financial-evidence-workspace",
+            "seiche-market-corpus": "official-mcp-registry-seiche-market-corpus",
         }
+        connections = json.loads((ROOT / "docs/connect/native-connections.json").read_text())["products"]
+        admitted = {row["id"] for row in connections}
+        self.assertEqual(len(admitted), len(connections), "Admitted product IDs must be unique")
+        canonical_aliases = {
+            "research-data": "financial-source-data",
+            "trade-safety": "liquilens-trade-safety-gateway",
+            "financial-evidence": "financial-evidence-workspace",
+        }
+        self.assertEqual(set(central), {canonical_aliases.get(product, product) for product in admitted},
+                         "Every admitted product needs an explicit canonical registry contract")
         registry = [c for c in catalog["channels"] if c["kind"] == "mcp_registry"]
-        for name, ledger_id in published.items():
+        for name, ledger_id in central.items():
             with self.subTest(name=name):
                 matched = [c for c in registry if c["identity"] == f"io.github.beepboop2025/{name}"]
-                self.assertEqual(len(matched), 1, "Every published central identity needs exactly one check")
+                self.assertEqual(len(matched), 1, "Every required central identity needs exactly one check")
                 channel = matched[0]
                 self.assertTrue(channel["required"])
                 self.assertEqual(channel["expected"], {"kind": "ledger", "id": ledger_id})
@@ -306,21 +318,36 @@ class DistributionGapTests(unittest.TestCase):
                 # current publication, proving no checked-in version pin overrides it.
                 ledger = {"entries": [{"id": ledger_id, "version": "9.8.7"}]}
                 self.assertEqual(expected(channel, ledger, self.manifest, self.root)["version"], "9.8.7")
+        # The three-tool router and community are separate from the fourteen
+        # central product identities, including the nine-tool research workspace.
+        router = [c for c in registry if c["identity"] == "io.github.beepboop2025/financial-evidence"]
+        community = [c for c in registry if c["identity"] == "io.github.beepboop2025/seiche-agent-community"]
+        self.assertEqual(len(router), 1)
+        self.assertEqual(router[0]["expected"], {"kind": "published_root"})
+        self.assertEqual(router[0]["ledger_ids"], ["official-mcp-registry"])
+        self.assertEqual(len(community), 1)
+        self.assertEqual(community[0]["expected"], {"kind": "ledger", "id": "official-mcp-registry-seiche-agent-community"})
 
     def test_missing_central_version_expectation_is_a_gap_without_registry_guessing(self):
         catalog = json.loads((ROOT / "docs/distribution/channel-contracts.json").read_text())
-        self.catalog["channels"] = [next(c for c in catalog["channels"] if c["id"] == "seiche-mcp-registry")]
-        self.write_inputs()
-        report = audit(self.root, fetcher=lambda _: self.fail("Missing ledger expectation caused network request"))
-        self.assertEqual(report["channels"][0]["status"], "invalid_configuration")
-        self.assertEqual(exit_status(report), 1)
-        self.assertIn("channel_missing_from_ledger", {f["reason"] for f in report["findings"]})
-        self.ledger["entries"].append({"id": "official-mcp-registry-seiche", "state": "live",
-            "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fseiche/versions/latest"})
-        self.write_inputs()
-        report = audit(self.root, fetcher=lambda _: self.fail("Unversioned ledger caused network request"))
-        self.assertEqual(report["channels"][0]["status"], "invalid_configuration")
-        self.assertEqual(exit_status(report), 1)
+        for cid in ("seiche-mcp-registry", "financial-evidence-workspace-mcp-registry",
+                    "seiche-market-corpus-mcp-registry"):
+            with self.subTest(channel=cid):
+                channel = next(c for c in catalog["channels"] if c["id"] == cid)
+                self.assertTrue(channel["ledger_required"])
+                self.catalog["channels"] = [channel]
+                self.write_inputs()
+                report = audit(self.root, fetcher=lambda _: self.fail("Missing ledger expectation caused network request"))
+                self.assertEqual(report["channels"][0]["status"], "invalid_configuration")
+                self.assertEqual(exit_status(report), 1)
+                self.assertIn("channel_missing_from_ledger", {f["reason"] for f in report["findings"]})
+                self.ledger["entries"].append({"id": channel["expected"]["id"], "state": "live",
+                    "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/"
+                                   + channel["identity"].replace("/", "%2F") + "/versions/latest"})
+                self.write_inputs()
+                report = audit(self.root, fetcher=lambda _: self.fail("Unversioned ledger caused network request"))
+                self.assertEqual(report["channels"][0]["status"], "invalid_configuration")
+                self.assertEqual(exit_status(report), 1)
 
     def test_repo_catalog_inventories_every_record_and_reports_missing_version_sources(self):
         report = audit(ROOT, offline=True, fetcher=lambda _: self.fail("offline network request"))

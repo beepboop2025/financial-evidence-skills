@@ -1,0 +1,76 @@
+{
+  "schema": "financial-evidence.hosted-registry-publication.v1",
+  "observed_at": "2026-10-15T16:05:35.527239Z",
+  "status": "PASS",
+  "workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38765792655",
+  "source_commit": "68b4ba2283b46b6e593d168b7b4feda8ce08aede",
+  "runtime_artifact_digest": "sha256:14a06eaeedf6da12de1635226c0ce4f327919321e135d143b71d75ea53fa9624",
+  "runtime_artifact_zip_verified": true,
+  "registered": [
+    {
+      "name": "io.github.beepboop2025/financial-evidence-workspace",
+      "version": "1.3.0",
+      "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence-workspace/versions/1.3.0",
+      "response_sha256": "4237eecde546f63e4f8fcbc09f93041a384b84822d685976fe344685376c0066",
+      "metadata_matches_signed_source": true,
+      "active": true,
+      "latest": true,
+      "remote_urls": [
+        "https://agents.seiche.info/products/financial-evidence/mcp"
+      ]
+    },
+    {
+      "name": "io.github.beepboop2025/seiche-market-corpus",
+      "version": "1.0.0",
+      "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fseiche-market-corpus/versions/1.0.0",
+      "response_sha256": "bda39caf172ce44d84c0b06c5ce24d6822a53b617d6ba7bbd6f3e13b1bc27bec",
+      "metadata_matches_signed_source": true,
+      "active": true,
+      "latest": true,
+      "remote_urls": [
+        "https://agents.seiche.info/products/seiche-market-corpus/mcp"
+      ]
+    }
+  ],
+  "runtime": {
+    "schema": "financial-evidence.hosted-registry-check.v1",
+    "status": "PASS",
+    "interfaces": [
+      {
+        "registry_name": "io.github.beepboop2025/financial-evidence-workspace",
+        "registry_version": "1.3.0",
+        "url": "https://agents.seiche.info/products/financial-evidence/mcp",
+        "server_info": {
+          "name": "Financial Evidence Workspace",
+          "version": "1.3.0"
+        },
+        "tools_sha256": "62b4cccb2a7ca081ade28bb8ca4a6691c27d8f083b03249917becdb49001f95e",
+        "tool_count": 9,
+        "first_tool": "financial_evidence_datasets",
+        "result_sha256": "34553a41231fc0336f2ea1883d2c4a3f0232071c3cbc3e13a343ef54640a1265",
+        "status": "PASS",
+        "observed_at": "2026-10-15T16:04:18.381116+00:00",
+        "traffic": "synthetic",
+        "independent_adoption": "not_measured"
+      },
+      {
+        "registry_name": "io.github.beepboop2025/seiche-market-corpus",
+        "registry_version": "1.0.0",
+        "url": "https://agents.seiche.info/products/seiche-market-corpus/mcp",
+        "server_info": {
+          "name": "liquilens-market-corpus",
+          "version": "1.0.0"
+        },
+        "tools_sha256": "7dbacf90fd3d899e3b2e33684553126b547df4d80419c91777bad9fcaa7c8713",
+        "tool_count": 9,
+        "first_tool": "corpus_catalog",
+        "result_sha256": "ed1ad4a5c8ef2b494d1e037509cfa2cde727f06a25e00dfee14feac52b773d19",
+        "status": "PASS",
+        "observed_at": "2026-10-15T16:04:18.385132+00:00",
+        "traffic": "synthetic",
+        "independent_adoption": "not_measured"
+      }
+    ]
+  },
+  "independent_adoption_verified": false
+}

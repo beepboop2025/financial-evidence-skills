@@ -8,7 +8,8 @@ or execution authority and does not provide a quote feed.
 Published package: [`@moomoo202020/financial-evidence-ai-sdk@0.1.0`](https://www.npmjs.com/package/@moomoo202020/financial-evidence-ai-sdk/v/0.1.0).
 The anonymous npm download matches the reviewed archive. See the
 [publication receipt](../distribution/ai-sdk-publication.json).
-AI SDK Tools Registry acceptance remains a separate, unverified step.
+The [AI SDK Tools Registry submission](https://github.com/vercel/ai/pull/23401)
+is under review. npm availability does not establish directory acceptance.
 
 Node.js 22+ and AI SDK 7 are required. The implementation is tested with
 `ai@7.0.141` and `zod@4.6.7`.

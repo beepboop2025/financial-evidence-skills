@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.beepboop2025/seiche-market-corpus",
+  "title": "Seiche Market Atlas Corpus",
+  "description": "Read-only corpus catalogs and bounded observations with source dates and rights metadata.",
+  "version": "1.0.0",
+  "repository": {
+    "url": "https://github.com/beepboop2025/financial-evidence-skills",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://agents.seiche.info/products/seiche-market-corpus/mcp"
+    }
+  ]
+}

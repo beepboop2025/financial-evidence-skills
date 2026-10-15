@@ -1,0 +1,2595 @@
+{
+  "schema": "financial-evidence.distribution-gaps.v1",
+  "observed_at": "2026-10-15T16:06:57.918804Z",
+  "status": "configured_checks_passed",
+  "read_only": true,
+  "traffic_class": "synthetic",
+  "ledger_inventory_complete": true,
+  "coverage_complete": false,
+  "independent_adoption_verified": false,
+  "raw_response_payloads_retained": false,
+  "root_release": {
+    "source_version": "0.1.9",
+    "manifest_version": "0.1.9",
+    "last_verified_release": "0.1.9",
+    "release_state": "published",
+    "candidate_differs_from_verified": false
+  },
+  "inputs": {
+    "docs/marketplaces.json": "f20e7ac19a88982415e776d62fc11a5cce8408de9a5571b454ad296baed43988",
+    "docs/integrations.json": "fd1188976e49fa1fdde05ef53d2d6679105b65f48e3045059838caf21a1bd942",
+    "docs/distribution/channel-contracts.json": "1a8085f643481bfc918d986c43e8cf8060425fdd20dbb85ee994b44c923e18fe",
+    "pyproject.toml": "7a6535f6f695db9aa749d33aca4b8e151c104e7f1fbb99af81bea47e88930180"
+  },
+  "ledger_record_count": 176,
+  "inventory_observation_counts": {
+    "current": 25,
+    "not_monitored": 151
+  },
+  "ledger_declared_state_counts": {
+    "approved_pending_public": 1,
+    "closed_unmerged": 1,
+    "conditional_artifact": 2,
+    "eligible_automatic": 1,
+    "listed_incomplete": 18,
+    "live": 82,
+    "paused_external": 1,
+    "ready_account_action": 5,
+    "sent_delivery_unverified": 1,
+    "skipped_paid": 2,
+    "submitted": 62
+  },
+  "channels": [
+    {
+      "id": "financial-evidence-pypi",
+      "kind": "pypi",
+      "required": true,
+      "ledger_ids": [
+        "financial-evidence-pypi"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "financial-evidence",
+        "version": "0.1.9",
+        "basis": "published_root",
+        "release_state": "published"
+      },
+      "url": "https://pypi.org/pypi/financial-evidence/json",
+      "transport": {
+        "url": "https://pypi.org/pypi/financial-evidence/json",
+        "observed_at": "2026-10-15T16:06:41.474981Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 9486,
+        "sha256": "6b85d21e86ef42465f9d8ead978e7c839c83045991afba091d882a0c888760a2"
+      },
+      "reason": "published_package_identity_matches",
+      "observed": {
+        "identity": "financial-evidence",
+        "version": "0.1.9",
+        "non_yanked_artifact_count": 2
+      }
+    },
+    {
+      "id": "financial-evidence-github",
+      "kind": "github_release",
+      "required": true,
+      "ledger_ids": [
+        "financial-evidence-github-release"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "beepboop2025/financial-evidence-skills",
+        "version": "0.1.9",
+        "basis": "published_root",
+        "release_state": "published"
+      },
+      "url": "https://api.github.com/repos/beepboop2025/financial-evidence-skills/releases/tags/v0.1.9",
+      "transport": {
+        "url": "https://api.github.com/repos/beepboop2025/financial-evidence-skills/releases/tags/v0.1.9",
+        "observed_at": "2026-10-15T16:06:41.562810Z",
+        "http_status": 200,
+        "content_type": "application/json; charset=utf-8",
+        "status": "retrieved",
+        "bytes": 12398,
+        "sha256": "9997d8ca5ea628f6b11311b094037ecab4ce0d7b31040e784e6b6ea4d639d1dc"
+      },
+      "reason": "published_release_identity_matches",
+      "observed": {
+        "tag": "v0.1.9",
+        "draft": false,
+        "prerelease": false,
+        "asset_count": 5,
+        "artifact_bytes_verified": false,
+        "version_check": "pinned_verified_release_exists_not_latest_discovery"
+      }
+    },
+    {
+      "id": "financial-evidence-mcp-registry",
+      "kind": "mcp_registry",
+      "required": true,
+      "ledger_ids": [
+        "official-mcp-registry"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "io.github.beepboop2025/financial-evidence",
+        "version": "0.1.9",
+        "basis": "published_root",
+        "release_state": "published"
+      },
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/latest",
+      "transport": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/latest",
+        "observed_at": "2026-10-15T16:06:42.030607Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 1053,
+        "sha256": "97802189f7c17c34a6a1c5908b034c0461316b8fa66c026e694997cb0c733a20"
+      },
+      "reason": "active_latest_registry_identity_matches",
+      "observed": {
+        "identity": "io.github.beepboop2025/financial-evidence",
+        "version": "0.1.9",
+        "status": "active",
+        "is_latest": true
+      }
+    },
+    {
+      "id": "langchain-pypi",
+      "kind": "pypi",
+      "required": true,
+      "ledger_ids": [
+        "langchain-financial-evidence-pypi"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "langchain-financial-evidence",
+        "version": "0.1.1",
+        "basis": "ledger"
+      },
+      "url": "https://pypi.org/pypi/langchain-financial-evidence/json",
+      "transport": {
+        "url": "https://pypi.org/pypi/langchain-financial-evidence/json",
+        "observed_at": "2026-10-15T16:06:41.465739Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 13898,
+        "sha256": "c103a6a73c2ba209f5a14bdd945c0e109626951e4d8e86b78777f436bb7217b1"
+      },
+      "reason": "published_package_identity_matches",
+      "observed": {
+        "identity": "langchain-financial-evidence",
+        "version": "0.1.1",
+        "non_yanked_artifact_count": 2
+      }
+    },
+    {
+      "id": "langchain-github",
+      "kind": "github_release",
+      "required": true,
+      "ledger_ids": [
+        "langchain-financial-evidence-github-release"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "beepboop2025/langchain-financial-evidence",
+        "version": "0.1.1",
+        "basis": "ledger"
+      },
+      "url": "https://api.github.com/repos/beepboop2025/langchain-financial-evidence/releases/tags/v0.1.1",
+      "transport": {
+        "url": "https://api.github.com/repos/beepboop2025/langchain-financial-evidence/releases/tags/v0.1.1",
+        "observed_at": "2026-10-15T16:06:41.931510Z",
+        "http_status": 200,
+        "content_type": "application/json; charset=utf-8",
+        "status": "retrieved",
+        "bytes": 6157,
+        "sha256": "ad03f8e765bb071983beb124bbf2bd0f3ad2c644814a625cf5d9717d723c67bd"
+      },
+      "reason": "published_release_identity_matches",
+      "observed": {
+        "tag": "v0.1.1",
+        "draft": false,
+        "prerelease": false,
+        "asset_count": 2,
+        "artifact_bytes_verified": false,
+        "version_check": "pinned_verified_release_exists_not_latest_discovery"
+      }
+    },
+    {
+      "id": "n8n-npm",
+      "kind": "npm",
+      "required": true,
+      "ledger_ids": [
+        "n8n-financial-evidence-npm"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "n8n-nodes-financial-evidence",
+        "version": "0.1.1",
+        "basis": "ledger"
+      },
+      "url": "https://registry.npmjs.org/n8n-nodes-financial-evidence/latest",
+      "transport": {
+        "url": "https://registry.npmjs.org/n8n-nodes-financial-evidence/latest",
+        "observed_at": "2026-10-15T16:06:41.996627Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 2583,
+        "sha256": "d9658272c7457e7bafcdb4626169948fd523d2c0cb4ecb3d5ae576609da1932f"
+      },
+      "reason": "published_package_identity_matches",
+      "observed": {
+        "identity": "n8n-nodes-financial-evidence",
+        "version": "0.1.1",
+        "registry_integrity": "sha512-fvP3OWyocNxfw/ZdjD6xZ3rHM937YrwZzNyOkmfwYG21FJIgK01GiawpPUYuQtNr0ZOSPnbhd2PSyXG4Lg9jtw==",
+        "artifact_bytes_verified": false
+      }
+    },
+    {
+      "id": "activepieces-npm",
+      "kind": "npm",
+      "required": true,
+      "ledger_ids": [
+        "activepieces-native"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "@moomoo202020/piece-financial-evidence",
+        "version": "0.1.0",
+        "basis": "ledger"
+      },
+      "url": "https://registry.npmjs.org/%40moomoo202020%2Fpiece-financial-evidence/latest",
+      "transport": {
+        "url": "https://registry.npmjs.org/%40moomoo202020%2Fpiece-financial-evidence/latest",
+        "observed_at": "2026-10-15T16:06:42.050655Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 2415,
+        "sha256": "6bff36c2d4ce4564c68578087d5fac9f3e329dd76bfc047baff7322c81abb602"
+      },
+      "reason": "published_package_identity_matches",
+      "observed": {
+        "identity": "@moomoo202020/piece-financial-evidence",
+        "version": "0.1.0",
+        "registry_integrity": "sha512-arNyfefIUffmksS1rQF8q0xboVfncytqzA63b7J7iEYh0o6xN8lsbRW+pNB0C4N+TGgc7MUNOsV+fc63EV3cCg==",
+        "artifact_bytes_verified": false
+      }
+    },
+    {
+      "id": "noisefloor-pypi",
+      "kind": "pypi",
+      "required": true,
+      "ledger_ids": [
+        "noisefloor-pypi"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "noisefloor",
+        "version": "0.4.0",
+        "basis": "ledger"
+      },
+      "url": "https://pypi.org/pypi/noisefloor/json",
+      "transport": {
+        "url": "https://pypi.org/pypi/noisefloor/json",
+        "observed_at": "2026-10-15T16:06:42.227142Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 20230,
+        "sha256": "b18ae76f8f1f3ccfe3c32bdb11921679be5f3fd24af84f50899d71e9e43809eb"
+      },
+      "reason": "published_package_identity_matches",
+      "observed": {
+        "identity": "noisefloor",
+        "version": "0.4.0",
+        "non_yanked_artifact_count": 2
+      }
+    },
+    {
+      "id": "noisefloor-github",
+      "kind": "github_release",
+      "required": true,
+      "ledger_ids": [
+        "noisefloor-github-release"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "beepboop2025/noisefloor",
+        "version": "0.4.0",
+        "basis": "ledger"
+      },
+      "url": "https://api.github.com/repos/beepboop2025/noisefloor/releases/tags/v0.4.0",
+      "transport": {
+        "url": "https://api.github.com/repos/beepboop2025/noisefloor/releases/tags/v0.4.0",
+        "observed_at": "2026-10-15T16:06:42.386722Z",
+        "http_status": 200,
+        "content_type": "application/json; charset=utf-8",
+        "status": "retrieved",
+        "bytes": 10146,
+        "sha256": "4ff28e901ca47c4c4e474ee7caa3889198435b96975ac137430726572855f325"
+      },
+      "reason": "published_release_identity_matches",
+      "observed": {
+        "tag": "v0.4.0",
+        "draft": false,
+        "prerelease": false,
+        "asset_count": 4,
+        "artifact_bytes_verified": false,
+        "version_check": "pinned_verified_release_exists_not_latest_discovery"
+      }
+    },
+    {
+      "id": "noisefloor-mcp-registry",
+      "kind": "mcp_registry",
+      "required": true,
+      "ledger_ids": [
+        "noisefloor-mcp-registry"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "io.github.beepboop2025/noisefloor",
+        "version": "0.4.0",
+        "basis": "ledger"
+      },
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fnoisefloor/versions/latest",
+      "transport": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fnoisefloor/versions/latest",
+        "observed_at": "2026-10-15T16:06:48.739093Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 842,
+        "sha256": "902f6d4a6ec0d6684c4b40b9e06b9cb537b5f4f67e0a2ecb3f15c6e2b6adffb7"
+      },
+      "reason": "active_latest_registry_identity_matches",
+      "observed": {
+        "identity": "io.github.beepboop2025/noisefloor",
+        "version": "0.4.0",
+        "status": "active",
+        "is_latest": true
+      }
+    },
+    {
+      "id": "wake-mcp-registry",
+      "kind": "mcp_registry",
+      "required": true,
+      "ledger_ids": [
+        "official-mcp-registry-wake"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "io.github.beepboop2025/wake",
+        "version": "0.4.0",
+        "basis": "ledger"
+      },
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fwake/versions/latest",
+      "transport": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fwake/versions/latest",
+        "observed_at": "2026-10-15T16:06:45.495763Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 666,
+        "sha256": "d4fc55dc632f8597af1cb9cb6cdf509c6d84af55ebe3ff94aeb969b9983d578c"
+      },
+      "reason": "active_latest_registry_identity_matches",
+      "observed": {
+        "identity": "io.github.beepboop2025/wake",
+        "version": "0.4.0",
+        "status": "active",
+        "is_latest": true
+      }
+    },
+    {
+      "id": "community-mcp-registry",
+      "kind": "mcp_registry",
+      "required": true,
+      "ledger_ids": [
+        "official-mcp-registry-seiche-agent-community"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "io.github.beepboop2025/seiche-agent-community",
+        "version": "0.1.0",
+        "basis": "ledger"
+      },
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fseiche-agent-community/versions/latest",
+      "transport": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fseiche-agent-community/versions/latest",
+        "observed_at": "2026-10-15T16:06:43.054277Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 800,
+        "sha256": "57ce974dde3eb4519b291860e1a1ea975a5e610648825066e58b313707b35927"
+      },
+      "reason": "active_latest_registry_identity_matches",
+      "observed": {
+        "identity": "io.github.beepboop2025/seiche-agent-community",
+        "version": "0.1.0",
+        "status": "active",
+        "is_latest": true
+      }
+    },
+    {
+      "id": "seiche-mcp-registry",
+      "kind": "mcp_registry",
+      "required": true,
+      "ledger_ids": [
+        "official-mcp-registry-seiche"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "io.github.beepboop2025/seiche",
+        "version": "0.16.4",
+        "basis": "ledger"
+      },
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fseiche/versions/latest",
+      "transport": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fseiche/versions/latest",
+        "observed_at": "2026-10-15T16:06:46.526815Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 1322,
+        "sha256": "facb9dcf9b22e9fa9236625d39b4cf2d0d07253211a7bb09310178196c70051d"
+      },
+      "reason": "active_latest_registry_identity_matches",
+      "observed": {
+        "identity": "io.github.beepboop2025/seiche",
+        "version": "0.16.4",
+        "status": "active",
+        "is_latest": true
+      }
+    },
+    {
+      "id": "liquilens-mcp-registry",
+      "kind": "mcp_registry",
+      "required": true,
+      "ledger_ids": [
+        "official-mcp-registry-liquilens"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "io.github.beepboop2025/liquilens",
+        "version": "1.8.1",
+        "basis": "ledger"
+      },
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fliquilens/versions/latest",
+      "transport": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fliquilens/versions/latest",
+        "observed_at": "2026-10-15T16:06:47.524583Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 747,
+        "sha256": "bcf3fdcaa7be64a2fe081814f1b499d5713462cf9f5d51553066d3e13f0a34f4"
+      },
+      "reason": "active_latest_registry_identity_matches",
+      "observed": {
+        "identity": "io.github.beepboop2025/liquilens",
+        "version": "1.8.1",
+        "status": "active",
+        "is_latest": true
+      }
+    },
+    {
+      "id": "undertow-mcp-registry",
+      "kind": "mcp_registry",
+      "required": true,
+      "ledger_ids": [
+        "official-mcp-registry-undertow"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "io.github.beepboop2025/undertow",
+        "version": "1.13.0",
+        "basis": "ledger"
+      },
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fundertow/versions/latest",
+      "transport": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fundertow/versions/latest",
+        "observed_at": "2026-10-15T16:06:51.265217Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 774,
+        "sha256": "924edea8887bca289d6014f855c6bdea2eee0be5f6fbd95a9c9825fd5ec49516"
+      },
+      "reason": "active_latest_registry_identity_matches",
+      "observed": {
+        "identity": "io.github.beepboop2025/undertow",
+        "version": "1.13.0",
+        "status": "active",
+        "is_latest": true
+      }
+    },
+    {
+      "id": "palimpsest-mcp-registry",
+      "kind": "mcp_registry",
+      "required": true,
+      "ledger_ids": [
+        "official-mcp-registry-palimpsest"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "io.github.beepboop2025/palimpsest",
+        "version": "1.9.3",
+        "basis": "ledger"
+      },
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fpalimpsest/versions/latest",
+      "transport": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fpalimpsest/versions/latest",
+        "observed_at": "2026-10-15T16:06:51.583132Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 775,
+        "sha256": "b242bf50ef87441222ac2b3b9103b99d4fad44d52dd5b119a500ee13d4508287"
+      },
+      "reason": "active_latest_registry_identity_matches",
+      "observed": {
+        "identity": "io.github.beepboop2025/palimpsest",
+        "version": "1.9.3",
+        "status": "active",
+        "is_latest": true
+      }
+    },
+    {
+      "id": "narcoscope-mcp-registry",
+      "kind": "mcp_registry",
+      "required": true,
+      "ledger_ids": [
+        "official-mcp-registry-narcoscope"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "io.github.beepboop2025/narcoscope",
+        "version": "1.6.0",
+        "basis": "ledger"
+      },
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fnarcoscope/versions/latest",
+      "transport": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fnarcoscope/versions/latest",
+        "observed_at": "2026-10-15T16:06:52.645246Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 760,
+        "sha256": "632263b38101c30e4691fe73561e45cf57d79432ac663e1d2ceddebfcc3dc9d1"
+      },
+      "reason": "active_latest_registry_identity_matches",
+      "observed": {
+        "identity": "io.github.beepboop2025/narcoscope",
+        "version": "1.6.0",
+        "status": "active",
+        "is_latest": true
+      }
+    },
+    {
+      "id": "financial-source-data-mcp-registry",
+      "kind": "mcp_registry",
+      "required": true,
+      "ledger_ids": [
+        "official-mcp-registry-financial-source-data"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "io.github.beepboop2025/financial-source-data",
+        "version": "1.1.0",
+        "basis": "ledger"
+      },
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-source-data/versions/latest",
+      "transport": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-source-data/versions/latest",
+        "observed_at": "2026-10-15T16:06:49.597287Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 806,
+        "sha256": "2733a3e7d8399bc2831bc854625dcb1312f90b22e66ac09fadae0c98569ff7cb"
+      },
+      "reason": "active_latest_registry_identity_matches",
+      "observed": {
+        "identity": "io.github.beepboop2025/financial-source-data",
+        "version": "1.1.0",
+        "status": "active",
+        "is_latest": true
+      }
+    },
+    {
+      "id": "riptide-mcp-registry",
+      "kind": "mcp_registry",
+      "required": true,
+      "ledger_ids": [
+        "official-mcp-registry-riptide"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "io.github.beepboop2025/riptide",
+        "version": "1.3.0",
+        "basis": "ledger"
+      },
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Friptide/versions/latest",
+      "transport": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Friptide/versions/latest",
+        "observed_at": "2026-10-15T16:06:53.976305Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 673,
+        "sha256": "c7e5e7173c164fd9471bac9ae79a291fb89fbe5aaddcc5cede341f04c092ddec"
+      },
+      "reason": "active_latest_registry_identity_matches",
+      "observed": {
+        "identity": "io.github.beepboop2025/riptide",
+        "version": "1.3.0",
+        "status": "active",
+        "is_latest": true
+      }
+    },
+    {
+      "id": "myquant-editorial-mcp-registry",
+      "kind": "mcp_registry",
+      "required": true,
+      "ledger_ids": [
+        "official-mcp-registry-myquant-editorial"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "io.github.beepboop2025/myquant-editorial",
+        "version": "2.1.1",
+        "basis": "ledger"
+      },
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fmyquant-editorial/versions/latest",
+      "transport": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fmyquant-editorial/versions/latest",
+        "observed_at": "2026-10-15T16:06:55.203136Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 811,
+        "sha256": "e12d9f047843355bbbd28f98617e9155149a78cad898a383bbcf5904fe3df3b2"
+      },
+      "reason": "active_latest_registry_identity_matches",
+      "observed": {
+        "identity": "io.github.beepboop2025/myquant-editorial",
+        "version": "2.1.1",
+        "status": "active",
+        "is_latest": true
+      }
+    },
+    {
+      "id": "myquant-app-mcp-registry",
+      "kind": "mcp_registry",
+      "required": true,
+      "ledger_ids": [
+        "official-mcp-registry-myquant-app"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "io.github.beepboop2025/myquant-app",
+        "version": "2.0.0",
+        "basis": "ledger"
+      },
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fmyquant-app/versions/latest",
+      "transport": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fmyquant-app/versions/latest",
+        "observed_at": "2026-10-15T16:06:55.396372Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 764,
+        "sha256": "c56395f1b93c4f2bce9146ae34879519eced99c1589256e2590aeb90c87e1562"
+      },
+      "reason": "active_latest_registry_identity_matches",
+      "observed": {
+        "identity": "io.github.beepboop2025/myquant-app",
+        "version": "2.0.0",
+        "status": "active",
+        "is_latest": true
+      }
+    },
+    {
+      "id": "trade-safety-mcp-registry",
+      "kind": "mcp_registry",
+      "required": true,
+      "ledger_ids": [
+        "official-mcp-registry-liquilens-trade-safety-gateway"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "io.github.beepboop2025/liquilens-trade-safety-gateway",
+        "version": "0.2.2",
+        "basis": "ledger"
+      },
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fliquilens-trade-safety-gateway/versions/latest",
+      "transport": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fliquilens-trade-safety-gateway/versions/latest",
+        "observed_at": "2026-10-15T16:06:53.489399Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 1339,
+        "sha256": "5b9a8788963aa68f5f6227d680c39798cd03dcd952fb3b95d3f0cec6c9ddfc58"
+      },
+      "reason": "active_latest_registry_identity_matches",
+      "observed": {
+        "identity": "io.github.beepboop2025/liquilens-trade-safety-gateway",
+        "version": "0.2.2",
+        "status": "active",
+        "is_latest": true
+      }
+    },
+    {
+      "id": "ai-sdk-npm",
+      "kind": "npm",
+      "required": true,
+      "ledger_ids": [
+        "financial-evidence-ai-sdk-npm"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "@moomoo202020/financial-evidence-ai-sdk",
+        "version": "0.1.0",
+        "basis": "candidate_package",
+        "publication_state": "published",
+        "npm_integrity": "sha512-nbfjOuGZALenGCUhex4E7c0FTAxrubmNJtaVg+EYxJ2IKXOxVZDyAZ7T+6TcDhXu7cZNxchyozJ83J6zb3mUqA=="
+      },
+      "url": "https://registry.npmjs.org/%40moomoo202020%2Ffinancial-evidence-ai-sdk/latest",
+      "transport": {
+        "url": "https://registry.npmjs.org/%40moomoo202020%2Ffinancial-evidence-ai-sdk/latest",
+        "observed_at": "2026-10-15T16:06:53.979512Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 2848,
+        "sha256": "a8fa08949296fb6d22fe2944f10c7ae4a403da2d68ee60c01f9a64a926acb165"
+      },
+      "reason": "published_package_identity_matches",
+      "observed": {
+        "identity": "@moomoo202020/financial-evidence-ai-sdk",
+        "version": "0.1.0",
+        "registry_integrity": "sha512-nbfjOuGZALenGCUhex4E7c0FTAxrubmNJtaVg+EYxJ2IKXOxVZDyAZ7T+6TcDhXu7cZNxchyozJ83J6zb3mUqA==",
+        "artifact_bytes_verified": false
+      }
+    },
+    {
+      "id": "hosted-context-discovery",
+      "kind": "json_fields",
+      "required": true,
+      "ledger_ids": [],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": null,
+        "version": null,
+        "basis": "contract",
+        "fields": {
+          "schema": "liquilens.free-agent-integrations.v1",
+          "context_stream": {
+            "contract": "https://agents.seiche.info/v1/context/contract",
+            "snapshot": "https://agents.seiche.info/v1/context/snapshot",
+            "events": "https://agents.seiche.info/v1/context/events",
+            "scope": "source_status_metadata",
+            "execution_authority": "none",
+            "replay_complete": false
+          }
+        }
+      },
+      "url": "https://agents.seiche.info/v1/integrations",
+      "transport": {
+        "url": "https://agents.seiche.info/v1/integrations",
+        "observed_at": "2026-10-15T16:06:54.832776Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 6711,
+        "sha256": "cc2f8edf0d3a35a6dc9a7f8a649107a4c99198dac36ac7b9c4a5210746c797d6"
+      },
+      "reason": "contract_fields_match",
+      "observed": {}
+    },
+    {
+      "id": "hosted-context-contract",
+      "kind": "json_fields",
+      "required": true,
+      "ledger_ids": [],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": null,
+        "version": null,
+        "basis": "contract",
+        "fields": {
+          "schema": "seiche-agent-network.context-contract.v1",
+          "snapshot_schema": "seiche-agent-network.context.v1",
+          "snapshot": "/v1/context/snapshot",
+          "events": "/v1/context/events",
+          "content": "source_status_metadata_only",
+          "market_quotes": false,
+          "execution_authority": "none",
+          "replay_available": false,
+          "snapshot_max_bytes": 16384,
+          "frame_max_bytes": 17408,
+          "operator_metrics_requires_auth": true
+        }
+      },
+      "url": "https://agents.seiche.info/v1/context/contract",
+      "transport": {
+        "url": "https://agents.seiche.info/v1/context/contract",
+        "observed_at": "2026-10-15T16:06:55.412825Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 1292,
+        "sha256": "015589985f1c9c7c814e10c4dade770aad82323fe9e793a9ac76dedf6820efd6"
+      },
+      "reason": "contract_fields_match",
+      "observed": {}
+    },
+    {
+      "id": "hosted-context-instructions",
+      "kind": "text_links",
+      "required": true,
+      "ledger_ids": [],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": null,
+        "version": null,
+        "basis": "contract",
+        "fields": {}
+      },
+      "url": "https://agents.seiche.info/llms.txt",
+      "transport": {
+        "url": "https://agents.seiche.info/llms.txt",
+        "observed_at": "2026-10-15T16:06:56.713884Z",
+        "http_status": 200,
+        "content_type": "text/plain; charset=utf-8",
+        "status": "retrieved",
+        "bytes": 6483,
+        "sha256": "47249127fb5bc486c522d7d65713c4754b2a92eb95df39a21e69dd24e85a060b"
+      },
+      "reason": "required_links_present",
+      "observed": {
+        "matched_link_count": 1
+      }
+    },
+    {
+      "id": "context-client-landing",
+      "kind": "text_links",
+      "required": true,
+      "ledger_ids": [],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": null,
+        "version": null,
+        "basis": "contract",
+        "fields": {}
+      },
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/ai-trading-tools.html",
+      "transport": {
+        "url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/ai-trading-tools.html",
+        "observed_at": "2026-10-15T16:06:55.552695Z",
+        "http_status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "status": "retrieved",
+        "bytes": 10151,
+        "sha256": "309d770e9d3f24aa2df397b9ffa28c724967de60fdc4c4ff424e3244964027da"
+      },
+      "reason": "required_links_present",
+      "observed": {
+        "matched_link_count": 3
+      }
+    },
+    {
+      "id": "financial-evidence-workspace-mcp-registry",
+      "kind": "mcp_registry",
+      "required": true,
+      "ledger_ids": [
+        "official-mcp-registry-financial-evidence-workspace"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "io.github.beepboop2025/financial-evidence-workspace",
+        "version": "1.3.0",
+        "basis": "ledger"
+      },
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence-workspace/versions/latest",
+      "transport": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence-workspace/versions/latest",
+        "observed_at": "2026-10-15T16:06:56.300632Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 750,
+        "sha256": "4237eecde546f63e4f8fcbc09f93041a384b84822d685976fe344685376c0066"
+      },
+      "reason": "active_latest_registry_identity_matches",
+      "observed": {
+        "identity": "io.github.beepboop2025/financial-evidence-workspace",
+        "version": "1.3.0",
+        "status": "active",
+        "is_latest": true
+      }
+    },
+    {
+      "id": "seiche-market-corpus-mcp-registry",
+      "kind": "mcp_registry",
+      "required": true,
+      "ledger_ids": [
+        "official-mcp-registry-seiche-market-corpus"
+      ],
+      "status": "current",
+      "publication_acceptance_inferred": false,
+      "expected": {
+        "identity": "io.github.beepboop2025/seiche-market-corpus",
+        "version": "1.0.0",
+        "basis": "ledger"
+      },
+      "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fseiche-market-corpus/versions/latest",
+      "transport": {
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fseiche-market-corpus/versions/latest",
+        "observed_at": "2026-10-15T16:06:57.917417Z",
+        "http_status": 200,
+        "content_type": "application/json",
+        "status": "retrieved",
+        "bytes": 747,
+        "sha256": "bda39caf172ce44d84c0b06c5ce24d6822a53b617d6ba7bbd6f3e13b1bc27bec"
+      },
+      "reason": "active_latest_registry_identity_matches",
+      "observed": {
+        "identity": "io.github.beepboop2025/seiche-market-corpus",
+        "version": "1.0.0",
+        "status": "active",
+        "is_latest": true
+      }
+    }
+  ],
+  "ledger_inventory": [
+    {
+      "id": "official-mcp-registry",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "active_latest_registry_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "financial-evidence-mcp-registry"
+    },
+    {
+      "id": "skills-sh",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "glama",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "docker-mcp-catalog",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "awesome-mcp-servers",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "awesome-copilot",
+      "declared_state": "closed_unmerged",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "finos-fdc3-app-directory",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "awesome-openbb",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "openbb-app-marketplace",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "gemini-cli-extension-gallery",
+      "declared_state": "eligible_automatic",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "openai-plugin-directory",
+      "declared_state": "ready_account_action",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "claude-plugin-directory",
+      "declared_state": "ready_account_action",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "smithery",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "cline-mcp-marketplace",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "stackshare",
+      "declared_state": "ready_account_action",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "saashub",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "alternativeto",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "zenodo",
+      "declared_state": "conditional_artifact",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "hugging-face-spaces",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "pulsemcp",
+      "declared_state": "paused_external",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcp-so",
+      "declared_state": "skipped_paid",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "smithery-liquilens",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "smithery-seiche",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "smithery-undertow",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "postman-research-api",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "smithery-research-desk",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "apis-guru-research-api",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "awesome-remote-mcp-servers",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "freepublicapis-research-api",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "apislist-research",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "apislist-liquilens",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "apislist-seiche",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "apislist-undertow",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "apisio-company",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcpservers-org-research-desk",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcpservers-org-financial-evidence",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcpservers-org-liquilens",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcpservers-org-seiche",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcpservers-org-undertow",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcpservers-org-palimpsest",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcpservers-org-evidence-carrier",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "allmcps-financial-evidence",
+      "declared_state": "listed_incomplete",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "allmcps-liquilens",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "allmcps-seiche",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "allmcps-undertow",
+      "declared_state": "listed_incomplete",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "allmcps-palimpsest",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "allmcps-evidence-carrier",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "allmcps-narcoscope",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcpmarket-financial-evidence",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "allmcps-research-desk",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "battlefin-company-map",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "apyhub-seiche-reference-fx",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "saashub-seiche",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "saashub-undertow",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "g2-liquilens",
+      "declared_state": "listed_incomplete",
+      "listing_url_present": true,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "g2-seiche",
+      "declared_state": "listed_incomplete",
+      "listing_url_present": true,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "g2-undertow",
+      "declared_state": "listed_incomplete",
+      "listing_url_present": true,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "api-market-seiche-reference-fx",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "datarade-company",
+      "declared_state": "approved_pending_public",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "swagger-liquilens",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "swagger-seiche",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "swagger-undertow",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "postman-liquilens",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "postman-seiche",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "postman-undertow",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "rapidapi-liquilens",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "rapidapi-seiche",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "rapidapi-undertow",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "noisefloor-pypi",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "published_package_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "noisefloor-pypi"
+    },
+    {
+      "id": "noisefloor-mcp-registry",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "active_latest_registry_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "noisefloor-mcp-registry"
+    },
+    {
+      "id": "noisefloor-github-release",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "published_release_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "noisefloor-github"
+    },
+    {
+      "id": "mcpserver-cc-financial-evidence",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "public-apis-financial-evidence-mcp",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "apivault-financial-evidence",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcpserverfinder-financial-evidence",
+      "declared_state": "sent_delivery_unverified",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcpmarket-liquilens",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcpmarket-seiche",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcpmarket-undertow",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "lobehub-liquilens",
+      "declared_state": "listed_incomplete",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "lobehub-seiche",
+      "declared_state": "listed_incomplete",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "lobehub-undertow",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "lobehub-palimpsest",
+      "declared_state": "listed_incomplete",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "lobehub-riptide",
+      "declared_state": "listed_incomplete",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "lobehub-noisefloor",
+      "declared_state": "listed_incomplete",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "lobehub-evidence-carrier",
+      "declared_state": "listed_incomplete",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "public-apis-liquilens-rest",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "public-apis-seiche-rest",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "public-apis-undertow-rest",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "fintech-sandbox-provider-intake",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "neudata-company",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "eagle-alpha-company",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "crozdesk-liquilens",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "softwaresuggest-liquilens",
+      "declared_state": "ready_account_action",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "gumloop-financial-evidence",
+      "declared_state": "skipped_paid",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "haystack-financial-evidence",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "langchain-financial-evidence",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "langchain-financial-evidence-github-release",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "published_release_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "langchain-github"
+    },
+    {
+      "id": "langchain-financial-evidence-pypi",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "published_package_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "langchain-pypi"
+    },
+    {
+      "id": "awesome-quant-seiche",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "awesome-quant-noisefloor",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "awesome-osint-narcoscope",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "ai4finance-financial-evidence",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "osint-collection-palimpsest",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "wealthmcp-financial-evidence",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "wealthmcp-seiche",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "wealthmcp-noisefloor",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "allmcps-noisefloor",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "allmcps-groundcheck",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "allmcps-data-breach-detector",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "awesome-quant-market-brief",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "ai4finance-market-brief",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "cursor-directory-financial-evidence",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "finskilz-financial-evidence",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "sourceforge-research-desk",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "capterra-liquilens",
+      "declared_state": "listed_incomplete",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "getapp-liquilens",
+      "declared_state": "listed_incomplete",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "capterra-undertow",
+      "declared_state": "listed_incomplete",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "getapp-undertow",
+      "declared_state": "listed_incomplete",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "softwareadvice-undertow",
+      "declared_state": "listed_incomplete",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "factset-provider-inquiry",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "nasdaq-data-link-provider-inquiry",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "dify-financial-evidence",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "n8n-financial-evidence-npm",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "published_package_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "n8n-npm"
+    },
+    {
+      "id": "n8n-creator-financial-evidence",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "pipedream-financial-evidence",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcp-directory-financial-evidence",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "agentndx-financial-evidence",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcp-directory-seiche",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "agentndx-seiche",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcp-directory-liquilens",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "agentndx-liquilens",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcp-directory-undertow",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "agentndx-undertow",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "apidirectory-seiche",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "apidirectory-undertow",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcp-find-financial-evidence",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "kilo-financial-evidence",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "apidirectory-liquilens",
+      "declared_state": "listed_incomplete",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "apidirectory-financial-evidence",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "datawrapper-river-dollar-funding",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "opennews-source-financial-evidence",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "reuters-connect-supplier-inquiry",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "glama-liquilens-connector",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "glama-seiche-connector",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "glama-undertow-connector",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcp-so-seiche",
+      "declared_state": "listed_incomplete",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "official-mcp-registry-wake",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "active_latest_registry_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "wake-mcp-registry"
+    },
+    {
+      "id": "official-mcp-registry-seiche-agent-community",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "active_latest_registry_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "community-mcp-registry"
+    },
+    {
+      "id": "agentndx-wake",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "agentndx-seiche-agent-community",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcpservers-org-wake",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "mcpservers-org-seiche-agent-community",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "allmcps-wake",
+      "declared_state": "ready_account_action",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "cursor-official-marketplace",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "activepieces-native",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": true,
+      "observation": "current",
+      "reason": "published_package_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "activepieces-npm"
+    },
+    {
+      "id": "vercel-ai-sdk-tools",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "microsoft-certified-mcp",
+      "declared_state": "conditional_artifact",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "laplace-awesome-agent-trading-financial-evidence",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "aowang-awesome-finance-agents-financial-evidence",
+      "declared_state": "submitted",
+      "listing_url_present": false,
+      "submission_url_present": true,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "official-mcp-registry-financial-source-data",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "active_latest_registry_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "financial-source-data-mcp-registry"
+    },
+    {
+      "id": "official-mcp-registry-liquilens",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "active_latest_registry_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "liquilens-mcp-registry"
+    },
+    {
+      "id": "official-mcp-registry-liquilens-trade-safety-gateway",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "active_latest_registry_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "trade-safety-mcp-registry"
+    },
+    {
+      "id": "official-mcp-registry-myquant-app",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "active_latest_registry_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "myquant-app-mcp-registry"
+    },
+    {
+      "id": "official-mcp-registry-myquant-editorial",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "active_latest_registry_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "myquant-editorial-mcp-registry"
+    },
+    {
+      "id": "official-mcp-registry-narcoscope",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "active_latest_registry_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "narcoscope-mcp-registry"
+    },
+    {
+      "id": "official-mcp-registry-palimpsest",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "active_latest_registry_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "palimpsest-mcp-registry"
+    },
+    {
+      "id": "official-mcp-registry-riptide",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "active_latest_registry_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "riptide-mcp-registry"
+    },
+    {
+      "id": "official-mcp-registry-seiche",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "active_latest_registry_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "seiche-mcp-registry"
+    },
+    {
+      "id": "official-mcp-registry-undertow",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "active_latest_registry_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "undertow-mcp-registry"
+    },
+    {
+      "id": "financial-evidence-ai-sdk-npm",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "published_package_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "ai-sdk-npm"
+    },
+    {
+      "id": "financial-evidence-pypi",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "published_package_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "financial-evidence-pypi"
+    },
+    {
+      "id": "financial-evidence-github-release",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "published_release_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "financial-evidence-github"
+    },
+    {
+      "id": "financial-evidence-oci",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "financial-evidence-homebrew",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "not_monitored",
+      "reason": "no_authoritative_probe_configured",
+      "publication_acceptance_inferred": false
+    },
+    {
+      "id": "official-mcp-registry-financial-evidence-workspace",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "active_latest_registry_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "financial-evidence-workspace-mcp-registry"
+    },
+    {
+      "id": "official-mcp-registry-seiche-market-corpus",
+      "declared_state": "live",
+      "listing_url_present": true,
+      "submission_url_present": false,
+      "observation": "current",
+      "reason": "active_latest_registry_identity_matches",
+      "publication_acceptance_inferred": false,
+      "channel": "seiche-market-corpus-mcp-registry"
+    }
+  ],
+  "findings": [],
+  "scope": "Exact configured publication identities and ledger inventory; no inferred listing acceptance, artifact execution, trades or users"
+}

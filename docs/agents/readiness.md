@@ -47,19 +47,17 @@ for the client-side connection and permission model.
 
 ## Check your connection before integrating
 
-Install the source release in a dedicated Python 3.10+ environment:
+Install the PyPI release in a dedicated Python 3.10+ environment:
 
 ```sh
-python3 -m pip install --force-reinstall 'financial-evidence[workspace] @ git+https://github.com/beepboop2025/financial-evidence-skills.git@trading-readiness-v1.0.0'
+python3 -m pip install 'financial-evidence[workspace]==0.1.9'
 financial-evidence-trading doctor
 ```
 
-The `doctor` command is in this source release; the older GitHub release 0.1.8 wheel does
-not include it. The [platform kit](../platforms/finance-platform-kit.zip) also
-contains the current package source. Save the source revision with your result.
-The source package retains version 0.1.8; `--force-reinstall` is required when
-replacing the older wheel. Plain install and `--upgrade` can retain the older
-code despite the different source reference.
+The 0.1.9 package includes `doctor`, persistent MCP sessions and the
+[source-status clients](low-latency.md). The
+[platform kit](../platforms/finance-platform-kit.zip) also contains the current
+package source. Save the installed version and source revision with your result.
 
 The diagnostic initializes four public MCP sessions, discovers their tools and
 makes one reviewed read call to each: Seiche, LiquiLens, Undertow and Financial

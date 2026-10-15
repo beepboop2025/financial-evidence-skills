@@ -154,7 +154,7 @@ def verify(url: str, expected_worker_tag: str) -> None:
     )
     if headers.get("x-liquilens-worker-tag") != expected_worker_tag:
         raise RuntimeError(
-            "remote Worker tag does not equal current liquilens-site main"
+            "remote Worker tag does not equal the expected release source"
         )
     identity = _result(initialized, "initialize")
     if identity.get("serverInfo") != CONTRACT["serverInfo"]:

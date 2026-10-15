@@ -167,14 +167,14 @@ def command_doctor(args: argparse.Namespace) -> int:
 COMPLETIONS = {
     "bash": """_financial_evidence() {
   local cur="${COMP_WORDS[COMP_CWORD]}"
-  COMPREPLY=( $(compgen -W "topics route fetch doctor completion --help --version" -- "$cur") )
+  COMPREPLY=( $(compgen -W "mcp topics route fetch doctor completion --help --version" -- "$cur") )
 }
 complete -F _financial_evidence financial-evidence
 """,
     "zsh": """#compdef financial-evidence
-_arguments '1:command:(topics route fetch doctor completion)' '*::arg:->args'
+_arguments '1:command:(mcp topics route fetch doctor completion)' '*::arg:->args'
 """,
-    "fish": """complete -c financial-evidence -f -a 'topics route fetch doctor completion'
+    "fish": """complete -c financial-evidence -f -a 'mcp topics route fetch doctor completion'
 complete -c financial-evidence -l version -d 'Show version'
 """,
 }
@@ -199,6 +199,13 @@ def _add_fetch_limits(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--timeout", type=float, default=10.0)
 
 
+def command_mcp(args: argparse.Namespace) -> int:
+    """Expose stdio under the package-name executable used by registries."""
+    from .mcp import main as mcp_main
+
+    return mcp_main()
+
+
 def parser() -> argparse.ArgumentParser:
     root = argparse.ArgumentParser(
         prog="financial-evidence",
@@ -206,6 +213,9 @@ def parser() -> argparse.ArgumentParser:
     )
     root.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     commands = root.add_subparsers(dest="command", required=True)
+
+    mcp = commands.add_parser("mcp", help="serve the read-only MCP router on stdio")
+    mcp.set_defaults(handler=command_mcp)
 
     topics = commands.add_parser("topics", help="list canonical topics and aliases")
     topics.add_argument("--format", choices=("json", "table"), default="table")

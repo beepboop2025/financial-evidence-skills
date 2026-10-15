@@ -4,7 +4,9 @@ from importlib.util import module_from_spec, spec_from_file_location
 from io import StringIO
 import hashlib
 import json
+import os
 from pathlib import Path
+import subprocess
 import sys
 import unittest
 from unittest.mock import patch
@@ -170,6 +172,27 @@ class CoreTests(unittest.TestCase):
 
 
 class CliTests(unittest.TestCase):
+    def test_package_name_entrypoint_serves_stdio_without_cli_output(self):
+        requests = [
+            {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {
+                "protocolVersion": "2025-11-25", "capabilities": {},
+                "clientInfo": {"name": "registry-launch-test", "version": "1"},
+            }},
+            {"jsonrpc": "2.0", "method": "notifications/initialized"},
+            {"jsonrpc": "2.0", "id": 2, "method": "tools/list", "params": {}},
+        ]
+        process = subprocess.run(
+            [sys.executable, "-m", "financial_evidence.cli", "mcp"],
+            input="".join(json.dumps(request) + "\n" for request in requests),
+            text=True, capture_output=True, check=True, timeout=10,
+            env={**os.environ, "PYTHONPATH": str(SRC)},
+        )
+        responses = [json.loads(line) for line in process.stdout.splitlines()]
+        contract = json.loads((ROOT / "integrations/financial-evidence-mcp-current.json").read_text())
+        self.assertEqual([response["id"] for response in responses], [1, 2])
+        self.assertEqual(responses[0]["result"]["serverInfo"], contract["serverInfo"])
+        self.assertEqual(responses[1]["result"]["tools"], contract["tools"])
+
     def run_cli(self, argv):
         output = StringIO()
         with redirect_stdout(output):

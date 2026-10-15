@@ -22,7 +22,7 @@ product-specific tools; this interface adds small tables and repeat-call tokens.
 Install the source-pinned agent release (Python 3.10+):
 
 ```sh
-python3 -m pip install 'financial-evidence @ git+https://github.com/beepboop2025/financial-evidence-skills.git@trading-readiness-v1.0.0'
+python3 -m pip install --force-reinstall 'financial-evidence @ git+https://github.com/beepboop2025/financial-evidence-skills.git@trading-readiness-v1.0.0'
 ```
 
 ```python

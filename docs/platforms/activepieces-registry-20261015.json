@@ -1,0 +1,88 @@
+{
+  "schema": "financial-evidence.activepieces-native.v1",
+  "started_at": "2026-10-15T11:30:19.338863+00:00",
+  "status": "passed",
+  "image": "activepieces/activepieces@sha256:4b719ac8cb9a235beb59f9beae322c9447ee532264ff08af9094926240b721e8",
+  "release": "0.92.3",
+  "source_commit": "a1d89dce58fd71dd6b4f97afb733aefc6fa707c5",
+  "source_commit_role": "qualification_harness_and_candidate_checkout",
+  "candidate": {
+    "package": "@moomoo202020/piece-financial-evidence",
+    "version": "0.1.0"
+  },
+  "installation_mode": "registry",
+  "installation": "registry_via_native_install_api",
+  "artifact_source": "approved_publication_receipt",
+  "execution": "native_worker_via_editor_step_test_api",
+  "browser_interaction": "not_tested",
+  "npm_published": true,
+  "npm_publication_verification": "approved_public_bytes_verified",
+  "worker_artifact_bytes_verified": false,
+  "upstream_submission": "paused_by_upstream_policy",
+  "independent_adoption_verified": false,
+  "runs": [
+    {
+      "action": "list_research_datasets",
+      "status": "SUCCEEDED",
+      "output_sha256": "4c3c5667b9dc6db62e52d247b93d1503dbe6b10405cb9ae5fb7371e2c11aafcd",
+      "dataset_ids": [
+        "money_markets",
+        "money_market_history",
+        "capital_markets",
+        "bank_risk",
+        "market_liquidity",
+        "china_economy",
+        "source_health"
+      ]
+    },
+    {
+      "action": "get_evidence_page",
+      "status": "SUCCEEDED",
+      "output_sha256": "d1017ed2e8983af8feeecd825f905f8760d35bb9702169c042cb1278a754400c",
+      "rows": 1,
+      "source_count": 1,
+      "observations": [
+        {
+          "as_of": "2026-10-13",
+          "unit": "%",
+          "availability": "AVAILABLE",
+          "source_status": "AGING",
+          "rights_status": "allowed"
+        }
+      ],
+      "diagnostics_preserved": true
+    }
+  ],
+  "registry_verification": {
+    "metadata_url": "https://registry.npmjs.org/@moomoo202020%2Fpiece-financial-evidence/0.1.0",
+    "metadata_sha256": "6bff36c2d4ce4564c68578087d5fac9f3e329dd76bfc047baff7322c81abb602",
+    "tarball_url": "https://registry.npmjs.org/@moomoo202020/piece-financial-evidence/-/piece-financial-evidence-0.1.0.tgz",
+    "integrity": "sha512-arNyfefIUffmksS1rQF8q0xboVfncytqzA63b7J7iEYh0o6xN8lsbRW+pNB0C4N+TGgc7MUNOsV+fc63EV3cCg==",
+    "publication_receipt": "activepieces-publication-20261015.json",
+    "publication_receipt_sha256": "b81ecd0af390c3d7039db55db6f11549366f077c97d1ea9f4866561066ef20ba",
+    "native_archive_receipt": "activepieces-native-20261015.json",
+    "native_archive_receipt_sha256": "136f08f87db94bbc446d20dbad63e0057b79757d13601314db83da4525e138e7",
+    "native_archive_source_commit": "548d3c3dab904b87ce6a00f178e7f2ee0979fbb7",
+    "anonymous_readback": true,
+    "public_artifact_bytes_verified": true,
+    "worker_artifact_bytes_verified": false,
+    "registry_signature_verification": "not_repeated_by_this_run"
+  },
+  "package": "@moomoo202020/piece-financial-evidence",
+  "version": "0.1.0",
+  "filename": "moomoo202020-piece-financial-evidence-0.1.0.tgz",
+  "bytes": 7258,
+  "sha256": "ad826581762754f15aa91c984538ab0c5bf6eda1d435eb99bb7f894c25a5fe69",
+  "flags_sha256": "3b4f254ec9769f6118c36f4e6bf6718e008672a0ddf41a61059a38200fcd98a9",
+  "metadata": {
+    "name": "@moomoo202020/piece-financial-evidence",
+    "version": "0.1.0",
+    "displayName": "Financial Evidence",
+    "minimumSupportedRelease": "0.92.3",
+    "packageType": "REGISTRY",
+    "pieceType": "CUSTOM"
+  },
+  "completed_at": "2026-10-15T11:31:21.516221+00:00",
+  "qualification_run": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38727761856",
+  "ci_receipt_sha256": "d7b7f0e3b21b03653f6d3ba8a033e3d1b8dbcfb311c8f23972bb2070d6ee058a"
+}

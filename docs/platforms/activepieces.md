@@ -13,6 +13,7 @@ values without their evidence context.
 · [publication receipt](activepieces-publication-20261015.json)
 · [download the qualified archive](downloads/moomoo202020-piece-financial-evidence-0.1.0.tgz)
 · [native qualification receipt](activepieces-native-20261015.json)
+· [native npm-installation receipt](activepieces-registry-20261015.json)
 · [checksums](SHA256SUMS)
 
 The archive installed in the official Activepieces 0.92.3 community host, pinned
@@ -21,9 +22,23 @@ dataset descriptions and one money-market evidence row with its source and
 diagnostics. The tested observation was dated 13 October and marked `AGING`;
 successful execution does not make that observation fresh.
 
-For an instance that permits independently maintained pieces, open Settings,
-My Pieces, Install Piece and select the npm package
-`@moomoo202020/piece-financial-evidence`, version `0.1.0`. See the
+A separate fresh host installed version 0.1.0 directly from npm through the
+native registry-install API and executed both actions successfully. The host
+reported package type `REGISTRY`. The anonymous public archive matched the
+previous publication's SHA-256, SHA-512 integrity and size before installation.
+The [CI run](https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38727761856)
+records both installation paths. Worker filesystem bytes were not independently
+attested; this is native API execution evidence, with browser interaction still
+unverified.
+
+On a self-hosted instance that permits independently maintained pieces, sign in
+as a platform administrator. In Activepieces 0.92.3, open **Platform → Catalogue
+→ Pieces → Install Piece**, choose **NPM Registry**, and enter
+`@moomoo202020/piece-financial-evidence`, version `0.1.0`. The route is
+`/platform/pieces`; older documentation calls it **Settings → My Pieces**.
+These navigation labels were checked against the
+[0.92.3 frontend source](https://github.com/activepieces/activepieces/blob/0.92.3/packages/web/src/app/components/sidebar/platform/index.tsx#L95),
+and browser interaction remains unverified. See the
 [official independent package instructions](https://www.activepieces.com/docs/build-pieces/sharing-pieces/community).
 For a separate Node environment, the exact package is available with:
 
@@ -43,6 +58,11 @@ installation are not verified. For a reproducible check, follow the
 [source and build instructions](https://github.com/beepboop2025/financial-evidence-skills/tree/main/integrations/activepieces)
 and run `scripts/native_smoke.py` with Docker. Native flows created by that check
 are disposable drafts, with no published schedule.
+
+Use `--installation registry --evidence-dir PATH` to repeat the npm installation
+check. It targets the version in the retained publication receipt. The default
+`--installation archive` checks the local candidate build, which can differ from
+the published version. Keep their receipts separate when developing an update.
 
 Start with 25 rows and offset 0. Stop pagination when `next_offset` is null and
 place an explicit limit on any workflow loop. Keep `sources`, `diagnostics`,

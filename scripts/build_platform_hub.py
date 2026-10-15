@@ -110,6 +110,19 @@ def assets() -> dict[str, bytes]:
         raise ValueError("Activepieces publication differs from native qualification")
     selected.append(DEST / publication_name)
     downloads[publication_name] = (DEST / publication_name).read_bytes()
+    registry_name = "activepieces-registry-20261015.json"
+    registry = json.loads((DEST / registry_name).read_text())
+    if (registry["status"] != "passed"
+            or registry["installation"] != "registry_via_native_install_api"
+            or registry["metadata"]["packageType"] != "REGISTRY"
+            or any(registry[k] != publication[k] for k in ("package", "version", "sha256", "bytes"))
+            or not registry["registry_verification"]["public_artifact_bytes_verified"]
+            or registry["registry_verification"]["publication_receipt_sha256"] != hashlib.sha256((DEST / publication_name).read_bytes()).hexdigest()
+            or {run["action"]: run["status"] for run in registry["runs"]} != {
+                "list_research_datasets": "SUCCEEDED", "get_evidence_page": "SUCCEEDED"}):
+        raise ValueError("Activepieces registry qualification differs from publication")
+    selected.append(DEST / registry_name)
+    downloads[registry_name] = (DEST / registry_name).read_bytes()
     package_sets = {
         "native-packages.json": {"n8n-nodes-financial-evidence-0.1.0.tgz", "financial_evidence-0.1.1.difypkg"},
         "hosted-native-packages.json": {"n8n-nodes-financial-evidence-0.1.1.tgz", "financial_evidence-0.1.2.difypkg"},

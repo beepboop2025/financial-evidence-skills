@@ -3,15 +3,20 @@ name: Activepieces native acceptance
 on:
   workflow_dispatch:
   pull_request:
-    paths: ['integrations/activepieces/**', '.github/workflows/activepieces-native-acceptance.yml']
+    paths: ['integrations/activepieces/**', '.github/workflows/activepieces-native-acceptance.yml', 'docs/platforms/activepieces-publication-20261015.json', 'docs/platforms/activepieces-native-20261015.json']
 
 permissions:
   contents: read
 
 jobs:
   native:
+    name: Native ${{ matrix.installation }} installation
     runs-on: ubuntu-24.04
     timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        installation: [archive, registry]
     defaults:
       run:
         working-directory: integrations/activepieces
@@ -20,17 +25,23 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: '22'
+      - name: Test publication integrity and native installation route boundaries
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
       - run: npm ci --ignore-scripts --no-audit --no-fund
+        if: matrix.installation == 'archive'
       - run: npm run build && npm test
-      - name: Install the packed piece and execute both actions in the native host
-        run: python3 scripts/native_smoke.py --evidence-dir "$RUNNER_TEMP/activepieces-evidence"
+        if: matrix.installation == 'archive'
+      - name: Install the selected artifact and execute both actions in the native host
+        # Registry mode targets the approved publication receipt, not a future local candidate.
+        run: python3 scripts/native_smoke.py --installation "${{ matrix.installation }}" --evidence-dir "$RUNNER_TEMP/activepieces-evidence/${{ matrix.installation }}"
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
-          name: activepieces-native-${{ github.sha }}
+          name: activepieces-native-${{ matrix.installation }}-${{ github.sha }}
           # Never retain the host database, temporary account credentials or tokens.
           path: |
-            ${{ runner.temp }}/activepieces-evidence/receipt.json
-            ${{ runner.temp }}/activepieces-evidence/*.tgz
-            ${{ runner.temp }}/activepieces-evidence/runtime-diagnostic.txt
+            ${{ runner.temp }}/activepieces-evidence/${{ matrix.installation }}/receipt.json
+            ${{ runner.temp }}/activepieces-evidence/${{ matrix.installation }}/*.tgz
+            ${{ runner.temp }}/activepieces-evidence/${{ matrix.installation }}/registry-version-metadata.json
+            ${{ runner.temp }}/activepieces-evidence/${{ matrix.installation }}/runtime-diagnostic.txt
           if-no-files-found: error

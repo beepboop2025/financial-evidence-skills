@@ -2,16 +2,31 @@ name: Native integration candidates
 
 on:
   pull_request:
-    paths: ['integrations/n8n-node/**', 'integrations/zapier/**', 'integrations/dify/**', 'integrations/make/**', '.github/workflows/native-integrations.yml']
+    paths: ['integrations/n8n-node/**', 'integrations/zapier/**', 'integrations/dify/**', 'integrations/make/**', 'integrations/activepieces/**', '.github/workflows/native-integrations.yml']
   push:
     branches: [main]
-    paths: ['integrations/n8n-node/**', 'integrations/zapier/**', 'integrations/dify/**', 'integrations/make/**', '.github/workflows/native-integrations.yml']
+    paths: ['integrations/n8n-node/**', 'integrations/zapier/**', 'integrations/dify/**', 'integrations/make/**', 'integrations/activepieces/**', '.github/workflows/native-integrations.yml']
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
+  activepieces-candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: integrations/activepieces
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '22'
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm run build
+      - run: npm test
+      - run: npm pack --dry-run
   n8n-candidate:
     runs-on: ubuntu-24.04
     timeout-minutes: 15

@@ -48,7 +48,7 @@ def page(manifest: dict) -> bytes:
 <section class="section"><h2>Make the next review repeatable.</h2><ol><li>Run one task and inspect the cited source, date, unit and gaps.</li><li>Save the capture and the note it helped you write.</li><li>Return on another working day and compare with that capture.</li></ol>
 <p>The kit includes forward-research examples, agent setup instructions and provider evaluation material. Historical observation dates do not establish historical data availability. These connections do not authorize trades or grant redistribution rights.</p>
 <p><a href="SHA256SUMS">Download checksums</a> · <a href="routes.json">Machine-readable routes</a> · <a href="../distribution/">Publication status</a></p></section>
-<footer><p>LIQUILENS PRIVATE LIMITED · Updated 11 October 2026 · <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a> · <a href="../support/">Support</a></p></footer></body></html>
+<footer><p>LIQUILENS PRIVATE LIMITED · Updated 15 October 2026 · <a href="../privacy/">Privacy</a> · <a href="../terms/">Terms</a> · <a href="../support/">Support</a></p></footer></body></html>
 ''').encode()
 
 
@@ -73,7 +73,8 @@ def assets() -> dict[str, bytes]:
                 DEST / "colab-verification-20261011.json",
                 DEST / "n8n-publication-20261011.json",
                 DEST / "n8n-publication-20261013.json",
-                DEST / "n8n-creator-submission-20261011.json"]
+                DEST / "n8n-creator-submission-20261011.json",
+                DEST / "activepieces.md", DEST / "activepieces-verification-20261015.json"]
     # Explicit public allowlist: never collect the native runtime or its state.
     flowise_files = ("README.md", "NOTICE.md", "FLOWISE-LICENSE.md", "publication.json",
                      "native-proof.json", "financial-evidence-flowise-marketplace-candidate.json")
@@ -99,14 +100,14 @@ def assets() -> dict[str, bytes]:
     # runtime captures, debug keys or dependency trees in a public download.
     for folder in ("src/financial_evidence", "integrations/finance-research", "integrations/finance-desktop",
                    "integrations/node-red", "docs/automations/node-red",
-                   "docs/distribution/provider-packets-20261011"):
+                   "docs/distribution/provider-packets-20261011", "integrations/activepieces"):
         for current, directories, files in os.walk(ROOT / folder):
             directories[:] = sorted(name for name in directories if not name.startswith(".")
-                                    and name not in {"node_modules", "__pycache__", "captures", "artifacts"})
+                                    and name not in {"node_modules", "__pycache__", "captures", "artifacts", "dist"})
             for name in sorted(files):
                 path = Path(current) / name
                 if (not name.startswith(".") and path.suffix in
-                        {".md", ".py", ".json", ".html", ".js", ".mjs", ".cjs", ".css", ".svg", ".txt", ".csv"}):
+                        {".md", ".py", ".json", ".html", ".js", ".mjs", ".cjs", ".css", ".svg", ".txt", ".csv", ".ts"}):
                     selected.append(path)
     readme = b"""# Financial Evidence platform kit
 

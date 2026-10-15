@@ -1,6 +1,6 @@
 {
   "schema": "financial-evidence.platform-routes.v1",
-  "reviewed_date": "2026-10-11",
+  "reviewed_date": "2026-10-15",
   "scope": "Installation assets, research companions and provider evaluation routes. Presence here does not imply endorsement, a marketplace listing or customer adoption.",
   "routes": [
     {
@@ -162,9 +162,9 @@
       ],
       "audience": "Analysts building internal AI applications",
       "workflow": "Package the native tools and test in your Dify workspace.",
-      "artifact_label": "Download plugin candidate",
-      "artifact_url": "native-packages.md#dify",
-      "status": "Hosted 0.1.2 passed packaged SDK registration and three central requests. Remote workspace installation was not retested. Prior 0.1.1 Cloud evidence and marketplace submission remain historical.",
+      "artifact_label": "Install verified Dify plugin 0.1.1",
+      "artifact_url": "https://marketplace.dify.ai/plugin/beepboop2025/financial_evidence",
+      "status": "Dify Marketplace 0.1.1 publicly verified on 15 October 2026 after upstream approval. Native installed-archive execution remains untested. Separate hosted 0.1.2 is a qualified download candidate, not the marketplace version.",
       "official_source": "https://docs.dify.ai/en/develop-plugin/publishing/standards/contributor-covenant-code-of-conduct",
       "verified_customer_adoption": null
     },
@@ -686,6 +686,63 @@
       "artifact_url": "https://huggingface.co/spaces/oldmacdonaldhadafarm/financial-evidence-packet-inspector",
       "status": "Public Space checked running; this does not establish independent use.",
       "official_source": "https://huggingface.co/docs/hub/spaces-overview",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "activepieces",
+      "name": "Activepieces",
+      "category": "Workflow automation",
+      "workflow": "Build catalog discovery and bounded research-page actions into a visual workflow; retain sources, clocks and unavailable values.",
+      "artifact_label": "Native piece source and validation",
+      "artifact_url": "activepieces.md",
+      "status": "Two native SDK actions built, five tests passed and four live reads completed. Native editor installation, upstream contribution and npm publication remain pending.",
+      "official_source": "https://www.activepieces.com/docs/build-pieces/sharing-pieces/contribute",
+      "priority": "P1",
+      "products": [
+        "Financial Evidence",
+        "Seiche",
+        "LiquiLens",
+        "Undertow"
+      ],
+      "audience": "Developers and analysts building source-linked research workflows",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "insomnia",
+      "name": "Insomnia MCP client",
+      "category": "Developer client",
+      "workflow": "Open the research connection in Insomnia, review the remote server and inspect the source-linked tools.",
+      "artifact_label": "Open connection options",
+      "artifact_url": "../connect/?client=mcp",
+      "status": "Official MCP import-link format and endpoint parity validated. Insomnia requires sign-in; native application import is not yet verified.",
+      "official_source": "https://developer.konghq.com/insomnia/run-in-insomnia/",
+      "priority": "P1",
+      "products": [
+        "Financial Evidence",
+        "Seiche",
+        "LiquiLens",
+        "Undertow"
+      ],
+      "audience": "Developers and analysts building source-linked research workflows",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "cursor-official",
+      "name": "Cursor official plugin marketplace",
+      "category": "Editor plugin",
+      "workflow": "Use the public task plugin and hosted research tools, or hand off the MCP URL directly to Cursor for connection review.",
+      "artifact_label": "Cursor setup and plugin source",
+      "artifact_url": "agent-clients.md#cursor",
+      "status": "Official publisher application acknowledged on 15 October 2026; marketplace review pending. Direct MCP handoff is available separately.",
+      "official_source": "https://cursor.com/docs/reference/plugins",
+      "priority": "P1",
+      "products": [
+        "Financial Evidence",
+        "Seiche",
+        "LiquiLens",
+        "Undertow"
+      ],
+      "audience": "Developers and analysts building source-linked research workflows",
       "verified_customer_adoption": null
     }
   ]

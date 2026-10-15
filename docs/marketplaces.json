@@ -397,23 +397,26 @@
     },
     {
       "id": "saashub",
-      "name": "SaaSHub \u2014 LiquiLens",
+      "name": "SaaSHub \u2014 LiquiLens.in",
       "channel": "software-directory",
-      "state": "submitted",
+      "state": "live",
       "submission_url": "https://www.saashub.com/liquilens/added",
       "cost": "free-standard-listing",
-      "detail": "The existing free LiquiLens submission has saved official logo, genuine product screenshot, accurate free-access pricing, three product-specific features and Web support. The free Verify action returned an explicit verification receipt. Directory approval is still pending; verification does not establish publication.",
-      "next_action": "Await the existing review outcome and independently verify the public listing. Enrichment and the free verification step are complete; do not resubmit.",
-      "verified_at": "2026-10-07T16:53:30.231429+00:00",
+      "detail": "SaaSHub approved the existing profile on 15 October 2026. The current public page resolves anonymously and displays officially verified details. Product descriptions, three research categories, pricing, competitor context and Q&A were refreshed through the management page.",
+      "next_action": "Preserve this approved listing and its new operator-assigned slug. Measure referred task completions separately from directory visibility.",
+      "verified_at": "2026-10-15T09:05:44.381099Z",
       "latest_surface_check": {
-        "observed_at": "2026-10-08T11:16:05.661371+00:00",
-        "readback": "no_public_listing_url"
+        "observed_at": "2026-10-15T09:05:44.381099Z",
+        "readback": "public_profile_and_officially_verified_details",
+        "url": "https://www.saashub.com/liquilens-in"
       },
       "profile_enrichment_completed": true,
       "operator_verification_received": true,
-      "public_listing_verified": false,
-      "updated_at": "2026-10-10T06:28:14.840174+00:00",
-      "completion_receipt": "distribution/completion-20261010.json"
+      "public_listing_verified": true,
+      "updated_at": "2026-10-15T09:05:44.381099Z",
+      "completion_receipt": "distribution/completion-20261010.json",
+      "listing_url": "https://www.saashub.com/liquilens-in",
+      "operator_approval_received": true
     },
     {
       "id": "alternativeto",
@@ -1384,38 +1387,44 @@
     },
     {
       "id": "saashub-seiche",
-      "name": "SaaSHub \u2014 Seiche",
+      "name": "SaaSHub \u2014 Seiche.info",
       "channel": "software-directory",
-      "state": "submitted",
+      "state": "live",
       "submission_url": "https://www.saashub.com/seiche/added",
       "cost": "free-standard-listing",
-      "detail": "The existing free Seiche submission has saved official logo, genuine product screenshot, accurate free-access pricing, three product-specific features and Web support. The free Verify action returned an explicit verification receipt. Directory approval is still pending; verification does not establish publication.",
-      "next_action": "Await the existing review outcome and independently verify the public listing. Enrichment and the free verification step are complete; do not resubmit.",
-      "verified_at": "2026-10-07T16:53:30.231429+00:00",
+      "detail": "SaaSHub approved the existing profile on 15 October 2026. The current public page resolves anonymously and displays officially verified details. Product descriptions, three research categories, pricing, competitor context and Q&A were refreshed through the management page.",
+      "next_action": "Preserve this approved listing and its new operator-assigned slug. Measure referred task completions separately from directory visibility.",
+      "verified_at": "2026-10-15T09:05:44.381099Z",
       "latest_surface_check": {
-        "observed_at": "2026-10-08T11:16:12.649388+00:00",
-        "readback": "no_public_listing_url"
+        "observed_at": "2026-10-15T09:05:44.381099Z",
+        "readback": "public_profile_and_officially_verified_details",
+        "url": "https://www.saashub.com/seiche-info"
       },
       "profile_enrichment_completed": true,
       "operator_verification_received": true,
-      "public_listing_verified": false,
-      "updated_at": "2026-10-10T06:28:14.840174+00:00",
-      "completion_receipt": "distribution/completion-20261010.json"
+      "public_listing_verified": true,
+      "updated_at": "2026-10-15T09:05:44.381099Z",
+      "completion_receipt": "distribution/completion-20261010.json",
+      "listing_url": "https://www.saashub.com/seiche-info",
+      "operator_approval_received": true
     },
     {
       "id": "saashub-undertow",
-      "name": "SaaSHub \u2014 Undertow",
+      "name": "SaaSHub \u2014 Undertow by LiquiLens",
       "channel": "software-directory",
-      "state": "paused_external",
-      "submission_url": "https://www.saashub.com/services/submit",
+      "state": "submitted",
+      "submission_url": "https://www.saashub.com/undertow-by-liquilens/added",
       "cost": "free-standard-listing",
-      "verified_at": "2026-10-07T17:16:52.297315+00:00",
-      "detail": "The operator requires approval of an earlier submission before accepting another product from this account. No Undertow submission receipt exists.",
-      "next_action": "Wait for a LiquiLens or Seiche review outcome, then continue the prepared Undertow entry.",
+      "verified_at": "2026-10-15T09:05:44.381099Z",
+      "detail": "Submitted through the free route after earlier product approvals unlocked the account. The name distinguishes the research product from the unrelated Undertow Java webserver. Saved description, three research categories, OpenBB as a research alternative, pricing link, parent-company LinkedIn, family logo, genuine screenshot, three features and product Q&A. The free Verify action confirmed verification; editorial approval remains pending.",
+      "next_action": "Await the existing SaaSHub editorial review; do not resubmit or confuse verification with approval.",
       "latest_surface_check": {
         "observed_at": "2026-10-08T11:16:12.649392+00:00",
         "readback": "no_public_listing_url"
-      }
+      },
+      "submitted_at": "2026-10-15T09:05:44.381099Z",
+      "operator_verification_received": true,
+      "public_listing_verified": false
     },
     {
       "id": "g2-liquilens",
@@ -3428,21 +3437,27 @@
       "name": "Dify Marketplace \u2014 Financial Evidence",
       "product": "Financial Evidence",
       "channel": "agent-plugin-marketplace",
-      "state": "submitted",
+      "state": "live",
       "submission_url": "https://github.com/langgenius/dify-plugins/pull/3278",
       "cost": "Free upstream plugin submission; no paid placement selected.",
-      "detail": "The official plugin-repository PR received Financial Evidence 0.1.1. Three bounded remote-debug workflows passed in Dify Cloud for funding, bank and liquidity evidence; the final archive preserves the tested runtime files and updates only PRIVACY.md after registration. Marketplace review and publication remain pending. Workflow success does not validate source completeness, freshness, rights or independent customer adoption.",
-      "next_action": "Await maintainer review and approval of the existing upstream PR and its action-required precheck; do not resubmit. Verify the published plugin URL before changing this record to live.",
-      "verified_at": "2026-10-10T21:21:06.372878+00:00",
+      "detail": "Official Dify PR 3278 for version 0.1.1 was approved and merged. On 15 October the signed-out public marketplace page displayed Financial Evidence, Verified by Dify, version 0.1.1 and its install link. Direct HTTP verification had returned 403; browser readback independently resolved visibility. The separate central-hosted 0.1.2 candidate is not the accepted version. Native installed-archive execution and independent adoption remain unverified.",
+      "next_action": "Use the verified public Marketplace install route for 0.1.1. Validate an installed archive separately and submit any 0.1.2 upgrade through the existing publisher process.",
+      "verified_at": "2026-10-15T09:05:44.381099Z",
       "package_version": "0.1.1",
       "package_sha256": "b94f1c080ddd8e8e592acf41c80c3177660044fd71ee8badb239b6fce72e9f6c",
       "native_remote_debug_verified": true,
       "native_validation_scope": "Dify Cloud SANDBOX; three draft workflow runs with limit 1 and offset 0. Community Edition and installed-archive execution were not tested.",
-      "public_listing_verified": false,
-      "marketplace_published": false,
+      "public_listing_verified": true,
+      "marketplace_published": true,
       "independent_adoption_verified": false,
       "evidence_receipt": "distribution/dify-submission-20261011.json",
-      "native_proof": "integrations/dify-native-proof-20261011.json"
+      "native_proof": "integrations/dify-native-proof-20261011.json",
+      "operator_approval_received": true,
+      "upstream_merged_at": "2026-10-11T15:39:35Z",
+      "upstream_merge_commit": "5fdc1e880947916cecf9343b7633b253886b528e",
+      "candidate_listing_url": "https://marketplace.dify.ai/plugins/beepboop2025/financial_evidence",
+      "listing_url": "https://marketplace.dify.ai/plugin/beepboop2025/financial_evidence",
+      "published_package_identifier": "beepboop2025/financial_evidence:0.1.1@44352f99f3bbbbba818bf550ebd963e674effe97c349818934edd7e8bc8b0683"
     },
     {
       "id": "n8n-financial-evidence-npm",
@@ -3991,10 +4006,59 @@
       "cost": "free",
       "detail": "The exact public catalog had no matching service. The completed free form was attempted, but no acceptance was observed; the security-verification area and form remained visible. The saved intent and screenshots are retained.",
       "next_action": "Reconcile this uncertain attempt with the directory before any retry. Complete the normal verification flow and retain an acknowledgement; do not describe the prepared form as submitted."
+    },
+    {
+      "id": "cursor-official-marketplace",
+      "name": "Cursor official marketplace",
+      "channel": "editor-plugin-marketplace",
+      "state": "submitted",
+      "submission_url": "https://cursor.com/marketplace/publish",
+      "cost": "No paid placement purchased; platform access and qualification may have separate requirements.",
+      "detail": "Official Cursor publisher application submitted from the signed-in owner account. The portal displayed Thanks for applying and confirmed receipt. Submitted the existing public funding-bank-exit plugin repository, company identity, contact, logo and research description. This is separate from cursor.directory. Structural manifest/path checks passed; native client installation and marketplace approval remain unverified.",
+      "next_action": "Await review of the existing official application; verify the published plugin and install behavior before calling the listing live.",
+      "verified_at": "2026-10-15T09:05:44.381099Z",
+      "independent_adoption_verified": false,
+      "submitted_at": "2026-10-15T09:05:44.381099Z"
+    },
+    {
+      "id": "activepieces-native",
+      "name": "Activepieces \u2014 Financial Evidence",
+      "channel": "workflow-integration",
+      "state": "ready_validation",
+      "submission_url": "https://www.activepieces.com/docs/build-pieces/sharing-pieces/contribute",
+      "cost": "No paid placement purchased; platform access and qualification may have separate requirements.",
+      "detail": "A two-action no-auth native piece candidate is built and live-tested through the published Activepieces SDK. Catalog and bounded evidence pages retain sources, clocks, missing values and failures. Five tests passed; native editor installation, upstream submission and npm publication remain unverified.",
+      "next_action": "Install in an Activepieces development editor and test both actions before contributing the generated community-piece files upstream.",
+      "verified_at": "2026-10-15T09:05:44.381099Z",
+      "independent_adoption_verified": false
+    },
+    {
+      "id": "vercel-ai-sdk-tools",
+      "name": "Vercel AI SDK Tools Registry",
+      "channel": "agent-tool-registry",
+      "state": "conditional_artifact",
+      "submission_url": "https://github.com/vercel/ai/blob/main/contributing/add-new-tool-to-registry.md",
+      "cost": "No paid placement purchased; platform access and qualification may have separate requirements.",
+      "detail": "Official tool registry contribution requires a published npm package, tested AI SDK integration and dedicated documentation. No Financial Evidence AI SDK package or registry submission is claimed.",
+      "next_action": "Build and verify one source-preserving AI SDK tool package; publish under a verified owner scope before a registry PR.",
+      "verified_at": "2026-10-15T09:05:44.381099Z",
+      "independent_adoption_verified": false
+    },
+    {
+      "id": "microsoft-certified-mcp",
+      "name": "Microsoft certified MCP connector",
+      "channel": "certified-connector",
+      "state": "conditional_artifact",
+      "submission_url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/mcp-server-certification",
+      "cost": "No paid placement purchased; platform access and qualification may have separate requirements.",
+      "detail": "Certification requires publisher qualification and authentication. Existing no-key hosted connectivity alone does not satisfy the certification requirements.",
+      "next_action": "Qualify verified-publisher and authentication requirements before preparing the official connector intake; preserve the existing custom-connection guide.",
+      "verified_at": "2026-10-15T09:05:44.381099Z",
+      "independent_adoption_verified": false
     }
   ],
   "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
-  "updated_at": "2026-10-12T16:32:04.312746Z",
+  "updated_at": "2026-10-15T09:05:44.381099Z",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -4275,5 +4339,10 @@
   "latest_agent_expansion": {
     "report": "https://beepboop2025.github.io/financial-evidence-skills/distribution/agent-expansion-20261012.json",
     "observed_at": "2026-10-12T16:18:03.025432Z"
+  },
+  "latest_expansion": {
+    "observed_at": "2026-10-15T09:05:44.381099Z",
+    "scope": "Selected channel acceptance, new client handoffs and native workflow candidate; not a complete rescan.",
+    "receipt": "distribution/expansion-20261015.json"
   }
 }

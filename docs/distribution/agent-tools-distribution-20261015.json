@@ -1,0 +1,110 @@
+{
+  "schema": "financial-evidence.agent-tools-distribution.v1",
+  "observed_at": "2026-10-15T14:54:00.970578Z",
+  "scope": "Two new directory submissions and two existing-record updates; other entries and historic verification clocks were not re-audited.",
+  "source_release": "agent-infrastructure-v1.1.0",
+  "launch_page": "https://beepboop2025.github.io/financial-evidence-skills/distribution/ai-trading-tools.html",
+  "client_guide": "https://beepboop2025.github.io/financial-evidence-skills/agents/low-latency.md",
+  "new_submissions": [
+    {
+      "entry_id": "laplace-awesome-agent-trading-financial-evidence",
+      "submission_url": "https://github.com/laplace0x/awesome-agent-trading/pull/30",
+      "submitted_at": "2026-10-15T14:44:31Z",
+      "observed_at": "2026-10-15T14:54:00.970578Z",
+      "state": "submitted",
+      "pull_request_state": "OPEN",
+      "head_commit": "18ba337db65c073daa8fcb315a69d1b6ff512fb0",
+      "changed_files": [
+        "README.md"
+      ],
+      "validation": [
+        "git diff --check: pass",
+        "python3 scripts/build_directory.py --check: pass; 54 featured entries unaffected"
+      ],
+      "signed_commit_verified": true,
+      "default_branch_listing_verified": false,
+      "independent_adoption_verified": false
+    },
+    {
+      "entry_id": "aowang-awesome-finance-agents-financial-evidence",
+      "submission_url": "https://github.com/aowang-ai/awesome-finance-agents/pull/1",
+      "submitted_at": "2026-10-15T14:45:56Z",
+      "observed_at": "2026-10-15T14:54:00.970578Z",
+      "state": "submitted",
+      "pull_request_state": "OPEN",
+      "head_commit": "29cd20b221e3b439dc53383eadfe5e99b80ac4f3",
+      "changed_files": [
+        "README.md",
+        "README.zh-CN.md"
+      ],
+      "validation": [
+        "git diff --check: pass",
+        "npx --yes awesome-lint README.md: pass",
+        "lychee --config lychee.toml README.md README.zh-CN.md: pass; 541 successful links / 286 unique, 0 errors"
+      ],
+      "signed_commit_verified": true,
+      "default_branch_listing_verified": false,
+      "independent_adoption_verified": false
+    }
+  ],
+  "existing_updates": [
+    {
+      "entry_id": "ai4finance-financial-evidence",
+      "ledger_state": "live",
+      "original_listing": "https://github.com/AI4Finance-Foundation/Awesome_AI4Finance/blob/main/README.md",
+      "original_verified_at": "2026-10-10T08:45:09.379097+00:00",
+      "observed_at": "2026-10-15T14:54:00.970578Z",
+      "submitted_at": "2026-10-15T14:38:17Z",
+      "state": "submitted",
+      "submission_url": "https://github.com/AI4Finance-Foundation/Awesome_AI4Finance/pull/40",
+      "head_commit": "c599d988e704cbb71a6be7c0dcd2b2f802ee9818",
+      "change": "Existing Financial Evidence row refreshed with persistent Python clients and the source-status guide; no new product row.",
+      "public_listing_update": "pending_maintainer_merge",
+      "previous_live_listing_preserved": true,
+      "source_release": "agent-infrastructure-v1.1.0",
+      "evidence_receipt": "distribution/agent-tools-distribution-20261015.json"
+    },
+    {
+      "entry_id": "kilo-financial-evidence",
+      "ledger_state": "submitted",
+      "observed_at": "2026-10-15T14:54:00.970578Z",
+      "description_updated_at": "2026-10-15T14:39:01Z",
+      "state": "existing_submission_updated",
+      "submission_url": "https://github.com/Kilo-Org/kilo-marketplace/pull/366",
+      "pull_request_state": "OPEN",
+      "change": "PR body only: dated source-client release note with verified guide URLs",
+      "exact_body_readback": true,
+      "historic_body_preserved": true,
+      "head_unchanged": "143e250a9429803c64a85303ea55f3200c85dcf9",
+      "submitted_container_unchanged": "0.1.7",
+      "source_client_release": "agent-infrastructure-v1.1.0",
+      "public_listing_verified": false,
+      "evidence_receipt": "distribution/agent-tools-distribution-20261015.json"
+    }
+  ],
+  "summary": {
+    "source_release": "agent-infrastructure-v1.1.0",
+    "new_ledger_records": 2,
+    "new_directory_submissions_received": 2,
+    "existing_live_listing_updates_pending": 1,
+    "existing_submission_descriptions_updated": 1,
+    "new_public_listings_verified": 0,
+    "ledger_record_count": 159,
+    "ledger_states": {
+      "live": 62,
+      "submitted": 64,
+      "closed_unmerged": 1,
+      "eligible_automatic": 1,
+      "ready_account_action": 5,
+      "conditional_artifact": 3,
+      "paused_external": 1,
+      "skipped_paid": 2,
+      "listed_incomplete": 18,
+      "approved_pending_public": 1,
+      "sent_delivery_unverified": 1
+    },
+    "counts_scope": "Product and channel records across the ledger, not unique platforms, customers or newly verified listings.",
+    "independent_adoption_verified": false
+  },
+  "publication_boundary": "Submission receipts and description updates do not establish acceptance, independent users, trades or revenue."
+}

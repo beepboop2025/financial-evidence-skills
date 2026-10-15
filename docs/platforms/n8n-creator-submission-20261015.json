@@ -1,0 +1,52 @@
+{
+  "schema": "financial-evidence.n8n-creator-submission.v1",
+  "observed_at": "2026-10-15T11:54:58.889892+00:00",
+  "package": "n8n-nodes-financial-evidence",
+  "version": "0.1.0",
+  "status": "submitted_under_manual_review",
+  "submission_url": "https://creators.n8n.io/nodes/n8n-nodes-financial-evidence/integration",
+  "submission_received": true,
+  "automated_review": {
+    "state": "complete",
+    "passed": true
+  },
+  "manual_review": {
+    "state": "under_review",
+    "status_text": "Under Review",
+    "approved": false
+  },
+  "video_submission": {
+    "upload_completed": true,
+    "submitted_for_review": true,
+    "readback_after_refresh": true,
+    "duration_seconds": 160.28,
+    "mp4_sha256": "2366c6fc6f2af488aec532375c08aef6d974345238ab184d63198f5e6d2d9eb4",
+    "continuous": true,
+    "cuts": 0
+  },
+  "demo_qualification": {
+    "status": "passed",
+    "ci_run": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38729118564",
+    "source_commit": "eca7f8efa1acb91ed95ac70e05da3d0845af2b44",
+    "source_commit_role": "review_demo_harness_tested_pr_merge",
+    "n8n_version": "2.42.6",
+    "package": "n8n-nodes-financial-evidence",
+    "package_version": "0.1.0",
+    "package_archive_sha256": "9d2fa6ba3950c41a68e025ea6f5c57922697c0b311ef6d77ce52412267b392ae",
+    "browser_ui_observed": true,
+    "installed_runtime_files_match_published_archive": true,
+    "installed_manifest_matches_n8n_normalization": true,
+    "scope": "Operator-controlled self-hosted demonstration; excluded from independent adoption."
+  },
+  "approved_for_publish": false,
+  "approval_claimed": false,
+  "n8n_verified": false,
+  "official_node_directory_publication_verified": false,
+  "n8n_cloud_availability_verified": false,
+  "independent_adoption_proven": false,
+  "public_npm_latest_version": "0.1.1",
+  "existing_application_version_changed": false,
+  "duplicate_application_created": false,
+  "previous_receipt": "https://beepboop2025.github.io/financial-evidence-skills/platforms/n8n-creator-submission-20261011.json",
+  "scope": "The existing 0.1.0 application advanced to manual review after its demo video was uploaded and submitted. A refreshed portal readback showed Under Review. The separately published npm 0.1.1 release does not establish n8n approval, Cloud availability or independent adoption."
+}

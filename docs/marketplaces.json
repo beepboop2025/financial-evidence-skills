@@ -3496,14 +3496,18 @@
       "state": "submitted",
       "submission_url": "https://creators.n8n.io/nodes/n8n-nodes-financial-evidence/integration",
       "cost": "Free community-node review route; npm installation, self-hosted infrastructure and source-data rights remain separate.",
-      "detail": "The Creator Portal completed ownership verification and acknowledged submission of n8n-nodes-financial-evidence 0.1.0. Automated Review is complete; Manual Review shows Awaiting Video. The Approved For Publish step is not complete. This is a received submission with automated checks passed, not n8n verification, official node-directory acceptance, n8n Cloud availability or customer adoption. The public npm release is recorded separately.",
-      "next_action": "Provide the requested actual demo video for this existing submission, then await manual review and verify a public approved-node listing before upgrading this state. Do not submit a duplicate application.",
+      "detail": "The existing Creator Portal submission remains n8n-nodes-financial-evidence 0.1.0. Its verified 160.28-second demo video was uploaded and submitted on 15 October 2026. Automated Review is complete; Manual Review shows Under Review after a refreshed portal readback. Approved For Publish is not complete. n8n verification, official node-directory acceptance, n8n Cloud availability and customer adoption remain unverified. The public npm 0.1.1 release is recorded separately.",
+      "next_action": "Await manual review of the existing 0.1.0 submission and respond to reviewer requests. Verify a public approved-node listing before upgrading this state. Do not submit a duplicate application.",
       "version": "0.1.0",
-      "verified_at": "2026-10-10T23:03:58.915233+00:00",
+      "verified_at": "2026-10-15T11:54:58.889892+00:00",
       "public_listing_verified": false,
       "n8n_verified": false,
       "independent_adoption_verified": false,
-      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/platforms/n8n-creator-submission-20261011.json"
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/platforms/n8n-creator-submission-20261015.json",
+      "previous_evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/platforms/n8n-creator-submission-20261011.json",
+      "automated_review": "complete",
+      "manual_review": "under_review",
+      "approved_for_publish": false
     },
     {
       "id": "pipedream-financial-evidence",
@@ -4281,12 +4285,17 @@
     "new_package_versions_verified": 1
   },
   "latest_n8n_creator_submission": {
-    "verified_at": "2026-10-10T23:03:58.915233+00:00",
-    "receipt": "platforms/n8n-creator-submission-20261011.json",
-    "new_received_submissions": 1,
+    "verified_at": "2026-10-15T11:54:58.889892+00:00",
+    "receipt": "platforms/n8n-creator-submission-20261015.json",
+    "new_received_submissions": 0,
     "new_public_listings_verified": 0,
     "n8n_verified": false,
-    "independent_adoption_verified": false
+    "independent_adoption_verified": false,
+    "existing_submission_advanced": true,
+    "video_submitted": true,
+    "manual_review": "under_review",
+    "version": "0.1.0",
+    "approved_for_publish": false
   },
   "latest_partner_listing_expansion": {
     "observed_at_utc": "2026-10-11T00:19:08.138926+00:00",

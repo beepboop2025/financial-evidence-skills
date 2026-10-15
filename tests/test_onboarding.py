@@ -37,6 +37,31 @@ class OnboardingTests(unittest.TestCase):
         root = Path(__file__).resolve().parents[1]
         self.assertEqual(json.loads((root / "docs/connect/catalog.json").read_text()), starter_catalog())
 
+    def test_each_admitted_product_has_a_downloadable_connection_and_card(self):
+        from financial_evidence.trading.contracts import PRODUCTS
+        from scripts.build_onboarding import assets
+
+        root = Path(__file__).resolve().parents[1]
+        native = json.loads((root / "docs/connect/native-connections.json").read_text())
+        products = native["products"]
+        self.assertEqual({product["id"] for product in products}, PRODUCTS)
+        self.assertEqual(len(products), len(PRODUCTS))
+        generated = assets()
+        combined = generated["all-products.mcp.json"]["mcpServers"]
+        self.assertEqual(set(combined), PRODUCTS)
+        page = (root / "docs/connect/index.html").read_text()
+        for product_id in PRODUCTS:
+            with self.subTest(product=product_id):
+                filename = product_id + ".mcp.json"
+                expected = {"mcpServers": {product_id: combined[product_id]}}
+                self.assertEqual(generated[filename], expected)
+                self.assertEqual(json.loads((root / "docs/connect" / filename).read_text()), expected)
+                self.assertEqual(combined[product_id], {
+                    "type": "http",
+                    "url": f"https://agents.seiche.info/products/{product_id}/mcp",
+                })
+                self.assertIn(f'href="{filename}"', page)
+
 
 HAS_WORKSPACE = all(importlib.util.find_spec(name) for name in ("fastapi", "mcp", "httpx"))
 

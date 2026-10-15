@@ -99,6 +99,22 @@
       "mcp_url": "https://agents.seiche.info/products/financial-evidence/mcp",
       "guide_url": "https://agents.seiche.info/connect",
       "kind": "research_wrapper"
+    },
+    {
+      "id": "research-data",
+      "name": "Source Data Research Workspace",
+      "scope": "Discover source datasets and exact series identifiers, then read bounded observations with capture receipts.",
+      "mcp_url": "https://agents.seiche.info/products/research-data/mcp",
+      "guide_url": "https://agents.seiche.info/connect",
+      "kind": "research_wrapper"
+    },
+    {
+      "id": "seiche-market-corpus",
+      "name": "Seiche Market Atlas Corpus",
+      "scope": "Inspect corpus datasets, source clocks and publication rights. Restricted collections remain metadata only.",
+      "mcp_url": "https://agents.seiche.info/products/seiche-market-corpus/mcp",
+      "guide_url": "https://agents.seiche.info/connect",
+      "kind": "research_wrapper"
     }
   ]
 }

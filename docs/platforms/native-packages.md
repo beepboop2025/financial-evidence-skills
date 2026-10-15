@@ -1,5 +1,51 @@
 # Install and evaluate the native automation packages
 
+## Current hosted clients
+
+Use these versions for the central service at
+`https://agents.seiche.info/v1/research`. The exact downloaded bytes passed
+the checks in [current package receipts](hosted-native-packages.json).
+n8n 0.1.1 is published on npm. Dify 0.1.2 remains a qualified download candidate.
+
+### n8n hosted 0.1.1
+
+[Download n8n 0.1.1](downloads/n8n-nodes-financial-evidence-0.1.1.tgz).
+Install from [npm](https://www.npmjs.com/package/n8n-nodes-financial-evidence/v/0.1.1)
+or use this exact archive. Public bytes, anonymous installation, cryptographic
+provenance and native execution passed the
+[publication checks](n8n-publication-20261013.json).
+The archive loaded in native n8n 2.42.6 on Node 24.12.0 and returned one bounded
+bank, funding and liquidity page. Build, lint, unit tests and archive source
+checks passed. Tests used synthetic labels and removed their temporary database.
+
+For a permitted self-hosted instance, install the package from its
+community-node directory, then restart n8n:
+
+```sh
+npm install n8n-nodes-financial-evidence@0.1.1
+```
+
+Use Node 24 or another version supported by your installed n8n release.
+n8n Creator verification remains pending; npm publication does not establish
+n8n Cloud availability. Add **Financial Evidence**, select `money_markets`, set
+limit `1` and offset `0`, then run once and inspect the sources and diagnostics.
+The public research API requires no financial-data API key.
+
+### Dify hosted 0.1.2
+
+[Download Dify 0.1.2](downloads/financial_evidence-0.1.2.difypkg).
+The official CLI built the archive. Packaged files matched reviewed source,
+Dify SDK 0.10.2 registered the plugin, and its actual packaged tools completed
+three central requests. This qualification did not install the archive in a
+Dify Cloud or Community Edition workspace. Evaluate it through the supported
+local-plugin flow in your permitted workspace and run Get Evidence Page once.
+No new marketplace submission or acceptance is claimed.
+
+## Previous native releases
+
+The following versioned downloads and observations remain historical.
+For new central connections, choose the current hosted clients above.
+
 The n8n package is published on npm; the Dify package remains a marketplace
 submission candidate. Check each package's publication state, file digest and
 validation scope in [package receipts](native-packages.json).
@@ -37,13 +83,16 @@ reviewed. If your workspace cannot load unverified community packages, use the
 The public tarball matches the native-tested archive exactly. Native n8n 2.42.6
 executed one bounded bank, funding and liquidity request. Cryptographic Sigstore
 provenance verification, anonymous consumer installation and npm signature
-verification passed. **n8n Creator verification and official node-directory
-acceptance remain pending; no Creator Portal submission is claimed.** This does
-not establish n8n Cloud availability or independent-user adoption.
+verification passed. The [Creator Portal submission was received](n8n-creator-submission-20261011.json)
+after ownership verification. Automated checks passed; manual review is
+**awaiting a demo video**. n8n verification and official node-directory acceptance
+remain pending. The Approved For Publish step is not complete. This does not
+establish n8n Cloud availability or independent-user adoption.
 
 The immutable 0.1.0 package README preserves its prepublication wording, including
 the former "not yet published" statement and older release-workflow description.
-The current publication receipt above supersedes those status statements.
+The current npm publication receipt above supersedes those status statements;
+the separate Creator receipt records the later portal submission.
 The archive's bytes are unchanged. The recorded native validation is also a
 historical test; its earlier `npm_published: false` field is not the current
 registry state.
@@ -64,8 +113,11 @@ records the tested runtime identity. Community Edition and a published Dify app
 were not tested. The liquidity result retained a null/unavailable observation;
 a successful workflow is not evidence that every source value is available.
 
-[Marketplace PR 3278](https://github.com/langgenius/dify-plugins/pull/3278) is
-submitted and awaiting review; the plugin is not yet published in Marketplace.
+[Marketplace PR 3278](https://github.com/langgenius/dify-plugins/pull/3278) was
+approved and merged on 11 October. The [public Marketplace listing](https://marketplace.dify.ai/plugin/beepboop2025/financial_evidence)
+was verified on 15 October: version 0.1.1, Verified by Dify, with an install link.
+This does not establish installed-archive execution or publication of the
+separate central-hosted 0.1.2 candidate.
 The [prior 0.1.0 receipt](https://github.com/beepboop2025/financial-evidence-skills/blob/c767edbf58e173b60b085cf637880b5bd9d4bb52/docs/platforms/native-packages.json)
 is historical and must not be relabeled as this 0.1.1 package.
 

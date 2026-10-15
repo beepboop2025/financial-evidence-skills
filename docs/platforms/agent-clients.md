@@ -3,7 +3,7 @@
 Use the public Streamable HTTP server:
 
 ```text
-https://api.seiche.info/openbb/mcp
+https://agents.seiche.info/products/financial-evidence/mcp
 ```
 
 Our connection needs no API key. Your agent platform may require its own account,
@@ -22,7 +22,7 @@ In Settings → Connectors, add a custom connector with the URL above. For Claud
 Code, run:
 
 ```sh
-claude mcp add --transport http financial-evidence https://api.seiche.info/openbb/mcp
+claude mcp add --transport http financial-evidence https://agents.seiche.info/products/financial-evidence/mcp
 ```
 
 This uses a custom connection. Official connector-directory publication is a
@@ -34,13 +34,40 @@ Use a custom Streamable HTTP MCP connection where your account and administrator
 permit it. For the Codex CLI:
 
 ```sh
-codex mcp add financial-evidence --url https://api.seiche.info/openbb/mcp
+codex mcp add financial-evidence --url https://agents.seiche.info/products/financial-evidence/mcp
 ```
 
 The repository also contains an installable Codex plugin. Universal directory
 publication remains pending; this guide does not claim a ChatGPT listing.
 [Plugin installation](https://beepboop2025.github.io/financial-evidence-skills/llms.txt) ·
 [OpenAI submission documentation](https://developers.openai.com/plugins/deploy/submission).
+
+## Cursor
+
+Open [connection options](../connect/?client=mcp) and choose **Open in Cursor**.
+Review the server configuration in Cursor before enabling it. The handoff uses
+the same public endpoint as the copyable MCP URL; its decoded configuration was
+checked against the published connection file. Native app import was not tested.
+[Official install-link format](https://cursor.com/docs/mcp/install-links).
+
+The public repository also contains `.cursor-plugin/plugin.json`, task skills
+and three product connections. Its official Marketplace publisher application
+was acknowledged on 15 October 2026; review is pending. This is separate from
+the third-party cursor.directory submission.
+
+## Insomnia
+
+Choose **Open in Insomnia** in [connection options](../connect/?client=mcp).
+Sign in when prompted and review the imported remote MCP URL. The official
+handoff format was verified; import inside the native application remains untested.
+[Insomnia documentation](https://developer.konghq.com/insomnia/run-in-insomnia/).
+
+## Activepieces
+
+Evaluate the [native piece source](activepieces.md) for dataset discovery and
+bounded evidence-page requests. Both actions passed published-SDK invocation,
+five tests and live source-preserving reads. Native editor installation,
+upstream review and package publication remain separate steps.
 
 ## Microsoft Copilot Studio
 
@@ -66,10 +93,14 @@ not an official marketplace listing. [Maintainer announcement](https://github.co
 ## Dify
 
 Use a remote MCP connection where supported, or evaluate the repository's native
-tool plugin in `integrations/dify`. Version 0.1.1 passed three bounded Dify Cloud
+tool plugin in `integrations/dify`. The [current hosted 0.1.2 candidate](native-packages.md#dify-hosted-012)
+passed packaged SDK registration and three central requests. Its installation
+in a remote workspace was not retested. Prior 0.1.1 passed three bounded Dify Cloud
 remote-debug workflows. Its [Marketplace submission](https://github.com/langgenius/dify-plugins/pull/3278)
-remains under review; [package and validation scope](native-packages.md#dify)
-are available for evaluation.
+was approved and merged; the [public 0.1.1 listing](https://marketplace.dify.ai/plugin/beepboop2025/financial_evidence)
+and install link were verified on 15 October 2026. Installed-archive execution
+has not been retested. The [package and validation scope](native-packages.md#dify)
+distinguish the published 0.1.1 from the hosted 0.1.2 candidate.
 [Plugin source](https://github.com/beepboop2025/financial-evidence-skills/tree/main/integrations/dify).
 
 ## Haystack

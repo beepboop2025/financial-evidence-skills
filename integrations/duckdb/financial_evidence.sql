@@ -1,4 +1,6 @@
--- Read all four public products from DuckDB without API keys.
+-- Read four public products through the hosted service without API keys.
+-- source_url preserves publisher provenance; resolved_url is the request target.
+-- A failed central request is unavailable; these views have no native fallback.
 -- The signed DuckDB community extension uses GET directly; this matters because
 -- dynamic API routes commonly reject the HEAD probe used by file-oriented httpfs.
 INSTALL http_request FROM community;
@@ -10,12 +12,14 @@ SET http_user_agent = 'financial-evidence-duckdb/0.1';
 CREATE OR REPLACE MACRO financial_evidence_fetch(
   topic_name,
   product_name,
-  source_url
+  source_url,
+  hosted_url
 ) AS TABLE
 SELECT
   topic_name AS topic,
   product_name AS product,
-  source_url,
+  source_url AS source_url,
+  hosted_url AS resolved_url,
   current_timestamp AS retrieved_at,
   response.status = 200 AS ok,
   response.status AS http_status,
@@ -29,7 +33,7 @@ SELECT
   END AS document
 FROM (
   SELECT http_get(
-    source_url,
+    hosted_url,
     headers := {'Accept': 'application/json'}
   ) AS response
 );
@@ -39,40 +43,46 @@ CREATE OR REPLACE VIEW seiche_money_markets AS
 SELECT * FROM financial_evidence_fetch(
   'money-market',
   'Seiche',
-  'https://api.seiche.info/api/v2/money-markets'
+  'https://api.seiche.info/api/v2/money-markets',
+  'https://agents.seiche.info/v1/data/seiche.money_markets'
 );
 
 CREATE OR REPLACE VIEW seiche_capital_markets AS
 SELECT * FROM financial_evidence_fetch(
   'capital-market',
   'Seiche',
-  'https://api.seiche.info/api/v2/world-markets?section=capital_markets'
+  'https://api.seiche.info/api/v2/world-markets?section=capital_markets',
+  'https://agents.seiche.info/v1/data/seiche.capital_markets'
 );
 
 CREATE OR REPLACE VIEW seiche_china_macro AS
 SELECT * FROM financial_evidence_fetch(
   'china-economy',
   'Seiche',
-  'https://api.seiche.info/api/v2/world-markets?section=china_macro'
+  'https://api.seiche.info/api/v2/world-markets?section=china_macro',
+  'https://agents.seiche.info/v1/data/seiche.china_macro'
 );
 
 CREATE OR REPLACE VIEW palimpsest_china_revision_state AS
 SELECT * FROM financial_evidence_fetch(
   'china-economy',
   'Palimpsest',
-  'https://palimpsest.info/readings/china-index-latest.json'
+  'https://palimpsest.info/readings/china-index-latest.json',
+  'https://agents.seiche.info/v1/data/palimpsest.china_index'
 );
 
 CREATE OR REPLACE VIEW liquilens_bank_risk AS
 SELECT * FROM financial_evidence_fetch(
   'bank-risk',
   'LiquiLens',
-  'https://api.liquilens.in/api/failure-radar/board'
+  'https://api.liquilens.in/api/failure-radar/board',
+  'https://agents.seiche.info/v1/data/liquilens.failure_radar'
 );
 
 CREATE OR REPLACE VIEW undertow_exit_liquidity AS
 SELECT * FROM financial_evidence_fetch(
   'market-liquidity',
   'Undertow',
-  'https://api.seiche.info/undertow/x402/summary'
+  'https://api.seiche.info/undertow/x402/summary',
+  'https://agents.seiche.info/v1/data/undertow.summary'
 );

@@ -8,15 +8,15 @@ const page = {schema: 'liquidity-lab.openbb-table.v1', dataset: 'bank_risk', res
 nock.disableNetConnect();
 afterEach(() => { assert.ok(nock.isDone(), 'expected request was not performed'); nock.cleanAll(); });
 test('actual Zapier runtime preserves missing data and the full research page', async () => {
-  nock('https://api.seiche.info').get('/openbb/api/v1/query').query({dataset: 'bank_risk', entity: '', limit: 25, offset: 0}).reply(200, page);
+  nock('https://agents.seiche.info').get('/v1/research/api/v1/query').query({dataset: 'bank_risk', entity: '', limit: 25, offset: 0}).reply(200, page);
   assert.deepEqual(await tester(perform, {inputData: {dataset: 'bank_risk'}}), page);
 });
 test('HTTP failure cannot become a completed research action', async () => {
-  nock('https://api.seiche.info').get('/openbb/api/v1/query').query(true).reply(503, {error: 'unavailable'});
+  nock('https://agents.seiche.info').get('/v1/research/api/v1/query').query(true).reply(503, {error: 'unavailable'});
   await assert.rejects(tester(perform, {inputData: {dataset: 'bank_risk'}}));
 });
 test('rejects the wrong dataset even with HTTP 200', async () => {
-  nock('https://api.seiche.info').get('/openbb/api/v1/query').query(true).reply(200, {...page, dataset: 'money_markets'});
+  nock('https://agents.seiche.info').get('/v1/research/api/v1/query').query(true).reply(200, {...page, dataset: 'money_markets'});
   await assert.rejects(tester(perform, {inputData: {dataset: 'bank_risk'}}), /Unexpected research response/);
 });
 test('out-of-range pagination fails before requesting data', async () => {

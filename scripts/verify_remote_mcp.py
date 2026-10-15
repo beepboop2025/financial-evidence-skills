@@ -12,7 +12,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = json.loads(
-    (ROOT / "integrations" / "financial-evidence-mcp-v0.1.7.json").read_text(
+    (ROOT / "integrations" / "financial-evidence-mcp-v0.1.8.json").read_text(
         encoding="utf-8"
     )
 )

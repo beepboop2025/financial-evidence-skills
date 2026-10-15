@@ -1,0 +1,56 @@
+name: Agent ecosystem observation
+
+on:
+  schedule:
+    - cron: '41 5 * * *'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/observe_agent_distribution.py'
+      - 'tests/test_agent_distribution.py'
+      - 'docs/distribution/agent-ecosystem*'
+      - '.github/workflows/agent-distribution.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: agent-ecosystem-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  observe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: python3 -m unittest tests.test_agent_distribution -v
+      - name: Read the previous completed observation
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          previous_run=$(gh run list --workflow agent-distribution.yml --branch main --status success --limit 1 --json databaseId --jq '.[0].databaseId // empty')
+          if [ -n "$previous_run" ]; then
+            gh run download "$previous_run" --name agent-ecosystem-observation --dir previous || true
+          fi
+      - name: Observe public sources and existing listing pages
+        if: github.event_name != 'pull_request'
+        env:
+          AGENT_DISCOVERY_GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/observe_agent_distribution.py --output observation --previous previous/observation.json
+      - name: Publish the run summary
+        if: github.event_name != 'pull_request' && always()
+        run: |
+          if [ -f observation/REPORT.md ]; then
+            cat observation/REPORT.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        if: github.event_name != 'pull_request' && always()
+        with:
+          name: agent-ecosystem-observation
+          path: observation/
+          retention-days: 30

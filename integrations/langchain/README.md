@@ -15,10 +15,10 @@ use your own provider and may incur charges.
 
 Python 3.10+ and `langchain-core` 1.6.6 through 1.x are supported.
 
-Install the verified [PyPI release 0.1.0](https://pypi.org/project/langchain-financial-evidence/0.1.0/):
+Install the verified [PyPI release 0.1.1](https://pypi.org/project/langchain-financial-evidence/0.1.1/):
 
 ```sh
-python -m pip install langchain-financial-evidence==0.1.0
+python -m pip install langchain-financial-evidence==0.1.1
 ```
 
 For development from this directory:
@@ -93,7 +93,7 @@ should receive error text instead. Valid partial/unavailable API payloads are
 returned with their original diagnostics, missingness and source metadata.
 
 Each call makes one GET request to a fixed route under
-`https://api.seiche.info/openbb/api/v1/`. Redirects and automatic retries are
+`https://agents.seiche.info/v1/research/api/v1/`. Redirects and automatic retries are
 disabled. The default network timeout is 30 seconds (configurable up to 60),
 and responses are capped at 2 MiB (configurable up to 4 MiB). Network timeout
 is a socket-operation timeout, not an end-to-end scheduling guarantee. The
@@ -131,3 +131,9 @@ missing-value preservation, input rejection, error behavior, redirects and byte
 bounds. Standard tests use `langchain-tests==1.1.9`. The default test invocation
 runs offline unit tests only. Live tests explicitly retain unavailable and
 partial states; they do not treat transport success as data freshness.
+
+Current source routes requests through `https://agents.seiche.info`. Hosted
+operational measurement counts bounded product/tool/dataset demand; optional
+learning is separate. Operational counters exclude private selector values,
+prompts, credentials and response bodies. Previously published versioned
+packages keep their original transport until a new package is released.

@@ -1,6 +1,6 @@
 {
   "schema": "liquilens.marketplace-copy.v1",
-  "prepared_at": "2026-10-07T08:40:21.353751+00:00",
+  "prepared_at": "2026-10-11T09:45:32.477218+00:00",
   "company": "LIQUILENS PRIVATE LIMITED",
   "public_brand": "LiquiLens",
   "contact": "mrinal@liquilens.in",
@@ -27,7 +27,7 @@
       "id": "seiche",
       "name": "Seiche Public Research API",
       "website": "https://seiche.info/",
-      "documentation": "https://seiche.info/developers",
+      "documentation": "https://seiche.info/developers.html",
       "mcp": "https://api.seiche.info/mcp",
       "pricing_scope": "Free public research option; any additional authorized tools remain separate.",
       "description": "Source-cited research for funding markets, benchmarks, FX and capital-market context. Responses retain observation dates, units, coverage limits and restricted or unavailable states. Public research access requires no API key. Source cadence varies; a successful response is not a freshness guarantee."
@@ -49,17 +49,17 @@
       "openapi": "https://beepboop2025.github.io/financial-evidence-skills/api/openapi.json",
       "rest_base": "https://api.seiche.info/openbb",
       "pricing_scope": "Free public research reads; no API key required.",
-      "description": "A read-only REST API for seven financial-research dataset views, including bank disclosures, funding benchmarks and history, liquidity evidence and source health. Results keep source links, dates, native units, hashes and unavailable values. Source-specific rights and partial coverage apply; some views report availability only."
+      "description": "A read-only REST API for funding reviews, covered institutions, indicative BTC exits and seven research dataset views. An offline task catalog, browser examples and downloadable Postman, Bruno and HTTP clients help you reach a first result. Responses retain source links, dates, units, hashes and unavailable values. Source-specific rights and partial coverage apply; some views report availability only."
     },
     {
       "id": "research-desk-mcp",
       "name": "Financial Evidence Research Desk",
       "website": "https://beepboop2025.github.io/financial-evidence-skills/start/",
-      "documentation": "https://beepboop2025.github.io/financial-evidence-skills/tools/",
+      "documentation": "https://beepboop2025.github.io/financial-evidence-skills/connect/",
       "mcp": "https://api.seiche.info/openbb/mcp",
-      "tool_count": 8,
+      "tool_count": 9,
       "pricing_scope": "Free public research reads; no API key required.",
-      "description": "Eight read-only MCP tools for paginated financial research and source-health checks across seven dataset views. Sources, dates, units and unavailable values remain attached. Includes a browser desk and REST/OpenAPI examples. This hosted research service is distinct from the three-tool Financial Evidence source router."
+      "description": "Nine read-only MCP tools for source-cited financial research. Start with a funding review, covered-institution review or indicative BTC exit workflow, then query seven dataset views and source health. Results retain sources, dates, units and unavailable values. Browser, REST and Python examples use the same evidence. This hosted service is distinct from the three-tool Financial Evidence source router."
     },
     {
       "id": "source-router",
@@ -69,7 +69,39 @@
       "mcp": "https://liquilens.in/mcp/financial-evidence",
       "tool_count": 3,
       "pricing_scope": "Free public source routing; no API key required.",
-      "description": "A bounded read-only source router for financial evidence from LiquiLens, Seiche, Undertow and Palimpsest. It preserves product boundaries, source status and provenance and does not combine distinct evidence into a trading score. This is the three-tool source router, separate from the eight-tool Research Desk."
+      "description": "A bounded read-only source router for financial evidence from LiquiLens, Seiche, Undertow and Palimpsest. It preserves product boundaries, source status and provenance and does not combine distinct evidence into a trading score. This is the three-tool source router, separate from the nine-tool Research Desk."
+    },
+    {
+      "id": "palimpsest",
+      "name": "Palimpsest Public Evidence",
+      "website": "https://www.palimpsest.info/",
+      "documentation": "https://palimpsest.info/developers.html",
+      "mcp": "https://api.seiche.info/palimpsest/mcp",
+      "tool_count": 7,
+      "pricing_scope": "Free public research tools; source-specific access and reuse limits remain explicit.",
+      "description": "Explore China economic observations, regional research and the public record through seven read-only MCP tools. Start with the research catalog, inspect coverage and open the cited evidence. Published records retain source dates and unavailable states; document review and source independence remain explicit."
+    },
+    {
+      "id": "narcoscope",
+      "name": "NarcoScope Evidence Explorer",
+      "website": "https://www.narcoscope.com/",
+      "documentation": "https://www.narcoscope.com/developers/",
+      "mcp": "https://www.narcoscope.com/mcp",
+      "tool_count": 14,
+      "pricing_scope": "Free public evidence research; underlying source rights remain separate.",
+      "description": "Explore drug, arms and informal-economy evidence through an interactive atlas, API and fourteen read-only MCP tools. Begin with the market catalog, then inspect dated observations and their sources. Reported figures retain their geography, units and coverage limits."
+    },
+    {
+      "id": "noisefloor",
+      "name": "NoiseFloor Research Workbench",
+      "website": "https://liquilens.in/agents/correlation/",
+      "documentation": "https://liquilens.in/agents/correlation/#connect",
+      "mcp": "https://api.seiche.info/noisefloor/mcp",
+      "tool_count": 10,
+      "pricing_scope": "Open-source local analysis and a public hosted server with synthetic inputs only.",
+      "description": "Inspect whether a change, forecast or correlation survives statistical checks. The browser workbench accepts caller-supplied observations; private datasets belong in the local tools. The ten-tool hosted MCP accepts synthetic inputs only. Examples retain sample size, assumptions, uncertainty and abstention instead of manufacturing a conclusion."
     }
-  ]
+  ],
+  "connection_guide": "https://beepboop2025.github.io/financial-evidence-skills/connect/",
+  "discovery_observation": "https://beepboop2025.github.io/financial-evidence-skills/distribution/native-discovery-20261011.json"
 }

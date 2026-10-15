@@ -187,7 +187,7 @@ class WorkspaceTests(unittest.TestCase):
         from financial_evidence.release import WORKSPACE_VERSION
         self.assertEqual(initialized["result"]["serverInfo"]["version"], WORKSPACE_VERSION)
         tools = self.rpc("tools/list")["result"]["tools"]
-        self.assertEqual(len(tools), 8)
+        self.assertEqual(len(tools), 9)
         for tool in tools:
             self.assertTrue(tool["annotations"]["readOnlyHint"])
             self.assertFalse(tool["annotations"]["destructiveHint"])
@@ -212,7 +212,7 @@ class WorkspaceTests(unittest.TestCase):
         structured = result["result"]["structuredContent"]
         self.assertEqual(structured["results"], rest["results"])
         self.assertEqual(structured["schema"], rest["schema"])
-        self.assertEqual(len(self.calls), 1)
+        self.assertEqual(len(self.calls), 2)  # Each default hosted read is observed.
 
     def test_mcp_rejects_invalid_input_and_exposes_prompts_and_resources(self):
         result = self.rpc(
@@ -224,8 +224,12 @@ class WorkspaceTests(unittest.TestCase):
         )
         self.assertTrue(result["result"]["isError"])
         self.assertEqual(self.calls, [])
-        self.assertEqual(len(self.rpc("resources/list")["result"]["resources"]), 2)
-        self.assertEqual(len(self.rpc("prompts/list")["result"]["prompts"]), 2)
+        resources = self.rpc("resources/list")["result"]["resources"]
+        prompts = self.rpc("prompts/list")["result"]["prompts"]
+        self.assertEqual(len(resources), 3)
+        self.assertIn("evidence://start", [item["uri"] for item in resources])
+        self.assertEqual(len(prompts), 3)
+        self.assertIn("research_task", [item["name"] for item in prompts])
 
     def test_real_widget_queries_resolve_and_mcp_url_is_same_backend(self):
         self.assertEqual(
@@ -280,7 +284,7 @@ class WorkspaceTests(unittest.TestCase):
                 },
             )
             self.assertEqual(response.status_code, 200, response.text)
-            self.assertEqual(len(response.json()["result"]["tools"]), 8)
+            self.assertEqual(len(response.json()["result"]["tools"]), 9)
 
     def test_invalid_proxy_prefixes_are_rejected(self):
         from financial_evidence.workspace import create_app

@@ -1,0 +1,28 @@
+{
+  "schema": "financial-evidence.n8n-creator-submission.v1",
+  "observed_at": "2026-10-10T23:03:58.915233+00:00",
+  "package": "n8n-nodes-financial-evidence",
+  "version": "0.1.0",
+  "status": "submitted_pending_review",
+  "submission_url": "https://creators.n8n.io/nodes/n8n-nodes-financial-evidence/integration",
+  "submission_received": true,
+  "ownership_verification_completed": true,
+  "receipt_text": "Thank you for your submission",
+  "automated_review": {
+    "state": "complete",
+    "passed": true
+  },
+  "manual_review": {
+    "state": "awaiting_demo_video",
+    "status_text": "Awaiting Video",
+    "approved": false
+  },
+  "approved_for_publish": false,
+  "future_step_headings_are_approval_evidence": false,
+  "npm_published": true,
+  "n8n_verified": false,
+  "official_node_directory_publication_verified": false,
+  "independent_adoption_proven": false,
+  "scope": "Authenticated Creator Portal submission receipt and later review-stage readback. Automated checks passed; manual review awaits a demo video. This does not establish manual approval, verified-node publication or independent adoption.",
+  "submission_received_at": "2026-10-10T23:00:20.116558+00:00"
+}

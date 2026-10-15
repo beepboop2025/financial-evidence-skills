@@ -17,3 +17,7 @@ catalog has accepted it or that external users have adopted it.
 
 - [Haystack integration requirements](https://docs.haystack.deepset.ai/docs/integrations)
 - [Official catalog contribution template](https://github.com/deepset-ai/haystack-integrations/blob/main/draft-integration.md)
+
+Current source pins the hosted Financial Evidence client at immutable revision
+`65cfb5437f3c3aad9f6270808d00e3392b12b42e`. Upgrade the integration to use the central service;
+older installed dependency pins retain their original behavior.

@@ -17,7 +17,7 @@ identity; this template was never submitted to or accepted by Flowise's marketpl
    the flow. Browser import has not been observed in our validation; the tested
    path used Flowise's normal authenticated save, readback and prediction APIs.
 2. Inspect the two nodes: **Start → Financial evidence page**. The Tool node uses
-   Custom MCP at `https://api.seiche.info/openbb/mcp`, action
+   Custom MCP at `https://agents.seiche.info/products/financial-evidence/mcp`, action
    `financial_evidence_query`, dataset `money_markets`, numeric `limit: 1` and
    numeric `offset: 0`. The template contains no model or financial-data API key.
 3. Run the saved flow. Its query arguments are fixed; the chat input does not

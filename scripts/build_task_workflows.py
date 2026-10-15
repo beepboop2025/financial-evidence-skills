@@ -6,9 +6,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "docs/automations"
 TASKS = {
-    "seiche": ("Review morning dollar funding with Seiche and optional Slack or Telegram updates", "funding_stress_now", {}, 21600, "https://api.seiche.info/mcp", "funding"),
-    "liquilens": ("Review Cosmos Bank NPA disclosures with LiquiLens and optional updates", "bank_asset_quality_review", {"slug": "cosmos-ucb", "include_history": True}, 21600, "https://api.liquilens.in/mcp", "bank"),
-    "undertow": ("Compare a $100k BTC exit estimate with Undertow and optional updates", "exit_cost", {"size_usd": 100000}, 7200, "https://api.seiche.info/undertow/mcp", "exit"),
+    "seiche": ("Review morning dollar funding with Seiche and optional Slack or Telegram updates", "funding_stress_now", {}, 21600, "https://agents.seiche.info/products/seiche/mcp", "funding"),
+    "liquilens": ("Review Cosmos Bank NPA disclosures with LiquiLens and optional updates", "bank_asset_quality_review", {"slug": "cosmos-ucb", "include_history": True}, 21600, "https://agents.seiche.info/products/liquilens/mcp", "bank"),
+    "undertow": ("Compare a $100k BTC exit estimate with Undertow and optional updates", "exit_cost", {"size_usd": 100000}, 7200, "https://agents.seiche.info/products/undertow/mcp", "exit"),
 }
 
 

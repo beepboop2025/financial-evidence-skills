@@ -8,6 +8,7 @@ from typing import Any
 
 from . import __version__
 from .core import ROUTES, build_packet, route_manifest
+from .onboarding import starter_catalog, task_prompt
 
 
 LEGACY_PROTOCOL = "2025-11-25"
@@ -67,7 +68,7 @@ TOOLS = [
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 4_194_304,
-                    "default": 1_048_576,
+                    "default": 4_194_304,
                 },
                 "timeout": {
                     "type": "number",
@@ -127,7 +128,7 @@ def call_tool(name: str, arguments: dict[str, Any]) -> dict[str, Any]:
         return _tool_result(route_manifest(_validated_topics(arguments)))
     if name == "financial_evidence_fetch":
         topics = _validated_topics(arguments)
-        max_bytes = arguments.get("max_bytes", 1_048_576)
+        max_bytes = arguments.get("max_bytes", 4_194_304)
         timeout = arguments.get("timeout", 10.0)
         if not isinstance(max_bytes, int) or isinstance(max_bytes, bool):
             raise ValueError("max_bytes must be an integer")
@@ -170,9 +171,10 @@ def dispatch(message: dict[str, Any]) -> dict[str, Any] | None:
             result = {
                 "resultType": "complete",
                 "supportedVersions": [MODERN_PROTOCOL, LEGACY_PROTOCOL],
-                "capabilities": {"tools": {"listChanged": False}},
+                "capabilities": {"tools": {"listChanged": False}, "resources": {}, "prompts": {}},
                 "serverInfo": SERVER_INFO,
                 "instructions": (
+                    "Start with financial_evidence_topics, or read evidence://start for guided setup. "
                     "Use route before fetch when source selection matters. "
                     "Treat unavailable evidence as unavailable, never as zero."
                 ),
@@ -185,9 +187,10 @@ def dispatch(message: dict[str, Any]) -> dict[str, Any] | None:
                     if requested in {LEGACY_PROTOCOL, MODERN_PROTOCOL}
                     else LEGACY_PROTOCOL
                 ),
-                "capabilities": {"tools": {"listChanged": False}},
+                "capabilities": {"tools": {"listChanged": False}, "resources": {}, "prompts": {}},
                 "serverInfo": SERVER_INFO,
                 "instructions": (
+                    "Start with financial_evidence_topics, or read evidence://start for guided setup. "
                     "Use route before fetch when source selection matters. "
                     "Treat unavailable evidence as unavailable, never as zero."
                 ),
@@ -196,6 +199,22 @@ def dispatch(message: dict[str, Any]) -> dict[str, Any] | None:
             result = {}
         elif method == "tools/list":
             result = {"tools": TOOLS}
+        elif method == "resources/list":
+            result = {"resources": [{"uri": "evidence://start", "name": "Financial Evidence getting started", "mimeType": "application/json", "description": "Task examples, hosted workflow connection and evidence guidance. Offline."}]}
+        elif method == "resources/read":
+            if params.get("uri") != "evidence://start":
+                raise ValueError("Unknown resource; use evidence://start")
+            result = {"contents": [{"uri": "evidence://start", "mimeType": "application/json", "text": json.dumps(starter_catalog(), ensure_ascii=False)}]}
+        elif method == "prompts/list":
+            result = {"prompts": [{"name": "research_task", "description": "Start a source-cited funding, institution or liquidity review.", "arguments": [{"name": "task", "description": "funding, institutions or exit", "required": True}]}]}
+        elif method == "prompts/get":
+            if params.get("name") != "research_task":
+                raise ValueError("Unknown prompt; use research_task")
+            arguments = params.get("arguments", {})
+            if not isinstance(arguments, dict) or set(arguments) != {"task"}:
+                raise ValueError("research_task requires only a task argument")
+            prompt = task_prompt(arguments["task"], router=True)
+            result = {"description": "Source-cited financial research", "messages": [{"role": "user", "content": {"type": "text", "text": prompt}}]}
         elif method == "tools/call":
             params = message.get("params")
             if not isinstance(params, dict):

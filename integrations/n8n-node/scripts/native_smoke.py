@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path, PurePosixPath
 import re
+import shutil
 import subprocess
 import tarfile
 from datetime import datetime, timezone
@@ -96,13 +97,17 @@ def main():
            'N8N_COMMUNITY_PACKAGES_PREVENT_LOADING': 'false',
            # n8n routes --rawOutput through logger.info; error would hide the result.
            'N8N_RUNNERS_ENABLED': 'false', 'N8N_LOG_LEVEL': 'info',
-           'NODE_OPTIONS': '--max-old-space-size=768'}
+           'NODE_OPTIONS': '--max-old-space-size=768 --no-node-snapshot --require=' + str(package / 'scripts/synthetic_traffic.cjs')}
 
     def run(label, *arguments):
         result = subprocess.run([str(n8n), *arguments], env=env, cwd=package,
                                 capture_output=True, text=True, timeout=240)
-        (evidence / f'{label}.stdout').write_text(result.stdout)
-        (evidence / f'{label}.stderr').write_text(result.stderr)
+        for suffix, content in [('stdout', result.stdout), ('stderr', result.stderr)]:
+            # Native logs and results can contain data; retain only identity and size.
+            retained = json.dumps({'bytes': len(content.encode()),
+                'sha256': hashlib.sha256(content.encode()).hexdigest(),
+                'body_retained': False})
+            (evidence / f'{label}.{suffix}').write_text(retained)
         result.check_returncode()
         return result.stdout
 
@@ -120,8 +125,12 @@ def main():
         workflow['connections']['Start']['main'][0].append({'node': dataset, 'type': 'main', 'index': 0})
     path = evidence / 'workflow.json'
     path.write_text(json.dumps(workflow, indent=2) + '\n')
-    run('import', 'import:workflow', '--input', str(path))
-    stdout = run('execute', 'execute', '--id', workflow['id'], '--rawOutput')
+    try:
+        run('import', 'import:workflow', '--input', str(path))
+        stdout = run('execute', 'execute', '--id', workflow['id'], '--rawOutput')
+    finally:
+        # This path was reserved by this invocation; never touch another host.
+        shutil.rmtree(evidence / 'user', ignore_errors=False) if (evidence / 'user').exists() else None
     # Some n8n versions print startup notices even with rawOutput enabled.
     decoder = json.JSONDecoder()
     execution = None
@@ -157,6 +166,8 @@ def main():
                'package': archive.name, 'sha256': hashlib.sha256(archive.read_bytes()).hexdigest(),
                'archive_check': archive_check,
                'loader': 'native_custom_extension_from_npm_tarball', 'pages': pages,
+               'traffic_class': 'synthetic', 'measurement_instrumentation': 'isolated_https_request_header',
+               'package_bytes_modified_by_instrumentation': False, 'temporary_runtime_state_retained': False,
                'npm_published': False, 'n8n_verified': False, 'independent_adoption_proven': False}
     (evidence / 'receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')
     print(json.dumps(receipt, indent=2))

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "narcoscope": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/narcoscope/mcp"
+    }
+  }
+}

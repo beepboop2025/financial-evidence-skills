@@ -95,8 +95,8 @@ class FetchEvidenceTests(unittest.TestCase):
         packet = self.module.build_packet(topics, max_bytes=4096, timeout=1, opener=opener)
         self.assertEqual(len(seen), 2)
         self.assertEqual(set(seen), {
-            "https://api.seiche.info/api/v2/gift-city",
-            "https://api.seiche.info/api/v2/world-markets?section=forex",
+            "https://agents.seiche.info/v1/data/seiche.gift_city",
+            "https://agents.seiche.info/v1/data/seiche.forex",
         })
         self.assertEqual(packet["transport_status"], "complete")
         self.assertEqual(packet["evidence_status"], "not_evaluated")
@@ -206,7 +206,7 @@ class FetchEvidenceTests(unittest.TestCase):
         )
         self.assertTrue(all("carrier_url" not in row for row in packet["sources"]))
         self.assertTrue(
-            all(row["resolved_url"] == row["source_url"] for row in packet["sources"])
+            all(row["resolved_url"] == self.module.source_endpoint(row["source_url"]) for row in packet["sources"])
         )
         self.assertTrue(
             all(

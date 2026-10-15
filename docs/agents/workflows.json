@@ -16,7 +16,7 @@
         "Seiche",
         "Financial Evidence Research Desk"
       ],
-      "mcp_url": "https://api.seiche.info/openbb/mcp",
+      "mcp_url": "https://agents.seiche.info/products/financial-evidence/mcp",
       "first_call": {
         "name": "financial_evidence_agent_query",
         "arguments": {
@@ -25,13 +25,13 @@
           "limit": 5
         }
       },
-      "rest_example": "https://api.seiche.info/openbb/api/v1/agent-query?dataset=money_markets&entity=USD&limit=5",
+      "rest_example": "https://agents.seiche.info/v1/research/api/v1/agent-query?dataset=money_markets&entity=USD&limit=5",
       "observed_example_schema": "financial-evidence.agent-result.v1",
       "first_use_evidence": "Developer retains a cited response and explains its use in their own task; a transport response alone is insufficient",
       "repeat_task": "Repeat the same query on another day with previous_revision; inspect source clocks and next_offset even when unchanged",
       "boundary": "Funding context does not authorize a trade, establish a forecast or qualify a historical backtest",
       "guided_browser_url": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?workflow=funding",
-      "workflow_api": "https://api.seiche.info/openbb/api/v1/workflow?workflow=funding"
+      "workflow_api": "https://agents.seiche.info/v1/research/api/v1/workflow?workflow=funding"
     },
     {
       "id": "risk-teams",
@@ -42,7 +42,7 @@
         "Seiche"
       ],
       "browser_url": "https://liquilens.in/banking/monitoring/",
-      "mcp_url": "https://api.liquilens.in/mcp",
+      "mcp_url": "https://agents.seiche.info/products/liquilens/mcp",
       "first_call": {
         "name": "institution_evidence_monitor",
         "arguments": {
@@ -52,13 +52,13 @@
           ]
         }
       },
-      "rest_example": "https://api.liquilens.in/api/experimental/v1/banking/monitoring/watchlist?slugs=au-sfb,bajaj-finance",
+      "rest_example": "https://agents.seiche.info/v1/data/liquilens.institution_watchlist?slugs=au-sfb,bajaj-finance",
       "observed_example_schema": "liquilens.institution-monitoring.v1",
       "first_use_evidence": "Named reviewer retains a sourced follow-up queue for their own watchlist",
       "repeat_task": "Review changed disclosures and unresolved gaps on the next working day; retain policy version, cutoff and record hash",
       "boundary": "Illustrative institutions are not recommendations. Missing data does not establish safety, and disappearance of a warning does not establish recovery",
       "guided_browser_url": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?workflow=institutions",
-      "workflow_api": "https://api.seiche.info/openbb/api/v1/workflow?workflow=institutions"
+      "workflow_api": "https://agents.seiche.info/v1/research/api/v1/workflow?workflow=institutions"
     },
     {
       "id": "traders",
@@ -69,15 +69,15 @@
         "Undertow"
       ],
       "browser_url": "https://liquilens-undertow.com/exit/",
-      "mcp_url": "https://api.seiche.info/undertow/mcp",
+      "mcp_url": "https://agents.seiche.info/products/undertow/mcp",
       "preflight_calls": [
         {
-          "mcp_url": "https://api.seiche.info/mcp",
+          "mcp_url": "https://agents.seiche.info/products/seiche/mcp",
           "name": "data_health",
           "arguments": {}
         },
         {
-          "mcp_url": "https://api.seiche.info/undertow/mcp",
+          "mcp_url": "https://agents.seiche.info/products/undertow/mcp",
           "name": "agent_access_status",
           "arguments": {}
         }
@@ -93,7 +93,7 @@
         }
       },
       "companion_call": {
-        "mcp_url": "https://api.seiche.info/mcp",
+        "mcp_url": "https://agents.seiche.info/products/seiche/mcp",
         "name": "money_market_context",
         "arguments": {
           "section": "summary"
@@ -104,7 +104,7 @@
       "repeat_task": "Repeat the same sizes and funding review on another day with source dates, coverage and withheld values intact",
       "boundary": "Indicative BTC sell estimates exclude fees and are not executable quotes or order permission",
       "guided_browser_url": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?workflow=exit",
-      "workflow_api": "https://api.seiche.info/openbb/api/v1/workflow?workflow=exit"
+      "workflow_api": "https://agents.seiche.info/v1/research/api/v1/workflow?workflow=exit"
     }
   ],
   "observation_scope": "Selected public REST requests and MCP tool calls exercised on 2026-10-09; optional client installations, delivered alerts, customer adoption and live execution are not established",

@@ -7,10 +7,10 @@ is needed. Your model provider may require its own account and key.
 ## First result
 
 ```sh
-curl --fail 'https://api.seiche.info/openbb/api/v1/agent-review?limit=3'
+curl --fail 'https://agents.seiche.info/v1/research/api/v1/agent-review?limit=3'
 ```
 
-Connect any Streamable HTTP MCP client to `https://api.seiche.info/openbb/mcp`.
+Connect any Streamable HTTP MCP client to `https://agents.seiche.info/products/financial-evidence/mcp`.
 Start with `financial_evidence_datasets`, then `financial_evidence_agent_query`
 or `financial_evidence_review`. The separate product MCPs retain their richer,
 product-specific tools; this interface adds small tables and repeat-call tokens.
@@ -124,4 +124,4 @@ restricted evidence before drawing a research conclusion.”
 
 ## Optional shared-factor review
 
-Use the [NoiseFloor 0.4.0 integration](../../docs/agents/CONNECT.md#correlation-research-across-products) to assess a retained, comparable panel. The downloadable `spectral_review.py` callback preserves source permissions and returns explicit insufficient visibility for short or restricted history. [Open the browser workbench](https://liquilens.in/agents/correlation/) or connect the separate ten-tool MCP at `https://api.seiche.info/noisefloor/mcp`.
+Use the [NoiseFloor 0.4.0 integration](../../docs/agents/CONNECT.md#correlation-research-across-products) to assess a retained, comparable panel. The downloadable `spectral_review.py` callback preserves source permissions and returns explicit insufficient visibility for short or restricted history. [Open the browser workbench](https://liquilens.in/agents/correlation/) or connect the separate ten-tool MCP at `https://agents.seiche.info/products/noisefloor/mcp`.

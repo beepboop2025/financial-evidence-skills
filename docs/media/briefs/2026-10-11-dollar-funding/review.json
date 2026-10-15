@@ -1,0 +1,333 @@
+{
+  "age_seconds": 1.549,
+  "available": true,
+  "capture_id": "20261011T010316.735305Z-da4852cb5539492c814822fad74c5171",
+  "captured_at": "2026-10-11T01:03:32.137894+00:00",
+  "data_readiness": "checks_passed",
+  "freshness_assessments": {
+    "distribution.sofr.p99": {
+      "basis": "Original-publisher observation matches reference within displayed precision; nonzero source values remain nonzero in the packet.",
+      "canonical_latest_asof": "2026-10-08",
+      "newer_observation_available": false
+    },
+    "distribution.sofr.volume": {
+      "basis": "Original-publisher observation matches reference within displayed precision; nonzero source values remain nonzero in the packet.",
+      "canonical_latest_asof": "2026-10-08",
+      "newer_observation_available": false
+    },
+    "liquidity.on_rrp": {
+      "basis": "Original-publisher observation matches reference within displayed precision; nonzero source values remain nonzero in the packet.",
+      "canonical_latest_asof": "2026-10-09",
+      "newer_observation_available": true
+    },
+    "liquidity.reserves": {
+      "basis": "Original-publisher observation matches reference within displayed precision; nonzero source values remain nonzero in the packet.",
+      "canonical_latest_asof": "2026-10-07",
+      "newer_observation_available": false
+    },
+    "liquidity.srf": {
+      "basis": "Original-publisher observation matches reference within displayed precision; nonzero source values remain nonzero in the packet.",
+      "canonical_latest_asof": "2026-10-09",
+      "newer_observation_available": true
+    },
+    "liquidity.tga": {
+      "basis": "Original-publisher observation matches reference within displayed precision; nonzero source values remain nonzero in the packet.",
+      "canonical_latest_asof": "2026-10-08",
+      "newer_observation_available": false
+    },
+    "policy.effr": {
+      "basis": "Original-publisher observation matches reference within displayed precision; nonzero source values remain nonzero in the packet.",
+      "canonical_latest_asof": "2026-10-08",
+      "newer_observation_available": false
+    },
+    "policy.iorb": {
+      "basis": "Original-publisher observation matches reference within displayed precision; nonzero source values remain nonzero in the packet.",
+      "canonical_latest_asof": "2026-10-13",
+      "newer_observation_available": true
+    },
+    "policy.sofr": {
+      "basis": "Original-publisher observation matches reference within displayed precision; nonzero source values remain nonzero in the packet.",
+      "canonical_latest_asof": "2026-10-08",
+      "newer_observation_available": false
+    }
+  },
+  "issues": [],
+  "latest_per_instrument": false,
+  "manifest_sha256": "d7cdc3878282b9e5ca455a81c29f3a47243aad2bf36b71fe74ae25eba6640068",
+  "method_version": "original-publisher-crosscheck.v1.1",
+  "observed_release": {
+    "package_version": "0.1.7",
+    "release_id": "workspace-1.2.0+c7c72ed82f8b",
+    "schema": "financial-evidence.workspace-release.v1",
+    "source_commit": "c7c72ed82f8b00683080d6cd9ec61a5bd1bd538d",
+    "workspace_version": "1.2.0"
+  },
+  "original_publisher_acquired_at": "2026-10-11T01:03:35.090316+00:00",
+  "publisher_lineage": {
+    "distribution.sofr.p99": {
+      "bytes": 2398,
+      "field": "percentPercentile99",
+      "original_publisher_acquisition": true,
+      "retrieved_at": "2026-10-11T01:03:34.054922+00:00",
+      "sha256": "b99730554ef33bae84acadb573d9d5657797c6434950ad78820ad7ad5b7ffa97",
+      "source": "New York Fed Markets API SOFR",
+      "source_url": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/10.json"
+    },
+    "distribution.sofr.volume": {
+      "bytes": 2398,
+      "field": "volumeInBillions",
+      "original_publisher_acquisition": true,
+      "retrieved_at": "2026-10-11T01:03:34.054922+00:00",
+      "sha256": "b99730554ef33bae84acadb573d9d5657797c6434950ad78820ad7ad5b7ffa97",
+      "source": "New York Fed Markets API SOFR",
+      "source_url": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/10.json"
+    },
+    "liquidity.on_rrp": {
+      "bytes": 6608,
+      "field": "sum(totalAmtAccepted) / 1000000000",
+      "original_publisher_acquisition": true,
+      "retrieved_at": "2026-10-11T01:03:34.323460+00:00",
+      "sha256": "9d5446cb6b4e9fe438469a35644b04d1cf896549c327d6481425df4c55055a56",
+      "source": "New York Fed ON RRP operation results",
+      "source_url": "https://markets.newyorkfed.org/api/rp/reverserepo/all/results/last/10.json"
+    },
+    "liquidity.reserves": {
+      "bytes": 701918,
+      "field": "t2r16c2 (millions / 1000)",
+      "original_publisher_acquisition": true,
+      "retrieved_at": "2026-10-11T01:03:34.230097+00:00",
+      "sha256": "b3baa64c32ae681c48a1a0cc94be0e1fb97b0ad54784e3d811393e355e02a318",
+      "source": "Federal Reserve Board H.4.1 weekly average",
+      "source_url": "https://www.federalreserve.gov/releases/h41/current/h41.htm"
+    },
+    "liquidity.srf": {
+      "bytes": 15284,
+      "field": "sum(totalAmtAccepted) / 1000000000",
+      "original_publisher_acquisition": true,
+      "retrieved_at": "2026-10-11T01:03:34.388440+00:00",
+      "sha256": "757aed543e86c2ae7eb8ace801feaf8eafc49efe01f2912d30d6630d83427f7b",
+      "source": "New York Fed standing repo operation results",
+      "source_url": "https://markets.newyorkfed.org/api/rp/repo/all/results/last/20.json"
+    },
+    "liquidity.tga": {
+      "bytes": 1252,
+      "field": "open_today_bal (millions / 1000)",
+      "original_publisher_acquisition": true,
+      "retrieved_at": "2026-10-11T01:03:34.922601+00:00",
+      "sha256": "104dac752e8cd2590b89f7f45b7c86877fec3362ba73b15fa208bfb65dba5dda",
+      "source": "US Treasury Daily Treasury Statement opening balance",
+      "source_url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/dts/operating_cash_balance?filter=record_date%3Agte%3A2026-10-01%2Caccount_type%3Aeq%3ATreasury+General+Account+%28TGA%29+Opening+Balance&fields=record_date%2Caccount_type%2Copen_today_bal&sort=-record_date&page%5Bsize%5D=100"
+    },
+    "policy.effr": {
+      "bytes": 2847,
+      "field": "percentRate",
+      "original_publisher_acquisition": true,
+      "retrieved_at": "2026-10-11T01:03:34.067832+00:00",
+      "sha256": "90c6c5e84c7c2bc3f3f0a46070c8faac6a0bca0adef43291d0ceaa8bcfc5aeb3",
+      "source": "New York Fed Markets API EFFR",
+      "source_url": "https://markets.newyorkfed.org/api/rates/unsecured/effr/last/10.json"
+    },
+    "policy.iorb": {
+      "bytes": 55509,
+      "field": "RESBM_N.D/OBS_VALUE",
+      "original_publisher_acquisition": true,
+      "retrieved_at": "2026-10-11T01:03:34.005211+00:00",
+      "sha256": "b1b9c12baf0d9e54683c1d096bb5c61ad18b7baf20d724a3b677f8f270ad24a1",
+      "source": "Federal Reserve Board PRATES RESBM_N.D",
+      "source_url": "https://www.federalreserve.gov/releases/prates/data/FRB_PRATES_xml.zip"
+    },
+    "policy.sofr": {
+      "bytes": 2398,
+      "field": "percentRate",
+      "original_publisher_acquisition": true,
+      "retrieved_at": "2026-10-11T01:03:34.054922+00:00",
+      "sha256": "b99730554ef33bae84acadb573d9d5657797c6434950ad78820ad7ad5b7ffa97",
+      "source": "New York Fed Markets API SOFR",
+      "source_url": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/10.json"
+    }
+  },
+  "publisher_notice": "Copyright 2026 Federal Reserve Bank of New York. Content from the New York Fed subject to the Terms of Use at newyorkfed.org. SOFR, EFFR and operation results are subject to those Terms of Use. The New York Fed is not responsible for publication of these data by Liquidity Lab, does not sanction or endorse this republication, and has no liability for your use. Liquidity Lab is not affiliated with the New York Fed.",
+  "ready": true,
+  "reference_basis": "dated_release_and_policy_crosscheck_not_source_of_republished_values",
+  "release_identity": "matched",
+  "results": [
+    {
+      "cadence": "daily",
+      "canonical_latest_asof": "2026-10-08",
+      "evaluated_at": "2026-10-11T01:03:32.137894+00:00",
+      "latest_per_instrument": false,
+      "metric_id": "policy.sofr",
+      "newer_observation_available": false,
+      "observation_date": "2026-10-08",
+      "publisher_freshness": "directly_verified",
+      "review_asof": "2026-10-08",
+      "review_scope": "common_sofr_iorb_horizon",
+      "review_status": "checks_passed",
+      "source": "New York Fed Markets API SOFR",
+      "unit": "%",
+      "value": 3.87,
+      "value_state": "available"
+    },
+    {
+      "cadence": "daily",
+      "canonical_latest_asof": "2026-10-08",
+      "evaluated_at": "2026-10-11T01:03:32.137894+00:00",
+      "latest_per_instrument": false,
+      "metric_id": "policy.effr",
+      "newer_observation_available": false,
+      "observation_date": "2026-10-08",
+      "publisher_freshness": "directly_verified",
+      "review_asof": "2026-10-08",
+      "review_scope": "common_sofr_iorb_horizon",
+      "review_status": "checks_passed",
+      "source": "New York Fed Markets API EFFR",
+      "unit": "%",
+      "value": 3.88,
+      "value_state": "available"
+    },
+    {
+      "cadence": "daily",
+      "canonical_latest_asof": "2026-10-13",
+      "evaluated_at": "2026-10-11T01:03:32.137894+00:00",
+      "latest_per_instrument": false,
+      "metric_id": "policy.iorb",
+      "newer_observation_available": true,
+      "observation_date": "2026-10-08",
+      "publisher_freshness": "directly_verified",
+      "review_asof": "2026-10-08",
+      "review_scope": "common_sofr_iorb_horizon",
+      "review_status": "checks_passed",
+      "source": "Federal Reserve Board PRATES RESBM_N.D",
+      "unit": "%",
+      "value": 3.9,
+      "value_state": "available"
+    },
+    {
+      "cadence": "daily",
+      "canonical_latest_asof": "2026-10-08",
+      "evaluated_at": "2026-10-11T01:03:32.137894+00:00",
+      "latest_per_instrument": false,
+      "metric_id": "distribution.sofr.p99",
+      "newer_observation_available": false,
+      "observation_date": "2026-10-08",
+      "publisher_freshness": "directly_verified",
+      "review_asof": "2026-10-08",
+      "review_scope": "common_sofr_iorb_horizon",
+      "review_status": "checks_passed",
+      "source": "New York Fed Markets API SOFR",
+      "unit": "%",
+      "value": 3.95,
+      "value_state": "available"
+    },
+    {
+      "cadence": "daily",
+      "canonical_latest_asof": "2026-10-08",
+      "evaluated_at": "2026-10-11T01:03:32.137894+00:00",
+      "latest_per_instrument": false,
+      "metric_id": "distribution.sofr.volume",
+      "newer_observation_available": false,
+      "observation_date": "2026-10-08",
+      "publisher_freshness": "directly_verified",
+      "review_asof": "2026-10-08",
+      "review_scope": "common_sofr_iorb_horizon",
+      "review_status": "checks_passed",
+      "source": "New York Fed Markets API SOFR",
+      "unit": "$B",
+      "value": 2963.0,
+      "value_state": "available"
+    },
+    {
+      "cadence": "weekly",
+      "canonical_latest_asof": "2026-10-07",
+      "evaluated_at": "2026-10-11T01:03:32.137894+00:00",
+      "latest_per_instrument": false,
+      "metric_id": "liquidity.reserves",
+      "newer_observation_available": false,
+      "observation_date": "2026-10-07",
+      "publisher_freshness": "directly_verified",
+      "review_asof": "2026-10-08",
+      "review_scope": "common_sofr_iorb_horizon",
+      "review_status": "checks_passed",
+      "source": "Federal Reserve Board H.4.1 weekly average",
+      "unit": "$B",
+      "value": 3029.659,
+      "value_state": "available"
+    },
+    {
+      "cadence": "daily",
+      "canonical_latest_asof": "2026-10-08",
+      "evaluated_at": "2026-10-11T01:03:32.137894+00:00",
+      "latest_per_instrument": false,
+      "metric_id": "liquidity.tga",
+      "newer_observation_available": false,
+      "observation_date": "2026-10-08",
+      "publisher_freshness": "directly_verified",
+      "review_asof": "2026-10-08",
+      "review_scope": "common_sofr_iorb_horizon",
+      "review_status": "checks_passed",
+      "source": "US Treasury Daily Treasury Statement opening balance",
+      "unit": "$B",
+      "value": 885.783,
+      "value_state": "available"
+    },
+    {
+      "cadence": "daily",
+      "canonical_latest_asof": "2026-10-09",
+      "evaluated_at": "2026-10-11T01:03:32.137894+00:00",
+      "latest_per_instrument": false,
+      "metric_id": "liquidity.on_rrp",
+      "newer_observation_available": true,
+      "observation_date": "2026-10-08",
+      "publisher_freshness": "directly_verified",
+      "review_asof": "2026-10-08",
+      "review_scope": "common_sofr_iorb_horizon",
+      "review_status": "checks_passed",
+      "source": "New York Fed ON RRP operation results",
+      "unit": "$B",
+      "value": 0.335,
+      "value_state": "available"
+    },
+    {
+      "cadence": "daily",
+      "canonical_latest_asof": "2026-10-09",
+      "evaluated_at": "2026-10-11T01:03:32.137894+00:00",
+      "latest_per_instrument": false,
+      "metric_id": "liquidity.srf",
+      "newer_observation_available": true,
+      "observation_date": "2026-10-08",
+      "publisher_freshness": "directly_verified",
+      "review_asof": "2026-10-08",
+      "review_scope": "common_sofr_iorb_horizon",
+      "review_status": "checks_passed",
+      "source": "New York Fed standing repo operation results",
+      "unit": "$B",
+      "value": 0.003,
+      "value_state": "available"
+    }
+  ],
+  "review_asof": "2026-10-08",
+  "review_scope": "common_sofr_iorb_horizon",
+  "runtime_release": {
+    "contract": "financial-evidence.workspace.v1",
+    "package_version": "0.1.7",
+    "release_id": "workspace-1.2.0+c7c72ed82f8b",
+    "schema": "financial-evidence.workspace-release.v1",
+    "source_commit": "c7c72ed82f8b00683080d6cd9ec61a5bd1bd538d",
+    "workspace_version": "1.2.0"
+  },
+  "runtime_release_identity": "matched",
+  "schema": "financial-evidence.original-publisher-review.v1",
+  "source_terms": {
+    "federal_reserve_board": "https://www.federalreserve.gov/disclaimer.htm",
+    "new_york_fed": "https://www.newyorkfed.org/privacy/termsofuse",
+    "treasury": "https://fiscaldata.treasury.gov/about-us/"
+  },
+  "stale": false,
+  "transformations": [
+    "Publisher numbers parsed without rounding",
+    "USD millions or dollars converted to USD billions",
+    "Morning and afternoon overnight standing-repo results summed",
+    "Nine dated inputs joined with independently evaluated review metadata"
+  ],
+  "value_basis": "independently_retrieved_original_publishers_at_full_source_precision"
+}

@@ -43,7 +43,7 @@ for (const dataset of ['money_markets', 'bank_risk', 'market_liquidity']) {
   const tool = nativeNode('tool', 'toolAgentflow_0', {
     toolAgentflowSelectedTool: 'customMCP',
     toolAgentflowSelectedToolConfig: {
-      mcpServerConfig: JSON.stringify({url: 'https://api.seiche.info/openbb/mcp', headers: {
+      mcpServerConfig: JSON.stringify({url: 'https://agents.seiche.info/products/financial-evidence/mcp', headers: {
         'X-Liquilens-Traffic-Class': 'synthetic',
         'User-Agent': 'Financial-Evidence-Flowise-Native-Acceptance/1.0',
       }}),
@@ -65,7 +65,7 @@ for (const dataset of ['money_markets', 'bank_risk', 'market_liquidity']) {
   if (dataset === 'money_markets') {
     const candidate = structuredClone(flow);
     candidate.nodes[1].data.label = 'Financial evidence page';
-    candidate.nodes[1].data.inputs.toolAgentflowSelectedToolConfig.mcpServerConfig = JSON.stringify({url: 'https://api.seiche.info/openbb/mcp'});
+    candidate.nodes[1].data.inputs.toolAgentflowSelectedToolConfig.mcpServerConfig = JSON.stringify({url: 'https://agents.seiche.info/products/financial-evidence/mcp'});
     Object.assign(candidate, JSON.parse(fs.readFileSync(path.join(__dirname, 'marketplace_metadata.json'))));
     fs.writeFileSync(path.join(output, 'marketplace-candidate.json'), JSON.stringify(candidate, null, 2) + '\n');
   }

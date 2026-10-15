@@ -13,10 +13,10 @@ Start with a small, named dataset before adding a larger tool catalog:
 
 ```sh
 curl --fail --max-time 30 \
-  'https://api.seiche.info/openbb/api/v1/agent-query?dataset=money_markets&entity=USD&limit=5'
+  'https://agents.seiche.info/v1/research/api/v1/agent-query?dataset=money_markets&entity=USD&limit=5'
 ```
 
-Or connect `https://api.seiche.info/openbb/mcp`, discover its live schemas, and
+Or connect `https://agents.seiche.info/products/financial-evidence/mcp`, discover its live schemas, and
 call `financial_evidence_agent_query` with
 `{"dataset":"money_markets","entity":"USD","limit":5}`.
 
@@ -47,7 +47,7 @@ support repeat research; installation alone does not establish adoption.
 Open the [institution monitor](https://liquilens.in/banking/monitoring/) to choose
 covered institutions and inspect the dated register. The new
 `institution_evidence_monitor` tool is available at
-`https://api.liquilens.in/mcp`. For example:
+`https://agents.seiche.info/products/liquilens/mcp`. For example:
 
 ```json
 {"slugs":["au-sfb","bajaj-finance"]}
@@ -57,7 +57,7 @@ The equivalent read-only REST request is:
 
 ```sh
 curl --fail --max-time 30 \
-  'https://api.liquilens.in/api/experimental/v1/banking/monitoring/watchlist?slugs=au-sfb,bajaj-finance'
+  'https://agents.seiche.info/v1/data/liquilens.institution_watchlist?slugs=au-sfb,bajaj-finance'
 ```
 
 These two institutions illustrate the interface; they are not recommendations
@@ -117,7 +117,7 @@ review before the next research session, preserving comparability.
 Use [NoiseFloor 0.4.0](CONNECT.md#optional-market-and-headline-analysis) when you
 have your own entitled series or headlines to assess. It does not supply feeds.
 For comparable series, the [correlation workbench](https://liquilens.in/agents/correlation/)
-and [API/local Python kit](../api/noisefloor/) expose the same spectral assessment
+and [API/local Python kit](../api/noisefloor-hosted/) expose the same spectral assessment
 with source-rights, freshness and missingness gates. Keep each product's panel
 separate. The Dyson demonstration is synthetic, and the random-matrix reference
 does not establish statistical significance or predictive market performance.

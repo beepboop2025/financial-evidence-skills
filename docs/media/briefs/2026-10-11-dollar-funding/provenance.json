@@ -1,0 +1,123 @@
+{
+  "schema": "financial-evidence.media-provenance.v1",
+  "packet_id": "20261011T010316.735305Z-da4852cb5539492c814822fad74c5171",
+  "source_release": "workspace-1.2.0+c7c72ed82f8b",
+  "producer_source_commit": "949746f478bc83036b1ff7131762d397236b8818",
+  "source_captured_at": "2026-10-11T01:03:32.137894+00:00",
+  "archived_at": "2026-10-11T01:03:35.101024+00:00",
+  "media_verified_at": "2026-10-11T01:07:50.859451+00:00",
+  "canonical_packet_url": "https://api.seiche.info/funding-evidence/packets/20261011T010316.735305Z-da4852cb5539492c814822fad74c5171",
+  "acquisition": {
+    "traffic_class": "synthetic",
+    "packet_id": "20261011T010316.735305Z-da4852cb5539492c814822fad74c5171",
+    "receipts": [
+      {
+        "url": "https://api.seiche.info/funding-evidence/v1/funding/latest",
+        "final_url": "https://api.seiche.info/funding-evidence/v1/funding/latest",
+        "file": "latest.json",
+        "sha256": "82f2379302cc95b4bc1c65ec28dce4d20f4bb017f922ec21c8114a0b36261551",
+        "bytes": 6668,
+        "content_type": "application/json",
+        "retrieved_at": "2026-10-11T01:07:26.486192+00:00"
+      },
+      {
+        "url": "https://api.seiche.info/funding-evidence/packets/20261011T010316.735305Z-da4852cb5539492c814822fad74c5171/manifest.json",
+        "final_url": "https://api.seiche.info/funding-evidence/packets/20261011T010316.735305Z-da4852cb5539492c814822fad74c5171/manifest.json",
+        "file": "manifest.json",
+        "sha256": "2768a534c37a4f006c7592287117f3a6ee29eddf67517bff368c37325619f284",
+        "bytes": 3778,
+        "content_type": "application/json",
+        "retrieved_at": "2026-10-11T01:07:27.118142+00:00"
+      },
+      {
+        "url": "https://api.seiche.info/funding-evidence/packets/20261011T010316.735305Z-da4852cb5539492c814822fad74c5171/observations.csv",
+        "final_url": "https://api.seiche.info/funding-evidence/packets/20261011T010316.735305Z-da4852cb5539492c814822fad74c5171/observations.csv",
+        "file": "observations.csv",
+        "sha256": "b761d66403be261d0fa80253c8094ab9ed414589999f9a3de05195716d09b417",
+        "bytes": 2139,
+        "content_type": "text/csv; charset=utf-8",
+        "retrieved_at": "2026-10-11T01:07:27.706722+00:00"
+      },
+      {
+        "url": "https://api.seiche.info/funding-evidence/packets/20261011T010316.735305Z-da4852cb5539492c814822fad74c5171/review.json",
+        "final_url": "https://api.seiche.info/funding-evidence/packets/20261011T010316.735305Z-da4852cb5539492c814822fad74c5171/review.json",
+        "file": "review.json",
+        "sha256": "24ef45ea13ab1650b190ca87ffdff3f93f64538503643b1a10fdbb18075a5bc5",
+        "bytes": 14510,
+        "content_type": "application/json",
+        "retrieved_at": "2026-10-11T01:07:28.435831+00:00"
+      },
+      {
+        "url": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/10.json",
+        "final_url": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/10.json",
+        "file": "original-sofr.json",
+        "sha256": "b99730554ef33bae84acadb573d9d5657797c6434950ad78820ad7ad5b7ffa97",
+        "bytes": 2398,
+        "content_type": "application/json;charset=utf-8",
+        "retrieved_at": "2026-10-11T01:07:29.594763+00:00"
+      },
+      {
+        "url": "https://www.federalreserve.gov/releases/prates/data/FRB_PRATES_xml.zip",
+        "final_url": "https://www.federalreserve.gov/releases/prates/data/FRB_PRATES_xml.zip",
+        "file": "original-prates.zip",
+        "sha256": "b1b9c12baf0d9e54683c1d096bb5c61ad18b7baf20d724a3b677f8f270ad24a1",
+        "bytes": 55509,
+        "content_type": "application/x-zip-compressed",
+        "retrieved_at": "2026-10-11T01:07:29.080801+00:00"
+      },
+      {
+        "url": "https://markets.newyorkfed.org/api/rates/unsecured/effr/last/10.json",
+        "final_url": "https://markets.newyorkfed.org/api/rates/unsecured/effr/last/10.json",
+        "file": "original-effr.json",
+        "sha256": "90c6c5e84c7c2bc3f3f0a46070c8faac6a0bca0adef43291d0ceaa8bcfc5aeb3",
+        "bytes": 2847,
+        "content_type": "application/json;charset=utf-8",
+        "retrieved_at": "2026-10-11T01:07:29.796647+00:00"
+      },
+      {
+        "url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/dts/operating_cash_balance?filter=record_date%3Agte%3A2026-10-01%2Caccount_type%3Aeq%3ATreasury+General+Account+%28TGA%29+Opening+Balance&fields=record_date%2Caccount_type%2Copen_today_bal&sort=-record_date&page%5Bsize%5D=100",
+        "final_url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/dts/operating_cash_balance?filter=record_date%3Agte%3A2026-10-01%2Caccount_type%3Aeq%3ATreasury+General+Account+%28TGA%29+Opening+Balance&fields=record_date%2Caccount_type%2Copen_today_bal&sort=-record_date&page%5Bsize%5D=100",
+        "file": "original-tga.json",
+        "sha256": "104dac752e8cd2590b89f7f45b7c86877fec3362ba73b15fa208bfb65dba5dda",
+        "bytes": 1252,
+        "content_type": "application/json",
+        "retrieved_at": "2026-10-11T01:07:50.859451+00:00"
+      },
+      {
+        "url": "https://www.federalreserve.gov/releases/h41/current/h41.htm",
+        "final_url": "https://www.federalreserve.gov/releases/h41/current/h41.htm",
+        "file": "original-reserves.html",
+        "sha256": "adb87ade6c345e1f03cf9f0ec6444e61b30e23a7ce3c9a8cd1b30c5ba34106c2",
+        "bytes": 701918,
+        "content_type": "text/html",
+        "retrieved_at": "2026-10-11T01:07:50.046970+00:00"
+      },
+      {
+        "url": "https://markets.newyorkfed.org/api/rp/repo/all/results/last/20.json",
+        "final_url": "https://markets.newyorkfed.org/api/rp/repo/all/results/last/20.json",
+        "file": "original-srf.json",
+        "sha256": "757aed543e86c2ae7eb8ace801feaf8eafc49efe01f2912d30d6630d83427f7b",
+        "bytes": 15284,
+        "content_type": "application/json;charset=utf-8",
+        "retrieved_at": "2026-10-11T01:07:50.617683+00:00"
+      },
+      {
+        "url": "https://markets.newyorkfed.org/api/rp/reverserepo/all/results/last/10.json",
+        "final_url": "https://markets.newyorkfed.org/api/rp/reverserepo/all/results/last/10.json",
+        "file": "original-on_rrp.json",
+        "sha256": "9d5446cb6b4e9fe438469a35644b04d1cf896549c327d6481425df4c55055a56",
+        "bytes": 6608,
+        "content_type": "application/json;charset=utf-8",
+        "retrieved_at": "2026-10-11T01:07:50.165940+00:00"
+      }
+    ]
+  },
+  "publisher_notice": "Copyright 2026 Federal Reserve Bank of New York. Content from the New York Fed subject to the Terms of Use at newyorkfed.org. SOFR, EFFR and operation results are subject to those Terms of Use. The New York Fed is not responsible for publication of these data by Liquidity Lab, does not sanction or endorse this republication, and has no liability for your use. Liquidity Lab is not affiliated with the New York Fed.",
+  "source_terms": {
+    "federal_reserve_board": "https://www.federalreserve.gov/disclaimer.htm",
+    "new_york_fed": "https://www.newyorkfed.org/privacy/termsofuse",
+    "treasury": "https://fiscaldata.treasury.gov/about-us/"
+  },
+  "methodology": "https://beepboop2025.github.io/financial-evidence-skills/funding/sources.md",
+  "raw_publisher_responses": "Retained in operator evidence; only bounded factual extracts are included in the public brief."
+}

@@ -1,0 +1,143 @@
+{
+  "schema": "financial-evidence.media-funding-data.v1",
+  "packet_id": "20261011T010316.735305Z-da4852cb5539492c814822fad74c5171",
+  "observations": [
+    {
+      "metric_id": "policy.sofr",
+      "name": "SOFR",
+      "value": "3.87",
+      "unit": "%",
+      "observation_date": "2026-10-08",
+      "source_url": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/10.json",
+      "publisher_field": "percentRate",
+      "source_sha256": "b99730554ef33bae84acadb573d9d5657797c6434950ad78820ad7ad5b7ffa97",
+      "independent_retrieved_at": "2026-10-11T01:07:29.594763+00:00",
+      "matches_frozen_packet": true,
+      "newer_observation_available": false,
+      "canonical_latest_asof": "2026-10-08"
+    },
+    {
+      "metric_id": "policy.effr",
+      "name": "Effective federal funds rate",
+      "value": "3.88",
+      "unit": "%",
+      "observation_date": "2026-10-08",
+      "source_url": "https://markets.newyorkfed.org/api/rates/unsecured/effr/last/10.json",
+      "publisher_field": "percentRate",
+      "source_sha256": "90c6c5e84c7c2bc3f3f0a46070c8faac6a0bca0adef43291d0ceaa8bcfc5aeb3",
+      "independent_retrieved_at": "2026-10-11T01:07:29.796647+00:00",
+      "matches_frozen_packet": true,
+      "newer_observation_available": false,
+      "canonical_latest_asof": "2026-10-08"
+    },
+    {
+      "metric_id": "policy.iorb",
+      "name": "Interest on reserve balances (IORB)",
+      "value": "3.90",
+      "unit": "%",
+      "observation_date": "2026-10-08",
+      "source_url": "https://www.federalreserve.gov/releases/prates/data/FRB_PRATES_xml.zip",
+      "publisher_field": "RESBM_N.D/OBS_VALUE",
+      "source_sha256": "b1b9c12baf0d9e54683c1d096bb5c61ad18b7baf20d724a3b677f8f270ad24a1",
+      "independent_retrieved_at": "2026-10-11T01:07:29.080801+00:00",
+      "matches_frozen_packet": true,
+      "newer_observation_available": true,
+      "canonical_latest_asof": "2026-10-13"
+    },
+    {
+      "metric_id": "distribution.sofr.p99",
+      "name": "SOFR 99th percentile",
+      "value": "3.95",
+      "unit": "%",
+      "observation_date": "2026-10-08",
+      "source_url": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/10.json",
+      "publisher_field": "percentPercentile99",
+      "source_sha256": "b99730554ef33bae84acadb573d9d5657797c6434950ad78820ad7ad5b7ffa97",
+      "independent_retrieved_at": "2026-10-11T01:07:29.594763+00:00",
+      "matches_frozen_packet": true,
+      "newer_observation_available": false,
+      "canonical_latest_asof": "2026-10-08"
+    },
+    {
+      "metric_id": "distribution.sofr.volume",
+      "name": "SOFR transaction volume",
+      "value": "2963",
+      "unit": "$B",
+      "observation_date": "2026-10-08",
+      "source_url": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/10.json",
+      "publisher_field": "volumeInBillions",
+      "source_sha256": "b99730554ef33bae84acadb573d9d5657797c6434950ad78820ad7ad5b7ffa97",
+      "independent_retrieved_at": "2026-10-11T01:07:29.594763+00:00",
+      "matches_frozen_packet": true,
+      "newer_observation_available": false,
+      "canonical_latest_asof": "2026-10-08"
+    },
+    {
+      "metric_id": "liquidity.reserves",
+      "name": "Reserve balances: weekly average",
+      "value": "3029.659",
+      "unit": "$B",
+      "observation_date": "2026-10-07",
+      "source_url": "https://www.federalreserve.gov/releases/h41/current/h41.htm",
+      "publisher_field": "t2r16c2: USD millions / 1000",
+      "source_sha256": "adb87ade6c345e1f03cf9f0ec6444e61b30e23a7ce3c9a8cd1b30c5ba34106c2",
+      "independent_retrieved_at": "2026-10-11T01:07:50.046970+00:00",
+      "matches_frozen_packet": true,
+      "newer_observation_available": false,
+      "canonical_latest_asof": "2026-10-07"
+    },
+    {
+      "metric_id": "liquidity.tga",
+      "name": "Treasury General Account: opening balance",
+      "value": "885.783",
+      "unit": "$B",
+      "observation_date": "2026-10-08",
+      "source_url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/dts/operating_cash_balance?filter=record_date%3Agte%3A2026-10-01%2Caccount_type%3Aeq%3ATreasury+General+Account+%28TGA%29+Opening+Balance&fields=record_date%2Caccount_type%2Copen_today_bal&sort=-record_date&page%5Bsize%5D=100",
+      "publisher_field": "open_today_bal: USD millions / 1000",
+      "source_sha256": "104dac752e8cd2590b89f7f45b7c86877fec3362ba73b15fa208bfb65dba5dda",
+      "independent_retrieved_at": "2026-10-11T01:07:50.859451+00:00",
+      "matches_frozen_packet": true,
+      "newer_observation_available": false,
+      "canonical_latest_asof": "2026-10-08"
+    },
+    {
+      "metric_id": "liquidity.on_rrp",
+      "name": "Overnight reverse repo: accepted amount",
+      "value": "0.335",
+      "unit": "$B",
+      "observation_date": "2026-10-08",
+      "source_url": "https://markets.newyorkfed.org/api/rp/reverserepo/all/results/last/10.json",
+      "publisher_field": "sum(totalAmtAccepted): USD dollars / 1000000000",
+      "source_sha256": "9d5446cb6b4e9fe438469a35644b04d1cf896549c327d6481425df4c55055a56",
+      "independent_retrieved_at": "2026-10-11T01:07:50.165940+00:00",
+      "matches_frozen_packet": true,
+      "newer_observation_available": true,
+      "canonical_latest_asof": "2026-10-09"
+    },
+    {
+      "metric_id": "liquidity.srf",
+      "name": "Standing repo: morning + afternoon accepted amount",
+      "value": "0.003",
+      "unit": "$B",
+      "observation_date": "2026-10-08",
+      "source_url": "https://markets.newyorkfed.org/api/rp/repo/all/results/last/20.json",
+      "publisher_field": "sum(totalAmtAccepted): USD dollars / 1000000000",
+      "source_sha256": "757aed543e86c2ae7eb8ace801feaf8eafc49efe01f2912d30d6630d83427f7b",
+      "independent_retrieved_at": "2026-10-11T01:07:50.617683+00:00",
+      "matches_frozen_packet": true,
+      "newer_observation_available": true,
+      "canonical_latest_asof": "2026-10-09"
+    }
+  ],
+  "derived_differences_basis_points": {
+    "policy.sofr": "-3.00",
+    "policy.effr": "-2.00",
+    "distribution.sofr.p99": "5.00"
+  },
+  "publisher_notice": "Copyright 2026 Federal Reserve Bank of New York. Content from the New York Fed subject to the Terms of Use at newyorkfed.org. SOFR, EFFR and operation results are subject to those Terms of Use. The New York Fed is not responsible for publication of these data by Liquidity Lab, does not sanction or endorse this republication, and has no liability for your use. Liquidity Lab is not affiliated with the New York Fed.",
+  "source_terms": {
+    "federal_reserve_board": "https://www.federalreserve.gov/disclaimer.htm",
+    "new_york_fed": "https://www.newyorkfed.org/privacy/termsofuse",
+    "treasury": "https://fiscaldata.treasury.gov/about-us/"
+  }
+}

@@ -28,6 +28,7 @@ from .workspace_mcp import create_mcp
 from .workspace_usage import install as install_usage
 from . import workflows
 from .application_usage import excluded
+from .onboarding import starter_catalog
 
 
 def create_app(
@@ -98,11 +99,16 @@ def create_app(
                 await asyncio.to_thread(service.close)
 
     app = FastAPI(
-        title="Financial Evidence for OpenBB",
+        title="Financial Evidence Research API",
         version=WORKSPACE_VERSION,
         root_path=parsed.path,
         lifespan=lifespan,
-        description="Seven source-cited datasets, Workspace widgets and read-only MCP. No API key required.",
+        description=(
+            "Start at /api/v1/start to choose a funding, institution or BTC liquidity review. "
+            "Run the same task in a browser, REST client or MCP agent. Public reads need no API key. "
+            "Seven dataset views preserve sources, observation dates, native units and missing values. "
+            "Coverage and source permissions vary; research evidence does not authorize financial decisions."
+        ),
     )
     app.state.evidence_service = service
     app.state.mcp = mcp
@@ -149,7 +155,14 @@ def create_app(
             "mcp": base_url + "/mcp",
             "authentication": "none",
             "dataset_count": len(dataset_catalog()),
+            "start": base_url + "/api/v1/start",
+            "connection_guide": starter_catalog()["guide_url"],
         }
+
+    @app.get("/api/v1/start", tags=["Start here"], summary="Choose your first research task")
+    async def start() -> dict:
+        """Offline examples, browser links and MCP calls for the same three bounded workflows."""
+        return starter_catalog()
 
     @app.get("/healthz")
     async def health() -> dict:

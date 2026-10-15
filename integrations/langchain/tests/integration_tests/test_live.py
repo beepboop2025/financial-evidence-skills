@@ -1,12 +1,27 @@
 """Opt-in bounded public requests. No model calls, paid keys or polling."""
 
 import os
+from urllib.request import Request
 
 import pytest
 from langchain_tests.integration_tests import ToolsIntegrationTests
 from langchain_financial_evidence import FinancialEvidenceQueryTool
 
 pytestmark = pytest.mark.skipif(os.getenv("FINANCIAL_EVIDENCE_LIVE_TEST") != "1", reason="live requests are opt-in")
+
+
+@pytest.fixture(autouse=True)
+def mark_live_checks_as_synthetic(monkeypatch):
+    """Exercise the production client route without counting checks as adoption."""
+    from langchain_financial_evidence import tools
+
+    def synthetic_request(url, *args, **kwargs):
+        assert url.startswith("https://agents.seiche.info/v1/research/api/v1/")
+        headers = dict(kwargs.pop("headers", {}))
+        headers["X-Financial-Evidence-Traffic-Class"] = "synthetic"
+        return Request(url, *args, headers=headers, **kwargs)
+
+    monkeypatch.setattr(tools, "Request", synthetic_request)
 
 
 class TestLiveQueryStandard(ToolsIntegrationTests):

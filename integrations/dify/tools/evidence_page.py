@@ -7,7 +7,7 @@ from dify_plugin.entities.tool import ToolInvokeMessage
 
 DATASETS = {'bank_risk', 'capital_markets', 'china_economy', 'market_liquidity',
             'money_market_history', 'money_markets', 'source_health'}
-URL = 'https://api.seiche.info/openbb/api/v1/query'
+URL = 'https://agents.seiche.info/v1/research/api/v1/query'
 
 
 def parameters(values: dict[str, Any]) -> dict[str, Any]:

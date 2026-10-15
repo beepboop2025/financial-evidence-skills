@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss version="2.0">
+  <channel>
+    <title>LiquiLens Media Desk</title>
+    <link>https://beepboop2025.github.io/financial-evidence-skills/media/</link>
+    <description>Dated dollar-funding and bank-disclosure research with original sources, charts, numerical extracts and reviewed correction notices.</description>
+    <language>en</language>
+    <managingEditor>mrinal@liquilens.in (LiquiLens Media Desk)</managingEditor>
+    <item>
+      <title>ESAF: net NPA ratio fell, gross ratio stayed at 5.4%</title>
+      <description>A dated, source-linked comparison of ESAF's March and June 2026 disclosures, with editable data and original charts.</description>
+      <link>https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/</link>
+      <guid isPermaLink="true">https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/</guid>
+      <pubDate>Sun, 11 Oct 2026 01:09:33 +0000</pubDate>
+      <category>edition</category>
+    </item>
+    <item>
+      <title>SOFR was 3 basis points below IORB on 8 October</title>
+      <description>SOFR was 3.87%, compared with IORB at 3.90%, on 8 October 2026. The SOFR–IORB difference was −3 basis points; the SOFR 99th percentile was 3.95%, or 5 basis points above IORB.</description>
+      <link>https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/</link>
+      <guid isPermaLink="true">https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-dollar-funding/</guid>
+      <pubDate>Sun, 11 Oct 2026 01:07:50 +0000</pubDate>
+      <category>edition</category>
+    </item>
+  </channel>
+</rss>

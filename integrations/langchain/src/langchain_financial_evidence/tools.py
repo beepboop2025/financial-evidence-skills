@@ -17,7 +17,7 @@ from urllib.request import HTTPRedirectHandler, Request, build_opener
 from langchain_core.tools import BaseTool, BaseToolkit, ToolException
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, field_validator, model_validator
 
-API_BASE = "https://api.seiche.info/openbb/api/v1/"
+API_BASE = "https://agents.seiche.info/v1/research/api/v1/"
 Dataset = Literal[
     "money_markets", "money_market_history", "capital_markets", "bank_risk",
     "market_liquidity", "china_economy", "source_health",
@@ -88,7 +88,7 @@ def _fetch(route: str, parameters: dict[str, Any], timeout: float, max_bytes: in
         url += "?" + urlencode(parameters)
     request = Request(url, headers={
         "Accept": "application/json",
-        "User-Agent": "langchain-financial-evidence/0.1.0",
+        "User-Agent": "langchain-financial-evidence/0.1.1",
     }, method="GET")
     try:
         with build_opener(_RejectRedirects()).open(request, timeout=timeout) as response:

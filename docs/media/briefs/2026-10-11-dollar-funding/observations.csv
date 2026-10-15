@@ -1,0 +1,10 @@
+metric_id,value,unit,observation_date,source,cadence,publisher_freshness,value_state,evaluated_at,review_status,review_asof,review_scope,latest_per_instrument,canonical_latest_asof,newer_observation_available
+policy.sofr,3.87,%,2026-10-08,New York Fed Markets API SOFR,daily,directly_verified,available,2026-10-11T01:03:32.137894+00:00,checks_passed,2026-10-08,common_sofr_iorb_horizon,false,2026-10-08,false
+policy.effr,3.88,%,2026-10-08,New York Fed Markets API EFFR,daily,directly_verified,available,2026-10-11T01:03:32.137894+00:00,checks_passed,2026-10-08,common_sofr_iorb_horizon,false,2026-10-08,false
+policy.iorb,3.9,%,2026-10-08,Federal Reserve Board PRATES RESBM_N.D,daily,directly_verified,available,2026-10-11T01:03:32.137894+00:00,checks_passed,2026-10-08,common_sofr_iorb_horizon,false,2026-10-13,true
+distribution.sofr.p99,3.95,%,2026-10-08,New York Fed Markets API SOFR,daily,directly_verified,available,2026-10-11T01:03:32.137894+00:00,checks_passed,2026-10-08,common_sofr_iorb_horizon,false,2026-10-08,false
+distribution.sofr.volume,2963.0,$B,2026-10-08,New York Fed Markets API SOFR,daily,directly_verified,available,2026-10-11T01:03:32.137894+00:00,checks_passed,2026-10-08,common_sofr_iorb_horizon,false,2026-10-08,false
+liquidity.reserves,3029.659,$B,2026-10-07,Federal Reserve Board H.4.1 weekly average,weekly,directly_verified,available,2026-10-11T01:03:32.137894+00:00,checks_passed,2026-10-08,common_sofr_iorb_horizon,false,2026-10-07,false
+liquidity.tga,885.783,$B,2026-10-08,US Treasury Daily Treasury Statement opening balance,daily,directly_verified,available,2026-10-11T01:03:32.137894+00:00,checks_passed,2026-10-08,common_sofr_iorb_horizon,false,2026-10-08,false
+liquidity.on_rrp,0.335,$B,2026-10-08,New York Fed ON RRP operation results,daily,directly_verified,available,2026-10-11T01:03:32.137894+00:00,checks_passed,2026-10-08,common_sofr_iorb_horizon,false,2026-10-09,true
+liquidity.srf,0.003,$B,2026-10-08,New York Fed standing repo operation results,daily,directly_verified,available,2026-10-11T01:03:32.137894+00:00,checks_passed,2026-10-08,common_sofr_iorb_horizon,false,2026-10-09,true

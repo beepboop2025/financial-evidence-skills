@@ -1,0 +1,10 @@
+ESAF: net NPA ratio fell, gross ratio stayed at 5.4%
+Edition: 2026-10-11-bank-disclosures; published 2026-10-11T01:09:33.929823+00:00.
+Reported periods: 31 March and 30 June 2026. Source presentation: 31 July 2026.
+Source: ESAF Small Finance Bank, Q1 FY2027 investor presentation, dated 31 July 2026. Chart and extraction: LiquiLens, 11 October 2026.
+One covered issuer and historical March/June disclosures; not current liquidity, a representative bank sample, or a rating. The source PDF was checked via official web text; its reported hash was not independently verified.
+Issuer documents, branding and third-party material retain their own rights; no licence to redistribute them is granted by this brief. Link to the original filing. No original issuer PDF is included in this kit.
+Data, original sources and methodology: https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/
+Reuse terms: https://beepboop2025.github.io/financial-evidence-skills/media/rights.html
+Original source: https://www.esaf.bank.in/wp-content/uploads/2026/07/Investor-Presentation-on-the-Unaudited-Standalone-Financial-Results-of-the-Bank-for-the-quarter-ended-June-30-2026.pdf
+Check corrections before reuse: https://beepboop2025.github.io/financial-evidence-skills/media/corrections.html

@@ -3,8 +3,8 @@
   "agent_version": "1.0.0",
   "screened_at": "2026-09-30",
   "screened_accessible_repositories": 35,
-  "mcp": "https://api.seiche.info/openbb/mcp",
-  "rest_review": "https://api.seiche.info/openbb/api/v1/agent-review",
+  "mcp": "https://agents.seiche.info/products/financial-evidence/mcp",
+  "rest_review": "https://agents.seiche.info/v1/research/api/v1/agent-review",
   "frameworks": [
     "langchain",
     "crewai",

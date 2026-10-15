@@ -1,6 +1,6 @@
 {
   "schema": "financial-evidence.platform-routes.v1",
-  "reviewed_date": "2026-10-11",
+  "reviewed_date": "2026-10-15",
   "scope": "Installation assets, research companions and provider evaluation routes. Presence here does not imply endorsement, a marketplace listing or customer adoption.",
   "routes": [
     {
@@ -14,10 +14,10 @@
         "Undertow"
       ],
       "audience": "Macro, treasury and quantitative analysts",
-      "workflow": "Add the hosted Research Desk to an existing OpenBB Workspace.",
+      "workflow": "Inspect the hosted Research Desk integration and connect it when supported Workspace access is available during the BQ transition.",
       "artifact_label": "Custom backend",
       "artifact_url": "../tools/#openbb",
-      "status": "Hosted metadata checked; native Workspace test pending.",
+      "status": "Hosted HTTP/MCP contract checked on 11 October 2026. Official Marketplace app and MCP application submitted with a first-year fee-waiver request; approval and public listing remain pending. OpenBB login redirects to BQ Workspace Coming Soon, preventing hosted native acceptance through that route.",
       "official_source": "https://docs.openbb.co/workspace/developers/data-integration",
       "verified_customer_adoption": null
     },
@@ -39,6 +39,63 @@
       "verified_customer_adoption": null
     },
     {
+      "id": "google-sheets",
+      "name": "Google Sheets",
+      "category": "Analyst spreadsheet",
+      "priority": "P1",
+      "products": [
+        "Financial Evidence",
+        "Seiche",
+        "LiquiLens",
+        "Undertow"
+      ],
+      "audience": "Analysts and small research teams using shared spreadsheets",
+      "workflow": "Paste one custom function and request a bounded page of funding, bank or liquidity evidence. Change a referenced refresh cell for another review.",
+      "artifact_label": "Google Sheets setup and script",
+      "artifact_url": "../tools/#sheets",
+      "status": "Source and local contract tests available. Google-hosted execution and Workspace Marketplace acceptance remain unverified.",
+      "official_source": "https://developers.google.com/apps-script/guides/sheets/functions",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "colab",
+      "name": "Google Colab / Jupyter",
+      "category": "Research notebook",
+      "priority": "P1",
+      "products": [
+        "Financial Evidence",
+        "Seiche",
+        "LiquiLens",
+        "Undertow"
+      ],
+      "audience": "Researchers, students and analysts using Python notebooks",
+      "workflow": "Open a notebook, run a source-linked research capture, and retain JSON, spreadsheet-safe CSV and a checksum receipt.",
+      "artifact_label": "Open in Colab",
+      "artifact_url": "https://colab.research.google.com/github/beepboop2025/financial-evidence-skills/blob/main/docs/tools/research_desk.ipynb",
+      "status": "All four cells and three complete capture exports verified in a Google Colab CPU runtime on 11 October 2026. Each task reports source failures separately; only complete captures are exported. A Google account may be required. No independent adoption is claimed.",
+      "official_source": "https://research.google.com/colaboratory/faq.html",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "node-red",
+      "name": "Node-RED",
+      "category": "Workflow automation",
+      "priority": "P1",
+      "products": [
+        "Financial Evidence",
+        "Seiche",
+        "LiquiLens",
+        "Undertow"
+      ],
+      "audience": "Researchers and automation builders using visual flows",
+      "workflow": "Import a core-node flow and trigger one bounded funding, bank or liquidity research preview manually. Inspect its sources, status and pagination in Debug.",
+      "artifact_label": "Import the research flow",
+      "artifact_url": "../automations/node-red/",
+      "status": "Downloadable flow verified in native Node-RED 5.0.8: all three manual tasks and two error paths passed. Flow Library publication and independent adoption remain unverified.",
+      "official_source": "https://nodered.org/docs/user-guide/editor/workspace/import-export",
+      "verified_customer_adoption": null
+    },
+    {
       "id": "langchain",
       "name": "LangChain / LangGraph",
       "category": "Agent framework",
@@ -52,8 +109,8 @@
       "audience": "Developers of finance research agents",
       "workflow": "Install the public toolkit and run a bounded evidence task.",
       "artifact_label": "Published package",
-      "artifact_url": "https://pypi.org/project/langchain-financial-evidence/0.1.0/",
-      "status": "Native graph and tool execution validated; upstream directory review remains pending.",
+      "artifact_url": "https://pypi.org/project/langchain-financial-evidence/0.1.1/",
+      "status": "Version 0.1.1 is public on PyPI; a fresh installation passed all three central tools. Upstream directory review remains separate.",
       "official_source": "https://docs.langchain.com/oss/python/langchain/mcp",
       "verified_customer_adoption": null
     },
@@ -86,10 +143,10 @@
         "LiquiLens"
       ],
       "audience": "Finance operations and automation builders",
-      "workflow": "Install the published Financial Evidence community node in a permitted self-hosted n8n instance and run a bounded research page.",
-      "artifact_label": "Published npm package and install guide",
+      "workflow": "Download the hosted 0.1.1 candidate for a permitted self-hosted n8n instance and run a bounded research page.",
+      "artifact_label": "Published n8n 0.1.1 package",
       "artifact_url": "native-packages.md#n8n",
-      "status": "Version 0.1.0 is public on npm with verified provenance and anonymous installation. The exact archive passed native n8n 2.42.6 execution; n8n Creator verification remains pending.",
+      "status": "Version 0.1.1 is published on npm; its tarball again matched the retained native receipt on 15 October 2026. n8n Creator verification and official directory acceptance remain pending.",
       "official_source": "https://docs.n8n.io/connect/create-nodes/deploy-your-node/submit-community-nodes.md",
       "verified_customer_adoption": null
     },
@@ -105,9 +162,9 @@
       ],
       "audience": "Analysts building internal AI applications",
       "workflow": "Package the native tools and test in your Dify workspace.",
-      "artifact_label": "Download plugin candidate",
-      "artifact_url": "native-packages.md#dify",
-      "status": "Three bounded Dify Cloud draft workflows passed. Marketplace PR 3278 is submitted; review and publication remain pending.",
+      "artifact_label": "Install verified Dify plugin 0.1.1",
+      "artifact_url": "https://marketplace.dify.ai/plugin/beepboop2025/financial_evidence",
+      "status": "Dify Marketplace 0.1.1 publicly verified on 15 October 2026 after upstream approval. Native installed-archive execution remains untested. Separate hosted 0.1.2 is a qualified download candidate, not the marketplace version.",
       "official_source": "https://docs.dify.ai/en/develop-plugin/publishing/standards/contributor-covenant-code-of-conduct",
       "verified_customer_adoption": null
     },
@@ -143,7 +200,12 @@
       "artifact_url": "agent-clients.md#chatgpt--codex",
       "status": "Official directory publication and identity verification remain pending.",
       "official_source": "https://developers.openai.com/plugins/deploy/submission",
-      "verified_customer_adoption": null
+      "verified_customer_adoption": null,
+      "search_terms": [
+        "MCP",
+        "remote",
+        "plugin"
+      ]
     },
     {
       "id": "copilot",
@@ -624,6 +686,63 @@
       "artifact_url": "https://huggingface.co/spaces/oldmacdonaldhadafarm/financial-evidence-packet-inspector",
       "status": "Public Space checked running; this does not establish independent use.",
       "official_source": "https://huggingface.co/docs/hub/spaces-overview",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "activepieces",
+      "name": "Activepieces",
+      "category": "Workflow automation",
+      "workflow": "Build catalog discovery and bounded research-page actions into a visual workflow; retain sources, clocks and unavailable values.",
+      "artifact_label": "Published npm package and native receipt",
+      "artifact_url": "activepieces.md",
+      "status": "Version 0.1.0 is public on npm. Registry bytes match the archive installed and executed in Activepieces 0.92.3; anonymous installation and registry-signature checks passed. Browser interaction, cloud-account availability and upstream acceptance remain unverified.",
+      "official_source": "https://www.activepieces.com/docs/build-pieces/sharing-pieces/community",
+      "priority": "P1",
+      "products": [
+        "Financial Evidence",
+        "Seiche",
+        "LiquiLens",
+        "Undertow"
+      ],
+      "audience": "Developers and analysts building source-linked research workflows",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "insomnia",
+      "name": "Insomnia MCP client",
+      "category": "Developer client",
+      "workflow": "Open the research connection in Insomnia, review the remote server and inspect the source-linked tools.",
+      "artifact_label": "Open connection options",
+      "artifact_url": "../connect/?client=mcp",
+      "status": "Official MCP import-link format and endpoint parity validated. Insomnia requires sign-in; native application import is not yet verified.",
+      "official_source": "https://developer.konghq.com/insomnia/run-in-insomnia/",
+      "priority": "P1",
+      "products": [
+        "Financial Evidence",
+        "Seiche",
+        "LiquiLens",
+        "Undertow"
+      ],
+      "audience": "Developers and analysts building source-linked research workflows",
+      "verified_customer_adoption": null
+    },
+    {
+      "id": "cursor-official",
+      "name": "Cursor official plugin marketplace",
+      "category": "Editor plugin",
+      "workflow": "Use the public task plugin and hosted research tools, or hand off the MCP URL directly to Cursor for connection review.",
+      "artifact_label": "Cursor setup and plugin source",
+      "artifact_url": "agent-clients.md#cursor",
+      "status": "Official publisher application acknowledged on 15 October 2026; marketplace review pending. Direct MCP handoff is available separately.",
+      "official_source": "https://cursor.com/docs/reference/plugins",
+      "priority": "P1",
+      "products": [
+        "Financial Evidence",
+        "Seiche",
+        "LiquiLens",
+        "Undertow"
+      ],
+      "audience": "Developers and analysts building source-linked research workflows",
       "verified_customer_adoption": null
     }
   ]

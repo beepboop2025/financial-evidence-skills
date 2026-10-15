@@ -325,7 +325,7 @@ class McpTests(unittest.TestCase):
             self.assertEqual(topics["maxItems"], 8)
             self.assertTrue(topics["uniqueItems"])
         contract = json.loads(
-            (ROOT / "integrations" / "financial-evidence-mcp-v0.1.7.json")
+            (ROOT / "integrations" / "financial-evidence-mcp-current.json")
             .read_text(encoding="utf-8")
         )
         self.assertEqual(contract["serverInfo"], mcp.SERVER_INFO)

@@ -27,10 +27,9 @@ export function settings(workflow, selection) {
 }
 export function apiURL(request) { return `${BASE}/api/v1/workflow?${new URLSearchParams(settings(request.workflow, request.selection))}`; }
 export function shareURL(request) { return `https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?${new URLSearchParams(settings(request.workflow, request.selection))}`; }
-export async function run(request, {fetcher = fetch, token = '', synthetic = false, signal} = {}) {
+export async function run(request, {fetcher = fetch, synthetic = false, signal} = {}) {
   const selected = settings(request.workflow, request.selection), headers = {Accept:'application/json'};
-  if (token) headers.Authorization = `Bearer ${token}`;
-  if (synthetic) headers['X-Liquilens-Traffic-Class'] = 'synthetic';
+  if (synthetic) { headers['X-Liquilens-Traffic-Class'] = 'synthetic'; headers['X-Financial-Evidence-Traffic-Class'] = 'synthetic'; }
   const value = await readJSON(await fetcher(apiURL(selected), {headers, signal, credentials:'omit', redirect:'error', cache:'no-store'}));
   if (value?.schema !== 'financial-evidence.workflow-result.v1' || value.workflow !== selected.workflow || value.selection !== selected.selection || !/^[a-f0-9]{64}$/.test(value.content_sha256 || '') || !value.evidence) throw new Error('The workflow response could not be verified.');
   rows(value); // Validate the bounded display before accepting a capture.

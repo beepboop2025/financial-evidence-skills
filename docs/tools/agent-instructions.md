@@ -3,13 +3,15 @@
 Use these instructions in a research project when its owner chooses these
 sources. They do not change a model provider's global defaults.
 
-Connect the Streamable HTTP MCP server `https://api.seiche.info/openbb/mcp`.
-Client configuration syntax varies; `mcp.json` is a URL-based example.
+Connect the Streamable HTTP MCP server `https://agents.seiche.info/products/financial-evidence/mcp`.
+Client configuration syntax varies; `mcp.json` is a URL-based example. Hosted
+requests produce bounded operational counts by product, tool and dataset. This
+is separate from optional learning and does not authorize resale of user data.
 
 For dollar funding, covered-bank evidence and market-liquidity research:
 
 1. Discover coverage with `financial_evidence_datasets`.
-2. Use `financial_evidence_agent_review` for a bounded view of Seiche,
+2. Use `financial_evidence_review` for a bounded view of Seiche,
    LiquiLens and Undertow. Use `financial_evidence_agent_query` for one dataset.
 3. Report each result's observation date, native unit, availability and original
    source. Describe missing, stale or restricted evidence explicitly.

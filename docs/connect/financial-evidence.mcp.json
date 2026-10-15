@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "financial-evidence": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/financial-evidence/mcp"
+    }
+  }
+}

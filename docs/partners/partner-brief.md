@@ -25,10 +25,10 @@ The product does not execute trades or make lending decisions.
   Postman, Bruno, OpenAPI/Insomnia and HTTP-client imports.
 - [Research toolkit](../tools/): complete captures for Python, notebooks,
   OpenBB, Excel/Power Query and research agents.
-- Hosted REST: `https://api.seiche.info/openbb`.
-- Hosted MCP: `https://api.seiche.info/openbb/mcp`.
-- [Release identity](https://api.seiche.info/openbb/api/v1/release) and
-  [current source status](https://api.seiche.info/openbb/api/v1/sources).
+- Hosted REST: `https://agents.seiche.info/v1/research`.
+- Hosted MCP: `https://agents.seiche.info/products/financial-evidence/mcp`.
+- [Release identity](https://agents.seiche.info/v1/research/api/v1/release) and
+  [current source status](https://agents.seiche.info/v1/research/api/v1/sources).
 - [FDC3 reference application](../integrations/fdc3/evidence-inspector/).
 - [Source, tests and release history](https://github.com/beepboop2025/financial-evidence-skills).
 - [Dated source review](source-review-2026-10-07.json): nine source routes,

@@ -18,7 +18,7 @@ Operator: **LIQUILENS PRIVATE LIMITED**. Public reads require no API key.
    not establish fresh sources, redistribution permission or financial suitability.
    Check the actual source clocks and status; missing or held values stay null.
 
-The fifteen examples cover seven datasets, five discovery/review requests and
+The sixteen examples cover seven datasets, six discovery/review requests and
 three guided workflows: **Funding watch**, **Institution watch** and **BTC exit check**.
 The workflow responses retain the original product document, source dates,
 coverage gaps and content digest. `prepared_response` means evidence was prepared,
@@ -27,8 +27,11 @@ not that a customer task was completed or a financial action approved.
 [Try the same workflows in your browser](../start/workflows.html), or use the
 [Python starter](../start/AUTOMATE.md) in an existing agent or scheduler.
 They do not create accounts, subscribe users, send messages or execute trades.
-Requests go directly to `https://api.seiche.info/openbb`. No intermediary or
-marketplace key is embedded. Never add a personal key to a public collection.
+Requests use the central hosted service at
+`https://agents.seiche.info/v1/research`. No marketplace key is embedded.
+The service counts bounded product/tool/dataset demand separately from optional
+learning. Operational counters do not retain private selectors, prompts, keys
+or response bodies. There is no automatic native-origin fallback. Never add a personal key to a public collection.
 
 For operator verification, set `traffic_class=synthetic`. This label helps
 identify tests; it is not a verified identity or an attribution system.
@@ -36,8 +39,9 @@ Bruno: `bru run --env-var traffic_class=synthetic`.
 Newman: `newman run financial-evidence.postman_collection.json --env-var traffic_class=synthetic`.
 No polling, monitors or scheduled collection runs are enabled by importing.
 
-The OpenAPI file preserves the observed service contract, with an absolute
-public server URL and discovery metadata. Its original retrieval time and hash
+The OpenAPI file contains only the reviewed hosted GET operations, derived
+from an observed native service contract. It uses an absolute central server URL
+and records this transformation explicitly. Its original retrieval time and hash
 are in `x-source-observation`; they describe the API schema, not data freshness.
 `manifest.json` records every import asset's SHA-256. Rebuild with
 `python3 scripts/build_api_kit.py` from the repository root.

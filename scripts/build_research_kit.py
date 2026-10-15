@@ -11,6 +11,8 @@ KIT = ROOT / "docs/tools"
 FILES = (
     "research_client.py", "research_desk.ipynb", "FinancialEvidenceRows.pq",
     "mcp.json", "agent-instructions.md", "setup.md", "vendor-readiness.md",
+    "FinancialEvidenceSheets.gs", "google-sheets.md", "mcp.remote.vscode.json",
+    "mcp.remote.cursor.json",
 )
 
 

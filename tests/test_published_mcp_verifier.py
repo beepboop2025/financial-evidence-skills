@@ -1,5 +1,6 @@
 """Publication acceptance must distinguish validation from failed retrieval."""
 
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -27,9 +28,16 @@ class PublishedMcpVerifierTests(unittest.TestCase):
             command, 0, "".join(json.dumps(item) + "\n" for item in responses if item), "",
         )
 
+    def test_default_published_contract_remains_the_unchanged_historical_release(self):
+        self.assertEqual(verifier.CONTRACT.name, "financial-evidence-mcp-v0.1.7.json")
+        self.assertEqual(hashlib.sha256(verifier.CONTRACT.read_bytes()).hexdigest(), "37a30178ec7f45737a7ce1ee7f39d3da7c2433a5c2179eee3ea98073abe9670a")
+        contract = json.loads(verifier.CONTRACT.read_text())
+        fetch = next(tool for tool in contract["tools"] if tool["name"] == "financial_evidence_fetch")
+        self.assertEqual(fetch["inputSchema"]["properties"]["max_bytes"]["default"], 1_048_576)
+
     def test_strict_protocol_accepts_only_expected_validation_errors(self):
         with patch.object(verifier.subprocess, "run", side_effect=self.responses):
-            self.assertEqual(verifier.verify(["test-artifact"])["status"], "PASS")
+            self.assertEqual(verifier.verify(["test-artifact"], contract_path=ROOT / "integrations/financial-evidence-mcp-current.json")["status"], "PASS")
 
     def test_unavailable_fetch_is_not_argument_validation(self):
         def unavailable(command, **kwargs):
@@ -45,7 +53,7 @@ class PublishedMcpVerifierTests(unittest.TestCase):
 
         with patch.object(verifier.subprocess, "run", side_effect=unavailable):
             with self.assertRaises(AssertionError):
-                verifier.verify(["test-artifact"])
+                verifier.verify(["test-artifact"], contract_path=ROOT / "integrations/financial-evidence-mcp-current.json")
 
 
 if __name__ == "__main__":

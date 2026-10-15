@@ -1,4 +1,4 @@
-version: 0.1.1
+version: 0.1.2
 type: plugin
 author: beepboop2025
 name: financial_evidence
@@ -6,7 +6,7 @@ repo: https://github.com/beepboop2025/financial-evidence-skills
 contact: mrinal@liquilens.in
 network:
   domains:
-    - api.seiche.info
+    - agents.seiche.info
 label:
   en_US: Financial Evidence
 description:

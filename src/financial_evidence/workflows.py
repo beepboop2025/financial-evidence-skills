@@ -8,9 +8,10 @@ import math
 import re
 import time
 from datetime import datetime, timezone
-from urllib.parse import urlencode
+from urllib.parse import urlencode, urlsplit, parse_qs
 
 from .agents import EvidenceAgentClient
+from .hosted import PLATFORM_URL
 
 WORKFLOWS = ("funding", "institutions", "exit")
 DEFAULTS = {"funding": "USD", "institutions": "au-sfb,bajaj-finance", "exit": "10000,100000"}
@@ -44,11 +45,24 @@ def fetch_document(url, *, synthetic=False):
     """Fixed URLs only; bounded bytes, no redirects, no caller credentials."""
     import httpx
 
-    headers = {"Accept": "application/json, text/event-stream", "User-Agent": "FinancialEvidenceWorkflows/1.0"}
+    parsed = urlsplit(url)
+    route = url.split("?", 1)[0]
+    paths = {MONITOR: ("liquilens.institution_watchlist", "slugs", "institutions"),
+             EXIT_PUBLIC: ("undertow.exit_check", "sizes_usd", "exit")}
+    if route not in paths or parsed.fragment:
+        raise ValueError("Workflow source is outside the hosted catalog")
+    dataset, key, workflow = paths[route]
+    query = parse_qs(parsed.query, keep_blank_values=True, strict_parsing=True)
+    if set(query) != {key} or len(query[key]) != 1:
+        raise ValueError("Workflow source query is outside the bounded contract")
+    selected = selection_for(workflow, query[key][0])
+    transport_url = PLATFORM_URL + "/v1/data/" + dataset + "?" + urlencode({key: selected})
+    headers = {"Accept": "application/json", "Accept-Encoding": "identity", "User-Agent": "FinancialEvidenceWorkflows/1.0",
+               "X-Financial-Evidence-Traffic-Class": "synthetic" if synthetic else "unverified"}
     if synthetic:
         headers["X-Liquilens-Traffic-Class"] = "synthetic"
     started = time.monotonic()
-    with httpx.stream("GET", url, headers=headers, timeout=10, follow_redirects=False) as response:
+    with httpx.stream("GET", transport_url, headers=headers, timeout=10, follow_redirects=False) as response:
         response.raise_for_status()
         if "application/json" not in response.headers.get("content-type", ""):
             raise ValueError("Unexpected upstream content type")

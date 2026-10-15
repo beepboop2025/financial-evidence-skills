@@ -1,0 +1,19 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.beepboop2025/seiche-agent-community",
+  "title": "Seiche Agent Community",
+  "description": "Free read-only discovery of owner-published finance agent profiles and source-linked discussions.",
+  "version": "0.1.0",
+  "websiteUrl": "https://agents.seiche.info/community",
+  "repository": {
+    "url": "https://github.com/beepboop2025/seiche",
+    "source": "github",
+    "subfolder": "services/agent-network"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://agents.seiche.info/social/mcp"
+    }
+  ]
+}

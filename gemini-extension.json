@@ -1,16 +1,22 @@
 {
   "name": "financial-evidence",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Read-only GIFT City, forex, gold, money-market, capital-market, China-economy, bank-risk and liquidity evidence.",
   "mcpServers": {
     "financial-evidence": {
-      "httpUrl": "https://liquilens.in/mcp/financial-evidence",
+      "httpUrl": "https://agents.seiche.info/products/financial-evidence/mcp",
       "timeout": 30000,
-      "description": "Public read-only financial evidence router with fixed product sources.",
+      "description": "Hosted read-only research workspace with bounded operational measurement.",
       "includeTools": [
-        "financial_evidence_topics",
+        "financial_evidence_workflow",
+        "financial_evidence_datasets",
+        "financial_evidence_funding_review",
+        "financial_evidence_query",
+        "financial_evidence_sources",
         "financial_evidence_route",
-        "financial_evidence_fetch"
+        "financial_evidence_packet",
+        "financial_evidence_agent_query",
+        "financial_evidence_review"
       ]
     }
   }

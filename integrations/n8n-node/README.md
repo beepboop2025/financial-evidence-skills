@@ -1,8 +1,9 @@
 # Financial Evidence for n8n
 
 Get one page of source-cited bank risk, funding, market-liquidity or source-health
-research. The public API needs no credentials. This package is a local candidate;
-it is not yet published on npm or verified by n8n.
+research through `https://agents.seiche.info/v1/research`. The public API needs
+no credentials. Version 0.1.1 is a new hosted candidate; the earlier published
+0.1.0 package and its n8n review remain separate.
 
 Build with Node 22.16 or newer within Node 22 or 24:
 `npm ci --ignore-scripts --legacy-peer-deps && npm run build && npm run lint && npm test`.
@@ -39,11 +40,18 @@ Before public verification: test inside n8n, publish to npm through GitHub Actio
 with provenance, and submit the exact package in the n8n Creator Portal.
 `native-marketplace-build.yml` retains native execution and package evidence.
 `native-marketplace-npm-publish.yml` defaults to a dry run and requires the exact
-reviewed main SHA and package version. Its publish switch uses an npm trusted
-publisher configured for this repository and that workflow filename. The initial
+reviewed main SHA and package version. Its staging mode uses an npm trusted
+publisher configured for this repository and that workflow filename. Publishing
+a staged version requires a separate owner approval with npm 2FA. The initial
 package/account setup is a separate publisher step; this workflow does not
 create an npm account, claim verification, or submit the Creator Portal form.
 No runtime dependencies are bundled. Source data retains its publisher rights.
 
 Docs: https://beepboop2025.github.io/financial-evidence-skills/start/
 Support: mrinal@liquilens.in — LIQUILENS PRIVATE LIMITED.
+
+Current source routes requests through `https://agents.seiche.info`. Hosted
+operational measurement counts bounded product/tool/dataset demand; optional
+learning is separate. Operational counters exclude private selector values,
+prompts, credentials and response bodies. Previously published versioned
+packages keep their original transport until a new package is released.

@@ -27,6 +27,19 @@ def capture():
 
 
 class ResearchWatchTests(unittest.TestCase):
+    def test_starter_uses_central_workflow_and_labels_operator_verification(self):
+        from email.message import Message
+        response = io.BytesIO(watch.encoded(capture()))
+        response.headers = Message()
+        response.headers["Content-Type"] = "application/json"
+        with patch.object(watch, "build_opener") as opener:
+            opener.return_value.open.return_value = response
+            self.assertEqual(watch.fetch_workflow("funding", verification=True), capture())
+            request = opener.return_value.open.call_args.args[0]
+        self.assertEqual(request.full_url, "https://agents.seiche.info/v1/research/api/v1/workflow?workflow=funding&selection=USD")
+        self.assertEqual(request.get_header("X-financial-evidence-traffic-class"), "synthetic")
+        self.assertIsNone(request.get_header("Authorization"))
+
     def test_original_response_roundtrip_and_tampering(self):
         value = capture()
         self.assertEqual(watch.validate(watch.encoded(value)), value)

@@ -8,18 +8,19 @@
   <link rel="canonical" href="https://beepboop2025.github.io/financial-evidence-skills/tools/">
   <link rel="stylesheet" href="../styles.css">
   <style>.hero{min-height:auto}.hero main{padding:4rem 0}h1{max-width:20ch;font-size:clamp(2.7rem,6vw,5rem)}.section{padding-block:3.5rem}.section h2{max-width:28ch;font-size:clamp(2rem,4vw,3rem)}nav div{flex-wrap:wrap}.steps{padding-left:1.25rem}.steps li{margin:.7rem 0}.note{color:var(--muted-ink);max-width:65ch}.tool-code{overflow-wrap:anywhere}.actions{margin-bottom:1rem}a:focus-visible{outline:3px solid #438500;outline-offset:4px}</style>
+<script type="module" src="../experience.mjs"></script>
 </head>
 <body>
   <header class="hero">
-    <nav aria-label="Main navigation"><a class="brand" href="../">Financial Evidence</a><div><a href="#openbb">OpenBB</a><a href="#python">Python</a><a href="#excel">Excel</a><a href="#agents">Agents</a><a href="../platforms/">All platforms</a><a href="../api/">API clients</a></div></nav>
+    <nav aria-label="Main navigation"><a class="brand" href="../">Financial Evidence</a><div><a href="#openbb">OpenBB</a><a href="#python">Python</a><a href="#excel">Excel</a><a href="#sheets">Google Sheets</a><a href="#agents">Agents</a><a href="../platforms/">All platforms</a><a href="../api/">API clients</a></div></nav>
     <main>
       <p class="eyebrow">Your daily research desk</p>
       <h1>Bring the evidence into the tools you already use.</h1>
       <p class="lede">Review bank disclosures with LiquiLens, dollar funding with Seiche, and market liquidity with Undertow. Keep the date, source and coverage beside each result.</p>
       <div class="actions"><a class="button primary" href="../start/">Try in your browser</a><a class="button" href="#openbb">Connect OpenBB</a><a class="button" href="research-kit.zip" download>Download the research kit</a><a class="button" href="#agents">Connect your agent</a></div>
       <p>No financial-data API key is needed for these public research endpoints. Your analysis platform may require its own account.</p>
-    </main>
-  </header>
+    <section class="section"><h2>Move an existing setup.</h2><p><a href="../HOSTED_MIGRATION.md">Review an older connection</a> or download the <a href="../api/noisefloor-hosted/">current hosted NoiseFloor kit</a>. Current requests use our servers; archived versions retain their original configuration.</p></section></main>
+  </header><aside class="quick-start-ribbon" data-audience-entry><p><strong>One task, your tools.</strong> Open a public example, then use the same evidence through API or MCP.</p><a href="../connect/">Choose your connection</a></aside>
   <section class="section" aria-labelledby="tasks">
     <p class="eyebrow">Start with a useful question</p><h2 id="tasks">Three tasks. One reusable setup.</h2>
     <div class="grid">
@@ -32,9 +33,9 @@
   <section class="section muted" aria-labelledby="openbb">
     <p class="eyebrow">OpenBB Workspace</p><h2 id="openbb">Add the desk once. Return to it for each review.</h2>
     <ol class="steps"><li>In OpenBB Workspace, open <strong>Add data</strong> and add a custom backend.</li><li>Use this backend URL:</li></ol>
-    <pre><code>https://api.seiche.info/openbb</code></pre>
+    <pre><code>https://agents.seiche.info/v1/research</code></pre>
     <p>Select <strong>Financial Evidence Research Desk</strong> under My Apps. Use the Bank Research, Funding &amp; Capital, Market Liquidity and Source Audit tabs. Save your preferred layout in your own workspace.</p>
-    <p><a href="https://api.seiche.info/openbb/docs">API and dataset documentation</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/blob/main/integrations/openbb/README.md">Python extension setup for OpenBB V4 and V5</a></p>
+    <p><a href="https://agents.seiche.info/v1/research/docs">API and dataset documentation</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/blob/main/integrations/openbb/README.md">Python extension setup for OpenBB V4 and V5</a></p>
     <p class="note">This is a public custom backend. Inclusion in OpenBB's curated directory is a separate review.</p>
   </section>
   <section class="section" aria-labelledby="python">
@@ -42,7 +43,8 @@
     <p>Download <a href="research_client.py" download>research_client.py</a>. Python 3.10 or newer is sufficient; the client has no package dependencies. It follows pagination, checks that source documents remain the same and saves JSON, CSV and a checksum receipt.</p>
     <pre><code>python3 research_client.py desk --output captures/first-review
 python3 research_client.py bank_risk --entity ESAF --output captures/esaf-review</code></pre>
-    <p>The first command creates separate funding, bank and liquidity tables. For notebooks, keep the client beside <a href="research_desk.ipynb" download>research_desk.ipynb</a>. Open the notebook and run the task you need.</p>
+    <p>The first command creates separate funding, bank and liquidity tables. For notebooks, <a href="https://colab.research.google.com/github/beepboop2025/financial-evidence-skills/blob/main/docs/tools/research_desk.ipynb">open the research desk in Colab</a> or <a href="research_desk.ipynb" download>download the notebook</a>. It loads the pinned helper automatically and verifies its checksum. Colab may require your Google account to run cells.</p>
+    <p>All four notebook cells and three capture exports passed a Google Colab CPU runtime check on 11 October 2026. If one source is incomplete, its task shows an error while other tasks continue. <a href="../platforms/colab-verification-20261011.json">Read the verification receipt</a>.</p>
     <pre><code>from research_client import collect
 funding = collect("money_markets", entity="USD")
 rows = funding["results"]</code></pre>
@@ -53,17 +55,26 @@ FROM read_csv('captures/first-review/money_markets/rows.csv', all_varchar=true);
   </section>
   <section class="section muted" aria-labelledby="excel">
     <p class="eyebrow">Excel · Power BI</p><h2 id="excel">Refresh a table with its sources attached.</h2>
-    <ol class="steps"><li>Download <a href="FinancialEvidenceRows.pq" download>FinancialEvidenceRows.pq</a>.</li><li>Create a blank Power Query, paste the function into Advanced Editor and name it <code>FinancialEvidenceRows</code>.</li><li>Choose <strong>Anonymous</strong> authentication for <code>https://api.seiche.info</code>.</li><li>Invoke a task below and load the table. Refresh when you need a new observation.</li></ol>
+    <ol class="steps"><li>Download <a href="FinancialEvidenceRows.pq" download>FinancialEvidenceRows.pq</a>.</li><li>Create a blank Power Query, paste the function into Advanced Editor and name it <code>FinancialEvidenceRows</code>.</li><li>Choose <strong>Anonymous</strong> authentication for <code>https://agents.seiche.info</code>.</li><li>Invoke a task below and load the table. Refresh when you need a new observation.</li></ol>
     <pre><code>FinancialEvidenceRows("money_markets", "USD")
 FinancialEvidenceRows("bank_risk", "ESAF")
 FinancialEvidenceRows("market_liquidity")</code></pre>
     <p>The function returns up to 2,000 rows and refuses to silently truncate a larger result. For larger histories or restricted network environments, import the Python client's saved CSV instead.</p>
   </section>
+  <section class="section" aria-labelledby="sheets">
+    <p class="eyebrow">Google Sheets</p><h2 id="sheets">Bring a cited research page into your spreadsheet.</h2>
+    <p>Paste the <a href="FinancialEvidenceSheets.gs" download>Apps Script function</a> into Extensions → Apps Script, save it, put the number <code>1</code> in cell <code>A1</code>, then enter the formula below in <code>A3</code>. Leave its output area empty. Keep the source, dates and availability columns with the values.</p>
+    <pre><code>=FINANCIAL_EVIDENCE("money_markets", "USD", 20, 0, A1)</code></pre>
+    <p>Change the plain value in A1 when you want a fresh request. The function retrieves one bounded page; its status rows show whether more rows exist. <a href="google-sheets.md">Setup, examples and limits</a>.</p>
+    <p class="note">This is a copy-and-paste script, not a Google Workspace Marketplace add-on. Google-hosted execution remains to be verified; local contract tests are recorded separately.</p>
+  </section>
   <section class="section" aria-labelledby="agents">
     <p class="eyebrow">MCP · Research agents</p><h2 id="agents">Give the agent a clear research starting point.</h2>
-    <p>Add a Streamable HTTP MCP connection with this URL:</p>
-    <pre><code>https://api.seiche.info/openbb/mcp</code></pre>
-    <p>Download <a href="mcp.json" download>example configuration</a> and <a href="agent-instructions.md" download>project instructions</a>. Start with <code>financial_evidence_datasets</code>, then <code>financial_evidence_agent_review</code>. On a later review, pass the previous revision to identify changed published evidence.</p>
+    <div class="actions"><a class="button" href="vscode:mcp/install?%7B%22name%22%3A%22financial-evidence%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fagents.seiche.info%2Fproducts%2Ffinancial-evidence%2Fmcp%22%7D">Connect Research Desk in VS Code</a>
+        <a class="button" href="cursor://anysphere.cursor-deeplink/mcp/install?name=financial-evidence&amp;config=eyJ0eXBlIjoiaHR0cCIsInVybCI6Imh0dHBzOi8vYWdlbnRzLnNlaWNoZS5pbmZvL3Byb2R1Y3RzL2ZpbmFuY2lhbC1ldmlkZW5jZS9tY3AifQ==">Connect Research Desk in Cursor</a></div><p>Manual setup: download the <a href="mcp.remote.vscode.json" download>VS Code configuration</a> or <a href="mcp.remote.cursor.json" download>Cursor configuration</a>. Merge its server entry into <code>.vscode/mcp.json</code> or <code>.cursor/mcp.json</code> in your project, keeping your existing servers.</p><p>The buttons and downloads connect the same central nine-tool Research Desk without a local Python install. Review the installation in your client. Your AI client and model may require their own account. The Streamable HTTP MCP URL is:</p>
+    <pre><code>https://agents.seiche.info/products/financial-evidence/mcp</code></pre>
+    <p>The legacy endpoint <code>https://liquilens.in/mcp/financial-evidence</code> remains available for clients that require the separate three-tool topic router. Its tool names and packet contract differ from this workspace.</p>
+    <p>Download <a href="mcp.json" download>example configuration</a> and <a href="agent-instructions.md" download>project instructions</a>. Start with <code>financial_evidence_datasets</code>, then <code>financial_evidence_review</code>. On a later review, pass the previous revision to identify changed published evidence.</p>
     <blockquote>Discover coverage, then review USD funding, the covered bank ESAF, and market liquidity. Cite the source, date and unit beside every observation. List gaps and the further evidence the analyst needs.</blockquote>
     <p><a href="../agents/">Native LangGraph, CrewAI, OpenAI Agents and Pydantic AI integrations</a> · <a href="../automations/">n8n and scheduled research examples</a></p>
     <p><a href="https://huggingface.co/spaces/oldmacdonaldhadafarm/financial-evidence-packet-inspector">Inspect a downloaded packet on Hugging Face</a>. The free browser-only demo reads local JSON without uploading it, and includes a clearly labelled synthetic example.</p>
@@ -74,6 +85,6 @@ FinancialEvidenceRows("market_liquidity")</code></pre>
     <p>For LSEG Workspace, FactSet and other vendor platforms, use the firm's supported external-data process or the <a href="../integrations/fdc3/evidence-inspector/">FDC3 reference app</a> where supported. Platform acceptance and entitlements remain separate from portable file compatibility.</p>
     <p><a href="vendor-readiness.md">Technical evaluation and vendor submission materials</a> · <a href="setup.md">Setup, limits and repeat-use checklist</a></p>
   </section>
-  <footer><p>Financial Evidence · Last updated 7 October 2026 · <a href="../privacy/">Privacy</a> · <a href="../support/">Support</a></p><p>Use source dates, units, availability and rights status when interpreting every row. Retrieval success does not establish freshness or suitability.</p></footer>
+  <footer><p>Financial Evidence · Last updated 11 October 2026 · <a href="../privacy/">Privacy</a> · <a href="../support/">Support</a></p><p>Use source dates, units, availability and rights status when interpreting every row. Retrieval success does not establish freshness or suitability.</p></footer>
 </body>
 </html>

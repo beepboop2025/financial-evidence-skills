@@ -18,7 +18,7 @@ from urllib.parse import urlencode
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 from uuid import uuid4
 
-BASE = "https://api.seiche.info/openbb/api/v1/workflow"
+BASE = "https://agents.seiche.info/v1/research/api/v1/workflow"
 LIMIT = 1_048_576
 DEFAULTS = {"funding": "USD", "institutions": "au-sfb,bajaj-finance", "exit": "10000,100000"}
 SCHEMAS = {"funding": "financial-evidence.agent-result.v1", "institutions": "liquilens.institution-monitoring.v1", "exit": "undertow.crypto-workbench.v1"}
@@ -91,6 +91,7 @@ def fetch_workflow(workflow, selection=None, *, verification=False):
     headers = {"Accept": "application/json", "User-Agent": "FinancialEvidenceResearchWatch/1.0"}
     if verification:
         headers["X-Liquilens-Traffic-Class"] = "synthetic"
+        headers["X-Financial-Evidence-Traffic-Class"] = "synthetic"
     request = Request(BASE + "?" + urlencode(query), headers=headers)
     started, raw = time.monotonic(), bytearray()
     with build_opener(_NoRedirect()).open(request, timeout=15) as response:

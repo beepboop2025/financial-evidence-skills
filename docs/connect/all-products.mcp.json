@@ -1,0 +1,60 @@
+{
+  "mcpServers": {
+    "seiche": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/seiche/mcp"
+    },
+    "liquilens": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/liquilens/mcp"
+    },
+    "undertow": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/undertow/mcp"
+    },
+    "palimpsest": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/palimpsest/mcp"
+    },
+    "noisefloor": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/noisefloor/mcp"
+    },
+    "narcoscope": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/narcoscope/mcp"
+    },
+    "wake": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/wake/mcp"
+    },
+    "riptide": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/riptide/mcp"
+    },
+    "myquant-editorial": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/myquant-editorial/mcp"
+    },
+    "myquant-app": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/myquant-app/mcp"
+    },
+    "trade-safety": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/trade-safety/mcp"
+    },
+    "financial-evidence": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/financial-evidence/mcp"
+    },
+    "research-data": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/research-data/mcp"
+    },
+    "seiche-market-corpus": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/seiche-market-corpus/mcp"
+    }
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "schema": "financial-evidence.release-verification.v1",
+  "version": "0.1.8",
+  "source_commit": "27d7ba5991ac57bb538770c9984c4b1d48ba790f",
+  "tag_object": "940582b3ae76b411ba695f3c11604b23c2ae794e",
+  "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.8",
+  "published_at": "2026-10-13T06:55:15Z",
+  "verification_status": "verified",
+  "workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38359207768",
+  "source_and_tag_signatures": "verified_existing_owner_SSH_policy",
+  "checksums": "verified_SHA256SUMS_and_GitHub_asset_digests",
+  "attestations": "verified_release_workflow_source_ref_and_source_digest",
+  "assets": [
+    {
+      "name": "financial_evidence-0.1.8-py3-none-any.whl",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.8/financial_evidence-0.1.8-py3-none-any.whl",
+      "sha256": "c5fd301287c9c9c34ef28fc96072dce4b9401cc667a1f11ce30abd4192d67a85",
+      "size": 159311,
+      "asset_id": 636181318,
+      "digest": "sha256:c5fd301287c9c9c34ef28fc96072dce4b9401cc667a1f11ce30abd4192d67a85"
+    },
+    {
+      "name": "financial_evidence-0.1.8.tar.gz",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.8/financial_evidence-0.1.8.tar.gz",
+      "sha256": "7165c192628555e9c76f832f2e87ad7d39d2a71530fac96b3d8dc0b7552baa91",
+      "size": 3292609,
+      "asset_id": 636181326,
+      "digest": "sha256:7165c192628555e9c76f832f2e87ad7d39d2a71530fac96b3d8dc0b7552baa91"
+    },
+    {
+      "name": "financial-evidence-0.1.8.mcpb",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.8/financial-evidence-0.1.8.mcpb",
+      "sha256": "82b49c6c396dd42ec81051d04f8500e54a7dc380385d852a53b938d1911ee39e",
+      "size": 3057131,
+      "asset_id": 636181323,
+      "digest": "sha256:82b49c6c396dd42ec81051d04f8500e54a7dc380385d852a53b938d1911ee39e"
+    },
+    {
+      "name": "financial-evidence-v0.1.8.cdx.json",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.8/financial-evidence-v0.1.8.cdx.json",
+      "sha256": "568bf4d7d38572b4ecd5a5a0d8d79e73363dea5d4a0dd532955c5e99435109b6",
+      "size": 295047,
+      "asset_id": 636181324,
+      "digest": "sha256:568bf4d7d38572b4ecd5a5a0d8d79e73363dea5d4a0dd532955c5e99435109b6"
+    },
+    {
+      "name": "SHA256SUMS",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.8/SHA256SUMS",
+      "sha256": "2a3ca00f362b3a30dcf9660fc7feaa3ad1416ce71c2c10506a92f091ad7378cb",
+      "size": 403,
+      "asset_id": 636181322,
+      "digest": "sha256:2a3ca00f362b3a30dcf9660fc7feaa3ad1416ce71c2c10506a92f091ad7378cb"
+    }
+  ],
+  "registry_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.8",
+  "registry_status": "active",
+  "registry_latest_verified": "0.1.8",
+  "oci": {
+    "image": "ghcr.io/beepboop2025/financial-evidence-skills@sha256:cddf3c8bdcbad9f5a681a1f2e0f922ab378a5af85f2d25d988af16bdd1ec0b4e",
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ],
+    "tested_platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ],
+    "runtime_check": "PASS",
+    "source_files_verified": 53,
+    "image_digest_bound_to_successful_release_build": true,
+    "signed_image_attestation": false,
+    "arm64_runtime": "PASS",
+    "consumer_workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38360583841",
+    "consumer_workflow_head": "7a95a933b954ad8da7fadd2cb8db9756d3ad1be3",
+    "consumer_jobs": [
+      {
+        "platform": "linux/amd64",
+        "job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38360583841/job/115173560888",
+        "image_id": "sha256:a737425856e090354adfa7e221aaae88f5416a94a0f619f75a3332441afec48d",
+        "status": "PASS"
+      },
+      {
+        "platform": "linux/arm64",
+        "job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38360583841/job/115173561270",
+        "image_id": "sha256:ee0719f60c28784b6e99dedce5c612185addacd34002818d95d9a64e2897272a",
+        "status": "PASS"
+      }
+    ],
+    "artifact_zip_digests_verified": true
+  },
+  "runtime_checks": {
+    "wheel": "PASS",
+    "sdist": "PASS",
+    "router_mcp": "PASS",
+    "mcpb_exact_manifest_entry": "PASS",
+    "central_cli_request": "synthetic_PASS",
+    "source_files_verified": 53,
+    "console_entrypoints_verified": 11,
+    "version": "0.1.8",
+    "tools_sha256": "078d872396724c0acaeac051385d07f35679fb5445c5cd1979f673c372ab170d",
+    "topics": 8
+  },
+  "remote_mcp": {
+    "url": "https://liquilens.in/mcp/financial-evidence",
+    "version": "0.1.8",
+    "worker_source_commit": "1219e7a5bae55fd407af7389a81fe038c55797a8",
+    "worker_version": "8f414b0b-f413-4a4e-a97d-c9dcb720217a",
+    "verification": "PASS",
+    "verified_at": "2026-10-13T07:15:55.511304+00:00",
+    "transient_unavailable_observed": true,
+    "verification_note": "The independent check passed on retry after one unavailable upstream response; the strict contract was unchanged."
+  },
+  "central_platform": {
+    "url": "https://agents.seiche.info",
+    "network_revision": "623f094f83d4519ce21849f25d8c5f795ed4ae8c",
+    "network_artifact_sha256": "0d974c106f79dfbe8fc9f24d2ec074fc36a358ebfd0e65ae439861bc89c2c7ec",
+    "hub_revision": "27d7ba5991ac57bb538770c9984c4b1d48ba790f",
+    "catalog_version": "central-data-2026-10-13",
+    "hosted_connections": 14,
+    "data_route_checks": 21,
+    "public_client_browser_checks": "PASS",
+    "raw_arguments_retained": false,
+    "raw_responses_retained": false,
+    "measurement_scope": "Raw argument and response retention flags describe operational usage measurement. Separately authorized dataset archives and voluntary contributions retain their own access and retention rules."
+  },
+  "homebrew": {
+    "version": "0.1.8",
+    "status": "PASS",
+    "pull_request": "https://github.com/beepboop2025/homebrew-tap/pull/9",
+    "reviewed_source_commit": "024dcc42b6b966aa9fdd53113619ef93e36ae5db",
+    "published_main_commit": "39a8cdd228aeb8d32ceb7b13b7dea87ff36b89e0",
+    "formula_sha256": "2c6b2c736f39d423a1595b3b1cbd32d20bbca64e8f6596b958c73ee82176601d",
+    "public_formula_url": "https://raw.githubusercontent.com/beepboop2025/homebrew-tap/main/Formula/financial-evidence.rb",
+    "anonymous_public_readback": true,
+    "consumer_job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38360583841/job/115173560943",
+    "consumer_workflow_head": "7a95a933b954ad8da7fadd2cb8db9756d3ad1be3",
+    "checks": [
+      "strict_online_audit",
+      "style",
+      "actual_install",
+      "formula_test",
+      "published_mcp_contract",
+      "all_11_entrypoints_load",
+      "installed_central_client_identity"
+    ],
+    "verified_at": "2026-10-13T07:18:32.222649+00:00",
+    "native_tap_actions": "disabled_unchanged_not_claimed_passed"
+  },
+  "boundaries": [
+    "Verification is operator work, not independent adoption.",
+    "Package, hosted gateway, upstream research workspace and runtime operations have separate identities.",
+    "Data collection covers requests through the hosted service and explicitly authorized contributions.",
+    "Source clocks, rights restrictions and missing data remain visible.",
+    "Historical releases, licenses and verification receipts remain unchanged."
+  ],
+  "verified_at": "2026-10-13T07:16:26.589130+00:00"
+}

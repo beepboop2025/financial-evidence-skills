@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:financial-evidence:funding-china-policy:v1",
+  "title": "Required operator policy for a funding and China macro review",
+  "description": "Configuration schema, not a pre-approved trading policy. Bind exact returned series and independent calendar-aware age limits before calling assess for each product group. Successful tool delivery alone is not input eligibility.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["policy_id", "workflow", "mode", "decision_horizon", "funding", "china_macro"],
+  "properties": {
+    "policy_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"},
+    "workflow": {"const": "funding_china_review"},
+    "mode": {"enum": ["test", "shadow", "paper", "operator_reported_production"]},
+    "decision_horizon": {"type": "string", "minLength": 1, "maxLength": 160, "description": "The operator's specific evaluation task and horizon, not a guarantee of trade suitability."},
+    "funding": {
+      "allOf": [
+        {"$ref": "#/$defs/series_policy"},
+        {"properties": {"required_series": {"items": {"type": "string", "pattern": "^seiche:[A-Za-z0-9][A-Za-z0-9_.:/-]{0,199}$"}}}}
+      ],
+      "description": "Choose exact Seiche funding series, units and a reviewed source calendar. A daily observation is assessed against its own expected publication schedule."
+    },
+    "china_macro": {
+      "allOf": [
+        {"$ref": "#/$defs/series_policy"},
+        {"properties": {"required_series": {"items": {"type": "string", "pattern": "^palimpsest:[A-Za-z0-9][A-Za-z0-9_.:/-]{0,199}$"}}}}
+      ],
+      "description": "Choose exact admitted Palimpsest series. Monthly/quarterly observations, combined January/February releases, revisions and database delay need their own policy; do not reuse a daily funding threshold."
+    }
+  },
+  "$defs": {
+    "series_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required_series", "units", "max_observation_age_seconds", "calendar_reference", "rights_review_reference", "allow_estimates", "require_captured_by_decision"],
+      "properties": {
+        "required_series": {"type": "array", "minItems": 1, "maxItems": 32, "uniqueItems": true, "items": {"type": "string", "minLength": 3, "maxLength": 220}},
+        "units": {"type": "object", "minProperties": 1, "maxProperties": 32, "additionalProperties": {"type": "string", "minLength": 1, "maxLength": 80}, "description": "Every selected product-qualified series must have an independently checked unit; schema structure alone does not prove matching."},
+        "max_observation_age_seconds": {"type": "integer", "minimum": 1, "maximum": 31622400, "description": "Set for this source/task after reviewing publication cadence, holidays and expected database lag."},
+        "calendar_reference": {"type": "string", "minLength": 1, "maxLength": 512},
+        "rights_review_reference": {"type": "string", "minLength": 1, "maxLength": 160},
+        "allow_estimates": {"type": "boolean", "default": false},
+        "require_captured_by_decision": {"const": true}
+      }
+    }
+  }
+}

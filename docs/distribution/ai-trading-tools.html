@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Free tools for AI trading research | Financial Evidence</title>
+  <meta name="description" content="Connect a research agent, reuse MCP sessions and follow source-status updates. Free public reads, Python and JavaScript examples, and a connection diagnostic.">
+  <link rel="canonical" href="https://beepboop2025.github.io/financial-evidence-skills/distribution/ai-trading-tools.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free tools for AI trading research">
+  <meta property="og:description" content="Persistent MCP connections, a connection doctor and source-status streaming. Start with a free public research task.">
+  <meta property="og:url" content="https://beepboop2025.github.io/financial-evidence-skills/distribution/ai-trading-tools.html">
+  <link rel="stylesheet" href="../styles.css">
+  <script type="module" src="../experience.mjs"></script>
+  <style>
+    main { width: 100%; padding: 0; }
+    .intro { width: min(72rem, calc(100% - 2.5rem)); margin-inline: auto; padding-block: 4rem; }
+    h1 { max-width: 19ch; font-size: clamp(2.6rem, 6vw, 4.8rem); }
+    h2 { max-width: 30ch; font-size: clamp(1.8rem, 4vw, 2.6rem); }
+    .section { padding-block: 3rem; }
+    .actions { margin-block: 1.5rem; }
+    .grid article, .commands > div { border-radius: .6rem; min-width: 0; }
+    .grid h3, .commands h3 { margin-top: 0; }
+    .grid p, .commands p, li { overflow-wrap: anywhere; }
+    pre { font-size: .88rem; }
+    .boundary { max-width: 75ch; border-left: 3px solid var(--accent); padding-left: 1rem; }
+    .endpoint { overflow-wrap: anywhere; }
+    footer { border-top: 1px solid var(--line); }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Free tools for AI trading research",
+    "url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/ai-trading-tools.html",
+    "description": "Public research connections, persistent Python MCP sessions, a connection diagnostic and source-status clients for Python and JavaScript.",
+    "datePublished": "2026-10-15",
+    "dateModified": "2026-10-15",
+    "isAccessibleForFree": true,
+    "publisher": {"@type": "Organization", "name": "LIQUILENS PRIVATE LIMITED"}
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="site-header">
+    <nav aria-label="Main navigation">
+      <a class="brand" href="../">Financial Evidence<span>LIQUILENS PRIVATE LIMITED</span></a>
+      <div><a href="../connect/">Connect</a><a href="../agents/">Research workflows</a><a href="./">Distribution record</a></div>
+    </nav>
+  </header>
+  <main id="content">
+    <div class="hero">
+      <div class="intro">
+        <p class="eyebrow">Agent infrastructure 1.1.0 · Released 15 October 2026</p>
+        <h1>Give your trading agent evidence it can check.</h1>
+        <p class="lede">Add funding, institution and liquidity research to your agent. Reuse MCP connections, diagnose setup and follow source-status updates with Python or JavaScript.</p>
+        <div class="actions"><a class="button primary" href="#quickstart">Install and check your connection</a><a class="button" href="../connect/">Try a task without installing</a></div>
+        <p>Free anonymous public reads. No account or data API key required.</p>
+        <p class="boundary">These tools supply research evidence and source metadata. The context stream contains no live prices. Public research endpoints cannot place orders; source publishers retain their data rights.</p>
+      </div>
+    </div>
+
+    <section class="section" aria-labelledby="use-cases">
+      <p class="eyebrow">Start with one useful question</p>
+      <h2 id="use-cases">Build a repeatable research step.</h2>
+      <div class="grid">
+        <article><h3>Check funding conditions</h3><p>Ask for a bounded USD money-market sample with source URLs, units and observation dates. Compare the same question on another research day.</p><a href="../start/workflows.html?workflow=funding">Try a funding watch</a></article>
+        <article><h3>Review a counterparty</h3><p>Use LiquiLens for covered institutions, dated disclosures and evidence gaps. Preserve unavailable inputs when drafting a risk note.</p><a href="../agents/#risk-teams">Use an institution watchlist</a></article>
+        <article><h3>Research exit liquidity</h3><p>Use Undertow's indicative liquidity evidence alongside funding context. Keep venue coverage, missing fees and source restrictions attached to the result.</p><a href="../agents/#traders">Review funding and exits</a></article>
+      </div>
+    </section>
+
+    <section class="section muted" aria-labelledby="quickstart">
+      <p class="eyebrow">Python 3.10+ · Dedicated environment recommended</p>
+      <h2 id="quickstart">Install the released source, then run the doctor.</h2>
+      <pre><code>python3 -m pip install --force-reinstall 'financial-evidence[workspace] @ git+https://github.com/beepboop2025/financial-evidence-skills.git@agent-infrastructure-v1.1.0'
+financial-evidence-trading doctor
+financial-evidence-trading context
+financial-evidence-trading context --events --limit 1</code></pre>
+      <p>The source package still reports version <code>0.1.8</code>. Keep the <code>agent-infrastructure-v1.1.0</code> source pin and use <code>--force-reinstall</code> to replace an older installation.</p>
+      <p>The doctor makes bounded anonymous checks of four public research connections and the source monitor. It labels its requests synthetic. Its result separates connection success from freshness, restrictions and unknown coverage; a passing connection check does not qualify an input for trading.</p>
+      <p><a href="../agents/readiness.md">Connection diagnostic guide</a> · <a href="../agents/low-latency.md">Full release and client guide</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/tree/agent-infrastructure-v1.1.0">Pinned release source</a></p>
+    </section>
+
+    <section class="section" aria-labelledby="clients">
+      <p class="eyebrow">Keep connections and evidence under your control</p>
+      <h2 id="clients">Use a client that fits your agent.</h2>
+      <div class="commands">
+        <div>
+          <h3>Python: reuse a product MCP session</h3>
+          <p>One client context owns the session for a bounded job. This diagnostic example marks its calls as test traffic.</p>
+          <pre><code>import asyncio
+from financial_evidence.trading import ProductClient
+
+async def main():
+    async with ProductClient(mode="test", timeout=15) as client:
+        first = await client.call("seiche", "data_health")
+        again = await client.call("seiche", "data_health")
+        print(first["timing"], again["timing"])
+
+asyncio.run(main())</code></pre>
+          <p>Repeated calls reuse initialization. Failed calls are not automatically replayed. Timing describes the client request, while each observation keeps its own source clock.</p>
+          <a href="../agents/persistent-client.md">Session lifecycle and limits</a>
+        </div>
+        <div>
+          <h3>JavaScript: follow source status</h3>
+          <p>Download <a href="../agents/context-client.mjs" download>context-client.mjs</a> beside your script. Use Node 22+ or a modern fetch runtime.</p>
+          <pre><code>import {
+  contextSnapshot, contextEvents
+} from './context-client.mjs';
+
+console.log(await contextSnapshot());
+for await (const event of contextEvents({timeoutMs: 30000})) {
+  if (event.event === 'reset') {
+    console.log(event.data);
+    break;
+  }
+}</code></pre>
+          <p>The stream begins with the latest full state. Reconnects do not replay every update. Python's <code>ContextClient</code> provides the same snapshot and event contract.</p>
+          <a href="../agents/low-latency.md#compact-snapshots-and-updates">Python context example and stream limits</a>
+        </div>
+      </div>
+      <h3>Already have an MCP client?</h3>
+      <p>Add this Streamable HTTP endpoint, discover its live tool schemas and begin with a read-only research task:</p>
+      <pre><code>https://agents.seiche.info/products/financial-evidence/mcp</code></pre>
+      <p><a href="../connect/">Client setup and downloadable configurations</a> · <a href="../agents/readiness.md">LangGraph, CrewAI, OpenAI Agents and Pydantic AI recipes</a></p>
+    </section>
+
+    <section class="section muted" aria-labelledby="source-status">
+      <p class="eyebrow">Readable by people and agents</p>
+      <h2 id="source-status">Check the source, even when the connection works.</h2>
+      <ul>
+        <li><strong>Monitor age and source age differ.</strong> Recheck <code>valid_until</code> while holding a snapshot. A current monitor can report stale, restricted or unknown sources.</li>
+        <li><strong>A heartbeat proves transport liveness.</strong> It does not refresh an observation or turn a daily reference rate into a tick quote.</li>
+        <li><strong>Access and permitted use differ.</strong> Retain source URLs, units, observation dates, restrictions and missing values. Public access does not grant redistribution or execution rights.</li>
+      </ul>
+      <p>Snapshots are prepared from the scheduled source monitor. Reading the snapshot or stream does not trigger an upstream market-data fetch.</p>
+      <p class="endpoint"><a href="https://agents.seiche.info/v1/context/contract">Context contract</a> · <a href="https://agents.seiche.info/v1/context/snapshot">Current source-status snapshot</a> · SSE endpoint: <code>https://agents.seiche.info/v1/context/events</code></p>
+      <p><a href="../agents/low-latency.md">Read the complete delivery contract</a> · <a href="../support/">Get help with a redacted diagnostic</a></p>
+    </section>
+  </main>
+  <footer><p>LIQUILENS PRIVATE LIMITED · Last updated 15 October 2026 · <a href="../terms/">Research terms</a> · <a href="../privacy/">Privacy</a> · <a href="../support/">Contact</a></p></footer>
+</body>
+</html>

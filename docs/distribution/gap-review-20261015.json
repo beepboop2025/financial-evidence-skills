@@ -1,0 +1,3313 @@
+{
+  "schema": "financial-evidence.distribution-gap-review.v1",
+  "reviewed_at": "2026-10-15T15:20:05.149Z",
+  "source": {
+    "commit": "82893bae2140d51ef1187bcc9d7ab502a78f23a9",
+    "path": "docs/marketplaces.json",
+    "sha256": "eef2b890baf30d38b0e0ba28c8e7c8bc76ada7c6d05edc10be8efc56ab1590dc",
+    "ledger_checked_at": "2026-10-13T07:00:34.293310Z",
+    "ledger_updated_at": "2026-10-15T11:04:14.956103+00:00",
+    "latest_tools_receipt_observed_at": "2026-10-15T14:54:00.970578Z",
+    "commit_url": "https://github.com/beepboop2025/financial-evidence-skills/blob/82893bae2140d51ef1187bcc9d7ab502a78f23a9/docs/marketplaces.json"
+  },
+  "scope": {
+    "total_ledger_records": 159,
+    "ledger_live_records": 62,
+    "reviewed_non_live_records": 97,
+    "source_ledger_unchanged": true,
+    "other_terminal": "01a13ffa owns PyPI, official MCP Registry, version releases and source ledger reconciliation",
+    "owned_outputs": [
+      "docs/distribution/gap-review-20261015.json",
+      "docs/distribution/gap-review-20261015.md"
+    ],
+    "external_mutations": 0,
+    "external_messages": 0,
+    "new_submissions": 0,
+    "paid_requests": 0,
+    "product_tool_calls": 0
+  },
+  "summary": {
+    "baseline_classification": {
+      "pending_thirdparty": 85,
+      "gated_or_owned_elsewhere": 11,
+      "actionable_self_service": 1
+    },
+    "current_classification": {
+      "pending_thirdparty": 82,
+      "gated_or_owned_elsewhere": 11,
+      "actionable_self_service": 4
+    },
+    "proposed_live_reconciliations": [
+      "public-apis-seiche-rest",
+      "public-apis-undertow-rest",
+      "awesome-osint-narcoscope"
+    ],
+    "proposed_updates_applied": false,
+    "github_unique_objects": 22,
+    "github_records_covered": 23,
+    "github_merged_objects": 3,
+    "independent_adoption_verified": false
+  },
+  "classification_definitions": {
+    "actionable_self_service": "Local artifact work or evidence-backed ledger reconciliation; external acceptance is not guaranteed.",
+    "pending_thirdparty": "Existing submission, review, support, automatic indexing or public propagation remains; no duplicate submission.",
+    "gated_or_owned_elsewhere": "Explicit deferral, paid/access/qualification/policy gate, archived/closed channel, or protected release-owner lane."
+  },
+  "native_receipt_reconciliation": [
+    {
+      "entry_id": "n8n-creator-financial-evidence",
+      "source_file": "docs/platforms/n8n-creator-submission-20261015.json",
+      "receipt_observed_at": "2026-10-15T11:54:58.889892+00:00",
+      "finding": "Existing 0.1.0 demo submitted; automated review complete; manual review Under Review; approved-for-publish false. npm 0.1.1 is separate.",
+      "current_external_recheck": false
+    },
+    {
+      "entry_id": "dify-financial-evidence",
+      "source_file": "docs/distribution/expansion-20261015.json",
+      "receipt_observed_at": "2026-10-15T09:05:44.381099Z",
+      "finding": "Already live in baseline at Marketplace 0.1.1; older pending submission receipt is historical. Installed-archive execution remains unverified; repository 0.1.2 is a candidate.",
+      "current_external_recheck": false
+    },
+    {
+      "entry_id": "activepieces-native",
+      "source_file": "docs/platforms/activepieces-registry-20261015.json",
+      "receipt_observed_at": "2026-10-15T11:31:21.516221+00:00",
+      "finding": "Already live in baseline through npm 0.1.0; native archive and registry installation/actions passed. Worker filesystem byte attestation and browser interaction remain unverified. Upstream unsolicited contribution is policy-paused.",
+      "current_external_recheck": false
+    },
+    {
+      "entry_ids": [
+        "laplace-awesome-agent-trading-financial-evidence",
+        "aowang-awesome-finance-agents-financial-evidence",
+        "kilo-financial-evidence"
+      ],
+      "source_file": "docs/distribution/agent-tools-distribution-20261015.json",
+      "receipt_observed_at": "2026-10-15T14:54:00.970578Z",
+      "finding": "Two new PR receipts plus existing Kilo body update already retained. Current PR reads remain open; do not duplicate.",
+      "current_external_recheck": true
+    }
+  ],
+  "independent_followthrough": [
+    {
+      "channel": "Vercel AI SDK",
+      "owner": "root",
+      "action": "Implement the missing npm integration, bounded evidence-preserving tools, tests and dedicated docs. Publication and upstream registry review remain separate.",
+      "reference_files": [
+        "integrations/activepieces/src/lib/research.ts",
+        "docs/distribution/ai-trading-tools.html",
+        "docs/agents/low-latency.md"
+      ],
+      "official_route": "https://github.com/vercel/ai/blob/main/contributing/add-new-tool-to-registry.md",
+      "source": "ledger; contribution requirements not freshly rechecked by this reviewer"
+    },
+    {
+      "channel": "Cursor official marketplace",
+      "action": "Test the existing plugin in the native client and preserve an installation receipt; keep the publisher application pending.",
+      "reference_files": [
+        ".cursor-plugin/plugin.json",
+        "integrations/task-mcp.json",
+        "task-skills/"
+      ],
+      "official_route": "https://cursor.com/marketplace/publish",
+      "source": "ledger and local manifest"
+    },
+    {
+      "channel": "Dify existing live 0.1.1",
+      "action": "Install and execute the accepted 0.1.1 archive in an isolated native workflow; keep0.1.2 candidate separate and coordinate any release with its owner.",
+      "reference_files": [
+        "docs/platforms/downloads/financial_evidence-0.1.1.difypkg",
+        "docs/integrations/dify-native-proof-20261011.json",
+        "integrations/dify/scripts/verify_package.py"
+      ],
+      "official_route": "https://marketplace.dify.ai/plugin/beepboop2025/financial_evidence",
+      "source": "retained receipts; outside97 non-live records"
+    },
+    {
+      "channel": "Activepieces existing live 0.1.0",
+      "action": "Optionally close browser-install and worker-artifact identity gaps in an isolated instance. Do not resend an upstream contribution while policy-paused.",
+      "reference_files": [
+        "integrations/activepieces/scripts/native_smoke.py",
+        "docs/platforms/activepieces-registry-20261015.json",
+        "docs/platforms/activepieces.md"
+      ],
+      "official_route": "https://www.npmjs.com/package/@moomoo202020/piece-financial-evidence/v/0.1.0",
+      "source": "retained receipts; outside97 non-live records"
+    }
+  ],
+  "public_readback_interpretation": {
+    "gemini": "Full public 15,839,429-byte gallery returned 200 and contained no exact owner/repository/tool markers. This is bounded absence from the fetched page, not proof of rejection.",
+    "zenodo": "Two quoted exact public API searches returned total 0. A broad unquoted search tokenized the words and was excluded from identity conclusions. No authenticated archive state was inspected; the separate Seiche DOI is not this repository.",
+    "datarade": "Public search returned 403. Availability remains unverified; no claim of absent product and no access-control bypass.",
+    "agentndx": "Curated1636-entry index contained no expected family identities. Free live queries returned four Groundcheck Bazaar endpoints for seiche; those are imported endpoint records, not acceptance of the six pending family MCP submissions. Other financial-evidence, owner, LiquiLens, Undertow and Wake checks established no exact target match in returned records.",
+    "github": "Twenty-two distinct GitHub objects cover 23 ledger records; Awesome Quant PR 778 covers two products. Three PRs merged with default-branch rows confirmed. Others remain open except the known closed-unmerged Awesome Copilot PR. Archived Awesome OpenBB remains a historical route."
+  },
+  "github_observations": [
+    {
+      "checked_at": "2026-10-15T15:13:59.183280+00:00",
+      "closed_at": null,
+      "comments": 4,
+      "draft": false,
+      "entry_ids": [
+        "docker-mcp-catalog"
+      ],
+      "head_commit": "72ccdc076a11716625b57f06ba353cef850c0705",
+      "merge_commit": "e81f295bda4eb22aff0ce056a5766e3189523667",
+      "mergeable": true,
+      "mergeable_state": "blocked",
+      "merged_at": null,
+      "observation": "observed",
+      "review_comments": 0,
+      "state": "open",
+      "state_reason": null,
+      "updated_at": "2026-10-08T11:39:15Z",
+      "url": "https://github.com/docker/mcp-registry/pull/4765",
+      "observation_id": "github-01"
+    },
+    {
+      "checked_at": "2026-10-15T15:13:59.183530+00:00",
+      "closed_at": null,
+      "comments": 3,
+      "draft": false,
+      "entry_ids": [
+        "awesome-mcp-servers"
+      ],
+      "head_commit": "400d01f1968f87db8c572831f72572150b2ac420",
+      "merge_commit": "fab6cc4ebf66cfcddd9f08bdf5ec6fcdbef16e44",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "merged_at": null,
+      "observation": "observed",
+      "review_comments": 0,
+      "state": "open",
+      "state_reason": null,
+      "updated_at": "2026-10-10T06:13:12Z",
+      "url": "https://github.com/punkpeye/awesome-mcp-servers/pull/12771",
+      "observation_id": "github-02"
+    },
+    {
+      "checked_at": "2026-10-15T15:13:59.185760+00:00",
+      "closed_at": "2026-08-25T04:38:53Z",
+      "comments": 4,
+      "draft": false,
+      "entry_ids": [
+        "awesome-copilot"
+      ],
+      "head_commit": "d5af852a6a7c728b2c5a830da3ace581fe31008b",
+      "merge_commit": "42675def3017704cb2e09d379d9ba9b673262506",
+      "mergeable": true,
+      "mergeable_state": "blocked",
+      "merged_at": null,
+      "observation": "observed",
+      "review_comments": 0,
+      "state": "closed",
+      "state_reason": null,
+      "updated_at": "2026-08-25T04:38:54Z",
+      "url": "https://github.com/github/awesome-copilot/pull/2785",
+      "observation_id": "github-03"
+    },
+    {
+      "checked_at": "2026-10-15T15:13:59.185890+00:00",
+      "closed_at": null,
+      "comments": 1,
+      "draft": false,
+      "entry_ids": [
+        "finos-fdc3-app-directory"
+      ],
+      "head_commit": "2b31156487fd3cba9e8f85f230b02ebf8a32ae4c",
+      "merge_commit": "7ecc0f14eaa1529750c510b05ab1193dce82de61",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "merged_at": null,
+      "observation": "observed",
+      "review_comments": 0,
+      "state": "open",
+      "state_reason": null,
+      "updated_at": "2026-10-08T11:41:31Z",
+      "url": "https://github.com/finos-labs/FDC3-App-Directory/pull/40",
+      "observation_id": "github-04"
+    },
+    {
+      "checked_at": "2026-10-15T15:14:00.372822+00:00",
+      "closed_at": null,
+      "comments": 1,
+      "draft": false,
+      "entry_ids": [
+        "awesome-openbb"
+      ],
+      "head_commit": "05bb94300b3807af3a1b785f9067ae5b0274cd9c",
+      "merge_commit": "5ff1279f12fb497683a2d9e0c340af2108143401",
+      "mergeable": true,
+      "mergeable_state": "blocked",
+      "merged_at": null,
+      "observation": "observed",
+      "review_comments": 0,
+      "state": "open",
+      "state_reason": null,
+      "updated_at": "2026-10-08T11:42:07Z",
+      "url": "https://github.com/OpenBB-finance/awesome-openbb/pull/12",
+      "observation_id": "github-05"
+    },
+    {
+      "checked_at": "2026-10-15T15:14:00.697367+00:00",
+      "closed_at": null,
+      "comments": 0,
+      "draft": null,
+      "entry_ids": [
+        "cline-mcp-marketplace"
+      ],
+      "head_commit": null,
+      "merge_commit": null,
+      "mergeable": null,
+      "mergeable_state": null,
+      "merged_at": null,
+      "observation": "observed",
+      "review_comments": null,
+      "state": "open",
+      "state_reason": null,
+      "updated_at": "2026-10-10T06:10:36Z",
+      "url": "https://github.com/cline/mcp-marketplace/issues/2903",
+      "observation_id": "github-06"
+    },
+    {
+      "checked_at": "2026-10-15T15:14:01.085598+00:00",
+      "closed_at": null,
+      "comments": 0,
+      "draft": null,
+      "entry_ids": [
+        "apis-guru-research-api"
+      ],
+      "head_commit": null,
+      "merge_commit": null,
+      "mergeable": null,
+      "mergeable_state": null,
+      "merged_at": null,
+      "observation": "observed",
+      "review_comments": null,
+      "state": "open",
+      "state_reason": null,
+      "updated_at": "2026-10-07T06:53:14Z",
+      "url": "https://github.com/APIs-guru/openapi-directory/issues/3568",
+      "observation_id": "github-07"
+    },
+    {
+      "checked_at": "2026-10-15T15:14:01.295598+00:00",
+      "closed_at": null,
+      "comments": 0,
+      "draft": false,
+      "entry_ids": [
+        "public-apis-financial-evidence-mcp"
+      ],
+      "head_commit": "37981073b91e271819c2dd8787694bafb0a9211d",
+      "merge_commit": null,
+      "mergeable": null,
+      "mergeable_state": "unknown",
+      "merged_at": null,
+      "observation": "observed",
+      "review_comments": 0,
+      "state": "open",
+      "state_reason": null,
+      "updated_at": "2026-10-09T18:57:15Z",
+      "url": "https://github.com/public-apis/public-apis/pull/7884",
+      "observation_id": "github-08"
+    },
+    {
+      "checked_at": "2026-10-15T15:14:01.472331+00:00",
+      "closed_at": null,
+      "comments": 0,
+      "draft": null,
+      "entry_ids": [
+        "apivault-financial-evidence"
+      ],
+      "head_commit": null,
+      "merge_commit": null,
+      "mergeable": null,
+      "mergeable_state": null,
+      "merged_at": null,
+      "observation": "observed",
+      "review_comments": null,
+      "state": "open",
+      "state_reason": null,
+      "updated_at": "2026-10-09T18:57:27Z",
+      "url": "https://github.com/exa-studio/ApiVault/issues/327",
+      "observation_id": "github-09"
+    },
+    {
+      "checked_at": "2026-10-15T15:14:01.559542+00:00",
+      "closed_at": "2026-10-14T19:01:33Z",
+      "comments": 0,
+      "draft": false,
+      "entry_ids": [
+        "public-apis-seiche-rest"
+      ],
+      "head_commit": "87f91d67a575979f272d5152894d661ed728d605",
+      "merge_commit": "0b6fcc7995e2ea72827a7c4ab82b131d14585829",
+      "mergeable": null,
+      "mergeable_state": "unknown",
+      "merged_at": "2026-10-14T19:01:33Z",
+      "observation": "observed",
+      "review_comments": 0,
+      "state": "closed",
+      "state_reason": null,
+      "updated_at": "2026-10-14T19:01:33Z",
+      "url": "https://github.com/public-apis/public-apis/pull/7801",
+      "observation_id": "github-10"
+    },
+    {
+      "checked_at": "2026-10-15T15:14:01.806796+00:00",
+      "closed_at": "2026-10-14T19:02:00Z",
+      "comments": 0,
+      "draft": false,
+      "entry_ids": [
+        "public-apis-undertow-rest"
+      ],
+      "head_commit": "7db3407469177871e6012884d806456625b4de81",
+      "merge_commit": "e2fe4d707bfa6691798e80b8c18536ca8c181800",
+      "mergeable": null,
+      "mergeable_state": "unknown",
+      "merged_at": "2026-10-14T19:02:00Z",
+      "observation": "observed",
+      "review_comments": 0,
+      "state": "closed",
+      "state_reason": null,
+      "updated_at": "2026-10-14T19:02:01Z",
+      "url": "https://github.com/public-apis/public-apis/pull/7802",
+      "observation_id": "github-11"
+    },
+    {
+      "checked_at": "2026-10-15T15:14:02.027914+00:00",
+      "closed_at": null,
+      "comments": 1,
+      "draft": false,
+      "entry_ids": [
+        "haystack-financial-evidence"
+      ],
+      "head_commit": "d763bd607a1eb105d9b943052cf74a5d3360646a",
+      "merge_commit": "78e306780e2eb3a5e6a5938a0fe2f35261d96d49",
+      "mergeable": true,
+      "mergeable_state": "blocked",
+      "merged_at": null,
+      "observation": "observed",
+      "review_comments": 0,
+      "state": "open",
+      "state_reason": null,
+      "updated_at": "2026-10-09T20:27:04Z",
+      "url": "https://github.com/deepset-ai/haystack-integrations/pull/650",
+      "observation_id": "github-12"
+    },
+    {
+      "checked_at": "2026-10-15T15:14:02.338910+00:00",
+      "closed_at": null,
+      "comments": 0,
+      "draft": null,
+      "entry_ids": [
+        "langchain-financial-evidence"
+      ],
+      "head_commit": null,
+      "merge_commit": null,
+      "mergeable": null,
+      "mergeable_state": null,
+      "merged_at": null,
+      "observation": "observed",
+      "review_comments": null,
+      "state": "open",
+      "state_reason": null,
+      "updated_at": "2026-10-09T20:36:18Z",
+      "url": "https://github.com/langchain-ai/docs/issues/6593",
+      "observation_id": "github-13"
+    },
+    {
+      "checked_at": "2026-10-15T15:14:02.726315+00:00",
+      "closed_at": null,
+      "comments": 0,
+      "draft": false,
+      "entry_ids": [
+        "awesome-quant-seiche",
+        "awesome-quant-noisefloor"
+      ],
+      "head_commit": "0ee3245651ef798f7cbe64a8c8221188c584999d",
+      "merge_commit": "bba7404bf892fed82489e2a86968a437c4d71c7d",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "merged_at": null,
+      "observation": "observed",
+      "review_comments": 0,
+      "state": "open",
+      "state_reason": null,
+      "updated_at": "2026-10-10T05:25:24Z",
+      "url": "https://github.com/wilsonfreitas/awesome-quant/pull/778",
+      "observation_id": "github-14"
+    },
+    {
+      "checked_at": "2026-10-15T15:14:02.929353+00:00",
+      "closed_at": "2026-10-10T09:18:38Z",
+      "comments": 0,
+      "draft": false,
+      "entry_ids": [
+        "awesome-osint-narcoscope"
+      ],
+      "head_commit": "6e60552ec6013abd15d583aeec9dfc6c34e7e6f1",
+      "merge_commit": "6f94cb3c591e6ad85d070ca1482b708675135311",
+      "mergeable": null,
+      "mergeable_state": "unknown",
+      "merged_at": "2026-10-10T09:18:38Z",
+      "observation": "observed",
+      "review_comments": 0,
+      "state": "closed",
+      "state_reason": null,
+      "updated_at": "2026-10-10T09:18:38Z",
+      "url": "https://github.com/jivoi/awesome-osint/pull/1271",
+      "observation_id": "github-15"
+    },
+    {
+      "checked_at": "2026-10-15T15:14:03.563364+00:00",
+      "closed_at": null,
+      "comments": 0,
+      "draft": false,
+      "entry_ids": [
+        "osint-collection-palimpsest"
+      ],
+      "head_commit": "d5a7d25f68fbe1c784707c86ba90ac7fc4f1739f",
+      "merge_commit": "d9d0d2f5ed84b284bfea92b67e5d91031c512588",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "merged_at": null,
+      "observation": "observed",
+      "review_comments": 0,
+      "state": "open",
+      "state_reason": null,
+      "updated_at": "2026-10-10T05:27:59Z",
+      "url": "https://github.com/cipher387/osint_stuff_tool_collection/pull/182",
+      "observation_id": "github-16"
+    },
+    {
+      "checked_at": "2026-10-15T15:14:03.564818+00:00",
+      "closed_at": null,
+      "comments": 1,
+      "draft": false,
+      "entry_ids": [
+        "ai4finance-market-brief"
+      ],
+      "head_commit": "4f497643e46f8731e845c8ce91230be45bfd7dfc",
+      "merge_commit": "87fc935ab509db3ca6b0e1c0fe9ed3b63b534ba9",
+      "mergeable": null,
+      "mergeable_state": "unknown",
+      "merged_at": null,
+      "observation": "observed",
+      "review_comments": 0,
+      "state": "open",
+      "state_reason": null,
+      "updated_at": "2026-10-10T08:44:55Z",
+      "url": "https://github.com/AI4Finance-Foundation/Awesome_AI4Finance/pull/26",
+      "observation_id": "github-17"
+    },
+    {
+      "checked_at": "2026-10-15T15:14:03.671238+00:00",
+      "closed_at": null,
+      "comments": 0,
+      "draft": null,
+      "entry_ids": [
+        "pipedream-financial-evidence"
+      ],
+      "head_commit": null,
+      "merge_commit": null,
+      "mergeable": null,
+      "mergeable_state": null,
+      "merged_at": null,
+      "observation": "observed",
+      "review_comments": null,
+      "state": "open",
+      "state_reason": null,
+      "updated_at": "2026-10-10T23:56:42Z",
+      "url": "https://github.com/PipedreamHQ/pipedream/issues/22210",
+      "observation_id": "github-18"
+    },
+    {
+      "checked_at": "2026-10-15T15:14:03.820518+00:00",
+      "closed_at": null,
+      "comments": 1,
+      "draft": false,
+      "entry_ids": [
+        "mcp-find-financial-evidence"
+      ],
+      "head_commit": "432d8bf285c0367c1199bd68bdf8938b22d2de86",
+      "merge_commit": "9b5826b4e68c94b796040d86b54a55e5211df6ed",
+      "mergeable": true,
+      "mergeable_state": "behind",
+      "merged_at": null,
+      "observation": "observed",
+      "review_comments": 0,
+      "state": "open",
+      "state_reason": null,
+      "updated_at": "2026-10-11T00:10:09Z",
+      "url": "https://github.com/MCPFind/mcp-find/pull/281",
+      "observation_id": "github-19"
+    },
+    {
+      "checked_at": "2026-10-15T15:14:04.242794+00:00",
+      "closed_at": null,
+      "comments": 0,
+      "draft": false,
+      "entry_ids": [
+        "kilo-financial-evidence"
+      ],
+      "head_commit": "143e250a9429803c64a85303ea55f3200c85dcf9",
+      "merge_commit": "05533dfd7d931f79f9625cb1d22fb6eeac50a005",
+      "mergeable": true,
+      "mergeable_state": "blocked",
+      "merged_at": null,
+      "observation": "observed",
+      "review_comments": 0,
+      "state": "open",
+      "state_reason": null,
+      "updated_at": "2026-10-15T14:39:01Z",
+      "url": "https://github.com/Kilo-Org/kilo-marketplace/pull/366",
+      "observation_id": "github-20"
+    },
+    {
+      "checked_at": "2026-10-15T15:14:04.765364+00:00",
+      "closed_at": null,
+      "comments": 0,
+      "draft": false,
+      "entry_ids": [
+        "laplace-awesome-agent-trading-financial-evidence"
+      ],
+      "head_commit": "18ba337db65c073daa8fcb315a69d1b6ff512fb0",
+      "merge_commit": "e42bc52c6695546cdc319696db9a7d2038b1ec6e",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "merged_at": null,
+      "observation": "observed",
+      "review_comments": 0,
+      "state": "open",
+      "state_reason": null,
+      "updated_at": "2026-10-15T14:44:31Z",
+      "url": "https://github.com/laplace0x/awesome-agent-trading/pull/30",
+      "observation_id": "github-21"
+    },
+    {
+      "checked_at": "2026-10-15T15:14:05.159488+00:00",
+      "closed_at": null,
+      "comments": 0,
+      "draft": false,
+      "entry_ids": [
+        "aowang-awesome-finance-agents-financial-evidence"
+      ],
+      "head_commit": "29cd20b221e3b439dc53383eadfe5e99b80ac4f3",
+      "merge_commit": "87fa82990b959771deac97b59114153bd1982afe",
+      "mergeable": true,
+      "mergeable_state": "unstable",
+      "merged_at": null,
+      "observation": "observed",
+      "review_comments": 0,
+      "state": "open",
+      "state_reason": null,
+      "updated_at": "2026-10-15T14:45:56Z",
+      "url": "https://github.com/aowang-ai/awesome-finance-agents/pull/1",
+      "observation_id": "github-22"
+    }
+  ],
+  "default_branch_readbacks": [
+    {
+      "canonical_url": "https://github.com/public-apis/public-apis/blob/master/README.md",
+      "checked_at": "2026-10-15T15:15:26.682657+00:00",
+      "commit": "642f0c657cb531c6b23331c5d235ef6a588fefda",
+      "default_branch": "master",
+      "immutable_url": "https://github.com/public-apis/public-apis/blob/642f0c657cb531c6b23331c5d235ef6a588fefda/README.md",
+      "matches": [
+        {
+          "line": 1104,
+          "text": "| [Seiche](https://seiche.info/developers) | Free public funding, FX and capital-market evidence with source clocks | No | Yes | Yes |"
+        },
+        {
+          "line": 1118,
+          "text": "| [Undertow](https://liquilens-undertow.com/developers/) | Public market-depth and sized exit estimates, not executable quotes | No | Yes | Yes |"
+        }
+      ],
+      "observation": "observed",
+      "path": "README.md",
+      "repo": "public-apis/public-apis",
+      "sha256": "77c64644b4ceaf00f76f878c3dda3b0fe1f98d7b541ed937647118692a570f1e",
+      "observation_id": "default-branch-01"
+    },
+    {
+      "canonical_url": "https://github.com/jivoi/awesome-osint/blob/master/README.md",
+      "checked_at": "2026-10-15T15:15:26.997191+00:00",
+      "commit": "6ce2c1b5ba7817da378818e691d0408899e3a924",
+      "default_branch": "master",
+      "immutable_url": "https://github.com/jivoi/awesome-osint/blob/6ce2c1b5ba7817da378818e691d0408899e3a924/README.md",
+      "matches": [
+        {
+          "line": 1376,
+          "text": "* [NarcoScope](https://narcoscope.com) - Public-interest explorer of official drug-market prices, precursor flows, seizures, and public-health context, with source links and explicit evidence gaps."
+        }
+      ],
+      "observation": "observed",
+      "path": "README.md",
+      "repo": "jivoi/awesome-osint",
+      "sha256": "b7e17391dca950ac007028123fdb27302147054ab7cd8d13af76fff61a4e54df",
+      "observation_id": "default-branch-02"
+    }
+  ],
+  "github_additional_metadata": {
+    "MCPFind/mcp-find": [
+      {
+        "conclusion": "success",
+        "name": "Fork-safe submission preflight",
+        "status": "completed",
+        "url": "https://github.com/MCPFind/mcp-find/actions/runs/38097503092/job/114346355258"
+      }
+    ],
+    "aowang-ai/awesome-finance-agents": [],
+    "awesome_openbb_repository": {
+      "archived": true,
+      "disabled": false,
+      "updated_at": "2026-10-13T09:50:46Z"
+    },
+    "aowang_commit_status": {
+      "state": "pending",
+      "statuses": []
+    }
+  },
+  "public_observations": [
+    {
+      "body_bytes": 15839429,
+      "body_sha256": "acbf8f5ebe7b354e3efccafe4108f7199187df1e055db4fe323554aaa9ca21d2",
+      "channel": "gemini",
+      "checked_at": "2026-10-15T15:14:55.143551+00:00",
+      "exact_marker_counts": {
+        "beepboop2025": 0,
+        "beepboop2025/financial-evidence-skills": 0,
+        "financial-evidence": 0,
+        "financial-evidence-skills": 0,
+        "financial_evidence_topics": 0
+      },
+      "final_url": "https://geminicli.com/extensions/",
+      "http_status": 200,
+      "observation": "observed",
+      "url": "https://geminicli.com/extensions/",
+      "observation_id": "public-01"
+    },
+    {
+      "channel": "datarade",
+      "checked_at": "2026-10-15T15:14:55.144600+00:00",
+      "error": "http_error",
+      "http_status": 403,
+      "observation": "unavailable",
+      "url": "https://datarade.ai/search?query=LiquiLens",
+      "observation_id": "public-02"
+    },
+    {
+      "body_bytes": 457,
+      "body_sha256": "c83ffa279c7d1f02dd4572178b41565010371ff442db91fbd5f62117e5f4246a",
+      "channel": "zenodo_exact",
+      "checked_at": "2026-10-15T15:16:28.176712+00:00",
+      "http_status": 200,
+      "observation": "observed",
+      "records": [],
+      "total": 0,
+      "url": "https://zenodo.org/api/records?q=%22financial-evidence-skills%22&size=25",
+      "observation_id": "public-03"
+    },
+    {
+      "body_bytes": 470,
+      "body_sha256": "19696ad735b44b679f6008bcfa7b5bfdcf8b0a1150ae1a7153d276495fd1bc2f",
+      "channel": "zenodo_repository",
+      "checked_at": "2026-10-15T15:16:28.177001+00:00",
+      "http_status": 200,
+      "observation": "observed",
+      "records": [],
+      "total": 0,
+      "url": "https://zenodo.org/api/records?q=%22beepboop2025%2Ffinancial-evidence-skills%22&size=25",
+      "observation_id": "public-04"
+    },
+    {
+      "body_bytes": 2449141,
+      "body_sha256": "e6d6e0989b8eb38e67aab83ccaccde01d8a4df7c21acc7df99c4c2c94073bf89",
+      "candidate_matches": [],
+      "channel": "agentndx_curated",
+      "checked_at": "2026-10-15T15:16:28.177068+00:00",
+      "http_status": 200,
+      "observation": "observed",
+      "returned_records": 1636,
+      "top_keys": [
+        "servers",
+        "total",
+        "updated",
+        "source",
+        "note"
+      ],
+      "total_reported": 1636,
+      "url": "https://agentndx.ai/api/servers.json",
+      "observation_id": "public-05"
+    },
+    {
+      "body_bytes": 147,
+      "body_sha256": "eedc0e122896e563ff8ff3e64f50aa1cc70346deb9d3d5fb0736593546a4eb89",
+      "candidate_matches": [],
+      "channel": "agentndx_live_financial-evidence",
+      "checked_at": "2026-10-15T15:16:28.177115+00:00",
+      "http_status": 200,
+      "observation": "observed",
+      "returned_records": 0,
+      "top_keys": [
+        "query",
+        "total",
+        "results",
+        "note"
+      ],
+      "total_reported": 0,
+      "url": "https://agentndx-production.up.railway.app/api/services?q=financial-evidence",
+      "observation_id": "public-06"
+    },
+    {
+      "body_bytes": 13161,
+      "body_sha256": "a2d44a1d9879d1656b725e85e638f7a875d10404a6b5d2e35b03722130facbf8",
+      "candidate_matches": [
+        {
+          "id": "bazaar:https://groundcheck.seiche.info/extract",
+          "name": "groundcheck.seiche.info/extract",
+          "source": "bazaar",
+          "source_url": "https://groundcheck.seiche.info/extract"
+        },
+        {
+          "id": "bazaar:https://groundcheck.seiche.info/resolve",
+          "name": "groundcheck.seiche.info/resolve",
+          "source": "bazaar",
+          "source_url": "https://groundcheck.seiche.info/resolve"
+        },
+        {
+          "id": "bazaar:https://groundcheck.seiche.info/check",
+          "name": "groundcheck.seiche.info/check",
+          "source": "bazaar",
+          "source_url": "https://groundcheck.seiche.info/check"
+        },
+        {
+          "id": "bazaar:https://groundcheck.seiche.info/attest-delivery",
+          "name": "groundcheck.seiche.info/attest-delivery",
+          "source": "bazaar",
+          "source_url": "https://groundcheck.seiche.info/attest-delivery"
+        }
+      ],
+      "channel": "agentndx_live_seiche",
+      "checked_at": "2026-10-15T15:16:29.101911+00:00",
+      "http_status": 200,
+      "observation": "observed",
+      "returned_records": 4,
+      "top_keys": [
+        "query",
+        "total",
+        "results",
+        "note"
+      ],
+      "total_reported": 4,
+      "url": "https://agentndx-production.up.railway.app/api/services?q=seiche",
+      "observation_id": "public-07"
+    },
+    {
+      "body_bytes": 138,
+      "body_sha256": "77de36a467256f7f8ea82d9043b406387bc06273ec329618b38ea8437aaa374a",
+      "candidate_matches": [],
+      "channel": "agentndx_live_liquilens",
+      "checked_at": "2026-10-15T15:16:29.130842+00:00",
+      "http_status": 200,
+      "observation": "observed",
+      "returned_records": 0,
+      "top_keys": [
+        "query",
+        "total",
+        "results",
+        "note"
+      ],
+      "total_reported": 0,
+      "url": "https://agentndx-production.up.railway.app/api/services?q=liquilens",
+      "observation_id": "public-08"
+    },
+    {
+      "body_bytes": 137,
+      "body_sha256": "a3c63ea0b90629ed378f99112e52ddaae909507991d80150a8d1382785651632",
+      "candidate_matches": [],
+      "channel": "agentndx_live_undertow",
+      "checked_at": "2026-10-15T15:16:29.133758+00:00",
+      "http_status": 200,
+      "observation": "observed",
+      "returned_records": 0,
+      "top_keys": [
+        "query",
+        "total",
+        "results",
+        "note"
+      ],
+      "total_reported": 0,
+      "url": "https://agentndx-production.up.railway.app/api/services?q=undertow",
+      "observation_id": "public-09"
+    },
+    {
+      "body_bytes": 51082,
+      "body_sha256": "30e72daadd0441e6f1154ec363475e232fb0298ce7641f3d7b512f1e5bc80af6",
+      "candidate_matches": [],
+      "channel": "agentndx_live_wake",
+      "checked_at": "2026-10-15T15:16:29.518547+00:00",
+      "http_status": 200,
+      "observation": "observed",
+      "returned_records": 17,
+      "top_keys": [
+        "query",
+        "total",
+        "results",
+        "note"
+      ],
+      "total_reported": 17,
+      "url": "https://agentndx-production.up.railway.app/api/services?q=wake",
+      "observation_id": "public-10"
+    },
+    {
+      "body_bytes": 13508,
+      "body_sha256": "039ac04c5738f4c4a1a1cb08cb7d790462c6d0fd46c94ea56cb27694da265aed",
+      "candidate_matches": [
+        {
+          "id": "bazaar:https://orbisapi.com/proxy/ai-workflow-sox-control-api-2b2277",
+          "name": "orbisapi.com/proxy/ai-workflow-sox-control-api-2b2277",
+          "source": "bazaar",
+          "source_url": "https://orbisapi.com/proxy/ai-workflow-sox-control-api-2b2277"
+        },
+        {
+          "id": "smithery:amalgix/document-intelligence",
+          "name": "Amalgix Document Intelligence",
+          "source": "smithery",
+          "source_url": "https://smithery.ai/server/amalgix/document-intelligence"
+        },
+        {
+          "id": "smithery:rishavdutta-kgp/sentimatix",
+          "name": "sentimatix",
+          "source": "smithery",
+          "source_url": "https://smithery.ai/server/rishavdutta-kgp/sentimatix"
+        },
+        {
+          "id": "smithery:blackboxfoundry/livedatalink",
+          "name": "LiveDataLink",
+          "source": "smithery",
+          "source_url": "https://smithery.ai/server/blackboxfoundry/livedatalink"
+        }
+      ],
+      "channel": "agentndx_live_financial_evidence",
+      "checked_at": "2026-10-15T15:17:43.006265+00:00",
+      "http_status": 200,
+      "observation": "observed",
+      "returned_records": 4,
+      "total_reported": 4,
+      "url": "https://agentndx-production.up.railway.app/api/services?q=financial+evidence",
+      "observation_id": "public-11"
+    },
+    {
+      "body_bytes": 141,
+      "body_sha256": "8a41c54f725eb69118da26c1617ab6eb3cf19799a5dc1e2f95e546f886ec6b8e",
+      "candidate_matches": [],
+      "channel": "agentndx_live_beepboop2025",
+      "checked_at": "2026-10-15T15:17:43.450058+00:00",
+      "http_status": 200,
+      "observation": "observed",
+      "returned_records": 0,
+      "total_reported": 0,
+      "url": "https://agentndx-production.up.railway.app/api/services?q=beepboop2025",
+      "observation_id": "public-12"
+    }
+  ],
+  "entries": [
+    {
+      "entry_id": "docker-mcp-catalog",
+      "name": "Docker MCP Catalog",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Existing Docker PR refreshed to exact Financial Evidence 0.1.7 source 286e86bcc011dbc8c1108fcbda8505f6c40e2283; catalog validator passed. Upstream build and review remain pending.",
+      "ledger_next_action": "Await Docker maintainer build approval and catalog acceptance.",
+      "next_action": "Await Docker maintainer build approval and catalog acceptance.",
+      "channel_url": "https://github.com/docker/mcp-registry/pull/4765",
+      "ledger_verified_at": null,
+      "ledger_updated_at": "2026-10-08T11:44:54.209471+00:00",
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-01"
+      ],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "awesome-mcp-servers",
+      "name": "Awesome MCP Servers",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The maintainer requested a merge-conflict repair on the existing PR. Current upstream main was merged into the owned branch without force-push; the catalog diff remains exactly one added Financial Evidence entry. Head 400d01f1968f87db8c572831f72572150b2ac420 is mergeable and the submission check passed. The PR remains open for review.",
+      "ledger_next_action": "Await maintainer review on PR 12771 and verify the upstream entry after merge.",
+      "next_action": "Await maintainer review on PR 12771 and verify the upstream entry after merge.",
+      "channel_url": "https://github.com/punkpeye/awesome-mcp-servers/pull/12771",
+      "ledger_verified_at": "2026-10-07T06:54:25.977088+00:00",
+      "ledger_updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-02"
+      ],
+      "retained_evidence": [
+        {
+          "field": "completion_receipt",
+          "value": "distribution/completion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "awesome-copilot",
+      "name": "Awesome GitHub Copilot",
+      "ledger_state": "closed_unmerged",
+      "baseline_classification": "gated_or_owned_elsewhere",
+      "classification": "gated_or_owned_elsewhere",
+      "reason": "Existing owner decision, access/payment/policy prerequisite, archived/closed route, or another release owner's lane prevents unilateral closure.",
+      "ledger_detail": "PR #2785 was closed without merge on 2026-08-25 after automated checks passed. No Awesome GitHub Copilot listing is claimed.",
+      "ledger_next_action": "Review the maintainer outcome before deciding whether a materially revised resubmission is appropriate.",
+      "next_action": "Review the existing closed-unmerged decision before proposing any materially revised contribution; no blind resubmission.",
+      "channel_url": "https://github.com/github/awesome-copilot/pull/2785",
+      "ledger_verified_at": null,
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-03"
+      ],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "finos-fdc3-app-directory",
+      "name": "FINOS FDC3 App Directory",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Existing AppD submission refreshed to published 0.1.7; official 2.1 schema, three runtime tests and four exact served assets passed.",
+      "ledger_next_action": "Await FINOS directory review.",
+      "next_action": "Await FINOS directory review.",
+      "channel_url": "https://github.com/finos-labs/FDC3-App-Directory/pull/40",
+      "ledger_verified_at": null,
+      "ledger_updated_at": "2026-10-08T11:44:54.209471+00:00",
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-04"
+      ],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "awesome-openbb",
+      "name": "Awesome OpenBB",
+      "ledger_state": "submitted",
+      "baseline_classification": "gated_or_owned_elsewhere",
+      "classification": "gated_or_owned_elsewhere",
+      "reason": "Existing owner decision, access/payment/policy prerequisite, archived/closed route, or another release owner's lane prevents unilateral closure.",
+      "ledger_detail": "Existing PR branch now links 0.1.7 wheel and eight-tool Research Desk 1.1.3. Upstream repository is archived; GitHub rejected the PR-description update as read-only.",
+      "ledger_next_action": "Retain this unmerged archived PR as historical evidence. Continue the separate openbb-app-marketplace application for current Marketplace review; do not create a duplicate directory PR.",
+      "next_action": "Retain archived, unmerged PR 12 as history. Use the separate existing official Marketplace application; do not submit another directory PR.",
+      "channel_url": "https://github.com/OpenBB-finance/awesome-openbb/pull/12",
+      "ledger_verified_at": null,
+      "ledger_updated_at": "2026-10-08T11:44:54.209471+00:00",
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-05"
+      ],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "openbb-app-marketplace",
+      "name": "OpenBB App Marketplace — Financial Evidence Research Desk",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The official Become a Marketplace Partner form accepted one completed application for the existing Research Desk app and MCP server on 11 October 2026. It named Seiche, LiquiLens and Undertow as contributing products, identified Palimpsest coverage as metadata-only, and asked whether separate product entries are appropriate. The submission explicitly requested a first-year fee waiver and made participation conditional on that waiver. The form confirmed that the team will reach out. This is an application receipt, not approval, three separate product listings, a waiver grant or adoption.",
+      "ledger_next_action": "Await the current Marketplace review owner and the fee-waiver decision at the submitted company contact. Supply a native Workspace walkthrough if requested; separately approve any future paid terms. Reconcile this receipt before any resubmission and verify a public app page before marking live.",
+      "next_action": "Await the current Marketplace review owner and the fee-waiver decision at the submitted company contact. Supply a native Workspace walkthrough if requested; separately approve any future paid terms. Reconcile this receipt before any resubmission and verify a public app page before marking live.",
+      "channel_url": "https://app.formbricks.com/s/cms3erjhmnwz901shu03176vk",
+      "ledger_verified_at": "2026-10-11T11:09:34Z",
+      "ledger_updated_at": "2026-10-11T11:09:34Z",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "gemini-cli-extension-gallery",
+      "name": "Gemini CLI Extension Gallery",
+      "ledger_state": "eligible_automatic",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The repository retains its required topic and root manifest. The full 15,728,180-byte gallery response was fetched on 10 October 2026 and checked for the owner, repository name and tool prefix; no Financial Evidence listing was found.",
+      "ledger_next_action": "Await automatic indexing and verify a future public gallery entry without inventing an acceptance.",
+      "next_action": "Keep the eligible automatic-indexing state: the complete public gallery has no exact owner/repository/tool marker. Recheck on a bounded cadence; no resubmission or acceptance claim.",
+      "channel_url": "https://geminicli.com/extensions/",
+      "ledger_verified_at": null,
+      "ledger_updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "public-01"
+      ],
+      "retained_evidence": [
+        {
+          "field": "completion_receipt",
+          "value": "distribution/completion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "openai-plugin-directory",
+      "name": "OpenAI Plugin Directory",
+      "ledger_state": "ready_account_action",
+      "baseline_classification": "gated_or_owned_elsewhere",
+      "classification": "gated_or_owned_elsewhere",
+      "reason": "Existing owner decision, access/payment/policy prerequisite, archived/closed route, or another release owner's lane prevents unilateral closure.",
+      "ledger_detail": "The exact v0.1.7 listing packet and minimal ZIP remain prepared. Verified publisher identity has not been observed, and the owner has explicitly deferred this channel. No ZIP upload, domain challenge, real cross-platform demo or review submission is claimed.",
+      "ledger_next_action": "Retain the exact prepared ZIP and submission packet; resume identity verification and the remaining portal steps when the owner lifts the deferral.",
+      "next_action": "Retain the exact prepared ZIP and submission packet; resume identity verification and the remaining portal steps when the owner lifts the deferral.",
+      "channel_url": "https://platform.openai.com/plugins",
+      "ledger_verified_at": null,
+      "ledger_updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "completion_receipt",
+          "value": "distribution/completion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "claude-plugin-directory",
+      "name": "Claude Plugin Directory",
+      "ledger_state": "ready_account_action",
+      "baseline_classification": "gated_or_owned_elsewhere",
+      "classification": "gated_or_owned_elsewhere",
+      "reason": "Existing owner decision, access/payment/policy prerequisite, archived/closed route, or another release owner's lane prevents unilateral closure.",
+      "ledger_detail": "Owner-approved publisher sign-in and directory terms are complete. The former Console form now states that submissions have moved to claude.ai. The current directory manager requires a paid Pro, Max, Team or Enterprise account, and no qualifying account or submission receipt was observed. The owner has explicitly deferred this channel. Separately, native Claude Code 2.1.228 installed Financial Evidence 0.1.7 and passed skill/MCP inventory and a no-auth HTTP MCP connection; Cowork and model-mediated tool use remain untested.",
+      "ledger_next_action": "Retain the portable submission packet and existing consent approvals; resume publisher work when the owner lifts the deferral. A qualifying paid publisher account remains required.",
+      "next_action": "Retain the portable submission packet and existing consent approvals; resume publisher work when the owner lifts the deferral. A qualifying paid publisher account remains required.",
+      "channel_url": "https://claude.ai/directory/manage/new",
+      "ledger_verified_at": null,
+      "ledger_updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "completion_receipt",
+          "value": "distribution/completion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "cline-mcp-marketplace",
+      "name": "Cline MCP Marketplace",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Cline 3.0.70 registered the remote endpoint in isolated configuration. Its native @cline/core 0.0.92 MCP client connected without authentication, discovered the three router tools and successfully called financial_evidence_topics. The public guide is updated to 0.1.7. Submission issue 2903 is open with truthful installation attestations; no model chat was tested.",
+      "ledger_next_action": "Await review of issue 2903 and verify the public marketplace entry if accepted. Do not create a duplicate issue.",
+      "next_action": "Await review of issue 2903 and verify the public marketplace entry if accepted. Do not create a duplicate issue.",
+      "channel_url": "https://github.com/cline/mcp-marketplace/issues/2903",
+      "ledger_verified_at": null,
+      "ledger_updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-06"
+      ],
+      "retained_evidence": [
+        {
+          "field": "completion_receipt",
+          "value": "distribution/completion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "stackshare",
+      "name": "StackShare",
+      "ledger_state": "ready_account_action",
+      "baseline_classification": "gated_or_owned_elsewhere",
+      "classification": "gated_or_owned_elsewhere",
+      "reason": "Existing owner decision, access/payment/policy prerequisite, archived/closed route, or another release owner's lane prevents unilateral closure.",
+      "ledger_detail": "The prepared signed-in List a Tool form was submitted through the actual UI and rejected with \"Bot access denied\". No accepted submission or public listing was observed. The existing form is retained for an account-owner handoff.",
+      "ledger_next_action": "Have the account owner continue from the preserved prepared form and resolve the platform access gate; retain a genuine submission receipt before marking submitted. Do not replay the failed automated attempt or bypass its access control.",
+      "next_action": "Have the account owner continue from the preserved prepared form and resolve the platform access gate; retain a genuine submission receipt before marking submitted. Do not replay the failed automated attempt or bypass its access control.",
+      "channel_url": "https://stackshare.io/",
+      "ledger_verified_at": "2026-10-09T19:10:01.131Z",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/platform-expansion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "alternativeto",
+      "name": "AlternativeTo",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "LiquiLens was submitted after verifying the existing account email, with official logo, genuine product screenshot, free public access, company details and OpenBB Terminal as a relevant alternative. The operator acknowledged submission 824b49e3-8bc3-49df-9a2f-93e2066b332b and says only the owner can see it while review is pending. Optional paid priority was declined.",
+      "ledger_next_action": "Await moderation of the existing submission, then verify an independently accessible public product page. Do not resubmit.",
+      "next_action": "Await moderation of the existing submission, then verify an independently accessible public product page. Do not resubmit.",
+      "channel_url": "https://alternativeto.net/software/liquilens/",
+      "ledger_verified_at": "2026-10-07T17:16:48.425349+00:00",
+      "ledger_updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "completion_receipt",
+          "value": "distribution/completion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "zenodo",
+      "name": "Zenodo",
+      "ledger_state": "conditional_artifact",
+      "baseline_classification": "gated_or_owned_elsewhere",
+      "classification": "gated_or_owned_elsewhere",
+      "reason": "Existing owner decision, access/payment/policy prerequisite, archived/closed route, or another release owner's lane prevents unilateral closure.",
+      "ledger_detail": "Automatic GitHub release preservation is enabled for beepboop2025/financial-evidence-skills. The operator repository page still has no archived releases. The existing Seiche DOI is a different product.",
+      "ledger_next_action": "On the next genuine software release, verify the archive metadata and its public DOI. Do not create a version solely to trigger archiving.",
+      "next_action": "Hand the exact zero-result searches to terminal 01a13ffa. Verify archive creation for the next genuine owned release through the already enabled integration; do not mint a version or duplicate deposit solely to force a DOI.",
+      "channel_url": "https://zenodo.org/uploads/new",
+      "ledger_verified_at": "2026-10-07T17:33:39.179907+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "public-03",
+        "public-04"
+      ],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "pulsemcp",
+      "name": "PulseMCP",
+      "ledger_state": "paused_external",
+      "baseline_classification": "gated_or_owned_elsewhere",
+      "classification": "gated_or_owned_elsewhere",
+      "reason": "Existing owner decision, access/payment/policy prerequisite, archived/closed route, or another release owner's lane prevents unilateral closure.",
+      "ledger_detail": "The live submission page still pauses new MCP server/client submissions and edits to existing listings. Its notice directs publishers to the Official MCP Registry for later ingestion. The separate use-case submission route is also closed.",
+      "ledger_next_action": "Monitor reopening and ingestion of the existing official-registry entry; do not replay or invent a submission receipt.",
+      "next_action": "Monitor reopening and ingestion of the existing official-registry entry; do not replay or invent a submission receipt.",
+      "channel_url": "https://www.pulsemcp.com/submit",
+      "ledger_verified_at": "2026-10-07T17:50:46.848448+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "mcp-so",
+      "name": "MCP.so",
+      "ledger_state": "skipped_paid",
+      "baseline_classification": "gated_or_owned_elsewhere",
+      "classification": "gated_or_owned_elsewhere",
+      "reason": "Existing owner decision, access/payment/policy prerequisite, archived/closed route, or another release owner's lane prevents unilateral closure.",
+      "ledger_detail": "The paid submission was not purchased.",
+      "ledger_next_action": "Require separate authorization for the exact USD 39 spend before reconsidering.",
+      "next_action": "Require separate authorization for the exact USD 39 spend before reconsidering.",
+      "channel_url": "https://mcp.so/submit?type=server",
+      "ledger_verified_at": null,
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "apis-guru-research-api",
+      "name": "Financial Evidence Research API on APIs.guru",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "New shared research-table API submitted with the public OpenAPI 3.1 contract, absolute API origin, twelve runnable requests and source-availability limits. The issue is open; directory inclusion remains pending.",
+      "ledger_next_action": "Await maintainer review and verify the listing if accepted.",
+      "next_action": "Await maintainer review and verify the listing if accepted.",
+      "channel_url": "https://github.com/APIs-guru/openapi-directory/issues/3568",
+      "ledger_verified_at": "2026-10-07T06:54:25.977088+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-07"
+      ],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "apislist-research",
+      "name": "APIsList — Financial Evidence Research API",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Shared REST research API and OpenAPI contract; free public reads, allowlisted browser origins. The free Standard queue returned a received-for-review confirmation; the stated review window is up to 30 days.",
+      "ledger_next_action": "Wait for operator review and independently resolve the accepted public URL before marking live.",
+      "next_action": "Wait for operator review and independently resolve the accepted public URL before marking live.",
+      "channel_url": "https://apislist.com/api/add",
+      "ledger_verified_at": "2026-10-07T08:01:35.490787+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "apislist-liquilens",
+      "name": "APIsList — LiquiLens Public Research API",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Read-only public bank and lender evidence; no recommendation or credit-rating claim. The free Standard queue returned a received-for-review confirmation; the stated review window is up to 30 days.",
+      "ledger_next_action": "Wait for operator review and independently resolve the accepted public URL before marking live.",
+      "next_action": "Wait for operator review and independently resolve the accepted public URL before marking live.",
+      "channel_url": "https://apislist.com/api/add",
+      "ledger_verified_at": "2026-10-07T08:17:27.168043+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "apislist-seiche",
+      "name": "APIsList — Seiche Public Research API",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Public funding and capital-market research; additional authorized surfaces are separate. The free Standard queue returned a received-for-review confirmation; the stated review window is up to 30 days.",
+      "ledger_next_action": "Wait for operator review and independently resolve the accepted public URL before marking live.",
+      "next_action": "Wait for operator review and independently resolve the accepted public URL before marking live.",
+      "channel_url": "https://apislist.com/api/add",
+      "ledger_verified_at": "2026-10-07T08:18:14.427030+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "apislist-undertow",
+      "name": "APIsList — Undertow Market Liquidity API",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Free public summary; full-fidelity and subscriber tools have separate access requirements. Research estimates are not executable quotes. The free Standard queue returned a received-for-review confirmation; the stated review window is up to 30 days.",
+      "ledger_next_action": "Wait for operator review and independently resolve the accepted public URL before marking live.",
+      "next_action": "Wait for operator review and independently resolve the accepted public URL before marking live.",
+      "channel_url": "https://apislist.com/api/add",
+      "ledger_verified_at": "2026-10-07T08:19:25.717213+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "apisio-company",
+      "name": "APIs.io — LIQUILENS PRIVATE LIMITED",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "One consolidated company entry covering LiquiLens, Seiche, Undertow and the shared research API. The retry returned an explicit successful-submission confirmation and next-build review notice.",
+      "ledger_next_action": "Await review and the next directory build; do not resubmit the company entry.",
+      "next_action": "Await review and the next directory build; do not resubmit the company entry.",
+      "channel_url": "https://apis.io/add/",
+      "ledger_verified_at": "2026-10-07T08:10:13.752577+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "mcpservers-org-research-desk",
+      "name": "MCPServers.org — Financial Evidence Research Desk",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The distinct eight-tool hosted research MCP was received in the free review queue. Remote URL and no-auth mode were supplied; the existing three-tool source-router entry was not duplicated. The stated review window is two weeks.",
+      "ledger_next_action": "Wait for the operator review and verify the research endpoint and public listing if accepted.",
+      "next_action": "Wait for the operator review and verify the research endpoint and public listing if accepted.",
+      "channel_url": "https://mcpservers.org/submit",
+      "ledger_verified_at": "2026-10-07T08:21:27.525947+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "allmcps-financial-evidence",
+      "name": "AllMCPs — Financial Evidence",
+      "ledger_state": "listed_incomplete",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The existing public listing received another metadata correction: canonical remote endpoint, MIT license, current 0.1.7 description and Cline compatibility. The versioned wheel configuration was preserved. Dashboard shows Edit pending. Native Cline connection and three-tool discovery passed, but public propagation and AllMCPs sandbox verification remain unproved.",
+      "ledger_next_action": "Verify public propagation of the pending edit and AllMCPs own sandbox result before closing listing completeness.",
+      "next_action": "Verify public propagation of the pending edit and AllMCPs own sandbox result before closing listing completeness.",
+      "channel_url": "https://allmcps.com/mcp/financial-evidence",
+      "ledger_verified_at": "2026-10-09T18:50:51.122098+00:00",
+      "ledger_updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/platform-expansion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "completion_receipt",
+          "value": "distribution/completion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "allmcps-undertow",
+      "name": "AllMCPs — Undertow",
+      "ledger_state": "listed_incomplete",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Native Streamable HTTP discovery verified 16 public tools at https://api.seiche.info/undertow/mcp. The anonymous access-status response separately lists eight subscriber tools; subscriber access was not tested. Current endpoint, support URL and this access distinction were submitted to the existing listing. Dashboard shows Edit pending. The older duplicate and conflicting transport labels remain unresolved.",
+      "ledger_next_action": "Verify propagation of the pending edit and have the directory reconcile its duplicate and transport labels. Do not attribute subscriber access to the public discovery test.",
+      "next_action": "Verify propagation of the pending edit and have the directory reconcile its duplicate and transport labels. Do not attribute subscriber access to the public discovery test.",
+      "channel_url": "https://allmcps.com/mcp/undertow-market-liquidity-map-2",
+      "ledger_verified_at": "2026-10-09T18:50:50.921237+00:00",
+      "ledger_updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/platform-expansion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "completion_receipt",
+          "value": "distribution/completion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "battlefin-company-map",
+      "name": "BattleFin Data Maps — LIQUILENS PRIVATE LIMITED",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The free application linked from BattleFin's official Asia Data Map page returned an explicit received-for-review confirmation for the company. Selected regional coverage is qualified in the notes; this is a software/research profile, not a blanket data-resale offer.",
+      "ledger_next_action": "Await BattleFin review and independently verify a public firm page before marking live.",
+      "next_action": "Await BattleFin review and independently verify a public firm page before marking live.",
+      "channel_url": "https://battlefin-global-data-maps.lovable.app/submit",
+      "ledger_verified_at": "2026-10-07T08:39:14.205913+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "apyhub-seiche-reference-fx",
+      "name": "ApyHub - Seiche Reference FX API",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "ApyHub received Seiche Reference FX API v1.0.0 with four fixed GET CSV endpoints for USD, GBP, JPY and INR per EUR. All four tests passed; ECB source attribution and free-data notices were retained. Admin approval and public gateway acceptance remain pending. The separate broad JSON Research API draft remains rights-held.",
+      "ledger_next_action": "Wait for the existing submitted draft to be reviewed. After approval verify the public catalog, gateway response, attribution, pricing and acquisition attribution; do not resubmit.",
+      "next_action": "Wait for the existing submitted draft to be reviewed. After approval verify the public catalog, gateway response, attribution, pricing and acquisition attribution; do not resubmit.",
+      "channel_url": "https://apyhub.com/workspace/mrinallovesbhature/publishing/035397d7-9b8c-450b-86fa-cc14eb66d0d4",
+      "ledger_verified_at": "2026-10-07T16:06:20.963429Z",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "saashub-undertow",
+      "name": "SaaSHub — Undertow by LiquiLens",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Submitted through the free route after earlier product approvals unlocked the account. The name distinguishes the research product from the unrelated Undertow Java webserver. Saved description, three research categories, OpenBB as a research alternative, pricing link, parent-company LinkedIn, family logo, genuine screenshot, three features and product Q&A. The free Verify action confirmed verification; editorial approval remains pending.",
+      "ledger_next_action": "Await the existing SaaSHub editorial review; do not resubmit or confuse verification with approval.",
+      "next_action": "Await the existing SaaSHub editorial review; do not resubmit or confuse verification with approval.",
+      "channel_url": "https://www.saashub.com/undertow-by-liquilens/added",
+      "ledger_verified_at": "2026-10-15T09:05:44.381099Z",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "g2-liquilens",
+      "name": "G2 — LiquiLens",
+      "ledger_state": "listed_incomplete",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Public claimed profile, financial-research product description, English language, logo and free Public research pricing rechecked. A real institution-monitoring screenshot was added and independently read back on the public page. Survey remains the wrong category: existing case 00642455 is In Progress, with an estimated resolution of 14 October 2026. Seller-description case 00643368 remains New in the Intake Queue; another direct save required support and did not change the contact-lens text. Capterra and GetApp public pages now resolve, but both retain the wrong Survey category.",
+      "ledger_next_action": "Await the existing category case, estimated for 14 October 2026, and seller-description case. Then verify corrected public copy and taxonomy across G2, Capterra and GetApp.",
+      "next_action": "Read existing category case 00642455 and seller-description case 00643368 for a response, then verify the public taxonomy/copy and syndicated pages; do not create another support case.",
+      "channel_url": "https://www.g2.com/products/liquilens/reviews",
+      "ledger_verified_at": "2026-10-07T18:36:41.571266+00:00",
+      "ledger_updated_at": "2026-10-10T09:14:41.884793+00:00",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "completion_receipt",
+          "value": "distribution/completion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "g2-seiche",
+      "name": "G2 — Seiche",
+      "ledger_state": "listed_incomplete",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The existing Seiche G2 profile is publicly verified and claimed at its canonical product URL. Buyer-view readback confirms the financial-research description, product logo, English language, $0 Public research tier and a real product screenshot. Founder onboarding and deployment settings are saved. Consumer Insights Platforms remains the wrong category. No new product submission was made.",
+      "ledger_next_action": "Await G2 confirmation of the existing-case addendum covering the financial-research category and missing network pages, then verify the provider response and corrected public outcomes.",
+      "next_action": "Await G2 confirmation of the existing-case addendum covering the financial-research category and missing network pages, then verify the provider response and corrected public outcomes.",
+      "channel_url": "https://www.g2.com/products/seiche/reviews",
+      "ledger_verified_at": "2026-10-10T09:46:10.817709+00:00",
+      "ledger_updated_at": "2026-10-10T09:50:12.475Z",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "listing_followthrough_receipt",
+          "value": "distribution/g2-lobehub-followthrough-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "g2-undertow",
+      "name": "G2 — Undertow",
+      "ledger_state": "listed_incomplete",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The existing Undertow G2 profile is publicly verified and claimed at its canonical product URL. Buyer-view readback confirms the financial-research description, product logo, English language, $0 Public research tier and a real product screenshot. Founder onboarding and deployment settings are saved. Consumer Insights Platforms remains the wrong category. No new product submission was made.",
+      "ledger_next_action": "Await G2 confirmation of the existing-case addendum covering the financial-research category and unsupported survey features, then verify the corrected public profile.",
+      "next_action": "Await G2 confirmation of the existing-case addendum covering the financial-research category and unsupported survey features, then verify the corrected public profile.",
+      "channel_url": "https://www.g2.com/products/liquilens-private-limited-undertow/reviews",
+      "ledger_verified_at": "2026-10-10T09:46:10.894003+00:00",
+      "ledger_updated_at": "2026-10-10T09:50:12.475Z",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "listing_followthrough_receipt",
+          "value": "distribution/g2-lobehub-followthrough-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "datarade-company",
+      "name": "Datarade — LIQUILENS PRIVATE LIMITED",
+      "ledger_state": "approved_pending_public",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The approved company account and marketplace channel are active. Provider Studio shows the Seiche Reference FX product Published, with 1 published and 0 unpublished products. Frankfurt upload storage and the 20-row, 22-attribute ECB USD sample are saved. Public provider and product searches returned no LiquiLens results at the latest check, so public listing availability remains unverified. The earlier approval email is retained as historical evidence; no independent customer or revenue is established.",
+      "ledger_next_action": "Verify the canonical public provider and product pages when propagation is observable using the existing account and product. Do not replay activation or submission.",
+      "next_action": "Public readback returned 403. Preserve approved_pending_public and the existing product ID; use normal owner access to inspect propagation when available, without replaying activation/submission.",
+      "channel_url": "https://providers.datarade.ai/apply/confirm/success",
+      "ledger_verified_at": "2026-10-09T19:49:00Z",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "public-02"
+      ],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/platform-expansion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "mcpserver-cc-financial-evidence",
+      "name": "MCPServer.cc — Financial Evidence by LiquiLens",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The standard form returned an explicit submission-received confirmation for the Financial Evidence repository and LiquiLens, Seiche and Undertow research workflows. Editorial approval and a public listing are not yet observed.",
+      "ledger_next_action": "Await review of the existing submission; verify a canonical public listing before marking live.",
+      "next_action": "Await review of the existing submission; verify a canonical public listing before marking live.",
+      "channel_url": "https://mcpserver.cc/submit",
+      "ledger_verified_at": "2026-10-09T18:55:18.467Z",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/platform-expansion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "public-apis-financial-evidence-mcp",
+      "name": "Public APIs — Financial Evidence MCP",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "PR 7884 adds one Financial Evidence entry to the separate MCP Servers section with a public Glama install link and anonymous HTTP transport. New-row and link checks passed. Upstream README CI fails because its existing formatter treats MCP Transport/Install cells as REST HTTPS/CORS; the untouched base has 604 diagnostics and this change has 606. Validation-package tests pass. No catalog acceptance is claimed.",
+      "ledger_next_action": "Await maintainer review and MCP-aware formatter handling on the existing PR; verify the merged README before marking live.",
+      "next_action": "Await maintainer review and MCP-aware formatter handling on the existing PR; verify the merged README before marking live.",
+      "channel_url": "https://github.com/public-apis/public-apis/pull/7884",
+      "ledger_verified_at": "2026-10-09T18:58:50.792482+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-08"
+      ],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/platform-expansion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "apivault-financial-evidence",
+      "name": "API Vault — Financial Evidence Research API",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Official Add Your API issue 327 was created once and its author, exact body and OPEN state were read back. The submission describes public read-only funding, institution and liquidity research and explicitly does not claim unrestricted browser CORS. Directory acceptance and public listing remain unverified.",
+      "ledger_next_action": "Await the existing issue review; retain the stated CORS boundary and verify the public entry if accepted.",
+      "next_action": "Await the existing issue review; retain the stated CORS boundary and verify the public entry if accepted.",
+      "channel_url": "https://github.com/exa-studio/ApiVault/issues/327",
+      "ledger_verified_at": "2026-10-09T18:57:45.492982+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-09"
+      ],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/platform-expansion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "mcpserverfinder-financial-evidence",
+      "name": "MCP Server Finder — Financial Evidence by LiquiLens",
+      "ledger_state": "sent_delivery_unverified",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "A directory-submission email from mrinal@liquilens.in to the publicly advertised submission contact was verified in Titan Sent. It requests the standard free editorial listing. Recipient delivery, operator review and publication remain unverified.",
+      "ledger_next_action": "Monitor the original correspondence for delivery or review evidence; do not replay the message or mark a listing live without public readback.",
+      "next_action": "Monitor the original correspondence for delivery or review evidence; do not replay the message or mark a listing live without public readback.",
+      "channel_url": "https://mcpserverfinder.com/",
+      "ledger_verified_at": "2026-10-09T18:57:39Z",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/platform-expansion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "lobehub-liquilens",
+      "name": "LiquiLens on LobeHub",
+      "ledger_state": "listed_incomplete",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The existing claimed and validated listing has the correct hosted URL, current version and public tool names. Fresh owner metadata was accepted into the same version and read back. Anonymous presentation still has older copy and incorrect autogenerated local installation alternatives; the standalone LiquiLens research recipe is not an MCP stdio server. Existing records and prior receipts are retained.",
+      "ledger_next_action": "Await correction and public reindexing on the existing support thread; use the verified hosted HTTP connection meanwhile.",
+      "next_action": "Await correction and public reindexing on the existing support thread; use the verified hosted HTTP connection meanwhile.",
+      "channel_url": "https://lobehub.com/mcp/beepboop2025-liquilens-mcp",
+      "ledger_verified_at": "2026-10-11T12:01:23.385338+00:00",
+      "ledger_updated_at": "2026-10-11T13:42:28.550369+00:00",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/platform-expansion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "completion_receipt",
+          "value": "distribution/completion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "listing_followthrough_receipt",
+          "value": "distribution/g2-lobehub-followthrough-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "prepared_update_manifest",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/lobehub-updates/beepboop2025-liquilens-mcp/lhm.plugin.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "lobehub-seiche",
+      "name": "Seiche on LobeHub",
+      "ledger_state": "listed_incomplete",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The existing claimed and validated listing has the correct hosted URL, version 0.16.2 and sixteen public tool names. Fresh owner metadata was accepted into the same version and read back. Anonymous presentation still has older copy and outdated autogenerated local installation instructions, including Python requirements and CLI/Docker commands. Existing records and prior receipts are retained.",
+      "ledger_next_action": "Await correction and public reindexing on the existing support thread; use the verified hosted HTTP connection meanwhile.",
+      "next_action": "Await correction and public reindexing on the existing support thread; use the verified hosted HTTP connection meanwhile.",
+      "channel_url": "https://lobehub.com/mcp/beepboop2025-seiche",
+      "ledger_verified_at": "2026-10-11T12:01:23.385338+00:00",
+      "ledger_updated_at": "2026-10-11T13:42:28.707535+00:00",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/platform-expansion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "completion_receipt",
+          "value": "distribution/completion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "listing_followthrough_receipt",
+          "value": "distribution/g2-lobehub-followthrough-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "prepared_update_manifest",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/lobehub-updates/beepboop2025-seiche/lhm.plugin.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "lobehub-palimpsest",
+      "name": "Palimpsest on LobeHub",
+      "ledger_state": "listed_incomplete",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The existing LobeHub record was claimed and its update accepted by the official CLI on 10 October 2026. The authenticated owned-list readback verifies version 1.9.3 and provider status published on the same record ID; no new listing was created. Anonymous public readback at 09:46 UTC still showed version 1.0.0, Unvalidated and an unclaimed flag in the public route data. The accepted update has not been independently verified on the public card.",
+      "ledger_next_action": "Await public catalog synchronization and validation, then recheck the exact existing card against the accepted update receipt. The earlier support request is preserved; no duplicate claim or listing is needed.",
+      "next_action": "Await public catalog synchronization and validation, then recheck the exact existing card against the accepted update receipt. The earlier support request is preserved; no duplicate claim or listing is needed.",
+      "channel_url": "https://lobehub.com/mcp/beepboop2025-palimpsest",
+      "ledger_verified_at": "2026-10-10T09:46:13.143200+00:00",
+      "ledger_updated_at": "2026-10-10T09:46:13.143200+00:00",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/platform-expansion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "completion_receipt",
+          "value": "distribution/completion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "listing_followthrough_receipt",
+          "value": "distribution/g2-lobehub-followthrough-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "prepared_update_manifest",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/lobehub-updates/beepboop2025-palimpsest/lhm.plugin.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "lobehub-riptide",
+      "name": "Riptide on LobeHub",
+      "ledger_state": "listed_incomplete",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The existing LobeHub record was claimed and its update accepted by the official CLI on 10 October 2026. The authenticated owned-list readback verifies version 1.3.0 and provider status published on the same record ID; no new listing was created. Anonymous public readback at 09:46 UTC still showed version 1.3.0, Unvalidated and an unclaimed flag in the public route data. The accepted update has not been independently verified on the public card. Its unchanged 1.3.0 version alone does not prove metadata propagation.",
+      "ledger_next_action": "Await public catalog synchronization and validation, then recheck the exact existing card against the accepted update receipt. The earlier support request is preserved; no duplicate claim or listing is needed.",
+      "next_action": "Await public catalog synchronization and validation, then recheck the exact existing card against the accepted update receipt. The earlier support request is preserved; no duplicate claim or listing is needed.",
+      "channel_url": "https://lobehub.com/mcp/beepboop2025-riptide-mcp",
+      "ledger_verified_at": "2026-10-10T09:46:13.028558+00:00",
+      "ledger_updated_at": "2026-10-10T09:46:13.028558+00:00",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/platform-expansion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "completion_receipt",
+          "value": "distribution/completion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "listing_followthrough_receipt",
+          "value": "distribution/g2-lobehub-followthrough-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "prepared_update_manifest",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/lobehub-updates/beepboop2025-riptide-mcp/lhm.plugin.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "lobehub-noisefloor",
+      "name": "NoiseFloor on LobeHub",
+      "ledger_state": "listed_incomplete",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The existing LobeHub record was claimed and its update accepted by the official CLI on 10 October 2026. The authenticated owned-list readback verifies version 0.4.0 and provider status published on the same record ID; no new listing was created. Anonymous public readback at 09:46 UTC still showed version 0.1.2, Unvalidated and an unclaimed flag in the public route data. The accepted update has not been independently verified on the public card.",
+      "ledger_next_action": "Await public catalog synchronization and validation, then recheck the exact existing card against the accepted update receipt. The earlier support request is preserved; no duplicate claim or listing is needed.",
+      "next_action": "Await public catalog synchronization and validation, then recheck the exact existing card against the accepted update receipt. The earlier support request is preserved; no duplicate claim or listing is needed.",
+      "channel_url": "https://lobehub.com/mcp/beepboop2025-noisefloor",
+      "ledger_verified_at": "2026-10-10T09:46:11.996015+00:00",
+      "ledger_updated_at": "2026-10-10T09:46:11.996015+00:00",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/platform-expansion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "completion_receipt",
+          "value": "distribution/completion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "listing_followthrough_receipt",
+          "value": "distribution/g2-lobehub-followthrough-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "prepared_update_manifest",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/lobehub-updates/beepboop2025-noisefloor/lhm.plugin.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "lobehub-evidence-carrier",
+      "name": "Evidence Carrier on LobeHub",
+      "ledger_state": "listed_incomplete",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The existing LobeHub record was claimed and its update accepted by the official CLI on 10 October 2026. The authenticated owned-list readback verifies version 0.20.1 and provider status published on the same record ID; no new listing was created. Anonymous public readback at 09:46 UTC still showed version 0.19.0, Unvalidated and an unclaimed flag in the public route data. The accepted update has not been independently verified on the public card.",
+      "ledger_next_action": "Await public catalog synchronization and validation, then recheck the exact existing card against the accepted update receipt. The earlier support request is preserved; no duplicate claim or listing is needed.",
+      "next_action": "Await public catalog synchronization and validation, then recheck the exact existing card against the accepted update receipt. The earlier support request is preserved; no duplicate claim or listing is needed.",
+      "channel_url": "https://lobehub.com/mcp/beepboop2025-liquilens-evidence-carrier",
+      "ledger_verified_at": "2026-10-10T09:46:13.042976+00:00",
+      "ledger_updated_at": "2026-10-10T09:46:13.042976+00:00",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/platform-expansion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "completion_receipt",
+          "value": "distribution/completion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "listing_followthrough_receipt",
+          "value": "distribution/g2-lobehub-followthrough-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "prepared_update_manifest",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/lobehub-updates/beepboop2025-liquilens-evidence-carrier/lhm.plugin.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "public-apis-seiche-rest",
+      "name": "Public APIs — Seiche REST API",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "actionable_self_service",
+      "reason": "The existing PR merged and the exact product row was independently verified on the public default branch.",
+      "ledger_detail": "Existing Seiche REST PR 7801 remains open and unmerged on current GitHub readback. This records the earlier submission; no new PR, catalog approval or adoption is claimed.",
+      "ledger_next_action": "Await review of the existing REST PR; do not open a duplicate.",
+      "next_action": "Ledger owner may reconcile submitted to live using the retained PR merge and default-branch row receipt. No new submission, runtime test or adoption claim is needed.",
+      "channel_url": "https://github.com/public-apis/public-apis/pull/7801",
+      "ledger_verified_at": "2026-10-09T19:02:44.703651+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-10",
+        "default-branch-01"
+      ],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/platform-expansion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": {
+        "from": "submitted",
+        "to": "live",
+        "listing_url": "https://github.com/public-apis/public-apis/blob/master/README.md",
+        "immutable_evidence_url": "https://github.com/public-apis/public-apis/blob/642f0c657cb531c6b23331c5d235ef6a588fefda/README.md",
+        "verified_at": "2026-10-15T15:15:26.682657+00:00",
+        "applied": false
+      }
+    },
+    {
+      "entry_id": "public-apis-undertow-rest",
+      "name": "Public APIs — Undertow REST API",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "actionable_self_service",
+      "reason": "The existing PR merged and the exact product row was independently verified on the public default branch.",
+      "ledger_detail": "Existing Undertow REST PR 7802 remains open and unmerged on current GitHub readback. This records the earlier submission; no new PR, catalog approval or adoption is claimed.",
+      "ledger_next_action": "Await review of the existing REST PR; do not open a duplicate.",
+      "next_action": "Ledger owner may reconcile submitted to live using the retained PR merge and default-branch row receipt. No new submission, runtime test or adoption claim is needed.",
+      "channel_url": "https://github.com/public-apis/public-apis/pull/7802",
+      "ledger_verified_at": "2026-10-09T19:02:44.703651+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-11",
+        "default-branch-01"
+      ],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/platform-expansion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": {
+        "from": "submitted",
+        "to": "live",
+        "listing_url": "https://github.com/public-apis/public-apis/blob/master/README.md",
+        "immutable_evidence_url": "https://github.com/public-apis/public-apis/blob/642f0c657cb531c6b23331c5d235ef6a588fefda/README.md",
+        "verified_at": "2026-10-15T15:15:26.682657+00:00",
+        "applied": false
+      }
+    },
+    {
+      "entry_id": "fintech-sandbox-provider-intake",
+      "name": "Fintech Sandbox — LiquiLens provider enquiry",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The official Become a Data Partner form explicitly acknowledged the LIQUILENS PRIVATE LIMITED provider enquiry for existing public LiquiLens, Seiche and Undertow research interfaces. This is non-binding qualification intake, not partnership acceptance, an expanded data licence, unrestricted third-party redistribution, a trial commitment or paid sponsorship.",
+      "ledger_next_action": "Await qualification review on the existing intake; scope any service, trial or licence terms separately before committing access or source rights.",
+      "next_action": "Await qualification review on the existing intake; scope any service, trial or licence terms separately before committing access or source rights.",
+      "channel_url": "https://www.fintechsandbox.org/become-a-data-partner/",
+      "ledger_verified_at": "2026-10-09T19:05:09.516Z",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/platform-expansion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "neudata-company",
+      "name": "Neudata — LiquiLens provider application",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The data-provider application was acknowledged as submitted for review. This records provider intake only; account approval, dataset questionnaires and a buyer-facing listing remain unverified. LiquiLens, Seiche and Undertow research roles retain separate source and rights boundaries.",
+      "ledger_next_action": "Await provider review and continue the existing application; do not replay signup.",
+      "next_action": "Await provider review and continue the existing application; do not replay signup.",
+      "channel_url": "https://www.neudata.co/data_providers/sign_up?requested_subscription_status=pending_free",
+      "ledger_verified_at": "2026-10-09T20:31:08.304305+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "eagle-alpha-company",
+      "name": "Eagle Alpha — LiquiLens provider application",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Business email verification completed and the portal acknowledged the provider request, pending team review by email. Account approval and dataset/profile publication are not established. The broad content licence is separate from any source-specific dataset redistribution permission.",
+      "ledger_next_action": "Await approval of the existing verified provider request; qualify each dataset before upload.",
+      "next_action": "Await approval of the existing verified provider request; qualify each dataset before upload.",
+      "channel_url": "https://app.selldata.eaglealpha.com/signup",
+      "ledger_verified_at": "2026-10-09T20:31:08.304305+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "crozdesk-liquilens",
+      "name": "Crozdesk / Revleads — LiquiLens software application",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Application 373489 was received but not accepted automatically. The portal requires manual review, reported as taking up to three days. This is the LiquiLens B2B institution-research software application; no public software listing is verified.",
+      "ledger_next_action": "Await manual review, then log in and complete the product listing if eligible; do not resubmit the application.",
+      "next_action": "Await manual review, then log in and complete the product listing if eligible; do not resubmit the application.",
+      "channel_url": "https://vendor.revleads.com/user/signup",
+      "ledger_verified_at": "2026-10-09T20:31:08.304305+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "softwaresuggest-liquilens",
+      "name": "SoftwareSuggest — LiquiLens software listing",
+      "ledger_state": "ready_account_action",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The existing vendor portal is accessible and company details were saved with the supported Undisclosed customer option. Product details and the official logo are prepared, but Save & Next requires a billing choice: Yearly, Monthly, Onetime or Transaction. The offer is quote-specific with no fixed billing period, so the product remains unsaved and unsubmitted. A support request for truthful quote-only handling or manual free completion was acknowledged; no public listing is verified.",
+      "ledger_next_action": "Await support guidance, then use a truthful supported billing option to save the existing product and complete the free listing. Do not select an inaccurate billing period or create a duplicate registration.",
+      "next_action": "Await support guidance, then use a truthful supported billing option to save the existing product and complete the free listing. Do not select an inaccurate billing period or create a duplicate registration.",
+      "channel_url": "https://www.softwaresuggest.com/vendors",
+      "ledger_verified_at": "2026-10-09T21:17:28.263568+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "gumloop-financial-evidence",
+      "name": "Gumloop — Financial Evidence community template",
+      "ledger_state": "skipped_paid",
+      "baseline_classification": "gated_or_owned_elsewhere",
+      "classification": "gated_or_owned_elsewhere",
+      "reason": "Existing owner decision, access/payment/policy prerequisite, archived/closed route, or another release owner's lane prevents unilateral closure.",
+      "ledger_detail": "Signup reached a required trial offer before native template creation. Optional Gmail and Calendar connections were left unchecked. The user explicitly chose to leave Gumloop pending and finish free routes. No trial, paid plan or public template was started.",
+      "ledger_next_action": "Keep the account pending and do not start the trial unless the user later changes the decision.",
+      "next_action": "Keep the account pending and do not start the trial unless the user later changes the decision.",
+      "channel_url": "https://www.gumloop.com/",
+      "ledger_verified_at": "2026-10-09T20:31:08.304305+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "haystack-financial-evidence",
+      "name": "Haystack integrations — Financial Evidence",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Native FinancialEvidenceQuery component and ComponentTool support were merged in family PR92. Exact public Git installation at 3abcc45d7a429d26ed185d1ca845b078041f54f3, 15 native tests and a bounded synthetic pipeline query passed. Catalog PR650 is open for maintainer review; its public PR is not an accepted catalog listing.",
+      "ledger_next_action": "Await maintainer review of PR650 and verify the public catalog page after acceptance.",
+      "next_action": "Await maintainer review of PR650 and verify the public catalog page after acceptance.",
+      "channel_url": "https://github.com/deepset-ai/haystack-integrations/pull/650",
+      "ledger_verified_at": "2026-10-09T20:31:08.304305+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-12"
+      ],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "langchain-financial-evidence",
+      "name": "LangChain integration directory — Financial Evidence",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Native tools and toolkit version 0.1.1 are published on PyPI. Anonymous artifact hashes matched tested bytes; a fresh install passed dependency checks and all three tools through the central service. Official integration issue 6593 remains a separately recorded submission; package publication does not establish directory acceptance.",
+      "ledger_next_action": "Await maintainer triage and review of issue 6593 and verify the public integration page after acceptance.",
+      "next_action": "Await maintainer triage and review of issue 6593 and verify the public integration page after acceptance.",
+      "channel_url": "https://github.com/langchain-ai/docs/issues/6593",
+      "ledger_verified_at": "2026-10-09T20:37:39.660676+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-13"
+      ],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/execution-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        },
+        {
+          "field": "package_evidence_receipt",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/langchain-pypi-publication-20261013.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "awesome-quant-seiche",
+      "name": "Awesome Quant — Seiche",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "A public maintainer-disclosed contribution PR is open. Catalog inclusion awaits upstream review. Quantitative finance researchers; source-linked funding observations.",
+      "ledger_next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "channel_url": "https://github.com/wilsonfreitas/awesome-quant/pull/778",
+      "ledger_verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-14"
+      ],
+      "retained_evidence": [
+        {
+          "field": "verification_url",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/wide-distribution-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "awesome-quant-noisefloor",
+      "name": "Awesome Quant — NoiseFloor",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "A public maintainer-disclosed contribution PR is open. Catalog inclusion awaits upstream review. Quantitative finance researchers; offline time-series diagnostics.",
+      "ledger_next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "channel_url": "https://github.com/wilsonfreitas/awesome-quant/pull/778",
+      "ledger_verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-14"
+      ],
+      "retained_evidence": [
+        {
+          "field": "verification_url",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/wide-distribution-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "awesome-osint-narcoscope",
+      "name": "Awesome OSINT — NarcoScope",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "actionable_self_service",
+      "reason": "The existing PR merged and the exact product row was independently verified on the public default branch.",
+      "ledger_detail": "A public maintainer-disclosed contribution PR is open. Catalog inclusion awaits upstream review. Journalists and policy researchers using official aggregate drug-market evidence.",
+      "ledger_next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "next_action": "Ledger owner may reconcile submitted to live using the retained PR merge and default-branch row receipt. No new submission, runtime test or adoption claim is needed.",
+      "channel_url": "https://github.com/jivoi/awesome-osint/pull/1271",
+      "ledger_verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-15",
+        "default-branch-02"
+      ],
+      "retained_evidence": [
+        {
+          "field": "verification_url",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/wide-distribution-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": {
+        "from": "submitted",
+        "to": "live",
+        "listing_url": "https://github.com/jivoi/awesome-osint/blob/master/README.md",
+        "immutable_evidence_url": "https://github.com/jivoi/awesome-osint/blob/6ce2c1b5ba7817da378818e691d0408899e3a924/README.md",
+        "verified_at": "2026-10-15T15:15:26.997191+00:00",
+        "applied": false
+      }
+    },
+    {
+      "entry_id": "osint-collection-palimpsest",
+      "name": "Cyber Detective OSINT tools — Palimpsest",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "A public maintainer-disclosed contribution PR is open. Catalog inclusion awaits upstream review. Public-source censorship and reproducible-evaluation researchers.",
+      "ledger_next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "channel_url": "https://github.com/cipher387/osint_stuff_tool_collection/pull/182",
+      "ledger_verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-16"
+      ],
+      "retained_evidence": [
+        {
+          "field": "verification_url",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/wide-distribution-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "wealthmcp-financial-evidence",
+      "name": "WealthMCP — Financial Evidence",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The free listing form explicitly acknowledged receipt with \"Thanks, submission noted\" and states that listings are reviewed before publication. Advisory technology teams routing public financial research.",
+      "ledger_next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "channel_url": "https://wealthmcp.ai/submit",
+      "ledger_verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "verification_url",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/wide-distribution-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "wealthmcp-seiche",
+      "name": "WealthMCP — Seiche",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The free listing form explicitly acknowledged receipt with \"Thanks, submission noted\" and states that listings are reviewed before publication. Macro analysts and advisor research teams following dollar funding.",
+      "ledger_next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "channel_url": "https://wealthmcp.ai/submit",
+      "ledger_verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "verification_url",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/wide-distribution-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "wealthmcp-noisefloor",
+      "name": "WealthMCP — NoiseFloor",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The free listing form explicitly acknowledged receipt with \"Thanks, submission noted\" and states that listings are reviewed before publication. Analysts evaluating changes, forecasts and financial correlation structure.",
+      "ledger_next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "next_action": "Check the existing submission for editorial approval and verify the public listing; do not resubmit.",
+      "channel_url": "https://wealthmcp.ai/submit",
+      "ledger_verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "verification_url",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/distribution/wide-distribution-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "ai4finance-market-brief",
+      "name": "Awesome AI4Finance — Market Brief",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "After Financial Evidence PR 37 merged upstream, the existing Market Brief PR was refreshed again with the new upstream main. Its diff remains exactly one added Market Brief row, with the Financial Evidence row retained. The normal push is recorded; GitHub subsequently reports the PR mergeable and clean. Editorial review remains pending.",
+      "ledger_next_action": "Await maintainer review of existing PR 26; do not resubmit.",
+      "next_action": "Await maintainer review of existing PR 26; do not resubmit.",
+      "channel_url": "https://github.com/AI4Finance-Foundation/Awesome_AI4Finance/pull/26",
+      "ledger_verified_at": "2026-10-10T05:30:53.903883+00:00",
+      "ledger_updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-17"
+      ],
+      "retained_evidence": [
+        {
+          "field": "completion_receipt",
+          "value": "distribution/completion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "cursor-directory-financial-evidence",
+      "name": "Cursor Directory — Financial Evidence",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Owner-approved email-only GitHub sign-in completed. The Financial Evidence MCP plugin was submitted and has an owner-visible record. Cursor Directory says it is scanning and hidden from the public directory until the security agent finishes. The listing includes one self-contained remote MCP configuration; no incomplete inline skill bundle is distributed.",
+      "ledger_next_action": "Wait for the existing security scan and verify anonymous public visibility and the actual install configuration before claiming live publication.",
+      "next_action": "Wait for the existing security scan and verify anonymous public visibility and the actual install configuration before claiming live publication.",
+      "channel_url": "https://cursor.directory/plugins/financial-evidence-by-liquilens",
+      "ledger_verified_at": "2026-10-10T05:36:59.863294+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "finskilz-financial-evidence",
+      "name": "FinSkilz — Financial Evidence",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "After explicit owner approval of all displayed consents, the free Financial Evidence application returned \"Submission received!\". FinSkilz states that review and public evaluation will follow. No score or public listing is claimed.",
+      "ledger_next_action": "Await evaluation results and verify the public listing and actual supported-tool results; do not resubmit.",
+      "next_action": "Await evaluation results and verify the public listing and actual supported-tool results; do not resubmit.",
+      "channel_url": "https://finskilz.com/servers/submit/",
+      "ledger_verified_at": "2026-10-10T05:36:16.700005+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "sourceforge-research-desk",
+      "name": "SourceForge — Financial Evidence Research Desk",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The previously authorized draft was recovered after confirming the old owner was idle and no accepted submission receipt existed. The official logo attached successfully. SourceForge rejected URLs in description text; after correcting that validation error, the completed Financial Research application returned Request Received and states that review will follow. No public listing is claimed.",
+      "ledger_next_action": "Await the existing request review and verify a public product page after approval. Create or connect an owner management account only if required by the approval flow; do not resubmit.",
+      "next_action": "Await the existing request review and verify a public product page after approval. Create or connect an owner management account only if required by the approval flow; do not resubmit.",
+      "channel_url": "https://sourceforge.net/software/vendors/new_submitted",
+      "ledger_verified_at": "2026-10-10T06:36:07.109531+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/completion-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "capterra-liquilens",
+      "name": "Capterra — LiquiLens",
+      "ledger_state": "listed_incomplete",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Existing syndicated LiquiLens page independently read back on Capterra. Public presence is confirmed, but Survey remains the wrong category and syndicated product copy has not been fully validated. This is a newly verified existing page, not a new submission.",
+      "ledger_next_action": "Track the existing G2 category and profile cases, then recheck syndicated taxonomy and product copy.",
+      "next_action": "Track the existing G2 category and profile cases, then recheck syndicated taxonomy and product copy.",
+      "channel_url": "https://www.capterra.com/p/10266227/LiquiLens/",
+      "ledger_verified_at": "2026-10-10T09:14:41.884793+00:00",
+      "ledger_updated_at": "2026-10-10T09:14:41.884793+00:00",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "getapp-liquilens",
+      "name": "GetApp — LiquiLens",
+      "ledger_state": "listed_incomplete",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Existing syndicated LiquiLens page independently read back on GetApp. Public presence is confirmed, but Survey remains the wrong category and syndicated product copy has not been fully validated. This is a newly verified existing page, not a new submission.",
+      "ledger_next_action": "Track the existing G2 category and profile cases, then recheck syndicated taxonomy and product copy.",
+      "next_action": "Track the existing G2 category and profile cases, then recheck syndicated taxonomy and product copy.",
+      "channel_url": "https://www.getapp.com/all-software/a/liquilens/",
+      "ledger_verified_at": "2026-10-10T09:14:41.884793+00:00",
+      "ledger_updated_at": "2026-10-10T09:14:41.884793+00:00",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "capterra-undertow",
+      "name": "Capterra — Undertow",
+      "ledger_state": "listed_incomplete",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Existing syndicated Undertow page independently verified. Financial-research product copy was corrected through G2 and the corrected copy was independently read back on this public network page. Unrelated categories and survey features still require correction. This is a newly verified existing page, not a new submission.",
+      "ledger_next_action": "Await G2 routing or resolution of the network category and survey-feature issues raised in the existing-case addendum, then verify the public page again.",
+      "next_action": "Await G2 routing or resolution of the network category and survey-feature issues raised in the existing-case addendum, then verify the public page again.",
+      "channel_url": "https://www.capterra.com/p/10266232/Undertow/",
+      "ledger_verified_at": "2026-10-10T09:46:12.466421+00:00",
+      "ledger_updated_at": "2026-10-10T09:50:12.475Z",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "listing_followthrough_receipt",
+          "value": "distribution/g2-lobehub-followthrough-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "getapp-undertow",
+      "name": "GetApp — Undertow",
+      "ledger_state": "listed_incomplete",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Existing syndicated Undertow page independently verified. Financial-research product copy was corrected through G2 and the corrected copy was independently read back on this public network page. Unrelated categories and survey features still require correction. This is a newly verified existing page, not a new submission.",
+      "ledger_next_action": "Await G2 routing or resolution of the network category and survey-feature issues raised in the existing-case addendum, then verify the public page again.",
+      "next_action": "Await G2 routing or resolution of the network category and survey-feature issues raised in the existing-case addendum, then verify the public page again.",
+      "channel_url": "https://www.getapp.com/all-software/a/undertow-1/",
+      "ledger_verified_at": "2026-10-10T09:46:13.379064+00:00",
+      "ledger_updated_at": "2026-10-10T09:50:12.475Z",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "listing_followthrough_receipt",
+          "value": "distribution/g2-lobehub-followthrough-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "softwareadvice-undertow",
+      "name": "Software Advice — Undertow",
+      "ledger_state": "listed_incomplete",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Existing syndicated Undertow page independently verified. Financial-research product copy was corrected through G2 and the corrected copy was independently read back on this public network page. Unrelated categories and survey features still require correction. This is a newly verified existing page, not a new submission.",
+      "ledger_next_action": "Await G2 routing or resolution of the network category and survey-feature issues raised in the existing-case addendum, then verify the public page again.",
+      "next_action": "Await G2 routing or resolution of the network category and survey-feature issues raised in the existing-case addendum, then verify the public page again.",
+      "channel_url": "https://www.softwareadvice.com/product/773580-Undertow/",
+      "ledger_verified_at": "2026-10-10T09:46:27.046627+00:00",
+      "ledger_updated_at": "2026-10-10T09:50:12.475Z",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "listing_followthrough_receipt",
+          "value": "distribution/g2-lobehub-followthrough-20261010.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "factset-provider-inquiry",
+      "name": "FactSet — LIQUILENS PRIVATE LIMITED partner qualification enquiry",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The official contact form acknowledged receipt of the company partner qualification request and said a specialist would follow up. This is one company-level qualification inquiry, not marketplace approval, a public product listing, a native integration, a data licence or customer adoption. Source-specific rights and the eventual offering remain separate.",
+      "ledger_next_action": "Await a response on this existing inquiry; do not submit a duplicate. Confirm provider fit, source-qualified offering, delivery requirements and any commercial terms before proceeding.",
+      "next_action": "Await a response on this existing inquiry; do not submit a duplicate. Confirm provider fit, source-qualified offering, delivery requirements and any commercial terms before proceeding.",
+      "channel_url": "https://www.factset.com/contact-us",
+      "ledger_verified_at": "2026-10-10T21:10:44.173121+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/provider-inquiries-20261011.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "nasdaq-data-link-provider-inquiry",
+      "name": "Nasdaq Data Link — LIQUILENS PRIVATE LIMITED provider fit enquiry",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The official Monetize Your Data form displayed Success and Thank You after the company provider fit enquiry. This is one company-level qualification inquiry, not marketplace approval, a public product listing, a native integration, a data licence or customer adoption. Source-specific rights and the eventual offering remain separate.",
+      "ledger_next_action": "Await a response on this existing inquiry; do not submit a duplicate. Confirm provider fit, source-qualified offering, delivery requirements and any commercial terms before proceeding.",
+      "next_action": "Await a response on this existing inquiry; do not submit a duplicate. Confirm provider fit, source-qualified offering, delivery requirements and any commercial terms before proceeding.",
+      "channel_url": "https://www.nasdaq.com/products/data/alternative/monetize-your-data",
+      "ledger_verified_at": "2026-10-10T21:10:44.173121+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/provider-inquiries-20261011.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "n8n-creator-financial-evidence",
+      "name": "n8n Creator Portal — Financial Evidence",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The existing Creator Portal submission remains n8n-nodes-financial-evidence 0.1.0. Its verified 160.28-second demo video was uploaded and submitted on 15 October 2026. Automated Review is complete; Manual Review shows Under Review after a refreshed portal readback. Approved For Publish is not complete. n8n verification, official node-directory acceptance, n8n Cloud availability and customer adoption remain unverified. The public npm 0.1.1 release is recorded separately.",
+      "ledger_next_action": "Await manual review of the existing 0.1.0 submission and respond to reviewer requests. Verify a public approved-node listing before upgrading this state. Do not submit a duplicate application.",
+      "next_action": "Await manual review of the existing 0.1.0 submission and respond to reviewer requests. Verify a public approved-node listing before upgrading this state. Do not submit a duplicate application.",
+      "channel_url": "https://creators.n8n.io/nodes/n8n-nodes-financial-evidence/integration",
+      "ledger_verified_at": "2026-10-15T11:54:58.889892+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "https://beepboop2025.github.io/financial-evidence-skills/platforms/n8n-creator-submission-20261015.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null,
+      "independent_subtask_or_review_note": "The demo was already uploaded and manual review read back on 15 October; preserve the existing 0.1.0 application while npm 0.1.1 remains separate."
+    },
+    {
+      "entry_id": "pipedream-financial-evidence",
+      "name": "Pipedream — Financial Evidence",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Official new-app request is open. App registration is required before native actions can be contributed. No installed native integration or public app listing is verified.",
+      "ledger_next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "channel_url": "https://github.com/PipedreamHQ/pipedream/issues/22210",
+      "ledger_verified_at": "2026-10-10T23:56:42Z",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-18"
+      ],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/partner-listing-expansion-20261011.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "mcp-directory-financial-evidence",
+      "name": "MCP.Directory — Financial Evidence",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The official form acknowledged the distinct product repository with Server Submitted. Review is pending; no canonical public listing or usage has been verified.",
+      "ledger_next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "channel_url": "https://mcp.directory/submit",
+      "ledger_verified_at": "2026-10-11T00:01:02.441Z",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/partner-listing-expansion-20261011.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "agentndx-financial-evidence",
+      "name": "AgentNDX — Financial Evidence",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The official MCP submission form returned Submission received and a success confirmation URL. Review is pending; public directory acceptance is unverified.",
+      "ledger_next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "channel_url": "https://agentndx.ai/submit/",
+      "ledger_verified_at": "2026-10-11T00:07:53.444930+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "public-05",
+        "public-06",
+        "public-07",
+        "public-08",
+        "public-09",
+        "public-10",
+        "public-11",
+        "public-12"
+      ],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/partner-listing-expansion-20261011.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "mcp-directory-seiche",
+      "name": "MCP.Directory — Seiche",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The official form acknowledged the distinct product repository with Server Submitted. Review is pending; no canonical public listing or usage has been verified.",
+      "ledger_next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "channel_url": "https://mcp.directory/submit",
+      "ledger_verified_at": "2026-10-11T00:04:30.207731+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/partner-listing-expansion-20261011.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "agentndx-seiche",
+      "name": "AgentNDX — Seiche",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The official MCP submission form returned Submission received and a success confirmation URL. Review is pending; public directory acceptance is unverified.",
+      "ledger_next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "channel_url": "https://agentndx.ai/submit/",
+      "ledger_verified_at": "2026-10-11T00:08:17.754874+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "public-05",
+        "public-06",
+        "public-07",
+        "public-08",
+        "public-09",
+        "public-10",
+        "public-11",
+        "public-12"
+      ],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/partner-listing-expansion-20261011.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "mcp-directory-liquilens",
+      "name": "MCP.Directory — LiquiLens",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The official form acknowledged the distinct product repository with Server Submitted. Review is pending; no canonical public listing or usage has been verified.",
+      "ledger_next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "channel_url": "https://mcp.directory/submit",
+      "ledger_verified_at": "2026-10-11T00:04:39.421621+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/partner-listing-expansion-20261011.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "agentndx-liquilens",
+      "name": "AgentNDX — LiquiLens",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The official MCP submission form returned Submission received and a success confirmation URL. Review is pending; public directory acceptance is unverified.",
+      "ledger_next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "channel_url": "https://agentndx.ai/submit/",
+      "ledger_verified_at": "2026-10-11T00:08:47.111872+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "public-05",
+        "public-06",
+        "public-07",
+        "public-08",
+        "public-09",
+        "public-10",
+        "public-11",
+        "public-12"
+      ],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/partner-listing-expansion-20261011.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "mcp-directory-undertow",
+      "name": "MCP.Directory — Undertow",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The official form acknowledged the distinct product repository with Server Submitted. Review is pending; no canonical public listing or usage has been verified.",
+      "ledger_next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "channel_url": "https://mcp.directory/submit",
+      "ledger_verified_at": "2026-10-11T00:04:49.921526+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/partner-listing-expansion-20261011.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "agentndx-undertow",
+      "name": "AgentNDX — Undertow",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The official MCP submission form returned Submission received and a success confirmation URL. Review is pending; public directory acceptance is unverified.",
+      "ledger_next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "channel_url": "https://agentndx.ai/submit/",
+      "ledger_verified_at": "2026-10-11T00:09:05.659532+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "public-05",
+        "public-06",
+        "public-07",
+        "public-08",
+        "public-09",
+        "public-10",
+        "public-11",
+        "public-12"
+      ],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/partner-listing-expansion-20261011.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "apidirectory-seiche",
+      "name": "APIDirectory — Seiche Dollar Funding Research API",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The free API submission queue acknowledged the product with Filed. No published listing has been independently verified.",
+      "ledger_next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "channel_url": "https://apidirectory.com/submit",
+      "ledger_verified_at": "2026-10-11T00:05:23.950522+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/partner-listing-expansion-20261011.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "apidirectory-undertow",
+      "name": "APIDirectory — Undertow Market Liquidity Research API",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The free API submission queue acknowledged the product with Filed. No published listing has been independently verified.",
+      "ledger_next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "channel_url": "https://apidirectory.com/submit",
+      "ledger_verified_at": "2026-10-11T00:05:56.012536+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/partner-listing-expansion-20261011.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "mcp-find-financial-evidence",
+      "name": "MCP Find — Financial Evidence",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The catalog PR is open. Local schema checks and upstream fork-safe submission preflight pass. The upstream Vercel preview requires maintainer authorization. Catalog publication remains pending.",
+      "ledger_next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "channel_url": "https://github.com/MCPFind/mcp-find/pull/281",
+      "ledger_verified_at": "2026-10-11T00:10:56.221965+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-19"
+      ],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/partner-listing-expansion-20261011.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null,
+      "independent_subtask_or_review_note": "Existing PR is mergeable but behind; fork-safe preflight passes. Review for maintainer requests before changing an otherwise accepted candidate."
+    },
+    {
+      "entry_id": "kilo-financial-evidence",
+      "name": "Kilo Marketplace — Financial Evidence",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The MCP catalog PR is open with remote and versioned Docker install options. Kilo CLI 7.8.8 connected; 119 catalog tests and the MCP type check passed. Separate direct checks verified the three-tool contract and a bounded money-market response with provenance. An LLM-driven workflow and independent adoption were not tested.",
+      "ledger_next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "next_action": "Await review of the existing submission; verify its canonical public listing before marking live. Do not resubmit.",
+      "channel_url": "https://github.com/Kilo-Org/kilo-marketplace/pull/366",
+      "ledger_verified_at": "2026-10-11T00:16:55.874448+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-20"
+      ],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/partner-listing-expansion-20261011.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "apidirectory-liquilens",
+      "name": "APIDirectory — LiquiLens",
+      "ledger_state": "listed_incomplete",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Existing APD-02098 is public and now marked VERIFIED BY OWNER / claimed, with the ownership change in its public changelog. Its cached version and tool-count description are stale; an official owner-maintenance request was sent. This is a verified claim of a pre-existing listing, not a new listing created in this batch.",
+      "ledger_next_action": "Track the existing metadata-refresh request and verify corrected public copy. Do not create a duplicate entry.",
+      "next_action": "Track the existing metadata-refresh request and verify corrected public copy. Do not create a duplicate entry.",
+      "channel_url": "https://apidirectory.com/api/liquilens",
+      "ledger_verified_at": "2026-10-11T00:19:08.138926+00:00",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/partner-listing-expansion-20261011.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "opennews-source-financial-evidence",
+      "name": "OpenNews Source Code Index — Financial Evidence",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The Source Code Index suggestion form acknowledged the Financial Evidence research toolkit submission. The submitted scope is source-linked financial research with historical money-market and covered-bank examples. Editorial acceptance and a canonical public code-index listing remain unverified.",
+      "ledger_next_action": "Await review of this existing submission and verify the canonical public project page if accepted; do not send a duplicate code-index introduction.",
+      "next_action": "Await review of this existing submission and verify the canonical public project page if accepted; do not send a duplicate code-index introduction.",
+      "channel_url": "https://source.opennews.org/code/suggest/",
+      "ledger_verified_at": "2026-10-11T11:15:50.042Z",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/newsroom-distribution-20261011.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "reuters-connect-supplier-inquiry",
+      "name": "ReutersAgency / Reuters Connect — LIQUILENS PRIVATE LIMITED supplier enquiry",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The official ReutersAgency enquiry route displayed a thank-you acknowledgement for a company-level content-supplier qualification enquiry. The acknowledgement establishes receipt only; no Reuters Connect listing, accepted supplier relationship, syndication, licence, native integration or independent adoption is established.",
+      "ledger_next_action": "Await the supplier-team response on this enquiry; qualify coverage, source rights, delivery and commercial terms before any supply arrangement. Do not duplicate this request or the distinct existing LSEG enquiry.",
+      "next_action": "Await the supplier-team response on this enquiry; qualify coverage, source rights, delivery and commercial terms before any supply arrangement. Do not duplicate this request or the distinct existing LSEG enquiry.",
+      "channel_url": "https://reutersagency.com/contact-us/enquire/",
+      "ledger_verified_at": "2026-10-11T11:27:13.229Z",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/newsroom-distribution-20261011.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "mcp-so-seiche",
+      "name": "Seiche on MCP.so",
+      "ledger_state": "listed_incomplete",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The existing listing is claimed and the new hosted-first copy is saved in the owner form. The latest anonymous canonical and fresh-query readbacks still show older copy and nine tools, while the hosted endpoint exposes sixteen. An earlier fresh-query response showed the new copy; propagation is not consistent. The original rescan support ticket remains Open with no reply.",
+      "ledger_next_action": "Await the existing rescan ticket and verify canonical public metadata plus all 16 public tools before closing.",
+      "next_action": "Await the existing rescan ticket and verify canonical public metadata plus all 16 public tools before closing.",
+      "channel_url": "https://mcp.so/servers/seiche",
+      "ledger_verified_at": "2026-10-11T12:16:32.582399Z",
+      "ledger_updated_at": "2026-10-11T13:42:28.049971+00:00",
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/mcp-discovery-20261011.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "agentndx-wake",
+      "name": "AgentNDX — Wake Agent Economy",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Free submission acknowledged with Submission received at https://agentndx.ai/submit?success=1. Exact service name and endpoint were absent from the saved public curated index.",
+      "ledger_next_action": "Await review of this existing submission and independently verify its public listing. Do not resubmit.",
+      "next_action": "Await review of this existing submission and independently verify its public listing. Do not resubmit.",
+      "channel_url": "https://agentndx.ai/submit/",
+      "ledger_verified_at": null,
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "public-05",
+        "public-06",
+        "public-07",
+        "public-08",
+        "public-09",
+        "public-10",
+        "public-11",
+        "public-12"
+      ],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "agentndx-seiche-agent-community",
+      "name": "AgentNDX — Seiche Agent Community",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Free submission acknowledged with Submission received at https://agentndx.ai/submit?success=1. Exact service name and endpoint were absent from the saved public curated index.",
+      "ledger_next_action": "Await review of this existing submission and independently verify its public listing. Do not resubmit.",
+      "next_action": "Await review of this existing submission and independently verify its public listing. Do not resubmit.",
+      "channel_url": "https://agentndx.ai/submit/",
+      "ledger_verified_at": null,
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "public-05",
+        "public-06",
+        "public-07",
+        "public-08",
+        "public-09",
+        "public-10",
+        "public-11",
+        "public-12"
+      ],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "mcpservers-org-wake",
+      "name": "MCPServers.org — Wake Agent Economy",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Submission Successful confirmed the named hosted server under the free $0 review route. Official registry identity, hosted URL and no-auth transport were supplied.",
+      "ledger_next_action": "Await review of the existing named submission; retain the acknowledgement and independently verify the public listing before marking live. Do not resubmit.",
+      "next_action": "Await review of the existing named submission; retain the acknowledgement and independently verify the public listing before marking live. Do not resubmit.",
+      "channel_url": "https://mcpservers.org/submit",
+      "ledger_verified_at": null,
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "mcpservers-org-seiche-agent-community",
+      "name": "MCPServers.org — Seiche Agent Community",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Submission Successful confirmed the named hosted server under the free $0 review route. Official registry identity, hosted URL and no-auth transport were supplied.",
+      "ledger_next_action": "Await review of the existing named submission; retain the acknowledgement and independently verify the public listing before marking live. Do not resubmit.",
+      "next_action": "Await review of the existing named submission; retain the acknowledgement and independently verify the public listing before marking live. Do not resubmit.",
+      "channel_url": "https://mcpservers.org/submit",
+      "ledger_verified_at": null,
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "allmcps-wake",
+      "name": "AllMCPs — Wake Agent Economy",
+      "ledger_state": "ready_account_action",
+      "baseline_classification": "gated_or_owned_elsewhere",
+      "classification": "gated_or_owned_elsewhere",
+      "reason": "Existing owner decision, access/payment/policy prerequisite, archived/closed route, or another release owner's lane prevents unilateral closure.",
+      "ledger_detail": "The exact public catalog had no matching service. The completed free form was attempted, but no acceptance was observed; the security-verification area and form remained visible. The saved intent and screenshots are retained.",
+      "ledger_next_action": "Reconcile this uncertain attempt with the directory before any retry. Complete the normal verification flow and retain an acknowledgement; do not describe the prepared form as submitted.",
+      "next_action": "Reconcile the uncertain prior attempt with the existing account and normal verification flow before any retry. No acknowledgement or listing is established.",
+      "channel_url": "https://allmcps.com/submit",
+      "ledger_verified_at": null,
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "cursor-official-marketplace",
+      "name": "Cursor official marketplace",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "Official Cursor publisher application submitted from the signed-in owner account. The portal displayed Thanks for applying and confirmed receipt. Submitted the existing public funding-bank-exit plugin repository, company identity, contact, logo and research description. This is separate from cursor.directory. Structural manifest/path checks passed; native client installation and marketplace approval remain unverified.",
+      "ledger_next_action": "Await review of the existing official application; verify the published plugin and install behavior before calling the listing live.",
+      "next_action": "Await review of the existing official application; verify the published plugin and install behavior before calling the listing live.",
+      "channel_url": "https://cursor.com/marketplace/publish",
+      "ledger_verified_at": "2026-10-15T09:05:44.381099Z",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null,
+      "independent_subtask_or_review_note": "Native Cursor installation can be tested independently using .cursor-plugin/plugin.json, integrations/task-mcp.json and task-skills/. It does not replace publisher approval."
+    },
+    {
+      "entry_id": "vercel-ai-sdk-tools",
+      "name": "Vercel AI SDK Tools Registry",
+      "ledger_state": "conditional_artifact",
+      "baseline_classification": "actionable_self_service",
+      "classification": "actionable_self_service",
+      "reason": "A bounded implementation or evidence-backed ledger reconciliation can be completed independently.",
+      "ledger_detail": "Official tool registry contribution requires a published npm package, tested AI SDK integration and dedicated documentation. No Financial Evidence AI SDK package or registry submission is claimed.",
+      "ledger_next_action": "Build and verify one source-preserving AI SDK tool package; publish under a verified owner scope before a registry PR.",
+      "next_action": "Root owns implementation of a source-preserving AI SDK npm tool package, native tests and dedicated docs. Verify the current official contribution requirements before publication; a registry contribution is a later explicit step. Do not overlap the other terminal's PyPI/MCP/version release.",
+      "channel_url": "https://github.com/vercel/ai/blob/main/contributing/add-new-tool-to-registry.md",
+      "ledger_verified_at": "2026-10-15T09:05:44.381099Z",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "microsoft-certified-mcp",
+      "name": "Microsoft certified MCP connector",
+      "ledger_state": "conditional_artifact",
+      "baseline_classification": "gated_or_owned_elsewhere",
+      "classification": "gated_or_owned_elsewhere",
+      "reason": "Existing owner decision, access/payment/policy prerequisite, archived/closed route, or another release owner's lane prevents unilateral closure.",
+      "ledger_detail": "Certification requires publisher qualification and authentication. Existing no-key hosted connectivity alone does not satisfy the certification requirements.",
+      "ledger_next_action": "Qualify verified-publisher and authentication requirements before preparing the official connector intake; preserve the existing custom-connection guide.",
+      "next_action": "Qualify verified-publisher and authentication requirements before preparing the official connector intake; preserve the existing custom-connection guide.",
+      "channel_url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/mcp-server-certification",
+      "ledger_verified_at": "2026-10-15T09:05:44.381099Z",
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_only_not_rechecked",
+      "current_observation_ids": [],
+      "retained_evidence": [],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "laplace-awesome-agent-trading-financial-evidence",
+      "name": "Awesome Agent Trading — Financial Evidence",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The maintainer received an open directory PR for the public financial research MCP and source-pinned agent-infrastructure-v1.1.0 client guide. The README entry leaves the generated featured directory unchanged. Editorial acceptance, public default-branch placement and independent adoption remain unverified.",
+      "ledger_next_action": "Await maintainer review of the existing PR; verify the default-branch entry before marking live. Do not submit a duplicate.",
+      "next_action": "Await maintainer review of the existing PR; verify the default-branch entry before marking live. Do not submit a duplicate.",
+      "channel_url": "https://github.com/laplace0x/awesome-agent-trading/pull/30",
+      "ledger_verified_at": null,
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-21"
+      ],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/agent-tools-distribution-20261015.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null
+    },
+    {
+      "entry_id": "aowang-awesome-finance-agents-financial-evidence",
+      "name": "Awesome Finance Agents — Financial Evidence",
+      "ledger_state": "submitted",
+      "baseline_classification": "pending_thirdparty",
+      "classification": "pending_thirdparty",
+      "reason": "An existing review, editorial decision, indexing process, support case or propagation gate remains; do not create a duplicate.",
+      "ledger_detail": "The maintainer received an open directory PR for the public financial research MCP and source-pinned agent-infrastructure-v1.1.0 client guide. The English and Chinese README entries were submitted together. Editorial acceptance, public default-branch placement and independent adoption remain unverified.",
+      "ledger_next_action": "Await maintainer review of the existing PR; verify the default-branch entry before marking live. Do not submit a duplicate.",
+      "next_action": "Await maintainer review of the existing PR; verify the default-branch entry before marking live. Do not submit a duplicate.",
+      "channel_url": "https://github.com/aowang-ai/awesome-finance-agents/pull/1",
+      "ledger_verified_at": null,
+      "ledger_updated_at": null,
+      "evidence_basis": "ledger_plus_current_read_only_observation",
+      "current_observation_ids": [
+        "github-22"
+      ],
+      "retained_evidence": [
+        {
+          "field": "evidence_receipt",
+          "value": "distribution/agent-tools-distribution-20261015.json",
+          "source_kind": "retained_ledger_reference"
+        }
+      ],
+      "proposed_ledger_update": null,
+      "independent_subtask_or_review_note": "PR remains open and mergeable. GitHub reports unstable mergeability, no check runs and pending combined status with no status contexts; no actionable failing check was established."
+    }
+  ],
+  "limitations": [
+    "Most of the 97 entries retain ledger-derived evidence; a current observation is present only when its ID is listed.",
+    "Public discovery, package/native acceptance, directory approval and independent adoption remain different states.",
+    "No owner portal, mailbox, CAPTCHA, billing, credentials or private account state was accessed for this review.",
+    "The three proposed live reconciliations do not mutate docs/marketplaces.json and require its current owner to apply them.",
+    "No new GitHub comments, directory submissions, paid calls or outreach were performed.",
+    "Observed query results are bounded to the fetched public surfaces and do not prove global absence."
+  ]
+}

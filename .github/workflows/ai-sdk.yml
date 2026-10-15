@@ -1,0 +1,36 @@
+name: AI SDK tools
+
+on:
+  pull_request:
+    paths: ['integrations/ai-sdk/**', 'docs/agents/context-client.mjs', 'docs/platforms/ai-sdk.md', '.github/workflows/ai-sdk.yml']
+  push:
+    branches: [main]
+    paths: ['integrations/ai-sdk/**', 'docs/agents/context-client.mjs', 'docs/platforms/ai-sdk.md', '.github/workflows/ai-sdk.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-sdk:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        node: ['22', '24']
+    defaults:
+      run:
+        working-directory: integrations/ai-sdk
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+          cache-dependency-path: integrations/ai-sdk/package-lock.json
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm run check:vendor
+      - run: npm test
+      - run: npm pack --dry-run

@@ -1,0 +1,142 @@
+{
+  "schema": "financial-evidence.channel-contracts.v1",
+  "scope": "Reviewed public identity probes; every marketplace record is separately inventoried without inferred acceptance.",
+  "channels": [
+    {
+      "id": "financial-evidence-pypi", "kind": "pypi", "identity": "financial-evidence", "required": true,
+      "expected": {"kind": "published_root"}, "ledger_required": true,
+      "ledger_ids": ["financial-evidence-pypi", "pypi-financial-evidence"],
+      "ledger_listing_prefix": "https://pypi.org/project/financial-evidence/"
+    },
+    {
+      "id": "financial-evidence-github", "kind": "github_release", "identity": "beepboop2025/financial-evidence-skills", "required": true,
+      "expected": {"kind": "published_root"}, "ledger_required": true,
+      "ledger_ids": ["financial-evidence-github-release"],
+      "ledger_listing_prefix": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v"
+    },
+    {
+      "id": "financial-evidence-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/financial-evidence", "required": true,
+      "expected": {"kind": "published_root"}, "ledger_ids": ["official-mcp-registry"], "ledger_required": true
+    },
+    {
+      "id": "langchain-pypi", "kind": "pypi", "identity": "langchain-financial-evidence", "required": true,
+      "expected": {"kind": "ledger", "id": "langchain-financial-evidence-pypi"}, "ledger_ids": ["langchain-financial-evidence-pypi"]
+    },
+    {
+      "id": "langchain-github", "kind": "github_release", "identity": "beepboop2025/langchain-financial-evidence", "required": true,
+      "expected": {"kind": "ledger", "id": "langchain-financial-evidence-github-release"}, "ledger_ids": ["langchain-financial-evidence-github-release"]
+    },
+    {
+      "id": "n8n-npm", "kind": "npm", "identity": "n8n-nodes-financial-evidence", "required": true,
+      "expected": {"kind": "ledger", "id": "n8n-financial-evidence-npm"}, "ledger_ids": ["n8n-financial-evidence-npm"]
+    },
+    {
+      "id": "activepieces-npm", "kind": "npm", "identity": "@moomoo202020/piece-financial-evidence", "required": true,
+      "expected": {"kind": "ledger", "id": "activepieces-native"}, "ledger_ids": ["activepieces-native"]
+    },
+    {
+      "id": "noisefloor-pypi", "kind": "pypi", "identity": "noisefloor", "required": true,
+      "expected": {"kind": "ledger", "id": "noisefloor-pypi"}, "ledger_ids": ["noisefloor-pypi"]
+    },
+    {
+      "id": "noisefloor-github", "kind": "github_release", "identity": "beepboop2025/noisefloor", "required": true,
+      "expected": {"kind": "ledger", "id": "noisefloor-github-release"}, "ledger_ids": ["noisefloor-github-release"]
+    },
+    {
+      "id": "noisefloor-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/noisefloor", "required": true,
+      "expected": {"kind": "ledger", "id": "noisefloor-mcp-registry"}, "ledger_ids": ["noisefloor-mcp-registry"]
+    },
+    {
+      "id": "wake-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/wake", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-wake"}, "ledger_ids": ["official-mcp-registry-wake"]
+    },
+    {
+      "id": "community-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/seiche-agent-community", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-seiche-agent-community"}, "ledger_ids": ["official-mcp-registry-seiche-agent-community"]
+    },
+    {
+      "id": "seiche-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/seiche", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-seiche"},
+      "ledger_ids": ["official-mcp-registry-seiche"], "ledger_required": true
+    },
+    {
+      "id": "liquilens-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/liquilens", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-liquilens"},
+      "ledger_ids": ["official-mcp-registry-liquilens"], "ledger_required": true
+    },
+    {
+      "id": "undertow-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/undertow", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-undertow"},
+      "ledger_ids": ["official-mcp-registry-undertow"], "ledger_required": true
+    },
+    {
+      "id": "palimpsest-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/palimpsest", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-palimpsest"},
+      "ledger_ids": ["official-mcp-registry-palimpsest"], "ledger_required": true
+    },
+    {
+      "id": "narcoscope-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/narcoscope", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-narcoscope"},
+      "ledger_ids": ["official-mcp-registry-narcoscope"], "ledger_required": true
+    },
+    {
+      "id": "financial-source-data-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/financial-source-data", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-financial-source-data"},
+      "ledger_ids": ["official-mcp-registry-financial-source-data"], "ledger_required": true
+    },
+    {
+      "id": "riptide-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/riptide", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-riptide"},
+      "ledger_ids": ["official-mcp-registry-riptide"], "ledger_required": true
+    },
+    {
+      "id": "myquant-editorial-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/myquant-editorial", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-myquant-editorial"},
+      "ledger_ids": ["official-mcp-registry-myquant-editorial"], "ledger_required": true
+    },
+    {
+      "id": "myquant-app-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/myquant-app", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-myquant-app"},
+      "ledger_ids": ["official-mcp-registry-myquant-app"], "ledger_required": true
+    },
+    {
+      "id": "trade-safety-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/liquilens-trade-safety-gateway", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-liquilens-trade-safety-gateway"},
+      "ledger_ids": ["official-mcp-registry-liquilens-trade-safety-gateway"], "ledger_required": true
+    },
+    {
+      "id": "ai-sdk-npm", "kind": "npm", "required": true,
+      "expected": {"kind": "candidate_package", "path": "integrations/ai-sdk/package.json", "receipt": "docs/distribution/ai-sdk-publication.json"},
+      "ledger_ids": ["financial-evidence-ai-sdk-npm"],
+      "ledger_listing_prefix": "https://www.npmjs.com/package/@moomoo202020/financial-evidence-ai-sdk/"
+    },
+    {
+      "id": "hosted-context-discovery", "kind": "json_fields", "required": true,
+      "url": "https://agents.seiche.info/v1/integrations", "ledger_ids": [],
+      "fields": {"schema": "liquilens.free-agent-integrations.v1", "context_stream": {
+        "contract": "https://agents.seiche.info/v1/context/contract",
+        "snapshot": "https://agents.seiche.info/v1/context/snapshot",
+        "events": "https://agents.seiche.info/v1/context/events",
+        "scope": "source_status_metadata", "execution_authority": "none", "replay_complete": false
+      }}
+    },
+    {
+      "id": "hosted-context-contract", "kind": "json_fields", "required": true,
+      "url": "https://agents.seiche.info/v1/context/contract", "ledger_ids": [],
+      "fields": {"schema": "seiche-agent-network.context-contract.v1", "snapshot_schema": "seiche-agent-network.context.v1",
+        "snapshot": "/v1/context/snapshot", "events": "/v1/context/events", "content": "source_status_metadata_only",
+        "market_quotes": false, "execution_authority": "none", "replay_available": false,
+        "snapshot_max_bytes": 16384, "frame_max_bytes": 17408, "operator_metrics_requires_auth": true}
+    },
+    {
+      "id": "hosted-context-instructions", "kind": "text_links", "required": true,
+      "url": "https://agents.seiche.info/llms.txt", "content_type": "text/plain", "ledger_ids": [],
+      "links": ["https://agents.seiche.info/v1/context/contract"]
+    },
+    {
+      "id": "context-client-landing", "kind": "text_links", "required": true,
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/ai-trading-tools.html", "content_type": "text/html", "ledger_ids": [],
+      "links": ["https://agents.seiche.info/v1/context/contract", "https://agents.seiche.info/v1/context/snapshot", "https://agents.seiche.info/v1/context/events"]
+    }
+  ]
+}

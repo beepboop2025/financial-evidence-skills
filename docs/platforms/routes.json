@@ -693,10 +693,10 @@
       "name": "Activepieces",
       "category": "Workflow automation",
       "workflow": "Build catalog discovery and bounded research-page actions into a visual workflow; retain sources, clocks and unavailable values.",
-      "artifact_label": "Native piece source and validation",
+      "artifact_label": "Published npm package and native receipt",
       "artifact_url": "activepieces.md",
-      "status": "Two native SDK actions built, five tests passed and four live reads completed. Native editor installation, upstream contribution and npm publication remain pending.",
-      "official_source": "https://www.activepieces.com/docs/build-pieces/sharing-pieces/contribute",
+      "status": "Version 0.1.0 is public on npm. Registry bytes match the archive installed and executed in Activepieces 0.92.3; anonymous installation and registry-signature checks passed. Browser interaction, cloud-account availability and upstream acceptance remain unverified.",
+      "official_source": "https://www.activepieces.com/docs/build-pieces/sharing-pieces/community",
       "priority": "P1",
       "products": [
         "Financial Evidence",

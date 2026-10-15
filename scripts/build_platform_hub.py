@@ -81,6 +81,35 @@ def assets() -> dict[str, bytes]:
                      "native-proof.json", "financial-evidence-flowise-marketplace-candidate.json")
     selected.extend(DEST / "flowise" / name for name in flowise_files)
     downloads = {}
+    receipt_name = "activepieces-native-20261015.json"
+    receipt = json.loads((DEST / receipt_name).read_text())
+    if (receipt["schema"] != "financial-evidence.activepieces-native.v1"
+            or receipt["status"] != "passed"
+            or receipt["package"] != "@moomoo202020/piece-financial-evidence"
+            or receipt["version"] != "0.1.0"
+            or receipt["filename"] != "moomoo202020-piece-financial-evidence-0.1.0.tgz"
+            or {run["action"]: run["status"] for run in receipt["runs"]} != {
+                "list_research_datasets": "SUCCEEDED", "get_evidence_page": "SUCCEEDED"}):
+        raise ValueError("Activepieces native qualification is incomplete")
+    name = "downloads/" + receipt["filename"]
+    data = (DEST / name).read_bytes()
+    if hashlib.sha256(data).hexdigest() != receipt["sha256"] or len(data) != receipt["bytes"]:
+        raise ValueError("Activepieces archive differs from native qualification")
+    selected.extend([DEST / receipt_name, DEST / name])
+    downloads[name] = data
+    downloads[receipt_name] = (DEST / receipt_name).read_bytes()
+    publication_name = "activepieces-publication-20261015.json"
+    publication = json.loads((DEST / publication_name).read_text())
+    if (publication["status"] != "published_bytes_verified"
+            or publication["package"] != receipt["package"]
+            or publication["version"] != receipt["version"]
+            or publication["sha256"] != receipt["sha256"]
+            or publication["bytes"] != receipt["bytes"]
+            or not publication["anonymous_registry_readback"]
+            or publication["registry_signature_verification"] != "passed"):
+        raise ValueError("Activepieces publication differs from native qualification")
+    selected.append(DEST / publication_name)
+    downloads[publication_name] = (DEST / publication_name).read_bytes()
     package_sets = {
         "native-packages.json": {"n8n-nodes-financial-evidence-0.1.0.tgz", "financial_evidence-0.1.1.difypkg"},
         "hosted-native-packages.json": {"n8n-nodes-financial-evidence-0.1.1.tgz", "financial_evidence-0.1.2.difypkg"},

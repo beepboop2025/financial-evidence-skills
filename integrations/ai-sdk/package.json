@@ -1,0 +1,63 @@
+{
+  "name": "@moomoo202020/financial-evidence-ai-sdk",
+  "version": "0.1.0",
+  "description": "Read-only, source-preserving financial research and context tools for AI SDK",
+  "type": "module",
+  "license": "MIT",
+  "author": "LIQUILENS PRIVATE LIMITED",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "vendor",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "homepage": "https://beepboop2025.github.io/financial-evidence-skills/platforms/ai-sdk.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beepboop2025/financial-evidence-skills.git",
+    "directory": "integrations/ai-sdk"
+  },
+  "bugs": {
+    "url": "https://github.com/beepboop2025/financial-evidence-skills/issues"
+  },
+  "keywords": [
+    "ai-sdk",
+    "ai-sdk-tools",
+    "financial-data",
+    "research",
+    "agents"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "ai": "^7.0.141"
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/json-schema": "7.0.15",
+    "@types/node": "22.20.5",
+    "ai": "7.0.141",
+    "typescript": "7.0.2"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && npm run check:types && node --test test/*.test.mjs",
+    "check:types": "tsc --ignoreConfig --noEmit --strict --types node --module nodenext --target es2022 test/typecheck.mts",
+    "check:vendor": "node scripts/check-vendor.mjs",
+    "prepack": "npm run check:vendor && npm run build"
+  }
+}

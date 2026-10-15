@@ -1,0 +1,54 @@
+name: Distribution publication gaps
+
+on:
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/audit_distribution_gaps.py'
+      - 'tests/test_distribution_gaps.py'
+      - 'docs/distribution/channel-contracts.json'
+      - 'docs/distribution/gap-monitor.md'
+      - 'docs/marketplaces.json'
+      - 'docs/integrations.json'
+      - 'pyproject.toml'
+      - 'integrations/ai-sdk/package.json'
+      - 'docs/distribution/ai-sdk-publication.json'
+      - '.github/workflows/distribution-gaps.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: distribution-gaps-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Exercise offline identity and failure contracts
+        run: python3 -m unittest tests.test_distribution_gaps -v
+      - name: Inventory proposed channel contracts without network requests
+        if: github.event_name == 'pull_request'
+        run: python3 scripts/audit_distribution_gaps.py --offline --output observation
+      - name: Check authoritative public identities
+        if: github.event_name != 'pull_request'
+        run: python3 scripts/audit_distribution_gaps.py --output observation
+      - name: Retain the assessment summary even when gaps are found
+        if: always()
+        run: |
+          if [ -f observation/REPORT.md ]; then
+            cat observation/REPORT.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        if: always()
+        with:
+          name: distribution-gaps
+          path: observation/
+          retention-days: 30

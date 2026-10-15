@@ -28,5 +28,7 @@
     "paid_model_calls": 0,
     "upstream_evidence_requests": 0,
     "retained_consumer_receipt_sha256": "8c9e77380df025d9b55a0206b498fe3caf7154543211e9b06d02d6afdf8404ea"
-  }
+  },
+  "directory_submission_url": "https://github.com/vercel/ai/pull/23401",
+  "directory_submission_state": "submitted"
 }

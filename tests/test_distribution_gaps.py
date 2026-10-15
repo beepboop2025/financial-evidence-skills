@@ -277,12 +277,69 @@ class DistributionGapTests(unittest.TestCase):
         self.assertEqual(report["status"], "not_checked")
         self.assertEqual(exit_status(report), 0)
 
-    def test_repo_catalog_covers_every_current_ledger_record_and_is_valid_offline(self):
+    def test_central_published_registry_coverage_uses_independent_ledger_versions(self):
+        catalog = json.loads((ROOT / "docs/distribution/channel-contracts.json").read_text())
+        published = {
+            "seiche": "official-mcp-registry-seiche",
+            "liquilens": "official-mcp-registry-liquilens",
+            "undertow": "official-mcp-registry-undertow",
+            "palimpsest": "official-mcp-registry-palimpsest",
+            "narcoscope": "official-mcp-registry-narcoscope",
+            "financial-source-data": "official-mcp-registry-financial-source-data",
+            "riptide": "official-mcp-registry-riptide",
+            "myquant-editorial": "official-mcp-registry-myquant-editorial",
+            "myquant-app": "official-mcp-registry-myquant-app",
+            "liquilens-trade-safety-gateway": "official-mcp-registry-liquilens-trade-safety-gateway",
+            "noisefloor": "noisefloor-mcp-registry",
+            "wake": "official-mcp-registry-wake",
+        }
+        registry = [c for c in catalog["channels"] if c["kind"] == "mcp_registry"]
+        for name, ledger_id in published.items():
+            with self.subTest(name=name):
+                matched = [c for c in registry if c["identity"] == f"io.github.beepboop2025/{name}"]
+                self.assertEqual(len(matched), 1, "Every published central identity needs exactly one check")
+                channel = matched[0]
+                self.assertTrue(channel["required"])
+                self.assertEqual(channel["expected"], {"kind": "ledger", "id": ledger_id})
+                self.assertEqual(channel["ledger_ids"], [ledger_id])
+                # Fixture version deliberately differs from both root release and
+                # current publication, proving no checked-in version pin overrides it.
+                ledger = {"entries": [{"id": ledger_id, "version": "9.8.7"}]}
+                self.assertEqual(expected(channel, ledger, self.manifest, self.root)["version"], "9.8.7")
+
+    def test_missing_central_version_expectation_is_a_gap_without_registry_guessing(self):
+        catalog = json.loads((ROOT / "docs/distribution/channel-contracts.json").read_text())
+        self.catalog["channels"] = [next(c for c in catalog["channels"] if c["id"] == "seiche-mcp-registry")]
+        self.write_inputs()
+        report = audit(self.root, fetcher=lambda _: self.fail("Missing ledger expectation caused network request"))
+        self.assertEqual(report["channels"][0]["status"], "invalid_configuration")
+        self.assertEqual(exit_status(report), 1)
+        self.assertIn("channel_missing_from_ledger", {f["reason"] for f in report["findings"]})
+        self.ledger["entries"].append({"id": "official-mcp-registry-seiche", "state": "live",
+            "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fseiche/versions/latest"})
+        self.write_inputs()
+        report = audit(self.root, fetcher=lambda _: self.fail("Unversioned ledger caused network request"))
+        self.assertEqual(report["channels"][0]["status"], "invalid_configuration")
+        self.assertEqual(exit_status(report), 1)
+
+    def test_repo_catalog_inventories_every_record_and_reports_missing_version_sources(self):
         report = audit(ROOT, offline=True, fetcher=lambda _: self.fail("offline network request"))
         actual = json.loads((ROOT / "docs/marketplaces.json").read_text())["entries"]
         self.assertEqual({r["id"] for r in report["ledger_inventory"]}, {r["id"] for r in actual})
         self.assertEqual(report["ledger_record_count"], len(actual))
-        self.assertNotIn("invalid_configuration", {r["status"] for r in report["channels"]})
+        # A known publication missing its independent ledger version is a reported
+        # distribution gap. It must not silently inherit the root package version.
+        catalog = json.loads((ROOT / "docs/distribution/channel-contracts.json").read_text())
+        configured = {c["id"]: c for c in catalog["channels"]}
+        ledger_ids = {r["id"] for r in actual}
+        for row in report["channels"]:
+            if row["status"] == "invalid_configuration":
+                with self.subTest(channel=row["id"]):
+                    source = configured[row["id"]]["expected"]
+                    self.assertEqual(source["kind"], "ledger")
+                    self.assertNotIn(source["id"], ledger_ids)
+                    self.assertIn({"channel": row["id"], "severity": "error", "reason": "channel_missing_from_ledger"},
+                                  report["findings"])
 
 
 class FetchBoundaryTests(unittest.TestCase):

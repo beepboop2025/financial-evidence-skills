@@ -55,6 +55,56 @@
       "expected": {"kind": "ledger", "id": "official-mcp-registry-seiche-agent-community"}, "ledger_ids": ["official-mcp-registry-seiche-agent-community"]
     },
     {
+      "id": "seiche-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/seiche", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-seiche"},
+      "ledger_ids": ["official-mcp-registry-seiche"], "ledger_required": true
+    },
+    {
+      "id": "liquilens-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/liquilens", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-liquilens"},
+      "ledger_ids": ["official-mcp-registry-liquilens"], "ledger_required": true
+    },
+    {
+      "id": "undertow-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/undertow", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-undertow"},
+      "ledger_ids": ["official-mcp-registry-undertow"], "ledger_required": true
+    },
+    {
+      "id": "palimpsest-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/palimpsest", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-palimpsest"},
+      "ledger_ids": ["official-mcp-registry-palimpsest"], "ledger_required": true
+    },
+    {
+      "id": "narcoscope-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/narcoscope", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-narcoscope"},
+      "ledger_ids": ["official-mcp-registry-narcoscope"], "ledger_required": true
+    },
+    {
+      "id": "financial-source-data-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/financial-source-data", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-financial-source-data"},
+      "ledger_ids": ["official-mcp-registry-financial-source-data"], "ledger_required": true
+    },
+    {
+      "id": "riptide-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/riptide", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-riptide"},
+      "ledger_ids": ["official-mcp-registry-riptide"], "ledger_required": true
+    },
+    {
+      "id": "myquant-editorial-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/myquant-editorial", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-myquant-editorial"},
+      "ledger_ids": ["official-mcp-registry-myquant-editorial"], "ledger_required": true
+    },
+    {
+      "id": "myquant-app-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/myquant-app", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-myquant-app"},
+      "ledger_ids": ["official-mcp-registry-myquant-app"], "ledger_required": true
+    },
+    {
+      "id": "trade-safety-mcp-registry", "kind": "mcp_registry", "identity": "io.github.beepboop2025/liquilens-trade-safety-gateway", "required": true,
+      "expected": {"kind": "ledger", "id": "official-mcp-registry-liquilens-trade-safety-gateway"},
+      "ledger_ids": ["official-mcp-registry-liquilens-trade-safety-gateway"], "ledger_required": true
+    },
+    {
       "id": "ai-sdk-npm", "kind": "npm", "required": true,
       "expected": {"kind": "candidate_package", "path": "integrations/ai-sdk/package.json", "receipt": "docs/distribution/ai-sdk-publication.json"},
       "ledger_ids": ["financial-evidence-ai-sdk-npm"],

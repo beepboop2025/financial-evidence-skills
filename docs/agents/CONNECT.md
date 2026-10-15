@@ -61,7 +61,7 @@ section's sources, original dates, availability, rights and diagnostics.
 a successful HTTP response does not mean the observations are current.
 
 Use the [API client kit](../api/) for Postman, Bruno, Insomnia and HTTP clients,
-or the [native framework guide](https://github.com/beepboop2025/financial-evidence-skills/tree/agent-v1.0.0/integrations/agents)
+or the [native framework guide](https://github.com/beepboop2025/financial-evidence-skills/tree/trading-readiness-v1.0.0/integrations/agents)
 for LangChain/LangGraph, CrewAI, OpenAI Agents and Pydantic AI.
 
 For recurring treasury review, bring missing and stale evidence to human

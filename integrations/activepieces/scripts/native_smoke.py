@@ -108,7 +108,7 @@ def main():
             try:
                 flags = api('GET', 'flags')
                 break
-            except (URLError, RuntimeError, TimeoutError):
+            except (OSError, RuntimeError):
                 if time.monotonic() >= deadline:
                     raise RuntimeError('Isolated Activepieces host did not become ready')
                 time.sleep(3)

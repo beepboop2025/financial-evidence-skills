@@ -13,6 +13,8 @@ License: MIT for the software; source publishers retain rights in upstream data.
 
 ## Primary documentation
 
+- [Tools for AI trading research](https://beepboop2025.github.io/financial-evidence-skills/distribution/ai-trading-tools.html): source release `agent-infrastructure-v1.1.0` adds persistent Python MCP sessions, a connection diagnostic and Python/JavaScript source-status snapshot and SSE clients. Free anonymous public reads; metadata is not live prices and public research endpoints cannot place orders. The package still reports 0.1.8, so use the source-pinned `--force-reinstall` quickstart. [Full client guide](https://beepboop2025.github.io/financial-evidence-skills/agents/low-latency.md); source clocks, missingness and data rights remain separate from transport health.
+
 - [Evaluate a recurring task](https://beepboop2025.github.io/financial-evidence-skills/partners/adoption.md): three current starting paths for AI-agent builders, financial research infrastructure and trading research teams. Includes production-fit checks and consented first-use/return-use criteria. [Machine-readable evaluation paths](https://beepboop2025.github.io/financial-evidence-skills/partners/evaluation.json); verified adoption counts remain unknown.
 
 - [Finance platform setup](https://beepboop2025.github.io/financial-evidence-skills/platforms/): connection instructions, forward-research examples and institutional evaluation packets for 36 finance and agent platforms. Each entry distinguishes available artifacts from native validation and marketplace acceptance.

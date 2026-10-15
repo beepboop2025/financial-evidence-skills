@@ -8,7 +8,7 @@ export const financialEvidence = createPiece({
   description: 'Source-cited financial research with source dates, native units and coverage limits.',
   logoUrl: 'https://raw.githubusercontent.com/beepboop2025/financial-evidence-skills/main/assets/logo.svg',
   authors: ['beepboop2025'],
-  minimumSupportedRelease: '0.95.1',
+  minimumSupportedRelease: '0.92.3',
   auth: financialEvidenceAuth,
   actions: [listResearchDatasets, getResearchEvidencePage],
   triggers: [],

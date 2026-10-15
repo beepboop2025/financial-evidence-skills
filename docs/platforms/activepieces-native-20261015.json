@@ -1,0 +1,62 @@
+{
+  "schema": "financial-evidence.activepieces-native.v1",
+  "started_at": "2026-10-15T10:57:37.524679+00:00",
+  "status": "passed",
+  "image": "activepieces/activepieces@sha256:4b719ac8cb9a235beb59f9beae322c9447ee532264ff08af9094926240b721e8",
+  "release": "0.92.3",
+  "source_commit": "548d3c3dab904b87ce6a00f178e7f2ee0979fbb7",
+  "package": "@moomoo202020/piece-financial-evidence",
+  "version": "0.1.0",
+  "filename": "moomoo202020-piece-financial-evidence-0.1.0.tgz",
+  "bytes": 7258,
+  "sha256": "ad826581762754f15aa91c984538ab0c5bf6eda1d435eb99bb7f894c25a5fe69",
+  "installation": "archive_via_native_install_api",
+  "execution": "native_worker_via_editor_step_test_api",
+  "browser_interaction": "not_tested",
+  "npm_published": false,
+  "upstream_submission": "paused_by_upstream_policy",
+  "independent_adoption_verified": false,
+  "runs": [
+    {
+      "action": "list_research_datasets",
+      "status": "SUCCEEDED",
+      "output_sha256": "4c3c5667b9dc6db62e52d247b93d1503dbe6b10405cb9ae5fb7371e2c11aafcd",
+      "dataset_ids": [
+        "money_markets",
+        "money_market_history",
+        "capital_markets",
+        "bank_risk",
+        "market_liquidity",
+        "china_economy",
+        "source_health"
+      ]
+    },
+    {
+      "action": "get_evidence_page",
+      "status": "SUCCEEDED",
+      "output_sha256": "16d4883ad96a9a1aa9b74398bea3d67b33105e458cd3d80fba1d87883d0e3775",
+      "rows": 1,
+      "source_count": 1,
+      "observations": [
+        {
+          "as_of": "2026-10-13",
+          "unit": "%",
+          "availability": "AVAILABLE",
+          "source_status": "AGING",
+          "rights_status": "allowed"
+        }
+      ],
+      "diagnostics_preserved": true
+    }
+  ],
+  "flags_sha256": "3b4f254ec9769f6118c36f4e6bf6718e008672a0ddf41a61059a38200fcd98a9",
+  "metadata": {
+    "name": "@moomoo202020/piece-financial-evidence",
+    "version": "0.1.0",
+    "displayName": "Financial Evidence",
+    "minimumSupportedRelease": "0.92.3",
+    "packageType": "ARCHIVE",
+    "pieceType": "CUSTOM"
+  },
+  "completed_at": "2026-10-15T10:58:45.082478+00:00"
+}

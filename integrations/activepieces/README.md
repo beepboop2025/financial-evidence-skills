@@ -6,8 +6,9 @@ Two read-only actions for public financial research:
 - **Get Evidence Page** returns one page from bank risk, money markets, money-market history, capital markets, market liquidity, China publication coverage or source health.
 
 The fixed public service is `https://agents.seiche.info/v1/research/api/v1`.
-No API key, LLM credential or broker account is required. This is source code for
-a native piece candidate; it is not yet published on npm or accepted upstream.
+No API key, LLM credential or broker account is required. Native qualification,
+registry publication and upstream acceptance have separate
+[receipts and current status](https://beepboop2025.github.io/financial-evidence-skills/platforms/activepieces.md).
 
 ## Build and verify
 
@@ -19,12 +20,17 @@ npm run build
 npm test
 npm run smoke
 npm pack --dry-run
+# Optional isolated native qualification; requires Docker:
+python3 scripts/native_smoke.py --evidence-dir /path/to/verification-evidence
 ```
 
 The smoke check invokes both registered actions through the real Activepieces
 SDK and retrieves one row each from money markets, bank risk and market liquidity.
 It prints source clocks and diagnostics; a successful request does not certify
-the observation as current. Native editor installation is a separate check.
+the observation as current. The separate native qualification installs the
+packed archive in the official Activepieces 0.92.3 host and executes both
+actions through its worker. It uses the editor's installation and step-test
+APIs; browser interaction and npm registry installation are separate checks.
 
 ## Configure a workflow
 
@@ -52,5 +58,7 @@ separate. Operational counters exclude private selectors, prompts, credentials
 and response bodies. Source data retains its publisher rights; the adapter code
 is MIT licensed.
 
-See [UPSTREAM.md](UPSTREAM.md) for the upstream contribution packet. Support:
+Activepieces currently pauses unsolicited upstream pull requests. See
+[UPSTREAM.md](UPSTREAM.md) for the supported independent-publication route and
+its publisher authentication requirements. Support:
 mrinal@liquilens.in — LIQUILENS PRIVATE LIMITED.

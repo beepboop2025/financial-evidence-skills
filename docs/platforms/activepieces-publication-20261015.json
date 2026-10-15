@@ -1,0 +1,39 @@
+{
+  "schema": "financial-evidence.activepieces-publication.v1",
+  "verified_at": "2026-10-15T11:04:14.956103+00:00",
+  "status": "published_bytes_verified",
+  "package": "@moomoo202020/piece-financial-evidence",
+  "version": "0.1.0",
+  "latest": "0.1.0",
+  "published_at": "2026-10-15T11:00:42.247Z",
+  "package_url": "https://www.npmjs.com/package/@moomoo202020/piece-financial-evidence/v/0.1.0",
+  "tarball_url": "https://registry.npmjs.org/@moomoo202020/piece-financial-evidence/-/piece-financial-evidence-0.1.0.tgz",
+  "bytes": 7258,
+  "sha256": "ad826581762754f15aa91c984538ab0c5bf6eda1d435eb99bb7f894c25a5fe69",
+  "integrity": "sha512-arNyfefIUffmksS1rQF8q0xboVfncytqzA63b7J7iEYh0o6xN8lsbRW+pNB0C4N+TGgc7MUNOsV+fc63EV3cCg==",
+  "native_source_commit": "548d3c3dab904b87ce6a00f178e7f2ee0979fbb7",
+  "native_receipt": "activepieces-native-20261015.json",
+  "native_qualification_run": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38723909010",
+  "anonymous_registry_readback": true,
+  "registry_signature_present": true,
+  "registry_signature_verification": "passed",
+  "oidc_provenance_present": false,
+  "publication_method": "authenticated_publisher_cli_with_npm_browser_confirmation",
+  "browser_editor_interaction": "not_tested",
+  "independent_adoption_verified": false,
+  "upstream_submission": "paused_by_upstream_policy",
+  "consumer": {
+    "verified_at": "2026-10-15T11:03:35.566Z",
+    "package": "@moomoo202020/piece-financial-evidence",
+    "version": "0.1.0",
+    "node": "v25.6.0",
+    "anonymous_name_version_install": true,
+    "lifecycle_scripts": false,
+    "registered_actions": [
+      "get_evidence_page",
+      "list_research_datasets"
+    ],
+    "auth_required": false,
+    "automatic_triggers": false
+  }
+}

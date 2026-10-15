@@ -1,5 +1,5 @@
 {
-  "name": "@liquilens/piece-financial-evidence",
+  "name": "@moomoo202020/piece-financial-evidence",
   "version": "0.1.0",
   "description": "Source-cited financial research actions for Activepieces",
   "license": "MIT",
@@ -7,7 +7,7 @@
     "name": "LIQUILENS PRIVATE LIMITED",
     "email": "mrinal@liquilens.in"
   },
-  "homepage": "https://beepboop2025.github.io/financial-evidence-skills/platforms/activepieces",
+  "homepage": "https://beepboop2025.github.io/financial-evidence-skills/platforms/activepieces.md",
   "repository": {
     "type": "git",
     "url": "https://github.com/beepboop2025/financial-evidence-skills.git",

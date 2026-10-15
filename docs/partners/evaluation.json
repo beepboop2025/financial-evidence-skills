@@ -1,0 +1,65 @@
+{
+  "schema": "financial-evidence.platform-evaluation.v1",
+  "reviewed_on": "2026-10-15",
+  "publisher": "LIQUILENS PRIVATE LIMITED",
+  "guide_url": "https://beepboop2025.github.io/financial-evidence-skills/partners/adoption.md",
+  "catalog_url": "https://beepboop2025.github.io/financial-evidence-skills/connect/catalog.json",
+  "source_status_url": "https://agents.seiche.info/v1/research/api/v1/sources",
+  "release_identity_url": "https://agents.seiche.info/v1/research/api/v1/release",
+  "rights_scope": "MIT applies to adapter software; upstream data rights are source-specific",
+  "financial_authority": "none",
+  "public_research_account_required": false,
+  "automatic_enrollment": false,
+  "automatic_scheduling": false,
+  "evaluations": [
+    {
+      "id": "agent-builders",
+      "audience": "AI-agent and workflow developers",
+      "task_id": "funding",
+      "task": "Add a source-linked funding review to an existing agent or workflow",
+      "products": ["Seiche", "Financial Evidence"],
+      "start_url": "https://beepboop2025.github.io/financial-evidence-skills/connect/?task=funding",
+      "integration_guide": "https://beepboop2025.github.io/financial-evidence-skills/platforms/",
+      "success_evidence": "An independent evaluator retains a cited result or explicit coverage gap and confirms it helped their task",
+      "repeat_evidence": "The same evaluator repeats the task on a different day with source dates and revisions preserved"
+    },
+    {
+      "id": "research-infrastructure",
+      "audience": "Financial-data platforms, treasury and bank-risk teams",
+      "task_id": "institutions",
+      "task": "Review available disclosures and evidence gaps for one covered institution",
+      "products": ["LiquiLens", "Financial Evidence"],
+      "start_url": "https://beepboop2025.github.io/financial-evidence-skills/connect/?task=institutions",
+      "integration_guide": "https://beepboop2025.github.io/financial-evidence-skills/api/",
+      "success_evidence": "A named reviewer retains sources and a useful follow-up queue for their own covered selection",
+      "repeat_evidence": "A later review distinguishes changed disclosures, unchanged evidence and unresolved gaps"
+    },
+    {
+      "id": "trading-research",
+      "audience": "Trading firms, quantitative researchers and market-risk teams",
+      "task_id": "exit",
+      "task": "Retain an indicative BTC liquidity review for supported sizes and venues",
+      "products": ["Undertow", "Seiche"],
+      "start_url": "https://beepboop2025.github.io/financial-evidence-skills/connect/?task=exit",
+      "integration_guide": "https://beepboop2025.github.io/financial-evidence-skills/agents/WORKFLOWS.md",
+      "success_evidence": "A researcher retains the observation time, supported size, venue, access status and limitations",
+      "repeat_evidence": "The same research task is repeated on a different day without treating a stale or withheld observation as a current quote"
+    }
+  ],
+  "adoption_measurement": {
+    "consent_required": true,
+    "verified_independent_organizations": null,
+    "useful_task_completions": null,
+    "returning_organizations": null,
+    "verified_payments": null,
+    "excluded": ["operator checks", "CI", "synthetic probes", "anonymous requests", "downloads", "directory listings"],
+    "protocol_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/pilot-scorecard.md"
+  },
+  "limits": [
+    "Dataset, institution, venue and historical coverage must be checked per task",
+    "Public APIs do not establish redistribution rights or a production service agreement",
+    "Source freshness and missingness remain attached to each observation",
+    "No order routing, executable quote, credit rating or investment recommendation",
+    "A compatible client is not a platform endorsement or an accepted partnership"
+  ]
+}

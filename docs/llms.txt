@@ -7,11 +7,13 @@ Start with one task: https://beepboop2025.github.io/financial-evidence-skills/co
 Published source version: 0.1.8
 Last verified release: 0.1.8
 Published topics: money-market, capital-market, china-economy, bank-risk, market-liquidity, gift-city, forex, gold.
-Last updated: 2026-10-13
+Last updated: 2026-10-15
 Publisher: LIQUILENS PRIVATE LIMITED
 License: MIT for the software; source publishers retain rights in upstream data.
 
 ## Primary documentation
+
+- [Evaluate a recurring task](https://beepboop2025.github.io/financial-evidence-skills/partners/adoption.md): three current starting paths for AI-agent builders, financial research infrastructure and trading research teams. Includes production-fit checks and consented first-use/return-use criteria. [Machine-readable evaluation paths](https://beepboop2025.github.io/financial-evidence-skills/partners/evaluation.json); verified adoption counts remain unknown.
 
 - [Finance platform setup](https://beepboop2025.github.io/financial-evidence-skills/platforms/): connection instructions, forward-research examples and institutional evaluation packets for 36 finance and agent platforms. Each entry distinguishes available artifacts from native validation and marketplace acceptance.
 

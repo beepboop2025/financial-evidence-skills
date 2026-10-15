@@ -1,0 +1,344 @@
+{
+  "schema": "financial-evidence.activepieces-worker-qualification.v1",
+  "status": "both_installation_modes_verified",
+  "observed_at": "2026-10-15T16:01:30.632961+00:00",
+  "package": "@moomoo202020/piece-financial-evidence",
+  "version": "0.1.0",
+  "qualification_head_commit": "91a78139f372d44d06b4d632406d6d7dd1c94736",
+  "qualification_head_signature": "verified_with_repository_release_ssh_signers",
+  "ci_checkout_commit": "c1ad6e13a32892f0d84267d9472021610968b27f",
+  "ci_checkout_role": "GitHub_pull_request_merge_ref",
+  "ci_checkout_parents": [
+    "8bc0a2f10b93667c97e8723ca7b937ac42b56033",
+    "91a78139f372d44d06b4d632406d6d7dd1c94736"
+  ],
+  "source_files_match_signed_head": {
+    "integrations/activepieces/scripts/native_smoke.py": {
+      "sha256": "f2d1fc5bedaa0fccc47c1125797b5828432066b804bccf9562e6e0e86ba812fc",
+      "github_blob_sha": "cd3c88f46be032025ace59b17985022947b0c5d8"
+    },
+    "integrations/activepieces/tests/test_native_smoke.py": {
+      "sha256": "a12068daa42afddc1563761881896fa5562668625730d60dd7c6b5840b501d8d",
+      "github_blob_sha": "d70da95b43b6112c07dda3e9e1e9914ebff0a8ee"
+    },
+    ".github/workflows/activepieces-native-acceptance.yml": {
+      "sha256": "dceb909dea00a6601f8d891de440257bf0dca3712f6de65ef323f247bcff093b",
+      "github_blob_sha": "f88c5a000d59a48cb829504c3d4204841d328c69"
+    }
+  },
+  "pull_request": "https://github.com/beepboop2025/financial-evidence-skills/pull/148",
+  "workflow_run": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38764774542",
+  "release": "0.92.3",
+  "image": "activepieces/activepieces@sha256:4b719ac8cb9a235beb59f9beae322c9447ee532264ff08af9094926240b721e8",
+  "scope": "reviewed_package_files_and_commonjs_sources_compiled_by_native_engine",
+  "external_dependencies_attested": false,
+  "source_to_image_build_provenance_verified": false,
+  "browser_interaction": "not_tested",
+  "marketplace_acceptance": "not_verified",
+  "independent_adoption_verified": false,
+  "requests_are_synthetic_qualification": true,
+  "modes": [
+    {
+      "installation": "archive",
+      "started_at": "2026-10-15T15:57:09.734390+00:00",
+      "completed_at": "2026-10-15T15:58:06.182276+00:00",
+      "status": "passed",
+      "worker_artifact_bytes_verified": true,
+      "native_action_count": 2,
+      "disposable_host_cleanup": "completed_without_error",
+      "archive": {
+        "filename": "moomoo202020-piece-financial-evidence-0.1.0.tgz",
+        "bytes": 7258,
+        "sha256": "ad826581762754f15aa91c984538ab0c5bf6eda1d435eb99bb7f894c25a5fe69"
+      },
+      "registry_verification": null,
+      "artifact": {
+        "id": 11987217090,
+        "name": "activepieces-native-archive-c1ad6e13a32892f0d84267d9472021610968b27f",
+        "digest": "sha256:a143ca2a3c7d636ea89bd81f4f1cc68d9c0ab040c37e3e0c54cc9599db82c1a0",
+        "size_in_bytes": 11134
+      },
+      "native_receipt_sha256": "23223cf6aaad82190b22431c373077196730418590b9dd87b62ed737eece231b",
+      "worker_attestation_sha256": "13a35ca0543b9c91f81d3424433fe55e4438efe31c20c5e8755ac44cade532ad",
+      "actions": [
+        {
+          "action": "list_research_datasets",
+          "status": "SUCCEEDED",
+          "fresh_entry_compilation_verified": true,
+          "shipped_files_before_and_after_match_count": 14,
+          "reviewed_files_canonical_sha256": "ba6f4d390ed1f246a21be440239d5caaa2a6bab95fbb5ae9fe15ebc8e5859704",
+          "worker_files_before_canonical_sha256": "ba6f4d390ed1f246a21be440239d5caaa2a6bab95fbb5ae9fe15ebc8e5859704",
+          "worker_files_after_canonical_sha256": "ba6f4d390ed1f246a21be440239d5caaa2a6bab95fbb5ae9fe15ebc8e5859704",
+          "compiled_files": {
+            "dist/index.js": {
+              "sha256": "1ddb93d61b6dab0ab7629088292a3f69d972d66e3811243fa52df99e99d19102",
+              "bytes": 907
+            },
+            "dist/lib/auth.js": {
+              "sha256": "6907973f8a5d306bc095ccf4149374e8dcfe3f90e9b4c0a4305d657f47f49f00",
+              "bytes": 256
+            },
+            "dist/lib/actions/list-datasets.js": {
+              "sha256": "e989fc0e85f3a21d05e42a94a32a4ef452b761030db4760681383387a1df14e3",
+              "bytes": 817
+            },
+            "dist/lib/research.js": {
+              "sha256": "0cce71ba6474560239fc12f17736220d27ec07a3671decc240ce1f3bde2be97f",
+              "bytes": 3648
+            },
+            "dist/lib/actions/get-evidence-page.js": {
+              "sha256": "926b00c08b50c514f2d962f9e3288850a485e2f4dd62591ff937016624181bcc",
+              "bytes": 1965
+            }
+          },
+          "actual_worker": {
+            "pid": 102,
+            "sandbox_id_sha256": "ba024f69a9edb0314d2eae4f26d288bed328249495ffc1b01b591c5599b29dd8",
+            "engine_entry": "/usr/src/app/cache/v15/common/main.js",
+            "engine_entry_sha256": "5f99fae8e890bd14d85513c2efad6cbffecabf85581862b43ea8f0886b962e35",
+            "loader_parent": "/usr/src/app/cache/v15/common/main.js",
+            "loader_request": "/usr/src/app/cache/v15/common/pieces/@moomoo202020/piece-financial-evidence-0.1.0/node_modules/@moomoo202020/piece-financial-evidence/dist/index.js",
+            "resolved_entry": "/usr/src/app/cache/v15/common/node_modules/.bun/@moomoo202020+piece-financial-evidence@+usr+src+app+cache+v15+common+pieces+@moomoo202020+piece-financ+0d2a45855230ef42/node_modules/@moomoo202020/piece-financial-evidence/dist/index.js",
+            "package_root": "/usr/src/app/cache/v15/common/node_modules/.bun/@moomoo202020+piece-financial-evidence@+usr+src+app+cache+v15+common+pieces+@moomoo202020+piece-financ+0d2a45855230ef42/node_modules/@moomoo202020/piece-financial-evidence",
+            "entry_relative": "dist/index.js",
+            "layout": "nested_node_modules"
+          }
+        },
+        {
+          "action": "get_evidence_page",
+          "status": "SUCCEEDED",
+          "fresh_entry_compilation_verified": true,
+          "shipped_files_before_and_after_match_count": 14,
+          "reviewed_files_canonical_sha256": "ba6f4d390ed1f246a21be440239d5caaa2a6bab95fbb5ae9fe15ebc8e5859704",
+          "worker_files_before_canonical_sha256": "ba6f4d390ed1f246a21be440239d5caaa2a6bab95fbb5ae9fe15ebc8e5859704",
+          "worker_files_after_canonical_sha256": "ba6f4d390ed1f246a21be440239d5caaa2a6bab95fbb5ae9fe15ebc8e5859704",
+          "compiled_files": {
+            "dist/index.js": {
+              "sha256": "1ddb93d61b6dab0ab7629088292a3f69d972d66e3811243fa52df99e99d19102",
+              "bytes": 907
+            },
+            "dist/lib/auth.js": {
+              "sha256": "6907973f8a5d306bc095ccf4149374e8dcfe3f90e9b4c0a4305d657f47f49f00",
+              "bytes": 256
+            },
+            "dist/lib/actions/list-datasets.js": {
+              "sha256": "e989fc0e85f3a21d05e42a94a32a4ef452b761030db4760681383387a1df14e3",
+              "bytes": 817
+            },
+            "dist/lib/research.js": {
+              "sha256": "0cce71ba6474560239fc12f17736220d27ec07a3671decc240ce1f3bde2be97f",
+              "bytes": 3648
+            },
+            "dist/lib/actions/get-evidence-page.js": {
+              "sha256": "926b00c08b50c514f2d962f9e3288850a485e2f4dd62591ff937016624181bcc",
+              "bytes": 1965
+            }
+          },
+          "actual_worker": {
+            "pid": 118,
+            "sandbox_id_sha256": "afb782869d9e8ebe363810ac06a1a7bd1c623d28e3b36b1aa92c1c6ed4c854e0",
+            "engine_entry": "/usr/src/app/cache/v15/common/main.js",
+            "engine_entry_sha256": "5f99fae8e890bd14d85513c2efad6cbffecabf85581862b43ea8f0886b962e35",
+            "loader_parent": "/usr/src/app/cache/v15/common/main.js",
+            "loader_request": "/usr/src/app/cache/v15/common/pieces/@moomoo202020/piece-financial-evidence-0.1.0/node_modules/@moomoo202020/piece-financial-evidence/dist/index.js",
+            "resolved_entry": "/usr/src/app/cache/v15/common/node_modules/.bun/@moomoo202020+piece-financial-evidence@+usr+src+app+cache+v15+common+pieces+@moomoo202020+piece-financ+0d2a45855230ef42/node_modules/@moomoo202020/piece-financial-evidence/dist/index.js",
+            "package_root": "/usr/src/app/cache/v15/common/node_modules/.bun/@moomoo202020+piece-financial-evidence@+usr+src+app+cache+v15+common+pieces+@moomoo202020+piece-financ+0d2a45855230ef42/node_modules/@moomoo202020/piece-financial-evidence",
+            "entry_relative": "dist/index.js",
+            "layout": "nested_node_modules"
+          }
+        }
+      ]
+    },
+    {
+      "installation": "registry",
+      "started_at": "2026-10-15T15:57:03.492613+00:00",
+      "completed_at": "2026-10-15T15:58:05.770963+00:00",
+      "status": "passed",
+      "worker_artifact_bytes_verified": true,
+      "native_action_count": 2,
+      "disposable_host_cleanup": "completed_without_error",
+      "archive": {
+        "filename": "moomoo202020-piece-financial-evidence-0.1.0.tgz",
+        "bytes": 7258,
+        "sha256": "ad826581762754f15aa91c984538ab0c5bf6eda1d435eb99bb7f894c25a5fe69"
+      },
+      "registry_verification": {
+        "metadata_url": "https://registry.npmjs.org/@moomoo202020%2Fpiece-financial-evidence/0.1.0",
+        "metadata_sha256": "6bff36c2d4ce4564c68578087d5fac9f3e329dd76bfc047baff7322c81abb602",
+        "tarball_url": "https://registry.npmjs.org/@moomoo202020/piece-financial-evidence/-/piece-financial-evidence-0.1.0.tgz",
+        "integrity": "sha512-arNyfefIUffmksS1rQF8q0xboVfncytqzA63b7J7iEYh0o6xN8lsbRW+pNB0C4N+TGgc7MUNOsV+fc63EV3cCg==",
+        "publication_receipt": "activepieces-publication-20261015.json",
+        "publication_receipt_sha256": "b81ecd0af390c3d7039db55db6f11549366f077c97d1ea9f4866561066ef20ba",
+        "native_archive_receipt": "activepieces-native-20261015.json",
+        "native_archive_receipt_sha256": "136f08f87db94bbc446d20dbad63e0057b79757d13601314db83da4525e138e7",
+        "native_archive_source_commit": "548d3c3dab904b87ce6a00f178e7f2ee0979fbb7",
+        "anonymous_readback": true,
+        "public_artifact_bytes_verified": true,
+        "worker_artifact_bytes_verified": true,
+        "registry_signature_verification": "not_repeated_by_this_run"
+      },
+      "artifact": {
+        "id": 11988331090,
+        "name": "activepieces-native-registry-c1ad6e13a32892f0d84267d9472021610968b27f",
+        "digest": "sha256:2555ff9fe3478fd9536e47970a42f9ddfdb3ddd38f38083826dec2624163ce4f",
+        "size_in_bytes": 12878
+      },
+      "native_receipt_sha256": "ca17541263203602ed384cb2cce0acd88f1452ac26116d06f3020a9c9d8e9fd0",
+      "worker_attestation_sha256": "4dd1b271f8436adf570b0d502be1c0479e90c09b17504f1526502af1bf8ad291",
+      "actions": [
+        {
+          "action": "list_research_datasets",
+          "status": "SUCCEEDED",
+          "fresh_entry_compilation_verified": true,
+          "shipped_files_before_and_after_match_count": 14,
+          "reviewed_files_canonical_sha256": "ba6f4d390ed1f246a21be440239d5caaa2a6bab95fbb5ae9fe15ebc8e5859704",
+          "worker_files_before_canonical_sha256": "ba6f4d390ed1f246a21be440239d5caaa2a6bab95fbb5ae9fe15ebc8e5859704",
+          "worker_files_after_canonical_sha256": "ba6f4d390ed1f246a21be440239d5caaa2a6bab95fbb5ae9fe15ebc8e5859704",
+          "compiled_files": {
+            "dist/index.js": {
+              "sha256": "1ddb93d61b6dab0ab7629088292a3f69d972d66e3811243fa52df99e99d19102",
+              "bytes": 907
+            },
+            "dist/lib/auth.js": {
+              "sha256": "6907973f8a5d306bc095ccf4149374e8dcfe3f90e9b4c0a4305d657f47f49f00",
+              "bytes": 256
+            },
+            "dist/lib/actions/list-datasets.js": {
+              "sha256": "e989fc0e85f3a21d05e42a94a32a4ef452b761030db4760681383387a1df14e3",
+              "bytes": 817
+            },
+            "dist/lib/research.js": {
+              "sha256": "0cce71ba6474560239fc12f17736220d27ec07a3671decc240ce1f3bde2be97f",
+              "bytes": 3648
+            },
+            "dist/lib/actions/get-evidence-page.js": {
+              "sha256": "926b00c08b50c514f2d962f9e3288850a485e2f4dd62591ff937016624181bcc",
+              "bytes": 1965
+            }
+          },
+          "actual_worker": {
+            "pid": 103,
+            "sandbox_id_sha256": "7dc2822563617574c0c7b97d631dbe3acef6e1511fbea64e427788f4f03f267f",
+            "engine_entry": "/usr/src/app/cache/v15/common/main.js",
+            "engine_entry_sha256": "5f99fae8e890bd14d85513c2efad6cbffecabf85581862b43ea8f0886b962e35",
+            "loader_parent": "/usr/src/app/cache/v15/common/main.js",
+            "loader_request": "/usr/src/app/cache/v15/common/pieces/@moomoo202020/piece-financial-evidence-0.1.0/node_modules/@moomoo202020/piece-financial-evidence/dist/index.js",
+            "resolved_entry": "/usr/src/app/cache/v15/common/node_modules/.bun/@moomoo202020+piece-financial-evidence@+usr+src+app+cache+v15+common+pieces+@moomoo202020+piece-financ+0d2a45855230ef42/node_modules/@moomoo202020/piece-financial-evidence/dist/index.js",
+            "package_root": "/usr/src/app/cache/v15/common/node_modules/.bun/@moomoo202020+piece-financial-evidence@+usr+src+app+cache+v15+common+pieces+@moomoo202020+piece-financ+0d2a45855230ef42/node_modules/@moomoo202020/piece-financial-evidence",
+            "entry_relative": "dist/index.js",
+            "layout": "nested_node_modules"
+          }
+        },
+        {
+          "action": "get_evidence_page",
+          "status": "SUCCEEDED",
+          "fresh_entry_compilation_verified": true,
+          "shipped_files_before_and_after_match_count": 14,
+          "reviewed_files_canonical_sha256": "ba6f4d390ed1f246a21be440239d5caaa2a6bab95fbb5ae9fe15ebc8e5859704",
+          "worker_files_before_canonical_sha256": "ba6f4d390ed1f246a21be440239d5caaa2a6bab95fbb5ae9fe15ebc8e5859704",
+          "worker_files_after_canonical_sha256": "ba6f4d390ed1f246a21be440239d5caaa2a6bab95fbb5ae9fe15ebc8e5859704",
+          "compiled_files": {
+            "dist/index.js": {
+              "sha256": "1ddb93d61b6dab0ab7629088292a3f69d972d66e3811243fa52df99e99d19102",
+              "bytes": 907
+            },
+            "dist/lib/auth.js": {
+              "sha256": "6907973f8a5d306bc095ccf4149374e8dcfe3f90e9b4c0a4305d657f47f49f00",
+              "bytes": 256
+            },
+            "dist/lib/actions/list-datasets.js": {
+              "sha256": "e989fc0e85f3a21d05e42a94a32a4ef452b761030db4760681383387a1df14e3",
+              "bytes": 817
+            },
+            "dist/lib/research.js": {
+              "sha256": "0cce71ba6474560239fc12f17736220d27ec07a3671decc240ce1f3bde2be97f",
+              "bytes": 3648
+            },
+            "dist/lib/actions/get-evidence-page.js": {
+              "sha256": "926b00c08b50c514f2d962f9e3288850a485e2f4dd62591ff937016624181bcc",
+              "bytes": 1965
+            }
+          },
+          "actual_worker": {
+            "pid": 119,
+            "sandbox_id_sha256": "3838b397ce792defc867b7a0956d24ee452c01b953c0d63e77005f781fa3c734",
+            "engine_entry": "/usr/src/app/cache/v15/common/main.js",
+            "engine_entry_sha256": "5f99fae8e890bd14d85513c2efad6cbffecabf85581862b43ea8f0886b962e35",
+            "loader_parent": "/usr/src/app/cache/v15/common/main.js",
+            "loader_request": "/usr/src/app/cache/v15/common/pieces/@moomoo202020/piece-financial-evidence-0.1.0/node_modules/@moomoo202020/piece-financial-evidence/dist/index.js",
+            "resolved_entry": "/usr/src/app/cache/v15/common/node_modules/.bun/@moomoo202020+piece-financial-evidence@+usr+src+app+cache+v15+common+pieces+@moomoo202020+piece-financ+0d2a45855230ef42/node_modules/@moomoo202020/piece-financial-evidence/dist/index.js",
+            "package_root": "/usr/src/app/cache/v15/common/node_modules/.bun/@moomoo202020+piece-financial-evidence@+usr+src+app+cache+v15+common+pieces+@moomoo202020+piece-financ+0d2a45855230ef42/node_modules/@moomoo202020/piece-financial-evidence",
+            "entry_relative": "dist/index.js",
+            "layout": "nested_node_modules"
+          }
+        }
+      ]
+    }
+  ],
+  "loader_reference": {
+    "release": "0.92.3",
+    "source_commit": "2fc7f8dcaa84400f9db53fb0de7fc4340d055c62",
+    "path": "packages/server/engine/src/lib/helper/piece-loader.ts",
+    "sha256": "be7b524038d9864e58bfe72b8d1feadc143c8b693bd30d9c03ddc0d82c793a8d",
+    "source_to_image_build_provenance_verified": false
+  },
+  "preload_sha256": "b9f9665b33f193c33933372a86e643ad61255c1ec2647991542f9e615338d8f9",
+  "reviewed_files": {
+    "LICENSE": {
+      "bytes": 1083,
+      "sha256": "33813f6d443a15c6d5842b2d706c175e904fe34174df440cf2b5f3932d32316a"
+    },
+    "dist/lib/auth.js": {
+      "bytes": 256,
+      "sha256": "6907973f8a5d306bc095ccf4149374e8dcfe3f90e9b4c0a4305d657f47f49f00"
+    },
+    "dist/lib/actions/get-evidence-page.js": {
+      "bytes": 1965,
+      "sha256": "926b00c08b50c514f2d962f9e3288850a485e2f4dd62591ff937016624181bcc"
+    },
+    "dist/index.js": {
+      "bytes": 907,
+      "sha256": "1ddb93d61b6dab0ab7629088292a3f69d972d66e3811243fa52df99e99d19102"
+    },
+    "dist/lib/actions/list-datasets.js": {
+      "bytes": 817,
+      "sha256": "e989fc0e85f3a21d05e42a94a32a4ef452b761030db4760681383387a1df14e3"
+    },
+    "dist/lib/research.js": {
+      "bytes": 3648,
+      "sha256": "0cce71ba6474560239fc12f17736220d27ec07a3671decc240ce1f3bde2be97f"
+    },
+    "package.json": {
+      "bytes": 974,
+      "sha256": "031ef5f6c8bac21f2fffa99d6e761588ae0bcfd3d7750c8539b2e95d54f7e9fd"
+    },
+    "README.md": {
+      "bytes": 3258,
+      "sha256": "e4bbc6753177434f469430460ace4e973e205cf027a93d51802584d2f236b889"
+    },
+    "UPSTREAM.md": {
+      "bytes": 4474,
+      "sha256": "21f1102a444a83920fa0c63ab15d1767fac5d8f027570263dc9d515e4807323b"
+    },
+    "dist/lib/auth.d.ts": {
+      "bytes": 55,
+      "sha256": "a9cf5f15420a254d4ddb3de54380c8be2d0cc785e20c7a07c509fcfece3b6ab1"
+    },
+    "dist/lib/actions/get-evidence-page.d.ts": {
+      "bytes": 559,
+      "sha256": "8ee0b4589dd374038619529d0028d3ec821bee6a903b3cde3bca71416c8993c6"
+    },
+    "dist/index.d.ts": {
+      "bytes": 99,
+      "sha256": "00d3552dc5efb79a60e4381bc04371713e17cfabdb6c2361480a596d19423127"
+    },
+    "dist/lib/actions/list-datasets.d.ts": {
+      "bytes": 108,
+      "sha256": "84e6f8f5ad6896464a289510996ec775e99abd4b9a86604db85c2f72858013b3"
+    },
+    "dist/lib/research.d.ts": {
+      "bytes": 1085,
+      "sha256": "35798c16fd8a8bb55fd7ce7fe16e7cdfe4cc132911d899537e217f3b395e5f06"
+    }
+  }
+}

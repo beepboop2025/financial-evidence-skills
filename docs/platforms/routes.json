@@ -144,9 +144,9 @@
       ],
       "audience": "Finance operations and automation builders",
       "workflow": "Download the hosted 0.1.1 candidate for a permitted self-hosted n8n instance and run a bounded research page.",
-      "artifact_label": "Hosted candidate and prior npm release",
+      "artifact_label": "Published n8n 0.1.1 package",
       "artifact_url": "native-packages.md#n8n",
-      "status": "Hosted 0.1.1 passed native n8n 2.42.6 qualification. It is not published on npm; prior 0.1.0 remains the published release. Creator verification remains pending.",
+      "status": "Version 0.1.1 is published on npm; its tarball again matched the retained native receipt on 15 October 2026. n8n Creator verification and official directory acceptance remain pending.",
       "official_source": "https://docs.n8n.io/connect/create-nodes/deploy-your-node/submit-community-nodes.md",
       "verified_customer_adoption": null
     },

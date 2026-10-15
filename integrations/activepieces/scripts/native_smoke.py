@@ -8,12 +8,14 @@ import argparse
 from datetime import datetime, timezone
 import hashlib
 import json
+import os
 from pathlib import Path
+import re
 import secrets
 import subprocess
 import tarfile
 import time
-from urllib.error import HTTPError, URLError
+from urllib.error import HTTPError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
@@ -22,8 +24,8 @@ RELEASE = '0.92.3'
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def command(*args, timeout=120):
-    result = subprocess.run(args, cwd=ROOT, capture_output=True, text=True, timeout=timeout)
+def command(*args, timeout=120, env=None):
+    result = subprocess.run(args, cwd=ROOT, capture_output=True, text=True, timeout=timeout, env=env)
     if result.returncode:
         raise RuntimeError(f'{args[0]} failed: {result.stderr[-1500:]}')
     return result.stdout.strip()
@@ -69,7 +71,14 @@ def main():
     container = 'financial-evidence-qualification-' + secrets.token_hex(6)
     token = None
     password = secrets.token_urlsafe(30)
+    host_secrets = {'AP_JWT_SECRET': secrets.token_hex(32), 'AP_ENCRYPTION_KEY': secrets.token_hex(16)}
     started = False
+
+    def redact(value):
+        for sensitive in (token, password, *host_secrets.values()):
+            if sensitive:
+                value = value.replace(sensitive, '[redacted]')
+        return re.sub(r'eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+', '[redacted-jwt]', value)
 
     def api(method, path, body=None, content_type='application/json'):
         headers = {'Accept': 'application/json'}
@@ -89,10 +98,7 @@ def main():
                 return json.loads(raw)
         except HTTPError as error:
             detail = error.read(2000).decode(errors='replace')
-            for sensitive in (token, password):
-                if sensitive:
-                    detail = detail.replace(sensitive, '[redacted]')
-            raise RuntimeError(f'{method} {path}: HTTP {error.code}: {detail}') from None
+            raise RuntimeError(f'{method} {path}: HTTP {error.code}: {redact(detail)}') from None
 
     try:
         command('docker', 'pull', IMAGE, timeout=600)
@@ -100,7 +106,8 @@ def main():
                 '-p', '127.0.0.1::80', '-e', 'AP_DB_TYPE=PGLITE',
                 '-e', 'AP_REDIS_TYPE=MEMORY', '-e', 'AP_FRONTEND_URL=http://localhost',
                 '-e', 'AP_TELEMETRY_ENABLED=false', '-e', 'AP_EXECUTION_MODE=UNSANDBOXED',
-                '-e', 'AP_LOG_LEVEL=warn', IMAGE)
+                '-e', 'AP_LOG_LEVEL=warn', '-e', 'AP_JWT_SECRET', '-e', 'AP_ENCRYPTION_KEY',
+                IMAGE, env={**os.environ, **host_secrets})
         started = True
         base = 'http://' + command('docker', 'port', container, '80/tcp')
         deadline = time.monotonic() + 240
@@ -109,6 +116,9 @@ def main():
                 flags = api('GET', 'flags')
                 break
             except (OSError, RuntimeError):
+                state = json.loads(command('docker', 'inspect', '--format', '{{json .State}}', container))
+                if not state['Running']:
+                    raise RuntimeError(f"Isolated host exited: code={state['ExitCode']}, oom={state['OOMKilled']}") from None
                 if time.monotonic() >= deadline:
                     raise RuntimeError('Isolated Activepieces host did not become ready')
                 time.sleep(3)
@@ -171,13 +181,11 @@ def main():
         receipt['status'] = 'passed'
     except Exception as error:
         receipt['status'] = 'failed'
-        receipt['error'] = str(error)
+        receipt['error'] = redact(str(error))
         if started:
-            logs = command('docker', 'logs', '--tail', '70', container)
-            for sensitive in (token, password):
-                if sensitive:
-                    logs = logs.replace(sensitive, '[redacted]')
-            (evidence / 'runtime-diagnostic.txt').write_text(logs)
+            logs = subprocess.run(['docker', 'logs', '--tail', '70', container],
+                                  capture_output=True, text=True, timeout=30)
+            (evidence / 'runtime-diagnostic.txt').write_text(redact(logs.stdout + logs.stderr))
         raise
     finally:
         if started:

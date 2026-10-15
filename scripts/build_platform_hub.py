@@ -74,7 +74,8 @@ def assets() -> dict[str, bytes]:
                 DEST / "n8n-publication-20261011.json",
                 DEST / "n8n-publication-20261013.json",
                 DEST / "n8n-creator-submission-20261011.json",
-                DEST / "activepieces.md", DEST / "activepieces-verification-20261015.json"]
+                DEST / "activepieces.md", DEST / "activepieces-verification-20261015.json",
+                ROOT / "docs/partners/adoption.md", ROOT / "docs/partners/evaluation.json"]
     # Explicit public allowlist: never collect the native runtime or its state.
     flowise_files = ("README.md", "NOTICE.md", "FLOWISE-LICENSE.md", "publication.json",
                      "native-proof.json", "financial-evidence-flowise-marketplace-candidate.json")

@@ -8,7 +8,7 @@
   </url>
   <url>
     <loc>https://beepboop2025.github.io/financial-evidence-skills/llms.txt</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -70,7 +70,7 @@
 <url><loc>https://beepboop2025.github.io/financial-evidence-skills/agents/execution.html</loc><lastmod>2026-10-08</lastmod></url>
   <url><loc>https://beepboop2025.github.io/financial-evidence-skills/tools/</loc><lastmod>2026-10-06</lastmod></url>
   <url><loc>https://beepboop2025.github.io/financial-evidence-skills/api/</loc><lastmod>2026-10-07</lastmod></url>
-  <url><loc>https://beepboop2025.github.io/financial-evidence-skills/partners/</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://beepboop2025.github.io/financial-evidence-skills/partners/</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://beepboop2025.github.io/financial-evidence-skills/start/</loc><lastmod>2026-10-07</lastmod></url>
   <url><loc>https://beepboop2025.github.io/financial-evidence-skills/distribution/</loc><lastmod>2026-10-07</lastmod></url>
 <url><loc>https://beepboop2025.github.io/financial-evidence-skills/agents/runtime.html</loc><lastmod>2026-10-08</lastmod></url>
@@ -90,4 +90,16 @@
   <url><loc>https://beepboop2025.github.io/financial-evidence-skills/media/briefs/2026-10-11-bank-disclosures/</loc><lastmod>2026-10-11</lastmod></url>
   <url><loc>https://beepboop2025.github.io/financial-evidence-skills/partners/dollar-funding.html</loc><lastmod>2026-10-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://beepboop2025.github.io/financial-evidence-skills/connect/</loc></url>
+  <url>
+    <loc>https://beepboop2025.github.io/financial-evidence-skills/partners/adoption.md</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://beepboop2025.github.io/financial-evidence-skills/partners/evaluation.json</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

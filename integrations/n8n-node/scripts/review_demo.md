@@ -11,6 +11,16 @@ keeps that exact archive rather than following npm's latest tag. Selecting the
 installed community package opens its details panel; the recording clicks
 **Add to workflow** and waits for the node parameters before setting Limit.
 
+The downloaded archive must match its pinned SHA-256. Every installed shipped
+file except `package.json` must match that archive byte for byte. The pinned
+[n8n installer](https://github.com/n8n-io/n8n/blob/34ab9c7bf3d0c6d2ec3422e12e0b970aea5717c7/packages/cli/src/modules/community-packages/community-packages.service.ts#L1014-L1029)
+removes only `devDependencies`, `peerDependencies` and `optionalDependencies`
+from the manifest and writes `JSON.stringify(manifest, null, 2)` without a
+trailing newline. The installed manifest must equal those exact expected
+bytes. The receipt records per-file hashes and distinguishes unchanged
+runtime files from the normalized manifest; it does not claim all installed
+files equal the published archive when the manifest differs.
+
 A prepared AI Agent workflow uses the same installed node as an AI tool and a
 real local Qwen3 1.7B model through Ollama. It must actually invoke the tool;
 an answer that merely mentions the tool cannot pass. The model digest is

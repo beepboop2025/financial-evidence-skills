@@ -22,6 +22,24 @@ const OLLAMA = 'http://127.0.0.1:11435';
 const DATASETS = ['money_markets', 'bank_risk', 'market_liquidity'];
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const sleep = ms => new Promise(done => setTimeout(done, ms));
+const MANIFEST_NORMALIZATION = 'n8n-2.42.6-community-package-manifest';
+
+export function installedFileProjection(name, published, installed) {
+  let expected = published;
+  if (name === 'package.json') {
+    // Exact n8n 2.42.6 behavior: community-packages.service.ts:1014-1029,
+    // commit 34ab9c7bf3d0c6d2ec3422e12e0b970aea5717c7. No other fields may change.
+    const { devDependencies, peerDependencies, optionalDependencies, ...manifest } = JSON.parse(published.toString('utf8'));
+    expected = Buffer.from(JSON.stringify(manifest, null, 2));
+  }
+  assert.deepEqual(installed, expected, `Installed ${name} differs from its expected published content`);
+  return {
+    path: name, published_sha256: sha(published), installed_sha256: sha(installed),
+    byte_identical: installed.equals(published),
+    verification: name === 'package.json' ? MANIFEST_NORMALIZATION : 'exact_bytes',
+    expected_sha256: sha(expected), verified: true,
+  };
+}
 
 export function safeEnvironment(privateDir) {
   // No inherited credentials, N8N_*, DB_*, hooks, npm auth or model API keys.
@@ -134,7 +152,24 @@ export function validatePublishable(receipt) {
   assert.equal(receipt.ui_installed_package, true);
   assert.equal(receipt.ui_created_new_workflow, true);
   assert.equal(receipt.services_stopped, true);
-  assert.equal(receipt.installed_files_match_published_archive, true);
+  const files = receipt.installed_package_files;
+  assert.ok(Array.isArray(files) && files.length > 1);
+  assert.equal(new Set(files.map(file => file.path)).size, files.length);
+  const manifest = files.filter(file => file.path === 'package.json');
+  assert.equal(manifest.length, 1);
+  assert.equal(manifest[0].verification, MANIFEST_NORMALIZATION);
+  for (const file of files) {
+    assert.equal(file.verified, true);
+    assert.equal(file.installed_sha256, file.expected_sha256);
+    assert.equal(file.byte_identical, file.installed_sha256 === file.published_sha256);
+    if (file.path !== 'package.json') {
+      assert.equal(file.verification, 'exact_bytes');
+      assert.equal(file.byte_identical, true);
+    }
+  }
+  assert.equal(receipt.installed_files_match_published_archive, files.every(file => file.byte_identical));
+  assert.equal(receipt.installed_runtime_files_match_published_archive, true);
+  assert.equal(receipt.installed_manifest_matches_n8n_normalization, true);
   assert.equal(receipt.model_is_real, true);
   assert.equal(receipt.external_model_api_used, false);
   assert.equal(receipt.online_account_created, false);
@@ -346,16 +381,21 @@ async function main() {
     assert.ok(receipt.recording_wall_seconds < 300, 'Uncut recording exceeded review limit');
     await context.close(); context = null;
     const videoPath = await video.path();
-    mark('verify recording and exact installed package');
+    mark('verify recording, runtime bytes and normalized package manifest');
     const installedPackage = join(privateDir, 'profile/.n8n/nodes/node_modules', PIN.package);
     assert.equal(JSON.parse(await readFile(join(installedPackage, 'package.json'))).version, PIN.version);
     const tarList = execFileSync('tar', ['tzf', join(privateDir, 'published.tgz')], { encoding: 'utf8' }).trim().split('\n');
+    receipt.installed_package_files = [];
     for (const name of tarList) {
       assert.ok(name.startsWith('package/') && !name.includes('..'));
       if (name.endsWith('/')) continue;
-      assert.deepEqual(await readFile(join(installedPackage, name.slice(8))), execFileSync('tar', ['xOzf', join(privateDir, 'published.tgz'), name]));
+      receipt.installed_package_files.push(installedFileProjection(name.slice(8),
+        execFileSync('tar', ['xOzf', join(privateDir, 'published.tgz'), name]),
+        await readFile(join(installedPackage, name.slice(8)))));
     }
-    receipt.installed_files_match_published_archive = true;
+    receipt.installed_files_match_published_archive = receipt.installed_package_files.every(file => file.byte_identical);
+    receipt.installed_runtime_files_match_published_archive = receipt.installed_package_files.filter(file => file.path !== 'package.json').every(file => file.byte_identical);
+    receipt.installed_manifest_matches_n8n_normalization = receipt.installed_package_files.some(file => file.path === 'package.json' && file.verified);
     const mp4 = join(privateDir, 'review-demo.mp4');
     // Whole-file format conversion only. No trim, splice, overlay, speed change or audio replacement.
     execFileSync('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-i', videoPath, '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18', '-pix_fmt', 'yuv420p', '-an', '-movflags', '+faststart', mp4], { timeout: 120000 });

@@ -1,7 +1,24 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { PIN, safeEnvironment, pageProjection, executionProjection, agentWorkflow, validatePublishable, redactDiagnostic } from './review_demo.mjs';
+import { PIN, safeEnvironment, installedFileProjection, pageProjection, executionProjection, agentWorkflow, validatePublishable, redactDiagnostic } from './review_demo.mjs';
+
+const publishedManifest = Buffer.from('{"name":"demo","version":"0.1.0","scripts":{"build":"tsc"},"dependencies":{"runtime":"1.0.0"},"n8n":{"nodes":["dist/node.js"]},"devDependencies":{"typescript":"5.9.3"},"peerDependencies":{"n8n-workflow":"*"},"optionalDependencies":{"optional":"1.0.0"}}\n');
+const installedManifest = Buffer.from(`{
+  "name": "demo",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "runtime": "1.0.0"
+  },
+  "n8n": {
+    "nodes": [
+      "dist/node.js"
+    ]
+  }
+}`);
 
 const page = dataset => ({ schema: 'liquidity-lab.openbb-table.v1', dataset, results: [{ value: null, availability: 'unavailable', as_of: '2026-06-30' }], sources: [{ status: 'PARTIAL' }], diagnostics: [], next_offset: 1, transport_status: 'complete' });
 function execution(agent = false) {
@@ -11,9 +28,29 @@ function execution(agent = false) {
   } } } };
 }
 function receipt() {
-  return { status: 'passed', package: { name: PIN.package, version: PIN.version, sha256: PIN.archiveSha256 }, n8n_version: PIN.n8n, model: { digest: PIN.modelDigest }, actions: Object.fromEntries(['money_markets', 'bank_risk', 'market_liquidity'].map(d => [d, { status: 'success', page: page(d) }])), agent: executionProjection(execution(true), 'money_markets', { agent: true }), video: { continuous: true, cuts: 0, duration_seconds: 240 }, ui_installed_package: true, ui_created_new_workflow: true, services_stopped: true, installed_files_match_published_archive: true, model_is_real: true, external_model_api_used: false, online_account_created: false, n8n_verified: false, independent_adoption_proven: false };
+  return { status: 'passed', package: { name: PIN.package, version: PIN.version, sha256: PIN.archiveSha256 }, n8n_version: PIN.n8n, model: { digest: PIN.modelDigest }, actions: Object.fromEntries(['money_markets', 'bank_risk', 'market_liquidity'].map(d => [d, { status: 'success', page: page(d) }])), agent: executionProjection(execution(true), 'money_markets', { agent: true }), video: { continuous: true, cuts: 0, duration_seconds: 240 }, ui_installed_package: true, ui_created_new_workflow: true, services_stopped: true, installed_files_match_published_archive: false, installed_runtime_files_match_published_archive: true, installed_manifest_matches_n8n_normalization: true, installed_package_files: [installedFileProjection('package.json', publishedManifest, installedManifest), installedFileProjection('dist/node.js', Buffer.from('runtime'), Buffer.from('runtime'))], model_is_real: true, external_model_api_used: false, online_account_created: false, n8n_verified: false, independent_adoption_proven: false };
 }
 
+test('only the pinned n8n manifest rewrite is accepted and its byte difference is explicit', () => {
+  const result = installedFileProjection('package.json', publishedManifest, installedManifest);
+  assert.equal(result.byte_identical, false);
+  assert.equal(result.verified, true);
+  assert.equal(result.installed_sha256, result.expected_sha256);
+  assert.notEqual(result.published_sha256, result.installed_sha256);
+  assert.throws(() => installedFileProjection('package.json', publishedManifest, Buffer.concat([installedManifest, Buffer.from('\n')])));
+  for (const mutate of [m => m.name = 'other', m => m.version = '0.2.0', m => m.n8n.nodes = ['dist/other.js'], m => delete m.scripts, m => delete m.dependencies, m => m.dependencies.runtime = '2.0.0', m => m.peerDependencies = { 'n8n-workflow': '*' }]) {
+    const manifest = JSON.parse(installedManifest);
+    mutate(manifest);
+    assert.throws(() => installedFileProjection('package.json', publishedManifest, Buffer.from(JSON.stringify(manifest, null, 2))));
+  }
+});
+test('all non-manifest shipped files still require exact bytes', () => {
+  for (const name of ['dist/node.js', 'README.md', 'LICENSE']) {
+    assert.equal(installedFileProjection(name, Buffer.from('original\n'), Buffer.from('original\n')).byte_identical, true);
+    assert.throws(() => installedFileProjection(name, Buffer.from('original\n'), Buffer.from('original')));
+    assert.throws(() => installedFileProjection(name, Buffer.from('original\n'), Buffer.from('changed\n')));
+  }
+});
 test('successful projections preserve unavailable values and source clocks, never owner or credentials', () => {
   const result = executionProjection(execution(), 'money_markets');
   assert.equal(result.page.results[0].value, null);
@@ -33,7 +70,7 @@ test('unbounded or changed dataset responses fail closed', () => {
 });
 test('review output requires exact identity, every action, genuine model, no cuts and <=5min', () => {
   validatePublishable(receipt());
-  for (const mutate of [r => r.status = 'failed', r => delete r.actions.bank_risk, r => r.video.duration_seconds = 301, r => r.video.cuts = 1, r => r.model_is_real = false, r => r.model.digest = 'different', r => r.package.sha256 = 'different', r => r.ui_installed_package = false, r => r.services_stopped = false, r => r.n8n_verified = true]) {
+  for (const mutate of [r => r.status = 'failed', r => delete r.actions.bank_risk, r => r.video.duration_seconds = 301, r => r.video.cuts = 1, r => r.model_is_real = false, r => r.model.digest = 'different', r => r.package.sha256 = 'different', r => r.ui_installed_package = false, r => r.services_stopped = false, r => r.n8n_verified = true, r => r.installed_files_match_published_archive = true, r => r.installed_runtime_files_match_published_archive = false, r => r.installed_manifest_matches_n8n_normalization = false, r => r.installed_package_files[0].installed_sha256 = 'changed', r => r.installed_package_files[1].byte_identical = false, r => r.installed_package_files.pop()]) {
     const r = receipt(); mutate(r); assert.throws(() => validatePublishable(r));
   }
 });

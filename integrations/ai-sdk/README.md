@@ -127,5 +127,8 @@ npm pack --dry-run
 CI runs on Node 22 and 24 with locked dependencies. Tests cover source-field
 preservation, strict direct and model inputs, malformed/oversized responses,
 timeouts, cancellation, future/stale metadata, and native SDK tool execution.
+The emitted declaration test rejects imports from undeclared transitive
+dependencies. Public tool types use the declared `ai` peer and retain the dataset
+union and optional query defaults for TypeScript callers.
 This proves adapter behavior, not model accuracy, adoption, or third-party
 marketplace approval.

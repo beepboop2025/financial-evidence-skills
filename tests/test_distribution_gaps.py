@@ -178,11 +178,55 @@ class DistributionGapTests(unittest.TestCase):
             self.fail("pending candidate caused a registry request")
         missing = audit(self.root, fetcher=unexpected)
         self.assertEqual(missing["channels"][0]["status"], "pending_publication")
+        self.assertEqual(missing["status"], "incomplete")
+        self.assertEqual(exit_status(missing), 2)
+        self.assertEqual(missing["findings"], [{"channel": "sdk", "severity": "unknown",
+                                             "reason": "candidate_artifact_not_present"}])
         self.write("integrations/ai-sdk/package.json", package)
         present = audit(self.root, fetcher=unexpected)
         self.assertEqual(present["channels"][0]["expected"]["version"], "0.1.0")
         self.assertEqual(present["channels"][0]["status"], "pending_publication")
+        self.assertEqual(present["status"], "incomplete")
+        self.assertEqual(exit_status(present), 2)
+        self.assertEqual(present["findings"][0]["reason"], "publication_receipt_missing")
         self.assertFalse(present["independent_adoption_verified"])
+
+    def test_optional_candidate_and_offline_inventory_remain_explicitly_unchecked(self):
+        self.sdk_candidate()
+        self.channel["required"] = False
+        self.write_inputs()
+        optional = audit(self.root, fetcher=lambda _: self.fail("pending candidate caused request"))
+        self.assertEqual(optional["channels"][0]["status"], "pending_publication")
+        self.assertEqual(optional["findings"], [])
+        self.channel["required"] = True
+        self.write_inputs()
+        offline = audit(self.root, offline=True, fetcher=lambda _: self.fail("offline request"))
+        self.assertEqual(offline["status"], "not_checked")
+        self.assertEqual(offline["channels"][0]["status"], "pending_publication")
+        self.assertEqual(exit_status(offline), 0)
+
+    def test_npm_publication_never_marks_separate_vercel_registry_submission_current(self):
+        package = self.sdk_candidate()
+        actual_catalog = json.loads((ROOT / "docs/distribution/channel-contracts.json").read_text())
+        actual_channel = next(channel for channel in actual_catalog["channels"] if channel["id"] == "ai-sdk-npm")
+        self.catalog["channels"] = [actual_channel]
+        self.ledger["entries"].extend([
+            {"id": "vercel-ai-sdk-tools", "state": "submitted",
+             "submission_url": "https://github.com/vercel/ai/pull/123"},
+            {"id": "financial-evidence-ai-sdk-npm", "state": "live",
+             "listing_url": "https://www.npmjs.com/package/@moomoo202020/financial-evidence-ai-sdk"},
+        ])
+        self.write_inputs()
+        self.write("integrations/ai-sdk/package.json", package)
+        self.receipt(package)
+        value = {**package, "dist": {"integrity": INTEGRITY}}
+        report = audit(self.root, fetcher=lambda _: retrieved(value))
+        inventory = {row["id"]: row for row in report["ledger_inventory"]}
+        self.assertEqual(report["status"], "configured_checks_passed")
+        self.assertEqual(inventory["financial-evidence-ai-sdk-npm"]["observation"], "current")
+        self.assertEqual(inventory["vercel-ai-sdk-tools"]["observation"], "not_monitored")
+        self.assertEqual(inventory["vercel-ai-sdk-tools"]["declared_state"], "submitted")
+        self.assertFalse(inventory["vercel-ai-sdk-tools"]["publication_acceptance_inferred"])
 
     def test_published_sdk_checks_exact_receipt_integrity(self):
         package = self.sdk_candidate()

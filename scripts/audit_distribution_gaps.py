@@ -351,7 +351,7 @@ def audit(root=ROOT, *, fetcher=fetch, offline=False):
     for result in results:
         if result["status"] in {"drift", "missing", "invalid_configuration"}:
             findings.append({"channel": result["id"], "severity": "error", "reason": result["reason"]})
-        elif result["required"] and result["status"] in {"unavailable", "invalid_response"}:
+        elif result["required"] and result["status"] in {"unavailable", "invalid_response", "pending_publication"}:
             findings.append({"channel": result["id"], "severity": "unknown", "reason": result["reason"]})
         for entry_id in result["ledger_ids"]:
             row = by_id[entry_id]

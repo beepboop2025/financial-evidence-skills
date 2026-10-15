@@ -57,7 +57,8 @@
     {
       "id": "ai-sdk-npm", "kind": "npm", "required": true,
       "expected": {"kind": "candidate_package", "path": "integrations/ai-sdk/package.json", "receipt": "docs/distribution/ai-sdk-publication.json"},
-      "ledger_ids": ["vercel-ai-sdk-tools"]
+      "ledger_ids": ["financial-evidence-ai-sdk-npm"],
+      "ledger_listing_prefix": "https://www.npmjs.com/package/@moomoo202020/financial-evidence-ai-sdk/"
     },
     {
       "id": "hosted-context-discovery", "kind": "json_fields", "required": true,

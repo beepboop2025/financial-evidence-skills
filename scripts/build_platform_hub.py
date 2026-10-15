@@ -74,6 +74,7 @@ def assets() -> dict[str, bytes]:
                 DEST / "n8n-publication-20261011.json",
                 DEST / "n8n-publication-20261013.json",
                 DEST / "n8n-creator-submission-20261011.json",
+                DEST / "n8n-creator-submission-20261015.json",
                 DEST / "activepieces.md", DEST / "activepieces-verification-20261015.json",
                 ROOT / "docs/partners/adoption.md", ROOT / "docs/partners/evaluation.json"]
     # Explicit public allowlist: never collect the native runtime or its state.
@@ -187,6 +188,7 @@ historical decisions. No broker credentials or order execution is included.
     result["colab-verification-20261011.json"] = (DEST / "colab-verification-20261011.json").read_bytes()
     result["n8n-publication-20261011.json"] = (DEST / "n8n-publication-20261011.json").read_bytes()
     result["n8n-creator-submission-20261011.json"] = (DEST / "n8n-creator-submission-20261011.json").read_bytes()
+    result["n8n-creator-submission-20261015.json"] = (DEST / "n8n-creator-submission-20261015.json").read_bytes()
     result.update({f"flowise/{name}": (DEST / "flowise" / name).read_bytes() for name in flowise_files})
     for name in ("index.html", "panel.css", "panel.mjs", "reference-fx.mjs"):
         result[f"desktop/{name}"] = (ROOT / "integrations/finance-desktop" / name).read_bytes()

@@ -26,6 +26,8 @@ npm install n8n-nodes-financial-evidence@0.1.1
 ```
 
 Use Node 24 or another version supported by your installed n8n release.
+The existing Creator application is for 0.1.0 and is under manual review after
+its demo video was submitted on 15 October. [Current review receipt](n8n-creator-submission-20261015.json).
 n8n Creator verification remains pending; npm publication does not establish
 n8n Cloud availability. Add **Financial Evidence**, select `money_markets`, set
 limit `1` and offset `0`, then run once and inspect the sources and diagnostics.
@@ -83,16 +85,20 @@ reviewed. If your workspace cannot load unverified community packages, use the
 The public tarball matches the native-tested archive exactly. Native n8n 2.42.6
 executed one bounded bank, funding and liquidity request. Cryptographic Sigstore
 provenance verification, anonymous consumer installation and npm signature
-verification passed. The [Creator Portal submission was received](n8n-creator-submission-20261011.json)
-after ownership verification. Automated checks passed; manual review is
-**awaiting a demo video**. n8n verification and official node-directory acceptance
-remain pending. The Approved For Publish step is not complete. This does not
-establish n8n Cloud availability or independent-user adoption.
+verification passed. The [original Creator Portal submission](n8n-creator-submission-20261011.json)
+was received after ownership verification. Its 160.28-second demo video was
+uploaded and submitted on 15 October. Automated checks are complete, and a
+refreshed portal readback shows Manual Review **Under Review** in the
+[current review receipt](n8n-creator-submission-20261015.json). The existing
+application remains version 0.1.0; the public npm 0.1.1 release is separate.
+n8n verification and official node-directory acceptance remain pending.
+Approved For Publish is not complete. This does not establish n8n Cloud
+availability or independent-user adoption.
 
 The immutable 0.1.0 package README preserves its prepublication wording, including
 the former "not yet published" statement and older release-workflow description.
 The current npm publication receipt above supersedes those status statements;
-the separate Creator receipt records the later portal submission.
+the separate Creator receipts retain the original submission and later manual-review status.
 The archive's bytes are unchanged. The recorded native validation is also a
 historical test; its earlier `npm_published: false` field is not the current
 registry state.

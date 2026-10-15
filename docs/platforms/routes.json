@@ -115,6 +115,25 @@
       "verified_customer_adoption": null
     },
     {
+      "id": "ai-sdk",
+      "name": "AI SDK",
+      "category": "Agent framework",
+      "priority": "P1",
+      "products": [
+        "Financial Evidence",
+        "Seiche",
+        "LiquiLens",
+        "Undertow"
+      ],
+      "audience": "Developers building TypeScript research agents",
+      "workflow": "Discover dataset coverage, read bounded source-linked research and validate source-status metadata with three native tools.",
+      "artifact_label": "AI SDK package and setup guide",
+      "artifact_url": "ai-sdk.md",
+      "status": "Version 0.1.0 is public on npm, with downloaded bytes matching the archive that passed native AI SDK and isolated package-install checks. Tools Registry acceptance remains separate.",
+      "official_source": "https://ai-sdk.dev/docs/ai-sdk-core/tools-and-tool-calling",
+      "verified_customer_adoption": null
+    },
+    {
       "id": "crewai",
       "name": "CrewAI",
       "category": "Agent framework",

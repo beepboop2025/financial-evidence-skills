@@ -5,16 +5,15 @@ metadata from `https://agents.seiche.info`. Source dates, nulls, units, rights
 and diagnostics remain attached to each result. The adapter has no trading
 or execution authority and does not provide a quote feed.
 
-Package candidate: `@moomoo202020/financial-evidence-ai-sdk@0.1.0`.
-Publication and AI SDK Tools Registry acceptance are separate release steps;
-this source tree alone does not establish either.
+Published package: [`@moomoo202020/financial-evidence-ai-sdk@0.1.0`](https://www.npmjs.com/package/@moomoo202020/financial-evidence-ai-sdk/v/0.1.0).
+The anonymous npm download matches the reviewed archive. See the
+[publication receipt](../distribution/ai-sdk-publication.json).
+AI SDK Tools Registry acceptance remains a separate, unverified step.
 
 Node.js 22+ and AI SDK 7 are required. The implementation is tested with
 `ai@7.0.141` and `zod@4.6.7`.
 
 ## Install and run
-
-After npm publication:
 
 ```sh
 npm install @moomoo202020/financial-evidence-ai-sdk@0.1.0 ai@^7.0.141
@@ -24,7 +23,7 @@ TypeScript applications that check dependency declarations also need the AI
 SDK's ambient types: `npm install -D @types/node@22 @types/json-schema` and
 `"types": ["node"]` in their TypeScript compiler options.
 
-For a local checkout before publication:
+For local development:
 
 ```sh
 cd integrations/ai-sdk
@@ -130,5 +129,7 @@ timeouts, cancellation, future/stale metadata, and native SDK tool execution.
 The emitted declaration test rejects imports from undeclared transitive
 dependencies. Public tool types use the declared `ai` peer and retain the dataset
 union and optional query defaults for TypeScript callers.
+An isolated pnpm installation with hoisting disabled passes strict TypeScript
+checks and the native SDK tool-loop tests.
 This proves adapter behavior, not model accuracy, adoption, or third-party
 marketplace approval.

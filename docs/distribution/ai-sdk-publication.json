@@ -1,0 +1,32 @@
+{
+  "schema": "financial-evidence.ai-sdk-publication.v1",
+  "npm_published": true,
+  "package": "@moomoo202020/financial-evidence-ai-sdk",
+  "version": "0.1.0",
+  "source_commit": "3923e14575fdc91640905ebc98e7717aa8ef99ff",
+  "observed_at": "2026-10-15T15:51:28.419262+00:00",
+  "tarball_sha512_integrity": "sha512-nbfjOuGZALenGCUhex4E7c0FTAxrubmNJtaVg+EYxJ2IKXOxVZDyAZ7T+6TcDhXu7cZNxchyozJ83J6zb3mUqA==",
+  "tarball_sha256": "147e3683950a6633690e025c7943b92622681f67c22a37c1bd190dd02bdf8ac0",
+  "tarball_bytes": 9609,
+  "registry_metadata_url": "https://registry.npmjs.org/@moomoo202020%2ffinancial-evidence-ai-sdk/0.1.0",
+  "tarball_url": "https://registry.npmjs.org/@moomoo202020/financial-evidence-ai-sdk/-/financial-evidence-ai-sdk-0.1.0.tgz",
+  "anonymous_readback": true,
+  "public_artifact_bytes_match_reviewed_archive": true,
+  "installed_consumer_verification": "passed_public_registry_install",
+  "directory_acceptance_verified": false,
+  "consumer": {
+    "observed_at": "2026-10-15T15:53:37Z",
+    "installation": "package_name_from_public_npm_registry",
+    "anonymous": true,
+    "lifecycle_scripts_disabled": true,
+    "native_sdk_tests_passed": 5,
+    "strict_typescript_check_passed": true,
+    "installed_files_matching_public_tarball": 7,
+    "ai_sdk_version": "7.0.141",
+    "zod_version": "4.6.7",
+    "typescript_version": "7.0.2",
+    "paid_model_calls": 0,
+    "upstream_evidence_requests": 0,
+    "retained_consumer_receipt_sha256": "8c9e77380df025d9b55a0206b498fe3caf7154543211e9b06d02d6afdf8404ea"
+  }
+}

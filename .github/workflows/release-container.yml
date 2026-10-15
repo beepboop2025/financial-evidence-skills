@@ -8,6 +8,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: financial-evidence-release
+  cancel-in-progress: false
+
 jobs:
   preflight:
     runs-on: ubuntu-24.04
@@ -47,13 +51,15 @@ jobs:
           python3 -m unittest discover -s tests -v
           node --test tests/*.test.js tests/*.test.cjs
           python3 -m py_compile financial-evidence/scripts/fetch_evidence.py src/financial_evidence/*.py scripts/verify_remote_mcp.py
-      - name: Require the exact live site Worker and candidate remote contract
+      - name: Require the pinned live Worker and unchanged source on site main
         run: |
-          expected_worker_tag="$(
-            git ls-remote https://github.com/beepboop2025/liquilens-site.git refs/heads/main \
-              | awk '{print $1}'
-          )"
+          expected_worker_tag="$(jq --raw-output .worker_source_commit ops/release/remote-mcp.json)"
           printf '%s\n' "$expected_worker_tag" | grep -Eq '^[0-9a-f]{40}$'
+          git clone --filter=blob:none --no-checkout \
+            https://github.com/beepboop2025/liquilens-site.git "$RUNNER_TEMP/remote-site"
+          git -C "$RUNNER_TEMP/remote-site" merge-base --is-ancestor "$expected_worker_tag" origin/main
+          mapfile -t worker_paths < <(jq --raw-output '.source_paths[]' ops/release/remote-mcp.json)
+          git -C "$RUNNER_TEMP/remote-site" diff --exit-code "$expected_worker_tag" origin/main -- "${worker_paths[@]}"
           python3 scripts/verify_remote_mcp.py \
             --expected-worker-tag "$expected_worker_tag"
       - name: Install pinned MCP publisher
@@ -67,6 +73,58 @@ jobs:
             | sha256sum --check --strict
           tar --extract --gzip --file mcp-publisher.tar.gz mcp-publisher
       - run: ./mcp-publisher validate server.json
+
+  python-build:
+    needs: preflight
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+      - name: Build the Python distributions once
+        run: |
+          python3 -m pip install 'build==1.3.0' 'twine==7.0.0'
+          python3 -m build
+          python3 -m twine check --strict dist/*
+      - name: Exercise the installed SDK and registry entrypoint
+        run: |
+          python3 -m venv /tmp/financial-evidence-consumer
+          /tmp/financial-evidence-consumer/bin/python -m pip install "$(find dist -name '*.whl')[workspace]"
+          /tmp/financial-evidence-consumer/bin/python -m pip check
+          PYTHONPATH='' /tmp/financial-evidence-consumer/bin/python - <<'PY'
+          from financial_evidence.trading import ProductClient
+          from financial_evidence.trading.context import ContextClient
+          from financial_evidence.trading.source_contract import load_catalog
+          assert ProductClient and ContextClient and load_catalog()["sources"]
+          PY
+          python3 scripts/verify_published_mcp.py --contract integrations/financial-evidence-mcp-current.json --receipt python-consumer-receipt.json -- \
+            /tmp/financial-evidence-consumer/bin/financial-evidence mcp
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: python-distributions
+          path: dist/*
+          if-no-files-found: error
+
+  pypi:
+    needs: python-build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    environment:
+      name: pypi
+      url: https://pypi.org/project/financial-evidence/
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: python-distributions
+          path: dist
+      - name: Publish the tested distributions with GitHub OIDC
+        uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # release/v1
 
   ghcr:
     needs: preflight
@@ -104,7 +162,7 @@ jobs:
           sbom: true
 
   mcp-registry:
-    needs: ghcr
+    needs: [ghcr, pypi]
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -147,11 +205,13 @@ jobs:
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.13"
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: python-distributions
+          path: dist
       - name: Validate release version and build artifacts
         run: |
           version="${GITHUB_REF_NAME#v}"
-          python3 -m pip install 'build==1.3.0'
-          python3 -m build
           npx --yes @anthropic-ai/mcpb@2.1.2 validate manifest.json
           npx --yes @anthropic-ai/mcpb@2.1.2 pack . "financial-evidence-${version}.mcpb"
       - name: Generate the release CycloneDX SBOM

@@ -1,0 +1,17 @@
+{
+  "schema": "financial-evidence.remote-mcp-release.v1",
+  "repository": "https://github.com/beepboop2025/liquilens-site.git",
+  "worker_source_commit": "4eb59d8d8e5c80e2403693c6ed70cafac780318e",
+  "worker_version_id": "7c645130-6b88-480e-9d6c-9e91abefdc5a",
+  "mcp_contract": "integrations/financial-evidence-mcp-v0.1.8.json",
+  "verified_at": "2026-10-15T15:20:12.366875+00:00",
+  "source_paths": [
+    "edge",
+    ".well-known",
+    "protocol",
+    "package.json",
+    "package-lock.json",
+    "wrangler.catalog.jsonc"
+  ],
+  "scope": "The hosted router has an independent version. Release preflight checks this exact deployed source, its ancestry, unchanged Worker inputs on site main, and the live MCP contract."
+}

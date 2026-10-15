@@ -41,6 +41,7 @@ jobs:
           # Never retain the host database, temporary account credentials or tokens.
           path: |
             ${{ runner.temp }}/activepieces-evidence/${{ matrix.installation }}/receipt.json
+            ${{ runner.temp }}/activepieces-evidence/${{ matrix.installation }}/worker-attestation.json
             ${{ runner.temp }}/activepieces-evidence/${{ matrix.installation }}/*.tgz
             ${{ runner.temp }}/activepieces-evidence/${{ matrix.installation }}/registry-version-metadata.json
             ${{ runner.temp }}/activepieces-evidence/${{ matrix.installation }}/runtime-diagnostic.txt

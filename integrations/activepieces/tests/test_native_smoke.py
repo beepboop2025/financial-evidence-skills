@@ -5,7 +5,10 @@ import hashlib
 import importlib.util
 import io
 import json
+import os
 from pathlib import Path
+import shutil
+import subprocess
 import tarfile
 import tempfile
 import unittest
@@ -236,6 +239,186 @@ class InstallationRouteTests(unittest.TestCase):
         self.assertEqual((receipt['package'], receipt['version']), ('@future/piece', '9.9.9'))
         self.assertEqual(receipt['installation_mode'], 'archive')
         self.assertEqual(receipt['artifact_source'], 'candidate_checkout')
+
+
+@unittest.skipUnless(shutil.which('node'), 'Node is required to exercise the actual CommonJS hooks')
+class WorkerAttestationTests(unittest.TestCase):
+    """Run real CommonJS loading without Docker, network or Activepieces secrets."""
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name).resolve()
+        self.package = {'name': '@approved/piece-financial-evidence', 'version': '0.1.0', 'main': 'dist/index.js'}
+        self.phase = {'action': 'list_research_datasets', 'nonce': 'a' * 32}
+        self.contents = {
+            'package.json': json.dumps(self.package).encode(),
+            'dist/index.js': b"module.exports = require('./helper.js');\n",
+            'dist/helper.js': b'module.exports = {ok: true};\n',
+            'README.md': b'Reviewed package documentation.\n',
+        }
+        self.archive = self.root / 'reviewed.tgz'
+        self.write_archive()
+        self.evidence = self.root / 'evidence'
+        self.evidence.mkdir()
+        self.probe, self.events, self.files = smoke.prepare_attestation(self.evidence, self.archive, self.package)
+        config = json.loads((self.probe / 'config.json').read_text())
+        config['events_file'] = str(self.events / 'events.ndjson')
+        (self.probe / 'config.json').write_text(json.dumps(config))
+        (self.probe / 'phase.json').write_text(json.dumps(self.phase))
+        self.engine = self.root / 'cache/v15/common/main.js'
+        self.engine.parent.mkdir(parents=True)
+        self.folder = self.engine.parent / 'pieces' / (self.package['name'] + '-' + self.package['version'])
+
+    def write_archive(self):
+        with tarfile.open(self.archive, 'w:gz') as handle:
+            for name, content in self.contents.items():
+                member = tarfile.TarInfo('package/' + name)
+                member.size = len(content)
+                handle.addfile(member, io.BytesIO(content))
+
+    def install(self, nested=True, linked=False):
+        package_root = self.folder / 'node_modules' / self.package['name'] if nested else self.folder
+        actual = self.root / 'bun-shared-store/package' if linked else package_root
+        for name, content in self.contents.items():
+            destination = actual / name
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            destination.write_bytes(content)
+        if linked:
+            package_root.parent.mkdir(parents=True, exist_ok=True)
+            package_root.symlink_to(actual, target_is_directory=True)
+        return package_root
+
+    def execute(self, package_root, prefix='', repeat=False, phase=True):
+        entry = str(package_root / self.package['main'])
+        self.engine.write_text(prefix + '\nconst load = require("node:module").createRequire(__filename);\n' +
+                               f'load({json.dumps(entry)});\n' * (2 if repeat else 1))
+        if not phase:
+            (self.probe / 'phase.json').unlink()
+        env = {**os.environ, 'NODE_OPTIONS': '--require=' + str(self.probe / 'preload.cjs'),
+               'SANDBOX_ID': 'disposable-sandbox', 'FE_QUALIFICATION_DIR': str(self.probe)}
+        env.pop('AP_CUSTOM_PIECES_PATHS', None)
+        return subprocess.run(['node', str(self.engine)], env=env, capture_output=True, text=True, timeout=10)
+
+    def test_actual_nested_loader_and_compiled_relative_module_match_archive(self):
+        root = self.install()
+        result = self.execute(root, repeat=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        observed = smoke.read_attestations(self.events)
+        facts = smoke.verify_worker_phase(observed, self.phase, self.files, self.package)
+        self.assertEqual(facts['observations'], 2)
+        self.assertEqual(facts['fresh_compilations'], 1)
+        self.assertEqual(facts['compiled_files_verified'], ['dist/helper.js', 'dist/index.js'])
+        self.assertEqual(observed[0]['resolved_entry'], str(root / 'dist/index.js'))
+        self.assertEqual(observed[0]['engine_entry_sha256'], hashlib.sha256(self.engine.read_bytes()).hexdigest())
+        self.assertNotIn('disposable-sandbox', json.dumps(observed))
+
+    def test_archive_root_fallback_is_observed_not_assumed(self):
+        result = self.execute(self.install(nested=False))
+        self.assertEqual(result.returncode, 0, result.stderr)
+        observed = smoke.read_attestations(self.events)
+        self.assertEqual(observed[0]['layout'], 'archive_root')
+        smoke.verify_worker_phase(observed, self.phase, self.files, self.package)
+
+    def test_bun_symlink_root_records_real_worker_file_paths(self):
+        root = self.install(linked=True)
+        result = self.execute(root)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        observed = smoke.read_attestations(self.events)
+        self.assertEqual(observed[0]['package_root'], str(root.resolve()))
+        smoke.verify_worker_phase(observed, self.phase, self.files, self.package)
+
+    def test_same_length_tampered_shipped_bytes_block_load(self):
+        root = self.install()
+        (root / 'README.md').write_bytes(b'X' * len(self.contents['README.md']))
+        result = self.execute(root)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('Attestation package bytes mismatch', result.stderr)
+        observed = smoke.read_attestations(self.events)
+        self.assertFalse(observed[0]['successful_load'])
+        with self.assertRaisesRegex(RuntimeError, 'does not match'):
+            smoke.verify_worker_phase(observed, self.phase, self.files, self.package)
+
+    def test_compile_content_transformation_cannot_pass_disk_hash_check(self):
+        root = self.install()
+        prefix = """const M = require('node:module'), compile = M.prototype._compile;
+M.prototype._compile = function(source, filename) {
+  return compile.call(this, filename.endsWith('/dist/helper.js') ? source + '// changed' : source, filename);
+};"""
+        result = self.execute(root, prefix)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('Attestation compiled source mismatch', result.stderr)
+
+    def test_metadata_without_action_phase_is_not_counted(self):
+        result = self.execute(self.install(), phase=False)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(smoke.read_attestations(self.events), [])
+        with self.assertRaisesRegex(RuntimeError, 'No actual engine'):
+            smoke.verify_worker_phase([], self.phase, self.files, self.package)
+
+    def test_cached_only_and_wrong_phase_cannot_count_as_action_proof(self):
+        self.assertEqual(self.execute(self.install(), repeat=True).returncode, 0)
+        observed = smoke.read_attestations(self.events)
+        with self.assertRaisesRegex(RuntimeError, 'fresh matching'):
+            smoke.verify_worker_phase(observed[1:], self.phase, self.files, self.package)
+        with self.assertRaisesRegex(RuntimeError, 'No actual engine'):
+            smoke.verify_worker_phase(observed, {**self.phase, 'nonce': 'b' * 32}, self.files, self.package)
+
+    def test_nested_layout_wins_over_root_package(self):
+        nested = self.install()
+        self.install(nested=False)
+        result = self.execute(nested)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(smoke.read_attestations(self.events)[0]['layout'], 'nested_node_modules')
+        (self.events / 'events.ndjson').unlink()
+        result = self.execute(self.folder)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('loader resolution differs', result.stderr)
+
+    def test_external_dependencies_are_explicitly_outside_compiled_source_scope(self):
+        self.contents['dist/index.js'] = b"module.exports = require('dependency');\n"
+        self.write_archive()
+        self.files = smoke.reviewed_files(self.archive, self.package)
+        config = json.loads((self.probe / 'config.json').read_text())
+        config['files'] = self.files
+        (self.probe / 'config.json').write_text(json.dumps(config))
+        root = self.install()
+        dependency = root / 'node_modules/dependency/index.js'
+        dependency.parent.mkdir(parents=True)
+        dependency.write_text('module.exports = 42;')
+        result = self.execute(root)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        facts = smoke.verify_worker_phase(smoke.read_attestations(self.events), self.phase, self.files, self.package)
+        self.assertEqual(facts['compiled_files_verified'], ['dist/index.js'])
+
+    def test_record_byte_and_count_limits(self):
+        trace = self.events / 'events.ndjson'
+        trace.write_bytes(b' ' * (smoke.ATTESTATION_LIMIT + 1))
+        with self.assertRaisesRegex(RuntimeError, 'byte bound'):
+            smoke.read_attestations(self.events)
+        trace.write_text('{}\n' * 33)
+        with self.assertRaisesRegex(RuntimeError, 'Invalid worker'):
+            smoke.read_attestations(self.events)
+
+    def test_archive_rejects_duplicate_traversal_symlink_and_oversize_members(self):
+        for name, kind, size in [('package/package.json', 'file', 1),
+                                 ('package/../escape.js', 'file', 1),
+                                 ('package/link.js', 'link', 0),
+                                 ('package/huge.js', 'file', 1024 * 1024 + 1)]:
+            with self.subTest(name=name):
+                self.write_archive()
+                # Build an uncompressed fixture to append the invalid member.
+                invalid = self.root / 'invalid.tar'
+                with tarfile.open(self.archive) as source, tarfile.open(invalid, 'w') as target:
+                    for member in source:
+                        target.addfile(member, source.extractfile(member))
+                    member = tarfile.TarInfo(name)
+                    member.size = size
+                    if kind == 'link':
+                        member.type, member.linkname = tarfile.SYMTYPE, '../outside'
+                    target.addfile(member, io.BytesIO(b'x' * size))
+                with self.assertRaisesRegex(RuntimeError, 'Invalid or unbounded'):
+                    smoke.reviewed_files(invalid, self.package)
 
 
 if __name__ == '__main__':

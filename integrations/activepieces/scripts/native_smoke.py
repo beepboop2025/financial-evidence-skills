@@ -2,7 +2,8 @@
 
 Requires Docker. Creates only a disposable local host, account and draft flows.
 Uses the same installation and step-test APIs as the editor; it does not certify
-browser interactions, worker filesystem bytes or marketplace acceptance.
+browser interactions or marketplace acceptance. A disposable engine preload
+attests reviewed package files and the CommonJS sources compiled during each test.
 """
 import argparse
 import base64
@@ -10,7 +11,7 @@ from datetime import datetime, timezone
 import hashlib
 import json
 import os
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import re
 import secrets
 import subprocess
@@ -25,6 +26,221 @@ RELEASE = '0.92.3'
 ROOT = Path(__file__).resolve().parents[1]
 PUBLICATION = ROOT.parents[1] / 'docs/platforms/activepieces-publication-20261015.json'
 ACTIONS = {'list_research_datasets', 'get_evidence_page'}
+LOADER_REFERENCE = {
+    'release': RELEASE, 'source_commit': '2fc7f8dcaa84400f9db53fb0de7fc4340d055c62',
+    'path': 'packages/server/engine/src/lib/helper/piece-loader.ts',
+    'sha256': 'be7b524038d9864e58bfe72b8d1feadc143c8b693bd30d9c03ddc0d82c793a8d',
+    'source_to_image_build_provenance_verified': False,
+}
+PROBE_MOUNT = '/opt/financial-evidence-attestation'
+EVENTS_MOUNT = '/opt/financial-evidence-attestation-events'
+ATTESTATION_LIMIT = 1024 * 1024
+
+# 0.92.3 bundles piece-loader into the cached engine main.js. Observe its actual
+# createRequire(__filename)(piecePath), rather than guessing an install folder.
+# Only a named disposable test phase is recorded; no arguments/results/env dump.
+WORKER_PRELOAD = r"""'use strict';
+const fs = require('node:fs'), path = require('node:path');
+const crypto = require('node:crypto'), Module = require('node:module');
+const base = process.env.FE_QUALIFICATION_DIR;
+if (base && process.env.SANDBOX_ID) {
+  const config = JSON.parse(fs.readFileSync(path.join(base, 'config.json'), 'utf8'));
+  const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
+  const real = value => fs.realpathSync(value);
+  const engine = real(process.argv[1]);
+  const alias = config.package + '-' + config.version;
+  // Match the official helper exactly, including its prerelease alias semantics.
+  const trimmed = alias.split('-').slice(0, -1).join('-');
+  const originalLoad = Module._load, originalCompile = Module.prototype._compile;
+  let active;
+  function append(record) {
+    const encoded = JSON.stringify(record) + '\n';
+    const prior = fs.existsSync(config.events_file) ? fs.statSync(config.events_file).size : 0;
+    if (prior + Buffer.byteLength(encoded) > 1048576) throw new Error('Attestation output limit');
+    fs.appendFileSync(config.events_file, encoded);
+  }
+  function mainEntry(directory) {
+    let main;
+    try { main = JSON.parse(fs.readFileSync(path.join(directory, 'package.json'), 'utf8')).main; }
+    catch { /* The official loader falls back when package metadata cannot resolve main. */ }
+    if (typeof main === 'string' && fs.existsSync(path.join(directory, main))) return path.join(directory, main);
+    return path.join(directory, 'src/index.js');
+  }
+  function installedEntry(folder) {
+    const nested = path.join(folder, 'node_modules', trimmed);
+    if (fs.existsSync(nested)) return {entry: mainEntry(nested), root: nested, layout: 'nested_node_modules'};
+    if (fs.existsSync(path.join(folder, 'package.json'))) {
+      const entry = mainEntry(folder);
+      if (fs.existsSync(entry)) return {entry, root: folder, layout: 'archive_root'};
+    }
+  }
+  function loaderEntry() {
+    for (const custom of (process.env.AP_CUSTOM_PIECES_PATHS || '').split(':').filter(Boolean)) {
+      const found = installedEntry(path.resolve(custom, 'pieces', alias));
+      if (found) return found;
+    }
+    let current = path.dirname(engine);
+    for (;;) {
+      const found = installedEntry(path.resolve(current, 'pieces', alias));
+      if (found) return found;
+      const parent = path.dirname(current);
+      if (parent === current) break;
+      current = parent;
+    }
+  }
+  function ownRelative(filename, root) {
+    const relative = path.relative(root, real(filename));
+    if (relative.startsWith('..') || path.isAbsolute(relative) || relative.split(path.sep).includes('node_modules')) return null;
+    return relative.split(path.sep).join('/');
+  }
+  function inspectFiles(root, files) {
+    for (const [name, wanted] of Object.entries(config.files)) {
+      const filename = path.join(root, name);
+      if (ownRelative(filename, root) !== name) throw new Error('Attestation package file escaped root');
+      const stat = fs.statSync(filename);
+      if (!stat.isFile() || stat.size > 1048576) throw new Error('Attestation package file bound');
+      const bytes = fs.readFileSync(filename);
+      files[name] = {bytes: bytes.length, sha256: hash(bytes)};
+      if (files[name].bytes !== wanted.bytes || files[name].sha256 !== wanted.sha256) {
+        throw new Error('Attestation package bytes mismatch: ' + name);
+      }
+    }
+    return files;
+  }
+  Module.prototype._compile = function(content, filename) {
+    if (active) {
+      const name = ownRelative(filename, active.package_root);
+      if (name !== null) {
+        const sha256 = hash(Buffer.from(content, 'utf8'));
+        active.compiled_files[name] = {sha256, bytes: Buffer.byteLength(content)};
+        const wanted = config.files[name];
+        if (!wanted || sha256 !== wanted.sha256 || Buffer.byteLength(content) !== wanted.bytes) {
+          throw new Error('Attestation compiled source mismatch: ' + name);
+        }
+      }
+    }
+    return originalCompile.call(this, content, filename);
+  };
+  Module._load = function(request, parent, isMain) {
+    if (!path.isAbsolute(request) || !request.includes(alias) || !parent?.filename || real(parent.filename) !== engine) {
+      return originalLoad.apply(this, arguments);
+    }
+    const phaseFile = path.join(base, 'phase.json');
+    const phase = fs.existsSync(phaseFile) ? JSON.parse(fs.readFileSync(phaseFile, 'utf8')) : null;
+    if (!phase || !config.actions.includes(phase.action) || !/^[a-f0-9]{32}$/.test(phase.nonce)) {
+      return originalLoad.apply(this, arguments);
+    }
+    const record = {schema: 'financial-evidence.activepieces-worker-load.v1',
+      action: phase.action, phase_nonce: phase.nonce, pid: process.pid, ppid: process.ppid,
+      sandbox_id_sha256: hash(process.env.SANDBOX_ID), engine_entry: engine,
+      engine_entry_sha256: hash(fs.readFileSync(engine)), loader_parent: real(parent.filename),
+      loader_request: request, package: config.package, version: config.version,
+      compiled_files: {}, successful_load: false};
+    try {
+      const found = loaderEntry();
+      if (!found || path.resolve(request) !== path.resolve(found.entry)) throw new Error('Attestation loader resolution differs');
+      const resolved = Module._resolveFilename(request, parent, isMain);
+      record.resolved_entry = real(resolved);
+      record.package_root = real(found.root);
+      record.layout = found.layout;
+      record.entry_relative = ownRelative(record.resolved_entry, record.package_root);
+      record.cached_before = Boolean(Module._cache[resolved]);
+      record.files = {};
+      inspectFiles(record.package_root, record.files);
+      active = record;
+      const result = originalLoad.apply(this, arguments);
+      active = undefined;
+      // Recheck after evaluation, so a source modified during loading cannot pass.
+      record.files_after_load = {};
+      inspectFiles(record.package_root, record.files_after_load);
+      record.successful_load = true;
+      return result;
+    } catch (error) {
+      record.error = String(error.message).slice(0, 300);
+      throw error;
+    } finally {
+      active = undefined;
+      append(record);
+    }
+  };
+}
+"""
+
+
+def reviewed_files(archive, package):
+    """Hash only bounded regular package members; never extract archive paths."""
+    files, total = {}, 0
+    with tarfile.open(archive) as handle:
+        for member in handle:
+            if member.isdir():
+                continue
+            name = member.name.removeprefix('package/')
+            path = PurePosixPath(name)
+            if (not member.name.startswith('package/') or not member.isfile() or name in files
+                    or path.is_absolute() or '..' in path.parts or '\\' in name
+                    or str(path) != name or member.size > 1024 * 1024 or len(files) >= 128):
+                raise RuntimeError('Invalid or unbounded package member for worker attestation')
+            total += member.size
+            if total > 10 * 1024 * 1024:
+                raise RuntimeError('Package attestation exceeds byte bound')
+            raw = handle.extractfile(member).read()
+            files[name] = {'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()}
+        if 'package.json' not in files:
+            raise RuntimeError('Worker attestation requires package manifest')
+    shipped_identity(archive, package)
+    return files
+
+
+def prepare_attestation(evidence, archive, package):
+    files = reviewed_files(archive, package)
+    probe = evidence / 'worker-probe'
+    events = evidence / 'worker-events'
+    probe.mkdir()
+    events.mkdir(mode=0o777)
+    events.chmod(0o777)  # The disposable container may use a different UID.
+    (probe / 'preload.cjs').write_text(WORKER_PRELOAD)
+    (probe / 'config.json').write_text(json.dumps({
+        'package': package['name'], 'version': package['version'], 'files': files,
+        'actions': sorted(ACTIONS), 'events_file': EVENTS_MOUNT + '/events.ndjson',
+    }))
+    return probe, events, files
+
+
+def read_attestations(events):
+    trace = events / 'events.ndjson'
+    if not trace.exists():
+        return []
+    if trace.stat().st_size > ATTESTATION_LIMIT:
+        raise RuntimeError('Worker attestation response exceeds byte bound')
+    observations = [json.loads(line) for line in trace.read_text().splitlines() if line]
+    if len(observations) > 32 or any(not isinstance(item, dict) for item in observations):
+        raise RuntimeError('Invalid worker attestation records')
+    return observations
+
+
+def verify_worker_phase(observations, phase, files, package):
+    matches = [item for item in observations if item.get('phase_nonce') == phase['nonce']]
+    if not matches:
+        raise RuntimeError('No actual engine piece-loader observation for native action')
+    fresh = []
+    for item in matches:
+        if (item.get('schema') != 'financial-evidence.activepieces-worker-load.v1'
+                or item.get('action') != phase['action'] or item.get('package') != package['name']
+                or item.get('version') != package['version'] or item.get('successful_load') is not True
+                or item.get('loader_parent') != item.get('engine_entry')
+                or item.get('files') != files or item.get('files_after_load') != files
+                or item.get('layout') not in ('nested_node_modules', 'archive_root')
+                or item.get('entry_relative') not in files):
+            raise RuntimeError('Worker loaded package does not match reviewed archive')
+        compiled = item.get('compiled_files')
+        if not isinstance(compiled, dict) or any(files.get(name) != digest for name, digest in compiled.items()):
+            raise RuntimeError('Worker compiled sources do not match reviewed archive')
+        if item.get('cached_before') is False and item['entry_relative'] in compiled:
+            fresh.append(item)
+    if not fresh:
+        raise RuntimeError('Native action lacks a fresh matching CommonJS compilation')
+    return {'phase_nonce': phase['nonce'], 'observations': len(matches),
+            'fresh_compilations': len(fresh), 'compiled_files_verified': sorted({name for item in fresh for name in item['compiled_files']})}
 
 
 def command(*args, timeout=120, env=None):
@@ -176,6 +392,8 @@ def main():
     password = secrets.token_urlsafe(30)
     host_secrets = {'AP_JWT_SECRET': secrets.token_hex(32), 'AP_ENCRYPTION_KEY': secrets.token_hex(16)}
     started = False
+    probe = events = None
+    files = {}
 
     def redact(value):
         for sensitive in (token, password, *host_secrets.values()):
@@ -219,11 +437,19 @@ def main():
             'filename': archive.name, 'bytes': archive.stat().st_size,
             'sha256': hashlib.sha256(archive.read_bytes()).hexdigest(),
         })
+        probe, events, files = prepare_attestation(evidence, archive, package)
         command('docker', 'pull', IMAGE, timeout=600)
         command('docker', 'run', '-d', '--name', container, '--memory', '3g', '--cpus', '2',
                 '-p', '127.0.0.1::80', '-e', 'AP_DB_TYPE=PGLITE',
                 '-e', 'AP_REDIS_TYPE=MEMORY', '-e', 'AP_FRONTEND_URL=http://localhost',
                 '-e', 'AP_TELEMETRY_ENABLED=false', '-e', 'AP_EXECUTION_MODE=UNSANDBOXED',
+                '-e', 'AP_REUSE_SANDBOX=false', '-e', 'AP_WORKER_CONCURRENCY=1',
+                '-e', 'AP_PREWARM_CACHE_ON_STARTUP=false',
+                '-e', 'AP_SANDBOX_PROPAGATED_ENV_VARS=NODE_OPTIONS,FE_QUALIFICATION_DIR',
+                '-e', 'NODE_OPTIONS=--require=' + PROBE_MOUNT + '/preload.cjs',
+                '-e', 'FE_QUALIFICATION_DIR=' + PROBE_MOUNT,
+                '--mount', f'type=bind,src={probe},dst={PROBE_MOUNT},readonly',
+                '--mount', f'type=bind,src={events},dst={EVENTS_MOUNT}',
                 '-e', 'AP_LOG_LEVEL=warn', '-e', 'AP_JWT_SECRET', '-e', 'AP_ENCRYPTION_KEY',
                 IMAGE, env={**os.environ, **host_secrets})
         started = True
@@ -262,6 +488,9 @@ def main():
                                         'actionName': action_name, 'input': inputs, 'propertySettings': {},
                                         'errorHandlingOptions': {}}},
             }})
+            phase = {'action': action_name, 'nonce': secrets.token_hex(16)}
+            (probe / 'phase.new').write_text(json.dumps(phase))
+            (probe / 'phase.new').replace(probe / 'phase.json')
             run = api('POST', 'sample-data/test-step', {
                 'projectId': project, 'flowVersionId': flow['version']['id'], 'stepName': 'step_1',
             })
@@ -284,7 +513,12 @@ def main():
                           'observations': [{k: r.get(k) for k in ('as_of', 'unit', 'availability', 'source_status', 'rights_status')} for r in output['results']],
                           'diagnostics_preserved': True}
             receipt['runs'].append({'action': action_name, 'status': run['status'],
+                                    'worker_attestation': verify_worker_phase(read_attestations(events), phase, files, package),
                                     'output_sha256': hashlib.sha256(json.dumps(output, sort_keys=True).encode()).hexdigest(), **detail})
+            (probe / 'phase.json').unlink()
+        receipt['worker_artifact_bytes_verified'] = True
+        if args.installation == 'registry':
+            receipt['registry_verification']['worker_artifact_bytes_verified'] = True
         receipt['status'] = 'passed'
     except Exception as error:
         receipt['status'] = 'failed'
@@ -295,6 +529,28 @@ def main():
             (evidence / 'runtime-diagnostic.txt').write_text(redact(logs.stdout + logs.stderr))
         raise
     finally:
+        if events is not None:
+            try:
+                attestation = {
+                    'schema': 'financial-evidence.activepieces-worker-attestation.v1',
+                    'verified': receipt['worker_artifact_bytes_verified'],
+                    'scope': 'reviewed_package_files_and_commonjs_sources_compiled_by_native_engine',
+                    'external_dependencies_attested': False,
+                    'loader_reference': LOADER_REFERENCE,
+                    'preload_sha256': hashlib.sha256(WORKER_PRELOAD.encode()).hexdigest(),
+                    'archive_sha256': receipt['sha256'], 'reviewed_files': files,
+                    'observations': read_attestations(events),
+                }
+                retained = json.dumps(attestation, indent=2).encode() + b'\n'
+                (evidence / 'worker-attestation.json').write_bytes(retained)
+                receipt['worker_attestation'] = {'filename': 'worker-attestation.json',
+                                               'sha256': hashlib.sha256(retained).hexdigest()}
+            except Exception as error:
+                receipt['attestation_error'] = redact(str(error))
+                receipt['worker_artifact_bytes_verified'] = False
+                if 'registry_verification' in receipt:
+                    receipt['registry_verification']['worker_artifact_bytes_verified'] = False
+                receipt['status'] = 'failed'
         if started:
             try:
                 command('docker', 'rm', '-f', container)
@@ -309,6 +565,8 @@ def main():
         (evidence / 'receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')
     if receipt.get('cleanup_error'):
         raise RuntimeError('Isolated host cleanup failed; see retained receipt')
+    if receipt.get('attestation_error'):
+        raise RuntimeError('Worker attestation retention failed; see retained receipt')
     print(json.dumps(receipt, indent=2))
 
 

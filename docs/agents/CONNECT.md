@@ -12,6 +12,9 @@ or a funding-and-exit review for traders and researchers. The
 [workflow catalog](workflows.json) gives exact initial calls and repeat-use
 criteria. Interface checks are dated 9 October 2026; source clocks remain separate.
 
+The [low-latency delivery guide](low-latency.md) provides persistent sessions,
+compact source-status streams, diagnostics, and the source-permission pilot.
+
 The [trading-agent readiness guide](readiness.md) includes a bounded anonymous
 connection diagnostic, tested framework versions and the private paper-outcome
 sharing path.

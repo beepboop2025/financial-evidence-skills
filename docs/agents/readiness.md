@@ -7,6 +7,9 @@ host can retain exact assessments and consented broker-outcome records.
 
 ## Get the first result
 
+For persistent connections, source-status streaming and repeatable latency
+measurements, use the [agent infrastructure source release](low-latency.md).
+
 Add this Streamable HTTP URL to your agent's MCP configuration:
 
 ```text

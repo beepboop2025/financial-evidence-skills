@@ -1,0 +1,286 @@
+{
+  "schema": "financial-evidence.source-access.v1",
+  "reviewed_at": "2026-10-15T13:39:39.704935Z",
+  "review_expiry_policy": "30-day internal review deadline, not a statement of provider license duration",
+  "purpose": "New low-latency feed pilot qualification only; does not alter existing product source policies",
+  "sources": [
+    {
+      "source_id": "coinbase-exchange",
+      "authority": "Coinbase Exchange market-data publisher",
+      "scope": "production",
+      "reviewed_at": "2026-10-15T13:39:39.704935Z",
+      "review_expires_at": "2026-11-14T13:39:39.704935Z",
+      "revoked": false,
+      "permissions": {
+        "connect": {
+          "status": "unknown",
+          "reason": "Prior written consent for this AI use is not recorded."
+        },
+        "internal_research": {
+          "status": "denied",
+          "reason": "Prior written consent for this AI use is not recorded."
+        },
+        "ai_inference": {
+          "status": "denied",
+          "reason": "Prior written consent for this AI use is not recorded."
+        },
+        "redistribution": {
+          "status": "denied",
+          "reason": "Prior written consent for this AI use is not recorded."
+        },
+        "trading": {
+          "status": "denied",
+          "reason": "Prior written consent for this AI use is not recorded."
+        },
+        "training": {
+          "status": "denied",
+          "reason": "Prior written consent for this AI use is not recorded."
+        }
+      },
+      "evidence": [
+        {
+          "id": "coinbase_terms",
+          "url": "https://www.coinbase.com/legal/market_data",
+          "sha256": "c09f62fea949901fa75e7f96cfc1c2a27bdc25d6fff963dbbcdb2025e695aebe",
+          "retrieved_at": "2026-10-15T13:39:38.008069Z",
+          "hash_scope": "http_response_body",
+          "bytes": 307044
+        },
+        {
+          "id": "coinbase_feed",
+          "url": "https://docs.cdp.coinbase.com/exchange/websocket-feed/overview",
+          "sha256": "e788c0fbef489463fed84d913a0097db11a2fc3761c1b82d5c7cded32f53c5fb",
+          "retrieved_at": "2026-10-15T13:39:37.683128Z",
+          "hash_scope": "http_response_body",
+          "bytes": 933851
+        }
+      ],
+      "technical_access": "Public and authenticated direct WebSocket endpoints documented; no feed connection attempted.",
+      "next_action": "Obtain written authorization covering AI development/operation and external derived outputs before any AI pilot."
+    },
+    {
+      "source_id": "databento-licensed",
+      "authority": "Databento licensed publisher; underlying venue entitlement required",
+      "scope": "production",
+      "reviewed_at": "2026-10-15T13:39:39.704935Z",
+      "review_expires_at": "2026-11-14T13:39:39.704935Z",
+      "revoked": false,
+      "permissions": {
+        "connect": {
+          "status": "unknown",
+          "reason": "No executed dataset-specific license, account entitlement, deployment region, or allowed-use evidence recorded."
+        },
+        "internal_research": {
+          "status": "unknown",
+          "reason": "No executed dataset-specific license, account entitlement, deployment region, or allowed-use evidence recorded."
+        },
+        "ai_inference": {
+          "status": "unknown",
+          "reason": "No executed dataset-specific license, account entitlement, deployment region, or allowed-use evidence recorded."
+        },
+        "redistribution": {
+          "status": "unknown",
+          "reason": "No executed dataset-specific license, account entitlement, deployment region, or allowed-use evidence recorded."
+        },
+        "trading": {
+          "status": "unknown",
+          "reason": "No executed dataset-specific license, account entitlement, deployment region, or allowed-use evidence recorded."
+        },
+        "training": {
+          "status": "unknown",
+          "reason": "No executed dataset-specific license, account entitlement, deployment region, or allowed-use evidence recorded."
+        }
+      },
+      "evidence": [
+        {
+          "id": "databento_live",
+          "url": "https://databento.com/docs/api-reference-live",
+          "sha256": "ea3c0d4de144020a714ce7e12f554c96111a6ba692d6c7aff795a0844847a5e5",
+          "retrieved_at": "2026-10-15T13:39:37.253996Z",
+          "hash_scope": "http_response_body",
+          "bytes": 15008
+        },
+        {
+          "id": "databento_license",
+          "url": "https://databento.com/blog/subscriber-status",
+          "sha256": "b8e887a419d60bc4c7f23949ab2ccdf60a26c66a12222afed685254dd8d5f1d9",
+          "retrieved_at": "2026-10-15T13:39:38.951528Z",
+          "hash_scope": "http_response_body",
+          "bytes": 138299
+        }
+      ],
+      "technical_access": "Authenticated TCP live sessions and intraday replay documented; account entitlement not checked.",
+      "next_action": "Select venue/dataset/schema and obtain a quote plus non-display, redistribution and AI-use terms."
+    },
+    {
+      "source_id": "nse-commercial",
+      "authority": "NSE Data & Analytics; exchange-specific commercial agreements",
+      "scope": "production",
+      "reviewed_at": "2026-10-15T13:39:39.704935Z",
+      "review_expires_at": "2026-11-14T13:39:39.704935Z",
+      "revoked": false,
+      "permissions": {
+        "connect": {
+          "status": "unknown",
+          "reason": "A relevant agreement is required; public website access is not commercial redistribution permission."
+        },
+        "internal_research": {
+          "status": "unknown",
+          "reason": "A relevant agreement is required; public website access is not commercial redistribution permission."
+        },
+        "ai_inference": {
+          "status": "unknown",
+          "reason": "A relevant agreement is required; public website access is not commercial redistribution permission."
+        },
+        "redistribution": {
+          "status": "unknown",
+          "reason": "A relevant agreement is required; public website access is not commercial redistribution permission."
+        },
+        "trading": {
+          "status": "unknown",
+          "reason": "A relevant agreement is required; public website access is not commercial redistribution permission."
+        },
+        "training": {
+          "status": "unknown",
+          "reason": "A relevant agreement is required; public website access is not commercial redistribution permission."
+        }
+      },
+      "evidence": [
+        {
+          "id": "nse_policy",
+          "url": "https://www.nseindia.com/static/market-data/nse-data-policy",
+          "sha256": "095f16b0ed0433c96d7f2a5e23e97c64ed94e81eccd6d45837367ba599fbdc02",
+          "retrieved_at": "2026-10-15T13:39:37.559697Z",
+          "hash_scope": "http_response_body",
+          "bytes": 326051
+        },
+        {
+          "id": "nse_feed",
+          "url": "https://www.nseindia.com/static/market-data/real-time-data-subscription",
+          "sha256": "9529b4e5ca53638a768ed6b8b0b9f6f6b89cf51da62fec7d2ccaad8b42498401",
+          "retrieved_at": "2026-10-15T13:39:37.881163Z",
+          "hash_scope": "http_response_body",
+          "bytes": 317481
+        }
+      ],
+      "technical_access": "Commercial real-time feed options documented; subscription and connectivity not established.",
+      "next_action": "Request segment/depth/connectivity quote and explicit non-display, AI and redistribution permissions."
+    },
+    {
+      "source_id": "nyfed-reference-rates",
+      "authority": "Federal Reserve Bank of New York official SOFR and EFFR publications",
+      "scope": "production",
+      "reviewed_at": "2026-10-15T13:39:39.704935Z",
+      "review_expires_at": "2026-11-14T13:39:39.704935Z",
+      "revoked": false,
+      "permissions": {
+        "connect": {
+          "status": "unknown",
+          "reason": "Terms describe permitted use with attribution and reference-rate notices; this new pilot has not verified its fulfillment of those conditions."
+        },
+        "internal_research": {
+          "status": "unknown",
+          "reason": "Terms describe permitted use with attribution and reference-rate notices; this new pilot has not verified its fulfillment of those conditions."
+        },
+        "ai_inference": {
+          "status": "unknown",
+          "reason": "Terms describe permitted use with attribution and reference-rate notices; this new pilot has not verified its fulfillment of those conditions."
+        },
+        "redistribution": {
+          "status": "unknown",
+          "reason": "Terms describe permitted use with attribution and reference-rate notices; this new pilot has not verified its fulfillment of those conditions."
+        },
+        "trading": {
+          "status": "unknown",
+          "reason": "Terms describe permitted use with attribution and reference-rate notices; this new pilot has not verified its fulfillment of those conditions."
+        },
+        "training": {
+          "status": "unknown",
+          "reason": "Terms describe permitted use with attribution and reference-rate notices; this new pilot has not verified its fulfillment of those conditions."
+        }
+      },
+      "evidence": [
+        {
+          "id": "nyfed_terms",
+          "url": "https://www.newyorkfed.org/privacy/termsofuse",
+          "sha256": "18439c98cca0b7c362c0e040b55cc8460683cf1df285ce0ee4ab5544d2315545",
+          "retrieved_at": "2026-10-15T13:39:39.476022Z",
+          "hash_scope": "http_response_body",
+          "bytes": 143929
+        },
+        {
+          "id": "nyfed_sofr",
+          "url": "https://www.newyorkfed.org/markets/reference-rates/sofr",
+          "sha256": "588542ffa69660b0dc4193a3ea777c28905396c714b6fef9497f29d1bafbc222",
+          "retrieved_at": "2026-10-15T13:39:38.397796Z",
+          "hash_scope": "http_response_body",
+          "bytes": 107291
+        },
+        {
+          "id": "nyfed_effr",
+          "url": "https://www.newyorkfed.org/markets/reference-rates/effr",
+          "sha256": "ff5bd8546042a9dc6110ab7c7dacb7dfae17d97aa8c6cd93a89438f8f48a18de",
+          "retrieved_at": "2026-10-15T13:39:39.704429Z",
+          "hash_scope": "http_response_body",
+          "bytes": 106741
+        }
+      ],
+      "technical_access": "Official publications and API links documented; scheduled business-day observations.",
+      "next_action": "Bind exact official series, release calendar, revisions and required notices to the output before approving these new feed contracts."
+    },
+    {
+      "source_id": "federal-reserve-iorb",
+      "authority": "Board of Governors of the Federal Reserve System official IORB publication",
+      "scope": "production",
+      "reviewed_at": "2026-10-15T13:39:39.704935Z",
+      "review_expires_at": "2026-11-14T13:39:39.704935Z",
+      "revoked": false,
+      "permissions": {
+        "connect": {
+          "status": "unknown",
+          "reason": "Board-owned information is generally public domain unless identified otherwise; exact field provenance and source-use conditions remain unqualified in this pilot."
+        },
+        "internal_research": {
+          "status": "unknown",
+          "reason": "Board-owned information is generally public domain unless identified otherwise; exact field provenance and source-use conditions remain unqualified in this pilot."
+        },
+        "ai_inference": {
+          "status": "unknown",
+          "reason": "Board-owned information is generally public domain unless identified otherwise; exact field provenance and source-use conditions remain unqualified in this pilot."
+        },
+        "redistribution": {
+          "status": "unknown",
+          "reason": "Board-owned information is generally public domain unless identified otherwise; exact field provenance and source-use conditions remain unqualified in this pilot."
+        },
+        "trading": {
+          "status": "unknown",
+          "reason": "Board-owned information is generally public domain unless identified otherwise; exact field provenance and source-use conditions remain unqualified in this pilot."
+        },
+        "training": {
+          "status": "unknown",
+          "reason": "Board-owned information is generally public domain unless identified otherwise; exact field provenance and source-use conditions remain unqualified in this pilot."
+        }
+      },
+      "evidence": [
+        {
+          "id": "board_terms",
+          "url": "https://www.federalreserve.gov/disclaimer.htm",
+          "sha256": "44b97636695336e9571db2b1fb48e18ce2a8b1ba6868638019278ea1d7239046",
+          "retrieved_at": "2026-10-15T13:39:38.763541Z",
+          "hash_scope": "http_response_body",
+          "bytes": 85130
+        },
+        {
+          "id": "board_iorb",
+          "url": "https://www.federalreserve.gov/monetarypolicy/reserve-balances.htm",
+          "sha256": "2c8094bb8feba2a684d98d78a4180b9c2a6e7a8762b6594deffb9fa0387af404",
+          "retrieved_at": "2026-10-15T13:39:39.170520Z",
+          "hash_scope": "http_response_body",
+          "bytes": 85025
+        }
+      ],
+      "technical_access": "Official administered-rate publication; changes follow policy effective dates, not a tick feed.",
+      "next_action": "Bind official Board-owned IORB fields, effective dates and attribution before approving this new feed contract."
+    }
+  ]
+}

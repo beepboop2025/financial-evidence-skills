@@ -413,6 +413,11 @@ The code and skill instructions are MIT-licensed.
 
 [Native framework tools and cited quant datasets](https://beepboop2025.github.io/financial-evidence-skills/agents/) connect Seiche, LiquiLens and Undertow. Source-pinned agent release 1.0.0 adds compact queries, a three-product review and repeat-call revisions. Use the [current source guide](https://github.com/beepboop2025/financial-evidence-skills/tree/trading-readiness-v1.0.0/integrations/agents) and [connection readiness check](https://beepboop2025.github.io/financial-evidence-skills/agents/readiness.md). These are integration recipes, not evidence of external adoption.
 
+The [agent infrastructure source release](https://beepboop2025.github.io/financial-evidence-skills/agents/low-latency.md)
+adds persistent sessions, compact source-status streams, client-side expiry
+checks, latency diagnostics and a synthetic feed-recovery pilot. Source
+permissions and private outcome consent remain separate from connection access.
+
 ## AI execution integration
 
 [Try the browser order-lifecycle simulator](https://beepboop2025.github.io/financial-evidence-skills/agents/execution.html) with synthetic prices, timeout recovery, STOP and an exportable journal. It contacts no broker.

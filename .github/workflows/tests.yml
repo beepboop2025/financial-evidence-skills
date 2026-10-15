@@ -229,7 +229,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - run: python3 -m unittest discover -s tests -v
-      - run: node --test tests/*.test.js tests/*.test.cjs tests/test_google_sheets.mjs
+      - run: node --test tests/*.test.js tests/*.test.cjs tests/test_google_sheets.mjs tests/context-client.test.mjs
       - run: node integrations/node-red/build_flow.cjs --check
       - run: node integrations/node-red/test_flow.cjs
       - run: python3 scripts/build_research_kit.py --check

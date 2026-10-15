@@ -57,20 +57,13 @@ def _encode(value):
 
 
 async def mcp_call(url, tool, arguments, timeout, *, traffic_class="unverified", credential=None):
-    from mcp import ClientSession
-    from mcp.client.streamable_http import streamable_http_client
-    import httpx
-    # No redirects: endpoints are owned allowlisted products, never user message URLs.
-    headers = {"X-Financial-Evidence-Traffic-Class": traffic_class}
-    if credential:
-        headers["Authorization"] = "Bearer " + credential
-    async with httpx.AsyncClient(timeout=timeout, follow_redirects=False, headers=headers) as http:
-        async with streamable_http_client(url, http_client=http) as (read, write, _):
-            async with ClientSession(read, write) as session:
-                server = await session.initialize()
-                result = await session.call_tool(tool, arguments)
-                return {"server": server.serverInfo.model_dump(mode="json"),
-                        "result": result.model_dump(mode="json", exclude_none=True)}
+    from .transport import open_session
+    async with open_session(url, timeout, traffic_class=traffic_class, credential=credential) as (session, server, initialization_ms):
+        started = time.monotonic()
+        result = await session.call_tool(tool, arguments)
+        return {"server": server, "result": result.model_dump(mode="json", exclude_none=True),
+                "_transport_timing": {"session_reused": False, "initialization_ms": round(initialization_ms, 3),
+                                      "tool_ms": round((time.monotonic() - started) * 1000, 3), "queue_ms": 0.0}}
 
 
 @dataclass
@@ -87,12 +80,14 @@ class ProductClient:
     Optional events exclude prompts, arguments, results and private reasoning.
     Product requests themselves reach the hosted service, which counts bounded
     product/tool/dataset demand. A failed hosted request never falls back locally
-    or to a native origin.
+    or to a native origin. ``async with ProductClient(...)`` enables bounded
+    session reuse; calls outside a context retain their one-shot behavior.
     """
 
     def __init__(self, *, transport=mcp_call, event_sink=None, measurement=False,
                  mode="unknown", timeout=30, cache_seconds=0, clock=time.time,
-                 platform_url=None, credential=None, measurement_timeout=5):
+                 platform_url=None, credential=None, measurement_timeout=5,
+                 max_sessions=14, max_pending=16):
         if mode not in MODES:
             raise ValueError("invalid usage mode")
         if type(measurement) is not bool:
@@ -103,12 +98,20 @@ class ProductClient:
             raise ValueError("measurement requires an explicitly configured sink")
         if type(measurement_timeout) not in {int, float} or not 0 < measurement_timeout <= 5:
             raise ValueError("measurement timeout must be between zero and five seconds")
+        if type(max_sessions) is not int or not 1 <= max_sessions <= 14:
+            raise ValueError("max_sessions must be between one and fourteen")
+        if type(max_pending) is not int or not 1 <= max_pending <= 128:
+            raise ValueError("max_pending must be between one and 128")
         self.platform_url = platform_base(platform_url)
         self.endpoints = {key: self.platform_url + f"/products/{key}/mcp" for key in PRODUCTS}
         if credential is not None and (not isinstance(credential, str) or not 20 <= len(credential) <= 256
                                        or any(ch.isspace() for ch in credential)):
             raise ValueError("invalid platform credential")
         self.transport = partial(mcp_call, traffic_class="synthetic" if mode == "test" else mode, credential=credential) if transport is mcp_call else transport
+        self._default_transport = transport is mcp_call
+        self._persistent_transport = None
+        self._max_sessions, self._max_pending = max_sessions, max_pending
+        self._entered, self._closed = False, False
         self.event_sink, self.measurement = event_sink, measurement
         self.mode, self.timeout, self.cache_seconds, self.clock = mode, timeout, cache_seconds, clock
         self.cache = {}
@@ -117,6 +120,26 @@ class ProductClient:
         self._measurement_task = None
         self._measurement_thread = None
         self._measurement_lock = asyncio.Lock()
+
+    async def __aenter__(self):
+        if self._closed or self._entered:
+            raise RuntimeError("ProductClient cannot be reopened or entered twice")
+        self._entered = True
+        if self._default_transport:
+            from .transport import PersistentMCPTransport
+            self._persistent_transport = PersistentMCPTransport(
+                **self.transport.keywords, max_sessions=self._max_sessions, max_pending=self._max_pending)
+        return self
+
+    async def __aexit__(self, exc_type, exc, traceback):
+        await self.aclose()
+
+    async def aclose(self):
+        """Close owned persistent sessions. Injected transports remain caller-owned."""
+        self._closed = True
+        self.cache.clear()
+        if self._persistent_transport is not None:
+            await self._persistent_transport.aclose()
 
     async def _deliver_measurement(self, event, deadline):
         # A user-supplied synchronous callback cannot be forcibly stopped. Keep
@@ -188,6 +211,8 @@ class ProductClient:
             self.measurement_failures += 1
 
     async def call(self, product, tool, arguments=None, *, task="other", workflow_id=None):
+        if self._closed:
+            raise RuntimeError("ProductClient is closed")
         if product not in PRODUCTS or not isinstance(tool, str) or not re.fullmatch(r"[a-zA-Z][a-zA-Z0-9_]{0,127}", tool):
             raise ValueError("unknown product or invalid tool")
         if tool not in READ_TOOLS[product]:
@@ -200,6 +225,8 @@ class ProductClient:
         if workflow_id is not None and (not isinstance(workflow_id, str) or not re.fullmatch(r"[A-Za-z0-9_-]{1,96}", workflow_id)):
             raise ValueError("invalid workflow identifier")
         started = self.clock()
+        monotonic_started = time.monotonic()
+        transport_timing = {}
         call_id = uuid.uuid4().hex
         key = hashlib.sha256(_encode([product, tool, arguments])).hexdigest()
         old = self.cache.get(key)
@@ -209,9 +236,13 @@ class ProductClient:
             if cached:
                 receipt = deepcopy(old.receipt)
             else:
-                payload = await asyncio.wait_for(self.transport(self.endpoints[product], tool, deepcopy(arguments), self.timeout), self.timeout)
+                transport = self._persistent_transport or self.transport
+                payload = await asyncio.wait_for(transport(self.endpoints[product], tool, deepcopy(arguments), self.timeout), self.timeout)
                 if not isinstance(payload, dict) or len(_encode(payload)) > 2_097_152:
                     raise ValueError("result exceeds bounded response contract")
+                if self._default_transport:
+                    payload = dict(payload)
+                    transport_timing = payload.pop("_transport_timing", {})
                 receipt = {"schema": "financial-evidence.direct-product.v1", "product": product,
                            "product_name": PRODUCTS[product][0], "endpoint": self.endpoints[product], "tool": tool,
                            "captured_at": datetime.fromtimestamp(self.clock(), timezone.utc).isoformat(),
@@ -225,12 +256,15 @@ class ProductClient:
                     self.cache[key] = _Cached(started + self.cache_seconds, deepcopy(receipt))
             status = "error" if receipt["payload"].get("result", {}).get("isError", False) else "success"
             return {**receipt, "call_id": call_id, "cache_hit": cached, "mode": self.mode,
-                    "workflow_id": workflow_id}
+                    "workflow_id": workflow_id,
+                    "timing": {"duration_ms": round((time.monotonic() - monotonic_started) * 1000, 3),
+                               "clock": "monotonic", "includes_optional_measurement": False,
+                               **transport_timing}}
         finally:
             if self.measurement:
                 event = {"id": call_id, "product": product,
                          "tool": tool, "task": task, "status": status, "cached": cached,
-                         "duration_ms": min(120000, max(0, round((self.clock() - started) * 1000))),
+                         "duration_ms": min(120000, max(0, round((time.monotonic() - monotonic_started) * 1000))),
                          "mode": self.mode, "occurred_at": self.clock()}
                 if workflow_id:
                     event["logical_workflow_id"] = workflow_id

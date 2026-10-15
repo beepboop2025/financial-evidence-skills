@@ -90,7 +90,7 @@ are not an institution's deposit liquidity.
 Open [Seiche](https://seiche.info/) and the
 [Undertow exit desk](https://liquilens-undertow.com/exit/) for a browser review,
 or use the [direct MCP connections](CONNECT.md). Start with Seiche `data_health`
-and Undertow `agent_access_status`, then use the live schemas:
+and Undertow `liquidity_tiers` through the hosted gateway, then use the live schemas:
 
 ```text
 Seiche money_market_context: {"section":"summary"}

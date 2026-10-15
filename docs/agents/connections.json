@@ -109,7 +109,7 @@
       "advertised_tool_count": 16,
       "tools_list_body_sha256": "9b75df5139cbd90bfcdc57fc83780592239a97a89ccdbc2df7b2086a1ec9a49e",
       "start_with": {
-        "name": "agent_access_status",
+        "name": "liquidity_tiers",
         "arguments": {}
       },
       "access": "Public discovery and summaries; full-fidelity and subscriber tools keep their own entitlements. Advertised tool count does not mean every tool is freely callable.",
@@ -133,7 +133,8 @@
         "venue_concentration",
         "venue_price_reconciliation"
       ],
-      "observed_native_mcp_url": "https://api.seiche.info/undertow/mcp"
+      "observed_native_mcp_url": "https://api.seiche.info/undertow/mcp",
+      "access_status_boundary": "agent_access_status stays anonymous and describes native caller allowance, not gateway public-read readiness"
     }
   ],
   "research_api": {
@@ -198,5 +199,7 @@
       "current_hosted_kit_url": "https://beepboop2025.github.io/financial-evidence-skills/api/noisefloor-hosted/"
     }
   ],
-  "workflows_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/workflows.json"
+  "workflows_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/workflows.json",
+  "onboarding_reviewed_on": "2026-10-15",
+  "readiness_guide_url": "https://beepboop2025.github.io/financial-evidence-skills/agents/readiness.md"
 }

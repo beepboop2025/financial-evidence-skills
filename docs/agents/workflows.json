@@ -78,7 +78,7 @@
         },
         {
           "mcp_url": "https://agents.seiche.info/products/undertow/mcp",
-          "name": "agent_access_status",
+          "name": "liquidity_tiers",
           "arguments": {}
         }
       ],
@@ -128,5 +128,6 @@
     "caller_supplied_analysis": "https://beepboop2025.github.io/financial-evidence-skills/agents/CONNECT.md#optional-market-and-headline-analysis",
     "synthetic_paper_rehearsal": "https://beepboop2025.github.io/financial-evidence-skills/agents/execution.html",
     "python_starter": "https://beepboop2025.github.io/financial-evidence-skills/start/AUTOMATE.md"
-  }
+  },
+  "onboarding_reviewed_on": "2026-10-15"
 }

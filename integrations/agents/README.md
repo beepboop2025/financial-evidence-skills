@@ -4,6 +4,10 @@ Use Seiche funding benchmarks, LiquiLens covered-bank diagnostics and Undertow
 market-liquidity observations from one source-cited interface. No data API key
 is needed. Your model provider may require its own account and key.
 
+For trading research, use the [readiness guide](../../docs/agents/readiness.md)
+to check anonymous MCP sessions, source-monitor clocks and the separate paper
+outcome-sharing path.
+
 ## First result
 
 ```sh
@@ -18,7 +22,7 @@ product-specific tools; this interface adds small tables and repeat-call tokens.
 Install the source-pinned agent release (Python 3.10+):
 
 ```sh
-python3 -m pip install 'financial-evidence @ git+https://github.com/beepboop2025/financial-evidence-skills.git@agent-v1.0.0'
+python3 -m pip install --force-reinstall 'financial-evidence @ git+https://github.com/beepboop2025/financial-evidence-skills.git@trading-readiness-v1.0.0'
 ```
 
 ```python

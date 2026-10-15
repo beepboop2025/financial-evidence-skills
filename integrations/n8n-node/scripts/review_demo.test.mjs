@@ -53,6 +53,10 @@ test('service environment cannot inherit real instance credentials or DB/hooks',
   process.env.NODE_AUTH_TOKEN = 'sentinel-npm-token';
   const env = safeEnvironment('/tmp/disposable-demo');
   assert.ok(!JSON.stringify(env).includes('sentinel'));
+  assert.equal(env.HOME, process.env.HOME, 'Preserve the runner home instead of repurposing HOME');
+  assert.equal(env.N8N_USER_FOLDER, '/tmp/disposable-demo/profile');
+  assert.equal(env.OLLAMA_MODELS, '/tmp/disposable-demo/models');
+  assert.equal(env.npm_config_userconfig, '/tmp/disposable-demo/empty-npmrc');
   assert.equal(env.N8N_LISTEN_ADDRESS, '127.0.0.1');
   assert.notEqual(env.N8N_PORT, env.N8N_RUNNERS_BROKER_PORT);
   assert.equal(env.N8N_RUNNERS_BROKER_LISTEN_ADDRESS, '127.0.0.1');

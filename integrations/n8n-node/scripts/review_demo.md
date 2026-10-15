@@ -6,6 +6,11 @@ as `n8n-nodes-financial-evidence@0.1.0`. A new workflow and node are created in
 the UI, then money markets, bank risk and market liquidity are executed with
 limit 1 and offset 0. The research node requires no API credential.
 
+The existing Creator application is for version 0.1.0, so this demonstration
+keeps that exact archive rather than following npm's latest tag. Selecting the
+installed community package opens its details panel; the recording clicks
+**Add to workflow** and waits for the node parameters before setting Limit.
+
 A prepared AI Agent workflow uses the same installed node as an AI tool and a
 real local Qwen3 1.7B model through Ollama. It must actually invoke the tool;
 an answer that merely mentions the tool cannot pass. The model digest is
@@ -32,7 +37,13 @@ window. These are internal demonstration calls, never customer adoption.
 
 `private/` contains the disposable runtime profile, cookies/database, service
 logs and failed recording and is never uploaded. Services stop on success or
-failure. A failed run uploads only the sanitized stage/error receipt. Review
+failure. The runner's `HOME` remains unchanged. Before starting Ollama, the
+script exclusively creates its `.ollama` directory and refuses any existing
+key or configuration; it removes only that task-created directory after
+stopping the services. Model weights remain under `private/`. Neither the
+runner home nor model state is uploaded.
+
+A failed run uploads only the sanitized stage/error receipt. Review
 the successful original video visually before submitting it to the existing
 Creator Portal application; the workflow does not upload to the portal or
 claim verification approval.

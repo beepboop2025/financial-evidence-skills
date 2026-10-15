@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { createHash, randomBytes } from 'node:crypto';
 import { spawn, execFileSync } from 'node:child_process';
 import { createRequire } from 'node:module';
-import { mkdir, readFile, writeFile, readdir, copyFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, readdir, copyFile, rm } from 'node:fs/promises';
 import { openSync, closeSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -25,9 +25,9 @@ const sleep = ms => new Promise(done => setTimeout(done, ms));
 
 export function safeEnvironment(privateDir) {
   // No inherited credentials, N8N_*, DB_*, hooks, npm auth or model API keys.
-  const env = Object.fromEntries(['PATH', 'LANG', 'LC_ALL', 'LD_LIBRARY_PATH'].filter(k => process.env[k]).map(k => [k, process.env[k]]));
+  const env = Object.fromEntries(['HOME', 'PATH', 'LANG', 'LC_ALL', 'LD_LIBRARY_PATH'].filter(k => process.env[k]).map(k => [k, process.env[k]]));
   return {
-    ...env, HOME: privateDir, TMPDIR: join(privateDir, 'tmp'),
+    ...env, TMPDIR: join(privateDir, 'tmp'),
     N8N_USER_FOLDER: join(privateDir, 'profile'), DB_TYPE: 'sqlite',
     N8N_HOST: '127.0.0.1', N8N_LISTEN_ADDRESS: '127.0.0.1', N8N_PORT: '5687',
     N8N_PROTOCOL: 'http', N8N_EDITOR_BASE_URL: BASE, N8N_SECURE_COOKIE: 'false',
@@ -169,6 +169,7 @@ async function main() {
   assert.equal(require('playwright/package.json').version, PIN.playwright);
   const processes = [], logs = [];
   let browser, context, page, video, recordingStarted;
+  let ownedModelState;
   let stage = 'preflight';
   const secrets = [];
   const receipt = { schema: 'financial-evidence.n8n-review-demo.v1', status: 'failed',
@@ -191,6 +192,13 @@ async function main() {
     throw new Error('Local service readiness deadline exceeded');
   };
   try {
+    mark('isolate fresh runner model state');
+    assert.ok(env.HOME && env.HOME === resolve(env.HOME), 'Runner HOME must be an absolute path');
+    // Preserve HOME. Ollama 0.40.2 keeps its key here even with OLLAMA_MODELS set.
+    // Exclusive creation refuses any existing key/config; failed mkdir grants no cleanup ownership.
+    const modelState = join(env.HOME, '.ollama');
+    await mkdir(modelState, { mode: 0o700 });
+    ownedModelState = modelState;
     mark('verify anonymous npm bytes');
     const metadata = await (await fetch(`https://registry.npmjs.org/${PIN.package}/${PIN.version}`)).json();
     assert.equal(metadata.name, PIN.package); assert.equal(metadata.version, PIN.version);
@@ -278,6 +286,9 @@ async function main() {
     await page.locator('[data-test-id="canvas-node-output-handle"] [data-test-id="canvas-handle-plus"]').first().click();
     await page.getByTestId('node-creator-search-bar').fill('Financial Evidence');
     await page.getByTestId('node-creator-item-name').getByText('Financial Evidence', { exact: true }).click();
+    // n8n 2.42.6 opens community-package details before it creates the node.
+    await page.getByText('Add to workflow', { exact: true }).click();
+    await page.getByTestId('node-parameters').waitFor({ state: 'visible' });
     await page.getByTestId('parameter-input-limit').locator('input').fill('1');
     await page.getByTestId('parameter-input-limit').locator('input').press('Tab');
     assert.equal(await page.getByTestId('node-credentials-select').count(), 0, 'Research node requires no credential');
@@ -307,7 +318,7 @@ async function main() {
       mark(`UI action ${dataset}`);
       if (dataset !== 'money_markets') {
         await page.getByTestId('parameter-input-dataset').click();
-        await page.locator('.el-select-dropdown:visible').getByText(label, { exact: true }).click();
+        await page.getByRole('option', { name: label, exact: true }).filter({ visible: true }).click();
       }
       await sleep(1200);
       receipt.actions[dataset] = await executeUI(dataset);
@@ -379,6 +390,7 @@ async function main() {
       try { await fetch(url, { signal: AbortSignal.timeout(1000) }); return false; } catch { return true; }
     }));
     receipt.services_stopped = processes.every(child => child.exitCode !== null || child.signalCode !== null) && stoppedEndpoints.every(Boolean);
+    if (ownedModelState) await rm(ownedModelState, { recursive: true, force: true });
     for (const fd of logs) closeSync(fd);
     await mkdir(output, { mode: 0o700 });
     if (receipt.status === 'passed') {

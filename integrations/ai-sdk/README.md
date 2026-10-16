@@ -5,7 +5,7 @@ metadata from `https://agents.seiche.info`. Source dates, nulls, units, rights
 and diagnostics remain attached to each result. The adapter has no trading
 or execution authority and does not provide a quote feed.
 
-Package: `@moomoo202020/financial-evidence-ai-sdk@0.1.0`.
+Package: `@moomoo202020/financial-evidence-ai-sdk@0.1.1`.
 AI SDK Tools Registry acceptance is a separate step from package distribution;
 this package does not claim marketplace approval or external adoption.
 
@@ -17,7 +17,7 @@ Node.js 22+ and AI SDK 7 are required. The implementation is tested with
 Install this version:
 
 ```sh
-npm install @moomoo202020/financial-evidence-ai-sdk@0.1.0 ai@^7.0.141
+npm install @moomoo202020/financial-evidence-ai-sdk@0.1.1 ai@^7.0.141
 ```
 
 TypeScript applications that check dependency declarations also need the AI
@@ -114,6 +114,12 @@ remain available through the [canonical context client](https://beepboop2025.git
 The vendored context module is an exact copy of `docs/agents/context-client.mjs`
 in the repository. `npm run check:vendor` verifies byte equality; the adapter
 imports only its validator and does not implement another SSE protocol.
+
+## Patch release 0.1.1
+
+The vendored context client now rejects a keepalive before an initial reset,
+matching the canonical source-status protocol. The three model-facing tools
+and their read-only authority are unchanged.
 
 ## Development and verification
 

@@ -363,6 +363,21 @@ class DistributionGapTests(unittest.TestCase):
             if row["status"] == "invalid_configuration":
                 with self.subTest(channel=row["id"]):
                     source = configured[row["id"]]["expected"]
+                    if source["kind"] == "candidate_package":
+                        # A newer candidate does not invalidate the retained
+                        # publication evidence for the previous package version.
+                        # The monitor must still reject that receipt for this candidate.
+                        candidate = json.loads((ROOT / source["path"]).read_text())
+                        receipt = json.loads((ROOT / source["receipt"]).read_text())
+                        self.assertEqual(candidate["name"], receipt["package"])
+                        self.assertNotEqual(candidate["version"], receipt["version"])
+                        with self.assertRaisesRegex(ValueError, "candidate_publication_receipt_identity_mismatch"):
+                            expected(configured[row["id"]], {}, {}, ROOT)
+                        self.assertEqual(row["reason"], "expected_identity_unavailable_or_invalid")
+                        self.assertIn({"channel": row["id"], "severity": "error",
+                                       "reason": "expected_identity_unavailable_or_invalid"},
+                                      report["findings"])
+                        continue
                     self.assertEqual(source["kind"], "ledger")
                     self.assertNotIn(source["id"], ledger_ids)
                     self.assertIn({"channel": row["id"], "severity": "error", "reason": "channel_missing_from_ledger"},

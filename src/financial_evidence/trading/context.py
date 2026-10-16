@@ -127,7 +127,19 @@ class ContextClient:
                 raise ValueError("expected event stream")
             pending, frame = bytearray(), []
             frame_bytes, previous, initialized = 0, None, False
-            async for chunk in response.aiter_bytes():
+            chunks = response.aiter_bytes().__aiter__()
+            loop = asyncio.get_running_loop()
+            deadline = loop.time() + self.timeout
+            while True:
+                # A peer can avoid an HTTP idle timeout by dripping bytes.
+                # Require a complete event within the same monotonic budget.
+                remaining = deadline - loop.time()
+                if remaining <= 0:
+                    raise asyncio.TimeoutError("source-status event deadline exceeded")
+                try:
+                    chunk = await asyncio.wait_for(chunks.__anext__(), remaining)
+                except StopAsyncIteration:
+                    break
                 pending.extend(chunk)
                 while b"\n" in pending:
                     raw, _, tail = pending.partition(b"\n")
@@ -143,9 +155,12 @@ class ContextClient:
                     if event is None:
                         continue
                     if event["event"] == "keepalive":
+                        if not initialized:
+                            raise ValueError("stream must begin with latest-state reset")
                         if event["data"] != {"transport_only": True, "source_freshness_proof": False}:
                             raise ValueError("invalid keepalive")
                         yield event
+                        deadline = loop.time() + self.timeout
                         continue
                     snapshot = validate_snapshot(event["data"])
                     cursor = (snapshot["stream_id"], snapshot["sequence"])
@@ -160,6 +175,9 @@ class ContextClient:
                         raise ValueError("stream must disclose incomplete replay")
                     previous, initialized = cursor, True
                     yield {**event, "data": snapshot}
+                    # Consumer processing time does not consume the next read's
+                    # budget. Comments and partial frames never renew it.
+                    deadline = loop.time() + self.timeout
                 if len(pending) + frame_bytes > MAX_FRAME:
                     raise ValueError("event exceeds bounded contract")
             if pending or frame:

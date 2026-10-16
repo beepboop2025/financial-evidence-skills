@@ -60,8 +60,19 @@ test('wrong content type and HTTP failure cancel response bodies', async t => {
 });
 
 test('unknown event, missing reset, oversized or truncated stream rejected', async t => {
-  for (const body of [frame('snapshot'), frame('bad'), frame().slice(0,-1), 'data:' + 'x'.repeat(18000)]) {
+  const heartbeat = 'event: keepalive\ndata: {"transport_only":true,"source_freshness_proof":false}\n\n';
+  for (const body of [frame('snapshot'), frame('bad'), frame().slice(0,-1), 'data:' + 'x'.repeat(18000), heartbeat]) {
     t.mock.method(globalThis, 'fetch', async () => new Response(body, {headers:{'Content-Type':'text/event-stream'}}));
     await assert.rejects(async () => { for await (const event of contextEvents()) void event; });
   }
+});
+
+test('keepalive after reset remains transport-only', async t => {
+  const heartbeat = 'event: keepalive\ndata: {"transport_only":true,"source_freshness_proof":false}\n\n';
+  t.mock.method(globalThis, 'fetch', async () => new Response(frame() + heartbeat,
+    {headers:{'Content-Type':'text/event-stream'}}));
+  const events = [];
+  for await (const event of contextEvents()) events.push(event);
+  assert.equal(events.length, 2);
+  assert.equal(events[1].data.source_freshness_proof, false);
 });

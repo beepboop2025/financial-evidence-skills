@@ -132,6 +132,62 @@ class ContextTests(unittest.IsolatedAsyncioTestCase):
                 await reader.snapshot()
         self.assertTrue(closed.is_set())
 
+    async def test_event_deadline_bounds_incomplete_frames_and_closes_transport(self):
+        import httpx
+        for prefix, fragment in ((b"", b":"), (frame(), b":"), (frame(), b": ping\n\n")):
+            with self.subTest(after_reset=bool(prefix), fragment=fragment):
+                closed = asyncio.Event()
+                class Bytes(httpx.AsyncByteStream):
+                    async def __aiter__(self):
+                        if prefix:
+                            yield prefix
+                        # Bytes arrive often enough to avoid an idle timeout,
+                        # but they never complete a usable event.
+                        while True:
+                            await asyncio.sleep(.005)
+                            yield fragment
+                    async def aclose(self):
+                        closed.set()
+                async with ContextClient(timeout=.04, transport=httpx.MockTransport(
+                        lambda _: httpx.Response(200, headers={"content-type": "text/event-stream"},
+                                                stream=Bytes()))) as reader:
+                    events = reader.events()
+                    if prefix:
+                        self.assertEqual((await events.__anext__())["event"], "reset")
+                    # The outer deadline is a test watchdog, not client protection.
+                    task = asyncio.create_task(events.__anext__())
+                    done, _ = await asyncio.wait({task}, timeout=.25)
+                    if not done:
+                        task.cancel()
+                        await asyncio.gather(task, return_exceptions=True)
+                        self.fail("client did not enforce its complete-event deadline")
+                    with self.assertRaises(asyncio.TimeoutError):
+                        task.result()
+                self.assertTrue(closed.is_set())
+
+    async def test_complete_events_renew_deadline_and_consumer_time_is_excluded(self):
+        import httpx
+        closed = asyncio.Event()
+        class Bytes(httpx.AsyncByteStream):
+            async def __aiter__(self):
+                yield frame()
+                for sequence in (2, 3, 4):
+                    await asyncio.sleep(.02)
+                    yield frame("snapshot", snapshot(sequence))
+            async def aclose(self):
+                closed.set()
+        async with ContextClient(timeout=.05, transport=httpx.MockTransport(lambda _: httpx.Response(
+                200, headers={"content-type": "text/event-stream"}, stream=Bytes()))) as reader:
+            events = reader.events()
+            self.assertEqual((await events.__anext__())["data"]["sequence"], 1)
+            await asyncio.sleep(.06)
+            self.assertEqual([event["data"]["sequence"] async for event in events], [2, 3, 4])
+        self.assertTrue(closed.is_set())
+
+    async def test_keepalive_cannot_substitute_for_initial_reset(self):
+        with self.assertRaisesRegex(ValueError, "latest-state reset"):
+            await self.collect(b'event: keepalive\ndata: {"transport_only":true,"source_freshness_proof":false}\n\n')
+
     async def test_compressed_responses_are_rejected_before_reading_body(self):
         import httpx
         class Unread(httpx.AsyncByteStream):

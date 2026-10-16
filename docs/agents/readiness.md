@@ -50,14 +50,20 @@ for the client-side connection and permission model.
 Install the PyPI release in a dedicated Python 3.10+ environment:
 
 ```sh
-python3 -m pip install 'financial-evidence[workspace]==0.1.9'
+python3 -m pip install 'financial-evidence[workspace]==0.1.10'
 financial-evidence-trading doctor
 ```
 
-The 0.1.9 package includes `doctor`, persistent MCP sessions and the
+The 0.1.10 package includes `doctor`, persistent MCP sessions and the
 [source-status clients](low-latency.md). The
 [platform kit](../platforms/finance-platform-kit.zip) also contains the current
 package source. Save the installed version and source revision with your result.
+
+Python 0.1.10 bounds complete-event waits even if partial bytes or comments arrive.
+Python and JavaScript streams require an initial reset before a keepalive. For
+JavaScript AI SDK tools, use `@moomoo202020/financial-evidence-ai-sdk@0.1.1` from
+the [verified npm setup](../platforms/ai-sdk.md). These research tools retain no
+trade-execution authority.
 
 The diagnostic initializes four public MCP sessions, discovers their tools and
 makes one reviewed read call to each: Seiche, LiquiLens, Undertow and Financial

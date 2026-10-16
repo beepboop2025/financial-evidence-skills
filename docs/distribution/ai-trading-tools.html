@@ -74,13 +74,14 @@
     <section class="section muted" aria-labelledby="quickstart">
       <p class="eyebrow">Python 3.10+ · Dedicated environment recommended</p>
       <h2 id="quickstart">Install from PyPI, then run the doctor.</h2>
-      <pre><code>python3 -m pip install 'financial-evidence[workspace]==0.1.9'
+      <pre><code>python3 -m pip install 'financial-evidence[workspace]==0.1.10'
 financial-evidence-trading doctor
 financial-evidence-trading context
 financial-evidence-trading context --events --limit 1</code></pre>
-      <p>The <a href="https://pypi.org/project/financial-evidence/0.1.9/">published 0.1.9 package</a> includes persistent MCP sessions and the source-status clients. The hosted services have separate release identities.</p>
+      <p>The <a href="https://pypi.org/project/financial-evidence/0.1.10/">published 0.1.10 package</a> includes persistent MCP sessions and the source-status clients. The hosted services have separate release identities.</p>
+      <p>Python 0.1.10 bounds the wait for a complete source-status event even when partial bytes or comments arrive. Python and JavaScript require an initial reset before a keepalive; npm AI SDK 0.1.1 includes the synchronized client. These tools retain no trade-execution authority.</p>
       <p>The doctor makes bounded anonymous checks of four public research connections and the source monitor. It labels its requests synthetic. Its result separates connection success from freshness, restrictions and unknown coverage; a passing connection check does not qualify an input for trading.</p>
-      <p><a href="../agents/readiness.md">Connection diagnostic guide</a> · <a href="../agents/low-latency.md">Full release and client guide</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.9">Pinned release source</a></p>
+      <p><a href="../agents/readiness.md">Connection diagnostic guide</a> · <a href="../agents/low-latency.md">Full release and client guide</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.10">Pinned release source</a></p>
     </section>
 
     <section class="section" aria-labelledby="clients">
@@ -122,7 +123,7 @@ for await (const event of contextEvents({timeoutMs: 30000})) {
         </div>
       </div>
       <h3>Already have an MCP client?</h3>
-      <p>Building with the Vercel AI SDK? Install <code>@moomoo202020/financial-evidence-ai-sdk@0.1.0</code> from npm for typed research and source-status tools. <a href="../platforms/ai-sdk.md">Copy the AI SDK setup</a>.</p>
+      <p>Building with the Vercel AI SDK? Install <code>@moomoo202020/financial-evidence-ai-sdk@0.1.1</code> from npm for typed research and source-status tools. <a href="../platforms/ai-sdk.md">Copy the AI SDK setup</a>.</p>
       <p>Add this Streamable HTTP endpoint, discover its live tool schemas and begin with a read-only research task:</p>
       <pre><code>https://agents.seiche.info/products/financial-evidence/mcp</code></pre>
       <p><a href="../connect/">Client setup and downloadable configurations</a> · <a href="../agents/readiness.md">LangGraph, CrewAI, OpenAI Agents and Pydantic AI recipes</a></p>

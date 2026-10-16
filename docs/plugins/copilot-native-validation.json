@@ -1,0 +1,217 @@
+{
+  "schema": "liquilens.copilot-native-validation.v1",
+  "observed_at": "2026-10-16T17:15:20.402147+00:00",
+  "client_version": "1.0.68",
+  "configuration": "isolated_ssd",
+  "marketplace": {
+    "repository": "beepboop2025/financial-evidence-skills",
+    "name": "liquidity-lab",
+    "verified_ref": "docs/copilot-plugin-validation-20261016",
+    "source_commit": "cd5daac999b9d51c8f2c18bc4f403d0a4255aadf",
+    "manifest_sha256": "a30a20d124de4b29c892774176e17c13d0f6688b785a608e994a0450d15d9a51",
+    "native_registration": "passed",
+    "native_browse": "passed"
+  },
+  "installed_plugins": [
+    {
+      "name": "financial-evidence",
+      "version": "0.1.10",
+      "native_installation": "passed",
+      "installed_files_match_source": true
+    },
+    {
+      "name": "market-brief",
+      "version": "0.1.1",
+      "native_installation": "passed",
+      "installed_files_match_source": true
+    },
+    {
+      "name": "seiche",
+      "version": "1.0.0",
+      "native_installation": "passed",
+      "installed_files_match_source": true
+    },
+    {
+      "name": "liquilens",
+      "version": "1.0.0",
+      "native_installation": "passed",
+      "installed_files_match_source": true
+    },
+    {
+      "name": "undertow",
+      "version": "1.0.0",
+      "native_installation": "passed",
+      "installed_files_match_source": true
+    },
+    {
+      "name": "palimpsest",
+      "version": "1.0.0",
+      "native_installation": "passed",
+      "installed_files_match_source": true
+    },
+    {
+      "name": "noisefloor",
+      "version": "1.0.0",
+      "native_installation": "passed",
+      "installed_files_match_source": true
+    },
+    {
+      "name": "narcoscope",
+      "version": "1.0.0",
+      "native_installation": "passed",
+      "installed_files_match_source": true
+    },
+    {
+      "name": "wake",
+      "version": "1.0.0",
+      "native_installation": "passed",
+      "installed_files_match_source": true
+    },
+    {
+      "name": "riptide",
+      "version": "1.0.0",
+      "native_installation": "passed",
+      "installed_files_match_source": true
+    },
+    {
+      "name": "myquant-editorial",
+      "version": "1.0.0",
+      "native_installation": "passed",
+      "installed_files_match_source": true
+    },
+    {
+      "name": "myquant-app",
+      "version": "1.0.0",
+      "native_installation": "passed",
+      "installed_files_match_source": true
+    },
+    {
+      "name": "trade-safety",
+      "version": "1.0.0",
+      "native_installation": "passed",
+      "installed_files_match_source": true
+    },
+    {
+      "name": "research-data",
+      "version": "1.0.0",
+      "native_installation": "passed",
+      "installed_files_match_source": true
+    },
+    {
+      "name": "seiche-market-corpus",
+      "version": "1.0.0",
+      "native_installation": "passed",
+      "installed_files_match_source": true
+    }
+  ],
+  "market_brief_source": {
+    "repository": "beepboop2025/market-brief",
+    "ref": "v0.1.1",
+    "source_commit": "0af036324432f9f655bf4eeb83e5886c4f73a03d"
+  },
+  "native_mcp_configuration": [
+    {
+      "name": "financial-evidence",
+      "plugin": "financial-evidence",
+      "url": "https://agents.seiche.info/products/financial-evidence/mcp",
+      "native_configuration": "passed"
+    },
+    {
+      "name": "market-brief-financial-evidence",
+      "plugin": "market-brief",
+      "url": "https://liquilens.in/mcp/financial-evidence",
+      "native_configuration": "passed"
+    },
+    {
+      "name": "market-brief-seiche-research",
+      "plugin": "market-brief",
+      "url": "https://api.seiche.info/mcp",
+      "native_configuration": "passed"
+    },
+    {
+      "name": "seiche",
+      "plugin": "seiche",
+      "url": "https://agents.seiche.info/products/seiche/mcp",
+      "native_configuration": "passed"
+    },
+    {
+      "name": "liquilens",
+      "plugin": "liquilens",
+      "url": "https://agents.seiche.info/products/liquilens/mcp",
+      "native_configuration": "passed"
+    },
+    {
+      "name": "undertow",
+      "plugin": "undertow",
+      "url": "https://agents.seiche.info/products/undertow/mcp",
+      "native_configuration": "passed"
+    },
+    {
+      "name": "palimpsest",
+      "plugin": "palimpsest",
+      "url": "https://agents.seiche.info/products/palimpsest/mcp",
+      "native_configuration": "passed"
+    },
+    {
+      "name": "noisefloor",
+      "plugin": "noisefloor",
+      "url": "https://agents.seiche.info/products/noisefloor/mcp",
+      "native_configuration": "passed"
+    },
+    {
+      "name": "narcoscope",
+      "plugin": "narcoscope",
+      "url": "https://agents.seiche.info/products/narcoscope/mcp",
+      "native_configuration": "passed"
+    },
+    {
+      "name": "wake",
+      "plugin": "wake",
+      "url": "https://agents.seiche.info/products/wake/mcp",
+      "native_configuration": "passed"
+    },
+    {
+      "name": "riptide",
+      "plugin": "riptide",
+      "url": "https://agents.seiche.info/products/riptide/mcp",
+      "native_configuration": "passed"
+    },
+    {
+      "name": "myquant-editorial",
+      "plugin": "myquant-editorial",
+      "url": "https://agents.seiche.info/products/myquant-editorial/mcp",
+      "native_configuration": "passed"
+    },
+    {
+      "name": "myquant-app",
+      "plugin": "myquant-app",
+      "url": "https://agents.seiche.info/products/myquant-app/mcp",
+      "native_configuration": "passed"
+    },
+    {
+      "name": "trade-safety",
+      "plugin": "trade-safety",
+      "url": "https://agents.seiche.info/products/trade-safety/mcp",
+      "native_configuration": "passed"
+    },
+    {
+      "name": "research-data",
+      "plugin": "research-data",
+      "url": "https://agents.seiche.info/products/research-data/mcp",
+      "native_configuration": "passed"
+    },
+    {
+      "name": "seiche-market-corpus",
+      "plugin": "seiche-market-corpus",
+      "url": "https://agents.seiche.info/products/seiche-market-corpus/mcp",
+      "native_configuration": "passed"
+    }
+  ],
+  "installed_plugins_count": 15,
+  "native_mcp_connections_count": 16,
+  "model_calls": 0,
+  "model_mediated_tool_calls": 0,
+  "native_live_mcp_tool_call": "not_performed",
+  "status": "passed",
+  "scope": "Operator installation from public GitHub and native MCP configuration discovery. This does not establish GitHub curated catalog acceptance or independent adoption. Hosted transport qualification is recorded separately in qualification.json."
+}

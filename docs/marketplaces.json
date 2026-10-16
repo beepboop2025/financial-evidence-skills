@@ -276,17 +276,17 @@
       "state": "eligible_automatic",
       "listing_url": "https://geminicli.com/extensions/",
       "cost": "free",
-      "detail": "The repository retains its required topic and root manifest. The full 15,728,180-byte gallery response was fetched on 10 October 2026 and checked for the owner, repository name and tool prefix; no Financial Evidence listing was found.",
+      "detail": "Public repository still has the required gemini-cli-extension topic and root manifest. The complete 15,838,855-byte gallery response on 16 October 2026 contained neither the exact repository nor financial-evidence. Automatic gallery indexing remains unverified; downloadable individual extensions are a separate publisher-maintained channel.",
       "next_action": "Await automatic indexing and verify a future public gallery entry without inventing an acceptance.",
       "latest_surface_check": {
-        "observed_at": "2026-10-10T06:14:40.366534+00:00",
+        "observed_at": "2026-10-16T16:41:02.998286+00:00",
         "url": "https://geminicli.com/extensions/",
         "http_status": 200,
-        "readback": "full_response_checked_listing_not_observed",
-        "response_bytes": 15728180,
-        "exact_repo_present": false
+        "response_bytes": 15838855,
+        "exact_repo_present": false,
+        "readback": "complete_gallery_response_checked_listing_not_observed"
       },
-      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "updated_at": "2026-10-16T16:41:02.998286+00:00",
       "completion_receipt": "distribution/completion-20261010.json"
     },
     {
@@ -296,20 +296,23 @@
       "state": "ready_account_action",
       "submission_url": "https://platform.openai.com/plugins",
       "cost": "free",
-      "detail": "The exact v0.1.7 listing packet and minimal ZIP remain prepared. Verified publisher identity has not been observed, and the owner has explicitly deferred this channel. No ZIP upload, domain challenge, real cross-platform demo or review submission is claimed.",
-      "next_action": "Retain the exact prepared ZIP and submission packet; resume identity verification and the remaining portal steps when the owner lifts the deferral.",
+      "detail": "Preparation resumed for the current product-expansion request. Signed-in portal still requires verified developer identity before any upload. The exact 0.1.10 ZIP is prepared from signed release source fe9eb8c9d23e7fbef2c31016bf9d106b72741428 and now references the nine-tool hosted workspace; the old 0.1.7 three-tool packet is historical. No identity completion, upload, domain verification, demo or review submission is claimed.",
+      "next_action": "Account owner completes publisher identity; then upload the current ZIP, verify the actual agents.seiche.info endpoint domain, record real review demonstrations and submit. Keep approval and public listing separate.",
       "latest_surface_check": {
-        "observed_at": "2026-10-08T11:16:05.165504+00:00",
-        "readback": "no_public_listing_url"
+        "observed_at": "2026-10-16T16:41:02.998286+00:00",
+        "url": "https://platform.openai.com/plugins",
+        "readback": "signed_in_portal_gate_verified",
+        "new_submission_created": false
       },
-      "prepared_archive": "https://beepboop2025.github.io/financial-evidence-skills/distribution/downloads/financial-evidence-openai-plugin-v0.1.7.zip",
-      "archive_sha256": "3fdce4c151874309ffbffcc414fa33415be485415be3cf917079164dbded4ab5",
+      "prepared_archive": "https://beepboop2025.github.io/financial-evidence-skills/distribution/downloads/financial-evidence-openai-plugin-v0.1.10.zip",
+      "archive_sha256": "1dfc2942d10c3b60b551a36634e5affc88b4f9b8485de4753f39c93f26037d77",
       "identity_verification_completed": false,
       "portal_upload_completed": false,
-      "updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "updated_at": "2026-10-16T16:41:02.998286+00:00",
       "completion_receipt": "distribution/completion-20261010.json",
       "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
-      "owner_deferred": true
+      "owner_deferred": false,
+      "publisher_packet": "https://beepboop2025.github.io/financial-evidence-skills/plugins/financial-evidence-publisher-0.1.10.md"
     },
     {
       "id": "claude-plugin-directory",
@@ -318,13 +321,15 @@
       "state": "ready_account_action",
       "submission_url": "https://claude.ai/directory/manage/new",
       "cost": "A paid Claude Pro, Max, Team or Enterprise account is required for directory submission; no plan purchased.",
-      "detail": "Owner-approved publisher sign-in and directory terms are complete. The former Console form now states that submissions have moved to claude.ai. The current directory manager requires a paid Pro, Max, Team or Enterprise account, and no qualifying account or submission receipt was observed. The owner has explicitly deferred this channel. Separately, native Claude Code 2.1.228 installed Financial Evidence 0.1.7 and passed skill/MCP inventory and a no-auth HTTP MCP connection; Cowork and model-mediated tool use remain untested.",
-      "next_action": "Retain the portable submission packet and existing consent approvals; resume publisher work when the owner lifts the deferral. A qualifying paid publisher account remains required.",
+      "detail": "Preparation resumed. The signed-in directory manager explicitly requires a Pro, Max, Team or Enterprise plan; this publisher account does not qualify. No plan purchased and no official submission. Thirteen additional product plugins passed strict Claude validation and native installation with one skill and one MCP connection apiece in an isolated configuration.",
+      "next_action": "Use an existing eligible owner account if available, then submit the current GitHub plugin bundle and retain the receipt. Do not purchase a plan automatically.",
       "latest_surface_check": {
-        "observed_at": "2026-10-08T11:16:05.165507+00:00",
-        "readback": "no_public_listing_url"
+        "observed_at": "2026-10-16T16:41:02.998286+00:00",
+        "url": "https://claude.ai/directory/manage/new",
+        "readback": "signed_in_portal_gate_verified",
+        "new_submission_created": false
       },
-      "updated_at": "2026-10-10T08:53:25.433536+00:00",
+      "updated_at": "2026-10-16T16:41:02.998286+00:00",
       "completion_receipt": "distribution/completion-20261010.json",
       "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
       "sign_in_terms_approved": true,
@@ -362,8 +367,8 @@
       "paid_account_required": true,
       "paid_plan_purchased": false,
       "directory_terms_approved": true,
-      "owner_deferred": true,
-      "publisher_packet": "https://github.com/beepboop2025/financial-evidence-skills/blob/main/CLAUDE_PLUGIN_SUBMISSION.md"
+      "owner_deferred": false,
+      "publisher_packet": "https://beepboop2025.github.io/financial-evidence-skills/plugins/financial-evidence-publisher-0.1.10.md"
     },
     {
       "id": "smithery",
@@ -412,7 +417,12 @@
       },
       "public_listing_verified": false,
       "updated_at": "2026-10-10T06:28:14.840174+00:00",
-      "completion_receipt": "distribution/completion-20261010.json"
+      "completion_receipt": "distribution/completion-20261010.json",
+      "latest_recheck": {
+        "observed_at": "2026-10-16T16:41:02.998286+00:00",
+        "state": "OPEN",
+        "acceptance": false
+      }
     },
     {
       "id": "stackshare",
@@ -3795,7 +3805,12 @@
         "evidence_receipt": "distribution/directory-refresh-20261015.json"
       },
       "updated_at": "2026-10-15T15:56:07.046768+00:00",
-      "submitted_version": "0.1.9"
+      "submitted_version": "0.1.9",
+      "latest_recheck": {
+        "observed_at": "2026-10-16T16:41:02.998286+00:00",
+        "state": "OPEN",
+        "acceptance": false
+      }
     },
     {
       "id": "apidirectory-liquilens",
@@ -4150,7 +4165,12 @@
       "next_action": "Follow the existing registry PR and verify the canonical directory entry after acceptance.",
       "verified_at": "2026-10-15T16:02:27.794644Z",
       "independent_adoption_verified": false,
-      "submitted_source": "35aefdd67682832a08de00b7e5384c8d13068dc5"
+      "submitted_source": "35aefdd67682832a08de00b7e5384c8d13068dc5",
+      "latest_recheck": {
+        "observed_at": "2026-10-16T16:41:02.998286+00:00",
+        "state": "OPEN",
+        "acceptance": false
+      }
     },
     {
       "id": "microsoft-certified-mcp",
@@ -4537,6 +4557,54 @@
       "next_action": "Monitor the product-specific version and hosted contract; registry publication does not establish independent adoption.",
       "evidence_receipt": "distribution/hosted-mcp-registry-20261015.json",
       "independent_adoption_verified": false
+    },
+    {
+      "id": "liquidity-lab-product-plugins",
+      "name": "LiquiLens product plugins — publisher-maintained marketplace",
+      "channel": "agent-plugin-marketplace",
+      "state": "ready_validation",
+      "listing_url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/",
+      "cost": "Free product plugins; client accounts and plans may have separate costs.",
+      "detail": "Thirteen individual product plugins extend the two existing Financial Evidence and Market Brief entries. Claude strict validation and isolated installation passed; Codex native discovery resolves every product entry. The candidate is awaiting merge and public readback. Official vendor directory approval is not claimed.",
+      "next_action": "Merge after required checks, verify the public catalog and ZIP bytes, and retain separate official publisher gates.",
+      "verified_at": "2026-10-16T16:41:02.998286+00:00",
+      "products": [
+        "seiche",
+        "liquilens",
+        "undertow",
+        "palimpsest",
+        "noisefloor",
+        "narcoscope",
+        "wake",
+        "riptide",
+        "myquant-editorial",
+        "myquant-app",
+        "trade-safety",
+        "research-data",
+        "seiche-market-corpus"
+      ]
+    },
+    {
+      "id": "liquidity-lab-product-gemini-downloads",
+      "name": "LiquiLens product Gemini extension downloads",
+      "channel": "agent-extension-download",
+      "state": "ready_validation",
+      "listing_url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/",
+      "cost": "Free downloads; Gemini account and model costs are separate.",
+      "detail": "Thirteen self-contained Gemini extension archives passed the official Gemini CLI 0.56.0 extensions validator. Packages contain fixed public endpoints, explicit tool lists and product-specific skills. Native installation and Google gallery indexing remain unverified; the download publication awaits public readback.",
+      "next_action": "Publish exact archives and verify served hashes; retain the separate native-installation and Google-gallery limits.",
+      "verified_at": "2026-10-16T16:41:02.998286+00:00"
+    },
+    {
+      "id": "liquidity-lab-product-openai-uploads",
+      "name": "Individual LiquiLens product OpenAI upload packages",
+      "channel": "agent-plugin-directory",
+      "state": "ready_account_action",
+      "submission_url": "https://platform.openai.com/plugins",
+      "cost": "No paid placement or plan purchased.",
+      "detail": "Thirteen self-contained product ZIPs are prepared with Codex manifests, a single public MCP endpoint and one research skill per product. These are upload artifacts; verified identity, domain verification, real demos and official review remain pending.",
+      "next_action": "Resume official uploads only after publisher identity is verified; use exact ZIP checksums and actual portal requirements.",
+      "verified_at": "2026-10-16T16:41:02.998286+00:00"
     }
   ],
   "release_verified_at": "2026-10-16T13:08:04.554412+00:00",
@@ -4869,5 +4937,12 @@
     "updated_at": "2026-10-15T14:56:19.950Z",
     "existing_public_metadata_refreshes_verified": 1,
     "existing_repository_syncs_verified": 1
+  },
+  "latest_product_plugins": {
+    "observed_at": "2026-10-16T16:41:02.998286+00:00",
+    "guide": "plugins/",
+    "qualified_connections": 14,
+    "new_product_plugins": 13,
+    "official_directory_acceptance": false
   }
 }

@@ -1,0 +1,20 @@
+{
+  "name": "palimpsest",
+  "version": "1.0.0",
+  "description": "China, regional research and the public record.",
+  "mcpServers": {
+    "palimpsest": {
+      "httpUrl": "https://agents.seiche.info/products/palimpsest/mcp",
+      "timeout": 30000,
+      "includeTools": [
+        "research_catalog",
+        "list_signals",
+        "get_signal",
+        "get_newsroom",
+        "query_economic_observations",
+        "whats_happening",
+        "gfw_reading"
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "myquant-editorial",
+  "version": "1.0.0",
+  "description": "Show one recent published story with its sources, dates and editorial limits.",
+  "author": {
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://agents.seiche.info/connect",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT"
+}

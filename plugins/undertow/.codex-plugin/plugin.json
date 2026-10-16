@@ -1,0 +1,35 @@
+{
+  "name": "undertow",
+  "version": "1.0.0",
+  "description": "Market liquidity and indicative BTC exits.",
+  "author": {
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://liquilens-undertow.com/developers/",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Undertow",
+    "shortDescription": "Source-linked research",
+    "longDescription": "Market liquidity and indicative BTC exits.",
+    "developerName": "LIQUILENS PRIVATE LIMITED",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Research"
+    ],
+    "websiteURL": "https://liquilens-undertow.com/developers/",
+    "privacyPolicyURL": "https://agents.seiche.info/privacy",
+    "termsOfServiceURL": "https://beepboop2025.github.io/financial-evidence-skills/terms/",
+    "supportURL": "https://beepboop2025.github.io/financial-evidence-skills/support/",
+    "composerIcon": "./assets/logo-400.png",
+    "logo": "./assets/logo.svg",
+    "defaultPrompt": [
+      "Discover Undertow's available research and coverage. Retrieve one relevant bounded result, cite its sources and dates, and explain missing or restricted evidence."
+    ],
+    "brandColor": "#0B6E69"
+  }
+}

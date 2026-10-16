@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "seiche-market-corpus": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/seiche-market-corpus/mcp"
+    }
+  }
+}

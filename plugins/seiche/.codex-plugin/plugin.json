@@ -1,0 +1,35 @@
+{
+  "name": "seiche",
+  "version": "1.0.0",
+  "description": "Funding, money markets and source clocks.",
+  "author": {
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://seiche.info/developers.html",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Seiche",
+    "shortDescription": "Source-linked research",
+    "longDescription": "Funding, money markets and source clocks.",
+    "developerName": "LIQUILENS PRIVATE LIMITED",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Research"
+    ],
+    "websiteURL": "https://seiche.info/developers.html",
+    "privacyPolicyURL": "https://agents.seiche.info/privacy",
+    "termsOfServiceURL": "https://beepboop2025.github.io/financial-evidence-skills/terms/",
+    "supportURL": "https://beepboop2025.github.io/financial-evidence-skills/support/",
+    "composerIcon": "./assets/logo-400.png",
+    "logo": "./assets/logo.svg",
+    "defaultPrompt": [
+      "Discover Seiche's available research and coverage. Retrieve one relevant bounded result, cite its sources and dates, and explain missing or restricted evidence."
+    ],
+    "brandColor": "#0B6E69"
+  }
+}

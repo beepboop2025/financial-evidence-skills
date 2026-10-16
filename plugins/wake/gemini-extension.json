@@ -1,0 +1,16 @@
+{
+  "name": "wake",
+  "version": "1.0.0",
+  "description": "Public agent-economy context with separate reference periods.",
+  "mcpServers": {
+    "wake": {
+      "httpUrl": "https://agents.seiche.info/products/wake/mcp",
+      "timeout": 30000,
+      "includeTools": [
+        "wake_economy_now",
+        "wake_dataset_policy",
+        "wake_collection_contract"
+      ]
+    }
+  }
+}

@@ -1,5 +1,11 @@
 # Financial Evidence Agent Skills
 
+**Individual product plugins:** [install from the Liquidity Lab catalog](https://beepboop2025.github.io/financial-evidence-skills/plugins/)
+in Claude Code, Codex or GitHub Copilot CLI. The catalog contains Financial
+Evidence, Market Brief and thirteen product plugins, with Gemini downloads and
+Cursor / VS Code connection links. Publisher-maintained availability is separate
+from each platform's official directory review.
+
 ## Connect and ask one question
 
 Hosted Streamable HTTP MCP; no local server or API key for public read-only tools.

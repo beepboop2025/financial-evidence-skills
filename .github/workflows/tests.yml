@@ -237,6 +237,7 @@ jobs:
       - run: node integrations/node-red/test_flow.cjs
       - run: python3 scripts/build_research_kit.py --check
       - run: python3 scripts/build_platform_hub.py --check
+      - run: python3 scripts/build_product_plugins.py --check
       - run: python3 -m py_compile financial-evidence/scripts/fetch_evidence.py src/financial_evidence/*.py
       - run: python3 -m pip install .
       - run: financial-evidence route --topic money-market --format json
@@ -374,6 +375,10 @@ jobs:
         run: |
           npx --yes @google/gemini-cli@0.56.0 extensions validate .
           npx --yes @anthropic-ai/claude-code@2.1.241 plugin validate . --strict
+          for plugin in plugins/*; do
+            npx --yes @google/gemini-cli@0.56.0 extensions validate "$plugin"
+            npx --yes @anthropic-ai/claude-code@2.1.241 plugin validate "$plugin" --strict
+          done
       - name: Validate and pack the desktop MCP bundle
         run: |
           npx --yes @anthropic-ai/mcpb@2.1.2 validate manifest.json

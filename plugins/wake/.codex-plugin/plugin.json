@@ -1,0 +1,35 @@
+{
+  "name": "wake",
+  "version": "1.0.0",
+  "description": "Public agent-economy context with separate reference periods.",
+  "author": {
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://agents.seiche.info/connect",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Wake",
+    "shortDescription": "Source-linked research",
+    "longDescription": "Public agent-economy context with separate reference periods.",
+    "developerName": "LIQUILENS PRIVATE LIMITED",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Research"
+    ],
+    "websiteURL": "https://agents.seiche.info/connect",
+    "privacyPolicyURL": "https://agents.seiche.info/privacy",
+    "termsOfServiceURL": "https://beepboop2025.github.io/financial-evidence-skills/terms/",
+    "supportURL": "https://beepboop2025.github.io/financial-evidence-skills/support/",
+    "composerIcon": "./assets/logo-400.png",
+    "logo": "./assets/logo.svg",
+    "defaultPrompt": [
+      "Discover Wake's available research and coverage. Retrieve one relevant bounded result, cite its sources and dates, and explain missing or restricted evidence."
+    ],
+    "brandColor": "#0B6E69"
+  }
+}

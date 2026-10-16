@@ -1,5 +1,10 @@
 # Connect a financial research agent
 
+For individual products, use the [product plugin catalog](../plugins/).
+It includes named Claude Code, Codex and GitHub Copilot CLI marketplace entries,
+Gemini extension archives, and Cursor / VS Code connection links. Official
+directory acceptance is tracked separately.
+
 Use the public Streamable HTTP server:
 
 ```text

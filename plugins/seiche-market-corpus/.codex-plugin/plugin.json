@@ -1,0 +1,35 @@
+{
+  "name": "seiche-market-corpus",
+  "version": "1.0.0",
+  "description": "Inspect corpus datasets, source clocks and publication rights. Restricted collections remain metadata only.",
+  "author": {
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://agents.seiche.info/connect",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Seiche Market Atlas Corpus",
+    "shortDescription": "Source-linked research",
+    "longDescription": "Inspect corpus datasets, source clocks and publication rights. Restricted collections remain metadata only.",
+    "developerName": "LIQUILENS PRIVATE LIMITED",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Research"
+    ],
+    "websiteURL": "https://agents.seiche.info/connect",
+    "privacyPolicyURL": "https://agents.seiche.info/privacy",
+    "termsOfServiceURL": "https://beepboop2025.github.io/financial-evidence-skills/terms/",
+    "supportURL": "https://beepboop2025.github.io/financial-evidence-skills/support/",
+    "composerIcon": "./assets/logo-400.png",
+    "logo": "./assets/logo.svg",
+    "defaultPrompt": [
+      "Discover Seiche Market Atlas Corpus's available research and coverage. Retrieve one relevant bounded result, cite its sources and dates, and explain missing or restricted evidence."
+    ],
+    "brandColor": "#0B6E69"
+  }
+}

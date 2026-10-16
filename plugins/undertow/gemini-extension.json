@@ -1,0 +1,29 @@
+{
+  "name": "undertow",
+  "version": "1.0.0",
+  "description": "Market liquidity and indicative BTC exits.",
+  "mcpServers": {
+    "undertow": {
+      "httpUrl": "https://agents.seiche.info/products/undertow/mcp",
+      "timeout": 30000,
+      "includeTools": [
+        "agent_access_status",
+        "crypto_exit_check",
+        "crypto_funding_cost",
+        "crypto_portfolio_stress",
+        "depth_episodes",
+        "exit_cost",
+        "gold_cash_realisation",
+        "latest_article",
+        "liquidity_tiers",
+        "market_corpus_context",
+        "research_network",
+        "sealed_record",
+        "trade_safety_exit_context",
+        "unwind_watch",
+        "venue_concentration",
+        "venue_price_reconciliation"
+      ]
+    }
+  }
+}

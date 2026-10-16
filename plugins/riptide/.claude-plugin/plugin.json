@@ -1,0 +1,12 @@
+{
+  "name": "riptide",
+  "version": "1.0.0",
+  "description": "Show Riptide's committed paper research record and its evidence limits.",
+  "author": {
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://agents.seiche.info/connect",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT"
+}

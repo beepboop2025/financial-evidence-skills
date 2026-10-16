@@ -249,9 +249,9 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertEqual(plugin["name"], SERVER_NAME)
         self.assertEqual(plugin["version"], self.version)
         self.assertEqual(marketplace["name"], "liquidity-lab")
-        self.assertEqual(len(marketplace["plugins"]), 2)
+        self.assertEqual(len(marketplace["plugins"]), 15)
         self.assertEqual(
-            [entry["name"] for entry in marketplace["plugins"]],
+            [entry["name"] for entry in marketplace["plugins"][:2]],
             [SERVER_NAME, MARKET_BRIEF_NAME],
         )
         entry = marketplace["plugins"][0]
@@ -302,9 +302,9 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertTrue((ROOT / plugin["interface"]["composerIcon"]).is_file())
         self.assertLessEqual(len(plugin["interface"]["shortDescription"]), 30)
         self.assertEqual(marketplace["name"], "liquidity-lab")
-        self.assertEqual(len(marketplace["plugins"]), 2)
+        self.assertEqual(len(marketplace["plugins"]), 15)
         self.assertEqual(
-            [entry["name"] for entry in marketplace["plugins"]],
+            [entry["name"] for entry in marketplace["plugins"][:2]],
             [SERVER_NAME, MARKET_BRIEF_NAME],
         )
         entry = marketplace["plugins"][0]

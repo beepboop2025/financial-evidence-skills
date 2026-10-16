@@ -1,0 +1,12 @@
+{
+  "name": "noisefloor",
+  "version": "1.0.0",
+  "description": "Statistical research using permitted observations.",
+  "author": {
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://liquilens.in/agents/correlation/#connect",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT"
+}

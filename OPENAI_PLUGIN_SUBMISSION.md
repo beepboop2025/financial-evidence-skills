@@ -1,5 +1,14 @@
 # OpenAI public plugin submission packet
 
+**Current packet:** use the [0.1.10 hosted-workspace submission packet](docs/plugins/financial-evidence-publisher-0.1.10.md)
+and its exact release ZIP. The older material below documents the 0.1.7
+three-tool router and must not be used for the current nine-tool upload.
+The portal was rechecked on 16 October 2026: developer identity verification
+is still required before uploading. The current expansion request resumes
+preparation; no identity verification or submission is claimed.
+
+## Historical 0.1.7 packet
+
 Status: the form copy and local assets are prepared in the repository. The
 v0.1.7 public logo and release URL are independently verified from the signed
 release.

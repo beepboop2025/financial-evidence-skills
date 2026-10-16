@@ -1,0 +1,23 @@
+{
+  "name": "noisefloor",
+  "version": "1.0.0",
+  "description": "Statistical research using permitted observations.",
+  "mcpServers": {
+    "noisefloor": {
+      "httpUrl": "https://agents.seiche.info/products/noisefloor/mcp",
+      "timeout": 30000,
+      "includeTools": [
+        "ab_test",
+        "did_it_change",
+        "dyson_reference",
+        "forecast_next",
+        "market_assessment",
+        "narrative_triage",
+        "real_or_sampling",
+        "score_forecasts",
+        "spectral_assessment",
+        "which_metrics_matter"
+      ]
+    }
+  }
+}

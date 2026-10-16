@@ -1,0 +1,15 @@
+{
+  "name": "myquant-app",
+  "version": "1.0.0",
+  "description": "Show the MyQuant app's public capabilities and offline reading boundaries.",
+  "mcpServers": {
+    "myquant-app": {
+      "httpUrl": "https://agents.seiche.info/products/myquant-app/mcp",
+      "timeout": 30000,
+      "includeTools": [
+        "list_capabilities",
+        "get_health"
+      ]
+    }
+  }
+}

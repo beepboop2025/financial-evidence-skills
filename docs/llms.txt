@@ -4,7 +4,7 @@ Start with one task: https://beepboop2025.github.io/financial-evidence-skills/co
 
 > Financial Evidence is a free, read-only terminal and MCP router for public money-market, capital-market, china-economy, bank-risk, market-liquidity, GIFT City, forex and gold evidence. It connects LiquiLens, Undertow, Seiche, and Palimpsest while preserving separate sources and explicit unavailable states.
 
-Published source version: 0.1.9
+Source candidate version: 0.1.10
 Last verified release: 0.1.9
 Published topics: money-market, capital-market, china-economy, bank-risk, market-liquidity, gift-city, forex, gold.
 Last updated: 2026-10-15

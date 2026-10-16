@@ -66,8 +66,15 @@
     "model_calls": 0
   },
   "copilot": {
-    "format": "Claude-compatible catalog documented by GitHub",
-    "native_installation": "not_verified"
+    "observed_at": "2026-10-16T17:15:20.402147+00:00",
+    "client_version": "1.0.68",
+    "native_marketplace_discovery": "passed",
+    "native_installation": "passed",
+    "installed_plugins": 15,
+    "native_mcp_configurations": 16,
+    "receipt": "copilot-native-validation.json",
+    "model_calls": 0,
+    "native_live_mcp_tool_call": "not_performed"
   },
   "tests": {
     "run": 716,

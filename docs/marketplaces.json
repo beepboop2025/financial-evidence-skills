@@ -318,18 +318,18 @@
       "id": "claude-plugin-directory",
       "name": "Claude Plugin Directory",
       "channel": "agent-plugin-directory",
-      "state": "ready_account_action",
+      "state": "skipped_paid",
       "submission_url": "https://claude.ai/directory/manage/new",
       "cost": "A paid Claude Pro, Max, Team or Enterprise account is required for directory submission; no plan purchased.",
-      "detail": "Preparation resumed. The signed-in directory manager explicitly requires a Pro, Max, Team or Enterprise plan; this publisher account does not qualify. No plan purchased and no official submission. Thirteen additional product plugins passed strict Claude validation and native installation with one skill and one MCP connection apiece in an isolated configuration.",
-      "next_action": "Use an existing eligible owner account if available, then submit the current GitHub plugin bundle and retain the receipt. Do not purchase a plan automatically.",
+      "detail": "Official directory submission is deferred because the publisher has no eligible paid plan and is not pursuing a subscription. No plan purchased and no official submission. Thirteen individual product plugins remain publicly installable and passed strict Claude validation and native installation.",
+      "next_action": "Keep the public plugin catalog available. Resume the paid directory route only if the owner later chooses an eligible account.",
       "latest_surface_check": {
         "observed_at": "2026-10-16T16:41:02.998286+00:00",
         "url": "https://claude.ai/directory/manage/new",
         "readback": "signed_in_portal_gate_verified",
         "new_submission_created": false
       },
-      "updated_at": "2026-10-16T16:41:02.998286+00:00",
+      "updated_at": "2026-10-16T17:15:20.402147+00:00",
       "completion_receipt": "distribution/completion-20261010.json",
       "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
       "sign_in_terms_approved": true,
@@ -367,7 +367,7 @@
       "paid_account_required": true,
       "paid_plan_purchased": false,
       "directory_terms_approved": true,
-      "owner_deferred": false,
+      "owner_deferred": true,
       "publisher_packet": "https://beepboop2025.github.io/financial-evidence-skills/plugins/financial-evidence-publisher-0.1.10.md"
     },
     {
@@ -4613,9 +4613,9 @@
       "state": "live",
       "listing_url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/",
       "cost": "Free product plugins; client accounts and plans may have separate costs.",
-      "detail": "Thirteen individual product plugins extend the two existing Financial Evidence and Market Brief entries. All thirteen installed from the public GitHub marketplace in an isolated Claude configuration at source 71c637ef7d8ac3423edc234ea376c12429a1c291. Codex native catalog discovery and Claude strict validation passed. GitHub Pages is built and all thirty-three publication files matched source bytes. Official vendor store approval remains separate.",
-      "next_action": "Use the published installation guide; retain the OpenAI identity and Claude publisher-plan gates for official store submission.",
-      "verified_at": "2026-10-16T16:54:50.436149+00:00",
+      "detail": "Thirteen individual product plugins extend the two existing Financial Evidence and Market Brief entries. All thirteen installed from the public GitHub marketplace in an isolated Claude configuration at source 71c637ef7d8ac3423edc234ea376c12429a1c291. Codex native catalog discovery and Claude strict validation passed. GitHub Pages is built and all thirty-three publication files matched source bytes. Official vendor store approval remains separate. Copilot CLI 1.0.68 also installed all fifteen entries from public GitHub; sixteen distinct MCP configurations matched their source after the Market Brief 0.1.1 connection-name correction.",
+      "next_action": "Use the published installation guide; OpenAI identity remains required and Claude paid-directory submission is deferred.",
+      "verified_at": "2026-10-16T17:15:20.402147+00:00",
       "products": [
         "seiche",
         "liquilens",
@@ -4631,7 +4631,8 @@
         "research-data",
         "seiche-market-corpus"
       ],
-      "evidence_receipt": "plugins/publication.json"
+      "evidence_receipt": "plugins/publication.json",
+      "copilot_receipt": "plugins/copilot-native-validation.json"
     },
     {
       "id": "liquidity-lab-product-gemini-downloads",
@@ -4954,10 +4955,25 @@
         "native_directory_scan": "passed"
       },
       "outcome": "new_public_listing_verified"
+    },
+    {
+      "id": "liquidity-lab-product-copilot",
+      "name": "LiquiLens product plugins for GitHub Copilot CLI",
+      "channel": "agent-plugin-marketplace",
+      "state": "live",
+      "listing_url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/",
+      "cost": "Free product plugins; Copilot account and model costs are separate. No model requests were made during validation.",
+      "detail": "All fifteen catalog plugins installed through Copilot CLI 1.0.68 from public GitHub. Installed runtime files matched their source, and all sixteen distinct MCP configurations resolved to the expected endpoint and source plugin. Market Brief 0.1.1 prevents the earlier Financial Evidence connection-name collision. GitHub curated catalog acceptance is separate.",
+      "next_action": "Use the public marketplace commands; retain the exact native receipt when changing plugin versions.",
+      "verified_at": "2026-10-16T17:15:20.402147+00:00",
+      "evidence_receipt": "plugins/copilot-native-validation.json",
+      "native_installation_verified": true,
+      "official_directory_acceptance": false,
+      "independent_adoption_verified": false
     }
   ],
   "release_verified_at": "2026-10-16T13:08:04.554412+00:00",
-  "updated_at": "2026-10-16",
+  "updated_at": "2026-10-16T17:15:20.402147+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -5303,7 +5319,13 @@
     "refreshed_existing_smithery_listings": 1,
     "claude_public_native_installs": 13,
     "source_commit": "71c637ef7d8ac3423edc234ea376c12429a1c291",
-    "scope": "Publisher-maintained plugin installation, public downloads and Smithery listings. OpenAI and Claude official directory submission and Google gallery indexing retain separate gates.",
-    "independent_adoption_verified": false
+    "scope": "Publisher-maintained installation in Claude Code and Copilot, public downloads and Smithery listings. OpenAI identity and Google gallery indexing remain separate; Claude paid-directory submission is deferred.",
+    "independent_adoption_verified": false,
+    "copilot_public_native_installs": 15,
+    "copilot_native_mcp_configurations": 16,
+    "copilot_receipt": "plugins/copilot-native-validation.json",
+    "copilot_source_commit": "cd5daac999b9d51c8f2c18bc4f403d0a4255aadf",
+    "market_brief_plugin_version": "0.1.1",
+    "claude_directory_submission": "deferred_paid_plan"
   }
 }

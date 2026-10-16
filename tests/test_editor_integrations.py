@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SERVER_NAME = "financial-evidence"
 REPOSITORY = "https://github.com/beepboop2025/financial-evidence-skills.git"
 MARKET_BRIEF_NAME = "market-brief"
-MARKET_BRIEF_VERSION = "0.1.0"
+MARKET_BRIEF_VERSION = "0.1.1"
 MARKET_BRIEF_REPOSITORY = "https://github.com/beepboop2025/market-brief.git"
 
 

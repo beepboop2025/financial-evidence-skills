@@ -4539,7 +4539,7 @@
       "independent_adoption_verified": false
     }
   ],
-  "release_verified_at": "2026-10-08T05:07:23.627927+00:00",
+  "release_verified_at": "2026-10-16T13:08:04.554412+00:00",
   "updated_at": "2026-10-16",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {

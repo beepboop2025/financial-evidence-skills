@@ -271,10 +271,10 @@
     "forex",
     "gold"
   ],
-  "release_verified_at": "2026-10-15T16:02:27.794644Z",
+  "release_verified_at": "2026-10-16T13:08:04.554412+00:00",
   "local_runtime": {
     "runtime_contract_version": "1.0.0",
-    "package_version": "0.1.9",
+    "package_version": "0.1.10",
     "guide": "https://beepboop2025.github.io/financial-evidence-skills/agents/runtime.html",
     "cli": "financial-evidence-runtime",
     "private_stdio_command": "financial-evidence-runtime-mcp",

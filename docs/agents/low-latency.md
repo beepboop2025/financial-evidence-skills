@@ -96,7 +96,12 @@ not all intervening updates. There is no market-event replay guarantee.
 Snapshots are capped at 16 KiB, sessions at 300 seconds, writes at 5 seconds,
 and subscribers at 64 per process. The JavaScript client's default total
 deadline is 30 seconds; reconnect explicitly with bounded backoff. Python event
-reads use the configured idle timeout; the CLI additionally bounds the whole run.
+reads use the configured idle timeout and a separate monotonic deadline for each
+complete event. Partial bytes and comment frames do not renew that deadline;
+processing time in the consuming application does not consume the next read's
+budget. Both clients reject keepalives before the initial reset. The CLI
+additionally bounds the whole run. A timeout closes the stream; reconnecting is
+explicit and never replays an order or grants source permissions.
 
 ## Source access and the feed pilot
 

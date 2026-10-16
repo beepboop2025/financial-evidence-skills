@@ -89,6 +89,7 @@ export async function* contextEvents(config = {}) {
         if (!data.length) continue;
         const event = {...fields, data: JSON.parse(data.join('\n'))};
         if (event.event === 'keepalive') {
+          if (!previous) throw new Error('Expected initial reset');
           if (event.data.transport_only !== true || event.data.source_freshness_proof !== false) throw new Error('Invalid keepalive');
         } else {
           if (!['reset', 'snapshot'].includes(event.event)) throw new Error('Unknown event');

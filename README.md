@@ -114,7 +114,7 @@ status, source-reported adapter metadata, and the explicit non-Carrier boundary.
 Version 0.1.10 is a signed, independently verified release. Its versioned
 Agent Skill, terminal, Codex, Gemini, editor, and bundle installs use the same
 release, with published artifacts, container and Registry record.
-Homebrew 0.1.9 remains independently verified; 0.1.10 acceptance is pending. The Claude
+Homebrew 0.1.10 is published after an independent macOS installation and contract check. The Claude
 self-hosted marketplace command follows the repository's mutable default branch; review the checked-out commit before enabling it.
 
 Open, read-only Agent Skills for routing financial research to bounded public
@@ -166,8 +166,7 @@ financial-evidence fetch --topic money-market --topic china-economy
 ```
 
 The formula installs `financial-evidence`, `financial-evidence-mcp`, and native
-Bash, Zsh, and Fish completions. Homebrew 0.1.9 is independently verified;
-0.1.10 acceptance is pending. Its hosted clients use the central service.
+Bash, Zsh, and Fish completions. Homebrew 0.1.10 is independently installed and verified. Its hosted clients use the central service.
 Run the pinned PyPI release without a persistent installation:
 
 ```bash

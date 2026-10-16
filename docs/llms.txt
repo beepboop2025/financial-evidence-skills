@@ -4,7 +4,7 @@ Start with one task: https://beepboop2025.github.io/financial-evidence-skills/co
 
 > Financial Evidence is a free, read-only terminal and MCP router for public money-market, capital-market, china-economy, bank-risk, market-liquidity, GIFT City, forex and gold evidence. It connects LiquiLens, Undertow, Seiche, and Palimpsest while preserving separate sources and explicit unavailable states.
 
-Source candidate version: 0.1.10
+Published source version: 0.1.10
 Last verified release: 0.1.10
 Published topics: money-market, capital-market, china-economy, bank-risk, market-liquidity, gift-city, forex, gold.
 Last updated: 2026-10-16
@@ -61,7 +61,7 @@ Python 0.1.10 bounds complete-event waits even when partial bytes or comment fra
 ## Interfaces
 
 - Agent Skills: public `financial-evidence` skill with domain-triggered routing for compatible agents; install the last verified release with `npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.10/financial-evidence --skill financial-evidence`.
-- Terminal: uvx and persistent uv tool (0.1.10); Homebrew 0.1.9 independently installed and verified; 0.1.10 acceptance pending, Bash/Zsh/Fish completions, JSON/NDJSON/CSV/table output.
+- Terminal: uvx and persistent uv tool (0.1.10); Homebrew 0.1.10 independently installed and verified, Bash/Zsh/Fish completions, JSON/NDJSON/CSV/table output.
 - Current MCP: the root `.mcp.json`, Gemini, Codex, Claude Code and editor configurations connect to the central nine-tool read-only Research Desk.
 - Remote MCP: public Streamable HTTP at `https://agents.seiche.info/products/financial-evidence/mcp`; no local install, account, API key, or write action. Start with `financial_evidence_datasets`, then `financial_evidence_workflow` with `{"workflow":"funding","selection":"USD"}`.
 - Legacy compatibility interface: `https://liquilens.in/mcp/financial-evidence` retains `financial_evidence_topics`, `financial_evidence_route` and `financial_evidence_fetch`. The local stdio command, MCP Bundle, OCI image and Registry record retain this separate three-tool contract. Fresh source retrieval uses the central data service.

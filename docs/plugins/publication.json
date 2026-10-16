@@ -1,0 +1,321 @@
+{
+  "schema": "liquilens.product-plugin-publication.v1",
+  "observed_at": "2026-10-16T16:54:50.436149+00:00",
+  "source_commit": "71c637ef7d8ac3423edc234ea376c12429a1c291",
+  "pull_request": "https://github.com/beepboop2025/financial-evidence-skills/pull/154",
+  "pages_status": "built",
+  "files": [
+    {
+      "path": "plugins/index.html",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/index.html",
+      "status": 200,
+      "bytes": 13061,
+      "sha256": "d149a72ff7fe79729e0155a324fa536e9fb00056c641c1e0123f401caad50cac",
+      "expected_sha256": "d149a72ff7fe79729e0155a324fa536e9fb00056c641c1e0123f401caad50cac",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/catalog.json",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/catalog.json",
+      "status": 200,
+      "bytes": 13327,
+      "sha256": "85005ae55d3fcc492e1db1889f70e46db94a1399410162e1595f2477c57f8f06",
+      "expected_sha256": "85005ae55d3fcc492e1db1889f70e46db94a1399410162e1595f2477c57f8f06",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/qualification.json",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/qualification.json",
+      "status": 200,
+      "bytes": 11621,
+      "sha256": "74da7b9b671b187991c76d38c427271a851b44c831bf890fb1d86bc699027379",
+      "expected_sha256": "74da7b9b671b187991c76d38c427271a851b44c831bf890fb1d86bc699027379",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/native-validation.json",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/native-validation.json",
+      "status": 200,
+      "bytes": 1811,
+      "sha256": "803547bc0d74afc3457076f17b68d934ccb9e0f392baf385dd719ca725a1e1da",
+      "expected_sha256": "803547bc0d74afc3457076f17b68d934ccb9e0f392baf385dd719ca725a1e1da",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/financial-evidence-publisher-0.1.10.md",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/financial-evidence-publisher-0.1.10.md",
+      "status": 200,
+      "bytes": 6173,
+      "sha256": "75a3afa7155331f31d5e318fc25d8c4ced5f813296f51ac7e6d1b0bd2cadf023",
+      "expected_sha256": "75a3afa7155331f31d5e318fc25d8c4ced5f813296f51ac7e6d1b0bd2cadf023",
+      "exact_match": true
+    },
+    {
+      "path": "distribution/downloads/financial-evidence-openai-plugin-v0.1.10.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/downloads/financial-evidence-openai-plugin-v0.1.10.zip",
+      "status": 200,
+      "bytes": 39766,
+      "sha256": "1dfc2942d10c3b60b551a36634e5affc88b4f9b8485de4753f39c93f26037d77",
+      "expected_sha256": "1dfc2942d10c3b60b551a36634e5affc88b4f9b8485de4753f39c93f26037d77",
+      "exact_match": true
+    },
+    {
+      "path": "distribution/downloads/financial-evidence-openai-plugin-v0.1.10.json",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/downloads/financial-evidence-openai-plugin-v0.1.10.json",
+      "status": 200,
+      "bytes": 1872,
+      "sha256": "2f8c700ba5a29dbe26e7687927efc8428f069ab13ebb4c8b84bf5de3d3ce3971",
+      "expected_sha256": "2f8c700ba5a29dbe26e7687927efc8428f069ab13ebb4c8b84bf5de3d3ce3971",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/liquilens-gemini-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/liquilens-gemini-1.0.0.zip",
+      "status": 200,
+      "bytes": 28407,
+      "sha256": "73f1fe35e62cf993d004a116cfac7277c5b13cfd9dc79c0d7c92c1373f65f889",
+      "expected_sha256": "73f1fe35e62cf993d004a116cfac7277c5b13cfd9dc79c0d7c92c1373f65f889",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/liquilens-openai-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/liquilens-openai-1.0.0.zip",
+      "status": 200,
+      "bytes": 28763,
+      "sha256": "ac9963df0ef2c6a6a925d25271e720c9ffe4ec0f869c27bfe67010b72ef9b214",
+      "expected_sha256": "ac9963df0ef2c6a6a925d25271e720c9ffe4ec0f869c27bfe67010b72ef9b214",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/myquant-app-gemini-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/myquant-app-gemini-1.0.0.zip",
+      "status": 200,
+      "bytes": 28243,
+      "sha256": "fbb9648e23c21e7ee550e337d3e518668531dffb8d764401d96e5ca1bfb1c071",
+      "expected_sha256": "fbb9648e23c21e7ee550e337d3e518668531dffb8d764401d96e5ca1bfb1c071",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/myquant-app-openai-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/myquant-app-openai-1.0.0.zip",
+      "status": 200,
+      "bytes": 28831,
+      "sha256": "57400cee04640004637016fceca5e2adb81d9e594b69e4ef0a09e2025b10a488",
+      "expected_sha256": "57400cee04640004637016fceca5e2adb81d9e594b69e4ef0a09e2025b10a488",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/myquant-editorial-gemini-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/myquant-editorial-gemini-1.0.0.zip",
+      "status": 200,
+      "bytes": 28279,
+      "sha256": "9ad05921f9d285e5cd207c6b923d46e9afa0e536ada49f91d6ef8c69c2ff7850",
+      "expected_sha256": "9ad05921f9d285e5cd207c6b923d46e9afa0e536ada49f91d6ef8c69c2ff7850",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/myquant-editorial-openai-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/myquant-editorial-openai-1.0.0.zip",
+      "status": 200,
+      "bytes": 28853,
+      "sha256": "f41c107621ef6f1135dfcf00396b3338ec37a45d6c13208f095fff48b49cf649",
+      "expected_sha256": "f41c107621ef6f1135dfcf00396b3338ec37a45d6c13208f095fff48b49cf649",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/narcoscope-gemini-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/narcoscope-gemini-1.0.0.zip",
+      "status": 200,
+      "bytes": 28289,
+      "sha256": "9917b0b575043646aca6cfcf0677b7b36b27de5d6384ebd3c72db1dc3b5cc447",
+      "expected_sha256": "9917b0b575043646aca6cfcf0677b7b36b27de5d6384ebd3c72db1dc3b5cc447",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/narcoscope-openai-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/narcoscope-openai-1.0.0.zip",
+      "status": 200,
+      "bytes": 28772,
+      "sha256": "fc9333a0b8163fe6e4e7d35a07d1ee80a380b99fdf7367c1c9365e8076093c77",
+      "expected_sha256": "fc9333a0b8163fe6e4e7d35a07d1ee80a380b99fdf7367c1c9365e8076093c77",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/noisefloor-gemini-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/noisefloor-gemini-1.0.0.zip",
+      "status": 200,
+      "bytes": 28274,
+      "sha256": "731d693806fea2b10dbdb9c90e109b1e5ac4d107f8fde9d34580995bcd0d3390",
+      "expected_sha256": "731d693806fea2b10dbdb9c90e109b1e5ac4d107f8fde9d34580995bcd0d3390",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/noisefloor-openai-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/noisefloor-openai-1.0.0.zip",
+      "status": 200,
+      "bytes": 28793,
+      "sha256": "0859b7d4464c3b5d22abb50cfcc060e4f3c7ed4d5c50e5c6eeb89dbbdd0cac39",
+      "expected_sha256": "0859b7d4464c3b5d22abb50cfcc060e4f3c7ed4d5c50e5c6eeb89dbbdd0cac39",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/palimpsest-gemini-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/palimpsest-gemini-1.0.0.zip",
+      "status": 200,
+      "bytes": 28231,
+      "sha256": "b651195378d619d34c2dc59ac55e496d1ef2c05ff27251f906881b5b05da60d1",
+      "expected_sha256": "b651195378d619d34c2dc59ac55e496d1ef2c05ff27251f906881b5b05da60d1",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/palimpsest-openai-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/palimpsest-openai-1.0.0.zip",
+      "status": 200,
+      "bytes": 28771,
+      "sha256": "2b7705f53ef93c7c7b8b8b94604c7a71221b933244fc7c7b79656ee810a62bef",
+      "expected_sha256": "2b7705f53ef93c7c7b8b8b94604c7a71221b933244fc7c7b79656ee810a62bef",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/research-data-gemini-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/research-data-gemini-1.0.0.zip",
+      "status": 200,
+      "bytes": 28335,
+      "sha256": "51e99d17fb283ad173b95fe4eade61b68c591820d64ea9fa8d0d531f8e05929b",
+      "expected_sha256": "51e99d17fb283ad173b95fe4eade61b68c591820d64ea9fa8d0d531f8e05929b",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/research-data-openai-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/research-data-openai-1.0.0.zip",
+      "status": 200,
+      "bytes": 28888,
+      "sha256": "07b5ea6e0e1d02b9f533768a99339efe2fac31e06569963bf2e85972654a0b05",
+      "expected_sha256": "07b5ea6e0e1d02b9f533768a99339efe2fac31e06569963bf2e85972654a0b05",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/riptide-gemini-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/riptide-gemini-1.0.0.zip",
+      "status": 200,
+      "bytes": 28229,
+      "sha256": "0282b97acfe8d49b5049e2628177ff54832a8aac122d513e22578768a679666a",
+      "expected_sha256": "0282b97acfe8d49b5049e2628177ff54832a8aac122d513e22578768a679666a",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/riptide-openai-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/riptide-openai-1.0.0.zip",
+      "status": 200,
+      "bytes": 28764,
+      "sha256": "7681a34648b814c22b89a447af9d72b7ee7fe4a366703c02e7cb72c35a7fd9fa",
+      "expected_sha256": "7681a34648b814c22b89a447af9d72b7ee7fe4a366703c02e7cb72c35a7fd9fa",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/seiche-gemini-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/seiche-gemini-1.0.0.zip",
+      "status": 200,
+      "bytes": 28310,
+      "sha256": "56def6591da28eaafe88274e19cf00c78768b1733ecd8e9460c7b764a0a78800",
+      "expected_sha256": "56def6591da28eaafe88274e19cf00c78768b1733ecd8e9460c7b764a0a78800",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/seiche-market-corpus-gemini-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/seiche-market-corpus-gemini-1.0.0.zip",
+      "status": 200,
+      "bytes": 28374,
+      "sha256": "239bb2de4594797deebb513f7ba896b4287d87283fc8d14744d35cc5dc185c42",
+      "expected_sha256": "239bb2de4594797deebb513f7ba896b4287d87283fc8d14744d35cc5dc185c42",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/seiche-market-corpus-openai-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/seiche-market-corpus-openai-1.0.0.zip",
+      "status": 200,
+      "bytes": 28927,
+      "sha256": "4f33bfeafc8e6cbf7615671e36d277ce25f1862387f831b97b31d836d32c9431",
+      "expected_sha256": "4f33bfeafc8e6cbf7615671e36d277ce25f1862387f831b97b31d836d32c9431",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/seiche-openai-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/seiche-openai-1.0.0.zip",
+      "status": 200,
+      "bytes": 28735,
+      "sha256": "0d7a635b7b87dbdc4100fb40fbf2698be11632850af1b2e30534ef1be1e15253",
+      "expected_sha256": "0d7a635b7b87dbdc4100fb40fbf2698be11632850af1b2e30534ef1be1e15253",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/trade-safety-gemini-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/trade-safety-gemini-1.0.0.zip",
+      "status": 200,
+      "bytes": 28278,
+      "sha256": "de97d3734b64b9a933b350b735356012b61994f92502e4e6fa9d8c9021baab76",
+      "expected_sha256": "de97d3734b64b9a933b350b735356012b61994f92502e4e6fa9d8c9021baab76",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/trade-safety-openai-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/trade-safety-openai-1.0.0.zip",
+      "status": 200,
+      "bytes": 28867,
+      "sha256": "c189264630aaee7f7fa87c64baff7d4ac83a8a3674c3518018daf9d57e1b3aff",
+      "expected_sha256": "c189264630aaee7f7fa87c64baff7d4ac83a8a3674c3518018daf9d57e1b3aff",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/undertow-gemini-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/undertow-gemini-1.0.0.zip",
+      "status": 200,
+      "bytes": 28330,
+      "sha256": "beb00378fcbd1d3d6631632f25267de41c8c4c79a74b31c15d0b9a0641d8524a",
+      "expected_sha256": "beb00378fcbd1d3d6631632f25267de41c8c4c79a74b31c15d0b9a0641d8524a",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/undertow-openai-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/undertow-openai-1.0.0.zip",
+      "status": 200,
+      "bytes": 28764,
+      "sha256": "ca6d4a4a68da39e095c3c4a1ad173217b10af6504f2135d8d7fb7bf8c9d76545",
+      "expected_sha256": "ca6d4a4a68da39e095c3c4a1ad173217b10af6504f2135d8d7fb7bf8c9d76545",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/wake-gemini-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/wake-gemini-1.0.0.zip",
+      "status": 200,
+      "bytes": 28191,
+      "sha256": "4e21b7dd1e35260d1800ffd1d3c6a9e28c46f2d8eb441309b4737d45c1aa05b7",
+      "expected_sha256": "4e21b7dd1e35260d1800ffd1d3c6a9e28c46f2d8eb441309b4737d45c1aa05b7",
+      "exact_match": true
+    },
+    {
+      "path": "plugins/downloads/wake-openai-1.0.0.zip",
+      "url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/downloads/wake-openai-1.0.0.zip",
+      "status": 200,
+      "bytes": 28763,
+      "sha256": "84e20cda6289a76fdf0f5bb97ce065aa4e123d614dd779c6330966a321012e66",
+      "expected_sha256": "84e20cda6289a76fdf0f5bb97ce065aa4e123d614dd779c6330966a321012e66",
+      "exact_match": true
+    }
+  ],
+  "all_match": true,
+  "official_directory_approval": false,
+  "independent_adoption_verified": false,
+  "claude_public_marketplace": {
+    "observed_at": "2026-10-16T16:54:43.244030+00:00",
+    "source": "github:beepboop2025/financial-evidence-skills",
+    "source_commit": "71c637ef7d8ac3423edc234ea376c12429a1c291",
+    "isolated_config": true,
+    "model_calls": false,
+    "checked_checkout_commit": "71c637ef7d8ac3423edc234ea376c12429a1c291",
+    "all_13_installations_passed": true,
+    "plugin_count": 13
+  },
+  "ci_run": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/38933980946",
+  "ci_status": "success"
+}

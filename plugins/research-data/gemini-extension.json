@@ -1,0 +1,21 @@
+{
+  "name": "research-data",
+  "version": "1.0.0",
+  "description": "Discover source datasets and exact series identifiers, then read bounded observations with capture receipts.",
+  "mcpServers": {
+    "research-data": {
+      "httpUrl": "https://agents.seiche.info/products/research-data/mcp",
+      "timeout": 30000,
+      "includeTools": [
+        "research_workspace",
+        "research_series_summary",
+        "research_tracked_institutions",
+        "research_catalog",
+        "research_series",
+        "research_entities",
+        "research_observations",
+        "research_analysis"
+      ]
+    }
+  }
+}

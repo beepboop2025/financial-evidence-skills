@@ -1,0 +1,55 @@
+{
+  "schema": "financial-evidence.plugin-upload.v1",
+  "source_repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "source_tag": "v0.1.10",
+  "source_commit": "fe9eb8c9d23e7fbef2c31016bf9d106b72741428",
+  "archive": "financial-evidence-openai-plugin-v0.1.10.zip",
+  "sha256": "1dfc2942d10c3b60b551a36634e5affc88b4f9b8485de4753f39c93f26037d77",
+  "bytes": 39766,
+  "files": [
+    {
+      "path": ".codex-plugin/plugin.json",
+      "bytes": 1789,
+      "sha256": "2857c9a5a1fb1b82ccfbd7949e6541512d3bd468e1e595109b42f1dc69956c61"
+    },
+    {
+      "path": ".mcp.json",
+      "bytes": 156,
+      "sha256": "1e45bc209ba503bc498c46b4cb0ca9f8b034066a619e573cca22d31112e92d8d"
+    },
+    {
+      "path": "skills/financial-evidence/SKILL.md",
+      "bytes": 8168,
+      "sha256": "2404984266dd24212ce30da03fb1626006b48080e338c007fac4eb7baefb83a6"
+    },
+    {
+      "path": "skills/financial-evidence/scripts/fetch_evidence.py",
+      "bytes": 21350,
+      "sha256": "cea7e2499a050505f0c626adbef19614d08172246600190383f07b9e95650956"
+    },
+    {
+      "path": "skills/financial-evidence/references/routing.md",
+      "bytes": 7705,
+      "sha256": "47f34e581a5e37013526256cc48e4ecffa4243b035c19b8c0fc5a0d54a5ce428"
+    },
+    {
+      "path": "assets/logo-400.png",
+      "bytes": 25539,
+      "sha256": "63ab857d98d9b9b9d39301ae176065885170524bcc09e9d7025c226fdb01a09b"
+    },
+    {
+      "path": "assets/logo.svg",
+      "bytes": 811,
+      "sha256": "79622aa12574bd2b24fb992daf25c6d6b651b8377366976cc35a0b3402793829"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1083,
+      "sha256": "33813f6d443a15c6d5842b2d706c175e904fe34174df440cf2b5f3932d32316a"
+    }
+  ],
+  "portal_upload_completed": false,
+  "identity_verification_completed": false,
+  "demo_recorded": false,
+  "mcp_url": "https://agents.seiche.info/products/financial-evidence/mcp"
+}

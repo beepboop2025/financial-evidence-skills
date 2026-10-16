@@ -1,0 +1,12 @@
+{
+  "name": "undertow",
+  "version": "1.0.0",
+  "description": "Market liquidity and indicative BTC exits.",
+  "author": {
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://liquilens-undertow.com/developers/",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT"
+}

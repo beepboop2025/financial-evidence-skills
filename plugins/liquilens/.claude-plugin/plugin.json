@@ -1,0 +1,12 @@
+{
+  "name": "liquilens",
+  "version": "1.0.0",
+  "description": "Covered institutions and disclosure review.",
+  "author": {
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://liquilens.in/developers/",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT"
+}

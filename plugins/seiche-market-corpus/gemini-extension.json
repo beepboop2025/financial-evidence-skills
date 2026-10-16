@@ -1,0 +1,22 @@
+{
+  "name": "seiche-market-corpus",
+  "version": "1.0.0",
+  "description": "Inspect corpus datasets, source clocks and publication rights. Restricted collections remain metadata only.",
+  "mcpServers": {
+    "seiche-market-corpus": {
+      "httpUrl": "https://agents.seiche.info/products/seiche-market-corpus/mcp",
+      "timeout": 30000,
+      "includeTools": [
+        "corpus_catalog",
+        "list_datasets",
+        "inspect_dataset",
+        "bis_observations",
+        "bis_records",
+        "bis_flow_manifest",
+        "seiche_markets",
+        "seiche_observations",
+        "corpus_health"
+      ]
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "schema": "liquilens.plugin-native-validation.v1",
+  "observed_at": "2026-10-16T16:41:32.706369+00:00",
+  "claude": {
+    "client_version": "2.1.228",
+    "strict_validation": "passed",
+    "isolated_installation": "passed",
+    "plugins": [
+      "liquilens",
+      "myquant-app",
+      "myquant-editorial",
+      "narcoscope",
+      "noisefloor",
+      "palimpsest",
+      "research-data",
+      "riptide",
+      "seiche",
+      "seiche-market-corpus",
+      "trade-safety",
+      "undertow",
+      "wake"
+    ],
+    "component_inventory": "one skill and one MCP connection per product",
+    "model_calls": 0
+  },
+  "codex": {
+    "client_version": "0.163.0",
+    "native_catalog_discovery": "passed",
+    "new_plugins": [
+      "seiche",
+      "liquilens",
+      "undertow",
+      "palimpsest",
+      "noisefloor",
+      "narcoscope",
+      "wake",
+      "riptide",
+      "myquant-editorial",
+      "myquant-app",
+      "trade-safety",
+      "research-data",
+      "seiche-market-corpus"
+    ],
+    "installation": "not_performed",
+    "model_calls": 0
+  },
+  "gemini": {
+    "client_version": "0.56.0",
+    "official_extensions_validate": "passed",
+    "plugins": [
+      "liquilens",
+      "myquant-app",
+      "myquant-editorial",
+      "narcoscope",
+      "noisefloor",
+      "palimpsest",
+      "research-data",
+      "riptide",
+      "seiche",
+      "seiche-market-corpus",
+      "trade-safety",
+      "undertow",
+      "wake"
+    ],
+    "installation": "not_performed",
+    "model_calls": 0
+  },
+  "copilot": {
+    "format": "Claude-compatible catalog documented by GitHub",
+    "native_installation": "not_verified"
+  },
+  "tests": {
+    "run": 716,
+    "skipped_optional": 95,
+    "failed": 0
+  },
+  "scope": "Operator qualification. No independent adoption or official directory acceptance."
+}

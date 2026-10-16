@@ -1,0 +1,20 @@
+{
+  "name": "riptide",
+  "version": "1.0.0",
+  "description": "Show Riptide's committed paper research record and its evidence limits.",
+  "mcpServers": {
+    "riptide": {
+      "httpUrl": "https://agents.seiche.info/products/riptide/mcp",
+      "timeout": 30000,
+      "includeTools": [
+        "riptide_allocation",
+        "riptide_crypto_record",
+        "riptide_event_markets",
+        "riptide_methodology",
+        "riptide_overview",
+        "riptide_paper_record",
+        "riptide_risk_evidence"
+      ]
+    }
+  }
+}

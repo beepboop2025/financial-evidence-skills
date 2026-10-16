@@ -1,0 +1,12 @@
+{
+  "name": "wake",
+  "version": "1.0.0",
+  "description": "Public agent-economy context with separate reference periods.",
+  "author": {
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://agents.seiche.info/connect",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT"
+}

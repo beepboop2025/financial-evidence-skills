@@ -1,5 +1,14 @@
 # Claude directory submission packet
 
+**Current packet:** the [0.1.10 hosted-workspace packet](docs/plugins/financial-evidence-publisher-0.1.10.md)
+supersedes the older version and tool inventory below. The signed-in directory
+manager was rechecked on 16 October 2026 and still requires a paid publisher
+plan. The expanded [product plugin catalog](docs/plugins/index.html) can be
+installed from the publisher-maintained marketplace without directory approval.
+No paid plan was purchased and no official directory submission is claimed.
+
+## Historical 0.1.7 packet
+
 Status as of 10 October 2026: prepared and deferred by the owner, not submitted.
 Publisher sign-in and directory terms have been approved. The former Console form can no longer
 create or submit applications and directs publishers to

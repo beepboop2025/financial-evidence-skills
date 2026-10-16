@@ -29,6 +29,162 @@
         "authentication": "ON_INSTALL"
       },
       "category": "Productivity"
+    },
+    {
+      "name": "seiche",
+      "source": {
+        "source": "local",
+        "path": "./plugins/seiche"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "liquilens",
+      "source": {
+        "source": "local",
+        "path": "./plugins/liquilens"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "undertow",
+      "source": {
+        "source": "local",
+        "path": "./plugins/undertow"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "palimpsest",
+      "source": {
+        "source": "local",
+        "path": "./plugins/palimpsest"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "noisefloor",
+      "source": {
+        "source": "local",
+        "path": "./plugins/noisefloor"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "narcoscope",
+      "source": {
+        "source": "local",
+        "path": "./plugins/narcoscope"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "wake",
+      "source": {
+        "source": "local",
+        "path": "./plugins/wake"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "riptide",
+      "source": {
+        "source": "local",
+        "path": "./plugins/riptide"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "myquant-editorial",
+      "source": {
+        "source": "local",
+        "path": "./plugins/myquant-editorial"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "myquant-app",
+      "source": {
+        "source": "local",
+        "path": "./plugins/myquant-app"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "trade-safety",
+      "source": {
+        "source": "local",
+        "path": "./plugins/trade-safety"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "research-data",
+      "source": {
+        "source": "local",
+        "path": "./plugins/research-data"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "seiche-market-corpus",
+      "source": {
+        "source": "local",
+        "path": "./plugins/seiche-market-corpus"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
     }
   ]
 }

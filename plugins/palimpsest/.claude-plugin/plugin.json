@@ -1,0 +1,12 @@
+{
+  "name": "palimpsest",
+  "version": "1.0.0",
+  "description": "China, regional research and the public record.",
+  "author": {
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://palimpsest.info/developers.html",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT"
+}

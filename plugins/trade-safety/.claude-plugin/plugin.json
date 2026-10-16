@@ -1,0 +1,12 @@
+{
+  "name": "trade-safety",
+  "version": "1.0.0",
+  "description": "Explain the Trade Safety sandbox's capabilities, input limits and lack of execution authority.",
+  "author": {
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://agents.seiche.info/connect",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT"
+}

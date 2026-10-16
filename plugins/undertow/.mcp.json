@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "undertow": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/undertow/mcp"
+    }
+  }
+}

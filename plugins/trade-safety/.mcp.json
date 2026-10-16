@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "trade-safety": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/trade-safety/mcp"
+    }
+  }
+}

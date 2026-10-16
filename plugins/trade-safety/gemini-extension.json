@@ -1,0 +1,15 @@
+{
+  "name": "trade-safety",
+  "version": "1.0.0",
+  "description": "Explain the Trade Safety sandbox's capabilities, input limits and lack of execution authority.",
+  "mcpServers": {
+    "trade-safety": {
+      "httpUrl": "https://agents.seiche.info/products/trade-safety/mcp",
+      "timeout": 30000,
+      "includeTools": [
+        "assess_trade_safety",
+        "trade_safety_capabilities"
+      ]
+    }
+  }
+}

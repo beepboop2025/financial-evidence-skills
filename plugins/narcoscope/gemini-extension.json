@@ -1,0 +1,27 @@
+{
+  "name": "narcoscope",
+  "version": "1.0.0",
+  "description": "Drug, arms and informal-economy evidence.",
+  "mcpServers": {
+    "narcoscope": {
+      "httpUrl": "https://agents.seiche.info/products/narcoscope/mcp",
+      "timeout": 30000,
+      "includeTools": [
+        "research_network",
+        "list_capabilities",
+        "get_overview",
+        "get_atlas",
+        "get_entities",
+        "get_federation",
+        "get_newsroom",
+        "get_story",
+        "get_palimpsest_bridge",
+        "get_palimpsest_corridors",
+        "get_palimpsest_bri_context",
+        "get_connected_research",
+        "get_market_catalog",
+        "query_market_observations"
+      ]
+    }
+  }
+}

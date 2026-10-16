@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "riptide": {
+      "type": "http",
+      "url": "https://agents.seiche.info/products/riptide/mcp"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "liquilens",
+  "version": "1.0.0",
+  "description": "Covered institutions and disclosure review.",
+  "mcpServers": {
+    "liquilens": {
+      "httpUrl": "https://agents.seiche.info/products/liquilens/mcp",
+      "timeout": 30000,
+      "includeTools": [
+        "bank_asset_quality_review",
+        "bank_npa_reconciliation",
+        "banking_specialisation_coverage",
+        "corporate_transmission_board",
+        "crypto_exposure_board",
+        "crypto_regime_board",
+        "evidence_europe",
+        "evidence_india",
+        "evidence_institution",
+        "evidence_markets",
+        "evidence_us",
+        "failure_radar_board",
+        "failure_radar_institution",
+        "forward_odds",
+        "household_credit_board",
+        "institution_evidence_monitor",
+        "institution_research_coverage",
+        "institution_review_packet",
+        "latest_article",
+        "rbi_supervisory_tape",
+        "research_network",
+        "stablecoin_rails_board",
+        "universe_search",
+        "verify_published_record"
+      ]
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "trade-safety",
+  "version": "1.0.0",
+  "description": "Explain the Trade Safety sandbox's capabilities, input limits and lack of execution authority.",
+  "author": {
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://agents.seiche.info/connect",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "LiquiLens Trade Safety",
+    "shortDescription": "Source-linked research",
+    "longDescription": "Explain the Trade Safety sandbox's capabilities, input limits and lack of execution authority.",
+    "developerName": "LIQUILENS PRIVATE LIMITED",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Research"
+    ],
+    "websiteURL": "https://agents.seiche.info/connect",
+    "privacyPolicyURL": "https://agents.seiche.info/privacy",
+    "termsOfServiceURL": "https://beepboop2025.github.io/financial-evidence-skills/terms/",
+    "supportURL": "https://beepboop2025.github.io/financial-evidence-skills/support/",
+    "composerIcon": "./assets/logo-400.png",
+    "logo": "./assets/logo.svg",
+    "defaultPrompt": [
+      "Discover LiquiLens Trade Safety's available research and coverage. Retrieve one relevant bounded result, cite its sources and dates, and explain missing or restricted evidence."
+    ],
+    "brandColor": "#0B6E69"
+  }
+}

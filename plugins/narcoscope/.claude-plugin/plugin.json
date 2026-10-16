@@ -1,0 +1,12 @@
+{
+  "name": "narcoscope",
+  "version": "1.0.0",
+  "description": "Drug, arms and informal-economy evidence.",
+  "author": {
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://www.narcoscope.com/developers/",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT"
+}

@@ -12,7 +12,7 @@ LIQUILENS PRIVATE LIMITED.
 Python 3.10 or newer:
 
 ```sh
-python3 -m pip install 'financial-evidence[workspace]==0.1.9'
+python3 -m pip install 'financial-evidence[workspace]==0.1.10'
 financial-evidence-trading doctor
 financial-evidence-trading context
 ```
@@ -83,7 +83,7 @@ research, metadata and sandbox surfaces. Each endpoint has its own tool schema.
 For the local three-tool research router:
 
 ```sh
-uvx --from financial-evidence==0.1.9 financial-evidence mcp
+uvx --from financial-evidence==0.1.10 financial-evidence mcp
 ```
 
 The existing `financial-evidence-mcp` command remains available. The local router

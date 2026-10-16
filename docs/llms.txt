@@ -4,16 +4,16 @@ Start with one task: https://beepboop2025.github.io/financial-evidence-skills/co
 
 > Financial Evidence is a free, read-only terminal and MCP router for public money-market, capital-market, china-economy, bank-risk, market-liquidity, GIFT City, forex and gold evidence. It connects LiquiLens, Undertow, Seiche, and Palimpsest while preserving separate sources and explicit unavailable states.
 
-Source candidate version: 0.1.10
-Last verified release: 0.1.9
+Published source version: 0.1.10
+Last verified release: 0.1.10
 Published topics: money-market, capital-market, china-economy, bank-risk, market-liquidity, gift-city, forex, gold.
-Last updated: 2026-10-15
+Last updated: 2026-10-16
 Publisher: LIQUILENS PRIVATE LIMITED
 License: MIT for the software; source publishers retain rights in upstream data.
 
 ## Primary documentation
 
-- [Tools for AI trading research](https://beepboop2025.github.io/financial-evidence-skills/distribution/ai-trading-tools.html): PyPI package `financial-evidence[workspace]==0.1.9` includes persistent Python MCP sessions, a connection diagnostic and Python/JavaScript source-status snapshot and SSE clients. Free anonymous public reads; metadata is not live prices and public research endpoints cannot place orders. Install with `python3 -m pip install 'financial-evidence[workspace]==0.1.9'`. [Full client guide](https://beepboop2025.github.io/financial-evidence-skills/agents/low-latency.md); source clocks, missingness and data rights remain separate from transport health.
+- [Tools for AI trading research](https://beepboop2025.github.io/financial-evidence-skills/distribution/ai-trading-tools.html): PyPI package `financial-evidence[workspace]==0.1.10` includes persistent Python MCP sessions, a connection diagnostic and Python/JavaScript source-status snapshot and SSE clients. Free anonymous public reads; metadata is not live prices and public research endpoints cannot place orders. Install with `python3 -m pip install 'financial-evidence[workspace]==0.1.10'`. [Full client guide](https://beepboop2025.github.io/financial-evidence-skills/agents/low-latency.md); source clocks, missingness and data rights remain separate from transport health.
 
 - [Evaluate a recurring task](https://beepboop2025.github.io/financial-evidence-skills/partners/adoption.md): three current starting paths for AI-agent builders, financial research infrastructure and trading research teams. Includes production-fit checks and consented first-use/return-use criteria. [Machine-readable evaluation paths](https://beepboop2025.github.io/financial-evidence-skills/partners/evaluation.json); verified adoption counts remain unknown.
 
@@ -28,14 +28,14 @@ License: MIT for the software; source publishers retain rights in upstream data.
 - [Overview and integration matrix](https://beepboop2025.github.io/financial-evidence-skills/)
 - [Recurring research workflows](https://beepboop2025.github.io/financial-evidence-skills/workflows/): funding, bank-context and liquidity-context captures with a CSV source index, optional scheduling template and private pilot scorecard; examples use package 0.1.5 and keep transport success separate from evidence validity.
 - [Source repository and full README](https://github.com/beepboop2025/financial-evidence-skills)
-- [Last verified release v0.1.9](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.9)
+- [Last verified release v0.1.10](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.10)
 - [v0.1.5 semantic contract](https://github.com/beepboop2025/financial-evidence-skills/blob/main/SEMANTIC_CONTRACT.md)
 - [Machine-readable integration manifest](https://beepboop2025.github.io/financial-evidence-skills/integrations.json)
 - [Machine-readable marketplace ledger](https://beepboop2025.github.io/financial-evidence-skills/marketplaces.json)
 - [Transparent pricing](https://beepboop2025.github.io/financial-evidence-skills/pricing.md)
 - [Official MCP Registry record](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.beepboop2025%2Ffinancial-evidence&version=latest)
 
-- [Current infrastructure publication](https://beepboop2025.github.io/financial-evidence-skills/distribution/agent-infrastructure-publication-20261015.md): PyPI and Homebrew 0.1.9, npm AI SDK 0.1.0, all 14 catalog products registered, with separate pending-directory and usage states.
+- [15 October infrastructure publication](https://beepboop2025.github.io/financial-evidence-skills/distribution/agent-infrastructure-publication-20261015.md): PyPI and Homebrew 0.1.9, npm AI SDK 0.1.0, all 14 catalog products registered, with separate pending-directory and usage states.
 
 ## Topic routing
 
@@ -49,23 +49,25 @@ License: MIT for the software; source publishers retain rights in upstream data.
 
 ## Python SDK and source-status API
 
-- [PyPI](https://pypi.org/project/financial-evidence/0.1.9/): `python3 -m pip install 'financial-evidence[workspace]==0.1.9'`.
+Python 0.1.10 bounds complete-event waits even when partial bytes or comment frames arrive. Python and JavaScript require an initial reset before a keepalive; npm AI SDK 0.1.1 includes the synchronized client. These tools retain no trade-execution authority.
+
+- [PyPI](https://pypi.org/project/financial-evidence/0.1.10/): `python3 -m pip install 'financial-evidence[workspace]==0.1.10'`.
 - [Persistent Python client](https://beepboop2025.github.io/financial-evidence-skills/agents/persistent-client.md): reuse MCP sessions with `ProductClient`; preserve each tool's source clocks and restrictions.
 - [Python and JavaScript source-status clients](https://beepboop2025.github.io/financial-evidence-skills/agents/low-latency.md): `ContextClient` and downloadable `context-client.mjs` support bounded snapshots and SSE.
 - [Context contract](https://agents.seiche.info/v1/context/contract), [snapshot](https://agents.seiche.info/v1/context/snapshot) and [SSE events](https://agents.seiche.info/v1/context/events): source-status metadata, not quotes or execution. Validate expiry and reconnect resets.
 
-- [Vercel AI SDK package](https://beepboop2025.github.io/financial-evidence-skills/platforms/ai-sdk.md): `npm install @moomoo202020/financial-evidence-ai-sdk@0.1.0 ai zod`. Public npm installation and native SDK behavior verified; directory review remains pending.
+- [Vercel AI SDK package](https://beepboop2025.github.io/financial-evidence-skills/platforms/ai-sdk.md): `npm install @moomoo202020/financial-evidence-ai-sdk@0.1.1 ai zod`. Public npm installation and native SDK behavior verified; directory review remains pending.
 
 ## Interfaces
 
-- Agent Skills: public `financial-evidence` skill with domain-triggered routing for compatible agents; install the last verified release with `npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.9/financial-evidence --skill financial-evidence`.
-- Terminal: uvx and persistent uv tool (0.1.9); Homebrew 0.1.9 independently installed and verified, Bash/Zsh/Fish completions, JSON/NDJSON/CSV/table output.
+- Agent Skills: public `financial-evidence` skill with domain-triggered routing for compatible agents; install the last verified release with `npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.10/financial-evidence --skill financial-evidence`.
+- Terminal: uvx and persistent uv tool (0.1.10); Homebrew 0.1.10 independently installed and verified, Bash/Zsh/Fish completions, JSON/NDJSON/CSV/table output.
 - Current MCP: the root `.mcp.json`, Gemini, Codex, Claude Code and editor configurations connect to the central nine-tool read-only Research Desk.
 - Remote MCP: public Streamable HTTP at `https://agents.seiche.info/products/financial-evidence/mcp`; no local install, account, API key, or write action. Start with `financial_evidence_datasets`, then `financial_evidence_workflow` with `{"workflow":"funding","selection":"USD"}`.
 - Legacy compatibility interface: `https://liquilens.in/mcp/financial-evidence` retains `financial_evidence_topics`, `financial_evidence_route` and `financial_evidence_fetch`. The local stdio command, MCP Bundle, OCI image and Registry record retain this separate three-tool contract. Fresh source retrieval uses the central data service.
-- Gemini CLI: root `gemini-extension.json` matches v0.1.9; install the verified release with `gemini extensions install https://github.com/beepboop2025/financial-evidence-skills --ref v0.1.9`.
+- Gemini CLI: root `gemini-extension.json` matches v0.1.10; install the verified release with `gemini extensions install https://github.com/beepboop2025/financial-evidence-skills --ref v0.1.10`.
 - Claude Code: self-hosted `liquidity-lab` plugin marketplace bundles the same Agent Skill and root MCP configuration; add with `claude plugin marketplace add beepboop2025/financial-evidence-skills`, then `claude plugin install financial-evidence@liquidity-lab`. This command follows mutable default-branch source; review its checked-out commit before enabling the plugin.
-- Codex: repository-installable OpenAI plugin bundles the same Agent Skill and public remote MCP route; install the last verified release with `codex plugin marketplace add beepboop2025/financial-evidence-skills --ref v0.1.9`, then `codex plugin add financial-evidence@liquidity-lab`.
+- Codex: repository-installable OpenAI plugin bundles the same Agent Skill and public remote MCP route; install the last verified release with `codex plugin marketplace add beepboop2025/financial-evidence-skills --ref v0.1.10`, then `codex plugin add financial-evidence@liquidity-lab`.
 - ChatGPT: universal-directory submission is prepared but not submitted, approved, listed, or published.
 - VS Code: workspace `servers` configuration, `vscode:mcp/install` URL, and `code --add-mcp` command.
 - Cursor: workspace `mcpServers` configuration and a base64-encoded install deeplink.
@@ -118,7 +120,7 @@ Packet `status` equals `transport_status` and describes retrieval only. Every pa
 
 ## Current system interfaces
 
-[System interface catalog](https://beepboop2025.github.io/financial-evidence-skills/agents/system.json) separates the public three-tool router 0.1.8, nine-tool hosted Research Desk 1.3.0 (upstream package 0.1.7, source `4802a9b3bfb9d652199f25bf52852cb1e5db1cb3`), six-tool local Runtime contract 1.0.0 (package 0.1.9), Runtime Operations 1.0.3 and the private authenticated paper host. [Choose an interface](https://liquilens.in/agents/infrastructure/). Public MCP endpoints retain their read-only authority; local scheduling and paper-host installation require the operator-controlled setup described by their guides.
+[System interface catalog](https://beepboop2025.github.io/financial-evidence-skills/agents/system.json) separates the public three-tool router 0.1.8, nine-tool hosted Research Desk 1.3.0 (upstream package 0.1.7, source `4802a9b3bfb9d652199f25bf52852cb1e5db1cb3`), six-tool local Runtime contract 1.0.0 (package 0.1.10), Runtime Operations 1.0.3 and the private authenticated paper host. [Choose an interface](https://liquilens.in/agents/infrastructure/). Public MCP endpoints retain their read-only authority; local scheduling and paper-host installation require the operator-controlled setup described by their guides.
 
 ## Start a recurring task
 

@@ -137,8 +137,8 @@ class EditorIntegrationTests(unittest.TestCase):
         )
         manifest = _json("docs/integrations.json")
         self.assertEqual(manifest["version"], self.version)
-        self.assertEqual(manifest["release_state"], "candidate")
-        self.assertEqual(manifest["last_verified_release"], "0.1.9")
+        self.assertEqual(manifest["release_state"], "published")
+        self.assertEqual(manifest["last_verified_release"], "0.1.10")
         homebrew = self.interfaces["Homebrew"]
         self.assertEqual(homebrew["candidate_version"], self.version)
         self.assertEqual(homebrew["published_version"], self.published_version)
@@ -183,7 +183,15 @@ class EditorIntegrationTests(unittest.TestCase):
         ]
         for path in release_surfaces:
             text = (ROOT / path).read_text()
-            self.assertNotRegex(text, r"(?<![0-9.])0\.1\.1(?![0-9.])", path)
+            # The npm SDK has its own valid 0.1.1 release. Reject retired
+            # root-package install pins, not another component's version.
+            self.assertNotRegex(
+                text,
+                r"(?:financial-evidence(?:\[workspace\])?==|"
+                r"financial-evidence-skills(?::|/(?:tree|blob|releases/tag|releases/download)/v))"
+                r"0\.1\.1(?![0-9.])",
+                path,
+            )
             if path not in {
                 "README.md",
                 ".agents/plugins/marketplace.json",

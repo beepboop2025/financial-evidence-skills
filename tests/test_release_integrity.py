@@ -11,9 +11,9 @@ class ReleaseIntegrityTests(unittest.TestCase):
     def test_citation_metadata_tracks_the_package_release(self):
         citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
         self.assertIn("cff-version: 1.2.0", citation)
-        self.assertIn("version: 0.1.9", citation)
-        self.assertIn("date-released: '2026-10-15'", citation)
-        self.assertIn("releases/tag/v0.1.9", citation)
+        self.assertIn("version: 0.1.10", citation)
+        self.assertIn("date-released: '2026-10-16'", citation)
+        self.assertIn("releases/tag/v0.1.10", citation)
 
     def test_release_assets_are_sbomed_and_attested_by_immutable_actions(self):
         workflow = (

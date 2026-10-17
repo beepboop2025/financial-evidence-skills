@@ -1,4 +1,4 @@
-# Turning infrastructure into product adoption
+# Evaluating a recurring research integration
 
 The infrastructure objective is to make recurring financial research easy to
 integrate, inspect and recover. Universal AI-trading adoption and investment
@@ -30,37 +30,11 @@ trading research. No combined numerical score is produced.
 | Payment | Account entitlement plus settled/reconciled payment | Paying adoption; an API call alone cannot establish it |
 | Reliability | Source-response success, blocked reasons, recovery receipts | Operational quality within measured coverage |
 
-The new local metrics supply operational run counts and owner-reported outcomes.
+Local metrics supply operational run counts and owner-reported outcomes.
 They deliberately leave external users, retention, paid customers and revenue
 unknown. Do not add synthetic acceptance or internal live probes to an external
 traction numerator. Request headers make those probes distinguishable but are
 not trustworthy evidence of an outside customer by themselves.
-
-## Proposed rollout milestones
-
-These are engineering and product targets, not measured achievements or funding
-benchmarks:
-
-1. Reproduce candidate installation, six-tool MCP discovery, receipt verification
-   and backup restore from a built wheel. Keep exact code and artifact identities.
-2. Combine a research receipt with the separately owned paper-trading walkthrough.
-   Check that blocked/missing research stays visible and cannot bypass execution
-   permission. Preserve the separate research and execution records.
-3. Observe three independent design partners installing the runtime, with their
-   permission to measure activation. Record setup failure reasons and elapsed
-   time to the first useful research workflow. Targets: under 15 minutes for a
-   supported clean setup and no manual database repair.
-4. Observe four consecutive weeks of use. Report returning installations over
-   eligible activated installations, plus sample size, observation dates and
-   policy-blocked reasons. Do not silently discard failed users from the cohort.
-5. Establish willingness to pay through paid pilots and reconciled receipts.
-   Identify the particular product and workflow purchased before expanding the
-   infrastructure into hosted tenancy or a larger billing platform.
-
-No customer contact, marketing campaign, paid pilot, service installation or
-production activation is performed by this candidate. Distribution should point
-to a published, verified artifact once release acceptance is complete; the
-source-candidate installation guide is explicit until then.
 
 ## Integration handoff
 

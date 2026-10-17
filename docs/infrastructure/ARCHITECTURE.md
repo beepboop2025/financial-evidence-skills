@@ -165,20 +165,8 @@ It has no hosted tenancy, public authentication service, distributed queue,
 cross-installation deduplication, managed uptime SLA or billing control plane.
 Those cannot be claimed from local tests or a public package listing.
 
-When one host reaches its defined limits, first inspect whether workflows can
-share research questions or use a slower cadence. For a hosted multi-tenant
-service, replace local admission with a transactional tenant-aware store and
-durable queue, add reviewed identity/entitlements and per-tenant isolation,
-retain immutable key history, and test leader failure and restore before rollout.
-Keep source credentials server-side and maintain a separate execution authority
-boundary. Public OAuth and remote MCP should use the existing authenticated
-delivery architecture rather than exposing this private stdio server as HTTP.
-
-For stronger third-party receipts, attach the existing approved carrier/signing
-mechanism with key management and revocation; do not reinterpret the content
-hash as a signature. For commercial adoption, join consented external identities,
-useful completed work and reconciled payment evidence with bounded retention.
-See [the adoption plan](ADOPTION.md) for measurable rollout criteria.
+Content hashes establish content identity; they are not signatures.
+Keep execution authority separate from research results.
 
 The MCP interface follows the [official tool protocol](https://modelcontextprotocol.io/specification/2025-11-25/server/tools).
 Annotations remain descriptive hints; enforcement lives in the runtime.

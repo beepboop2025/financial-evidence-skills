@@ -138,10 +138,10 @@ class EditorIntegrationTests(unittest.TestCase):
         manifest = _json("docs/integrations.json")
         self.assertEqual(manifest["version"], self.version)
         self.assertEqual(manifest["release_state"], "published" if self.version == self.published_version else "candidate")
-        self.assertEqual(manifest["last_verified_release"], "0.1.12")
+        self.assertEqual(manifest["last_verified_release"], "0.1.13")
         homebrew = self.interfaces["Homebrew"]
         self.assertEqual(homebrew["candidate_version"], self.version)
-        self.assertEqual(homebrew["published_version"], self.published_version)
+        self.assertEqual(homebrew["published_version"], "0.1.12")
         self.assertEqual(homebrew["status"], "public")
         mcp_interface = self.interfaces["Model Context Protocol"]
         self.assertTrue(mcp_interface["portable_agent_host"])

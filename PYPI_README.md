@@ -22,6 +22,15 @@ clients. The base package has no required dependencies and includes the terminal
 and three-tool stdio router. Public hosted research reads need no data API key.
 Optional subscriptions and client/model costs have separate terms.
 
+## Source preview: complete your first review
+
+The repository now includes `financial-evidence start` and
+`financial-evidence review funding --output reviews` for a guided first result,
+a readable source-cited brief and comparison with the next review. These commands
+require installation from the updated source checkout; **they are not in the
+published 0.1.10 wheel**. No optional dependencies or model are needed.
+[Follow the first-review guide](https://github.com/beepboop2025/financial-evidence-skills/blob/main/docs/agents/FIRST_REVIEW.md).
+
 ## Reuse an MCP connection
 
 ```python

@@ -164,17 +164,63 @@ def command_doctor(args: argparse.Namespace) -> int:
     return command_fetch(args)
 
 
+def command_start(args: argparse.Namespace) -> int:
+    """Choose a useful task before installing clients or fetching data."""
+    from .onboarding import starter_catalog
+
+    catalog = starter_catalog()
+    if args.task:
+        catalog["tasks"] = [task for task in catalog["tasks"] if task["id"] == args.task]
+    for task in catalog["tasks"]:
+        task["review_command"] = (
+            f"financial-evidence review {task['id']} --selection {task['selection']} --output reviews"
+        )
+    if args.format == "json":
+        print(compact_json(catalog))
+        return 0
+    print("Choose one research task. No network request has been made.\n")
+    for task in catalog["tasks"]:
+        print(f"{task['title']} ({task['product']})")
+        print(task["question"])
+        print("  Run:", task["review_command"])
+        print("  Browser:", task["browser_url"])
+        print("  API:", task["api_url"])
+        print("  MCP:", task["tool"], compact_json(task["arguments"]))
+        print("  Scope:", task["scope"], "\n")
+    print("MCP connection:", catalog["mcp_url"])
+    print("A saved review includes result.json, brief.md and a receipt. At your next review,")
+    print("repeat the same command with --previous PATH/TO/result.json to compare evidence.")
+    print("Use --verification for operator tests. Requests are not proof of adoption.")
+    return 0
+
+
+def command_review(args: argparse.Namespace) -> int:
+    from .onboarding import TASKS
+    from .research import main as review_main
+
+    task = next(task for task in TASKS if task["id"] == args.workflow)
+    argv = ["--workflow", args.workflow, "--selection",
+            args.selection if args.selection is not None else task["selection"],
+            "--format", args.format]
+    for option in ("output", "previous"):
+        if getattr(args, option) is not None:
+            argv.extend(["--" + option, getattr(args, option)])
+    if args.verification:
+        argv.append("--verification")
+    return review_main(argv)
+
+
 COMPLETIONS = {
     "bash": """_financial_evidence() {
   local cur="${COMP_WORDS[COMP_CWORD]}"
-  COMPREPLY=( $(compgen -W "mcp topics route fetch doctor completion --help --version" -- "$cur") )
+  COMPREPLY=( $(compgen -W "start review mcp topics route fetch doctor completion --help --version" -- "$cur") )
 }
 complete -F _financial_evidence financial-evidence
 """,
     "zsh": """#compdef financial-evidence
-_arguments '1:command:(mcp topics route fetch doctor completion)' '*::arg:->args'
+_arguments '1:command:(start review mcp topics route fetch doctor completion)' '*::arg:->args'
 """,
-    "fish": """complete -c financial-evidence -f -a 'mcp topics route fetch doctor completion'
+    "fish": """complete -c financial-evidence -f -a 'start review mcp topics route fetch doctor completion'
 complete -c financial-evidence -l version -d 'Show version'
 """,
 }
@@ -213,6 +259,20 @@ def parser() -> argparse.ArgumentParser:
     )
     root.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     commands = root.add_subparsers(dest="command", required=True)
+
+    start = commands.add_parser("start", help="choose a research task; show CLI, API and MCP setup offline")
+    start.add_argument("task", nargs="?", choices=("funding", "institutions", "exit"))
+    start.add_argument("--format", choices=("text", "json"), default="text")
+    start.set_defaults(handler=command_start)
+
+    review = commands.add_parser("review", help="read one workflow, save a brief and compare a previous review")
+    review.add_argument("workflow", choices=("funding", "institutions", "exit"))
+    review.add_argument("--selection", help="currency, covered institution slugs or BTC USD sizes")
+    review.add_argument("--output", help="directory for new captures; existing reviews are preserved")
+    review.add_argument("--previous", help="previous result.json for the same workflow and selection")
+    review.add_argument("--format", choices=("markdown", "json"), default="markdown")
+    review.add_argument("--verification", action="store_true", help="label operator or CI tests as synthetic")
+    review.set_defaults(handler=command_review)
 
     mcp = commands.add_parser("mcp", help="serve the read-only MCP router on stdio")
     mcp.set_defaults(handler=command_mcp)

@@ -1,0 +1,497 @@
+{
+  "schema": "financial-evidence.release-verification.v1",
+  "version": "0.1.12",
+  "source_commit": "4e5584ce04390d468fe3cacb5119c08ffb89def6",
+  "tag_object": "ea6700ee8e1f81f62ce57b21c02455bd54c7b30e",
+  "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.12",
+  "published_at": "2026-10-17T20:25:24Z",
+  "verified_at": "2026-10-17T20:43:41.055802+00:00",
+  "verification_status": "verified",
+  "assets": [
+    {
+      "name": "financial-evidence-0.1.12.mcpb",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.12/financial-evidence-0.1.12.mcpb",
+      "sha256": "08ff6ccc16084c4c05ab869c3742ce8e467be335fd3ecc5c5e3919a47bd91282",
+      "size": 4635125
+    },
+    {
+      "name": "financial-evidence-v0.1.12.cdx.json",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.12/financial-evidence-v0.1.12.cdx.json",
+      "sha256": "45972f1ae15fb07afbda31b7cf99ad82c484637fbc6d29640ce130035ab2b94e",
+      "size": 355509
+    },
+    {
+      "name": "financial_evidence-0.1.12-py3-none-any.whl",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.12/financial_evidence-0.1.12-py3-none-any.whl",
+      "sha256": "3c447d87c3e44aa1a66d55801687cdb3d04fff44d2be56f513761a3d7df14b93",
+      "size": 194121
+    },
+    {
+      "name": "financial_evidence-0.1.12.tar.gz",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.12/financial_evidence-0.1.12.tar.gz",
+      "sha256": "20cce4ba3d1c036c81a10f8f3b6a07d03626df2bd3999fe975aa73293d0fdba6",
+      "size": 4232261
+    },
+    {
+      "name": "SHA256SUMS",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.12/SHA256SUMS",
+      "sha256": "b04d0e0079a17d713381d756b28f1390508e9672813615788c82721f108fd668",
+      "size": 407
+    }
+  ],
+  "checksums": "PASS",
+  "wheel_source_files_verified": 64,
+  "pypi": {
+    "url": "https://pypi.org/project/financial-evidence/0.1.12/",
+    "artifact_hashes_match_github": true,
+    "artifacts": [
+      {
+        "name": "financial_evidence-0.1.12-py3-none-any.whl",
+        "url": "https://files.pythonhosted.org/packages/b4/f2/6427ae23213a8d2b97e9bd5420781d2ea033b9e4bc263a1bc06749dc4acf/financial_evidence-0.1.12-py3-none-any.whl",
+        "sha256": "3c447d87c3e44aa1a66d55801687cdb3d04fff44d2be56f513761a3d7df14b93"
+      },
+      {
+        "name": "financial_evidence-0.1.12.tar.gz",
+        "url": "https://files.pythonhosted.org/packages/26/19/ca04b0faca255e4304c9dcb53e0d91dd1a53fbd38f9b23b3ae28f3a4c31b/financial_evidence-0.1.12.tar.gz",
+        "sha256": "20cce4ba3d1c036c81a10f8f3b6a07d03626df2bd3999fe975aa73293d0fdba6"
+      }
+    ]
+  },
+  "registry_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.12",
+  "registry_status": "active",
+  "registry_metadata_matches_source": true,
+  "runtime_checks": {
+    "containers": {
+      "status": "verified_public_identity_and_both_runtime_architectures",
+      "digest": "sha256:7ec2e2e664117d7716b05834272cd07965dde899bf2f693a12b8c2b708290593",
+      "platforms": [
+        {
+          "platform": {
+            "architecture": "amd64",
+            "os": "linux"
+          },
+          "manifest_digest": "sha256:6e0f676e7c3d2ee74ab677421a892304e522412f1583d02cd51130ce0118fde5",
+          "config_digest": "sha256:5d0c7d16ae2519de2db5e3c8f59a963b7c9975f85374c38d9d16529812ef5289",
+          "source_commit": "4e5584ce04390d468fe3cacb5119c08ffb89def6"
+        },
+        {
+          "platform": {
+            "architecture": "arm64",
+            "os": "linux"
+          },
+          "manifest_digest": "sha256:cc48d17abf41765c32fb3ffaea43fc9eec12dc6d825b0995059d9342d8311696",
+          "config_digest": "sha256:7ee1cda0c0e3550a6f83bf9017aab9a6e8b0f5830e74e3e306f4e3e6cf604138",
+          "source_commit": "4e5584ce04390d468fe3cacb5119c08ffb89def6"
+        }
+      ],
+      "runtime_receipts": {
+        "amd64": {
+          "schema": "financial-evidence.published-artifact-check.v1",
+          "observed_at": "2026-10-17T20:32:32.319043+00:00",
+          "status": "PASS",
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--interactive",
+            "--platform",
+            "linux/amd64",
+            "--pull",
+            "never",
+            "--read-only",
+            "--network",
+            "none",
+            "--cap-drop",
+            "ALL",
+            "--security-opt",
+            "no-new-privileges",
+            "--pids-limit",
+            "64",
+            "--memory",
+            "128m",
+            "--cpus",
+            "1",
+            "ghcr.io/beepboop2025/financial-evidence-skills@sha256:7ec2e2e664117d7716b05834272cd07965dde899bf2f693a12b8c2b708290593"
+          ],
+          "server_info": {
+            "name": "financial-evidence",
+            "version": "0.1.12"
+          },
+          "tools_sha256": "078d872396724c0acaeac051385d07f35679fb5445c5cd1979f673c372ab170d",
+          "topic_count": 8,
+          "topics": [
+            "money-market",
+            "capital-market",
+            "china-economy",
+            "bank-risk",
+            "market-liquidity",
+            "gift-city",
+            "forex",
+            "gold"
+          ],
+          "checks": [
+            "initialize",
+            "frozen_tools_contract",
+            "all_topic_routes",
+            "new_topic_routes",
+            "shared_gold_gift_source",
+            "strict_arguments"
+          ],
+          "valid_fetch_requests": 0,
+          "scope": "Artifact runtime contract; no source freshness or external adoption claim",
+          "tested_platform": "linux/amd64",
+          "image": "ghcr.io/beepboop2025/financial-evidence-skills@sha256:7ec2e2e664117d7716b05834272cd07965dde899bf2f693a12b8c2b708290593",
+          "image_id": "sha256:5d0c7d16ae2519de2db5e3c8f59a963b7c9975f85374c38d9d16529812ef5289",
+          "source_commit": "4e5584ce04390d468fe3cacb5119c08ffb89def6",
+          "runtime_catalog": "PASS",
+          "recurring_workflow_report": "PASS"
+        },
+        "arm64": {
+          "schema": "financial-evidence.published-artifact-check.v1",
+          "observed_at": "2026-10-17T20:32:29.449108+00:00",
+          "status": "PASS",
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--interactive",
+            "--platform",
+            "linux/arm64",
+            "--pull",
+            "never",
+            "--read-only",
+            "--network",
+            "none",
+            "--cap-drop",
+            "ALL",
+            "--security-opt",
+            "no-new-privileges",
+            "--pids-limit",
+            "64",
+            "--memory",
+            "128m",
+            "--cpus",
+            "1",
+            "ghcr.io/beepboop2025/financial-evidence-skills@sha256:7ec2e2e664117d7716b05834272cd07965dde899bf2f693a12b8c2b708290593"
+          ],
+          "server_info": {
+            "name": "financial-evidence",
+            "version": "0.1.12"
+          },
+          "tools_sha256": "078d872396724c0acaeac051385d07f35679fb5445c5cd1979f673c372ab170d",
+          "topic_count": 8,
+          "topics": [
+            "money-market",
+            "capital-market",
+            "china-economy",
+            "bank-risk",
+            "market-liquidity",
+            "gift-city",
+            "forex",
+            "gold"
+          ],
+          "checks": [
+            "initialize",
+            "frozen_tools_contract",
+            "all_topic_routes",
+            "new_topic_routes",
+            "shared_gold_gift_source",
+            "strict_arguments"
+          ],
+          "valid_fetch_requests": 0,
+          "scope": "Artifact runtime contract; no source freshness or external adoption claim",
+          "tested_platform": "linux/arm64",
+          "image": "ghcr.io/beepboop2025/financial-evidence-skills@sha256:7ec2e2e664117d7716b05834272cd07965dde899bf2f693a12b8c2b708290593",
+          "image_id": "sha256:7ee1cda0c0e3550a6f83bf9017aab9a6e8b0f5830e74e3e306f4e3e6cf604138",
+          "source_commit": "4e5584ce04390d468fe3cacb5119c08ffb89def6",
+          "runtime_catalog": "PASS",
+          "recurring_workflow_report": "PASS"
+        }
+      }
+    },
+    "pypi_consumer": {
+      "schema": "financial-evidence.pypi-consumer.v1",
+      "status": "PASS",
+      "version": "0.1.12",
+      "observed_at": "2026-10-17T20:26:05.422749+00:00",
+      "source_files_verified": 63,
+      "offline_starter_tasks": 3,
+      "stdio_contract": "PASS",
+      "fresh_public_install": true,
+      "recurring_runs": 2,
+      "saved_comparison": "PASS",
+      "public_sharing": "disabled",
+      "eligible_usage_runs": 0,
+      "execution_authority": "none",
+      "traffic": "synthetic/test; not external adoption",
+      "optional_dependencies_installed": false
+    },
+    "uvx": {
+      "status": "PASS",
+      "version": "0.1.12",
+      "starter": {
+        "api_base": "https://agents.seiche.info/v1/research",
+        "authentication": "none_for_public_reads",
+        "first_steps": [
+          "Choose one task and inspect dataset coverage.",
+          "Read the source dates, units, missing values and limitations with the result.",
+          "Save the evidence and return to the same task for your next review."
+        ],
+        "guide_url": "https://beepboop2025.github.io/financial-evidence-skills/connect/",
+        "mcp_url": "https://agents.seiche.info/products/financial-evidence/mcp",
+        "network_access_performed": false,
+        "recurring_workflows": {
+          "command": "financial-evidence workflow run funding --state ./funding-reviews",
+          "guide_url": "https://beepboop2025.github.io/financial-evidence-skills/start/agent-workflows.md",
+          "installation": "repository_source_required_until_next_package_release",
+          "scope": "Saved reviews, explicit feedback and operator-reported outcomes; no execution authority.",
+          "sharing_default": "local_only"
+        },
+        "schema": "financial-evidence.start.v1",
+        "scope": "Connection guidance only; no network probe, freshness verdict, platform endorsement or financial authority.",
+        "tasks": [
+          {
+            "api_url": "https://agents.seiche.info/v1/research/api/v1/workflow?workflow=funding&selection=USD",
+            "arguments": {
+              "selection": "USD",
+              "workflow": "funding"
+            },
+            "browser_url": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?workflow=funding&selection=USD",
+            "connect_url": "https://beepboop2025.github.io/financial-evidence-skills/connect/?task=funding",
+            "dataset": "money_markets",
+            "id": "funding",
+            "product": "Seiche",
+            "question": "What do the published dollar-funding observations show, and what is missing?",
+            "review_command": "financial-evidence review funding --selection USD --output reviews",
+            "scope": "System funding context. Each series retains its own observation date; this is not a company's cash position.",
+            "selection": "USD",
+            "title": "Review funding conditions",
+            "tool": "financial_evidence_workflow",
+            "topic": "money-market"
+          },
+          {
+            "api_url": "https://agents.seiche.info/v1/research/api/v1/workflow?workflow=institutions&selection=au-sfb",
+            "arguments": {
+              "selection": "au-sfb",
+              "workflow": "institutions"
+            },
+            "browser_url": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?workflow=institutions&selection=au-sfb",
+            "connect_url": "https://beepboop2025.github.io/financial-evidence-skills/connect/?task=institutions",
+            "dataset": "bank_risk",
+            "id": "institutions",
+            "product": "LiquiLens",
+            "question": "Which disclosures are available for AU Small Finance Bank, and where are the evidence gaps?",
+            "review_command": "financial-evidence review institutions --selection au-sfb --output reviews",
+            "scope": "Covered public disclosures and research diagnostics. Check coverage first; no credit rating or deposit-safety conclusion.",
+            "selection": "au-sfb",
+            "title": "Review a covered institution",
+            "tool": "financial_evidence_workflow",
+            "topic": "bank-risk"
+          },
+          {
+            "api_url": "https://agents.seiche.info/v1/research/api/v1/workflow?workflow=exit&selection=10000%2C100000",
+            "arguments": {
+              "selection": "10000,100000",
+              "workflow": "exit"
+            },
+            "browser_url": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html?workflow=exit&selection=10000%2C100000",
+            "connect_url": "https://beepboop2025.github.io/financial-evidence-skills/connect/?task=exit",
+            "dataset": "market_liquidity",
+            "id": "exit",
+            "product": "Undertow",
+            "question": "What indicative BTC exit evidence is available for the published sizes and venues?",
+            "review_command": "financial-evidence review exit --selection 10000,100000 --output reviews",
+            "scope": "Indicative BTC research at supported sizes and venues. No executable quote, order routing or guaranteed fill.",
+            "selection": "10000,100000",
+            "title": "Inspect BTC exit liquidity",
+            "tool": "financial_evidence_workflow",
+            "topic": "market-liquidity"
+          }
+        ],
+        "unavailable_help": "An empty, stale or unavailable result is not zero or a safety signal. Inspect source diagnostics, try a covered selection, or retain the gap in your review."
+      },
+      "version_proof": "uvx-mcp-consumer.json"
+    },
+    "stdio": {
+      "schema": "financial-evidence.published-artifact-check.v1",
+      "observed_at": "2026-10-17T20:25:51.691830+00:00",
+      "status": "PASS",
+      "command": [
+        "financial-evidence",
+        "mcp"
+      ],
+      "server_info": {
+        "name": "financial-evidence",
+        "version": "0.1.12"
+      },
+      "tools_sha256": "078d872396724c0acaeac051385d07f35679fb5445c5cd1979f673c372ab170d",
+      "topic_count": 8,
+      "topics": [
+        "money-market",
+        "capital-market",
+        "china-economy",
+        "bank-risk",
+        "market-liquidity",
+        "gift-city",
+        "forex",
+        "gold"
+      ],
+      "checks": [
+        "initialize",
+        "frozen_tools_contract",
+        "all_topic_routes",
+        "new_topic_routes",
+        "shared_gold_gift_source",
+        "strict_arguments"
+      ],
+      "valid_fetch_requests": 0,
+      "scope": "Artifact runtime contract; no source freshness or external adoption claim"
+    },
+    "mcp_bundle": {
+      "schema": "financial-evidence.published-artifact-check.v1",
+      "observed_at": "2026-10-17T20:32:44.919870+00:00",
+      "status": "PASS",
+      "command": [
+        "uv",
+        "run",
+        "--no-project",
+        "--directory",
+        "<extracted-mcpb>",
+        "python",
+        "-m",
+        "financial_evidence.mcp"
+      ],
+      "server_info": {
+        "name": "financial-evidence",
+        "version": "0.1.12"
+      },
+      "tools_sha256": "078d872396724c0acaeac051385d07f35679fb5445c5cd1979f673c372ab170d",
+      "topic_count": 8,
+      "topics": [
+        "money-market",
+        "capital-market",
+        "china-economy",
+        "bank-risk",
+        "market-liquidity",
+        "gift-city",
+        "forex",
+        "gold"
+      ],
+      "checks": [
+        "initialize",
+        "frozen_tools_contract",
+        "all_topic_routes",
+        "new_topic_routes",
+        "shared_gold_gift_source",
+        "strict_arguments"
+      ],
+      "valid_fetch_requests": 0,
+      "scope": "Artifact runtime contract; no source freshness or external adoption claim"
+    }
+  },
+  "independent_adoption": "not_measured",
+  "workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/39066438189",
+  "attestations": "four_release_subjects_exact_source_tag_workflow_PASS",
+  "attestation_scope": {
+    "github_attestations": "four release subjects verified against exact signed source, tag and workflow",
+    "checksums": "manifest hashes independently verified against the four attested subject bytes; manifest is not a separate attestation subject",
+    "containers": "OCI BuildKit provenance and independent runtime checks; release workflow does not publish GitHub OCI attestations"
+  },
+  "plugin_configuration_readback": [
+    {
+      "path": ".mcp.json",
+      "matches_signed_release": true
+    },
+    {
+      "path": ".vscode/mcp.json",
+      "matches_signed_release": true
+    },
+    {
+      "path": ".cursor/mcp.json",
+      "matches_signed_release": true
+    },
+    {
+      "path": ".codex-plugin/plugin.json",
+      "matches_signed_release": true
+    },
+    {
+      "path": ".agents/plugins/marketplace.json",
+      "matches_signed_release": true
+    },
+    {
+      "path": "gemini-extension.json",
+      "matches_signed_release": true
+    },
+    {
+      "path": ".claude-plugin/plugin.json",
+      "matches_signed_release": true
+    },
+    {
+      "path": "financial-evidence/SKILL.md",
+      "matches_signed_release": true
+    }
+  ],
+  "homebrew": {
+    "status": "published_and_independently_verified",
+    "source_commit": "7fd63d96bb869fbc6ff023eb7af9c96b5fe39122",
+    "publication_commit": "b83c9cc1fd43874936d970b551035d30b7c0b5c7",
+    "formula_sha256": "aa753a67af97881425efd96a02e1a0ac2ceeabf9647e9683a2b824926a548746",
+    "publication_url": "https://github.com/beepboop2025/homebrew-tap/pull/13",
+    "independent_workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/39067133145",
+    "acceptance": {
+      "schema": "financial-evidence.homebrew-candidate-acceptance.v1",
+      "observed_at": "2026-10-17T20:42:11.774662+00:00",
+      "source_commit": "7fd63d96bb869fbc6ff023eb7af9c96b5fe39122",
+      "formula_sha256": "aa753a67af97881425efd96a02e1a0ac2ceeabf9647e9683a2b824926a548746",
+      "release_source_commit": "4e5584ce04390d468fe3cacb5119c08ffb89def6",
+      "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.12/financial_evidence-0.1.12.tar.gz",
+      "release_sha256": "20cce4ba3d1c036c81a10f8f3b6a07d03626df2bd3999fe975aa73293d0fdba6",
+      "installed": {
+        "version": "0.1.12",
+        "entrypoints": [
+          "financial-evidence",
+          "financial-evidence-agent-mcp",
+          "financial-evidence-api",
+          "financial-evidence-learning",
+          "financial-evidence-mcp",
+          "financial-evidence-product-mcp",
+          "financial-evidence-runtime",
+          "financial-evidence-runtime-mcp",
+          "financial-evidence-trading",
+          "financial-evidence-workspace-mcp",
+          "seiche-network-client-mcp"
+        ],
+        "all_entrypoints_load": true,
+        "platform_url": "https://agents.seiche.info",
+        "hosted_module_sha256": "108b87f1c8129084bbb394ffcf0932636f58f6c1942918e7103796be8dd98fa7",
+        "workflow_module_sha256": "ad3f4f2f9b13c409d75eba09077b1ef6a6dd17c347e7ea73517e32efffd1bbee",
+        "research_module_sha256": "4d3970956b792fac5470b119d18ebccb9d3e2fea10abd2b41a3f4a4518449ffe",
+        "context_module_sha256": "6a62b6c2a1b8fa1a15bd775a607b4b3cac7d558f092545cb401b1c211d656aec"
+      },
+      "checks": [
+        "strict_online_audit",
+        "style",
+        "actual_install",
+        "formula_test",
+        "published_mcp_contract",
+        "all_11_entrypoints_load",
+        "installed_central_client_identity",
+        "installed_context_patch_identity",
+        "installed_first_review_commands",
+        "installed_research_module_identity",
+        "installed_recurring_workflow_commands",
+        "installed_workflow_module_identity"
+      ],
+      "status": "PASS",
+      "scope": "Independent consumer acceptance, not native tap CI or public tap publication"
+    },
+    "public_formula_bytes_match_candidate": true,
+    "native_tap_actions_enabled": false
+  },
+  "boundaries": [
+    "Synthetic consumer checks establish installed behavior, not independent adoption, retention or revenue.",
+    "Transport and publication verification do not establish source freshness, complete coverage or data rights.",
+    "Recurring review state is local; installation enables neither a scheduler nor contribution delivery.",
+    "The hosted router retains its separately verified version and deployment identity."
+  ]
+}

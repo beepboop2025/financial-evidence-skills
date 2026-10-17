@@ -1,10 +1,10 @@
 {
   "schema": "financial-evidence.remote-mcp-release.v1",
   "repository": "https://github.com/beepboop2025/liquilens-site.git",
-  "worker_source_commit": "4eb59d8d8e5c80e2403693c6ed70cafac780318e",
-  "worker_version_id": "7c645130-6b88-480e-9d6c-9e91abefdc5a",
+  "worker_source_commit": "559f9b72a071371695891d5dbd76cf0201ac47a9",
+  "worker_version_id": "bf2c5cf7-b2dd-4401-aa4a-d1f87592d36f",
   "mcp_contract": "integrations/financial-evidence-mcp-v0.1.8.json",
-  "verified_at": "2026-10-15T15:20:12.366875+00:00",
+  "verified_at": "2026-10-17T20:45:22.236633+00:00",
   "source_paths": [
     "edge",
     ".well-known",

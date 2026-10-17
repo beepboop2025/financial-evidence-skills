@@ -2,8 +2,8 @@
   "schema": "liquidity-lab.financial-evidence-integrations.v1",
   "name": "Financial Evidence",
   "version": "0.1.12",
-  "release_state": "candidate",
-  "last_verified_release": "0.1.11",
+  "release_state": "published",
+  "last_verified_release": "0.1.12",
   "updated_at": "2026-10-17",
   "license": "MIT",
   "account_required": false,
@@ -30,18 +30,18 @@
       "name": "PyPI",
       "kind": "python-package",
       "identifier": "financial-evidence",
-      "install": "python3 -m pip install 'financial-evidence[workspace]==0.1.11'",
-      "url": "https://pypi.org/project/financial-evidence/0.1.11/",
+      "install": "python3 -m pip install 'financial-evidence[workspace]==0.1.12'",
+      "url": "https://pypi.org/project/financial-evidence/0.1.12/",
       "candidate_version": "0.1.12",
       "status": "public",
-      "published_version": "0.1.11",
-      "verified_at": "2026-10-17T16:52:40.869882+00:00"
+      "published_version": "0.1.12",
+      "verified_at": "2026-10-17T20:43:41.055802+00:00"
     },
     {
       "name": "Agent Skills",
       "kind": "agent-skill",
       "identifier": "financial-evidence",
-      "install": "npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.11/financial-evidence --skill financial-evidence",
+      "install": "npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.12/financial-evidence --skill financial-evidence",
       "directory_url": "https://skills.sh/beepboop2025/financial-evidence-skills/financial-evidence",
       "activation_topics": [
         "money-market",
@@ -54,7 +54,7 @@
         "gold"
       ],
       "candidate_version": "0.1.12",
-      "published_version": "0.1.11",
+      "published_version": "0.1.12",
       "status": "public",
       "candidate_activation_topics": [
         "money-market",
@@ -66,33 +66,33 @@
         "forex",
         "gold"
       ],
-      "verified_at": "2026-10-17T16:52:40.869882+00:00"
+      "verified_at": "2026-10-17T20:43:41.055802+00:00"
     },
     {
       "name": "Homebrew",
       "kind": "terminal-package",
       "install": "brew install beepboop2025/tap/financial-evidence",
       "candidate_version": "0.1.12",
-      "published_version": "0.1.11",
+      "published_version": "0.1.12",
       "status": "public",
-      "verified_at": "2026-10-17T16:52:40.869882+00:00",
-      "publication_url": "https://github.com/beepboop2025/homebrew-tap/pull/12",
-      "consumer_verification_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/39050512134/job/117447961329"
+      "verified_at": "2026-10-17T20:43:41.055802+00:00",
+      "publication_url": "https://github.com/beepboop2025/homebrew-tap/pull/13",
+      "consumer_verification_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/39067133145/job/117497016838"
     },
     {
       "name": "uvx",
       "kind": "terminal-runner",
-      "install": "uvx --from financial-evidence==0.1.11 financial-evidence",
+      "install": "uvx --from financial-evidence==0.1.12 financial-evidence",
       "candidate_version": "0.1.12",
-      "published_version": "0.1.11",
+      "published_version": "0.1.12",
       "status": "public",
-      "verified_at": "2026-10-17T16:52:40.869882+00:00"
+      "verified_at": "2026-10-17T20:43:41.055802+00:00"
     },
     {
       "name": "Model Context Protocol",
       "kind": "mcp-registry",
       "identifier": "io.github.beepboop2025/financial-evidence",
-      "config": "https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.11/.mcp.json",
+      "config": "https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.12/.mcp.json",
       "candidate_config": "https://github.com/beepboop2025/financial-evidence-skills/blob/main/.mcp.json",
       "transports": [
         "streamable-http",
@@ -102,10 +102,10 @@
       "portable_agent_host": true,
       "tools": 3,
       "candidate_version": "0.1.12",
-      "published_version": "0.1.11",
+      "published_version": "0.1.12",
       "status": "official-registry-active",
-      "verified_at": "2026-10-17T16:52:40.869882+00:00",
-      "registry_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.11",
+      "verified_at": "2026-10-17T20:43:41.055802+00:00",
+      "registry_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.12",
       "default_workspace_tools": 9,
       "default_workspace_url": "https://agents.seiche.info/products/financial-evidence/mcp",
       "default_workspace_registry": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence-workspace/versions/1.3.0"
@@ -124,15 +124,15 @@
     {
       "name": "Gemini CLI",
       "kind": "gemini-cli-extension",
-      "manifest": "https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.11/gemini-extension.json",
+      "manifest": "https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.12/gemini-extension.json",
       "candidate_manifest": "https://github.com/beepboop2025/financial-evidence-skills/blob/main/gemini-extension.json",
-      "install": "gemini extensions install https://github.com/beepboop2025/financial-evidence-skills --ref v0.1.11",
+      "install": "gemini extensions install https://github.com/beepboop2025/financial-evidence-skills --ref v0.1.12",
       "remote_mcp": "https://agents.seiche.info/products/financial-evidence/mcp",
       "bundled_skill": "financial-evidence",
       "candidate_version": "0.1.12",
-      "published_version": "0.1.11",
+      "published_version": "0.1.12",
       "status": "self-installable",
-      "verified_at": "2026-10-17T16:52:40.869882+00:00"
+      "verified_at": "2026-10-17T20:43:41.055802+00:00"
     },
     {
       "name": "Claude Code",
@@ -142,64 +142,64 @@
       "bundled_skill": "financial-evidence",
       "source_ref": "mutable-default-branch",
       "candidate_version": "0.1.12",
-      "published_version": "0.1.11",
+      "published_version": "0.1.12",
       "status": "self-installable-mutable-main",
-      "verified_at": "2026-10-17T16:52:40.869882+00:00"
+      "verified_at": "2026-10-17T20:43:41.055802+00:00"
     },
     {
       "name": "Codex plugin and ChatGPT submission",
       "kind": "openai-plugin",
-      "manifest": "https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.11/.codex-plugin/plugin.json",
+      "manifest": "https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.12/.codex-plugin/plugin.json",
       "candidate_manifest": "https://github.com/beepboop2025/financial-evidence-skills/blob/main/.codex-plugin/plugin.json",
-      "install": "codex plugin marketplace add beepboop2025/financial-evidence-skills --ref v0.1.11 && codex plugin add financial-evidence@liquidity-lab",
+      "install": "codex plugin marketplace add beepboop2025/financial-evidence-skills --ref v0.1.12 && codex plugin add financial-evidence@liquidity-lab",
       "remote_mcp": "https://agents.seiche.info/products/financial-evidence/mcp",
       "bundled_skill": "financial-evidence",
       "codex_status": "repo-installable",
       "chatgpt_status": "submission-not-started",
       "candidate_version": "0.1.12",
-      "published_version": "0.1.11",
+      "published_version": "0.1.12",
       "status": "codex-repo-installable-chatgpt-submission-not-started",
-      "verified_at": "2026-10-17T16:52:40.869882+00:00"
+      "verified_at": "2026-10-17T20:43:41.055802+00:00"
     },
     {
       "name": "Visual Studio Code",
       "kind": "editor-mcp-http",
-      "config": "https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.11/.vscode/mcp.json",
+      "config": "https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.12/.vscode/mcp.json",
       "candidate_config": "https://github.com/beepboop2025/financial-evidence-skills/blob/main/.vscode/mcp.json",
       "install_url": "vscode:mcp/install?%7B%22name%22%3A%22financial-evidence%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fagents.seiche.info%2Fproducts%2Ffinancial-evidence%2Fmcp%22%7D",
       "cli_install": "code --add-mcp '{\"name\":\"financial-evidence\",\"type\":\"http\",\"url\":\"https://agents.seiche.info/products/financial-evidence/mcp\"}'",
       "review_before_start": true,
       "candidate_version": "0.1.12",
-      "published_version": "0.1.11",
+      "published_version": "0.1.12",
       "status": "self-installable-not-vendor-listing",
       "transport": "streamable-http",
       "tools": 9,
-      "configuration_source": "932ccf64d4ae1bb617abc6886d0f73fd8a153f50",
-      "verified_at": "2026-10-17T16:52:40.869882+00:00"
+      "configuration_source": "4e5584ce04390d468fe3cacb5119c08ffb89def6",
+      "verified_at": "2026-10-17T20:43:41.055802+00:00"
     },
     {
       "name": "Cursor",
       "kind": "editor-mcp-http",
-      "config": "https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.11/.cursor/mcp.json",
+      "config": "https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.12/.cursor/mcp.json",
       "candidate_config": "https://github.com/beepboop2025/financial-evidence-skills/blob/main/.cursor/mcp.json",
       "install_url": "cursor://anysphere.cursor-deeplink/mcp/install?name=financial-evidence&config=eyJ0eXBlIjoiaHR0cCIsInVybCI6Imh0dHBzOi8vYWdlbnRzLnNlaWNoZS5pbmZvL3Byb2R1Y3RzL2ZpbmFuY2lhbC1ldmlkZW5jZS9tY3AifQ==",
       "review_before_start": true,
       "candidate_version": "0.1.12",
-      "published_version": "0.1.11",
+      "published_version": "0.1.12",
       "status": "self-installable-not-vendor-listing",
       "transport": "streamable-http",
       "tools": 9,
-      "configuration_source": "932ccf64d4ae1bb617abc6886d0f73fd8a153f50",
-      "verified_at": "2026-10-17T16:52:40.869882+00:00"
+      "configuration_source": "4e5584ce04390d468fe3cacb5119c08ffb89def6",
+      "verified_at": "2026-10-17T20:43:41.055802+00:00"
     },
     {
       "name": "MCP Bundle",
       "kind": "desktop-bundle",
-      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.11/financial-evidence-0.1.11.mcpb",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.12/financial-evidence-0.1.12.mcpb",
       "candidate_version": "0.1.12",
-      "published_version": "0.1.11",
+      "published_version": "0.1.12",
       "status": "public",
-      "verified_at": "2026-10-17T16:52:40.869882+00:00"
+      "verified_at": "2026-10-17T20:43:41.055802+00:00"
     },
     {
       "name": "OpenBB",
@@ -252,13 +252,13 @@
       "name": "Vercel AI SDK package",
       "kind": "npm-package",
       "identifier": "@moomoo202020/financial-evidence-ai-sdk",
-      "published_version": "0.1.1",
-      "install": "npm install @moomoo202020/financial-evidence-ai-sdk@0.1.1 ai zod",
-      "url": "https://www.npmjs.com/package/@moomoo202020/financial-evidence-ai-sdk/v/0.1.1",
+      "published_version": "0.1.2",
+      "install": "npm install @moomoo202020/financial-evidence-ai-sdk@0.1.2 ai zod",
+      "url": "https://www.npmjs.com/package/@moomoo202020/financial-evidence-ai-sdk/v/0.1.2",
       "guide": "https://beepboop2025.github.io/financial-evidence-skills/platforms/ai-sdk.md",
       "status": "public-package-directory-review-pending",
       "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/ai-sdk-publication.json",
-      "verified_at": "2026-10-16T12:55:09.272267+00:00"
+      "verified_at": "2026-10-17T20:18:38.948402+00:00"
     }
   ],
   "published_topics": [
@@ -271,10 +271,10 @@
     "forex",
     "gold"
   ],
-  "release_verified_at": "2026-10-17T16:52:40.869882+00:00",
+  "release_verified_at": "2026-10-17T20:43:41.055802+00:00",
   "local_runtime": {
     "runtime_contract_version": "1.0.0",
-    "package_version": "0.1.11",
+    "package_version": "0.1.12",
     "guide": "https://beepboop2025.github.io/financial-evidence-skills/agents/runtime.html",
     "cli": "financial-evidence-runtime",
     "private_stdio_command": "financial-evidence-runtime-mcp",

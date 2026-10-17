@@ -2,8 +2,8 @@
   "schema": "liquidity-lab.financial-evidence-marketplaces.v1",
   "name": "Financial Evidence",
   "version": "0.1.12",
-  "release_state": "candidate",
-  "last_verified_release": "0.1.11",
+  "release_state": "published",
+  "last_verified_release": "0.1.12",
   "checked_at": "2026-10-15T16:05:35.527239Z",
   "state_definitions": {
     "live": "A public listing or install surface was independently resolved.",
@@ -26,22 +26,22 @@
       "name": "Official MCP Registry",
       "channel": "mcp-registry",
       "state": "live",
-      "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.11",
+      "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.12",
       "cost": "free",
-      "detail": "Version 0.1.11 is active and latest with PyPI and OCI install packages plus the separate public three-tool remote router. Public archive hashes, constrained attestations, a fresh PyPI installation and actual amd64/arm64 containers passed verification.",
+      "detail": "Version 0.1.12 is active and latest with PyPI and OCI install packages plus the separate public three-tool remote router. Public archive hashes, constrained attestations, a fresh PyPI installation and actual amd64/arm64 containers passed verification.",
       "next_action": "Monitor future release publication.",
-      "verified_at": "2026-10-17T16:52:40.869882+00:00",
+      "verified_at": "2026-10-17T20:43:41.055802+00:00",
       "latest_surface_check": {
-        "observed_at": "2026-10-17T16:52:40.869882+00:00",
-        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.11",
+        "observed_at": "2026-10-17T20:43:41.055802+00:00",
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.12",
         "http_status": 200,
         "readback": "active version and latest match the exact signed release server metadata",
         "mentioned_versions": [
-          "0.1.11"
+          "0.1.12"
         ]
       },
-      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/releases/0.1.11.json",
-      "version": "0.1.11"
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/releases/0.1.12.json",
+      "version": "0.1.12"
     },
     {
       "id": "skills-sh",
@@ -296,7 +296,7 @@
       "state": "ready_account_action",
       "submission_url": "https://platform.openai.com/plugins",
       "cost": "free",
-      "detail": "Preparation resumed for the current product-expansion request. Signed-in portal still requires verified developer identity before any upload. The exact 0.1.10 ZIP is prepared from signed release source fe9eb8c9d23e7fbef2c31016bf9d106b72741428 and now references the nine-tool hosted workspace; the old 0.1.7 three-tool packet is historical. No identity completion, upload, domain verification, demo or review submission is claimed.",
+      "detail": "Signed-in portal still requires verified developer identity before any upload. The exact 0.1.10 ZIP is prepared from signed release source fe9eb8c9d23e7fbef2c31016bf9d106b72741428 and now references the nine-tool hosted workspace; the old 0.1.7 three-tool packet is historical. No identity completion, upload, domain verification, demo or review submission is claimed.",
       "next_action": "Account owner completes publisher identity; then upload the current ZIP, verify the actual agents.seiche.info endpoint domain, record real review demonstrations and submit. Keep approval and public listing separate.",
       "latest_surface_check": {
         "observed_at": "2026-10-16T16:41:02.998286+00:00",
@@ -3577,8 +3577,8 @@
       "state": "live",
       "submission_url": "https://github.com/langgenius/dify-plugins/pull/3278",
       "cost": "Free upstream plugin submission; no paid placement selected.",
-      "detail": "Official Dify PR 3278 for version 0.1.1 was approved and merged. On 15 October the signed-out public marketplace page displayed Financial Evidence, Verified by Dify, version 0.1.1 and its install link. Direct HTTP verification had returned 403; browser readback independently resolved visibility. The separate central-hosted 0.1.2 candidate is not the accepted version. Native installed-archive execution and independent adoption remain unverified.",
-      "next_action": "Use the verified public Marketplace install route for 0.1.1. Validate an installed archive separately and submit any 0.1.2 upgrade through the existing publisher process.",
+      "detail": "Official Dify PR 3278 for version 0.1.1 was approved and merged. On 15 October the signed-out public marketplace page displayed Financial Evidence, Verified by Dify, version 0.1.1 and its install link. Direct HTTP verification had returned 403; browser readback independently resolved visibility. Native installed-archive execution and independent adoption remain unverified.",
+      "next_action": "Use the verified public Marketplace install route for 0.1.1. Native installed-archive behavior remains separately unverified.",
       "verified_at": "2026-10-15T09:05:44.381099Z",
       "package_version": "0.1.1",
       "package_sha256": "b94f1c080ddd8e8e592acf41c80c3177660044fd71ee8badb239b6fce72e9f6c",
@@ -4505,13 +4505,13 @@
       "name": "Financial Evidence AI SDK package on npm",
       "channel": "npm-package",
       "state": "live",
-      "version": "0.1.1",
-      "listing_url": "https://www.npmjs.com/package/@moomoo202020/financial-evidence-ai-sdk/v/0.1.1",
+      "version": "0.1.2",
+      "listing_url": "https://www.npmjs.com/package/@moomoo202020/financial-evidence-ai-sdk/v/0.1.2",
       "cost": "free",
-      "verified_at": "2026-10-16T12:55:09.272267+00:00",
-      "detail": "The anonymous npm archive matches the reviewed 0.1.1 bytes. Fresh registry installation passed five native AI SDK tests, six installed context regressions, strict TypeScript and all seven installed-file byte comparisons. Vercel directory acceptance and independent adoption remain separate.",
+      "verified_at": "2026-10-17T20:18:38.948402+00:00",
+      "detail": "The public npm archive matches the reviewed 0.1.2 bytes. A fresh registry installation passed all 23 existing SDK tests against installed code and a labelled live recurring review. All seven installed files match the tarball; sharing remained disabled and execution authority remained none. Vercel directory acceptance and independent adoption are separate.",
       "next_action": "Retain the fresh registry-consumer receipt and track Vercel tools directory review separately.",
-      "artifact_sha256": "3a10479ff38e3899beadedf98549e684afe00be08a481b582e53e21335c1bef6",
+      "artifact_sha256": "66cf69c5b565cc8ad32d00d3bb98e412a0410ca338f8d7272d1d001c96897387",
       "evidence_receipt": "distribution/ai-sdk-publication.json"
     },
     {
@@ -4519,13 +4519,13 @@
       "name": "Financial Evidence on PyPI",
       "channel": "python-package",
       "state": "live",
-      "version": "0.1.11",
-      "listing_url": "https://pypi.org/project/financial-evidence/0.1.11/",
+      "version": "0.1.12",
+      "listing_url": "https://pypi.org/project/financial-evidence/0.1.12/",
       "cost": "free",
-      "verified_at": "2026-10-17T16:52:40.869882+00:00",
-      "detail": "A fresh no-dependency 0.1.11 installation matched all 60 Python source files and passed offline guidance, the stdio contract and three labelled live reviews. Saved captures and comparison hashes verified. An initial funding timeout remained explicit; later prepared results do not establish uninterrupted availability.",
+      "verified_at": "2026-10-17T20:43:41.055802+00:00",
+      "detail": "A fresh no-dependency 0.1.12 installation matched all 63 Python source files and passed offline guidance, the MCP contract and two labelled recurring funding reviews. The second review found the saved first review and produced its comparison. Sharing stayed disabled and no synthetic run counted as eligible usage.",
       "next_action": "Monitor publication identity and actual consumer checks for future releases.",
-      "evidence_receipt": "releases/0.1.11.json",
+      "evidence_receipt": "releases/0.1.12.json",
       "independent_adoption_verified": false
     },
     {
@@ -4533,13 +4533,13 @@
       "name": "Financial Evidence GitHub release",
       "channel": "github-release",
       "state": "live",
-      "version": "0.1.11",
-      "listing_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.11",
+      "version": "0.1.12",
+      "listing_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.12",
       "cost": "free",
-      "verified_at": "2026-10-17T16:52:40.869882+00:00",
-      "detail": "The signed 0.1.11 release publishes wheel, source archive, MCP bundle, SBOM and checksums. Python archives match PyPI byte for byte; all four artifact attestations bind to the exact signed source and release workflow.",
+      "verified_at": "2026-10-17T20:43:41.055802+00:00",
+      "detail": "The signed 0.1.12 release publishes wheel, source archive, MCP bundle, SBOM and checksums. Python archives match PyPI byte for byte; all four artifact attestations bind to the exact signed source and release workflow.",
       "next_action": "Monitor publication identity and actual consumer checks for future releases.",
-      "evidence_receipt": "releases/0.1.11.json",
+      "evidence_receipt": "releases/0.1.12.json",
       "independent_adoption_verified": false
     },
     {
@@ -4547,13 +4547,13 @@
       "name": "Financial Evidence container",
       "channel": "oci-package",
       "state": "live",
-      "version": "0.1.11",
+      "version": "0.1.12",
       "listing_url": "https://github.com/beepboop2025/financial-evidence-skills/pkgs/container/financial-evidence-skills",
       "cost": "free",
-      "verified_at": "2026-10-17T16:52:40.869882+00:00",
-      "detail": "The published 0.1.11 OCI index and both platform configurations were checked anonymously. Actual linux/amd64 and linux/arm64 containers passed the frozen MCP contract against the immutable digest.",
+      "verified_at": "2026-10-17T20:43:41.055802+00:00",
+      "detail": "The published 0.1.12 OCI index and both platform configurations were checked anonymously. Actual linux/amd64 and linux/arm64 containers passed the frozen MCP contract against the immutable digest.",
       "next_action": "Monitor publication identity and actual consumer checks for future releases.",
-      "evidence_receipt": "releases/0.1.11.json",
+      "evidence_receipt": "releases/0.1.12.json",
       "independent_adoption_verified": false
     },
     {
@@ -4561,13 +4561,13 @@
       "name": "Financial Evidence Homebrew tap",
       "channel": "terminal-package",
       "state": "live",
-      "version": "0.1.11",
+      "version": "0.1.12",
       "listing_url": "https://github.com/beepboop2025/homebrew-tap/blob/main/Formula/financial-evidence.rb",
       "cost": "free",
-      "verified_at": "2026-10-17T16:52:40.869882+00:00",
-      "detail": "The public tap publishes the checksum-pinned 0.1.11 archive from the exact tested signed commit. Independent macOS acceptance passed audit, style, installation, formula tests, all 11 entrypoints, MCP contract, first-review guidance and exact installed module hashes. Native tap Actions remain disabled.",
+      "verified_at": "2026-10-17T20:43:41.055802+00:00",
+      "detail": "The public tap publishes the checksum-pinned 0.1.12 archive. Independent macOS acceptance passed strict audit, style, actual installation, formula tests, all 11 entrypoints, MCP contract and exact installed module hashes, including recurring reviews. Public formula bytes match the tested signed candidate; native tap Actions remain disabled.",
       "next_action": "Keep the public formula bound to verified release bytes and consumer receipts.",
-      "evidence_receipt": "releases/0.1.11.json",
+      "evidence_receipt": "releases/0.1.12.json",
       "independent_adoption_verified": false
     },
     {
@@ -4972,7 +4972,7 @@
       "independent_adoption_verified": false
     }
   ],
-  "release_verified_at": "2026-10-17T16:52:40.869882+00:00",
+  "release_verified_at": "2026-10-17T20:43:41.055802+00:00",
   "updated_at": "2026-10-17T16:52:40.869882+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {

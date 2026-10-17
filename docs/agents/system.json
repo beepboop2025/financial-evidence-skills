@@ -70,7 +70,7 @@
     {
       "id": "local-runtime",
       "name": "Financial Evidence Runtime",
-      "package_version": "0.1.11",
+      "package_version": "0.1.12",
       "contract_version": "1.0.0",
       "access": "customer_operated_local",
       "transport": "stdio",

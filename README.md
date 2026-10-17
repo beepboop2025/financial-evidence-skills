@@ -43,6 +43,13 @@ Client/model costs and fair-use limits may apply. Research calls do not execute 
 Start with one task: https://beepboop2025.github.io/financial-evidence-skills/connect/ — browser, REST, Python and remote MCP setup for funding, covered institutions and BTC exit research. Public reads need no account or API key; retain source dates and unavailable evidence.
 
 **Run the new workflows:** [funding watch, institution monitoring and BTC exit research](https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html). Save a local baseline, compare your next review, or copy the API request into your agent.
+**Recurring agent hooks in source:** the main CLI now includes
+`financial-evidence workflow` for automatic comparison with saved reviews,
+explicit usefulness feedback, linked outcomes and optional durable delivery.
+[Python, LangGraph and AI SDK setup](docs/start/agent-workflows.md).
+Published Python 0.1.11 and npm 0.1.1 predate these additions; install from the
+repository checkout as described in the guide.
+
 Agent developers can retrieve a cited USD funding observation; treasury and
 bank-risk teams can use the new institution monitor; traders and researchers
 can retain a funding-and-exit review. Each path includes working calls, source

@@ -88,6 +88,11 @@ entries use public central HTTP MCP endpoints and need no local process.
 
 ## Use the Python SDK directly
 
+For a recurring funding, institution or BTC exit review, use the main package's
+[AgentWorkflow SDK and CLI](agent-workflows.md). It retains comparisons and
+supports explicit usefulness and linked outcome records with optional durable
+delivery. The guide distinguishes source availability from published package versions.
+
 ```python
 import asyncio
 from financial_evidence.trading import ProductClient

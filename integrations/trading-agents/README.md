@@ -14,10 +14,9 @@ python -m financial_evidence.trading.cli --platform-url https://agents.seiche.in
 python -m financial_evidence.trading.cli --platform-url https://agents.seiche.info review --mode test
 ```
 
-This explicit central setup is recommended for new pilot integrations. With no
-platform URL argument or `SEICHE_AGENT_PLATFORM_URL` environment variable, the
-existing direct product endpoints remain the default; no configuration is
-silently rerouted. To identify calls with a provisioned agent, optionally inject
+The central gateway is the default in current source. Use a platform URL argument
+or `SEICHE_AGENT_PLATFORM_URL` only when explicitly selecting another deployment.
+To identify calls with a provisioned agent, optionally inject
 `SEICHE_NETWORK_TOKEN` through the operator's secret environment. The CLI reads
 it without printing or embedding it:
 
@@ -57,6 +56,12 @@ calendar, rights review, task horizon and independent funding/China age policies
 The starter deliberately reports `input_eligibility: not_evaluated` until the
 operator normalizes observations and applies those policies. Calendar and unit
 review cannot be replaced by generic HTTP health checks.
+
+For recurring application hooks, [recurring_review.py](recurring_review.py)
+returns a synchronous LangGraph-compatible node backed by the main
+`AgentWorkflow` journal. The [workflow guide](../../docs/start/agent-workflows.md)
+covers the CLI, comparisons, explicit feedback, linked outcomes and optional
+delivery. These additions require a source installation until the next release.
 
 For a reviewed dataset exported by the learning store:
 

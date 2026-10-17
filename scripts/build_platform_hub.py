@@ -75,6 +75,8 @@ def assets() -> dict[str, bytes]:
                 ROOT / "docs/agents/source-access-contracts.json",
                 ROOT / "examples/trading/feed-pilot.py",
                 ROOT / "docs/start/trading-agents.md",
+                ROOT / "docs/start/agent-workflows.md", ROOT / "docs/start/learning.md",
+                ROOT / "integrations/trading-agents/recurring_review.py",
                 DEST / "pilot-scorecard.csv", DEST / "native-packages.md",
                 DEST / "native-packages.json", DEST / "hosted-native-packages.json",
                 ROOT / "docs/distribution/langchain-pypi-publication-20261013.json",
@@ -169,6 +171,7 @@ def assets() -> dict[str, bytes]:
 
 Start at docs/platforms/agent-clients.md or choose a platform in routes.json.
 Forward quant examples: integrations/finance-research/README.md.
+Recurring agent reviews and optional outcome delivery: docs/start/agent-workflows.md.
 Desktop candidate: integrations/finance-desktop/README.md.
 Institutional packets: docs/distribution/provider-packets-20261011/README.md.
 Native automation candidates and receipts: docs/platforms/native-packages.md.

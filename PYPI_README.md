@@ -40,6 +40,11 @@ receipt. At your next useful review, add `--previous` with that capture's
 
 ## Reuse an MCP connection
 
+For the recurring workflow SDK/CLI currently available in repository source,
+including saved comparisons and explicit outcome reporting, see the
+[agent workflow guide](https://github.com/beepboop2025/financial-evidence-skills/blob/main/docs/start/agent-workflows.md).
+The published 0.1.11 package predates this addition.
+
 ```python
 import asyncio
 from financial_evidence.trading import ProductClient

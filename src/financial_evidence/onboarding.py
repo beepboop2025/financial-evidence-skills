@@ -53,6 +53,13 @@ def starter_catalog() -> dict:
             "Read the source dates, units, missing values and limitations with the result.",
             "Save the evidence and return to the same task for your next review.",
         ],
+        "recurring_workflows": {
+            "guide_url": GUIDE.replace("connect/", "start/agent-workflows.md"),
+            "installation": "repository_source_required_until_next_package_release",
+            "command": "financial-evidence workflow run funding --state ./funding-reviews",
+            "sharing_default": "local_only",
+            "scope": "Saved reviews, explicit feedback and operator-reported outcomes; no execution authority.",
+        },
         "unavailable_help": "An empty, stale or unavailable result is not zero or a safety signal. Inspect source diagnostics, try a covered selection, or retain the gap in your review.",
         "scope": "Connection guidance only; no network probe, freshness verdict, platform endorsement or financial authority.",
     }

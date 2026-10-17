@@ -1,7 +1,7 @@
 {
   "schema": "financial-evidence.system-interfaces.v1",
   "operator": "LIQUILENS PRIVATE LIMITED",
-  "updated_at": "2026-10-16",
+  "updated_at": "2026-10-17",
   "guide_url": "https://liquilens.in/agents/infrastructure/",
   "public_discovery_observation": {
     "observed_at": "2026-10-08T11:12:59.038376+00:00",
@@ -70,7 +70,7 @@
     {
       "id": "local-runtime",
       "name": "Financial Evidence Runtime",
-      "package_version": "0.1.10",
+      "package_version": "0.1.11",
       "contract_version": "1.0.0",
       "access": "customer_operated_local",
       "transport": "stdio",

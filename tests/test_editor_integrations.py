@@ -137,8 +137,8 @@ class EditorIntegrationTests(unittest.TestCase):
         )
         manifest = _json("docs/integrations.json")
         self.assertEqual(manifest["version"], self.version)
-        self.assertEqual(manifest["release_state"], "candidate")
-        self.assertEqual(manifest["last_verified_release"], "0.1.10")
+        self.assertEqual(manifest["release_state"], "published")
+        self.assertEqual(manifest["last_verified_release"], "0.1.11")
         homebrew = self.interfaces["Homebrew"]
         self.assertEqual(homebrew["candidate_version"], self.version)
         self.assertEqual(homebrew["published_version"], self.published_version)

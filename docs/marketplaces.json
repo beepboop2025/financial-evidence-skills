@@ -2,8 +2,8 @@
   "schema": "liquidity-lab.financial-evidence-marketplaces.v1",
   "name": "Financial Evidence",
   "version": "0.1.11",
-  "release_state": "candidate",
-  "last_verified_release": "0.1.10",
+  "release_state": "published",
+  "last_verified_release": "0.1.11",
   "checked_at": "2026-10-15T16:05:35.527239Z",
   "state_definitions": {
     "live": "A public listing or install surface was independently resolved.",
@@ -26,22 +26,22 @@
       "name": "Official MCP Registry",
       "channel": "mcp-registry",
       "state": "live",
-      "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.10",
+      "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.11",
       "cost": "free",
-      "detail": "Version 0.1.10 is active and latest with PyPI and OCI install packages plus the separate public three-tool remote router. Public archive hashes, constrained attestations, a fresh PyPI installation and actual amd64/arm64 containers passed verification.",
+      "detail": "Version 0.1.11 is active and latest with PyPI and OCI install packages plus the separate public three-tool remote router. Public archive hashes, constrained attestations, a fresh PyPI installation and actual amd64/arm64 containers passed verification.",
       "next_action": "Monitor future release publication.",
-      "verified_at": "2026-10-16T12:58:40.539034+00:00",
+      "verified_at": "2026-10-17T16:52:40.869882+00:00",
       "latest_surface_check": {
-        "observed_at": "2026-10-16T12:58:40.539034+00:00",
-        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.10",
+        "observed_at": "2026-10-17T16:52:40.869882+00:00",
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.11",
         "http_status": 200,
         "readback": "active version and latest match the exact signed release server metadata",
         "mentioned_versions": [
-          "0.1.10"
+          "0.1.11"
         ]
       },
-      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/releases/0.1.10.json",
-      "version": "0.1.10"
+      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/releases/0.1.11.json",
+      "version": "0.1.11"
     },
     {
       "id": "skills-sh",
@@ -4519,13 +4519,13 @@
       "name": "Financial Evidence on PyPI",
       "channel": "python-package",
       "state": "live",
-      "version": "0.1.10",
-      "listing_url": "https://pypi.org/project/financial-evidence/0.1.10/",
+      "version": "0.1.11",
+      "listing_url": "https://pypi.org/project/financial-evidence/0.1.11/",
       "cost": "free",
-      "verified_at": "2026-10-16T12:58:40.539034+00:00",
-      "detail": "Fresh anonymous 0.1.10 installation passed dependency checks, all 11 entrypoints, source-byte comparison, stdio, persistent MCP calls and source-status snapshot/SSE checks.",
+      "verified_at": "2026-10-17T16:52:40.869882+00:00",
+      "detail": "A fresh no-dependency 0.1.11 installation matched all 60 Python source files and passed offline guidance, the stdio contract and three labelled live reviews. Saved captures and comparison hashes verified. An initial funding timeout remained explicit; later prepared results do not establish uninterrupted availability.",
       "next_action": "Monitor publication identity and actual consumer checks for future releases.",
-      "evidence_receipt": "releases/0.1.10.json",
+      "evidence_receipt": "releases/0.1.11.json",
       "independent_adoption_verified": false
     },
     {
@@ -4533,13 +4533,13 @@
       "name": "Financial Evidence GitHub release",
       "channel": "github-release",
       "state": "live",
-      "version": "0.1.10",
-      "listing_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.10",
+      "version": "0.1.11",
+      "listing_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.11",
       "cost": "free",
-      "verified_at": "2026-10-16T12:58:40.539034+00:00",
-      "detail": "The signed 0.1.10 release publishes wheel, source archive, MCP bundle, SBOM and checksums. Python archives match PyPI byte for byte; all four artifact attestations bind to the exact signed source and release workflow.",
+      "verified_at": "2026-10-17T16:52:40.869882+00:00",
+      "detail": "The signed 0.1.11 release publishes wheel, source archive, MCP bundle, SBOM and checksums. Python archives match PyPI byte for byte; all four artifact attestations bind to the exact signed source and release workflow.",
       "next_action": "Monitor publication identity and actual consumer checks for future releases.",
-      "evidence_receipt": "releases/0.1.10.json",
+      "evidence_receipt": "releases/0.1.11.json",
       "independent_adoption_verified": false
     },
     {
@@ -4547,13 +4547,13 @@
       "name": "Financial Evidence container",
       "channel": "oci-package",
       "state": "live",
-      "version": "0.1.10",
+      "version": "0.1.11",
       "listing_url": "https://github.com/beepboop2025/financial-evidence-skills/pkgs/container/financial-evidence-skills",
       "cost": "free",
-      "verified_at": "2026-10-16T12:58:40.539034+00:00",
-      "detail": "The published 0.1.10 OCI index and both platform configurations were checked anonymously. Actual linux/amd64 and linux/arm64 containers passed the frozen MCP contract against the immutable digest.",
+      "verified_at": "2026-10-17T16:52:40.869882+00:00",
+      "detail": "The published 0.1.11 OCI index and both platform configurations were checked anonymously. Actual linux/amd64 and linux/arm64 containers passed the frozen MCP contract against the immutable digest.",
       "next_action": "Monitor publication identity and actual consumer checks for future releases.",
-      "evidence_receipt": "releases/0.1.10.json",
+      "evidence_receipt": "releases/0.1.11.json",
       "independent_adoption_verified": false
     },
     {
@@ -4561,13 +4561,13 @@
       "name": "Financial Evidence Homebrew tap",
       "channel": "terminal-package",
       "state": "live",
-      "version": "0.1.10",
+      "version": "0.1.11",
       "listing_url": "https://github.com/beepboop2025/homebrew-tap/blob/main/Formula/financial-evidence.rb",
       "cost": "free",
-      "verified_at": "2026-10-16T13:08:04.554412+00:00",
-      "detail": "The public tap publishes the checksum-pinned 0.1.10 source archive from the exact tested signed commit. Independent macOS acceptance passed audit, style, installation, formula test, all 11 entrypoints, MCP contract and installed stream-client hash. Native tap Actions remain disabled.",
+      "verified_at": "2026-10-17T16:52:40.869882+00:00",
+      "detail": "The public tap publishes the checksum-pinned 0.1.11 archive from the exact tested signed commit. Independent macOS acceptance passed audit, style, installation, formula tests, all 11 entrypoints, MCP contract, first-review guidance and exact installed module hashes. Native tap Actions remain disabled.",
       "next_action": "Keep the public formula bound to verified release bytes and consumer receipts.",
-      "evidence_receipt": "releases/0.1.10.json",
+      "evidence_receipt": "releases/0.1.11.json",
       "independent_adoption_verified": false
     },
     {
@@ -4972,8 +4972,8 @@
       "independent_adoption_verified": false
     }
   ],
-  "release_verified_at": "2026-10-16T13:08:04.554412+00:00",
-  "updated_at": "2026-10-16T17:15:20.402147+00:00",
+  "release_verified_at": "2026-10-17T16:52:40.869882+00:00",
+  "updated_at": "2026-10-17T16:52:40.869882+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",

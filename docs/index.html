@@ -26,7 +26,7 @@
             "description": "A free, read-only terminal and MCP router for money markets, capital markets, China economy, bank risk, market liquidity, GIFT City, forex and gold evidence from LiquiLens, Undertow, Seiche, and Palimpsest.",
             "inLanguage": "en",
             "datePublished": "2026-08-24",
-            "dateModified": "2026-10-16",
+            "dateModified": "2026-10-17",
             "mainEntity": {
               "@id": "https://beepboop2025.github.io/financial-evidence-skills/#software"
             }
@@ -37,8 +37,8 @@
             "name": "Financial Evidence",
             "description": "A free, read-only terminal and MCP router for public money-market, capital-market, China-economy, bank-risk, market-liquidity, GIFT City, forex and gold evidence.",
             "url": "https://beepboop2025.github.io/financial-evidence-skills/",
-            "downloadUrl": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.10",
-            "softwareVersion": "0.1.10",
+            "downloadUrl": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.11",
+            "softwareVersion": "0.1.11",
             "applicationCategory": "FinanceApplication",
             "applicationSubCategory": "Financial research infrastructure",
             "operatingSystem": "macOS, Linux, Windows",
@@ -136,30 +136,35 @@
     <section id="install" class="section muted">
       <p class="eyebrow">Agent and terminal</p>
       <h2>How do I install Financial Evidence?</h2>
-      <p>v0.1.10 is a signed, independently verified release. The hosted research workspace evolves separately; use its release endpoint to check the running source.</p>
-      <p class="answer">Install the Agent Skill to let compatible agents activate this router for matching financial research. For direct terminal use, install the checksum-pinned Homebrew formula on macOS or Linux, or install the PyPI package. The Python and source installs below use release 0.1.10; hosted services retain their own release identities.</p>
-      <p>Upgrade to Python 0.1.10 for complete-event deadlines that bound stalled source-status reads. Python and JavaScript streams require an initial reset before a keepalive; <a href="platforms/ai-sdk.md">npm AI SDK 0.1.1</a> includes the synchronized client. These tools have no trade-execution authority.</p>
+      <p>v0.1.11 is a signed, independently verified release. The hosted research workspace evolves separately; use its release endpoint to check the running source.</p>
+      <p><strong>New in 0.1.11:</strong> choose one task, save a source-cited brief and compare it at your next review. No model or optional Python dependencies are needed for these commands.</p>
+      <pre><code>python3 -m pip install financial-evidence==0.1.11
+financial-evidence start
+financial-evidence review funding --output reviews</code></pre>
+      <p><a href="agents/FIRST_REVIEW.md">Save and repeat your first review</a>. Original JSON, source dates, coverage gaps and hash receipts stay with each capture.</p>
+      <p class="answer">Install the Agent Skill to let compatible agents activate this router for matching financial research. For direct terminal use, install the checksum-pinned Homebrew formula on macOS or Linux, or install the PyPI package. The Python and source installs below use release 0.1.11; hosted services retain their own release identities.</p>
+      <p>Upgrade to Python 0.1.11 for complete-event deadlines that bound stalled source-status reads. Python and JavaScript streams require an initial reset before a keepalive; <a href="platforms/ai-sdk.md">npm AI SDK 0.1.1</a> includes the synchronized client. These tools have no trade-execution authority.</p>
       <div class="commands">
         <div>
           <h3>Python agent SDK</h3>
-          <pre><code>python3 -m pip install 'financial-evidence[workspace]==0.1.10'
+          <pre><code>python3 -m pip install 'financial-evidence[workspace]==0.1.11'
 financial-evidence-trading doctor</code></pre>
-          <p><a href="https://pypi.org/project/financial-evidence/0.1.10/">PyPI package</a> · <a href="agents/low-latency.md">Persistent clients and source-status streams</a></p>
+          <p><a href="https://pypi.org/project/financial-evidence/0.1.11/">PyPI package</a> · <a href="agents/low-latency.md">Persistent clients and source-status streams</a></p>
         </div>
         <div>
           <h3>Agent Skills</h3>
-          <pre><code>npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.10/financial-evidence \
+          <pre><code>npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.11/financial-evidence \
   --skill financial-evidence</code></pre>
         </div>
         <div>
           <h3>Homebrew</h3>
-          <p>0.1.10 is published and independently installed, with the stream-client source hash verified.</p>
+          <p>0.1.11 is published and independently installed, with the stream-client source hash verified.</p>
           <pre><code>brew install beepboop2025/tap/financial-evidence
 financial-evidence fetch --topic money-market --topic china-economy</code></pre>
         </div>
         <div>
           <h3>Run without installing</h3>
-          <pre><code>uvx --from financial-evidence==0.1.10 \
+          <pre><code>uvx --from financial-evidence==0.1.11 \
   financial-evidence route --topic capital-market --format table</code></pre>
         </div>
         <div>
@@ -206,7 +211,7 @@ financial-evidence fetch --topic money-market --topic china-economy</code></pre>
         <div>
           <h3>Gemini CLI</h3>
           <pre><code>gemini extensions install https://github.com/beepboop2025/financial-evidence-skills \
-  --ref v0.1.10</code></pre>
+  --ref v0.1.11</code></pre>
         </div>
         <div>
           <h3>Claude Code · mutable default branch</h3>
@@ -215,7 +220,7 @@ claude plugin install financial-evidence@liquidity-lab</code></pre>
         </div>
         <div>
           <h3>Codex</h3>
-          <pre><code>codex plugin marketplace add beepboop2025/financial-evidence-skills --ref v0.1.10
+          <pre><code>codex plugin marketplace add beepboop2025/financial-evidence-skills --ref v0.1.11
 codex plugin add financial-evidence@liquidity-lab</code></pre>
         </div>
         <div>
@@ -239,13 +244,13 @@ codex plugin add financial-evidence@liquidity-lab</code></pre>
         <li>Routes declare no financial authority and no published Carrier URL.</li>
         <li>No account, API key, write action, trade action, or custody action.</li>
       </ul>
-      <p><a href="releases/0.1.10.json">Release verification record</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/blob/main/SEMANTIC_CONTRACT.md">Read the v0.1.5 semantic contract</a>.</p>
+      <p><a href="releases/0.1.11.json">Release verification record</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/blob/main/SEMANTIC_CONTRACT.md">Read the v0.1.5 semantic contract</a>.</p>
     </section>
 
     </details>
     <footer>
-      <p>Last updated 16 October 2026 · MIT-licensed software by LIQUILENS PRIVATE LIMITED.</p>
-      <p><a href="https://github.com/beepboop2025/financial-evidence-skills">Source and documentation</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.10">Last verified release v0.1.10</a> · <a href="support/">Support</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/security/policy">Security policy</a> · <a href="privacy/">Privacy</a> · <a href="terms/">Terms</a></p>
+      <p>Last updated 17 October 2026 · MIT-licensed software by LIQUILENS PRIVATE LIMITED.</p>
+      <p><a href="https://github.com/beepboop2025/financial-evidence-skills">Source and documentation</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.11">Last verified release v0.1.11</a> · <a href="support/">Support</a> · <a href="https://github.com/beepboop2025/financial-evidence-skills/security/policy">Security policy</a> · <a href="privacy/">Privacy</a> · <a href="terms/">Terms</a></p>
     </footer>
   </body>
 </html>

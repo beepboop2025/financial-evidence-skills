@@ -6,6 +6,7 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+import sys
 import tempfile
 import threading
 from email.message import Message
@@ -15,6 +16,8 @@ from urllib.error import HTTPError
 import unittest
 from typing import TypedDict
 from unittest.mock import patch
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from financial_evidence import cli, research
 from financial_evidence.agent_workflow import AgentWorkflow

@@ -5,11 +5,10 @@ the last successful capture. The main Python package includes a private journal,
 explicit usefulness feedback, decision/outcome records and optional delivery
 queue. Public research uses the existing central gateway without a key.
 
-This feature is available in repository source. Published Python 0.1.11 and npm
-0.1.1 predate it. From a checkout of the main repository:
+Install the published Python package, then run a review:
 
 ```sh
-python3 -m pip install .
+python3 -m pip install financial-evidence==0.1.12
 financial-evidence workflow run funding --selection USD --state ./funding-reviews
 financial-evidence workflow report --state ./funding-reviews
 financial-evidence workflow history --state ./funding-reviews
@@ -158,9 +157,8 @@ of the journal and remove its private directory.
 
 ## AI SDK applications
 
-Build `integrations/ai-sdk` from this checkout with `npm ci --ignore-scripts` and
-`npm run build`, then install that directory into your application. Published
-npm 0.1.1 does not include these exports yet.
+Install the published package with
+`npm install @moomoo202020/financial-evidence-ai-sdk@0.1.2 ai@^7.0.141`.
 
 ```javascript
 import {runFinancialWorkflow, financialEvidenceWorkflowTool} from '@moomoo202020/financial-evidence-ai-sdk';

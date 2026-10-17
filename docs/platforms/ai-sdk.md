@@ -5,7 +5,7 @@ metadata from `https://agents.seiche.info`. Source dates, nulls, units, rights
 and diagnostics remain attached to each result. The adapter has no trading
 or execution authority and does not provide a quote feed.
 
-Published package: [`@moomoo202020/financial-evidence-ai-sdk@0.1.1`](https://www.npmjs.com/package/@moomoo202020/financial-evidence-ai-sdk/v/0.1.1).
+Published package: [`@moomoo202020/financial-evidence-ai-sdk@0.1.2`](https://www.npmjs.com/package/@moomoo202020/financial-evidence-ai-sdk/v/0.1.2).
 The anonymous npm download matches the reviewed archive. See the
 [publication receipt](../distribution/ai-sdk-publication.json).
 The [AI SDK Tools Registry submission](https://github.com/vercel/ai/pull/23401)
@@ -17,7 +17,7 @@ Node.js 22+ and AI SDK 7 are required. The implementation is tested with
 ## Install and run
 
 ```sh
-npm install @moomoo202020/financial-evidence-ai-sdk@0.1.1 ai@^7.0.141
+npm install @moomoo202020/financial-evidence-ai-sdk@0.1.2 ai@^7.0.141
 ```
 
 TypeScript applications that check dependency declarations also need the AI
@@ -115,11 +115,14 @@ The vendored context module is an exact copy of `docs/agents/context-client.mjs`
 in the repository. `npm run check:vendor` verifies byte equality; the adapter
 imports only its validator and does not implement another SSE protocol.
 
-## Patch release 0.1.1
+## Recurring reviews
 
-The vendored context client now rejects a keepalive before an initial reset,
-matching the canonical source-status protocol. The three model-facing tools
-and their read-only authority are unchanged.
+`runFinancialWorkflow` and `financialEvidenceWorkflowTool` check source status,
+read a bounded funding, institution or exit review, and recheck the monitor.
+See the [recurring-review guide](../start/agent-workflows.md) for setup and
+status handling. JavaScript preserves the provider-reported digest as
+unverified; persistence belongs to the caller and this adapter submits no
+learning records. The original three-tool factory keeps its existing contract.
 
 ## Development and verification
 
@@ -136,8 +139,9 @@ timeouts, cancellation, future/stale metadata, and native SDK tool execution.
 The emitted declaration test rejects imports from undeclared transitive
 dependencies. Public tool types use the declared `ai` peer and retain the dataset
 union and optional query defaults for TypeScript callers.
-The published package passes a fresh anonymous npm installation, strict TypeScript
-checks, five native SDK tool-loop tests, and six installed context regressions.
+The published package passed a fresh public npm installation, all 23 existing
+SDK tests against its installed bytes, and a labelled live recurring review.
 All seven installed files match the public tarball and reviewed archive.
+Strict TypeScript checks passed in the release source build.
 This proves adapter behavior, not model accuracy, adoption, or third-party
 marketplace approval.

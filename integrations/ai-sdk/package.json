@@ -1,6 +1,6 @@
 {
   "name": "@moomoo202020/financial-evidence-ai-sdk",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Read-only, source-preserving financial research and context tools for AI SDK",
   "type": "module",
   "license": "MIT",

@@ -142,15 +142,27 @@
       "state": "submitted",
       "submission_url": "https://github.com/docker/mcp-registry/pull/4765",
       "cost": "free",
-      "detail": "Existing Docker MCP Catalog submission now references Financial Evidence 0.1.9. Public submitted files and PR description match the reviewed signed commit; upstream Actions require maintainer approval and acceptance remains pending.",
+      "detail": "The existing Docker MCP Catalog submission references published Financial Evidence 0.1.13, source e93613059bd65c1534ca0d65c0390dba348e165f, with its eight research topics and separate three-tool router contract. The current upstream catalog validator and Go tests passed. Fresh catalog build, Docker Desktop import, maintainer review and publication remain pending.",
       "next_action": "Await maintainer build approval and review of the existing PR; verify the public catalog before marking live.",
       "latest_surface_check": {
         "observed_at": "2026-10-08T11:16:05.165150+00:00",
         "readback": "no_public_listing_url"
       },
-      "updated_at": "2026-10-15T15:56:07.046768+00:00",
-      "submitted_version": "0.1.9",
+      "updated_at": "2026-10-17T23:24:01.538279+00:00",
+      "submitted_version": "0.1.13",
       "latest_source_release_update": {
+        "observed_at": "2026-10-17T23:24:01.538279+00:00",
+        "submission_url": "https://github.com/docker/mcp-registry/pull/4765",
+        "head": "cf9f94c6f366bf563965e0c74a35e354dc173148",
+        "version": "0.1.13",
+        "source_commit": "e93613059bd65c1534ca0d65c0390dba348e165f",
+        "public_submitted_files_and_description_verified": true,
+        "public_listing_verified": false,
+        "fresh_catalog_build_verified": false,
+        "native_desktop_import_verified": false,
+        "state": "OPEN"
+      },
+      "previous_source_release_update": {
         "observed_at": "2026-10-15T15:56:07.046768+00:00",
         "submission_url": "https://github.com/docker/mcp-registry/pull/4765",
         "head": "601089fa55f57828f7b66544be205a792c3d3764",
@@ -2134,7 +2146,7 @@
       "verified_at": "2026-10-17T23:13:09.682053+00:00",
       "detail": "NoiseFloor 0.4.2 is published on PyPI with source-matched tool guidance and all 85 input property paths documented. Clean installed Python, CLI, stdio MCP, local HTTP and REST checks passed across all ten tools. Input validation and computations are unchanged. Hosted service remains separately verified at 0.4.0; predictive utility and adoption remain unproven.",
       "next_action": "Keep package guidance and product links aligned with verified releases; verify hosted promotion separately.",
-      "verification_url": "https://github.com/beepboop2025/noisefloor/releases/download/v0.4.2/source.json",
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.2.json",
       "latest_surface_check": {
         "observed_at": "2026-10-17T23:13:09.682053+00:00",
         "readback": "pypi_042_publication_and_consumer_verified",
@@ -2150,7 +2162,8 @@
       "previous_verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.1.json",
       "publisher_workflow_url": "https://github.com/beepboop2025/noisefloor/actions/runs/39077954891",
       "hosted_version": "0.4.0",
-      "independent_adoption_verified": false
+      "independent_adoption_verified": false,
+      "source_receipt_url": "https://github.com/beepboop2025/noisefloor/releases/download/v0.4.2/source.json"
     },
     {
       "id": "noisefloor-mcp-registry",
@@ -2165,7 +2178,7 @@
       "verified_at": "2026-10-17T23:13:09.682053+00:00",
       "detail": "Official MCP Registry 0.4.2 is active and latest, with PyPI 0.4.2 package identity. Clean installed MCP exposes ten tools with documented input semantics. Hosted service remains at 0.4.0 and was not promoted by this package release.",
       "next_action": "Recheck future package and registry versions together; keep hosted release identity explicit.",
-      "verification_url": "https://github.com/beepboop2025/noisefloor/releases/download/v0.4.2/source.json",
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.2.json",
       "latest_surface_check": {
         "observed_at": "2026-10-17T23:13:09.682053+00:00",
         "readback": "official_registry_042_publication_and_consumer_verified",
@@ -2181,7 +2194,8 @@
       "previous_verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.1.json",
       "publisher_workflow_url": "https://github.com/beepboop2025/noisefloor/actions/runs/39077954891",
       "hosted_version": "0.4.0",
-      "independent_adoption_verified": false
+      "independent_adoption_verified": false,
+      "source_receipt_url": "https://github.com/beepboop2025/noisefloor/releases/download/v0.4.2/source.json"
     },
     {
       "id": "noisefloor-github-release",
@@ -2196,7 +2210,7 @@
       "verified_at": "2026-10-17T23:13:09.682053+00:00",
       "detail": "Signed v0.4.2 release targets accepted source e94edf3969c25887b3cd8ced93905d83777aa2c6; wheel and sdist hashes and the source receipt match PyPI. GitHub artifact attestations verify against the exact release source. Hosted service remains separately verified at 0.4.0.",
       "next_action": "Verify future signed releases and artifact provenance independently of hosted deployment.",
-      "verification_url": "https://github.com/beepboop2025/noisefloor/releases/download/v0.4.2/source.json",
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.2.json",
       "latest_surface_check": {
         "observed_at": "2026-10-17T23:13:09.682053+00:00",
         "readback": "github_042_publication_and_consumer_verified",
@@ -2212,7 +2226,8 @@
       "previous_verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.1.json",
       "publisher_workflow_url": "https://github.com/beepboop2025/noisefloor/actions/runs/39077954891",
       "hosted_version": "0.4.0",
-      "independent_adoption_verified": false
+      "independent_adoption_verified": false,
+      "source_receipt_url": "https://github.com/beepboop2025/noisefloor/releases/download/v0.4.2/source.json"
     },
     {
       "id": "mcpserver-cc-financial-evidence",
@@ -6013,7 +6028,7 @@
     }
   ],
   "release_verified_at": "2026-10-17T22:34:17.883687+00:00",
-  "updated_at": "2026-10-17T23:16:32.302215+00:00",
+  "updated_at": "2026-10-17T23:24:01.538279+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",

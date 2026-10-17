@@ -1,0 +1,276 @@
+{
+  "schema": "financial-evidence.public-discovery.v1",
+  "reviewed_on": "2026-10-18",
+  "packages": [
+    {
+      "name": "Financial Evidence",
+      "version": "0.1.13",
+      "ecosystem": "Python",
+      "url": "https://pypi.org/project/financial-evidence/0.1.13/",
+      "receipt": "https://beepboop2025.github.io/financial-evidence-skills/releases/0.1.13.json",
+      "source_commit": "e93613059bd65c1534ca0d65c0390dba348e165f",
+      "command": "python3 -m pip install financial-evidence==0.1.13",
+      "description": "Save cited funding and institution reviews, compare later captures, and reuse bounded MCP sessions and source-status clients."
+    },
+    {
+      "name": "Financial Evidence AI SDK",
+      "version": "0.1.2",
+      "ecosystem": "npm",
+      "url": "https://www.npmjs.com/package/@moomoo202020/financial-evidence-ai-sdk",
+      "receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/ai-sdk-publication.json",
+      "source_commit": "4e5584ce04390d468fe3cacb5119c08ffb89def6",
+      "command": "npm install @moomoo202020/financial-evidence-ai-sdk@0.1.2",
+      "description": "Add typed research tools and source-status clients to a JavaScript or TypeScript agent. The npm package is published; the separate Vercel directory submission is pending."
+    },
+    {
+      "name": "Seiche",
+      "version": "0.16.5",
+      "ecosystem": "Python / MCP",
+      "url": "https://pypi.org/project/seiche/0.16.5/",
+      "receipt": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fseiche/versions/0.16.5",
+      "source_commit": "793dc42b391141c20aee911f6d18f000bd3feb8a",
+      "description": "Retrieve compact funding context and exact metrics, with source dates, coverage and diagnostic limits. Hosted source identity is checked separately from package publication."
+    },
+    {
+      "name": "NoiseFloor",
+      "version": "0.4.2",
+      "ecosystem": "Python / MCP",
+      "url": "https://pypi.org/project/noisefloor/0.4.2/",
+      "receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.2.json",
+      "source_commit": "e94edf3969c25887b3cd8ced93905d83777aa2c6",
+      "command": "python3 -m pip install noisefloor==0.4.2",
+      "hosted_version": "0.4.0",
+      "description": "Ten statistical research tools with clearer descriptions for all 85 input-property paths. Validation and computations are unchanged; the hosted service remains 0.4.0."
+    }
+  ],
+  "setup_url": "https://beepboop2025.github.io/financial-evidence-skills/connect/",
+  "ledger_url": "https://beepboop2025.github.io/financial-evidence-skills/marketplaces.json",
+  "glama_repository_listings": [
+    {
+      "id": "glama",
+      "listing_url": "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills",
+      "verified_at": "2026-10-17T23:13:21.132280+00:00",
+      "name": "Financial Evidence",
+      "source_url": "https://github.com/beepboop2025/financial-evidence-skills"
+    },
+    {
+      "id": "glama-seiche-repository",
+      "listing_url": "https://glama.ai/mcp/servers/beepboop2025/seiche",
+      "verified_at": "2026-10-17T23:13:21.131883+00:00",
+      "name": "Seiche — Funding and FX Evidence",
+      "source_url": "https://github.com/beepboop2025/seiche"
+    },
+    {
+      "id": "glama-undertow-mcp-repository",
+      "listing_url": "https://glama.ai/mcp/servers/beepboop2025/undertow-mcp",
+      "verified_at": "2026-10-17T23:13:21.132352+00:00",
+      "name": "Undertow MCP",
+      "source_url": "https://github.com/beepboop2025/undertow-mcp"
+    },
+    {
+      "id": "glama-noisefloor-repository",
+      "listing_url": "https://glama.ai/mcp/servers/beepboop2025/noisefloor",
+      "verified_at": "2026-10-17T23:13:21.132401+00:00",
+      "name": "noisefloor",
+      "source_url": "https://github.com/beepboop2025/noisefloor"
+    },
+    {
+      "id": "glama-data-breach-detector-repository",
+      "listing_url": "https://glama.ai/mcp/servers/beepboop2025/data-breach-detector",
+      "verified_at": "2026-10-17T23:13:22.156602+00:00",
+      "name": "data-breach-detector",
+      "source_url": "https://github.com/beepboop2025/data-breach-detector"
+    },
+    {
+      "id": "glama-lucent-repository",
+      "listing_url": "https://glama.ai/mcp/servers/beepboop2025/lucent",
+      "verified_at": "2026-10-17T23:13:22.225126+00:00",
+      "name": "Lucent",
+      "source_url": "https://github.com/beepboop2025/lucent"
+    },
+    {
+      "id": "glama-pdf-suite-mcp-repository",
+      "listing_url": "https://glama.ai/mcp/servers/beepboop2025/pdf-suite-mcp",
+      "verified_at": "2026-10-17T23:13:22.253503+00:00",
+      "name": "pdf-suite-mcp",
+      "source_url": "https://github.com/beepboop2025/pdf-suite-mcp"
+    },
+    {
+      "id": "glama-groundcheck-repository",
+      "listing_url": "https://glama.ai/mcp/servers/beepboop2025/groundcheck",
+      "verified_at": "2026-10-17T23:13:22.354758+00:00",
+      "name": "Groundcheck",
+      "source_url": "https://github.com/beepboop2025/groundcheck"
+    },
+    {
+      "id": "glama-myquantdoesntspeakenglish-repository",
+      "listing_url": "https://glama.ai/mcp/servers/beepboop2025/myquantdoesntspeakenglish",
+      "verified_at": "2026-10-17T23:13:23.176435+00:00",
+      "name": "My Quant — Editorial Discovery",
+      "source_url": "https://github.com/beepboop2025/myquantdoesntspeakenglish"
+    }
+  ],
+  "glama_hosted_connectors": [
+    {
+      "id": "glama-liquilens-connector",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/liquilens",
+      "verified_at": "2026-10-17T23:11:40.273966+00:00",
+      "name": "LiquiLens",
+      "endpoint": "https://api.liquilens.in/mcp",
+      "tool_count": 24
+    },
+    {
+      "id": "glama-seiche-connector",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/seiche",
+      "verified_at": "2026-10-17T23:11:41.555527+00:00",
+      "name": "Seiche",
+      "endpoint": "https://api.seiche.info/mcp",
+      "tool_count": 16
+    },
+    {
+      "id": "glama-undertow-connector",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/undertow",
+      "verified_at": "2026-10-17T23:11:42.041228+00:00",
+      "name": "Undertow",
+      "endpoint": "https://api.seiche.info/undertow/mcp",
+      "tool_count": 16
+    },
+    {
+      "id": "glama-data-breach-detector-connector",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/data-breach-detector",
+      "verified_at": "2026-10-17T23:11:39.365406+00:00",
+      "name": "Data Breach Detector",
+      "endpoint": "https://breach.seiche.info/mcp",
+      "tool_count": 7
+    },
+    {
+      "id": "glama-financial-evidence-connector",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/financial-evidence",
+      "verified_at": "2026-10-17T23:11:39.367210+00:00",
+      "name": "Financial Evidence compatibility router",
+      "endpoint": "https://liquilens.in/mcp/financial-evidence",
+      "tool_count": 3
+    },
+    {
+      "id": "glama-financial-evidence-workspace-connector",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/financial-evidence-workspace",
+      "verified_at": "2026-10-17T23:11:39.392710+00:00",
+      "name": "Financial Evidence Research Desk",
+      "endpoint": "https://agents.seiche.info/products/financial-evidence/mcp",
+      "tool_count": 9
+    },
+    {
+      "id": "glama-financial-source-data-connector",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/financial-source-data",
+      "verified_at": "2026-10-17T23:11:40.030715+00:00",
+      "name": "Source Data Research",
+      "endpoint": "https://api.seiche.info/api/v2/research-data/mcp",
+      "tool_count": 8
+    },
+    {
+      "id": "glama-groundcheck-connector",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/groundcheck",
+      "verified_at": "2026-10-17T23:11:40.244165+00:00",
+      "name": "Groundcheck",
+      "endpoint": "https://groundcheck.seiche.info/mcp",
+      "tool_count": 5
+    },
+    {
+      "id": "glama-liquilens-trade-safety-gateway-connector",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/liquilens-trade-safety-gateway",
+      "verified_at": "2026-10-17T23:11:40.471065+00:00",
+      "name": "LiquiLens Trade Safety",
+      "endpoint": "https://trade-safety.liquilens.in/mcp",
+      "tool_count": 2
+    },
+    {
+      "id": "glama-myquant-app-connector",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/myquant-app",
+      "verified_at": "2026-10-17T23:11:40.712362+00:00",
+      "name": "MyQuant App Discovery",
+      "endpoint": "https://myquant-app.vercel.app/mcp",
+      "tool_count": 2
+    },
+    {
+      "id": "glama-myquant-editorial-connector",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/myquant-editorial",
+      "verified_at": "2026-10-17T23:11:40.878773+00:00",
+      "name": "MyQuant Editorial",
+      "endpoint": "https://myquantdoesntspeakenglish.com/mcp",
+      "tool_count": 5
+    },
+    {
+      "id": "glama-narcoscope-connector",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/narcoscope",
+      "verified_at": "2026-10-17T23:11:40.898264+00:00",
+      "name": "NarcoScope",
+      "endpoint": "https://www.narcoscope.com/mcp",
+      "tool_count": 14
+    },
+    {
+      "id": "glama-noisefloor-connector",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/noisefloor",
+      "verified_at": "2026-10-17T23:11:41.140313+00:00",
+      "name": "NoiseFloor",
+      "endpoint": "https://api.seiche.info/noisefloor/mcp",
+      "tool_count": 10
+    },
+    {
+      "id": "glama-palimpsest-connector",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/palimpsest",
+      "verified_at": "2026-10-17T23:11:41.289728+00:00",
+      "name": "Palimpsest",
+      "endpoint": "https://api.seiche.info/palimpsest/mcp",
+      "tool_count": 7
+    },
+    {
+      "id": "glama-riptide-connector",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/riptide",
+      "verified_at": "2026-10-17T23:11:41.405284+00:00",
+      "name": "Riptide",
+      "endpoint": "https://api.seiche.info/riptide/mcp",
+      "tool_count": 7
+    },
+    {
+      "id": "glama-seiche-agent-community-connector",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/seiche-agent-community",
+      "verified_at": "2026-10-17T23:11:41.734450+00:00",
+      "name": "Seiche Agent Community",
+      "endpoint": "https://agents.seiche.info/social/mcp",
+      "tool_count": 5
+    },
+    {
+      "id": "glama-seiche-market-corpus-connector",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/seiche-market-corpus",
+      "verified_at": "2026-10-17T23:11:41.819459+00:00",
+      "name": "Seiche Market Atlas Corpus",
+      "endpoint": "https://agents.seiche.info/products/seiche-market-corpus/mcp",
+      "tool_count": 9
+    },
+    {
+      "id": "glama-wake-connector",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/wake",
+      "verified_at": "2026-10-17T23:11:42.174075+00:00",
+      "name": "Wake",
+      "endpoint": "https://agents.seiche.info/products/wake/mcp",
+      "tool_count": 3
+    }
+  ],
+  "ledger_records": 215,
+  "ledger_declared_states": {
+    "live": 120,
+    "submitted": 62,
+    "closed_unmerged": 1,
+    "eligible_automatic": 1,
+    "ready_account_action": 5,
+    "skipped_paid": 3,
+    "conditional_artifact": 2,
+    "paused_external": 1,
+    "listed_incomplete": 18,
+    "approved_pending_public": 1,
+    "sent_delivery_unverified": 1
+  },
+  "scope": "Accepted package releases and existing public listing records with individual observation clocks. Connector tool counts are dated observations; current health, provider grades and permission requirements must be checked at the linked surface.",
+  "new_marketplace_listing_created": false,
+  "independent_adoption_verified": false
+}

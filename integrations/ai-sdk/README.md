@@ -5,7 +5,7 @@ metadata from `https://agents.seiche.info`. Source dates, nulls, units, rights
 and diagnostics remain attached to each result. The adapter has no trading
 or execution authority and does not provide a quote feed.
 
-Package: `@moomoo202020/financial-evidence-ai-sdk@0.1.1`.
+Package: `@moomoo202020/financial-evidence-ai-sdk@0.1.2`.
 AI SDK Tools Registry acceptance is a separate step from package distribution;
 this package does not claim marketplace approval or external adoption.
 
@@ -17,7 +17,7 @@ Node.js 22+ and AI SDK 7 are required. The implementation is tested with
 Install this version:
 
 ```sh
-npm install @moomoo202020/financial-evidence-ai-sdk@0.1.1 ai@^7.0.141
+npm install @moomoo202020/financial-evidence-ai-sdk@0.1.2 ai@^7.0.141
 ```
 
 TypeScript applications that check dependency declarations also need the AI
@@ -53,14 +53,14 @@ Run `node research.mjs`. For verification/test activity use
 
 ## Native model tool loop
 
-Current source also exports `runFinancialWorkflow` for an application-controlled
+Version 0.1.2 also exports `runFinancialWorkflow` for an application-controlled
 source-monitor check followed by a funding, institution or BTC exit review, and
 `financialEvidenceWorkflowTool` as an optional fourth tool. Both revalidate
 monitor expiry after reading the evidence and preserve unavailable/blocked
 states. They submit no learning records. The provider digest remains explicitly
 unverified by JavaScript; use the Python workflow for local digest verification,
-durable comparisons and optional delivery. These exports are not in published
-npm 0.1.1 yet. [Source install and examples](../../docs/start/agent-workflows.md).
+durable comparisons and optional delivery.
+[Workflow installation and examples](../../docs/start/agent-workflows.md).
 
 An AI Gateway key is needed only for the chosen language model, which may incur
 provider charges. Set `AI_GATEWAY_API_KEY` in the environment and run this as an

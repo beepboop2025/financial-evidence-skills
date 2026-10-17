@@ -1,11 +1,10 @@
 # One task, one saved review
 
-The `start` and `review` commands are included in
-[Financial Evidence 0.1.11](https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.11).
-Install the base package in your own environment:
+The base package includes the `start` and `review` commands.
+Install or upgrade the published package in your own environment:
 
 ```sh
-python3 -m pip install financial-evidence==0.1.11
+python3 -m pip install --upgrade financial-evidence
 financial-evidence start
 financial-evidence review funding --output reviews
 ```

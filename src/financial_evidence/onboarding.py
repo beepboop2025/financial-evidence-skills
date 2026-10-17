@@ -55,7 +55,7 @@ def starter_catalog() -> dict:
         ],
         "recurring_workflows": {
             "guide_url": GUIDE.replace("connect/", "start/agent-workflows.md"),
-            "installation": "repository_source_required_until_next_package_release",
+            "installation": "base_package",
             "command": "financial-evidence workflow run funding --state ./funding-reviews",
             "sharing_default": "local_only",
             "scope": "Saved reviews, explicit feedback and operator-reported outcomes; no execution authority.",

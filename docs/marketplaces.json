@@ -1,8 +1,8 @@
 {
   "schema": "liquidity-lab.financial-evidence-marketplaces.v1",
   "name": "Financial Evidence",
-  "version": "0.1.12",
-  "release_state": "published",
+  "version": "0.1.13",
+  "release_state": "candidate",
   "last_verified_release": "0.1.12",
   "checked_at": "2026-10-15T16:05:35.527239Z",
   "state_definitions": {
@@ -4973,7 +4973,7 @@
     }
   ],
   "release_verified_at": "2026-10-17T20:43:41.055802+00:00",
-  "updated_at": "2026-10-17T16:52:40.869882+00:00",
+  "updated_at": "2026-10-18",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",

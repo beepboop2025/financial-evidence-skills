@@ -4,15 +4,20 @@ build-backend = "hatchling.build"
 
 [project]
 name = "financial-evidence"
-version = "0.1.12"
-description = "MCP and API research infrastructure for AI finance agents, with persistent sessions and source-status streams"
+version = "0.1.13"
+description = "Financial research for Python and AI agents: funding, bank disclosures, market liquidity and source provenance"
 readme = "PYPI_README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [{ name = "Liquidity Lab" }]
 keywords = [
+  "seiche",
+  "liquilens",
+  "undertow",
+  "palimpsest",
   "ai-agents",
   "trading-research",
+  "bank-disclosures",
   "model-context-protocol",
   "source-provenance",
   "capital-markets",
@@ -42,7 +47,9 @@ workspace = ["fastapi>=0.115,<1", "uvicorn>=0.30,<1", "mcp>=1.30,<2", "PyJWT[cry
 
 [project.urls]
 Homepage = "https://beepboop2025.github.io/financial-evidence-skills/distribution/ai-trading-tools.html"
-Documentation = "https://beepboop2025.github.io/financial-evidence-skills/agents/low-latency.md"
+Documentation = "https://beepboop2025.github.io/financial-evidence-skills/agents/FIRST_REVIEW.md"
+"Product connections" = "https://beepboop2025.github.io/financial-evidence-skills/connect/"
+"Agent workflows" = "https://beepboop2025.github.io/financial-evidence-skills/start/agent-workflows.md"
 "MCP connection" = "https://agents.seiche.info/products/financial-evidence/mcp"
 "API and source-status contract" = "https://agents.seiche.info/v1/context/contract"
 Issues = "https://github.com/beepboop2025/financial-evidence-skills/issues"

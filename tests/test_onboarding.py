@@ -14,6 +14,7 @@ class OnboardingTests(unittest.TestCase):
     def test_published_examples_are_bounded_and_not_claimed_as_live_observations(self):
         catalog = starter_catalog()
         self.assertFalse(catalog["network_access_performed"])
+        self.assertEqual(catalog["recurring_workflows"]["installation"], "base_package")
         for task in catalog["tasks"]:
             self.assertEqual(selection_for(task["id"], task["selection"]), task["selection"])
             self.assertEqual(task["arguments"], {"workflow": task["id"], "selection": task["selection"]})

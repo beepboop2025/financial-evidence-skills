@@ -8,7 +8,7 @@ queue. Public research uses the existing central gateway without a key.
 Install the published Python package, then run a review:
 
 ```sh
-python3 -m pip install financial-evidence==0.1.12
+python3 -m pip install --upgrade financial-evidence
 financial-evidence workflow run funding --selection USD --state ./funding-reviews
 financial-evidence workflow report --state ./funding-reviews
 financial-evidence workflow history --state ./funding-reviews

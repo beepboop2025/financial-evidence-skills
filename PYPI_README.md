@@ -1,49 +1,119 @@
-# Financial Evidence for AI agents
+# Financial Evidence for Python and AI agents
 
 <!-- mcp-name: io.github.beepboop2025/financial-evidence -->
 
-Read-only MCP and API research infrastructure for AI finance and trading agents.
-Connect to funding, bank-risk, market-liquidity and economic evidence while keeping
-source dates, coverage gaps and rights attached to the result. Operated by
-LIQUILENS PRIVATE LIMITED.
+Use **Seiche, LiquiLens, Undertow and Palimpsest** financial research from Python,
+the terminal or an MCP client. Review funding conditions, bank disclosures,
+market liquidity and economic source availability with original sources, dates
+and coverage gaps attached. Operated by LIQUILENS PRIVATE LIMITED.
 
-## Install
+[Try the research desk](https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html)
+· [First-review guide](https://beepboop2025.github.io/financial-evidence-skills/agents/FIRST_REVIEW.md)
+· [Connect your tools](https://beepboop2025.github.io/financial-evidence-skills/connect/)
 
-Python 3.10 or newer:
+## Install and save your first review
 
-```sh
-python3 -m pip install 'financial-evidence[workspace]==0.1.11'
-financial-evidence-trading doctor
-financial-evidence-trading context
-```
-
-The `workspace` extra supplies the MCP/HTTP dependencies needed by the persistent
-clients. The base package has no required dependencies and includes the terminal
-and three-tool stdio router. Public hosted research reads need no data API key.
-Optional subscriptions and client/model costs have separate terms.
-
-## Complete your first review
-
-Version 0.1.11 adds a guided first result, a readable source-cited brief and
-comparison with your next review. No optional dependencies or model are needed:
+Python 3.10 or newer. The base package has **no required dependencies**; this
+review needs no model, account or data API key:
 
 ```sh
-python3 -m pip install financial-evidence==0.1.11
+python3 -m pip install --upgrade financial-evidence
 financial-evidence start
 financial-evidence review funding --output reviews
 ```
 
-The saved capture retains the original JSON, source dates, gaps and a hash
-receipt. At your next useful review, add `--previous` with that capture's
-`result.json` to compare evidence. Installation does not start a scheduler.
-[Follow the first-review guide](https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.11/docs/agents/FIRST_REVIEW.md).
+`start` shows the available tasks offline. `review` makes one bounded public
+research request and saves the original `result.json`, a readable `brief.md` and
+a hash receipt. Inspect source dates and gaps before using the evidence. At your
+next review, compare against the saved capture:
 
-## Reuse an MCP connection
+```sh
+financial-evidence review funding --output reviews \
+  --previous reviews/YOUR-PREVIOUS-CAPTURE/result.json
+```
 
-For the recurring workflow SDK/CLI currently available in repository source,
-including saved comparisons and explicit outcome reporting, see the
-[agent workflow guide](https://github.com/beepboop2025/financial-evidence-skills/blob/main/docs/start/agent-workflows.md).
-The published 0.1.11 package predates this addition.
+Other starting tasks include covered institutions and indicative BTC exit costs:
+
+```sh
+financial-evidence review institutions --selection au-sfb --output reviews
+financial-evidence review exit --selection 10000 --output reviews
+```
+
+Use `--verification` for installation or CI checks so those reads are labelled
+synthetic. Installation starts no scheduler. An unavailable result remains a gap.
+
+## Choose the product for your question
+
+| Product | Research scope | API and MCP guide |
+| --- | --- | --- |
+| [Seiche](https://seiche.info/) | Funding, money markets, FX and capital-market context with source clocks. | [Seiche developers](https://seiche.info/developers) |
+| [LiquiLens](https://liquilens.in/) | Covered banks and financial institutions, published disclosures and review gaps. | [LiquiLens developers](https://liquilens.in/developers/) |
+| [Undertow](https://liquilens-undertow.com/) | Market liquidity and indicative BTC exit estimates at published sizes. | [Undertow developers](https://liquilens-undertow.com/developers/) |
+| [Palimpsest](https://www.palimpsest.info/) | China and regional research, public records and source availability. The Financial Evidence China view may be metadata-only. | [Palimpsest developers](https://palimpsest.info/developers.html) |
+
+Coverage and permitted use differ by source. Research results do not grant trade
+execution, credit approval or redistribution rights; BTC estimates are not
+executable quotes.
+
+## Use Python or connect an AI agent
+
+The same base package can save a review from your application:
+
+```python
+from financial_evidence.research import fetch_workflow, save_review
+
+result = fetch_workflow("funding", "USD")
+capture = save_review(result, "reviews")
+print(result["prepared_response"], capture / "brief.md")
+```
+
+For an MCP client, use the hosted Streamable HTTP endpoint:
+
+```text
+https://agents.seiche.info/products/financial-evidence/mcp
+```
+
+Start with `financial_evidence_agent_query` and
+`{"dataset":"money_markets","entity":"USD","limit":3}`.
+Download the [product MCP configurations](https://beepboop2025.github.io/financial-evidence-skills/connect/all-products.mcp.json)
+to connect individual products; each has its own tools and scope.
+
+For the dependency-free local stdio router:
+
+```sh
+uvx --from financial-evidence financial-evidence mcp
+```
+
+If already installed, run `financial-evidence mcp`. The local router exposes
+`financial_evidence_topics`, `financial_evidence_route` and
+`financial_evidence_fetch`; the hosted Research Desk has a separate tool set.
+
+## Repeat reviews in your application
+
+The package includes `AgentWorkflow` and the `workflow` CLI, with a private local
+journal and comparisons against the last successful capture. On Linux or macOS:
+
+```sh
+financial-evidence workflow run funding --selection USD --state ./funding-reviews
+financial-evidence workflow report --state ./funding-reviews
+financial-evidence workflow history --state ./funding-reviews
+```
+
+This path also needs no optional dependencies. Your application chooses when to
+run it; installation does not enable polling or remote learning submissions.
+Use `--mode test` on `workflow run` for installation checks. See the
+[agent workflow guide](https://beepboop2025.github.io/financial-evidence-skills/start/agent-workflows.md)
+for Python hooks, monitor checks, feedback and explicitly enabled sharing.
+
+## Optional persistent MCP sessions and source-status streams
+
+Install the `workspace` extra for persistent MCP/HTTP clients:
+
+```sh
+python3 -m pip install --upgrade 'financial-evidence[workspace]'
+financial-evidence-trading doctor
+financial-evidence-trading context
+```
 
 ```python
 import asyncio
@@ -58,67 +128,14 @@ async def main():
 asyncio.run(main())
 ```
 
-`mode="test"` labels verification traffic. Repeated reads reuse the bounded
-session; failed requests are not automatically replayed. Session reuse does not
-make source data fresher or grant trading authority.
+`mode="test"` labels verification traffic. Sessions are bounded and failed calls
+are not automatically replayed. Source-status snapshots and SSE events report
+metadata, not live quotes; session reuse cannot make sources fresher. Follow the
+[persistent client and stream guide](https://beepboop2025.github.io/financial-evidence-skills/agents/low-latency.md)
+for expiry and reconnect handling. The separate `openbb` extra supports the
+[OpenBB integration](https://beepboop2025.github.io/financial-evidence-skills/tools/#openbb).
 
-## Read compact source-status updates
-
-```python
-import asyncio
-from financial_evidence.trading.context import ContextClient
-
-async def main():
-    async with ContextClient() as client:
-        snapshot = await client.snapshot()
-        print(snapshot)
-
-asyncio.run(main())
-```
-
-The public source-status routes are:
-
-- [Contract](https://agents.seiche.info/v1/context/contract)
-- [Snapshot](https://agents.seiche.info/v1/context/snapshot)
-- [SSE events](https://agents.seiche.info/v1/context/events)
-
-These report metadata, not live quotes. Source freshness, source rights and stream
-liveness are separate. See the [Python/JavaScript stream guide](https://beepboop2025.github.io/financial-evidence-skills/agents/low-latency.md)
-for expiry, reset and reconnect handling. The JavaScript companion is available
-from that guide and is not represented as a Python module.
-
-## Connect an MCP client
-
-For hosted financial research, add this Streamable HTTP endpoint:
-
-```text
-https://agents.seiche.info/products/financial-evidence/mcp
-```
-
-Start with `financial_evidence_agent_query` and
-`{"dataset":"money_markets","entity":"USD","limit":3}`.
-Download the [product MCP configurations](https://beepboop2025.github.io/financial-evidence-skills/connect/all-products.mcp.json)
-for LiquiLens, Seiche, Undertow, Palimpsest and the other explicitly labelled
-research, metadata and sandbox surfaces. Each endpoint has its own tool schema.
-
-For the local three-tool research router:
-
-```sh
-uvx --from financial-evidence==0.1.11 financial-evidence mcp
-```
-
-The existing `financial-evidence-mcp` command remains available. The local router
-exposes `financial_evidence_topics`, `financial_evidence_route` and
-`financial_evidence_fetch`; it is separate from the hosted Research Desk tool set.
-
-## Diagnostics and source admission
-
-`financial-evidence-trading latency --samples 3` performs labelled synthetic reads.
-`source-access` inspects the permission catalog, while `feed-pilot` runs invented
-recovery fixtures. Neither obtains a feed licence, executes a trade or establishes
-a production latency guarantee. Preserve unavailable and restricted results.
-
-[Setup guide](https://beepboop2025.github.io/financial-evidence-skills/distribution/ai-trading-tools.html)
-· [Source](https://github.com/beepboop2025/financial-evidence-skills)
+[Source](https://github.com/beepboop2025/financial-evidence-skills)
 · [Issues](https://github.com/beepboop2025/financial-evidence-skills/issues)
+· [Privacy](https://beepboop2025.github.io/financial-evidence-skills/privacy/)
 · [Licence](https://github.com/beepboop2025/financial-evidence-skills/blob/main/LICENSE)

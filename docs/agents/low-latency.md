@@ -7,12 +7,12 @@ prices, establish source redistribution permission, or authorize an order.
 
 ## Install and verify
 
-Use a dedicated Python 3.10+ environment. The published PyPI package is version
-0.1.10. It includes the clients introduced by source tag `agent-infrastructure-v1.1.0`
-and the complete-event timeout and initial-reset fixes:
+Use a dedicated Python 3.10+ environment. Install or upgrade the published
+package for persistent clients, complete-event timeouts and initial-reset
+validation:
 
 ```sh
-python3 -m pip install 'financial-evidence[workspace]==0.1.10'
+python3 -m pip install --upgrade 'financial-evidence[workspace]'
 financial-evidence-trading doctor
 financial-evidence-trading latency --samples 3
 financial-evidence-trading context
@@ -22,8 +22,8 @@ financial-evidence-trading feed-pilot
 ```
 
 For JavaScript AI SDK tools, install
-`@moomoo202020/financial-evidence-ai-sdk@0.1.1`; see the
-[verified npm setup](../platforms/ai-sdk.md). Python 0.1.10 bounds the wait for a
+`@moomoo202020/financial-evidence-ai-sdk@0.1.2`; see the
+[verified npm setup](../platforms/ai-sdk.md). The Python client bounds the wait for a
 complete event even when partial bytes or comments arrive. Python and JavaScript
 streams require an initial reset before a keepalive. These clients retain no
 trade-execution authority.

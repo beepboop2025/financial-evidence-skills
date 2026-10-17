@@ -53,6 +53,15 @@ Run `node research.mjs`. For verification/test activity use
 
 ## Native model tool loop
 
+Current source also exports `runFinancialWorkflow` for an application-controlled
+source-monitor check followed by a funding, institution or BTC exit review, and
+`financialEvidenceWorkflowTool` as an optional fourth tool. Both revalidate
+monitor expiry after reading the evidence and preserve unavailable/blocked
+states. They submit no learning records. The provider digest remains explicitly
+unverified by JavaScript; use the Python workflow for local digest verification,
+durable comparisons and optional delivery. These exports are not in published
+npm 0.1.1 yet. [Source install and examples](../../docs/start/agent-workflows.md).
+
 An AI Gateway key is needed only for the chosen language model, which may incur
 provider charges. Set `AI_GATEWAY_API_KEY` in the environment and run this as an
 ES module; keep the key out of source files.

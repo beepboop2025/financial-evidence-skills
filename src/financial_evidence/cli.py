@@ -213,14 +213,14 @@ def command_review(args: argparse.Namespace) -> int:
 COMPLETIONS = {
     "bash": """_financial_evidence() {
   local cur="${COMP_WORDS[COMP_CWORD]}"
-  COMPREPLY=( $(compgen -W "start review mcp topics route fetch doctor completion --help --version" -- "$cur") )
+  COMPREPLY=( $(compgen -W "start review workflow mcp topics route fetch doctor completion --help --version" -- "$cur") )
 }
 complete -F _financial_evidence financial-evidence
 """,
     "zsh": """#compdef financial-evidence
-_arguments '1:command:(start review mcp topics route fetch doctor completion)' '*::arg:->args'
+_arguments '1:command:(start review workflow mcp topics route fetch doctor completion)' '*::arg:->args'
 """,
-    "fish": """complete -c financial-evidence -f -a 'start review mcp topics route fetch doctor completion'
+    "fish": """complete -c financial-evidence -f -a 'start review workflow mcp topics route fetch doctor completion'
 complete -c financial-evidence -l version -d 'Show version'
 """,
 }
@@ -259,6 +259,9 @@ def parser() -> argparse.ArgumentParser:
     )
     root.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     commands = root.add_subparsers(dest="command", required=True)
+
+    from .workflow_cli import add_parser as add_workflow_parser
+    add_workflow_parser(commands)
 
     start = commands.add_parser("start", help="choose a research task; show CLI, API and MCP setup offline")
     start.add_argument("task", nargs="?", choices=("funding", "institutions", "exit"))

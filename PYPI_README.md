@@ -12,7 +12,7 @@ LIQUILENS PRIVATE LIMITED.
 Python 3.10 or newer:
 
 ```sh
-python3 -m pip install 'financial-evidence[workspace]==0.1.10'
+python3 -m pip install 'financial-evidence[workspace]==0.1.11'
 financial-evidence-trading doctor
 financial-evidence-trading context
 ```
@@ -21,6 +21,22 @@ The `workspace` extra supplies the MCP/HTTP dependencies needed by the persisten
 clients. The base package has no required dependencies and includes the terminal
 and three-tool stdio router. Public hosted research reads need no data API key.
 Optional subscriptions and client/model costs have separate terms.
+
+## Complete your first review
+
+Version 0.1.11 adds a guided first result, a readable source-cited brief and
+comparison with your next review. No optional dependencies or model are needed:
+
+```sh
+python3 -m pip install financial-evidence==0.1.11
+financial-evidence start
+financial-evidence review funding --output reviews
+```
+
+The saved capture retains the original JSON, source dates, gaps and a hash
+receipt. At your next useful review, add `--previous` with that capture's
+`result.json` to compare evidence. Installation does not start a scheduler.
+[Follow the first-review guide](https://github.com/beepboop2025/financial-evidence-skills/blob/v0.1.11/docs/agents/FIRST_REVIEW.md).
 
 ## Reuse an MCP connection
 
@@ -83,7 +99,7 @@ research, metadata and sandbox surfaces. Each endpoint has its own tool schema.
 For the local three-tool research router:
 
 ```sh
-uvx --from financial-evidence==0.1.10 financial-evidence mcp
+uvx --from financial-evidence==0.1.11 financial-evidence mcp
 ```
 
 The existing `financial-evidence-mcp` command remains available. The local router

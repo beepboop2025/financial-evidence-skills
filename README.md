@@ -27,6 +27,11 @@ claude mcp add --transport http undertow https://api.seiche.info/undertow/mcp
 
 **Try this first:** What is the current US funding stress regime, and which dated funding events are next? Cite source dates and missing evidence.
 
+**Python 0.1.11 release candidate:** run `financial-evidence start`, then
+`financial-evidence review funding --output reviews` for a readable brief,
+original JSON and a comparison at your next review. These commands require
+0.1.11 or this source checkout. [First-review guide](docs/agents/FIRST_REVIEW.md).
+
 [Try it in your browser](https://liquilens.in/start/?task=funding) ·
 [Cursor configuration](https://liquilens.in/agents/cursor.json) ·
 [Codex commands](https://liquilens.in/agents/codex.txt) ·

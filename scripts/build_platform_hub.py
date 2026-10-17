@@ -70,6 +70,7 @@ def assets() -> dict[str, bytes]:
                 ROOT / "docs/agents/readiness.md", ROOT / "docs/agents/execution-setup.md",
                 ROOT / "docs/agents/readiness-20261015.json",
                 ROOT / "docs/agents/low-latency.md", ROOT / "docs/agents/persistent-client.md",
+                ROOT / "docs/agents/FIRST_REVIEW.md", ROOT / "docs/start/research_watch.py",
                 ROOT / "docs/agents/context-client.mjs", ROOT / "docs/agents/source-access.md",
                 ROOT / "docs/agents/source-access-contracts.json",
                 ROOT / "examples/trading/feed-pilot.py",

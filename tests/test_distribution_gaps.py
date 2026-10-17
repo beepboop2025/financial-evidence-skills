@@ -266,6 +266,44 @@ class DistributionGapTests(unittest.TestCase):
         self.assertFalse(fields_match({"market_quotes": 0}, {"market_quotes": False}))
         self.assertTrue(fields_match({"market_quotes": False, "new_field": "allowed"}, {"market_quotes": False}))
 
+    def test_catalog_requires_product_link_not_just_page_or_separate_mentions(self):
+        channel = {"kind": "markdown_links", "entries": [
+            {"name": "Financial Evidence", "url": "https://github.com/beepboop2025/financial-evidence-skills"}]}
+        meta = {"status": "retrieved", "http_status": 200, "content_type": "text/plain; charset=utf-8"}
+        link = "[Financial Evidence](https://github.com/beepboop2025/financial-evidence-skills)"
+        status, reason, observed = verify(channel, {}, meta, ("| " + link + " | Public research |\n").encode())
+        self.assertEqual((status, reason), ("current", "published_catalog_links_match"))
+        self.assertEqual(observed["matched_entry_count"], 1)
+        self.assertFalse(observed["native_installation_verified"])
+        self.assertFalse(observed["independent_adoption_verified"])
+        for body in ("Financial Evidence\nhttps://github.com/beepboop2025/financial-evidence-skills",
+                     link.replace("Financial Evidence", "Another product"),
+                     link.replace("/financial-evidence-skills)", "/wrong-repository)"),
+                     "<!-- " + link + " -->", "```markdown\n" + link + "\n```",
+                     "~~~\n" + link + "\n~~~"):
+            with self.subTest(body=body):
+                self.assertEqual(verify(channel, {}, meta, body.encode())[0], "drift")
+        with self.assertRaisesRegex(ValueError, "unexpected_content_type"):
+            verify(channel, {}, {**meta, "content_type": "text/html"}, link.encode())
+
+    def test_catalog_inventory_does_not_validate_an_unrelated_pending_submission(self):
+        self.channel.update(kind="markdown_links", url="https://raw.githubusercontent.com/example/catalog/main/README.md",
+                            entries=[{"name": "Financial Evidence", "url": "https://liquilens.in/developers/"}])
+        self.write_inputs()
+        report = audit(self.root, fetcher=lambda _: ({"status": "retrieved", "http_status": 200,
+            "content_type": "text/plain"}, b"- [Financial Evidence](https://liquilens.in/developers/)"))
+        self.assertEqual(report["ledger_inventory"][0]["observation"], "current")
+        self.assertEqual(report["ledger_inventory"][1]["observation"], "not_monitored")
+        self.assertFalse(report["coverage_complete"])
+        self.assertFalse(report["independent_adoption_verified"])
+        # A permitted reference does not expand the HTTP request allowlist.
+        with self.assertRaises(ValueError):
+            safe_url("https://liquilens.in/developers/")
+        self.channel["entries"][0]["url"] = "https://unreviewed.example/product"
+        self.write_inputs()
+        with self.assertRaises(ValueError):
+            load_inputs(self.root)
+
     def test_response_payload_is_not_retained(self):
         value = package()
         value["private_or_irrelevant_field"] = "DO-NOT-RETAIN-PAYLOAD"

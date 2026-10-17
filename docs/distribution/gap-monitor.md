@@ -34,6 +34,16 @@ separate release/consumer acceptance procedure when publishing or changing an
 artifact. The hosted context probes verify discovery links and metadata-only
 authority boundaries; they do not open an SSE subscriber or measure market data.
 
+Accepted GitHub directory entries are checked against their public default-branch
+Markdown. Each check requires the named product link and its exact canonical URL,
+outside HTML comments and fenced code examples. A removed or retargeted entry is
+reported as drift even when the page returns HTTP 200. These checks confirm the
+configured catalog rows, not native installation, referral traffic or adoption.
+Glama repository listings and remote connectors have separate ledger records and
+dated public observations. They are not silently treated as verified by a check
+of an upstream package or endpoint. Glama's authenticated API and its quality
+grades remain outside this credential-free scheduled monitor.
+
 The process uses no credentials and does not follow redirects. Only reviewed
 HTTPS hosts are permitted, with four workers, a 1 MB response limit and a
 12-second subprocess deadline. Requests identify themselves as synthetic.

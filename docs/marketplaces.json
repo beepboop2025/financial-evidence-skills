@@ -70,25 +70,21 @@
       "state": "live",
       "listing_url": "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills",
       "cost": "free",
-      "detail": "Existing repository listing refreshed to source d1e8cdf5a4d8020e3d0df91565fb9541a449686d. Public README now advertises Financial Evidence 0.1.7; the three-tool inventory remains separately verified.",
-      "next_action": "Monitor public source propagation and retain separate source, tool-inventory and deployed-runtime checks.",
-      "verified_at": "2026-10-08T12:12:14.387221+00:00",
+      "detail": "Existing Glama repository listing serves the separate three-tool Financial Evidence router. The owner accepted Glama release 0.1.13 from b1d06db1f3357997fa66ea2af0a1f1c74935e486 after its build and tool-discovery test. The nine-tool hosted Workspace is a distinct connector.",
+      "next_action": "Keep the existing repository listing and tested Glama build aligned with reviewed source; verify profile completion, tool quality and real client usefulness separately.",
+      "verified_at": "2026-10-17T23:13:21.132280+00:00",
       "verification_url": "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills/schema",
       "latest_surface_check": {
-        "id": "glama",
+        "observed_at": "2026-10-17T23:13:21.132280+00:00",
         "url": "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills",
         "http_status": 200,
-        "sha256": "6d781d6c98a6dfbc24d3bfa70266c696d87a7a1e7ee8d1bc4c1ca058ae0154e2",
-        "has_current_guide": false,
-        "has_0162": false,
-        "has_017": true,
-        "observed_at": "2026-10-08T12:12:14.387221+00:00",
+        "sha256": "200cd6a26bd6ba0627cf3862a86b340191a9ff5483cee41e2858ea7f5bf203eb",
         "authentication_used": false,
-        "readback": "updated_public_metadata_verified"
+        "readback": "public repository listing and exact repository link verified; no tool call or adoption inferred"
       },
-      "metadata_freshness": "current_release_and_setup_guidance",
+      "metadata_freshness": "public_repository_identity_and_tested_glama_release_observed",
       "updated_at": "2026-10-08T12:25:18.882263+00:00",
-      "source_commit": "d1e8cdf5a4d8020e3d0df91565fb9541a449686d",
+      "source_commit": "b1d06db1f3357997fa66ea2af0a1f1c74935e486",
       "latest_agent_tools_refresh": {
         "observed_at": "2026-10-15T14:56:19.950Z",
         "state": "existing_listing_metadata_and_source_refreshed",
@@ -118,7 +114,26 @@
         "runtime_upgrade_claimed": false,
         "independent_adoption_verified": false,
         "evidence_receipt": "distribution/agent-tools-distribution-20261015.json"
-      }
+      },
+      "previous_surface_check": {
+        "id": "glama",
+        "url": "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills",
+        "http_status": 200,
+        "sha256": "6d781d6c98a6dfbc24d3bfa70266c696d87a7a1e7ee8d1bc4c1ca058ae0154e2",
+        "has_current_guide": false,
+        "has_0162": false,
+        "has_017": true,
+        "observed_at": "2026-10-08T12:12:14.387221+00:00",
+        "authentication_used": false,
+        "readback": "updated_public_metadata_verified"
+      },
+      "listing_kind": "repository_listing",
+      "source_url": "https://github.com/beepboop2025/financial-evidence-skills",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "previous_source_commit": "d1e8cdf5a4d8020e3d0df91565fb9541a449686d",
+      "public_version": "0.1.13",
+      "public_tool_count": 3
     },
     {
       "id": "docker-mcp-catalog",
@@ -2111,57 +2126,93 @@
       "name": "NoiseFloor — PyPI",
       "channel": "python-package-index",
       "state": "live",
-      "listing_url": "https://pypi.org/project/noisefloor/0.4.1/",
+      "listing_url": "https://pypi.org/project/noisefloor/0.4.2/",
       "cost": "free",
-      "version": "0.4.1",
-      "source_commit": "7433b5a085c517a452c84150ff2e769f0ea73dac",
-      "published_at": "2026-10-17T22:17:03.245350Z",
-      "verified_at": "2026-10-17T22:19:16.086441+00:00",
-      "detail": "NoiseFloor 0.4.1 PyPI description matches accepted source, with a self-contained installed example and seven project URLs. Clean installed Python, CLI, stdio MCP and local HTTP checks passed. Hosted service remains separately verified at 0.4.0; predictive utility and adoption remain unproven.",
+      "version": "0.4.2",
+      "source_commit": "e94edf3969c25887b3cd8ced93905d83777aa2c6",
+      "published_at": "2026-10-17T23:10:51.760595Z",
+      "verified_at": "2026-10-17T23:13:09.682053+00:00",
+      "detail": "NoiseFloor 0.4.2 is published on PyPI with source-matched tool guidance and all 85 input property paths documented. Clean installed Python, CLI, stdio MCP, local HTTP and REST checks passed across all ten tools. Input validation and computations are unchanged. Hosted service remains separately verified at 0.4.0; predictive utility and adoption remain unproven.",
       "next_action": "Keep package guidance and product links aligned with verified releases; verify hosted promotion separately.",
-      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.1.json",
+      "verification_url": "https://github.com/beepboop2025/noisefloor/releases/download/v0.4.2/source.json",
       "latest_surface_check": {
+        "observed_at": "2026-10-17T23:13:09.682053+00:00",
+        "readback": "pypi_042_publication_and_consumer_verified",
+        "version": "0.4.2",
+        "source_commit": "e94edf3969c25887b3cd8ced93905d83777aa2c6",
+        "hosted_version": "0.4.0",
+        "hosted_changed_by_package_release": false
+      },
+      "previous_surface_check": {
         "observed_at": "2026-10-17T22:19:16.086441+00:00",
         "readback": "pypi_041_description_artifacts_and_clean_install_verified"
-      }
+      },
+      "previous_verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.1.json",
+      "publisher_workflow_url": "https://github.com/beepboop2025/noisefloor/actions/runs/39077954891",
+      "hosted_version": "0.4.0",
+      "independent_adoption_verified": false
     },
     {
       "id": "noisefloor-mcp-registry",
       "name": "NoiseFloor — Official MCP Registry",
       "channel": "mcp-registry",
       "state": "live",
-      "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fnoisefloor/versions/0.4.1",
+      "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fnoisefloor/versions/0.4.2",
       "cost": "free",
-      "version": "0.4.1",
-      "source_commit": "7433b5a085c517a452c84150ff2e769f0ea73dac",
-      "published_at": "2026-10-17T22:17:12.7773Z",
-      "verified_at": "2026-10-17T22:19:16.086441+00:00",
-      "detail": "Official MCP Registry 0.4.1 is active and latest, with PyPI 0.4.1 package identity. Clean installed MCP exposes ten tools. Hosted service remains at 0.4.0 and was not promoted by this package release.",
+      "version": "0.4.2",
+      "source_commit": "e94edf3969c25887b3cd8ced93905d83777aa2c6",
+      "published_at": "2026-10-17T23:11:03.884081Z",
+      "verified_at": "2026-10-17T23:13:09.682053+00:00",
+      "detail": "Official MCP Registry 0.4.2 is active and latest, with PyPI 0.4.2 package identity. Clean installed MCP exposes ten tools with documented input semantics. Hosted service remains at 0.4.0 and was not promoted by this package release.",
       "next_action": "Recheck future package and registry versions together; keep hosted release identity explicit.",
-      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.1.json",
+      "verification_url": "https://github.com/beepboop2025/noisefloor/releases/download/v0.4.2/source.json",
       "latest_surface_check": {
+        "observed_at": "2026-10-17T23:13:09.682053+00:00",
+        "readback": "official_registry_042_publication_and_consumer_verified",
+        "version": "0.4.2",
+        "source_commit": "e94edf3969c25887b3cd8ced93905d83777aa2c6",
+        "hosted_version": "0.4.0",
+        "hosted_changed_by_package_release": false
+      },
+      "previous_surface_check": {
         "observed_at": "2026-10-17T22:19:16.086441+00:00",
         "readback": "official_registry_041_active_latest_verified"
-      }
+      },
+      "previous_verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.1.json",
+      "publisher_workflow_url": "https://github.com/beepboop2025/noisefloor/actions/runs/39077954891",
+      "hosted_version": "0.4.0",
+      "independent_adoption_verified": false
     },
     {
       "id": "noisefloor-github-release",
       "name": "NoiseFloor — GitHub Release",
       "channel": "release-artifacts",
       "state": "live",
-      "listing_url": "https://github.com/beepboop2025/noisefloor/releases/tag/v0.4.1",
+      "listing_url": "https://github.com/beepboop2025/noisefloor/releases/tag/v0.4.2",
       "cost": "free",
-      "version": "0.4.1",
-      "source_commit": "7433b5a085c517a452c84150ff2e769f0ea73dac",
-      "published_at": "2026-10-17T22:17:14Z",
-      "verified_at": "2026-10-17T22:19:16.086441+00:00",
-      "detail": "Signed v0.4.1 release targets accepted source; wheel and sdist hashes and the source receipt match PyPI. GitHub artifact attestations verify against the exact release source. Hosted service remains separately verified at 0.4.0.",
+      "version": "0.4.2",
+      "source_commit": "e94edf3969c25887b3cd8ced93905d83777aa2c6",
+      "published_at": "2026-10-17T23:11:06Z",
+      "verified_at": "2026-10-17T23:13:09.682053+00:00",
+      "detail": "Signed v0.4.2 release targets accepted source e94edf3969c25887b3cd8ced93905d83777aa2c6; wheel and sdist hashes and the source receipt match PyPI. GitHub artifact attestations verify against the exact release source. Hosted service remains separately verified at 0.4.0.",
       "next_action": "Verify future signed releases and artifact provenance independently of hosted deployment.",
-      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.1.json",
+      "verification_url": "https://github.com/beepboop2025/noisefloor/releases/download/v0.4.2/source.json",
       "latest_surface_check": {
+        "observed_at": "2026-10-17T23:13:09.682053+00:00",
+        "readback": "github_042_publication_and_consumer_verified",
+        "version": "0.4.2",
+        "source_commit": "e94edf3969c25887b3cd8ced93905d83777aa2c6",
+        "hosted_version": "0.4.0",
+        "hosted_changed_by_package_release": false
+      },
+      "previous_surface_check": {
         "observed_at": "2026-10-17T22:19:16.086441+00:00",
         "readback": "github_041_artifacts_source_and_attestations_verified"
-      }
+      },
+      "previous_verification_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.1.json",
+      "publisher_workflow_url": "https://github.com/beepboop2025/noisefloor/actions/runs/39077954891",
+      "hosted_version": "0.4.0",
+      "independent_adoption_verified": false
     },
     {
       "id": "mcpserver-cc-financial-evidence",
@@ -2741,16 +2792,16 @@
       "id": "lobehub-noisefloor",
       "name": "NoiseFloor on LobeHub",
       "channel": "mcp-directory",
-      "state": "listed_incomplete",
+      "state": "live",
       "listing_url": "https://lobehub.com/mcp/beepboop2025-noisefloor",
       "cost": "existing public index; no paid placement purchased",
-      "detail": "The existing LobeHub record was claimed and its update accepted by the official CLI on 10 October 2026. The authenticated owned-list readback verifies version 0.4.0 and provider status published on the same record ID; no new listing was created. Anonymous public readback at 09:46 UTC still showed version 0.1.2, Unvalidated and an unclaimed flag in the public route data. The accepted update has not been independently verified on the public card.",
-      "next_action": "Await public catalog synchronization and validation, then recheck the exact existing card against the accepted update receipt. The earlier support request is preserved; no duplicate claim or listing is needed.",
-      "verified_at": "2026-10-10T09:46:11.996015+00:00",
+      "detail": "The existing accepted ownership claim and hosted update have propagated publicly. Anonymous readback on 17 October 2026 verifies Claimed, A / Premium, version 0.4.0, ten tools and the correct hosted MCP URL. This version describes the unchanged hosted service; the separately published Python package and Official MCP Registry are 0.4.2. Native client installation and independent adoption remain unverified.",
+      "next_action": "Keep the hosted endpoint and package installation guidance distinct as releases change; verify native client installation separately.",
+      "verified_at": "2026-10-17T23:12:51.052835+00:00",
       "outcome": "existing_public_search_card_reconciled",
-      "directory_validation_label": "Unvalidated",
+      "directory_validation_label": "A / Premium",
       "native_installation_verified": false,
-      "metadata_accuracy_verified": false,
+      "metadata_accuracy_verified": true,
       "evidence_receipt": "distribution/platform-expansion-20261010.json",
       "prepared_update_manifest": "https://beepboop2025.github.io/financial-evidence-skills/distribution/lobehub-updates/beepboop2025-noisefloor/lhm.plugin.json",
       "native_mcp_discovery_verified": true,
@@ -2761,27 +2812,30 @@
         "tool_count": 10,
         "transport": "streamable-http"
       },
-      "edit_state": "accepted_public_metadata_still_stale",
-      "updated_at": "2026-10-10T09:46:11.996015+00:00",
+      "edit_state": "accepted_public_hosted_metadata_verified",
+      "updated_at": "2026-10-17T23:12:51.052835+00:00",
       "completion_receipt": "distribution/completion-20261010.json",
       "publisher_login_completed": true,
       "github_ownership_verified": true,
       "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
       "github_grant_owner_approved": true,
       "publisher_updates_submitted": 1,
-      "public_version": "0.1.2",
+      "public_version": "0.4.0",
       "latest_surface_check": {
-        "observed_at": "2026-10-10T09:46:11.996015+00:00",
-        "url": "https://lobehub.com/mcp/beepboop2025-noisefloor",
-        "readback": "anonymous_public_card_verified_update_not_propagated",
+        "observed_at": "2026-10-17T23:12:51.052835+00:00",
+        "url": "https://lobehub.com/mcp/beepboop2025-noisefloor?activeTab=deployment",
+        "readback": "anonymous_public_claim_hosted_version_endpoint_and_tool_count_verified",
         "http_status": 200,
-        "version": "0.1.2",
-        "validation_label": "Unvalidated",
-        "public_is_claimed": false,
-        "public_is_validated": false,
-        "public_version_matches_owned": false,
-        "public_metadata_update_verified": false,
-        "response_sha256": "c99af827336a107219668854aebe67c369b0bf1160eb6e300d15ff9b9d6ccfe0"
+        "version": "0.4.0",
+        "tool_count": 10,
+        "validation_label": "A / Premium",
+        "public_is_claimed": true,
+        "public_is_validated": true,
+        "public_version_matches_owned": true,
+        "public_metadata_update_verified": true,
+        "remote_url": "https://api.seiche.info/noisefloor/mcp",
+        "native_installation_verified": false,
+        "response_sha256": "c4dff35f07e3b58387d17cb6ded7c2c5b23b3490cba43028eefd76aa969fe689"
       },
       "listing_repair_receipt": "distribution/g2-lobehub-repair-20261010.json",
       "public_refresh_attempt": {
@@ -2790,14 +2844,6 @@
         "acknowledgement_verified": false,
         "public_change_verified": false,
         "result": "Start Refresh returned to enabled with no success confirmation; no repeated submission"
-      },
-      "public_score": {
-        "points": 45,
-        "maximum": 100,
-        "grade": "F",
-        "required_items_met": 2,
-        "required_items_total": 4,
-        "observed_at": "2026-10-10T09:14:41.884793+00:00"
       },
       "badge_ownership_attempt": {
         "listing": "beepboop2025-noisefloor",
@@ -2831,8 +2877,9 @@
         "owned_current_version": "0.4.0",
         "owned_readback_verified": true,
         "manifest_sha256": "ed7f02dc75e5ed2db33f5cdb096e36343214abf88a72a7b2d15dc9da836b01a4",
-        "public_metadata_update_verified": false,
-        "new_listing_created": false
+        "public_metadata_update_verified": true,
+        "new_listing_created": false,
+        "public_metadata_verified_at": "2026-10-17T23:12:51.052835+00:00"
       },
       "latest_badge_check_attempt": {
         "observed_date": "2026-10-10",
@@ -2841,7 +2888,32 @@
         "completion_confirmed": false,
         "result": "single_attempt_unconfirmed",
         "separate_from_completed_cli_claim": true
-      }
+      },
+      "previous_surface_check": {
+        "observed_at": "2026-10-10T09:46:11.996015+00:00",
+        "url": "https://lobehub.com/mcp/beepboop2025-noisefloor",
+        "readback": "anonymous_public_card_verified_update_not_propagated",
+        "http_status": 200,
+        "version": "0.1.2",
+        "validation_label": "Unvalidated",
+        "public_is_claimed": false,
+        "public_is_validated": false,
+        "public_version_matches_owned": false,
+        "public_metadata_update_verified": false,
+        "response_sha256": "c99af827336a107219668854aebe67c369b0bf1160eb6e300d15ff9b9d6ccfe0"
+      },
+      "previous_public_score": {
+        "points": 45,
+        "maximum": 100,
+        "grade": "F",
+        "required_items_met": 2,
+        "required_items_total": 4,
+        "observed_at": "2026-10-10T09:14:41.884793+00:00"
+      },
+      "metadata_freshness": "current_hosted_endpoint_and_count_package_release_separate",
+      "public_listing_verified": true,
+      "independent_adoption_verified": false,
+      "new_listing_created": false
     },
     {
       "id": "lobehub-evidence-carrier",
@@ -3992,11 +4064,25 @@
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/liquilens",
-      "cost": "free; no paid boost purchased",
-      "detail": "Existing owner-verified, Healthy hosted connector with 24 public tool links, observed on 11 October 2026. Directory quality grades have separate observation clocks and are not tool counts or adoption evidence.",
-      "next_action": "Monitor schema and grading refresh independently of hosted availability.",
-      "verified_at": "2026-10-11T12:15:27.251164+00:00",
+      "cost": "free connector; optional listing promotion is separate",
+      "detail": "Existing remote connector publicly exposes 24 named tools at the recorded endpoint and reports Healthy. This is Glama's dated health report; listing presence and operator checks do not establish independent adoption or sustained uptime.",
+      "next_action": "Monitor the existing connector endpoint, named tool inventory and dated health report separately from repository builds and quality grades.",
+      "verified_at": "2026-10-17T23:11:40.273966+00:00",
       "latest_surface_check": {
+        "observed_at": "2026-10-17T23:11:40.273966+00:00",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/liquilens",
+        "http_status": 200,
+        "sha256": "413f46ffd77d3ded476476c72218f0b4ff7b6553646739815e648a3caaef1ea8",
+        "authentication_used": false,
+        "readback": "public connector endpoint, named tool inventory, health label and ownership badge observed",
+        "provider_health_status": "Healthy",
+        "provider_last_tested_text_utc": "2026-10-17 22:54",
+        "ownership_badge_observed": true
+      },
+      "public_tool_count": 24,
+      "new_listing_created": false,
+      "evidence_receipt": "distribution/mcp-discovery-20261011.json",
+      "previous_surface_check": {
         "id": "glama-liquilens-connector",
         "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/liquilens",
         "http_status": 200,
@@ -4004,9 +4090,40 @@
         "observed_at": "2026-10-11T12:15:27.251164+00:00",
         "authentication_used": false
       },
-      "public_tool_count": 24,
-      "new_listing_created": false,
-      "evidence_receipt": "distribution/mcp-discovery-20261011.json"
+      "listing_kind": "remote_connector",
+      "public_tool_names": [
+        "bank_asset_quality_review",
+        "banking_specialisation_coverage",
+        "bank_npa_reconciliation",
+        "corporate_transmission_board",
+        "crypto_exposure_board",
+        "crypto_regime_board",
+        "evidence_europe",
+        "evidence_india",
+        "evidence_institution",
+        "evidence_markets",
+        "evidence_us",
+        "failure_radar_board",
+        "failure_radar_institution",
+        "forward_odds",
+        "household_credit_board",
+        "institution_evidence_monitor",
+        "institution_research_coverage",
+        "institution_review_packet",
+        "latest_article",
+        "rbi_supervisory_tape",
+        "research_network",
+        "stablecoin_rails_board",
+        "universe_search",
+        "verify_published_record"
+      ],
+      "remote_urls": [
+        "https://api.liquilens.in/mcp"
+      ],
+      "ownership_state": "public_badge_verified",
+      "independent_adoption_verified": false,
+      "repository_listing_urls": [],
+      "source_url": "https://github.com/beepboop2025/liquilens-mcp"
     },
     {
       "id": "glama-seiche-connector",
@@ -4014,11 +4131,25 @@
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/seiche",
-      "cost": "free; no paid boost purchased",
-      "detail": "Existing owner-verified, Healthy hosted connector with 16 public tool links, observed on 11 October 2026. Directory quality grades have separate observation clocks and are not tool counts or adoption evidence.",
-      "next_action": "Monitor schema and grading refresh independently of hosted availability.",
-      "verified_at": "2026-10-11T12:15:28.273537+00:00",
+      "cost": "free connector; optional listing promotion is separate",
+      "detail": "Existing remote connector publicly exposes 16 named tools at the recorded endpoint and reports Healthy. This is Glama's dated health report; listing presence and operator checks do not establish independent adoption or sustained uptime.",
+      "next_action": "Monitor the existing connector endpoint, named tool inventory and dated health report separately from repository builds and quality grades.",
+      "verified_at": "2026-10-17T23:11:41.555527+00:00",
       "latest_surface_check": {
+        "observed_at": "2026-10-17T23:11:41.555527+00:00",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/seiche",
+        "http_status": 200,
+        "sha256": "3de3855f5190589cf3fa84ac5a82efff422a6eee99243e74f14975ff4e016322",
+        "authentication_used": false,
+        "readback": "public connector endpoint, named tool inventory, health label and ownership badge observed",
+        "provider_health_status": "Healthy",
+        "provider_last_tested_text_utc": "2026-10-17 23:07",
+        "ownership_badge_observed": true
+      },
+      "public_tool_count": 16,
+      "new_listing_created": false,
+      "evidence_receipt": "distribution/mcp-discovery-20261011.json",
+      "previous_surface_check": {
         "id": "glama-seiche-connector",
         "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/seiche",
         "http_status": 200,
@@ -4026,9 +4157,34 @@
         "observed_at": "2026-10-11T12:15:28.273537+00:00",
         "authentication_used": false
       },
-      "public_tool_count": 16,
-      "new_listing_created": false,
-      "evidence_receipt": "distribution/mcp-discovery-20261011.json"
+      "listing_kind": "remote_connector",
+      "public_tool_names": [
+        "crypto_stress_record",
+        "data_health",
+        "funding_stress_now",
+        "fx_materials_passage",
+        "gift_city_context",
+        "gold_inventory_carry",
+        "historical_analogs",
+        "institutional_flows",
+        "latest_article",
+        "market_workbench",
+        "money_market_context",
+        "oil_funding_context",
+        "proof_backtest",
+        "research_network",
+        "trade_safety_risk_context",
+        "world_markets_context"
+      ],
+      "remote_urls": [
+        "https://api.seiche.info/mcp"
+      ],
+      "ownership_state": "public_badge_verified",
+      "independent_adoption_verified": false,
+      "repository_listing_urls": [
+        "https://glama.ai/mcp/servers/beepboop2025/seiche"
+      ],
+      "source_url": "https://github.com/beepboop2025/seiche"
     },
     {
       "id": "glama-undertow-connector",
@@ -4036,11 +4192,25 @@
       "channel": "mcp-directory",
       "state": "live",
       "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/undertow",
-      "cost": "free; no paid boost purchased",
-      "detail": "Existing owner-verified, Healthy hosted connector with 16 public tool links, observed on 11 October 2026. Directory quality grades have separate observation clocks and are not tool counts or adoption evidence.",
-      "next_action": "Monitor schema and grading refresh independently of hosted availability.",
-      "verified_at": "2026-10-11T12:15:29.196139+00:00",
+      "cost": "free connector; optional listing promotion is separate",
+      "detail": "Existing remote connector publicly exposes 16 named tools at the recorded endpoint and reports Healthy. This is Glama's dated health report; listing presence and operator checks do not establish independent adoption or sustained uptime.",
+      "next_action": "Monitor the existing connector endpoint, named tool inventory and dated health report separately from repository builds and quality grades.",
+      "verified_at": "2026-10-17T23:11:42.041228+00:00",
       "latest_surface_check": {
+        "observed_at": "2026-10-17T23:11:42.041228+00:00",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/undertow",
+        "http_status": 200,
+        "sha256": "7cad04e4e4f06928a73ed573d3d4d53ab602880b6a8012e0487db7a6aa37c619",
+        "authentication_used": false,
+        "readback": "public connector endpoint, named tool inventory, health label and ownership badge observed",
+        "provider_health_status": "Healthy",
+        "provider_last_tested_text_utc": "2026-10-17 22:56",
+        "ownership_badge_observed": true
+      },
+      "public_tool_count": 16,
+      "new_listing_created": false,
+      "evidence_receipt": "distribution/mcp-discovery-20261011.json",
+      "previous_surface_check": {
         "id": "glama-undertow-connector",
         "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/undertow",
         "http_status": 200,
@@ -4048,9 +4218,34 @@
         "observed_at": "2026-10-11T12:15:29.196139+00:00",
         "authentication_used": false
       },
-      "public_tool_count": 16,
-      "new_listing_created": false,
-      "evidence_receipt": "distribution/mcp-discovery-20261011.json"
+      "listing_kind": "remote_connector",
+      "public_tool_names": [
+        "agent_access_status",
+        "crypto_exit_check",
+        "crypto_funding_cost",
+        "crypto_portfolio_stress",
+        "depth_episodes",
+        "exit_cost",
+        "gold_cash_realisation",
+        "latest_article",
+        "liquidity_tiers",
+        "market_corpus_context",
+        "research_network",
+        "sealed_record",
+        "trade_safety_exit_context",
+        "unwind_watch",
+        "venue_concentration",
+        "venue_price_reconciliation"
+      ],
+      "remote_urls": [
+        "https://api.seiche.info/undertow/mcp"
+      ],
+      "ownership_state": "public_badge_verified",
+      "independent_adoption_verified": false,
+      "repository_listing_urls": [
+        "https://glama.ai/mcp/servers/beepboop2025/undertow-mcp"
+      ],
+      "source_url": "https://github.com/beepboop2025/undertow-mcp"
     },
     {
       "id": "mcp-so-seiche",
@@ -4462,10 +4657,10 @@
       "name": "Official MCP Registry — Seiche — world-markets evidence terminal",
       "channel": "mcp-registry",
       "state": "live",
-      "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fseiche/versions/0.16.4",
+      "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fseiche/versions/0.16.5",
       "cost": "free",
-      "version": "0.16.4",
-      "verified_at": "2026-10-15T15:32:57.818862+00:00",
+      "version": "0.16.5",
+      "verified_at": "2026-10-17T23:14:16.777917+00:00",
       "detail": "The official Registry reports this exact product version active and latest. This verifies listing availability; runtime operation and independent adoption are separate.",
       "next_action": "Monitor the existing version and keep product release metadata current.",
       "registry_name": "io.github.beepboop2025/seiche",
@@ -4473,6 +4668,13 @@
         "https://api.seiche.info/mcp"
       ],
       "latest_surface_check": {
+        "observed_at": "2026-10-17T23:14:16.777917+00:00",
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fseiche/versions/latest",
+        "http_status": 200,
+        "sha256": "061fcd256e72d704de84baee009e69c9ed7b9d06347764c5a5cdc5a8b0d77e54",
+        "readback": "exact Seiche 0.16.5 identity is active and latest; no hosted deployment inferred"
+      },
+      "previous_surface_check": {
         "observed_at": "2026-10-15T15:32:57.818862+00:00",
         "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fseiche/versions/0.16.4",
         "http_status": 200,
@@ -4973,10 +5175,845 @@
       "native_installation_verified": true,
       "official_directory_acceptance": false,
       "independent_adoption_verified": false
+    },
+    {
+      "id": "glama-seiche-repository",
+      "name": "Seiche — Funding and FX Evidence on Glama (repository listing)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/servers/beepboop2025/seiche",
+      "cost": "free listing; optional paid promotion",
+      "listing_kind": "repository_listing",
+      "source_url": "https://github.com/beepboop2025/seiche",
+      "verified_at": "2026-10-17T23:13:21.131883+00:00",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing Glama repository listing and its exact GitHub repository link independently resolved. Container releases, tool definitions, remote connectors and quality grades have separate verification scopes.",
+      "next_action": "Keep the existing repository listing and tested Glama build aligned with reviewed source; verify profile completion, tool quality and real client usefulness separately.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:13:21.131883+00:00",
+        "url": "https://glama.ai/mcp/servers/beepboop2025/seiche",
+        "http_status": 200,
+        "sha256": "9da7f1caee4b4cc3c6b3cdd5142848f38efcfd88ed9ee3598a4c1d9bc2439702",
+        "authentication_used": false,
+        "readback": "public repository listing and exact repository link verified; no tool call or adoption inferred"
+      }
+    },
+    {
+      "id": "glama-undertow-mcp-repository",
+      "name": "Undertow MCP on Glama (repository listing)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/servers/beepboop2025/undertow-mcp",
+      "cost": "free listing; optional paid promotion",
+      "listing_kind": "repository_listing",
+      "source_url": "https://github.com/beepboop2025/undertow-mcp",
+      "verified_at": "2026-10-17T23:13:21.132352+00:00",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing Glama repository listing and its exact GitHub repository link independently resolved. Container releases, tool definitions, remote connectors and quality grades have separate verification scopes.",
+      "next_action": "Keep the existing repository listing and tested Glama build aligned with reviewed source; verify profile completion, tool quality and real client usefulness separately.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:13:21.132352+00:00",
+        "url": "https://glama.ai/mcp/servers/beepboop2025/undertow-mcp",
+        "http_status": 200,
+        "sha256": "71b269bd88e4096be70afce8b36b0fdfc82924d578c0233722e1dd325274d7c3",
+        "authentication_used": false,
+        "readback": "public repository listing and exact repository link verified; no tool call or adoption inferred"
+      }
+    },
+    {
+      "id": "glama-noisefloor-repository",
+      "name": "noisefloor on Glama (repository listing)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/servers/beepboop2025/noisefloor",
+      "cost": "free listing; optional paid promotion",
+      "listing_kind": "repository_listing",
+      "source_url": "https://github.com/beepboop2025/noisefloor",
+      "verified_at": "2026-10-17T23:13:21.132401+00:00",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing Glama repository listing and its exact GitHub repository link independently resolved. Container releases, tool definitions, remote connectors and quality grades have separate verification scopes.",
+      "next_action": "Keep the existing repository listing and tested Glama build aligned with reviewed source; verify profile completion, tool quality and real client usefulness separately.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:13:21.132401+00:00",
+        "url": "https://glama.ai/mcp/servers/beepboop2025/noisefloor",
+        "http_status": 200,
+        "sha256": "0c1328d42b2a7e4098f20a77f5b8d4de5f1df9b8ab51020d0d5911f26083b536",
+        "authentication_used": false,
+        "readback": "public repository listing and exact repository link verified; no tool call or adoption inferred"
+      }
+    },
+    {
+      "id": "glama-data-breach-detector-repository",
+      "name": "data-breach-detector on Glama (repository listing)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/servers/beepboop2025/data-breach-detector",
+      "cost": "free listing; optional paid promotion",
+      "listing_kind": "repository_listing",
+      "source_url": "https://github.com/beepboop2025/data-breach-detector",
+      "verified_at": "2026-10-17T23:13:22.156602+00:00",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing Glama repository listing and its exact GitHub repository link independently resolved. Container releases, tool definitions, remote connectors and quality grades have separate verification scopes.",
+      "next_action": "Keep the existing repository listing and tested Glama build aligned with reviewed source; verify profile completion, tool quality and real client usefulness separately.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:13:22.156602+00:00",
+        "url": "https://glama.ai/mcp/servers/beepboop2025/data-breach-detector",
+        "http_status": 200,
+        "sha256": "9c5d06f79deb68da4fcaf4f0c6fdd72e8549757b7a59b8b644070ef6a737f234",
+        "authentication_used": false,
+        "readback": "public repository listing and exact repository link verified; no tool call or adoption inferred"
+      }
+    },
+    {
+      "id": "glama-lucent-repository",
+      "name": "Lucent on Glama (repository listing)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/servers/beepboop2025/lucent",
+      "cost": "free listing; optional paid promotion",
+      "listing_kind": "repository_listing",
+      "source_url": "https://github.com/beepboop2025/lucent",
+      "verified_at": "2026-10-17T23:13:22.225126+00:00",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing Glama repository listing and its exact GitHub repository link independently resolved. Container releases, tool definitions, remote connectors and quality grades have separate verification scopes.",
+      "next_action": "Keep the existing repository listing and tested Glama build aligned with reviewed source; verify profile completion, tool quality and real client usefulness separately.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:13:22.225126+00:00",
+        "url": "https://glama.ai/mcp/servers/beepboop2025/lucent",
+        "http_status": 200,
+        "sha256": "25f42d7cc66823dc61b8b6d62469b92c3b3829e72882d1405c0735ca9adeabd7",
+        "authentication_used": false,
+        "readback": "public repository listing and exact repository link verified; no tool call or adoption inferred"
+      }
+    },
+    {
+      "id": "glama-pdf-suite-mcp-repository",
+      "name": "pdf-suite-mcp on Glama (repository listing)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/servers/beepboop2025/pdf-suite-mcp",
+      "cost": "free listing; optional paid promotion",
+      "listing_kind": "repository_listing",
+      "source_url": "https://github.com/beepboop2025/pdf-suite-mcp",
+      "verified_at": "2026-10-17T23:13:22.253503+00:00",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing Glama repository listing and its exact GitHub repository link independently resolved. Container releases, tool definitions, remote connectors and quality grades have separate verification scopes.",
+      "next_action": "Keep the existing repository listing and tested Glama build aligned with reviewed source; verify profile completion, tool quality and real client usefulness separately.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:13:22.253503+00:00",
+        "url": "https://glama.ai/mcp/servers/beepboop2025/pdf-suite-mcp",
+        "http_status": 200,
+        "sha256": "943cddee3a760393c2e5f07894d519949dd7fb352a33c5da6c9fa8d4616fd841",
+        "authentication_used": false,
+        "readback": "public repository listing and exact repository link verified; no tool call or adoption inferred"
+      }
+    },
+    {
+      "id": "glama-groundcheck-repository",
+      "name": "Groundcheck on Glama (repository listing)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/servers/beepboop2025/groundcheck",
+      "cost": "free listing; optional paid promotion",
+      "listing_kind": "repository_listing",
+      "source_url": "https://github.com/beepboop2025/groundcheck",
+      "verified_at": "2026-10-17T23:13:22.354758+00:00",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing Glama repository listing and its exact GitHub repository link independently resolved. Container releases, tool definitions, remote connectors and quality grades have separate verification scopes.",
+      "next_action": "Keep the existing repository listing and tested Glama build aligned with reviewed source; verify profile completion, tool quality and real client usefulness separately.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:13:22.354758+00:00",
+        "url": "https://glama.ai/mcp/servers/beepboop2025/groundcheck",
+        "http_status": 200,
+        "sha256": "1bae7739532ff4263eae65a18a1a4332571f24180cdf8d15248996d9c01e9e14",
+        "authentication_used": false,
+        "readback": "public repository listing and exact repository link verified; no tool call or adoption inferred"
+      }
+    },
+    {
+      "id": "glama-myquantdoesntspeakenglish-repository",
+      "name": "My Quant — Editorial Discovery on Glama (repository listing)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/servers/beepboop2025/myquantdoesntspeakenglish",
+      "cost": "free listing; optional paid promotion",
+      "listing_kind": "repository_listing",
+      "source_url": "https://github.com/beepboop2025/myquantdoesntspeakenglish",
+      "verified_at": "2026-10-17T23:13:23.176435+00:00",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing Glama repository listing and its exact GitHub repository link independently resolved. Container releases, tool definitions, remote connectors and quality grades have separate verification scopes.",
+      "next_action": "Keep the existing repository listing and tested Glama build aligned with reviewed source; verify profile completion, tool quality and real client usefulness separately.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:13:23.176435+00:00",
+        "url": "https://glama.ai/mcp/servers/beepboop2025/myquantdoesntspeakenglish",
+        "http_status": 200,
+        "sha256": "ea2b4665f5de08b25a79bb8307af7022cbc2df0c6ed742c85cb6aed8980ea913",
+        "authentication_used": false,
+        "readback": "public repository listing and exact repository link verified; no tool call or adoption inferred"
+      }
+    },
+    {
+      "id": "glama-data-breach-detector-connector",
+      "name": "data-breach-detector on Glama (remote connector)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/data-breach-detector",
+      "cost": "free connector; optional listing promotion is separate",
+      "listing_kind": "remote_connector",
+      "verified_at": "2026-10-17T23:11:39.365406+00:00",
+      "public_tool_count": 7,
+      "public_tool_names": [
+        "assess_threat",
+        "breach_history",
+        "breach_news",
+        "breach_stats",
+        "breach_timeline",
+        "check_exposure",
+        "feed_sources"
+      ],
+      "remote_urls": [
+        "https://breach.seiche.info/mcp"
+      ],
+      "ownership_state": "public_badge_verified",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing remote connector publicly exposes 7 named tools at the recorded endpoint and reports Healthy. This is Glama's dated health report; listing presence and operator checks do not establish independent adoption or sustained uptime.",
+      "next_action": "Monitor the existing connector endpoint, named tool inventory and dated health report separately from repository builds and quality grades.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:11:39.365406+00:00",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/data-breach-detector",
+        "http_status": 200,
+        "sha256": "3b8231c0c1a5eaa357f14d452233d6097b76a3c011a8be74757d434c119b6389",
+        "authentication_used": false,
+        "readback": "public connector endpoint, named tool inventory, health label and ownership badge observed",
+        "provider_health_status": "Healthy",
+        "provider_last_tested_text_utc": "2026-10-17 08:03",
+        "ownership_badge_observed": true
+      },
+      "repository_listing_urls": [
+        "https://glama.ai/mcp/servers/beepboop2025/data-breach-detector"
+      ],
+      "source_url": "https://github.com/beepboop2025/data-breach-detector"
+    },
+    {
+      "id": "glama-financial-evidence-connector",
+      "name": "financial-evidence on Glama (remote connector)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/financial-evidence",
+      "cost": "free connector; optional listing promotion is separate",
+      "listing_kind": "remote_connector",
+      "verified_at": "2026-10-17T23:11:39.367210+00:00",
+      "public_tool_count": 3,
+      "public_tool_names": [
+        "financial_evidence_fetch",
+        "financial_evidence_route",
+        "financial_evidence_topics"
+      ],
+      "remote_urls": [
+        "https://liquilens.in/mcp/financial-evidence"
+      ],
+      "ownership_state": "public_badge_verified",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing remote connector publicly exposes 3 named tools at the recorded endpoint and reports Healthy. This is Glama's dated health report; listing presence and operator checks do not establish independent adoption or sustained uptime. This compatibility endpoint retains topics, route and fetch; it is distinct from financial-evidence-workspace.",
+      "next_action": "Monitor the existing connector endpoint, named tool inventory and dated health report separately from repository builds and quality grades.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:11:39.367210+00:00",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/financial-evidence",
+        "http_status": 200,
+        "sha256": "4ba2f2d74b14c431cc1a82b12de0e4e386a1a1c8a730446c2fa389da7cf76939",
+        "authentication_used": false,
+        "readback": "public connector endpoint, named tool inventory, health label and ownership badge observed",
+        "provider_health_status": "Healthy",
+        "provider_last_tested_text_utc": "2026-10-17 23:07",
+        "ownership_badge_observed": true
+      },
+      "repository_listing_urls": [
+        "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills"
+      ],
+      "source_url": "https://github.com/beepboop2025/financial-evidence-skills"
+    },
+    {
+      "id": "glama-financial-evidence-workspace-connector",
+      "name": "financial-evidence-workspace on Glama (remote connector)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/financial-evidence-workspace",
+      "cost": "free connector; optional listing promotion is separate",
+      "listing_kind": "remote_connector",
+      "verified_at": "2026-10-17T23:11:39.392710+00:00",
+      "public_tool_count": 9,
+      "public_tool_names": [
+        "financial_evidence_agent_query",
+        "financial_evidence_datasets",
+        "financial_evidence_funding_review",
+        "financial_evidence_packet",
+        "financial_evidence_query",
+        "financial_evidence_review",
+        "financial_evidence_route",
+        "financial_evidence_sources",
+        "financial_evidence_workflow"
+      ],
+      "remote_urls": [
+        "https://agents.seiche.info/products/financial-evidence/mcp"
+      ],
+      "ownership_state": "public_badge_verified",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing remote connector publicly exposes 9 named tools at the recorded endpoint and reports Healthy. This is Glama's dated health report; listing presence and operator checks do not establish independent adoption or sustained uptime. This is the nine-tool Research Desk; use its own hosted endpoint rather than the three-tool compatibility router.",
+      "next_action": "Monitor the existing connector endpoint, named tool inventory and dated health report separately from repository builds and quality grades.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:11:39.392710+00:00",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/financial-evidence-workspace",
+        "http_status": 200,
+        "sha256": "6f4abedb63decbb11be1caa5e97c0df510da50efdaeb6ef26844e8e04b2545ac",
+        "authentication_used": false,
+        "readback": "public connector endpoint, named tool inventory, health label and ownership badge observed",
+        "provider_health_status": "Healthy",
+        "provider_last_tested_text_utc": "2026-10-17 23:00",
+        "ownership_badge_observed": true
+      },
+      "repository_listing_urls": [
+        "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills"
+      ],
+      "source_url": "https://github.com/beepboop2025/financial-evidence-skills"
+    },
+    {
+      "id": "glama-financial-source-data-connector",
+      "name": "financial-source-data on Glama (remote connector)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/financial-source-data",
+      "cost": "free connector; optional listing promotion is separate",
+      "listing_kind": "remote_connector",
+      "verified_at": "2026-10-17T23:11:40.030715+00:00",
+      "public_tool_count": 8,
+      "public_tool_names": [
+        "research_analysis",
+        "research_catalog",
+        "research_entities",
+        "research_observations",
+        "research_series",
+        "research_series_summary",
+        "research_tracked_institutions",
+        "research_workspace"
+      ],
+      "remote_urls": [
+        "https://api.seiche.info/api/v2/research-data/mcp"
+      ],
+      "ownership_state": "public_badge_verified",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing remote connector publicly exposes 8 named tools at the recorded endpoint and reports Healthy. This is Glama's dated health report; listing presence and operator checks do not establish independent adoption or sustained uptime.",
+      "next_action": "Monitor the existing connector endpoint, named tool inventory and dated health report separately from repository builds and quality grades.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:11:40.030715+00:00",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/financial-source-data",
+        "http_status": 200,
+        "sha256": "a8e35456fcb4e66e3153d65f0cf928e72422996d65050685679b925fc71dfdc5",
+        "authentication_used": false,
+        "readback": "public connector endpoint, named tool inventory, health label and ownership badge observed",
+        "provider_health_status": "Healthy",
+        "provider_last_tested_text_utc": "2026-10-17 22:03",
+        "ownership_badge_observed": true
+      },
+      "repository_listing_urls": [],
+      "source_url": "https://github.com/beepboop2025/liquilens-mcp"
+    },
+    {
+      "id": "glama-groundcheck-connector",
+      "name": "groundcheck on Glama (remote connector)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/groundcheck",
+      "cost": "free connector; optional listing promotion is separate",
+      "listing_kind": "remote_connector",
+      "verified_at": "2026-10-17T23:11:40.244165+00:00",
+      "public_tool_count": 5,
+      "public_tool_names": [
+        "attest_delivery",
+        "check_citations",
+        "extract_claims",
+        "resolve_instrument",
+        "verify_claim"
+      ],
+      "remote_urls": [
+        "https://groundcheck.seiche.info/mcp"
+      ],
+      "ownership_state": "public_badge_verified",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing remote connector publicly exposes 5 named tools at the recorded endpoint and reports Healthy. This is Glama's dated health report; listing presence and operator checks do not establish independent adoption or sustained uptime.",
+      "next_action": "Monitor the existing connector endpoint, named tool inventory and dated health report separately from repository builds and quality grades.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:11:40.244165+00:00",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/groundcheck",
+        "http_status": 200,
+        "sha256": "d721368d9f37e6269d5132e8b729e73cd37212adac0c7f71e0d21720ff812239",
+        "authentication_used": false,
+        "readback": "public connector endpoint, named tool inventory, health label and ownership badge observed",
+        "provider_health_status": "Healthy",
+        "provider_last_tested_text_utc": "2026-10-17 23:10",
+        "ownership_badge_observed": true
+      },
+      "repository_listing_urls": [
+        "https://glama.ai/mcp/servers/beepboop2025/groundcheck"
+      ],
+      "source_url": "https://github.com/beepboop2025/groundcheck"
+    },
+    {
+      "id": "glama-liquilens-trade-safety-gateway-connector",
+      "name": "liquilens-trade-safety-gateway on Glama (remote connector)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/liquilens-trade-safety-gateway",
+      "cost": "free connector; optional listing promotion is separate",
+      "listing_kind": "remote_connector",
+      "verified_at": "2026-10-17T23:11:40.471065+00:00",
+      "public_tool_count": 2,
+      "public_tool_names": [
+        "assess_trade_safety",
+        "trade_safety_capabilities"
+      ],
+      "remote_urls": [
+        "https://trade-safety.liquilens.in/mcp"
+      ],
+      "ownership_state": "public_badge_verified",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing remote connector publicly exposes 2 named tools at the recorded endpoint and reports Healthy. This is Glama's dated health report; listing presence and operator checks do not establish independent adoption or sustained uptime.",
+      "next_action": "Monitor the existing connector endpoint, named tool inventory and dated health report separately from repository builds and quality grades.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:11:40.471065+00:00",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/liquilens-trade-safety-gateway",
+        "http_status": 200,
+        "sha256": "2c280c90ce62a4aa19a5f2cbf6d0162dbbea2235282968588b287a176acca2c5",
+        "authentication_used": false,
+        "readback": "public connector endpoint, named tool inventory, health label and ownership badge observed",
+        "provider_health_status": "Healthy",
+        "provider_last_tested_text_utc": "2026-10-17 23:06",
+        "ownership_badge_observed": true
+      },
+      "repository_listing_urls": [],
+      "source_url": "https://github.com/beepboop2025/liquilens-evidence-carrier"
+    },
+    {
+      "id": "glama-myquant-app-connector",
+      "name": "myquant-app on Glama (remote connector)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/myquant-app",
+      "cost": "free connector; optional listing promotion is separate",
+      "listing_kind": "remote_connector",
+      "verified_at": "2026-10-17T23:11:40.712362+00:00",
+      "public_tool_count": 2,
+      "public_tool_names": [
+        "get_health",
+        "list_capabilities"
+      ],
+      "remote_urls": [
+        "https://myquant-app.vercel.app/mcp"
+      ],
+      "ownership_state": "public_badge_not_observed",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing remote connector publicly exposes 2 named tools at the recorded endpoint and reports Healthy. This is Glama's dated health report; listing presence and operator checks do not establish independent adoption or sustained uptime.",
+      "next_action": "Complete the existing connector ownership verification, then verify its public badge; preserve this connector URL.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:11:40.712362+00:00",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/myquant-app",
+        "http_status": 200,
+        "sha256": "b5a6b047e4ab41eda0ea0601fe64d4f699f956e1ebb333ae0e566c342dcec021",
+        "authentication_used": false,
+        "readback": "public connector endpoint, named tool inventory, health label and ownership badge observed",
+        "provider_health_status": "Healthy",
+        "provider_last_tested_text_utc": "2026-10-17 23:00",
+        "ownership_badge_observed": false
+      },
+      "repository_listing_urls": []
+    },
+    {
+      "id": "glama-myquant-editorial-connector",
+      "name": "myquant-editorial on Glama (remote connector)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/myquant-editorial",
+      "cost": "free connector; optional listing promotion is separate",
+      "listing_kind": "remote_connector",
+      "verified_at": "2026-10-17T23:11:40.878773+00:00",
+      "public_tool_count": 5,
+      "public_tool_names": [
+        "get_health",
+        "get_story",
+        "latest_stories",
+        "list_capabilities",
+        "search_stories"
+      ],
+      "remote_urls": [
+        "https://myquantdoesntspeakenglish.com/mcp"
+      ],
+      "ownership_state": "public_badge_verified",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing remote connector publicly exposes 5 named tools at the recorded endpoint and reports Healthy. This is Glama's dated health report; listing presence and operator checks do not establish independent adoption or sustained uptime.",
+      "next_action": "Monitor the existing connector endpoint, named tool inventory and dated health report separately from repository builds and quality grades.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:11:40.878773+00:00",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/myquant-editorial",
+        "http_status": 200,
+        "sha256": "1e0975c33e16ff1e4a02101ee2bdd01b6f78ca772cbf135e1bbf21fa61f603a0",
+        "authentication_used": false,
+        "readback": "public connector endpoint, named tool inventory, health label and ownership badge observed",
+        "provider_health_status": "Healthy",
+        "provider_last_tested_text_utc": "2026-10-17 22:54",
+        "ownership_badge_observed": true
+      },
+      "repository_listing_urls": [
+        "https://glama.ai/mcp/servers/beepboop2025/myquantdoesntspeakenglish"
+      ],
+      "source_url": "https://github.com/beepboop2025/myquantdoesntspeakenglish"
+    },
+    {
+      "id": "glama-narcoscope-connector",
+      "name": "narcoscope on Glama (remote connector)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/narcoscope",
+      "cost": "free connector; optional listing promotion is separate",
+      "listing_kind": "remote_connector",
+      "verified_at": "2026-10-17T23:11:40.898264+00:00",
+      "public_tool_count": 14,
+      "public_tool_names": [
+        "get_atlas",
+        "get_connected_research",
+        "get_entities",
+        "get_federation",
+        "get_market_catalog",
+        "get_newsroom",
+        "get_overview",
+        "get_palimpsest_bri_context",
+        "get_palimpsest_bridge",
+        "get_palimpsest_corridors",
+        "get_story",
+        "list_capabilities",
+        "query_market_observations",
+        "research_network"
+      ],
+      "remote_urls": [
+        "https://www.narcoscope.com/mcp"
+      ],
+      "ownership_state": "public_badge_verified",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing remote connector publicly exposes 14 named tools at the recorded endpoint and reports Healthy. This is Glama's dated health report; listing presence and operator checks do not establish independent adoption or sustained uptime.",
+      "next_action": "Monitor the existing connector endpoint, named tool inventory and dated health report separately from repository builds and quality grades.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:11:40.898264+00:00",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/narcoscope",
+        "http_status": 200,
+        "sha256": "345c21283e950c162630ebca5865b352ffff67716b140f3d44f55aa0ed9e0eef",
+        "authentication_used": false,
+        "readback": "public connector endpoint, named tool inventory, health label and ownership badge observed",
+        "provider_health_status": "Healthy",
+        "provider_last_tested_text_utc": "2026-10-17 23:07",
+        "ownership_badge_observed": true
+      },
+      "repository_listing_urls": [],
+      "source_url": "https://github.com/beepboop2025/narcoscope"
+    },
+    {
+      "id": "glama-noisefloor-connector",
+      "name": "noisefloor on Glama (remote connector)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/noisefloor",
+      "cost": "free connector; optional listing promotion is separate",
+      "listing_kind": "remote_connector",
+      "verified_at": "2026-10-17T23:11:41.140313+00:00",
+      "public_tool_count": 10,
+      "public_tool_names": [
+        "ab_test",
+        "did_it_change",
+        "dyson_reference",
+        "forecast_next",
+        "market_assessment",
+        "narrative_triage",
+        "real_or_sampling",
+        "score_forecasts",
+        "spectral_assessment",
+        "which_metrics_matter"
+      ],
+      "remote_urls": [
+        "https://api.seiche.info/noisefloor/mcp"
+      ],
+      "ownership_state": "public_badge_verified",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing remote connector publicly exposes 10 named tools at the recorded endpoint and reports Healthy. This is Glama's dated health report; listing presence and operator checks do not establish independent adoption or sustained uptime.",
+      "next_action": "Monitor the existing connector endpoint, named tool inventory and dated health report separately from repository builds and quality grades.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:11:41.140313+00:00",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/noisefloor",
+        "http_status": 200,
+        "sha256": "a4a2745189e5751e12035e240711db65345c1c2c976695143dbc257792f84a0a",
+        "authentication_used": false,
+        "readback": "public connector endpoint, named tool inventory, health label and ownership badge observed",
+        "provider_health_status": "Healthy",
+        "provider_last_tested_text_utc": "2026-10-17 22:59",
+        "ownership_badge_observed": true
+      },
+      "repository_listing_urls": [
+        "https://glama.ai/mcp/servers/beepboop2025/noisefloor"
+      ],
+      "source_url": "https://github.com/beepboop2025/noisefloor"
+    },
+    {
+      "id": "glama-palimpsest-connector",
+      "name": "palimpsest on Glama (remote connector)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/palimpsest",
+      "cost": "free connector; optional listing promotion is separate",
+      "listing_kind": "remote_connector",
+      "verified_at": "2026-10-17T23:11:41.289728+00:00",
+      "public_tool_count": 7,
+      "public_tool_names": [
+        "get_newsroom",
+        "get_signal",
+        "gfw_reading",
+        "list_signals",
+        "query_economic_observations",
+        "research_catalog",
+        "whats_happening"
+      ],
+      "remote_urls": [
+        "https://api.seiche.info/palimpsest/mcp"
+      ],
+      "ownership_state": "public_badge_verified",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing remote connector publicly exposes 7 named tools at the recorded endpoint and reports Healthy. This is Glama's dated health report; listing presence and operator checks do not establish independent adoption or sustained uptime.",
+      "next_action": "Monitor the existing connector endpoint, named tool inventory and dated health report separately from repository builds and quality grades.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:11:41.289728+00:00",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/palimpsest",
+        "http_status": 200,
+        "sha256": "bc49525ebd380c5f1ffc48a3519220ee9eed07e97ed274b4461d9397944c7fd3",
+        "authentication_used": false,
+        "readback": "public connector endpoint, named tool inventory, health label and ownership badge observed",
+        "provider_health_status": "Healthy",
+        "provider_last_tested_text_utc": "2026-10-17 23:10",
+        "ownership_badge_observed": true
+      },
+      "repository_listing_urls": [],
+      "source_url": "https://github.com/beepboop2025/palimpsest"
+    },
+    {
+      "id": "glama-riptide-connector",
+      "name": "riptide on Glama (remote connector)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/riptide",
+      "cost": "free connector; optional listing promotion is separate",
+      "listing_kind": "remote_connector",
+      "verified_at": "2026-10-17T23:11:41.405284+00:00",
+      "public_tool_count": 7,
+      "public_tool_names": [
+        "riptide_allocation",
+        "riptide_crypto_record",
+        "riptide_event_markets",
+        "riptide_methodology",
+        "riptide_overview",
+        "riptide_paper_record",
+        "riptide_risk_evidence"
+      ],
+      "remote_urls": [
+        "https://api.seiche.info/riptide/mcp"
+      ],
+      "ownership_state": "public_badge_verified",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing remote connector publicly exposes 7 named tools at the recorded endpoint and reports Healthy. This is Glama's dated health report; listing presence and operator checks do not establish independent adoption or sustained uptime.",
+      "next_action": "Monitor the existing connector endpoint, named tool inventory and dated health report separately from repository builds and quality grades.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:11:41.405284+00:00",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/riptide",
+        "http_status": 200,
+        "sha256": "fa96a95d4f71964f8595e806732c25826408358d7c00ee5e1881564f050e1059",
+        "authentication_used": false,
+        "readback": "public connector endpoint, named tool inventory, health label and ownership badge observed",
+        "provider_health_status": "Healthy",
+        "provider_last_tested_text_utc": "2026-10-17 22:54",
+        "ownership_badge_observed": true
+      },
+      "repository_listing_urls": []
+    },
+    {
+      "id": "glama-seiche-agent-community-connector",
+      "name": "seiche-agent-community on Glama (remote connector)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/seiche-agent-community",
+      "cost": "free connector; optional listing promotion is separate",
+      "listing_kind": "remote_connector",
+      "verified_at": "2026-10-17T23:11:41.734450+00:00",
+      "public_tool_count": 5,
+      "public_tool_names": [
+        "community_contract",
+        "community_feed",
+        "community_post",
+        "community_profile",
+        "community_profiles"
+      ],
+      "remote_urls": [
+        "https://agents.seiche.info/social/mcp"
+      ],
+      "ownership_state": "public_badge_verified",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing remote connector publicly exposes 5 named tools at the recorded endpoint and reports Healthy. This is Glama's dated health report; listing presence and operator checks do not establish independent adoption or sustained uptime.",
+      "next_action": "Monitor the existing connector endpoint, named tool inventory and dated health report separately from repository builds and quality grades.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:11:41.734450+00:00",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/seiche-agent-community",
+        "http_status": 200,
+        "sha256": "f64a861fd51a303abc2378a06319cf7cb1d5b0b5954dd685895da98e9df3005c",
+        "authentication_used": false,
+        "readback": "public connector endpoint, named tool inventory, health label and ownership badge observed",
+        "provider_health_status": "Healthy",
+        "provider_last_tested_text_utc": "2026-10-17 23:09",
+        "ownership_badge_observed": true
+      },
+      "repository_listing_urls": [
+        "https://glama.ai/mcp/servers/beepboop2025/seiche"
+      ],
+      "source_url": "https://github.com/beepboop2025/seiche"
+    },
+    {
+      "id": "glama-seiche-market-corpus-connector",
+      "name": "seiche-market-corpus on Glama (remote connector)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/seiche-market-corpus",
+      "cost": "free connector; optional listing promotion is separate",
+      "listing_kind": "remote_connector",
+      "verified_at": "2026-10-17T23:11:41.819459+00:00",
+      "public_tool_count": 9,
+      "public_tool_names": [
+        "bis_flow_manifest",
+        "bis_observations",
+        "bis_records",
+        "corpus_catalog",
+        "corpus_health",
+        "inspect_dataset",
+        "list_datasets",
+        "seiche_markets",
+        "seiche_observations"
+      ],
+      "remote_urls": [
+        "https://agents.seiche.info/products/seiche-market-corpus/mcp"
+      ],
+      "ownership_state": "public_badge_verified",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing remote connector publicly exposes 9 named tools at the recorded endpoint and reports Healthy. This is Glama's dated health report; listing presence and operator checks do not establish independent adoption or sustained uptime.",
+      "next_action": "Monitor the existing connector endpoint, named tool inventory and dated health report separately from repository builds and quality grades.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:11:41.819459+00:00",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/seiche-market-corpus",
+        "http_status": 200,
+        "sha256": "718317f5d3ef9e70c4bd64c793ad3ab82571ddf15c243852ab6d9f14c4c3aa29",
+        "authentication_used": false,
+        "readback": "public connector endpoint, named tool inventory, health label and ownership badge observed",
+        "provider_health_status": "Healthy",
+        "provider_last_tested_text_utc": "2026-10-16 17:16",
+        "ownership_badge_observed": true
+      },
+      "repository_listing_urls": [
+        "https://glama.ai/mcp/servers/beepboop2025/financial-evidence-skills"
+      ],
+      "source_url": "https://github.com/beepboop2025/financial-evidence-skills"
+    },
+    {
+      "id": "glama-wake-connector",
+      "name": "wake on Glama (remote connector)",
+      "channel": "mcp-directory",
+      "state": "live",
+      "listing_url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/wake",
+      "cost": "free connector; optional listing promotion is separate",
+      "listing_kind": "remote_connector",
+      "verified_at": "2026-10-17T23:11:42.174075+00:00",
+      "public_tool_count": 3,
+      "public_tool_names": [
+        "wake_collection_contract",
+        "wake_dataset_policy",
+        "wake_economy_now"
+      ],
+      "remote_urls": [
+        "https://agents.seiche.info/products/wake/mcp"
+      ],
+      "ownership_state": "public_badge_not_observed",
+      "new_listing_created": false,
+      "independent_adoption_verified": false,
+      "detail": "Existing remote connector publicly exposes 3 named tools at the recorded endpoint and reports Healthy. This is Glama's dated health report; listing presence and operator checks do not establish independent adoption or sustained uptime.",
+      "next_action": "Complete the existing connector ownership verification, then verify its public badge; preserve this connector URL.",
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:11:42.174075+00:00",
+        "url": "https://glama.ai/mcp/connectors/io.github.beepboop2025/wake",
+        "http_status": 200,
+        "sha256": "3af546514f1a99c19fe3fa06112ce49fe5baf71d4df4a5797dfe5bfa38819138",
+        "authentication_used": false,
+        "readback": "public connector endpoint, named tool inventory, health label and ownership badge observed",
+        "provider_health_status": "Healthy",
+        "provider_last_tested_text_utc": "2026-10-17 22:59",
+        "ownership_badge_observed": false
+      },
+      "repository_listing_urls": []
+    },
+    {
+      "id": "lobehub-financial-evidence",
+      "name": "Financial Evidence on LobeHub",
+      "channel": "mcp-directory",
+      "state": "listed_incomplete",
+      "listing_url": "https://lobehub.com/mcp/beepboop2025-financial-evidence-skills",
+      "cost": "existing public index; no purchase required to observe the listing",
+      "detail": "The existing public Financial Evidence card shows version 0.1.8 and Unvalidated, with no Claimed badge observed. Its recommended npx skills add command installs an agent skill and does not start an MCP stdio server; the manual skills-directory alternative has the same protocol mismatch. Python and hosted HTTP alternatives are also shown, but have not been independently installed through this listing. This records an existing listing, not a new submission.",
+      "next_action": "Reconcile ownership on the existing record, refresh accepted release metadata and remove skill installation commands from MCP server launch options. Verify the actual native client configuration before claiming completion.",
+      "verified_at": "2026-10-17T23:12:51.052884+00:00",
+      "updated_at": "2026-10-17T23:12:51.052884+00:00",
+      "public_version": "0.1.8",
+      "directory_validation_label": "Unvalidated",
+      "public_listing_verified": true,
+      "ownership_state": "public_claim_badge_not_observed",
+      "metadata_accuracy_verified": false,
+      "native_installation_verified": false,
+      "independent_adoption_verified": false,
+      "new_listing_created": false,
+      "latest_surface_check": {
+        "observed_at": "2026-10-17T23:12:51.052884+00:00",
+        "url": "https://lobehub.com/mcp/beepboop2025-financial-evidence-skills?activeTab=deployment",
+        "readback": "existing_public_card_has_stale_version_and_invalid_recommended_stdio_install",
+        "http_status": 200,
+        "version": "0.1.8",
+        "validation_label": "Unvalidated",
+        "public_is_claimed": false,
+        "public_is_validated": false,
+        "generated_stdio_skill_installer_is_mcp_server": false,
+        "response_sha256": "7680961125ecf9171d08ffec481e6ffec92d375865343331c345694ac3c72d4a"
+      }
     }
   ],
   "release_verified_at": "2026-10-17T22:34:17.883687+00:00",
-  "updated_at": "2026-10-17T22:34:17.883687+00:00",
+  "updated_at": "2026-10-17T23:16:32.302215+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -5330,5 +6367,16 @@
     "copilot_source_commit": "cd5daac999b9d51c8f2c18bc4f403d0a4255aadf",
     "market_brief_plugin_version": "0.1.1",
     "claude_directory_submission": "deferred_paid_plan"
+  },
+  "latest_listing_inventory_reconciliation": {
+    "observed_at": "2026-10-17T23:16:32.302215+00:00",
+    "scope": "Existing Glama repository and remote connector records, missing LobeHub Financial Evidence record, fresh NoiseFloor LobeHub observation and accepted Seiche 0.16.5 / NoiseFloor 0.4.2 publication identities; full-ledger checked_at is unchanged.",
+    "repository_listings": 9,
+    "remote_connectors": 18,
+    "new_listings_created": 0,
+    "new_ledger_records": 24,
+    "independent_adoption_verified": false,
+    "automated_verification_scope": "Configured publication identities and accepted named catalog links; unconfigured records remain not_monitored.",
+    "existing_lobehub_listings_added": 1
   }
 }

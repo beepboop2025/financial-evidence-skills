@@ -17,8 +17,10 @@ ROOT = Path(__file__).resolve().parents[1]
 MAX_BYTES = 1_000_000
 HOSTS = frozenset({"pypi.org", "registry.npmjs.org", "api.github.com",
                   "registry.modelcontextprotocol.io", "agents.seiche.info",
-                  "beepboop2025.github.io"})
-KINDS = frozenset({"pypi", "npm", "mcp_registry", "github_release", "json_fields", "text_links"})
+                  "beepboop2025.github.io", "raw.githubusercontent.com"})
+REFERENCE_HOSTS = HOSTS | {"github.com", "liquilens.in", "seiche.info",
+                           "liquilens-undertow.com", "narcoscope.com"}
+KINDS = frozenset({"pypi", "npm", "mcp_registry", "github_release", "json_fields", "text_links", "markdown_links"})
 VERSION = re.compile(r"[0-9][0-9A-Za-z.+_-]{0,79}\Z")
 SHA256 = re.compile(r"[a-f0-9]{64}\Z")
 INTEGRITY = re.compile(r"sha(?:256|384|512)-[A-Za-z0-9+/]{32,128}={0,2}\Z")
@@ -51,10 +53,10 @@ def source_version(root):
     return match.group(1)
 
 
-def safe_url(url):
+def safe_url(url, *, hosts=HOSTS):
     require(isinstance(url, str) and len(url) <= 2048 and not re.search(r"[\x00-\x20\x7f]", url), "invalid_url")
     parsed = urlparse(url)
-    require(parsed.scheme == "https" and parsed.hostname in HOSTS
+    require(parsed.scheme == "https" and parsed.hostname in hosts
             and parsed.port in (None, 443) and not parsed.username and not parsed.password
             and not parsed.fragment and not parsed.query, "unapproved_public_url")
     return url
@@ -115,10 +117,20 @@ def load_inputs(root):
         require(type(channel.get("required")) is bool, "required_flag_missing")
         require(isinstance(channel.get("ledger_ids", []), list)
                 and all(isinstance(x, str) for x in channel.get("ledger_ids", [])), "invalid_channel_ledger_ids")
-        if channel["kind"] in {"json_fields", "text_links"}:
+        if channel["kind"] in {"json_fields", "text_links", "markdown_links"}:
             safe_url(channel.get("url"))
             if channel["kind"] == "json_fields":
                 require(isinstance(channel.get("fields"), dict) and channel["fields"], "contract_fields_required")
+            elif channel["kind"] == "markdown_links":
+                entries = channel.get("entries")
+                require(urlparse(channel["url"]).hostname == "raw.githubusercontent.com"
+                        and isinstance(entries, list) and 0 < len(entries) <= 10,
+                        "invalid_catalog_entries")
+                for entry in entries:
+                    require(isinstance(entry, dict) and isinstance(entry.get("name"), str)
+                            and 0 < len(entry["name"]) <= 100
+                            and not re.search(r"[\r\n]", entry["name"]), "invalid_catalog_entry_name")
+                    safe_url(entry.get("url"), hosts=REFERENCE_HOSTS)
             else:
                 links = channel.get("links")
                 require(isinstance(links, list) and 0 < len(links) <= 10
@@ -135,7 +147,7 @@ def expected(channel, ledger, manifest, root):
     source = channel.get("expected", {})
     kind = source.get("kind")
     result = {"identity": channel.get("identity"), "version": None, "basis": kind or "contract"}
-    if channel["kind"] in {"json_fields", "text_links"}:
+    if channel["kind"] in {"json_fields", "text_links", "markdown_links"}:
         result["fields"] = channel.get("fields", {})
         return result
     if kind == "published_root":
@@ -194,7 +206,7 @@ def expected(channel, ledger, manifest, root):
 def probe_url(channel, expectation):
     kind = channel["kind"]
     name = expectation["identity"]
-    if kind in {"json_fields", "text_links"}:
+    if kind in {"json_fields", "text_links", "markdown_links"}:
         return safe_url(channel["url"])
     require(isinstance(name, str) and re.fullmatch(r"[@A-Za-z0-9_.\-/]+", name), "invalid_provider_identity")
     if kind == "pypi":
@@ -223,6 +235,20 @@ def verify(channel, expectation, meta, body):
         return meta["status"], meta.get("reason", "unavailable"), {}
     kind = channel["kind"]
     content_type = meta.get("content_type", "").split(";", 1)[0].strip().lower()
+    if kind == "markdown_links":
+        require(content_type == "text/plain", "unexpected_content_type")
+        text = body.decode("utf-8")
+        # A label and URL elsewhere on a page are insufficient. Require the
+        # actual published Markdown link, outside comments or code examples.
+        text = re.sub(r"<!--.*?-->", "", text, flags=re.S)
+        text = re.sub(r"(?ms)^\s*(`{3,}|~{3,})[^\n]*\n.*?^\s*\1\s*$", "", text)
+        matches = [bool(re.search(r"\[" + re.escape(entry["name"]) + r"\]\("
+                                  + re.escape(entry["url"]) + r"(?:\s+\"[^\"\r\n]*\")?\)", text))
+                   for entry in channel["entries"]]
+        observed = {"expected_entry_count": len(matches), "matched_entry_count": sum(matches),
+                    "native_installation_verified": False, "independent_adoption_verified": False}
+        return ("current", "published_catalog_links_match", observed) if all(matches) else (
+            "drift", "catalog_entry_missing_or_changed", observed)
     if kind == "text_links":
         require(content_type == channel["content_type"], "unexpected_content_type")
         text = body.decode("utf-8")

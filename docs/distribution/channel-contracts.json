@@ -404,6 +404,91 @@
         "official-mcp-registry-seiche-market-corpus"
       ],
       "ledger_required": true
+    },
+    {
+      "id": "catalog-awesome-remote",
+      "kind": "markdown_links",
+      "required": true,
+      "url": "https://raw.githubusercontent.com/punkpeye/awesome-remote-mcp-servers/main/README.md",
+      "ledger_ids": [
+        "awesome-remote-mcp-servers"
+      ],
+      "entries": [
+        {
+          "name": "Financial Evidence",
+          "url": "https://beepboop2025.github.io/financial-evidence-skills/"
+        }
+      ]
+    },
+    {
+      "id": "catalog-public-apis",
+      "kind": "markdown_links",
+      "required": true,
+      "url": "https://raw.githubusercontent.com/public-apis/public-apis/master/README.md",
+      "ledger_ids": [
+        "public-apis-liquilens-rest",
+        "public-apis-seiche-rest",
+        "public-apis-undertow-rest"
+      ],
+      "entries": [
+        {
+          "name": "LiquiLens",
+          "url": "https://liquilens.in/developers/"
+        },
+        {
+          "name": "Seiche",
+          "url": "https://seiche.info/developers"
+        },
+        {
+          "name": "Undertow",
+          "url": "https://liquilens-undertow.com/developers/"
+        }
+      ]
+    },
+    {
+      "id": "catalog-awesome-osint",
+      "kind": "markdown_links",
+      "required": true,
+      "url": "https://raw.githubusercontent.com/jivoi/awesome-osint/master/README.md",
+      "ledger_ids": [
+        "awesome-osint-narcoscope"
+      ],
+      "entries": [
+        {
+          "name": "NarcoScope",
+          "url": "https://narcoscope.com"
+        }
+      ]
+    },
+    {
+      "id": "catalog-ai4finance",
+      "kind": "markdown_links",
+      "required": true,
+      "url": "https://raw.githubusercontent.com/AI4Finance-Foundation/Awesome_AI4Finance/main/README.md",
+      "ledger_ids": [
+        "ai4finance-financial-evidence"
+      ],
+      "entries": [
+        {
+          "name": "Financial Evidence",
+          "url": "https://github.com/beepboop2025/financial-evidence-skills"
+        }
+      ]
+    },
+    {
+      "id": "catalog-awesome-quant",
+      "kind": "markdown_links",
+      "required": true,
+      "url": "https://raw.githubusercontent.com/wilsonfreitas/awesome-quant/main/README.md",
+      "ledger_ids": [
+        "awesome-quant-market-brief"
+      ],
+      "entries": [
+        {
+          "name": "Market Brief",
+          "url": "https://github.com/beepboop2025/market-brief"
+        }
+      ]
     }
   ]
 }

@@ -613,7 +613,7 @@ wheels = [
 
 [[package]]
 name = "financial-evidence"
-version = "0.1.7"
+version = "0.1.11"
 source = { editable = "." }
 
 [package.optional-dependencies]

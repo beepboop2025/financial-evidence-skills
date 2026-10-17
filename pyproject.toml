@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "financial-evidence"
-version = "0.1.10"
+version = "0.1.11"
 description = "MCP and API research infrastructure for AI finance agents, with persistent sessions and source-status streams"
 readme = "PYPI_README.md"
 requires-python = ">=3.10"

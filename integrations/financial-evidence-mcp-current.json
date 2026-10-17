@@ -3,7 +3,7 @@
   "scope": "Current source checkout contract; does not replace any published versioned release contract.",
   "serverInfo": {
     "name": "financial-evidence",
-    "version": "0.1.10"
+    "version": "0.1.11"
   },
   "toolsSha256": "078d872396724c0acaeac051385d07f35679fb5445c5cd1979f673c372ab170d",
   "tools": [

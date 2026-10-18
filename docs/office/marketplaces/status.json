@@ -1,6 +1,6 @@
 {
   "schema": "financial-evidence.office-marketplaces.v1",
-  "observed_at": "2026-10-18T09:29:11.895256+00:00",
+  "observed_at": "2026-10-18T09:38:33.376932+00:00",
   "new_submissions": 0,
   "new_accounts": 0,
   "paid_commitments": 0,
@@ -8,34 +8,41 @@
   "channels": [
     {
       "id": "google-workspace-editor-addon",
-      "state": "source_package_ready_native_and_publisher_gates_pending",
+      "state": "native_tested_brand_oauth_and_marketplace_review_pending",
       "package": "google/google-editor-addon.zip",
       "listing": "google/listing.json",
       "tests": {
         "focused_mocked_contract_tests": {
-          "passed": 8,
+          "passed": 9,
           "failed": 0
         },
         "generated_source_check": "passed",
-        "native_menu_sidebar_insertion": "not_verified",
-        "editor_addon_install_lifecycle": "not_verified",
-        "oauth_consent": "owner_authorization_in_progress",
+        "native_menu_sidebar_insertion": "passed_bound_development_copy",
+        "editor_addon_install_lifecycle": "test_deployment_authmode_none_and_limited_passed",
+        "oauth_consent": "passed_owner_test_user",
         "public_listing": "not_submitted"
       },
       "remaining": [
-        "Complete owner OAuth consent and native add-on acceptance",
-        "Finish Marketplace SDK application configuration with matching consent/manifest scopes",
-        "Required scope and publisher verification",
-        "Real host screenshot",
-        "Google public Marketplace review"
+        "Retest final review-compliant sidebar UI in Google host",
+        "Create immutable tested script version and finish Marketplace SDK application configuration",
+        "Complete brand and sensitive-scope OAuth verification",
+        "Publish final assets and add a real host screenshot",
+        "Google public Marketplace review and independent public installation readback"
       ],
       "publisher_configuration": {
         "standard_cloud_project": "linked",
         "marketplace_sdk_api": "enabled",
         "oauth_configuration": "external_testing_saved",
         "owner_test_user": "registered",
-        "owner_consent": "in_progress",
-        "public_submission_count": 0
+        "owner_consent": "passed",
+        "public_submission_count": 0,
+        "scope_classifications": {
+          "https://www.googleapis.com/auth/spreadsheets.currentonly": "non_sensitive",
+          "https://www.googleapis.com/auth/script.external_request": "sensitive",
+          "https://www.googleapis.com/auth/script.container.ui": "sensitive"
+        },
+        "oauth_sensitive_scope_verification": "pending",
+        "brand_verification": "pending"
       }
     },
     {

@@ -32,13 +32,22 @@
     },
     {
       "tools": [
-        "Excel",
         "Excel for the web"
       ],
       "route": "XLSX snapshot",
       "artifact": "index.html",
       "state": "native_excel_web_xlsx_open_save_260_cells_passed",
-      "linux": "browser"
+      "linux": "browser",
+      "evidence": "native-acceptance.md#excel-for-the-web--xlsx-import-and-roundtrip-passed"
+    },
+    {
+      "tools": [
+        "Excel desktop"
+      ],
+      "route": "XLSX snapshot",
+      "artifact": "index.html",
+      "state": "format_available_native_desktop_acceptance_pending",
+      "linux": "desktop_app_unavailable; use_browser_route"
     },
     {
       "tools": [
@@ -70,23 +79,68 @@
     },
     {
       "tools": [
-        "Google Sheets Editor add-on"
+        "Google Sheets bound Apps Script sidebar"
       ],
       "route": "Research sidebar with six new review sheets",
       "artifact": "marketplaces/google/README.md",
-      "state": "source_package_and_mock_tests_passed_native_addon_pending",
+      "state": "native_live_capture_repeat_and_existing_cells_preservation_passed",
+      "evidence": "native-acceptance.md#google-sheets-editor-add-on-test-deployment--installed-and-enabled-states-passed",
       "linux": "browser"
     },
     {
       "tools": [
-        "ONLYOFFICE",
+        "Google Sheets Editor add-on"
+      ],
+      "route": "Research sidebar with six new review sheets",
+      "artifact": "marketplaces/google/README.md",
+      "state": "native_editor_installed_capture_and_enabled_menu_sidebar_passed; marketplace_approval_pending",
+      "linux": "browser",
+      "evidence": "native-acceptance.md#google-sheets-editor-add-on-test-deployment--installed-and-enabled-states-passed",
+      "verified_scope": {
+        "installed_auth_mode_NONE": "317 capture cells match exact JSON; 650 earlier review cells and existing analysis markers preserved",
+        "enabled_auth_mode_LIMITED": "Extensions menu opens sidebar; no additional capture requested"
+      },
+      "limitations": [
+        "Second capture has no full JSON comparison; its cells were preserved against the earlier workbook export.",
+        "Native captures contained no formula-like source strings; escaping remains covered by isolated tests.",
+        "Operator synthetic verification does not establish independent adoption."
+      ]
+    },
+    {
+      "tools": [
+        "ONLYOFFICE"
+      ],
+      "version": "10.0.0.1",
+      "route": "XLSX import, browser edit and save",
+      "artifact": "setup.md#other-office-tools",
+      "state": "native_xlsx_import_browser_edit_save_260_cells_passed",
+      "evidence": "native-acceptance.md#onlyoffice--xlsx-import-edit-and-save-passed",
+      "unsupported_routes": [
+        "ODS-to-XLSX export: invalid number-format metadata in tested server; use XLSX."
+      ],
+      "other_verified_scope": "ODS browser opening passed; export did not.",
+      "linux": "native_or_browser"
+    },
+    {
+      "tools": [
         "Collabora Online",
         "Nextcloud Office"
       ],
-      "route": "XLSX/ODS file import",
+      "versions": {
+        "collabora_CODE": "26.04.5.1.1",
+        "nextcloud": "35.0.2",
+        "richdocuments": "12.0.1"
+      },
+      "route": "ODS/XLSX native conversion, Nextcloud upload and browser opening",
       "artifact": "setup.md#other-office-tools",
-      "state": "format_available_native_import_pending",
-      "linux": "native_or_browser"
+      "state": "native_ods_xlsx_260_cells_webdav_roundtrip_and_browser_open_passed",
+      "evidence": "native-acceptance.md#collabora-and-nextcloud-office--ods-and-xlsx-import-and-browser-opening-passed",
+      "verified_scope": "260 cells preserved in each native conversion; byte-exact WebDAV upload/download; actual WOPI browser showed six expected tabs.",
+      "limitations": [
+        "Nextcloud Office browser edit/save was not exercised.",
+        "Isolated server verification does not certify every customer host."
+      ],
+      "linux": "browser"
     },
     {
       "tools": [

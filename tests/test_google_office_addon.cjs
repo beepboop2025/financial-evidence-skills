@@ -120,3 +120,41 @@ test('ordinary calls are unverified and carry no credentials or workbook data',(
   assert.equal(state.requests[0].headers['X-Liquilens-Traffic-Class'],undefined);
   assert.ok(!JSON.stringify(state.requests).includes('Keep my analysis'));
 });
+
+test('sidebar uses official styling and an accessible error dialog with safe retry',()=>{
+  const html=fs.readFileSync(path.join(addon,'Sidebar.html'),'utf8');
+  assert.match(html,/<link rel="stylesheet" href="https:\/\/ssl\.gstatic\.com\/docs\/script\/css\/add-ons1\.css">/);
+  assert.equal((html.match(/class="action"/g)||[]).length,1);
+  assert.match(html,/<dialog id="error-dialog" aria-labelledby="error-title" aria-describedby="error-detail">/);
+  assert.match(html,/id="evidence" class="button download secondary"/);
+  const state={focus:null,calls:[],revoked:[]}, elements={};
+  for(const [,id] of html.matchAll(/id="([^"]+)"/g)) {
+    elements[id]={value:'',hidden:id==='evidence',disabled:false,open:false,handlers:{},
+      addEventListener(event,handler){this.handlers[event]=handler;},
+      removeAttribute(key){delete this[key];},
+      focus(){state.focus=id;},
+      showModal(){this.open=true;},
+      close(){this.open=false;this.handlers.close?.();}};
+  }
+  elements.currencies.value='USD';elements.institutions.value='';
+  const runner={withSuccessHandler(fn){this.success=fn;return this;},withFailureHandler(fn){this.failure=fn;return this;},
+    insertOfficeReview(options){state.calls.push(options);}};
+  vm.runInNewContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],{
+    document:{getElementById:id=>elements[id]},google:{script:{run:runner}},Blob,
+    URL:{createObjectURL:()=> 'blob:review',revokeObjectURL:url=>state.revoked.push(url)}
+  });
+  assert.equal(state.calls.length,0);
+  const submit=()=>elements.review.handlers.submit({preventDefault(){}});
+  submit();submit();assert.equal(state.calls.length,1);assert.equal(elements.refresh.disabled,true);
+  const errorText='Invalid selection <img src=x>. Use at most five currencies.';
+  runner.failure({message:errorText});
+  assert.equal(elements['error-dialog'].open,true);assert.equal(state.focus,'error-close');
+  assert.equal(elements['error-detail'].textContent,errorText);assert.equal(elements['error-detail'].innerHTML,undefined);
+  assert.equal(elements.status.textContent,errorText);assert.equal(elements.evidence.hidden,true);
+  elements['error-close'].handlers.click();
+  assert.equal(elements['error-dialog'].open,false);assert.equal(state.focus,'refresh');
+  submit();runner.success({sheet_names:Array(6),captured_at:'2026-10-18T09:00:00Z',failed_requests:0,request_count:1,evidence_json:'{}'});
+  assert.equal(elements.refresh.disabled,false);assert.equal(elements.evidence.hidden,false);
+  assert.equal(elements.evidence.href,'blob:review');
+  submit();assert.deepEqual(state.revoked,['blob:review']);assert.equal(elements.evidence.hidden,true);
+});

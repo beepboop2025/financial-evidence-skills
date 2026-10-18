@@ -4,16 +4,21 @@
   <base target="_blank">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
   <style>
     :root {color-scheme:light;font:14px/1.5 Arial,sans-serif;color:#183246;background:#fff}
     * {box-sizing:border-box} body {margin:0;padding:18px} h1 {font-size:21px;line-height:1.2;margin:0 0 10px}
     p {margin:0 0 16px} label {display:block;font-weight:bold;margin:16px 0 5px}
-    input[type=text] {width:100%;padding:10px;border:1px solid #91a4ae;border-radius:5px;font:inherit}
-    small {display:block;color:#425c6b;margin-top:5px} button,.download {display:block;width:100%;padding:11px;margin:18px 0 10px;border:0;border-radius:5px;background:#155d82;color:#fff;font:inherit;font-weight:bold;text-align:center}
+    input[type=text] {width:100%;height:auto;min-height:42px;padding:10px;border:1px solid #91a4ae;border-radius:5px;font:inherit}
+    small {display:block;color:#425c6b;margin-top:5px} button,.download {display:block;width:100%;height:auto;min-height:42px;padding:11px;margin:18px 0 10px;border:1px solid #91a4ae;border-radius:5px;background:#f4f7f8;color:#183246;font:inherit;font-weight:bold;line-height:1.35;text-align:center;white-space:normal}
+    button.action {background:#155d82;color:#fff;border-color:#155d82}
     button {cursor:pointer} button:disabled {opacity:.6;cursor:wait} a {color:#155d82} .download {text-decoration:none}
     :focus-visible {outline:3px solid #c27500;outline-offset:3px} #status {white-space:pre-wrap;overflow-wrap:anywhere}
     [hidden] {display:none} footer {font-size:12px;margin-top:22px;border-top:1px solid #ced9de;padding-top:13px}
     details {margin-top:14px;font-size:12px} details label {font-weight:normal} .error {color:#a12424}
+    dialog {width:calc(100% - 28px);max-width:320px;max-height:calc(100% - 28px);margin:auto;padding:16px;border:1px solid #91a4ae;border-radius:8px;background:#fff;color:#183246;overflow:auto}
+    dialog::backdrop {background:rgba(17,35,47,.45)} dialog h2 {font-size:18px;line-height:1.3;margin:0 0 12px}
+    #error-detail {overflow-wrap:anywhere;white-space:pre-wrap} #error-close {margin-bottom:0}
   </style>
 </head>
 <body>
@@ -27,10 +32,15 @@
     <input id="institutions" type="text" value="au-sfb,bajaj-finance" maxlength="160" autocomplete="off" aria-describedby="institution-help">
     <small id="institution-help">Up to five exact slugs. Unknown selections stay visibly uncovered.</small>
     <details><summary>Publisher testing</summary><label><input id="verification" type="checkbox"> Mark this refresh as a test, excluded from independent usage claims.</label></details>
-    <button id="refresh" type="submit">Create review tabs</button>
+    <button id="refresh" class="action" type="submit">Create review tabs</button>
   </form>
   <p id="status" role="status" aria-live="polite">Only the selections above go to the public research service. Your workbook contents are not uploaded.</p>
-  <a id="evidence" class="download" hidden download="financial-evidence-review.json">Save full evidence JSON</a>
+  <a id="evidence" class="button download secondary" hidden download="financial-evidence-review.json">Save full evidence JSON</a>
+  <dialog id="error-dialog" aria-labelledby="error-title" aria-describedby="error-detail">
+    <h2 id="error-title">Review could not finish</h2>
+    <p id="error-detail"></p>
+    <button id="error-close" type="button" autofocus>Close</button>
+  </dialog>
   <footer>
     <p>Research only. Blank numbers are missing or withheld, never zero. Check source dates and coverage before use. New retrieval time does not establish freshness.</p>
     <a href="https://beepboop2025.github.io/financial-evidence-skills/office/marketplaces/privacy.html" rel="noopener">Privacy</a> ·
@@ -39,6 +49,9 @@
   </footer>
   <script>
     var downloadUrl = null;
+    var errorDialog = document.getElementById('error-dialog');
+    document.getElementById('error-close').addEventListener('click', function () { errorDialog.close(); });
+    errorDialog.addEventListener('close', function () { document.getElementById('refresh').focus(); });
     document.getElementById('review').addEventListener('submit', function (event) {
       event.preventDefault();
       var button=document.getElementById('refresh'), status=document.getElementById('status'), download=document.getElementById('evidence');
@@ -56,6 +69,9 @@
       }).withFailureHandler(function (error) {
         button.disabled=false; status.className='error';
         status.textContent=error && error.message ? error.message : 'The review failed. Retry manually.';
+        document.getElementById('error-detail').textContent=status.textContent;
+        if (!errorDialog.open) errorDialog.showModal();
+        document.getElementById('error-close').focus();
       }).insertOfficeReview({currencies:document.getElementById('currencies').value,
         institutions:document.getElementById('institutions').value,verification:document.getElementById('verification').checked});
     });

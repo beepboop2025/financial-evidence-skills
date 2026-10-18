@@ -41,6 +41,105 @@ The same job also checks the original files with independent readers, archive
 integrity and absence of unexpected formulas or external workbook links. These
 are native file-compatibility checks; they do not make the snapshots live queries.
 
+## ONLYOFFICE — XLSX import, edit and save passed
+
+The [native ONLYOFFICE run](https://github.com/beepboop2025/financial-evidence-skills/actions/runs/39115847600)
+passed using Document Server **10.0.0.1**. It verified native XLSX import,
+browser document readiness, an actual keyboard edit and the save callback.
+All 260 expected cells matched both the imported and saved workbook, including
+the deliberately changed cell in the saved expectation.
+
+The run tested branch source `27a42b5be121126635bf49f454fcdc0ac00dd33c` through
+GitHub's merge checkout `840e207bfc1a3bc1e48c34368e8047b43f4fdb2e`; both have the
+same source tree. The `office-native-onlyoffice` artifact retains the native
+receipt, workbook exports and browser evidence.
+
+```text
+ca17889f10b11141cc6441836aebdd2835cf3e1b49681b2fd6e155c94b7850b3  onlyoffice/documentserver image digest
+f23f3516d89b51784f171958928d514dd4e904e837066301ac30df1cbd857bd0  input-review.xlsx
+b6d303c074c4495858924b5b6c1428664ff26fd3414e911ec1a5378ceac2e807  saved-review.xlsx
+```
+
+ODS browser readiness also passed, but **ODS-to-XLSX export remains unsupported**
+in this tested server: exported number-format metadata was rejected by the
+independent reader. Use XLSX for the supported ONLYOFFICE import/edit/save path.
+This isolated server verification is not certification of every customer host.
+
+## Collabora and Nextcloud Office — ODS and XLSX import and browser opening passed
+
+The [native integration run](https://github.com/beepboop2025/financial-evidence-skills/actions/runs/39115847600)
+tested Collabora CODE **26.04.5.1.1**, Nextcloud **35.0.2** and its
+richdocuments Office app **12.0.1**. Collabora converted both ODS and XLSX through
+its native engine, preserving all **260 expected cells** in each. Both files
+survived a byte-exact Nextcloud WebDAV upload/download roundtrip.
+
+The actual Nextcloud Office browser opened both documents through WOPI. The
+Collabora iframe displayed all six expected sheet tabs, and the native
+spreadsheet status confirmed the same six sheets. **Editing and saving through
+Nextcloud Office were not exercised.** A vendor welcome overlay remained in
+the screenshots; the document and sheet tabs had loaded behind it.
+
+The source and merge checkout are the same as the ONLYOFFICE run above. The
+`office-native-nextcloud-collabora` artifact contains the receipt, fixtures,
+converted files and browser evidence. Pinned image digests and input files are:
+
+```text
+bb8f3c9c5c9016045f25fccb5f0649be94469ebc7c7cc379f3576e470cccf33d  collabora/code image digest
+a588aa5353703b44106a6129adaaf7bf22521b7a4754f9f529b3228d6aa390c5  nextcloud image digest
+0639ab0e3413142a76334af20ca88cba0a351a11c9c07effa0f1eb7f05941f2c  richdocuments-v12.0.1.tar.gz
+c69774eb06435343f01774647aa9da4f403911edf4effc44014207a3cacdf457  input-review.ods
+f23f3516d89b51784f171958928d514dd4e904e837066301ac30df1cbd857bd0  input-review.xlsx
+```
+
+This verifies the isolated server versions and import/open routes listed here.
+It does not establish compatibility with every customer's Nextcloud setup.
+
+## Google Sheets Editor add-on test deployment — installed and enabled states passed
+
+On 18 October 2026, the research sidebar ran inside real Google Sheets through
+both a bound Apps Script project and an **Editor add-on test deployment**. The
+Editor test used the installed state (`AuthMode.NONE`, enabled state false),
+opened the sidebar through the Extensions menu, and completed a new capture at
+`09:34:05.410Z`. All three selected live requests returned with zero failures.
+The explicit synthetic verification option was selected.
+
+A second Editor test deployment used the enabled-in-current-document state
+(`AuthMode.LIMITED`). Its Extensions menu opened the research sidebar
+successfully. That check verified the menu/sidebar lifecycle without repeating
+the product requests; the complete capture below belongs to the installed-state
+test.
+
+The downloaded workbook was compared with the exact capture JSON: **all 317
+cells matched**, including 277 strings, 9 numbers, 6 booleans and 25 blanks.
+The earlier first capture also still matched all 317 cells of its original JSON.
+All **650 existing cells in the 14 earlier review tabs** matched their prior
+workbook export. The separately entered analysis markers—text in A1 and numeric
+42 in B1—were confirmed before the run and survived unchanged. The run added six
+new review tabs, for 21 total, with no formula cells or external workbook links.
+
+```text
+c03ef2b56471ca9d5d0cecd9673dc6b59410ec3ff775c156d5c98939038d3d45  editor-capture.json
+b1326a9a2b2ea1aa278b10640443a646cb6fc631f19b6f53b8caa13f2aaec306  editor-roundtrip.xlsx
+58bd3044f6a3d0de896039dbea672668c4e3c4b9b1f1926ceda527da77eea270  first-capture.json
+359721baa093ccd1294845e015c3911b17e86d83e600a9ce0d3ed32e46f30d4d  prior-sidebar-roundtrip.xlsx
+```
+
+Two earlier bound-sidebar captures at `09:30:04.269Z` and `09:30:28.212Z` each
+returned three requests with zero failures and created separate six-tab sets.
+An invalid six-currency selection was rejected without adding tabs. Two partial
+Read me tabs from earlier failed attempts remained visible for recovery.
+The second capture was not compared with its full JSON because that download
+was blocked; its workbook cells were subsequently verified unchanged after the
+third capture. These captures contained no formula-like source strings, so
+native execution does not extend the isolated escaping test coverage.
+
+This verifies the **bound sidebar, installed-state Editor live capture,
+enabled-state Editor menu/sidebar, typed cells, repeat behavior and preservation
+of existing analysis**. Google Workspace Marketplace approval remains separate.
+Account identifiers and private Google file URLs are
+omitted. The [sidebar source](https://github.com/beepboop2025/financial-evidence-skills/blob/f85cc8c15a21e219aaa9ce019b1498b94fbe4446/docs/office/marketplaces/google/Code.gs)
+and [setup instructions](marketplaces/google/README.md) remain public.
+
 ## Microsoft Power Query engine — passed
 
 On 18 October 2026, the [Windows acceptance workflow](https://github.com/beepboop2025/financial-evidence-skills/actions/runs/39114203632)
@@ -98,7 +197,8 @@ describe the engine interface used here.
 ## Other office paths
 
 The [compatibility table](compatibility.md) separates completed acceptance from
-available formats and pending host checks. Google Editor add-on execution,
-Excel Office add-in execution and marketplace review are not certified by the
-Power Query or workbook tests. Linux client results are added only after their
-native checks produce a completed receipt.
+available formats and pending host checks. Excel Office add-in execution,
+Excel-hosted Power Query refresh and marketplace review remain separate from
+the completed query-engine, Google Editor and workbook checks. Nextcloud Office
+editing/saving and the unsupported ONLYOFFICE ODS export are not covered by the
+successful import/open results.

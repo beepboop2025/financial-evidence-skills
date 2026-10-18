@@ -14,9 +14,10 @@ The [setup guide](setup.md) gives installation and refresh instructions; the
 | Excel / Power BI Power Query interface | Create queries and manually refresh the hosted service | Native UI/live HTTP refresh pending. Availability depends on the application's edition and account. |
 | Excel Office add-in | Research task pane creates six new review sheets | Implementation and isolated tests available; native add-in host execution pending. |
 | Google Sheets custom functions | Refresh funding or exact institution watchlists from cells | Pasteable script available. This is separate from the new Editor add-on. |
-| Google Sheets Editor add-on | Research sidebar creates six new review sheets | Source package and isolated tests available; native host execution awaits permission. No marketplace approval claimed. |
-| ONLYOFFICE | XLSX snapshots | Native acceptance closeout pending. Use XLSX; ODS-to-XLSX conversion remains unsupported in the tested server. |
-| Collabora Online / Nextcloud Office | Open review files in a self-hosted browser workspace | Native conversion and complete browser/save acceptance are tracked separately; final integration closeout pending. |
+| Google Sheets bound Apps Script sidebar | Research sidebar creates six new review sheets | Native live capture/repeat verified; 317 capture cells and earlier review tabs preserved. |
+| Google Sheets Editor add-on test deployment | Open the add-on through the Extensions menu and create a review | Installed-state (`AuthMode.NONE`) capture passed: all 317 capture cells, 650 earlier review cells and existing analysis markers preserved. Enabled-state (`AuthMode.LIMITED`) menu/sidebar also passed; marketplace approval remains separate. |
+| ONLYOFFICE 10.0.0.1 | XLSX import, browser edit and save | Native route passed with all 260 cells preserved, including the expected edit. Use XLSX; ODS-to-XLSX export remains unsupported in the tested server. |
+| Collabora CODE 26.04.5.1.1 / Nextcloud 35.0.2 with Office 12.0.1 | Open ODS or XLSX in a self-hosted browser workspace | Native conversion preserved all 260 cells in both formats; byte-exact WebDAV roundtrip and actual browser opening with all six tabs passed. Browser edit/save was not exercised. |
 | Linux terminal / Node.js | Export ODS, XLSX, CSV, HTML and evidence JSON | Dependency-free command available; each run creates a new local directory. |
 | Word, Google Docs, Writer | Import the HTML brief or copy cited tables | Portable document route; no native document add-in claimed. |
 | PowerPoint, Google Slides, Impress | Copy cited tables from a review workbook | Manual presentation route; no automatic refresh integration claimed. |

@@ -1,0 +1,92 @@
+{
+  "schema": "noisefloor.distribution-release.v1",
+  "version": "0.4.3",
+  "verified_at": "2026-10-18T00:08:20.826219+00:00",
+  "status": "verified",
+  "source": {
+    "repository": "https://github.com/beepboop2025/noisefloor",
+    "commit": "f5a3be4599fe7414d7fd32f9ce949a676b93f885",
+    "tag": "v0.4.3",
+    "tag_type": "lightweight",
+    "tag_signature_verified": false,
+    "commit_github_signature_verified": true,
+    "pr": "https://github.com/beepboop2025/noisefloor/pull/10",
+    "reviewed_candidate": "9c77ae024c0dc377d50f9c5b7cb297607fdc7c13",
+    "reviewed_tree": "c7c9b042381b3f45bbb2f9e863670bbd08b908d7"
+  },
+  "pypi": {
+    "url": "https://pypi.org/project/noisefloor/0.4.3/",
+    "latest_version": "0.4.3",
+    "published_at": "2026-10-18T00:05:26.233390Z",
+    "description_matches_release_source": true,
+    "runtime_dependencies": []
+  },
+  "artifacts_sha256": {
+    "noisefloor-0.4.3-py3-none-any.whl": "585cbcea367252b6d7bd9216d4622a03f0b9bda810fc09e8fa527f78478b8087",
+    "noisefloor-0.4.3.tar.gz": "8d415f731c2db65cfe6bf4c9f986be1c098c686e6acfb067529052788e56f6ad"
+  },
+  "implementation_sha256": "fada3bbce806edf9549350131482119508a9b11ec3cee0cefc2bdbe4a167eaa8",
+  "metadata": {
+    "tool_count": 10,
+    "typed_output_contracts": 10,
+    "input_validation_unchanged": true,
+    "tool_payloads_unchanged": true,
+    "existing_computational_source_unchanged": true
+  },
+  "validation": {
+    "tests_per_python_version": 407,
+    "python_versions": [
+      "3.9",
+      "3.12",
+      "3.13"
+    ],
+    "valid_and_error_mcp_replies_equal_to_0_4_2": 76,
+    "independent_review": "root passed exact candidate",
+    "source_files_match_in_wheel_and_sdist": 19
+  },
+  "consumer": {
+    "installation": "clean wheel-only environment; installed wheel is byte-identical to PyPI/GitHub published wheel",
+    "mcp_tool_count": 10,
+    "valid_and_error_calls": 76,
+    "stdio_http_exact_parity": true,
+    "rest_success_error_routes": 4,
+    "cors_preflight": "PASS",
+    "jsonschema_installed": false,
+    "synthetic_operator_verification": true
+  },
+  "mcp_registry": {
+    "name": "io.github.beepboop2025/noisefloor",
+    "version": "0.4.3",
+    "status": "active",
+    "statusChangedAt": "2026-10-18T00:05:38.416044Z",
+    "publishedAt": "2026-10-18T00:05:38.416044Z",
+    "updatedAt": "2026-10-18T00:05:38.416044Z",
+    "isLatest": true
+  },
+  "github_release": {
+    "url": "https://github.com/beepboop2025/noisefloor/releases/tag/v0.4.3",
+    "assets_match_pypi": true,
+    "source_receipt_matches_release_commit": true
+  },
+  "provenance": {
+    "workflow": "https://github.com/beepboop2025/noisefloor/actions/runs/39081398079",
+    "github_artifact_attestations_verified": true,
+    "github_attested_source_commit": "f5a3be4599fe7414d7fd32f9ce949a676b93f885",
+    "github_attested_ref": "refs/tags/v0.4.3",
+    "pypi_trusted_publisher": {
+      "environment": "pypi",
+      "kind": "GitHub",
+      "repository": "beepboop2025/noisefloor",
+      "workflow": "publish.yml"
+    }
+  },
+  "hosted_service": {
+    "url": "https://api.seiche.info/noisefloor/healthz",
+    "version": "0.4.0",
+    "implementation_sha256": "a66b2ce516e5d9fb257e348c183cb489ac25b7c2a1af1cb30663f007a44159fa",
+    "changed_by_this_release": false,
+    "status": "staging authorized; production selection remains separately gated"
+  },
+  "glama_evaluation": "separate provider state; no 0.4.3 score asserted",
+  "adoption_or_ranking_inferred": false
+}

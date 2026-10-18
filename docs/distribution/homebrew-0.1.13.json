@@ -1,0 +1,38 @@
+{
+  "schema": "financial-evidence.homebrew-publication.v1",
+  "version": "0.1.13",
+  "status": "verified",
+  "verified_at": "2026-10-18T04:57:10.388104+00:00",
+  "tap_pr": "https://github.com/beepboop2025/homebrew-tap/pull/14",
+  "tap_source_commit": "6efe4d6d3285226ae7557d2a9321a05dc6fae319",
+  "tap_merge_commit": "1d87feddef14450369023463e7ac0bb897430db3",
+  "formula": {
+    "url": "https://raw.githubusercontent.com/beepboop2025/homebrew-tap/main/Formula/financial-evidence.rb",
+    "sha256": "ea197e4ef4539d3a607877006b0695566031990ce002d252c4be922ad28892aa",
+    "candidate_bytes_match": true
+  },
+  "macos_consumer_acceptance": {
+    "observed_at": "2026-10-18T00:14:48.188857+00:00",
+    "status": "PASS",
+    "checks": [
+      "strict_online_audit",
+      "style",
+      "actual_install",
+      "formula_test",
+      "published_mcp_contract",
+      "all_11_entrypoints_load",
+      "installed_central_client_identity",
+      "installed_context_patch_identity",
+      "installed_first_review_commands",
+      "installed_research_module_identity",
+      "installed_recurring_workflow_commands",
+      "installed_workflow_module_identity"
+    ],
+    "installed_version": "0.1.13",
+    "all_entrypoints_load": true
+  },
+  "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.13/financial_evidence-0.1.13.tar.gz",
+  "release_sha256": "37e95fcf58458f284e69a1e8576c6c3100934bca120b1c9fc8096a3320d56257",
+  "native_tap_ci_claimed": false,
+  "independent_adoption_verified": false
+}

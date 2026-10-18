@@ -1,0 +1,40 @@
+{
+  "schema": "noisefloor.hosted-deployment.v1",
+  "status": "verified",
+  "version": "0.4.3",
+  "verified_at": "2026-10-18T05:12:44.160290+00:00",
+  "source_commit": "f5a3be4599fe7414d7fd32f9ce949a676b93f885",
+  "implementation_sha256": "fada3bbce806edf9549350131482119508a9b11ec3cee0cefc2bdbe4a167eaa8",
+  "native_endpoint": "https://api.seiche.info/noisefloor/mcp",
+  "central_endpoint": "https://agents.seiche.info/products/noisefloor/mcp",
+  "tool_count": 10,
+  "typed_output_contracts": 10,
+  "prompt_count": 4,
+  "native_verification": {
+    "exact_mcp_valid_error_replies": 76,
+    "rest_success_error_checks": 8,
+    "cors": "PASS"
+  },
+  "central_verification": {
+    "typed_tools_discovery": "PASS",
+    "exact_synthetic_call": "PASS"
+  },
+  "compatibility": {
+    "previous_package": "0.4.2",
+    "same_linux_exact_mcp_replies": 76,
+    "same_linux_exact_rest_replies": 8,
+    "schemas_validated": true
+  },
+  "previous_hosted_version": "0.4.0",
+  "rollback_configuration_retained": true,
+  "package_receipt": "noisefloor-0.4.3.json",
+  "traffic": "synthetic operator verification; not adoption",
+  "continuous_uptime_proven": false,
+  "provider_refresh_or_ranking_inferred": false,
+  "openapi": {
+    "file": "noisefloor-openapi-0.4.3.json",
+    "sha256": "e550030594f31561b9bf0086421669434dc55c2140fed61b3ab11452382c944b",
+    "source_url": "https://api.seiche.info/noisefloor/openapi.json",
+    "matches_qualified_native_schema": true
+  }
+}

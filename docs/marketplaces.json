@@ -1212,8 +1212,8 @@
       "state": "listed_incomplete",
       "listing_url": "https://allmcps.com/mcp/financial-evidence",
       "cost": "free",
-      "detail": "The existing public listing received another metadata correction: canonical remote endpoint, MIT license, current 0.1.7 description and Cline compatibility. The versioned wheel configuration was preserved. Dashboard shows Edit pending. Native Cline connection and three-tool discovery passed, but public propagation and AllMCPs sandbox verification remain unproved.",
-      "next_action": "Verify public propagation of the pending edit and AllMCPs own sandbox result before closing listing completeness.",
+      "detail": "The approved owner edit is public with Python 0.1.13 and the uvx install command. The directory displays three tools and its dated sandbox result. The separate hosted router remains distinct from the nine-tool Research Desk. The SSE label and cached Homebrew README copy still need provider refresh.",
+      "next_action": "Review the remaining generated copy and transport labels in the current readback receipt; do not resubmit the approved edit.",
       "verified_at": "2026-10-09T18:50:51.122098+00:00",
       "audit_batch": "2026-10-07-marketplace-sweep",
       "outcome": "existing_listing_reconciled",
@@ -1229,9 +1229,9 @@
       },
       "ownership": "verified_claimed",
       "ownership_verified_at": "2026-10-08T12:25:18.882263+00:00",
-      "metadata_freshness": "current_metadata_submitted_public_propagation_pending",
-      "edit_state": "edit_pending",
-      "updated_at": "2026-10-10T06:28:14.840174+00:00",
+      "metadata_freshness": "approved_edit_with_public_tool_discovery_and_remaining_generated_copy_gaps",
+      "edit_state": "approved_email_received",
+      "updated_at": "2026-10-18T05:24:47.785752+00:00",
       "evidence_receipt": "distribution/platform-expansion-20261010.json",
       "latest_native_check": {
         "observed_at": "2026-10-10T06:06:42.533Z",
@@ -1240,7 +1240,22 @@
         "topics_call_passed": true,
         "directory_sandbox_verified": false
       },
-      "completion_receipt": "distribution/completion-20261010.json"
+      "completion_receipt": "distribution/completion-20261010.json",
+      "latest_rendered_readback": {
+        "id": "allmcps-financial-evidence",
+        "url": "https://allmcps.com/mcp/financial-evidence",
+        "edit_approval_email_observed": true,
+        "public_tool_count": 3,
+        "provider_sandbox_result_displayed": true,
+        "provider_sandbox_observation_date": "2026-10-17",
+        "provider_claim_not_independent_retest": true,
+        "public_accessibility_readback_sha256": "c7a0997e59922b6ccb1913a9b03936b8a2423a6a2fb2cf2be8989de02dce787e",
+        "remaining_gaps": [
+          "SSE label conflicts with Streamable HTTP guidance; cached README still describes Homebrew 0.1.12."
+        ],
+        "observed_at": "2026-10-18T05:24:47.785752+00:00"
+      },
+      "current_readback_receipt": "distribution/marketplace-readback-20261018.json"
     },
     {
       "id": "allmcps-liquilens",
@@ -1304,8 +1319,8 @@
       "state": "listed_incomplete",
       "listing_url": "https://allmcps.com/mcp/undertow-market-liquidity-map-2",
       "cost": "free",
-      "detail": "Native Streamable HTTP discovery verified 16 public tools at https://api.seiche.info/undertow/mcp. The anonymous access-status response separately lists eight subscriber tools; subscriber access was not tested. Current endpoint, support URL and this access distinction were submitted to the existing listing. Dashboard shows Edit pending. The older duplicate and conflicting transport labels remain unresolved.",
-      "next_action": "Verify propagation of the pending edit and have the directory reconcile its duplicate and transport labels. Do not attribute subscriber access to the public discovery test.",
+      "detail": "The approved owner edit is public with sixteen anonymously discoverable tools and separate subscriber access terms. The directory displays a dated sixteen-tool sandbox result. The SSE label and older duplicate remain unreconciled; subscriber access was not tested.",
+      "next_action": "Review the remaining generated copy and transport labels in the current readback receipt; do not resubmit the approved edit.",
       "verified_at": "2026-10-09T18:50:50.921237+00:00",
       "audit_batch": "2026-10-07-marketplace-sweep",
       "outcome": "existing_listing_reconciled",
@@ -1322,17 +1337,33 @@
         "duplicate_html_sha256": "e35a3948daa9e48a80df6476dda65dd6a446870eee2e42abfc4fdffcb388fb2e"
       },
       "ownership_state": "claimed",
-      "updated_at": "2026-10-10T06:28:14.840174+00:00",
-      "metadata_freshness": "16_public_tools_verified_current_edit_pending_duplicate_and_transport_labels_unresolved",
+      "updated_at": "2026-10-18T05:24:47.785752+00:00",
+      "metadata_freshness": "approved_edit_with_public_tool_discovery_and_remaining_generated_copy_gaps",
       "evidence_receipt": "distribution/platform-expansion-20261010.json",
-      "edit_state": "edit_pending",
+      "edit_state": "approved_email_received",
       "latest_native_check": {
         "client": "Cline core 0.0.92",
         "public_tool_count": 16,
         "subscriber_tools_advertised": 8,
         "subscriber_access_tested": false
       },
-      "completion_receipt": "distribution/completion-20261010.json"
+      "completion_receipt": "distribution/completion-20261010.json",
+      "latest_rendered_readback": {
+        "id": "allmcps-undertow",
+        "url": "https://allmcps.com/mcp/undertow-market-liquidity-map-2",
+        "edit_approval_email_observed": true,
+        "public_tool_count": 16,
+        "provider_sandbox_result_displayed": true,
+        "provider_sandbox_observation_date": "2026-10-17",
+        "provider_claim_not_independent_retest": true,
+        "public_accessibility_readback_sha256": "d45496eb9da5cd08701b0fc465712104352398bc73677f88f1b9c52dcc910b4f",
+        "remaining_gaps": [
+          "SSE label conflicts with Streamable HTTP guidance.",
+          "Older duplicate remains unreconciled."
+        ],
+        "observed_at": "2026-10-18T05:24:47.785752+00:00"
+      },
+      "current_readback_receipt": "distribution/marketplace-readback-20261018.json"
     },
     {
       "id": "allmcps-palimpsest",
@@ -1453,8 +1484,8 @@
       "state": "live",
       "submission_url": "https://allmcps.com/submit",
       "cost": "free",
-      "detail": "The claimed public eight-tool listing retains its hosted /openbb/mcp endpoint and source-preserving scope. The official Financial Evidence logo was uploaded; the dashboard explicitly reports Logo pending review. Logo publication is not yet verified.",
-      "next_action": "Verify that the approved logo appears publicly and monitor future metadata drift.",
+      "detail": "The directory approved the existing Research Desk edit and displays nine tools, the hosted /openbb/mcp endpoint and the product logo. Its generated overview and FAQ still describe eight tools, while its transport label says SSE. These remaining copy issues are separate from the approved edit.",
+      "next_action": "Review the remaining generated copy and transport labels in the current readback receipt; do not resubmit the approved edit.",
       "verified_at": "2026-10-08T12:54:41.064999+00:00",
       "audit_batch": "2026-10-08-financial-agents",
       "outcome": "ownership_verified_update_submitted",
@@ -1462,7 +1493,7 @@
       "listing_url": "https://allmcps.com/mcp/financial-evidence-research-desk",
       "submission_evidence_file": "allmcps-review-receipt.txt",
       "ownership_state": "verified_active",
-      "metadata_update_state": "current_text_observed_logo_pending_review",
+      "metadata_update_state": "approved_nine_tool_discovery_visible_generated_overview_stale",
       "latest_surface_check": {
         "observed_at": "2026-10-08T11:16:11.950474+00:00",
         "url": "https://allmcps.com/mcp/financial-evidence-research-desk",
@@ -1473,10 +1504,27 @@
         "title": "Financial Evidence Research Desk MCP Server | AllMCPs",
         "mentioned_versions": []
       },
-      "metadata_freshness": "current_endpoint_and_eight_tool_scope_verified",
-      "logo_state": "pending_admin_review",
-      "updated_at": "2026-10-10T06:28:14.840174+00:00",
-      "completion_receipt": "distribution/completion-20261010.json"
+      "metadata_freshness": "approved_edit_with_public_tool_discovery_and_remaining_generated_copy_gaps",
+      "logo_state": "public_logo_observed",
+      "updated_at": "2026-10-18T05:24:47.785752+00:00",
+      "completion_receipt": "distribution/completion-20261010.json",
+      "latest_rendered_readback": {
+        "id": "allmcps-research-desk",
+        "url": "https://allmcps.com/mcp/financial-evidence-research-desk",
+        "edit_approval_email_observed": true,
+        "public_tool_count": 9,
+        "provider_sandbox_result_displayed": true,
+        "provider_sandbox_observation_date": "2026-10-15",
+        "provider_claim_not_independent_retest": true,
+        "public_accessibility_readback_sha256": "cd8996a17af50adb9ca313e91582ebcd942d69134af329c2cc10bfae916d8bd6",
+        "remaining_gaps": [
+          "Generated overview and FAQ still describe eight tools.",
+          "SSE label conflicts with the hosted Streamable HTTP endpoint."
+        ],
+        "observed_at": "2026-10-18T05:24:47.785752+00:00"
+      },
+      "current_readback_receipt": "distribution/marketplace-readback-20261018.json",
+      "edit_state": "approved_email_received"
     },
     {
       "id": "battlefin-company-map",
@@ -1828,8 +1876,8 @@
       "state": "live",
       "submission_url": "https://api.market/seller/liquilens/products/seiche-reference-fx",
       "cost": "free-seller-account; Free trial $0 for 7 days/1000 calls; PRO $5/month for 10000 calls; hard limits, no overages",
-      "detail": "The existing Seiche Reference FX offer is now publicly visible without authentication on its product page and in API.market homepage discovery. The offer covers four ECB EUR-base reference-rate CSV histories. Earlier saved plan terms and 7 October gateway tests retain their own dates; current client-rendered checkout, gateway freshness, complete-history parity and independent paid use were not checked. This is reconciliation of an earlier submission, not a new offer or customer.",
-      "next_action": "Verify current client-rendered plan terms and gateway behavior under the existing offer when needed; measure independent use and payment separately. Do not resubmit.",
+      "detail": "The existing approved Seiche Reference FX offer renders anonymously with the seven-day 1000-call Free trial, $5/month 10000-call PRO plan and four endpoints. Owner inspection confirms all four ECB EUR-base CSV operations and both plan bindings. The earlier static zero-endpoint result was not reproduced in the browser. Configuration and pricing were preserved; current gateway freshness and independent paid use remain unverified.",
+      "next_action": "Monitor provider rendering and verify gateway freshness under an existing authorised subscription when needed. Do not resubmit or infer customers from displayed runs.",
       "verified_at": "2026-10-09T18:50:51.832297+00:00",
       "pricing": {
         "pro": {
@@ -1863,7 +1911,28 @@
       },
       "listing_url": "https://api.market/store/liquilens/seiche-reference-fx",
       "outcome": "existing_submission_publication_reconciled",
-      "evidence_receipt": "distribution/platform-expansion-20261010.json"
+      "evidence_receipt": "distribution/platform-expansion-20261010.json",
+      "updated_at": "2026-10-18T05:24:47.785752+00:00",
+      "latest_rendered_readback": {
+        "id": "api-market-seiche-reference-fx",
+        "url": "https://api.market/store/liquilens/seiche-reference-fx",
+        "anonymous_public_page": {
+          "free_trial_plan_visible": true,
+          "trial_days": 7,
+          "trial_units": 1000,
+          "pro_plan_visible": true,
+          "pro_endpoint_count": 4,
+          "pro_usd_per_month": 5,
+          "subscription_created": false
+        },
+        "owner_source_operation_count": 4,
+        "existing_plan_endpoints_each": 4,
+        "configuration_changes": false,
+        "current_gateway_call_verified": false,
+        "earlier_zero_endpoint_static_read_not_reproduced_in_browser": true,
+        "observed_at": "2026-10-18T05:24:47.785752+00:00"
+      },
+      "current_readback_receipt": "distribution/marketplace-readback-20261018.json"
     },
     {
       "id": "datarade-company",
@@ -6485,7 +6554,7 @@
     }
   ],
   "release_verified_at": "2026-10-17T22:34:17.883687+00:00",
-  "updated_at": "2026-10-17T23:24:01.538279+00:00",
+  "updated_at": "2026-10-18T05:24:47.785752+00:00",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -6850,5 +6919,11 @@
     "independent_adoption_verified": false,
     "automated_verification_scope": "Configured publication identities and accepted named catalog links; unconfigured records remain not_monitored.",
     "existing_lobehub_listings_added": 1
+  },
+  "latest_rendered_marketplace_reconciliation": {
+    "observed_at": "2026-10-18T05:24:47.785752+00:00",
+    "receipt": "distribution/marketplace-readback-20261018.json",
+    "existing_records": 4,
+    "new_submissions": false
   }
 }

@@ -7,7 +7,7 @@ Start with one task: https://beepboop2025.github.io/financial-evidence-skills/co
 Published source version: 0.1.13
 Last verified release: 0.1.13
 Published topics: money-market, capital-market, china-economy, bank-risk, market-liquidity, gift-city, forex, gold.
-Last updated: 2026-10-17
+Last updated: 2026-10-18
 Publisher: LIQUILENS PRIVATE LIMITED
 License: MIT for the software; source publishers retain rights in upstream data.
 
@@ -61,7 +61,7 @@ Python 0.1.13 bounds complete-event waits even when partial bytes or comment fra
 ## Interfaces
 
 - Agent Skills: public `financial-evidence` skill with domain-triggered routing for compatible agents; install the last verified release with `npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.13/financial-evidence --skill financial-evidence`.
-- Terminal: uvx and persistent uv tool (0.1.13); Homebrew 0.1.12 independently installed and verified, Bash/Zsh/Fish completions, JSON/NDJSON/CSV/table output.
+- Terminal: uvx and persistent uv tool (0.1.13); Homebrew 0.1.13 independently installed and verified, Bash/Zsh/Fish completions, JSON/NDJSON/CSV/table output.
 - Current MCP: the root `.mcp.json`, Gemini, Codex, Claude Code and editor configurations connect to the central nine-tool read-only Research Desk.
 - Remote MCP: public Streamable HTTP at `https://agents.seiche.info/products/financial-evidence/mcp`; no local install, account, API key, or write action. Start with `financial_evidence_datasets`, then `financial_evidence_workflow` with `{"workflow":"funding","selection":"USD"}`.
 - Legacy compatibility interface: `https://liquilens.in/mcp/financial-evidence` retains `financial_evidence_topics`, `financial_evidence_route` and `financial_evidence_fetch`. The local stdio command, MCP Bundle, OCI image and Registry record retain this separate three-tool contract. Fresh source retrieval uses the central data service.
@@ -135,14 +135,15 @@ Packet `status` equals `transport_status` and describes retrieval only. Every pa
 - [Current release and discovery hub](https://beepboop2025.github.io/financial-evidence-skills/distribution/) and [machine-readable catalog](https://beepboop2025.github.io/financial-evidence-skills/distribution/current.json): accepted packages, nine existing Glama repository listings and eighteen hosted connector records, with individual observation clocks.
 - Financial Evidence Python 0.1.13: https://pypi.org/project/financial-evidence/0.1.13/ . npm AI SDK 0.1.2: https://www.npmjs.com/package/@moomoo202020/financial-evidence-ai-sdk . Package releases are separate from hosted runtime identities and pending directory submissions.
 - Seiche Python/MCP 0.16.5: https://pypi.org/project/seiche/0.16.5/ . Compact funding context, exact metric retrieval and compatible diagnostics retain source and coverage boundaries.
-- NoiseFloor Python/MCP 0.4.2: https://pypi.org/project/noisefloor/0.4.2/ . Ten tools, 85 documented input-property paths, unchanged validation and calculations. [Accepted publication receipt](https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.2.json). Hosted NoiseFloor remains 0.4.0.
+- NoiseFloor Python/MCP 0.4.3: https://pypi.org/project/noisefloor/0.4.3/ . Ten tools with typed output contracts, unchanged input validation, calculations and returned tool payloads. [Accepted package receipt](https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.3.json). [Hosted 0.4.3 verification](https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-hosted-0.4.3.json).
 
 ## Optional correlation research
 
-- Hosted NoiseFloor 0.4.0: https://agents.seiche.info/products/noisefloor/mcp (10 tools, including spectral_assessment and dyson_reference).
+- Hosted NoiseFloor 0.4.3: https://agents.seiche.info/products/noisefloor/mcp (10 tools with typed output contracts, including spectral_assessment and dyson_reference).
 - Workbench: https://liquilens.in/agents/correlation/ (caller-supplied observations and labeled synthetic examples).
 - Local Financial Evidence adapter: https://beepboop2025.github.io/financial-evidence-skills/agents/spectral_review.py
-- API client kit: https://beepboop2025.github.io/financial-evidence-skills/api/noisefloor/
+- Current hosted API client kit: https://beepboop2025.github.io/financial-evidence-skills/api/noisefloor-hosted/
+- Verified 0.4.0 archive: https://beepboop2025.github.io/financial-evidence-skills/api/noisefloor/
 - Historical hosted-release verification: https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.0.json
 
 Source dates, rights and missingness remain explicit. Dyson paths are synthetic; reference bands are not significance tests. No trading authority.

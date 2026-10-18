@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Financial Evidence for office and Linux tools</title>
+  <meta name="description" content="Refresh funding comparisons and covered-institution watchlists. Download Excel, LibreOffice, CSV and document formats, or connect Google Sheets, OpenBB and Linux research tools.">
+  <link rel="canonical" href="https://beepboop2025.github.io/financial-evidence-skills/office/">
+  <link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="office.css">
+  <script defer src="office-core.js"></script><script defer src="workbook.js"></script><script defer src="office-app.js"></script>
+</head>
+<body>
+<header class="hero"><nav aria-label="Main navigation"><a class="brand" href="../">Financial Evidence</a><div><a href="../connect/">All products</a><a href="../tools/">Research tools</a><a href="setup.md">Setup guide</a></div></nav>
+<div class="intro"><p class="eyebrow">Your research, in the tools you use</p><h1>A funding comparison.<br>A bank watchlist.<br>Your spreadsheet.</h1><p class="lede">Bring Seiche funding evidence and LiquiLens institution coverage into Excel, Google Sheets, or LibreOffice Calc. Add Undertow and Palimpsest research when you need it.</p><p>No account or API key for public reads · Works in a Linux browser</p></div></header>
+<main>
+<section aria-labelledby="prepare"><h2 id="prepare">Prepare your next review.</h2><p>Enter up to five currencies and five exact institution slugs. Leave a field blank to skip it. Only these selections are sent to the public research service.</p>
+<form id="office-form">
+  <div class="inputs"><label for="currencies">Funding currencies<input id="currencies" value="USD,EUR,INR" maxlength="40" aria-describedby="currency-hint"><span id="currency-hint">Comma-separated, for example USD, EUR, INR.</span></label>
+  <label for="institutions">Institution watchlist<input id="institutions" value="au-sfb,bajaj-finance" maxlength="160" aria-describedby="institution-hint"><span id="institution-hint">Exact covered slugs. Unknown institutions remain marked as not covered.</span></label></div>
+  <fieldset><legend>Optional research tables</legend><label><input type="checkbox" name="dataset" value="market_liquidity"> Undertow market liquidity</label><label><input type="checkbox" name="dataset" value="china_economy"> Palimpsest China publication coverage</label><label><input type="checkbox" name="dataset" value="capital_markets"> Seiche capital markets</label></fieldset>
+  <button id="refresh" class="button primary" type="submit">Refresh research</button>
+</form><p id="status" role="status" aria-live="polite">Nothing is fetched until you refresh. No spreadsheet is uploaded.</p>
+<noscript><p><a href="office-kit.zip" download>Download the office kit</a> for the Linux command-line client, Google Sheets functions and Excel setup.</p></noscript>
+</section>
+<section id="results" hidden aria-labelledby="result-title"><h2 id="result-title" tabindex="-1">Your review files</h2><p id="scope"></p><p id="capture-time"></p><div id="downloads" class="actions"></div><p>Keep <strong>evidence.json</strong> with the workbook. XLSX and ODS contain Funding, Institutions, Gaps, Other data, and Status sheets. These are snapshots; use Refresh research for the next review.</p><details><summary>CSV files for SQL, R, BI tools and other spreadsheets</summary><div id="csv-downloads" class="actions"></div></details><div id="previews"></div></section>
+<section aria-labelledby="inside"><h2 id="inside">Use it inside your workspace.</h2>
+<div class="tool-grid">
+  <article><p class="eyebrow">Google · Browser on Linux</p><h3>Google Sheets</h3><p>Refresh selected currencies or a covered-institution watchlist with two custom functions.</p><pre><code>=FINANCIAL_FUNDING(A2:A6,$B$1)
+=FINANCIAL_WATCHLIST(A2:A6,$B$1)</code></pre><p><a href="FinancialEvidenceOffice.gs" download>Download Apps Script</a> · <a href="setup.md#google-sheets">Setup and limits</a></p></article>
+  <article><p class="eyebrow">Microsoft · Web or desktop</p><h3>Excel</h3><p>Open the XLSX snapshot, or use Power Query to refresh funding and watchlist queries where supported by your Excel edition.</p><p><a href="FinancialEvidenceFunding.pq" download>Funding query</a> · <a href="FinancialEvidenceWatchlist.pq" download>Watchlist query</a> · <a href="setup.md#excel-and-power-bi">Setup</a></p></article>
+  <article><p class="eyebrow">Linux · Free desktop tools</p><h3>LibreOffice Calc</h3><p>Open ODS directly, keep observations beside your calculations, and rerun the same selection for the next review. CSV is available for existing workbooks.</p><p><a href="setup.md#libreoffice-calc">Calc setup</a> · <a href="office-kit.zip" download>Download office kit</a></p></article>
+  <article><p class="eyebrow">Linux · Repeatable local work</p><h3>Command line</h3><p>Generate the same files without a browser. Requires Node 20 or later; no package dependencies.</p><pre><code>node refresh.mjs --currencies USD,EUR \
+  --institutions au-sfb,bajaj-finance \
+  --output ./review-2026-10-18</code></pre><p><a href="setup.md#linux-command-line">Run the local client</a></p></article>
+</div>
+<p>Google Sheets script execution and Excel Power Query refresh require validation in your own account. These are direct setup routes; no Google or Microsoft marketplace approval is implied.</p>
+</section>
+<section aria-labelledby="more"><h2 id="more">More places to use the same evidence.</h2><p>Choose the route your tool supports. File import, an API connection and a published extension are distinct kinds of access.</p>
+<div class="table-wrap"><table><thead><tr><th>Tools</th><th>Route</th><th>Linux access</th></tr></thead><tbody>
+<tr><td>ONLYOFFICE, Collabora, Nextcloud Office</td><td>XLSX or ODS import; <a href="setup.md#other-office-tools">instructions</a></td><td>Desktop or browser, depending on product</td></tr>
+<tr><td>Google Docs, Word, LibreOffice Writer</td><td>Open or copy the downloaded HTML brief; <a href="setup.md#documents-and-presentations">instructions</a></td><td>Browser / Writer desktop</td></tr>
+<tr><td>Google Slides, PowerPoint, Impress</td><td>Copy cited tables from a workbook or brief</td><td>Browser / Impress desktop</td></tr>
+<tr><td>Google Drive, OneDrive, Nextcloud</td><td>Store the downloaded workbook and evidence JSON together</td><td>Browser / supported sync client</td></tr>
+<tr><td>Google Colab, Jupyter, VS Code notebooks</td><td><a href="../tools/research_desk.ipynb">Research notebook</a> and <a href="../tools/research_client.py">Python client</a></td><td>Browser / local Python</td></tr>
+<tr><td>OpenBB</td><td><a href="../tools/#openbb">Existing extension and custom backend</a></td><td>Python; hosted Workspace access depends on provider</td></tr>
+<tr><td>R, DuckDB, SQLite, DBeaver</td><td>CSV import; <a href="setup.md#sql-r-and-bi">examples</a></td><td>Local desktop or command line</td></tr>
+<tr><td>Power BI, Metabase, Apache Superset</td><td>Power Query or CSV through your approved database</td><td>Browser for supported services; Power BI Desktop requires Windows</td></tr>
+<tr><td>n8n, Node-RED, Activepieces</td><td><a href="../platforms/#n8n">Existing packages and flows</a></td><td>Self-hosted Linux / browser</td></tr>
+<tr><td>VS Code, Cursor, Codex, Gemini CLI</td><td><a href="../agents/CONNECT.md">API and MCP connection guides</a></td><td>Supported Linux clients</td></tr>
+<tr><td>Bruno, Postman, Insomnia, curl</td><td><a href="../api/">API request kit</a></td><td>Linux applications / terminal</td></tr>
+</tbody></table></div><p><a href="compatibility.json">Machine-readable compatibility and verification states</a> · <a href="../platforms/">Full integration directory</a> · <a href="../connect/">All product APIs and tools</a></p></section>
+<aside><p>Source dates, availability and rights remain part of every result. Public research does not establish creditworthiness or authorize trades. Service request counts do not identify independent users. <a href="../privacy/">Privacy and operational measurement</a>.</p></aside>
+</main><footer><p>LIQUILENS PRIVATE LIMITED · <a href="../support/">Support</a> · <a href="../terms/">Terms</a></p></footer>
+</body></html>

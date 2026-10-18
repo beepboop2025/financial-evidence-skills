@@ -1,0 +1,176 @@
+/* Shared browser, Node and Apps Script projections. No polling or credentials. */
+var OfficeEvidence = (function () {
+  "use strict";
+  var BASE = "https://agents.seiche.info/v1/research/api/v1/";
+  var DATASETS = ["money_markets", "money_market_history", "capital_markets", "bank_risk", "market_liquidity", "china_economy", "source_health"];
+  var COLUMNS = ["selection", "dataset", "product", "entity_id", "entity_name", "metric", "value", "value_state", "unit", "as_of", "availability", "source_status", "rights_status", "source_url", "source_field", "observation_url", "retrieved_at", "published_at", "knowledge_time", "content_sha256", "context", "transport_status", "evidence_status", "financial_authority", "carrier_verification"];
+  var BANK_COLUMNS = ["slug", "name", "institution_type", "status", "latest_period", "current_metrics", "overdue_metrics", "coverage_complete", "as_of", "review_url", "content_sha256", "warnings_json", "categories_json"];
+  var GAP_COLUMNS = ["slug", "category", "field", "status", "reason", "action"];
+  var STATUS_COLUMNS = ["request", "request_status", "prepared_response", "transport_status", "page_scope", "returned_rows", "total_rows", "next_offset", "coverage_complete", "retrieved_at", "source_url", "content_sha256", "diagnostics_json", "sources_json", "not_covered_json", "limits_json", "error"];
+  var NOTE = "Research only. Keep source dates, units, rights and gaps with values. Blank numbers are missing or withheld, never zero. Funding levels across currencies are not stress rankings. Institution states are evidence-review states, not credit ratings. Refresh time is not source freshness.";
+
+  function list(input, kind) {
+    if (input === undefined || input === null || input === "") return [];
+    var values = Array.isArray(input) ? input.flat() : typeof input === "string" ? input.split(",") : [input];
+    if (values.length > 50 || values.some(function (v) { return typeof v !== "string" && v !== ""; })) throw new Error("Use text selections in one bounded range.");
+    values = values.map(function (v) { return v.trim(); }).filter(Boolean);
+    if (kind === "currency") values = values.map(function (v) { return v.toUpperCase(); });
+    values = Array.from(new Set(values));
+    var pattern = kind === "currency" ? /^[A-Z]{3}$/ : /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+    if (values.length > 5 || values.some(function (v) { return v.length > 60 || !pattern.test(v); })) throw new Error("Use at most five " + (kind === "currency" ? "three-letter currencies" : "exact institution slugs") + ".");
+    if (values.join(",").length > 160) throw new Error("Keep the institution selection within 160 characters.");
+    return values;
+  }
+
+  function plan(options) {
+    options = options || {};
+    var currencies = list(options.currencies, "currency"), institutions = list(options.institutions, "institution");
+    var datasets = options.datasets || [];
+    if (!Array.isArray(datasets) || datasets.length > 7 || datasets.some(function (v) { return DATASETS.indexOf(v) < 0; })) throw new Error("Choose supported datasets.");
+    var requests = currencies.map(function (v) { return {id: "funding:" + v, kind: "funding", selection: v}; });
+    if (institutions.length) requests.push({id: "institutions:" + institutions.join(","), kind: "institutions", selection: institutions.join(",")});
+    Array.from(new Set(datasets)).forEach(function (v) { requests.push({id: "dataset:" + v, kind: "dataset", selection: v}); });
+    if (!requests.length) throw new Error("Choose a currency, institution or dataset.");
+    return requests.map(function (r) {
+      r.url = BASE + (r.kind === "dataset" ? "query?dataset=" + encodeURIComponent(r.selection) + "&limit=200&offset=0" : "workflow?workflow=" + r.kind + "&selection=" + encodeURIComponent(r.selection));
+      return r;
+    });
+  }
+
+  function cell(value) {
+    if (value === undefined || value === null) return "";
+    if (typeof value === "boolean" || (typeof value === "number" && Number.isFinite(value))) return value;
+    if (typeof value !== "string" || value.length > 30000 || /[\x00-\x08\x0B\x0C\x0E-\x1F]/.test(value)) throw new Error("Unexpected or oversized spreadsheet cell.");
+    return value;
+  }
+  function safe(value) {
+    value = cell(value);
+    return typeof value === "string" && (/^[\t\r\n]/.test(value) || /^\s*[=+\-@]/.test(value)) ? "'" + value : value;
+  }
+  function json(value) { return value === undefined ? "" : JSON.stringify(value); }
+  function table(name, columns, records) {
+    return {name: name, rows: [columns].concat(records.map(function (r) { return columns.map(function (k) { return cell(r[k]); }); }))};
+  }
+  function blocked(row) {
+    var denied = /restricted|withheld|unavailable|not_available|denied|pending|review_required|prohibited|metadata_only|derived_only/;
+    return row.publication_allowed === false || [row.availability, row.source_status, row.rights_status].some(function (v) { return denied.test(String(v || "").toLowerCase().replace(/[ -]/g, "_")); });
+  }
+  function sourceURL(value) { return typeof value === "string" && /^https:\/\/[^\s]+$/.test(value); }
+  function numericRows(e, dataset, selection) {
+    if (!Array.isArray(e.results) || e.results.length > 200 || e.dataset !== dataset ||
+        ["complete", "partial", "unavailable"].indexOf(e.transport_status) < 0 || e.status_semantics !== "transport_only" ||
+        e.evidence_status !== "not_evaluated" || e.carrier_verification !== "not_performed" ||
+        e.offset !== 0 || !Number.isInteger(e.limit) || e.limit < 1 || e.limit > 200 ||
+        !Number.isInteger(e.total_rows) || e.total_rows < 0 || e.returned_rows !== e.results.length ||
+        e.results.length !== Math.min(e.limit, e.total_rows) || e.next_offset !== (e.total_rows > e.limit ? e.limit : null) ||
+        !Array.isArray(e.sources) || !e.sources.length || !Array.isArray(e.diagnostics) ||
+        e.sources.some(function (s) { return !s || !sourceURL(s.source_url) || (s.ok === true && !/^(sha256:)?[a-f0-9]{64}$/.test(s.content_sha256 || "")); })) {
+      throw new Error("Unexpected evidence authority, pagination or source provenance.");
+    }
+    return e.results.map(function (r) {
+      if (!r || r.dataset !== dataset || !Object.prototype.hasOwnProperty.call(r, "value") ||
+          (r.value !== null && (typeof r.value !== "number" || !Number.isFinite(r.value))) ||
+          r.evidence_status !== "not_evaluated" || r.financial_authority !== "none" || r.carrier_verification !== "not_performed" ||
+          ["complete", "partial", "unavailable"].indexOf(r.transport_status) < 0 || !sourceURL(r.source_url)) throw new Error("Unexpected numeric row or source identity.");
+      var denied = blocked(r), copy = Object.assign({}, r, {selection: selection});
+      copy.value_state = denied && r.value !== null ? "withheld_by_client" : r.value === null ? "null" : "number";
+      copy.value = denied || r.value === null ? "" : r.value;
+      return copy;
+    });
+  }
+
+  function project(request, response) {
+    if (!response || typeof response !== "object") throw new Error("Missing research response.");
+    var e = response, status = {request: request.id, request_status: "returned", retrieved_at: new Date().toISOString(), source_url: request.url};
+    var data = [], banks = [], gaps = [];
+    if (request.kind !== "dataset") {
+      if (response.schema !== "financial-evidence.workflow-result.v1" || response.workflow !== request.kind || response.selection !== request.selection ||
+          typeof response.prepared_response !== "boolean" || !/^[a-f0-9]{64}$/.test(response.content_sha256 || "") || !sourceURL(response.source_url) ||
+          typeof response.retrieved_at !== "string" || !response.evidence) throw new Error("Workflow identity or provenance changed.");
+      e = response.evidence;
+      Object.assign(status, {prepared_response: response.prepared_response, retrieved_at: response.retrieved_at, source_url: response.source_url, content_sha256: response.content_sha256});
+    }
+    if (request.kind === "institutions") {
+      if (e.schema !== "liquilens.institution-monitoring.v1" || !Array.isArray(e.rows) || e.rows.length > 5 || !Array.isArray(e.not_covered) ||
+          typeof e.coverage_complete !== "boolean" || e.can_authorize_credit !== false || e.score_authority !== false || !Array.isArray(e.limits)) throw new Error("Institution coverage or authority contract changed.");
+      var expected = request.selection.split(","), seen = new Set();
+      banks = e.rows.map(function (r) {
+        if (!r || expected.indexOf(r.slug) < 0 || seen.has(r.slug) || !Array.isArray(r.gaps) || r.gaps.length > 100 || !Array.isArray(r.warnings) ||
+            !Array.isArray(r.categories) || typeof r.coverage_complete !== "boolean" ||
+            !Number.isInteger(r.current_metrics) || r.current_metrics < 0 || !Number.isInteger(r.overdue_metrics) || r.overdue_metrics < 0) throw new Error("Unexpected institution row.");
+        seen.add(r.slug);
+        r.gaps.forEach(function (gap) { gaps.push(Object.assign({}, gap, {slug: r.slug})); });
+        return Object.assign({}, r, {as_of: e.as_of, review_url: "https://api.liquilens.in/api/experimental/v1/banking/monitoring/institutions/" + r.slug,
+          warnings_json: json(r.warnings), categories_json: json(r.categories)});
+      });
+      e.not_covered.forEach(function (item) {
+        var slug = typeof item === "string" ? item : item && item.slug;
+        if (expected.indexOf(slug) < 0 || seen.has(slug)) throw new Error("Unexpected uncovered institution.");
+        seen.add(slug); banks.push({slug: slug, status: "not_covered", coverage_complete: false, as_of: e.as_of});
+      });
+      if (seen.size !== expected.length) throw new Error("The response omitted a requested institution.");
+      Object.assign(status, {coverage_complete: e.coverage_complete, not_covered_json: json(e.not_covered), limits_json: json(e.limits), returned_rows: banks.length, page_scope: "selected_institutions_only"});
+    } else {
+      var dataset = request.kind === "funding" ? "money_markets" : request.selection;
+      if (e.schema !== (request.kind === "funding" ? "financial-evidence.agent-result.v1" : "liquidity-lab.openbb-table.v1")) throw new Error("Unexpected dataset schema.");
+      data = numericRows(e, dataset, request.kind === "funding" ? request.selection : "");
+      Object.assign(status, {transport_status: e.transport_status, returned_rows: e.returned_rows, total_rows: e.total_rows, next_offset: e.next_offset,
+        page_scope: e.next_offset === null ? "all_matching_rows_in_response" : "partial_dataset_page", sources_json: json(e.sources), diagnostics_json: json(e.diagnostics)});
+    }
+    // Check every cell before allowing any part of a request into the workbook.
+    [table("Data", COLUMNS, data), table("Institutions", BANK_COLUMNS, banks), table("Gaps", GAP_COLUMNS, gaps), table("Status", STATUS_COLUMNS, [status])];
+    return {request: request, data: data, banks: banks, gaps: gaps, status: status, original: response};
+  }
+  function failure(request, message) {
+    return {request: request, data: [], banks: [], gaps: [], status: {request: request.id, request_status: "failed", source_url: request.url, retrieved_at: new Date().toISOString(), error: cell(message)}, original: null};
+  }
+  function bundle(results) {
+    if (!Array.isArray(results) || !results.length || results.length > 13) throw new Error("Expected bounded research results.");
+    var sheets = [table("Read me", ["field", "value"], [{field: "scope", value: NOTE}, {field: "refresh", value: "Rerun the same selection for a new snapshot. No workbook macros, background jobs or automatic network refresh are installed."}, {field: "provenance", value: "Status contains source states, clocks and diagnostics. Download evidence.json alongside the workbook for the complete original responses. Hashes are source-reported; this export does not independently verify the evidence."}]),
+      table("Funding", COLUMNS, results.filter(function (r) { return r.request.kind === "funding"; }).flatMap(function (r) { return r.data; })),
+      table("Institutions", BANK_COLUMNS, results.flatMap(function (r) { return r.banks; })),
+      table("Gaps", GAP_COLUMNS, results.flatMap(function (r) { return r.gaps; })),
+      table("Other data", COLUMNS, results.filter(function (r) { return r.request.kind === "dataset"; }).flatMap(function (r) { return r.data; })),
+      table("Status", STATUS_COLUMNS, results.map(function (r) { return r.status; }))];
+    return {schema: "financial-evidence.office-capture.v1", captured_at: new Date().toISOString(), scope: NOTE, sheets: sheets,
+      requests: results.map(function (r) { return {request: r.request, status: r.status, original: r.original}; })};
+  }
+  async function retrieve(request, options) {
+    options = options || {};
+    var controller = new AbortController(), timer = setTimeout(function () { controller.abort(); }, 30000);
+    // Ordinary browser reads use CORS-safelisted headers, avoiding an extra request.
+    var headers = {Accept: "application/json"};
+    if (options.verification) { headers["X-Liquilens-Traffic-Class"] = "synthetic"; headers["X-Financial-Evidence-Traffic-Class"] = "synthetic"; }
+    try {
+      var response = await (options.fetcher || fetch)(request.url, {headers: headers, signal: controller.signal, credentials: "omit", redirect: "error", cache: "no-store"});
+      if (!response.ok || !/^application\/json(?:\s*;|$)/i.test(response.headers.get("Content-Type") || "")) throw new Error("Research HTTP " + response.status + "; expected JSON.");
+      var reader = response.body.getReader(), decoder = new TextDecoder(), size = 0, raw = "";
+      try {
+        while (true) {
+          var part = await reader.read(); if (part.done) break;
+          size += part.value.byteLength;
+          if (size > 4 * 1024 * 1024) throw new Error("Response exceeded 4 MiB.");
+          raw += decoder.decode(part.value, {stream: true});
+        }
+        raw += decoder.decode();
+      } finally { await reader.cancel(); }
+      return project(request, JSON.parse(raw));
+    } catch (error) {
+      // Do not copy provider error bodies, proxy paths or credentials into cells.
+      return failure(request, "Request failed or returned an invalid contract. Retry manually; no previous values were substituted.");
+    } finally { clearTimeout(timer); }
+  }
+  async function run(options) {
+    var requests = plan(options), results = [];
+    // Three at a time keeps larger office selections bounded on shared services.
+    for (var i = 0; i < requests.length; i += 3) results = results.concat(await Promise.all(requests.slice(i, i + 3).map(function (r) { return retrieve(r, options); })));
+    return bundle(results);
+  }
+  function csv(rows) { return rows.map(function (row) { return row.map(function (v) { return '"' + String(safe(v)).replace(/"/g, '""') + '"'; }).join(","); }).join("\r\n") + "\r\n"; }
+  function xml(value) { return String(cell(value)).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;"); }
+  function html(capture) {
+    return '<!doctype html><html lang="en"><meta charset="utf-8"><title>Financial Evidence review</title><style>body{font:15px system-ui;margin:2rem}table{border-collapse:collapse;max-width:100%}td,th{border:1px solid #ccc;padding:6px;text-align:left;vertical-align:top;overflow-wrap:anywhere}th{background:#edf4f3}section{overflow:auto}p{max-width:80ch}</style><h1>Financial Evidence review</h1><p>' + xml(capture.captured_at) + '</p><p>' + xml(NOTE) + '</p>' + capture.sheets.filter(function (s) { return s.name !== "Read me" && s.rows.length > 1; }).map(function (s) { return '<section><h2>' + xml(s.name) + '</h2><table>' + s.rows.map(function (r, i) { var tag = i === 0 ? "th" : "td"; return '<tr>' + r.map(function (v) { return '<' + tag + '>' + xml(v) + '</' + tag + '>'; }).join("") + '</tr>'; }).join("") + '</table></section>'; }).join("") + '</html>';
+  }
+  return {DATASETS: DATASETS, NOTE: NOTE, plan: plan, project: project, failure: failure, bundle: bundle, run: run, cell: cell, safe: safe, csv: csv, xml: xml, html: html};
+}());
+if (typeof module !== "undefined" && module.exports) module.exports = OfficeEvidence;

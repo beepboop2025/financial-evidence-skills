@@ -75,6 +75,8 @@ Python and JavaScript streams require an initial reset before accepting a
 keepalive; npm 0.1.2 includes the synchronized client. These research tools retain
 no trade-execution authority.
 
+**Office and Linux tools:** [refresh a funding comparison or institution watchlist](https://beepboop2025.github.io/financial-evidence-skills/office/), then download XLSX, ODS, CSV and a document brief. Google Sheets functions, Excel Power Query, and a dependency-free local export command are included. Native app and marketplace verification states remain explicit.
+
 **Use your existing tools:** the [research tool hub](https://beepboop2025.github.io/financial-evidence-skills/tools/)
 provides a complete capture client, notebook, flat Excel/Power BI query and MCP
 project defaults for LiquiLens, Seiche and Undertow. Download the kit or connect

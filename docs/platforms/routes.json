@@ -22,6 +22,25 @@
       "verified_customer_adoption": null
     },
     {
+      "id": "office-linux",
+      "name": "Office and Linux research tools",
+      "category": "Analyst spreadsheet",
+      "priority": "P1",
+      "products": [
+        "Seiche",
+        "LiquiLens",
+        "Undertow",
+        "Palimpsest"
+      ],
+      "audience": "Analysts using Calc, Excel, Google Sheets and Linux tools",
+      "workflow": "Refresh a funding comparison and exact institution watchlist; export XLSX, ODS, CSV and a document brief, with sources and gaps.",
+      "artifact_label": "Office desk and downloadable kit",
+      "artifact_url": "../office/",
+      "status": "Portable exports, Google Sheets functions and Excel query sources are available. Native application checks and marketplace approval are recorded separately.",
+      "official_source": "https://developers.google.com/apps-script/guides/sheets/functions",
+      "verified_customer_adoption": null
+    },
+    {
       "id": "excel",
       "name": "Excel / Power BI",
       "category": "Analyst spreadsheet",

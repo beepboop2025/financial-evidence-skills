@@ -7,7 +7,7 @@ publisher configuration and platform review. See [status.json](status.json).
 
 | Channel | Package / listing material | Remaining platform step |
 | --- | --- | --- |
-| Google Workspace Marketplace | [Editor add-on](google/README.md), [source ZIP](google/google-editor-addon.zip), [listing](google/listing.json) | SDK default-scope reconciliation, brand/sensitive-scope verification, completed store listing and public review |
+| Google Workspace Marketplace | [Editor add-on](google/README.md), [source ZIP](google/google-editor-addon.zip), [listing](google/listing.json) | SDK default-scope reconciliation, brand/sensitive-scope verification, submission and public review |
 | Microsoft Marketplace, formerly AppSource | [Manifest](../excel/manifest.xml), [listing draft](microsoft-listing.json), [exact reviewer script](microsoft-reviewer.md) | Remaining compatible-host tests, approved Partner Center account/program enrollment and review; Excel web runtime and production manifest validation passed |
 | OpenBB App Marketplace | [Existing application readback](openbb-status.md) | Review owner, fee-waiver decision and supported native Workspace access; do not resubmit |
 

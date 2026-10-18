@@ -1,6 +1,6 @@
 {
   "schema": "financial-evidence.office-marketplaces.v1",
-  "observed_at": "2026-10-18T10:04:00.633263+00:00",
+  "observed_at": "2026-10-18T10:05:56.814146+00:00",
   "new_submissions": 0,
   "new_accounts": 0,
   "paid_commitments": 0,
@@ -39,7 +39,6 @@
       "remaining": [
         "Reconcile SDK default userinfo.email/profile scopes with the three runtime and OAuth Data Access scopes",
         "Complete brand and sensitive-scope OAuth verification",
-        "Complete and save store listing with approved native screenshots",
         "Google public Marketplace review and independent public installation readback"
       ],
       "publisher_configuration": {
@@ -63,7 +62,8 @@
           "admin"
         ],
         "sdk_scope_reconciliation": "pending_default_userinfo_email_profile_in_sdk_only",
-        "store_listing": "prepared_not_saved"
+        "store_listing": "draft_saved_not_submitted",
+        "store_assets_uploaded": "native_screenshot_icons_and_banner"
       }
     },
     {

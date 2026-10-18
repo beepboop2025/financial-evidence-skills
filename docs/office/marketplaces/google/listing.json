@@ -57,12 +57,13 @@
       "individual",
       "admin"
     ],
-    "store_listing": "prepared_not_saved",
+    "store_listing": "draft_saved_not_submitted",
     "sdk_scope_reconciliation": "pending_default_userinfo_email_profile_in_sdk_only",
     "sdk_default_scopes": [
       "userinfo.email",
       "userinfo.profile"
-    ]
+    ],
+    "store_assets_uploaded": "native_screenshot_icons_and_banner"
   },
   "official_requirements": [
     "https://developers.google.com/workspace/add-ons/how-tos/publish-add-on-overview",

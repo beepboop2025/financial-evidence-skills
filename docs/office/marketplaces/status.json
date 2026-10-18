@@ -1,6 +1,6 @@
 {
   "schema": "financial-evidence.office-marketplaces.v1",
-  "observed_at": "2026-10-18T09:45:31.532243+00:00",
+  "observed_at": "2026-10-18T10:05:56.814146+00:00",
   "new_submissions": 0,
   "new_accounts": 0,
   "paid_commitments": 0,
@@ -37,9 +37,8 @@
         }
       },
       "remaining": [
-        "Create immutable tested script version and finish Marketplace SDK application configuration",
+        "Reconcile SDK default userinfo.email/profile scopes with the three runtime and OAuth Data Access scopes",
         "Complete brand and sensitive-scope OAuth verification",
-        "Publish final assets and add a real host screenshot",
         "Google public Marketplace review and independent public installation readback"
       ],
       "publisher_configuration": {
@@ -55,34 +54,42 @@
           "https://www.googleapis.com/auth/script.container.ui": "sensitive"
         },
         "oauth_sensitive_scope_verification": "pending",
-        "brand_verification": "pending"
+        "brand_verification": "pending",
+        "immutable_script_version": 1,
+        "marketplace_sdk_configuration": "public_application_configuration_draft_saved",
+        "installation_modes": [
+          "individual",
+          "admin"
+        ],
+        "sdk_scope_reconciliation": "pending_default_userinfo_email_profile_in_sdk_only",
+        "store_listing": "draft_saved_not_submitted",
+        "store_assets_uploaded": "native_screenshot_icons_and_banner"
       }
     },
     {
       "id": "microsoft-office-addon",
-      "state": "source_package_ready_native_and_publisher_gates_pending",
+      "state": "native_excel_web_and_production_manifest_passed_publisher_and_review_pending",
       "listing": "microsoft-listing.json",
       "manifest": "../excel/manifest.xml",
       "reviewer_instructions": "microsoft-reviewer.md",
-      "native_host_validation": "not_verified",
-      "account_verification": "not_verified",
+      "native_host_validation": "excel_web_operator_test_manifest_capture_repeat_894_cells_passed; other_hosts_pending",
+      "account_verification": "work_account_signup_and_card_verification_not_completed",
       "public_listing": "not_submitted",
       "remaining": [
-        "Public asset publication and production manifest validation",
-        "All claimed native host tests",
-        "Real host screenshot",
-        "Approved Partner Center publisher and program enrollment",
-        "Microsoft Marketplace review"
+        "Approved work-account signup/card verification and Partner Center publisher/program enrollment",
+        "Remaining declared native host tests; unchanged production-manifest runtime installation",
+        "Select approved real-host screenshots and complete submission",
+        "Microsoft Marketplace review and independent public listing readback"
       ],
       "manifest_validation": {
         "tool": "office-addin-manifest",
         "version": "3.0.1",
-        "observed_at": "2026-10-18T09:29:11.895256+00:00",
+        "observed_at": "2026-10-18T09:57:54.311748+00:00",
         "manifest_sha256": "170530e4b99e72bf7985f383bbdb9101838711721c3585243db8038d4f955a77",
         "development_validation": "passed",
         "development_receipt": "microsoft-manifest-development.txt",
         "development_receipt_sha256": "6a3ba8a89a9162f85b2dcc9e080e964c66576559d2f0276a845bf028409754cf",
-        "production_validation": "pending_public_assets",
+        "production_validation": "passed",
         "production_errors": [],
         "previous_production_validation": {
           "observed_at": "2026-10-18T09:04:48.396646+00:00",
@@ -93,10 +100,16 @@
             "Icon URL Unreachable: /office/excel/icon-32.png"
           ]
         },
-        "next_action": "Publish the exact HTTPS assets, including the 64-pixel high-resolution icon, then rerun production validation and retain its result. Development validation does not establish native Excel acceptance."
+        "next_action": "Complete publisher/program enrollment, remaining claimed host tests and Microsoft Marketplace review. Native Excel web runtime acceptance is recorded separately in ../excel/native-acceptance.json.",
+        "production_receipt": "microsoft-manifest-production.txt",
+        "production_receipt_sha256": "b946d58f45e44afa54d684feb1836fa9a3733d4d22b6a8448034325c16ab0752",
+        "production_command": "office-addin-manifest validate --production docs/office/excel/manifest.xml",
+        "production_exit_code": 0,
+        "release_sha": "fe3894e5654f304d03cbc0e50bc811857368943f"
       },
       "package": "../excel/financial-evidence-excel.zip",
-      "store_logo": "assets/microsoft-store-logo-300.png"
+      "store_logo": "assets/microsoft-store-logo-300.png",
+      "native_host_receipt": "../excel/native-acceptance.json"
     },
     {
       "id": "openbb-app-marketplace",

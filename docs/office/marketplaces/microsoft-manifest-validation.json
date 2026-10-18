@@ -1,12 +1,12 @@
 {
   "tool": "office-addin-manifest",
   "version": "3.0.1",
-  "observed_at": "2026-10-18T09:29:11.895256+00:00",
+  "observed_at": "2026-10-18T09:57:54.311748+00:00",
   "manifest_sha256": "170530e4b99e72bf7985f383bbdb9101838711721c3585243db8038d4f955a77",
   "development_validation": "passed",
   "development_receipt": "microsoft-manifest-development.txt",
   "development_receipt_sha256": "6a3ba8a89a9162f85b2dcc9e080e964c66576559d2f0276a845bf028409754cf",
-  "production_validation": "pending_public_assets",
+  "production_validation": "passed",
   "production_errors": [],
   "previous_production_validation": {
     "observed_at": "2026-10-18T09:04:48.396646+00:00",
@@ -17,5 +17,10 @@
       "Icon URL Unreachable: /office/excel/icon-32.png"
     ]
   },
-  "next_action": "Publish the exact HTTPS assets, including the 64-pixel high-resolution icon, then rerun production validation and retain its result. Development validation does not establish native Excel acceptance."
+  "next_action": "Complete publisher/program enrollment, remaining claimed host tests and Microsoft Marketplace review. Native Excel web runtime acceptance is recorded separately in ../excel/native-acceptance.json.",
+  "production_receipt": "microsoft-manifest-production.txt",
+  "production_receipt_sha256": "b946d58f45e44afa54d684feb1836fa9a3733d4d22b6a8448034325c16ab0752",
+  "production_command": "office-addin-manifest validate --production docs/office/excel/manifest.xml",
+  "production_exit_code": 0,
+  "release_sha": "fe3894e5654f304d03cbc0e50bc811857368943f"
 }

@@ -22,7 +22,7 @@
   "permissions": "ReadWriteDocument",
   "source_url": "https://beepboop2025.github.io/financial-evidence-skills/office/excel/taskpane.html",
   "reviewer_instructions": "microsoft-reviewer.md",
-  "release_claim_gate": "Compare every listing feature with the final tested task-pane behavior before submitting; this copy does not assert runtime validation.",
+  "release_claim_gate": "Excel web runtime was tested through the operator manifest; reconcile remaining declared host coverage and publisher requirements before submission.",
   "publisher_gates": [
     "Approved Partner Center account enrolled in the Microsoft 365 and Copilot program",
     "ProviderName matches the verified Partner Center publisher identity",
@@ -31,15 +31,16 @@
     "Accessibility and keyboard tests, real native screenshot and reviewer instructions",
     "Review approval and independently accessible public listing"
   ],
-  "account_status": "not_verified",
+  "account_status": "work_account_signup_and_card_verification_not_completed",
   "manifest_validation": {
     "development": "passed_office_addin_manifest_3.0.1",
-    "production": "pending_public_assets",
+    "production": "passed_office_addin_manifest_3.0.1",
     "receipt": "microsoft-manifest-validation.json",
     "manifest_sha256": "170530e4b99e72bf7985f383bbdb9101838711721c3585243db8038d4f955a77",
-    "development_receipt": "microsoft-manifest-development.txt"
+    "development_receipt": "microsoft-manifest-development.txt",
+    "production_receipt": "microsoft-manifest-production.txt"
   },
-  "native_host_validation": "not_verified",
+  "native_host_validation": "excel_web_operator_test_manifest_capture_repeat_894_cells_passed; other_hosts_pending",
   "native_screenshot": null,
   "submission_id": null,
   "public_listing_url": null,
@@ -57,5 +58,6 @@
     "manifest_icon": "../excel/icon-32.png",
     "manifest_high_resolution_icon": "../excel/icon-64.png",
     "native_screenshot": null
-  }
+  },
+  "native_host_receipt": "../excel/native-acceptance.json"
 }

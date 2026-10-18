@@ -31,17 +31,17 @@
   "account_configuration": {
     "standard_cloud_project": "linked",
     "script_id": null,
-    "immutable_version": null,
+    "immutable_version": 1,
     "test_deployment_id": null,
     "oauth_verification": "sensitive_scope_verification_pending",
-    "marketplace_sdk_configuration": "api_enabled_app_configuration_pending",
+    "marketplace_sdk_configuration": "public_application_configuration_draft_saved",
     "publisher_branding_and_domain": "not_verified",
     "review_submission_id": null,
     "public_listing_url": null,
     "oauth_configuration": "external_testing_saved",
     "owner_test_user": "registered",
     "owner_consent": "passed",
-    "configuration_observed_at": "2026-10-18T09:45:31.532243+00:00",
+    "configuration_observed_at": "2026-10-18T10:04:00.633263+00:00",
     "brand_verification": "pending",
     "scope_classifications": {
       "https://www.googleapis.com/auth/spreadsheets.currentonly": "non_sensitive",
@@ -52,7 +52,18 @@
     "native_bound_sidebar": "passed",
     "editor_addon_test_deployment": "authmode_none_and_limited_passed",
     "final_sidebar_native": "passed_validation_dialog_focus_escape_and_valid_retry",
-    "final_sidebar_native_observed_at": "2026-10-18T09:40:48.368Z"
+    "final_sidebar_native_observed_at": "2026-10-18T09:40:48.368Z",
+    "installation_modes": [
+      "individual",
+      "admin"
+    ],
+    "store_listing": "draft_saved_not_submitted",
+    "sdk_scope_reconciliation": "pending_default_userinfo_email_profile_in_sdk_only",
+    "sdk_default_scopes": [
+      "userinfo.email",
+      "userinfo.profile"
+    ],
+    "store_assets_uploaded": "native_screenshot_icons_and_banner"
   },
   "official_requirements": [
     "https://developers.google.com/workspace/add-ons/how-tos/publish-add-on-overview",

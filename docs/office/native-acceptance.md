@@ -26,8 +26,43 @@ published.
 
 This proves the **XLSX snapshot import/save path**. The tested account exposed
 the Queries pane but no Get Data or New Query entry, so Excel-hosted Power Query
-creation/refresh was not completed. The [Office add-in](excel/README.md) is a
-separate implementation whose native host execution remains pending.
+creation/refresh was not completed. The [Office add-in](excel/README.md) has
+separate native acceptance recorded below.
+
+## Excel Office add-in — web capture and repeated insertion passed
+
+On 18 October 2026, the published Office.js task pane connected inside Excel for
+the web. A live capture at `09:58:46.619Z` requested USD/EUR funding and the exact
+institution selections `au-sfb,unknown-bank`: three requests, zero failures.
+The same capture was inserted twice, creating two separate sets of six sheets.
+The downloaded workbook matched all **894 checked cells**: 317 cells in each
+insertion and all 260 original fixture cells, across 18 tabs. Each insertion
+preserved 277 strings, 9 numbers, 6 booleans and 25 blanks. No formula cells or
+external workbook links were present.
+
+The test used the public HTML/JavaScript from
+[`fe3894e`](https://github.com/beepboop2025/financial-evidence-skills/commit/fe3894e5654f304d03cbc0e50bc811857368943f),
+verified after [Pages deployment](https://github.com/beepboop2025/financial-evidence-skills/actions/runs/39117298512).
+The privately sideloaded manifest changed only `SourceLocation` by adding
+`?operator=1`, which activates existing synthetic verification attribution.
+This verifies the published runtime through that test manifest. The unchanged
+production manifest separately passed `office-addin-manifest` **3.0.1**
+production validation; its runtime installation was not the tested route.
+
+```text
+5692bcd3b9e14c39a0108198db2bb321c7b7738bfdde5accca3bb6ddd2ff3f77  officejs-repeat-roundtrip.xlsx
+8c8504e57863c6a136be8dce7a0c0622572e4fbc467a7ca34706d8bf806cdb87  officejs-capture.json
+170530e4b99e72bf7985f383bbdb9101838711721c3585243db8038d4f955a77  production-manifest.xml
+f007988160d6595106cb06782651bc481e9684887d1bde90a205182bcd533b82  operator-test-manifest.xml
+```
+
+A six-currency selection produced the expected validation error and removed the
+old preview and insert controls. Request counts for that invalid action were
+not independently measured. The live capture contained no formula-like strings;
+the original fixture's one such string stayed inert. Desktop hosts, marketplace
+approval and independent adoption remain unverified. See the
+[public receipt](excel/native-acceptance.json) and
+[manifest validation record](marketplaces/microsoft-manifest-validation.json).
 
 ## LibreOffice Calc on Linux — ODS and XLSX passed
 
@@ -204,8 +239,8 @@ describe the engine interface used here.
 ## Other office paths
 
 The [compatibility table](compatibility.md) separates completed acceptance from
-available formats and pending host checks. Excel Office add-in execution,
+available formats and pending host checks. Excel desktop add-in execution,
 Excel-hosted Power Query refresh and marketplace review remain separate from
-the completed query-engine, Google Editor and workbook checks. Nextcloud Office
+the completed web add-in, query-engine, Google Editor and workbook checks. Nextcloud Office
 editing/saving and the unsupported ONLYOFFICE ODS export are not covered by the
 successful import/open results.

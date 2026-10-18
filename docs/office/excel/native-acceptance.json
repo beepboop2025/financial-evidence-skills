@@ -1,0 +1,61 @@
+{
+  "schema": "financial-evidence.excel-officejs-native-acceptance.v1",
+  "status": "PASS",
+  "verified_at": "2026-10-18T10:02:23.592891+00:00",
+  "host": "Excel for the web",
+  "host_internal_build": "not exposed in retained UI evidence",
+  "source": {
+    "merge_commit": "fe3894e5654f304d03cbc0e50bc811857368943f",
+    "tested_head": "9f9baf6cfa3d77574c29b59f5402afd190b8a1a9",
+    "identical_tree": "63b1ddc8243f5019861a73b3f8669eafb00851e5",
+    "pages_run": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/39117298512"
+  },
+  "native_ui_observed": {
+    "office_onReady_connected": true,
+    "operator_test_manifest_sideloaded": true,
+    "first_insertion_new_sheets": 6,
+    "second_insertion_new_sheets": 6,
+    "invalid_selection": {
+      "input": "six currency codes",
+      "message": "Use at most five three-letter currencies.",
+      "old_preview_removed": true,
+      "insert_controls_removed": true,
+      "extra_tabs_created": false,
+      "network_count": "not observed; no claim"
+    }
+  },
+  "manifest_scope": {
+    "production_sha256": "170530e4b99e72bf7985f383bbdb9101838711721c3585243db8038d4f955a77",
+    "operator_sha256": "f007988160d6595106cb06782651bc481e9684887d1bde90a205182bcd533b82",
+    "difference": "Only SourceLocation gains ?operator=1; all other bytes preserved. Native host appends its own et parameter.",
+    "attribution": "Existing client verification mode sets synthetic traffic headers; not independent adoption.",
+    "unchanged_production_manifest_runtime_tested": false,
+    "production_manifest_validation": "passed_office_addin_manifest_3.0.1_production; see ../marketplaces/microsoft-manifest-validation.json"
+  },
+  "workbook_comparison": {
+    "capture_at": "2026-10-18T09:58:46.619Z",
+    "requests": 3,
+    "failed_requests": 0,
+    "original_cells_preserved": 260,
+    "inserted_cells_compared": [
+      317,
+      317
+    ],
+    "total_cells_compared": 894,
+    "total_tabs": 18,
+    "formula_cells": 0,
+    "external_workbook_links": 0
+  },
+  "sha256": {
+    "workbook": "5692bcd3b9e14c39a0108198db2bb321c7b7738bfdde5accca3bb6ddd2ff3f77",
+    "capture_json": "8c8504e57863c6a136be8dce7a0c0622572e4fbc467a7ca34706d8bf806cdb87",
+    "original_expected_json": "a97fbdad2d3f44cc6212dcf832afe221ba4ff937cdfee06314315a6a0e599154"
+  },
+  "retained_private_receipt_sha256": "4c8468751c803ea95f048b956c6e3288bc62ce701fb8d5f4a9ac96eb5ccd2c94",
+  "limits": [
+    "Native Excel web acceptance does not establish native desktop acceptance or Marketplace approval.",
+    "The live inserted capture contained no formula-like strings. One formula-like string in the original fixture remained inert; native Office.js insertion of a formula-like live value was not exercised.",
+    "Invalid input UI was verified; request absence was not independently measured.",
+    "This was synthetic operator verification, not independent user adoption."
+  ]
+}

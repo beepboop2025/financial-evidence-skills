@@ -12,7 +12,7 @@ The [setup guide](setup.md) gives installation and refresh instructions; the
 | Excel desktop | Open XLSX snapshots | File format provided; desktop application acceptance not recorded here. |
 | Microsoft Power Query engine | Execute the three shipped funding/watchlist queries | Native Windows engine passed 22 assertion groups plus a failing control. HTTP responses were synthetic fixtures. |
 | Excel / Power BI Power Query interface | Create queries and manually refresh the hosted service | Native UI/live HTTP refresh pending. Availability depends on the application's edition and account. |
-| Excel Office add-in | Research task pane creates six new review sheets | Implementation and isolated tests available; native add-in host execution pending. |
+| Excel Office add-in | Research task pane creates six new review sheets | Excel web runtime passed through an operator test manifest: one capture inserted twice, all 894 cells checked across 18 tabs. Production manifest validation passed separately; desktop and marketplace acceptance remain pending. |
 | Google Sheets custom functions | Refresh funding or exact institution watchlists from cells | Pasteable script available. This is separate from the new Editor add-on. |
 | Google Sheets bound Apps Script sidebar | Research sidebar creates six new review sheets | Native live capture/repeat verified; 317 capture cells and earlier review tabs preserved. |
 | Google Sheets Editor add-on test deployment | Open the add-on through the Extensions menu and create a review | Installed-state (`AuthMode.NONE`) capture passed: all 317 capture cells, 650 earlier review cells and existing analysis markers preserved. Enabled-state (`AuthMode.LIMITED`) menu/sidebar also passed; marketplace approval remains separate. |

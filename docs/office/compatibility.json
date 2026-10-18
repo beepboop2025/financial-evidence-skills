@@ -65,8 +65,15 @@
       ],
       "route": "Research task pane with six new review sheets",
       "artifact": "excel/README.md",
-      "state": "implementation_and_unit_tests_passed_native_addin_pending",
-      "linux": "browser"
+      "state": "native_excel_web_officejs_capture_and_repeat_insertion_894_cells_passed; desktop_and_marketplace_pending",
+      "linux": "browser",
+      "evidence": "native-acceptance.md#excel-office-add-in--web-capture-and-repeated-insertion-passed",
+      "verified_scope": "Public runtime through a sideloaded operator test manifest; one live capture inserted twice, 317 cells per insertion and 260 original cells preserved across 18 tabs.",
+      "limits": [
+        "Only SourceLocation gained operator=1 for synthetic verification; unchanged production manifest runtime installation was not exercised.",
+        "Production manifest structural validation passed separately.",
+        "Native desktop hosts and marketplace approval remain unverified."
+      ]
     },
     {
       "tools": [

@@ -57,7 +57,14 @@ def main():
                 for index, values in enumerate(wanted["rows"]):
                     observed = []
                     for c in rows[index].findall("table:table-cell", ns):
-                        assert c.get(a("table", "formula")) is None
+                        formula = c.get(a("table", "formula"))
+                        if formula is not None:
+                            # Calc represents imported XLSX boolean constants as
+                            # TRUE()/FALSE(). Permit only that exact conversion,
+                            # in a cell whose original value is the same boolean.
+                            original = values[len(observed)] if len(observed) < len(values) else None
+                            assert type(original) is bool
+                            assert formula == ("of:=TRUE()" if original else "of:=FALSE()")
                         kind = c.get(a("office", "value-type"))
                         if kind == "float":
                             value = float(c.get(a("office", "value")))

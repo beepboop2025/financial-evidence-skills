@@ -21,7 +21,10 @@ An unavailable service remains an error. This client has no local assessment
 or native-origin fallback. Outputs preserve source clocks, gaps and research
 limits. No operation authorizes a trade or establishes predictive performance.
 
+The hosted schema is pinned to NoiseFloor 0.4.3 and its
+[verified deployment receipt](../../distribution/noisefloor-hosted-0.4.3.json).
 The [0.4.0 archive](../noisefloor/) retains its original bytes and offline
-implementation. This hosted kit derives its input schemas and synthetic panels
-from that verified source; it is not a new NoiseFloor algorithm release.
+implementation. This kit reuses its compatible synthetic request panels.
+The 0.4.3 release adds ten typed MCP output contracts; numerical results match
+the previous 0.4.2 package across the accepted same-platform checks.
 MCP: https://agents.seiche.info/products/noisefloor/mcp

@@ -12,6 +12,7 @@ ARCHIVE = ROOT / "docs/api/noisefloor"
 OUT = ROOT / "docs/api/noisefloor-hosted"
 BASE = "https://agents.seiche.info/v1/noisefloor"
 NATIVE = "https://api.seiche.info/noisefloor"
+RELEASE = ROOT / "docs/distribution/noisefloor-hosted-0.4.3.json"
 
 
 def assets():
@@ -35,14 +36,21 @@ def assets():
         else:
             body = body.replace("Content-Type: application/json", "Content-Type: application/json\n  X-Financial-Evidence-Traffic-Class: synthetic")
         result[name] = body.encode()
-    spec = json.loads((ARCHIVE / "openapi.json").read_text())
+    release = json.loads(RELEASE.read_text())
+    schema_path = RELEASE.parent / release["openapi"]["file"]
+    schema_bytes = schema_path.read_bytes()
+    if hashlib.sha256(schema_bytes).hexdigest() != release["openapi"]["sha256"]:
+        raise ValueError("Hosted schema differs from the verified deployment receipt")
+    spec = json.loads(schema_bytes)
+    if release["status"] != "verified" or spec["info"]["version"] != release["version"]:
+        raise ValueError("Hosted schema release is not verified")
     paths = {"/healthz", "/v1/capabilities", "/v1/market/assess", "/v1/narrative/triage",
              "/v1/spectral/assess", "/v1/research/dyson"}
     spec["paths"] = {path: value for path, value in spec["paths"].items() if path in paths}
     spec["servers"] = [{"url": BASE}]
     spec["info"]["title"] = "Hosted NoiseFloor research API"
-    spec["x-hosted-transport"] = {"native_schema_sha256": original["files"]["openapi.json"],
-        "source_commit": original["source_commit"], "request_body_retained_in_demand_metrics": False,
+    spec["x-hosted-transport"] = {"native_schema_sha256": release["openapi"]["sha256"],
+        "source_commit": release["source_commit"], "request_body_retained_in_demand_metrics": False,
         "native_fallback": False, "archive_url": "../noisefloor/"}
     result["openapi.json"] = (json.dumps(spec, indent=2) + "\n").encode()
     result["hosted_review.py"] = (ROOT / "scripts/templates/noisefloor_hosted_client.py").read_bytes()
@@ -69,14 +77,20 @@ An unavailable service remains an error. This client has no local assessment
 or native-origin fallback. Outputs preserve source clocks, gaps and research
 limits. No operation authorizes a trade or establishes predictive performance.
 
+The hosted schema is pinned to NoiseFloor {release['version']} and its
+[verified deployment receipt](../../distribution/{RELEASE.name}).
 The [0.4.0 archive](../noisefloor/) retains its original bytes and offline
-implementation. This hosted kit derives its input schemas and synthetic panels
-from that verified source; it is not a new NoiseFloor algorithm release.
+implementation. This kit reuses its compatible synthetic request panels.
+The 0.4.3 release adds ten typed MCP output contracts; numerical results match
+the previous 0.4.2 package across the accepted same-platform checks.
 MCP: https://agents.seiche.info/products/noisefloor/mcp
 '''.encode()
     result["index.html"] = '''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hosted NoiseFloor client kit</title><link rel="stylesheet" href="../../styles.css"></head><body><main class="section"><p>FREE HOSTED RESEARCH</p><h1>NoiseFloor through the central service.</h1><p>Send your selected observations for correlation, market or narrative research. Explore a separate synthetic Dyson reference. The included sample panels are synthetic.</p><p><a href="noisefloor-hosted-kit.zip">Download the current kit</a> · <a href="README.md">Setup and data handling</a></p><ul><li><a href="noisefloor.postman_collection.json">Postman</a></li><li><a href="openapi.json">OpenAPI</a></li><li><a href="noisefloor.http">HTTP requests</a></li><li><a href="hosted_review.py">Python client</a></li><li><a href="manifest.json">Source and file hashes</a></li></ul><p>Research requests go to our servers. Operation counts remain separate from optional learning or training contributions. Retain source dates, rights and unavailable values; research output grants no trading authority.</p><p><a href="../noisefloor/">Verified 0.4.0 archive</a> · <a href="https://agents.seiche.info/connect">Connect all hosted products</a></p></main></body></html>'''.encode()
-    manifest = {"schema": "noisefloor.hosted-client-kit.v1", "version": "2026-10-13",
+    manifest = {"schema": "noisefloor.hosted-client-kit.v1", "version": "2026-10-18",
         "api_base": BASE, "mcp_url": "https://agents.seiche.info/products/noisefloor/mcp",
+        "hosted_release": {"version": release["version"], "source_commit": release["source_commit"],
+            "native_schema_sha256": release["openapi"]["sha256"],
+            "receipt": "../../distribution/" + RELEASE.name},
         "source_archive": {"version": original["version"], "commit": original["source_commit"],
             "manifest_sha256": hashlib.sha256((ARCHIVE / "manifest.json").read_bytes()).hexdigest()},
         "example_traffic": "synthetic", "native_fallback": False,
@@ -86,7 +100,7 @@ MCP: https://agents.seiche.info/products/noisefloor/mcp
     buffer = io.BytesIO()
     with ZipFile(buffer, "w", compression=ZIP_DEFLATED) as archive:
         for name, body in sorted(result.items()):
-            info = ZipInfo(name, (2026, 10, 13, 0, 0, 0))
+            info = ZipInfo(name, (2026, 10, 18, 0, 0, 0))
             info.compress_type = ZIP_DEFLATED
             info.external_attr = 0o100644 << 16
             archive.writestr(info, body)

@@ -33,14 +33,15 @@
     },
     {
       "name": "NoiseFloor",
-      "version": "0.4.2",
+      "version": "0.4.3",
       "ecosystem": "Python / MCP",
-      "url": "https://pypi.org/project/noisefloor/0.4.2/",
-      "receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.2.json",
-      "source_commit": "e94edf3969c25887b3cd8ced93905d83777aa2c6",
-      "command": "python3 -m pip install noisefloor==0.4.2",
-      "hosted_version": "0.4.0",
-      "description": "Ten statistical research tools with clearer descriptions for all 85 input-property paths. Validation and computations are unchanged; the hosted service remains 0.4.0."
+      "url": "https://pypi.org/project/noisefloor/0.4.3/",
+      "receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.3.json",
+      "source_commit": "f5a3be4599fe7414d7fd32f9ce949a676b93f885",
+      "command": "python3 -m pip install noisefloor==0.4.3",
+      "hosted_version": "0.4.3",
+      "description": "Ten statistical research tools with typed output contracts. The published package and hosted service are verified at 0.4.3; calculations and returned tool payloads are unchanged.",
+      "hosted_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-hosted-0.4.3.json"
     }
   ],
   "setup_url": "https://beepboop2025.github.io/financial-evidence-skills/connect/",
@@ -256,9 +257,9 @@
       "tool_count": 3
     }
   ],
-  "ledger_records": 215,
+  "ledger_records": 217,
   "ledger_declared_states": {
-    "live": 120,
+    "live": 123,
     "submitted": 62,
     "closed_unmerged": 1,
     "eligible_automatic": 1,
@@ -266,11 +267,21 @@
     "skipped_paid": 3,
     "conditional_artifact": 2,
     "paused_external": 1,
-    "listed_incomplete": 18,
+    "listed_incomplete": 17,
     "approved_pending_public": 1,
     "sent_delivery_unverified": 1
   },
   "scope": "Accepted package releases and existing public listing records with individual observation clocks. Connector tool counts are dated observations; current health, provider grades and permission requirements must be checked at the linked surface.",
   "new_marketplace_listing_created": false,
-  "independent_adoption_verified": false
+  "independent_adoption_verified": false,
+  "monitor_snapshot": {
+    "observed_at": "2026-10-17T23:47:09.421904Z",
+    "ledger_records": 215,
+    "configured_checks": 34,
+    "monitored_records": 32,
+    "unmonitored_records": 183,
+    "status": "configured_checks_passed",
+    "coverage_complete": false,
+    "ledger_sha256": "86cb83263be88b01855521ddb30571e13919a803edd110cd46ae04b33d8ed635"
+  }
 }

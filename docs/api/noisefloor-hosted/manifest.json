@@ -1,8 +1,14 @@
 {
   "schema": "noisefloor.hosted-client-kit.v1",
-  "version": "2026-10-13",
+  "version": "2026-10-18",
   "api_base": "https://agents.seiche.info/v1/noisefloor",
   "mcp_url": "https://agents.seiche.info/products/noisefloor/mcp",
+  "hosted_release": {
+    "version": "0.4.3",
+    "source_commit": "f5a3be4599fe7414d7fd32f9ce949a676b93f885",
+    "native_schema_sha256": "e550030594f31561b9bf0086421669434dc55c2140fed61b3ab11452382c944b",
+    "receipt": "../../distribution/noisefloor-hosted-0.4.3.json"
+  },
   "source_archive": {
     "version": "0.4.0",
     "commit": "18e7290a022c7cba0d1e5e417a4a467cccfaa7a0",
@@ -11,7 +17,7 @@
   "example_traffic": "synthetic",
   "native_fallback": false,
   "files": {
-    "README.md": "7ed61887adeffcf7f3fbfba91497afb1aef074d7c9c56ace4130a49297b20b1d",
+    "README.md": "e65a627bb175cb6ac07e676b073e326420813fa3992eee3ba062a749a59e1e15",
     "bruno.json": "ef41a31f2c39379c88bed81f68e6428eb04ab56af11f533cf719af929e53074a",
     "dyson.bru": "d928fcad19210be7766c1d6c8807d0ea77699573d4b8c25a04c9376f3ef755f7",
     "dyson.json": "6c3ff3ba41d2353feb7316d0a4486f59c5a6d2d25775cb4de498ba8af89fbc15",
@@ -20,7 +26,7 @@
     "liquilens.json": "8e3216ed91dc545a5af93201c05d4bfd6b31b41a712f913bae0cc1be707f8499",
     "noisefloor.http": "e0802fd7f0f07591364c13cc46e63f2759dd8d37f437cd02ecb35171dc601b97",
     "noisefloor.postman_collection.json": "ceec52025084eab1dab5a3c826604773d9f71ff47bf3cb2196464c3d5441abd6",
-    "openapi.json": "1b4e2c677981ae8003789e04e142f00bf2ada6f30d7081501fbb39acbf041c1b",
+    "openapi.json": "4ea3529dc44c814ddf43b31710918f793c9c1e5deb98beff10bfeed226d24f79",
     "palimpsest.json": "eabd99f08891464d759c4539f33cceaad8e1e7c7ea97d002ca7b5a5388c4de98",
     "riptide.json": "f6b0f8373e727407d5897574bfb896bb1c45a870ffd96d0c4fb9debb3911bd01",
     "seiche.json": "b6c6b78418ac9d22bbd2be7a3d67558797df41c886223b439d8ae6f29f234c5a",

@@ -1,0 +1,68 @@
+{
+  "schema": "financial-evidence.marketplace-readback.v1",
+  "observed_at": "2026-10-18T05:24:47.785752+00:00",
+  "new_submissions": false,
+  "scope": "Existing owner edits and anonymous rendered pages; no new subscriptions or paid gateway calls.",
+  "listings": [
+    {
+      "id": "allmcps-financial-evidence",
+      "url": "https://allmcps.com/mcp/financial-evidence",
+      "edit_approval_email_observed": true,
+      "public_tool_count": 3,
+      "provider_sandbox_result_displayed": true,
+      "provider_sandbox_observation_date": "2026-10-17",
+      "provider_claim_not_independent_retest": true,
+      "public_accessibility_readback_sha256": "c7a0997e59922b6ccb1913a9b03936b8a2423a6a2fb2cf2be8989de02dce787e",
+      "remaining_gaps": [
+        "SSE label conflicts with Streamable HTTP guidance; cached README still describes Homebrew 0.1.12."
+      ]
+    },
+    {
+      "id": "allmcps-research-desk",
+      "url": "https://allmcps.com/mcp/financial-evidence-research-desk",
+      "edit_approval_email_observed": true,
+      "public_tool_count": 9,
+      "provider_sandbox_result_displayed": true,
+      "provider_sandbox_observation_date": "2026-10-15",
+      "provider_claim_not_independent_retest": true,
+      "public_accessibility_readback_sha256": "cd8996a17af50adb9ca313e91582ebcd942d69134af329c2cc10bfae916d8bd6",
+      "remaining_gaps": [
+        "Generated overview and FAQ still describe eight tools.",
+        "SSE label conflicts with the hosted Streamable HTTP endpoint."
+      ]
+    },
+    {
+      "id": "allmcps-undertow",
+      "url": "https://allmcps.com/mcp/undertow-market-liquidity-map-2",
+      "edit_approval_email_observed": true,
+      "public_tool_count": 16,
+      "provider_sandbox_result_displayed": true,
+      "provider_sandbox_observation_date": "2026-10-17",
+      "provider_claim_not_independent_retest": true,
+      "public_accessibility_readback_sha256": "d45496eb9da5cd08701b0fc465712104352398bc73677f88f1b9c52dcc910b4f",
+      "remaining_gaps": [
+        "SSE label conflicts with Streamable HTTP guidance.",
+        "Older duplicate remains unreconciled."
+      ]
+    },
+    {
+      "id": "api-market-seiche-reference-fx",
+      "url": "https://api.market/store/liquilens/seiche-reference-fx",
+      "anonymous_public_page": {
+        "free_trial_plan_visible": true,
+        "trial_days": 7,
+        "trial_units": 1000,
+        "pro_plan_visible": true,
+        "pro_endpoint_count": 4,
+        "pro_usd_per_month": 5,
+        "subscription_created": false
+      },
+      "owner_source_operation_count": 4,
+      "existing_plan_endpoints_each": 4,
+      "configuration_changes": false,
+      "current_gateway_call_verified": false,
+      "earlier_zero_endpoint_static_read_not_reproduced_in_browser": true
+    }
+  ],
+  "independent_adoption_verified": false
+}

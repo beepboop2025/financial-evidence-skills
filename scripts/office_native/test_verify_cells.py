@@ -5,6 +5,7 @@ from pathlib import Path
 import subprocess
 import tempfile
 import unittest
+from zipfile import ZipFile
 
 from openpyxl import load_workbook
 from verify_cells import verify
@@ -55,6 +56,17 @@ class CellAcceptanceTest(unittest.TestCase):
         for suffix in ("xlsx", "ods"):
             with self.subTest(suffix=suffix), self.assertRaises(AssertionError):
                 verify(self.root / ("review." + suffix), expected)
+
+    def test_odf_accepts_all_xml_boolean_lexical_forms(self):
+        # XML Schema boolean permits true/false and 1/0; ONLYOFFICE uses 1/0.
+        path = self.root / "boolean-lexical.ods"
+        with ZipFile(self.root / "review.ods") as source, ZipFile(path, "w") as target:
+            for name in source.namelist():
+                data = source.read(name)
+                if name == "content.xml":
+                    data = data.replace(b'office:boolean-value="true"', b'office:boolean-value="1"').replace(b'office:boolean-value="false"', b'office:boolean-value="0"')
+                target.writestr(name, data)
+        self.assertEqual(verify(path, self.expected), 260)
 
 
 if __name__ == "__main__":

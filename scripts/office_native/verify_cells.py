@@ -71,7 +71,9 @@ def verify(path, expected):
                 if kind == "float":
                     value = float(cell.get(attr("office", "value")))
                 elif kind == "boolean":
-                    value = cell.get(attr("office", "boolean-value")) == "true"
+                    raw = cell.get(attr("office", "boolean-value"))
+                    assert raw in ("true", "false", "1", "0"), ("Invalid XML boolean", raw)
+                    value = raw in ("true", "1")
                 else:
                     value = "\n".join(paragraph(p) for p in cell.findall("text:p", NS))
                 count = min(int(cell.get(attr("table", "number-columns-repeated"), "1")), len(wanted_row) - len(observed))

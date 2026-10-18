@@ -70,7 +70,8 @@ function insertOfficeReview(options) {
       range.setNumberFormats(cells.map(function (row) { return row.map(function (value) { return typeof value === "string" ? "@" : "General"; }); }));
       range.setValues(cells).setVerticalAlignment("top");
       sheet.getRange(1, 1, 1, width).setFontWeight("bold").setBackground("#163f55").setFontColor("#ffffff");
-      sheet.setFrozenRows(1).setColumnWidths(1, width, 170);
+      sheet.setFrozenRows(1);
+      sheet.setColumnWidths(1, width, 170);
       if (table.name === "Read me") sheet.setColumnWidth(2, 650).getRange(1, 1, cells.length, width).setWrap(true);
       else if (cells.length > 1) range.createFilter();
     });

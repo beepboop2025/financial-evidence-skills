@@ -14,25 +14,31 @@ function harness(config={}) {
   const original=JSON.stringify(existing);
   function makeSheet(name) {
     const sheet={name,cells:null,formats:null,filter:false};
-    const chain=new Proxy({}, {get:(_,method)=>(...args)=>{
-      if(method==='setValues') {if(config.writeFails) throw new Error('provider private failure');sheet.cells=args[0];}
-      if(method==='setNumberFormats') sheet.formats=args[0];
-      if(method==='createFilter') sheet.filter=true;
-      return chain;
-    }});
+    // Explicit documented return types; an unknown API must not become a fluent method.
+    const chain={
+      setValues(values){if(config.writeFails) throw new Error('provider private failure');sheet.cells=values;return this;},
+      setNumberFormats(formats){sheet.formats=formats;return this;},
+      createFilter(){sheet.filter=true;return {type:'Filter'};},
+      setVerticalAlignment(){return this;},setFontWeight(){return this;},
+      setBackground(){return this;},setFontColor(){return this;},setWrap(){return this;}
+    };
     sheet.getRange=()=>chain;
-    sheet.setFrozenRows=()=>sheet;sheet.setColumnWidths=()=>sheet;sheet.setColumnWidth=()=>sheet;
+    // Google documents setFrozenRows as void; it is not chainable like sizing.
+    sheet.setFrozenRows=(count)=>{sheet.frozenRows=count;};
+    sheet.setColumnWidths=(start,count,width)=>{sheet.columnWidths=[start,count,width];return sheet;};
+    sheet.setColumnWidth=()=>sheet;
     return sheet;
   }
   const workbook={getSheetByName:()=>config.collision ? existing : null,
     insertSheet:(name)=>{const s=makeSheet(name);state.sheets.push(s);return s;},
     setActiveSheet:(s)=>{state.active=s;}};
-  const ui={createAddonMenu(){return this;},addItem(name,fn){state.menu.push([name,fn]);return this;},addToUi(){return this;},showSidebar(){state.sidebar=true;}};
+  const menu={addItem(name,fn){state.menu.push([name,fn]);return this;},addToUi(){}};
+  const ui={createAddonMenu(){return menu;},showSidebar(){state.sidebar=true;}};
   const context=vm.createContext({console,
     SpreadsheetApp:{getUi:()=>ui,getActiveSpreadsheet:()=>workbook,flush:()=>{}},
     LockService:{getDocumentLock:()=>({tryLock:()=>{state.locks++;return !config.busy;},releaseLock:()=>state.releases++})},
     Utilities:{getUuid:()=>String(++state.uuid).padStart(3,'0')+'-test'},
-    HtmlService:{createHtmlOutputFromFile:()=>({setTitle:()=>({})})},
+    HtmlService:{createHtmlOutputFromFile:()=>({setTitle(){return this;}})},
     UrlFetchApp:{fetchAll:(requests)=>{
       state.requests.push(...requests);
       if(config.networkFails) throw new Error('secret upstream detail');
@@ -66,6 +72,7 @@ test('real shared parser preserves gaps, numeric states and original JSON in ded
   const result=context.insertOfficeReview(options);
   assert.equal(state.requests.length,3);assert.equal(state.sheets.length,6);assert.equal(result.failed_requests,0);
   assert.equal(JSON.stringify(existing),original);assert.equal(state.releases,1);
+  assert.ok(state.sheets.every(sheet=>sheet.frozenRows===1&&sheet.columnWidths[0]===1&&sheet.columnWidths[2]===170));
   const fundingSheet=state.sheets.find(s=>s.name.endsWith('Funding'));
   const cols=fundingSheet.cells[0], value=cols.indexOf('value'), valueState=cols.indexOf('value_state');
   assert.equal(fundingSheet.cells[1][value],0);assert.equal(fundingSheet.cells[2][value],'');

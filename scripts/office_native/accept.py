@@ -271,15 +271,27 @@ def main():
                 for suffix in ("ods", "xlsx"):
                     events = []
                     def received(ws):
-                        ws.on("framereceived", lambda payload: events.append(payload) if isinstance(payload, str) and payload.startswith("status:") else None)
+                        def message(payload):
+                            if isinstance(payload, bytes):
+                                payload = payload.decode("utf-8", errors="replace")
+                            if payload.startswith("status:"):
+                                events.append(payload)
+                        ws.on("framereceived", message)
                     page.on("websocket", received)
-                    page.goto("http://127.0.0.1/index.php/apps/richdocuments/index?fileId=" + ids[suffix])
+                    # Use Nextcloud's normal file-opening route; direct access
+                    # to richdocuments/index lacks its required CSRF token.
+                    page.goto("http://127.0.0.1/index.php/f/" + ids[suffix])
                     deadline = time.monotonic() + 120
                     while time.monotonic() < deadline and not any("type=spreadsheet" in e for e in events):
                         page.wait_for_timeout(1000)
                     page.screenshot(path=str(out / ("nextcloud-collabora-" + suffix + ".png")))
                     (out / ("nextcloud-collabora-" + suffix + "-visible.txt")).write_text(page.locator("body").inner_text())
                     assert any("type=spreadsheet" in e for e in events), "Collabora spreadsheet status was not received through Nextcloud WOPI"
+                    frame = next(f for f in page.frames if ":9980/" in f.url)
+                    wanted_tabs = [sheet["name"] for sheet in expected]
+                    frame.locator(".spreadsheet-tab").first.wait_for(timeout=30000)
+                    observed_tabs = frame.locator(".spreadsheet-tab").all_text_contents()
+                    assert observed_tabs == wanted_tabs, (observed_tabs, wanted_tabs)
                     check("nextcloud_collabora_" + suffix + "_browser_wopi_loaded", native_status=events[-1][:2000])
                     page.remove_listener("websocket", received)
                 browser.close()

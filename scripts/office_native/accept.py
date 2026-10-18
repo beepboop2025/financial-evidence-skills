@@ -303,7 +303,7 @@ def main():
                     # Close the vendor's first-use tour through its visible UI.
                     for frame in page.frames:
                         close = frame.locator("#welcome-close")
-                        if close.count():
+                        if close.count() and close.is_visible():
                             close.click(timeout=5000)
                     page.screenshot(path=str(out / ("nextcloud-collabora-" + suffix + ".png")))
                     (out / ("nextcloud-collabora-" + suffix + "-visible.txt")).write_text(page.locator("body").inner_text())

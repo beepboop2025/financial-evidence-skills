@@ -58,7 +58,7 @@ def assets() -> dict[str, bytes]:
     if len(ids) != len(set(ids)):
         raise ValueError("duplicate platform id")
     selected = [ROOT / "LICENSE", ROOT / "pyproject.toml", ROOT / "PYPI_README.md", ROOT / "docs/tools/research_client.py",
-                ROOT / "docs/tools/FinancialEvidenceRows.pq",
+                ROOT / "docs/tools/FinancialEvidenceRows.pq", ROOT / "docs/office/office-kit.zip",
                 ROOT / "docs/tools/FinancialEvidenceSheets.gs", ROOT / "docs/tools/google-sheets.md",
                 ROOT / "docs/tools/research_desk.ipynb", ROOT / "docs/tools/mcp.remote.vscode.json",
                 ROOT / "docs/HOSTED_MIGRATION.md", ROOT / "scripts/plan_hosted_migration.py",

@@ -1,5 +1,7 @@
 # Financial Evidence in Google Sheets
 
+For funding comparisons and exact institution watchlists, use the [office functions](../office/setup.md#google-sheets). The generic dataset-page function remains available below.
+
 Bring a page of cited bank, dollar-funding, money-market or indicative liquidity research into a sheet. The function keeps source dates, units, missing values, rights and retrieval status beside the numbers. It uses the public research endpoint without an API key.
 
 ## Set up once

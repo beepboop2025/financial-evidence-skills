@@ -274,6 +274,7 @@ jobs:
       - run: node --test tests/*.test.js tests/*.test.cjs tests/test_google_sheets.mjs tests/context-client.test.mjs
       - run: node integrations/node-red/build_flow.cjs --check
       - run: node integrations/node-red/test_flow.cjs
+      - run: python3 scripts/build_office_kit.py --check
       - run: python3 scripts/build_research_kit.py --check
       - run: python3 scripts/build_platform_hub.py --check
       - run: python3 scripts/build_product_plugins.py --check
@@ -423,3 +424,34 @@ jobs:
           npx --yes @anthropic-ai/mcpb@2.1.2 validate manifest.json
           npx --yes @anthropic-ai/mcpb@2.1.2 pack . financial-evidence.mcpb
           npx --yes @anthropic-ai/mcpb@2.1.2 info financial-evidence.mcpb
+
+  linux-office-acceptance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - name: Install independent readers and Linux Calc
+        run: |
+          python3 -m pip install openpyxl==3.1.5 odfpy==1.4.1
+          sudo apt-get update -qq
+          sudo apt-get install --no-install-recommends -y libreoffice-calc
+      - run: python3 scripts/build_office_kit.py --check
+      - run: node --test tests/office.test.cjs
+      - name: Parse the Excel queries with Microsoft's parser
+        run: |
+          npm install --prefix "$RUNNER_TEMP/office-parser" --no-save --ignore-scripts @microsoft/powerquery-parser@4.0.0
+          node scripts/verify_office_queries.cjs "$RUNNER_TEMP/office-parser/node_modules/@microsoft/powerquery-parser"
+      - run: node scripts/create_office_fixtures.cjs office-acceptance
+      - name: Open both formats in real LibreOffice and compare every cell
+        run: python3 scripts/verify_office_files.py office-acceptance --libreoffice
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        if: always()
+        with:
+          name: linux-office-acceptance
+          path: office-acceptance
+          retention-days: 30

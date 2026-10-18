@@ -47,7 +47,7 @@
       ],
       "route": "Manual Web query refresh",
       "artifact": "setup.md#excel-and-power-bi",
-      "state": "source_available_native_refresh_pending",
+      "state": "microsoft_power_query_engine_22_groups_passed; excel_ui_live_refresh_pending",
       "linux": "edition_and_tenant_dependent_browser; no Power BI Desktop"
     },
     {

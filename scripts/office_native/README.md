@@ -8,7 +8,11 @@ The fixture contains all six real export sheets with synthetic funding rows,
 unknown institution coverage, zero, negative and withheld values, Unicode, literal
 `_x0041_`, and formula-looking source text. Every expected cell is compared after
 native conversion. ONLYOFFICE must also emit `onDocumentReady` for both ODS and
-XLSX. Nextcloud must retain uploaded bytes exactly, then serve each document to
+XLSX. The supported ONLYOFFICE route is XLSX: a real browser cell edit must also
+save through the native callback, and every saved cell is checked. ONLYOFFICE 10
+has an upstream ODS-to-XLSX style serializer defect; the exact failed export is
+retained as an unsupported route and never reported as a passing ODS export.
+Nextcloud must retain uploaded bytes exactly, then serve each document to
 Collabora through WOPI and receive the native spreadsheet status in the browser.
 Screenshots, converted files, image identities and a JSON receipt are retained.
 

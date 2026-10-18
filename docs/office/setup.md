@@ -100,8 +100,7 @@ Use Data → Refresh All for a later review. Funding fails explicitly if a sourc
 cannot supply a complete capture; it does not carry old values forward as new.
 The watchlist keeps gaps, warnings and category coverage as JSON columns.
 Power Query availability, supported sources, credentials and refresh differ by
-Excel version and tenant. Native Excel/Power BI execution of these two new
-queries remains unverified. Power BI Desktop is not a Linux desktop application.
+Excel version and tenant. Microsoft's Power Query engine passed 22 assertion groups over the shipped expressions with controlled HTTP fixtures. Excel UI refresh and live authentication remain separate checks; the tested personal web account exposed no query creation editor. See [native acceptance](native-acceptance.md). Power BI Desktop is not a Linux desktop application.
 Use the browser/CSV route on Linux where Power Query is unavailable.
 [Microsoft's Web connector documentation](https://learn.microsoft.com/en-us/power-query/connectors/web/web).
 

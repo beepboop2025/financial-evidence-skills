@@ -58,17 +58,22 @@ tabs and never retries or schedules work automatically.
 
 ## Permissions and data handling
 
-| Declared scope | Purpose |
+| Declared runtime scope | Purpose |
 | --- | --- |
 | `spreadsheets.currentonly` | Create evidence tabs in the spreadsheet where the add-on is used. Existing cell data is not read. |
 | `script.external_request` | Fetch public research for the entered currencies and slugs from the fixed Seiche gateway. |
 | `script.container.ui` | Display the review sidebar in the current spreadsheet. |
 
-No Drive, Gmail, contacts, account identity, background trigger or all-spreadsheets
-scope is requested. Installation does not enroll users in optional measurement,
-learning or sharing. Request counters and provider delivery logs still apply as
-described in the [office privacy notice](../privacy.html) and
-[service privacy policy](../../../privacy/).
+The runtime manifest requests no Drive, Gmail, contacts, account identity,
+background trigger or all-spreadsheets scope. The saved, unsubmitted Marketplace
+SDK configuration also includes Google's default `userinfo.email` and
+`userinfo.profile` scopes. These installation scopes still need reconciliation
+with the runtime's three scopes before public submission; the add-on code does
+not read or transmit Google identity.
+
+Installation does not enroll users in optional measurement, learning or sharing.
+Request counters and provider delivery logs still apply as described in the
+[office privacy notice](../privacy.html) and [service privacy policy](../../../privacy/).
 
 ## Publisher configuration — not yet completed by this package
 

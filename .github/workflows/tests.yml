@@ -21,7 +21,7 @@ jobs:
     env:
       HOMEBREW_NO_AUTO_UPDATE: "1"
       HOMEBREW_NO_ANALYTICS: "1"
-      TAP_SOURCE: "7fd63d96bb869fbc6ff023eb7af9c96b5fe39122"
+      TAP_SOURCE: "6efe4d6d3285226ae7557d2a9321a05dc6fae319"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: beepboop2025/homebrew-tap
-          ref: 7fd63d96bb869fbc6ff023eb7af9c96b5fe39122
+          ref: 6efe4d6d3285226ae7557d2a9321a05dc6fae319
           path: tap-candidate
           persist-credentials: false
       - name: Register only the exact public candidate tap
@@ -43,7 +43,7 @@ jobs:
       - run: brew test beepboop2025/tap/financial-evidence
       - name: Verify installed MCP and retain the separate candidate identity
         run: |
-          python3 scripts/verify_published_mcp.py --contract integrations/financial-evidence-mcp-v0.1.12.json --receipt homebrew-mcp-receipt.json -- \
+          python3 scripts/verify_published_mcp.py --contract integrations/financial-evidence-mcp-v0.1.13.json --receipt homebrew-mcp-receipt.json -- \
             "$(brew --prefix financial-evidence)/bin/financial-evidence-mcp"
           python3 - <<'PY'
           import hashlib, json, os, pathlib, re, subprocess
@@ -55,8 +55,8 @@ jobs:
           formula_text = formula.read_text()
           release_url = re.search(r'^  url "([^"]+)"', formula_text, re.M).group(1)
           release_sha256 = re.search(r'^  sha256 "([^"]+)"', formula_text, re.M).group(1)
-          assert release_url == "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.12/financial_evidence-0.1.12.tar.gz"
-          assert release_sha256 == "20cce4ba3d1c036c81a10f8f3b6a07d03626df2bd3999fe975aa73293d0fdba6"
+          assert release_url == "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.13/financial_evidence-0.1.13.tar.gz"
+          assert release_sha256 == "37e95fcf58458f284e69a1e8576c6c3100934bca120b1c9fc8096a3320d56257"
           prefix = subprocess.check_output(["brew", "--prefix", "financial-evidence"], text=True).strip()
           python = pathlib.Path(prefix) / "libexec/bin/python"
           installed = json.loads(subprocess.check_output([str(python), "-c", '''
@@ -82,7 +82,7 @@ jobs:
               "research_module_sha256": hashlib.sha256(Path(financial_evidence.research.__file__).read_bytes()).hexdigest(),
               "context_module_sha256": hashlib.sha256(Path(financial_evidence.trading.context.__file__).read_bytes()).hexdigest()}))
           '''], text=True))
-          assert installed["version"] == "0.1.12"
+          assert installed["version"] == "0.1.13"
           assert installed["platform_url"] == "https://agents.seiche.info"
           assert installed["hosted_module_sha256"] == "108b87f1c8129084bbb394ffcf0932636f58f6c1942918e7103796be8dd98fa7"
           assert installed["context_module_sha256"] == "6a62b6c2a1b8fa1a15bd775a607b4b3cac7d558f092545cb401b1c211d656aec"
@@ -91,7 +91,7 @@ jobs:
           receipt = {"schema": "financial-evidence.homebrew-candidate-acceptance.v1",
                      "observed_at": datetime.now(timezone.utc).isoformat(),
                      "source_commit": source, "formula_sha256": hashlib.sha256(formula.read_bytes()).hexdigest(),
-                     "release_source_commit": "4e5584ce04390d468fe3cacb5119c08ffb89def6",
+                     "release_source_commit": "e93613059bd65c1534ca0d65c0390dba348e165f",
                      "release_url": release_url, "release_sha256": release_sha256, "installed": installed,
                      "checks": ["strict_online_audit", "style", "actual_install", "formula_test", "published_mcp_contract",
                                 "all_11_entrypoints_load", "installed_central_client_identity", "installed_context_patch_identity",

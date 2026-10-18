@@ -283,5 +283,6 @@
     "status": "configured_checks_passed",
     "coverage_complete": false,
     "ledger_sha256": "86cb83263be88b01855521ddb30571e13919a803edd110cd46ae04b33d8ed635"
-  }
+  },
+  "owner_followthrough_receipt": "https://beepboop2025.github.io/financial-evidence-skills/distribution/marketplace-owner-followthrough-20261018.json"
 }

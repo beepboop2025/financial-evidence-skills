@@ -1460,8 +1460,8 @@
       "state": "live",
       "listing_url": "https://mcpmarket.com/server/financial-evidence",
       "cost": "free",
-      "detail": "The free repository submission detected an existing entry. Its public detail page was independently opened and matched the Financial Evidence repository; no new publication is claimed.",
-      "next_action": "Claim the existing listing before requesting metadata changes.",
+      "detail": "Existing repository listing claimed through GitHub ownership. Corrected description, features and FAQ are public, and 3 tool names from live discovery are visible without owner authentication. Tool input schemas were copied and checked in the owner form; public directory parameters have a narrower display.",
+      "next_action": "Keep the public tool catalog and package setup aligned with accepted releases; verify actual adoption separately.",
       "verified_at": "2026-10-07T08:30:42.250806+00:00",
       "audit_batch": "2026-10-07-marketplace-sweep",
       "outcome": "existing_listing_reconciled",
@@ -1475,6 +1475,15 @@
         "sha256": "809387118cf281ddaa96f787ddea922dcc230c89744c196f273b5c603088f0d3",
         "title": "Financial Evidence: AI Agent Financial Research &amp; Data Routing",
         "mentioned_versions": []
+      },
+      "latest_owner_verification": {
+        "observed_at": "2026-10-18T06:02:01.780Z",
+        "ownership_verified": true,
+        "public_tool_count": 3,
+        "anonymous_tool_names_verified": true,
+        "receipt": "distribution/marketplace-owner-followthrough-20261018.json",
+        "remaining_gaps": [],
+        "independent_adoption_verified": false
       }
     },
     {
@@ -2428,12 +2437,23 @@
       "state": "live",
       "listing_url": "https://mcpmarket.com/server/liquilens",
       "cost": "free; no fee paid",
-      "detail": "The existing product listing was reconciled through the directory. Its free GitHub submission action reported already listed, so no new submission or placement is claimed. Public listing presence does not verify native installation, directory metadata accuracy or independent adoption.",
-      "next_action": "Preserve this existing listing; review metadata and actual task usefulness separately from public discoverability.",
+      "detail": "Existing repository listing claimed through GitHub ownership. Corrected description, features and FAQ are public, and 24 tool names from live discovery are visible without owner authentication. Tool input schemas were copied and checked in the owner form; public directory parameters have a narrower display.",
+      "next_action": "Provider-generated title and use-case wording still need correction through supported provider controls.",
       "verified_at": "2026-10-09T18:55:18.467Z",
       "outcome": "existing_listing_reconciled",
       "native_installation_verified": false,
-      "evidence_receipt": "distribution/platform-expansion-20261010.json"
+      "evidence_receipt": "distribution/platform-expansion-20261010.json",
+      "latest_owner_verification": {
+        "observed_at": "2026-10-18T06:01:21.167Z",
+        "ownership_verified": true,
+        "public_tool_count": 24,
+        "anonymous_tool_names_verified": true,
+        "receipt": "distribution/marketplace-owner-followthrough-20261018.json",
+        "remaining_gaps": [
+          "Provider-generated page title and use cases retain older wording; the inspected owner editor does not expose those fields."
+        ],
+        "independent_adoption_verified": false
+      }
     },
     {
       "id": "mcpmarket-seiche",
@@ -2442,12 +2462,23 @@
       "state": "live",
       "listing_url": "https://mcpmarket.com/server/seiche",
       "cost": "free; no fee paid",
-      "detail": "The existing product listing was reconciled through the directory. Its free GitHub submission action reported already listed, so no new submission or placement is claimed. Public listing presence does not verify native installation, directory metadata accuracy or independent adoption.",
-      "next_action": "Preserve this existing listing; review metadata and actual task usefulness separately from public discoverability.",
+      "detail": "Existing repository listing claimed through GitHub ownership. Corrected description, features and FAQ are public, and 16 tool names from live discovery are visible without owner authentication. Tool input schemas were copied and checked in the owner form; public directory parameters have a narrower display.",
+      "next_action": "Provider-generated title and use-case wording still need correction through supported provider controls.",
       "verified_at": "2026-10-09T18:55:18.467Z",
       "outcome": "existing_listing_reconciled",
       "native_installation_verified": false,
-      "evidence_receipt": "distribution/platform-expansion-20261010.json"
+      "evidence_receipt": "distribution/platform-expansion-20261010.json",
+      "latest_owner_verification": {
+        "observed_at": "2026-10-18T06:01:48.752Z",
+        "ownership_verified": true,
+        "public_tool_count": 16,
+        "anonymous_tool_names_verified": true,
+        "receipt": "distribution/marketplace-owner-followthrough-20261018.json",
+        "remaining_gaps": [
+          "Provider-generated page title and use cases retain older wording; the inspected owner editor does not expose those fields."
+        ],
+        "independent_adoption_verified": false
+      }
     },
     {
       "id": "mcpmarket-undertow",
@@ -2456,12 +2487,23 @@
       "state": "live",
       "listing_url": "https://mcpmarket.com/server/undertow",
       "cost": "free; no fee paid",
-      "detail": "The existing product listing was reconciled through the directory. Its free GitHub submission action reported already listed, so no new submission or placement is claimed. Public listing presence does not verify native installation, directory metadata accuracy or independent adoption.",
-      "next_action": "Preserve this existing listing; review metadata and actual task usefulness separately from public discoverability.",
+      "detail": "Existing repository listing claimed through GitHub ownership. Corrected description, features and FAQ are public, and 16 tool names from live discovery are visible without owner authentication. Tool input schemas were copied and checked in the owner form; public directory parameters have a narrower display.",
+      "next_action": "Provider-generated title and use-case wording still need correction through supported provider controls.",
       "verified_at": "2026-10-09T18:55:18.467Z",
       "outcome": "existing_listing_reconciled",
       "native_installation_verified": false,
-      "evidence_receipt": "distribution/platform-expansion-20261010.json"
+      "evidence_receipt": "distribution/platform-expansion-20261010.json",
+      "latest_owner_verification": {
+        "observed_at": "2026-10-18T06:00:22.779Z",
+        "ownership_verified": true,
+        "public_tool_count": 16,
+        "anonymous_tool_names_verified": true,
+        "receipt": "distribution/marketplace-owner-followthrough-20261018.json",
+        "remaining_gaps": [
+          "Provider-generated page title and use cases retain older wording; the inspected owner editor does not expose those fields."
+        ],
+        "independent_adoption_verified": false
+      }
     },
     {
       "id": "lobehub-liquilens",
@@ -5536,6 +5578,18 @@
         "sha256": "0c1328d42b2a7e4098f20a77f5b8d4de5f1df9b8ab51020d0d5911f26083b536",
         "authentication_used": false,
         "readback": "public repository listing and exact repository link verified; no tool call or adoption inferred"
+      },
+      "latest_provider_release": {
+        "observed_at": "2026-10-18T05:36:59.741102+00:00",
+        "version": "0.4.3",
+        "source": "f5a3be4599fe7414d7fd32f9ce949a676b93f885",
+        "build_id": "01a14d81-f33f-7ca7-a7ef-6000c4739759",
+        "runtime_version_verified": true,
+        "receipt": "distribution/marketplace-owner-followthrough-20261018.json",
+        "remaining_gaps": [
+          "Public schema still says instructions were not recorded and displays protocol 2025-11-25, while actual build handshake exposes instructions and protocol 2025-06-18.",
+          "Individual output schemas were verified in the native release; a complete independent readback of all Glama output schemas was not obtained."
+        ]
       }
     },
     {
@@ -5559,6 +5613,14 @@
         "sha256": "9c5d06f79deb68da4fcaf4f0c6fdd72e8549757b7a59b8b644070ef6a737f234",
         "authentication_used": false,
         "readback": "public repository listing and exact repository link verified; no tool call or adoption inferred"
+      },
+      "latest_profile_completion": {
+        "observed_at": "2026-10-18T05:30:50Z",
+        "completion_percent": 100,
+        "operator_synthetic_check": true,
+        "test_instance_removed": true,
+        "independent_adoption_verified": false,
+        "receipt": "distribution/marketplace-owner-followthrough-20261018.json"
       }
     },
     {
@@ -6554,7 +6616,7 @@
     }
   ],
   "release_verified_at": "2026-10-17T22:34:17.883687+00:00",
-  "updated_at": "2026-10-18T05:24:47.785752+00:00",
+  "updated_at": "2026-10-18T06:02:58.231002Z",
   "verification_scope": "Per-entry verified_at timestamps identify refreshed entries; checked_at remains the older full-ledger check. The 2026-10-07 sweep reconciles existing placements separately from new publications and submissions. Listing presence is not a native-client certification or adoption count.",
   "latest_sweep": {
     "id": "2026-10-07-marketplace-sweep",
@@ -6925,5 +6987,13 @@
     "receipt": "distribution/marketplace-readback-20261018.json",
     "existing_records": 4,
     "new_submissions": false
+  },
+  "latest_owner_followthrough": {
+    "observed_at": "2026-10-18T06:02:58.231002Z",
+    "receipt": "distribution/marketplace-owner-followthrough-20261018.json",
+    "existing_claims": 4,
+    "anonymous_tool_names_verified": 59,
+    "new_listings": 0,
+    "paid_upgrades": 0
   }
 }

@@ -1,11 +1,11 @@
 {
   "tool": "office-addin-manifest",
   "version": "3.0.1",
-  "observed_at": "2026-10-18T09:57:54.311748+00:00",
-  "manifest_sha256": "170530e4b99e72bf7985f383bbdb9101838711721c3585243db8038d4f955a77",
+  "observed_at": "2026-10-18T12:02:23.415854+00:00",
+  "manifest_sha256": "c3db5d653c9877494de7f38b6c20fc2820ea89e016acb7a8e2e621d3ca275810",
   "development_validation": "passed",
   "development_receipt": "microsoft-manifest-development.txt",
-  "development_receipt_sha256": "6a3ba8a89a9162f85b2dcc9e080e964c66576559d2f0276a845bf028409754cf",
+  "development_receipt_sha256": "00dde7a78e24d7b3199e858d368ab5bea106202699fb20c08caafc92d5584b33",
   "production_validation": "passed",
   "production_errors": [],
   "previous_production_validation": {
@@ -17,10 +17,23 @@
       "Icon URL Unreachable: /office/excel/icon-32.png"
     ]
   },
-  "next_action": "Complete publisher/program enrollment, remaining claimed host tests and Microsoft Marketplace review. Native Excel web runtime acceptance is recorded separately in ../excel/native-acceptance.json.",
+  "next_action": "Publish the new ribbon assets and record native acceptance of the 1.0.1.0 command and production manifest on the required Excel hosts before submission.",
   "production_receipt": "microsoft-manifest-production.txt",
-  "production_receipt_sha256": "b946d58f45e44afa54d684feb1836fa9a3733d4d22b6a8448034325c16ab0752",
+  "production_receipt_sha256": "b444cce8041f70e45436628fb8f8e40691b4f41099bd773422ea8ebd45ddc17b",
   "production_command": "office-addin-manifest validate --production docs/office/excel/manifest.xml",
   "production_exit_code": 0,
-  "release_sha": "fe3894e5654f304d03cbc0e50bc811857368943f"
+  "previous_accepted_manifest": {
+    "manifest_version": "1.0.0.0",
+    "manifest_sha256": "170530e4b99e72bf7985f383bbdb9101838711721c3585243db8038d4f955a77",
+    "observed_at": "2026-10-18T09:57:54.311748+00:00",
+    "production_validation": "passed",
+    "release_sha": "fe3894e5654f304d03cbc0e50bc811857368943f",
+    "development_receipt_sha256": "6a3ba8a89a9162f85b2dcc9e080e964c66576559d2f0276a845bf028409754cf",
+    "production_receipt_sha256": "b946d58f45e44afa54d684feb1836fa9a3733d4d22b6a8448034325c16ab0752"
+  },
+  "manifest_version": "1.0.1.0",
+  "validated_source_commit": "68834b89fe734a62faa5e894129934616ea233d5",
+  "validation_scope": "Official development and production manifest checks; this is not hosted-asset byte readback, native command execution, publisher approval, or Marketplace approval.",
+  "native_acceptance_note": "../excel/native-acceptance.json records the earlier 1.0.0.0 operator manifest only. Native command acceptance for 1.0.1.0 remains pending.",
+  "receipt_format": "Validator stdout with trailing whitespace removed and one final newline; validation messages unchanged."
 }

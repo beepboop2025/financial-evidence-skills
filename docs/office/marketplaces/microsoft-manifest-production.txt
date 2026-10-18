@@ -31,6 +31,8 @@ Valid and reachabe Support URL: The manifest support URL is valid and reachable.
 
 Valid OnlineMeetingCommandSurface ExtensionPoint.: OnlineMeetingCommandSurface ExtensionPoint extracted from manifest is found to be valid.
 
+Valid Manifest Resource Urls: The manifest Resource URLs are valid.
+
 Valid Manifest AppDomain Urls: The manifest AppDomain URLs are valid.
 
 High Resolution Icon Present: A high resolution icon element was expected and is present.

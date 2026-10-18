@@ -16,7 +16,7 @@
   "support_email": "mrinal@liquilens.in",
   "submission_artifact": "../excel/manifest.xml",
   "manifest_id": "acdb8bb2-280d-4c73-aadc-bbd4e1427bf0",
-  "manifest_version": "1.0.0.0",
+  "manifest_version": "1.0.1.0",
   "host": "Workbook",
   "requirement_set": "ExcelApi 1.1",
   "permissions": "ReadWriteDocument",
@@ -36,7 +36,7 @@
     "development": "passed_office_addin_manifest_3.0.1",
     "production": "passed_office_addin_manifest_3.0.1",
     "receipt": "microsoft-manifest-validation.json",
-    "manifest_sha256": "170530e4b99e72bf7985f383bbdb9101838711721c3585243db8038d4f955a77",
+    "manifest_sha256": "c3db5d653c9877494de7f38b6c20fc2820ea89e016acb7a8e2e621d3ca275810",
     "development_receipt": "microsoft-manifest-development.txt",
     "production_receipt": "microsoft-manifest-production.txt"
   },

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="TaskPaneApp">
   <Id>acdb8bb2-280d-4c73-aadc-bbd4e1427bf0</Id>
-  <Version>1.0.0.0</Version>
+  <Version>1.0.1.0</Version>
   <ProviderName>LIQUILENS PRIVATE LIMITED</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Financial Evidence"/>
@@ -14,4 +14,60 @@
   <Requirements><Sets DefaultMinVersion="1.1"><Set Name="ExcelApi" MinVersion="1.1"/></Sets></Requirements>
   <DefaultSettings><SourceLocation DefaultValue="https://beepboop2025.github.io/financial-evidence-skills/office/excel/taskpane.html"/></DefaultSettings>
   <Permissions>ReadWriteDocument</Permissions>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Workbook">
+        <DesktopFormFactor>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="Liquilens.FinancialEvidence">
+                <Label resid="Review.GroupLabel"/>
+                <Icon>
+                  <bt:Image size="16" resid="Review.Icon16"/>
+                  <bt:Image size="20" resid="Review.Icon20"/>
+                  <bt:Image size="32" resid="Review.Icon32"/>
+                  <bt:Image size="80" resid="Review.Icon80"/>
+                </Icon>
+                <Control xsi:type="Button" id="Liquilens.OpenResearchReview">
+                  <Label resid="Review.ButtonLabel"/>
+                  <Supertip>
+                    <Title resid="Review.ButtonLabel"/>
+                    <Description resid="Review.ButtonDescription"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Review.Icon16"/>
+                    <bt:Image size="20" resid="Review.Icon20"/>
+                    <bt:Image size="32" resid="Review.Icon32"/>
+                    <bt:Image size="80" resid="Review.Icon80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>FinancialEvidence.Review</TaskpaneId>
+                    <SourceLocation resid="Review.TaskpaneUrl"/>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Review.Icon16" DefaultValue="https://beepboop2025.github.io/financial-evidence-skills/office/excel/icon-16.png"/>
+        <bt:Image id="Review.Icon20" DefaultValue="https://beepboop2025.github.io/financial-evidence-skills/office/excel/icon-20.png"/>
+        <bt:Image id="Review.Icon32" DefaultValue="https://beepboop2025.github.io/financial-evidence-skills/office/excel/icon-32.png"/>
+        <bt:Image id="Review.Icon80" DefaultValue="https://beepboop2025.github.io/financial-evidence-skills/office/excel/icon-80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="Review.TaskpaneUrl" DefaultValue="https://beepboop2025.github.io/financial-evidence-skills/office/excel/taskpane.html"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="Review.GroupLabel" DefaultValue="Financial Evidence"/>
+        <bt:String id="Review.ButtonLabel" DefaultValue="Open research review"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="Review.ButtonDescription" DefaultValue="Compare public funding and institution evidence, then insert a new review without overwriting existing analysis."/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
 </OfficeApp>

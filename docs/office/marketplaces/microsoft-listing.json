@@ -1,0 +1,49 @@
+{
+  "schema": "financial-evidence.marketplace-listing-draft.v1",
+  "state": "draft_not_submitted",
+  "platform": "microsoft_marketplace_office_addin",
+  "display_name": "Financial Evidence",
+  "publisher": "LIQUILENS PRIVATE LIMITED",
+  "language": "en-US",
+  "short_description": "Bring source-linked funding comparisons and institution watchlists into your workbook.",
+  "description_html": "<p>Build a fresh public research review inside Excel. Choose currencies and exact institution slugs, review the returned sources and coverage, then insert a new capture into your workbook.</p><p>Seiche provides published funding observations. LiquiLens provides evidence for covered institutions. Keep source dates, units, gaps and request status beside the values. Unknown institutions remain uncovered, while missing or withheld numbers remain blank. Save original evidence JSON when you need the full response.</p><p>Public research requires no Financial Evidence account, API key, subscription or additional purchase. A supported Excel host and internet connection are required. Refresh is user initiated. Source coverage can be delayed, partial or unavailable; retrieval time is not source freshness. This research tool does not provide a credit rating, trade execution or credit authorization.</p>",
+  "pricing": "Free",
+  "additional_purchase_required": false,
+  "homepage_url": "https://beepboop2025.github.io/financial-evidence-skills/office/",
+  "privacy_url": "https://beepboop2025.github.io/financial-evidence-skills/office/excel/privacy.html",
+  "terms_url": "https://beepboop2025.github.io/financial-evidence-skills/terms/",
+  "support_url": "https://beepboop2025.github.io/financial-evidence-skills/support/",
+  "support_email": "mrinal@liquilens.in",
+  "submission_artifact": "../excel/manifest.xml",
+  "manifest_id": "acdb8bb2-280d-4c73-aadc-bbd4e1427bf0",
+  "manifest_version": "1.0.0.0",
+  "host": "Workbook",
+  "requirement_set": "ExcelApi 1.1",
+  "permissions": "ReadWriteDocument",
+  "source_url": "https://beepboop2025.github.io/financial-evidence-skills/office/excel/taskpane.html",
+  "reviewer_instructions": "microsoft-reviewer.md",
+  "release_claim_gate": "Compare every listing feature with the final tested task-pane behavior before submitting; this copy does not assert runtime validation.",
+  "publisher_gates": [
+    "Approved Partner Center account enrolled in the Microsoft 365 and Copilot program",
+    "ProviderName matches the verified Partner Center publisher identity",
+    "Unique manifest ID, valid support URL and HTTPS-hosted assets",
+    "Manifest validation and native tests on all platforms implied by the declared API requirements",
+    "Accessibility and keyboard tests, real native screenshot and reviewer instructions",
+    "Review approval and independently accessible public listing"
+  ],
+  "account_status": "not_verified",
+  "manifest_validation": {
+    "development": "passed_office_addin_manifest_3.0.1",
+    "production": "pending_public_assets",
+    "receipt": "microsoft-manifest-validation.json"
+  },
+  "native_host_validation": "not_verified",
+  "native_screenshot": null,
+  "submission_id": null,
+  "public_listing_url": null,
+  "official_requirements": [
+    "https://learn.microsoft.com/en-us/partner-center/marketplace-offers/checklist",
+    "https://learn.microsoft.com/en-us/partner-center/marketplace-offers/submit-to-appsource-via-partner-center",
+    "https://learn.microsoft.com/en-us/office/dev/add-ins/develop/add-in-manifests"
+  ]
+}

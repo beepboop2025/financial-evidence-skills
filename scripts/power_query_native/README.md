@@ -9,7 +9,8 @@ customer account, credential or production data is needed.
 an M query. Only `Web.Contents` is replaced lexically with deterministic fixture
 responses. The real engine executes the shipped contract checks, transformations,
 rights suppression and output tables. Source SHA-256 hashes appear in the
-retained receipt.
+retained receipt, both for the actual checkout bytes and for LF-normalized
+comparison across Windows and Unix checkouts.
 
 Twenty-two assertion groups cover positive, zero, negative and missing numbers;
 restricted values; literal formula-like text; source dates and gaps; exact

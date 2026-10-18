@@ -1,0 +1,47 @@
+{
+  "schema": "financial-evidence.marketplace-listing-draft.v1",
+  "state": "draft_not_submitted",
+  "platform": "google_workspace_marketplace",
+  "application_type": "Google Sheets Editor add-on",
+  "language": "en",
+  "application_name": "Financial Evidence Research Review",
+  "publisher": "LIQUILENS PRIVATE LIMITED",
+  "short_description": "Refresh funding comparisons and covered-institution watchlists in your spreadsheet, keeping source dates, missing values and coverage gaps visible.",
+  "detailed_description": "Bring a source-linked research review into your spreadsheet. Choose up to five currencies and five exact institution slugs, then create a new set of review tabs. Seiche supplies published funding observations and LiquiLens supplies covered-institution evidence. Inspect Funding, Institutions, Gaps and Status, and save the original evidence JSON alongside your workbook. Each refresh creates a separate capture, leaving existing analysis unchanged. Unknown institutions remain explicitly uncovered; missing and withheld figures remain blank instead of becoming zero. Requests use the public research service without a Financial Evidence account, API key or additional purchase. Your Google account must permit Apps Script and the declared add-on permissions. The add-on works in the spreadsheet where you open it, sends only your chosen public selections, and does not upload workbook contents. Research coverage is bounded and may be partial, delayed or unavailable. Funding levels across currencies are not stress rankings. Institution states are evidence-review states, not credit ratings. The tool does not provide trade execution, credit authorization or financial advice. Google permission settings and quotas apply.",
+  "pricing": "Free of charge",
+  "category_candidate": "Productivity",
+  "homepage_url": "https://beepboop2025.github.io/financial-evidence-skills/office/",
+  "privacy_url": "https://beepboop2025.github.io/financial-evidence-skills/office/marketplaces/privacy.html",
+  "terms_url": "https://beepboop2025.github.io/financial-evidence-skills/terms/",
+  "support_url": "https://beepboop2025.github.io/financial-evidence-skills/support/",
+  "support_email": "mrinal@liquilens.in",
+  "setup_url": "https://beepboop2025.github.io/financial-evidence-skills/office/marketplaces/google/README.md",
+  "oauth_scopes": [
+    "https://www.googleapis.com/auth/spreadsheets.currentonly",
+    "https://www.googleapis.com/auth/script.external_request",
+    "https://www.googleapis.com/auth/script.container.ui"
+  ],
+  "assets": {
+    "icon_32": "../assets/icon-32.png",
+    "icon_128": "../assets/icon-128.png",
+    "card_banner_220_140": "../assets/card-banner-220x140.png",
+    "native_screenshot": null,
+    "native_screenshot_requirement": "Capture actual Sheets add-on use at 1280x800, 640x400 or 2560x1600. A browser desk screenshot does not establish a native add-on screenshot."
+  },
+  "account_configuration": {
+    "standard_cloud_project": null,
+    "script_id": null,
+    "immutable_version": null,
+    "test_deployment_id": null,
+    "oauth_verification": "not_verified",
+    "marketplace_sdk_configuration": "not_verified",
+    "publisher_branding_and_domain": "not_verified",
+    "review_submission_id": null,
+    "public_listing_url": null
+  },
+  "official_requirements": [
+    "https://developers.google.com/workspace/add-ons/how-tos/publish-add-on-overview",
+    "https://developers.google.com/workspace/marketplace/create-listing",
+    "https://developers.google.com/workspace/marketplace/configure-oauth-consent-screen"
+  ]
+}

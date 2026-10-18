@@ -12,9 +12,8 @@ def execute(executable, query, output):
     command = [str(executable), "run-test", "--queryFile", str(query), "--prettyPrint"]
     result = subprocess.run(command, capture_output=True, timeout=180)
     stdout = result.stdout.decode("utf-8-sig", errors="replace")
-    stderr = result.stderr.decode("utf-8-sig", errors="replace")
-    (output / (query.stem + ".stdout.json")).write_text(stdout, encoding="utf-8")
-    (output / (query.stem + ".stderr.txt")).write_text(stderr, encoding="utf-8")
+    (output / (query.stem + ".stdout.json")).write_bytes(result.stdout)
+    (output / (query.stem + ".stderr.txt")).write_bytes(result.stderr)
     try:
         parsed = json.loads(stdout)
     except ValueError as exc:
@@ -42,9 +41,9 @@ def main():
     if negative.get("Status") != "Failed":
         raise AssertionError("Deliberately incorrect numeric assertion was not rejected")
     # Check evaluated output only, never Details (which may contain the input source).
-    if "OFFICE_NATIVE_ACCEPTANCE_PASS" not in json.dumps(positive.get("Output")):
+    if positive.get("Output") != [{"Value": "OFFICE_NATIVE_ACCEPTANCE_PASS"}] or positive.get("RowCount") != 1:
         raise AssertionError("The expected evaluated output marker is missing")
-    if "negative_control_zero" not in json.dumps(negative.get("Output")):
+    if negative.get("Error", {}).get("Message") != "FAILED: negative_control_zero":
         raise AssertionError("Negative control failed for an unexpected reason")
     receipt = {**manifest, "schema": "financial-evidence.power-query-native-acceptance.v1",
                "status": "PASS", "engine": "Microsoft.PowerQuery.SdkTools 2.155.2 / PQTest.exe",

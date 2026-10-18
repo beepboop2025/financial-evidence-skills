@@ -70,11 +70,15 @@ requests labelled synthetic; it is not an independent user adoption measurement.
 Your account's Apps Script policy and quotas still apply.
 [Google's custom-function rules](https://developers.google.com/apps-script/guides/sheets/functions).
 
+## Native review add-ins
+
+For a sidebar instead of formulas, the [Google Editor add-on package](marketplaces/google/README.md) creates six new review tabs per request. The [Excel task-pane package](excel/README.md) previews research and inserts six new sheets on demand. Both preserve existing analysis. Native add-in acceptance and marketplace publication are separate from the custom-function and file-import checks above; see [current channel status](marketplaces/status.json).
+
 ## Excel and Power BI
 
 **Any edition that can import XLSX:** open the downloaded workbook. In Excel on
 the web, upload it through your own OneDrive or workbook picker. Repeat the browser
-export for a fresh snapshot. The snapshot does not refresh itself.
+export for a fresh snapshot. The snapshot does not refresh itself. Excel for the web opened and saved the six-sheet acceptance workbook on 2026-10-18; all 260 cells matched after download, including zeros, missing/withheld values, booleans and inert formula-looking text.
 
 **Power Query editions with Web access:** create blank queries and use Advanced
 Editor. Choose Anonymous authentication for `https://agents.seiche.info`.
@@ -199,3 +203,5 @@ are labelled synthetic. Availability is not evidence of independent use.
 Google Workspace Marketplace and Microsoft AppSource publication require their
 own packaging, account configuration and review; no listing is claimed by this
 kit. The existing OpenBB application is already tracked separately.
+
+Measure useful repeat work with the [local adoption scorecard](../office-adoption/README.md). It requires reviewed independence and consent; operator checks are excluded.

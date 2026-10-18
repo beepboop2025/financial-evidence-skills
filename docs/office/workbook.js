@@ -34,24 +34,28 @@ var OfficeWorkbook = (function () {
   }
   function ods(capture) {
     var content = '<?xml version="1.0" encoding="UTF-8"?><office:document-content xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" office:version="1.2"><office:body><office:spreadsheet>';
+    // Explicit standard styles keep native editors from inventing an invalid
+    // font/number-format table when importing this small ODS package.
+    var styles = '<?xml version="1.0" encoding="UTF-8"?><office:document-styles xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" office:version="1.2"><office:font-face-decls><style:font-face style:name="LiberationSans" svg:font-family="Liberation Sans" style:font-family-generic="swiss" style:font-pitch="variable"/></office:font-face-decls><office:styles><number:number-style style:name="N0"><number:number number:min-integer-digits="1"/></number:number-style><style:default-style style:family="table-cell"><style:text-properties style:font-name="LiberationSans" fo:font-size="11pt"/></style:default-style><style:style style:name="Default" style:family="table-cell" style:data-style-name="N0"><style:text-properties style:font-name="LiberationSans" fo:font-size="11pt"/></style:style><style:style style:name="Header" style:family="table-cell" style:parent-style-name="Default"><style:text-properties fo:font-weight="bold"/></style:style></office:styles></office:document-styles>';
     capture.sheets.forEach(function (sheet) {
       content += '<table:table table:name="' + x(sheet.name) + '">';
-      sheet.rows.forEach(function (row) {
+      sheet.rows.forEach(function (row, index) {
         content += '<table:table-row>';
         row.forEach(function (value) {
           value = E.cell(value);
-          if (typeof value === "number") content += '<table:table-cell office:value-type="float" office:value="' + value + '"><text:p>' + value + '</text:p></table:table-cell>';
-          else if (typeof value === "boolean") content += '<table:table-cell office:value-type="boolean" office:boolean-value="' + value + '"><text:p>' + value + '</text:p></table:table-cell>';
-          else if (value === "") content += '<table:table-cell/>';
-          else content += '<table:table-cell office:value-type="string"><text:p>' + x(value).replace(/\n/g, '<text:line-break/>').replace(/\t/g, '<text:tab/>').replace(/ {2,}/g, function (s) { return '<text:s text:c="' + s.length + '"/>'; }) + '</text:p></table:table-cell>';
+          var cell = '<table:table-cell table:style-name="' + (index === 0 ? 'Header' : 'Default') + '"';
+          if (typeof value === "number") content += cell + ' office:value-type="float" office:value="' + value + '"><text:p>' + value + '</text:p></table:table-cell>';
+          else if (typeof value === "boolean") content += cell + ' office:value-type="boolean" office:boolean-value="' + value + '"><text:p>' + value + '</text:p></table:table-cell>';
+          else if (value === "") content += cell + '/>';
+          else content += cell + ' office:value-type="string"><text:p>' + x(value).replace(/\n/g, '<text:line-break/>').replace(/\t/g, '<text:tab/>').replace(/ {2,}/g, function (s) { return '<text:s text:c="' + s.length + '"/>'; }) + '</text:p></table:table-cell>';
         });
         content += '</table:table-row>';
       });
       content += '</table:table>';
     });
     content += '</office:spreadsheet></office:body></office:document-content>';
-    return zip({mimetype: "application/vnd.oasis.opendocument.spreadsheet", "content.xml": content,
-      "META-INF/manifest.xml": '<?xml version="1.0" encoding="UTF-8"?><manifest:manifest xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0" manifest:version="1.2"><manifest:file-entry manifest:full-path="/" manifest:media-type="application/vnd.oasis.opendocument.spreadsheet" manifest:version="1.2"/><manifest:file-entry manifest:full-path="content.xml" manifest:media-type="text/xml"/></manifest:manifest>'});
+    return zip({mimetype: "application/vnd.oasis.opendocument.spreadsheet", "content.xml": content, "styles.xml": styles,
+      "META-INF/manifest.xml": '<?xml version="1.0" encoding="UTF-8"?><manifest:manifest xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0" manifest:version="1.2"><manifest:file-entry manifest:full-path="/" manifest:media-type="application/vnd.oasis.opendocument.spreadsheet" manifest:version="1.2"/><manifest:file-entry manifest:full-path="content.xml" manifest:media-type="text/xml"/><manifest:file-entry manifest:full-path="styles.xml" manifest:media-type="text/xml"/></manifest:manifest>'});
   }
   function column(index) {
     var result = ""; for (index++; index; index = Math.floor((index - 1) / 26)) result = String.fromCharCode(65 + (index - 1) % 26) + result;

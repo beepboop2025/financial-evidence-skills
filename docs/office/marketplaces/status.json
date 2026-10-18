@@ -1,0 +1,81 @@
+{
+  "schema": "financial-evidence.office-marketplaces.v1",
+  "observed_at": "2026-10-18T09:00:00Z",
+  "new_submissions": 0,
+  "new_accounts": 0,
+  "paid_commitments": 0,
+  "independent_adoption_verified": false,
+  "channels": [
+    {
+      "id": "google-workspace-editor-addon",
+      "state": "source_package_ready_native_and_publisher_gates_pending",
+      "package": "google/google-editor-addon.zip",
+      "listing": "google/listing.json",
+      "tests": {
+        "focused_mocked_contract_tests": {
+          "passed": 8,
+          "failed": 0
+        },
+        "generated_source_check": "passed",
+        "native_menu_sidebar_insertion": "not_verified",
+        "editor_addon_install_lifecycle": "not_verified",
+        "oauth_consent": "not_verified",
+        "public_listing": "not_submitted"
+      },
+      "remaining": [
+        "Native add-on acceptance",
+        "Standard Cloud project and matching consent/SDK scopes",
+        "Required scope and publisher verification",
+        "Real host screenshot",
+        "Google public Marketplace review"
+      ]
+    },
+    {
+      "id": "microsoft-office-addon",
+      "state": "source_package_ready_native_and_publisher_gates_pending",
+      "listing": "microsoft-listing.json",
+      "manifest": "../excel/manifest.xml",
+      "reviewer_instructions": "microsoft-reviewer.md",
+      "native_host_validation": "not_verified",
+      "account_verification": "not_verified",
+      "public_listing": "not_submitted",
+      "remaining": [
+        "Public asset publication and production manifest validation",
+        "All claimed native host tests",
+        "Real host screenshot",
+        "Approved Partner Center publisher and program enrollment",
+        "Microsoft Marketplace review"
+      ],
+      "manifest_validation": {
+        "tool": "office-addin-manifest",
+        "version": "3.0.1",
+        "observed_at": "2026-10-18T09:04:48.396646+00:00",
+        "manifest_sha256": "488957782faea38bd3ebe373ee1f2bdbb57a83be84719d6e312e6c29a68ac4c4",
+        "development_validation": "passed",
+        "production_validation": "failed_unpublished_icons",
+        "production_errors": [
+          "High Resolution Icon URL Unreachable: /office/excel/icon-80.png",
+          "Icon URL Unreachable: /office/excel/icon-32.png"
+        ],
+        "next_action": "Publish the exact HTTPS icon assets, then rerun production validation and retain its result. This result does not establish native Excel acceptance."
+      },
+      "package": "../excel/financial-evidence-excel.zip"
+    },
+    {
+      "id": "openbb-app-marketplace",
+      "state": "submitted",
+      "submitted_at": "2026-10-11T11:08:46Z",
+      "existing_receipt": "../../distribution/openbb-marketplace-20261011.md",
+      "public_readback": "openbb-status.md",
+      "public_catalog_match": false,
+      "fee_waiver_approved": false,
+      "native_workspace_verified": false,
+      "remaining": [
+        "Existing application review",
+        "Fee-waiver decision",
+        "Supported native Workspace access",
+        "Public listing readback"
+      ]
+    }
+  ]
+}

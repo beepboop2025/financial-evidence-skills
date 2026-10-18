@@ -117,6 +117,7 @@ def generate(output):
     (output / "negative-control.query.pq").write_bytes(negative.encode("utf-8"))
     manifest = {"schema": "financial-evidence.power-query-native-input.v1",
                 "source_sha256": {name + ".pq": hashlib.sha256(source.encode()).hexdigest() for name, source in sources.items()},
+                "source_lf_sha256": {name + ".pq": hashlib.sha256(source.replace("\r\n", "\n").encode()).hexdigest() for name, source in sources.items()},
                 "fixture_boundary": "Only lexical Web.Contents replacement; shipped query expressions embedded unchanged",
                 "assertion_groups": ASSERTIONS.count("name = "), "negative_control": "zero must not equal 999"}
     (output / "inputs.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")

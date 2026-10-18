@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Financial Evidence Inspector</title>
+  <desc id="desc">A lime lens over three evidence lines on a dark background.</desc>
+  <rect width="256" height="256" rx="48" fill="#14241e"/>
+  <path d="M52 73h152M52 128h112M52 183h152" fill="none" stroke="#f5f1e8" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="164" cy="128" r="42" fill="#14241e" stroke="#b8ff5a" stroke-width="16"/>
+  <path d="m194 158 31 31" fill="none" stroke="#b8ff5a" stroke-width="16" stroke-linecap="round"/>
+</svg>

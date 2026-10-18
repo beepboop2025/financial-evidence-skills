@@ -275,6 +275,9 @@ jobs:
       - run: node integrations/node-red/build_flow.cjs --check
       - run: node integrations/node-red/test_flow.cjs
       - run: python3 scripts/build_office_kit.py --check
+      - run: python3 scripts/build_google_office_addon.py --check
+      - run: python3 scripts/build_excel_office_addin.py --check
+      - run: node --test tests/test_google_office_addon.cjs
       - run: python3 scripts/build_research_kit.py --check
       - run: python3 scripts/build_platform_hub.py --check
       - run: python3 scripts/build_product_plugins.py --check

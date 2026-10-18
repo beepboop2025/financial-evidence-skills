@@ -10,6 +10,7 @@ import json
 import os
 from pathlib import Path
 import secrets
+import signal
 import subprocess
 import threading
 import time
@@ -33,6 +34,7 @@ def command(*args, timeout=600):
 
 
 def wait_http(url, seconds=360, predicate=None):
+    print("Waiting for " + url, flush=True)
     deadline = time.monotonic() + seconds
     while time.monotonic() < deadline:
         try:
@@ -73,14 +75,22 @@ def main():
     names = []
     server = None
     browser = None
+    def cancelled(signum, frame):
+        raise KeyboardInterrupt("Workflow canceled")
+    signal.signal(signal.SIGTERM, cancelled)
+    signal.signal(signal.SIGINT, cancelled)
+    (out / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
     def start(kind, extra):
         name = "fe-native-" + kind + "-" + secrets.token_hex(4)
         spec = IMAGES[kind]
+        print("Pulling " + kind + " " + spec["image"], flush=True)
         command("docker", "pull", spec["image"], timeout=600)
+        print("Starting " + kind, flush=True)
         command("docker", "run", "--detach", "--rm", "--name", name, "--network", "host",
                 "--memory", "5g", "--cpus", "2", "--pids-limit", "2048", *extra, spec["image"])
         names.append(name)
         receipt["images"][kind] = {**spec, "runtime_id": command("docker", "inspect", "--format", "{{.Image}}", name)}
+        (out / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
         return name
     def check(name, **extra):
         receipt["checks"].append({"name": name, "status": "PASS", **extra})
@@ -148,7 +158,7 @@ def main():
                 browser = None
         else:
             start("collabora", ["--cap-add", "MKNOD", "-e", "aliasgroup1=http://127.0.0.1:80", "-e",
-                               "extra_params=--o:ssl.enable=false --o:ssl.termination=false --o:net.listen=loopback --o:net.post_allow.host[0]=127\\.0\\.0\\.1"])
+                               "extra_params=--o:ssl.enable=false --o:ssl.termination=false --o:net.listen=loopback --o:net.proto=IPv4 --o:net.post_allow.host[0]=127\\.0\\.0\\.1"])
             wait_http("http://127.0.0.1:9980/hosting/discovery")
             for suffix in ("ods", "xlsx"):
                 with (fixtures / ("review." + suffix)).open("rb") as file:
@@ -225,7 +235,9 @@ def main():
                 browser = None
             session.close()
         receipt["status"] = "PASS"
-    except Exception as exc:
+    except BaseException as exc:
+        if isinstance(exc, KeyboardInterrupt):
+            receipt["status"] = "CANCELLED"
         receipt["error"] = str(exc)[:5000]
         traceback.print_exc()
         raise

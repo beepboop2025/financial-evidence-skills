@@ -1,0 +1,115 @@
+const test=require('node:test');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const vm=require('node:vm');
+const path=require('node:path');
+const {row,funding,institutions}=require('./office-fixtures.cjs');
+const root=path.resolve(__dirname,'..');
+const addon=path.join(root,'docs/office/marketplaces/google');
+const code=fs.readFileSync(path.join(addon,'Code.gs'),'utf8');
+
+function harness(config={}) {
+  const state={requests:[],sheets:[],releases:0,locks:0,menu:[],active:null,uuid:0};
+  const existing={name:'My analysis',cells:[['Keep my analysis',42]]};
+  const original=JSON.stringify(existing);
+  function makeSheet(name) {
+    const sheet={name,cells:null,formats:null,filter:false};
+    const chain=new Proxy({}, {get:(_,method)=>(...args)=>{
+      if(method==='setValues') {if(config.writeFails) throw new Error('provider private failure');sheet.cells=args[0];}
+      if(method==='setNumberFormats') sheet.formats=args[0];
+      if(method==='createFilter') sheet.filter=true;
+      return chain;
+    }});
+    sheet.getRange=()=>chain;
+    sheet.setFrozenRows=()=>sheet;sheet.setColumnWidths=()=>sheet;sheet.setColumnWidth=()=>sheet;
+    return sheet;
+  }
+  const workbook={getSheetByName:()=>config.collision ? existing : null,
+    insertSheet:(name)=>{const s=makeSheet(name);state.sheets.push(s);return s;},
+    setActiveSheet:(s)=>{state.active=s;}};
+  const ui={createAddonMenu(){return this;},addItem(name,fn){state.menu.push([name,fn]);return this;},addToUi(){return this;},showSidebar(){state.sidebar=true;}};
+  const context=vm.createContext({console,
+    SpreadsheetApp:{getUi:()=>ui,getActiveSpreadsheet:()=>workbook,flush:()=>{}},
+    LockService:{getDocumentLock:()=>({tryLock:()=>{state.locks++;return !config.busy;},releaseLock:()=>state.releases++})},
+    Utilities:{getUuid:()=>String(++state.uuid).padStart(3,'0')+'-test'},
+    HtmlService:{createHtmlOutputFromFile:()=>({setTitle:()=>({})})},
+    UrlFetchApp:{fetchAll:(requests)=>{
+      state.requests.push(...requests);
+      if(config.networkFails) throw new Error('secret upstream detail');
+      return requests.map((request,i)=>{
+        const url=new URL(request.url),kind=url.searchParams.get('workflow');
+        const data=kind==='funding'?funding(url.searchParams.get('selection'),[row(0),row(null),row(-2),row(4,{rights_status:'restricted'}),row(1,{context:'=2+3'})]):institutions();
+        return {getHeaders:()=>({'Content-Type':config.html?'text/html':'application/json'}),
+          getResponseCode:()=>config.badFirst&&i===0?500:200,
+          getContent:()=>({length:config.oversized?4*1024*1024+1:JSON.stringify(data).length}),
+          getContentText:()=>JSON.stringify(data)};
+      });
+    }}
+  });
+  vm.runInContext(code,context);
+  return {state,context,existing,original};
+}
+const options={currencies:'USD,EUR',institutions:'au-sfb,unknown-bank',verification:true};
+test('manifest is limited to current workbook, external requests and sidebar',()=>{
+  const manifest=JSON.parse(fs.readFileSync(path.join(addon,'appsscript.json')));
+  assert.deepEqual(manifest.oauthScopes,['https://www.googleapis.com/auth/spreadsheets.currentonly','https://www.googleapis.com/auth/script.external_request','https://www.googleapis.com/auth/script.container.ui']);
+  assert.deepEqual(manifest.urlFetchWhitelist,['https://agents.seiche.info/v1/research/api/v1/']);
+  assert.equal(manifest.exceptionLogging,'NONE');
+});
+test('no-auth lifecycle only builds a menu, without requests or cell reads',()=>{
+  const {context,state}=harness();context.onOpen({authMode:'NONE'});context.onInstall({});
+  assert.equal(state.menu.length,2);assert.equal(state.requests.length,0);assert.equal(state.sheets.length,0);
+  assert.ok(!/getValues\(|getDisplayValues\(|getDataRange\(|DriveApp|GmailApp|PropertiesService|newTrigger/.test(code));
+});
+test('real shared parser preserves gaps, numeric states and original JSON in dedicated tabs',()=>{
+  const {context,state,existing,original}=harness();
+  const result=context.insertOfficeReview(options);
+  assert.equal(state.requests.length,3);assert.equal(state.sheets.length,6);assert.equal(result.failed_requests,0);
+  assert.equal(JSON.stringify(existing),original);assert.equal(state.releases,1);
+  const fundingSheet=state.sheets.find(s=>s.name.endsWith('Funding'));
+  const cols=fundingSheet.cells[0], value=cols.indexOf('value'), valueState=cols.indexOf('value_state');
+  assert.equal(fundingSheet.cells[1][value],0);assert.equal(fundingSheet.cells[2][value],'');
+  assert.equal(fundingSheet.cells[3][value],-2);assert.equal(fundingSheet.cells[4][value],'');
+  assert.equal(fundingSheet.cells[4][valueState],'withheld_by_client');
+  assert.equal(fundingSheet.cells[5][cols.indexOf('context')],"'=2+3");
+  assert.equal(fundingSheet.formats[1][cols.indexOf('as_of')],'@');
+  assert.equal(fundingSheet.formats[1][value],'General');
+  assert.match(JSON.stringify(state.sheets.find(s=>s.name.endsWith('Institutions')).cells),/unknown-bank/);
+  assert.match(JSON.stringify(state.sheets.find(s=>s.name.endsWith('Gaps')).cells),/No current reviewed disclosure/);
+  assert.equal(JSON.parse(result.evidence_json).requests.length,3);
+  for(const r of state.requests){assert.equal(r.followRedirects,false);assert.equal(r.validateHttpsCertificates,true);assert.equal(r.headers['X-Liquilens-Traffic-Class'],'synthetic');assert.equal(r.headers['X-Financial-Evidence-Traffic-Class'],'synthetic');}
+});
+test('repeat refresh never reuses the first capture or alters existing analysis',()=>{
+  const {context,state,existing,original}=harness();
+  const first=context.insertOfficeReview(options);const second=context.insertOfficeReview(options);
+  assert.equal(state.sheets.length,12);assert.equal(new Set([...first.sheet_names,...second.sheet_names]).size,12);
+  assert.equal(JSON.stringify(existing),original);assert.equal(state.releases,2);
+});
+test('bad selections and unsupported options cause no fetches or writes',()=>{
+  for(const selection of [{},{currencies:'USD,EUR,INR,GBP,JPY,CAD'},{currencies:'https://example.com'},{currencies:'USD',datasets:['money_markets']},{currencies:'USD',verification:'true'}]){
+    const {context,state}=harness();assert.throws(()=>context.insertOfficeReview(selection));
+    assert.equal(state.requests.length,0);assert.equal(state.sheets.length,0);
+  }
+});
+test('one bad response retains successful research and explicit status',()=>{
+  for(const config of [{badFirst:true},{html:true},{oversized:true}]){
+    const {context,state}=harness(config);const result=context.insertOfficeReview(options);
+    assert.ok(result.failed_requests>0);assert.equal(state.sheets.length,6);
+    assert.match(JSON.stringify(state.sheets.find(s=>s.name.endsWith('Status')).cells),/failed/);
+  }
+});
+test('transport, lock, collision and partial-write failures are bounded and release locks',()=>{
+  for(const config of [{networkFails:true},{busy:true},{collision:true},{writeFails:true}]){
+    const {context,state,existing,original}=harness(config);
+    assert.throws(()=>context.insertOfficeReview(options),error=>!error.message.includes('secret')&&!error.message.includes('private'));
+    assert.equal(state.sheets.length,config.writeFails?1:0);assert.equal(state.releases,config.busy?0:1);
+    assert.equal(JSON.stringify(existing),original);
+  }
+});
+test('ordinary calls are unverified and carry no credentials or workbook data',()=>{
+  const {context,state}=harness();context.insertOfficeReview({currencies:'USD'});
+  assert.equal(state.requests.length,1);
+  assert.equal(state.requests[0].headers['X-Financial-Evidence-Traffic-Class'],'unverified');
+  assert.equal(state.requests[0].headers['X-Liquilens-Traffic-Class'],undefined);
+  assert.ok(!JSON.stringify(state.requests).includes('Keep my analysis'));
+});

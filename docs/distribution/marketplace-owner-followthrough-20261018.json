@@ -1,0 +1,245 @@
+{
+  "schema": "financial-evidence.marketplace-owner-followthrough.v1",
+  "observed_at": "2026-10-18T06:02:58.231002Z",
+  "new_listings_created": 0,
+  "paid_upgrades": 0,
+  "scope": "Existing owner claims, accepted copy edits, and anonymous rendered tool catalogs.",
+  "listings": [
+    {
+      "id": "mcpmarket-financial-evidence",
+      "url": "https://mcpmarket.com/server/financial-evidence",
+      "observed_at": "2026-10-18T06:02:01.780Z",
+      "existing_listing_claimed": true,
+      "owner_copy_saved": true,
+      "public_description_and_faq_verified": true,
+      "anonymous_public_tool_count": 3,
+      "public_tool_names": [
+        "financial_evidence_topics",
+        "financial_evidence_route",
+        "financial_evidence_fetch"
+      ],
+      "tool_names_match_live_discovery": true,
+      "input_schemas_copied_from_live_discovery": true,
+      "input_schemas_verified_in_owner_form": true,
+      "description_summaries": [],
+      "description_summary_reason": null,
+      "live_discovery_sha256": "1f2fb750ae20db7d550c7db02249256b20aec81d18b9edcbb8a4ebdc8bba54b2",
+      "saved_schema_acceptance_sha256": "1da29adfde327fdaacd83d086d5341867c0f9dca0d3480d79c110b5c6c2c2f3b",
+      "anonymous_tool_readback_sha256": "c8fd51f5c4fc8883a117f553ad350b8b310e58172a76c9df6d4227b4d71863e1",
+      "public_about_readback_sha256": "528141d67a69cbc45c4eccc023d970ff41467364b06bb73e6b5468418d5b8996",
+      "public_faq_readback_sha256": "eaeb72620edf2f19189920f5892db64b762d4e9b04b855928c35e4d0b1284c3d",
+      "remaining_gaps": []
+    },
+    {
+      "id": "mcpmarket-liquilens",
+      "url": "https://mcpmarket.com/server/liquilens",
+      "observed_at": "2026-10-18T06:01:21.167Z",
+      "existing_listing_claimed": true,
+      "owner_copy_saved": true,
+      "public_description_and_faq_verified": true,
+      "anonymous_public_tool_count": 24,
+      "public_tool_names": [
+        "bank_asset_quality_review",
+        "bank_npa_reconciliation",
+        "banking_specialisation_coverage",
+        "corporate_transmission_board",
+        "crypto_exposure_board",
+        "crypto_regime_board",
+        "evidence_europe",
+        "evidence_india",
+        "evidence_institution",
+        "evidence_markets",
+        "evidence_us",
+        "failure_radar_board",
+        "failure_radar_institution",
+        "forward_odds",
+        "household_credit_board",
+        "institution_evidence_monitor",
+        "institution_research_coverage",
+        "institution_review_packet",
+        "latest_article",
+        "rbi_supervisory_tape",
+        "research_network",
+        "stablecoin_rails_board",
+        "universe_search",
+        "verify_published_record"
+      ],
+      "tool_names_match_live_discovery": true,
+      "input_schemas_copied_from_live_discovery": true,
+      "input_schemas_verified_in_owner_form": true,
+      "description_summaries": [],
+      "description_summary_reason": null,
+      "live_discovery_sha256": "d16587b2b3a44e610c0f7dc4fc758fb98abeb97eafabff39f2f083064a3293fa",
+      "saved_schema_acceptance_sha256": "d448158f52cca0aeb0b52021b1231f9d480dddcdc8afe9a1edea6308a6b87c0b",
+      "anonymous_tool_readback_sha256": "5562ef5c2ac9d158779284581fc582b242f146c8949fd254aaa14e83dc7751c8",
+      "public_about_readback_sha256": "6e89e3474eff8720151573e2c3de375dfdc51278ac260da8cae7edaea2108620",
+      "public_faq_readback_sha256": "ef8727638ba2c37d88dccc8b55276bd1c3679ce8043d3a65d95f4dd8758e1669",
+      "remaining_gaps": [
+        "Provider-generated page title and use cases retain older wording; the inspected owner editor does not expose those fields."
+      ]
+    },
+    {
+      "id": "mcpmarket-undertow",
+      "url": "https://mcpmarket.com/server/undertow",
+      "observed_at": "2026-10-18T06:00:22.779Z",
+      "existing_listing_claimed": true,
+      "owner_copy_saved": true,
+      "public_description_and_faq_verified": true,
+      "anonymous_public_tool_count": 16,
+      "public_tool_names": [
+        "agent_access_status",
+        "crypto_exit_check",
+        "crypto_funding_cost",
+        "crypto_portfolio_stress",
+        "depth_episodes",
+        "exit_cost",
+        "gold_cash_realisation",
+        "latest_article",
+        "liquidity_tiers",
+        "market_corpus_context",
+        "research_network",
+        "sealed_record",
+        "trade_safety_exit_context",
+        "unwind_watch",
+        "venue_concentration",
+        "venue_price_reconciliation"
+      ],
+      "tool_names_match_live_discovery": true,
+      "input_schemas_copied_from_live_discovery": true,
+      "input_schemas_verified_in_owner_form": true,
+      "description_summaries": [],
+      "description_summary_reason": null,
+      "live_discovery_sha256": "06c155c7556de43804a7fb1027a318ce12d90633905c3193156b853c4e1e7cd8",
+      "saved_schema_acceptance_sha256": "53b1b5c5df176ddc18f3712ce1f416c7f20a7d88e159b7f2a992ed7fd1236286",
+      "anonymous_tool_readback_sha256": "583950edf93ed6931bad008e110fa28d251055b7ae6f18924fe9f8d34de074e3",
+      "public_about_readback_sha256": "88a14c282233c21c0c04b44ced638cbba32d1ff0fb5bf0d02cfbd3f9c16b88ce",
+      "public_faq_readback_sha256": "20bd17527f00bfd4e4285182f7e4410bf4cf16684c9f58452189b938b2cebb93",
+      "remaining_gaps": [
+        "Provider-generated page title and use cases retain older wording; the inspected owner editor does not expose those fields."
+      ]
+    },
+    {
+      "id": "mcpmarket-seiche",
+      "url": "https://mcpmarket.com/server/seiche",
+      "observed_at": "2026-10-18T06:01:48.752Z",
+      "existing_listing_claimed": true,
+      "owner_copy_saved": true,
+      "public_description_and_faq_verified": true,
+      "anonymous_public_tool_count": 16,
+      "public_tool_names": [
+        "gift_city_context",
+        "gold_inventory_carry",
+        "market_workbench",
+        "research_network",
+        "latest_article",
+        "funding_stress_now",
+        "trade_safety_risk_context",
+        "money_market_context",
+        "world_markets_context",
+        "historical_analogs",
+        "proof_backtest",
+        "data_health",
+        "crypto_stress_record",
+        "institutional_flows",
+        "oil_funding_context",
+        "fx_materials_passage"
+      ],
+      "tool_names_match_live_discovery": true,
+      "input_schemas_copied_from_live_discovery": true,
+      "input_schemas_verified_in_owner_form": true,
+      "description_summaries": [
+        "money_market_context",
+        "world_markets_context"
+      ],
+      "description_summary_reason": "The directory editor truncated long descriptions; two summaries preserve the source and interpretation boundaries.",
+      "live_discovery_sha256": "e944b634c041c5f0fe4fae6d6dbd30ed367900281d0f22d5c242ae9ed9b1ce9e",
+      "saved_schema_acceptance_sha256": "e62d9fdf0a5063803db1a871c460d07a6bd48149991e1434be500e828038ac76",
+      "anonymous_tool_readback_sha256": "cd7b386a5abcf2d09bf54188a2a81b7b6cc3ce5688e99f281b48ada57c3e8dc0",
+      "public_about_readback_sha256": "e1ef2392d05ab1dc9511e40e2c1228ba25846375ac173c57fcee0eeab2dbf0f7",
+      "public_faq_readback_sha256": "2f1f61ddf2e5f4cb1e1c52dba4d59ee8d2aa7da564bfc1132e79370918d97262",
+      "remaining_gaps": [
+        "Provider-generated page title and use cases retain older wording; the inspected owner editor does not expose those fields."
+      ]
+    }
+  ],
+  "glama_noisefloor_release": {
+    "observed_at": "2026-10-18T05:36:59.741102+00:00",
+    "version": "0.4.3",
+    "source": "f5a3be4599fe7414d7fd32f9ce949a676b93f885",
+    "build_id": "01a14d81-f33f-7ca7-a7ef-6000c4739759",
+    "build_status": "success",
+    "installed_package": "noisefloor==0.4.3",
+    "mcp_server_version": "0.4.3",
+    "trigger": "Repository sync picked up the existing GitHub release under the already-enabled auto-release setting.",
+    "configuration_scope": "Stored compatible build settings were used; locally entered source/version assertions were not part of the accepted build.",
+    "remaining_gaps": [
+      "Public schema still says instructions were not recorded and displays protocol 2025-11-25, while actual build handshake exposes instructions and protocol 2025-06-18.",
+      "Individual output schemas were verified in the native release; a complete independent readback of all Glama output schemas was not obtained."
+    ]
+  },
+  "glama_profile_observations": [
+    {
+      "slug": "seiche",
+      "score": "100%",
+      "observed_at": "2026-10-17T23:37:52.649Z"
+    },
+    {
+      "slug": "financial-evidence-skills",
+      "score": "100%",
+      "observed_at": "2026-10-17T23:37:52.818Z"
+    },
+    {
+      "slug": "myquantdoesntspeakenglish",
+      "score": "100%",
+      "observed_at": "2026-10-17T23:49:30.752Z",
+      "evidence": "Rendered SVG text read from authenticated score page"
+    },
+    {
+      "slug": "undertow-mcp",
+      "score": "100%",
+      "observed_at": "2026-10-17T23:37:53.518Z"
+    },
+    {
+      "slug": "noisefloor",
+      "score": "100%",
+      "observed_at": "2026-10-17T23:37:53.733Z"
+    },
+    {
+      "slug": "data-breach-detector",
+      "score": "100%",
+      "observed_at": "2026-10-18T05:30:50Z",
+      "evidence": "glama-breach-score-final.txt",
+      "qualification": "One labelled synthetic operator test; not independent adoption."
+    },
+    {
+      "slug": "lucent",
+      "score": "100%",
+      "observed_at": "2026-10-17T23:37:53.929Z"
+    },
+    {
+      "slug": "pdf-suite-mcp",
+      "score": "100%",
+      "observed_at": "2026-10-17T23:37:54.029Z"
+    },
+    {
+      "slug": "groundcheck",
+      "score": "100%",
+      "observed_at": "2026-10-17T23:37:54.320Z"
+    }
+  ],
+  "glama_profile_scope": "Individual dated owner-page observations; no guarantee of ranking, independent use or perfect tool-quality ratings.",
+  "glama_breach_operator_check": {
+    "repository": "data-breach-detector",
+    "tools_discovered": 7,
+    "tool": "assess_threat",
+    "isError": false,
+    "instance_removed": true,
+    "paid_subscription_created": false
+  },
+  "limits": [
+    "MCP Market direct hosted endpoints require a separate paid listing; no such listing or upgrade was purchased.",
+    "Tool schemas were checked in the saved owner form; the public directory renders tool names and parameter summaries rather than the complete JSON Schema.",
+    "Glama profile completion, tool-quality scores, runtime verification and independent adoption are separate evidence states."
+  ],
+  "independent_adoption_verified": false
+}

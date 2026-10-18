@@ -1,7 +1,7 @@
 # Financial Evidence for Excel — certification notes
 
 Package: [manifest.xml](../excel/manifest.xml). ID:
-`acdb8bb2-280d-4c73-aadc-bbd4e1427bf0`, version `1.0.0.0`.
+`acdb8bb2-280d-4c73-aadc-bbd4e1427bf0`, version `1.0.1.0`.
 Host: Workbook. Requirement: ExcelApi 1.1. Permission: ReadWriteDocument.
 Publisher and manifest ProviderName: LIQUILENS PRIVATE LIMITED.
 
@@ -15,7 +15,11 @@ is an access gate, not a passed or failed runtime test.
 ## First-use test
 
 1. Open a blank workbook with `Keep my analysis` and `42` in an existing sheet.
-2. Open **Financial Evidence** from the installed/sideloaded add-in. The host
+2. On Excel's **Home** ribbon, find the **Financial Evidence** group and select
+   **Open research review**. Confirm the button has a readable label and tooltip
+   and can be reached using the host's keyboard navigation. On a host that does
+   not apply the command override, open the installed add-in through its add-in
+   menu. Opening the pane must not refresh research or insert sheets. The host
    status should say it is connected to Excel. Insertion must remain disabled
    if the host or the declared API requirement is unavailable.
 3. Enter `USD,EUR` in **Funding currencies** and `au-sfb,unknown-bank` in
@@ -48,8 +52,9 @@ ReadWriteDocument permission is used to check worksheet names for collisions
 and create new review sheets. It does not read or update existing cells.
 See [the exact Excel privacy notice](../excel/privacy.html).
 
-The publisher's own acceptance copy can add `?operator=1` to its source URL so
-verification calls are labelled synthetic. Keep that test-only manifest separate
+The publisher's own acceptance copy can add `?operator=1` to both its base
+`SourceLocation` and the `Review.TaskpaneUrl` resource so verification calls
+from either launch path are labelled synthetic. Keep that test-only manifest separate
 from the submitted production manifest. No separate analytics call or learning
 enrollment occurs. Do not describe certification tests as independent adoption.
 
@@ -58,6 +63,8 @@ enrollment occurs. Do not describe certification tests as independent adoption.
 Record the validated manifest hash, hosted release identity, each tested Excel
 build/platform, runtime results, keyboard acceptance and a real host screenshot.
 Excel web acceptance alone does not establish Windows, Mac or mobile acceptance.
+The existing native receipt covers the earlier `1.0.0.0` operator manifest;
+record new native command acceptance for `1.0.1.0` before claiming it is tested.
 Use the actual Partner Center account to verify publisher identity and program
 enrollment. The source files and this checklist are not account approval or
 Microsoft Marketplace acceptance. The copied Power Query route has its own

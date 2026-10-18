@@ -29,9 +29,18 @@ for that tenant. Linux users use Excel on the web where their account permits
 it, or the existing LibreOffice/browser export route; this package does not
 provide a native Linux Excel application.
 
+Manifest version `1.0.1.0` adds **Home → Financial Evidence → Open research review**
+on hosts that support add-in commands. The button opens the same task pane; it
+does not refresh research or insert sheets. Hosts that do not apply the command
+override retain the manifest's task-pane launch location. The 16- and 20-pixel
+ribbon icons are renders of the unchanged publisher SVG at
+`../marketplaces/assets/icon.svg`.
+
 ## Use
 
-1. Open **Financial Evidence** inside Excel. The task pane should report
+1. Select **Open research review** in the **Financial Evidence** group on Excel's
+   **Home** ribbon, or open the installed add-in through the host's add-in menu.
+   The task pane should report
    **Connected to Excel** before insertion is available.
 2. Enter up to five currency codes and up to five exact institution slugs.
    Defaults are `USD,EUR,INR` and `au-sfb,bajaj-finance`. Leave either field empty
@@ -71,7 +80,11 @@ not evidence that all corresponding hosts were tested. See the exact
 [reviewer test script](https://beepboop2025.github.io/financial-evidence-skills/office/marketplaces/microsoft-reviewer.md) and
 [release states](https://beepboop2025.github.io/financial-evidence-skills/office/marketplaces/status.json). Publisher verification can use a
 separate test-only manifest whose task-pane URL ends with `?operator=1` to mark
-requests synthetic. Keep test manifests distinct from the submitted release.
+requests synthetic. Apply that query flag to both the base `SourceLocation`
+and the `Review.TaskpaneUrl` resource so fallback and ribbon launches remain
+synthetic. Keep test manifests distinct from the submitted release. The existing
+native acceptance receipt covers the earlier `1.0.0.0` operator manifest; it does
+not establish native acceptance of this version's ribbon command.
 
 ## Rebuild from the repository
 

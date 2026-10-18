@@ -1,0 +1,51 @@
+name: Native Power Query acceptance
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'docs/office/*.pq'
+      - 'scripts/power_query_native/**'
+      - '.github/workflows/power-query-native.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: power-query-native-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  power-query-native:
+    runs-on: windows-2022
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.12'
+      - name: Download pinned Microsoft Power Query engine
+        shell: pwsh
+        run: |
+          $package = Join-Path $env:RUNNER_TEMP 'powerquery-sdktools.zip'
+          $sdk = Join-Path $env:RUNNER_TEMP 'powerquery-sdktools'
+          Invoke-WebRequest -Uri 'https://api.nuget.org/v3-flatcontainer/microsoft.powerquery.sdktools/2.155.2/microsoft.powerquery.sdktools.2.155.2.nupkg' -OutFile $package -TimeoutSec 180
+          $expected = 'Bal0UiU9sXLkV1bd/MhzVCxl1kJiZPsZEfRj3axtk0RKDIfF0aJfzjSHmxO/1w/j4LHsneoQCNrIRTzWh3b2Kg=='
+          $stream = [System.IO.File]::OpenRead($package)
+          try { $actual = [Convert]::ToBase64String([System.Security.Cryptography.SHA512]::Create().ComputeHash($stream)) } finally { $stream.Dispose() }
+          if ($actual -ne $expected) { throw 'Microsoft SDK package SHA-512 mismatch' }
+          Expand-Archive -Path $package -DestinationPath $sdk
+          "PQTEST_EXE=$sdk\tools\PQTest.exe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Execute shipped query expressions and failing control
+        shell: pwsh
+        run: python scripts/power_query_native/accept.py "$env:PQTEST_EXE" power-query-native
+      - name: Retain native engine evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: power-query-native
+          path: power-query-native/
+          retention-days: 14
+          if-no-files-found: error

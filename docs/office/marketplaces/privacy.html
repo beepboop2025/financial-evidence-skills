@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Office integration privacy — Financial Evidence</title>
+<meta name="description" content="Data handling and permissions for Financial Evidence spreadsheet integrations.">
+<style>body{margin:0;font:16px/1.6 system-ui,sans-serif;color:#183246;background:#fff}main{max-width:76ch;margin:auto;padding:40px 24px}h1,h2{line-height:1.25}h2{margin-top:32px}a{color:#155d82}code{overflow-wrap:anywhere}a:focus-visible{outline:3px solid #c27500;outline-offset:3px}</style></head><body><main>
+<p><a href="../">Financial Evidence office desk</a></p>
+<h1>Office integration privacy</h1><p>Updated 18 October 2026. Operator: LIQUILENS PRIVATE LIMITED.</p>
+<h2>What you choose to send</h2>
+<p>The spreadsheet review tools send the currency codes and exact institution slugs you enter to <code>agents.seiche.info</code> to obtain public research. The Office browser desk can also send selected public dataset names. Do not enter confidential information in these public query fields. Public research needs no Financial Evidence account or API key.</p>
+<h2>Your spreadsheet</h2>
+<p>The Google Editor add-on creates new review tabs in the spreadsheet where you invoke it. It checks proposed tab names to avoid collisions but does not read existing cell values. The copied Google custom functions process only their supplied selection arguments; the refresh-cell value is not transmitted. Downloaded XLSX and ODS workbooks have no macros or background network refresh.</p>
+<p>The Editor add-on requests permission to work in the current spreadsheet, show its sidebar, and make external requests. It does not request access to Drive files, email, contacts, your identity, or every spreadsheet in your account. No background refresh trigger is created. Google processes the hosted spreadsheet and script under your Google account's policies.</p>
+<p>The Excel task-pane add-in uses ReadWriteDocument permission to inspect worksheet names for collisions and insert new review sheets. It does not read existing cell values, send workbook contents or Microsoft identity, or obtain an account access token. Research retrieval and sheet insertion are separate explicit actions. See the <a href="../excel/privacy.html">Excel-specific privacy notice</a>.</p>
+<h2>Storage and measurement</h2>
+<p>The add-on saves returned public research into new tabs in your spreadsheet. Original evidence JSON is held in the sidebar for an optional local download. It does not create a separate server-side workbook copy, upload the workbook, create a tracking identity, or enroll you in optional learning or sharing. Closing the sidebar clears its in-memory download; downloaded files and spreadsheet tabs remain under your control.</p>
+<p>The public research gateway and hosting providers process ordinary request metadata and bounded operational counters. The add-on labels ordinary requests unverified; its explicit publisher-test option labels them synthetic. These labels do not identify a person or prove independent adoption. Retention, provider logs and operational processing are explained in the <a href="../../privacy/">service privacy policy</a> and the <a href="https://agents.seiche.info/privacy">central platform privacy policy</a>.</p>
+<h2>Removal and contact</h2>
+<p>You can close or uninstall the add-on and revoke its Google access through your account. Delete the review tabs or local downloads if you no longer want them. Removing an add-on does not delete the spreadsheet's saved captures. For questions or requests about data controlled by LIQUILENS PRIVATE LIMITED, contact <a href="mailto:mrinal@liquilens.in">mrinal@liquilens.in</a>.</p>
+<p>Use of information received from Google APIs follows the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including its Limited Use requirements. Google user data is not sold, used for advertising profiles, or used to train generalized AI models by this integration.</p>
+<p><a href="../../terms/">Terms</a> · <a href="../../support/">Support</a></p>
+</main></body></html>

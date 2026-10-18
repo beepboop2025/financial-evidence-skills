@@ -1,0 +1,118 @@
+{
+  "schema": "financial-evidence.office-marketplaces.v1",
+  "observed_at": "2026-10-18T09:45:31.532243+00:00",
+  "new_submissions": 0,
+  "new_accounts": 0,
+  "paid_commitments": 0,
+  "independent_adoption_verified": false,
+  "channels": [
+    {
+      "id": "google-workspace-editor-addon",
+      "state": "native_tested_brand_oauth_and_marketplace_review_pending",
+      "package": "google/google-editor-addon.zip",
+      "listing": "google/listing.json",
+      "tests": {
+        "focused_mocked_contract_tests": {
+          "passed": 9,
+          "failed": 0
+        },
+        "generated_source_check": "passed",
+        "native_menu_sidebar_insertion": "passed_bound_development_copy",
+        "editor_addon_install_lifecycle": "test_deployment_authmode_none_and_limited_passed",
+        "oauth_consent": "passed_owner_test_user",
+        "public_listing": "not_submitted",
+        "final_sidebar_native": {
+          "state": "passed",
+          "successful_capture_at": "2026-10-18T09:40:48.368Z",
+          "validation_dialog": "six_currency_selection_error_displayed",
+          "keyboard": "close_focus_and_escape_restore_create_review",
+          "valid_retry": {
+            "created_new_tabs": 6,
+            "requests": 3,
+            "failed_requests": 0,
+            "synthetic": true
+          },
+          "official_google_stylesheet": "confirmed_in_saved_host_source",
+          "scope": "owner_test_deployment_not_public_installation"
+        }
+      },
+      "remaining": [
+        "Create immutable tested script version and finish Marketplace SDK application configuration",
+        "Complete brand and sensitive-scope OAuth verification",
+        "Publish final assets and add a real host screenshot",
+        "Google public Marketplace review and independent public installation readback"
+      ],
+      "publisher_configuration": {
+        "standard_cloud_project": "linked",
+        "marketplace_sdk_api": "enabled",
+        "oauth_configuration": "external_testing_saved",
+        "owner_test_user": "registered",
+        "owner_consent": "passed",
+        "public_submission_count": 0,
+        "scope_classifications": {
+          "https://www.googleapis.com/auth/spreadsheets.currentonly": "non_sensitive",
+          "https://www.googleapis.com/auth/script.external_request": "sensitive",
+          "https://www.googleapis.com/auth/script.container.ui": "sensitive"
+        },
+        "oauth_sensitive_scope_verification": "pending",
+        "brand_verification": "pending"
+      }
+    },
+    {
+      "id": "microsoft-office-addon",
+      "state": "source_package_ready_native_and_publisher_gates_pending",
+      "listing": "microsoft-listing.json",
+      "manifest": "../excel/manifest.xml",
+      "reviewer_instructions": "microsoft-reviewer.md",
+      "native_host_validation": "not_verified",
+      "account_verification": "not_verified",
+      "public_listing": "not_submitted",
+      "remaining": [
+        "Public asset publication and production manifest validation",
+        "All claimed native host tests",
+        "Real host screenshot",
+        "Approved Partner Center publisher and program enrollment",
+        "Microsoft Marketplace review"
+      ],
+      "manifest_validation": {
+        "tool": "office-addin-manifest",
+        "version": "3.0.1",
+        "observed_at": "2026-10-18T09:29:11.895256+00:00",
+        "manifest_sha256": "170530e4b99e72bf7985f383bbdb9101838711721c3585243db8038d4f955a77",
+        "development_validation": "passed",
+        "development_receipt": "microsoft-manifest-development.txt",
+        "development_receipt_sha256": "6a3ba8a89a9162f85b2dcc9e080e964c66576559d2f0276a845bf028409754cf",
+        "production_validation": "pending_public_assets",
+        "production_errors": [],
+        "previous_production_validation": {
+          "observed_at": "2026-10-18T09:04:48.396646+00:00",
+          "manifest_sha256": "488957782faea38bd3ebe373ee1f2bdbb57a83be84719d6e312e6c29a68ac4c4",
+          "result": "failed_unpublished_icons",
+          "errors": [
+            "High Resolution Icon URL Unreachable: /office/excel/icon-80.png",
+            "Icon URL Unreachable: /office/excel/icon-32.png"
+          ]
+        },
+        "next_action": "Publish the exact HTTPS assets, including the 64-pixel high-resolution icon, then rerun production validation and retain its result. Development validation does not establish native Excel acceptance."
+      },
+      "package": "../excel/financial-evidence-excel.zip",
+      "store_logo": "assets/microsoft-store-logo-300.png"
+    },
+    {
+      "id": "openbb-app-marketplace",
+      "state": "submitted",
+      "submitted_at": "2026-10-11T11:08:46Z",
+      "existing_receipt": "../../distribution/openbb-marketplace-20261011.md",
+      "public_readback": "openbb-status.md",
+      "public_catalog_match": false,
+      "fee_waiver_approved": false,
+      "native_workspace_verified": false,
+      "remaining": [
+        "Existing application review",
+        "Fee-waiver decision",
+        "Supported native Workspace access",
+        "Public listing readback"
+      ]
+    }
+  ]
+}

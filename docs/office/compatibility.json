@@ -10,23 +10,258 @@
     "other_family_products": "Separate product API/MCP routes in ../connect/; no new office projection claimed"
   },
   "routes": [
-    {"tools": ["Linux browser", "Firefox", "Chromium"], "route": "Browser desk with manual refresh and local downloads", "artifact": "index.html", "state": "implementation_available", "linux": "browser"},
-    {"tools": ["LibreOffice Calc"], "route": "ODS/XLSX snapshot", "artifact": "setup.md#libreoffice-calc", "state": "native_linux_ods_and_xlsx_acceptance_passed", "linux": "native"},
-    {"tools": ["Excel", "Excel for the web"], "route": "XLSX snapshot", "artifact": "index.html", "state": "format_available_native_excel_import_pending", "linux": "browser"},
-    {"tools": ["Excel Power Query", "Power BI"], "route": "Manual Web query refresh", "artifact": "setup.md#excel-and-power-bi", "state": "source_available_native_refresh_pending", "linux": "edition_and_tenant_dependent_browser; no Power BI Desktop"},
-    {"tools": ["Google Sheets"], "route": "Custom functions or XLSX snapshot import", "artifact": "FinancialEvidenceOffice.gs", "state": "google_hosted_funding_and_watchlist_cells_verified; xlsx_import_pending", "linux": "browser"},
-    {"tools": ["ONLYOFFICE", "Collabora Online", "Nextcloud Office"], "route": "XLSX/ODS file import", "artifact": "setup.md#other-office-tools", "state": "format_available_native_import_pending", "linux": "native_or_browser"},
-    {"tools": ["Word", "Google Docs", "LibreOffice Writer"], "route": "HTML brief import or copy cited tables", "artifact": "setup.md#documents-and-presentations", "state": "portable_document_available_no_native_addon", "linux": "browser_or_Writer"},
-    {"tools": ["PowerPoint", "Google Slides", "LibreOffice Impress"], "route": "Copy cited tables from the workbook", "artifact": "setup.md#documents-and-presentations", "state": "manual_copy_no_native_addon", "linux": "browser_or_Impress"},
-    {"tools": ["Google Drive", "OneDrive", "Nextcloud"], "route": "Store workbook and evidence JSON together", "artifact": "setup.md#other-office-tools", "state": "file_storage_no_automatic_sync", "linux": "browser_or_supported_client"},
-    {"tools": ["Node.js", "Linux terminal"], "route": "Dependency-free export command", "artifact": "refresh.mjs", "state": "implementation_available", "linux": "native"},
-    {"tools": ["Jupyter", "Google Colab", "VS Code notebooks"], "route": "Existing research notebook and Python client", "artifact": "../tools/", "state": "existing_integration_see_linked_verification", "linux": "native_or_browser"},
-    {"tools": ["OpenBB"], "route": "Existing Python extension and Workspace backend", "artifact": "../tools/#openbb", "state": "existing_integration_marketplace_review_separate", "linux": "Python; Workspace availability provider_controlled"},
-    {"tools": ["R", "DuckDB", "SQLite", "DBeaver"], "route": "CSV import", "artifact": "setup.md#sql-r-and-bi", "state": "portable_csv_available", "linux": "native"},
-    {"tools": ["Metabase", "Apache Superset"], "route": "Query CSV imported into a supported database", "artifact": "setup.md#sql-r-and-bi", "state": "database_import_route_no_native_driver", "linux": "self_hosted_or_browser"},
-    {"tools": ["n8n", "Node-RED", "Activepieces"], "route": "Existing packages and flows", "artifact": "../platforms/", "state": "existing_integration_see_linked_verification", "linux": "self_hosted_or_browser"},
-    {"tools": ["VS Code", "Cursor", "Codex", "Gemini CLI"], "route": "Existing API/MCP configuration", "artifact": "../agents/CONNECT.md", "state": "existing_connection_see_client_requirements", "linux": "supported_native_clients"},
-    {"tools": ["Bruno", "Postman", "Insomnia", "curl"], "route": "Existing API request kit", "artifact": "../api/", "state": "existing_kit_see_linked_verification", "linux": "native"}
+    {
+      "tools": [
+        "Linux browser",
+        "Firefox",
+        "Chromium"
+      ],
+      "route": "Browser desk with manual refresh and local downloads",
+      "artifact": "index.html",
+      "state": "implementation_available",
+      "linux": "browser"
+    },
+    {
+      "tools": [
+        "LibreOffice Calc"
+      ],
+      "route": "ODS/XLSX snapshot",
+      "artifact": "setup.md#libreoffice-calc",
+      "state": "native_linux_ods_and_xlsx_acceptance_passed",
+      "linux": "native"
+    },
+    {
+      "tools": [
+        "Excel for the web"
+      ],
+      "route": "XLSX snapshot",
+      "artifact": "index.html",
+      "state": "native_excel_web_xlsx_open_save_260_cells_passed",
+      "linux": "browser",
+      "evidence": "native-acceptance.md#excel-for-the-web--xlsx-import-and-roundtrip-passed"
+    },
+    {
+      "tools": [
+        "Excel desktop"
+      ],
+      "route": "XLSX snapshot",
+      "artifact": "index.html",
+      "state": "format_available_native_desktop_acceptance_pending",
+      "linux": "desktop_app_unavailable; use_browser_route"
+    },
+    {
+      "tools": [
+        "Excel Power Query",
+        "Power BI"
+      ],
+      "route": "Manual Web query refresh",
+      "artifact": "setup.md#excel-and-power-bi",
+      "state": "microsoft_power_query_engine_22_groups_passed; excel_ui_live_refresh_pending",
+      "linux": "edition_and_tenant_dependent_browser; no Power BI Desktop"
+    },
+    {
+      "tools": [
+        "Excel Office add-in"
+      ],
+      "route": "Research task pane with six new review sheets",
+      "artifact": "excel/README.md",
+      "state": "implementation_and_unit_tests_passed_native_addin_pending",
+      "linux": "browser"
+    },
+    {
+      "tools": [
+        "Google Sheets"
+      ],
+      "route": "Custom functions or XLSX snapshot import",
+      "artifact": "FinancialEvidenceOffice.gs",
+      "state": "google_hosted_funding_and_watchlist_cells_verified; xlsx_import_pending",
+      "linux": "browser"
+    },
+    {
+      "tools": [
+        "Google Sheets bound Apps Script sidebar"
+      ],
+      "route": "Research sidebar with six new review sheets",
+      "artifact": "marketplaces/google/README.md",
+      "state": "native_live_capture_repeat_and_existing_cells_preservation_passed",
+      "evidence": "native-acceptance.md#google-sheets-editor-add-on-test-deployment--installed-and-enabled-states-passed",
+      "linux": "browser"
+    },
+    {
+      "tools": [
+        "Google Sheets Editor add-on"
+      ],
+      "route": "Research sidebar with six new review sheets",
+      "artifact": "marketplaces/google/README.md",
+      "state": "native_editor_installed_capture_and_enabled_menu_sidebar_passed; marketplace_approval_pending",
+      "linux": "browser",
+      "evidence": "native-acceptance.md#google-sheets-editor-add-on-test-deployment--installed-and-enabled-states-passed",
+      "verified_scope": {
+        "installed_auth_mode_NONE": "317 capture cells match exact JSON; 650 earlier review cells and existing analysis markers preserved",
+        "enabled_auth_mode_LIMITED": "Extensions menu opens sidebar; no additional capture requested"
+      },
+      "limitations": [
+        "Second capture has no full JSON comparison; its cells were preserved against the earlier workbook export.",
+        "Native captures contained no formula-like source strings; escaping remains covered by isolated tests.",
+        "Operator synthetic verification does not establish independent adoption."
+      ]
+    },
+    {
+      "tools": [
+        "ONLYOFFICE"
+      ],
+      "version": "10.0.0.1",
+      "route": "XLSX import, browser edit and save",
+      "artifact": "setup.md#other-office-tools",
+      "state": "native_xlsx_import_browser_edit_save_260_cells_passed",
+      "evidence": "native-acceptance.md#onlyoffice--xlsx-import-edit-and-save-passed",
+      "unsupported_routes": [
+        "ODS-to-XLSX export: invalid number-format metadata in tested server; use XLSX."
+      ],
+      "other_verified_scope": "ODS browser opening passed; export did not.",
+      "linux": "native_or_browser"
+    },
+    {
+      "tools": [
+        "Collabora Online",
+        "Nextcloud Office"
+      ],
+      "versions": {
+        "collabora_CODE": "26.04.5.1.1",
+        "nextcloud": "35.0.2",
+        "richdocuments": "12.0.1"
+      },
+      "route": "ODS/XLSX native conversion, Nextcloud upload and browser opening",
+      "artifact": "setup.md#other-office-tools",
+      "state": "native_ods_xlsx_260_cells_webdav_roundtrip_and_browser_open_passed",
+      "evidence": "native-acceptance.md#collabora-and-nextcloud-office--ods-and-xlsx-import-and-browser-opening-passed",
+      "verified_scope": "260 cells preserved in each native conversion; byte-exact WebDAV upload/download; actual WOPI browser showed six expected tabs.",
+      "limitations": [
+        "Nextcloud Office browser edit/save was not exercised.",
+        "Isolated server verification does not certify every customer host."
+      ],
+      "linux": "browser"
+    },
+    {
+      "tools": [
+        "Word",
+        "Google Docs",
+        "LibreOffice Writer"
+      ],
+      "route": "HTML brief import or copy cited tables",
+      "artifact": "setup.md#documents-and-presentations",
+      "state": "portable_document_available_no_native_addon",
+      "linux": "browser_or_Writer"
+    },
+    {
+      "tools": [
+        "PowerPoint",
+        "Google Slides",
+        "LibreOffice Impress"
+      ],
+      "route": "Copy cited tables from the workbook",
+      "artifact": "setup.md#documents-and-presentations",
+      "state": "manual_copy_no_native_addon",
+      "linux": "browser_or_Impress"
+    },
+    {
+      "tools": [
+        "Google Drive",
+        "OneDrive",
+        "Nextcloud"
+      ],
+      "route": "Store workbook and evidence JSON together",
+      "artifact": "setup.md#other-office-tools",
+      "state": "file_storage_no_automatic_sync",
+      "linux": "browser_or_supported_client"
+    },
+    {
+      "tools": [
+        "Node.js",
+        "Linux terminal"
+      ],
+      "route": "Dependency-free export command",
+      "artifact": "refresh.mjs",
+      "state": "implementation_available",
+      "linux": "native"
+    },
+    {
+      "tools": [
+        "Jupyter",
+        "Google Colab",
+        "VS Code notebooks"
+      ],
+      "route": "Existing research notebook and Python client",
+      "artifact": "../tools/",
+      "state": "existing_integration_see_linked_verification",
+      "linux": "native_or_browser"
+    },
+    {
+      "tools": [
+        "OpenBB"
+      ],
+      "route": "Existing Python extension and Workspace backend",
+      "artifact": "../tools/#openbb",
+      "state": "existing_integration_marketplace_review_separate",
+      "linux": "Python; Workspace availability provider_controlled"
+    },
+    {
+      "tools": [
+        "R",
+        "DuckDB",
+        "SQLite",
+        "DBeaver"
+      ],
+      "route": "CSV import",
+      "artifact": "setup.md#sql-r-and-bi",
+      "state": "portable_csv_available",
+      "linux": "native"
+    },
+    {
+      "tools": [
+        "Metabase",
+        "Apache Superset"
+      ],
+      "route": "Query CSV imported into a supported database",
+      "artifact": "setup.md#sql-r-and-bi",
+      "state": "database_import_route_no_native_driver",
+      "linux": "self_hosted_or_browser"
+    },
+    {
+      "tools": [
+        "n8n",
+        "Node-RED",
+        "Activepieces"
+      ],
+      "route": "Existing packages and flows",
+      "artifact": "../platforms/",
+      "state": "existing_integration_see_linked_verification",
+      "linux": "self_hosted_or_browser"
+    },
+    {
+      "tools": [
+        "VS Code",
+        "Cursor",
+        "Codex",
+        "Gemini CLI"
+      ],
+      "route": "Existing API/MCP configuration",
+      "artifact": "../agents/CONNECT.md",
+      "state": "existing_connection_see_client_requirements",
+      "linux": "supported_native_clients"
+    },
+    {
+      "tools": [
+        "Bruno",
+        "Postman",
+        "Insomnia",
+        "curl"
+      ],
+      "route": "Existing API request kit",
+      "artifact": "../api/",
+      "state": "existing_kit_see_linked_verification",
+      "linux": "native"
+    }
   ],
   "native_addon_marketplace_approvals": [],
   "independent_user_adoption": null

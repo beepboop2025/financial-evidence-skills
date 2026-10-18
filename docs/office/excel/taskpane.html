@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Financial Evidence for Excel</title>
+  <link rel="stylesheet" href="taskpane.css">
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <script defer src="../office-core.js"></script><script defer src="insert.js"></script><script defer src="taskpane.js"></script>
+</head>
+<body><main>
+  <header><img src="icon-80.png" width="40" height="40" alt=""><div><p class="eyebrow">Financial Evidence</p><h1>Your next review</h1></div></header>
+  <p>Compare funding evidence and review covered institutions, with source dates and gaps alongside the values.</p>
+  <p id="host-status" role="status">Connecting to Excel…</p>
+  <form id="review-form">
+    <label for="currencies">Funding currencies</label><input id="currencies" value="USD,EUR,INR" maxlength="40" aria-describedby="currency-help"><p id="currency-help" class="hint">Up to five currency codes, separated by commas.</p>
+    <label for="institutions">Institution watchlist</label><input id="institutions" value="au-sfb,bajaj-finance" maxlength="160" aria-describedby="institution-help"><p id="institution-help" class="hint">Up to five exact institution slugs. Unknown selections stay marked as not covered. Leave either field blank to skip it.</p>
+    <button id="refresh" type="submit">Refresh research</button>
+  </form>
+  <p id="status" role="status" aria-live="polite">Only your selections are sent. Workbook contents are never uploaded.</p>
+  <section id="review" hidden aria-labelledby="review-title"><h2 id="review-title">Review ready</h2><p id="review-time"></p><ul id="summary"></ul><div id="preview"></div><p id="scope"></p><button id="insert" type="button" disabled>Insert new review sheets</button><button id="evidence" class="secondary" type="button">Download original evidence</button><p class="hint">Each insertion creates six new FE sheets. Existing cells are preserved. Keep the evidence JSON with your workbook.</p></section>
+  <footer><p>Research evidence only. Funding levels are not stress rankings; institution states are not credit ratings.</p><p><a href="../" target="_blank" rel="noopener">Office desk and workbook downloads</a></p><p><a href="./privacy.html" target="_blank" rel="noopener">Privacy</a> · <a href="../../terms/" target="_blank" rel="noopener">Terms</a> · <a href="../../support/" target="_blank" rel="noopener">Support</a></p></footer>
+</main></body></html>

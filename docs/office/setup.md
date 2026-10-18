@@ -63,7 +63,11 @@ the sheet; the refresh cell and other workbook cells are never sent. Formula-lik
 source text is escaped and missing or explicitly withheld numbers stay blank.
 
 This is a copyable Apps Script, not a Google Workspace Marketplace add-on.
-Contract tests are separate from Google-hosted execution, which remains pending.
+Google-hosted cell execution passed on 2026-10-18 for USD/EUR funding and an
+`au-sfb,unknown-bank` watchlist. The unknown selection remained `not_covered`,
+with coverage gaps retained. Validation used a private bound script with operator
+requests labelled synthetic; it is not an independent user adoption measurement.
+Your account's Apps Script policy and quotas still apply.
 [Google's custom-function rules](https://developers.google.com/apps-script/guides/sheets/functions).
 
 ## Excel and Power BI
@@ -103,6 +107,11 @@ Download ODS and open it in Calc on Linux, macOS or Windows. It is a native
 OpenDocument workbook, not an extension. Sources and gaps are separate sheets.
 Numeric zero remains zero; unavailable values remain empty numeric cells with a
 separate `value_state`. There are no embedded formulas or automatic web requests.
+
+Native LibreOffice acceptance on Ubuntu passed for both ODS and XLSX on
+2026-10-18. Every fixture cell was compared after import, including numeric zero,
+negative values, booleans, missing values, Unicode and formula-looking source
+text. See the [Linux acceptance run](https://github.com/beepboop2025/financial-evidence-skills/actions/runs/39111380985/job/117628125072).
 
 For an existing workbook, use Sheet → Insert Sheet from File to import the
 needed CSV, or open the CSV and copy its table. Use UTF-8 and comma as the

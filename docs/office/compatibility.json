@@ -11,10 +11,10 @@
   },
   "routes": [
     {"tools": ["Linux browser", "Firefox", "Chromium"], "route": "Browser desk with manual refresh and local downloads", "artifact": "index.html", "state": "implementation_available", "linux": "browser"},
-    {"tools": ["LibreOffice Calc"], "route": "ODS/XLSX snapshot", "artifact": "setup.md#libreoffice-calc", "state": "native_acceptance_check_in_ci", "linux": "native"},
+    {"tools": ["LibreOffice Calc"], "route": "ODS/XLSX snapshot", "artifact": "setup.md#libreoffice-calc", "state": "native_linux_ods_and_xlsx_acceptance_passed", "linux": "native"},
     {"tools": ["Excel", "Excel for the web"], "route": "XLSX snapshot", "artifact": "index.html", "state": "format_available_native_excel_import_pending", "linux": "browser"},
     {"tools": ["Excel Power Query", "Power BI"], "route": "Manual Web query refresh", "artifact": "setup.md#excel-and-power-bi", "state": "source_available_native_refresh_pending", "linux": "edition_and_tenant_dependent_browser; no Power BI Desktop"},
-    {"tools": ["Google Sheets"], "route": "Custom functions or XLSX snapshot import", "artifact": "FinancialEvidenceOffice.gs", "state": "contract_tested_google_execution_pending", "linux": "browser"},
+    {"tools": ["Google Sheets"], "route": "Custom functions or XLSX snapshot import", "artifact": "FinancialEvidenceOffice.gs", "state": "google_hosted_funding_and_watchlist_cells_verified; xlsx_import_pending", "linux": "browser"},
     {"tools": ["ONLYOFFICE", "Collabora Online", "Nextcloud Office"], "route": "XLSX/ODS file import", "artifact": "setup.md#other-office-tools", "state": "format_available_native_import_pending", "linux": "native_or_browser"},
     {"tools": ["Word", "Google Docs", "LibreOffice Writer"], "route": "HTML brief import or copy cited tables", "artifact": "setup.md#documents-and-presentations", "state": "portable_document_available_no_native_addon", "linux": "browser_or_Writer"},
     {"tools": ["PowerPoint", "Google Slides", "LibreOffice Impress"], "route": "Copy cited tables from the workbook", "artifact": "setup.md#documents-and-presentations", "state": "manual_copy_no_native_addon", "linux": "browser_or_Impress"},

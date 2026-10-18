@@ -35,7 +35,9 @@
   "manifest_validation": {
     "development": "passed_office_addin_manifest_3.0.1",
     "production": "pending_public_assets",
-    "receipt": "microsoft-manifest-validation.json"
+    "receipt": "microsoft-manifest-validation.json",
+    "manifest_sha256": "170530e4b99e72bf7985f383bbdb9101838711721c3585243db8038d4f955a77",
+    "development_receipt": "microsoft-manifest-development.txt"
   },
   "native_host_validation": "not_verified",
   "native_screenshot": null,
@@ -45,5 +47,15 @@
     "https://learn.microsoft.com/en-us/partner-center/marketplace-offers/checklist",
     "https://learn.microsoft.com/en-us/partner-center/marketplace-offers/submit-to-appsource-via-partner-center",
     "https://learn.microsoft.com/en-us/office/dev/add-ins/develop/add-in-manifests"
-  ]
+  ],
+  "assets": {
+    "store_logo": "assets/microsoft-store-logo-300.png",
+    "store_logo_dimensions": [
+      300,
+      300
+    ],
+    "manifest_icon": "../excel/icon-32.png",
+    "manifest_high_resolution_icon": "../excel/icon-64.png",
+    "native_screenshot": null
+  }
 }

@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OFFICE = ROOT / "docs/office"
 DEST = OFFICE / "excel"
 FILES = ("README.md", "insert.js", "taskpane.html", "taskpane.js", "taskpane.css",
-         "manifest.xml", "privacy.html", "icon-32.png", "icon-80.png", "icon-128.png")
+         "manifest.xml", "privacy.html", "icon-32.png", "icon-64.png", "icon-80.png", "icon-128.png")
 
 
 def build():

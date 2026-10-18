@@ -1,6 +1,6 @@
 {
   "schema": "financial-evidence.office-marketplaces.v1",
-  "observed_at": "2026-10-18T09:00:00Z",
+  "observed_at": "2026-10-18T09:29:11.895256+00:00",
   "new_submissions": 0,
   "new_accounts": 0,
   "paid_commitments": 0,
@@ -19,16 +19,24 @@
         "generated_source_check": "passed",
         "native_menu_sidebar_insertion": "not_verified",
         "editor_addon_install_lifecycle": "not_verified",
-        "oauth_consent": "not_verified",
+        "oauth_consent": "owner_authorization_in_progress",
         "public_listing": "not_submitted"
       },
       "remaining": [
-        "Native add-on acceptance",
-        "Standard Cloud project and matching consent/SDK scopes",
+        "Complete owner OAuth consent and native add-on acceptance",
+        "Finish Marketplace SDK application configuration with matching consent/manifest scopes",
         "Required scope and publisher verification",
         "Real host screenshot",
         "Google public Marketplace review"
-      ]
+      ],
+      "publisher_configuration": {
+        "standard_cloud_project": "linked",
+        "marketplace_sdk_api": "enabled",
+        "oauth_configuration": "external_testing_saved",
+        "owner_test_user": "registered",
+        "owner_consent": "in_progress",
+        "public_submission_count": 0
+      }
     },
     {
       "id": "microsoft-office-addon",
@@ -49,17 +57,26 @@
       "manifest_validation": {
         "tool": "office-addin-manifest",
         "version": "3.0.1",
-        "observed_at": "2026-10-18T09:04:48.396646+00:00",
-        "manifest_sha256": "488957782faea38bd3ebe373ee1f2bdbb57a83be84719d6e312e6c29a68ac4c4",
+        "observed_at": "2026-10-18T09:29:11.895256+00:00",
+        "manifest_sha256": "170530e4b99e72bf7985f383bbdb9101838711721c3585243db8038d4f955a77",
         "development_validation": "passed",
-        "production_validation": "failed_unpublished_icons",
-        "production_errors": [
-          "High Resolution Icon URL Unreachable: /office/excel/icon-80.png",
-          "Icon URL Unreachable: /office/excel/icon-32.png"
-        ],
-        "next_action": "Publish the exact HTTPS icon assets, then rerun production validation and retain its result. This result does not establish native Excel acceptance."
+        "development_receipt": "microsoft-manifest-development.txt",
+        "development_receipt_sha256": "6a3ba8a89a9162f85b2dcc9e080e964c66576559d2f0276a845bf028409754cf",
+        "production_validation": "pending_public_assets",
+        "production_errors": [],
+        "previous_production_validation": {
+          "observed_at": "2026-10-18T09:04:48.396646+00:00",
+          "manifest_sha256": "488957782faea38bd3ebe373ee1f2bdbb57a83be84719d6e312e6c29a68ac4c4",
+          "result": "failed_unpublished_icons",
+          "errors": [
+            "High Resolution Icon URL Unreachable: /office/excel/icon-80.png",
+            "Icon URL Unreachable: /office/excel/icon-32.png"
+          ]
+        },
+        "next_action": "Publish the exact HTTPS assets, including the 64-pixel high-resolution icon, then rerun production validation and retain its result. Development validation does not establish native Excel acceptance."
       },
-      "package": "../excel/financial-evidence-excel.zip"
+      "package": "../excel/financial-evidence-excel.zip",
+      "store_logo": "assets/microsoft-store-logo-300.png"
     },
     {
       "id": "openbb-app-marketplace",

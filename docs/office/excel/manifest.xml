@@ -7,7 +7,7 @@
   <DisplayName DefaultValue="Financial Evidence"/>
   <Description DefaultValue="Compare funding evidence and covered-institution watchlists with source dates, coverage gaps and explicit missing values."/>
   <IconUrl DefaultValue="https://beepboop2025.github.io/financial-evidence-skills/office/excel/icon-32.png"/>
-  <HighResolutionIconUrl DefaultValue="https://beepboop2025.github.io/financial-evidence-skills/office/excel/icon-80.png"/>
+  <HighResolutionIconUrl DefaultValue="https://beepboop2025.github.io/financial-evidence-skills/office/excel/icon-64.png"/>
   <SupportUrl DefaultValue="https://beepboop2025.github.io/financial-evidence-skills/support/"/>
   <AppDomains><AppDomain>https://beepboop2025.github.io</AppDomain></AppDomains>
   <Hosts><Host Name="Workbook"/></Hosts>

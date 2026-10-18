@@ -2,7 +2,9 @@
 
 `icon.svg` is copied from the repository's existing Financial Evidence Inspector
 artwork at `docs/integrations/fdc3/evidence-inspector/icon.svg`. The PNGs are direct
-Chrome renders of that same SVG at 32, 64 and 128 pixels. The 220×140 card banner
+Chrome renders of that same SVG at 32, 64 and 128 pixels.
+`microsoft-store-logo-300.png` renders the unchanged SVG at 300×300 pixels for
+the Microsoft Marketplace store listing; its source mark and colors are identical. The 220×140 card banner
 uses the same mark, colors and plain product copy. No third-party logo is used.
 
 The banner is listing artwork, not a screenshot and not evidence of a native

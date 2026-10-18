@@ -29,15 +29,19 @@
     "native_screenshot_requirement": "Capture actual Sheets add-on use at 1280x800, 640x400 or 2560x1600. A browser desk screenshot does not establish a native add-on screenshot."
   },
   "account_configuration": {
-    "standard_cloud_project": null,
+    "standard_cloud_project": "linked",
     "script_id": null,
     "immutable_version": null,
     "test_deployment_id": null,
     "oauth_verification": "not_verified",
-    "marketplace_sdk_configuration": "not_verified",
+    "marketplace_sdk_configuration": "api_enabled_app_configuration_pending",
     "publisher_branding_and_domain": "not_verified",
     "review_submission_id": null,
-    "public_listing_url": null
+    "public_listing_url": null,
+    "oauth_configuration": "external_testing_saved",
+    "owner_test_user": "registered",
+    "owner_consent": "in_progress",
+    "configuration_observed_at": "2026-10-18T09:29:11.895256+00:00"
   },
   "official_requirements": [
     "https://developers.google.com/workspace/add-ons/how-tos/publish-add-on-overview",

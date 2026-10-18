@@ -187,8 +187,13 @@ def main():
                         frame = page.frame_locator("iframe")
                         frame.locator("#ce-cell-name").fill("A1")
                         frame.locator("#ce-cell-name").press("Enter")
-                        marker = "Field - native save verification"
-                        frame.locator("#ce-scroll-content").fill(marker)
+                        addition = " - native save verification"
+                        marker = expected[0]["rows"][0][0] + addition
+                        # Exercise real editor keystrokes: DOM fill() bypasses
+                        # ONLYOFFICE's cell model and appends stale cell text.
+                        frame.locator("#ce-scroll-content").click()
+                        frame.locator("#ce-scroll-content").press("End")
+                        frame.locator("#ce-scroll-content").press_sequentially(addition)
                         frame.locator("#ce-scroll-content").press("Enter")
                         saved_path = out / "onlyoffice-saved.xlsx"
                         deadline = time.monotonic() + 60
@@ -282,17 +287,30 @@ def main():
                     # to richdocuments/index lacks its required CSRF token.
                     page.goto("http://127.0.0.1/index.php/f/" + ids[suffix])
                     deadline = time.monotonic() + 120
-                    while time.monotonic() < deadline and not any("type=spreadsheet" in e for e in events):
+                    wanted_tabs = [sheet["name"] for sheet in expected]
+                    observed_tabs = []
+                    native_frame = None
+                    while time.monotonic() < deadline:
+                        for frame in page.frames:
+                            if ":9980/" in frame.url:
+                                observed_tabs = [text.strip() for text in frame.locator(".spreadsheet-tab").all_text_contents()]
+                                if observed_tabs == wanted_tabs:
+                                    native_frame = frame
+                                    break
+                        if native_frame:
+                            break
                         page.wait_for_timeout(1000)
+                    # Close the vendor's first-use tour through its visible UI.
+                    for frame in page.frames:
+                        close = frame.locator("#welcome-close")
+                        if close.count():
+                            close.click(timeout=5000)
                     page.screenshot(path=str(out / ("nextcloud-collabora-" + suffix + ".png")))
                     (out / ("nextcloud-collabora-" + suffix + "-visible.txt")).write_text(page.locator("body").inner_text())
-                    assert any("type=spreadsheet" in e for e in events), "Collabora spreadsheet status was not received through Nextcloud WOPI"
-                    frame = next(f for f in page.frames if ":9980/" in f.url)
-                    wanted_tabs = [sheet["name"] for sheet in expected]
-                    frame.locator(".spreadsheet-tab").first.wait_for(timeout=30000)
-                    observed_tabs = frame.locator(".spreadsheet-tab").all_text_contents()
-                    assert observed_tabs == wanted_tabs, (observed_tabs, wanted_tabs)
-                    check("nextcloud_collabora_" + suffix + "_browser_wopi_loaded", native_status=events[-1][:2000])
+                    assert native_frame and observed_tabs == wanted_tabs, ("Native editor did not show every source worksheet", observed_tabs, wanted_tabs)
+                    check("nextcloud_collabora_" + suffix + "_browser_wopi_loaded", sheet_tabs=observed_tabs,
+                          native_status=events[-1][:2000] if events else "not_exposed_by_cross_frame_browser",
+                          editor_url=native_frame.url.split("?")[0])
                     page.remove_listener("websocket", received)
                 browser.close()
                 browser = None

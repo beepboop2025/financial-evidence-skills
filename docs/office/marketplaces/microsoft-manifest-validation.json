@@ -1,13 +1,21 @@
 {
   "tool": "office-addin-manifest",
   "version": "3.0.1",
-  "observed_at": "2026-10-18T09:04:48.396646+00:00",
-  "manifest_sha256": "488957782faea38bd3ebe373ee1f2bdbb57a83be84719d6e312e6c29a68ac4c4",
+  "observed_at": "2026-10-18T09:29:11.895256+00:00",
+  "manifest_sha256": "170530e4b99e72bf7985f383bbdb9101838711721c3585243db8038d4f955a77",
   "development_validation": "passed",
-  "production_validation": "failed_unpublished_icons",
-  "production_errors": [
-    "High Resolution Icon URL Unreachable: /office/excel/icon-80.png",
-    "Icon URL Unreachable: /office/excel/icon-32.png"
-  ],
-  "next_action": "Publish the exact HTTPS icon assets, then rerun production validation and retain its result. This result does not establish native Excel acceptance."
+  "development_receipt": "microsoft-manifest-development.txt",
+  "development_receipt_sha256": "6a3ba8a89a9162f85b2dcc9e080e964c66576559d2f0276a845bf028409754cf",
+  "production_validation": "pending_public_assets",
+  "production_errors": [],
+  "previous_production_validation": {
+    "observed_at": "2026-10-18T09:04:48.396646+00:00",
+    "manifest_sha256": "488957782faea38bd3ebe373ee1f2bdbb57a83be84719d6e312e6c29a68ac4c4",
+    "result": "failed_unpublished_icons",
+    "errors": [
+      "High Resolution Icon URL Unreachable: /office/excel/icon-80.png",
+      "Icon URL Unreachable: /office/excel/icon-32.png"
+    ]
+  },
+  "next_action": "Publish the exact HTTPS assets, including the 64-pixel high-resolution icon, then rerun production validation and retain its result. Development validation does not establish native Excel acceptance."
 }

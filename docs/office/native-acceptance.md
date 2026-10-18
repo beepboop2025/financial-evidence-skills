@@ -3,6 +3,44 @@
 This page records completed native checks and their limits. A working import,
 query, marketplace listing and independent analyst adoption are different results.
 
+## Excel for the web — XLSX import and roundtrip passed
+
+On 18 October 2026, Excel for the web opened the synthetic review workbook and
+saved/downloaded it through its native interface. All **260 expected cells**
+matched after the roundtrip. The exact uploaded file, expected-cell fixture and
+downloaded workbook are bound by SHA-256:
+
+```text
+f23f3516d89b51784f171958928d514dd4e904e837066301ac30df1cbd857bd0  uploaded-review.xlsx
+a97fbdad2d3f44cc6212dcf832afe221ba4ff937cdfee06314315a6a0e599154  expected-cells.json
+bceffc5130f48b67648a6a2b852d6edf54286a274a81861d8cbc4013703fb2fb  excel-roundtrip.xlsx
+```
+
+The [fixture generator](https://github.com/beepboop2025/financial-evidence-skills/blob/b6266ce063d2b1c37ff4a47fb710ab8f72b3b495/scripts/create_office_fixtures.cjs)
+and [cell verifier](https://github.com/beepboop2025/financial-evidence-skills/blob/b6266ce063d2b1c37ff4a47fb710ab8f72b3b495/scripts/office_native/verify_cells.py)
+define the synthetic acceptance contract, including original source text,
+Unicode, booleans, zero, negative values, missing values and source gaps.
+The host was Excel for the web; its internal build number was not exposed in
+the recorded receipt. Account identifiers and private workbook URLs are not
+published.
+
+This proves the **XLSX snapshot import/save path**. The tested account exposed
+the Queries pane but no Get Data or New Query entry, so Excel-hosted Power Query
+creation/refresh was not completed. The [Office add-in](excel/README.md) is a
+separate implementation whose native host execution remains pending.
+
+## LibreOffice Calc on Linux — ODS and XLSX passed
+
+The [native Linux check](https://github.com/beepboop2025/financial-evidence-skills/actions/runs/39115197306/job/117639720098)
+passed on source `f85cc8c15a21e219aaa9ce019b1498b94fbe4446` using Ubuntu 24.04 and
+LibreOffice **24.2.7** (`4:24.2.7-0ubuntu0.24.04.7`). LibreOffice converted both
+generated ODS and XLSX files, and every expected cell matched after conversion.
+The retained `linux-office-acceptance` artifact includes the receipt and fixtures.
+
+The same job also checks the original files with independent readers, archive
+integrity and absence of unexpected formulas or external workbook links. These
+are native file-compatibility checks; they do not make the snapshots live queries.
+
 ## Microsoft Power Query engine — passed
 
 On 18 October 2026, the [Windows acceptance workflow](https://github.com/beepboop2025/financial-evidence-skills/actions/runs/39114203632)
@@ -49,10 +87,18 @@ published query source:
 
 This verifies **Microsoft Power Query runtime behavior with controlled HTTP
 fixtures**. It does not establish Excel UI refresh, live network authentication,
-an add-in marketplace approval or independent usage. Native Excel UI and live
-service checks require their own evidence.
+an add-in marketplace approval or independent usage. The Excel file import
+described above is a different path; it does not execute these queries.
 
 The [test harness](https://github.com/beepboop2025/financial-evidence-skills/tree/main/scripts/power_query_native)
 and [workflow](https://github.com/beepboop2025/financial-evidence-skills/blob/main/.github/workflows/power-query-native.yml)
 make the check repeatable. Microsoft's [PQTest commands](https://learn.microsoft.com/en-us/power-query/sdk-tools/pqtest-commands-options)
 describe the engine interface used here.
+
+## Other office paths
+
+The [compatibility table](compatibility.md) separates completed acceptance from
+available formats and pending host checks. Google Editor add-on execution,
+Excel Office add-in execution and marketplace review are not certified by the
+Power Query or workbook tests. Linux client results are added only after their
+native checks produce a completed receipt.

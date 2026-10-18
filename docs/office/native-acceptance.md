@@ -133,6 +133,13 @@ was blocked; its workbook cells were subsequently verified unchanged after the
 third capture. These captures contained no formula-like source strings, so
 native execution does not extend the isolated escaping test coverage.
 
+The final sidebar revision also passed a native validation/retry check. A
+six-currency selection displayed the expected error with focus on Close;
+Escape dismissed it and restored focus to Create review. A valid retry at
+`09:40:48.368Z` created six new tabs with three requests and zero failures,
+with synthetic verification selected. This was a UI check; its cells were not
+included in the full JSON comparisons above.
+
 This verifies the **bound sidebar, installed-state Editor live capture,
 enabled-state Editor menu/sidebar, typed cells, repeat behavior and preservation
 of existing analysis**. Google Workspace Marketplace approval remains separate.

@@ -19,7 +19,7 @@ import traceback
 import xml.etree.ElementTree as ET
 
 import requests
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import expect, sync_playwright
 
 from verify_cells import verify
 
@@ -100,6 +100,8 @@ def main():
     try:
         if args.engine == "onlyoffice":
             secret = secrets.token_urlsafe(36)
+            receipt["save_callbacks"] = []
+            receipt["force_save_results"] = []
             start("onlyoffice", ["--shm-size", "1g", "-e", "JWT_ENABLED=true", "-e", "JWT_SECRET=" + secret,
                                  "-e", "ALLOW_PRIVATE_IP_ADDRESS=true", "-e", "ALLOW_META_IP_ADDRESS=false"])
             wait_http("http://127.0.0.1/healthcheck")
@@ -112,12 +114,15 @@ def main():
                     length = int(self.headers.get("Content-Length", "0"))
                     assert 0 < length < 1024 * 1024
                     data = json.loads(self.rfile.read(length))
+                    receipt["save_callbacks"].append({"status": data.get("status"), "forcesavetype": data.get("forcesavetype")})
                     if data.get("status") in (2, 6):
                         url = data["url"]
                         assert url.startswith("http://127.0.0.1/"), "Save callback escaped the local engine"
                         saved = requests.get(url, timeout=60)
                         saved.raise_for_status()
-                        (out / "onlyoffice-saved.xlsx").write_bytes(saved.content)
+                        temporary = out / "onlyoffice-saved.xlsx.tmp"
+                        temporary.write_bytes(saved.content)
+                        temporary.replace(out / "onlyoffice-saved.xlsx")
                     self.send_response(200)
                     self.send_header("Content-Type", "application/json")
                     self.end_headers()
@@ -167,8 +172,9 @@ def main():
                 token = jwt(config, secret)
                 html = ('<!doctype html><html><head><title>Financial Evidence acceptance</title></head><body>'
                         '<div id="editor"></div><script src="http://127.0.0.1/web-apps/apps/api/documents/api.js"></script>'
-                        '<script>window.acceptance={ready:false,errors:[]};const config=' + json.dumps({**config, "token": token}) + ';'
+                        '<script>window.acceptance={ready:false,errors:[],stateChanges:[]};const config=' + json.dumps({**config, "token": token}) + ';'
                         'config.width="100%";config.height="900px";config.events={onDocumentReady:()=>window.acceptance.ready=true,'
+                        'onDocumentStateChange:e=>window.acceptance.stateChanges.push(e.data),'
                         'onError:e=>window.acceptance.errors.push(e.data)};new DocsAPI.DocEditor("editor",config);</script></body></html>')
                 (fixtures / ("editor-" + suffix + ".html")).write_text(html)
             with sync_playwright() as pw:
@@ -181,33 +187,46 @@ def main():
                     finally:
                         page.screenshot(path=str(out / ("onlyoffice-" + suffix + ".png")))
                     state = page.evaluate("window.acceptance")
-                    assert state == {"ready": True, "errors": []}, state
+                    assert state["ready"] is True and state["errors"] == [], state
                     check("onlyoffice_" + suffix + "_browser_document_ready")
                     if suffix == "xlsx":
-                        frame = page.frame_locator("iframe")
-                        frame.locator("#ce-cell-name").fill("A1")
-                        frame.locator("#ce-cell-name").press("Enter")
-                        addition = " - native save verification"
-                        marker = expected[0]["rows"][0][0] + addition
-                        # Exercise real editor keystrokes: DOM fill() bypasses
-                        # ONLYOFFICE's cell model and appends stale cell text.
-                        frame.locator("#ce-scroll-content").click()
-                        frame.locator("#ce-scroll-content").press("End")
-                        frame.locator("#ce-scroll-content").press_sequentially(addition)
-                        frame.locator("#ce-scroll-content").press("Enter")
-                        saved_path = out / "onlyoffice-saved.xlsx"
-                        deadline = time.monotonic() + 60
-                        while time.monotonic() < deadline and not saved_path.exists():
-                            page.wait_for_timeout(2000)
-                            payload = {"c": "forcesave", "key": editor_keys[suffix]}
-                            response = requests.post("http://127.0.0.1/command", json={**payload, "token": jwt(payload, secret)}, timeout=10)
-                            response.raise_for_status()
-                            result = response.json()
-                            assert result.get("error") in (0, 4), result
-                        assert saved_path.exists(), "Native editor did not save the changed XLSX through its callback"
-                        changed = copy.deepcopy(expected)
-                        changed[0]["rows"][0][0] = marker
-                        check("onlyoffice_xlsx_native_edit_save_all_cells", cells=verify(saved_path, changed))
+                        try:
+                            frame = page.frame_locator("iframe")
+                            frame.locator("#ce-cell-name").fill("A1")
+                            frame.locator("#ce-cell-name").press("Enter")
+                            addition = " - native save verification"
+                            original = expected[0]["rows"][0][0]
+                            marker = original + addition
+                            editor = frame.locator("#ce-scroll-content")
+                            # Wait for native selection before typing; onDocumentReady
+                            # alone does not establish the formula editor's state.
+                            expect(editor).to_have_text(original, timeout=10000)
+                            editor.click()
+                            editor.press("End")
+                            editor.press_sequentially(addition, delay=50)
+                            expect(editor).to_have_text(marker, timeout=10000)
+                            editor.press("Enter")
+                            # The vendor event is true for an edit and false once
+                            # changes reach the editing service. Never force-save
+                            # before this actual native commit is observed.
+                            page.wait_for_function("window.acceptance.stateChanges.includes(true) && window.acceptance.stateChanges.at(-1) === false", timeout=30000)
+                            saved_path = out / "onlyoffice-saved.xlsx"
+                            deadline = time.monotonic() + 60
+                            while time.monotonic() < deadline and not saved_path.exists():
+                                page.wait_for_timeout(2000)
+                                payload = {"c": "forcesave", "key": editor_keys[suffix]}
+                                response = requests.post("http://127.0.0.1/command", json={**payload, "token": jwt(payload, secret)}, timeout=10)
+                                response.raise_for_status()
+                                result = response.json()
+                                receipt["force_save_results"].append({"error": result.get("error")})
+                                assert result.get("error") in (0, 4), result
+                            assert saved_path.exists(), "Native editor did not save the changed XLSX through its callback"
+                            changed = copy.deepcopy(expected)
+                            changed[0]["rows"][0][0] = marker
+                            check("onlyoffice_xlsx_native_edit_save_all_cells", cells=verify(saved_path, changed))
+                        finally:
+                            receipt["onlyoffice_editor_state"] = page.evaluate("window.acceptance")
+                            page.screenshot(path=str(out / "onlyoffice-xlsx-after-edit.png"))
                 browser.close()
                 browser = None
         else:

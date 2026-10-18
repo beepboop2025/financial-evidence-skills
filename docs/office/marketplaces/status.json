@@ -1,6 +1,6 @@
 {
   "schema": "financial-evidence.office-marketplaces.v1",
-  "observed_at": "2026-10-18T09:38:33.376932+00:00",
+  "observed_at": "2026-10-18T09:45:31.532243+00:00",
   "new_submissions": 0,
   "new_accounts": 0,
   "paid_commitments": 0,
@@ -20,10 +20,23 @@
         "native_menu_sidebar_insertion": "passed_bound_development_copy",
         "editor_addon_install_lifecycle": "test_deployment_authmode_none_and_limited_passed",
         "oauth_consent": "passed_owner_test_user",
-        "public_listing": "not_submitted"
+        "public_listing": "not_submitted",
+        "final_sidebar_native": {
+          "state": "passed",
+          "successful_capture_at": "2026-10-18T09:40:48.368Z",
+          "validation_dialog": "six_currency_selection_error_displayed",
+          "keyboard": "close_focus_and_escape_restore_create_review",
+          "valid_retry": {
+            "created_new_tabs": 6,
+            "requests": 3,
+            "failed_requests": 0,
+            "synthetic": true
+          },
+          "official_google_stylesheet": "confirmed_in_saved_host_source",
+          "scope": "owner_test_deployment_not_public_installation"
+        }
       },
       "remaining": [
-        "Retest final review-compliant sidebar UI in Google host",
         "Create immutable tested script version and finish Marketplace SDK application configuration",
         "Complete brand and sensitive-scope OAuth verification",
         "Publish final assets and add a real host screenshot",

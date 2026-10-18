@@ -41,7 +41,7 @@
     "oauth_configuration": "external_testing_saved",
     "owner_test_user": "registered",
     "owner_consent": "passed",
-    "configuration_observed_at": "2026-10-18T09:38:33.376932+00:00",
+    "configuration_observed_at": "2026-10-18T09:45:31.532243+00:00",
     "brand_verification": "pending",
     "scope_classifications": {
       "https://www.googleapis.com/auth/spreadsheets.currentonly": "non_sensitive",
@@ -50,7 +50,9 @@
     },
     "scope_classification_source": "Google Auth Platform Data Access; all three manifest scopes saved and inspected by publisher",
     "native_bound_sidebar": "passed",
-    "editor_addon_test_deployment": "authmode_none_and_limited_passed"
+    "editor_addon_test_deployment": "authmode_none_and_limited_passed",
+    "final_sidebar_native": "passed_validation_dialog_focus_escape_and_valid_retry",
+    "final_sidebar_native_observed_at": "2026-10-18T09:40:48.368Z"
   },
   "official_requirements": [
     "https://developers.google.com/workspace/add-ons/how-tos/publish-add-on-overview",

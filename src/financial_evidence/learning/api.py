@@ -134,6 +134,8 @@ def create_app(store, *, purge_interval=3600):
         return JSONResponse(status_code=200 if healthy else 503, content={
             "status": "ok" if healthy else "degraded", "schema": "financial-evidence.learning.v1",
             "explicit_enrollment_required": True, "training_admission": "local_operator_review_only",
+            "measurement_contract": "structured-feedback-v1",
+            "product_learning_report": "financial-evidence.product-learning.v1",
             "retention": {**maintenance, "worker_running": running},
         })
 

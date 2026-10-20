@@ -490,9 +490,10 @@ class LearningStore:
             decisions = db.execute("SELECT count(*) FROM records WHERE kind='decision'" + scope, parameters).fetchone()[0]
             outcomes = db.execute("SELECT count(*) FROM records WHERE kind='outcome'" + scope, parameters).fetchone()[0]
             verified = db.execute("SELECT count(*) FROM outcome_reviews WHERE 1=1" + scope, parameters).fetchone()[0]
-        modes = Counter(event["mode"] for _, event in events)
-        operational = [event for _, event in events]
-        useful = [(owner, event) for owner, event in events if event.get("useful") and event["mode"] in {"shadow", "paper", "operator_reported_production"}]
+        from .insights import confirmed_workflows, summarize
+        operational = [event for _, event in events if not c.is_feedback(event)]
+        modes = Counter(event["mode"] for event in operational)
+        useful = confirmed_workflows(events)
         histories = {}
         for owner, event in useful:
             histories.setdefault(owner, []).append(event["occurred_at"])
@@ -504,7 +505,8 @@ class LearningStore:
                                "window_days": [start, end], "cohort": "tenant first confirmed useful shadow/paper/operator-reported production completion"}
         durations = sorted(event["duration_ms"] for event in operational)
         costs = [event["cost_usd"] for event in operational if "cost_usd" in event]
-        useful_ids = {(owner, event.get("logical_workflow_id", event["id"])) for owner, event in useful}
+        useful_ids = {(owner, event["product"], event["task"], event["mode"],
+                       event.get("logical_workflow_id", event["id"])) for owner, event in useful}
         eligible_cost_events = [event for event in operational if event["mode"] in {"shadow", "paper", "operator_reported_production"}]
         useful_costs = [event["cost_usd"] for event in eligible_cost_events if "cost_usd" in event]
         daily_cost = {}
@@ -516,7 +518,10 @@ class LearningStore:
                 bucket["known_cost_usd"] += event["cost_usd"]
                 bucket["observed_requests"] += 1
         return {"as_of": now, "coverage": "explicitly enrolled submissions only; absent measurements are unknown",
-                "requests": len(events), "by_mode": dict(sorted(modes.items())),
+                "requests": len(operational), "by_mode": dict(sorted(modes.items())),
+                "measurement_records": len(events),
+                "feedback_records": len(events) - len(operational),
+                "product_learning": summarize(events),
                 "by_product_tool": dict(sorted(Counter(event["product"] + ":" + event["tool"] for event in operational).items())),
                 "errors": sum(event["status"] == "error" for event in operational),
                 "refused": sum(event["status"] == "refused" for event in operational), "stale": sum(event["status"] == "stale" for event in operational),
@@ -528,7 +533,7 @@ class LearningStore:
                 "enrolled_tenants": len(tenants), "verified_organisation_workspaces": sum(row["organisation_verified"] for row in tenants),
                 "distinct_organisations": None,
                 "retention": retention, "known_cost_usd": sum(costs), "cost_observed_requests": len(costs),
-                "cost_eligible_requests": len(events), "cost_by_utc_day": dict(sorted(daily_cost.items())),
+                "cost_eligible_requests": len(operational), "cost_by_utc_day": dict(sorted(daily_cost.items())),
                 "cost_per_useful_workflow_usd": sum(useful_costs) / len(useful_ids) if useful_ids and len(useful_costs) == len(eligible_cost_events) else None,
                 "cost_per_useful_workflow_scope": "all measured shadow/paper/operator-reported production requests, excluding tests/backtests/unknown",
                 "outcome_coverage": {"decisions": decisions, "linked_outcomes": outcomes, "reviewer_verified_outcomes": verified,

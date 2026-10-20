@@ -142,6 +142,29 @@ class LearningAPITests(unittest.TestCase):
         self.assertEqual(self.client.post("/v1/events", headers=self.headers, content="{}",).status_code, 415)
         self.assertEqual(self.store.report(self.token)["requests"], 0)
 
+    def test_structured_feedback_round_trip_is_private_and_not_a_second_request(self):
+        from financial_evidence.learning.contracts import digest
+        health = self.client.get("/health").json()
+        self.assertEqual(health["measurement_contract"], "structured-feedback-v1")
+        attempt = {**self.event, "mode": "paper", "logical_workflow_id": "review",
+                   "event_kind": "attempt"}
+        feedback = {**attempt, "id": "feedback", "event_kind": "feedback", "duration_ms": 0,
+                    "useful": False, "feedback_reason": "missing_data", "data_gaps": ["historical_depth"]}
+        for value in (attempt, feedback, feedback):
+            response = self.client.post("/v1/events", headers=self.headers, json=value)
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.json()["sha256"], digest(value))
+        response = self.client.get("/v1/report", headers=self.headers)
+        self.assertEqual(response.headers["cache-control"], "no-store")
+        report = response.json()
+        self.assertEqual(report["requests"], 1)
+        self.assertEqual(report["feedback_records"], 1)
+        self.assertEqual(report["product_learning"]["requested_data"][0]["affected_workflows"], 1)
+        self.assertNotIn(self.enrollment["tenant_id"], response.text)
+        bad = {**feedback, "id": "private-feedback", "feedback_reason": "private portfolio"}
+        self.assertEqual(self.client.post("/v1/events", headers=self.headers, json=bad).status_code, 422)
+        self.assertNotIn("private portfolio", self.client.get("/v1/report", headers=self.headers).text)
+
     def test_withdraw_and_delete_own_records_only(self):
         other = self.store.enroll(purposes=["measurement"], policy_version="v1", expires_at=self.now + 10000)
         self.client.post("/v1/events", headers=self.headers, json=self.event)

@@ -27,6 +27,10 @@ def add_parser(commands):
     choice = feedback.add_mutually_exclusive_group(required=True)
     choice.add_argument("--useful", action="store_true")
     choice.add_argument("--not-useful", action="store_true")
+    feedback.add_argument("--reason", choices=sorted(c.FEEDBACK_REASONS),
+                          help="optional reason or improvement category; no private text")
+    feedback.add_argument("--data-gap", action="append", choices=sorted(c.DATA_GAPS),
+                          help="requested coverage category; repeat up to five times")
     feedback.add_argument("--share", action="store_true")
     decision = sub.add_parser("decision", help="bind supplied numeric decision evidence to a retained run")
     decision.add_argument("run_id")
@@ -134,7 +138,8 @@ def execute(args):
                 print(json.dumps(result, indent=2, allow_nan=False))
             return 0 if result["status"] == "ready_for_review" else 2
         if args.workflow_command == "feedback":
-            result = workflow.feedback(args.run_id, useful=args.useful, share=args.share)
+            result = workflow.feedback(args.run_id, useful=args.useful, reason=args.reason,
+                                       data_gaps=args.data_gap, share=args.share)
         elif args.workflow_command == "decision":
             result = workflow.record_decision(args.run_id, _record(args.record), share=args.share)
         elif args.workflow_command == "outcome":

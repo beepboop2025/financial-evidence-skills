@@ -85,6 +85,22 @@ receipt; reusing an id with changed content fails. Use separate attempt ids for
 actual retries and a common logical workflow id where permitted. Old activity
 predating measurement enrollment cannot be backfilled.
 
+The optional `event_kind` is `attempt` or `feedback`; older records without it
+remain supported. A `feedback` record requires `useful`, `logical_workflow_id`
+and zero duration, and cannot include request cost/cache/source-age fields.
+Workflow clients now distinguish access refusal, rate limiting, monitor blocks
+and other failures through an allowlisted `failure_reason` on failed attempts.
+Successful attempts have no failure reason. Responses, URLs and error bodies
+are never copied into these categories.
+
+Explicit ratings may add an allowlisted `feedback_reason` and one to five
+`data_gaps`. See the [workflow feedback categories](agent-workflows.md).
+These remain measurement-only records and do not create private-evidence or
+training permission. Deploy the receiving service before distributing an
+updated client: an older receiver rejects unknown fields visibly, and rejected
+outbox records require operator attention. It must not silently strip fields or
+claim a successful delivery.
+
 ## Explicit remote ingestion
 
 Install the repository's `workspace` optional dependencies. Start the dedicated
@@ -234,7 +250,26 @@ useful workflow is reported only when all measured shadow/paper/production-scope
 requests have cost observations. Tests, backtests and unknown traffic are shown
 separately and excluded from that denominator.
 
-Retention cohorts use the first retained confirmed-useful completion per tenant.
+`requests`, per-tool/mode totals, latency, failures and request-cost denominators
+exclude separate feedback records. `measurement_records` includes both and
+`feedback_records` gives their separate count. Existing workflow feedback is
+recognized by its exact legacy tool/ID/zero-duration shape without rewriting
+stored content or receipts.
+
+The private `product_learning` report adds feedback coverage, unanswered and
+conflicting ratings, recurring problems, and requested data categories by
+product/task. Priorities use unique affected workspaces and workflows, excluding
+test/backtest/unknown events. Automated failure categories and reported feedback
+retain distinct labels. Feedback-only submissions remain visible but cannot
+manufacture observed requests or useful completions in this report.
+Its scope is retained participating workspaces, not all users or organizations.
+The HTTP report remains scoped to the caller; only local operator reports
+aggregate workspaces. Expiry, deletion and withdrawal with deletion remove the
+associated signals through the existing measurement-record lifecycle.
+
+Retention cohorts use the first retained successful attempt in a confirmed-useful
+workflow per tenant. A later feedback submission does not create a return visit;
+feedback without a retained successful attempt cannot establish a completion.
 D7 return means another useful completion in days 7–13 and is evaluated only
 after day 14; D30 uses days 30–36 after day 37. Reports include numerator,
 eligible denominator and window. These are retained, instrumented workspace

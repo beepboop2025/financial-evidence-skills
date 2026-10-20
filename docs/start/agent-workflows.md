@@ -88,6 +88,33 @@ financial-evidence workflow show RUN_ID --state ./funding-reviews
 Use `--not-useful` for a negative rating. Feedback is immutable and idempotent;
 repeating the rating does not inflate the useful-workflow count.
 
+Optionally select a reason and the kind of additional data that would help:
+
+```sh
+financial-evidence workflow feedback RUN_ID --not-useful \
+  --reason missing_data --data-gap historical_depth --state ./funding-reviews
+financial-evidence workflow report --state ./funding-reviews
+```
+
+Reasons are `missing_data`, `stale_data`, `incorrect_data`, `unclear_output`,
+`access_blocked`, `slow_response`, `workflow_mismatch` and `other`. Data requests
+are `historical_depth`, `country_coverage`, `institution_coverage`,
+`venue_coverage`, `update_frequency`, `source_provenance` and `series_coverage`;
+repeat `--data-gap` for up to five different categories. A useful result can
+still have a coverage gap. No free text, private selector, source response,
+prompt or portfolio is accepted in these fields. Choose the full feedback once:
+its rating, reason and data requests are immutable together.
+
+The `product_learning` report separates observed attempts, explicit feedback,
+unanswered workflows, recurring failures and requested coverage by product/task.
+It counts each affected workflow/workspace once per category and orders priorities
+by affected workspaces, then workflows. It excludes `test`, `backtest` and
+`unknown` modes from priorities; set the run's actual mode explicitly.
+Missing feedback stays unknown, conflicting ratings stay unresolved, and
+feedback without a retained attempt is shown separately. Workspaces are not
+verified people or customers. Data requests inform coverage review; they do not
+authorize new source access or establish demand outside participating workspaces.
+
 Supply your application's actual numeric decision/outcome records under the
 [existing learning contracts](learning.md). A decision includes `id`,
 `decided_at`, `target`, `entity`, `horizon_seconds`, `mode`, `data_features` and
@@ -121,8 +148,10 @@ financial-evidence workflow feedback RUN_ID --useful --state ./shared-reviews --
 financial-evidence workflow deliver --state ./shared-reviews
 ```
 
-`--share-usage` queues bounded product/tool/task, time, duration, mode and version
-metadata. It excludes research results, selectors, prompts and credentials.
+`--share-usage` queues bounded product/tool/task, time, duration, mode, version
+and categorized failure metadata. It excludes research results, selectors, prompts
+and credentials. Feedback categories stay local unless that feedback command
+also uses `--share`; run sharing does not imply feedback sharing.
 Decision/outcome records need their own `--share`; share the decision before its
 outcome. Later sharing remains subject to the service's permission and
 no-backfill checks. Nothing grants training rights automatically.

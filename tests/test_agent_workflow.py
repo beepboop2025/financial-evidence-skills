@@ -306,6 +306,44 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(report["operator_confirmed_useful_workflows"], 1)
         self.assertEqual(report["outcome_records"], 0)
 
+    def test_structured_feedback_cli_stays_local_and_immutable(self):
+        run = self.workflow.run("funding")
+        with patch("financial_evidence.workflow_cli.AgentWorkflow", return_value=self.workflow), \
+                patch.object(RemoteLearningClient, "_send", side_effect=AssertionError("upload")):
+            with contextlib.redirect_stdout(io.StringIO()) as output:
+                status = cli.main(["workflow", "feedback", run["run_id"], "--not-useful",
+                                   "--reason", "missing_data", "--data-gap", "historical_depth",
+                                   "--state", str(self.root)])
+        self.assertEqual(status, 0)
+        self.assertEqual(json.loads(output.getvalue())["sharing"], "local_only")
+        report = self.workflow.report()["product_learning"]
+        self.assertEqual(report["not_useful_workflows"], 1)
+        self.assertEqual(report["requested_data"][0]["category"], "historical_depth")
+        self.assertEqual(report["recurring_problems"][0]["category"], "missing_data")
+        self.workflow.feedback(run["run_id"], useful=False, reason="missing_data",
+                               data_gaps=["historical_depth"])
+        with self.assertRaises(ValueError):
+            self.workflow.feedback(run["run_id"], useful=False, reason="stale_data",
+                                   data_gaps=["historical_depth"])
+        with self.assertRaises(ValueError):
+            self.workflow.feedback(run["run_id"], useful=False, reason="missing_data",
+                                   data_gaps=["venue_coverage"])
+
+    def test_failure_measurement_is_bounded_and_distinguishes_denial(self):
+        def fail(*args, **kwargs):
+            raise HTTPError("https://private.example/secret", 429, "private body", Message(), None)
+        workflow = self.new_workflow(learning=self.learning, share_usage=True)
+        workflow.review_fetcher = fail
+        run = workflow.run("funding")
+        workflow.feedback(run["run_id"], useful=False, reason="access_blocked", share=True)
+        self.assertEqual(workflow.deliver()["delivered"], 2)
+        event = self.learning.calls[0][1]
+        self.assertEqual(event["status"], "refused")
+        self.assertEqual(event["failure_reason"], "rate_limited")
+        self.assertNotIn("private", json.dumps(self.learning.calls))
+        self.assertNotIn("failure_reason", self.learning.calls[1][1])
+        self.assertEqual(workflow.report()["product_learning"]["observed_attempts"], 1)
+
     def test_test_and_backtest_usage_is_excluded_and_labelled_at_both_reads(self):
         for mode in ("test", "backtest"):
             self.workflow.mode = mode

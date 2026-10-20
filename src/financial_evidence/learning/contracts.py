@@ -13,6 +13,19 @@ PRODUCTS = frozenset({"liquilens", "seiche", "undertow", "palimpsest", "noiseflo
                       "riptide", "myquant-editorial", "myquant-app", "trade-safety", "financial-evidence", "research-data", "seiche-market-corpus"})
 TASKS = frozenset({"money_markets", "funding_review", "liquidity", "institution_evidence", "china_macro", "research", "other"})
 MODES = frozenset({"unknown", "test", "backtest", "shadow", "paper", "operator_reported_production"})
+FEEDBACK_REASONS = frozenset({
+    "missing_data", "stale_data", "incorrect_data", "unclear_output",
+    "access_blocked", "slow_response", "workflow_mismatch", "other",
+})
+DATA_GAPS = frozenset({
+    "historical_depth", "country_coverage", "institution_coverage",
+    "venue_coverage", "update_frequency", "source_provenance", "series_coverage",
+})
+FAILURE_REASONS = frozenset({
+    "authentication_required", "access_denied", "rate_limited", "access_restricted",
+    "upstream_http_error", "monitor_blocked", "context_unavailable",
+    "evidence_unavailable", "source_read_or_contract_validation_failed",
+})
 LABEL = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.:/-]{0,95}\Z")
 SHA = re.compile(r"[a-f0-9]{64}\Z")
 DEFAULT_TARGET = {
@@ -61,7 +74,8 @@ def choice(value, options, name):
 def tool_event(value, now):
     object_fields(value, {"id", "product", "tool", "task", "occurred_at", "duration_ms", "status", "mode"},
                   {"cached", "useful", "cost_usd", "source_age_seconds", "logical_workflow_id",
-                   "client_version", "model_version", "config_version", "available_tools"})
+                   "client_version", "model_version", "config_version", "available_tools",
+                   "event_kind", "failure_reason", "feedback_reason", "data_gaps"})
     for key in ("id", "tool", "logical_workflow_id", "client_version", "model_version", "config_version"):
         if key in value:
             label(value[key], key)
@@ -77,6 +91,29 @@ def tool_event(value, now):
             raise ValueError(f"invalid {key}")
     if value.get("useful") and value["status"] != "success":
         raise ValueError("a failed/refused/stale result cannot be a useful completion")
+    if "event_kind" in value:
+        choice(value["event_kind"], {"attempt", "feedback"}, "event kind")
+    if value.get("event_kind") == "feedback":
+        if "useful" not in value or "logical_workflow_id" not in value:
+            raise ValueError("feedback requires usefulness and a logical workflow")
+        if value["duration_ms"] != 0 or any(key in value for key in ("cost_usd", "cached", "source_age_seconds")):
+            raise ValueError("feedback is not another measured request")
+    if "failure_reason" in value:
+        choice(value["failure_reason"], FAILURE_REASONS, "failure reason")
+        if value["status"] == "success" or value.get("event_kind") == "feedback":
+            raise ValueError("failure reason belongs to an unsuccessful attempt")
+    if "feedback_reason" in value:
+        choice(value["feedback_reason"], FEEDBACK_REASONS, "feedback reason")
+        if "useful" not in value:
+            raise ValueError("feedback reason requires explicit usefulness")
+    if "data_gaps" in value:
+        gaps = value["data_gaps"]
+        if "useful" not in value or not isinstance(gaps, list) or not 1 <= len(gaps) <= 5:
+            raise ValueError("data gaps require explicit usefulness and one to five categories")
+        for gap in gaps:
+            choice(gap, DATA_GAPS, "data gap")
+        if len(set(gaps)) != len(gaps):
+            raise ValueError("duplicate data gap")
     for key in ("cost_usd", "source_age_seconds"):
         if key in value:
             number(value[key], key, 0, 1e9)
@@ -87,6 +124,16 @@ def tool_event(value, now):
         for item in options:
             label(item, "available tool")
     return json.loads(encode(value))
+
+
+def is_feedback(value):
+    """Recognize explicit feedback and the exact pre-event-kind workflow shape."""
+    if "event_kind" in value:
+        return value["event_kind"] == "feedback"
+    workflow = value.get("logical_workflow_id")
+    return (value.get("tool") == "financial_evidence_workflow"
+            and isinstance(workflow, str) and value.get("id") == workflow + ":feedback"
+            and "useful" in value and value.get("duration_ms") == 0)
 
 
 def evidence_ref(value):

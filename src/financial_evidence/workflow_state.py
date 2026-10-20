@@ -17,6 +17,7 @@ import uuid
 
 from .learning import contracts as c
 from .learning.client import LearningDeliveryError
+from .learning.insights import summarize
 
 DAY = 86400
 VALIDATORS = {"tool": c.tool_event, "decision": c.decision, "outcome": c.outcome}
@@ -272,16 +273,16 @@ class WorkflowState:
             runs = [self._decode(row) for row in db.execute("SELECT payload,sha256 FROM runs")]
             records = [(row["kind"], self._decode(row)) for row in db.execute("SELECT kind,payload,sha256 FROM records")]
         eligible = [run for run in runs if run["mode"] in {"shadow", "paper", "operator_reported_production"}]
-        useful = [value for kind, value in records if kind == "tool" and value.get("useful") is True
-                  and value["mode"] in {"shadow", "paper", "operator_reported_production"}]
+        learning = summarize([("local", value) for kind, value in records if kind == "tool"])
         return {"schema": "financial-evidence.workflow-report.v1", "as_of": self.clock(),
                 "scope": "This local journal only; no inference of distinct agents, people or organisations.",
                 "runs": len(runs), "by_status": dict(Counter(run["status"] for run in runs)),
                 "by_mode": dict(Counter(run["mode"] for run in runs)),
                 "eligible_usage_runs": len(eligible),
                 "active_utc_days": len({int(run["completed_at"] // DAY) for run in eligible}),
-                "operator_confirmed_useful_workflows": len({value["logical_workflow_id"] for value in useful}),
+                "operator_confirmed_useful_workflows": learning["confirmed_useful_workflows"],
                 "usefulness_is_operator_reported": True,
+                "product_learning": learning,
                 "decision_records": sum(kind == "decision" for kind, _ in records),
                 "outcome_records": sum(kind == "outcome" for kind, _ in records),
                 "independently_verified_outcomes": None, "outbox": self.outbox_status(),

@@ -140,13 +140,22 @@ class AgentWorkflow:
     @staticmethod
     def _event(run):
         status = {"ready_for_review": "success", "blocked_monitor": "stale"}.get(run["status"], "error")
-        return {"id": run["run_id"] + ":read", "logical_workflow_id": run["run_id"],
+        failure = (run.get("access_failure") or {}).get("reason")
+        if failure in {"authentication_required", "access_denied", "access_restricted", "rate_limited"}:
+            status = "refused"
+        event = {"id": run["run_id"] + ":read", "logical_workflow_id": run["run_id"],
                 "product": PRODUCTS[run["workflow"]], "tool": "financial_evidence_workflow",
                 "task": TASKS[run["workflow"]], "occurred_at": run["completed_at"],
                 "duration_ms": run["duration_ms"], "status": status, "mode": run["mode"],
-                "client_version": __version__, "config_version": "agent-workflow.v1"}
+                "client_version": __version__, "config_version": "agent-workflow.v2",
+                "event_kind": "attempt"}
+        if status != "success":
+            event["failure_reason"] = failure or (
+                "monitor_blocked" if run["status"] == "blocked_monitor"
+                else run.get("error", run["status"]))
+        return event
 
-    def feedback(self, run_id, *, useful, share=False):
+    def feedback(self, run_id, *, useful, reason=None, data_gaps=None, share=False):
         """A separate operator confirmation; never inferred from HTTP success."""
         if type(useful) is not bool:
             raise ValueError("useful must be an explicit boolean")
@@ -155,14 +164,21 @@ class AgentWorkflow:
         if useful and run["status"] != "ready_for_review":
             raise ValueError("a blocked or unavailable review cannot be a useful completion")
         event = {**self._event(run), "id": run_id + ":feedback",
-                 "occurred_at": c.moment(self.clock()), "useful": useful, "duration_ms": 0}
+                 "occurred_at": c.moment(self.clock()), "useful": useful, "duration_ms": 0,
+                 "event_kind": "feedback"}
+        event.pop("failure_reason", None)
+        if reason is not None:
+            event["feedback_reason"] = reason
+        if data_gaps is not None:
+            event["data_gaps"] = data_gaps
+        event = c.tool_event(event, self.clock())
         try:
             previous = self.state.get_record("tool", event["id"])
         except ValueError as exc:
             if str(exc) != "learning record not found in this workflow journal":
                 raise
         else:
-            if previous.get("useful") != useful:
+            if any(previous.get(key) != event.get(key) for key in ("useful", "feedback_reason", "data_gaps")):
                 raise ValueError("workflow feedback is immutable")
             event = previous
         return self.state.record("tool", event, client=client)

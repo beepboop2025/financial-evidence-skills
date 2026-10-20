@@ -126,24 +126,24 @@ jobs:
         with:
           persist-credentials: false
       - name: Pull the immutable public release
-        run: docker pull --platform '${{ matrix.platform }}' ghcr.io/beepboop2025/financial-evidence-skills@sha256:fe6f3ab3509edc29c805aefc5985df754d9f0411346f52ea8c8adb1c0e9b454c
+        run: docker pull --platform '${{ matrix.platform }}' ghcr.io/beepboop2025/financial-evidence-skills@sha256:01a9e6f3c9d0287c18500bf2631a4f3e6dc92996cdc6c8f395742fbecd8a4db8
       - name: Exercise the published stdio contract without network access
         env:
           TESTED_PLATFORM: ${{ matrix.platform }}
         run: |
-          python3 scripts/verify_published_mcp.py --contract integrations/financial-evidence-mcp-v0.1.13.json --receipt published-mcp-receipt.json -- \
+          python3 scripts/verify_published_mcp.py --contract integrations/financial-evidence-mcp-v0.1.14.json --receipt published-mcp-receipt.json -- \
             docker run --rm --interactive --platform "$TESTED_PLATFORM" --pull never --read-only --network none \
             --cap-drop ALL --security-opt no-new-privileges --pids-limit 64 \
             --memory 128m --cpus 1 \
-            ghcr.io/beepboop2025/financial-evidence-skills@sha256:fe6f3ab3509edc29c805aefc5985df754d9f0411346f52ea8c8adb1c0e9b454c
+            ghcr.io/beepboop2025/financial-evidence-skills@sha256:01a9e6f3c9d0287c18500bf2631a4f3e6dc92996cdc6c8f395742fbecd8a4db8
           python3 - <<'PY'
           import json, os, pathlib, subprocess
-          image = "ghcr.io/beepboop2025/financial-evidence-skills@sha256:fe6f3ab3509edc29c805aefc5985df754d9f0411346f52ea8c8adb1c0e9b454c"
+          image = "ghcr.io/beepboop2025/financial-evidence-skills@sha256:01a9e6f3c9d0287c18500bf2631a4f3e6dc92996cdc6c8f395742fbecd8a4db8"
           details = json.loads(subprocess.check_output(["docker", "image", "inspect", image]))[0]
           platform = details["Os"] + "/" + details["Architecture"]
           assert platform == os.environ["TESTED_PLATFORM"]
-          assert details["Config"]["Labels"]["org.opencontainers.image.revision"] == "e93613059bd65c1534ca0d65c0390dba348e165f"
-          assert details["Config"]["Labels"]["org.opencontainers.image.version"] == "0.1.13"
+          assert details["Config"]["Labels"]["org.opencontainers.image.revision"] == "a4f34de3fc48b1a252ded5d06350340fa791239b"
+          assert details["Config"]["Labels"]["org.opencontainers.image.version"] == "0.1.14"
           assert details["Config"]["User"] == "65532:65532"
           path = pathlib.Path("published-mcp-receipt.json")
           receipt = json.loads(path.read_text())

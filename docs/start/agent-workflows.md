@@ -5,7 +5,8 @@ the last successful capture. The main Python package includes a private journal,
 explicit usefulness feedback, decision/outcome records and optional delivery
 queue. Public research uses the existing central gateway without a key.
 
-Install the published Python package, then run a review:
+Install the published Python package, then run a review. Offline Markdown display
+and retained-review comparison require version 0.1.14 or newer:
 
 ```sh
 python3 -m pip install --upgrade financial-evidence

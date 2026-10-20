@@ -42,6 +42,21 @@ financial-evidence review exit --selection 10000 --output reviews
 Use `--verification` for installation or CI checks so those reads are labelled
 synthetic. Installation starts no scheduler. An unavailable result remains a gap.
 
+## Retain reviews when a source becomes unavailable
+
+Version 0.1.14 preserves access-denial and rate-limit diagnostics, and adds
+local-only `workflow show` and `workflow compare` commands for saved runs:
+
+```sh
+financial-evidence workflow show RUN_ID --state ./funding-reviews --format markdown
+financial-evidence workflow compare EARLIER_RUN_ID LATER_RUN_ID --state ./funding-reviews --format json
+```
+
+These commands read retained evidence without requesting fresh source data.
+Original observation clocks and hashes remain attached. An unavailable or
+blocked source remains a gap; saved output is not a current market quote.
+Learning and remote sharing remain explicitly opt-in.
+
 ## Choose the product for your question
 
 | Product | Research scope | API and MCP guide |

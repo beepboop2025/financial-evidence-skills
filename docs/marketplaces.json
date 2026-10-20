@@ -1,8 +1,8 @@
 {
   "schema": "liquidity-lab.financial-evidence-marketplaces.v1",
   "name": "Financial Evidence",
-  "version": "0.1.13",
-  "release_state": "published",
+  "version": "0.1.14",
+  "release_state": "candidate",
   "last_verified_release": "0.1.13",
   "checked_at": "2026-10-15T16:05:35.527239Z",
   "state_definitions": {

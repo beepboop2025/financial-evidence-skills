@@ -7,6 +7,32 @@ coverage and authority; connecting them does not produce a combined risk score.
 For a first result without setup, [run the three workflows in your browser](../start/workflows.html).
 For a recurring agent or local job, use the [package-free Python starter](../start/AUTOMATE.md).
 
+## Keep working with retained evidence when live access is unavailable
+
+The installed Financial Evidence CLI can display and compare reviews in your
+private workflow journal without fetching sources, uploading evidence or using an
+AI agent:
+
+```sh
+financial-evidence workflow history --state /path/to/private-journal
+financial-evidence workflow show RUN_ID --format markdown --state /path/to/private-journal
+financial-evidence workflow compare EARLIER_RUN_ID LATER_RUN_ID --state /path/to/private-journal
+```
+
+Use `--format json` on `compare` for structured changes. Comparisons require the
+same task, selection and usage mode, and two completed reviews in chronological
+order. These are historical reports: original retrieval dates, source dates and
+coverage remain intact. They do not establish current freshness or permission.
+Local journal retention remains 30 days; offline commands apply that retention.
+Only retain and use evidence within its source permissions.
+
+Live workflow failures distinguish HTTP 401, 403, 429 and 451 without storing the
+upstream error body. Review authorization after a denial; do not change identity
+or routes to bypass it. Honor a reported `Retry-After` deadline before another
+request. The workflow does not retry automatically or treat a retained result
+as a successful live refresh. Where available, its failure output identifies the
+previous completed review for inspection.
+
 ## Finance-agent developers: add a cited funding check
 
 Start with a small, named dataset before adding a larger tool catalog:

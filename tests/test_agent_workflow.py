@@ -155,6 +155,105 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(result["status"], "evidence_unavailable")
         self.assertIsNone(result["result"])
 
+    def test_access_denials_preserve_status_without_body_retry_or_useful_completion(self):
+        first = self.workflow.run("funding")
+        for stage in ("context", "evidence"):
+            for status, reason in ((401, "authentication_required"), (403, "access_denied"),
+                                   (429, "rate_limited"), (451, "access_restricted")):
+                with self.subTest(stage=stage, status=status):
+                    body = io.BytesIO(b"private body secret")
+                    headers = Message()
+                    headers["Retry-After"] = "60"
+                    error = HTTPError("https://private.example/token", status, "private message", headers, body)
+                    def fail(*args, **kwargs):
+                        raise error
+                    workflow = self.new_workflow()
+                    setattr(workflow, stage + "_fetcher" if stage == "context" else "review_fetcher", fail)
+                    result = workflow.run("funding")
+                    failure = result["access_failure"]
+                    self.assertEqual(failure["http_status"], status)
+                    self.assertEqual(failure["reason"], reason)
+                    self.assertEqual(failure["stage"], stage)
+                    self.assertFalse(failure["automatic_retry"])
+                    self.assertEqual(result["previous_run_id"], first["run_id"])
+                    self.assertEqual(result["status"], "context_unavailable" if stage == "context" else "evidence_unavailable")
+                    self.assertEqual(failure.get("retry_after_seconds"), 60 if status == 429 else None)
+                    self.assertTrue(body.closed)
+                    self.assertNotIn("private", json.dumps(result))
+                    self.assertEqual(workflow.state.run(first["run_id"])["result"], first["result"])
+                    with self.assertRaises(ValueError):
+                        workflow.feedback(result["run_id"], useful=True)
+
+    def test_access_retry_deadline_is_not_shortened_and_untrusted_headers_are_omitted(self):
+        for header, expected in (("9999999999", 9999999999),
+                                 (formatdate(NOW + 90, usegmt=True), 90),
+                                 ("secret\r\nAuthorization: token", None),
+                                 ("-1", None), ("9" * 129, None), ("١٢٣", None)):
+            with self.subTest(header=header):
+                headers = Message()
+                headers["Retry-After"] = header
+                error = HTTPError("https://private.example", 429, "private", headers, None)
+                result = agent_workflow._access_failure(error, stage="evidence", now=NOW)
+                error.close()
+                self.assertEqual(result.get("retry_after_seconds"), expected)
+                self.assertNotIn("secret", json.dumps(result))
+
+    def test_saved_reviews_display_and_compare_without_fetch_upload_or_rewrite(self):
+        first = self.workflow.run("funding")
+        self.now += 1
+        self.source["evidence"]["results"][0]["value"] = 4.1
+        self.source["content_sha256"] = c.digest(self.source["evidence"])
+        second = self.workflow.run("funding")
+        saved = [self.workflow.state.run(run["run_id"]) for run in (first, second)]
+        report = self.workflow.report()
+        with patch("financial_evidence.workflow_cli.AgentWorkflow", return_value=self.workflow), \
+                patch.object(self.workflow, "context_fetcher", side_effect=AssertionError("network")), \
+                patch.object(self.workflow, "review_fetcher", side_effect=AssertionError("network")), \
+                patch.object(RemoteLearningClient, "_send", side_effect=AssertionError("upload")):
+            for command in (["show", first["run_id"], "--format", "markdown"],
+                            ["compare", first["run_id"], second["run_id"]]):
+                with contextlib.redirect_stdout(io.StringIO()) as output:
+                    status = cli.main(["workflow", *command, "--state", str(self.root)])
+                self.assertEqual(status, 0)
+                self.assertIn("Historical", output.getvalue())
+                self.assertIn("no live refresh", output.getvalue())
+                self.assertIn("Execution authority: none", output.getvalue())
+            with contextlib.redirect_stdout(io.StringIO()) as output:
+                status = cli.main(["workflow", "compare", first["run_id"], second["run_id"],
+                                   "--format", "json", "--state", str(self.root)])
+            result = json.loads(output.getvalue())
+            self.assertEqual(status, 0)
+            self.assertTrue(result["comparison"]["changed"])
+            self.assertFalse(result["live_refresh_performed"])
+        self.assertEqual([self.workflow.state.run(run["run_id"]) for run in (first, second)], saved)
+        self.assertEqual(self.workflow.report(), report)
+
+    def test_retained_comparison_rejects_incompatible_failed_and_mutated_reviews(self):
+        from financial_evidence.workflow_cli import _compare_retained
+        first = self.workflow.run("funding")
+        self.now += 1
+        second = self.workflow.run("funding")
+        with self.assertRaises(ValueError):
+            _compare_retained(self.workflow.state, second["run_id"], first["run_id"])
+        self.workflow.mode = "test"
+        different_mode = self.workflow.run("funding")
+        with self.assertRaises(ValueError):
+            _compare_retained(self.workflow.state, first["run_id"], different_mode["run_id"])
+        self.workflow.mode = "paper"
+        self.source["prepared_response"] = False
+        failed = self.workflow.run("funding")
+        with self.assertRaises(ValueError):
+            _compare_retained(self.workflow.state, first["run_id"], failed["run_id"])
+        self.source["prepared_response"] = True
+        self.source["selection"] = "EUR"
+        other = self.workflow.run("funding", "EUR")
+        with self.assertRaises(ValueError):
+            _compare_retained(self.workflow.state, first["run_id"], other["run_id"])
+        with self.workflow.state.db() as db:
+            db.execute("UPDATE runs SET sha256=? WHERE id=?", ("f" * 64, second["run_id"]))
+        with self.assertRaises(ValueError):
+            _compare_retained(self.workflow.state, first["run_id"], second["run_id"])
+
     def test_comparison_failure_cannot_leave_a_successful_review_status(self):
         self.workflow.run("funding")
         self.source["evidence"].pop("results")

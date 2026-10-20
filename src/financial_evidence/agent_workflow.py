@@ -6,8 +6,11 @@ the existing learning service contracts. Nothing places orders or schedules itse
 from __future__ import annotations
 
 import json
+import math
 import sqlite3
 import time
+from email.utils import parsedate_to_datetime
+from urllib.error import HTTPError
 from urllib.request import Request, build_opener
 import uuid
 
@@ -19,6 +22,32 @@ from .workflow_state import WorkflowState
 
 PRODUCTS = {"funding": "seiche", "institutions": "liquilens", "exit": "undertow"}
 TASKS = {"funding": "funding_review", "institutions": "institution_evidence", "exit": "liquidity"}
+
+
+def _access_failure(error, *, stage, now):
+    """Keep a bounded status and next step, never an upstream body or URL."""
+    reasons = {
+        401: ("authentication_required", "Review the credential and source authorization before retrying."),
+        403: ("access_denied", "Review source access before retrying; do not switch routes to bypass the refusal."),
+        429: ("rate_limited", "Wait for Retry-After when supplied; otherwise use bounded backoff on the authorized route."),
+        451: ("access_restricted", "Review the reported source restriction before retrying."),
+    }
+    reason, next_step = reasons.get(error.code, ("upstream_http_error", "Review the HTTP failure before retrying."))
+    value = {"http_status": error.code, "stage": stage, "reason": reason,
+             "automatic_retry": False, "next_step": next_step}
+    header = error.headers.get("Retry-After", "") if error.headers else ""
+    if error.code == 429 and len(header) <= 128:
+        try:
+            if header.isascii() and header.isdecimal() and len(header) <= 10:
+                delay = int(header)
+            else:
+                date = parsedate_to_datetime(header)
+                delay = max(0, math.ceil(date.timestamp() - now)) if date.tzinfo else None
+            if delay is not None:
+                value["retry_after_seconds"] = delay
+        except (ValueError, TypeError, OverflowError):
+            pass
+    return value
 
 
 def fetch_context(*, verification=False):
@@ -70,6 +99,7 @@ class AgentWorkflow:
                   "review_required": True, "input_eligibility": "not_evaluated",
                   "execution_authority": "none", "outcome_verification": "not_observed"}
         verification = self.mode in {"test", "backtest"}
+        stage = "context"
         try:
             context = validate_snapshot(self.context_fetcher(verification=verification), now=self.clock())
             result["context"] = context
@@ -77,6 +107,7 @@ class AgentWorkflow:
                 result["status"] = "blocked_monitor"
             else:
                 result["status"] = "evidence_unavailable"
+                stage = "evidence"
                 evidence = self.review_fetcher(workflow, selected["selection"], verification=verification)
                 evidence = research.validate(research.encoded(evidence), selected)
                 # The monitor lease may expire while the evidence request is in flight.
@@ -88,6 +119,10 @@ class AgentWorkflow:
                     result["status"] = "blocked_monitor"
                 else:
                     result["status"] = "ready_for_review" if evidence["prepared_response"] else "evidence_unavailable"
+        except HTTPError as error:
+            result["error"] = "source_http_failure"
+            result["access_failure"] = _access_failure(error, stage=stage, now=self.clock())
+            error.close()
         except (OSError, ValueError, TypeError, KeyError):
             result["error"] = "source_read_or_contract_validation_failed"
         result["completed_at"] = c.moment(self.clock())

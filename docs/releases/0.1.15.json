@@ -1,0 +1,224 @@
+{
+  "schema": "financial-evidence.release-verification.v1",
+  "version": "0.1.15",
+  "source_commit": "05ae34497bf9bccd055462c2979e8640ec5095bf",
+  "tag_object": "f910c9ed79966238181e6a36e51ae567ae3798e2",
+  "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.15",
+  "published_at": "2026-10-20T17:53:53Z",
+  "verified_at": "2026-10-20T17:56:44.893590+00:00",
+  "verification_status": "verified",
+  "checksums": "PASS",
+  "assets": [
+    {
+      "name": "financial-evidence-0.1.15.mcpb",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.15/financial-evidence-0.1.15.mcpb",
+      "sha256": "ecbf7162db619ebbeffcacef93bcfc5643a269c044d9a03fd03e88378fcf5a2d",
+      "size": 5036905
+    },
+    {
+      "name": "financial-evidence-v0.1.15.cdx.json",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.15/financial-evidence-v0.1.15.cdx.json",
+      "sha256": "1e528583fdad24f974989c7bba43dffc3504761faf81f3f8c28555515a840052",
+      "size": 361821
+    },
+    {
+      "name": "financial_evidence-0.1.15-py3-none-any.whl",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.15/financial_evidence-0.1.15-py3-none-any.whl",
+      "sha256": "8a29308c98cada9c22c9346b05fcf4aa48c523314276a0b51c9e2b8ff7aa344b",
+      "size": 199594
+    },
+    {
+      "name": "financial_evidence-0.1.15.tar.gz",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.15/financial_evidence-0.1.15.tar.gz",
+      "sha256": "4ad69930e5676174e3bf2e23dc7b88693fbb26e94966c363c3b2e99d9c20f98d",
+      "size": 4611008
+    },
+    {
+      "name": "SHA256SUMS",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.15/SHA256SUMS",
+      "sha256": "38f3ef40406775f8d97a8e4dcad11d73a5cedcb2d92aeea8a9b3a28885abe0e3",
+      "size": 407
+    }
+  ],
+  "attestations": [
+    {
+      "asset": "financial-evidence-0.1.15.mcpb",
+      "status": "PASS",
+      "signer_workflow": "beepboop2025/financial-evidence-skills/.github/workflows/release-container.yml",
+      "source_commit": "05ae34497bf9bccd055462c2979e8640ec5095bf"
+    },
+    {
+      "asset": "financial-evidence-v0.1.15.cdx.json",
+      "status": "PASS",
+      "signer_workflow": "beepboop2025/financial-evidence-skills/.github/workflows/release-container.yml",
+      "source_commit": "05ae34497bf9bccd055462c2979e8640ec5095bf"
+    },
+    {
+      "asset": "financial_evidence-0.1.15-py3-none-any.whl",
+      "status": "PASS",
+      "signer_workflow": "beepboop2025/financial-evidence-skills/.github/workflows/release-container.yml",
+      "source_commit": "05ae34497bf9bccd055462c2979e8640ec5095bf"
+    },
+    {
+      "asset": "financial_evidence-0.1.15.tar.gz",
+      "status": "PASS",
+      "signer_workflow": "beepboop2025/financial-evidence-skills/.github/workflows/release-container.yml",
+      "source_commit": "05ae34497bf9bccd055462c2979e8640ec5095bf"
+    }
+  ],
+  "wheel_source_files_verified": 65,
+  "pypi": {
+    "url": "https://pypi.org/project/financial-evidence/0.1.15/",
+    "artifact_hashes_match_github": true,
+    "description_matches_signed_source": true,
+    "artifacts": [
+      {
+        "name": "financial_evidence-0.1.15-py3-none-any.whl",
+        "url": "https://files.pythonhosted.org/packages/59/83/fc56a6e172744f62d2cede58f78598a266c881799918d4fa36a6a5297bc0/financial_evidence-0.1.15-py3-none-any.whl",
+        "sha256": "8a29308c98cada9c22c9346b05fcf4aa48c523314276a0b51c9e2b8ff7aa344b",
+        "size": 199594
+      },
+      {
+        "name": "financial_evidence-0.1.15.tar.gz",
+        "url": "https://files.pythonhosted.org/packages/79/c5/32398e09a941e872fc797a797f2d7830fea9799788ef8a057a6e8113fd1f/financial_evidence-0.1.15.tar.gz",
+        "sha256": "4ad69930e5676174e3bf2e23dc7b88693fbb26e94966c363c3b2e99d9c20f98d",
+        "size": 4611008
+      }
+    ]
+  },
+  "registry_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.15",
+  "registry_status": "active",
+  "registry_metadata_matches_source": true,
+  "oci": {
+    "digest": "sha256:9d2ac96ab8e03c40db6dd250efbeb1de594d11ac6861092770708281776a1e06",
+    "platforms": [
+      {
+        "platform": {
+          "architecture": "amd64",
+          "os": "linux"
+        },
+        "manifest_digest": "sha256:617ecdbd693793702ce101c200661093097ca9a0ad515d6b5c5c6b22221e705f",
+        "config_digest": "sha256:d796fde96b89387c206d8acdc6f4fb2b5a7019b62390bda4d79d429c9b769b93",
+        "source_commit": "05ae34497bf9bccd055462c2979e8640ec5095bf",
+        "user": "65532:65532"
+      },
+      {
+        "platform": {
+          "architecture": "arm64",
+          "os": "linux"
+        },
+        "manifest_digest": "sha256:036c71895d5cd85126deed65271ec3c5d995b888605cff891b864bf2383ee4d8",
+        "config_digest": "sha256:f3f8170adde33c6a981887a64c1816353d95f577d7fe503aa0195dc365f26a24",
+        "source_commit": "05ae34497bf9bccd055462c2979e8640ec5095bf",
+        "user": "65532:65532"
+      }
+    ],
+    "runtime_acceptance": "amd64 PASS; arm64 native consumer check separate"
+  },
+  "runtime_checks": {
+    "installed_sdk": {
+      "schema": "financial-evidence.installed-feedback-acceptance.v1",
+      "status": "PASS",
+      "version": "0.1.15",
+      "source_commit": "05ae34497bf9bccd055462c2979e8640ec5095bf",
+      "observed_at": "2026-10-20T17:53:46.870497+00:00",
+      "fresh_public_install": true,
+      "source_files_verified": 65,
+      "local_feedback_receipt": true,
+      "idempotent_feedback": true,
+      "retained_run_unchanged": true,
+      "test_exclusion": true,
+      "actual_cli_report": true,
+      "actual_cli_historical_show": true,
+      "network": "blocked by audit hooks during behavior checks",
+      "sharing": "local_only",
+      "adoption": "not_measured"
+    },
+    "container_amd64": {
+      "schema": "financial-evidence.published-artifact-check.v1",
+      "observed_at": "2026-10-20T17:55:42.968619+00:00",
+      "status": "PASS",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--platform",
+        "linux/amd64",
+        "--pull",
+        "never",
+        "--read-only",
+        "--network",
+        "none",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges",
+        "--pids-limit",
+        "64",
+        "--memory",
+        "128m",
+        "--cpus",
+        "1",
+        "--interactive",
+        "ghcr.io/beepboop2025/financial-evidence-skills@sha256:9d2ac96ab8e03c40db6dd250efbeb1de594d11ac6861092770708281776a1e06"
+      ],
+      "server_info": {
+        "name": "financial-evidence",
+        "version": "0.1.15"
+      },
+      "tools_sha256": "078d872396724c0acaeac051385d07f35679fb5445c5cd1979f673c372ab170d",
+      "topic_count": 8,
+      "topics": [
+        "money-market",
+        "capital-market",
+        "china-economy",
+        "bank-risk",
+        "market-liquidity",
+        "gift-city",
+        "forex",
+        "gold"
+      ],
+      "checks": [
+        "initialize",
+        "frozen_tools_contract",
+        "all_topic_routes",
+        "new_topic_routes",
+        "shared_gold_gift_source",
+        "strict_arguments"
+      ],
+      "valid_fetch_requests": 0,
+      "scope": "Artifact runtime contract; no source freshness or external adoption claim",
+      "image": "ghcr.io/beepboop2025/financial-evidence-skills@sha256:9d2ac96ab8e03c40db6dd250efbeb1de594d11ac6861092770708281776a1e06",
+      "source_commit": "05ae34497bf9bccd055462c2979e8640ec5095bf",
+      "tested_platform": "linux/amd64",
+      "feedback_report": "PASS",
+      "network": "none",
+      "read_only": true
+    },
+    "learning_service_public_sdk": {
+      "status": "PASS",
+      "source_sha": "05ae34497bf9bccd055462c2979e8640ec5095bf",
+      "observed_at": 1792518740.8014684,
+      "actual_sdk_class": "RemoteLearningClient",
+      "endpoint": "https://agents.seiche.info/learning",
+      "sdk_default_user_agent": true,
+      "receipt_hashes_match": true,
+      "deduplication": true,
+      "test_exclusion": true,
+      "temporary_tenant_deleted": true,
+      "adoption": "not_measured"
+    },
+    "mcp_bundle_source": {
+      "status": "PASS",
+      "source_files_verified": 65,
+      "manifest_matches": true,
+      "version": "0.1.15",
+      "runtime_test": "separate installed SDK and container receipts"
+    }
+  },
+  "homebrew": {
+    "published_version": "0.1.13",
+    "this_release_updates_formula": false
+  },
+  "scope": "Signed source, downloaded public artifacts, clean installed SDK, isolated amd64 runtime and separately deployed optional learning service. Hosted public research services keep their own source identities. Arm64 image metadata verified; native consumer check runs separately. No independent adoption, revenue or complete source coverage claim."
+}

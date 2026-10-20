@@ -6,7 +6,8 @@ explicit usefulness feedback, decision/outcome records and optional delivery
 queue. Public research uses the existing central gateway without a key.
 
 Install the published Python package, then run a review. Offline Markdown display
-and retained-review comparison require version 0.1.14 or newer:
+and retained-review comparison require version 0.1.14 or newer. Structured feedback
+reasons and data-gap categories require version 0.1.15 or newer:
 
 ```sh
 python3 -m pip install --upgrade financial-evidence

@@ -450,9 +450,13 @@ class ActualSDKTests(unittest.IsolatedAsyncioTestCase):
         def http(**kwargs):
             return real_client(transport=httpx.MockTransport(upstream), **kwargs)
         with patch("httpx.AsyncClient", http):
-            async with ProductClient(timeout=0.08, mode="test") as client:
+            async with ProductClient(timeout=0.5, mode="test") as client:
                 with self.assertRaises(asyncio.TimeoutError):
                     await client.call("seiche", "data_health", {"block": True})
+                # Only the blocked call tests a deadline. Give the successful
+                # reconnect enough time on shared runners while retaining the
+                # fresh-session and both-session-cleanup assertions below.
+                client.timeout = 2.0
                 receipt = await client.call("seiche", "data_health")
                 self.assertFalse(receipt["timing"]["session_reused"])
         self.assertEqual(methods.count("initialize"), 2)

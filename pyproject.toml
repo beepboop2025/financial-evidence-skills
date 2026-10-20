@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "financial-evidence"
-version = "0.1.14"
+version = "0.1.15"
 description = "Financial research for Python and AI agents: funding, bank disclosures, market liquidity and source provenance"
 readme = "PYPI_README.md"
 requires-python = ">=3.10"

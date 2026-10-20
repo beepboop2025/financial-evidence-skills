@@ -4,13 +4,13 @@ message: >-
   release and the upstream evidence publishers identified by each packet.
 title: Financial Evidence
 type: software
-version: 0.1.14
+version: 0.1.15
 date-released: '2026-10-20'
 authors:
   - name: Liquidity Lab
 license: MIT
 repository-code: https://github.com/beepboop2025/financial-evidence-skills
-url: https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.14
+url: https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.15
 abstract: >-
   A read-only terminal and Model Context Protocol router for public financial
   evidence with explicit source, clock, output, and authority boundaries.

@@ -57,6 +57,22 @@ Original observation clocks and hashes remain attached. An unavailable or
 blocked source remains a gap; saved output is not a current market quote.
 Learning and remote sharing remain explicitly opt-in.
 
+## Learn which research workflows need improvement
+
+Version 0.1.15 adds optional structured feedback to retained workflows:
+
+```sh
+financial-evidence workflow feedback RUN_ID --state ./funding-reviews --not-useful --reason missing_data --data-gap historical_depth
+financial-evidence workflow report --state ./funding-reviews
+```
+
+Feedback stays local unless explicitly shared with an enrolled learning service.
+Private reports separate attempts from feedback, identify recurring failure and
+coverage categories, and leave unanswered usefulness unknown. Test and backtest
+runs are excluded from improvement priorities. Workspace counts are not people,
+customers, or verified adoption. No prompts or financial documents are collected
+by these structured fields.
+
 ## Choose the product for your question
 
 | Product | Research scope | API and MCP guide |

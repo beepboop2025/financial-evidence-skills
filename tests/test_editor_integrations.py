@@ -115,7 +115,7 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertIn("not claims of a VS Code or Cursor marketplace listing", readme)
 
     def test_release_surfaces_are_pinned_to_package_version(self):
-        self.assertEqual(self.version, "0.1.14")
+        self.assertEqual(self.version, "0.1.15")
         self.assertEqual(_json("manifest.json")["version"], self.version)
         server = _json("server.json")
         self.assertEqual(server["version"], self.version)

@@ -59,10 +59,53 @@ f007988160d6595106cb06782651bc481e9684887d1bde90a205182bcd533b82  operator-test-
 A six-currency selection produced the expected validation error and removed the
 old preview and insert controls. Request counts for that invalid action were
 not independently measured. The live capture contained no formula-like strings;
-the original fixture's one such string stayed inert. Desktop hosts, marketplace
-approval and independent adoption remain unverified. See the
+the original fixture's one such string stayed inert. At that date, desktop hosts, marketplace
+approval and independent adoption remained unverified. The separate Windows
+result below updates only its recorded scope. See the
 [public receipt](excel/native-acceptance.json) and
 [manifest validation record](marketplaces/microsoft-manifest-validation.json).
+
+## Excel for Windows — ribbon launch, capture and repeated insertion passed
+
+On 28 October 2026 (Asia/Kolkata), Excel for Microsoft 365 Apps for business
+**Version 2609, Build 20430.20180, Monthly Enterprise Channel**, running in a
+Windows 365 Cloud PC, completed the version `1.0.1.0` operator test. The manifest
+was validated by Microsoft and deployed only to the publisher's test operator.
+It differs from production by adding `?operator=1` to both `SourceLocation` and
+`Review.TaskpaneUrl`; unchanged production-manifest installation was not tested.
+
+**Home → Financial Evidence → Open research review** displayed its label and
+tooltip and opened the connected task pane without fetching or inserting data.
+Manual refresh requested `USD,EUR` and `au-sfb,unknown-bank`. The first capture
+at `2026-10-27T19:32:09.030Z` was inserted twice. All **634 inserted cells** across
+12 new sheets matched the original evidence JSON, including typed booleans and
+missing values; the original `Keep my analysis` and numeric `42` markers remained
+unchanged. The saved workbook contained **13 uniquely named sheets**. Numeric
+comparison allowed a `1e-14` serialization tolerance.
+
+A second manual refresh at `2026-10-27T19:36:45.913Z` produced a later capture.
+Six currencies, a malformed institution slug and empty inputs each produced
+visible validation errors, cleared stale capture/insert controls and added no
+sheets. Request counts for these invalid actions were not independently measured.
+Forward Tab navigation, visible focus and Return-to-refresh passed. Reverse Tab
+and complete ribbon keyboard traversal were not qualified in the remote session.
+The native all-requests-failed network case, Mac/mobile and a new web run remain
+outside this test. No regulatory certification or independent adoption follows
+from this operator check.
+
+The [sanitized receipt](excel/native-acceptance-windows-20261028.json) binds the
+manifest, observed task-pane HTML, workbook and comparison evidence by hash.
+It does not attest every live JavaScript dependency or a deployment-to-Git identity. The
+[actual Windows screenshot](marketplaces/assets/native-excel-windows-20261028.png)
+shows the second refreshed capture beside funding sheets from the first capture;
+the second capture was not inserted. Private workbook and account URLs are omitted.
+
+After evidence export, the temporary tenant deployment was removed: the admin
+interface confirmed removal and showed zero deployed apps. Temporary file
+transfer was disabled and the setting persisted after reload. Cached client app
+removal propagation was not independently verified. This is separate from a
+Microsoft Marketplace submission, which still requires publisher enrollment,
+remaining host acceptance and platform review.
 
 ## LibreOffice Calc on Linux — ODS and XLSX passed
 
@@ -239,8 +282,10 @@ describe the engine interface used here.
 ## Other office paths
 
 The [compatibility table](compatibility.md) separates completed acceptance from
-available formats and pending host checks. Excel desktop add-in execution,
-Excel-hosted Power Query refresh and marketplace review remain separate from
-the completed web add-in, query-engine, Google Editor and workbook checks. Nextcloud Office
+available formats and pending host checks. The bounded Windows add-in result
+does not establish Mac/mobile execution, complete keyboard acceptance or unchanged
+production-manifest runtime. Excel-hosted Power Query refresh and marketplace
+review remain separate from the completed add-in, query-engine, Google Editor
+and workbook checks. Nextcloud Office
 editing/saving and the unsupported ONLYOFFICE ODS export are not covered by the
 successful import/open results.

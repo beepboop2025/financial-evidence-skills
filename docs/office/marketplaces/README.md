@@ -8,7 +8,7 @@ publisher configuration and platform review. See [status.json](status.json).
 | Channel | Package / listing material | Remaining platform step |
 | --- | --- | --- |
 | Google Workspace Marketplace | [Editor add-on](google/README.md), [source ZIP](google/google-editor-addon.zip), [listing](google/listing.json) | SDK default-scope reconciliation, brand/sensitive-scope verification, submission and public review |
-| Microsoft Marketplace, formerly AppSource | [Manifest](../excel/manifest.xml), [listing draft](microsoft-listing.json), [exact reviewer script](microsoft-reviewer.md) | Remaining compatible-host tests, approved Partner Center account/program enrollment and review; Excel web runtime and production manifest validation passed |
+| Microsoft Marketplace, formerly AppSource | [Manifest](../excel/manifest.xml), [listing draft](microsoft-listing.json), [exact reviewer script](microsoft-reviewer.md) | Remaining compatible-host/keyboard tests, approved Partner Center account/program enrollment and review; bounded Windows 1.0.1.0, earlier web 1.0.0.0 and production manifest validation recorded |
 | OpenBB App Marketplace | [Existing application readback](openbb-status.md) | Review owner, fee-waiver decision and supported native Workspace access; do not resubmit |
 
 The source package and listing text do not create publisher accounts, consent to
@@ -16,6 +16,13 @@ paid terms, grant OAuth permissions, or submit anything externally. The publishe
 can use the prepared materials after the account and runtime gates are verified.
 The new add-ons are separate products from copied custom functions, Power Query
 queries, or imported workbook files; acceptance of one does not validate another.
+
+The [institution product/platform matrix](../../distribution/institution-product-platforms.md)
+selects existing family workflows without implying new Office commands or a
+private-data platform. [Windows acceptance](../excel/native-acceptance-windows-20261028.json)
+and its [actual host screenshot](assets/native-excel-windows-20261028.png) are now
+part of the Microsoft reviewer pack. Submission and public approval remain
+separate entries in the status ledger.
 
 ## Shared publisher assets
 

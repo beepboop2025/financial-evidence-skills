@@ -68,27 +68,27 @@
     },
     {
       "id": "microsoft-office-addon",
-      "state": "native_excel_web_and_production_manifest_passed_publisher_and_review_pending",
+      "state": "bounded_windows_1.0.1.0_and_earlier_web_native_tests_passed_publisher_and_review_pending",
       "listing": "microsoft-listing.json",
       "manifest": "../excel/manifest.xml",
       "reviewer_instructions": "microsoft-reviewer.md",
-      "native_host_validation": "excel_web_operator_test_manifest_capture_repeat_894_cells_passed; other_hosts_pending",
-      "account_verification": "work_account_signup_and_card_verification_not_completed",
+      "native_host_validation": "windows_1.0.1.0_operator_ribbon_capture_repeat_634_inserted_cells_and_sentinels_passed; earlier_web_1.0.0.0_receipt_retained; remaining_declared_hosts_and_keyboard_pending",
+      "account_verification": "work_tenant_and_native_excel_ready; publisher_legal_identity_verification_and_program_enrollment_pending",
       "public_listing": "not_submitted",
       "remaining": [
-        "Approved work-account signup/card verification and Partner Center publisher/program enrollment",
-        "Remaining declared native host tests; unchanged production-manifest runtime installation",
-        "Select approved real-host screenshots and complete submission",
-        "Microsoft Marketplace review and independent public listing readback"
+        "Complete legal publisher identity verification and Partner Center program enrollment",
+        "Complete remaining declared host coverage, full keyboard/reverse-Tab acceptance and unchanged production-manifest runtime installation",
+        "Complete required native failure-path acceptance and submit approved listing assets",
+        "Microsoft Marketplace review and independent public installation/listing readback"
       ],
       "manifest_validation": {
         "tool": "office-addin-manifest",
         "version": "3.0.1",
-        "observed_at": "2026-10-18T09:57:54.311748+00:00",
-        "manifest_sha256": "170530e4b99e72bf7985f383bbdb9101838711721c3585243db8038d4f955a77",
+        "observed_at": "2026-10-18T12:02:23.415854+00:00",
+        "manifest_sha256": "c3db5d653c9877494de7f38b6c20fc2820ea89e016acb7a8e2e621d3ca275810",
         "development_validation": "passed",
         "development_receipt": "microsoft-manifest-development.txt",
-        "development_receipt_sha256": "6a3ba8a89a9162f85b2dcc9e080e964c66576559d2f0276a845bf028409754cf",
+        "development_receipt_sha256": "00dde7a78e24d7b3199e858d368ab5bea106202699fb20c08caafc92d5584b33",
         "production_validation": "passed",
         "production_errors": [],
         "previous_production_validation": {
@@ -100,16 +100,32 @@
             "Icon URL Unreachable: /office/excel/icon-32.png"
           ]
         },
-        "next_action": "Complete publisher/program enrollment, remaining claimed host tests and Microsoft Marketplace review. Native Excel web runtime acceptance is recorded separately in ../excel/native-acceptance.json.",
+        "next_action": "Retain the recorded 1.0.1.0 Windows operator test; complete remaining required-host, full keyboard and unchanged production-manifest runtime acceptance, publisher enrollment and Marketplace review.",
         "production_receipt": "microsoft-manifest-production.txt",
-        "production_receipt_sha256": "b946d58f45e44afa54d684feb1836fa9a3733d4d22b6a8448034325c16ab0752",
+        "production_receipt_sha256": "b444cce8041f70e45436628fb8f8e40691b4f41099bd773422ea8ebd45ddc17b",
         "production_command": "office-addin-manifest validate --production docs/office/excel/manifest.xml",
         "production_exit_code": 0,
-        "release_sha": "fe3894e5654f304d03cbc0e50bc811857368943f"
+        "previous_accepted_manifest": {
+          "manifest_version": "1.0.0.0",
+          "manifest_sha256": "170530e4b99e72bf7985f383bbdb9101838711721c3585243db8038d4f955a77",
+          "observed_at": "2026-10-18T09:57:54.311748+00:00",
+          "production_validation": "passed",
+          "release_sha": "fe3894e5654f304d03cbc0e50bc811857368943f",
+          "development_receipt_sha256": "6a3ba8a89a9162f85b2dcc9e080e964c66576559d2f0276a845bf028409754cf",
+          "production_receipt_sha256": "b946d58f45e44afa54d684feb1836fa9a3733d4d22b6a8448034325c16ab0752"
+        },
+        "manifest_version": "1.0.1.0",
+        "validated_source_commit": "68834b89fe734a62faa5e894129934616ea233d5",
+        "validation_scope": "Official development and production manifest checks; this is not hosted-asset byte readback, native command execution, publisher approval, or Marketplace approval.",
+        "native_acceptance_note": "The earlier web 1.0.0.0 receipt remains in ../excel/native-acceptance.json. The bounded Windows 1.0.1.0 ribbon/workflow test is ../excel/native-acceptance-windows-20261028.json; remaining declared hosts and complete keyboard acceptance are unqualified.",
+        "receipt_format": "Validator stdout with trailing whitespace removed and one final newline; validation messages unchanged."
       },
       "package": "../excel/financial-evidence-excel.zip",
       "store_logo": "assets/microsoft-store-logo-300.png",
-      "native_host_receipt": "../excel/native-acceptance.json"
+      "native_host_receipt": "../excel/native-acceptance-windows-20261028.json",
+      "previous_native_host_receipt": "../excel/native-acceptance.json",
+      "native_screenshot": "assets/native-excel-windows-20261028.png",
+      "test_deployment_cleanup": "successfully_removed; admin_deployed_apps_zero"
     },
     {
       "id": "openbb-app-marketplace",
@@ -127,5 +143,8 @@
         "Public listing readback"
       ]
     }
-  ]
+  ],
+  "updated_at": "2026-10-27T19:49:27.657051+00:00",
+  "update_scope": "Microsoft Windows operator acceptance and work-account readiness only; other channel observations retain their recorded dates. No new marketplace submission or public approval is claimed.",
+  "counter_scope": "Marketplace submissions and publisher accounts; not company users or Microsoft 365 seats."
 }

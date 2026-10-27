@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:financial-evidence:connection-profile:v1",
+  "title": "Financial Evidence institution connection profile",
+  "description": "Declared local approvals for generating existing public-research MCP configurations. Not an enforceable remote authorization, licence or tenant-isolation contract. The CLI additionally checks route membership, subscription expiry and destination identity equality.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "institution_id", "workspace_id", "approval_reference", "data_scope", "hosted_queries_approved", "products", "destinations", "evidence_policy", "external_subscriptions"],
+  "properties": {
+    "schema": {"const": "financial-evidence.connection-profile.v1"},
+    "institution_id": {"$ref": "#/$defs/identifier"},
+    "workspace_id": {"$ref": "#/$defs/identifier"},
+    "approval_reference": {"$ref": "#/$defs/reference"},
+    "data_scope": {"const": "public_research_only"},
+    "hosted_queries_approved": {"const": true},
+    "products": {
+      "type": "array", "minItems": 1, "maxItems": 14, "uniqueItems": true,
+      "items": {"$ref": "#/$defs/identifier"},
+      "description": "Exact IDs from financial-evidence connect --catalog; arbitrary endpoints cannot be supplied."
+    },
+    "destinations": {
+      "type": "array", "minItems": 1, "maxItems": 2, "uniqueItems": true,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["client", "institution_id", "workspace_id"],
+        "properties": {
+          "client": {"enum": ["mcp", "vscode"]},
+          "institution_id": {"$ref": "#/$defs/identifier"},
+          "workspace_id": {"$ref": "#/$defs/identifier"}
+        }
+      }
+    },
+    "evidence_policy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["purpose", "source_rights", "preserve_source_metadata", "cross_institution_sharing", "retention_days"],
+      "properties": {
+        "purpose": {"const": "internal_research"},
+        "source_rights": {"const": "check_each_result"},
+        "preserve_source_metadata": {"const": true},
+        "cross_institution_sharing": {"const": false},
+        "retention_days": {"type": "integer", "minimum": 1, "maximum": 3650}
+      }
+    },
+    "external_subscriptions": {
+      "type": "array", "maxItems": 32,
+      "description": "Inventory only. No connector, credentials or rights are transferred or independently verified.",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["provider", "entitlement_reference", "rights_status", "expires_on", "dataset_ids", "connection_status"],
+        "properties": {
+          "provider": {"$ref": "#/$defs/identifier"},
+          "entitlement_reference": {"$ref": "#/$defs/reference"},
+          "rights_status": {"const": "confirmed_internal_research"},
+          "expires_on": {"type": "string", "format": "date", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "description": "Inclusive expiry date, checked against UTC today by the CLI."},
+          "dataset_ids": {"type": "array", "minItems": 1, "maxItems": 64, "uniqueItems": true, "items": {"$ref": "#/$defs/reference"}},
+          "connection_status": {"const": "not_connected"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "identifier": {"type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$"},
+    "reference": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"}
+  }
+}

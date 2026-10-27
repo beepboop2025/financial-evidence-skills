@@ -1,0 +1,115 @@
+{
+  "schema": "financial-evidence.excel-officejs-native-acceptance.v1",
+  "status": "PASS_RECORDED_SCOPE",
+  "verified_at": "2026-10-27T19:49:27.657051+00:00",
+  "verification_date_asia_kolkata": "2026-10-28",
+  "host": "Excel for Windows, Windows 365 Cloud PC",
+  "host_product": "Microsoft 365 Apps for business",
+  "host_version": "2609",
+  "host_build": "20430.20180",
+  "host_channel": "Monthly Enterprise Channel",
+  "attribution": "Synthetic operator verification; not independent customer adoption or Marketplace certification.",
+  "manifest_scope": {
+    "version": "1.0.1.0",
+    "production_sha256": "c3db5d653c9877494de7f38b6c20fc2820ea89e016acb7a8e2e621d3ca275810",
+    "operator_sha256": "c852a860ff2adeedf8521f2940bc184a390d4c972898e47b4b41be00341cef89",
+    "difference": "Only base SourceLocation and Review.TaskpaneUrl gain ?operator=1; the retained production manifest is unchanged.",
+    "deployment": "Microsoft admin validation passed; deployed to one operator account only.",
+    "unchanged_production_manifest_runtime_tested": false,
+    "served_taskpane_html_sha256": "671f1907a83df748a7556b13a91e3c053ccf1bdc1dbddef095e91fa589419d46",
+    "source_identity_limit": "This receipt binds the retained manifests and observed taskpane HTML. It does not record a complete live JavaScript dependency hash set or claim a deployment-to-Git source attestation."
+  },
+  "native_ui_observed": {
+    "ribbon_command": "Home > Financial Evidence > Open research review",
+    "readable_label_and_tooltip": true,
+    "ribbon_launch": "passed",
+    "office_onReady_connected": true,
+    "opening_does_not_refresh_or_insert": true,
+    "manual_refresh": "passed",
+    "selection": {
+      "currencies": [
+        "USD",
+        "EUR"
+      ],
+      "institutions": [
+        "au-sfb",
+        "unknown-bank"
+      ]
+    },
+    "first_capture_at": "2026-10-27T19:32:09.030Z",
+    "second_refresh_at": "2026-10-27T19:36:45.913Z",
+    "first_insertion_new_sheets": 6,
+    "second_insertion_new_sheets": 6,
+    "invalid_selection_messages": {
+      "six_currencies": "Use at most five three-letter currencies.",
+      "malformed_institution_slug": "Use at most five exact institution slugs.",
+      "empty_selection": "Choose a currency, institution or dataset."
+    },
+    "invalid_input_removes_old_capture_and_insert_controls": true,
+    "invalid_input_extra_sheets_created": false,
+    "invalid_input_network_count": "not independently measured",
+    "keyboard": {
+      "forward_tab_and_visible_focus": "passed",
+      "return_on_refresh": "passed",
+      "ribbon_shortcuts_and_reverse_tab": "not qualified; modifier-key forwarding unreliable through browser remote session"
+    }
+  },
+  "workbook_comparison": {
+    "capture_at": "2026-10-27T19:32:09.030Z",
+    "total_tabs": 13,
+    "unique_sheet_names": true,
+    "original_cells": {
+      "Sheet1!A1": "Keep my analysis",
+      "Sheet1!A2": 42
+    },
+    "original_cells_preserved": true,
+    "inserted_sheets_compared": 12,
+    "inserted_cells_compared": 634,
+    "mismatches": 0,
+    "method": "Independent XLSX ZIP/XML readback against original JSON. Shared-string and boolean types interpreted; numeric values compared with 1e-14 relative and absolute tolerance for Excel floating-point serialization.",
+    "data_rows": {
+      "Funding": 2,
+      "Institutions": 2,
+      "Gaps": 16,
+      "Other data": 0,
+      "Status": 3
+    },
+    "review_states": [
+      "insufficient_visibility",
+      "not_covered"
+    ],
+    "missing_dates": "preserved as missing, not zero"
+  },
+  "sha256": {
+    "workbook": "1b0243b1dc44b62f9b8a86183d0fcc889cdb7924efbed469e532c6762782c955",
+    "capture_json": "47dddae225cb53fd387afe5e8b7ab37c7716a2d8bc8d4d393e24ee533180cd45",
+    "workbook_readback": "ea3c1c3bf16801f8619ee0f8a5bfa86d9de0d63d50fe589460e38e33132f267a",
+    "evidence_readback": "65028eaef5a8c852b890dfd1fc88c5c09a6c2c9ea00e6156664e576d88720ecc",
+    "native_screenshot": "76af0b5a385a32ff2efbe1901bf0da815292461665a5f50c86d9dde4350332f9"
+  },
+  "native_screenshot": {
+    "path": "../marketplaces/assets/native-excel-windows-20261028.png",
+    "dimensions": [
+      2932,
+      1404
+    ],
+    "scope": "Real native Excel Windows screen; shows the second refresh in the task pane alongside a sheet inserted from the first capture. The second refresh was not inserted."
+  },
+  "cleanup": {
+    "test_deployment_removed": true,
+    "admin_deployed_app_count": 0,
+    "temporary_file_transfer_restored_off": true,
+    "persisted_settings_verified_after_reload": true,
+    "client_cache_removal_propagation": "not independently qualified"
+  },
+  "unqualified": [
+    "Unchanged production manifest runtime installation",
+    "All failed network requests in native host",
+    "Full ribbon keyboard accessibility and reverse Tab",
+    "New macOS, mobile or web-host acceptance for 1.0.1.0",
+    "Independent source freshness or financial conclusions",
+    "Public marketplace approval or independent adoption"
+  ],
+  "previous_web_receipt": "native-acceptance.json",
+  "private_artifact_handling": "Original workbook and evidence JSON retained privately. Account identifiers, credentials and tenant details are excluded from this public receipt."
+}

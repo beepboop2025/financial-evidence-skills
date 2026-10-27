@@ -1,6 +1,8 @@
 """Release artifacts remain citable, attestable, and reproducible."""
 
+import json
 from pathlib import Path
+import re
 import unittest
 
 
@@ -11,9 +13,16 @@ class ReleaseIntegrityTests(unittest.TestCase):
     def test_citation_metadata_tracks_the_package_release(self):
         citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
         self.assertIn("cff-version: 1.2.0", citation)
-        self.assertIn("version: 0.1.15", citation)
-        self.assertIn("date-released: '2026-10-20'", citation)
-        self.assertIn("releases/tag/v0.1.15", citation)
+        source = (ROOT / "src/financial_evidence/__init__.py").read_text()
+        version = re.search(r'^__version__ = "([^"]+)"$', source, re.MULTILINE).group(1)
+        self.assertIn(f"version: {version}", citation)
+        manifest = json.loads((ROOT / "docs/integrations.json").read_text())
+        if manifest["release_state"] == "candidate":
+            self.assertNotRegex(citation, r"(?m)^date-released:")
+            self.assertNotIn(f"releases/tag/v{version}", citation)
+        else:
+            self.assertRegex(citation, r"(?m)^date-released: '\d{4}-\d{2}-\d{2}'$")
+            self.assertIn(f"releases/tag/v{version}", citation)
 
     def test_release_assets_are_sbomed_and_attested_by_immutable_actions(self):
         workflow = (

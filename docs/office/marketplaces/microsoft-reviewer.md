@@ -58,14 +58,39 @@ from either launch path are labelled synthetic. Keep that test-only manifest sep
 from the submitted production manifest. No separate analytics call or learning
 enrollment occurs. Do not describe certification tests as independent adoption.
 
-## Submission evidence still required
+## Recorded acceptance and remaining submission evidence
 
-Record the validated manifest hash, hosted release identity, each tested Excel
-build/platform, runtime results, keyboard acceptance and a real host screenshot.
-Excel web acceptance alone does not establish Windows, Mac or mobile acceptance.
-The existing native receipt covers the earlier `1.0.0.0` operator manifest;
-record new native command acceptance for `1.0.1.0` before claiming it is tested.
+The [28 October Windows receipt](../excel/native-acceptance-windows-20261028.json)
+records version `1.0.1.0` operator-manifest validation and deployment, native
+ribbon label/tooltip launch, manual refresh, two six-sheet insertions and all
+634 inserted cells checked against the original JSON. The original analysis
+markers survived. [Actual host screenshot](assets/native-excel-windows-20261028.png).
+The host was Microsoft 365 Apps for business Version 2609, Build 20430.20180.
+The deployment was removed after testing. The earlier
+[18 October web receipt](../excel/native-acceptance.json) remains separate and
+covers version `1.0.0.0`.
+
+Forward Tab, visible focus and Return-to-refresh passed on Windows. Reverse Tab,
+full ribbon keyboard traversal, the native all-requests-failed network case,
+Mac/mobile and a new web run are still unqualified. The production manifest's
+validation is separate from installation through the test-only operator manifest.
+Retest those gates and record host/build, release hashes and results before
+extending supported-host claims. The screenshot is the original 2932×1404
+capture; check the active Partner Center form's dimensions before upload.
 Use the actual Partner Center account to verify publisher identity and program
 enrollment. The source files and this checklist are not account approval or
 Microsoft Marketplace acceptance. The copied Power Query route has its own
 native execution test and is not the Office.js add-in.
+
+## Institutional positioning and product scope
+
+This listing contains the supported Seiche funding and LiquiLens institution
+review workflow. It supports source review and evidence export; it does not
+connect private bank systems, read existing workbook cells, grant access to a
+vendor subscription, or approve a regulatory decision. RBI asset-quality tools
+and the broader product family have separate API/MCP routes in the
+[institution product/platform matrix](../../distribution/institution-product-platforms.md).
+Do not add unimplemented product commands to this listing or create duplicate
+Microsoft submissions to represent those routes. The existing publisher plugins
+are separate distribution packages; they do not establish official directory
+approval or private institutional controls.

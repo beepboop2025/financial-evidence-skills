@@ -191,6 +191,7 @@ def command_start(args: argparse.Namespace) -> int:
     print("A saved review includes result.json, brief.md and a receipt. At your next review,")
     print("repeat the same command with --previous PATH/TO/result.json to compare evidence.")
     print("Use --verification for operator tests. Requests are not proof of adoption.")
+    print("Use financial-evidence connect --catalog for product connections across supported MCP clients.")
     return 0
 
 
@@ -210,17 +211,37 @@ def command_review(args: argparse.Namespace) -> int:
     return review_main(argv)
 
 
+def command_connect(args: argparse.Namespace) -> int:
+    """Prepare selected client connections locally, without probing or installing them."""
+    from .connections import (
+        build_connection_package, connection_catalog, example_profile, read_profile, write_connection_package,
+    )
+
+    if args.catalog or args.example:
+        if args.output:
+            raise ValueError("--output requires --profile")
+        result = connection_catalog() if args.catalog else example_profile()
+    else:
+        try:
+            package = build_connection_package(read_profile(args.profile))
+            result = write_connection_package(package, args.output) if args.output else package
+        except OSError as exc:
+            raise ValueError(f"connection package could not be read or written: {exc}") from exc
+    print(compact_json(result))
+    return 0
+
+
 COMPLETIONS = {
     "bash": """_financial_evidence() {
   local cur="${COMP_WORDS[COMP_CWORD]}"
-  COMPREPLY=( $(compgen -W "start review workflow mcp topics route fetch doctor completion --help --version" -- "$cur") )
+  COMPREPLY=( $(compgen -W "start review connect workflow mcp topics route fetch doctor completion --help --version" -- "$cur") )
 }
 complete -F _financial_evidence financial-evidence
 """,
     "zsh": """#compdef financial-evidence
-_arguments '1:command:(start review workflow mcp topics route fetch doctor completion)' '*::arg:->args'
+_arguments '1:command:(start review connect workflow mcp topics route fetch doctor completion)' '*::arg:->args'
 """,
-    "fish": """complete -c financial-evidence -f -a 'start review workflow mcp topics route fetch doctor completion'
+    "fish": """complete -c financial-evidence -f -a 'start review connect workflow mcp topics route fetch doctor completion'
 complete -c financial-evidence -l version -d 'Show version'
 """,
 }
@@ -267,6 +288,14 @@ def parser() -> argparse.ArgumentParser:
     start.add_argument("task", nargs="?", choices=("funding", "institutions", "exit"))
     start.add_argument("--format", choices=("text", "json"), default="text")
     start.set_defaults(handler=command_start)
+
+    connect = commands.add_parser("connect", help="prepare approved public-product MCP configs offline; no private-data connection")
+    source = connect.add_mutually_exclusive_group(required=True)
+    source.add_argument("--catalog", action="store_true", help="list the existing product routes and supported config formats")
+    source.add_argument("--example", action="store_true", help="print an editable profile template; hosted egress starts unapproved")
+    source.add_argument("--profile", help="local institution connection profile JSON")
+    connect.add_argument("--output", help="new private directory; omit to preview the package as JSON")
+    connect.set_defaults(handler=command_connect)
 
     review = commands.add_parser("review", help="read one workflow, save a brief and compare a previous review")
     review.add_argument("workflow", choices=("funding", "institutions", "exit"))

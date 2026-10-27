@@ -73,6 +73,26 @@ runs are excluded from improvement priorities. Workspace counts are not people,
 customers, or verified adoption. No prompts or financial documents are collected
 by these structured fields.
 
+## Prepare approved research connections across clients
+
+Version 0.1.16 adds an offline connection-package command:
+
+```sh
+financial-evidence connect --catalog
+financial-evidence connect --example > institution.json
+# Review the profile and record actual public-research egress approval first.
+financial-evidence connect --profile institution.json --output research-connections
+```
+
+Select products from the existing catalog and generate `mcpServers` and/or
+VS Code `servers` configuration, a declared profile and a hashed receipt. The
+example starts with hosted approval disabled. Generation makes no network calls
+and refuses existing output paths. External subscriptions are an inventory only:
+this feature does not connect them, verify vendor rights, enforce runtime tenant
+isolation or process private institution data. Follow the
+[institution connection guide](https://beepboop2025.github.io/financial-evidence-skills/connect/institution-portability.md)
+for the supported scope and import steps.
+
 ## Choose the product for your question
 
 | Product | Research scope | API and MCP guide |

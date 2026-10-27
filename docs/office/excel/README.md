@@ -82,9 +82,12 @@ not evidence that all corresponding hosts were tested. See the exact
 separate test-only manifest whose task-pane URL ends with `?operator=1` to mark
 requests synthetic. Apply that query flag to both the base `SourceLocation`
 and the `Review.TaskpaneUrl` resource so fallback and ribbon launches remain
-synthetic. Keep test manifests distinct from the submitted release. The existing
-native acceptance receipt covers the earlier `1.0.0.0` operator manifest; it does
-not establish native acceptance of this version's ribbon command.
+synthetic. Keep test manifests distinct from the submitted release. The
+[28 October Windows receipt](https://beepboop2025.github.io/financial-evidence-skills/office/excel/native-acceptance-windows-20261028.json) records
+`1.0.1.0` ribbon launch, refresh, repeat insertion and 634 inserted-cell checks.
+The [earlier web receipt](https://beepboop2025.github.io/financial-evidence-skills/office/excel/native-acceptance.json) covers `1.0.0.0`. Complete
+keyboard traversal, native network-failure handling, Mac/mobile and unchanged
+production-manifest runtime remain unqualified; marketplace approval is separate.
 
 ## Rebuild from the repository
 

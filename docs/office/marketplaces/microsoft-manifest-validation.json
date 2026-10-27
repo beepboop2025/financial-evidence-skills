@@ -17,7 +17,7 @@
       "Icon URL Unreachable: /office/excel/icon-32.png"
     ]
   },
-  "next_action": "Publish the new ribbon assets and record native acceptance of the 1.0.1.0 command and production manifest on the required Excel hosts before submission.",
+  "next_action": "Retain the recorded 1.0.1.0 Windows operator test; complete remaining required-host, full keyboard and unchanged production-manifest runtime acceptance, publisher enrollment and Marketplace review.",
   "production_receipt": "microsoft-manifest-production.txt",
   "production_receipt_sha256": "b444cce8041f70e45436628fb8f8e40691b4f41099bd773422ea8ebd45ddc17b",
   "production_command": "office-addin-manifest validate --production docs/office/excel/manifest.xml",
@@ -34,6 +34,6 @@
   "manifest_version": "1.0.1.0",
   "validated_source_commit": "68834b89fe734a62faa5e894129934616ea233d5",
   "validation_scope": "Official development and production manifest checks; this is not hosted-asset byte readback, native command execution, publisher approval, or Marketplace approval.",
-  "native_acceptance_note": "../excel/native-acceptance.json records the earlier 1.0.0.0 operator manifest only. Native command acceptance for 1.0.1.0 remains pending.",
+  "native_acceptance_note": "The earlier web 1.0.0.0 receipt remains in ../excel/native-acceptance.json. The bounded Windows 1.0.1.0 ribbon/workflow test is ../excel/native-acceptance-windows-20261028.json; remaining declared hosts and complete keyboard acceptance are unqualified.",
   "receipt_format": "Validator stdout with trailing whitespace removed and one final newline; validation messages unchanged."
 }

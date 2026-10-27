@@ -1,6 +1,6 @@
 # Office and Linux compatibility
 
-Reviewed 18 October 2026. Use the path that matches the task and application.
+Reviewed 28 October 2026. Windows add-in evidence updated; other host results retain their recorded dates. Use the path that matches the task and application.
 The [setup guide](setup.md) gives installation and refresh instructions; the
 [native acceptance record](native-acceptance.md) states what has actually run.
 
@@ -9,10 +9,10 @@ The [setup guide](setup.md) gives installation and refresh instructions; the
 | Linux browser | Refresh funding/watchlists and download local review files | Published browser workflow verified; no automatic polling. |
 | LibreOffice Calc | Open ODS or XLSX snapshots | Native Linux import and all-cell checks passed for both formats in LibreOffice 24.2.7. |
 | Excel for the web | Open and save/download XLSX snapshots | Native UI roundtrip passed: all 260 fixture cells preserved. |
-| Excel desktop | Open XLSX snapshots | File format provided; desktop application acceptance not recorded here. |
+| Excel desktop | Open XLSX snapshots or save add-in-created workbooks | Windows add-in workbook save and independent readback passed on 28 October; arbitrary snapshot import and Mac desktop acceptance remain unrecorded. |
 | Microsoft Power Query engine | Execute the three shipped funding/watchlist queries | Native Windows engine passed 22 assertion groups plus a failing control. HTTP responses were synthetic fixtures. |
 | Excel / Power BI Power Query interface | Create queries and manually refresh the hosted service | Native UI/live HTTP refresh pending. Availability depends on the application's edition and account. |
-| Excel Office add-in | Research task pane creates six new review sheets | Excel web runtime passed through an operator test manifest: one capture inserted twice, all 894 cells checked across 18 tabs. Production manifest validation passed separately; desktop and marketplace acceptance remain pending. |
+| Excel Office add-in | Research task pane creates six new review sheets | Windows version 1.0.1.0 operator test passed ribbon launch, refresh and two insertions: 634 inserted cells checked across 12 review sheets, plus original markers. Earlier Excel web version 1.0.0.0 test checked 894 cells across 18 tabs. Mac/mobile, complete keyboard acceptance, unchanged production-manifest runtime and marketplace approval remain pending. |
 | Google Sheets custom functions | Refresh funding or exact institution watchlists from cells | Pasteable script available. This is separate from the new Editor add-on. |
 | Google Sheets bound Apps Script sidebar | Research sidebar creates six new review sheets | Native live capture/repeat verified; 317 capture cells and earlier review tabs preserved. |
 | Google Sheets Editor add-on test deployment | Open the add-on through the Extensions menu and create a review | Installed-state (`AuthMode.NONE`) capture passed: all 317 capture cells, 650 earlier review cells and existing analysis markers preserved. Enabled-state (`AuthMode.LIMITED`) menu/sidebar also passed; marketplace approval remains separate. |
@@ -28,6 +28,10 @@ The office projections cover Seiche funding, LiquiLens institution watchlists,
 optional Undertow market liquidity and Palimpsest publication-coverage metadata.
 Other family products remain accessible through their existing API/MCP routes;
 their availability is not a claim of a new native office projection.
+
+The [institution product/platform matrix](../distribution/institution-product-platforms.md)
+maps broader research workflows to their existing clients. The Excel pane itself
+accepts only funding currencies and institution selections.
 
 Excel and Google marketplace acceptance, native add-in installation, file
 compatibility and independent repeat adoption remain separate evidence states.

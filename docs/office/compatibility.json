@@ -1,6 +1,6 @@
 {
   "schema": "financial-evidence.office-compatibility.v1",
-  "reviewed_at": "2026-10-18",
+  "reviewed_at": "2026-10-28",
   "scope": "Access routes, not universal native integration or marketplace acceptance. Exported source coverage and rights still apply.",
   "products": {
     "Seiche": "Funding comparisons and optional capital-market tables",
@@ -46,8 +46,10 @@
       ],
       "route": "XLSX snapshot",
       "artifact": "index.html",
-      "state": "format_available_native_desktop_acceptance_pending",
-      "linux": "desktop_app_unavailable; use_browser_route"
+      "state": "native_windows_workbook_saved_and_export_readback_passed; general_snapshot_import_and_mac_pending",
+      "linux": "desktop_app_unavailable; use_browser_route",
+      "evidence": "excel/native-acceptance-windows-20261028.json",
+      "verified_scope": "Windows Excel 2609 saved the workbook created by the tested add-in; all 634 inserted cells and two original sentinel cells were verified in the exported XLSX. This was not a separate arbitrary snapshot-import test."
     },
     {
       "tools": [
@@ -65,15 +67,16 @@
       ],
       "route": "Research task pane with six new review sheets",
       "artifact": "excel/README.md",
-      "state": "native_excel_web_officejs_capture_and_repeat_insertion_894_cells_passed; desktop_and_marketplace_pending",
+      "state": "bounded_native_windows_1.0.1.0_and_earlier_web_acceptance_passed; remaining_hosts_keyboard_and_marketplace_pending",
       "linux": "browser",
-      "evidence": "native-acceptance.md#excel-office-add-in--web-capture-and-repeated-insertion-passed",
-      "verified_scope": "Public runtime through a sideloaded operator test manifest; one live capture inserted twice, 317 cells per insertion and 260 original cells preserved across 18 tabs.",
+      "evidence": "excel/native-acceptance-windows-20261028.json",
+      "verified_scope": "Windows Excel 2609 Build 20430.20180: ribbon launch, manual capture, two insertions, 13 unique sheets, 634 inserted cells compared with original JSON and two original sentinel cells preserved. Earlier web 1.0.0.0 test retained separately.",
       "limits": [
-        "Only SourceLocation gained operator=1 for synthetic verification; unchanged production manifest runtime installation was not exercised.",
-        "Production manifest structural validation passed separately.",
-        "Native desktop hosts and marketplace approval remain unverified."
-      ]
+        "Windows test used operator=1 on base SourceLocation and Review.TaskpaneUrl; unchanged production-manifest runtime installation remains untested.",
+        "Full ribbon keyboard accessibility, reverse Tab and all-failed native network scenario remain unqualified.",
+        "New macOS/mobile/web-host 1.0.1.0 acceptance and Marketplace approval remain unverified."
+      ],
+      "previous_evidence": "excel/native-acceptance.json"
     },
     {
       "tools": [

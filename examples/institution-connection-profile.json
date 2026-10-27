@@ -1,0 +1,21 @@
+{
+  "schema": "financial-evidence.connection-profile.v1",
+  "institution_id": "example-institution",
+  "workspace_id": "public-research-demo",
+  "approval_reference": "EXAMPLE-REPLACE-WITH-APPROVAL",
+  "data_scope": "public_research_only",
+  "hosted_queries_approved": true,
+  "products": ["seiche", "liquilens", "financial-evidence"],
+  "destinations": [
+    {"client": "mcp", "institution_id": "example-institution", "workspace_id": "public-research-demo"},
+    {"client": "vscode", "institution_id": "example-institution", "workspace_id": "public-research-demo"}
+  ],
+  "evidence_policy": {
+    "purpose": "internal_research",
+    "source_rights": "check_each_result",
+    "preserve_source_metadata": true,
+    "cross_institution_sharing": false,
+    "retention_days": 90
+  },
+  "external_subscriptions": []
+}

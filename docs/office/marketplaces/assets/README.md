@@ -17,3 +17,13 @@ Microsoft asset requirements depend on the manifest and publishing surface.
 Use the correct store icon sizes requested by the active Partner Center form;
 do not substitute a unified Microsoft 365 manifest's icon set for an add-in-only
 manifest without checking its requirements.
+
+
+`native-excel-windows-20261028.png` is an unaltered 2932×1404 screenshot from the
+28 October 2026 Windows Excel operator test. It shows public research in a blank
+validation workbook, after two insertions of the first capture and a later
+manual refresh. Its SHA-256 is
+`76af0b5a385a32ff2efbe1901bf0da815292461665a5f50c86d9dde4350332f9`.
+The [native receipt](../../excel/native-acceptance-windows-20261028.json) states
+its scope. This is real host evidence, not an illustration or public Marketplace
+installation. Check the current submission form's accepted dimensions before use.

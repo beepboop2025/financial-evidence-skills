@@ -147,7 +147,7 @@
         "listing_url": "https://marketplace.dify.ai/plugin/beepboop2025/financial_evidence",
         "verified_at": "2026-10-15T09:05:44.381099Z",
         "published_package_identifier": "beepboop2025/financial_evidence:0.1.1@44352f99f3bbbbba818bf550ebd963e674effe97c349818934edd7e8bc8b0683",
-        "source": "../marketplaces.json",
+        "source": "https://beepboop2025.github.io/financial-evidence-skills/marketplaces.json",
         "source_entry_id": "dify-financial-evidence"
       }
     }

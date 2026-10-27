@@ -79,11 +79,42 @@ Request counters and provider delivery logs still apply as described in the
 
 The publisher must use an existing approved standard Google Cloud project or
 explicitly authorize creation/configuration of one. Link the Apps Script project,
-enable the Marketplace SDK, configure the consent screen, and use the identical
-scope list in the manifest, consent configuration and SDK. Record the script ID,
-immutable version and test deployment ID privately; no account IDs belong in
-this public package. Choose public visibility intentionally: Google's selection
+enable the Marketplace SDK, and configure OAuth consent for the actual installation
+and runtime permissions. Record the script ID, immutable version and test deployment
+ID privately; no account IDs belong in this public package. Choose public visibility
+intentionally: Google's selection
 cannot later be changed. [Publication overview](https://developers.google.com/workspace/add-ons/how-tos/publish-add-on-overview).
+
+Google distinguishes Data Access declarations used for verification, Marketplace
+SDK scopes used to authorize installation, and manifest scopes used by the runtime.
+Its guidance says these lists must match, with an example where separate add-on
+manifests contain subsets of a multi-integration app's combined scopes. That example
+does not establish an exception for this single add-on's SDK identity defaults.
+[Scope roles and matching requirements](https://developers.google.com/workspace/marketplace/configure-oauth-consent-screen#understand_oauth_scopes).
+
+For this existing project, the proposed review configuration declares all five
+observed SDK installation scopes in Data Access: the three runtime scopes above,
+plus `userinfo.email` and `userinfo.profile`. The Apps Script manifest retains its
+three functional scopes unchanged. This is a proposal for Google's review, not a
+resolved scope reconciliation or an approved exception. Confirm the live saved
+SDK, Data Access and manifest lists before describing the proposal as configured.
+Adding a verification declaration does not itself grant the add-on access to an
+account; actual Marketplace consent must still disclose the five installation
+permissions. Do not add identity-reading code or runtime identity scopes to invent
+a justification for the defaults. The implementation does not retrieve, store or
+transmit account email or profile information.
+
+The verification demonstration must show the actual installation consent with all
+five requested scopes and any separate runtime authorization flow, in English,
+with the correct app name and OAuth client ID visible. Then show the sidebar,
+public research retrieval and new-tab insertion that use the three runtime scopes.
+Explain that the SDK identity defaults are unused by the implementation; do not
+present them as a feature. A bound-script consent demonstration showing only three
+scopes does not demonstrate the five-scope Marketplace installation. Provide a
+real accessible video link and retain Google's actual review outcome before
+claiming reconciliation or approval.
+[Consent demonstration requirements](https://support.google.com/cloud/answer/13804565)
+and [sensitive-scope verification](https://developers.google.com/identity/protocols/oauth2/production-readiness/sensitive-scope-verification).
 
 The console must confirm publisher domain/branding, support contact and any
 scope verification requirement. Google's current OAuth guide also lists Cloud

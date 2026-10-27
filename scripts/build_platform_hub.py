@@ -79,6 +79,8 @@ def assets() -> dict[str, bytes]:
                 ROOT / "integrations/trading-agents/recurring_review.py",
                 DEST / "pilot-scorecard.csv", DEST / "native-packages.md",
                 DEST / "native-packages.json", DEST / "hosted-native-packages.json",
+                ROOT / "docs/integrations/dify-native-proof-20261028.json",
+                ROOT / "docs/distribution/dify-submission-20261028.json",
                 ROOT / "docs/distribution/langchain-pypi-publication-20261013.json",
                 ROOT / "docs/distribution/langchain-pypi-consumer-20261013.json",
                 DEST / "colab-verification-20261011.json",

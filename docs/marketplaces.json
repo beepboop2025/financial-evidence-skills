@@ -3930,8 +3930,8 @@
       "state": "live",
       "submission_url": "https://github.com/langgenius/dify-plugins/pull/3278",
       "cost": "Free upstream plugin submission; no paid placement selected.",
-      "detail": "Official Dify PR 3278 for version 0.1.1 was approved and merged. On 15 October the signed-out public marketplace page displayed Financial Evidence, Verified by Dify, version 0.1.1 and its install link. Direct HTTP verification had returned 403; browser readback independently resolved visibility. Native installed-archive execution and independent adoption remain unverified.",
-      "next_action": "Use the verified public Marketplace install route for 0.1.1. Native installed-archive behavior remains separately unverified.",
+      "detail": "Official Dify PR 3278 for version 0.1.1 was approved and merged; the signed-out public listing and install link were verified on 15 October. Separately, the exact hosted 0.1.2 archive passed bounded installed-package tests in Dify Cloud on 28 October IST and was submitted in PR 3534. Its upstream checks passed; external review and marketplace publication remain pending. Independent adoption is unverified.",
+      "next_action": "Use the public Marketplace route for approved 0.1.1, or evaluate the Cloud-tested 0.1.2 download in a permitted workspace. Track PR 3534 for review; do not label 0.1.2 as marketplace-published before approval and public readback.",
       "verified_at": "2026-10-15T09:05:44.381099Z",
       "package_version": "0.1.1",
       "package_sha256": "b94f1c080ddd8e8e592acf41c80c3177660044fd71ee8badb239b6fce72e9f6c",
@@ -3947,7 +3947,25 @@
       "upstream_merge_commit": "5fdc1e880947916cecf9343b7633b253886b528e",
       "candidate_listing_url": "https://marketplace.dify.ai/plugins/beepboop2025/financial_evidence",
       "listing_url": "https://marketplace.dify.ai/plugin/beepboop2025/financial_evidence",
-      "published_package_identifier": "beepboop2025/financial_evidence:0.1.1@44352f99f3bbbbba818bf550ebd963e674effe97c349818934edd7e8bc8b0683"
+      "published_package_identifier": "beepboop2025/financial_evidence:0.1.1@44352f99f3bbbbba818bf550ebd963e674effe97c349818934edd7e8bc8b0683",
+      "latest_update": {
+        "package_version": "0.1.2",
+        "state": "submitted",
+        "submission_url": "https://github.com/langgenius/dify-plugins/pull/3534",
+        "package_sha256": "350d20409d9a3287d0ddc1b939d2cbb5f577ca632f2c20be75a5c7d046f0ba96",
+        "package_bytes": 7477,
+        "verified_at": "2026-10-27T21:45:09.924286+00:00",
+        "evidence_receipt": "distribution/dify-submission-20261028.json",
+        "native_proof": "integrations/dify-native-proof-20261028.json",
+        "installed_archive_execution_tested": true,
+        "native_platform": "Dify Cloud SANDBOX",
+        "native_valid_workflow_runs": 4,
+        "native_invalid_input_rejections": 1,
+        "community_edition_tested": false,
+        "marketplace_published": false,
+        "upstream_checks": "passed",
+        "independent_adoption_verified": false
+      }
     },
     {
       "id": "n8n-financial-evidence-npm",
@@ -6809,12 +6827,16 @@
     ]
   },
   "latest_dify_submission": {
-    "verified_at": "2026-10-10T21:21:06.372878+00:00",
-    "receipt": "distribution/dify-submission-20261011.json",
-    "submission_url": "https://github.com/langgenius/dify-plugins/pull/3278",
+    "verified_at": "2026-10-27T21:45:09.924286+00:00",
+    "receipt": "distribution/dify-submission-20261028.json",
+    "submission_url": "https://github.com/langgenius/dify-plugins/pull/3534",
+    "package_version": "0.1.2",
+    "state": "submitted_pending_review",
     "new_received_submissions": 1,
     "new_public_listings_verified": 0,
-    "native_draft_workflows_passed": 3,
+    "native_draft_workflows_passed": 4,
+    "native_invalid_input_rejections": 1,
+    "installed_archive_execution_tested": true,
     "independent_adoption_verified": false
   },
   "latest_npm_publication": {

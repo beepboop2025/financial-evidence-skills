@@ -196,13 +196,14 @@
       "products": [
         "Financial Evidence",
         "Seiche",
-        "LiquiLens"
+        "LiquiLens",
+        "Undertow"
       ],
       "audience": "Analysts building internal AI applications",
-      "workflow": "Package the native tools and test in your Dify workspace.",
+      "workflow": "Use sourced funding, bank-risk and liquidity evidence inside your Dify workflow.",
       "artifact_label": "Install verified Dify plugin 0.1.1",
       "artifact_url": "https://marketplace.dify.ai/plugin/beepboop2025/financial_evidence",
-      "status": "Dify Marketplace 0.1.1 publicly verified on 15 October 2026 after upstream approval. Native installed-archive execution remains untested. Separate hosted 0.1.2 is a qualified download candidate, not the marketplace version.",
+      "status": "Approved Marketplace version remains 0.1.1 (publicly verified 15 October). Separate hosted 0.1.2 passed installed-archive tests in Dify Cloud on 28 October IST; update PR 3534 passed upstream checks and awaits review. Community Edition and independent adoption remain unverified.",
       "official_source": "https://docs.dify.ai/en/develop-plugin/publishing/standards/contributor-covenant-code-of-conduct",
       "verified_customer_adoption": null
     },

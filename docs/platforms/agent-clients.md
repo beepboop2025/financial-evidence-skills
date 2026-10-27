@@ -100,15 +100,18 @@ not an official marketplace listing. [Maintainer announcement](https://github.co
 
 ## Dify
 
-Use a remote MCP connection where supported, or evaluate the repository's native
-tool plugin in `integrations/dify`. The [current hosted 0.1.2 candidate](native-packages.md#dify-hosted-012)
-passed packaged SDK registration and three central requests. Its installation
-in a remote workspace was not retested. Prior 0.1.1 passed three bounded Dify Cloud
-remote-debug workflows. Its [Marketplace submission](https://github.com/langgenius/dify-plugins/pull/3278)
-was approved and merged; the [public 0.1.1 listing](https://marketplace.dify.ai/plugin/beepboop2025/financial_evidence)
-and install link were verified on 15 October 2026. Installed-archive execution
-has not been retested. The [package and validation scope](native-packages.md#dify)
-distinguish the published 0.1.1 from the hosted 0.1.2 candidate.
+Use the [approved 0.1.1 Marketplace listing](https://marketplace.dify.ai/plugin/beepboop2025/financial_evidence)
+or evaluate the [hosted 0.1.2 download](native-packages.md#dify-hosted-012)
+through Local Package File in a permitted workspace. The exact 0.1.2 archive
+passed three dataset workflows, a repeated execution and invalid-input rejection
+in Dify Cloud on 28 October 2026 IST. Its
+[marketplace update](https://github.com/langgenius/dify-plugins/pull/3534) passed
+upstream checks and awaits review. Community Edition was not executed.
+
+The [package and validation scope](native-packages.md#dify-hosted-012) includes
+cleanup, cached-repeat and source-quality limitations. Permit `agents.seiche.info`
+in outbound policies for 0.1.2. The older 0.1.1 approval and remote-debug proof
+remain separately recorded; installed-archive execution of 0.1.1 is unverified.
 [Plugin source](https://github.com/beepboop2025/financial-evidence-skills/tree/main/integrations/dify).
 
 ## Haystack

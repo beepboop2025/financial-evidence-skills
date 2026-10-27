@@ -1,0 +1,34 @@
+{
+  "schema": "financial-evidence.native-oci-ci-acceptance.v1",
+  "status": "PASS",
+  "workflow_run": 40580414333,
+  "workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/40580414333",
+  "ci_source_commit": "2d41efade541ba24f9393bafd8264da0fd334b74",
+  "release_source_commit": "e214e3f225d2229df7ff5d86012609bfafa0ee4b",
+  "image": "ghcr.io/beepboop2025/financial-evidence-skills@sha256:cc5d9521e57b47f0fba8a10c8d027916f60075010439c7e3fd609ca07bed9b1a",
+  "platforms": [
+    {
+      "architecture": "amd64",
+      "status": "PASS",
+      "observed_at": "2026-10-27T20:42:31.906738+00:00",
+      "job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/40580414333/job/122457972497",
+      "artifact_id": 12768513811,
+      "artifact_archive_digest": "sha256:fdf967aa291cbbb193bbb3763a4c7e19ff4f24032f78eba2ac14be6a0aff8265",
+      "receipt": "amd64/published-mcp-receipt.json",
+      "receipt_sha256": "ebbbf0acc8f4bfacee99656228b90fd4ec134f4b37e9ff9b239da769a4d3f563",
+      "image_id": "sha256:3e0cd7fa29e459f75099181d925fb059c00ae0ce27d618925ad49c552af3dc5d"
+    },
+    {
+      "architecture": "arm64",
+      "status": "PASS",
+      "observed_at": "2026-10-27T20:42:37.552003+00:00",
+      "job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/40580414333/job/122457972216",
+      "artifact_id": 12769162145,
+      "artifact_archive_digest": "sha256:d582bbe27b3a7d478391ef7426b713533b2e54cc9c2ce57ff88538e72cc037dc",
+      "receipt": "arm64/published-mcp-receipt.json",
+      "receipt_sha256": "b525a6e8c62e3d797fe1c1e49212c8b01047ceb7b7824293c82e5e236aa56b8e",
+      "image_id": "sha256:3c93d85e879f2528820fcb81edfe610a7947fa3d6f8fcca99ac1df46481aeec8"
+    }
+  ],
+  "scope": "Native architecture public-image MCP contract, runtime catalog, empty recurring-workflow report and offline connect catalog with network disabled; no source freshness, private-data or adoption acceptance."
+}

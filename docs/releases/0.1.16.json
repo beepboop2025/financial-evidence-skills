@@ -5,8 +5,8 @@
   "tag_object": "b8ba07617f42bd2098cbfe8ef0b84c2ab817bb46",
   "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.16",
   "published_at": "2026-10-27T20:34:33Z",
-  "verified_at": "2026-10-27T20:36:57.379680+00:00",
-  "verification_status": "verified_public_artifacts_and_python_consumer",
+  "verified_at": "2026-10-27T20:42:37.552003+00:00",
+  "verification_status": "verified_public_artifacts_python_and_native_oci_consumers",
   "checksums": "PASS",
   "signature_checks": [
     {
@@ -129,7 +129,17 @@
         "os": "linux",
         "source_commit": "e214e3f225d2229df7ff5d86012609bfafa0ee4b",
         "user": "65532:65532",
-        "version": "0.1.16"
+        "version": "0.1.16",
+        "native_execution": {
+          "status": "PASS",
+          "observed_at": "2026-10-27T20:42:31.906738+00:00",
+          "job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/40580414333/job/122457972497",
+          "artifact_id": 12768513811,
+          "artifact_archive_digest": "sha256:fdf967aa291cbbb193bbb3763a4c7e19ff4f24032f78eba2ac14be6a0aff8265",
+          "receipt": "0.1.16-native-oci/amd64/published-mcp-receipt.json",
+          "receipt_sha256": "ebbbf0acc8f4bfacee99656228b90fd4ec134f4b37e9ff9b239da769a4d3f563",
+          "image_id": "sha256:3e0cd7fa29e459f75099181d925fb059c00ae0ce27d618925ad49c552af3dc5d"
+        }
       },
       {
         "architecture": "arm64",
@@ -138,11 +148,34 @@
         "os": "linux",
         "source_commit": "e214e3f225d2229df7ff5d86012609bfafa0ee4b",
         "user": "65532:65532",
-        "version": "0.1.16"
+        "version": "0.1.16",
+        "native_execution": {
+          "status": "PASS",
+          "observed_at": "2026-10-27T20:42:37.552003+00:00",
+          "job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/40580414333/job/122457972216",
+          "artifact_id": 12769162145,
+          "artifact_archive_digest": "sha256:d582bbe27b3a7d478391ef7426b713533b2e54cc9c2ce57ff88538e72cc037dc",
+          "receipt": "0.1.16-native-oci/arm64/published-mcp-receipt.json",
+          "receipt_sha256": "b525a6e8c62e3d797fe1c1e49212c8b01047ceb7b7824293c82e5e236aa56b8e",
+          "image_id": "sha256:3c93d85e879f2528820fcb81edfe610a7947fa3d6f8fcca99ac1df46481aeec8"
+        }
       }
     ],
-    "native_execution_performed": false,
-    "runtime_acceptance": "Pending post-publication native linux/amd64 and linux/arm64 consumer CI; metadata readback alone is not runtime acceptance."
+    "native_execution_performed": true,
+    "runtime_acceptance": "PASS: native linux/amd64 and linux/arm64 offline MCP contract, runtime catalog, empty recurring-workflow report and connection catalog; no source-data fetches.",
+    "native_verified_at": "2026-10-27T20:42:37.552003+00:00",
+    "native_acceptance": {
+      "schema": "financial-evidence.native-oci-ci-acceptance.v1",
+      "status": "PASS",
+      "workflow_run": 40580414333,
+      "workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/40580414333",
+      "ci_source_commit": "2d41efade541ba24f9393bafd8264da0fd334b74",
+      "release_source_commit": "e214e3f225d2229df7ff5d86012609bfafa0ee4b",
+      "receipt": "0.1.16-native-oci/acceptance.json",
+      "receipt_sha256": "fd667fba87b6996550fefe2daded7039d781d2abaa9e5c006ddf6c5821162bc4",
+      "scope": "Native architecture public-image MCP contract, runtime catalog, empty recurring-workflow report and offline connect catalog with network disabled; no source freshness, private-data or adoption acceptance.",
+      "ci_scope": "Only the two published-mcp-consumer jobs are qualified; this receipt does not assert the conclusion of the entire CI workflow."
+    }
   },
   "runtime_checks": {
     "installed_sdk": {
@@ -203,5 +236,5 @@
     }
   },
   "previous_release_receipt": "0.1.15.json",
-  "scope": "Public software artifacts and a synthetic fresh Python consumer. Native client certification, private-institution controls, Marketplace approval, source freshness, adoption and paid use are not established by this receipt."
+  "scope": "Public software artifacts, a synthetic fresh Python consumer, and native linux/amd64 and linux/arm64 offline OCI contracts. Native MCP-client or Office certification, private-institution controls, Marketplace approval, source freshness, adoption and paid use are not established by this receipt."
 }

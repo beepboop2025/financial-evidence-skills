@@ -1,7 +1,7 @@
 {
   "schema": "financial-evidence.native-package-downloads.v2",
   "checked_at": "2026-10-10T23:03:58.915233+00:00",
-  "scope": "Versioned automation packages with per-package provenance and current publication state. n8n 0.1.0 is published on npm; The existing n8n Creator 0.1.0 submission passed automated checks, and manual review is Under Review after its demo video was submitted on 15 October; verification remains pending. The current public npm release is separately recorded as 0.1.1. Dify Cloud remote-debug runtime passed three bounded draft workflows; its marketplace PR remains under review. No independent adoption is established.",
+  "scope": "Versioned automation packages with per-package provenance and current publication state. n8n 0.1.0 is published on npm; The existing n8n Creator 0.1.0 submission passed automated checks, and manual review is Under Review after its demo video was submitted on 15 October; verification remains pending. The current public npm release is separately recorded as 0.1.1. Dify 0.1.1 Cloud remote-debug runtime passed three bounded draft workflows; its marketplace PR was merged on 11 October and the public listing verified on 15 October. Separate 0.1.2 installed-archive tests and submission are recorded in hosted-native-packages.json. No independent adoption is established.",
   "packages": [
     {
       "kind": "n8n",
@@ -108,7 +108,7 @@
         "native_remote_debug": "not_checked",
         "marketplace_publication": "not_checked"
       },
-      "marketplace_published": false,
+      "marketplace_published": true,
       "native_validation": {
         "proof_url": "https://beepboop2025.github.io/financial-evidence-skills/integrations/dify-native-proof-20261011.json",
         "proof_sha256": "05ac0791c74de2007bbe73db81f8d417bd6fe486d532011b415d1eceabef451f",
@@ -135,10 +135,20 @@
         "archive_files_match_source": true
       },
       "marketplace_submission": {
-        "state": "submitted_pending_review",
+        "state": "approved_merged",
         "url": "https://github.com/langgenius/dify-plugins/pull/3278",
         "head_revision": "e68833393c395a28b3f9ea9e4a753e7b5cfc6d14",
-        "receipt_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/dify-submission-20261011.json"
+        "receipt_url": "https://beepboop2025.github.io/financial-evidence-skills/distribution/dify-submission-20261011.json",
+        "merged_at": "2026-10-11T15:39:35Z",
+        "merge_commit": "5fdc1e880947916cecf9343b7633b253886b528e"
+      },
+      "marketplace_publication": {
+        "version": "0.1.1",
+        "listing_url": "https://marketplace.dify.ai/plugin/beepboop2025/financial_evidence",
+        "verified_at": "2026-10-15T09:05:44.381099Z",
+        "published_package_identifier": "beepboop2025/financial_evidence:0.1.1@44352f99f3bbbbba818bf550ebd963e674effe97c349818934edd7e8bc8b0683",
+        "source": "https://beepboop2025.github.io/financial-evidence-skills/marketplaces.json",
+        "source_entry_id": "dify-financial-evidence"
       }
     }
   ]

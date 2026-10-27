@@ -5,7 +5,8 @@
 Use these versions for the central service at
 `https://agents.seiche.info/v1/research`. The exact downloaded bytes passed
 the checks in [current package receipts](hosted-native-packages.json).
-n8n 0.1.1 is published on npm. Dify 0.1.2 remains a qualified download candidate.
+n8n 0.1.1 is published on npm. Dify 0.1.2 passed installed-package tests in Cloud
+and is submitted for marketplace review; the approved Dify listing remains 0.1.1.
 
 ### n8n hosted 0.1.1
 
@@ -36,20 +37,36 @@ The public research API requires no financial-data API key.
 ### Dify hosted 0.1.2
 
 [Download Dify 0.1.2](downloads/financial_evidence-0.1.2.difypkg).
-The official CLI built the archive. Packaged files matched reviewed source,
-Dify SDK 0.10.2 registered the plugin, and its actual packaged tools completed
-three central requests. This qualification did not install the archive in a
-Dify Cloud or Community Edition workspace. Evaluate it through the supported
-local-plugin flow in your permitted workspace and run Get Evidence Page once.
-No new marketplace submission or acceptance is claimed.
+The exact 7,477-byte archive (SHA-256
+`350d20409d9a3287d0ddc1b939d2cbb5f577ca632f2c20be75a5c7d046f0ba96`)
+was installed through Local Package File in a Dify Cloud SANDBOX on
+28 October 2026 IST. Three draft workflow cases (`money_markets`, `bank_risk`,
+`market_liquidity`) and a repeated liquidity execution passed with limit `1`
+and offset `0`; invalid limit `251` was rejected. Outputs retained sources and
+diagnostics. The temporary workflow and candidate plugin were removed afterward.
+See the [sanitized native proof](../integrations/dify-native-proof-20261028.json).
+
+[Update PR 3534](https://github.com/langgenius/dify-plugins/pull/3534) is submitted
+and passed upstream checks; review and marketplace publication are pending.
+The [submission receipt](../distribution/dify-submission-20261028.json) records
+the exact package and submitted revision. Use the local-package route in a
+permitted workspace to evaluate 0.1.2; the approved Marketplace version remains
+0.1.1. Outbound policies must permit `agents.seiche.info`; an
+`api.seiche.info`-only allowlist is insufficient for 0.1.2.
+
+The repeat used cached provider evidence, not a fresh upstream retrieval.
+Money-market data retained a PARTIAL source status, bank data retained
+construction-PIT status and unknown rights, and liquidity data retained a
+null/unavailable value and failed stress-case limitation. Community Edition
+was not executed. Native success does not establish data freshness, financial
+validity, redistribution rights, regulatory compliance or customer adoption.
 
 ## Previous native releases
 
 The following versioned downloads and observations remain historical.
 For new central connections, choose the current hosted clients above.
 
-The n8n package is published on npm; the Dify package remains a marketplace
-submission candidate. Check each package's publication state, file digest and
+The n8n package is published on npm; Dify 0.1.1 is approved and publicly listed. Check each package's publication state, file digest and
 validation scope in [package receipts](native-packages.json).
 
 ## n8n
@@ -122,8 +139,9 @@ a successful workflow is not evidence that every source value is available.
 [Marketplace PR 3278](https://github.com/langgenius/dify-plugins/pull/3278) was
 approved and merged on 11 October. The [public Marketplace listing](https://marketplace.dify.ai/plugin/beepboop2025/financial_evidence)
 was verified on 15 October: version 0.1.1, Verified by Dify, with an install link.
-This does not establish installed-archive execution or publication of the
-separate central-hosted 0.1.2 candidate.
+This historical proof does not establish installed-archive execution of 0.1.1.
+The separate central-hosted 0.1.2 has its own Cloud acceptance and pending
+marketplace update [above](#dify-hosted-012).
 The [prior 0.1.0 receipt](https://github.com/beepboop2025/financial-evidence-skills/blob/c767edbf58e173b60b085cf637880b5bd9d4bb52/docs/platforms/native-packages.json)
 is historical and must not be relabeled as this 0.1.1 package.
 

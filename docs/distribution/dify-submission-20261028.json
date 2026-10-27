@@ -1,0 +1,53 @@
+{
+  "schema": "financial-evidence.dify-submission.v1",
+  "observed_at": "2026-10-27T21:45:09.924286+00:00",
+  "status": "submitted_pending_review",
+  "marketplace_published": false,
+  "pr_url": "https://github.com/langgenius/dify-plugins/pull/3534",
+  "pr_number": 3534,
+  "pr_state": "OPEN",
+  "pr_draft": false,
+  "submission_head_revision": "53eaeaa56d709dbee7cb52652f5acba6b1be3a75",
+  "created_at": "2026-10-27T21:43:50Z",
+  "merged_at": null,
+  "package_version": "0.1.2",
+  "package_path": "beepboop2025/financial_evidence/financial_evidence-0.1.2.difypkg",
+  "package_bytes": 7477,
+  "package_sha256": "350d20409d9a3287d0ddc1b939d2cbb5f577ca632f2c20be75a5c7d046f0ba96",
+  "remote_package_matches_local": true,
+  "source_revision": "8c3baac2c9a06c97d243d3d068dc364ce4d951d0",
+  "source_files_match_package": true,
+  "validator_revision": "57a21d1304b1108df3e6b90a15a4f5dd9f0915f9",
+  "native_proof_url": "https://beepboop2025.github.io/financial-evidence-skills/integrations/dify-native-proof-20261028.json",
+  "native_proof_sha256": "3de7036f6784d16817a9acb6223834bef7628f36490514d4db220070bba5287d",
+  "native_validation_scope": "Exact 0.1.2 local archive installed in Dify Cloud SANDBOX; three bounded datasets, one repeated execution and one invalid-input rejection. Community Edition not executed.",
+  "upstream_checks": [
+    {
+      "bucket": "pass",
+      "link": "https://github.com/langgenius/dify-plugins/actions/runs/40589206176/job/122488705282",
+      "name": "apply-risk-label",
+      "state": "SUCCESS"
+    },
+    {
+      "bucket": "pass",
+      "link": "https://github.com/langgenius/dify-plugins/actions/runs/40589206482/job/122488705051",
+      "name": "pre-check-plugin",
+      "state": "SUCCESS"
+    }
+  ],
+  "upstream_risk_label": "risk: medium",
+  "published_marketplace_version": "0.1.1",
+  "independent_adoption_verified": false,
+  "outbound_allowlist_change": "0.1.2 uses agents.seiche.info; an api.seiche.info-only allowlist is insufficient.",
+  "limitations": [
+    "Dify Cloud only; Community Edition not executed.",
+    "Dify deployed version was not exposed; no minimum version asserted.",
+    "Repeat is a distinct Dify execution with cached provider evidence, not fresh upstream retrieval.",
+    "Money-market source reports PARTIAL.",
+    "Bank result retains construction-PIT status, observation dates and rights_status unknown.",
+    "Market-liquidity result retains null/unavailable value and failed stress-case limitation.",
+    "Money-markets run ID was obtained from native run-history UI, not embedded in its original output.",
+    "Invalid test was limit251 from an operator entry correction; limit0 was not run.",
+    "Successful transport/schema/native workflow does not establish financial validity, rights, freshness, regulatory compliance or customer adoption."
+  ]
+}

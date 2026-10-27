@@ -6,22 +6,20 @@ Generation is offline and uses the existing Financial Evidence product catalog. 
 
 ## Version availability
 
-This command is part of the **0.1.16 source candidate**. The last verified public
-release is 0.1.15, which does not include `connect`. Until 0.1.16 publication and
-consumer verification are recorded, use a reviewed candidate checkout in an
-isolated environment; do not assume an unpinned PyPI install includes it.
+This command is available in the published **0.1.16** package. Its public wheel,
+signed source and fresh consumer checks are recorded in the
+[release verification receipt](../releases/0.1.16.json).
 
-From that checkout on macOS or Linux:
+Install it in your chosen Python environment:
 
 ```sh
-python3 -m venv .venv
-.venv/bin/python -m pip install .
-.venv/bin/financial-evidence --version
+python3 -m pip install financial-evidence==0.1.16
+financial-evidence --version
 ```
 
-The version should report `0.1.16`. Use the installed environment's
-`financial-evidence` executable for the commands below. See the
-[candidate release notes](../releases/0.1.16-candidate.md) for publication gates.
+The version should report `0.1.16`. Optional workspace dependencies are not needed
+for configuration generation. See the [release notes](../releases/0.1.16-candidate.md)
+for tested scope and remaining platform boundaries.
 
 ## Start with the existing products
 

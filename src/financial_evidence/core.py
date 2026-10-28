@@ -521,6 +521,7 @@ def publication_projection(source_url: str, document: object) -> tuple[object, d
     contracts = {
         ROUTES["capital-market"][0].url: ("seiche.world-markets.v1", "capital_markets", dict),
         ROUTES["money-market"][0].url: ("seiche.global-money-markets.v1", "markets", list),
+        ROUTES["forex"][0].url: ("seiche.world-markets.v1", "forex", dict),
     }
     contract = contracts.get(source_url)
     if contract is not None:
@@ -536,7 +537,7 @@ def publication_projection(source_url: str, document: object) -> tuple[object, d
                      and all(isinstance(metric, dict) for metric in market["metrics"]))
                 for market in document[field]
             )
-        elif valid:
+        elif valid and field == "capital_markets":
             capital = document[field]
             risk = capital.get("risk_context")
             valid = (isinstance(risk, dict) and isinstance(risk.get("market_prices"), dict)
@@ -545,7 +546,10 @@ def publication_projection(source_url: str, document: object) -> tuple[object, d
                              for key in ("vix", "high_yield_oas"))
                      and ("positioning" not in capital
                           or isinstance(capital["positioning"], list)
-                          and all(isinstance(item, dict) for item in capital["positioning"])))
+                          and all(isinstance(item, dict) for item in capital["positioning"]))
+                     and ("primary_market" not in capital
+                          or isinstance(capital["primary_market"], list)
+                          and all(isinstance(item, dict) for item in capital["primary_market"])))
         if not valid:
             reason = (
                 "Unexpected schema or payload shape for this rights-reviewed route; "
@@ -562,7 +566,20 @@ def publication_projection(source_url: str, document: object) -> tuple[object, d
         return document, None
     projected = copy.deepcopy(document)
     withheld = []
-    if (source_url == ROUTES["capital-market"][0].url
+    if source_url == ROUTES["forex"][0].url:
+        # This fixed route projects saved FRED-fed FX/materials engines.
+        # Its source catalog is not a per-field permission receipt. Preserve
+        # clocks and identity only until individual inputs are qualified;
+        # independently acquired ECB/gift-city routes are separate and untouched.
+        projected = _withheld_metadata(document, source_ids=["fred"])
+        projected["schema"] = document["schema"]
+        for key in ("generated_at", "snapshot_generated_at", "selection"):
+            if isinstance(document.get(key), str):
+                projected[key] = document[key]
+        projected["forex"] = _withheld_metadata(document["forex"], source_ids=["fred"])
+        withheld.append("/forex")
+        withheld.append("/unreviewed_top_level_fields")
+    elif (source_url == ROUTES["capital-market"][0].url
             and document.get("schema") == "seiche.world-markets.v1"):
         capital = projected.get("capital_markets")
         if isinstance(capital, dict):
@@ -588,6 +605,21 @@ def publication_projection(source_url: str, document: object) -> tuple[object, d
                     if isinstance(item, dict) and (item.get("id") == "officialbid" or _fred_sourced(item)):
                         positioning[index] = _withheld_metadata(item, source_ids=["federal_reserve_h41", "fred"])
                         withheld.append(f"/capital_markets/positioning/{index}")
+            for index, item in enumerate(capital.get("primary_market", [])):
+                if item.get("id") != "reportcard":
+                    continue
+                # reportcard.letter_line quotes FRED-fed SOFR-IORB/reserve
+                # event studies. Demand fatigue comes only from Treasury
+                # auction indirect shares (Seiche reportcard._fatigue_rows).
+                allowed = {"id", "status", "asof", "funding_asof", "n_cards",
+                           "window_bd", "demand_fatigue", "source_registry_ids"}
+                protected = {key: copy.deepcopy(value) for key, value in item.items()
+                             if key in allowed}
+                protected["letter_line"] = None
+                protected["funding_reading"] = _withheld_metadata(
+                    {"asof": item.get("funding_asof")}, source_ids=["fred"])
+                capital["primary_market"][index] = protected
+                withheld.append(f"/capital_markets/primary_market/{index}/funding_reading")
     elif (source_url == ROUTES["money-market"][0].url
           and document.get("schema") == "seiche.global-money-markets.v1"):
         markets = projected.get("markets")

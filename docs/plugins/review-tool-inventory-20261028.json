@@ -134,16 +134,14 @@
     },
     {
       "id": "palimpsest",
-      "observed_at": "2026-10-28T10:11:10.373424+00:00",
+      "observed_at": "2026-10-28T12:43:56.227934+00:00",
       "endpoint": "https://agents.seiche.info/products/palimpsest/mcp",
       "protocol_version": "2025-06-18",
       "server_version": "1.9.3",
       "status": "inventory_complete",
-      "annotations_complete": false,
+      "annotations_complete": true,
       "read_only_hint_all": true,
-      "missing_hint_on_all_tools": [
-        "destructiveHint"
-      ],
+      "missing_hint_on_all_tools": [],
       "initial_protocol_rejection": {
         "protocol_version": "2025-11-25",
         "http_status": 400
@@ -153,10 +151,12 @@
         "list_signals",
         "get_signal",
         "get_newsroom",
-        "query_economic_observations",
+        "inspect_economic_publication_rights",
         "whats_happening",
         "gfw_reading"
-      ]
+      ],
+      "source_commit": "1acdda35ff98b7fa4bb0c1a87f3baa02f6440c25",
+      "tools_sha256": "a23aca5424974fa9bea6b8475611f5d0d51b5ab27de5f4e24e159ebfc18a0b06"
     },
     {
       "id": "noisefloor",

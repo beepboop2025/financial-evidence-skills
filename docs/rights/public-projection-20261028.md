@@ -25,7 +25,7 @@ current hosted redistribution was established in this review.
 
 The filter runs on source fetches, and again on table projection so an older
 upstream or cached packet cannot bypass it. Unexpected root types, schemas or
-required payload shapes on these two reviewed routes fail closed to unavailable
+required payload shapes on these reviewed routes fail closed to unavailable
 metadata rather than returning an unreviewed document. Unrelated sources are unchanged.
 Original acquired response hashes remain acquisition receipts. When the
 returned document changes, publication_projection declares that it is a
@@ -68,7 +68,7 @@ direct NYFed and Treasury adapters retain their existing policy. Current
 policy must be checked at read time even for previously stored rows.
 
 This patch does not claim rights approval for other Seiche endpoints,
-prebuilt market payloads, FX/Estuary readings, or all third-party data in the
+prebuilt market payloads, native FX/Estuary tools, or all third-party data in the
 fleet. Review those source paths separately before broader attestations.
 
 Before activation, verify the exact deployed source revision, run packet and
@@ -77,3 +77,36 @@ caches, then read back public packets and tables. Confirm withheld values
 and histories remain absent, original-source values remain correctly
 labelled, and dates/rights/projection hashes survive. Provider SUCCESS alone
 is not evidence of those public outputs.
+
+## Follow-up: saved FX and auction funding narratives
+
+The fixed Financial Evidence `forex` topic retrieves
+`/api/v2/world-markets?section=forex`. Its saved FX/materials engines use FRED
+inputs without a per-field redistribution qualification. This route now returns
+metadata only, including the original acquisition receipt and a separate public
+projection hash. Unexpected schemas fail closed. Duplicated top-level summaries
+and newly added unreviewed fields are withheld as well as the FX payload.
+The independently acquired ECB exchange-rate data on the separate `gift-city`
+and `gold` routes is unchanged; it is not relabelled as the saved FX source.
+
+The capital-market reportcard's `letter_line` can quote FRED SOFR–IORB spreads
+and reserve changes even though its displayed registry lists Treasury sources.
+That narrative and unreviewed reportcard fields are withheld. Its Treasury-only
+auction demand-fatigue statistics, observation dates, card counts and window
+definition remain. The remaining Treasury auction block is unchanged.
+
+Source trace at Seiche revision `1fa33dacc46a2c0aa2a3ff38be2995ab560748e0`:
+- [assembly inputs](https://github.com/beepboop2025/seiche/blob/1fa33dacc46a2c0aa2a3ff38be2995ab560748e0/backend/seiche/assemble.py):
+  reportcard funding inputs around lines 846–850; FX/materials assembly around
+  line 941.
+- [reportcard computation](https://github.com/beepboop2025/seiche/blob/1fa33dacc46a2c0aa2a3ff38be2995ab560748e0/backend/seiche/engines/reportcard.py):
+  `_fatigue_rows` uses auction indirect shares; the letter around line 430
+  combines auction results with funding event studies.
+- [world section projection](https://github.com/beepboop2025/seiche/blob/1fa33dacc46a2c0aa2a3ff38be2995ab560748e0/backend/seiche/markets/world.py)
+  routes those saved engine outputs into the public sections.
+
+The current nine-tool Workspace MCP schema does not accept the forex topic.
+The REST packet route and the legacy stdio fetch schema do. Actual HTTP/legacy
+dispatch tests cover those reachable paths without expanding the tool schema.
+This remains a bounded route policy, not an attestation for all native Seiche
+tools or a new private-source integration.

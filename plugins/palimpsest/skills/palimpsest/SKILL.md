@@ -9,6 +9,8 @@ Use the bundled `palimpsest` MCP connection for this product's public research.
 Scope: Inspect public-record research signals, China and regional evidence catalogs, and sourced newsroom context. Palimpsest helps analysts trace provenance, revisions and access restrictions before using evidence. Restricted economic collections remain metadata only; the plugin does not reconstruct denied observations or present research signals as verified financial conclusions.
 Product type: `core_product`.
 
+For China economic publication rights, call `inspect_economic_publication_rights` with no arguments. It returns policy metadata and publication counts, never observation rows. The historical query action is a compatibility route and must not be treated as an observation service.
+
 1. Discover the server's current tools and inspect their schemas before calling.
 2. Start with catalog, coverage or capability discovery. Use bounded reads and
    ask for missing inputs rather than inventing a position, dataset or identifier.

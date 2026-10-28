@@ -59,7 +59,7 @@ class HostedRoutingTests(unittest.TestCase):
             assert result["resolved_url"] == source_endpoint(original)
             assert result["dataset_id"] == SOURCE_DATASETS[original]
             assert result["content_sha256"] == "sha256:" + hashlib.sha256(body).hexdigest()
-            if original == core.ROUTES["capital-market"][0].url:
+            if original in {core.ROUTES["capital-market"][0].url, core.ROUTES["forex"][0].url}:
                 # The generic money fixture is an unexpected contract here:
                 # transport identity/hash survive, but its values do not publish.
                 assert result["document"]["status"] == "unavailable"

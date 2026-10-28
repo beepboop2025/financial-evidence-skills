@@ -1,0 +1,21 @@
+{
+  "schema": "financial-evidence.openai-candidate.v1",
+  "plugin_version": "0.1.17",
+  "runtime_version": "0.1.16",
+  "state": "prepared_candidate",
+  "official_directory_approved": false,
+  "review_cases_status": "configured_not_model_tested",
+  "demo_recording_status": "not_recorded",
+  "sha256": "b9f7a97b1559a05a353c87561768fe48a07f754145546871d75662a8b9f1baed",
+  "bytes": 41072,
+  "files": {
+    ".codex-plugin/plugin.json": "0554f98d220aeb60b5ed583fbc8607105aa22d88ccee5b78bc29e7119e20d483",
+    ".mcp.json": "1e45bc209ba503bc498c46b4cb0ca9f8b034066a619e573cca22d31112e92d8d",
+    "LICENSE": "33813f6d443a15c6d5842b2d706c175e904fe34174df440cf2b5f3932d32316a",
+    "assets/logo-400.png": "63ab857d98d9b9b9d39301ae176065885170524bcc09e9d7025c226fdb01a09b",
+    "assets/logo.svg": "79622aa12574bd2b24fb992daf25c6d6b651b8377366976cc35a0b3402793829",
+    "skills/financial-evidence/SKILL.md": "2404984266dd24212ce30da03fb1626006b48080e338c007fac4eb7baefb83a6",
+    "skills/financial-evidence/references/routing.md": "47f34e581a5e37013526256cc48e4ecffa4243b035c19b8c0fc5a0d54a5ce428",
+    "skills/financial-evidence/scripts/fetch_evidence.py": "cea7e2499a050505f0c626adbef19614d08172246600190383f07b9e95650956"
+  }
+}

@@ -14,7 +14,6 @@ from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from typing import Any
 from urllib.parse import urlparse
-from .hosted import SOURCE_DATASETS, source_endpoint
 
 
 PACKET_SCHEMA = "liquidity-lab.financial-evidence-packet.v1"
@@ -660,7 +659,7 @@ def fetch_source(
     timeout: float,
     opener: Callable[..., Any] = FIXED_ROUTE_OPENER,
 ) -> dict[str, Any]:
-    """Retrieve reviewed source bytes through the central service, with no fallback."""
+    """Retrieve one allowlisted JSON document with explicit failure state."""
 
     parsed = urlparse(source.url)
     base = {
@@ -682,13 +681,10 @@ def fetch_source(
             "ok": False,
             "error": "source URL is outside the HTTPS allowlist",
         }
-    transport_url = source_endpoint(source.url)
     request = urllib.request.Request(
-        transport_url,
+        source.url,
         headers={
             "Accept": "application/json",
-            "Accept-Encoding": "identity",
-            "X-Financial-Evidence-Traffic-Class": "unverified",
             "User-Agent": "financial-evidence/0.1 (+https://github.com/"
             "beepboop2025/financial-evidence-skills)",
         },
@@ -697,15 +693,10 @@ def fetch_source(
         with opener(request, timeout=timeout) as response:
             final_url = response.geturl()
             final = urlparse(final_url)
-            if final.scheme != "https" or final.hostname != urlparse(transport_url).hostname:
-                raise ValueError("redirect left the HTTPS hosted service")
-            if final_url != transport_url:
+            if final.scheme != "https" or final.hostname not in ALLOWED_HOSTS:
+                raise ValueError("redirect left the HTTPS source allowlist")
+            if final_url != source.url:
                 raise ValueError("redirects are not accepted for fixed evidence routes")
-            if (response.headers.get("X-Source-URL", source.url) != source.url
-                    or response.headers.get("X-Dataset-ID", SOURCE_DATASETS[source.url]) != SOURCE_DATASETS[source.url]):
-                raise ValueError("hosted source identity does not match the reviewed dataset")
-            if response.headers.get("Content-Encoding", "identity").lower() != "identity":
-                raise ValueError("compressed source responses are not accepted")
             content_type = response.headers.get_content_type().lower()
             if content_type not in {
                 "application/json",
@@ -728,9 +719,6 @@ def fetch_source(
                 **base,
                 "ok": True,
                 "resolved_url": final_url,
-                "dataset_id": SOURCE_DATASETS[source.url],
-                "transport_mode": "hosted",
-                "hosted_operational_measurement": True,
                 "bytes": len(raw),
                 "content_sha256": content_sha256,
                 "source_reported": source_reported_metadata(
@@ -748,16 +736,13 @@ def fetch_source(
         json.JSONDecodeError,
         urllib.error.HTTPError,
     ) as exc:
-        detail = str(exc) if type(exc) is ValueError and str(exc).startswith((
-            "response exceeds ", "redirect", "hosted source identity ",
-            "compressed source ", "JSON root must ")) else "hosted source request failed"
-        return {**base, "ok": False, "error": f"{type(exc).__name__}: {detail}"}
+        return {**base, "ok": False, "error": f"{type(exc).__name__}: {exc}"}
 
 
 def build_packet(
     topics: Iterable[str],
     *,
-    max_bytes: int = 4_194_304,
+    max_bytes: int = 1_048_576,
     timeout: float = 10.0,
     opener: Callable[..., Any] = FIXED_ROUTE_OPENER,
 ) -> dict[str, Any]:

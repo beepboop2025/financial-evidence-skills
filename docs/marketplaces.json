@@ -326,20 +326,20 @@
       "detail": "Financial Evidence 0.1.17 was submitted after the owner approved the declarations. An independent refreshed OpenAI portal readback shows In review and Not published. This is a plugin submission, not a new PyPI, registry or public store release. The review demonstration contains direct public MCP responses; no new paid model test or native plugin-installation test is claimed.",
       "next_action": "Wait for OpenAI review and respond to any specific findings. Verify approval and public listing independently before marking this channel live.",
       "latest_surface_check": {
-        "observed_at": "2026-10-28T19:08:15.550Z",
+        "observed_at": "2026-10-28T20:54:20.534Z",
         "url": "https://platform.openai.com/plugins",
         "readback": "In review; Not published",
-        "new_submission_created": true
+        "new_submission_created": false
       },
       "prepared_archive": "https://beepboop2025.github.io/financial-evidence-skills/distribution/downloads/financial-evidence-openai-plugin-v0.1.17.zip",
       "archive_sha256": "0f383f07560d17d542e47055b2dbd5f233ecf770ef6f675d531196d42833b13d",
       "portal_upload_completed": true,
-      "updated_at": "2026-10-28T19:08:15.550Z",
+      "updated_at": "2026-10-28T20:54:20.534Z",
       "completion_receipt": "distribution/completion-20261010.json",
       "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
       "owner_deferred": false,
       "version": "0.1.17",
-      "evidence_receipt": "distribution/openai-review-state-20261029.json"
+      "evidence_receipt": "distribution/openai-review-state-20261029-13of14.json"
     },
     {
       "id": "claude-plugin-directory",
@@ -5228,13 +5228,13 @@
       "state": "submitted",
       "submission_url": "https://platform.openai.com/plugins",
       "cost": "No paid placement or plan purchased.",
-      "detail": "All thirteen specialist drafts are uploaded. Independent portal readback shows eleven specialist versions In review and Not published. Seiche and LiquiLens Trade Safety remain Not submitted pending final review evidence and declarations. Trade Safety 0.2.3 has independently verified runtime acceptance; this does not submit its OpenAI draft. Financial Evidence is tracked separately and is also In review. The captures disclose their direct-service scope; no new model-routing or native plugin-installation test is claimed.",
-      "next_action": "Complete the remaining Seiche release and both final review packets, approve their final declarations and submit those two drafts. Monitor the eleven submitted specialists without duplicate submissions.",
-      "verified_at": "2026-10-28T19:08:15.550Z",
+      "detail": "All thirteen specialist drafts are uploaded. Independent refreshed portal readback shows twelve specialist versions In review and Not published, including LiquiLens Trade Safety 1.0.2. Seiche 1.0.2 remains Not submitted while its release, recovery, final package and declarations await completion. Trade Safety runtime 0.2.3 and its public review recording are verified separately from the submission. Financial Evidence is tracked separately and is also In review: thirteen of fourteen total portal entries, all Not published. The captures disclose their direct-service scope; no approval, new model-routing or native plugin-installation test is claimed.",
+      "next_action": "Complete the remaining Seiche release, recovery and final review package, then obtain its final declarations and submit that draft. Monitor the twelve submitted specialists without duplicate submissions; independently verify any approval and public listing.",
+      "verified_at": "2026-10-28T20:54:20.534Z",
       "listing_url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/",
-      "evidence_receipt": "distribution/openai-review-state-20261029.json",
-      "submitted_count": 11,
-      "draft_count": 2,
+      "evidence_receipt": "distribution/openai-review-state-20261029-13of14.json",
+      "submitted_count": 12,
+      "draft_count": 1,
       "approved_count": 0,
       "published_count": 0
     },

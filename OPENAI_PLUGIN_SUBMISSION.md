@@ -1,12 +1,16 @@
 # OpenAI public plugin submission packet
 
-**Current submission:** Financial Evidence **0.1.17** is **In review** and
-**Not published**, independently read back from the OpenAI portal on 29 October
-2026 (IST). Eleven specialist plugins are also in review; Seiche and LiquiLens
-Trade Safety remain unsubmitted pending final review evidence and declarations.
-Trade Safety 0.2.3 is now live with independently verified read-only MCP responses;
-this runtime acceptance is separate from its OpenAI draft status.
-See the [dated status receipt](docs/distribution/openai-review-state-20261029.json).
+**Current submissions:** Financial Evidence **0.1.17** and twelve specialist
+plugins are **In review**: **13 of 14** portal entries, independently read back
+on 29 October 2026 (IST). All fourteen remain **Not published**. LiquiLens Trade
+Safety **1.0.2** is now in review; its **0.2.3** runtime and
+[public review recording](docs/review/20261029/trade-safety/index.html) are verified.
+Seiche **1.0.2** remains **Not submitted** while its release, recovery, final
+package and declarations await completion. Review submission does not establish
+approval, public availability, a native installation or a model-routing test.
+See the [current status receipt](docs/distribution/openai-review-state-20261029-13of14.json);
+the [earlier twelve-review snapshot](docs/distribution/openai-review-state-20261029.json)
+is retained as history.
 
 The [submitted ZIP](docs/distribution/downloads/financial-evidence-openai-plugin-v0.1.17.zip)
 and [exact file inventory](docs/distribution/downloads/financial-evidence-openai-plugin-v0.1.17.json)

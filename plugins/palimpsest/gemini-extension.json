@@ -1,6 +1,6 @@
 {
   "name": "palimpsest",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Inspect public-record research signals, China and regional evidence catalogs, and sourced newsroom context. Palimpsest helps analysts trace provenance, revisions and access restrictions before using evidence. Restricted economic collections remain metadata only; the plugin does not reconstruct denied observations or present research signals as verified financial conclusions.",
   "mcpServers": {
     "palimpsest": {
@@ -11,7 +11,7 @@
         "list_signals",
         "get_signal",
         "get_newsroom",
-        "query_economic_observations",
+        "inspect_economic_publication_rights",
         "whats_happening",
         "gfw_reading"
       ]

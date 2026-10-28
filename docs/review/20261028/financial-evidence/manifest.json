@@ -1,0 +1,79 @@
+{
+  "schema": "liquilens.plugin-demo-recording.v1",
+  "product": "financial-evidence",
+  "name": "Financial Evidence",
+  "recording": "walkthrough.mp4",
+  "sha256": "0c5741c4557677d4b953e547ef040945af61ff90df673bfc6bd2852a1c158d68",
+  "bytes": 1584572,
+  "duration_seconds": 90,
+  "fps": 24,
+  "capture_type": "edited browser recording of direct MCP evidence captures",
+  "native_plugin_installation_test": false,
+  "model_api_calls_for_this_recording": 0,
+  "case_count": 5,
+  "capture_sha256": "1305aecff42a9f730ddf8ed30f3df3fa83118683e5ba30bf8fe6b857694e3d99",
+  "capture_url": "../service-viewer/data/financial-evidence.json",
+  "timeline": [
+    {
+      "label": "1. USD funding review \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "1. USD funding review \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "1. USD funding review \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "2. Covered bank disclosure review \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "2. Covered bank disclosure review \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "2. Covered bank disclosure review \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "3. Indicative BTC exit comparison \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "3. Indicative BTC exit comparison \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "3. Indicative BTC exit comparison \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "4. Dated funding review \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "4. Dated funding review \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "4. Dated funding review \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "5. Bounded China evidence and missingness \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "5. Bounded China evidence and missingness \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "5. Bounded China evidence and missingness \u2014 limits",
+      "seconds": 7
+    }
+  ],
+  "limitations": "This updated recording covers the live service, including the explicit funding, institution and exit workflows. It is not a native plugin installation or new model-routing test. Existing widget resources were separately validated through the MCP contract checks. Restricted evidence remains unavailable; no trade, enrollment or private-record access is performed."
+}

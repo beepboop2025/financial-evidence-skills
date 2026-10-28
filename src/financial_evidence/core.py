@@ -502,3 +502,28 @@ def build_packet(
         "topics": selected,
         "sources": results,
     }
+
+
+# Shared receipt primitives for public funding archive projection.
+_PUBLICATION_POLICY = "financial-evidence.publication-rights.2026-10-28"
+
+_FRED_TERMS = "https://fred.stlouisfed.org/legal/terms/"
+
+_RIGHTS_REASON = (
+    "Public redistribution permission for these FRED-sourced observations "
+    "and dependent readings is not established. Source availability and the "
+    "software license do not grant that permission."
+)
+
+def _projection_receipt(document: dict, withheld: list[str], reason: str) -> dict:
+    encoded = json.dumps(document, sort_keys=True, ensure_ascii=False,
+                         separators=(",", ":"), allow_nan=False).encode()
+    return {
+        "policy": _PUBLICATION_POLICY,
+        "document_is_original": False,
+        "withheld_paths": withheld,
+        "content_sha256": "sha256:" + hashlib.sha256(encoded).hexdigest(),
+        "hash_scope": "canonical_json_of_returned_document",
+        "source_hash_scope": "original_retrieved_response_bytes",
+        "reason": reason,
+    }

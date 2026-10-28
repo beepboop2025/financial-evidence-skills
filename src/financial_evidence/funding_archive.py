@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import copy
 import csv
 from datetime import date, datetime, timezone
 import hashlib
@@ -13,7 +14,10 @@ from pathlib import Path
 import re
 import stat
 
-from .core import _parse_finite_float, _reject_nonfinite
+from .core import (
+    _parse_finite_float, _reject_nonfinite, _projection_receipt,
+    _RIGHTS_REASON, _FRED_TERMS,
+)
 from .release import release_identity
 
 SCHEMA = "liquidity-lab.funding-review.v1"
@@ -263,7 +267,76 @@ def _measurement(value):
     return result
 
 
-def _load(directory, *, now, max_age_seconds, runtime_release, runtime_check):
+def public_funding_projection(result: dict, csv_bytes: bytes | None,
+                              source_csv_sha256: str) -> tuple[dict, bytes | None]:
+    """Filter verified captured evidence without rewriting its immutable files."""
+    restricted = {
+        row["metric_id"] for row in result["results"]
+        if re.search(r"\bfred\b", row.get("source") or "", re.IGNORECASE)
+    }
+    if not restricted:
+        return result, csv_bytes
+    result = copy.deepcopy(result)
+    result.pop("publication_projection", None)
+    status = "redistribution_restricted"
+    paths = []
+    for index, row in enumerate(result["results"]):
+        # The complete review cannot retain a passing publication verdict.
+        row["review_status"] = status
+        if row["metric_id"] in restricted:
+            row.update(value=None, value_state="restricted",
+                       rights_status="redistribution_review_required",
+                       publication_allowed=False, rights_reason=_RIGHTS_REASON,
+                       rights_urls=[_FRED_TERMS])
+            paths.append(f"/results/{index}/value")
+            assessment = result.get("freshness_assessments", {}).get(row["metric_id"])
+            if assessment is not None:
+                # Preserve clocks, not a narrative derived from restricted values.
+                for key in ("basis", "latest_observation_basis"):
+                    if key in assessment:
+                        assessment[key] = _RIGHTS_REASON
+    result.update(
+        ready=False, availability="partially_restricted",
+        captured_data_readiness=result.get("captured_data_readiness", result["data_readiness"]),
+        data_readiness=status, rights_status="redistribution_review_required",
+        publication_allowed=False,
+    )
+    issue = {"code": "public_redistribution_review_required", "subject": "funding_review"}
+    if issue not in result["issues"]:
+        result["issues"] = [*result["issues"], issue]
+    result["measurement"] = {
+        **result.get("measurement", {}),
+        "scope": "capture_time_pre_projection_operational_metrics_not_publication_readiness",
+        "current_publication_ready": False,
+    }
+    projected_csv = None
+    if csv_bytes is not None:
+        reader = csv.DictReader(io.StringIO(csv_bytes.decode("utf-8"), newline=""))
+        fieldnames = reader.fieldnames
+        projected_rows = list(reader)
+        for row in projected_rows:
+            row["review_status"] = status
+            if row["metric_id"] in restricted:
+                row["value"] = ""
+                row["value_state"] = "restricted"
+        stream = io.StringIO(newline="")
+        writer = csv.DictWriter(stream, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(projected_rows)
+        projected_csv = stream.getvalue().encode("utf-8")
+    receipt = _projection_receipt(result, paths, _RIGHTS_REASON)
+    receipt.update(
+        source_hash_scope="verified_original_capture_csv_bytes",
+        source_artifact_sha256="sha256:" + source_csv_sha256,
+        csv_sha256=("sha256:" + hashlib.sha256(projected_csv).hexdigest()
+                    if projected_csv is not None else None),
+    )
+    result["publication_projection"] = receipt
+    return result, projected_csv
+
+
+def _load(directory, *, now, max_age_seconds, runtime_release, runtime_check,
+          project_public=True):
     if (
         isinstance(max_age_seconds, bool)
         or not isinstance(max_age_seconds, (int, float))
@@ -493,9 +566,14 @@ def _load(directory, *, now, max_age_seconds, runtime_release, runtime_check):
                 and re.fullmatch(r"[A-Za-z0-9._+-]{1,160}", value)
             },
         }
+        public_csv = csv_bytes
+        if project_public:
+            result, public_csv = public_funding_projection(
+                result, csv_bytes, manifest["artifact_sha256"].get("funding-observations.csv", "")
+            )
         return (
             result,
-            csv_bytes if available and not stale and not identity_mismatch else None,
+            public_csv if available and not stale and not identity_mismatch else None,
         )
     finally:
         for fd in (capture_fd, captures_fd, root_fd):
@@ -571,6 +649,43 @@ def read_export(
         csv.Error,
     ):
         return _unavailable("funding_review_archive_unavailable_or_invalid"), None
+
+
+def read_operator_reference(directory, expected_runtime_release, *, now=None,
+                            max_age_seconds=1200):
+    """Read verified original reference bytes for a local acquisition operator.
+
+    This is not a public API option. The caller must independently reacquire
+    publisher values; these reference values must not be served or relabelled.
+    Current capture, full runtime identity, integrity and age checks still apply.
+    """
+    if (directory is None or not isinstance(expected_runtime_release, dict)
+            or any(not isinstance(expected_runtime_release.get(key), str)
+                   or not expected_runtime_release[key] for key in RELEASE_FIELDS)
+            or not re.fullmatch(r"[0-9a-f]{40}", expected_runtime_release["source_commit"])):
+        return _unavailable("operator_reference_runtime_identity_required"), None
+    try:
+        result, data = _load(
+            directory, now=now, max_age_seconds=max_age_seconds,
+            runtime_release=expected_runtime_release, runtime_check="not_checked",
+            project_public=False,
+        )
+    except (OSError, ValueError, TypeError, KeyError, OverflowError, RecursionError, csv.Error):
+        return _unavailable("operator_reference_archive_unavailable_or_invalid"), None
+    result = {
+        **result,
+        "results": result["results"] if data is not None else [],
+        "operator_only": True,
+        "scope": "local_operator_reference_not_for_public_redistribution",
+        "operator_reference": {
+            "capture_id": result["capture_id"],
+            "source_csv_sha256": "sha256:" + hashlib.sha256(data).hexdigest()
+            if data is not None else None,
+            "expected_source_commit": expected_runtime_release["source_commit"],
+            "publication_allowed": False,
+        },
+    }
+    return result, data
 
 
 def read_review(

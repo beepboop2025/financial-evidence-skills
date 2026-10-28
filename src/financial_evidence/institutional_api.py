@@ -176,7 +176,7 @@ def create_app(archive=None, events=None):
 
     @app.get("/latest")
     def current():
-        value = read(lambda: store.latest(archive))
+        value = read(lambda: store.public_latest(archive))
         if not value["available"]:
             raise HTTPException(503, value)
         return value
@@ -188,9 +188,9 @@ def create_app(archive=None, events=None):
         widget = widgets()["evidence_funding_review"]
         widget.pop("mcp_tool", None)
         widget.update(
-            name="Verified Funding Packet",
+            name="Funding Evidence Packet",
             endpoint="v1/funding/latest",
-            description="Nine verified original-publisher observations with their own dates and a common review horizon. Stale or failed latest captures are unavailable.",
+            description="Nine dated funding inputs with provenance and publication status. Stale, failed or restricted latest captures do not imply a ready review.",
         )
         widget["data"]["dataKey"] = "observations"
         return {"funding_automation": widget}
@@ -245,7 +245,7 @@ def create_app(archive=None, events=None):
     def download(identifier: str, name: str):
         if name not in ("manifest.json", "review.json", "observations.csv"):
             raise HTTPException(404)
-        manifest, review, csv_raw = read(lambda: store.packet(archive, identifier))
+        manifest, review, csv_raw = read(lambda: store.public_packet(archive, identifier))
         raw = {
             "manifest.json": store.encoded(manifest),
             "review.json": review,

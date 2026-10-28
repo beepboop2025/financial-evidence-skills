@@ -1,6 +1,7 @@
 """Forward-only public evidence packets and private, consented usage counters."""
 
 import argparse
+import copy
 import fcntl
 import hashlib
 import hmac
@@ -106,6 +107,7 @@ def archive_once(
     fetcher=fetch,
     builder=build_original_review,
     perspective="hetzner_same_host",
+    private_reference_dir=None,
 ):
     root = Path(root)
     root.mkdir(parents=True, exist_ok=True)
@@ -127,14 +129,56 @@ def archive_once(
             "packet_id": None,
             "error": None,
         }
+        reference_ready = False
         try:
             if not probe["available"] or not probe["release_matches"]:
                 raise ValueError("service_or_release_unavailable")
-            receipt, csv_raw = fetcher("/api/v1/funding-review.csv")
-            attempt["csv_request"] = receipt
-            if receipt["http_status"] != 200 or receipt["error"]:
-                raise ValueError("CSV unavailable")
-            review = docs["review"]
+            reference_ready = probe["ready"]
+            private_root = private_reference_dir or os.environ.get(
+                "FINANCIAL_EVIDENCE_PRIVATE_FUNDING_ARCHIVE"
+            )
+            if private_root:
+                review, csv_raw = funding_archive.read_operator_reference(
+                    private_root, docs["release"]
+                )
+                if csv_raw is None:
+                    raise ValueError("private funding reference unavailable")
+                public = docs["review"]
+                if any(public.get(key) != review.get(key) for key in (
+                    "capture_id", "captured_at", "manifest_sha256",
+                    "observed_release", "runtime_release",
+                )):
+                    raise ValueError("public and private capture identities differ")
+                projected, _ = funding_archive.public_funding_projection(
+                    review, csv_raw, digest(csv_raw)
+                )
+                if projected["results"] != public.get("results") or (
+                    projected.get("publication_projection", {}).get("source_artifact_sha256")
+                    != public.get("publication_projection", {}).get("source_artifact_sha256")
+                ):
+                    raise ValueError("public projection does not bind private reference")
+                reference_ready = bool(
+                    review.get("ready") is True
+                    and review.get("data_readiness") == "checks_passed"
+                    and review.get("runtime_release_identity") == "matched"
+                    and not review.get("issues")
+                )
+                attempt["private_reference"] = {
+                    "scope": "local_verified_capture_for_independent_publisher_crosscheck",
+                    "capture_id": review["capture_id"],
+                    "csv_sha256": digest(csv_raw),
+                    "public_projection_verified": True,
+                }
+                attempt["csv_request"] = {
+                    "transport": "local_readonly_archive", "error": None,
+                    "body_sha256": digest(csv_raw), "bytes": len(csv_raw),
+                }
+            else:
+                receipt, csv_raw = fetcher("/api/v1/funding-review.csv")
+                attempt["csv_request"] = receipt
+                if receipt["http_status"] != 200 or receipt["error"]:
+                    raise ValueError("CSV unavailable")
+                review = docs["review"]
             verify_pair(review, csv_raw)
             review, csv_raw, publisher_sources = builder(review)
             verify_pair(review, csv_raw)
@@ -229,7 +273,7 @@ def archive_once(
         attempt["recorded_at"] = now()
         probe["workspace_ready"] = probe["ready"]
         probe["ready"] = bool(
-            probe["ready"]
+            reference_ready
             and attempt["error"] is None
             and attempt["packet_id"] is not None
         )
@@ -277,6 +321,42 @@ def packet(root, identifier):
     })
     verify_pair(strict_json(values[0]), values[1], expected_source=source)
     return manifest, *values
+
+
+def public_packet(root, identifier):
+    """Project only after original immutable bytes and release identity verify."""
+    manifest, raw, csv_raw = packet(root, identifier)
+    review, public_csv = funding_archive.public_funding_projection(
+        strict_json(raw), csv_raw, digest(csv_raw)
+    )
+    if "publication_projection" not in review:
+        return manifest, raw, csv_raw
+    public_raw = encoded(review)
+    projected = copy.deepcopy(manifest)
+    projected.update(
+        schema="financial-evidence.public-packet-projection.v1",
+        publication_ready=False,
+        publication_status="redistribution_restricted",
+        original_public_manifest_sha256=digest(encoded(manifest)),
+        original_artifacts=copy.deepcopy(manifest["artifacts"]),
+        artifacts={"review.json": digest(public_raw),
+                   "observations.csv": digest(public_csv)},
+        publication_projection=review["publication_projection"],
+    )
+    return projected, public_raw, public_csv
+
+
+def public_latest(root):
+    value = latest(root)
+    if value["packet"] is not None:
+        manifest, raw, _ = public_packet(root, value["packet"]["packet_id"])
+        review = strict_json(raw)
+        value["packet"] = manifest
+        value["ready"] = bool(value["ready"] and review["ready"])
+        if "publication_projection" in review:
+            value["publication_status"] = "redistribution_restricted"
+            value["operational_attempt_scope"] = "capture_time_before_public_projection"
+    return value
 
 
 def history(root, *, as_of=None, limit=96):
@@ -361,8 +441,8 @@ def latest(root):
 
 
 def compare(root, left, right):
-    a, ar, _ = packet(root, left)
-    b, br, _ = packet(root, right)
+    a, ar, _ = public_packet(root, left)
+    b, br, _ = public_packet(root, right)
     if timestamp(a["archived_at"]) > timestamp(b["archived_at"]):
         raise ValueError("comparison must run forward")
     before, after = strict_json(ar)["results"], strict_json(br)["results"]

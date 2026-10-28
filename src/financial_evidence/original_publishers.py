@@ -14,7 +14,7 @@ from decimal import Decimal, InvalidOperation
 from html.parser import HTMLParser
 
 from .funding_archive import FIELDS, METRICS
-from .reliability import NoRedirect, now, strict_json
+from .reliability import NoRedirect, now, strict_json, timestamp
 
 URLS = {
     "sofr": "https://markets.newyorkfed.org/api/rates/secured/sofr/last/10.json",
@@ -27,12 +27,24 @@ URLS = {
 NYFED_TERMS = "https://www.newyorkfed.org/privacy/termsofuse"
 BOARD_TERMS = "https://www.federalreserve.gov/disclaimer.htm"
 NYFED_NOTICE = (
-    "Copyright 2026 Federal Reserve Bank of New York. Content from the New York Fed "
-    "subject to the Terms of Use at newyorkfed.org. SOFR, EFFR and operation results "
-    "are subject to those Terms of Use. The New York Fed is not responsible for "
-    "publication of these data by Liquidity Lab, does not sanction or endorse this "
-    "republication, and has no liability for your use. Liquidity Lab is not affiliated "
-    "with the New York Fed."
+    "© 2026 Federal Reserve Bank of New York. Content from the New York Fed subject "
+    "to the Terms of Use at newyorkfed.org. "
+    "The SOFR and EFFR reference-rate data, including SOFR percentile and volume data, "
+    "is subject to the Terms of Use posted at newyorkfed.org. The New York Fed is not "
+    "responsible for publication of the SOFR and EFFR reference-rate data by "
+    "LIQUILENS PRIVATE LIMITED, does not sanction or endorse any particular "
+    "republication, and has no liability for your use. "
+    "LIQUILENS PRIVATE LIMITED is not affiliated with the New York Fed. The New York "
+    "Fed does not sanction, endorse, or recommend any products or services offered "
+    "by LIQUILENS PRIVATE LIMITED. "
+    "The Secured Overnight Financing Rate (SOFR) Data and Broad General Collateral "
+    "Rate (BGCR) Data are calculated using data provided under a license granted to "
+    "the New York Fed by DTCC Solutions LLC (“Solutions”), an affiliate of The "
+    "Depository Trust & Clearing Corporation. Solutions, its affiliates, and third "
+    "parties from which they obtained data have no liability for the content of this "
+    "material. Terms: https://www.newyorkfed.org/privacy/termsofuse. "
+    "This packet uses SOFR, not BGCR; no ownership of underlying "
+    "transaction data is claimed."
 )
 
 
@@ -191,16 +203,38 @@ def operation(raw, day, *, reverse):
     return sum(amounts) / 1000000000, latest
 
 
-def build(reference, *, getter=get_source):
+def build(reference, *, getter=get_source, allow_restricted_reference=False):
+    """Reacquire values; optionally use withheld reference values only as dated targets.
+
+    The explicit restricted mode never counts an omitted numeric comparison as
+    passed. It keeps the packet available, but cannot produce a ready review.
+    """
+    if not isinstance(allow_restricted_reference, bool):
+        raise ValueError("restricted reference mode must be boolean")
     rows = reference["results"]
+    states = ("available", "restricted") if allow_restricted_reference else ("available",)
     if tuple(x["metric_id"] for x in rows) != METRICS or any(
-        x["value_state"] != "available" for x in rows
+        x["value_state"] not in states for x in rows
     ):
-        raise ValueError("nine available reference inputs required")
+        raise ValueError("nine available reference inputs or explicitly allowed restricted targets required")
+    restricted = [r["metric_id"] for r in rows if r["value_state"] == "restricted"]
     targets = {
         r["metric_id"]: date.fromisoformat(r["observation_date"]).isoformat()
         for r in rows
     }
+    if allow_restricted_reference:
+        captured_day = timestamp(reference["captured_at"]).date().isoformat()
+        for row in rows:
+            metric = row["metric_id"]
+            if (
+                row["unit"] != ("%" if metric in METRICS[:4] else "$B")
+                or targets[metric] != row["observation_date"]
+                or targets[metric] > captured_day
+                or not isinstance(row.get("source"), str)
+                or not row["source"].strip()
+                or (row["value_state"] == "restricted" and row["value"] is not None)
+            ):
+                raise ValueError("invalid restricted reference identity, date, unit or value")
     start = (
         date.fromisoformat(targets["liquidity.tga"]) - timedelta(days=7)
     ).isoformat()
@@ -325,9 +359,10 @@ def build(reference, *, getter=get_source):
         value, key, source, latest, field = values[metric]
         # Compare at the reference display precision, but publish the unrounded
         # original value: a $1m operation must remain $0.001B, never zero.
-        expected = number(row["value"])
-        if abs(value - expected) > Decimal("0.005"):
-            raise ValueError("original publisher disagrees with reference: " + metric)
+        if row["value_state"] == "available":
+            expected = number(row["value"])
+            if abs(value - expected) > Decimal("0.005"):
+                raise ValueError("original publisher disagrees with reference: " + metric)
         latest = date.fromisoformat(latest).isoformat()
         newer = latest > targets[metric]
         results.append(
@@ -352,7 +387,11 @@ def build(reference, *, getter=get_source):
         assessments[metric] = {
             "canonical_latest_asof": latest,
             "newer_observation_available": newer,
-            "basis": "Original-publisher observation matches reference within displayed precision; nonzero source values remain nonzero in the packet.",
+            "basis": (
+                "Original-publisher value independently retrieved at the requested date; numeric reference comparison was not performed because the reference value is withheld."
+                if metric in restricted else
+                "Original-publisher observation matches reference within displayed precision; nonzero source values remain nonzero in the packet."
+            ),
         }
         lineage[metric] = {
             **receipts[key],
@@ -406,6 +445,28 @@ def build(reference, *, getter=get_source):
             "treasury": "https://fiscaldata.treasury.gov/about-us/",
         },
     )
+    if restricted:
+        review.update(
+            ready=False,
+            data_readiness="attention_required",
+            reference_basis="verified_capture_dates_for_withheld_values_and_numeric_crosschecks_for_available_values_not_historical_publication_evidence",
+            method_version="original-publisher-dated-reference.v1",
+            reference_value_comparisons={
+                row["metric_id"]: {
+                    "status": "not_performed" if row["metric_id"] in restricted else "matched_within_display_precision",
+                    "reference_source": row["source"],
+                    "reference_observation_date": row["observation_date"],
+                    "reason": "reference_value_withheld" if row["metric_id"] in restricted else "independently_reacquired_value_matches_reference",
+                }
+                for row in rows
+            },
+        )
+        review["issues"].append({
+            "code": "reference_value_comparison_not_performed",
+            "subject": ",".join(restricted),
+        })
+        for row in results:
+            row["review_status"] = review["data_readiness"]
     stream = io.StringIO(newline="")
     writer = csv.DictWriter(stream, fieldnames=FIELDS)
     writer.writeheader()

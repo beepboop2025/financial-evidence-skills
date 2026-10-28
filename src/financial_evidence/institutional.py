@@ -130,6 +130,7 @@ def archive_once(
             "error": None,
         }
         reference_ready = False
+        publisher_review_ready = False
         try:
             if not probe["available"] or not probe["release_matches"]:
                 raise ValueError("service_or_release_unavailable")
@@ -180,8 +181,24 @@ def archive_once(
                     raise ValueError("CSV unavailable")
                 review = docs["review"]
             verify_pair(review, csv_raw)
-            review, csv_raw, publisher_sources = builder(review)
+            restricted_targets = [
+                row["metric_id"] for row in review["results"]
+                if row.get("value_state") == "restricted"
+            ]
+            if restricted_targets:
+                review, csv_raw, publisher_sources = builder(
+                    review, allow_restricted_reference=True
+                )
+                attempt["reference_comparison"] = {
+                    "mode": "dated_targets_for_withheld_values",
+                    "not_performed": restricted_targets,
+                }
+            else:
+                review, csv_raw, publisher_sources = builder(review)
             verify_pair(review, csv_raw)
+            publisher_review_ready = bool(
+                review.get("ready") is True and not restricted_targets
+            )
             for _, raw, receipt in publisher_sources:
                 blob = root / "publisher-blobs" / receipt["sha256"]
                 if blob.exists():
@@ -274,6 +291,7 @@ def archive_once(
         probe["workspace_ready"] = probe["ready"]
         probe["ready"] = bool(
             reference_ready
+            and publisher_review_ready
             and attempt["error"] is None
             and attempt["packet_id"] is not None
         )

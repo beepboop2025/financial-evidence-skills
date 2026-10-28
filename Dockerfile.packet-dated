@@ -1,0 +1,5 @@
+FROM sha256:4777cc0db0f2e06b45abb8be5f7ffc39851bc0919d75e225a27ee354cb9b9c5c
+ARG SOURCE_COMMIT
+LABEL org.opencontainers.image.revision=$SOURCE_COMMIT
+ENV FINANCIAL_EVIDENCE_SOURCE_COMMIT=$SOURCE_COMMIT
+COPY src/financial_evidence/original_publishers.py src/financial_evidence/institutional.py /usr/local/lib/python3.13/site-packages/financial_evidence/

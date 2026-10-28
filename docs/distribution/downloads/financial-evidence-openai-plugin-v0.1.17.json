@@ -6,10 +6,10 @@
   "official_directory_approved": false,
   "review_cases_status": "configured_not_model_tested",
   "demo_recording_status": "not_recorded",
-  "sha256": "b9f7a97b1559a05a353c87561768fe48a07f754145546871d75662a8b9f1baed",
-  "bytes": 41072,
+  "sha256": "0f383f07560d17d542e47055b2dbd5f233ecf770ef6f675d531196d42833b13d",
+  "bytes": 41144,
   "files": {
-    ".codex-plugin/plugin.json": "0554f98d220aeb60b5ed583fbc8607105aa22d88ccee5b78bc29e7119e20d483",
+    ".codex-plugin/plugin.json": "ffa49b731abde3b6504fca0a58006f8c96d43bd8a693fd417b535f54ff286dc0",
     ".mcp.json": "1e45bc209ba503bc498c46b4cb0ca9f8b034066a619e573cca22d31112e92d8d",
     "LICENSE": "33813f6d443a15c6d5842b2d706c175e904fe34174df440cf2b5f3932d32316a",
     "assets/logo-400.png": "63ab857d98d9b9b9d39301ae176065885170524bcc09e9d7025c226fdb01a09b",

@@ -1,7 +1,7 @@
 {
   "name": "financial-evidence",
   "version": "0.1.17",
-  "description": "Prepare sourced funding briefs, bank disclosure reviews and indicative liquidity checks from public financial evidence.",
+  "description": "Connect public funding, bank disclosure and liquidity evidence into cited research briefs for treasury, risk and research teams.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "email": "mrinal@liquilens.in",
@@ -26,7 +26,7 @@
   "interface": {
     "displayName": "Financial Evidence",
     "shortDescription": "Funding and bank research",
-    "longDescription": "Prepare a USD funding brief, inspect a covered bank's public disclosures, or compare indicative BTC exit sizes. Financial Evidence connects research across Seiche, LiquiLens, Undertow and Palimpsest, retaining source links, observation dates, coverage and missing data. Use it for research notes and review preparation; it does not execute trades, access private accounts or certify regulatory compliance.",
+    "longDescription": "Connect public funding, bank disclosure, liquidity and China research for treasury, risk and research teams, including small and midsize financial institutions. Start with a USD funding brief, a covered-bank review or indicative BTC exit sizes; discover available evidence, retrieve bounded results and retain source identifiers, dates, units, provenance and coverage gaps in reusable briefs or tables. Financial Evidence brings Seiche, LiquiLens, Undertow and Palimpsest into one research workflow. It does not connect private internal databases, execute trades or certify regulatory compliance.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
     "category": "Finance",
     "capabilities": [

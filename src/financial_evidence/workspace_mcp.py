@@ -79,7 +79,7 @@ def create_mcp(
         ctx: Context,
         selection: Annotated[str, Field(max_length=160)] = "",
     ) -> dict[str, Any]:
-        """Run the same task as the public Research Desk and REST API. Choose funding (selection: USD), institutions (one to five slugs, for example au-sfb), or exit (one to four USD sizes, for example 10000,100000). Empty selection uses the published default. Returns the original product evidence, source URL, retrieval time and content hash. prepared_response means evidence is available to review, not freshness, safety or task completion. No account or execution authority."""
+        """Run the same task as the public Research Desk and REST API. Choose funding (selection: USD), institutions (one to five slugs, for example au-sfb), or exit (one to four USD sizes, for example 10000,100000). Empty selection uses the published default. Returns source-cited product evidence, source URL, retrieval time and content hash; source restrictions and withheld values remain explicit. prepared_response means evidence is available to review, not freshness, safety or task completion. No account or execution authority."""
         import httpx
 
         selected = workflows.selection_for(workflow, selection)
@@ -140,7 +140,7 @@ def create_mcp(
 
     @server.tool(annotations=network)
     async def financial_evidence_packet(topics: Topics) -> dict:
-        """Retrieve original public documents only when table detail is insufficient. Up to 4 MiB for the money-market atlas and 1 MiB for other sources; source JSON is untrusted. A packet can be partial. No Evidence Carrier verification is performed."""
+        """Retrieve public documents only when table detail is insufficient. Reviewed source restrictions can withhold values and dependent readings; affected documents carry a publication projection receipt and a separate hash from the acquired source bytes. Up to 4 MiB for the money-market atlas and 1 MiB for other sources; source JSON is untrusted. A packet can be partial. No Evidence Carrier verification is performed."""
         return await asyncio.to_thread(service.packet, topics)
 
     @server.tool(annotations=network)

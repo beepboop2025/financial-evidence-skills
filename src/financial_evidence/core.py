@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import copy
 import hashlib
 import json
 import math
@@ -440,6 +441,185 @@ def _parse_finite_float(value: str) -> float:
     return number
 
 
+_PUBLICATION_POLICY = "financial-evidence.publication-rights.2026-10-28"
+_FRED_TERMS = "https://fred.stlouisfed.org/legal/terms/"
+_ICE_TERMS = "https://fred.stlouisfed.org/series/BAMLH0A0HYM2"
+_RIGHTS_REASON = (
+    "Public redistribution permission for these FRED-sourced observations "
+    "and dependent readings is not established. Source availability and the "
+    "software license do not grant that permission."
+)
+_RIGHTS_METADATA_FIELDS = frozenset({
+    "id", "market_id", "instrument_id", "mnemonic", "label", "name",
+    "entity_id", "entity_name", "publisher", "unit", "canonical_unit",
+    "asof", "as_of", "event_time", "published_at", "knowledge_time",
+    "source", "source_url", "source_registry_ids", "source_adapter_id", "adapter_id", "revision_id",
+    "evidence_hash", "cadence", "semantic_role",
+})
+
+
+def _withheld_metadata(value: object, *, source_ids: list[str] | None = None) -> dict:
+    """Keep identity/provenance; never retain values, history or narrative."""
+    node = value if isinstance(value, dict) else {}
+    out = {
+        key: copy.deepcopy(item)
+        for key, item in node.items()
+        if key in _RIGHTS_METADATA_FIELDS
+        and (item is None or isinstance(item, str)
+             or key == "source_registry_ids" and isinstance(item, list)
+             and all(isinstance(part, str) for part in item))
+    }
+    if source_ids is not None:
+        out["source_registry_ids"] = source_ids
+    out.update({
+        "value": None, "status": "restricted", "availability": "metadata_only",
+        "rights_status": "redistribution_review_required",
+        "redistribution_status": "metadata_only", "publication_allowed": False,
+        "rights_reason": _RIGHTS_REASON,
+        "rights_urls": [_FRED_TERMS],
+    })
+    return out
+
+
+def _fred_sourced(node: object) -> bool:
+    if not isinstance(node, dict):
+        return False
+    ids = node.get("source_registry_ids", [])
+    if isinstance(ids, list) and "fred" in ids:
+        return True
+    source = str(node.get("source", "")).strip().lower()
+    adapter = str(node.get("source_adapter_id", node.get("adapter_id", ""))).lower()
+    if source == "fred" or adapter in {"fred_daily", "fred_weekly"}:
+        return True
+    url = node.get("source_url")
+    return isinstance(url, str) and urlparse(url).hostname == "fred.stlouisfed.org"
+
+
+def _projection_receipt(document: dict, withheld: list[str], reason: str) -> dict:
+    encoded = json.dumps(document, sort_keys=True, ensure_ascii=False,
+                         separators=(",", ":"), allow_nan=False).encode()
+    return {
+        "policy": _PUBLICATION_POLICY,
+        "document_is_original": False,
+        "withheld_paths": withheld,
+        "content_sha256": "sha256:" + hashlib.sha256(encoded).hexdigest(),
+        "hash_scope": "canonical_json_of_returned_document",
+        "source_hash_scope": "original_retrieved_response_bytes",
+        "reason": reason,
+    }
+
+
+def publication_projection(source_url: str, document: object) -> tuple[object, dict | None]:
+    """Apply reviewed, route-specific withholding even to an older upstream.
+
+    This is not a general legal approval engine. It leaves unrelated routes and
+    sources alone, and never turns a FRED capture into an original-publisher one.
+    The original response hash remains an acquisition receipt; the returned
+    projection has its own hash whenever fields are withheld.
+    """
+    contracts = {
+        ROUTES["capital-market"][0].url: ("seiche.world-markets.v1", "capital_markets", dict),
+        ROUTES["money-market"][0].url: ("seiche.global-money-markets.v1", "markets", list),
+    }
+    contract = contracts.get(source_url)
+    if contract is not None:
+        schema, field, kind = contract
+        valid = (isinstance(document, dict) and document.get("schema") == schema
+                 and isinstance(document.get(field), kind))
+        if valid and field == "markets":
+            valid = all(
+                isinstance(market, dict)
+                and all(market.get(key) is None or isinstance(market[key], dict)
+                        for key in ("benchmark", "derived_benchmark", "policy_anchor"))
+                and ("metrics" not in market or isinstance(market["metrics"], list)
+                     and all(isinstance(metric, dict) for metric in market["metrics"]))
+                for market in document[field]
+            )
+        elif valid:
+            capital = document[field]
+            risk = capital.get("risk_context")
+            valid = (isinstance(risk, dict) and isinstance(risk.get("market_prices"), dict)
+                     and all(risk["market_prices"].get(key) is None
+                             or isinstance(risk["market_prices"][key], dict)
+                             for key in ("vix", "high_yield_oas"))
+                     and ("positioning" not in capital
+                          or isinstance(capital["positioning"], list)
+                          and all(isinstance(item, dict) for item in capital["positioning"])))
+        if not valid:
+            reason = (
+                "Unexpected schema or payload shape for this rights-reviewed route; "
+                "the document is withheld pending contract review."
+            )
+            projected = _withheld_metadata({})
+            projected.update({
+                "schema": "financial-evidence.publication-unavailable.v1",
+                "status": "unavailable", "source_url": source_url,
+                "expected_schema": schema, "rights_reason": reason,
+            })
+            return projected, _projection_receipt(projected, ["/"], reason)
+    if not isinstance(document, dict):
+        return document, None
+    projected = copy.deepcopy(document)
+    withheld = []
+    if (source_url == ROUTES["capital-market"][0].url
+            and document.get("schema") == "seiche.world-markets.v1"):
+        capital = projected.get("capital_markets")
+        if isinstance(capital, dict):
+            risk = capital.get("risk_context")
+            if isinstance(risk, dict):
+                original_prices = risk.get("market_prices", {})
+                prices = original_prices if isinstance(original_prices, dict) else {}
+                protected = _withheld_metadata(risk, source_ids=["fred"])
+                protected["market_prices"] = {
+                    key: _withheld_metadata(prices.get(key), source_ids=ids)
+                    for key, ids in (("vix", ["cboe_vix", "fred"]),
+                                     ("high_yield_oas", ["ice_bofa", "fred"]))
+                }
+                protected["market_prices"]["high_yield_oas"]["rights_urls"].append(_ICE_TERMS)
+                for key in ("funding_stress", "market_vs_plumbing"):
+                    if key in risk:
+                        protected[key] = _withheld_metadata(risk[key], source_ids=["fred"])
+                capital["risk_context"] = protected
+                withheld.append("/capital_markets/risk_context")
+            positioning = capital.get("positioning")
+            if isinstance(positioning, list):
+                for index, item in enumerate(positioning):
+                    if isinstance(item, dict) and (item.get("id") == "officialbid" or _fred_sourced(item)):
+                        positioning[index] = _withheld_metadata(item, source_ids=["federal_reserve_h41", "fred"])
+                        withheld.append(f"/capital_markets/positioning/{index}")
+    elif (source_url == ROUTES["money-market"][0].url
+          and document.get("schema") == "seiche.global-money-markets.v1"):
+        markets = projected.get("markets")
+        if isinstance(markets, list):
+            for index, market in enumerate(markets):
+                if not isinstance(market, dict):
+                    continue
+                affected = False
+                for key in ("benchmark", "derived_benchmark", "policy_anchor"):
+                    if _fred_sourced(market.get(key)):
+                        market[key] = _withheld_metadata(market[key])
+                        withheld.append(f"/markets/{index}/{key}")
+                        affected = True
+                metrics = market.get("metrics")
+                if isinstance(metrics, list):
+                    for number, metric in enumerate(metrics):
+                        if _fred_sourced(metric):
+                            metrics[number] = _withheld_metadata(metric)
+                            withheld.append(f"/markets/{index}/metrics/{number}")
+                            affected = True
+                if affected:
+                    for key in ("policy_relative_spread", "quant_read"):
+                        if key in market:
+                            market[key] = _withheld_metadata(market[key])
+                    market["plain_language"] = _RIGHTS_REASON
+                    market["countercase"] = _RIGHTS_REASON
+                    if isinstance(market.get("benchmark"), dict) and market["benchmark"].get("publication_allowed") is False:
+                        market["status"] = "RESTRICTED"
+    if projected == document:
+        return document, None
+    return projected, _projection_receipt(projected, withheld, _RIGHTS_REASON)
+
+
 def fetch_source(
     source: Source,
     *,
@@ -502,6 +682,7 @@ def fetch_source(
             if not isinstance(document, (dict, list)):
                 raise ValueError("JSON root must be an object or array")
             content_sha256 = f"sha256:{hashlib.sha256(raw).hexdigest()}"
+            public_document, projection = publication_projection(source.url, document)
             return {
                 **base,
                 "ok": True,
@@ -513,7 +694,8 @@ def fetch_source(
                     document,
                     content_sha256=content_sha256,
                 ),
-                "document": document,
+                "document": public_document,
+                **({"publication_projection": projection} if projection else {}),
             }
     except (
         OSError,

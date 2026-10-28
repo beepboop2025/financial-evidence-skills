@@ -32,6 +32,11 @@ Entity = Annotated[str, Field(max_length=100)]
 AgentLimit = Annotated[int, Field(ge=1, le=100)]
 ReviewLimit = Annotated[int, Field(ge=1, le=25)]
 Revision = Annotated[str, Field(pattern=r"^(?:[0-9a-f]{64})?$", max_length=64)]
+Currency = Annotated[str, Field(pattern=r"^[A-Z]{3}$", max_length=3)]
+InstitutionSlug = Annotated[str, Field(pattern=r"^[a-z0-9]+(?:-[a-z0-9]+)*$", max_length=160)]
+InstitutionSlugs = Annotated[list[InstitutionSlug], Field(min_length=1, max_length=5)]
+USDNotional = Annotated[float, Field(strict=True, gt=0, le=1_000_000, multiple_of=0.01, allow_inf_nan=False)]
+USDNotionals = Annotated[list[USDNotional], Field(min_length=1, max_length=4)]
 
 
 def create_mcp(
@@ -56,8 +61,11 @@ def create_mcp(
         json_response=True,
         max_request_body_size=65536,
         instructions=(
-            "For a first task, read evidence://start and use financial_evidence_workflow "
-            "for funding, covered institutions or BTC exit evidence. For custom tables, "
+            "For a first task, use financial_evidence_funding_workflow for funding, "
+            "financial_evidence_institutions_workflow for covered institutions, or "
+            "financial_evidence_exit_workflow for indicative BTC exit evidence. "
+            "The legacy financial_evidence_workflow entry point exposes only those same "
+            "three operations for existing clients. For custom tables, "
             "start with financial_evidence_datasets, then query a bounded table. "
             "Cite source_url, source_field, as_of and unit. A transport success is not "
             "freshness or evidence validation. Do not reconstruct withheld values. "
@@ -73,13 +81,7 @@ def create_mcp(
     # FastMCP 1.30 exposes no version argument; bind its low-level server identity.
     server._mcp_server.version = WORKSPACE_VERSION
 
-    @server.tool(annotations=network)
-    async def financial_evidence_workflow(
-        workflow: Literal["funding", "institutions", "exit"],
-        ctx: Context,
-        selection: Annotated[str, Field(max_length=160)] = "",
-    ) -> dict[str, Any]:
-        """Run the same task as the public Research Desk and REST API. Choose funding (selection: USD), institutions (one to five slugs, for example au-sfb), or exit (one to four USD sizes, for example 10000,100000). Empty selection uses the published default. Returns source-cited product evidence, source URL, retrieval time and content hash; source restrictions and withheld values remain explicit. prepared_response means evidence is available to review, not freshness, safety or task completion. No account or execution authority."""
+    async def run_workflow(workflow: str, selection: str, ctx: Context) -> dict[str, Any]:
         import httpx
 
         selected = workflows.selection_for(workflow, selection)
@@ -94,6 +96,36 @@ def create_mcp(
                 "The research source is unavailable or its response changed. Retry later or "
                 "inspect source diagnostics with financial_evidence_sources. Keep the gap in your review."
             ) from error
+
+    @server.tool(annotations=network)
+    async def financial_evidence_funding_workflow(
+        ctx: Context, currency: Currency = "USD",
+    ) -> dict[str, Any]:
+        """Review funding evidence for one three-letter currency, default USD. Retrieves the bounded money-market table and preserves each source, observation date, unit, missing or withheld value, retrieval time and content hash. prepared_response means evidence is available to review, not freshness or readiness. No account access, investment advice or execution."""
+        return await run_workflow("funding", currency, ctx)
+
+    @server.tool(annotations=network)
+    async def financial_evidence_institutions_workflow(
+        ctx: Context, institution_ids: InstitutionSlugs = ["au-sfb", "bajaj-finance"],
+    ) -> dict[str, Any]:
+        """Review public disclosure coverage for one to five exact institution slugs, such as au-sfb. Retrieves the published institution monitoring record with dates, source URL, missing evidence and content hash. Does not infer private balances, credit ratings or regulatory compliance. IDs must fit the existing 160-character combined selection bound."""
+        return await run_workflow("institutions", ",".join(institution_ids), ctx)
+
+    @server.tool(annotations=network)
+    async def financial_evidence_exit_workflow(
+        ctx: Context, sizes_usd: USDNotionals = [10000, 100000],
+    ) -> dict[str, Any]:
+        """Compare indicative BTC exit evidence for one to four USD notionals from 0.01 to 1000000, with at most two decimal places. Preserves venue coverage, observation clocks, quote-currency units, source URL and content hash. Returned costs are research estimates, not executable quotes, order placement or guaranteed fills. No account or execution authority."""
+        return await run_workflow("exit", ",".join(format(value, ".2f") for value in sizes_usd), ctx)
+
+    @server.tool(annotations=network)
+    async def financial_evidence_workflow(
+        workflow: Literal["funding", "institutions", "exit"],
+        ctx: Context,
+        selection: Annotated[str, Field(max_length=160)] = "",
+    ) -> dict[str, Any]:
+        """Compatibility entry point for the individually exposed financial_evidence_funding_workflow, financial_evidence_institutions_workflow and financial_evidence_exit_workflow tools. Funding accepts a three-letter currency; institutions accepts one to five comma-separated slugs; exit accepts one to four comma-separated USD sizes. Empty selection uses the same published defaults. No additional operation is available. Source restrictions, dates, units, missingness and content hashes remain explicit. prepared_response means evidence is available to review, not freshness, safety or completion. No account or execution authority."""
+        return await run_workflow(workflow, selection, ctx)
 
     @server.tool(annotations=local)
     def financial_evidence_datasets() -> dict:

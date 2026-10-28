@@ -1,0 +1,79 @@
+{
+  "schema": "liquilens.plugin-demo-recording.v1",
+  "product": "seiche-market-corpus",
+  "name": "Seiche Market Atlas Corpus",
+  "recording": "walkthrough.mp4",
+  "sha256": "91e81c501054472d66782c1bed9a2f1e22e82bc8aa3b72684e3f69f8c3f3e41d",
+  "bytes": 1304502,
+  "duration_seconds": 90,
+  "fps": 24,
+  "capture_type": "edited browser recording of direct MCP evidence captures",
+  "native_plugin_installation_test": false,
+  "model_api_calls_for_this_recording": 0,
+  "case_count": 5,
+  "capture_sha256": "3a3ac078ea17c24c8bc8656659bee2d0fa88e4e304db6d5092bea4f57e9facef",
+  "capture_url": "../service-viewer/data/seiche-market-corpus.json",
+  "timeline": [
+    {
+      "label": "1. Corpus discovery \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "1. Corpus discovery \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "1. Corpus discovery \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "2. Dataset rights inspection \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "2. Dataset rights inspection \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "2. Dataset rights inspection \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "3. Normalized market coverage \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "3. Normalized market coverage \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "3. Normalized market coverage \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "4. Permitted bounded observations \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "4. Permitted bounded observations \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "4. Permitted bounded observations \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "5. Corpus service health \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "5. Corpus service health \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "5. Corpus service health \u2014 limits",
+      "seconds": 7
+    }
+  ],
+  "limitations": "The product skill and negative model-routing cases are review expectations, not newly executed model tests. No trading, enrollment, collection, private-record access or execution was performed. NoiseFloor examples use synthetic inputs; all other values retain their service-provided dates and restrictions."
+}

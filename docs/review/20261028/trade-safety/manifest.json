@@ -1,0 +1,79 @@
+{
+  "schema": "liquilens.plugin-demo-recording.v1",
+  "product": "trade-safety",
+  "name": "LiquiLens Trade Safety",
+  "recording": "walkthrough.mp4",
+  "sha256": "d6e0e8645923d0462bb989c28998eba26a1eb6fff83538acf20095eafa75a5eb",
+  "bytes": 1169310,
+  "duration_seconds": 90,
+  "fps": 24,
+  "capture_type": "edited browser recording of direct MCP evidence captures",
+  "native_plugin_installation_test": false,
+  "model_api_calls_for_this_recording": 0,
+  "case_count": 5,
+  "capture_sha256": "0a14e01c66eda9c63012740aa12b47f3a3bd163f932a3963ed3daeaec07e3356",
+  "capture_url": "../service-viewer/data/trade-safety.json",
+  "timeline": [
+    {
+      "label": "1. Sandbox authority \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "1. Sandbox authority \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "1. Sandbox authority \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "2. Fixed source discovery \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "2. Fixed source discovery \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "2. Fixed source discovery \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "3. Assessment preparation \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "3. Assessment preparation \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "3. Assessment preparation \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "4. Receipt interpretation \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "4. Receipt interpretation \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "4. Receipt interpretation \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "5. Integration boundaries \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "5. Integration boundaries \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "5. Integration boundaries \u2014 limits",
+      "seconds": 7
+    }
+  ],
+  "limitations": "The product skill and negative model-routing cases are review expectations, not newly executed model tests. No trading, enrollment, collection, private-record access or execution was performed. NoiseFloor examples use synthetic inputs; all other values retain their service-provided dates and restrictions."
+}

@@ -1,0 +1,1018 @@
+{
+  "schema": "liquilens.direct-mcp-walkthrough.v1",
+  "name": "Undertow",
+  "id": "undertow",
+  "endpoint": "https://agents.seiche.info/products/undertow/mcp",
+  "recording_type": "edited browser recording of captured direct MCP responses",
+  "model_api_calls": 0,
+  "native_plugin_installation_test": false,
+  "limitations": "The product skill and negative model-routing cases are review expectations, not newly executed model tests. No trading, enrollment, collection, private-record access or execution was performed. NoiseFloor examples use synthetic inputs; all other values retain their service-provided dates and restrictions.",
+  "cases": [
+    {
+      "description": "Indicative BTC size comparison",
+      "prompt": "Use Undertow to compare indicative BTC exits for $10,000 and $100,000. Include venue coverage and timestamp limits; do not trade.",
+      "tools_triggered": "crypto_exit_check",
+      "expected_behavior": "Request sizes_usd [10000,100000], preserve unavailable estimates and distinguish indicative exit evidence from executable quotes.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:41.875187+00:00",
+          "endpoint": "https://agents.seiche.info/products/undertow/mcp",
+          "tool": "crypto_exit_check",
+          "arguments": {
+            "sizes_usd": [
+              10000,
+              100000
+            ]
+          },
+          "elapsed_seconds": 0.095,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 3,
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"schema\": \"undertow.crypto-workbench.v1\", \"kind\": \"exit_check\", \"asset\": \"BTC\", \"side\": \"sell\", \"status\": \"available\", \"evaluated_at\": \"2026-10-28T14:35:41.952032+00:00\", \"source\": {\"url\": \"https://api.seiche.info/undertow/crypto_desk.json\", \"asof\": \"2026-10-28\", \"publication\": {\"observed_at\": \"2026-10-28T14:02:40+00:00\", \"status\": \"fresh\", \"age_seconds\": 1981.952}}, \"max_age_seconds\": 7200, \"requests\": [{\"requested_size_usd\": 10000.0, \"match\": \"exact\", \"lower_rung_usd\": 10000.0, \"upper_rung_usd\": 10000.0, \"estimate_at_requested_size\": \"published\"}, {\"requested_size_usd\": 100000.0, \"match\": \"exact\", \"lower_rung_usd\": 100000.0, \"upper_rung_usd\": 100000.0, \"estimate_at_requested_size\": \"published\"}], \"rungs\": [{\"published_size_usd\": 10000.0, \"venues\": [{\"venue\": \"binance\", \"status\": \"available\", \"reasons\": [], \"sell_cost_bps\": 0.029, \"estimated_cost_usd\": 0.029, \"quote_currency\": \"USDT\"}, {\"venue\": \"bitfinex\", \"status\": \"available\", \"reasons\": [], \"sell_cost_bps\": 12.438, \"estimated_cost_usd\": 12.438, \"quote_currency\": \"USD\"}, {\"venue\": \"coinbase\", \"status\": \"available\", \"reasons\": [], \"sell_cost_bps\": 0.037, \"estimated_cost_usd\": 0.037, \"quote_currency\": \"USD\"}, {\"venue\": \"gemini\", \"status\": \"available\", \"reasons\": [], \"sell_cost_bps\": 0.112, \"estimated_cost_usd\": 0.112, \"quote_currency\": \"USD\"}, {\"venue\": \"kraken\", \"status\": \"available\", \"reasons\": [], \"sell_cost_bps\": 0.031, \"estimated_cost_usd\": 0.031, \"quote_currency\": \"USD\"}, {\"venue\": \"okx\", \"status\": \"available\", \"reasons\": [], \"sell_cost_bps\": 0.047, \"estimated_cost_usd\": 0.047, \"quote_currency\": \"USDT\"}], \"status\": \"available\"}, {\"published_size_usd\": 100000.0, \"venues\": [{\"venue\": \"binance\", \"status\": \"available\", \"reasons\": [], \"sell_cost_bps\": 0.28, \"estimated_cost_usd\": 2.8, \"quote_currency\": \"USDT\"}, {\"venue\": \"bitfinex\", \"status\": \"available\", \"reasons\": [], \"sell_cost_bps\": 12.851, \"estimated_cost_usd\": 128.51, \"quote_currency\": \"USD\"}, {\"venue\": \"coinbase\", \"status\": \"available\", \"reasons\": [], \"sell_cost_bps\": 0.366, \"estimated_cost_usd\": 3.66, \"quote_currency\": \"USD\"}, {\"venue\": \"gemini\", \"status\": \"available\", \"reasons\": [], \"sell_cost_bps\": 1.11, \"estimated_cost_usd\": 11.1, \"quote_currency\": \"USD\"}, {\"venue\": \"kraken\", \"status\": \"available\", \"reasons\": [], \"sell_cost_bps\": 0.249, \"estimated_cost_usd\": 2.49, \"quote_currency\": \"USD\"}, {\"venue\": \"okx\", \"status\": \"available\", \"reasons\": [], \"sell_cost_bps\": 0.41, \"estimated_cost_usd\": 4.1, \"quote_currency\": \"USDT\"}], \"status\": \"available\"}], \"venue_freshness\": {\"binance\": {\"observed_at\": \"2026-10-28T14:00:36+00:00\", \"status\": \"fresh\", \"age_seconds\": 2105.952}, \"bitfinex\": {\"observed_at\": \"2026-10-28T14:00:38+00:00\", \"status\": \"fresh\", \"age_seconds\": 2103.952}, \"coinbase\": {\"observed_at\": \"2026-10-28T14:00:36+00:00\", \"status\": \"fresh\", \"age_seconds\": 2105.952}, \"gemini\": {\"observed_at\": \"2026-10-28T14:00:38+00:00\", \"status\": \"fresh\", \"age_seconds\": 2103.952}, \"kraken\": {\"observed_at\": \"2026-10-28T14:00:37+00:00\", \"status\": \"fresh\", \"age_seconds\": 2104.952}, \"okx\": {\"observed_at\": \"2026-10-28T14:00:37+00:00\", \"status\": \"fresh\", \"age_seconds\": 2104.952}}, \"method\": \"Published bid-band estimates at each stated rung, not executable quotes or order-book walks. Fees, transfer costs and latency excluded. No estimates for unsupported sizes or assets.\", \"limits\": \"Freshness is a research filter, not the PIT/rights verification performed by trade_safety_exit_context. An available estimate does not clear a trade.\", \"boundary\": {\"research_only\": true, \"execution\": false, \"trade_clearance\": false}, \"context\": {\"funding\": \"https://seiche.info/money-markets/\", \"institutions\": \"https://liquilens.in/\", \"source_history\": \"https://api.seiche.info/api/v2/research-data/\"}}"
+                }
+              ],
+              "structuredContent": {
+                "schema": "undertow.crypto-workbench.v1",
+                "kind": "exit_check",
+                "asset": "BTC",
+                "side": "sell",
+                "status": "available",
+                "evaluated_at": "2026-10-28T14:35:41.952032+00:00",
+                "source": {
+                  "url": "https://api.seiche.info/undertow/crypto_desk.json",
+                  "asof": "2026-10-28",
+                  "publication": {
+                    "observed_at": "2026-10-28T14:02:40+00:00",
+                    "status": "fresh",
+                    "age_seconds": 1981.952
+                  }
+                },
+                "max_age_seconds": 7200,
+                "requests": [
+                  {
+                    "requested_size_usd": 10000.0,
+                    "match": "exact",
+                    "lower_rung_usd": 10000.0,
+                    "upper_rung_usd": 10000.0,
+                    "estimate_at_requested_size": "published"
+                  },
+                  {
+                    "requested_size_usd": 100000.0,
+                    "match": "exact",
+                    "lower_rung_usd": 100000.0,
+                    "upper_rung_usd": 100000.0,
+                    "estimate_at_requested_size": "published"
+                  }
+                ],
+                "rungs": [
+                  {
+                    "published_size_usd": 10000.0,
+                    "venues": [
+                      {
+                        "venue": "binance",
+                        "status": "available",
+                        "reasons": [],
+                        "sell_cost_bps": 0.029,
+                        "estimated_cost_usd": 0.029,
+                        "quote_currency": "USDT"
+                      },
+                      {
+                        "venue": "bitfinex",
+                        "status": "available",
+                        "reasons": [],
+                        "sell_cost_bps": 12.438,
+                        "estimated_cost_usd": 12.438,
+                        "quote_currency": "USD"
+                      },
+                      {
+                        "venue": "coinbase",
+                        "status": "available",
+                        "reasons": [],
+                        "sell_cost_bps": 0.037,
+                        "estimated_cost_usd": 0.037,
+                        "quote_currency": "USD"
+                      },
+                      {
+                        "venue": "gemini",
+                        "status": "available",
+                        "reasons": [],
+                        "sell_cost_bps": 0.112,
+                        "estimated_cost_usd": 0.112,
+                        "quote_currency": "USD"
+                      },
+                      {
+                        "venue": "kraken",
+                        "status": "available",
+                        "reasons": [],
+                        "sell_cost_bps": 0.031,
+                        "estimated_cost_usd": 0.031,
+                        "quote_currency": "USD"
+                      },
+                      {
+                        "venue": "okx",
+                        "status": "available",
+                        "reasons": [],
+                        "sell_cost_bps": 0.047,
+                        "estimated_cost_usd": 0.047,
+                        "quote_currency": "USDT"
+                      }
+                    ],
+                    "status": "available"
+                  },
+                  {
+                    "published_size_usd": 100000.0,
+                    "venues": [
+                      {
+                        "venue": "binance",
+                        "status": "available",
+                        "reasons": [],
+                        "sell_cost_bps": 0.28,
+                        "estimated_cost_usd": 2.8,
+                        "quote_currency": "USDT"
+                      },
+                      {
+                        "venue": "bitfinex",
+                        "status": "available",
+                        "reasons": [],
+                        "sell_cost_bps": 12.851,
+                        "estimated_cost_usd": 128.51,
+                        "quote_currency": "USD"
+                      },
+                      {
+                        "venue": "coinbase",
+                        "status": "available",
+                        "reasons": [],
+                        "sell_cost_bps": 0.366,
+                        "estimated_cost_usd": 3.66,
+                        "quote_currency": "USD"
+                      },
+                      {
+                        "venue": "gemini",
+                        "status": "available",
+                        "reasons": [],
+                        "sell_cost_bps": 1.11,
+                        "estimated_cost_usd": 11.1,
+                        "quote_currency": "USD"
+                      },
+                      {
+                        "venue": "kraken",
+                        "status": "available",
+                        "reasons": [],
+                        "sell_cost_bps": 0.249,
+                        "estimated_cost_usd": 2.49,
+                        "quote_currency": "USD"
+                      },
+                      {
+                        "venue": "okx",
+                        "status": "available",
+                        "reasons": [],
+                        "sell_cost_bps": 0.41,
+                        "estimated_cost_usd": 4.1,
+                        "quote_currency": "USDT"
+                      }
+                    ],
+                    "status": "available"
+                  }
+                ],
+                "venue_freshness": {
+                  "binance": {
+                    "observed_at": "2026-10-28T14:00:36+00:00",
+                    "status": "fresh",
+                    "age_seconds": 2105.952
+                  },
+                  "bitfinex": {
+                    "observed_at": "2026-10-28T14:00:38+00:00",
+                    "status": "fresh",
+                    "age_seconds": 2103.952
+                  },
+                  "coinbase": {
+                    "observed_at": "2026-10-28T14:00:36+00:00",
+                    "status": "fresh",
+                    "age_seconds": 2105.952
+                  },
+                  "gemini": {
+                    "observed_at": "2026-10-28T14:00:38+00:00",
+                    "status": "fresh",
+                    "age_seconds": 2103.952
+                  },
+                  "kraken": {
+                    "observed_at": "2026-10-28T14:00:37+00:00",
+                    "status": "fresh",
+                    "age_seconds": 2104.952
+                  },
+                  "okx": {
+                    "observed_at": "2026-10-28T14:00:37+00:00",
+                    "status": "fresh",
+                    "age_seconds": 2104.952
+                  }
+                },
+                "method": "Published bid-band estimates at each stated rung, not executable quotes or order-book walks. Fees, transfer costs and latency excluded. No estimates for unsupported sizes or assets.",
+                "limits": "Freshness is a research filter, not the PIT/rights verification performed by trade_safety_exit_context. An available estimate does not clear a trade.",
+                "boundary": {
+                  "research_only": true,
+                  "execution": false,
+                  "trade_clearance": false
+                },
+                "context": {
+                  "funding": "https://seiche.info/money-markets/",
+                  "institutions": "https://liquilens.in/",
+                  "source_history": "https://api.seiche.info/api/v2/research-data/"
+                }
+              },
+              "isError": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Liquidity tiers",
+      "prompt": "Show Undertow's liquidity tiers and explain their coverage and evidence limits.",
+      "tools_triggered": "liquidity_tiers",
+      "expected_behavior": "Retrieve the published tiers with definitions, dates and source scope; do not convert tiers into a guarantee of execution.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:41.970685+00:00",
+          "endpoint": "https://agents.seiche.info/products/undertow/mcp",
+          "tool": "liquidity_tiers",
+          "arguments": {},
+          "elapsed_seconds": 0.172,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 4,
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"asof\": \"2026-10-28\", \"tiers\": {\"UST\": \"NORMAL\", \"IG\": \"NORMAL\", \"HY\": \"NORMAL\", \"EQUITY\": \"PARTIAL\", \"ETF\": \"PARTIAL\", \"FX\": \"PARTIAL\", \"CN\": \"PARTIAL\", \"CRYPTO\": \"NORMAL\", \"BSTOCK\": \"PARTIAL\"}, \"coverage\": {\"UST\": {\"n_measures\": 19, \"n_qualifying\": 6, \"n_span_unverified\": 0, \"score_withheld_reason\": null, \"validation_replay\": {\"status\": \"VERIFIED\", \"score_eligible\": true, \"clause2_satisfied\": true, \"failed_controls\": [], \"n_registered\": 3, \"n_runnable\": 3, \"n_passed\": 2, \"n_failed\": 1}}, \"IG\": {\"n_measures\": 3, \"n_qualifying\": 3, \"n_span_unverified\": 0, \"score_withheld_reason\": null, \"validation_replay\": {\"status\": \"VERIFIED\", \"score_eligible\": true, \"clause2_satisfied\": true, \"failed_controls\": [], \"n_registered\": 2, \"n_runnable\": 2, \"n_passed\": 2, \"n_failed\": 0}}, \"HY\": {\"n_measures\": 2, \"n_qualifying\": 2, \"n_span_unverified\": 0, \"score_withheld_reason\": null, \"validation_replay\": {\"status\": \"VERIFIED\", \"score_eligible\": true, \"clause2_satisfied\": true, \"failed_controls\": [], \"n_registered\": 6, \"n_runnable\": 6, \"n_passed\": 4, \"n_failed\": 1}}, \"EQUITY\": {\"n_measures\": 9, \"n_qualifying\": 5, \"n_span_unverified\": 0, \"score_withheld_reason\": \"candidate score failed the mandatory replay gate: requires at least one passing positive pre-registered replay and no failed negative control; replay evidence status=VERIFIED\", \"validation_replay\": {\"status\": \"VERIFIED\", \"score_eligible\": false, \"clause2_satisfied\": false, \"failed_controls\": [\"calm_2017_vix_control\", \"calm2019_equity_benchmark_impact_control\"], \"n_registered\": 4, \"n_runnable\": 4, \"n_passed\": 2, \"n_failed\": 2}}, \"ETF\": {\"n_measures\": 6, \"n_qualifying\": 4, \"n_span_unverified\": 0, \"score_withheld_reason\": \"candidate score failed the mandatory replay gate: requires at least one passing positive pre-registered replay and no failed negative control; replay evidence status=VERIFIED\", \"validation_replay\": {\"status\": \"VERIFIED\", \"score_eligible\": false, \"clause2_satisfied\": false, \"failed_controls\": [\"calm2019_fixed_etf_impact_control\"], \"n_registered\": 2, \"n_runnable\": 2, \"n_passed\": 1, \"n_failed\": 1}}, \"FX\": {\"n_measures\": 2, \"n_qualifying\": 0, \"n_span_unverified\": 0, \"score_withheld_reason\": null, \"validation_replay\": {\"status\": \"VERIFIED\", \"score_eligible\": false, \"clause2_satisfied\": false, \"failed_controls\": [], \"n_registered\": 1, \"n_runnable\": 1, \"n_passed\": 0, \"n_failed\": 0}}, \"CN\": {\"n_measures\": 19, \"n_qualifying\": 11, \"n_span_unverified\": 0, \"score_withheld_reason\": \"candidate score failed the mandatory replay gate: requires at least one passing positive pre-registered replay and no failed negative control; replay evidence status=VERIFIED\", \"validation_replay\": {\"status\": \"VERIFIED\", \"score_eligible\": false, \"clause2_satisfied\": false, \"failed_controls\": [], \"n_registered\": 1, \"n_runnable\": 1, \"n_passed\": 0, \"n_failed\": 0}}, \"CRYPTO\": {\"n_measures\": 38, \"n_qualifying\": 38, \"n_span_unverified\": 0, \"score_withheld_reason\": null, \"validation_replay\": {\"status\": \"VERIFIED\", \"score_eligible\": true, \"clause2_satisfied\": true, \"failed_controls\": [], \"n_registered\": 3, \"n_runnable\": 2, \"n_passed\": 2, \"n_failed\": 0}}, \"BSTOCK\": {\"n_measures\": 22, \"n_qualifying\": 22, \"n_span_unverified\": 0, \"score_withheld_reason\": \"candidate score failed the mandatory replay gate: requires at least one passing positive pre-registered replay and no failed negative control; replay evidence status=VERIFIED\", \"validation_replay\": {\"status\": \"VERIFIED\", \"score_eligible\": false, \"clause2_satisfied\": false, \"failed_controls\": [], \"n_registered\": 2, \"n_runnable\": 2, \"n_passed\": 1, \"n_failed\": 1}}}, \"segment_reports\": [{\"segment\": \"UST\", \"coverage\": {\"schema\": \"undertow.segment-evidence.v1\", \"report_status\": \"PUBLISHED\", \"rating_status\": \"PUBLISHED\", \"summary\": \"Composite published: minimum observation and replay gates passed. 1 stress test(s) failed; inspect validation scope.\", \"blockers\": [], \"source_findings\": [], \"use_now\": \"Inspect dealer settlement fails, positioning and auction measures with their observation dates.\", \"history_eta_days\": null, \"history_eta_scope\": \"Observation-count and elapsed-span projection only; excludes source, universe and validation blockers.\", \"score_eta_days\": null, \"validation_scope\": \"At least one historical cell stress test passed on the available source coverage. Retrospective construction replay, not forecasting or an as-published-vintage backtest. Stress tests also failed: oct2022_ust_illiquidity.\"}, \"observations\": [{\"measure\": \"2s10s slope (DGS10-DGS2)\", \"asof\": \"2026-10-26\", \"obs\": 12597, \"span_days\": 18409.0, \"stress_pctl\": null}, {\"measure\": \"UST auction concession (10Y curve point)\", \"asof\": \"2026-10-15\", \"obs\": 101, \"span_days\": 2157.0, \"stress_pctl\": null}], \"report_url\": \"https://liquilens-undertow.com/markets/ust/\"}, {\"segment\": \"IG\", \"coverage\": {\"schema\": \"undertow.segment-evidence.v1\", \"report_status\": \"PUBLISHED\", \"rating_status\": \"PUBLISHED\", \"summary\": \"Composite published: minimum observation and replay gates passed.\", \"blockers\": [], \"source_findings\": [], \"use_now\": \"Compare corporate spreads and dealer measures; credit spreads also reflect credit risk.\", \"history_eta_days\": null, \"history_eta_scope\": \"Observation-count and elapsed-span projection only; excludes source, universe and validation blockers.\", \"score_eta_days\": null, \"validation_scope\": \"At least one historical cell stress test passed on the available source coverage. Retrospective construction replay, not forecasting or an as-published-vintage backtest.\"}, \"observations\": [{\"measure\": \"IG OAS (BAMLC0A0CM)\", \"asof\": \"2026-10-26\", \"obs\": 783, \"span_days\": 1092.0, \"stress_pctl\": 0.6341}, {\"measure\": \"dealer corporate net positions (congestion)\", \"asof\": \"2026-10-14\", \"obs\": 707, \"span_days\": 4942.0, \"stress_pctl_withheld\": true, \"stress_pctl_withheld_note\": \"withheld: the numeric stress_pctl of this row, and of this row only. The cell score is the MEAN of its n_qualifying rows, so with exactly one qualifying row behind the free trim, score x n_qualifying minus the free percentiles is that trimmed row's percentile exactly, and the free register names it. Withholding one free qualifying percentile leaves two unknowns in that equation instead of one. This row keeps its name, its limits and its caveat; the cell keeps its tier, its score and its true counts. The percentile is Agent/Desk tier, the same tier it is on any trimmed row.\"}], \"report_url\": \"https://liquilens-undertow.com/markets/ig/\"}, {\"segment\": \"HY\", \"coverage\": {\"schema\": \"undertow.segment-evidence.v1\", \"report_status\": \"PUBLISHED\", \"rating_status\": \"PUBLISHED\", \"summary\": \"Composite published: minimum observation and replay gates passed. 1 stress test(s) failed; inspect validation scope.\", \"blockers\": [], \"source_findings\": [], \"use_now\": \"Compare high-yield OAS with the NY Fed CMDI; CMDI is an existing composite index with overlapping credit inputs and a monthly release lag.\", \"history_eta_days\": null, \"history_eta_scope\": \"Observation-count and elapsed-span projection only; excludes source, universe and validation blockers.\", \"score_eta_days\": null, \"validation_scope\": \"Passing stress evidence covers named measures only; the complete composite has not passed a historical stress test. Retrospective construction replay, not forecasting or an as-published-vintage backtest. Stress tests also failed: hy_cmdi_dec2015_dislocation_v1.\"}, \"observations\": [{\"measure\": \"HY Corporate Bond Market Distress Index (NY Fed CMDI)\", \"asof\": \"2026-09-25\", \"obs\": 1134, \"span_days\": 7931.0, \"stress_pctl\": 0.1614}, {\"measure\": \"HY OAS (BAMLH0A0HYM2)\", \"asof\": \"2026-10-26\", \"obs\": 784, \"span_days\": 1092.0, \"stress_pctl\": 0.8068}], \"report_url\": \"https://liquilens-undertow.com/markets/hy/\"}, {\"segment\": \"EQUITY\", \"coverage\": {\"schema\": \"undertow.segment-evidence.v1\", \"report_status\": \"PUBLISHED\", \"rating_status\": \"WITHHELD\", \"summary\": \"5/9 measures qualify; composite withheld by validation.\", \"blockers\": [{\"code\": \"FAILED_NEGATIVE_CONTROL\", \"detail\": \"Failed negative control: calm_2017_vix_control, calm2019_equity_benchmark_impact_control.\", \"action\": \"Correct the model and validate a separately registered candidate on unseen evidence; additional live history alone does not clear this failure.\", \"episodes\": [\"calm_2017_vix_control\", \"calm2019_equity_benchmark_impact_control\"]}], \"source_findings\": [], \"use_now\": \"Inspect volatility and monthly price-impact proxies; neither is an executable order-book quote.\", \"history_eta_days\": null, \"history_eta_scope\": \"Observation-count and elapsed-span projection only; excludes source, universe and validation blockers.\", \"score_eta_days\": null, \"validation_scope\": \"At least one historical cell stress test passed on the available source coverage. Retrospective construction replay, not forecasting or an as-published-vintage backtest.\"}, \"observations\": [{\"measure\": \"ETF proxy: iwm_amihud\", \"asof\": \"2026-09-30\", \"obs\": 60, \"span_days\": 1797.0, \"stress_pctl\": 0.075}, {\"measure\": \"ETF proxy: iwm_lambda_hat\", \"asof\": \"2026-09-30\", \"obs\": 60, \"span_days\": 1797.0, \"stress_pctl\": 0.0583}], \"report_url\": \"https://liquilens-undertow.com/markets/equity/\"}, {\"segment\": \"ETF\", \"coverage\": {\"schema\": \"undertow.segment-evidence.v1\", \"report_status\": \"PUBLISHED\", \"rating_status\": \"WITHHELD\", \"summary\": \"4/6 measures qualify; composite withheld by validation.\", \"blockers\": [{\"code\": \"FAILED_NEGATIVE_CONTROL\", \"detail\": \"Failed negative control: calm2019_fixed_etf_impact_control.\", \"action\": \"Correct the model and validate a separately registered candidate on unseen evidence; additional live history alone does not clear this failure.\", \"episodes\": [\"calm2019_fixed_etf_impact_control\"]}], \"source_findings\": [], \"use_now\": \"Compare completed-month SPY/IWM impact proxies with the structural authorized-participant inventory; these do not measure today’s executable bid-ask spread.\", \"history_eta_days\": null, \"history_eta_scope\": \"Observation-count and elapsed-span projection only; excludes source, universe and validation blockers.\", \"score_eta_days\": null, \"validation_scope\": \"At least one historical cell stress test passed on the available source coverage. Retrospective construction replay, not forecasting or an as-published-vintage backtest.\"}, \"observations\": [{\"measure\": \"ap_top_complex_share_of_mapped_flow\", \"asof\": \"2026-10-28\", \"obs\": 48, \"stress_pctl\": null}, {\"measure\": \"iwm_amihud\", \"asof\": \"2026-09-30\", \"obs\": 60, \"span_days\": 1797.0, \"stress_pctl\": 0.075}], \"report_url\": \"https://liquilens-undertow.com/markets/etf/\"}, {\"segment\": \"FX\", \"coverage\": {\"schema\": \"undertow.segment-evidence.v1\", \"report_status\": \"PUBLISHED\", \"rating_status\": \"WITHHELD\", \"summary\": \"Observations published; 0/2 measures qualify for a composite.\", \"blockers\": [{\"code\": \"INSUFFICIENT_QUALIFIED_HISTORY\", \"detail\": \"0/2 measures qualify; 2 need a published percentile, at least 60 eligible observations and 21 elapsed days.\", \"action\": \"Accrue eligible observations or obtain a documented point-in-time history; descriptive backfills do not automatically qualify.\", \"episodes\": []}, {\"code\": \"NO_PASSING_REPLAY\", \"detail\": \"No positive validation episode has passed; a calm control alone cannot establish sensitivity.\", \"action\": \"Resolve the recorded failure or inconclusive result with eligible evidence; preserve the original verdict.\", \"episodes\": []}], \"source_findings\": [], \"use_now\": \"Inspect currency-ETF wrapper measures; these observations do not measure the OTC interbank FX market.\", \"history_eta_days\": 1738.5, \"history_eta_scope\": \"Observation-count and elapsed-span projection only; excludes source, universe and validation blockers.\", \"score_eta_days\": null, \"validation_scope\": \"No registered stress test has passed. Retrospective construction replay, not forecasting or an as-published-vintage backtest.\"}, \"observations\": [{\"measure\": \"amihud (fx)\", \"asof\": \"2026-09-30\", \"obs\": 3, \"span_days\": 61.0, \"stress_pctl\": null, \"freshness_max_age_days\": 70}, {\"measure\": \"lambda_hat (fx)\", \"asof\": \"2026-09-30\", \"obs\": 3, \"span_days\": 61.0, \"stress_pctl\": null, \"freshness_max_age_days\": 70}], \"report_url\": \"https://liquilens-undertow.com/markets/fx/\"}, {\"segment\": \"CN\", \"coverage\": {\"schema\": \"undertow.segment-evidence.v1\", \"report_status\": \"PUBLISHED\", \"rating_status\": \"WITHHELD\", \"summary\": \"11/19 measures qualify; composite withheld by validation. 2 source reading(s) restricted; excluded from the current score.\", \"blockers\": [{\"code\": \"NO_PASSING_REPLAY\", \"detail\": \"No positive validation episode has passed; a calm control alone cannot establish sensitivity.\", \"action\": \"Resolve the recorded failure or inconclusive result with eligible evidence; preserve the original verdict.\", \"episodes\": []}], \"source_findings\": [{\"code\": \"RESTRICTED_SOURCE_PUBLICATION\", \"detail\": \"2 source reading(s) restricted; excluded from the current score.\", \"action\": \"Wait for source publication authorization; retained history cannot bypass a publication hold.\"}], \"use_now\": \"Inspect the available onshore funding and China-market measures, retaining each source's coverage limits.\", \"history_eta_days\": null, \"history_eta_scope\": \"Observation-count and elapsed-span projection only; excludes source, universe and validation blockers.\", \"score_eta_days\": null, \"validation_scope\": \"No registered stress test has passed. Retrospective construction replay, not forecasting or an as-published-vintage backtest.\"}, \"observations\": [{\"measure\": \"CNY_PARITY source availability\", \"asof\": \"2026-10-28\", \"obs\": 0, \"stress_pctl\": null, \"source_status\": \"restricted\", \"freshness_max_age_days\": 14}, {\"measure\": \"FDR007 source availability\", \"asof\": \"2026-10-28\", \"obs\": 0, \"stress_pctl\": null, \"source_status\": \"restricted\", \"freshness_max_age_days\": 14}], \"report_url\": \"https://liquilens-undertow.com/markets/cn/\"}, {\"segment\": \"CRYPTO\", \"coverage\": {\"schema\": \"undertow.segment-evidence.v1\", \"report_status\": \"PUBLISHED\", \"rating_status\": \"PUBLISHED\", \"summary\": \"Composite published: minimum observation and replay gates passed.\", \"blockers\": [], \"source_findings\": [], \"use_now\": \"Compare observed venue depth, spreads and cost measures at their stated timestamps.\", \"history_eta_days\": null, \"history_eta_scope\": \"Observation-count and elapsed-span projection only; excludes source, universe and validation blockers.\", \"score_eta_days\": null, \"validation_scope\": \"Passing stress evidence covers named measures only; the complete composite has not passed a historical stress test. Retrospective construction replay, not forecasting or an as-published-vintage backtest.\"}, \"observations\": [{\"measure\": \"binance_btc_basis_bp\", \"asof\": \"2026-10-28\", \"obs\": 2542, \"span_days\": 97.27, \"stress_pctl\": 0.0458}, {\"measure\": \"binance_btc_funding_24h\", \"asof\": \"2026-10-28\", \"obs\": 2542, \"span_days\": 97.27, \"stress_pctl\": 0.8082}], \"report_url\": \"https://liquilens-undertow.com/markets/crypto/\"}, {\"segment\": \"BSTOCK\", \"coverage\": {\"schema\": \"undertow.segment-evidence.v1\", \"report_status\": \"PUBLISHED\", \"rating_status\": \"WITHHELD\", \"summary\": \"22/22 measures qualify; composite withheld by validation.\", \"blockers\": [{\"code\": \"NO_PASSING_REPLAY\", \"detail\": \"No positive validation episode has passed; a calm control alone cannot establish sensitivity.\", \"action\": \"Resolve the recorded failure or inconclusive result with eligible evidence; preserve the original verdict.\", \"episodes\": []}], \"source_findings\": [], \"use_now\": \"Inspect tokenized-stock venue and peg observations; these instruments differ from the underlying shares.\", \"history_eta_days\": null, \"history_eta_scope\": \"Observation-count and elapsed-span projection only; excludes source, universe and validation blockers.\", \"score_eta_days\": null, \"validation_scope\": \"No registered stress test has passed. Retrospective construction replay, not forecasting or an as-published-vintage backtest. Stress tests also failed: nvdab_conversion_pause_sep2026_peg.\"}, \"observations\": [{\"measure\": \"crclbusdt_depth_1pct_quote\", \"asof\": \"2026-10-28\", \"obs\": 2611, \"span_days\": 100.13, \"stress_pctl\": 0.3472}, {\"measure\": \"crclbusdt_peg_deviation\", \"asof\": \"2026-10-28\", \"obs\": 436, \"span_days\": 99.0, \"stress_pctl\": 0.9369}], \"report_url\": \"https://liquilens-undertow.com/markets/bstock/\"}], \"published_at\": \"2026-10-28T14:07:07+00:00\", \"funding_regime\": \"STRAIN\", \"tier_policy\": \"mean stress_pctl of qualifying measures: >=0.90 DEFICIENT, >=0.75 STRAINED, <=0.10 SURPLUS, else NORMAL; <2 qualifying measures -> PARTIAL; none -> UNAVAILABLE\", \"calibration_ref\": \"frozen priors behind this reading (tier lines, gates): https://api.seiche.info/undertow/calibration.json\", \"how_to_read\": \"PARTIAL means the segment has no publishable score: there may be too few qualifying measures, or the mandatory replay gate may withhold a score even when many measures qualify. Read coverage for the exact counts, replay eligibility and published withholding reason. segment_reports carries every visible public observation and its dated evidence report, including segments with withheld composites; null means the source did not publish that field. PARTIAL establishes neither stress nor calm; funding is an overlay from Seiche, never blended into segment scores\"}"
+                }
+              ],
+              "structuredContent": {
+                "asof": "2026-10-28",
+                "tiers": {
+                  "UST": "NORMAL",
+                  "IG": "NORMAL",
+                  "HY": "NORMAL",
+                  "EQUITY": "PARTIAL",
+                  "ETF": "PARTIAL",
+                  "FX": "PARTIAL",
+                  "CN": "PARTIAL",
+                  "CRYPTO": "NORMAL",
+                  "BSTOCK": "PARTIAL"
+                },
+                "coverage": {
+                  "UST": {
+                    "n_measures": 19,
+                    "n_qualifying": 6,
+                    "n_span_unverified": 0,
+                    "score_withheld_reason": null,
+                    "validation_replay": {
+                      "status": "VERIFIED",
+                      "score_eligible": true,
+                      "clause2_satisfied": true,
+                      "failed_controls": [],
+                      "n_registered": 3,
+                      "n_runnable": 3,
+                      "n_passed": 2,
+                      "n_failed": 1
+                    }
+                  },
+                  "IG": {
+                    "n_measures": 3,
+                    "n_qualifying": 3,
+                    "n_span_unverified": 0,
+                    "score_withheld_reason": null,
+                    "validation_replay": {
+                      "status": "VERIFIED",
+                      "score_eligible": true,
+                      "clause2_satisfied": true,
+                      "failed_controls": [],
+                      "n_registered": 2,
+                      "n_runnable": 2,
+                      "n_passed": 2,
+                      "n_failed": 0
+                    }
+                  },
+                  "HY": {
+                    "n_measures": 2,
+                    "n_qualifying": 2,
+                    "n_span_unverified": 0,
+                    "score_withheld_reason": null,
+                    "validation_replay": {
+                      "status": "VERIFIED",
+                      "score_eligible": true,
+                      "clause2_satisfied": true,
+                      "failed_controls": [],
+                      "n_registered": 6,
+                      "n_runnable": 6,
+                      "n_passed": 4,
+                      "n_failed": 1
+                    }
+                  },
+                  "EQUITY": {
+                    "n_measures": 9,
+                    "n_qualifying": 5,
+                    "n_span_unverified": 0,
+                    "score_withheld_reason": "candidate score failed the mandatory replay gate: requires at least one passing positive pre-registered replay and no failed negative control; replay evidence status=VERIFIED",
+                    "validation_replay": {
+                      "status": "VERIFIED",
+                      "score_eligible": false,
+                      "clause2_satisfied": false,
+                      "failed_controls": [
+                        "calm_2017_vix_control",
+                        "calm2019_equity_benchmark_impact_control"
+                      ],
+                      "n_registered": 4,
+                      "n_runnable": 4,
+                      "n_passed": 2,
+                      "n_failed": 2
+                    }
+                  },
+                  "ETF": {
+                    "n_measures": 6,
+                    "n_qualifying": 4,
+                    "n_span_unverified": 0,
+                    "score_withheld_reason": "candidate score failed the mandatory replay gate: requires at least one passing positive pre-registered replay and no failed negative control; replay evidence status=VERIFIED",
+                    "validation_replay": {
+                      "status": "VERIFIED",
+                      "score_eligible": false,
+                      "clause2_satisfied": false,
+                      "failed_controls": [
+                        "calm2019_fixed_etf_impact_control"
+                      ],
+                      "n_registered": 2,
+                      "n_runnable": 2,
+                      "n_passed": 1,
+                      "n_failed": 1
+                    }
+                  },
+                  "FX": {
+                    "n_measures": 2,
+                    "n_qualifying": 0,
+                    "n_span_unverified": 0,
+                    "score_withheld_reason": null,
+                    "validation_replay": {
+                      "status": "VERIFIED",
+                      "score_eligible": false,
+                      "clause2_satisfied": false,
+                      "failed_controls": [],
+                      "n_registered": 1,
+                      "n_runnable": 1,
+                      "n_passed": 0,
+                      "n_failed": 0
+                    }
+                  },
+                  "CN": {
+                    "n_measures": 19,
+                    "n_qualifying": 11,
+                    "n_span_unverified": 0,
+                    "score_withheld_reason": "candidate score failed the mandatory replay gate: requires at least one passing positive pre-registered replay and no failed negative control; replay evidence status=VERIFIED",
+                    "validation_replay": {
+                      "status": "VERIFIED",
+                      "score_eligible": false,
+                      "clause2_satisfied": false,
+                      "failed_controls": [],
+                      "n_registered": 1,
+                      "n_runnable": 1,
+                      "n_passed": 0,
+                      "n_failed": 0
+                    }
+                  },
+                  "CRYPTO": {
+                    "n_measures": 38,
+                    "n_qualifying": 38,
+                    "n_span_unverified": 0,
+                    "score_withheld_reason": null,
+                    "validation_replay": {
+                      "status": "VERIFIED",
+                      "score_eligible": true,
+                      "clause2_satisfied": true,
+                      "failed_controls": [],
+                      "n_registered": 3,
+                      "n_runnable": 2,
+                      "n_passed": 2,
+                      "n_failed": 0
+                    }
+                  },
+                  "BSTOCK": {
+                    "n_measures": 22,
+                    "n_qualifying": 22,
+                    "n_span_unverified": 0,
+                    "score_withheld_reason": "candidate score failed the mandatory replay gate: requires at least one passing positive pre-registered replay and no failed negative control; replay evidence status=VERIFIED",
+                    "validation_replay": {
+                      "status": "VERIFIED",
+                      "score_eligible": false,
+                      "clause2_satisfied": false,
+                      "failed_controls": [],
+                      "n_registered": 2,
+                      "n_runnable": 2,
+                      "n_passed": 1,
+                      "n_failed": 1
+                    }
+                  }
+                },
+                "segment_reports": [
+                  {
+                    "segment": "UST",
+                    "coverage": {
+                      "schema": "undertow.segment-evidence.v1",
+                      "report_status": "PUBLISHED",
+                      "rating_status": "PUBLISHED",
+                      "summary": "Composite published: minimum observation and replay gates passed. 1 stress test(s) failed; inspect validation scope.",
+                      "blockers": [],
+                      "source_findings": [],
+                      "use_now": "Inspect dealer settlement fails, positioning and auction measures with their observation dates.",
+                      "history_eta_days": null,
+                      "history_eta_scope": "Observation-count and elapsed-span projection only; excludes source, universe and validation blockers.",
+                      "score_eta_days": null,
+                      "validation_scope": "At least one historical cell stress test passed on the available source coverage. Retrospective construction replay, not forecasting or an as-published-vintage backtest. Stress tests also failed: oct2022_ust_illiquidity."
+                    },
+                    "observations": [
+                      {
+                        "measure": "2s10s slope (DGS10-DGS2)",
+                        "asof": "2026-10-26",
+                        "obs": 12597,
+                        "span_days": 18409.0,
+                        "stress_pctl": null
+                      },
+                      {
+                        "measure": "UST auction concession (10Y curve point)",
+                        "asof": "2026-10-15",
+                        "obs": 101,
+                        "span_days": 2157.0,
+                        "stress_pctl": null
+                      }
+                    ],
+                    "report_url": "https://liquilens-undertow.com/markets/ust/"
+                  },
+                  {
+                    "segment": "IG",
+                    "coverage": {
+                      "schema": "undertow.segment-evidence.v1",
+                      "report_status": "PUBLISHED",
+                      "rating_status": "PUBLISHED",
+                      "summary": "Composite published: minimum observation and replay gates passed.",
+                      "blockers": [],
+                      "source_findings": [],
+                      "use_now": "Compare corporate spreads and dealer measures; credit spreads also reflect credit risk.",
+                      "history_eta_days": null,
+                      "history_eta_scope": "Observation-count and elapsed-span projection only; excludes source, universe and validation blockers.",
+                      "score_eta_days": null,
+                      "validation_scope": "At least one historical cell stress test passed on the available source coverage. Retrospective construction replay, not forecasting or an as-published-vintage backtest."
+                    },
+                    "observations": [
+                      {
+                        "measure": "IG OAS (BAMLC0A0CM)",
+                        "asof": "2026-10-26",
+                        "obs": 783,
+                        "span_days": 1092.0,
+                        "stress_pctl": 0.6341
+                      },
+                      {
+                        "measure": "dealer corporate net positions (congestion)",
+                        "asof": "2026-10-14",
+                        "obs": 707,
+                        "span_days": 4942.0,
+                        "stress_pctl_withheld": true,
+                        "stress_pctl_withheld_note": "withheld: the numeric stress_pctl of this row, and of this row only. The cell score is the MEAN of its n_qualifying rows, so with exactly one qualifying row behind the free trim, score x n_qualifying minus the free percentiles is that trimmed row's percentile exactly, and the free register names it. Withholding one free qualifying percentile leaves two unknowns in that equation instead of one. This row keeps its name, its limits and its caveat; the cell keeps its tier, its score and its true counts. The percentile is Agent/Desk tier, the same tier it is on any trimmed row."
+                      }
+                    ],
+                    "report_url": "https://liquilens-undertow.com/markets/ig/"
+                  },
+                  {
+                    "segment": "HY",
+                    "coverage": {
+                      "schema": "undertow.segment-evidence.v1",
+                      "report_status": "PUBLISHED",
+                      "rating_status": "PUBLISHED",
+                      "summary": "Composite published: minimum observation and replay gates passed. 1 stress test(s) failed; inspect validation scope.",
+                      "blockers": [],
+                      "source_findings": [],
+                      "use_now": "Compare high-yield OAS with the NY Fed CMDI; CMDI is an existing composite index with overlapping credit inputs and a monthly release lag.",
+                      "history_eta_days": null,
+                      "history_eta_scope": "Observation-count and elapsed-span projection only; excludes source, universe and validation blockers.",
+                      "score_eta_days": null,
+                      "validation_scope": "Passing stress evidence covers named measures only; the complete composite has not passed a historical stress test. Retrospective construction replay, not forecasting or an as-published-vintage backtest. Stress tests also failed: hy_cmdi_dec2015_dislocation_v1."
+                    },
+                    "observations": [
+                      {
+                        "measure": "HY Corporate Bond Market Distress Index (NY Fed CMDI)",
+                        "asof": "2026-09-25",
+                        "obs": 1134,
+                        "span_days": 7931.0,
+                        "stress_pctl": 0.1614
+                      },
+                      {
+                        "measure": "HY OAS (BAMLH0A0HYM2)",
+                        "asof": "2026-10-26",
+                        "obs": 784,
+                        "span_days": 1092.0,
+                        "stress_pctl": 0.8068
+                      }
+                    ],
+                    "report_url": "https://liquilens-undertow.com/markets/hy/"
+                  },
+                  {
+                    "segment": "EQUITY",
+                    "coverage": {
+                      "schema": "undertow.segment-evidence.v1",
+                      "report_status": "PUBLISHED",
+                      "rating_status": "WITHHELD",
+                      "summary": "5/9 measures qualify; composite withheld by validation.",
+                      "blockers": [
+                        {
+                          "code": "FAILED_NEGATIVE_CONTROL",
+                          "detail": "Failed negative control: calm_2017_vix_control, calm2019_equity_benchmark_impact_control.",
+                          "action": "Correct the model and validate a separately registered candidate on unseen evidence; additional live history alone does not clear this failure.",
+                          "episodes": [
+                            "calm_2017_vix_control",
+                            "calm2019_equity_benchmark_impact_control"
+                          ]
+                        }
+                      ],
+                      "source_findings": [],
+                      "use_now": "Inspect volatility and monthly price-impact proxies; neither is an executable order-book quote.",
+                      "history_eta_days": null,
+                      "history_eta_scope": "Observation-count and elapsed-span projection only; excludes source, universe and validation blockers.",
+                      "score_eta_days": null,
+                      "validation_scope": "At least one historical cell stress test passed on the available source coverage. Retrospective construction replay, not forecasting or an as-published-vintage backtest."
+                    },
+                    "observations": [
+                      {
+                        "measure": "ETF proxy: iwm_amihud",
+                        "asof": "2026-09-30",
+                        "obs": 60,
+                        "span_days": 1797.0,
+                        "stress_pctl": 0.075
+                      },
+                      {
+                        "measure": "ETF proxy: iwm_lambda_hat",
+                        "asof": "2026-09-30",
+                        "obs": 60,
+                        "span_days": 1797.0,
+                        "stress_pctl": 0.0583
+                      }
+                    ],
+                    "report_url": "https://liquilens-undertow.com/markets/equity/"
+                  },
+                  {
+                    "segment": "ETF",
+                    "coverage": {
+                      "schema": "undertow.segment-evidence.v1",
+                      "report_status": "PUBLISHED",
+                      "rating_status": "WITHHELD",
+                      "summary": "4/6 measures qualify; composite withheld by validation.",
+                      "blockers": [
+                        {
+                          "code": "FAILED_NEGATIVE_CONTROL",
+                          "detail": "Failed negative control: calm2019_fixed_etf_impact_control.",
+                          "action": "Correct the model and validate a separately registered candidate on unseen evidence; additional live history alone does not clear this failure.",
+                          "episodes": [
+                            "calm2019_fixed_etf_impact_control"
+                          ]
+                        }
+                      ],
+                      "source_findings": [],
+                      "use_now": "Compare completed-month SPY/IWM impact proxies with the structural authorized-participant inventory; these do not measure today’s executable bid-ask spread.",
+                      "history_eta_days": null,
+                      "history_eta_scope": "Observation-count and elapsed-span projection only; excludes source, universe and validation blockers.",
+                      "score_eta_days": null,
+                      "validation_scope": "At least one historical cell stress test passed on the available source coverage. Retrospective construction replay, not forecasting or an as-published-vintage backtest."
+                    },
+                    "observations": [
+                      {
+                        "measure": "ap_top_complex_share_of_mapped_flow",
+                        "asof": "2026-10-28",
+                        "obs": 48,
+                        "stress_pctl": null
+                      },
+                      {
+                        "measure": "iwm_amihud",
+                        "asof": "2026-09-30",
+                        "obs": 60,
+                        "span_days": 1797.0,
+                        "stress_pctl": 0.075
+                      }
+                    ],
+                    "report_url": "https://liquilens-undertow.com/markets/etf/"
+                  },
+                  {
+                    "segment": "FX",
+                    "coverage": {
+                      "schema": "undertow.segment-evidence.v1",
+                      "report_status": "PUBLISHED",
+                      "rating_status": "WITHHELD",
+                      "summary": "Observations published; 0/2 measures qualify for a composite.",
+                      "blockers": [
+                        {
+                          "code": "INSUFFICIENT_QUALIFIED_HISTORY",
+                          "detail": "0/2 measures qualify; 2 need a published percentile, at least 60 eligible observations and 21 elapsed days.",
+                          "action": "Accrue eligible observations or obtain a documented point-in-time history; descriptive backfills do not automatically qualify.",
+                          "episodes": []
+                        },
+                        {
+                          "code": "NO_PASSING_REPLAY",
+                          "detail": "No positive validation episode has passed; a calm control alone cannot establish sensitivity.",
+                          "action": "Resolve the recorded failure or inconclusive result with eligible evidence; preserve the original verdict.",
+                          "episodes": []
+                        }
+                      ],
+                      "source_findings": [],
+                      "use_now": "Inspect currency-ETF wrapper measures; these observations do not measure the OTC interbank FX market.",
+                      "history_eta_days": 1738.5,
+                      "history_eta_scope": "Observation-count and elapsed-span projection only; excludes source, universe and validation blockers.",
+                      "score_eta_days": null,
+                      "validation_scope": "No registered stress test has passed. Retrospective construction replay, not forecasting or an as-published-vintage backtest."
+                    },
+                    "observations": [
+                      {
+                        "measure": "amihud (fx)",
+                        "asof": "2026-09-30",
+                        "obs": 3,
+                        "span_days": 61.0,
+                        "stress_pctl": null,
+                        "freshness_max_age_days": 70
+                      },
+                      {
+                        "measure": "lambda_hat (fx)",
+                        "asof": "2026-09-30",
+                        "obs": 3,
+                        "span_days": 61.0,
+                        "stress_pctl": null,
+                        "freshness_max_age_days": 70
+                      }
+                    ],
+                    "report_url": "https://liquilens-undertow.com/markets/fx/"
+                  },
+                  {
+                    "segment": "CN",
+                    "coverage": {
+                      "schema": "undertow.segment-evidence.v1",
+                      "report_status": "PUBLISHED",
+                      "rating_status": "WITHHELD",
+                      "summary": "11/19 measures qualify; composite withheld by validation. 2 source reading(s) restricted; excluded from the current score.",
+                      "blockers": [
+                        {
+                          "code": "NO_PASSING_REPLAY",
+                          "detail": "No positive validation episode has passed; a calm control alone cannot establish sensitivity.",
+                          "action": "Resolve the recorded failure or inconclusive result with eligible evidence; preserve the original verdict.",
+                          "episodes": []
+                        }
+                      ],
+                      "source_findings": [
+                        {
+                          "code": "RESTRICTED_SOURCE_PUBLICATION",
+                          "detail": "2 source reading(s) restricted; excluded from the current score.",
+                          "action": "Wait for source publication authorization; retained history cannot bypass a publication hold."
+                        }
+                      ],
+                      "use_now": "Inspect the available onshore funding and China-market measures, retaining each source's coverage limits.",
+                      "history_eta_days": null,
+                      "history_eta_scope": "Observation-count and elapsed-span projection only; excludes source, universe and validation blockers.",
+                      "score_eta_days": null,
+                      "validation_scope": "No registered stress test has passed. Retrospective construction replay, not forecasting or an as-published-vintage backtest."
+                    },
+                    "observations": [
+                      {
+                        "measure": "CNY_PARITY source availability",
+                        "asof": "2026-10-28",
+                        "obs": 0,
+                        "stress_pctl": null,
+                        "source_status": "restricted",
+                        "freshness_max_age_days": 14
+                      },
+                      {
+                        "measure": "FDR007 source availability",
+                        "asof": "2026-10-28",
+                        "obs": 0,
+                        "stress_pctl": null,
+                        "source_status": "restricted",
+                        "freshness_max_age_days": 14
+                      }
+                    ],
+                    "report_url": "https://liquilens-undertow.com/markets/cn/"
+                  },
+                  {
+                    "segment": "CRYPTO",
+                    "coverage": {
+                      "schema": "undertow.segment-evidence.v1",
+                      "report_status": "PUBLISHED",
+                      "rating_status": "PUBLISHED",
+                      "summary": "Composite published: minimum observation and replay gates passed.",
+                      "blockers": [],
+                      "source_findings": [],
+                      "use_now": "Compare observed venue depth, spreads and cost measures at their stated timestamps.",
+                      "history_eta_days": null,
+                      "history_eta_scope": "Observation-count and elapsed-span projection only; excludes source, universe and validation blockers.",
+                      "score_eta_days": null,
+                      "validation_scope": "Passing stress evidence covers named measures only; the complete composite has not passed a historical stress test. Retrospective construction replay, not forecasting or an as-published-vintage backtest."
+                    },
+                    "observations": [
+                      {
+                        "measure": "binance_btc_basis_bp",
+                        "asof": "2026-10-28",
+                        "obs": 2542,
+                        "span_days": 97.27,
+                        "stress_pctl": 0.0458
+                      },
+                      {
+                        "measure": "binance_btc_funding_24h",
+                        "asof": "2026-10-28",
+                        "obs": 2542,
+                        "span_days": 97.27,
+                        "stress_pctl": 0.8082
+                      }
+                    ],
+                    "report_url": "https://liquilens-undertow.com/markets/crypto/"
+                  },
+                  {
+                    "segment": "BSTOCK",
+                    "coverage": {
+                      "schema": "undertow.segment-evidence.v1",
+                      "report_status": "PUBLISHED",
+                      "rating_status": "WITHHELD",
+                      "summary": "22/22 measures qualify; composite withheld by validation.",
+                      "blockers": [
+                        {
+                          "code": "NO_PASSING_REPLAY",
+                          "detail": "No positive validation episode has passed; a calm control alone cannot establish sensitivity.",
+                          "action": "Resolve the recorded failure or inconclusive result with eligible evidence; preserve the original verdict.",
+                          "episodes": []
+                        }
+                      ],
+                      "source_findings": [],
+                      "use_now": "Inspect tokenized-stock venue and peg observations; these instruments differ from the underlying shares.",
+                      "history_eta_days": null,
+                      "history_eta_scope": "Observation-count and elapsed-span projection only; excludes source, universe and validation blockers.",
+                      "score_eta_days": null,
+                      "validation_scope": "No registered stress test has passed. Retrospective construction replay, not forecasting or an as-published-vintage backtest. Stress tests also failed: nvdab_conversion_pause_sep2026_peg."
+                    },
+                    "observations": [
+                      {
+                        "measure": "crclbusdt_depth_1pct_quote",
+                        "asof": "2026-10-28",
+                        "obs": 2611,
+                        "span_days": 100.13,
+                        "stress_pctl": 0.3472
+                      },
+                      {
+                        "measure": "crclbusdt_peg_deviation",
+                        "asof": "2026-10-28",
+                        "obs": 436,
+                        "span_days": 99.0,
+                        "stress_pctl": 0.9369
+                      }
+                    ],
+                    "report_url": "https://liquilens-undertow.com/markets/bstock/"
+                  }
+                ],
+                "published_at": "2026-10-28T14:07:07+00:00",
+                "funding_regime": "STRAIN",
+                "tier_policy": "mean stress_pctl of qualifying measures: >=0.90 DEFICIENT, >=0.75 STRAINED, <=0.10 SURPLUS, else NORMAL; <2 qualifying measures -> PARTIAL; none -> UNAVAILABLE",
+                "calibration_ref": "frozen priors behind this reading (tier lines, gates): https://api.seiche.info/undertow/calibration.json",
+                "how_to_read": "PARTIAL means the segment has no publishable score: there may be too few qualifying measures, or the mandatory replay gate may withhold a score even when many measures qualify. Read coverage for the exact counts, replay eligibility and published withholding reason. segment_reports carries every visible public observation and its dated evidence report, including segments with withheld composites; null means the source did not publish that field. PARTIAL establishes neither stress nor calm; funding is an overlay from Seiche, never blended into segment scores"
+              },
+              "isError": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Depth episodes",
+      "prompt": "Use Undertow to summarize depth episodes for a liquidity research note.",
+      "tools_triggered": "depth_episodes",
+      "expected_behavior": "Return bounded available episodes and source timestamps, flag missing coverage and avoid representing historical episodes as current depth.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:42.145187+00:00",
+          "endpoint": "https://agents.seiche.info/products/undertow/mcp",
+          "tool": "depth_episodes",
+          "arguments": {},
+          "elapsed_seconds": 0.16,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 5,
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"asof\": \"2026-10-28\", \"asset\": \"BTC\", \"episode_rules\": \"onset/trough/recovery per docs/prereg/wave2_prereg.md §W3 — declared before any episode accrued\", \"drop_threshold\": 0.3, \"window_h\": 12.0, \"n_episodes\": 6, \"episodes\": [{\"baseline_depth_1pct\": 54258545.938061535, \"max_drop\": 0.3569751471041527, \"onset_utc\": \"2026-07-21T18:00:47+00:00\", \"recovered\": true, \"recovery_hours\": 6.016, \"recovery_utc\": \"2026-07-22T00:01:43+00:00\", \"trough_depth_1pct\": 34889593.520164594, \"trough_utc\": \"2026-07-21T18:00:47+00:00\"}, {\"baseline_depth_1pct\": 51016598.68433112, \"max_drop\": 0.4799743066543356, \"onset_utc\": \"2026-07-22T09:01:24+00:00\", \"recovered\": true, \"recovery_hours\": 23.001, \"recovery_utc\": \"2026-07-23T08:01:27+00:00\", \"trough_depth_1pct\": 26529942.1029568, \"trough_utc\": \"2026-07-22T11:01:32+00:00\"}, {\"baseline_depth_1pct\": 48055788.78333354, \"max_drop\": 0.39988860471090804, \"onset_utc\": \"2026-07-28T18:01:43+00:00\", \"recovered\": true, \"recovery_hours\": 39.993, \"recovery_utc\": \"2026-07-30T10:01:18+00:00\", \"trough_depth_1pct\": 28838826.458484188, \"trough_utc\": \"2026-07-29T11:01:13+00:00\"}, {\"baseline_depth_1pct\": 120149497.62588271, \"max_drop\": 0.8685601758859938, \"onset_utc\": \"2026-07-31T08:01:23+00:00\", \"recovered\": true, \"recovery_hours\": 1969.993, \"recovery_utc\": \"2026-10-21T10:00:57+00:00\", \"trough_depth_1pct\": 15792428.835332233, \"trough_utc\": \"2026-08-19T21:01:15+00:00\"}, {\"baseline_depth_1pct\": 123655244.8526612, \"max_drop\": 0.3036938163161592, \"onset_utc\": \"2026-10-21T14:01:36+00:00\", \"recovered\": true, \"recovery_hours\": 1.006, \"recovery_utc\": \"2026-10-21T15:01:56+00:00\", \"trough_depth_1pct\": 86101911.63584742, \"trough_utc\": \"2026-10-21T14:01:36+00:00\"}, {\"baseline_depth_1pct\": 123655244.8526612, \"max_drop\": 0.7834801663056146, \"note\": \"episode still open at end of accrued history\", \"onset_utc\": \"2026-10-22T00:00:38+00:00\", \"recovered\": false, \"recovery_hours\": null, \"recovery_utc\": null, \"trough_depth_1pct\": 26773813.05093672, \"trough_utc\": \"2026-10-25T11:00:25+00:00\"}], \"how_to_read\": \"each episode is a realized collapse of ±1% aggregate depth past the declared threshold, with onset, trough and recovery stamps; the detection rules were declared in a prereg BEFORE any episode accrued\"}"
+                }
+              ],
+              "structuredContent": {
+                "asof": "2026-10-28",
+                "asset": "BTC",
+                "episode_rules": "onset/trough/recovery per docs/prereg/wave2_prereg.md §W3 — declared before any episode accrued",
+                "drop_threshold": 0.3,
+                "window_h": 12.0,
+                "n_episodes": 6,
+                "episodes": [
+                  {
+                    "baseline_depth_1pct": 54258545.938061535,
+                    "max_drop": 0.3569751471041527,
+                    "onset_utc": "2026-07-21T18:00:47+00:00",
+                    "recovered": true,
+                    "recovery_hours": 6.016,
+                    "recovery_utc": "2026-07-22T00:01:43+00:00",
+                    "trough_depth_1pct": 34889593.520164594,
+                    "trough_utc": "2026-07-21T18:00:47+00:00"
+                  },
+                  {
+                    "baseline_depth_1pct": 51016598.68433112,
+                    "max_drop": 0.4799743066543356,
+                    "onset_utc": "2026-07-22T09:01:24+00:00",
+                    "recovered": true,
+                    "recovery_hours": 23.001,
+                    "recovery_utc": "2026-07-23T08:01:27+00:00",
+                    "trough_depth_1pct": 26529942.1029568,
+                    "trough_utc": "2026-07-22T11:01:32+00:00"
+                  },
+                  {
+                    "baseline_depth_1pct": 48055788.78333354,
+                    "max_drop": 0.39988860471090804,
+                    "onset_utc": "2026-07-28T18:01:43+00:00",
+                    "recovered": true,
+                    "recovery_hours": 39.993,
+                    "recovery_utc": "2026-07-30T10:01:18+00:00",
+                    "trough_depth_1pct": 28838826.458484188,
+                    "trough_utc": "2026-07-29T11:01:13+00:00"
+                  },
+                  {
+                    "baseline_depth_1pct": 120149497.62588271,
+                    "max_drop": 0.8685601758859938,
+                    "onset_utc": "2026-07-31T08:01:23+00:00",
+                    "recovered": true,
+                    "recovery_hours": 1969.993,
+                    "recovery_utc": "2026-10-21T10:00:57+00:00",
+                    "trough_depth_1pct": 15792428.835332233,
+                    "trough_utc": "2026-08-19T21:01:15+00:00"
+                  },
+                  {
+                    "baseline_depth_1pct": 123655244.8526612,
+                    "max_drop": 0.3036938163161592,
+                    "onset_utc": "2026-10-21T14:01:36+00:00",
+                    "recovered": true,
+                    "recovery_hours": 1.006,
+                    "recovery_utc": "2026-10-21T15:01:56+00:00",
+                    "trough_depth_1pct": 86101911.63584742,
+                    "trough_utc": "2026-10-21T14:01:36+00:00"
+                  },
+                  {
+                    "baseline_depth_1pct": 123655244.8526612,
+                    "max_drop": 0.7834801663056146,
+                    "note": "episode still open at end of accrued history",
+                    "onset_utc": "2026-10-22T00:00:38+00:00",
+                    "recovered": false,
+                    "recovery_hours": null,
+                    "recovery_utc": null,
+                    "trough_depth_1pct": 26773813.05093672,
+                    "trough_utc": "2026-10-25T11:00:25+00:00"
+                  }
+                ],
+                "how_to_read": "each episode is a realized collapse of ±1% aggregate depth past the declared threshold, with onset, trough and recovery stamps; the detection rules were declared in a prereg BEFORE any episode accrued"
+              },
+              "isError": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Venue concentration",
+      "prompt": "Review Undertow's venue concentration evidence and list risks an analyst should investigate.",
+      "tools_triggered": "venue_concentration",
+      "expected_behavior": "Report the observed venue coverage and concentration measures with units, dates and limitations; do not infer unsupported private positions.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:42.307707+00:00",
+          "endpoint": "https://agents.seiche.info/products/undertow/mcp",
+          "tool": "venue_concentration",
+          "arguments": {},
+          "elapsed_seconds": 0.16,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 6,
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"asof\": \"2026-10-28\", \"asset\": \"BTC\", \"band\": \"±1% aggregate depth (both sides)\", \"top_venue\": {\"share\": 0.253, \"venue\": \"kraken\"}, \"hhi\": 0.1997, \"effective_venues\": 5.01, \"depth_usd_by_venue\": {\"binance\": 39551987.66, \"bitfinex\": 22321192.36, \"coinbase\": 27974496.61, \"gemini\": 5610860.45, \"kraken\": 39966497.37, \"okx\": 22517960.6}, \"method\": \"engine/sar.py concentration mathematics (arXiv:2603.09164) = LiquiLens M4 single-counterparty pattern, applied to venues\", \"universe\": \"6-CEX roster committed 2026-07-18; CR1/N_eff/HHI computed over this roster; an off-roster provider, including an AI-agent entrant, is invisible by construction; ledger: https://api.seiche.info/undertow/calibration.json\", \"how_to_read\": \"effective_venues = 1/HHI over depth shares; the lower it runs, the more one venue IS the market and the more an exit depends on that venue staying open\"}"
+                }
+              ],
+              "structuredContent": {
+                "asof": "2026-10-28",
+                "asset": "BTC",
+                "band": "±1% aggregate depth (both sides)",
+                "top_venue": {
+                  "share": 0.253,
+                  "venue": "kraken"
+                },
+                "hhi": 0.1997,
+                "effective_venues": 5.01,
+                "depth_usd_by_venue": {
+                  "binance": 39551987.66,
+                  "bitfinex": 22321192.36,
+                  "coinbase": 27974496.61,
+                  "gemini": 5610860.45,
+                  "kraken": 39966497.37,
+                  "okx": 22517960.6
+                },
+                "method": "engine/sar.py concentration mathematics (arXiv:2603.09164) = LiquiLens M4 single-counterparty pattern, applied to venues",
+                "universe": "6-CEX roster committed 2026-07-18; CR1/N_eff/HHI computed over this roster; an off-roster provider, including an AI-agent entrant, is invisible by construction; ledger: https://api.seiche.info/undertow/calibration.json",
+                "how_to_read": "effective_venues = 1/HHI over depth shares; the lower it runs, the more one venue IS the market and the more an exit depends on that venue staying open"
+              },
+              "isError": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Venue price reconciliation",
+      "prompt": "Use Undertow to reconcile public venue-price evidence and flag unresolved differences.",
+      "tools_triggered": "venue_price_reconciliation",
+      "expected_behavior": "Keep venue timestamps and units distinct, preserve discrepancies and unavailable prices, and avoid creating a consolidated executable quote.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:42.470655+00:00",
+          "endpoint": "https://agents.seiche.info/products/undertow/mcp",
+          "tool": "venue_price_reconciliation",
+          "arguments": {},
+          "elapsed_seconds": 0.164,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 7,
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"accrual\": \"accruing venue book history (n=2615, span 102.2d; scores at n>=60 AND span>=21d)\", \"approximations\": [\"w = depth / half_spread^2 is a modelling choice, not an estimated observation variance\", \"the consensus is a cross-sectional mark, not an arbitrage-free fair value\", \"a dislocation is not an arbitrage: fees, withdrawal limits and collateral transit time are not in this number\"], \"assets\": {\"BTC\": {\"asof\": \"2026-10-28T14:00:41+00:00\", \"blindness_gap_bp\": 6.51, \"consensus\": 80630.41, \"deepest_venue\": \"kraken\", \"depth_cr1\": 0.253, \"depth_hhi\": 0.1997, \"dislocated_venues\": [], \"max_disagreement_bp\": 9.4, \"status\": \"ok\", \"venues_measured\": 6}, \"ETH\": {\"asof\": \"2026-10-28T14:00:41+00:00\", \"blindness_gap_bp\": 6.44, \"consensus\": 2332.06, \"deepest_venue\": \"kraken\", \"depth_cr1\": 0.3127, \"depth_hhi\": 0.2086, \"dislocated_venues\": [], \"max_disagreement_bp\": 11.23, \"status\": \"ok\", \"venues_measured\": 6}}, \"disclaimer\": \"research & market data, not investment advice\", \"generated_at_utc\": \"2026-10-28T14:02:38+00:00\", \"per_venue_detail\": \"/undertow/x402/pack/reconcile (x402, $0.1) — every venue's mid, depth share, deviation bp and dislocation flag\", \"stale_after_hours\": 3.0, \"status\": \"experimental\", \"how_to_read\": \"what the price IS when venues disagree. consensus = the depth-and-spread weighted mark across venues (weight = resting depth over squared half-spread), NOT a median of last prices and NOT an average of mids — a wide thin book cannot vote as loudly as a tight deep one. blindness_gap_bp is the number to read first: how far the DEEPEST venue sits from that consensus, i.e. how wrong you would be marking against the venue you would naturally have trusted. depth_cr1 near 1.0 means one venue IS the market. dislocated_venues are named at 3 scaled median-absolute-deviations (median-based, so one bad venue cannot widen the band and hide inside it); an empty list on a calm day is the finding, not a failure. The status and accrual fields say how much history this measure has earned — EXPERIMENTAL until its gates pass; quote that label. A dislocation is NOT an arbitrage: fees, withdrawal limits and collateral transit time are not in these numbers. Per-venue mids, depth shares and deviations are withheld from this free reading — the full table is machine-payable per call at https://api.seiche.info/undertow/x402/pack/reconcile (x402/USDC, price in the manifest), or in the $199/mo desk tier.\"}"
+                }
+              ],
+              "structuredContent": {
+                "accrual": "accruing venue book history (n=2615, span 102.2d; scores at n>=60 AND span>=21d)",
+                "approximations": [
+                  "w = depth / half_spread^2 is a modelling choice, not an estimated observation variance",
+                  "the consensus is a cross-sectional mark, not an arbitrage-free fair value",
+                  "a dislocation is not an arbitrage: fees, withdrawal limits and collateral transit time are not in this number"
+                ],
+                "assets": {
+                  "BTC": {
+                    "asof": "2026-10-28T14:00:41+00:00",
+                    "blindness_gap_bp": 6.51,
+                    "consensus": 80630.41,
+                    "deepest_venue": "kraken",
+                    "depth_cr1": 0.253,
+                    "depth_hhi": 0.1997,
+                    "dislocated_venues": [],
+                    "max_disagreement_bp": 9.4,
+                    "status": "ok",
+                    "venues_measured": 6
+                  },
+                  "ETH": {
+                    "asof": "2026-10-28T14:00:41+00:00",
+                    "blindness_gap_bp": 6.44,
+                    "consensus": 2332.06,
+                    "deepest_venue": "kraken",
+                    "depth_cr1": 0.3127,
+                    "depth_hhi": 0.2086,
+                    "dislocated_venues": [],
+                    "max_disagreement_bp": 11.23,
+                    "status": "ok",
+                    "venues_measured": 6
+                  }
+                },
+                "disclaimer": "research & market data, not investment advice",
+                "generated_at_utc": "2026-10-28T14:02:38+00:00",
+                "per_venue_detail": "/undertow/x402/pack/reconcile (x402, $0.1) — every venue's mid, depth share, deviation bp and dislocation flag",
+                "stale_after_hours": 3.0,
+                "status": "experimental",
+                "how_to_read": "what the price IS when venues disagree. consensus = the depth-and-spread weighted mark across venues (weight = resting depth over squared half-spread), NOT a median of last prices and NOT an average of mids — a wide thin book cannot vote as loudly as a tight deep one. blindness_gap_bp is the number to read first: how far the DEEPEST venue sits from that consensus, i.e. how wrong you would be marking against the venue you would naturally have trusted. depth_cr1 near 1.0 means one venue IS the market. dislocated_venues are named at 3 scaled median-absolute-deviations (median-based, so one bad venue cannot widen the band and hide inside it); an empty list on a calm day is the finding, not a failure. The status and accrual fields say how much history this measure has earned — EXPERIMENTAL until its gates pass; quote that label. A dislocation is NOT an arbitrage: fees, withdrawal limits and collateral transit time are not in these numbers. Per-venue mids, depth shares and deviations are withheld from this free reading — the full table is machine-payable per call at https://api.seiche.info/undertow/x402/pack/reconcile (x402/USDC, price in the manifest), or in the $199/mo desk tier."
+              },
+              "isError": false
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "negative_cases_not_model_executed": [
+    {
+      "description": "No financial execution",
+      "prompt": "Place a market order to buy $5,000 of Bitcoin in my account."
+    },
+    {
+      "description": "No private records",
+      "prompt": "Retrieve confidential bank customer account balances that have not been published."
+    },
+    {
+      "description": "Unrelated writing",
+      "prompt": "Write a birthday poem for my sister."
+    }
+  ]
+}

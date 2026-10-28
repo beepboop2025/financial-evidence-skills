@@ -1,0 +1,2722 @@
+{
+  "schema": "liquilens.direct-mcp-walkthrough.v1",
+  "name": "Seiche Market Atlas Corpus",
+  "id": "seiche-market-corpus",
+  "endpoint": "https://agents.seiche.info/products/seiche-market-corpus/mcp",
+  "recording_type": "edited browser recording of captured direct MCP responses",
+  "model_api_calls": 0,
+  "native_plugin_installation_test": false,
+  "limitations": "The product skill and negative model-routing cases are review expectations, not newly executed model tests. No trading, enrollment, collection, private-record access or execution was performed. NoiseFloor examples use synthetic inputs; all other values retain their service-provided dates and restrictions.",
+  "cases": [
+    {
+      "description": "Corpus discovery",
+      "prompt": "Summarize registered market corpora and evidence classes so I can choose a research source.",
+      "tools_triggered": "corpus_catalog",
+      "expected_behavior": "Describe returned registrations and evidence classes. Do not infer observation availability, freshness or redistribution permission.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:44.222149+00:00",
+          "endpoint": "https://agents.seiche.info/products/seiche-market-corpus/mcp",
+          "tool": "corpus_catalog",
+          "arguments": {},
+          "elapsed_seconds": 0.132,
+          "response": {
+            "id": 3,
+            "jsonrpc": "2.0",
+            "result": {
+              "content": [
+                {
+                  "text": "{\"corpora\":{\"bis\":{\"api_only\":1,\"bulk_flat\":27,\"bulk_manifest_template\":\"/api/v2/corpus/v1/bis/flows/{flow_id}/manifest\",\"flows\":29,\"inventory_sha256\":\"05c5b08074c65299e59e09285a85e8aaffe895e64a8d840a3a81bbdca4a83f64\",\"materialization\":{\"aggregate_row_count\":76665476,\"error_count\":0,\"expected_count\":27,\"expected_flow_ids\":[\"WS_CBPOL\",\"WS_CBS_PUB\",\"WS_CBTA\",\"WS_CPMI_CASHLESS\",\"WS_CPMI_CT1\",\"WS_CPMI_CT2\",\"WS_CPMI_DEVICES\",\"WS_CPMI_INSTITUT\",\"WS_CPMI_MACRO\",\"WS_CPMI_PARTICIP\",\"WS_CPMI_SYSTEMS\",\"WS_CPP\",\"WS_CREDIT_GAP\",\"WS_DEBT_SEC2_PUB\",\"WS_DER_OTC_TOV\",\"WS_DPP\",\"WS_DSR\",\"WS_EER\",\"WS_GLI\",\"WS_LBS_D_PUB\",\"WS_LONG_CPI\",\"WS_NA_SEC_DSS\",\"WS_OTC_DERIV2\",\"WS_SPP\",\"WS_TC\",\"WS_XRU\",\"WS_XTD_DERIV\"],\"flows\":[{\"capture_id\":949,\"flow_id\":\"WS_CBPOL\",\"manifest_sha256\":\"95fada9299713d4e3f81a8796fed5b6960860d3e929d7b09f137341752540c4a\",\"normalized_sha256\":\"38ef1b31a8aa4e28663f8826167886e213d33d831ab7d5cf10288ce30ad53e8e\",\"row_count\":734199},{\"capture_id\":629,\"flow_id\":\"WS_CBS_PUB\",\"manifest_sha256\":\"0d7e5be4e714e1d9739ad037c97b5662d779ed885f9b2b1c925ad58092abbabe\",\"normalized_sha256\":\"328ab8caf4db63b4b76edee9f20b4f38a1aabd73da7c4d732acc62b64400737a\",\"row_count\":11321249},{\"capture_id\":392,\"flow_id\":\"WS_CBTA\",\"manifest_sha256\":\"c368c294b2d26f085e24693d8a567d9f733457451ffc08368baaa859dbc69784\",\"normalized_sha256\":\"4c037043d8767c8a22e9912c98b8f86e3c887601976fa4747440de3b542e5663\",\"row_count\":146797},{\"capture_id\":42,\"flow_id\":\"WS_CPMI_CASHLESS\",\"manifest_sha256\":\"4d176b619f5bad9cdfd14c5e3a326e32acb724666be6670a3d6fd19f8bb10094\",\"normalized_sha256\":\"8967c781c3a97b544d6790e610da61d580c9d97ae8d2f5ab69f9daaabe17bf81\",\"row_count\":19514},{\"capture_id\":43,\"flow_id\":\"WS_CPMI_CT1\",\"manifest_sha256\":\"d458fabf4f2aa3509edc935b553de26278c0c03a4373ce4fddb4352906afcbf3\",\"normalized_sha256\":\"d1f8c79e4040ae0d076e348c8596a67515a5d13f92c441bba6e9eaf687dbebf8\",\"row_count\":68197},{\"capture_id\":44,\"flow_id\":\"WS_CPMI_CT2\",\"manifest_sha256\":\"eaa002c2dc4a073b5dae5f9b83ac25db7b8d492322b99d163b00664b118191e2\",\"normalized_sha256\":\"56e645e3c2494dd0a843c02edaae1b423a3caec9220a4542f05b9afe4349845e\",\"row_count\":22755},{\"capture_id\":45,\"flow_id\":\"WS_CPMI_DEVICES\",\"manifest_sha256\":\"7dd922fa95c161934ad1dc37ebb34ac507f3c6ad79f6af63cbbbd71dd3b97e6e\",\"normalized_sha256\":\"b89ef3a84de4cbf538e37a863192ae585b0142a810aede3bb30ba1460afb17fd\",\"row_count\":3532},{\"capture_id\":46,\"flow_id\":\"WS_CPMI_INSTITUT\",\"manifest_sha256\":\"5174b95de6a0957e252c95d51cda013c5ebc6e1b3800680a1ce5ee1bbd5bd14b\",\"normalized_sha256\":\"528fd0baba252338e09a581f6b3ff27408187ef551284cc52582b2a9798daf50\",\"row_count\":7920},{\"capture_id\":47,\"flow_id\":\"WS_CPMI_MACRO\",\"manifest_sha256\":\"2570df89942e68175668c9633f2160f4c2630e915bde666fe8ad643beba79ae8\",\"normalized_sha256\":\"80a7744a64ad17b8be18b40e915e519450b29a1447c6ff1d8c4862eff5038bab\",\"row_count\":8267},{\"capture_id\":48,\"flow_id\":\"WS_CPMI_PARTICIP\",\"manifest_sha256\":\"fc57bde3a6a584e01fca09240964c4d076958db7b0505af1d08d2496838fc2d6\",\"normalized_sha256\":\"a3dc52b6c24ec2b3feb818aabeed2ce032bff5df7bc298a2bb922abb44a8b996\",\"row_count\":25086},{\"capture_id\":11,\"flow_id\":\"WS_CPMI_SYSTEMS\",\"manifest_sha256\":\"16456bf41e6c9a976fbca484b660f6e425824b719253a86cf021201f229372cc\",\"normalized_sha256\":\"ca44911cfbd90e37ad34d701c2a744c798e9b67fe0eae733b09fe596c2218d3f\",\"row_count\":38179},{\"capture_id\":706,\"flow_id\":\"WS_CPP\",\"manifest_sha256\":\"ba21b4c7a26936affca38b7dd55cfd4a49e190f3ce33dd0750babbc32281f3c1\",\"normalized_sha256\":\"0cee18eec6dfd157041f4a744c3bbd3c5910b6d822c19f387c013d5421cc388b\",\"row_count\":6521},{\"capture_id\":630,\"flow_id\":\"WS_CREDIT_GAP\",\"manifest_sha256\":\"6a42df90bdcec225d00420bcc9a2e673e2249b31e8b80cf13d59895745ac58d5\",\"normalized_sha256\":\"901e2272572273dbf4f5a158dfa01b7c7723322cd6029f8cae65474aa7d99907\",\"row_count\":24620},{\"capture_id\":707,\"flow_id\":\"WS_DEBT_SEC2_PUB\",\"manifest_sha256\":\"4dd87f07af3f3babbbbd6e2f9ecca383a0e8df5803d39fada72de22799702b31\",\"normalized_sha256\":\"5ebd7edc2eb50755861489aeea536ec16b51229635bd5d51dda7472fc2e5d299\",\"row_count\":18673034},{\"capture_id\":52,\"flow_id\":\"WS_DER_OTC_TOV\",\"manifest_sha256\":\"a6f8947eee12d83088d202ba9e145582bf4518aeb8fa6283b4924b19ba9cce11\",\"normalized_sha256\":\"2c854c5d13503b2a3d3d11bf9762c4c66c57b1a806e755b38aa4407dd6049381\",\"row_count\":1342771},{\"capture_id\":708,\"flow_id\":\"WS_DPP\",\"manifest_sha256\":\"2af8ac05c3e7db13b7acc41ce37bc8ebbcec648bfd28383d229035dbbc23a83b\",\"normalized_sha256\":\"42447d081dd1bfea97a7a5933352ad54b4f1d882c7d9b8bcd7cc7021956c93f6\",\"row_count\":45198},{\"capture_id\":632,\"flow_id\":\"WS_DSR\",\"manifest_sha256\":\"a32f3815ab8f631107d1ba1f936743f4879bc64d3a6528b526677be604e56f95\",\"normalized_sha256\":\"32006eca1bc0899a8a4858e9c5c0c41cc11f4949d9084677d88bc0a4d1ba6d11\",\"row_count\":7182},{\"capture_id\":950,\"flow_id\":\"WS_EER\",\"manifest_sha256\":\"216ccfaa8f7052e92f13e36972232a4b64f0f5414d41de5af8e7c97e34df353f\",\"normalized_sha256\":\"8f41878570992b06f1e5ea6027dc924afb64ba20f7cf8214a0365baad6e4e421\",\"row_count\":1212637},{\"capture_id\":951,\"flow_id\":\"WS_GLI\",\"manifest_sha256\":\"50d7bd9b878f991cd1ce3a7d5f6bbcd1ca8b073fd63a1041c7211b804f61e27c\",\"normalized_sha256\":\"f1e1542d7a64675241f861ff81a465704cb838391b39f6dda8d1dbbd54366e1d\",\"row_count\":24378},{\"capture_id\":635,\"flow_id\":\"WS_LBS_D_PUB\",\"manifest_sha256\":\"3dfb4907d5c7c61c81490b5132af37b78c7f788d5a5576562b36946f05b0add7\",\"normalized_sha256\":\"9f0e5f476b98b7fbe59c351bfb968a412c7ab6931d320d4704cb5bef0f5ebdb6\",\"row_count\":36801850},{\"capture_id\":710,\"flow_id\":\"WS_LONG_CPI\",\"manifest_sha256\":\"cc2739ec764e406d7f74feb1e2d03dde1bb1a23464b9f74f82a30bc4543203ad\",\"normalized_sha256\":\"f957289a4ebe7ecb05e8bb58ac6ef4a9848bb168b37ad4cd6160cf7b39b4a4b4\",\"row_count\":106093},{\"capture_id\":636,\"flow_id\":\"WS_NA_SEC_DSS\",\"manifest_sha256\":\"caf1eb8f66772682133724d0389835144cd8c31bd3fa1e48e5e37ba4dd4a2e50\",\"normalized_sha256\":\"e726efb96d467c30669283e6d7cda4f7aca149ec4662a40d530db3a8981a228c\",\"row_count\":3849576},{\"capture_id\":59,\"flow_id\":\"WS_OTC_DERIV2\",\"manifest_sha256\":\"426cd495dd8ed718f2e74be80c36e62a872751db43e1dbf994889e31fa535f2d\",\"normalized_sha256\":\"6084f93b9655d7fbd22dd8f097c766e4b94612d26c308cad60284a1ce5861145\",\"row_count\":226331},{\"capture_id\":711,\"flow_id\":\"WS_SPP\",\"manifest_sha256\":\"449cc5acb06fa03a1ed58f79e6ecc3845aa09e8d756e58dec524268f64208b83\",\"normalized_sha256\":\"f41e6c3f0a0870cb3c4c41089bbb2711798bdfa65c8346739f9d8462d37caf30\",\"row_count\":35780},{\"capture_id\":637,\"flow_id\":\"WS_TC\",\"manifest_sha256\":\"bcaa72ee30fbea2d2e4b2e0a25e0542517fa42fdc08e328eb85715c92efbb460\",\"normalized_sha256\":\"bfb61b0505beaee676a3f8f0608dae43035734f3477ea96e198edb3fc144f80f\",\"row_count\":187266},{\"capture_id\":952,\"flow_id\":\"WS_XRU\",\"manifest_sha256\":\"f8c75b7d60a05fc35a359c4ec373ac9eb201f452646e8c58b7fbb242516da054\",\"normalized_sha256\":\"698a2b0e7ae2d0151369106a6480624bdadbd419b8a6f5d449ac11b3d1f2ac52\",\"row_count\":1492940},{\"capture_id\":639,\"flow_id\":\"WS_XTD_DERIV\",\"manifest_sha256\":\"473d4ee74ef21557460752a84556b9bb03f494286b67d87f804847624e52035d\",\"normalized_sha256\":\"5a0c4a424b1278925c13e0640740e08c916bb3eb362fb48c523ba0c51a60ba42\",\"row_count\":233604}],\"generated_at\":\"2026-10-28T10:35:04.933074Z\",\"inventory_sha256\":\"05c5b08074c65299e59e09285a85e8aaffe895e64a8d840a3a81bbdca4a83f64\",\"materialized_count\":27,\"receipt_sha256\":\"d3b1c37fc30b5f853fed5f06b47e1385b45597f7eeb88603c9db1e99bce470ff\",\"release_id\":\"corpus-7cb1695c6affa707\",\"schema\":\"liquilens-bis-live-materialization-v1\",\"scope\":\"live_materialization\",\"sha256\":\"0d6d0e8f538cf51b3ca9f56d5f065ca809041e5c3e7898eae31fa351f15eafbc\"},\"registry_only\":1},\"liquilens_engine\":{\"acquisition_reviews\":{\"acquired_internal_research_only\":3,\"approved_public\":1110,\"not_acquired_restricted_recipe\":9},\"attempts\":1118,\"bis_linked_objects\":27,\"collection_kinds\":{\"acquired_object\":1110,\"restricted_metadata_only\":12},\"data_classes\":{\"context_feature\":111,\"entity_reference\":105,\"evaluation_only\":100,\"outcome_label\":1,\"research_only\":7,\"train_candidate\":789,\"unclassified\":9},\"datasets\":1122,\"engines\":{\"advisor\":2,\"cash_forecast\":244,\"contagion_radar\":675,\"core\":107,\"corporate\":69,\"credit_score\":710,\"integrate\":2,\"money_market_watch\":209,\"paper_execution\":96,\"real_economy\":69,\"replay\":1,\"research\":7,\"treasury_optimizer\":231,\"world_radar\":534},\"failed_attempts\":8,\"groups\":{\"bis-bulk\":27,\"central-bank-context\":2,\"cfpb\":1,\"eba-transparency\":76,\"fdic-bulk\":535,\"fincast-eval\":1,\"gift-eval\":97,\"gleif\":3,\"india-market-panel\":2,\"indiafinbench-eval\":2,\"lotsa-curated\":2,\"nyfed-bank-history\":1,\"ofr-stfm\":5,\"papers\":7,\"sec-13f\":53,\"sec-financial-statements\":69,\"sec-n-cen\":32,\"sec-n-mfp\":96,\"sec-n-port\":27,\"treasury-fiscal-data\":75,\"unclassified\":9},\"publication_states\":{\"metadata_only\":1091,\"restricted_metadata_only\":12,\"schema_only\":19},\"published_objects\":1110,\"recovered_objects\":8,\"restricted\":{\"acquired_internal_research_only\":3,\"collections\":12,\"not_acquired_restricted_recipes\":9,\"object_count\":1479,\"row_count\":5520174,\"total_bytes\":4770949111},\"structurally_profiled_objects\":19,\"successful_attempts\":1110,\"unresolved_objects\":0,\"verified_objects\":1110,\"withheld_objects\":0},\"seiche\":{\"evidence_class\":\"observed\",\"market_count\":9,\"markets\":[{\"market\":\"AU-AUD\",\"sources\":[{\"source\":\"rba_cash\"},{\"source\":\"rba_policy\"}]},{\"market\":\"CN-CNY\",\"sources\":[{\"source\":\"cfets_rates\"}]},{\"market\":\"EA-EUR\",\"sources\":[{\"source\":\"ecb_benchmark\"},{\"source\":\"ecb_liquidity\"},{\"source\":\"ecb_policy\"}]},{\"market\":\"HK-HKD\",\"sources\":[{\"source\":\"hkma_official\"}]},{\"market\":\"IN-INR\",\"sources\":[{\"source\":\"rbi_official\"}]},{\"market\":\"JP-JPY\",\"sources\":[{\"source\":\"boj_accounts\"},{\"source\":\"boj_rates\"}]},{\"market\":\"SG-SGD\",\"sources\":[{\"source\":\"mas_rates\"},{\"source\":\"mas_sora\"}]},{\"market\":\"UK-GBP\",\"sources\":[{\"source\":\"boe_policy\"},{\"source\":\"boe_sonia\"}]},{\"market\":\"US-USD\",\"sources\":[{\"source\":\"fiscaldata\"},{\"source\":\"fred_daily\"},{\"source\":\"fred_weekly\"},{\"source\":\"nyfed_facilities\"},{\"source\":\"nyfed_rates\"},{\"source\":\"nyfed_unsecured_rates\"}]}],\"source_count\":20,\"status\":\"ok\"}},\"evidence_classes\":[\"observed\",\"derived\",\"structural\",\"restricted\",\"unavailable\"],\"generated_at\":\"2026-10-28T14:35:44.322420Z\",\"index_artifact_id\":\"liquilens-engine-public-index-v1:corpus-7cb1695c6affa707:29bcd84daf10acb94a74779facebe3a0484b0f9dc0b16f7b5be5727e2e956b36\",\"index_sha256\":\"29bcd84daf10acb94a74779facebe3a0484b0f9dc0b16f7b5be5727e2e956b36\",\"knowledge_time\":\"2026-09-01T02:36:56.403989Z\",\"release_id\":\"corpus-7cb1695c6affa707\",\"schema_version\":\"1.0.0\",\"service\":\"liquilens-market-corpus\",\"verified_at\":\"2026-08-10T06:23:01.333440Z\"}",
+                  "type": "text"
+                }
+              ],
+              "isError": false,
+              "structuredContent": {
+                "corpora": {
+                  "bis": {
+                    "api_only": 1,
+                    "bulk_flat": 27,
+                    "bulk_manifest_template": "/api/v2/corpus/v1/bis/flows/{flow_id}/manifest",
+                    "flows": 29,
+                    "inventory_sha256": "05c5b08074c65299e59e09285a85e8aaffe895e64a8d840a3a81bbdca4a83f64",
+                    "materialization": {
+                      "aggregate_row_count": 76665476,
+                      "error_count": 0,
+                      "expected_count": 27,
+                      "expected_flow_ids": [
+                        "WS_CBPOL",
+                        "WS_CBS_PUB",
+                        "WS_CBTA",
+                        "WS_CPMI_CASHLESS",
+                        "WS_CPMI_CT1",
+                        "WS_CPMI_CT2",
+                        "WS_CPMI_DEVICES",
+                        "WS_CPMI_INSTITUT",
+                        "WS_CPMI_MACRO",
+                        "WS_CPMI_PARTICIP",
+                        "WS_CPMI_SYSTEMS",
+                        "WS_CPP",
+                        "WS_CREDIT_GAP",
+                        "WS_DEBT_SEC2_PUB",
+                        "WS_DER_OTC_TOV",
+                        "WS_DPP",
+                        "WS_DSR",
+                        "WS_EER",
+                        "WS_GLI",
+                        "WS_LBS_D_PUB",
+                        "WS_LONG_CPI",
+                        "WS_NA_SEC_DSS",
+                        "WS_OTC_DERIV2",
+                        "WS_SPP",
+                        "WS_TC",
+                        "WS_XRU",
+                        "WS_XTD_DERIV"
+                      ],
+                      "flows": [
+                        {
+                          "capture_id": 949,
+                          "flow_id": "WS_CBPOL",
+                          "manifest_sha256": "95fada9299713d4e3f81a8796fed5b6960860d3e929d7b09f137341752540c4a",
+                          "normalized_sha256": "38ef1b31a8aa4e28663f8826167886e213d33d831ab7d5cf10288ce30ad53e8e",
+                          "row_count": 734199
+                        },
+                        {
+                          "capture_id": 629,
+                          "flow_id": "WS_CBS_PUB",
+                          "manifest_sha256": "0d7e5be4e714e1d9739ad037c97b5662d779ed885f9b2b1c925ad58092abbabe",
+                          "normalized_sha256": "328ab8caf4db63b4b76edee9f20b4f38a1aabd73da7c4d732acc62b64400737a",
+                          "row_count": 11321249
+                        },
+                        {
+                          "capture_id": 392,
+                          "flow_id": "WS_CBTA",
+                          "manifest_sha256": "c368c294b2d26f085e24693d8a567d9f733457451ffc08368baaa859dbc69784",
+                          "normalized_sha256": "4c037043d8767c8a22e9912c98b8f86e3c887601976fa4747440de3b542e5663",
+                          "row_count": 146797
+                        },
+                        {
+                          "capture_id": 42,
+                          "flow_id": "WS_CPMI_CASHLESS",
+                          "manifest_sha256": "4d176b619f5bad9cdfd14c5e3a326e32acb724666be6670a3d6fd19f8bb10094",
+                          "normalized_sha256": "8967c781c3a97b544d6790e610da61d580c9d97ae8d2f5ab69f9daaabe17bf81",
+                          "row_count": 19514
+                        },
+                        {
+                          "capture_id": 43,
+                          "flow_id": "WS_CPMI_CT1",
+                          "manifest_sha256": "d458fabf4f2aa3509edc935b553de26278c0c03a4373ce4fddb4352906afcbf3",
+                          "normalized_sha256": "d1f8c79e4040ae0d076e348c8596a67515a5d13f92c441bba6e9eaf687dbebf8",
+                          "row_count": 68197
+                        },
+                        {
+                          "capture_id": 44,
+                          "flow_id": "WS_CPMI_CT2",
+                          "manifest_sha256": "eaa002c2dc4a073b5dae5f9b83ac25db7b8d492322b99d163b00664b118191e2",
+                          "normalized_sha256": "56e645e3c2494dd0a843c02edaae1b423a3caec9220a4542f05b9afe4349845e",
+                          "row_count": 22755
+                        },
+                        {
+                          "capture_id": 45,
+                          "flow_id": "WS_CPMI_DEVICES",
+                          "manifest_sha256": "7dd922fa95c161934ad1dc37ebb34ac507f3c6ad79f6af63cbbbd71dd3b97e6e",
+                          "normalized_sha256": "b89ef3a84de4cbf538e37a863192ae585b0142a810aede3bb30ba1460afb17fd",
+                          "row_count": 3532
+                        },
+                        {
+                          "capture_id": 46,
+                          "flow_id": "WS_CPMI_INSTITUT",
+                          "manifest_sha256": "5174b95de6a0957e252c95d51cda013c5ebc6e1b3800680a1ce5ee1bbd5bd14b",
+                          "normalized_sha256": "528fd0baba252338e09a581f6b3ff27408187ef551284cc52582b2a9798daf50",
+                          "row_count": 7920
+                        },
+                        {
+                          "capture_id": 47,
+                          "flow_id": "WS_CPMI_MACRO",
+                          "manifest_sha256": "2570df89942e68175668c9633f2160f4c2630e915bde666fe8ad643beba79ae8",
+                          "normalized_sha256": "80a7744a64ad17b8be18b40e915e519450b29a1447c6ff1d8c4862eff5038bab",
+                          "row_count": 8267
+                        },
+                        {
+                          "capture_id": 48,
+                          "flow_id": "WS_CPMI_PARTICIP",
+                          "manifest_sha256": "fc57bde3a6a584e01fca09240964c4d076958db7b0505af1d08d2496838fc2d6",
+                          "normalized_sha256": "a3dc52b6c24ec2b3feb818aabeed2ce032bff5df7bc298a2bb922abb44a8b996",
+                          "row_count": 25086
+                        },
+                        {
+                          "capture_id": 11,
+                          "flow_id": "WS_CPMI_SYSTEMS",
+                          "manifest_sha256": "16456bf41e6c9a976fbca484b660f6e425824b719253a86cf021201f229372cc",
+                          "normalized_sha256": "ca44911cfbd90e37ad34d701c2a744c798e9b67fe0eae733b09fe596c2218d3f",
+                          "row_count": 38179
+                        },
+                        {
+                          "capture_id": 706,
+                          "flow_id": "WS_CPP",
+                          "manifest_sha256": "ba21b4c7a26936affca38b7dd55cfd4a49e190f3ce33dd0750babbc32281f3c1",
+                          "normalized_sha256": "0cee18eec6dfd157041f4a744c3bbd3c5910b6d822c19f387c013d5421cc388b",
+                          "row_count": 6521
+                        },
+                        {
+                          "capture_id": 630,
+                          "flow_id": "WS_CREDIT_GAP",
+                          "manifest_sha256": "6a42df90bdcec225d00420bcc9a2e673e2249b31e8b80cf13d59895745ac58d5",
+                          "normalized_sha256": "901e2272572273dbf4f5a158dfa01b7c7723322cd6029f8cae65474aa7d99907",
+                          "row_count": 24620
+                        },
+                        {
+                          "capture_id": 707,
+                          "flow_id": "WS_DEBT_SEC2_PUB",
+                          "manifest_sha256": "4dd87f07af3f3babbbbd6e2f9ecca383a0e8df5803d39fada72de22799702b31",
+                          "normalized_sha256": "5ebd7edc2eb50755861489aeea536ec16b51229635bd5d51dda7472fc2e5d299",
+                          "row_count": 18673034
+                        },
+                        {
+                          "capture_id": 52,
+                          "flow_id": "WS_DER_OTC_TOV",
+                          "manifest_sha256": "a6f8947eee12d83088d202ba9e145582bf4518aeb8fa6283b4924b19ba9cce11",
+                          "normalized_sha256": "2c854c5d13503b2a3d3d11bf9762c4c66c57b1a806e755b38aa4407dd6049381",
+                          "row_count": 1342771
+                        },
+                        {
+                          "capture_id": 708,
+                          "flow_id": "WS_DPP",
+                          "manifest_sha256": "2af8ac05c3e7db13b7acc41ce37bc8ebbcec648bfd28383d229035dbbc23a83b",
+                          "normalized_sha256": "42447d081dd1bfea97a7a5933352ad54b4f1d882c7d9b8bcd7cc7021956c93f6",
+                          "row_count": 45198
+                        },
+                        {
+                          "capture_id": 632,
+                          "flow_id": "WS_DSR",
+                          "manifest_sha256": "a32f3815ab8f631107d1ba1f936743f4879bc64d3a6528b526677be604e56f95",
+                          "normalized_sha256": "32006eca1bc0899a8a4858e9c5c0c41cc11f4949d9084677d88bc0a4d1ba6d11",
+                          "row_count": 7182
+                        },
+                        {
+                          "capture_id": 950,
+                          "flow_id": "WS_EER",
+                          "manifest_sha256": "216ccfaa8f7052e92f13e36972232a4b64f0f5414d41de5af8e7c97e34df353f",
+                          "normalized_sha256": "8f41878570992b06f1e5ea6027dc924afb64ba20f7cf8214a0365baad6e4e421",
+                          "row_count": 1212637
+                        },
+                        {
+                          "capture_id": 951,
+                          "flow_id": "WS_GLI",
+                          "manifest_sha256": "50d7bd9b878f991cd1ce3a7d5f6bbcd1ca8b073fd63a1041c7211b804f61e27c",
+                          "normalized_sha256": "f1e1542d7a64675241f861ff81a465704cb838391b39f6dda8d1dbbd54366e1d",
+                          "row_count": 24378
+                        },
+                        {
+                          "capture_id": 635,
+                          "flow_id": "WS_LBS_D_PUB",
+                          "manifest_sha256": "3dfb4907d5c7c61c81490b5132af37b78c7f788d5a5576562b36946f05b0add7",
+                          "normalized_sha256": "9f0e5f476b98b7fbe59c351bfb968a412c7ab6931d320d4704cb5bef0f5ebdb6",
+                          "row_count": 36801850
+                        },
+                        {
+                          "capture_id": 710,
+                          "flow_id": "WS_LONG_CPI",
+                          "manifest_sha256": "cc2739ec764e406d7f74feb1e2d03dde1bb1a23464b9f74f82a30bc4543203ad",
+                          "normalized_sha256": "f957289a4ebe7ecb05e8bb58ac6ef4a9848bb168b37ad4cd6160cf7b39b4a4b4",
+                          "row_count": 106093
+                        },
+                        {
+                          "capture_id": 636,
+                          "flow_id": "WS_NA_SEC_DSS",
+                          "manifest_sha256": "caf1eb8f66772682133724d0389835144cd8c31bd3fa1e48e5e37ba4dd4a2e50",
+                          "normalized_sha256": "e726efb96d467c30669283e6d7cda4f7aca149ec4662a40d530db3a8981a228c",
+                          "row_count": 3849576
+                        },
+                        {
+                          "capture_id": 59,
+                          "flow_id": "WS_OTC_DERIV2",
+                          "manifest_sha256": "426cd495dd8ed718f2e74be80c36e62a872751db43e1dbf994889e31fa535f2d",
+                          "normalized_sha256": "6084f93b9655d7fbd22dd8f097c766e4b94612d26c308cad60284a1ce5861145",
+                          "row_count": 226331
+                        },
+                        {
+                          "capture_id": 711,
+                          "flow_id": "WS_SPP",
+                          "manifest_sha256": "449cc5acb06fa03a1ed58f79e6ecc3845aa09e8d756e58dec524268f64208b83",
+                          "normalized_sha256": "f41e6c3f0a0870cb3c4c41089bbb2711798bdfa65c8346739f9d8462d37caf30",
+                          "row_count": 35780
+                        },
+                        {
+                          "capture_id": 637,
+                          "flow_id": "WS_TC",
+                          "manifest_sha256": "bcaa72ee30fbea2d2e4b2e0a25e0542517fa42fdc08e328eb85715c92efbb460",
+                          "normalized_sha256": "bfb61b0505beaee676a3f8f0608dae43035734f3477ea96e198edb3fc144f80f",
+                          "row_count": 187266
+                        },
+                        {
+                          "capture_id": 952,
+                          "flow_id": "WS_XRU",
+                          "manifest_sha256": "f8c75b7d60a05fc35a359c4ec373ac9eb201f452646e8c58b7fbb242516da054",
+                          "normalized_sha256": "698a2b0e7ae2d0151369106a6480624bdadbd419b8a6f5d449ac11b3d1f2ac52",
+                          "row_count": 1492940
+                        },
+                        {
+                          "capture_id": 639,
+                          "flow_id": "WS_XTD_DERIV",
+                          "manifest_sha256": "473d4ee74ef21557460752a84556b9bb03f494286b67d87f804847624e52035d",
+                          "normalized_sha256": "5a0c4a424b1278925c13e0640740e08c916bb3eb362fb48c523ba0c51a60ba42",
+                          "row_count": 233604
+                        }
+                      ],
+                      "generated_at": "2026-10-28T10:35:04.933074Z",
+                      "inventory_sha256": "05c5b08074c65299e59e09285a85e8aaffe895e64a8d840a3a81bbdca4a83f64",
+                      "materialized_count": 27,
+                      "receipt_sha256": "d3b1c37fc30b5f853fed5f06b47e1385b45597f7eeb88603c9db1e99bce470ff",
+                      "release_id": "corpus-7cb1695c6affa707",
+                      "schema": "liquilens-bis-live-materialization-v1",
+                      "scope": "live_materialization",
+                      "sha256": "0d6d0e8f538cf51b3ca9f56d5f065ca809041e5c3e7898eae31fa351f15eafbc"
+                    },
+                    "registry_only": 1
+                  },
+                  "liquilens_engine": {
+                    "acquisition_reviews": {
+                      "acquired_internal_research_only": 3,
+                      "approved_public": 1110,
+                      "not_acquired_restricted_recipe": 9
+                    },
+                    "attempts": 1118,
+                    "bis_linked_objects": 27,
+                    "collection_kinds": {
+                      "acquired_object": 1110,
+                      "restricted_metadata_only": 12
+                    },
+                    "data_classes": {
+                      "context_feature": 111,
+                      "entity_reference": 105,
+                      "evaluation_only": 100,
+                      "outcome_label": 1,
+                      "research_only": 7,
+                      "train_candidate": 789,
+                      "unclassified": 9
+                    },
+                    "datasets": 1122,
+                    "engines": {
+                      "advisor": 2,
+                      "cash_forecast": 244,
+                      "contagion_radar": 675,
+                      "core": 107,
+                      "corporate": 69,
+                      "credit_score": 710,
+                      "integrate": 2,
+                      "money_market_watch": 209,
+                      "paper_execution": 96,
+                      "real_economy": 69,
+                      "replay": 1,
+                      "research": 7,
+                      "treasury_optimizer": 231,
+                      "world_radar": 534
+                    },
+                    "failed_attempts": 8,
+                    "groups": {
+                      "bis-bulk": 27,
+                      "central-bank-context": 2,
+                      "cfpb": 1,
+                      "eba-transparency": 76,
+                      "fdic-bulk": 535,
+                      "fincast-eval": 1,
+                      "gift-eval": 97,
+                      "gleif": 3,
+                      "india-market-panel": 2,
+                      "indiafinbench-eval": 2,
+                      "lotsa-curated": 2,
+                      "nyfed-bank-history": 1,
+                      "ofr-stfm": 5,
+                      "papers": 7,
+                      "sec-13f": 53,
+                      "sec-financial-statements": 69,
+                      "sec-n-cen": 32,
+                      "sec-n-mfp": 96,
+                      "sec-n-port": 27,
+                      "treasury-fiscal-data": 75,
+                      "unclassified": 9
+                    },
+                    "publication_states": {
+                      "metadata_only": 1091,
+                      "restricted_metadata_only": 12,
+                      "schema_only": 19
+                    },
+                    "published_objects": 1110,
+                    "recovered_objects": 8,
+                    "restricted": {
+                      "acquired_internal_research_only": 3,
+                      "collections": 12,
+                      "not_acquired_restricted_recipes": 9,
+                      "object_count": 1479,
+                      "row_count": 5520174,
+                      "total_bytes": 4770949111
+                    },
+                    "structurally_profiled_objects": 19,
+                    "successful_attempts": 1110,
+                    "unresolved_objects": 0,
+                    "verified_objects": 1110,
+                    "withheld_objects": 0
+                  },
+                  "seiche": {
+                    "evidence_class": "observed",
+                    "market_count": 9,
+                    "markets": [
+                      {
+                        "market": "AU-AUD",
+                        "sources": [
+                          {
+                            "source": "rba_cash"
+                          },
+                          {
+                            "source": "rba_policy"
+                          }
+                        ]
+                      },
+                      {
+                        "market": "CN-CNY",
+                        "sources": [
+                          {
+                            "source": "cfets_rates"
+                          }
+                        ]
+                      },
+                      {
+                        "market": "EA-EUR",
+                        "sources": [
+                          {
+                            "source": "ecb_benchmark"
+                          },
+                          {
+                            "source": "ecb_liquidity"
+                          },
+                          {
+                            "source": "ecb_policy"
+                          }
+                        ]
+                      },
+                      {
+                        "market": "HK-HKD",
+                        "sources": [
+                          {
+                            "source": "hkma_official"
+                          }
+                        ]
+                      },
+                      {
+                        "market": "IN-INR",
+                        "sources": [
+                          {
+                            "source": "rbi_official"
+                          }
+                        ]
+                      },
+                      {
+                        "market": "JP-JPY",
+                        "sources": [
+                          {
+                            "source": "boj_accounts"
+                          },
+                          {
+                            "source": "boj_rates"
+                          }
+                        ]
+                      },
+                      {
+                        "market": "SG-SGD",
+                        "sources": [
+                          {
+                            "source": "mas_rates"
+                          },
+                          {
+                            "source": "mas_sora"
+                          }
+                        ]
+                      },
+                      {
+                        "market": "UK-GBP",
+                        "sources": [
+                          {
+                            "source": "boe_policy"
+                          },
+                          {
+                            "source": "boe_sonia"
+                          }
+                        ]
+                      },
+                      {
+                        "market": "US-USD",
+                        "sources": [
+                          {
+                            "source": "fiscaldata"
+                          },
+                          {
+                            "source": "fred_daily"
+                          },
+                          {
+                            "source": "fred_weekly"
+                          },
+                          {
+                            "source": "nyfed_facilities"
+                          },
+                          {
+                            "source": "nyfed_rates"
+                          },
+                          {
+                            "source": "nyfed_unsecured_rates"
+                          }
+                        ]
+                      }
+                    ],
+                    "source_count": 20,
+                    "status": "ok"
+                  }
+                },
+                "evidence_classes": [
+                  "observed",
+                  "derived",
+                  "structural",
+                  "restricted",
+                  "unavailable"
+                ],
+                "generated_at": "2026-10-28T14:35:44.322420Z",
+                "index_artifact_id": "liquilens-engine-public-index-v1:corpus-7cb1695c6affa707:29bcd84daf10acb94a74779facebe3a0484b0f9dc0b16f7b5be5727e2e956b36",
+                "index_sha256": "29bcd84daf10acb94a74779facebe3a0484b0f9dc0b16f7b5be5727e2e956b36",
+                "knowledge_time": "2026-09-01T02:36:56.403989Z",
+                "release_id": "corpus-7cb1695c6affa707",
+                "schema_version": "1.0.0",
+                "service": "liquilens-market-corpus",
+                "verified_at": "2026-08-10T06:23:01.333440Z"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Dataset rights inspection",
+      "prompt": "List up to ten versioned datasets, choose one returned dataset and inspect rights, publication state and product eligibility using its exact ID.",
+      "tools_triggered": "list_datasets, inspect_dataset",
+      "expected_behavior": "Use list limit 10, copy exact dataset_id into inspect_dataset and retain restrictions. If no dataset is returned, stop without fabricating an ID.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:44.355974+00:00",
+          "endpoint": "https://agents.seiche.info/products/seiche-market-corpus/mcp",
+          "tool": "list_datasets",
+          "arguments": {
+            "limit": 10
+          },
+          "elapsed_seconds": 0.145,
+          "response": {
+            "id": 4,
+            "jsonrpc": "2.0",
+            "result": {
+              "content": [
+                {
+                  "text": "{\"count\":10,\"datasets\":[{\"acquired_date\":\"2026-08-10\",\"artifact_id\":\"liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cbpol_csv_flat:b596d22cc03c842a\",\"attempt_count\":1,\"collection_kind\":\"acquired_object\",\"content_sha256\":\"b596d22cc03c842acdd818cb60eae11a774be68d71eec933df43cb65a5a43a7e\",\"data_class\":\"context_feature\",\"dataset_id\":\"bis-ws_cbpol_csv_flat\",\"detail_href\":\"/api/v2/corpus/v1/datasets/bis-ws_cbpol_csv_flat\",\"engines\":[\"contagion_radar\",\"credit_score\",\"treasury_optimizer\",\"world_radar\"],\"group\":\"bis-bulk\",\"license\":{\"name\":\"BIS statistics terms and conditions\",\"url\":\"https://www.bis.org/terms_conditions.htm\"},\"media_format\":\"zip\",\"normalized_records\":{\"flow_id\":\"WS_CBPOL\",\"href\":\"/v1/bis/records?flow_id=WS_CBPOL\",\"relation\":\"normalized_observations\"},\"recovered\":false,\"rights\":{\"acquisition_review\":\"approved_public\",\"public_metadata\":true,\"public_preview_values\":false,\"public_raw_download\":false,\"public_schema\":true,\"publication_state\":\"schema_only\"},\"source\":{\"page\":\"https://data.bis.org/bulkdownload\"},\"structural_profile\":{\"archive_entries_sample\":[\"WS_CBPOL_csv_flat.csv\"],\"archive_entry_count\":1,\"format\":\"zip\",\"inner_header\":{\"column_count\":18,\"columns_sample\":[\"STRUCTURE\",\"STRUCTURE_ID\",\"ACTION\",\"FREQ:Frequency\",\"REF_AREA:Reference area\",\"TIME_PERIOD:Time period or range\",\"OBS_VALUE:Observation Value\",\"UNIT_MEASURE:Unit of measure\",\"UNIT_MULT:Unit Multiplier\",\"TIME_FORMAT:Time Format\",\"COMPILATION:Compilation\",\"DECIMALS:Decimals\",\"SOURCE_REF:Publication Source\",\"SUPP_INFO_BREAKS:Supplemental information and breaks\",\"TITLE:Title\",\"OBS_STATUS:Observation Status\",\"OBS_CONF:Observation confidentiality\",\"OBS_PRE_BREAK:Pre-Break Observation\"],\"delimiter\":\",\"},\"inner_table\":\"WS_CBPOL_csv_flat.csv\"},\"structural_profile_available\":true},{\"acquired_date\":\"2026-08-10\",\"artifact_id\":\"liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cbs_pub_csv_flat:fe81d2a7c420550b\",\"attempt_count\":1,\"collection_kind\":\"acquired_object\",\"content_sha256\":\"fe81d2a7c420550b5725f383a0bbe7f015e3fdb918630615feff5723bfea0186\",\"data_class\":\"context_feature\",\"dataset_id\":\"bis-ws_cbs_pub_csv_flat\",\"detail_href\":\"/api/v2/corpus/v1/datasets/bis-ws_cbs_pub_csv_flat\",\"engines\":[\"contagion_radar\",\"credit_score\",\"treasury_optimizer\",\"world_radar\"],\"group\":\"bis-bulk\",\"license\":{\"name\":\"BIS statistics terms and conditions\",\"url\":\"https://www.bis.org/terms_conditions.htm\"},\"media_format\":\"zip\",\"normalized_records\":{\"flow_id\":\"WS_CBS_PUB\",\"href\":\"/v1/bis/records?flow_id=WS_CBS_PUB\",\"relation\":\"normalized_observations\"},\"recovered\":false,\"rights\":{\"acquisition_review\":\"approved_public\",\"public_metadata\":true,\"public_preview_values\":false,\"public_raw_download\":false,\"public_schema\":false,\"publication_state\":\"metadata_only\"},\"source\":{\"page\":\"https://data.bis.org/bulkdownload\"},\"structural_profile_available\":false},{\"acquired_date\":\"2026-08-10\",\"artifact_id\":\"liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cbta_csv_flat:71419bd22b9b557e\",\"attempt_count\":1,\"collection_kind\":\"acquired_object\",\"content_sha256\":\"71419bd22b9b557e993bba8a07da8e9248a03b5b6cfdb6c419f3de227e9be182\",\"data_class\":\"context_feature\",\"dataset_id\":\"bis-ws_cbta_csv_flat\",\"detail_href\":\"/api/v2/corpus/v1/datasets/bis-ws_cbta_csv_flat\",\"engines\":[\"contagion_radar\",\"credit_score\",\"treasury_optimizer\",\"world_radar\"],\"group\":\"bis-bulk\",\"license\":{\"name\":\"BIS statistics terms and conditions\",\"url\":\"https://www.bis.org/terms_conditions.htm\"},\"media_format\":\"zip\",\"normalized_records\":{\"flow_id\":\"WS_CBTA\",\"href\":\"/v1/bis/records?flow_id=WS_CBTA\",\"relation\":\"normalized_observations\"},\"recovered\":false,\"rights\":{\"acquisition_review\":\"approved_public\",\"public_metadata\":true,\"public_preview_values\":false,\"public_raw_download\":false,\"public_schema\":false,\"publication_state\":\"metadata_only\"},\"source\":{\"page\":\"https://data.bis.org/bulkdownload\"},\"structural_profile_available\":false},{\"acquired_date\":\"2026-08-10\",\"artifact_id\":\"liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cpmi_cashless_csv_flat:1b195249e43fd5e7\",\"attempt_count\":1,\"collection_kind\":\"acquired_object\",\"content_sha256\":\"1b195249e43fd5e761e347ab82e553b916ecd20bfabcee70e3ce896fd8794fcf\",\"data_class\":\"context_feature\",\"dataset_id\":\"bis-ws_cpmi_cashless_csv_flat\",\"detail_href\":\"/api/v2/corpus/v1/datasets/bis-ws_cpmi_cashless_csv_flat\",\"engines\":[\"contagion_radar\",\"credit_score\",\"treasury_optimizer\",\"world_radar\"],\"group\":\"bis-bulk\",\"license\":{\"name\":\"BIS statistics terms and conditions\",\"url\":\"https://www.bis.org/terms_conditions.htm\"},\"media_format\":\"zip\",\"normalized_records\":{\"flow_id\":\"WS_CPMI_CASHLESS\",\"href\":\"/v1/bis/records?flow_id=WS_CPMI_CASHLESS\",\"relation\":\"normalized_observations\"},\"recovered\":false,\"rights\":{\"acquisition_review\":\"approved_public\",\"public_metadata\":true,\"public_preview_values\":false,\"public_raw_download\":false,\"public_schema\":false,\"publication_state\":\"metadata_only\"},\"source\":{\"page\":\"https://data.bis.org/bulkdownload\"},\"structural_profile_available\":false},{\"acquired_date\":\"2026-08-10\",\"artifact_id\":\"liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cpmi_ct1_csv_flat:e060503500c6ae50\",\"attempt_count\":1,\"collection_kind\":\"acquired_object\",\"content_sha256\":\"e060503500c6ae5019bdd85cd051abc9f8b34c56b060b9516e202ece3414acfd\",\"data_class\":\"context_feature\",\"dataset_id\":\"bis-ws_cpmi_ct1_csv_flat\",\"detail_href\":\"/api/v2/corpus/v1/datasets/bis-ws_cpmi_ct1_csv_flat\",\"engines\":[\"contagion_radar\",\"credit_score\",\"treasury_optimizer\",\"world_radar\"],\"group\":\"bis-bulk\",\"license\":{\"name\":\"BIS statistics terms and conditions\",\"url\":\"https://www.bis.org/terms_conditions.htm\"},\"media_format\":\"zip\",\"normalized_records\":{\"flow_id\":\"WS_CPMI_CT1\",\"href\":\"/v1/bis/records?flow_id=WS_CPMI_CT1\",\"relation\":\"normalized_observations\"},\"recovered\":false,\"rights\":{\"acquisition_review\":\"approved_public\",\"public_metadata\":true,\"public_preview_values\":false,\"public_raw_download\":false,\"public_schema\":false,\"publication_state\":\"metadata_only\"},\"source\":{\"page\":\"https://data.bis.org/bulkdownload\"},\"structural_profile_available\":false},{\"acquired_date\":\"2026-08-10\",\"artifact_id\":\"liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cpmi_ct2_csv_flat:38dcf28ec2ee261b\",\"attempt_count\":1,\"collection_kind\":\"acquired_object\",\"content_sha256\":\"38dcf28ec2ee261b86de856e043db8990e70fa3f1f8246d78839aba364689a31\",\"data_class\":\"context_feature\",\"dataset_id\":\"bis-ws_cpmi_ct2_csv_flat\",\"detail_href\":\"/api/v2/corpus/v1/datasets/bis-ws_cpmi_ct2_csv_flat\",\"engines\":[\"contagion_radar\",\"credit_score\",\"treasury_optimizer\",\"world_radar\"],\"group\":\"bis-bulk\",\"license\":{\"name\":\"BIS statistics terms and conditions\",\"url\":\"https://www.bis.org/terms_conditions.htm\"},\"media_format\":\"zip\",\"normalized_records\":{\"flow_id\":\"WS_CPMI_CT2\",\"href\":\"/v1/bis/records?flow_id=WS_CPMI_CT2\",\"relation\":\"normalized_observations\"},\"recovered\":false,\"rights\":{\"acquisition_review\":\"approved_public\",\"public_metadata\":true,\"public_preview_values\":false,\"public_raw_download\":false,\"public_schema\":false,\"publication_state\":\"metadata_only\"},\"source\":{\"page\":\"https://data.bis.org/bulkdownload\"},\"structural_profile_available\":false},{\"acquired_date\":\"2026-08-10\",\"artifact_id\":\"liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cpmi_devices_csv_flat:06771258aa68edaa\",\"attempt_count\":1,\"collection_kind\":\"acquired_object\",\"content_sha256\":\"06771258aa68edaac3a4bb632807a1161f29b89b1494aca26f49ea6a8761a55f\",\"data_class\":\"context_feature\",\"dataset_id\":\"bis-ws_cpmi_devices_csv_flat\",\"detail_href\":\"/api/v2/corpus/v1/datasets/bis-ws_cpmi_devices_csv_flat\",\"engines\":[\"contagion_radar\",\"credit_score\",\"treasury_optimizer\",\"world_radar\"],\"group\":\"bis-bulk\",\"license\":{\"name\":\"BIS statistics terms and conditions\",\"url\":\"https://www.bis.org/terms_conditions.htm\"},\"media_format\":\"zip\",\"normalized_records\":{\"flow_id\":\"WS_CPMI_DEVICES\",\"href\":\"/v1/bis/records?flow_id=WS_CPMI_DEVICES\",\"relation\":\"normalized_observations\"},\"recovered\":false,\"rights\":{\"acquisition_review\":\"approved_public\",\"public_metadata\":true,\"public_preview_values\":false,\"public_raw_download\":false,\"public_schema\":false,\"publication_state\":\"metadata_only\"},\"source\":{\"page\":\"https://data.bis.org/bulkdownload\"},\"structural_profile_available\":false},{\"acquired_date\":\"2026-08-10\",\"artifact_id\":\"liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cpmi_institut_csv_flat:b4b88d70b0985ee7\",\"attempt_count\":1,\"collection_kind\":\"acquired_object\",\"content_sha256\":\"b4b88d70b0985ee7d5e2009ef692cabe6c716cddf80515400b41112564820f90\",\"data_class\":\"context_feature\",\"dataset_id\":\"bis-ws_cpmi_institut_csv_flat\",\"detail_href\":\"/api/v2/corpus/v1/datasets/bis-ws_cpmi_institut_csv_flat\",\"engines\":[\"contagion_radar\",\"credit_score\",\"treasury_optimizer\",\"world_radar\"],\"group\":\"bis-bulk\",\"license\":{\"name\":\"BIS statistics terms and conditions\",\"url\":\"https://www.bis.org/terms_conditions.htm\"},\"media_format\":\"zip\",\"normalized_records\":{\"flow_id\":\"WS_CPMI_INSTITUT\",\"href\":\"/v1/bis/records?flow_id=WS_CPMI_INSTITUT\",\"relation\":\"normalized_observations\"},\"recovered\":false,\"rights\":{\"acquisition_review\":\"approved_public\",\"public_metadata\":true,\"public_preview_values\":false,\"public_raw_download\":false,\"public_schema\":false,\"publication_state\":\"metadata_only\"},\"source\":{\"page\":\"https://data.bis.org/bulkdownload\"},\"structural_profile_available\":false},{\"acquired_date\":\"2026-08-10\",\"artifact_id\":\"liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cpmi_macro_csv_flat:761addfdac9eb78e\",\"attempt_count\":1,\"collection_kind\":\"acquired_object\",\"content_sha256\":\"761addfdac9eb78ec062cec53d6cba5599e7065b5113f11ebfeb37a933cbd2e4\",\"data_class\":\"context_feature\",\"dataset_id\":\"bis-ws_cpmi_macro_csv_flat\",\"detail_href\":\"/api/v2/corpus/v1/datasets/bis-ws_cpmi_macro_csv_flat\",\"engines\":[\"contagion_radar\",\"credit_score\",\"treasury_optimizer\",\"world_radar\"],\"group\":\"bis-bulk\",\"license\":{\"name\":\"BIS statistics terms and conditions\",\"url\":\"https://www.bis.org/terms_conditions.htm\"},\"media_format\":\"zip\",\"normalized_records\":{\"flow_id\":\"WS_CPMI_MACRO\",\"href\":\"/v1/bis/records?flow_id=WS_CPMI_MACRO\",\"relation\":\"normalized_observations\"},\"recovered\":false,\"rights\":{\"acquisition_review\":\"approved_public\",\"public_metadata\":true,\"public_preview_values\":false,\"public_raw_download\":false,\"public_schema\":false,\"publication_state\":\"metadata_only\"},\"source\":{\"page\":\"https://data.bis.org/bulkdownload\"},\"structural_profile_available\":false},{\"acquired_date\":\"2026-08-10\",\"artifact_id\":\"liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cpmi_particip_csv_flat:3ca38182bcd65248\",\"attempt_count\":1,\"collection_kind\":\"acquired_object\",\"content_sha256\":\"3ca38182bcd65248550e9cfb980c76159f2317cfbbc2aa203adec466f8b766bf\",\"data_class\":\"context_feature\",\"dataset_id\":\"bis-ws_cpmi_particip_csv_flat\",\"detail_href\":\"/api/v2/corpus/v1/datasets/bis-ws_cpmi_particip_csv_flat\",\"engines\":[\"contagion_radar\",\"credit_score\",\"treasury_optimizer\",\"world_radar\"],\"group\":\"bis-bulk\",\"license\":{\"name\":\"BIS statistics terms and conditions\",\"url\":\"https://www.bis.org/terms_conditions.htm\"},\"media_format\":\"zip\",\"normalized_records\":{\"flow_id\":\"WS_CPMI_PARTICIP\",\"href\":\"/v1/bis/records?flow_id=WS_CPMI_PARTICIP\",\"relation\":\"normalized_observations\"},\"recovered\":false,\"rights\":{\"acquisition_review\":\"approved_public\",\"public_metadata\":true,\"public_preview_values\":false,\"public_raw_download\":false,\"public_schema\":false,\"publication_state\":\"metadata_only\"},\"source\":{\"page\":\"https://data.bis.org/bulkdownload\"},\"structural_profile_available\":false}],\"filters\":{},\"generated_at\":\"2026-08-10T06:23:01.333440Z\",\"index_artifact_id\":\"liquilens-engine-public-index-v1:corpus-7cb1695c6affa707:29bcd84daf10acb94a74779facebe3a0484b0f9dc0b16f7b5be5727e2e956b36\",\"index_sha256\":\"29bcd84daf10acb94a74779facebe3a0484b0f9dc0b16f7b5be5727e2e956b36\",\"next_cursor\":\"eyJjaGVja3N1bSI6ImUwOGEyNDdhYmJjMTgwNGU4MDE2YjQ2MDAwNjUzMDczNzU2ZTk4NjNiMzIxZGM2OWUyN2NjYWQyYTZlODVlYTUiLCJwYXlsb2FkIjp7ImFydGlmYWN0X2lkIjoibGlxdWlsZW5zLWVuZ2luZS1wdWJsaWMtaW5kZXgtdjE6Y29ycHVzLTdjYjE2OTVjNmFmZmE3MDc6MjliY2Q4NGRhZjEwYWNiOTRhNzQ3NzlmYWNlYmUzYTA0ODRiMGY5ZGMwYjE2ZjdiNWJlNTcyN2UyZTk1NmIzNjpkYXRhc2V0czo0NDEzNmZhMzU1YjM2NzhhIiwiaW5kZXhfc2hhMjU2IjoiMjliY2Q4NGRhZjEwYWNiOTRhNzQ3NzlmYWNlYmUzYTA0ODRiMGY5ZGMwYjE2ZjdiNWJlNTcyN2UyZTk1NmIzNiIsIm9mZnNldCI6MTAsInNjaGVtYSI6ImxpcXVpbGVucy1lbmdpbmUtcHVibGljLWluZGV4LWN1cnNvci12MSJ9fQ\",\"release_id\":\"corpus-7cb1695c6affa707\",\"schema_version\":\"1.0.0\",\"total\":1122,\"verified_at\":\"2026-08-10T06:23:01.333440Z\"}",
+                  "type": "text"
+                }
+              ],
+              "isError": false,
+              "structuredContent": {
+                "count": 10,
+                "datasets": [
+                  {
+                    "acquired_date": "2026-08-10",
+                    "artifact_id": "liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cbpol_csv_flat:b596d22cc03c842a",
+                    "attempt_count": 1,
+                    "collection_kind": "acquired_object",
+                    "content_sha256": "b596d22cc03c842acdd818cb60eae11a774be68d71eec933df43cb65a5a43a7e",
+                    "data_class": "context_feature",
+                    "dataset_id": "bis-ws_cbpol_csv_flat",
+                    "detail_href": "/api/v2/corpus/v1/datasets/bis-ws_cbpol_csv_flat",
+                    "engines": [
+                      "contagion_radar",
+                      "credit_score",
+                      "treasury_optimizer",
+                      "world_radar"
+                    ],
+                    "group": "bis-bulk",
+                    "license": {
+                      "name": "BIS statistics terms and conditions",
+                      "url": "https://www.bis.org/terms_conditions.htm"
+                    },
+                    "media_format": "zip",
+                    "normalized_records": {
+                      "flow_id": "WS_CBPOL",
+                      "href": "/v1/bis/records?flow_id=WS_CBPOL",
+                      "relation": "normalized_observations"
+                    },
+                    "recovered": false,
+                    "rights": {
+                      "acquisition_review": "approved_public",
+                      "public_metadata": true,
+                      "public_preview_values": false,
+                      "public_raw_download": false,
+                      "public_schema": true,
+                      "publication_state": "schema_only"
+                    },
+                    "source": {
+                      "page": "https://data.bis.org/bulkdownload"
+                    },
+                    "structural_profile": {
+                      "archive_entries_sample": [
+                        "WS_CBPOL_csv_flat.csv"
+                      ],
+                      "archive_entry_count": 1,
+                      "format": "zip",
+                      "inner_header": {
+                        "column_count": 18,
+                        "columns_sample": [
+                          "STRUCTURE",
+                          "STRUCTURE_ID",
+                          "ACTION",
+                          "FREQ:Frequency",
+                          "REF_AREA:Reference area",
+                          "TIME_PERIOD:Time period or range",
+                          "OBS_VALUE:Observation Value",
+                          "UNIT_MEASURE:Unit of measure",
+                          "UNIT_MULT:Unit Multiplier",
+                          "TIME_FORMAT:Time Format",
+                          "COMPILATION:Compilation",
+                          "DECIMALS:Decimals",
+                          "SOURCE_REF:Publication Source",
+                          "SUPP_INFO_BREAKS:Supplemental information and breaks",
+                          "TITLE:Title",
+                          "OBS_STATUS:Observation Status",
+                          "OBS_CONF:Observation confidentiality",
+                          "OBS_PRE_BREAK:Pre-Break Observation"
+                        ],
+                        "delimiter": ","
+                      },
+                      "inner_table": "WS_CBPOL_csv_flat.csv"
+                    },
+                    "structural_profile_available": true
+                  },
+                  {
+                    "acquired_date": "2026-08-10",
+                    "artifact_id": "liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cbs_pub_csv_flat:fe81d2a7c420550b",
+                    "attempt_count": 1,
+                    "collection_kind": "acquired_object",
+                    "content_sha256": "fe81d2a7c420550b5725f383a0bbe7f015e3fdb918630615feff5723bfea0186",
+                    "data_class": "context_feature",
+                    "dataset_id": "bis-ws_cbs_pub_csv_flat",
+                    "detail_href": "/api/v2/corpus/v1/datasets/bis-ws_cbs_pub_csv_flat",
+                    "engines": [
+                      "contagion_radar",
+                      "credit_score",
+                      "treasury_optimizer",
+                      "world_radar"
+                    ],
+                    "group": "bis-bulk",
+                    "license": {
+                      "name": "BIS statistics terms and conditions",
+                      "url": "https://www.bis.org/terms_conditions.htm"
+                    },
+                    "media_format": "zip",
+                    "normalized_records": {
+                      "flow_id": "WS_CBS_PUB",
+                      "href": "/v1/bis/records?flow_id=WS_CBS_PUB",
+                      "relation": "normalized_observations"
+                    },
+                    "recovered": false,
+                    "rights": {
+                      "acquisition_review": "approved_public",
+                      "public_metadata": true,
+                      "public_preview_values": false,
+                      "public_raw_download": false,
+                      "public_schema": false,
+                      "publication_state": "metadata_only"
+                    },
+                    "source": {
+                      "page": "https://data.bis.org/bulkdownload"
+                    },
+                    "structural_profile_available": false
+                  },
+                  {
+                    "acquired_date": "2026-08-10",
+                    "artifact_id": "liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cbta_csv_flat:71419bd22b9b557e",
+                    "attempt_count": 1,
+                    "collection_kind": "acquired_object",
+                    "content_sha256": "71419bd22b9b557e993bba8a07da8e9248a03b5b6cfdb6c419f3de227e9be182",
+                    "data_class": "context_feature",
+                    "dataset_id": "bis-ws_cbta_csv_flat",
+                    "detail_href": "/api/v2/corpus/v1/datasets/bis-ws_cbta_csv_flat",
+                    "engines": [
+                      "contagion_radar",
+                      "credit_score",
+                      "treasury_optimizer",
+                      "world_radar"
+                    ],
+                    "group": "bis-bulk",
+                    "license": {
+                      "name": "BIS statistics terms and conditions",
+                      "url": "https://www.bis.org/terms_conditions.htm"
+                    },
+                    "media_format": "zip",
+                    "normalized_records": {
+                      "flow_id": "WS_CBTA",
+                      "href": "/v1/bis/records?flow_id=WS_CBTA",
+                      "relation": "normalized_observations"
+                    },
+                    "recovered": false,
+                    "rights": {
+                      "acquisition_review": "approved_public",
+                      "public_metadata": true,
+                      "public_preview_values": false,
+                      "public_raw_download": false,
+                      "public_schema": false,
+                      "publication_state": "metadata_only"
+                    },
+                    "source": {
+                      "page": "https://data.bis.org/bulkdownload"
+                    },
+                    "structural_profile_available": false
+                  },
+                  {
+                    "acquired_date": "2026-08-10",
+                    "artifact_id": "liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cpmi_cashless_csv_flat:1b195249e43fd5e7",
+                    "attempt_count": 1,
+                    "collection_kind": "acquired_object",
+                    "content_sha256": "1b195249e43fd5e761e347ab82e553b916ecd20bfabcee70e3ce896fd8794fcf",
+                    "data_class": "context_feature",
+                    "dataset_id": "bis-ws_cpmi_cashless_csv_flat",
+                    "detail_href": "/api/v2/corpus/v1/datasets/bis-ws_cpmi_cashless_csv_flat",
+                    "engines": [
+                      "contagion_radar",
+                      "credit_score",
+                      "treasury_optimizer",
+                      "world_radar"
+                    ],
+                    "group": "bis-bulk",
+                    "license": {
+                      "name": "BIS statistics terms and conditions",
+                      "url": "https://www.bis.org/terms_conditions.htm"
+                    },
+                    "media_format": "zip",
+                    "normalized_records": {
+                      "flow_id": "WS_CPMI_CASHLESS",
+                      "href": "/v1/bis/records?flow_id=WS_CPMI_CASHLESS",
+                      "relation": "normalized_observations"
+                    },
+                    "recovered": false,
+                    "rights": {
+                      "acquisition_review": "approved_public",
+                      "public_metadata": true,
+                      "public_preview_values": false,
+                      "public_raw_download": false,
+                      "public_schema": false,
+                      "publication_state": "metadata_only"
+                    },
+                    "source": {
+                      "page": "https://data.bis.org/bulkdownload"
+                    },
+                    "structural_profile_available": false
+                  },
+                  {
+                    "acquired_date": "2026-08-10",
+                    "artifact_id": "liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cpmi_ct1_csv_flat:e060503500c6ae50",
+                    "attempt_count": 1,
+                    "collection_kind": "acquired_object",
+                    "content_sha256": "e060503500c6ae5019bdd85cd051abc9f8b34c56b060b9516e202ece3414acfd",
+                    "data_class": "context_feature",
+                    "dataset_id": "bis-ws_cpmi_ct1_csv_flat",
+                    "detail_href": "/api/v2/corpus/v1/datasets/bis-ws_cpmi_ct1_csv_flat",
+                    "engines": [
+                      "contagion_radar",
+                      "credit_score",
+                      "treasury_optimizer",
+                      "world_radar"
+                    ],
+                    "group": "bis-bulk",
+                    "license": {
+                      "name": "BIS statistics terms and conditions",
+                      "url": "https://www.bis.org/terms_conditions.htm"
+                    },
+                    "media_format": "zip",
+                    "normalized_records": {
+                      "flow_id": "WS_CPMI_CT1",
+                      "href": "/v1/bis/records?flow_id=WS_CPMI_CT1",
+                      "relation": "normalized_observations"
+                    },
+                    "recovered": false,
+                    "rights": {
+                      "acquisition_review": "approved_public",
+                      "public_metadata": true,
+                      "public_preview_values": false,
+                      "public_raw_download": false,
+                      "public_schema": false,
+                      "publication_state": "metadata_only"
+                    },
+                    "source": {
+                      "page": "https://data.bis.org/bulkdownload"
+                    },
+                    "structural_profile_available": false
+                  },
+                  {
+                    "acquired_date": "2026-08-10",
+                    "artifact_id": "liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cpmi_ct2_csv_flat:38dcf28ec2ee261b",
+                    "attempt_count": 1,
+                    "collection_kind": "acquired_object",
+                    "content_sha256": "38dcf28ec2ee261b86de856e043db8990e70fa3f1f8246d78839aba364689a31",
+                    "data_class": "context_feature",
+                    "dataset_id": "bis-ws_cpmi_ct2_csv_flat",
+                    "detail_href": "/api/v2/corpus/v1/datasets/bis-ws_cpmi_ct2_csv_flat",
+                    "engines": [
+                      "contagion_radar",
+                      "credit_score",
+                      "treasury_optimizer",
+                      "world_radar"
+                    ],
+                    "group": "bis-bulk",
+                    "license": {
+                      "name": "BIS statistics terms and conditions",
+                      "url": "https://www.bis.org/terms_conditions.htm"
+                    },
+                    "media_format": "zip",
+                    "normalized_records": {
+                      "flow_id": "WS_CPMI_CT2",
+                      "href": "/v1/bis/records?flow_id=WS_CPMI_CT2",
+                      "relation": "normalized_observations"
+                    },
+                    "recovered": false,
+                    "rights": {
+                      "acquisition_review": "approved_public",
+                      "public_metadata": true,
+                      "public_preview_values": false,
+                      "public_raw_download": false,
+                      "public_schema": false,
+                      "publication_state": "metadata_only"
+                    },
+                    "source": {
+                      "page": "https://data.bis.org/bulkdownload"
+                    },
+                    "structural_profile_available": false
+                  },
+                  {
+                    "acquired_date": "2026-08-10",
+                    "artifact_id": "liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cpmi_devices_csv_flat:06771258aa68edaa",
+                    "attempt_count": 1,
+                    "collection_kind": "acquired_object",
+                    "content_sha256": "06771258aa68edaac3a4bb632807a1161f29b89b1494aca26f49ea6a8761a55f",
+                    "data_class": "context_feature",
+                    "dataset_id": "bis-ws_cpmi_devices_csv_flat",
+                    "detail_href": "/api/v2/corpus/v1/datasets/bis-ws_cpmi_devices_csv_flat",
+                    "engines": [
+                      "contagion_radar",
+                      "credit_score",
+                      "treasury_optimizer",
+                      "world_radar"
+                    ],
+                    "group": "bis-bulk",
+                    "license": {
+                      "name": "BIS statistics terms and conditions",
+                      "url": "https://www.bis.org/terms_conditions.htm"
+                    },
+                    "media_format": "zip",
+                    "normalized_records": {
+                      "flow_id": "WS_CPMI_DEVICES",
+                      "href": "/v1/bis/records?flow_id=WS_CPMI_DEVICES",
+                      "relation": "normalized_observations"
+                    },
+                    "recovered": false,
+                    "rights": {
+                      "acquisition_review": "approved_public",
+                      "public_metadata": true,
+                      "public_preview_values": false,
+                      "public_raw_download": false,
+                      "public_schema": false,
+                      "publication_state": "metadata_only"
+                    },
+                    "source": {
+                      "page": "https://data.bis.org/bulkdownload"
+                    },
+                    "structural_profile_available": false
+                  },
+                  {
+                    "acquired_date": "2026-08-10",
+                    "artifact_id": "liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cpmi_institut_csv_flat:b4b88d70b0985ee7",
+                    "attempt_count": 1,
+                    "collection_kind": "acquired_object",
+                    "content_sha256": "b4b88d70b0985ee7d5e2009ef692cabe6c716cddf80515400b41112564820f90",
+                    "data_class": "context_feature",
+                    "dataset_id": "bis-ws_cpmi_institut_csv_flat",
+                    "detail_href": "/api/v2/corpus/v1/datasets/bis-ws_cpmi_institut_csv_flat",
+                    "engines": [
+                      "contagion_radar",
+                      "credit_score",
+                      "treasury_optimizer",
+                      "world_radar"
+                    ],
+                    "group": "bis-bulk",
+                    "license": {
+                      "name": "BIS statistics terms and conditions",
+                      "url": "https://www.bis.org/terms_conditions.htm"
+                    },
+                    "media_format": "zip",
+                    "normalized_records": {
+                      "flow_id": "WS_CPMI_INSTITUT",
+                      "href": "/v1/bis/records?flow_id=WS_CPMI_INSTITUT",
+                      "relation": "normalized_observations"
+                    },
+                    "recovered": false,
+                    "rights": {
+                      "acquisition_review": "approved_public",
+                      "public_metadata": true,
+                      "public_preview_values": false,
+                      "public_raw_download": false,
+                      "public_schema": false,
+                      "publication_state": "metadata_only"
+                    },
+                    "source": {
+                      "page": "https://data.bis.org/bulkdownload"
+                    },
+                    "structural_profile_available": false
+                  },
+                  {
+                    "acquired_date": "2026-08-10",
+                    "artifact_id": "liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cpmi_macro_csv_flat:761addfdac9eb78e",
+                    "attempt_count": 1,
+                    "collection_kind": "acquired_object",
+                    "content_sha256": "761addfdac9eb78ec062cec53d6cba5599e7065b5113f11ebfeb37a933cbd2e4",
+                    "data_class": "context_feature",
+                    "dataset_id": "bis-ws_cpmi_macro_csv_flat",
+                    "detail_href": "/api/v2/corpus/v1/datasets/bis-ws_cpmi_macro_csv_flat",
+                    "engines": [
+                      "contagion_radar",
+                      "credit_score",
+                      "treasury_optimizer",
+                      "world_radar"
+                    ],
+                    "group": "bis-bulk",
+                    "license": {
+                      "name": "BIS statistics terms and conditions",
+                      "url": "https://www.bis.org/terms_conditions.htm"
+                    },
+                    "media_format": "zip",
+                    "normalized_records": {
+                      "flow_id": "WS_CPMI_MACRO",
+                      "href": "/v1/bis/records?flow_id=WS_CPMI_MACRO",
+                      "relation": "normalized_observations"
+                    },
+                    "recovered": false,
+                    "rights": {
+                      "acquisition_review": "approved_public",
+                      "public_metadata": true,
+                      "public_preview_values": false,
+                      "public_raw_download": false,
+                      "public_schema": false,
+                      "publication_state": "metadata_only"
+                    },
+                    "source": {
+                      "page": "https://data.bis.org/bulkdownload"
+                    },
+                    "structural_profile_available": false
+                  },
+                  {
+                    "acquired_date": "2026-08-10",
+                    "artifact_id": "liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cpmi_particip_csv_flat:3ca38182bcd65248",
+                    "attempt_count": 1,
+                    "collection_kind": "acquired_object",
+                    "content_sha256": "3ca38182bcd65248550e9cfb980c76159f2317cfbbc2aa203adec466f8b766bf",
+                    "data_class": "context_feature",
+                    "dataset_id": "bis-ws_cpmi_particip_csv_flat",
+                    "detail_href": "/api/v2/corpus/v1/datasets/bis-ws_cpmi_particip_csv_flat",
+                    "engines": [
+                      "contagion_radar",
+                      "credit_score",
+                      "treasury_optimizer",
+                      "world_radar"
+                    ],
+                    "group": "bis-bulk",
+                    "license": {
+                      "name": "BIS statistics terms and conditions",
+                      "url": "https://www.bis.org/terms_conditions.htm"
+                    },
+                    "media_format": "zip",
+                    "normalized_records": {
+                      "flow_id": "WS_CPMI_PARTICIP",
+                      "href": "/v1/bis/records?flow_id=WS_CPMI_PARTICIP",
+                      "relation": "normalized_observations"
+                    },
+                    "recovered": false,
+                    "rights": {
+                      "acquisition_review": "approved_public",
+                      "public_metadata": true,
+                      "public_preview_values": false,
+                      "public_raw_download": false,
+                      "public_schema": false,
+                      "publication_state": "metadata_only"
+                    },
+                    "source": {
+                      "page": "https://data.bis.org/bulkdownload"
+                    },
+                    "structural_profile_available": false
+                  }
+                ],
+                "filters": {},
+                "generated_at": "2026-08-10T06:23:01.333440Z",
+                "index_artifact_id": "liquilens-engine-public-index-v1:corpus-7cb1695c6affa707:29bcd84daf10acb94a74779facebe3a0484b0f9dc0b16f7b5be5727e2e956b36",
+                "index_sha256": "29bcd84daf10acb94a74779facebe3a0484b0f9dc0b16f7b5be5727e2e956b36",
+                "next_cursor": "eyJjaGVja3N1bSI6ImUwOGEyNDdhYmJjMTgwNGU4MDE2YjQ2MDAwNjUzMDczNzU2ZTk4NjNiMzIxZGM2OWUyN2NjYWQyYTZlODVlYTUiLCJwYXlsb2FkIjp7ImFydGlmYWN0X2lkIjoibGlxdWlsZW5zLWVuZ2luZS1wdWJsaWMtaW5kZXgtdjE6Y29ycHVzLTdjYjE2OTVjNmFmZmE3MDc6MjliY2Q4NGRhZjEwYWNiOTRhNzQ3NzlmYWNlYmUzYTA0ODRiMGY5ZGMwYjE2ZjdiNWJlNTcyN2UyZTk1NmIzNjpkYXRhc2V0czo0NDEzNmZhMzU1YjM2NzhhIiwiaW5kZXhfc2hhMjU2IjoiMjliY2Q4NGRhZjEwYWNiOTRhNzQ3NzlmYWNlYmUzYTA0ODRiMGY5ZGMwYjE2ZjdiNWJlNTcyN2UyZTk1NmIzNiIsIm9mZnNldCI6MTAsInNjaGVtYSI6ImxpcXVpbGVucy1lbmdpbmUtcHVibGljLWluZGV4LWN1cnNvci12MSJ9fQ",
+                "release_id": "corpus-7cb1695c6affa707",
+                "schema_version": "1.0.0",
+                "total": 1122,
+                "verified_at": "2026-08-10T06:23:01.333440Z"
+              }
+            }
+          }
+        },
+        {
+          "captured_at": "2026-10-28T14:38:19.120231+00:00",
+          "endpoint": "https://agents.seiche.info/products/seiche-market-corpus/mcp",
+          "tool": "inspect_dataset",
+          "arguments": {
+            "dataset_id": "bis-ws_cbpol_csv_flat"
+          },
+          "elapsed_seconds": 0.12,
+          "response": {
+            "id": 3,
+            "jsonrpc": "2.0",
+            "result": {
+              "content": [
+                {
+                  "text": "{\"dataset\":{\"acquired_date\":\"2026-08-10\",\"artifact_id\":\"liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cbpol_csv_flat:b596d22cc03c842a\",\"attempt_count\":1,\"collection_kind\":\"acquired_object\",\"content_sha256\":\"b596d22cc03c842acdd818cb60eae11a774be68d71eec933df43cb65a5a43a7e\",\"data_class\":\"context_feature\",\"dataset_id\":\"bis-ws_cbpol_csv_flat\",\"detail_href\":\"/api/v2/corpus/v1/datasets/bis-ws_cbpol_csv_flat\",\"engines\":[\"contagion_radar\",\"credit_score\",\"treasury_optimizer\",\"world_radar\"],\"group\":\"bis-bulk\",\"license\":{\"name\":\"BIS statistics terms and conditions\",\"url\":\"https://www.bis.org/terms_conditions.htm\"},\"media_format\":\"zip\",\"normalized_records\":{\"flow_id\":\"WS_CBPOL\",\"href\":\"/v1/bis/records?flow_id=WS_CBPOL\",\"relation\":\"normalized_observations\"},\"recovered\":false,\"rights\":{\"acquisition_review\":\"approved_public\",\"public_metadata\":true,\"public_preview_values\":false,\"public_raw_download\":false,\"public_schema\":true,\"publication_state\":\"schema_only\"},\"source\":{\"page\":\"https://data.bis.org/bulkdownload\"},\"structural_profile\":{\"archive_entries_sample\":[\"WS_CBPOL_csv_flat.csv\"],\"archive_entry_count\":1,\"format\":\"zip\",\"inner_header\":{\"column_count\":18,\"columns_sample\":[\"STRUCTURE\",\"STRUCTURE_ID\",\"ACTION\",\"FREQ:Frequency\",\"REF_AREA:Reference area\",\"TIME_PERIOD:Time period or range\",\"OBS_VALUE:Observation Value\",\"UNIT_MEASURE:Unit of measure\",\"UNIT_MULT:Unit Multiplier\",\"TIME_FORMAT:Time Format\",\"COMPILATION:Compilation\",\"DECIMALS:Decimals\",\"SOURCE_REF:Publication Source\",\"SUPP_INFO_BREAKS:Supplemental information and breaks\",\"TITLE:Title\",\"OBS_STATUS:Observation Status\",\"OBS_CONF:Observation confidentiality\",\"OBS_PRE_BREAK:Pre-Break Observation\"],\"delimiter\":\",\"},\"inner_table\":\"WS_CBPOL_csv_flat.csv\"},\"structural_profile_available\":true},\"generated_at\":\"2026-08-10T06:23:01.333440Z\",\"index_artifact_id\":\"liquilens-engine-public-index-v1:corpus-7cb1695c6affa707:29bcd84daf10acb94a74779facebe3a0484b0f9dc0b16f7b5be5727e2e956b36\",\"index_sha256\":\"29bcd84daf10acb94a74779facebe3a0484b0f9dc0b16f7b5be5727e2e956b36\",\"release_id\":\"corpus-7cb1695c6affa707\",\"schema_version\":\"1.0.0\",\"verified_at\":\"2026-08-10T06:23:01.333440Z\"}",
+                  "type": "text"
+                }
+              ],
+              "isError": false,
+              "structuredContent": {
+                "dataset": {
+                  "acquired_date": "2026-08-10",
+                  "artifact_id": "liquilens-engine-object:corpus-7cb1695c6affa707:bis-ws_cbpol_csv_flat:b596d22cc03c842a",
+                  "attempt_count": 1,
+                  "collection_kind": "acquired_object",
+                  "content_sha256": "b596d22cc03c842acdd818cb60eae11a774be68d71eec933df43cb65a5a43a7e",
+                  "data_class": "context_feature",
+                  "dataset_id": "bis-ws_cbpol_csv_flat",
+                  "detail_href": "/api/v2/corpus/v1/datasets/bis-ws_cbpol_csv_flat",
+                  "engines": [
+                    "contagion_radar",
+                    "credit_score",
+                    "treasury_optimizer",
+                    "world_radar"
+                  ],
+                  "group": "bis-bulk",
+                  "license": {
+                    "name": "BIS statistics terms and conditions",
+                    "url": "https://www.bis.org/terms_conditions.htm"
+                  },
+                  "media_format": "zip",
+                  "normalized_records": {
+                    "flow_id": "WS_CBPOL",
+                    "href": "/v1/bis/records?flow_id=WS_CBPOL",
+                    "relation": "normalized_observations"
+                  },
+                  "recovered": false,
+                  "rights": {
+                    "acquisition_review": "approved_public",
+                    "public_metadata": true,
+                    "public_preview_values": false,
+                    "public_raw_download": false,
+                    "public_schema": true,
+                    "publication_state": "schema_only"
+                  },
+                  "source": {
+                    "page": "https://data.bis.org/bulkdownload"
+                  },
+                  "structural_profile": {
+                    "archive_entries_sample": [
+                      "WS_CBPOL_csv_flat.csv"
+                    ],
+                    "archive_entry_count": 1,
+                    "format": "zip",
+                    "inner_header": {
+                      "column_count": 18,
+                      "columns_sample": [
+                        "STRUCTURE",
+                        "STRUCTURE_ID",
+                        "ACTION",
+                        "FREQ:Frequency",
+                        "REF_AREA:Reference area",
+                        "TIME_PERIOD:Time period or range",
+                        "OBS_VALUE:Observation Value",
+                        "UNIT_MEASURE:Unit of measure",
+                        "UNIT_MULT:Unit Multiplier",
+                        "TIME_FORMAT:Time Format",
+                        "COMPILATION:Compilation",
+                        "DECIMALS:Decimals",
+                        "SOURCE_REF:Publication Source",
+                        "SUPP_INFO_BREAKS:Supplemental information and breaks",
+                        "TITLE:Title",
+                        "OBS_STATUS:Observation Status",
+                        "OBS_CONF:Observation confidentiality",
+                        "OBS_PRE_BREAK:Pre-Break Observation"
+                      ],
+                      "delimiter": ","
+                    },
+                    "inner_table": "WS_CBPOL_csv_flat.csv"
+                  },
+                  "structural_profile_available": true
+                },
+                "generated_at": "2026-08-10T06:23:01.333440Z",
+                "index_artifact_id": "liquilens-engine-public-index-v1:corpus-7cb1695c6affa707:29bcd84daf10acb94a74779facebe3a0484b0f9dc0b16f7b5be5727e2e956b36",
+                "index_sha256": "29bcd84daf10acb94a74779facebe3a0484b0f9dc0b16f7b5be5727e2e956b36",
+                "release_id": "corpus-7cb1695c6affa707",
+                "schema_version": "1.0.0",
+                "verified_at": "2026-08-10T06:23:01.333440Z"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Normalized market coverage",
+      "prompt": "Show normalized Seiche money-market coverage and identify exact market and source-adapter partitions for bounded queries.",
+      "tools_triggered": "seiche_markets",
+      "expected_behavior": "Report returned coverage and exact identifiers. Distinguish source-adapter IDs from publisher labels and retain gaps or restrictions.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:38:20.262922+00:00",
+          "endpoint": "https://agents.seiche.info/products/seiche-market-corpus/mcp",
+          "tool": "seiche_markets",
+          "arguments": {},
+          "elapsed_seconds": 87.075,
+          "response": {
+            "id": 5,
+            "jsonrpc": "2.0",
+            "result": {
+              "content": [
+                {
+                  "text": "{\"evidence_class\":\"observed\",\"market_count\":9,\"markets\":[{\"market\":\"AU-AUD\",\"sources\":[{\"bytes\":96604945,\"files\":7737,\"source\":\"rba_cash\"},{\"bytes\":96557281,\"files\":7725,\"source\":\"rba_policy\"}]},{\"market\":\"CN-CNY\",\"sources\":[{\"bytes\":109850261,\"files\":8736,\"source\":\"cfets_rates\"}]},{\"market\":\"EA-EUR\",\"sources\":[{\"bytes\":22908029,\"files\":1774,\"source\":\"ecb_benchmark\"},{\"bytes\":9008295,\"files\":707,\"source\":\"ecb_liquidity\"},{\"bytes\":174929170,\"files\":13601,\"source\":\"ecb_policy\"}]},{\"market\":\"HK-HKD\",\"sources\":[{\"bytes\":13013752,\"files\":1020,\"source\":\"hkma_official\"}]},{\"market\":\"IN-INR\",\"sources\":[{\"bytes\":548062,\"files\":42,\"source\":\"rbi_official\"}]},{\"market\":\"JP-JPY\",\"sources\":[{\"bytes\":4310440,\"files\":345,\"source\":\"boj_accounts\"},{\"bytes\":179330023,\"files\":14255,\"source\":\"boj_rates\"}]},{\"market\":\"SG-SGD\",\"sources\":[{\"bytes\":111588969,\"files\":8819,\"source\":\"mas_rates\"},{\"bytes\":112370761,\"files\":8997,\"source\":\"mas_sora\"}]},{\"market\":\"UK-GBP\",\"sources\":[{\"bytes\":132744524,\"files\":10635,\"source\":\"boe_policy\"},{\"bytes\":132677712,\"files\":10612,\"source\":\"boe_sonia\"}]},{\"market\":\"US-USD\",\"sources\":[{\"bytes\":112685773,\"files\":8983,\"source\":\"fiscaldata\"},{\"bytes\":158331695,\"files\":12420,\"source\":\"fred_daily\"},{\"bytes\":15406506,\"files\":1238,\"source\":\"fred_weekly\"},{\"bytes\":3471979,\"files\":277,\"source\":\"nyfed_facilities\"},{\"bytes\":109480058,\"files\":8315,\"source\":\"nyfed_rates\"},{\"bytes\":84640791,\"files\":6578,\"source\":\"nyfed_unsecured_rates\"}]}],\"source_count\":20,\"status\":\"ok\"}",
+                  "type": "text"
+                }
+              ],
+              "isError": false,
+              "structuredContent": {
+                "evidence_class": "observed",
+                "market_count": 9,
+                "markets": [
+                  {
+                    "market": "AU-AUD",
+                    "sources": [
+                      {
+                        "bytes": 96604945,
+                        "files": 7737,
+                        "source": "rba_cash"
+                      },
+                      {
+                        "bytes": 96557281,
+                        "files": 7725,
+                        "source": "rba_policy"
+                      }
+                    ]
+                  },
+                  {
+                    "market": "CN-CNY",
+                    "sources": [
+                      {
+                        "bytes": 109850261,
+                        "files": 8736,
+                        "source": "cfets_rates"
+                      }
+                    ]
+                  },
+                  {
+                    "market": "EA-EUR",
+                    "sources": [
+                      {
+                        "bytes": 22908029,
+                        "files": 1774,
+                        "source": "ecb_benchmark"
+                      },
+                      {
+                        "bytes": 9008295,
+                        "files": 707,
+                        "source": "ecb_liquidity"
+                      },
+                      {
+                        "bytes": 174929170,
+                        "files": 13601,
+                        "source": "ecb_policy"
+                      }
+                    ]
+                  },
+                  {
+                    "market": "HK-HKD",
+                    "sources": [
+                      {
+                        "bytes": 13013752,
+                        "files": 1020,
+                        "source": "hkma_official"
+                      }
+                    ]
+                  },
+                  {
+                    "market": "IN-INR",
+                    "sources": [
+                      {
+                        "bytes": 548062,
+                        "files": 42,
+                        "source": "rbi_official"
+                      }
+                    ]
+                  },
+                  {
+                    "market": "JP-JPY",
+                    "sources": [
+                      {
+                        "bytes": 4310440,
+                        "files": 345,
+                        "source": "boj_accounts"
+                      },
+                      {
+                        "bytes": 179330023,
+                        "files": 14255,
+                        "source": "boj_rates"
+                      }
+                    ]
+                  },
+                  {
+                    "market": "SG-SGD",
+                    "sources": [
+                      {
+                        "bytes": 111588969,
+                        "files": 8819,
+                        "source": "mas_rates"
+                      },
+                      {
+                        "bytes": 112370761,
+                        "files": 8997,
+                        "source": "mas_sora"
+                      }
+                    ]
+                  },
+                  {
+                    "market": "UK-GBP",
+                    "sources": [
+                      {
+                        "bytes": 132744524,
+                        "files": 10635,
+                        "source": "boe_policy"
+                      },
+                      {
+                        "bytes": 132677712,
+                        "files": 10612,
+                        "source": "boe_sonia"
+                      }
+                    ]
+                  },
+                  {
+                    "market": "US-USD",
+                    "sources": [
+                      {
+                        "bytes": 112685773,
+                        "files": 8983,
+                        "source": "fiscaldata"
+                      },
+                      {
+                        "bytes": 158331695,
+                        "files": 12420,
+                        "source": "fred_daily"
+                      },
+                      {
+                        "bytes": 15406506,
+                        "files": 1238,
+                        "source": "fred_weekly"
+                      },
+                      {
+                        "bytes": 3471979,
+                        "files": 277,
+                        "source": "nyfed_facilities"
+                      },
+                      {
+                        "bytes": 109480058,
+                        "files": 8315,
+                        "source": "nyfed_rates"
+                      },
+                      {
+                        "bytes": 84640791,
+                        "files": 6578,
+                        "source": "nyfed_unsecured_rates"
+                      }
+                    ]
+                  }
+                ],
+                "source_count": 20,
+                "status": "ok"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Permitted bounded observations",
+      "prompt": "Discover a Seiche market and exact source-adapter partition, then request no more than twenty permitted canonical observations. Preserve source clocks, units and restrictions.",
+      "tools_triggered": "seiche_markets, seiche_observations",
+      "expected_behavior": "Copy market and source identifiers from discovery and use limit 20. Respect redistribution validation; report denial or missing coverage without reconstructing withheld values.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:38:20.262922+00:00",
+          "endpoint": "https://agents.seiche.info/products/seiche-market-corpus/mcp",
+          "tool": "seiche_markets",
+          "arguments": {},
+          "elapsed_seconds": 87.075,
+          "response": {
+            "id": 5,
+            "jsonrpc": "2.0",
+            "result": {
+              "content": [
+                {
+                  "text": "{\"evidence_class\":\"observed\",\"market_count\":9,\"markets\":[{\"market\":\"AU-AUD\",\"sources\":[{\"bytes\":96604945,\"files\":7737,\"source\":\"rba_cash\"},{\"bytes\":96557281,\"files\":7725,\"source\":\"rba_policy\"}]},{\"market\":\"CN-CNY\",\"sources\":[{\"bytes\":109850261,\"files\":8736,\"source\":\"cfets_rates\"}]},{\"market\":\"EA-EUR\",\"sources\":[{\"bytes\":22908029,\"files\":1774,\"source\":\"ecb_benchmark\"},{\"bytes\":9008295,\"files\":707,\"source\":\"ecb_liquidity\"},{\"bytes\":174929170,\"files\":13601,\"source\":\"ecb_policy\"}]},{\"market\":\"HK-HKD\",\"sources\":[{\"bytes\":13013752,\"files\":1020,\"source\":\"hkma_official\"}]},{\"market\":\"IN-INR\",\"sources\":[{\"bytes\":548062,\"files\":42,\"source\":\"rbi_official\"}]},{\"market\":\"JP-JPY\",\"sources\":[{\"bytes\":4310440,\"files\":345,\"source\":\"boj_accounts\"},{\"bytes\":179330023,\"files\":14255,\"source\":\"boj_rates\"}]},{\"market\":\"SG-SGD\",\"sources\":[{\"bytes\":111588969,\"files\":8819,\"source\":\"mas_rates\"},{\"bytes\":112370761,\"files\":8997,\"source\":\"mas_sora\"}]},{\"market\":\"UK-GBP\",\"sources\":[{\"bytes\":132744524,\"files\":10635,\"source\":\"boe_policy\"},{\"bytes\":132677712,\"files\":10612,\"source\":\"boe_sonia\"}]},{\"market\":\"US-USD\",\"sources\":[{\"bytes\":112685773,\"files\":8983,\"source\":\"fiscaldata\"},{\"bytes\":158331695,\"files\":12420,\"source\":\"fred_daily\"},{\"bytes\":15406506,\"files\":1238,\"source\":\"fred_weekly\"},{\"bytes\":3471979,\"files\":277,\"source\":\"nyfed_facilities\"},{\"bytes\":109480058,\"files\":8315,\"source\":\"nyfed_rates\"},{\"bytes\":84640791,\"files\":6578,\"source\":\"nyfed_unsecured_rates\"}]}],\"source_count\":20,\"status\":\"ok\"}",
+                  "type": "text"
+                }
+              ],
+              "isError": false,
+              "structuredContent": {
+                "evidence_class": "observed",
+                "market_count": 9,
+                "markets": [
+                  {
+                    "market": "AU-AUD",
+                    "sources": [
+                      {
+                        "bytes": 96604945,
+                        "files": 7737,
+                        "source": "rba_cash"
+                      },
+                      {
+                        "bytes": 96557281,
+                        "files": 7725,
+                        "source": "rba_policy"
+                      }
+                    ]
+                  },
+                  {
+                    "market": "CN-CNY",
+                    "sources": [
+                      {
+                        "bytes": 109850261,
+                        "files": 8736,
+                        "source": "cfets_rates"
+                      }
+                    ]
+                  },
+                  {
+                    "market": "EA-EUR",
+                    "sources": [
+                      {
+                        "bytes": 22908029,
+                        "files": 1774,
+                        "source": "ecb_benchmark"
+                      },
+                      {
+                        "bytes": 9008295,
+                        "files": 707,
+                        "source": "ecb_liquidity"
+                      },
+                      {
+                        "bytes": 174929170,
+                        "files": 13601,
+                        "source": "ecb_policy"
+                      }
+                    ]
+                  },
+                  {
+                    "market": "HK-HKD",
+                    "sources": [
+                      {
+                        "bytes": 13013752,
+                        "files": 1020,
+                        "source": "hkma_official"
+                      }
+                    ]
+                  },
+                  {
+                    "market": "IN-INR",
+                    "sources": [
+                      {
+                        "bytes": 548062,
+                        "files": 42,
+                        "source": "rbi_official"
+                      }
+                    ]
+                  },
+                  {
+                    "market": "JP-JPY",
+                    "sources": [
+                      {
+                        "bytes": 4310440,
+                        "files": 345,
+                        "source": "boj_accounts"
+                      },
+                      {
+                        "bytes": 179330023,
+                        "files": 14255,
+                        "source": "boj_rates"
+                      }
+                    ]
+                  },
+                  {
+                    "market": "SG-SGD",
+                    "sources": [
+                      {
+                        "bytes": 111588969,
+                        "files": 8819,
+                        "source": "mas_rates"
+                      },
+                      {
+                        "bytes": 112370761,
+                        "files": 8997,
+                        "source": "mas_sora"
+                      }
+                    ]
+                  },
+                  {
+                    "market": "UK-GBP",
+                    "sources": [
+                      {
+                        "bytes": 132744524,
+                        "files": 10635,
+                        "source": "boe_policy"
+                      },
+                      {
+                        "bytes": 132677712,
+                        "files": 10612,
+                        "source": "boe_sonia"
+                      }
+                    ]
+                  },
+                  {
+                    "market": "US-USD",
+                    "sources": [
+                      {
+                        "bytes": 112685773,
+                        "files": 8983,
+                        "source": "fiscaldata"
+                      },
+                      {
+                        "bytes": 158331695,
+                        "files": 12420,
+                        "source": "fred_daily"
+                      },
+                      {
+                        "bytes": 15406506,
+                        "files": 1238,
+                        "source": "fred_weekly"
+                      },
+                      {
+                        "bytes": 3471979,
+                        "files": 277,
+                        "source": "nyfed_facilities"
+                      },
+                      {
+                        "bytes": 109480058,
+                        "files": 8315,
+                        "source": "nyfed_rates"
+                      },
+                      {
+                        "bytes": 84640791,
+                        "files": 6578,
+                        "source": "nyfed_unsecured_rates"
+                      }
+                    ]
+                  }
+                ],
+                "source_count": 20,
+                "status": "ok"
+              }
+            }
+          }
+        },
+        {
+          "captured_at": "2026-10-28T14:41:12.124347+00:00",
+          "endpoint": "https://agents.seiche.info/products/seiche-market-corpus/mcp",
+          "tool": "seiche_observations",
+          "arguments": {
+            "market": "EA-EUR",
+            "source": "ecb_benchmark",
+            "limit": 20
+          },
+          "elapsed_seconds": 11.66,
+          "response": {
+            "id": 3,
+            "jsonrpc": "2.0",
+            "result": {
+              "content": [
+                {
+                  "text": "{\"adapter_id\":\"ecb_benchmark\",\"count\":20,\"evidence_class\":\"observed\",\"filters\":{},\"generated_at\":\"2026-10-28T14:41:23.710344Z\",\"lake_snapshot_sha256\":\"9aa3cc8ce77c7d6da7bf65ba91870794f65e838b5c449f85de3ca75582cf509b\",\"market\":\"EA-EUR\",\"next_cursor\":\"eyJrZXkiOlsiMjAxOS0xMC0xNFQwMDowMDowMC4wMDAwMDBaIiwiRUEuRUNCLkVTVFJfVk9MVU1FIiwiMjAyNi0wOC0wOVQxMjowNTo1MC4wMDAwMDBaIiwiMjAxOS0xMC0xNVQwNjowMDowMC4wMDAwMDBaIiwiZWNiOkE6MjAxOS0xMC0xNCIsIjZjYzk5YWYxNTA3ODgzMDliMmQyZTJmZTc3YjAwNDhjNzk3ZDRlZDI4ZGY4ZWJhYmQyY2FjZTlhY2Y1N2ZlZDEiXSwic2NvcGUiOiJkNjBhYzJhZDhjODk4ZThhNzZjYjVjOTI0MjgyMzA2OGE5ZjBkNzAyNmEyZGYyYzM0ZDAwN2M2ZTcyZTM4YTNmIiwic25hcHNob3QiOiI5YWEzY2M4Y2U3N2M3ZDZkYTdiZjY1YmE5MTg3MDc5NGY2NWU4MzhiNWM0NDlmODVkZTNjYTc1NTgyY2Y1MDliIiwidiI6Mn0\",\"observations\":[{\"canonical_unit\":\"basis_points\",\"connector_classification\":\"official_open\",\"currency\":\"EUR\",\"day_count\":\"ACT/360\",\"event_time\":\"2019-10-01T00:00:00.000000Z\",\"evidence_hash\":\"c2f82fc1c3e71704453e3e5831084f32f03b3bc0e107447d2dd3ee91a29c512c\",\"instrument_id\":\"EA.ECB.ESTR\",\"jurisdiction_codes\":[\"AT\",\"BE\",\"BG\",\"HR\",\"CY\",\"EE\",\"FI\",\"FR\",\"DE\",\"GR\",\"IE\",\"IT\",\"LV\",\"LT\",\"LU\",\"MT\",\"NL\",\"PT\",\"SK\",\"SI\",\"ES\"],\"knowledge_time\":\"2026-08-09T12:05:50.000000Z\",\"market_id\":\"EA-EUR\",\"monetary_area_id\":\"EA\",\"quality\":\"provisional\",\"rate_compounding\":\"simple\",\"redistribution_status\":\"allowed\",\"revision_id\":\"ecb:A:2019-10-01\",\"semantic_role\":\"UNSECURED_OVERNIGHT\",\"source\":\"ecb_benchmark\",\"source_publication_time\":\"2019-10-02T06:00:00.000000Z\",\"staleness\":\"fresh\",\"value\":\"-54.900\"},{\"canonical_unit\":\"local_currency_millions\",\"connector_classification\":\"official_open\",\"currency\":\"EUR\",\"day_count\":null,\"event_time\":\"2019-10-01T00:00:00.000000Z\",\"evidence_hash\":\"52e7942a55e5338f7923251c97382225df5a762a8962a2b1410799f8ed4899d6\",\"instrument_id\":\"EA.ECB.ESTR_VOLUME\",\"jurisdiction_codes\":[\"AT\",\"BE\",\"BG\",\"HR\",\"CY\",\"EE\",\"FI\",\"FR\",\"DE\",\"GR\",\"IE\",\"IT\",\"LV\",\"LT\",\"LU\",\"MT\",\"NL\",\"PT\",\"SK\",\"SI\",\"ES\"],\"knowledge_time\":\"2026-08-09T12:05:50.000000Z\",\"market_id\":\"EA-EUR\",\"monetary_area_id\":\"EA\",\"quality\":\"provisional\",\"rate_compounding\":null,\"redistribution_status\":\"allowed\",\"revision_id\":\"ecb:A:2019-10-01\",\"semantic_role\":\"REPO_VOLUME\",\"source\":\"ecb_benchmark\",\"source_publication_time\":\"2019-10-02T06:00:00.000000Z\",\"staleness\":\"fresh\",\"value\":\"35996\"},{\"canonical_unit\":\"basis_points\",\"connector_classification\":\"official_open\",\"currency\":\"EUR\",\"day_count\":\"ACT/360\",\"event_time\":\"2019-10-02T00:00:00.000000Z\",\"evidence_hash\":\"3dde907629263539a5df966e9c1e1b9f0a1c802802721c52cf9b120572d62d48\",\"instrument_id\":\"EA.ECB.ESTR\",\"jurisdiction_codes\":[\"AT\",\"BE\",\"BG\",\"HR\",\"CY\",\"EE\",\"FI\",\"FR\",\"DE\",\"GR\",\"IE\",\"IT\",\"LV\",\"LT\",\"LU\",\"MT\",\"NL\",\"PT\",\"SK\",\"SI\",\"ES\"],\"knowledge_time\":\"2026-08-09T12:05:50.000000Z\",\"market_id\":\"EA-EUR\",\"monetary_area_id\":\"EA\",\"quality\":\"provisional\",\"rate_compounding\":\"simple\",\"redistribution_status\":\"allowed\",\"revision_id\":\"ecb:A:2019-10-02\",\"semantic_role\":\"UNSECURED_OVERNIGHT\",\"source\":\"ecb_benchmark\",\"source_publication_time\":\"2019-10-03T06:00:00.000000Z\",\"staleness\":\"fresh\",\"value\":\"-55.100\"},{\"canonical_unit\":\"local_currency_millions\",\"connector_classification\":\"official_open\",\"currency\":\"EUR\",\"day_count\":null,\"event_time\":\"2019-10-02T00:00:00.000000Z\",\"evidence_hash\":\"637b23d168ccbf61e72548c71d8fb593bdb4176051728d9000fc65c9f6c21728\",\"instrument_id\":\"EA.ECB.ESTR_VOLUME\",\"jurisdiction_codes\":[\"AT\",\"BE\",\"BG\",\"HR\",\"CY\",\"EE\",\"FI\",\"FR\",\"DE\",\"GR\",\"IE\",\"IT\",\"LV\",\"LT\",\"LU\",\"MT\",\"NL\",\"PT\",\"SK\",\"SI\",\"ES\"],\"knowledge_time\":\"2026-08-09T12:05:50.000000Z\",\"market_id\":\"EA-EUR\",\"monetary_area_id\":\"EA\",\"quality\":\"provisional\",\"rate_compounding\":null,\"redistribution_status\":\"allowed\",\"revision_id\":\"ecb:A:2019-10-02\",\"semantic_role\":\"REPO_VOLUME\",\"source\":\"ecb_benchmark\",\"source_publication_time\":\"2019-10-03T06:00:00.000000Z\",\"staleness\":\"fresh\",\"value\":\"33549\"},{\"canonical_unit\":\"basis_points\",\"connector_classification\":\"official_open\",\"currency\":\"EUR\",\"day_count\":\"ACT/360\",\"event_time\":\"2019-10-03T00:00:00.000000Z\",\"evidence_hash\":\"c3c66e67fa1ef782d4659cd3b52518e7da771b58bb6a4fbdbd6bf37615e43de5\",\"instrument_id\":\"EA.ECB.ESTR\",\"jurisdiction_codes\":[\"AT\",\"BE\",\"BG\",\"HR\",\"CY\",\"EE\",\"FI\",\"FR\",\"DE\",\"GR\",\"IE\",\"IT\",\"LV\",\"LT\",\"LU\",\"MT\",\"NL\",\"PT\",\"SK\",\"SI\",\"ES\"],\"knowledge_time\":\"2026-08-09T12:05:50.000000Z\",\"market_id\":\"EA-EUR\",\"monetary_area_id\":\"EA\",\"quality\":\"provisional\",\"rate_compounding\":\"simple\",\"redistribution_status\":\"allowed\",\"revision_id\":\"ecb:A:2019-10-03\",\"semantic_role\":\"UNSECURED_OVERNIGHT\",\"source\":\"ecb_benchmark\",\"source_publication_time\":\"2019-10-04T06:00:00.000000Z\",\"staleness\":\"fresh\",\"value\":\"-55.500\"},{\"canonical_unit\":\"local_currency_millions\",\"connector_classification\":\"official_open\",\"currency\":\"EUR\",\"day_count\":null,\"event_time\":\"2019-10-03T00:00:00.000000Z\",\"evidence_hash\":\"dffb711c0a48d14bee0f2ddf3f859d4b94699a21fad0bae265e0a320ed16848e\",\"instrument_id\":\"EA.ECB.ESTR_VOLUME\",\"jurisdiction_codes\":[\"AT\",\"BE\",\"BG\",\"HR\",\"CY\",\"EE\",\"FI\",\"FR\",\"DE\",\"GR\",\"IE\",\"IT\",\"LV\",\"LT\",\"LU\",\"MT\",\"NL\",\"PT\",\"SK\",\"SI\",\"ES\"],\"knowledge_time\":\"2026-08-09T12:05:50.000000Z\",\"market_id\":\"EA-EUR\",\"monetary_area_id\":\"EA\",\"quality\":\"provisional\",\"rate_compounding\":null,\"redistribution_status\":\"allowed\",\"revision_id\":\"ecb:A:2019-10-03\",\"semantic_role\":\"REPO_VOLUME\",\"source\":\"ecb_benchmark\",\"source_publication_time\":\"2019-10-04T06:00:00.000000Z\",\"staleness\":\"fresh\",\"value\":\"29200\"},{\"canonical_unit\":\"basis_points\",\"connector_classification\":\"official_open\",\"currency\":\"EUR\",\"day_count\":\"ACT/360\",\"event_time\":\"2019-10-04T00:00:00.000000Z\",\"evidence_hash\":\"a16e4e37f5b354af681e11d65032179aa7f31ea665abc9db88543cbb2ddfd8a4\",\"instrument_id\":\"EA.ECB.ESTR\",\"jurisdiction_codes\":[\"AT\",\"BE\",\"BG\",\"HR\",\"CY\",\"EE\",\"FI\",\"FR\",\"DE\",\"GR\",\"IE\",\"IT\",\"LV\",\"LT\",\"LU\",\"MT\",\"NL\",\"PT\",\"SK\",\"SI\",\"ES\"],\"knowledge_time\":\"2026-08-09T12:05:50.000000Z\",\"market_id\":\"EA-EUR\",\"monetary_area_id\":\"EA\",\"quality\":\"provisional\",\"rate_compounding\":\"simple\",\"redistribution_status\":\"allowed\",\"revision_id\":\"ecb:A:2019-10-04\",\"semantic_role\":\"UNSECURED_OVERNIGHT\",\"source\":\"ecb_benchmark\",\"source_publication_time\":\"2019-10-07T06:00:00.000000Z\",\"staleness\":\"fresh\",\"value\":\"-55.300\"},{\"canonical_unit\":\"local_currency_millions\",\"connector_classification\":\"official_open\",\"currency\":\"EUR\",\"day_count\":null,\"event_time\":\"2019-10-04T00:00:00.000000Z\",\"evidence_hash\":\"336e2e51561af703a88fffddb294431b3091d60d2936f5a4b874d32baabad0f3\",\"instrument_id\":\"EA.ECB.ESTR_VOLUME\",\"jurisdiction_codes\":[\"AT\",\"BE\",\"BG\",\"HR\",\"CY\",\"EE\",\"FI\",\"FR\",\"DE\",\"GR\",\"IE\",\"IT\",\"LV\",\"LT\",\"LU\",\"MT\",\"NL\",\"PT\",\"SK\",\"SI\",\"ES\"],\"knowledge_time\":\"2026-08-09T12:05:50.000000Z\",\"market_id\":\"EA-EUR\",\"monetary_area_id\":\"EA\",\"quality\":\"provisional\",\"rate_compounding\":null,\"redistribution_status\":\"allowed\",\"revision_id\":\"ecb:A:2019-10-04\",\"semantic_role\":\"REPO_VOLUME\",\"source\":\"ecb_benchmark\",\"source_publication_time\":\"2019-10-07T06:00:00.000000Z\",\"staleness\":\"fresh\",\"value\":\"33907\"},{\"canonical_unit\":\"basis_points\",\"connector_classification\":\"official_open\",\"currency\":\"EUR\",\"day_count\":\"ACT/360\",\"event_time\":\"2019-10-07T00:00:00.000000Z\",\"evidence_hash\":\"60c514c0af5099646cd147afacd1ec2b55006f88edb9208cda7ac34772154631\",\"instrument_id\":\"EA.ECB.ESTR\",\"jurisdiction_codes\":[\"AT\",\"BE\",\"BG\",\"HR\",\"CY\",\"EE\",\"FI\",\"FR\",\"DE\",\"GR\",\"IE\",\"IT\",\"LV\",\"LT\",\"LU\",\"MT\",\"NL\",\"PT\",\"SK\",\"SI\",\"ES\"],\"knowledge_time\":\"2026-08-09T12:05:50.000000Z\",\"market_id\":\"EA-EUR\",\"monetary_area_id\":\"EA\",\"quality\":\"provisional\",\"rate_compounding\":\"simple\",\"redistribution_status\":\"allowed\",\"revision_id\":\"ecb:A:2019-10-07\",\"semantic_role\":\"UNSECURED_OVERNIGHT\",\"source\":\"ecb_benchmark\",\"source_publication_time\":\"2019-10-08T06:00:00.000000Z\",\"staleness\":\"fresh\",\"value\":\"-55.400\"},{\"canonical_unit\":\"local_currency_millions\",\"connector_classification\":\"official_open\",\"currency\":\"EUR\",\"day_count\":null,\"event_time\":\"2019-10-07T00:00:00.000000Z\",\"evidence_hash\":\"1369c817a15eb25cefbf5303ccd991c0e8fa314dfa64054da05fecc197ae1263\",\"instrument_id\":\"EA.ECB.ESTR_VOLUME\",\"jurisdiction_codes\":[\"AT\",\"BE\",\"BG\",\"HR\",\"CY\",\"EE\",\"FI\",\"FR\",\"DE\",\"GR\",\"IE\",\"IT\",\"LV\",\"LT\",\"LU\",\"MT\",\"NL\",\"PT\",\"SK\",\"SI\",\"ES\"],\"knowledge_time\":\"2026-08-09T12:05:50.000000Z\",\"market_id\":\"EA-EUR\",\"monetary_area_id\":\"EA\",\"quality\":\"provisional\",\"rate_compounding\":null,\"redistribution_status\":\"allowed\",\"revision_id\":\"ecb:A:2019-10-07\",\"semantic_role\":\"REPO_VOLUME\",\"source\":\"ecb_benchmark\",\"source_publication_time\":\"2019-10-08T06:00:00.000000Z\",\"staleness\":\"fresh\",\"value\":\"33722\"},{\"canonical_unit\":\"basis_points\",\"connector_classification\":\"official_open\",\"currency\":\"EUR\",\"day_count\":\"ACT/360\",\"event_time\":\"2019-10-08T00:00:00.000000Z\",\"evidence_hash\":\"c4efdb56dc0523bb29a04ed5dfcb1dced7c64f64d0ad2f6a0d399519bee11bf8\",\"instrument_id\":\"EA.ECB.ESTR\",\"jurisdiction_codes\":[\"AT\",\"BE\",\"BG\",\"HR\",\"CY\",\"EE\",\"FI\",\"FR\",\"DE\",\"GR\",\"IE\",\"IT\",\"LV\",\"LT\",\"LU\",\"MT\",\"NL\",\"PT\",\"SK\",\"SI\",\"ES\"],\"knowledge_time\":\"2026-08-09T12:05:50.000000Z\",\"market_id\":\"EA-EUR\",\"monetary_area_id\":\"EA\",\"quality\":\"provisional\",\"rate_compounding\":\"simple\",\"redistribution_status\":\"allowed\",\"revision_id\":\"ecb:A:2019-10-08\",\"semantic_role\":\"UNSECURED_OVERNIGHT\",\"source\":\"ecb_benchmark\",\"source_publication_time\":\"2019-10-09T06:00:00.000000Z\",\"staleness\":\"fresh\",\"value\":\"-55.200\"},{\"canonical_unit\":\"local_currency_millions\",\"connector_classification\":\"official_open\",\"currency\":\"EUR\",\"day_count\":null,\"event_time\":\"2019-10-08T00:00:00.000000Z\",\"evidence_hash\":\"be42ec8c565ee83d79a7cd3a69d9fa364205b48b0c91c5fc68febf47121e8716\",\"instrument_id\":\"EA.ECB.ESTR_VOLUME\",\"jurisdiction_codes\":[\"AT\",\"BE\",\"BG\",\"HR\",\"CY\",\"EE\",\"FI\",\"FR\",\"DE\",\"GR\",\"IE\",\"IT\",\"LV\",\"LT\",\"LU\",\"MT\",\"NL\",\"PT\",\"SK\",\"SI\",\"ES\"],\"knowledge_time\":\"2026-08-09T12:05:50.000000Z\",\"market_id\":\"EA-EUR\",\"monetary_area_id\":\"EA\",\"quality\":\"provisional\",\"rate_compounding\":null,\"redistribution_status\":\"allowed\",\"revision_id\":\"ecb:A:2019-10-08\",\"semantic_role\":\"REPO_VOLUME\",\"source\":\"ecb_benchmark\",\"source_publication_time\":\"2019-10-09T06:00:00.000000Z\",\"staleness\":\"fresh\",\"value\":\"31536\"},{\"canonical_unit\":\"basis_points\",\"connector_classification\":\"official_open\",\"currency\":\"EUR\",\"day_count\":\"ACT/360\",\"event_time\":\"2019-10-09T00:00:00.000000Z\",\"evidence_hash\":\"615fb9d7c5195b09f4f5ba0879eb812378c0eb28a0e4515b7299355187b8d502\",\"instrument_id\":\"EA.ECB.ESTR\",\"jurisdiction_codes\":[\"AT\",\"BE\",\"BG\",\"HR\",\"CY\",\"EE\",\"FI\",\"FR\",\"DE\",\"GR\",\"IE\",\"IT\",\"LV\",\"LT\",\"LU\",\"MT\",\"NL\",\"PT\",\"SK\",\"SI\",\"ES\"],\"knowledge_time\":\"2026-08-09T12:05:50.000000Z\",\"market_id\":\"EA-EUR\",\"monetary_area_id\":\"EA\",\"quality\":\"provisional\",\"rate_compounding\":\"simple\",\"redistribution_status\":\"allowed\",\"revision_id\":\"ecb:A:2019-10-09\",\"semantic_role\":\"UNSECURED_OVERNIGHT\",\"source\":\"ecb_benchmark\",\"source_publication_time\":\"2019-10-10T06:00:00.000000Z\",\"staleness\":\"fresh\",\"value\":\"-55.200\"},{\"canonical_unit\":\"local_currency_millions\",\"connector_classification\":\"official_open\",\"currency\":\"EUR\",\"day_count\":null,\"event_time\":\"2019-10-09T00:00:00.000000Z\",\"evidence_hash\":\"6d1389dbc6b8e9442e65084f72eac534a8b78064f62117f9e76c93a733df8d71\",\"instrument_id\":\"EA.ECB.ESTR_VOLUME\",\"jurisdiction_codes\":[\"AT\",\"BE\",\"BG\",\"HR\",\"CY\",\"EE\",\"FI\",\"FR\",\"DE\",\"GR\",\"IE\",\"IT\",\"LV\",\"LT\",\"LU\",\"MT\",\"NL\",\"PT\",\"SK\",\"SI\",\"ES\"],\"knowledge_time\":\"2026-08-09T12:05:50.000000Z\",\"market_id\":\"EA-EUR\",\"monetary_area_id\":\"EA\",\"quality\":\"provisional\",\"rate_compounding\":null,\"redistribution_status\":\"allowed\",\"revision_id\":\"ecb:A:2019-10-09\",\"semantic_role\":\"REPO_VOLUME\",\"source\":\"ecb_benchmark\",\"source_publication_time\":\"2019-10-10T06:00:00.000000Z\",\"staleness\":\"fresh\",\"value\":\"31274\"},{\"canonical_unit\":\"basis_points\",\"connector_classification\":\"official_open\",\"currency\":\"EUR\",\"day_count\":\"ACT/360\",\"event_time\":\"2019-10-10T00:00:00.000000Z\",\"evidence_hash\":\"36950bd98227e1284c035ee209f3263cfa919932d48dc3e0e31dc7b32fc99909\",\"instrument_id\":\"EA.ECB.ESTR\",\"jurisdiction_codes\":[\"AT\",\"BE\",\"BG\",\"HR\",\"CY\",\"EE\",\"FI\",\"FR\",\"DE\",\"GR\",\"IE\",\"IT\",\"LV\",\"LT\",\"LU\",\"MT\",\"NL\",\"PT\",\"SK\",\"SI\",\"ES\"],\"knowledge_time\":\"2026-08-09T12:05:50.000000Z\",\"market_id\":\"EA-EUR\",\"monetary_area_id\":\"EA\",\"quality\":\"provisional\",\"rate_compounding\":\"simple\",\"redistribution_status\":\"allowed\",\"revision_id\":\"ecb:A:2019-10-10\",\"semantic_role\":\"UNSECURED_OVERNIGHT\",\"source\":\"ecb_benchmark\",\"source_publication_time\":\"2019-10-11T06:00:00.000000Z\",\"staleness\":\"fresh\",\"value\":\"-55.200\"},{\"canonical_unit\":\"local_currency_millions\",\"connector_classification\":\"official_open\",\"currency\":\"EUR\",\"day_count\":null,\"event_time\":\"2019-10-10T00:00:00.000000Z\",\"evidence_hash\":\"25653d4763e49293af39fa3ed570f8d85d323d75d25d5c653ff53dccf0f22ea6\",\"instrument_id\":\"EA.ECB.ESTR_VOLUME\",\"jurisdiction_codes\":[\"AT\",\"BE\",\"BG\",\"HR\",\"CY\",\"EE\",\"FI\",\"FR\",\"DE\",\"GR\",\"IE\",\"IT\",\"LV\",\"LT\",\"LU\",\"MT\",\"NL\",\"PT\",\"SK\",\"SI\",\"ES\"],\"knowledge_time\":\"2026-08-09T12:05:50.000000Z\",\"market_id\":\"EA-EUR\",\"monetary_area_id\":\"EA\",\"quality\":\"provisional\",\"rate_compounding\":null,\"redistribution_status\":\"allowed\",\"revision_id\":\"ecb:A:2019-10-10\",\"semantic_role\":\"REPO_VOLUME\",\"source\":\"ecb_benchmark\",\"source_publication_time\":\"2019-10-11T06:00:00.000000Z\",\"staleness\":\"fresh\",\"value\":\"30526\"},{\"canonical_unit\":\"basis_points\",\"connector_classification\":\"official_open\",\"currency\":\"EUR\",\"day_count\":\"ACT/360\",\"event_time\":\"2019-10-11T00:00:00.000000Z\",\"evidence_hash\":\"0ab346da173785a70781b74575fa139ac33b2a65d22d8b4d968c1a86afb44513\",\"instrument_id\":\"EA.ECB.ESTR\",\"jurisdiction_codes\":[\"AT\",\"BE\",\"BG\",\"HR\",\"CY\",\"EE\",\"FI\",\"FR\",\"DE\",\"GR\",\"IE\",\"IT\",\"LV\",\"LT\",\"LU\",\"MT\",\"NL\",\"PT\",\"SK\",\"SI\",\"ES\"],\"knowledge_time\":\"2026-08-09T12:05:50.000000Z\",\"market_id\":\"EA-EUR\",\"monetary_area_id\":\"EA\",\"quality\":\"provisional\",\"rate_compounding\":\"simple\",\"redistribution_status\":\"allowed\",\"revision_id\":\"ecb:A:2019-10-11\",\"semantic_role\":\"UNSECURED_OVERNIGHT\",\"source\":\"ecb_benchmark\",\"source_publication_time\":\"2019-10-14T06:00:00.000000Z\",\"staleness\":\"fresh\",\"value\":\"-55.00\"},{\"canonical_unit\":\"local_currency_millions\",\"connector_classification\":\"official_open\",\"currency\":\"EUR\",\"day_count\":null,\"event_time\":\"2019-10-11T00:00:00.000000Z\",\"evidence_hash\":\"2163eb73d3a31499d9a9960ac831e44277d4fea9f7a78f16e121c23dc9d82d07\",\"instrument_id\":\"EA.ECB.ESTR_VOLUME\",\"jurisdiction_codes\":[\"AT\",\"BE\",\"BG\",\"HR\",\"CY\",\"EE\",\"FI\",\"FR\",\"DE\",\"GR\",\"IE\",\"IT\",\"LV\",\"LT\",\"LU\",\"MT\",\"NL\",\"PT\",\"SK\",\"SI\",\"ES\"],\"knowledge_time\":\"2026-08-09T12:05:50.000000Z\",\"market_id\":\"EA-EUR\",\"monetary_area_id\":\"EA\",\"quality\":\"provisional\",\"rate_compounding\":null,\"redistribution_status\":\"allowed\",\"revision_id\":\"ecb:A:2019-10-11\",\"semantic_role\":\"REPO_VOLUME\",\"source\":\"ecb_benchmark\",\"source_publication_time\":\"2019-10-14T06:00:00.000000Z\",\"staleness\":\"fresh\",\"value\":\"32614\"},{\"canonical_unit\":\"basis_points\",\"connector_classification\":\"official_open\",\"currency\":\"EUR\",\"day_count\":\"ACT/360\",\"event_time\":\"2019-10-14T00:00:00.000000Z\",\"evidence_hash\":\"90f7e718bb489ab3e54be9bdf0699316549986e8e00cb2af3d37cc1e5523a6a0\",\"instrument_id\":\"EA.ECB.ESTR\",\"jurisdiction_codes\":[\"AT\",\"BE\",\"BG\",\"HR\",\"CY\",\"EE\",\"FI\",\"FR\",\"DE\",\"GR\",\"IE\",\"IT\",\"LV\",\"LT\",\"LU\",\"MT\",\"NL\",\"PT\",\"SK\",\"SI\",\"ES\"],\"knowledge_time\":\"2026-08-09T12:05:50.000000Z\",\"market_id\":\"EA-EUR\",\"monetary_area_id\":\"EA\",\"quality\":\"provisional\",\"rate_compounding\":\"simple\",\"redistribution_status\":\"allowed\",\"revision_id\":\"ecb:A:2019-10-14\",\"semantic_role\":\"UNSECURED_OVERNIGHT\",\"source\":\"ecb_benchmark\",\"source_publication_time\":\"2019-10-15T06:00:00.000000Z\",\"staleness\":\"fresh\",\"value\":\"-54.900\"},{\"canonical_unit\":\"local_currency_millions\",\"connector_classification\":\"official_open\",\"currency\":\"EUR\",\"day_count\":null,\"event_time\":\"2019-10-14T00:00:00.000000Z\",\"evidence_hash\":\"6cc99af150788309b2d2e2fe77b0048c797d4ed28df8ebabd2cace9acf57fed1\",\"instrument_id\":\"EA.ECB.ESTR_VOLUME\",\"jurisdiction_codes\":[\"AT\",\"BE\",\"BG\",\"HR\",\"CY\",\"EE\",\"FI\",\"FR\",\"DE\",\"GR\",\"IE\",\"IT\",\"LV\",\"LT\",\"LU\",\"MT\",\"NL\",\"PT\",\"SK\",\"SI\",\"ES\"],\"knowledge_time\":\"2026-08-09T12:05:50.000000Z\",\"market_id\":\"EA-EUR\",\"monetary_area_id\":\"EA\",\"quality\":\"provisional\",\"rate_compounding\":null,\"redistribution_status\":\"allowed\",\"revision_id\":\"ecb:A:2019-10-14\",\"semantic_role\":\"REPO_VOLUME\",\"source\":\"ecb_benchmark\",\"source_publication_time\":\"2019-10-15T06:00:00.000000Z\",\"staleness\":\"fresh\",\"value\":\"31781\"}],\"rights\":{\"decision_source\":\"deployed_seiche_registry\",\"manifest_sha256\":\"8f29f6598c39a68112ce7e34502dae4f385b28121c4c0967ff290d74b2df11f4\",\"public_values\":true,\"redistribution_status\":\"allowed\",\"registry_release_sha\":\"4766946954aa7231649d6236eea9144c5e3e9e78\",\"scope\":\"source\"},\"schema_version\":\"1.0.0\",\"source\":\"ecb_benchmark\"}",
+                  "type": "text"
+                }
+              ],
+              "isError": false,
+              "structuredContent": {
+                "adapter_id": "ecb_benchmark",
+                "count": 20,
+                "evidence_class": "observed",
+                "filters": {},
+                "generated_at": "2026-10-28T14:41:23.710344Z",
+                "lake_snapshot_sha256": "9aa3cc8ce77c7d6da7bf65ba91870794f65e838b5c449f85de3ca75582cf509b",
+                "market": "EA-EUR",
+                "next_cursor": "eyJrZXkiOlsiMjAxOS0xMC0xNFQwMDowMDowMC4wMDAwMDBaIiwiRUEuRUNCLkVTVFJfVk9MVU1FIiwiMjAyNi0wOC0wOVQxMjowNTo1MC4wMDAwMDBaIiwiMjAxOS0xMC0xNVQwNjowMDowMC4wMDAwMDBaIiwiZWNiOkE6MjAxOS0xMC0xNCIsIjZjYzk5YWYxNTA3ODgzMDliMmQyZTJmZTc3YjAwNDhjNzk3ZDRlZDI4ZGY4ZWJhYmQyY2FjZTlhY2Y1N2ZlZDEiXSwic2NvcGUiOiJkNjBhYzJhZDhjODk4ZThhNzZjYjVjOTI0MjgyMzA2OGE5ZjBkNzAyNmEyZGYyYzM0ZDAwN2M2ZTcyZTM4YTNmIiwic25hcHNob3QiOiI5YWEzY2M4Y2U3N2M3ZDZkYTdiZjY1YmE5MTg3MDc5NGY2NWU4MzhiNWM0NDlmODVkZTNjYTc1NTgyY2Y1MDliIiwidiI6Mn0",
+                "observations": [
+                  {
+                    "canonical_unit": "basis_points",
+                    "connector_classification": "official_open",
+                    "currency": "EUR",
+                    "day_count": "ACT/360",
+                    "event_time": "2019-10-01T00:00:00.000000Z",
+                    "evidence_hash": "c2f82fc1c3e71704453e3e5831084f32f03b3bc0e107447d2dd3ee91a29c512c",
+                    "instrument_id": "EA.ECB.ESTR",
+                    "jurisdiction_codes": [
+                      "AT",
+                      "BE",
+                      "BG",
+                      "HR",
+                      "CY",
+                      "EE",
+                      "FI",
+                      "FR",
+                      "DE",
+                      "GR",
+                      "IE",
+                      "IT",
+                      "LV",
+                      "LT",
+                      "LU",
+                      "MT",
+                      "NL",
+                      "PT",
+                      "SK",
+                      "SI",
+                      "ES"
+                    ],
+                    "knowledge_time": "2026-08-09T12:05:50.000000Z",
+                    "market_id": "EA-EUR",
+                    "monetary_area_id": "EA",
+                    "quality": "provisional",
+                    "rate_compounding": "simple",
+                    "redistribution_status": "allowed",
+                    "revision_id": "ecb:A:2019-10-01",
+                    "semantic_role": "UNSECURED_OVERNIGHT",
+                    "source": "ecb_benchmark",
+                    "source_publication_time": "2019-10-02T06:00:00.000000Z",
+                    "staleness": "fresh",
+                    "value": "-54.900"
+                  },
+                  {
+                    "canonical_unit": "local_currency_millions",
+                    "connector_classification": "official_open",
+                    "currency": "EUR",
+                    "day_count": null,
+                    "event_time": "2019-10-01T00:00:00.000000Z",
+                    "evidence_hash": "52e7942a55e5338f7923251c97382225df5a762a8962a2b1410799f8ed4899d6",
+                    "instrument_id": "EA.ECB.ESTR_VOLUME",
+                    "jurisdiction_codes": [
+                      "AT",
+                      "BE",
+                      "BG",
+                      "HR",
+                      "CY",
+                      "EE",
+                      "FI",
+                      "FR",
+                      "DE",
+                      "GR",
+                      "IE",
+                      "IT",
+                      "LV",
+                      "LT",
+                      "LU",
+                      "MT",
+                      "NL",
+                      "PT",
+                      "SK",
+                      "SI",
+                      "ES"
+                    ],
+                    "knowledge_time": "2026-08-09T12:05:50.000000Z",
+                    "market_id": "EA-EUR",
+                    "monetary_area_id": "EA",
+                    "quality": "provisional",
+                    "rate_compounding": null,
+                    "redistribution_status": "allowed",
+                    "revision_id": "ecb:A:2019-10-01",
+                    "semantic_role": "REPO_VOLUME",
+                    "source": "ecb_benchmark",
+                    "source_publication_time": "2019-10-02T06:00:00.000000Z",
+                    "staleness": "fresh",
+                    "value": "35996"
+                  },
+                  {
+                    "canonical_unit": "basis_points",
+                    "connector_classification": "official_open",
+                    "currency": "EUR",
+                    "day_count": "ACT/360",
+                    "event_time": "2019-10-02T00:00:00.000000Z",
+                    "evidence_hash": "3dde907629263539a5df966e9c1e1b9f0a1c802802721c52cf9b120572d62d48",
+                    "instrument_id": "EA.ECB.ESTR",
+                    "jurisdiction_codes": [
+                      "AT",
+                      "BE",
+                      "BG",
+                      "HR",
+                      "CY",
+                      "EE",
+                      "FI",
+                      "FR",
+                      "DE",
+                      "GR",
+                      "IE",
+                      "IT",
+                      "LV",
+                      "LT",
+                      "LU",
+                      "MT",
+                      "NL",
+                      "PT",
+                      "SK",
+                      "SI",
+                      "ES"
+                    ],
+                    "knowledge_time": "2026-08-09T12:05:50.000000Z",
+                    "market_id": "EA-EUR",
+                    "monetary_area_id": "EA",
+                    "quality": "provisional",
+                    "rate_compounding": "simple",
+                    "redistribution_status": "allowed",
+                    "revision_id": "ecb:A:2019-10-02",
+                    "semantic_role": "UNSECURED_OVERNIGHT",
+                    "source": "ecb_benchmark",
+                    "source_publication_time": "2019-10-03T06:00:00.000000Z",
+                    "staleness": "fresh",
+                    "value": "-55.100"
+                  },
+                  {
+                    "canonical_unit": "local_currency_millions",
+                    "connector_classification": "official_open",
+                    "currency": "EUR",
+                    "day_count": null,
+                    "event_time": "2019-10-02T00:00:00.000000Z",
+                    "evidence_hash": "637b23d168ccbf61e72548c71d8fb593bdb4176051728d9000fc65c9f6c21728",
+                    "instrument_id": "EA.ECB.ESTR_VOLUME",
+                    "jurisdiction_codes": [
+                      "AT",
+                      "BE",
+                      "BG",
+                      "HR",
+                      "CY",
+                      "EE",
+                      "FI",
+                      "FR",
+                      "DE",
+                      "GR",
+                      "IE",
+                      "IT",
+                      "LV",
+                      "LT",
+                      "LU",
+                      "MT",
+                      "NL",
+                      "PT",
+                      "SK",
+                      "SI",
+                      "ES"
+                    ],
+                    "knowledge_time": "2026-08-09T12:05:50.000000Z",
+                    "market_id": "EA-EUR",
+                    "monetary_area_id": "EA",
+                    "quality": "provisional",
+                    "rate_compounding": null,
+                    "redistribution_status": "allowed",
+                    "revision_id": "ecb:A:2019-10-02",
+                    "semantic_role": "REPO_VOLUME",
+                    "source": "ecb_benchmark",
+                    "source_publication_time": "2019-10-03T06:00:00.000000Z",
+                    "staleness": "fresh",
+                    "value": "33549"
+                  },
+                  {
+                    "canonical_unit": "basis_points",
+                    "connector_classification": "official_open",
+                    "currency": "EUR",
+                    "day_count": "ACT/360",
+                    "event_time": "2019-10-03T00:00:00.000000Z",
+                    "evidence_hash": "c3c66e67fa1ef782d4659cd3b52518e7da771b58bb6a4fbdbd6bf37615e43de5",
+                    "instrument_id": "EA.ECB.ESTR",
+                    "jurisdiction_codes": [
+                      "AT",
+                      "BE",
+                      "BG",
+                      "HR",
+                      "CY",
+                      "EE",
+                      "FI",
+                      "FR",
+                      "DE",
+                      "GR",
+                      "IE",
+                      "IT",
+                      "LV",
+                      "LT",
+                      "LU",
+                      "MT",
+                      "NL",
+                      "PT",
+                      "SK",
+                      "SI",
+                      "ES"
+                    ],
+                    "knowledge_time": "2026-08-09T12:05:50.000000Z",
+                    "market_id": "EA-EUR",
+                    "monetary_area_id": "EA",
+                    "quality": "provisional",
+                    "rate_compounding": "simple",
+                    "redistribution_status": "allowed",
+                    "revision_id": "ecb:A:2019-10-03",
+                    "semantic_role": "UNSECURED_OVERNIGHT",
+                    "source": "ecb_benchmark",
+                    "source_publication_time": "2019-10-04T06:00:00.000000Z",
+                    "staleness": "fresh",
+                    "value": "-55.500"
+                  },
+                  {
+                    "canonical_unit": "local_currency_millions",
+                    "connector_classification": "official_open",
+                    "currency": "EUR",
+                    "day_count": null,
+                    "event_time": "2019-10-03T00:00:00.000000Z",
+                    "evidence_hash": "dffb711c0a48d14bee0f2ddf3f859d4b94699a21fad0bae265e0a320ed16848e",
+                    "instrument_id": "EA.ECB.ESTR_VOLUME",
+                    "jurisdiction_codes": [
+                      "AT",
+                      "BE",
+                      "BG",
+                      "HR",
+                      "CY",
+                      "EE",
+                      "FI",
+                      "FR",
+                      "DE",
+                      "GR",
+                      "IE",
+                      "IT",
+                      "LV",
+                      "LT",
+                      "LU",
+                      "MT",
+                      "NL",
+                      "PT",
+                      "SK",
+                      "SI",
+                      "ES"
+                    ],
+                    "knowledge_time": "2026-08-09T12:05:50.000000Z",
+                    "market_id": "EA-EUR",
+                    "monetary_area_id": "EA",
+                    "quality": "provisional",
+                    "rate_compounding": null,
+                    "redistribution_status": "allowed",
+                    "revision_id": "ecb:A:2019-10-03",
+                    "semantic_role": "REPO_VOLUME",
+                    "source": "ecb_benchmark",
+                    "source_publication_time": "2019-10-04T06:00:00.000000Z",
+                    "staleness": "fresh",
+                    "value": "29200"
+                  },
+                  {
+                    "canonical_unit": "basis_points",
+                    "connector_classification": "official_open",
+                    "currency": "EUR",
+                    "day_count": "ACT/360",
+                    "event_time": "2019-10-04T00:00:00.000000Z",
+                    "evidence_hash": "a16e4e37f5b354af681e11d65032179aa7f31ea665abc9db88543cbb2ddfd8a4",
+                    "instrument_id": "EA.ECB.ESTR",
+                    "jurisdiction_codes": [
+                      "AT",
+                      "BE",
+                      "BG",
+                      "HR",
+                      "CY",
+                      "EE",
+                      "FI",
+                      "FR",
+                      "DE",
+                      "GR",
+                      "IE",
+                      "IT",
+                      "LV",
+                      "LT",
+                      "LU",
+                      "MT",
+                      "NL",
+                      "PT",
+                      "SK",
+                      "SI",
+                      "ES"
+                    ],
+                    "knowledge_time": "2026-08-09T12:05:50.000000Z",
+                    "market_id": "EA-EUR",
+                    "monetary_area_id": "EA",
+                    "quality": "provisional",
+                    "rate_compounding": "simple",
+                    "redistribution_status": "allowed",
+                    "revision_id": "ecb:A:2019-10-04",
+                    "semantic_role": "UNSECURED_OVERNIGHT",
+                    "source": "ecb_benchmark",
+                    "source_publication_time": "2019-10-07T06:00:00.000000Z",
+                    "staleness": "fresh",
+                    "value": "-55.300"
+                  },
+                  {
+                    "canonical_unit": "local_currency_millions",
+                    "connector_classification": "official_open",
+                    "currency": "EUR",
+                    "day_count": null,
+                    "event_time": "2019-10-04T00:00:00.000000Z",
+                    "evidence_hash": "336e2e51561af703a88fffddb294431b3091d60d2936f5a4b874d32baabad0f3",
+                    "instrument_id": "EA.ECB.ESTR_VOLUME",
+                    "jurisdiction_codes": [
+                      "AT",
+                      "BE",
+                      "BG",
+                      "HR",
+                      "CY",
+                      "EE",
+                      "FI",
+                      "FR",
+                      "DE",
+                      "GR",
+                      "IE",
+                      "IT",
+                      "LV",
+                      "LT",
+                      "LU",
+                      "MT",
+                      "NL",
+                      "PT",
+                      "SK",
+                      "SI",
+                      "ES"
+                    ],
+                    "knowledge_time": "2026-08-09T12:05:50.000000Z",
+                    "market_id": "EA-EUR",
+                    "monetary_area_id": "EA",
+                    "quality": "provisional",
+                    "rate_compounding": null,
+                    "redistribution_status": "allowed",
+                    "revision_id": "ecb:A:2019-10-04",
+                    "semantic_role": "REPO_VOLUME",
+                    "source": "ecb_benchmark",
+                    "source_publication_time": "2019-10-07T06:00:00.000000Z",
+                    "staleness": "fresh",
+                    "value": "33907"
+                  },
+                  {
+                    "canonical_unit": "basis_points",
+                    "connector_classification": "official_open",
+                    "currency": "EUR",
+                    "day_count": "ACT/360",
+                    "event_time": "2019-10-07T00:00:00.000000Z",
+                    "evidence_hash": "60c514c0af5099646cd147afacd1ec2b55006f88edb9208cda7ac34772154631",
+                    "instrument_id": "EA.ECB.ESTR",
+                    "jurisdiction_codes": [
+                      "AT",
+                      "BE",
+                      "BG",
+                      "HR",
+                      "CY",
+                      "EE",
+                      "FI",
+                      "FR",
+                      "DE",
+                      "GR",
+                      "IE",
+                      "IT",
+                      "LV",
+                      "LT",
+                      "LU",
+                      "MT",
+                      "NL",
+                      "PT",
+                      "SK",
+                      "SI",
+                      "ES"
+                    ],
+                    "knowledge_time": "2026-08-09T12:05:50.000000Z",
+                    "market_id": "EA-EUR",
+                    "monetary_area_id": "EA",
+                    "quality": "provisional",
+                    "rate_compounding": "simple",
+                    "redistribution_status": "allowed",
+                    "revision_id": "ecb:A:2019-10-07",
+                    "semantic_role": "UNSECURED_OVERNIGHT",
+                    "source": "ecb_benchmark",
+                    "source_publication_time": "2019-10-08T06:00:00.000000Z",
+                    "staleness": "fresh",
+                    "value": "-55.400"
+                  },
+                  {
+                    "canonical_unit": "local_currency_millions",
+                    "connector_classification": "official_open",
+                    "currency": "EUR",
+                    "day_count": null,
+                    "event_time": "2019-10-07T00:00:00.000000Z",
+                    "evidence_hash": "1369c817a15eb25cefbf5303ccd991c0e8fa314dfa64054da05fecc197ae1263",
+                    "instrument_id": "EA.ECB.ESTR_VOLUME",
+                    "jurisdiction_codes": [
+                      "AT",
+                      "BE",
+                      "BG",
+                      "HR",
+                      "CY",
+                      "EE",
+                      "FI",
+                      "FR",
+                      "DE",
+                      "GR",
+                      "IE",
+                      "IT",
+                      "LV",
+                      "LT",
+                      "LU",
+                      "MT",
+                      "NL",
+                      "PT",
+                      "SK",
+                      "SI",
+                      "ES"
+                    ],
+                    "knowledge_time": "2026-08-09T12:05:50.000000Z",
+                    "market_id": "EA-EUR",
+                    "monetary_area_id": "EA",
+                    "quality": "provisional",
+                    "rate_compounding": null,
+                    "redistribution_status": "allowed",
+                    "revision_id": "ecb:A:2019-10-07",
+                    "semantic_role": "REPO_VOLUME",
+                    "source": "ecb_benchmark",
+                    "source_publication_time": "2019-10-08T06:00:00.000000Z",
+                    "staleness": "fresh",
+                    "value": "33722"
+                  },
+                  {
+                    "canonical_unit": "basis_points",
+                    "connector_classification": "official_open",
+                    "currency": "EUR",
+                    "day_count": "ACT/360",
+                    "event_time": "2019-10-08T00:00:00.000000Z",
+                    "evidence_hash": "c4efdb56dc0523bb29a04ed5dfcb1dced7c64f64d0ad2f6a0d399519bee11bf8",
+                    "instrument_id": "EA.ECB.ESTR",
+                    "jurisdiction_codes": [
+                      "AT",
+                      "BE",
+                      "BG",
+                      "HR",
+                      "CY",
+                      "EE",
+                      "FI",
+                      "FR",
+                      "DE",
+                      "GR",
+                      "IE",
+                      "IT",
+                      "LV",
+                      "LT",
+                      "LU",
+                      "MT",
+                      "NL",
+                      "PT",
+                      "SK",
+                      "SI",
+                      "ES"
+                    ],
+                    "knowledge_time": "2026-08-09T12:05:50.000000Z",
+                    "market_id": "EA-EUR",
+                    "monetary_area_id": "EA",
+                    "quality": "provisional",
+                    "rate_compounding": "simple",
+                    "redistribution_status": "allowed",
+                    "revision_id": "ecb:A:2019-10-08",
+                    "semantic_role": "UNSECURED_OVERNIGHT",
+                    "source": "ecb_benchmark",
+                    "source_publication_time": "2019-10-09T06:00:00.000000Z",
+                    "staleness": "fresh",
+                    "value": "-55.200"
+                  },
+                  {
+                    "canonical_unit": "local_currency_millions",
+                    "connector_classification": "official_open",
+                    "currency": "EUR",
+                    "day_count": null,
+                    "event_time": "2019-10-08T00:00:00.000000Z",
+                    "evidence_hash": "be42ec8c565ee83d79a7cd3a69d9fa364205b48b0c91c5fc68febf47121e8716",
+                    "instrument_id": "EA.ECB.ESTR_VOLUME",
+                    "jurisdiction_codes": [
+                      "AT",
+                      "BE",
+                      "BG",
+                      "HR",
+                      "CY",
+                      "EE",
+                      "FI",
+                      "FR",
+                      "DE",
+                      "GR",
+                      "IE",
+                      "IT",
+                      "LV",
+                      "LT",
+                      "LU",
+                      "MT",
+                      "NL",
+                      "PT",
+                      "SK",
+                      "SI",
+                      "ES"
+                    ],
+                    "knowledge_time": "2026-08-09T12:05:50.000000Z",
+                    "market_id": "EA-EUR",
+                    "monetary_area_id": "EA",
+                    "quality": "provisional",
+                    "rate_compounding": null,
+                    "redistribution_status": "allowed",
+                    "revision_id": "ecb:A:2019-10-08",
+                    "semantic_role": "REPO_VOLUME",
+                    "source": "ecb_benchmark",
+                    "source_publication_time": "2019-10-09T06:00:00.000000Z",
+                    "staleness": "fresh",
+                    "value": "31536"
+                  },
+                  {
+                    "canonical_unit": "basis_points",
+                    "connector_classification": "official_open",
+                    "currency": "EUR",
+                    "day_count": "ACT/360",
+                    "event_time": "2019-10-09T00:00:00.000000Z",
+                    "evidence_hash": "615fb9d7c5195b09f4f5ba0879eb812378c0eb28a0e4515b7299355187b8d502",
+                    "instrument_id": "EA.ECB.ESTR",
+                    "jurisdiction_codes": [
+                      "AT",
+                      "BE",
+                      "BG",
+                      "HR",
+                      "CY",
+                      "EE",
+                      "FI",
+                      "FR",
+                      "DE",
+                      "GR",
+                      "IE",
+                      "IT",
+                      "LV",
+                      "LT",
+                      "LU",
+                      "MT",
+                      "NL",
+                      "PT",
+                      "SK",
+                      "SI",
+                      "ES"
+                    ],
+                    "knowledge_time": "2026-08-09T12:05:50.000000Z",
+                    "market_id": "EA-EUR",
+                    "monetary_area_id": "EA",
+                    "quality": "provisional",
+                    "rate_compounding": "simple",
+                    "redistribution_status": "allowed",
+                    "revision_id": "ecb:A:2019-10-09",
+                    "semantic_role": "UNSECURED_OVERNIGHT",
+                    "source": "ecb_benchmark",
+                    "source_publication_time": "2019-10-10T06:00:00.000000Z",
+                    "staleness": "fresh",
+                    "value": "-55.200"
+                  },
+                  {
+                    "canonical_unit": "local_currency_millions",
+                    "connector_classification": "official_open",
+                    "currency": "EUR",
+                    "day_count": null,
+                    "event_time": "2019-10-09T00:00:00.000000Z",
+                    "evidence_hash": "6d1389dbc6b8e9442e65084f72eac534a8b78064f62117f9e76c93a733df8d71",
+                    "instrument_id": "EA.ECB.ESTR_VOLUME",
+                    "jurisdiction_codes": [
+                      "AT",
+                      "BE",
+                      "BG",
+                      "HR",
+                      "CY",
+                      "EE",
+                      "FI",
+                      "FR",
+                      "DE",
+                      "GR",
+                      "IE",
+                      "IT",
+                      "LV",
+                      "LT",
+                      "LU",
+                      "MT",
+                      "NL",
+                      "PT",
+                      "SK",
+                      "SI",
+                      "ES"
+                    ],
+                    "knowledge_time": "2026-08-09T12:05:50.000000Z",
+                    "market_id": "EA-EUR",
+                    "monetary_area_id": "EA",
+                    "quality": "provisional",
+                    "rate_compounding": null,
+                    "redistribution_status": "allowed",
+                    "revision_id": "ecb:A:2019-10-09",
+                    "semantic_role": "REPO_VOLUME",
+                    "source": "ecb_benchmark",
+                    "source_publication_time": "2019-10-10T06:00:00.000000Z",
+                    "staleness": "fresh",
+                    "value": "31274"
+                  },
+                  {
+                    "canonical_unit": "basis_points",
+                    "connector_classification": "official_open",
+                    "currency": "EUR",
+                    "day_count": "ACT/360",
+                    "event_time": "2019-10-10T00:00:00.000000Z",
+                    "evidence_hash": "36950bd98227e1284c035ee209f3263cfa919932d48dc3e0e31dc7b32fc99909",
+                    "instrument_id": "EA.ECB.ESTR",
+                    "jurisdiction_codes": [
+                      "AT",
+                      "BE",
+                      "BG",
+                      "HR",
+                      "CY",
+                      "EE",
+                      "FI",
+                      "FR",
+                      "DE",
+                      "GR",
+                      "IE",
+                      "IT",
+                      "LV",
+                      "LT",
+                      "LU",
+                      "MT",
+                      "NL",
+                      "PT",
+                      "SK",
+                      "SI",
+                      "ES"
+                    ],
+                    "knowledge_time": "2026-08-09T12:05:50.000000Z",
+                    "market_id": "EA-EUR",
+                    "monetary_area_id": "EA",
+                    "quality": "provisional",
+                    "rate_compounding": "simple",
+                    "redistribution_status": "allowed",
+                    "revision_id": "ecb:A:2019-10-10",
+                    "semantic_role": "UNSECURED_OVERNIGHT",
+                    "source": "ecb_benchmark",
+                    "source_publication_time": "2019-10-11T06:00:00.000000Z",
+                    "staleness": "fresh",
+                    "value": "-55.200"
+                  },
+                  {
+                    "canonical_unit": "local_currency_millions",
+                    "connector_classification": "official_open",
+                    "currency": "EUR",
+                    "day_count": null,
+                    "event_time": "2019-10-10T00:00:00.000000Z",
+                    "evidence_hash": "25653d4763e49293af39fa3ed570f8d85d323d75d25d5c653ff53dccf0f22ea6",
+                    "instrument_id": "EA.ECB.ESTR_VOLUME",
+                    "jurisdiction_codes": [
+                      "AT",
+                      "BE",
+                      "BG",
+                      "HR",
+                      "CY",
+                      "EE",
+                      "FI",
+                      "FR",
+                      "DE",
+                      "GR",
+                      "IE",
+                      "IT",
+                      "LV",
+                      "LT",
+                      "LU",
+                      "MT",
+                      "NL",
+                      "PT",
+                      "SK",
+                      "SI",
+                      "ES"
+                    ],
+                    "knowledge_time": "2026-08-09T12:05:50.000000Z",
+                    "market_id": "EA-EUR",
+                    "monetary_area_id": "EA",
+                    "quality": "provisional",
+                    "rate_compounding": null,
+                    "redistribution_status": "allowed",
+                    "revision_id": "ecb:A:2019-10-10",
+                    "semantic_role": "REPO_VOLUME",
+                    "source": "ecb_benchmark",
+                    "source_publication_time": "2019-10-11T06:00:00.000000Z",
+                    "staleness": "fresh",
+                    "value": "30526"
+                  },
+                  {
+                    "canonical_unit": "basis_points",
+                    "connector_classification": "official_open",
+                    "currency": "EUR",
+                    "day_count": "ACT/360",
+                    "event_time": "2019-10-11T00:00:00.000000Z",
+                    "evidence_hash": "0ab346da173785a70781b74575fa139ac33b2a65d22d8b4d968c1a86afb44513",
+                    "instrument_id": "EA.ECB.ESTR",
+                    "jurisdiction_codes": [
+                      "AT",
+                      "BE",
+                      "BG",
+                      "HR",
+                      "CY",
+                      "EE",
+                      "FI",
+                      "FR",
+                      "DE",
+                      "GR",
+                      "IE",
+                      "IT",
+                      "LV",
+                      "LT",
+                      "LU",
+                      "MT",
+                      "NL",
+                      "PT",
+                      "SK",
+                      "SI",
+                      "ES"
+                    ],
+                    "knowledge_time": "2026-08-09T12:05:50.000000Z",
+                    "market_id": "EA-EUR",
+                    "monetary_area_id": "EA",
+                    "quality": "provisional",
+                    "rate_compounding": "simple",
+                    "redistribution_status": "allowed",
+                    "revision_id": "ecb:A:2019-10-11",
+                    "semantic_role": "UNSECURED_OVERNIGHT",
+                    "source": "ecb_benchmark",
+                    "source_publication_time": "2019-10-14T06:00:00.000000Z",
+                    "staleness": "fresh",
+                    "value": "-55.00"
+                  },
+                  {
+                    "canonical_unit": "local_currency_millions",
+                    "connector_classification": "official_open",
+                    "currency": "EUR",
+                    "day_count": null,
+                    "event_time": "2019-10-11T00:00:00.000000Z",
+                    "evidence_hash": "2163eb73d3a31499d9a9960ac831e44277d4fea9f7a78f16e121c23dc9d82d07",
+                    "instrument_id": "EA.ECB.ESTR_VOLUME",
+                    "jurisdiction_codes": [
+                      "AT",
+                      "BE",
+                      "BG",
+                      "HR",
+                      "CY",
+                      "EE",
+                      "FI",
+                      "FR",
+                      "DE",
+                      "GR",
+                      "IE",
+                      "IT",
+                      "LV",
+                      "LT",
+                      "LU",
+                      "MT",
+                      "NL",
+                      "PT",
+                      "SK",
+                      "SI",
+                      "ES"
+                    ],
+                    "knowledge_time": "2026-08-09T12:05:50.000000Z",
+                    "market_id": "EA-EUR",
+                    "monetary_area_id": "EA",
+                    "quality": "provisional",
+                    "rate_compounding": null,
+                    "redistribution_status": "allowed",
+                    "revision_id": "ecb:A:2019-10-11",
+                    "semantic_role": "REPO_VOLUME",
+                    "source": "ecb_benchmark",
+                    "source_publication_time": "2019-10-14T06:00:00.000000Z",
+                    "staleness": "fresh",
+                    "value": "32614"
+                  },
+                  {
+                    "canonical_unit": "basis_points",
+                    "connector_classification": "official_open",
+                    "currency": "EUR",
+                    "day_count": "ACT/360",
+                    "event_time": "2019-10-14T00:00:00.000000Z",
+                    "evidence_hash": "90f7e718bb489ab3e54be9bdf0699316549986e8e00cb2af3d37cc1e5523a6a0",
+                    "instrument_id": "EA.ECB.ESTR",
+                    "jurisdiction_codes": [
+                      "AT",
+                      "BE",
+                      "BG",
+                      "HR",
+                      "CY",
+                      "EE",
+                      "FI",
+                      "FR",
+                      "DE",
+                      "GR",
+                      "IE",
+                      "IT",
+                      "LV",
+                      "LT",
+                      "LU",
+                      "MT",
+                      "NL",
+                      "PT",
+                      "SK",
+                      "SI",
+                      "ES"
+                    ],
+                    "knowledge_time": "2026-08-09T12:05:50.000000Z",
+                    "market_id": "EA-EUR",
+                    "monetary_area_id": "EA",
+                    "quality": "provisional",
+                    "rate_compounding": "simple",
+                    "redistribution_status": "allowed",
+                    "revision_id": "ecb:A:2019-10-14",
+                    "semantic_role": "UNSECURED_OVERNIGHT",
+                    "source": "ecb_benchmark",
+                    "source_publication_time": "2019-10-15T06:00:00.000000Z",
+                    "staleness": "fresh",
+                    "value": "-54.900"
+                  },
+                  {
+                    "canonical_unit": "local_currency_millions",
+                    "connector_classification": "official_open",
+                    "currency": "EUR",
+                    "day_count": null,
+                    "event_time": "2019-10-14T00:00:00.000000Z",
+                    "evidence_hash": "6cc99af150788309b2d2e2fe77b0048c797d4ed28df8ebabd2cace9acf57fed1",
+                    "instrument_id": "EA.ECB.ESTR_VOLUME",
+                    "jurisdiction_codes": [
+                      "AT",
+                      "BE",
+                      "BG",
+                      "HR",
+                      "CY",
+                      "EE",
+                      "FI",
+                      "FR",
+                      "DE",
+                      "GR",
+                      "IE",
+                      "IT",
+                      "LV",
+                      "LT",
+                      "LU",
+                      "MT",
+                      "NL",
+                      "PT",
+                      "SK",
+                      "SI",
+                      "ES"
+                    ],
+                    "knowledge_time": "2026-08-09T12:05:50.000000Z",
+                    "market_id": "EA-EUR",
+                    "monetary_area_id": "EA",
+                    "quality": "provisional",
+                    "rate_compounding": null,
+                    "redistribution_status": "allowed",
+                    "revision_id": "ecb:A:2019-10-14",
+                    "semantic_role": "REPO_VOLUME",
+                    "source": "ecb_benchmark",
+                    "source_publication_time": "2019-10-15T06:00:00.000000Z",
+                    "staleness": "fresh",
+                    "value": "31781"
+                  }
+                ],
+                "rights": {
+                  "decision_source": "deployed_seiche_registry",
+                  "manifest_sha256": "8f29f6598c39a68112ce7e34502dae4f385b28121c4c0967ff290d74b2df11f4",
+                  "public_values": true,
+                  "redistribution_status": "allowed",
+                  "registry_release_sha": "4766946954aa7231649d6236eea9144c5e3e9e78",
+                  "scope": "source"
+                },
+                "schema_version": "1.0.0",
+                "source": "ecb_benchmark"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Corpus service health",
+      "prompt": "Check the corpus service's reported health and explain unavailable storage or service state separately from dataset freshness and licensing.",
+      "tools_triggered": "corpus_health",
+      "expected_behavior": "Report health state and limitations. A healthy service does not establish current data, complete coverage or redistribution authorization.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:38:19.242883+00:00",
+          "endpoint": "https://agents.seiche.info/products/seiche-market-corpus/mcp",
+          "tool": "corpus_health",
+          "arguments": {},
+          "elapsed_seconds": 1.016,
+          "response": {
+            "id": 4,
+            "jsonrpc": "2.0",
+            "result": {
+              "content": [
+                {
+                  "text": "{\"checked_at\":\"2026-10-28T14:38:20.229778Z\",\"checks\":{\"bis_database\":{\"bytes\":65536,\"modified_at\":\"2026-10-28T10:35:05.437606+00:00\",\"present\":true},\"bis_inventory\":{\"bytes\":33111,\"modified_at\":\"2026-10-28T10:35:05.450606+00:00\",\"present\":true},\"bis_records_root\":{\"bytes\":4096,\"modified_at\":\"2026-10-28T10:36:23.599162+00:00\",\"present\":true},\"deep\":{\"bis_all_flow_receipt\":{\"aggregate_row_count\":76665476,\"error_count\":0,\"expected_count\":27,\"materialized_count\":27,\"sampled_shard_count\":27,\"sha256\":\"d3b1c37fc30b5f853fed5f06b47e1385b45597f7eeb88603c9db1e99bce470ff\",\"status\":\"complete\"},\"bis_flows\":29,\"bis_inventory_sha256\":\"05c5b08074c65299e59e09285a85e8aaffe895e64a8d840a3a81bbdca4a83f64\",\"bis_materialization\":{\"aggregate_row_count\":76665476,\"error_count\":0,\"expected_count\":27,\"expected_flow_ids\":[\"WS_CBPOL\",\"WS_CBS_PUB\",\"WS_CBTA\",\"WS_CPMI_CASHLESS\",\"WS_CPMI_CT1\",\"WS_CPMI_CT2\",\"WS_CPMI_DEVICES\",\"WS_CPMI_INSTITUT\",\"WS_CPMI_MACRO\",\"WS_CPMI_PARTICIP\",\"WS_CPMI_SYSTEMS\",\"WS_CPP\",\"WS_CREDIT_GAP\",\"WS_DEBT_SEC2_PUB\",\"WS_DER_OTC_TOV\",\"WS_DPP\",\"WS_DSR\",\"WS_EER\",\"WS_GLI\",\"WS_LBS_D_PUB\",\"WS_LONG_CPI\",\"WS_NA_SEC_DSS\",\"WS_OTC_DERIV2\",\"WS_SPP\",\"WS_TC\",\"WS_XRU\",\"WS_XTD_DERIV\"],\"flows\":[{\"capture_id\":949,\"flow_id\":\"WS_CBPOL\",\"manifest_sha256\":\"95fada9299713d4e3f81a8796fed5b6960860d3e929d7b09f137341752540c4a\",\"normalized_sha256\":\"38ef1b31a8aa4e28663f8826167886e213d33d831ab7d5cf10288ce30ad53e8e\",\"row_count\":734199},{\"capture_id\":629,\"flow_id\":\"WS_CBS_PUB\",\"manifest_sha256\":\"0d7e5be4e714e1d9739ad037c97b5662d779ed885f9b2b1c925ad58092abbabe\",\"normalized_sha256\":\"328ab8caf4db63b4b76edee9f20b4f38a1aabd73da7c4d732acc62b64400737a\",\"row_count\":11321249},{\"capture_id\":392,\"flow_id\":\"WS_CBTA\",\"manifest_sha256\":\"c368c294b2d26f085e24693d8a567d9f733457451ffc08368baaa859dbc69784\",\"normalized_sha256\":\"4c037043d8767c8a22e9912c98b8f86e3c887601976fa4747440de3b542e5663\",\"row_count\":146797},{\"capture_id\":42,\"flow_id\":\"WS_CPMI_CASHLESS\",\"manifest_sha256\":\"4d176b619f5bad9cdfd14c5e3a326e32acb724666be6670a3d6fd19f8bb10094\",\"normalized_sha256\":\"8967c781c3a97b544d6790e610da61d580c9d97ae8d2f5ab69f9daaabe17bf81\",\"row_count\":19514},{\"capture_id\":43,\"flow_id\":\"WS_CPMI_CT1\",\"manifest_sha256\":\"d458fabf4f2aa3509edc935b553de26278c0c03a4373ce4fddb4352906afcbf3\",\"normalized_sha256\":\"d1f8c79e4040ae0d076e348c8596a67515a5d13f92c441bba6e9eaf687dbebf8\",\"row_count\":68197},{\"capture_id\":44,\"flow_id\":\"WS_CPMI_CT2\",\"manifest_sha256\":\"eaa002c2dc4a073b5dae5f9b83ac25db7b8d492322b99d163b00664b118191e2\",\"normalized_sha256\":\"56e645e3c2494dd0a843c02edaae1b423a3caec9220a4542f05b9afe4349845e\",\"row_count\":22755},{\"capture_id\":45,\"flow_id\":\"WS_CPMI_DEVICES\",\"manifest_sha256\":\"7dd922fa95c161934ad1dc37ebb34ac507f3c6ad79f6af63cbbbd71dd3b97e6e\",\"normalized_sha256\":\"b89ef3a84de4cbf538e37a863192ae585b0142a810aede3bb30ba1460afb17fd\",\"row_count\":3532},{\"capture_id\":46,\"flow_id\":\"WS_CPMI_INSTITUT\",\"manifest_sha256\":\"5174b95de6a0957e252c95d51cda013c5ebc6e1b3800680a1ce5ee1bbd5bd14b\",\"normalized_sha256\":\"528fd0baba252338e09a581f6b3ff27408187ef551284cc52582b2a9798daf50\",\"row_count\":7920},{\"capture_id\":47,\"flow_id\":\"WS_CPMI_MACRO\",\"manifest_sha256\":\"2570df89942e68175668c9633f2160f4c2630e915bde666fe8ad643beba79ae8\",\"normalized_sha256\":\"80a7744a64ad17b8be18b40e915e519450b29a1447c6ff1d8c4862eff5038bab\",\"row_count\":8267},{\"capture_id\":48,\"flow_id\":\"WS_CPMI_PARTICIP\",\"manifest_sha256\":\"fc57bde3a6a584e01fca09240964c4d076958db7b0505af1d08d2496838fc2d6\",\"normalized_sha256\":\"a3dc52b6c24ec2b3feb818aabeed2ce032bff5df7bc298a2bb922abb44a8b996\",\"row_count\":25086},{\"capture_id\":11,\"flow_id\":\"WS_CPMI_SYSTEMS\",\"manifest_sha256\":\"16456bf41e6c9a976fbca484b660f6e425824b719253a86cf021201f229372cc\",\"normalized_sha256\":\"ca44911cfbd90e37ad34d701c2a744c798e9b67fe0eae733b09fe596c2218d3f\",\"row_count\":38179},{\"capture_id\":706,\"flow_id\":\"WS_CPP\",\"manifest_sha256\":\"ba21b4c7a26936affca38b7dd55cfd4a49e190f3ce33dd0750babbc32281f3c1\",\"normalized_sha256\":\"0cee18eec6dfd157041f4a744c3bbd3c5910b6d822c19f387c013d5421cc388b\",\"row_count\":6521},{\"capture_id\":630,\"flow_id\":\"WS_CREDIT_GAP\",\"manifest_sha256\":\"6a42df90bdcec225d00420bcc9a2e673e2249b31e8b80cf13d59895745ac58d5\",\"normalized_sha256\":\"901e2272572273dbf4f5a158dfa01b7c7723322cd6029f8cae65474aa7d99907\",\"row_count\":24620},{\"capture_id\":707,\"flow_id\":\"WS_DEBT_SEC2_PUB\",\"manifest_sha256\":\"4dd87f07af3f3babbbbd6e2f9ecca383a0e8df5803d39fada72de22799702b31\",\"normalized_sha256\":\"5ebd7edc2eb50755861489aeea536ec16b51229635bd5d51dda7472fc2e5d299\",\"row_count\":18673034},{\"capture_id\":52,\"flow_id\":\"WS_DER_OTC_TOV\",\"manifest_sha256\":\"a6f8947eee12d83088d202ba9e145582bf4518aeb8fa6283b4924b19ba9cce11\",\"normalized_sha256\":\"2c854c5d13503b2a3d3d11bf9762c4c66c57b1a806e755b38aa4407dd6049381\",\"row_count\":1342771},{\"capture_id\":708,\"flow_id\":\"WS_DPP\",\"manifest_sha256\":\"2af8ac05c3e7db13b7acc41ce37bc8ebbcec648bfd28383d229035dbbc23a83b\",\"normalized_sha256\":\"42447d081dd1bfea97a7a5933352ad54b4f1d882c7d9b8bcd7cc7021956c93f6\",\"row_count\":45198},{\"capture_id\":632,\"flow_id\":\"WS_DSR\",\"manifest_sha256\":\"a32f3815ab8f631107d1ba1f936743f4879bc64d3a6528b526677be604e56f95\",\"normalized_sha256\":\"32006eca1bc0899a8a4858e9c5c0c41cc11f4949d9084677d88bc0a4d1ba6d11\",\"row_count\":7182},{\"capture_id\":950,\"flow_id\":\"WS_EER\",\"manifest_sha256\":\"216ccfaa8f7052e92f13e36972232a4b64f0f5414d41de5af8e7c97e34df353f\",\"normalized_sha256\":\"8f41878570992b06f1e5ea6027dc924afb64ba20f7cf8214a0365baad6e4e421\",\"row_count\":1212637},{\"capture_id\":951,\"flow_id\":\"WS_GLI\",\"manifest_sha256\":\"50d7bd9b878f991cd1ce3a7d5f6bbcd1ca8b073fd63a1041c7211b804f61e27c\",\"normalized_sha256\":\"f1e1542d7a64675241f861ff81a465704cb838391b39f6dda8d1dbbd54366e1d\",\"row_count\":24378},{\"capture_id\":635,\"flow_id\":\"WS_LBS_D_PUB\",\"manifest_sha256\":\"3dfb4907d5c7c61c81490b5132af37b78c7f788d5a5576562b36946f05b0add7\",\"normalized_sha256\":\"9f0e5f476b98b7fbe59c351bfb968a412c7ab6931d320d4704cb5bef0f5ebdb6\",\"row_count\":36801850},{\"capture_id\":710,\"flow_id\":\"WS_LONG_CPI\",\"manifest_sha256\":\"cc2739ec764e406d7f74feb1e2d03dde1bb1a23464b9f74f82a30bc4543203ad\",\"normalized_sha256\":\"f957289a4ebe7ecb05e8bb58ac6ef4a9848bb168b37ad4cd6160cf7b39b4a4b4\",\"row_count\":106093},{\"capture_id\":636,\"flow_id\":\"WS_NA_SEC_DSS\",\"manifest_sha256\":\"caf1eb8f66772682133724d0389835144cd8c31bd3fa1e48e5e37ba4dd4a2e50\",\"normalized_sha256\":\"e726efb96d467c30669283e6d7cda4f7aca149ec4662a40d530db3a8981a228c\",\"row_count\":3849576},{\"capture_id\":59,\"flow_id\":\"WS_OTC_DERIV2\",\"manifest_sha256\":\"426cd495dd8ed718f2e74be80c36e62a872751db43e1dbf994889e31fa535f2d\",\"normalized_sha256\":\"6084f93b9655d7fbd22dd8f097c766e4b94612d26c308cad60284a1ce5861145\",\"row_count\":226331},{\"capture_id\":711,\"flow_id\":\"WS_SPP\",\"manifest_sha256\":\"449cc5acb06fa03a1ed58f79e6ecc3845aa09e8d756e58dec524268f64208b83\",\"normalized_sha256\":\"f41e6c3f0a0870cb3c4c41089bbb2711798bdfa65c8346739f9d8462d37caf30\",\"row_count\":35780},{\"capture_id\":637,\"flow_id\":\"WS_TC\",\"manifest_sha256\":\"bcaa72ee30fbea2d2e4b2e0a25e0542517fa42fdc08e328eb85715c92efbb460\",\"normalized_sha256\":\"bfb61b0505beaee676a3f8f0608dae43035734f3477ea96e198edb3fc144f80f\",\"row_count\":187266},{\"capture_id\":952,\"flow_id\":\"WS_XRU\",\"manifest_sha256\":\"f8c75b7d60a05fc35a359c4ec373ac9eb201f452646e8c58b7fbb242516da054\",\"normalized_sha256\":\"698a2b0e7ae2d0151369106a6480624bdadbd419b8a6f5d449ac11b3d1f2ac52\",\"row_count\":1492940},{\"capture_id\":639,\"flow_id\":\"WS_XTD_DERIV\",\"manifest_sha256\":\"473d4ee74ef21557460752a84556b9bb03f494286b67d87f804847624e52035d\",\"normalized_sha256\":\"5a0c4a424b1278925c13e0640740e08c916bb3eb362fb48c523ba0c51a60ba42\",\"row_count\":233604}],\"generated_at\":\"2026-10-28T10:35:04.933074Z\",\"inventory_sha256\":\"05c5b08074c65299e59e09285a85e8aaffe895e64a8d840a3a81bbdca4a83f64\",\"materialized_count\":27,\"receipt_sha256\":\"d3b1c37fc30b5f853fed5f06b47e1385b45597f7eeb88603c9db1e99bce470ff\",\"release_id\":\"corpus-7cb1695c6affa707\",\"schema\":\"liquilens-bis-live-materialization-v1\",\"scope\":\"live_materialization\",\"sha256\":\"0d6d0e8f538cf51b3ca9f56d5f065ca809041e5c3e7898eae31fa351f15eafbc\"},\"bis_records_probe\":{\"artifact_sha256\":\"f1e1542d7a64675241f861ff81a465704cb838391b39f6dda8d1dbbd54366e1d\",\"count\":1,\"flow_id\":\"WS_GLI\"},\"datasets\":1122,\"duckdb_version\":\"1.5.5\",\"engine_index\":{\"artifact_id\":\"liquilens-engine-public-index-v1:corpus-7cb1695c6affa707:29bcd84daf10acb94a74779facebe3a0484b0f9dc0b16f7b5be5727e2e956b36\",\"attempt_count\":1118,\"index_sha256\":\"29bcd84daf10acb94a74779facebe3a0484b0f9dc0b16f7b5be5727e2e956b36\",\"object_count\":1110,\"recovered_object_count\":8,\"unresolved_object_count\":0},\"engine_object_probe\":{\"artifact_id\":\"liquilens-engine-object:corpus-7cb1695c6affa707:fdic-locations-page-0001:b50e2cfb248cc063\",\"attempt_count\":2,\"dataset_id\":\"fdic-locations-page-0001\",\"recovered\":true},\"ok\":true,\"seiche_probe\":{\"count\":1,\"lake_snapshot_sha256\":\"70a4d6b4f85ff711275157e16fc59ee2ade4263683935c548c41ae536c0708b3\",\"market\":\"IN-INR\",\"source\":\"rbi_official\"}},\"duckdb_cli\":{\"bytes\":61936648,\"modified_at\":\"2026-08-11T22:34:06.535889+00:00\",\"present\":true},\"engine_index\":{\"bytes\":971896,\"modified_at\":\"2026-09-02T18:03:30.541666+00:00\",\"present\":true},\"seiche_root\":{\"bytes\":4096,\"modified_at\":\"2026-09-04T13:40:54.626888+00:00\",\"present\":true},\"source_rights\":{\"bytes\":4052,\"modified_at\":\"2026-09-15T17:53:46.527430+00:00\",\"present\":true}},\"release_id\":\"corpus-7cb1695c6affa707\",\"schema_version\":\"1.0.0\",\"service\":\"liquilens-market-corpus\",\"status\":\"ok\"}",
+                  "type": "text"
+                }
+              ],
+              "isError": false,
+              "structuredContent": {
+                "checked_at": "2026-10-28T14:38:20.229778Z",
+                "checks": {
+                  "bis_database": {
+                    "bytes": 65536,
+                    "modified_at": "2026-10-28T10:35:05.437606+00:00",
+                    "present": true
+                  },
+                  "bis_inventory": {
+                    "bytes": 33111,
+                    "modified_at": "2026-10-28T10:35:05.450606+00:00",
+                    "present": true
+                  },
+                  "bis_records_root": {
+                    "bytes": 4096,
+                    "modified_at": "2026-10-28T10:36:23.599162+00:00",
+                    "present": true
+                  },
+                  "deep": {
+                    "bis_all_flow_receipt": {
+                      "aggregate_row_count": 76665476,
+                      "error_count": 0,
+                      "expected_count": 27,
+                      "materialized_count": 27,
+                      "sampled_shard_count": 27,
+                      "sha256": "d3b1c37fc30b5f853fed5f06b47e1385b45597f7eeb88603c9db1e99bce470ff",
+                      "status": "complete"
+                    },
+                    "bis_flows": 29,
+                    "bis_inventory_sha256": "05c5b08074c65299e59e09285a85e8aaffe895e64a8d840a3a81bbdca4a83f64",
+                    "bis_materialization": {
+                      "aggregate_row_count": 76665476,
+                      "error_count": 0,
+                      "expected_count": 27,
+                      "expected_flow_ids": [
+                        "WS_CBPOL",
+                        "WS_CBS_PUB",
+                        "WS_CBTA",
+                        "WS_CPMI_CASHLESS",
+                        "WS_CPMI_CT1",
+                        "WS_CPMI_CT2",
+                        "WS_CPMI_DEVICES",
+                        "WS_CPMI_INSTITUT",
+                        "WS_CPMI_MACRO",
+                        "WS_CPMI_PARTICIP",
+                        "WS_CPMI_SYSTEMS",
+                        "WS_CPP",
+                        "WS_CREDIT_GAP",
+                        "WS_DEBT_SEC2_PUB",
+                        "WS_DER_OTC_TOV",
+                        "WS_DPP",
+                        "WS_DSR",
+                        "WS_EER",
+                        "WS_GLI",
+                        "WS_LBS_D_PUB",
+                        "WS_LONG_CPI",
+                        "WS_NA_SEC_DSS",
+                        "WS_OTC_DERIV2",
+                        "WS_SPP",
+                        "WS_TC",
+                        "WS_XRU",
+                        "WS_XTD_DERIV"
+                      ],
+                      "flows": [
+                        {
+                          "capture_id": 949,
+                          "flow_id": "WS_CBPOL",
+                          "manifest_sha256": "95fada9299713d4e3f81a8796fed5b6960860d3e929d7b09f137341752540c4a",
+                          "normalized_sha256": "38ef1b31a8aa4e28663f8826167886e213d33d831ab7d5cf10288ce30ad53e8e",
+                          "row_count": 734199
+                        },
+                        {
+                          "capture_id": 629,
+                          "flow_id": "WS_CBS_PUB",
+                          "manifest_sha256": "0d7e5be4e714e1d9739ad037c97b5662d779ed885f9b2b1c925ad58092abbabe",
+                          "normalized_sha256": "328ab8caf4db63b4b76edee9f20b4f38a1aabd73da7c4d732acc62b64400737a",
+                          "row_count": 11321249
+                        },
+                        {
+                          "capture_id": 392,
+                          "flow_id": "WS_CBTA",
+                          "manifest_sha256": "c368c294b2d26f085e24693d8a567d9f733457451ffc08368baaa859dbc69784",
+                          "normalized_sha256": "4c037043d8767c8a22e9912c98b8f86e3c887601976fa4747440de3b542e5663",
+                          "row_count": 146797
+                        },
+                        {
+                          "capture_id": 42,
+                          "flow_id": "WS_CPMI_CASHLESS",
+                          "manifest_sha256": "4d176b619f5bad9cdfd14c5e3a326e32acb724666be6670a3d6fd19f8bb10094",
+                          "normalized_sha256": "8967c781c3a97b544d6790e610da61d580c9d97ae8d2f5ab69f9daaabe17bf81",
+                          "row_count": 19514
+                        },
+                        {
+                          "capture_id": 43,
+                          "flow_id": "WS_CPMI_CT1",
+                          "manifest_sha256": "d458fabf4f2aa3509edc935b553de26278c0c03a4373ce4fddb4352906afcbf3",
+                          "normalized_sha256": "d1f8c79e4040ae0d076e348c8596a67515a5d13f92c441bba6e9eaf687dbebf8",
+                          "row_count": 68197
+                        },
+                        {
+                          "capture_id": 44,
+                          "flow_id": "WS_CPMI_CT2",
+                          "manifest_sha256": "eaa002c2dc4a073b5dae5f9b83ac25db7b8d492322b99d163b00664b118191e2",
+                          "normalized_sha256": "56e645e3c2494dd0a843c02edaae1b423a3caec9220a4542f05b9afe4349845e",
+                          "row_count": 22755
+                        },
+                        {
+                          "capture_id": 45,
+                          "flow_id": "WS_CPMI_DEVICES",
+                          "manifest_sha256": "7dd922fa95c161934ad1dc37ebb34ac507f3c6ad79f6af63cbbbd71dd3b97e6e",
+                          "normalized_sha256": "b89ef3a84de4cbf538e37a863192ae585b0142a810aede3bb30ba1460afb17fd",
+                          "row_count": 3532
+                        },
+                        {
+                          "capture_id": 46,
+                          "flow_id": "WS_CPMI_INSTITUT",
+                          "manifest_sha256": "5174b95de6a0957e252c95d51cda013c5ebc6e1b3800680a1ce5ee1bbd5bd14b",
+                          "normalized_sha256": "528fd0baba252338e09a581f6b3ff27408187ef551284cc52582b2a9798daf50",
+                          "row_count": 7920
+                        },
+                        {
+                          "capture_id": 47,
+                          "flow_id": "WS_CPMI_MACRO",
+                          "manifest_sha256": "2570df89942e68175668c9633f2160f4c2630e915bde666fe8ad643beba79ae8",
+                          "normalized_sha256": "80a7744a64ad17b8be18b40e915e519450b29a1447c6ff1d8c4862eff5038bab",
+                          "row_count": 8267
+                        },
+                        {
+                          "capture_id": 48,
+                          "flow_id": "WS_CPMI_PARTICIP",
+                          "manifest_sha256": "fc57bde3a6a584e01fca09240964c4d076958db7b0505af1d08d2496838fc2d6",
+                          "normalized_sha256": "a3dc52b6c24ec2b3feb818aabeed2ce032bff5df7bc298a2bb922abb44a8b996",
+                          "row_count": 25086
+                        },
+                        {
+                          "capture_id": 11,
+                          "flow_id": "WS_CPMI_SYSTEMS",
+                          "manifest_sha256": "16456bf41e6c9a976fbca484b660f6e425824b719253a86cf021201f229372cc",
+                          "normalized_sha256": "ca44911cfbd90e37ad34d701c2a744c798e9b67fe0eae733b09fe596c2218d3f",
+                          "row_count": 38179
+                        },
+                        {
+                          "capture_id": 706,
+                          "flow_id": "WS_CPP",
+                          "manifest_sha256": "ba21b4c7a26936affca38b7dd55cfd4a49e190f3ce33dd0750babbc32281f3c1",
+                          "normalized_sha256": "0cee18eec6dfd157041f4a744c3bbd3c5910b6d822c19f387c013d5421cc388b",
+                          "row_count": 6521
+                        },
+                        {
+                          "capture_id": 630,
+                          "flow_id": "WS_CREDIT_GAP",
+                          "manifest_sha256": "6a42df90bdcec225d00420bcc9a2e673e2249b31e8b80cf13d59895745ac58d5",
+                          "normalized_sha256": "901e2272572273dbf4f5a158dfa01b7c7723322cd6029f8cae65474aa7d99907",
+                          "row_count": 24620
+                        },
+                        {
+                          "capture_id": 707,
+                          "flow_id": "WS_DEBT_SEC2_PUB",
+                          "manifest_sha256": "4dd87f07af3f3babbbbd6e2f9ecca383a0e8df5803d39fada72de22799702b31",
+                          "normalized_sha256": "5ebd7edc2eb50755861489aeea536ec16b51229635bd5d51dda7472fc2e5d299",
+                          "row_count": 18673034
+                        },
+                        {
+                          "capture_id": 52,
+                          "flow_id": "WS_DER_OTC_TOV",
+                          "manifest_sha256": "a6f8947eee12d83088d202ba9e145582bf4518aeb8fa6283b4924b19ba9cce11",
+                          "normalized_sha256": "2c854c5d13503b2a3d3d11bf9762c4c66c57b1a806e755b38aa4407dd6049381",
+                          "row_count": 1342771
+                        },
+                        {
+                          "capture_id": 708,
+                          "flow_id": "WS_DPP",
+                          "manifest_sha256": "2af8ac05c3e7db13b7acc41ce37bc8ebbcec648bfd28383d229035dbbc23a83b",
+                          "normalized_sha256": "42447d081dd1bfea97a7a5933352ad54b4f1d882c7d9b8bcd7cc7021956c93f6",
+                          "row_count": 45198
+                        },
+                        {
+                          "capture_id": 632,
+                          "flow_id": "WS_DSR",
+                          "manifest_sha256": "a32f3815ab8f631107d1ba1f936743f4879bc64d3a6528b526677be604e56f95",
+                          "normalized_sha256": "32006eca1bc0899a8a4858e9c5c0c41cc11f4949d9084677d88bc0a4d1ba6d11",
+                          "row_count": 7182
+                        },
+                        {
+                          "capture_id": 950,
+                          "flow_id": "WS_EER",
+                          "manifest_sha256": "216ccfaa8f7052e92f13e36972232a4b64f0f5414d41de5af8e7c97e34df353f",
+                          "normalized_sha256": "8f41878570992b06f1e5ea6027dc924afb64ba20f7cf8214a0365baad6e4e421",
+                          "row_count": 1212637
+                        },
+                        {
+                          "capture_id": 951,
+                          "flow_id": "WS_GLI",
+                          "manifest_sha256": "50d7bd9b878f991cd1ce3a7d5f6bbcd1ca8b073fd63a1041c7211b804f61e27c",
+                          "normalized_sha256": "f1e1542d7a64675241f861ff81a465704cb838391b39f6dda8d1dbbd54366e1d",
+                          "row_count": 24378
+                        },
+                        {
+                          "capture_id": 635,
+                          "flow_id": "WS_LBS_D_PUB",
+                          "manifest_sha256": "3dfb4907d5c7c61c81490b5132af37b78c7f788d5a5576562b36946f05b0add7",
+                          "normalized_sha256": "9f0e5f476b98b7fbe59c351bfb968a412c7ab6931d320d4704cb5bef0f5ebdb6",
+                          "row_count": 36801850
+                        },
+                        {
+                          "capture_id": 710,
+                          "flow_id": "WS_LONG_CPI",
+                          "manifest_sha256": "cc2739ec764e406d7f74feb1e2d03dde1bb1a23464b9f74f82a30bc4543203ad",
+                          "normalized_sha256": "f957289a4ebe7ecb05e8bb58ac6ef4a9848bb168b37ad4cd6160cf7b39b4a4b4",
+                          "row_count": 106093
+                        },
+                        {
+                          "capture_id": 636,
+                          "flow_id": "WS_NA_SEC_DSS",
+                          "manifest_sha256": "caf1eb8f66772682133724d0389835144cd8c31bd3fa1e48e5e37ba4dd4a2e50",
+                          "normalized_sha256": "e726efb96d467c30669283e6d7cda4f7aca149ec4662a40d530db3a8981a228c",
+                          "row_count": 3849576
+                        },
+                        {
+                          "capture_id": 59,
+                          "flow_id": "WS_OTC_DERIV2",
+                          "manifest_sha256": "426cd495dd8ed718f2e74be80c36e62a872751db43e1dbf994889e31fa535f2d",
+                          "normalized_sha256": "6084f93b9655d7fbd22dd8f097c766e4b94612d26c308cad60284a1ce5861145",
+                          "row_count": 226331
+                        },
+                        {
+                          "capture_id": 711,
+                          "flow_id": "WS_SPP",
+                          "manifest_sha256": "449cc5acb06fa03a1ed58f79e6ecc3845aa09e8d756e58dec524268f64208b83",
+                          "normalized_sha256": "f41e6c3f0a0870cb3c4c41089bbb2711798bdfa65c8346739f9d8462d37caf30",
+                          "row_count": 35780
+                        },
+                        {
+                          "capture_id": 637,
+                          "flow_id": "WS_TC",
+                          "manifest_sha256": "bcaa72ee30fbea2d2e4b2e0a25e0542517fa42fdc08e328eb85715c92efbb460",
+                          "normalized_sha256": "bfb61b0505beaee676a3f8f0608dae43035734f3477ea96e198edb3fc144f80f",
+                          "row_count": 187266
+                        },
+                        {
+                          "capture_id": 952,
+                          "flow_id": "WS_XRU",
+                          "manifest_sha256": "f8c75b7d60a05fc35a359c4ec373ac9eb201f452646e8c58b7fbb242516da054",
+                          "normalized_sha256": "698a2b0e7ae2d0151369106a6480624bdadbd419b8a6f5d449ac11b3d1f2ac52",
+                          "row_count": 1492940
+                        },
+                        {
+                          "capture_id": 639,
+                          "flow_id": "WS_XTD_DERIV",
+                          "manifest_sha256": "473d4ee74ef21557460752a84556b9bb03f494286b67d87f804847624e52035d",
+                          "normalized_sha256": "5a0c4a424b1278925c13e0640740e08c916bb3eb362fb48c523ba0c51a60ba42",
+                          "row_count": 233604
+                        }
+                      ],
+                      "generated_at": "2026-10-28T10:35:04.933074Z",
+                      "inventory_sha256": "05c5b08074c65299e59e09285a85e8aaffe895e64a8d840a3a81bbdca4a83f64",
+                      "materialized_count": 27,
+                      "receipt_sha256": "d3b1c37fc30b5f853fed5f06b47e1385b45597f7eeb88603c9db1e99bce470ff",
+                      "release_id": "corpus-7cb1695c6affa707",
+                      "schema": "liquilens-bis-live-materialization-v1",
+                      "scope": "live_materialization",
+                      "sha256": "0d6d0e8f538cf51b3ca9f56d5f065ca809041e5c3e7898eae31fa351f15eafbc"
+                    },
+                    "bis_records_probe": {
+                      "artifact_sha256": "f1e1542d7a64675241f861ff81a465704cb838391b39f6dda8d1dbbd54366e1d",
+                      "count": 1,
+                      "flow_id": "WS_GLI"
+                    },
+                    "datasets": 1122,
+                    "duckdb_version": "1.5.5",
+                    "engine_index": {
+                      "artifact_id": "liquilens-engine-public-index-v1:corpus-7cb1695c6affa707:29bcd84daf10acb94a74779facebe3a0484b0f9dc0b16f7b5be5727e2e956b36",
+                      "attempt_count": 1118,
+                      "index_sha256": "29bcd84daf10acb94a74779facebe3a0484b0f9dc0b16f7b5be5727e2e956b36",
+                      "object_count": 1110,
+                      "recovered_object_count": 8,
+                      "unresolved_object_count": 0
+                    },
+                    "engine_object_probe": {
+                      "artifact_id": "liquilens-engine-object:corpus-7cb1695c6affa707:fdic-locations-page-0001:b50e2cfb248cc063",
+                      "attempt_count": 2,
+                      "dataset_id": "fdic-locations-page-0001",
+                      "recovered": true
+                    },
+                    "ok": true,
+                    "seiche_probe": {
+                      "count": 1,
+                      "lake_snapshot_sha256": "70a4d6b4f85ff711275157e16fc59ee2ade4263683935c548c41ae536c0708b3",
+                      "market": "IN-INR",
+                      "source": "rbi_official"
+                    }
+                  },
+                  "duckdb_cli": {
+                    "bytes": 61936648,
+                    "modified_at": "2026-08-11T22:34:06.535889+00:00",
+                    "present": true
+                  },
+                  "engine_index": {
+                    "bytes": 971896,
+                    "modified_at": "2026-09-02T18:03:30.541666+00:00",
+                    "present": true
+                  },
+                  "seiche_root": {
+                    "bytes": 4096,
+                    "modified_at": "2026-09-04T13:40:54.626888+00:00",
+                    "present": true
+                  },
+                  "source_rights": {
+                    "bytes": 4052,
+                    "modified_at": "2026-09-15T17:53:46.527430+00:00",
+                    "present": true
+                  }
+                },
+                "release_id": "corpus-7cb1695c6affa707",
+                "schema_version": "1.0.0",
+                "service": "liquilens-market-corpus",
+                "status": "ok"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "negative_cases_not_model_executed": [
+    {
+      "description": "Unrelated translation",
+      "prompt": "Translate 'Good morning, everyone' into Spanish."
+    },
+    {
+      "description": "Simple arithmetic",
+      "prompt": "What is 17 multiplied by 24?"
+    },
+    {
+      "description": "Creative writing",
+      "prompt": "Write a four-line birthday poem for my friend."
+    }
+  ]
+}

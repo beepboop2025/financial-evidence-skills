@@ -1,0 +1,79 @@
+{
+  "schema": "liquilens.plugin-demo-recording.v1",
+  "product": "undertow",
+  "name": "Undertow",
+  "recording": "walkthrough.mp4",
+  "sha256": "87cf657662f384e77367ac2fb50f047cd770af5f90604ede166caf1b3daf2cdd",
+  "bytes": 1063410,
+  "duration_seconds": 90,
+  "fps": 24,
+  "capture_type": "edited browser recording of direct MCP evidence captures",
+  "native_plugin_installation_test": false,
+  "model_api_calls_for_this_recording": 0,
+  "case_count": 5,
+  "capture_sha256": "e5ac48906e2d2299f6921e984d10342ce230bee32b03a54e576e49ae21351a21",
+  "capture_url": "../service-viewer/data/undertow.json",
+  "timeline": [
+    {
+      "label": "1. Indicative BTC size comparison \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "1. Indicative BTC size comparison \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "1. Indicative BTC size comparison \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "2. Liquidity tiers \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "2. Liquidity tiers \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "2. Liquidity tiers \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "3. Depth episodes \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "3. Depth episodes \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "3. Depth episodes \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "4. Venue concentration \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "4. Venue concentration \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "4. Venue concentration \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "5. Venue price reconciliation \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "5. Venue price reconciliation \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "5. Venue price reconciliation \u2014 limits",
+      "seconds": 7
+    }
+  ],
+  "limitations": "The product skill and negative model-routing cases are review expectations, not newly executed model tests. No trading, enrollment, collection, private-record access or execution was performed. NoiseFloor examples use synthetic inputs; all other values retain their service-provided dates and restrictions."
+}

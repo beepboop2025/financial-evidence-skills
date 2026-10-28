@@ -1,0 +1,79 @@
+{
+  "schema": "liquilens.plugin-demo-recording.v1",
+  "product": "myquant-editorial",
+  "name": "MyQuant Editorial",
+  "recording": "walkthrough.mp4",
+  "sha256": "a9a659499db9eb8e86d6dd79b27e934a4d2274769aa011e8361a5a865f1a5741",
+  "bytes": 1368793,
+  "duration_seconds": 90,
+  "fps": 24,
+  "capture_type": "edited browser recording of direct MCP evidence captures",
+  "native_plugin_installation_test": false,
+  "model_api_calls_for_this_recording": 0,
+  "case_count": 5,
+  "capture_sha256": "0ebef17dcc08ff3a5fd01819d7554efd1cf33ff020faedd67b7e0ac69ca86fc1",
+  "capture_url": "../service-viewer/data/myquant-editorial.json",
+  "timeline": [
+    {
+      "label": "1. Recent stories \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "1. Recent stories \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "1. Recent stories \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "2. Plain-text search \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "2. Plain-text search \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "2. Plain-text search \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "3. Exact story retrieval \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "3. Exact story retrieval \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "3. Exact story retrieval \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "4. Archive capabilities \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "4. Archive capabilities \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "4. Archive capabilities \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "5. Connection compatibility \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "5. Connection compatibility \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "5. Connection compatibility \u2014 limits",
+      "seconds": 7
+    }
+  ],
+  "limitations": "The product skill and negative model-routing cases are review expectations, not newly executed model tests. No trading, enrollment, collection, private-record access or execution was performed. NoiseFloor examples use synthetic inputs; all other values retain their service-provided dates and restrictions."
+}

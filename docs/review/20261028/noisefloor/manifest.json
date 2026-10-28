@@ -1,0 +1,79 @@
+{
+  "schema": "liquilens.plugin-demo-recording.v1",
+  "product": "noisefloor",
+  "name": "NoiseFloor",
+  "recording": "walkthrough.mp4",
+  "sha256": "5620cafe799fccc7236b28d823c0fe25e47cb36e7c8a95a96978b1393e7b4c94",
+  "bytes": 1265634,
+  "duration_seconds": 90,
+  "fps": 24,
+  "capture_type": "edited browser recording of direct MCP evidence captures",
+  "native_plugin_installation_test": false,
+  "model_api_calls_for_this_recording": 0,
+  "case_count": 5,
+  "capture_sha256": "7f48ea7a21adf97cb2b50c79e81d7014b81c9c22d85c1c9ce667bcac45d840a7",
+  "capture_url": "../service-viewer/data/noisefloor.json",
+  "timeline": [
+    {
+      "label": "1. Synthetic A/B comparison \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "1. Synthetic A/B comparison \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "1. Synthetic A/B comparison \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "2. Synthetic change check \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "2. Synthetic change check \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "2. Synthetic change check \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "3. Synthetic forecast interval \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "3. Synthetic forecast interval \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "3. Synthetic forecast interval \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "4. Sampling-size sensitivity \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "4. Sampling-size sensitivity \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "4. Sampling-size sensitivity \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "5. Chronological forecast scoring \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "5. Chronological forecast scoring \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "5. Chronological forecast scoring \u2014 limits",
+      "seconds": 7
+    }
+  ],
+  "limitations": "The product skill and negative model-routing cases are review expectations, not newly executed model tests. No trading, enrollment, collection, private-record access or execution was performed. NoiseFloor examples use synthetic inputs; all other values retain their service-provided dates and restrictions."
+}

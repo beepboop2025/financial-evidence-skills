@@ -1,0 +1,79 @@
+{
+  "schema": "liquilens.plugin-demo-recording.v1",
+  "product": "narcoscope",
+  "name": "NarcoScope",
+  "recording": "walkthrough.mp4",
+  "sha256": "ae5b7df454200ec84c743c826ee6660a2e81e7f1cb36113a54c3e80bffcb5f13",
+  "bytes": 1175665,
+  "duration_seconds": 90,
+  "fps": 24,
+  "capture_type": "edited browser recording of direct MCP evidence captures",
+  "native_plugin_installation_test": false,
+  "model_api_calls_for_this_recording": 0,
+  "case_count": 5,
+  "capture_sha256": "af76c58a3163458a4408e5d70aff2431ea8c1ef615fd000753c90b8184746186",
+  "capture_url": "../service-viewer/data/narcoscope.json",
+  "timeline": [
+    {
+      "label": "1. Evidence overview \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "1. Evidence overview \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "1. Evidence overview \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "2. India atlas context \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "2. India atlas context \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "2. India atlas context \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "3. Dataset provenance \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "3. Dataset provenance \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "3. Dataset provenance \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "4. Bounded market observations \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "4. Bounded market observations \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "4. Bounded market observations \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "5. Published research story \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "5. Published research story \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "5. Published research story \u2014 limits",
+      "seconds": 7
+    }
+  ],
+  "limitations": "The product skill and negative model-routing cases are review expectations, not newly executed model tests. No trading, enrollment, collection, private-record access or execution was performed. NoiseFloor examples use synthetic inputs; all other values retain their service-provided dates and restrictions."
+}

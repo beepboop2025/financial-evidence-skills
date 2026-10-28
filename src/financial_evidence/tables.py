@@ -164,7 +164,9 @@ def _row(source: dict, dataset: str, **fields: Any) -> dict:
 
 
 def _rates(source: dict, dataset: str) -> list[dict]:
-    document = _obj(source.get("document"))
+    from .core import publication_projection
+
+    document, _ = publication_projection(source["source_url"], _obj(source.get("document")))
     if document.get("schema") != "seiche.global-money-markets.v1":
         return []
     rows = []
@@ -240,7 +242,9 @@ def _rates(source: dict, dataset: str) -> list[dict]:
 
 
 def _capital(source: dict) -> list[dict]:
-    document = _obj(source.get("document"))
+    from .core import publication_projection
+
+    document, _ = publication_projection(source["source_url"], _obj(source.get("document")))
     if document.get("schema") != "seiche.world-markets.v1":
         return []
     capital = _obj(document.get("capital_markets"))
@@ -271,11 +275,16 @@ def _capital(source: dict) -> list[dict]:
                 value=number,
                 unit=unit,
                 as_of=_text(value.get("as_of")),
-                availability="published" if number is not None else "unavailable",
+                availability=("restricted" if parent_blocked or _blocked(value, raw_observation=True)
+                              else "published" if number is not None else "unavailable"),
                 source_status=_text(value.get("status")),
+                rights_status=_text(value.get("rights_status") or risk_context.get("rights_status")),
                 source_field=f"/capital_markets/risk_context/market_prices/{key}/value",
-                context="Source registry IDs: "
-                + _json(value.get("source_registry_ids", [])),
+                context=_json({
+                    "source_registry_ids": value.get("source_registry_ids", []),
+                    "rights_reason": value.get("rights_reason", risk_context.get("rights_reason")),
+                    "rights_urls": value.get("rights_urls", risk_context.get("rights_urls", [])),
+                }),
             )
         )
     return rows

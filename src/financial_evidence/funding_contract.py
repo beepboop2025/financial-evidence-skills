@@ -7,10 +7,10 @@ SCHEMA = "financial-evidence.funding.v1"
 
 
 def current(root):
-    state = store.latest(root)
+    state = store.public_latest(root)
     if not state["available"] or not state["ready"]:
         raise ValueError("funding evidence is unavailable, stale, or not ready")
-    manifest, raw, _ = store.packet(root, state["packet"]["packet_id"])
+    manifest, raw, _ = store.public_packet(root, state["packet"]["packet_id"])
     review = strict_json(raw)
     if manifest["ready_at_capture"] is not True or review["ready"] is not True:
         raise ValueError("funding packet was not ready at capture")

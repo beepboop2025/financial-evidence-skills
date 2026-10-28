@@ -59,7 +59,16 @@ class HostedRoutingTests(unittest.TestCase):
             assert result["resolved_url"] == source_endpoint(original)
             assert result["dataset_id"] == SOURCE_DATASETS[original]
             assert result["content_sha256"] == "sha256:" + hashlib.sha256(body).hexdigest()
-            assert result["document"] == MONEY and result["financial_authority"] == "none"
+            if original == core.ROUTES["capital-market"][0].url:
+                # The generic money fixture is an unexpected contract here:
+                # transport identity/hash survive, but its values do not publish.
+                assert result["document"]["status"] == "unavailable"
+                assert result["document"]["publication_allowed"] is False
+                assert result["document"]["expected_schema"] == "seiche.world-markets.v1"
+                assert result["publication_projection"]["withheld_paths"] == ["/"]
+            else:
+                assert result["document"] == MONEY
+            assert result["financial_authority"] == "none"
             assert result["transport_mode"] == "hosted"
         assert all(url.startswith(PLATFORM_URL + "/v1/data/") and "?" not in url for url in calls)
 

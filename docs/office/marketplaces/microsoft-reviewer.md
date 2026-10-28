@@ -1,7 +1,7 @@
 # Financial Evidence for Excel — certification notes
 
 Package: [manifest.xml](../excel/manifest.xml). ID:
-`acdb8bb2-280d-4c73-aadc-bbd4e1427bf0`, version `1.0.1.0`.
+`acdb8bb2-280d-4c73-aadc-bbd4e1427bf0`, version `1.0.2.0`.
 Host: Workbook. Requirement: ExcelApi 1.1. Permission: ReadWriteDocument.
 Publisher and manifest ProviderName: LIQUILENS PRIVATE LIMITED.
 
@@ -94,3 +94,7 @@ Do not add unimplemented product commands to this listing or create duplicate
 Microsoft submissions to represent those routes. The existing publisher plugins
 are separate distribution packages; they do not establish official directory
 approval or private institutional controls.
+
+## Verification identity
+
+Generate synthetic verification manifests with `scripts/build_excel_office_addin.py --operator-manifest /path/to/verification.xml`. The generated manifest has its own app ID and verification display name; never reuse the production app identity for an operator URL. Version 1.0.2.0 advances the production configuration past the earlier shared test identity. Historical 1.0.1.0 operator acceptance does not establish native acceptance of 1.0.2.0.

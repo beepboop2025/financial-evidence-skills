@@ -1,6 +1,6 @@
 {
   "schema": "financial-evidence.hosted-native-package-downloads.v1",
-  "scope": "Current hosted clients qualified against the central service. n8n 0.1.1 is published on npm with verified bytes and cryptographic provenance. Dify 0.1.2 passed installed-archive execution in Dify Cloud and is submitted for marketplace review; approved marketplace version remains 0.1.1. Platform verification and independent adoption remain separate.",
+  "scope": "Current hosted clients qualified against the central service. n8n 0.1.1 is published on npm with verified bytes and cryptographic provenance. Dify 0.1.2 passed installed-archive execution in Dify Cloud and is published as active version 0.1.2 in the public Marketplace; a fresh Marketplace installation remains untested. Platform verification and independent adoption remain separate.",
   "packages": [
     {
       "kind": "n8n",
@@ -103,9 +103,9 @@
       "filename": "financial_evidence-0.1.2.difypkg",
       "sha256": "350d20409d9a3287d0ddc1b939d2cbb5f577ca632f2c20be75a5c7d046f0ba96",
       "bytes": 7477,
-      "publication_state": "submitted_pending_review",
+      "publication_state": "published_on_marketplace",
       "registry_published": false,
-      "marketplace_published": false,
+      "marketplace_published": true,
       "package_source_revision": "65cfb5437f3c3aad9f6270808d00e3392b12b42e",
       "api_base": "https://agents.seiche.info/v1/research",
       "validation": {
@@ -222,11 +222,11 @@
       },
       "marketplace_submission": {
         "package_version": "0.1.2",
-        "state": "submitted",
+        "state": "live",
         "submission_url": "https://github.com/langgenius/dify-plugins/pull/3534",
         "package_sha256": "350d20409d9a3287d0ddc1b939d2cbb5f577ca632f2c20be75a5c7d046f0ba96",
         "package_bytes": 7477,
-        "verified_at": "2026-10-27T21:45:09.924286+00:00",
+        "verified_at": "2026-10-28T09:03:02.719171+00:00",
         "evidence_receipt": "../distribution/dify-submission-20261028.json",
         "native_proof": "../integrations/dify-native-proof-20261028.json",
         "installed_archive_execution_tested": true,
@@ -234,9 +234,13 @@
         "native_valid_workflow_runs": 4,
         "native_invalid_input_rejections": 1,
         "community_edition_tested": false,
-        "marketplace_published": false,
+        "marketplace_published": true,
         "upstream_checks": "passed",
-        "independent_adoption_verified": false
+        "independent_adoption_verified": false,
+        "public_listing_verified": true,
+        "publication_receipt": "../distribution/dify-publication-20261028.json",
+        "upstream_merged_at": "2026-10-28T01:36:16Z",
+        "published_package_identifier": "beepboop2025/financial_evidence:0.1.2@1956fc5e710e6c5607d3b11d02d727068908a7aa88630c69304fec8f1368fe22"
       },
       "cloud_native_validation": {
         "observed_at": "2026-10-27T21:41:35.825908+00:00",

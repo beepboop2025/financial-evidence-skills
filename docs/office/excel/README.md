@@ -82,7 +82,15 @@ not evidence that all corresponding hosts were tested. See the exact
 separate test-only manifest whose task-pane URL ends with `?operator=1` to mark
 requests synthetic. Apply that query flag to both the base `SourceLocation`
 and the `Review.TaskpaneUrl` resource so fallback and ribbon launches remain
-synthetic. Keep test manifests distinct from the submitted release. The
+synthetic. Generate the verification copy with
+`python3 scripts/build_excel_office_addin.py --operator-manifest /path/to/verification.xml`.
+It uses a distinct, stable app ID and a visible verification name, while retaining
+production permissions and the current version. Never manually deploy an operator
+URL under the production app ID and version: Office can keep resolving that cached
+manifest after it is replaced. Version `1.0.2.0` advances the production manifest
+past the earlier shared `1.0.1.0` identity. Native acceptance of the new version is
+separate from the historical test receipts below. Keep test manifests distinct
+from the submitted release. The
 [28 October Windows receipt](https://beepboop2025.github.io/financial-evidence-skills/office/excel/native-acceptance-windows-20261028.json) records
 `1.0.1.0` ribbon launch, refresh, repeat insertion and 634 inserted-cell checks.
 The [earlier web receipt](https://beepboop2025.github.io/financial-evidence-skills/office/excel/native-acceptance.json) covers `1.0.0.0`. Complete

@@ -2,6 +2,9 @@
 
 from datetime import datetime, timezone
 import csv
+import copy
+import hashlib
+import importlib.util
 import io
 import json
 import os
@@ -592,6 +595,94 @@ class FundingArchiveTests(unittest.TestCase):
         )
         result = read_review("/a/private/nonexistent/path", now=NOW)
         self.assertNotIn("/a/private", json.dumps(result))
+
+
+    def fred_attributed_capture(self):
+        report, rows = self.scoped_archive()
+        fred_sources = {
+            "policy.sofr": "New York Fed SOFR via FRED",
+            "policy.effr": "Federal Reserve via FRED EFFR",
+            "policy.iorb": "Federal Reserve via FRED IORB/IOER splice",
+            "liquidity.reserves": "Federal Reserve H.4.1 via FRED WRESBAL",
+            "liquidity.on_rrp": "NY Fed ON RRP operations via FRED RRPONTSYD",
+        }
+        for row in rows:
+            metric = row["metric_id"]
+            row["source"] = fred_sources.get(metric, "US Treasury Fiscal Data" if metric == "liquidity.tga" else "New York Fed")
+            row["value"] = "777.123" if metric in fred_sources else "0"
+            if metric in fred_sources:
+                report["freshness_assessments"][metric]["basis"] = "FRED value 777.123"
+        self.replace_artifact("review.json", capture.encoded(report))
+        self.write_export(rows)
+        return fred_sources
+
+    def assert_public_restrictions(self, result):
+        restricted = [row for row in result["results"] if "FRED" in row["source"]]
+        direct = [row for row in result["results"] if "FRED" not in row["source"]]
+        self.assertEqual(len(restricted), 5)
+        self.assertEqual(len(direct), 4)
+        self.assertTrue(all(row["value"] is None and row["value_state"] == "restricted" for row in restricted))
+        self.assertTrue(all(row["value"] == 0 for row in direct))
+        self.assertTrue(all(row["review_status"] == "redistribution_restricted" for row in result["results"]))
+        self.assertFalse(result["ready"])
+        self.assertEqual(result["availability"], "partially_restricted")
+        self.assertEqual(result["captured_data_readiness"], "checks_passed")
+        self.assertEqual(result["data_readiness"], "redistribution_restricted")
+        self.assertFalse(result["measurement"]["current_publication_ready"])
+        self.assertIn("capture_time_pre_projection", result["measurement"]["scope"])
+        self.assertNotIn("777.123", json.dumps(result))
+        receipt = result["publication_projection"]
+        public = {key: value for key, value in result.items() if key != "publication_projection"}
+        canonical = json.dumps(public, sort_keys=True, ensure_ascii=False, separators=(",", ":"), allow_nan=False).encode()
+        self.assertEqual(receipt["content_sha256"], "sha256:" + hashlib.sha256(canonical).hexdigest())
+
+    def test_actual_fred_capture_projects_json_csv_and_preserves_original_artifacts(self):
+        self.fred_attributed_capture()
+        before = {path.name: path.read_bytes() for path in self.path.iterdir() if path.is_file()}
+        result, exported = read_export(self.output, now=NOW)
+        self.assert_public_restrictions(result)
+        self.assertIsNotNone(exported)
+        self.assertNotIn(b"777.123", exported)
+        csv_rows = list(csv.DictReader(io.StringIO(exported.decode())))
+        self.assertEqual(len(csv_rows), 9)
+        self.assertEqual(sum(row["value"] == "" and row["value_state"] == "restricted" for row in csv_rows), 5)
+        self.assertEqual(sum(row["value"] == "0" for row in csv_rows), 4)
+        receipt = result["publication_projection"]
+        self.assertEqual(receipt["source_artifact_sha256"], "sha256:" + hashlib.sha256(before["funding-observations.csv"]).hexdigest())
+        self.assertEqual(receipt["csv_sha256"], "sha256:" + hashlib.sha256(exported).hexdigest())
+        self.assertEqual(before, {path.name: path.read_bytes() for path in self.path.iterdir() if path.is_file()})
+        self.assertEqual(exported, load_csv(self.output, now=NOW))
+
+    @unittest.skipUnless(all(importlib.util.find_spec(name) for name in ("fastapi", "mcp", "httpx")),
+                         "workspace dependencies required")
+    def test_actual_fred_capture_cannot_bypass_rest_mcp_or_csv_download(self):
+        from fastapi.testclient import TestClient
+        from financial_evidence.workspace import create_app
+        from financial_evidence.service import EvidenceService
+        from financial_evidence import funding_archive
+        self.fred_attributed_capture()
+        original_load = funding_archive._load
+        def fixed_clock(directory, **kwargs):
+            return original_load(directory, **{**kwargs, "now": NOW})
+        service = EvidenceService()
+        self.addCleanup(service.close)
+        with patch.dict(os.environ, {"FINANCIAL_EVIDENCE_REVIEW_DIR": str(self.output)}), \
+             patch.object(funding_archive, "_load", side_effect=fixed_clock), \
+             TestClient(create_app(service=service, base_url="http://localhost:6900",
+                                   usage_dir=str(self.output / "usage")), base_url="http://localhost:6900") as client:
+            result = client.get("/api/v1/funding-review").json()
+            self.assert_public_restrictions(result)
+            response = client.post("/mcp", headers={"Accept": "application/json, text/event-stream"},
+                json={"jsonrpc": "2.0", "id": 1, "method": "tools/call",
+                      "params": {"name": "financial_evidence_funding_review", "arguments": {}}}).json()["result"]
+            self.assertFalse(response.get("isError", False))
+            self.assert_public_restrictions(response["structuredContent"])
+            download = client.get("/api/v1/funding-review.csv")
+            self.assertEqual(download.status_code, 200)
+            self.assertNotIn(b"777.123", download.content)
+            self.assertEqual(download.headers["X-Data-Readiness"], "redistribution_restricted")
+            self.assertEqual(download.headers["ETag"], '"' + hashlib.sha256(download.content).hexdigest() + '"')
+
 
 
 if __name__ == "__main__":

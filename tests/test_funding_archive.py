@@ -712,5 +712,42 @@ class FundingArchiveTests(unittest.TestCase):
 
 
 
+    def test_operator_reference_requires_matching_release_and_binds_original_csv(self):
+        from financial_evidence.funding_archive import read_operator_reference
+        with patch.dict(os.environ, {"FINANCIAL_EVIDENCE_SOURCE_COMMIT": "a" * 40}):
+            expected = release_identity()
+            self.path, self.manifest = self.capture_backend(expected)
+            self.fred_attributed_capture()
+            public, public_csv = read_export(self.output, now=NOW)
+            private, original_csv = read_operator_reference(self.output, expected, now=NOW)
+            self.assert_public_restrictions(public)
+            self.assertTrue(private["ready"])
+            self.assertTrue(private["operator_only"])
+            self.assertIn("not_for_public_redistribution", private["scope"])
+            self.assertIn(b"777.123", original_csv)
+            self.assertNotIn(b"777.123", public_csv)
+            self.assertEqual(private["capture_id"], public["capture_id"])
+            self.assertEqual(private["operator_reference"]["source_csv_sha256"],
+                             public["publication_projection"]["source_artifact_sha256"])
+            self.assertEqual(private["runtime_release_identity"], "matched")
+            with self.assertRaises(TypeError):
+                read_export(self.output, now=NOW, project_public=False)
+        with patch.dict(os.environ, {"FINANCIAL_EVIDENCE_SOURCE_COMMIT": "b" * 40}):
+            mismatch, data = read_operator_reference(self.output, release_identity(), now=NOW)
+            self.assertFalse(mismatch["ready"])
+            self.assertEqual(mismatch["runtime_release_identity"], "mismatch")
+            self.assertEqual(mismatch["results"], [])
+            self.assertIsNone(data)
+        for identity in ({}, {"source_commit": "a" * 40}, None):
+            result, data = read_operator_reference(self.output, identity, now=NOW)
+            self.assertFalse(result["ready"])
+            self.assertIsNone(data)
+        stale, data = read_operator_reference(self.output, expected, now="2026-09-28T20:00:00Z")
+        self.assertFalse(stale["ready"])
+        self.assertTrue(stale["stale"])
+        self.assertIsNone(data)
+
+
+
 if __name__ == "__main__":
     unittest.main()

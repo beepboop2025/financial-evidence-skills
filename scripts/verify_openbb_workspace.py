@@ -92,7 +92,12 @@ def verify(base_url, expected_source_commit=None):
         },
     )["serverInfo"]
     tools = rpc("tools/list")["tools"]
-    assert len(tools) == 9 and all(
+    assert {
+        "financial_evidence_funding_workflow",
+        "financial_evidence_institutions_workflow",
+        "financial_evidence_exit_workflow",
+    } <= {tool["name"] for tool in tools}
+    assert len(tools) == 12 and all(
         tool["annotations"]["readOnlyHint"] for tool in tools
     )
     result = rpc(

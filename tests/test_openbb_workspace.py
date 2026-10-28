@@ -187,7 +187,7 @@ class WorkspaceTests(unittest.TestCase):
         from financial_evidence.release import WORKSPACE_VERSION
         self.assertEqual(initialized["result"]["serverInfo"]["version"], WORKSPACE_VERSION)
         tools = self.rpc("tools/list")["result"]["tools"]
-        self.assertEqual(len(tools), 9)
+        self.assertEqual(len(tools), 12)
         for tool in tools:
             self.assertTrue(tool["annotations"]["readOnlyHint"])
             self.assertFalse(tool["annotations"]["destructiveHint"])
@@ -284,7 +284,7 @@ class WorkspaceTests(unittest.TestCase):
                 },
             )
             self.assertEqual(response.status_code, 200, response.text)
-            self.assertEqual(len(response.json()["result"]["tools"]), 9)
+            self.assertEqual(len(response.json()["result"]["tools"]), 12)
 
     def test_invalid_proxy_prefixes_are_rejected(self):
         from financial_evidence.workspace import create_app

@@ -232,7 +232,7 @@ class PublicationRightsTests(unittest.TestCase):
 @unittest.skipUnless(all(importlib.util.find_spec(name) for name in ("fastapi", "mcp", "httpx")),
                      "workspace dependencies required")
 class PublicToolRightsTests(unittest.TestCase):
-    def test_all_nine_workspace_tools_and_legacy_fetch_preserve_the_rights_gate(self):
+    def test_all_native_tools_and_legacy_fetch_preserve_the_rights_gate(self):
         from fastapi.testclient import TestClient
         from financial_evidence.workspace import create_app
         from financial_evidence.service import EvidenceService
@@ -271,15 +271,20 @@ class PublicToolRightsTests(unittest.TestCase):
                     ("financial_evidence_review", {}),
                     ("financial_evidence_packet", {"topics": ["money-market", "capital-market"]}),
                     ("financial_evidence_workflow", {"workflow": "funding", "selection": "USD"}),
+                    ("financial_evidence_funding_workflow", {"currency": "USD"}),
                 ]
-                assert names == {name for name, _ in calls}
+                # The two fixed-source workflow wrappers have separate wire parity tests;
+                # their implementations do not read the core funding/forex opener.
+                assert names == {name for name, _ in calls} | {
+                    "financial_evidence_institutions_workflow", "financial_evidence_exit_workflow",
+                }
                 assert "financial_evidence_fetch" not in names
                 for name, arguments in calls:
                     reply = rpc("tools/call", {"name": name, "arguments": arguments})
                     assert not reply.get("isError"), (name, reply)
                     assert "777.123" not in json.dumps(reply), name
                     assert "SECRET-DERIVED" not in json.dumps(reply), name
-                    if name == "financial_evidence_workflow":
+                    if name in ("financial_evidence_workflow", "financial_evidence_funding_workflow"):
                         result = reply["structuredContent"]
                         assert result["prepared_response"] is False
                         assert result["evidence"]["results"]

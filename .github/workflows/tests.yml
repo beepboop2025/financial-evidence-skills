@@ -392,8 +392,13 @@ jobs:
                                 "MCP-Protocol-Version": "2025-11-25"})
           with urllib.request.urlopen(request, timeout=5) as response:
               tools = json.load(response)["result"]["tools"]
-              assert len(tools) == 9
-              assert "financial_evidence_workflow" in {tool["name"] for tool in tools}
+              assert len(tools) == 12
+              assert {
+                  "financial_evidence_workflow",
+                  "financial_evidence_funding_workflow",
+                  "financial_evidence_institutions_workflow",
+                  "financial_evidence_exit_workflow",
+              } <= {tool["name"] for tool in tools}
           PY
 
   distribution-contract:

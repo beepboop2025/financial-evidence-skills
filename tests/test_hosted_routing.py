@@ -254,7 +254,11 @@ class HostedWorkspaceDispatchTests(unittest.TestCase):
         server = create_mcp(service)
         async def dispatch():
             names = {tool.name for tool in await server.list_tools()}
-            self.assertEqual(names, set(configured["includeTools"]))
+            self.assertEqual(names, set(configured["includeTools"]) | {
+                "financial_evidence_funding_workflow",
+                "financial_evidence_institutions_workflow",
+                "financial_evidence_exit_workflow",
+            })
             self.assertEqual(configured["httpUrl"], PLATFORM_URL + "/products/financial-evidence/mcp")
             self.assertNotIn("financial_evidence_fetch", names)
             results = {}

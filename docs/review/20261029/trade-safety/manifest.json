@@ -1,0 +1,69 @@
+{
+  "schema": "liquilens.plugin-demo-recording.v1",
+  "product": "trade-safety",
+  "name": "LiquiLens Trade Safety",
+  "recording": "walkthrough.mp4",
+  "sha256": "8821120ca3b33bd6476dc863c60f4b68e7f56d3e6dec1126bdc72bf4ee2f97d6",
+  "bytes": 1167087,
+  "duration_seconds": 96,
+  "fps": 24,
+  "capture_type": "edited browser recording of direct MCP evidence captures",
+  "native_plugin_installation_test": false,
+  "model_api_calls_for_this_recording": 0,
+  "case_count": 5,
+  "capture_sha256": "59b3aa67644cff6a21862060f2282dc65afa2107d02dc47600d4894ad640175b",
+  "capture_url": "../service-viewer/data/trade-safety.json",
+  "timeline": [
+    {
+      "label": "Authority flags remain false",
+      "seconds": 12,
+      "frame_sha256": "ced5238d40cd7b70b1f39c043cb57f6bf055acd964c588329ef3ed7d0dd5c48f"
+    },
+    {
+      "label": "x402 payment access is disabled",
+      "seconds": 12,
+      "frame_sha256": "d9071cab0d5f4ba5498c96b6d015a19ba113f2614c22a47fceee23cc47026015"
+    },
+    {
+      "label": "Runtime version 0.2.3",
+      "seconds": 12,
+      "frame_sha256": "20eb4b5208f2be8966d9e86dbe9049394e752fc0d9ef152f9797245b3a56b29f"
+    },
+    {
+      "label": "Sandbox authority interpretation boundaries",
+      "seconds": 12,
+      "frame_sha256": "83a6f2d1d3a9664059152eb496c7c32b26e3e9277bfa30ff3ba5c002230b4ad4"
+    },
+    {
+      "label": "Fixed source discovery interpretation boundaries",
+      "seconds": 12,
+      "frame_sha256": "cfda5a4665449a49123ecb3996924e5dcf2120fc3ac37c27c6ff70925dd086aa"
+    },
+    {
+      "label": "Assessment preparation interpretation boundaries",
+      "seconds": 12,
+      "frame_sha256": "78e179c2d1f177d8cf2ba2573592662660e359ad3bfdbfbc951825971d9eda9f"
+    },
+    {
+      "label": "Receipt interpretation interpretation boundaries",
+      "seconds": 12,
+      "frame_sha256": "40a5fd6d97ca456c77ff2ca670cb41c0cc04e6d52d06ea90b48aa281393c150d"
+    },
+    {
+      "label": "Integration boundaries interpretation boundaries",
+      "seconds": 12,
+      "frame_sha256": "809292aa7343b5bd8769d5e2687da0c525d030a5f8b06b535999e6e4c571fdf3"
+    }
+  ],
+  "limitations": "Direct public MCP calls only. Product-skill routing and negative model-routing cases are review expectations, not newly executed model tests. No trading, enrollment, collection, private-record access or execution was performed. Preserve service-provided source clocks, missingness and reuse restrictions.",
+  "plugin_version": "1.0.2",
+  "runtime_version": "0.2.3",
+  "runtime_source_revision": "aedc73dc1ab4f2b08ebfbfd200f0e45b09c38904",
+  "frame_count": 2304,
+  "width": 960,
+  "height": 686,
+  "direct_tool_calls": 1,
+  "distinct_tool_names": [
+    "trade_safety_capabilities"
+  ]
+}

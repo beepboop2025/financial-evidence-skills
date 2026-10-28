@@ -52,10 +52,10 @@
               "expected_behavior": "Discover the exact slug before requesting the asset-quality review. Preserve missing, stale and non-comparable fields and avoid declaring the institution safe or compliant."
             },
             {
-              "description": "NPA reconciliation",
-              "prompt": "Use LiquiLens to reconcile the published NPA evidence for AU Small Finance Bank. Identify source differences and unresolved gaps.",
-              "tools_triggered": "institution_research_coverage, bank_npa_reconciliation",
-              "expected_behavior": "Find the exact institution slug then retrieve the NPA reconciliation. Retain source periods, units and unresolved differences without forcing mismatched totals to agree."
+              "description": "Cited institution review packet",
+              "prompt": "Find AU Small Finance Bank in LiquiLens and retrieve its cited institution review packet. Preserve source dates and unresolved coverage gaps.",
+              "tools_triggered": "institution_research_coverage, institution_review_packet",
+              "expected_behavior": "Discover the exact returned institution slug or full name, then supply it as institution to institution_review_packet. Report no exact match if needed; preserve stale or dark gaps and do not interpret a content hash as attestation or publication-time proof."
             },
             {
               "description": "RBI supervisory evidence",
@@ -64,10 +64,10 @@
               "expected_behavior": "Retrieve the supervisory tape with dates and citations; distinguish published supervisory events from an analyst's interpretation and avoid private inspection claims."
             },
             {
-              "description": "Institution discovery",
-              "prompt": "Use LiquiLens to find covered financial institutions relevant to an Indian banking research brief.",
+              "description": "Official NBFC register discovery",
+              "prompt": "Use LiquiLens to search the RBI NBFC register for HFC-classified institutions, limited to 10 rows.",
               "tools_triggered": "universe_search",
-              "expected_behavior": "Search the covered universe using the query schema, return exact identifiers and source coverage, and state missing matches without inventing institutions."
+              "expected_behavior": "Use classification HFC and limit 10. Preserve official institution identifiers and register dates; registration does not establish financial-evidence coverage, creditworthiness or regulatory approval."
             }
           ],
           "negative": [

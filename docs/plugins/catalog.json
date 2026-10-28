@@ -46,8 +46,8 @@
       "downloads": {
         "openai": {
           "url": "downloads/liquilens-openai-1.0.1.zip",
-          "sha256": "ee3dc4c7b88acbfc2051f6869656d80ea0fed185060cdb26d8f4ff5771d6be7d",
-          "bytes": 30152
+          "sha256": "3eb802c91acee9248c4479c53c86f065f2e723682ada80fbe908f46cb4039570",
+          "bytes": 30219
         },
         "gemini": {
           "url": "downloads/liquilens-gemini-1.0.1.zip",

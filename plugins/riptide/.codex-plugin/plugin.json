@@ -1,6 +1,6 @@
 {
   "name": "riptide",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Inspect Riptide's committed allocation, paper performance record, defensive coverage and methodology. Keep paper results, verification status and evidence dates explicit. Historical paper results are research records, not live-account performance or an instruction to trade.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
@@ -13,7 +13,7 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Riptide",
-    "shortDescription": "Paper research and risk evidence",
+    "shortDescription": "Paper research and risk",
     "longDescription": "Inspect Riptide's committed allocation, paper performance record, defensive coverage and methodology. Keep paper results, verification status and evidence dates explicit. Historical paper results are research records, not live-account performance or an instruction to trade.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
     "category": "Finance",
@@ -88,7 +88,7 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."
+        "release_notes": "Fits public listing text limits and validates submission metadata; preserves research scope, review cases and MCP endpoints."
       }
     }
   }

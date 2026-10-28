@@ -8,14 +8,15 @@ import hashlib
 import html
 import io
 import json
+import re
 from pathlib import Path
-from urllib.parse import quote
+from urllib.parse import quote, urlsplit
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://beepboop2025.github.io/financial-evidence-skills"
 REPO = "https://github.com/beepboop2025/financial-evidence-skills"
-VERSION = "1.0.1"
+VERSION = "1.0.2"
 
 
 def encode(value):
@@ -59,6 +60,57 @@ def review_metadata(slug, metadata, inventory):
     ):
         raise ValueError(f"Expected three task prompts: {slug}")
     return item
+
+
+def validate_submission_metadata(manifest):
+    """Check published OpenAI field limits, not review or directory acceptance.
+
+    Reference: https://developers.openai.com/plugins/deploy/submission
+    Draft upload permits longer text than public submission.
+    """
+    def text(value, maximum, field):
+        if not isinstance(value, str) or not value.strip() or len(value) > maximum:
+            raise ValueError(f"{field} must contain 1-{maximum} characters")
+
+    def https(value, maximum, field):
+        text(value, maximum, field)
+        parsed = urlsplit(value)
+        if parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password:
+            raise ValueError(f"{field} must be HTTPS without embedded credentials")
+
+    text(manifest["name"], 64, "name")
+    if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", manifest["name"]):
+        raise ValueError("name must use lowercase letters, digits and single hyphens")
+    text(manifest["description"], 4000, "description")
+    text(manifest["author"]["name"], 120, "author.name")
+    if "email" in manifest["author"]:
+        text(manifest["author"]["email"], 320, "author.email")
+    if "url" in manifest["author"]:
+        https(manifest["author"]["url"], 2048, "author.url")
+    if "homepage" in manifest:
+        https(manifest["homepage"], 2048, "homepage")
+
+    interface = manifest["interface"]
+    for field, maximum in (("displayName", 30), ("shortDescription", 30),
+                           ("longDescription", 4000), ("developerName", 80)):
+        text(interface[field], maximum, "interface." + field)
+    for field in ("websiteURL", "supportURL", "privacyPolicyURL", "termsOfServiceURL"):
+        https(interface[field], 1024, "interface." + field)
+    capabilities = interface["capabilities"]
+    if not isinstance(capabilities, list) or len(capabilities) > 20:
+        raise ValueError("interface.capabilities must contain at most 20 labels")
+    for capability in capabilities:
+        text(capability, 120, "interface.capabilities label")
+    prompts = interface.get("defaultPrompt", [])
+    prompts = [prompts] if isinstance(prompts, str) else prompts
+    if not isinstance(prompts, list) or len(prompts) > 3:
+        raise ValueError("interface.defaultPrompt must contain at most 3 prompts")
+    for prompt in prompts:
+        text(prompt, 128, "interface.defaultPrompt")
+        if re.search(r"@\w", prompt):
+            raise ValueError("interface.defaultPrompt must omit app mentions")
+    if len(set(prompts)) != len(prompts):
+        raise ValueError("interface.defaultPrompt entries must be unique")
 
 
 def build():
@@ -125,7 +177,8 @@ counts; installation does not enroll the user in optional learning or sharing.
         codex["extensions"] = {"com.openai": {
             "review": {"test_cases": {"positive": review["positive"], "negative": review["negative"]},
                        "commerce": False},
-            "publication": {"release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."}}}
+            "publication": {"release_notes": "Fits public listing text limits and validates submission metadata; preserves research scope, review cases and MCP endpoints."}}}
+        validate_submission_metadata(codex)
         mcp = {"mcpServers": {slug: {"type": "http", "url": endpoint}}}
         gemini = {"name": slug, "version": VERSION, "description": summary,
                   "mcpServers": {slug: {"httpUrl": endpoint, "timeout": 30000,

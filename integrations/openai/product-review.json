@@ -3,7 +3,7 @@
   "review_case_status": "configured_not_model_tested",
   "products": {
     "seiche": {
-      "shortDescription": "Funding and money-market research",
+      "shortDescription": "Funding and money markets",
       "category": "Finance",
       "longDescription": "Prepare a funding brief from public money-market evidence, compare regional funding conditions, and inspect source freshness before using a number. Seiche preserves observation dates, coverage and unavailable sources so treasury and research teams can identify questions for follow-up. It provides research context and does not execute trades or certify compliance.",
       "defaultPrompt": [
@@ -59,7 +59,7 @@
       ]
     },
     "liquilens": {
-      "shortDescription": "Bank disclosures and risk evidence",
+      "shortDescription": "Bank disclosures and risk",
       "category": "Finance",
       "longDescription": "Find covered financial institutions, review public asset-quality disclosures, and inspect RBI supervisory evidence with source dates and coverage limits. LiquiLens helps analysts prepare institution review questions while preserving missing or non-comparable evidence. It does not access private accounts, replace professional judgment or certify regulatory compliance.",
       "defaultPrompt": [
@@ -115,7 +115,7 @@
       ]
     },
     "undertow": {
-      "shortDescription": "Liquidity and indicative exit research",
+      "shortDescription": "Liquidity and BTC exit checks",
       "category": "Finance",
       "longDescription": "Compare indicative BTC exit sizes, inspect market-depth episodes and venue concentration, and reconcile public venue-price evidence. Undertow keeps timestamps, size assumptions and coverage visible so researchers can investigate liquidity risk. Its results are indicative research, not executable quotes, order placement or access to private positions.",
       "defaultPrompt": [
@@ -171,7 +171,7 @@
       ]
     },
     "palimpsest": {
-      "shortDescription": "Public-record research and source lineage",
+      "shortDescription": "Public records and provenance",
       "category": "Finance",
       "longDescription": "Inspect public-record research signals, China and regional evidence catalogs, and sourced newsroom context. Palimpsest helps analysts trace provenance, revisions and access restrictions before using evidence. Restricted economic collections remain metadata only; the plugin does not reconstruct denied observations or present research signals as verified financial conclusions.",
       "defaultPrompt": [
@@ -227,7 +227,7 @@
       ]
     },
     "noisefloor": {
-      "shortDescription": "Check changes and forecast uncertainty",
+      "shortDescription": "Statistics and forecasts",
       "category": "Productivity",
       "longDescription": "Test whether an observed change may be noise, compare A/B results and examine forecast uncertainty using public, synthetic or explicitly authorized observations. NoiseFloor helps researchers check assumptions and limitations before interpreting a pattern. Results do not establish causality, investment performance or certainty about future outcomes.",
       "defaultPrompt": [
@@ -283,7 +283,7 @@
       ]
     },
     "narcoscope": {
-      "shortDescription": "Informal-economy evidence and sources",
+      "shortDescription": "Informal-economy research",
       "category": "Finance",
       "longDescription": "Inspect public evidence about informal economies, drug and arms markets, and regional context with dataset provenance, units and source dates. NarcoScope supports research briefs and evidence checks; administrative counts do not establish market size, individual guilt or current operational activity. Access and publication restrictions remain visible.",
       "defaultPrompt": [
@@ -339,7 +339,7 @@
       ]
     },
     "wake": {
-      "shortDescription": "AI usage and retail economy evidence",
+      "shortDescription": "AI and retail economy evidence",
       "category": "Finance",
       "longDescription": "Read attributed AI-model usage and U.S. retail e-commerce context with source dates. Inspect institutional aggregate thresholds and the signed opt-in collection contract. Public context does not establish adoption by a particular institution, permission to collect data or resale rights.",
       "defaultPrompt": [
@@ -395,7 +395,7 @@
       ]
     },
     "riptide": {
-      "shortDescription": "Paper research and risk evidence",
+      "shortDescription": "Paper research and risk",
       "category": "Finance",
       "longDescription": "Inspect Riptide's committed allocation, paper performance record, defensive coverage and methodology. Keep paper results, verification status and evidence dates explicit. Historical paper results are research records, not live-account performance or an instruction to trade.",
       "defaultPrompt": [
@@ -451,7 +451,7 @@
       ]
     },
     "myquant-editorial": {
-      "shortDescription": "Source-linked financial research stories",
+      "shortDescription": "Financial research stories",
       "category": "Finance",
       "longDescription": "Find and read published MyQuant archive stories with canonical sources, evidence clocks, publication state and limitations. Browse recent records, search by plain text or retrieve an exact returned story ID. Archive availability and endpoint health do not establish source freshness.",
       "defaultPrompt": [
@@ -507,7 +507,7 @@
       ]
     },
     "myquant-app": {
-      "shortDescription": "Discover MyQuant app capabilities",
+      "shortDescription": "App capabilities and limits",
       "category": "Productivity",
       "longDescription": "Inspect public MyQuant app capabilities for briefing, feed validation, offline reading and topic controls, plus API/MCP compatibility metadata. This plugin does not read or change on-device content, preferences, accounts or installed app state.",
       "defaultPrompt": [
@@ -563,7 +563,7 @@
       ]
     },
     "trade-safety": {
-      "shortDescription": "Read-only trade research sandbox",
+      "shortDescription": "Trade research sandbox",
       "category": "Finance",
       "longDescription": "Inspect Trade Safety's fixed public sources, sandbox authority and documented limits before preparing assessment inputs. Assessments require explicit request and policy objects. Sandbox receipts do not authorize recommendations, broker previews, routing, resizing, custody, settlement or execution.",
       "defaultPrompt": [
@@ -619,7 +619,7 @@
       ]
     },
     "research-data": {
-      "shortDescription": "Cited funding and institution source data",
+      "shortDescription": "Cited financial source data",
       "category": "Finance",
       "longDescription": "Discover scoped research datasets, exact series and regulator identifiers; inspect source-bound changes and retrieve bounded cited observations. Preserve native units, capture receipts, snapshot identifiers, independent source clocks, rights and coverage gaps so an analyst can reproduce a captured review. Historical vintages do not establish earlier point-in-time availability; stale or unverified current analysis may be withheld.",
       "defaultPrompt": [
@@ -675,7 +675,7 @@
       ]
     },
     "seiche-market-corpus": {
-      "shortDescription": "Market datasets, rights and source clocks",
+      "shortDescription": "Market datasets and rights",
       "category": "Finance",
       "longDescription": "Explore registered market corpora, versioned datasets, normalized Seiche coverage and permitted bounded observations. Inspect rights, product eligibility and source-adapter partitions before reading values. Restricted data remains restricted; catalog presence or service health does not prove redistribution permission or freshness.",
       "defaultPrompt": [

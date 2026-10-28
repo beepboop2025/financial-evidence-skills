@@ -1,6 +1,6 @@
 {
   "name": "seiche-market-corpus",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Explore registered market corpora, versioned datasets, normalized Seiche coverage and permitted bounded observations. Inspect rights, product eligibility and source-adapter partitions before reading values. Restricted data remains restricted; catalog presence or service health does not prove redistribution permission or freshness.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",

@@ -1,6 +1,6 @@
 {
   "name": "myquant-editorial",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Find and read published MyQuant archive stories with canonical sources, evidence clocks, publication state and limitations. Browse recent records, search by plain text or retrieve an exact returned story ID. Archive availability and endpoint health do not establish source freshness.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
@@ -13,7 +13,7 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "MyQuant Editorial",
-    "shortDescription": "Source-linked financial research stories",
+    "shortDescription": "Financial research stories",
     "longDescription": "Find and read published MyQuant archive stories with canonical sources, evidence clocks, publication state and limitations. Browse recent records, search by plain text or retrieve an exact returned story ID. Archive availability and endpoint health do not establish source freshness.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
     "category": "Finance",
@@ -88,7 +88,7 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."
+        "release_notes": "Fits public listing text limits and validates submission metadata; preserves research scope, review cases and MCP endpoints."
       }
     }
   }

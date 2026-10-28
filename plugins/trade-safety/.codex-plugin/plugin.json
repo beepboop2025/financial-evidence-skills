@@ -1,6 +1,6 @@
 {
   "name": "trade-safety",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Inspect Trade Safety's fixed public sources, sandbox authority and documented limits before preparing assessment inputs. Assessments require explicit request and policy objects. Sandbox receipts do not authorize recommendations, broker previews, routing, resizing, custody, settlement or execution.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
@@ -13,7 +13,7 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "LiquiLens Trade Safety",
-    "shortDescription": "Read-only trade research sandbox",
+    "shortDescription": "Trade research sandbox",
     "longDescription": "Inspect Trade Safety's fixed public sources, sandbox authority and documented limits before preparing assessment inputs. Assessments require explicit request and policy objects. Sandbox receipts do not authorize recommendations, broker previews, routing, resizing, custody, settlement or execution.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
     "category": "Finance",
@@ -88,7 +88,7 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."
+        "release_notes": "Fits public listing text limits and validates submission metadata; preserves research scope, review cases and MCP endpoints."
       }
     }
   }

@@ -1,6 +1,6 @@
 {
   "name": "seiche",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Prepare a funding brief from public money-market evidence, compare regional funding conditions, and inspect source freshness before using a number. Seiche preserves observation dates, coverage and unavailable sources so treasury and research teams can identify questions for follow-up. It provides research context and does not execute trades or certify compliance.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
@@ -13,7 +13,7 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Seiche",
-    "shortDescription": "Funding and money-market research",
+    "shortDescription": "Funding and money markets",
     "longDescription": "Prepare a funding brief from public money-market evidence, compare regional funding conditions, and inspect source freshness before using a number. Seiche preserves observation dates, coverage and unavailable sources so treasury and research teams can identify questions for follow-up. It provides research context and does not execute trades or certify compliance.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
     "category": "Finance",
@@ -88,7 +88,7 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."
+        "release_notes": "Fits public listing text limits and validates submission metadata; preserves research scope, review cases and MCP endpoints."
       }
     }
   }

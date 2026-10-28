@@ -1,6 +1,6 @@
 {
   "name": "myquant-app",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Inspect public MyQuant app capabilities for briefing, feed validation, offline reading and topic controls, plus API/MCP compatibility metadata. This plugin does not read or change on-device content, preferences, accounts or installed app state.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
@@ -13,7 +13,7 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "MyQuant App Discovery",
-    "shortDescription": "Discover MyQuant app capabilities",
+    "shortDescription": "App capabilities and limits",
     "longDescription": "Inspect public MyQuant app capabilities for briefing, feed validation, offline reading and topic controls, plus API/MCP compatibility metadata. This plugin does not read or change on-device content, preferences, accounts or installed app state.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
     "category": "Productivity",
@@ -88,7 +88,7 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."
+        "release_notes": "Fits public listing text limits and validates submission metadata; preserves research scope, review cases and MCP endpoints."
       }
     }
   }

@@ -69,7 +69,7 @@ class ProductPluginTests(unittest.TestCase):
         for slug in metadata:
             item = builder.review_metadata(slug, metadata, inventory)
             manifest = json.loads((ROOT / f"plugins/{slug}/.codex-plugin/plugin.json").read_text())
-            self.assertEqual(manifest["version"], "1.0.1")
+            self.assertEqual(manifest["version"], "1.0.2")
             self.assertEqual(manifest["interface"]["defaultPrompt"], item["defaultPrompt"])
             review = manifest["extensions"]["com.openai"]["review"]
             self.assertEqual(review["test_cases"], {"positive": item["positive"], "negative": item["negative"]})
@@ -101,6 +101,45 @@ class ProductPluginTests(unittest.TestCase):
         self.assertLessEqual(app_tools, {"list_capabilities", "get_health"})
         sandbox_tools = {case["tools_triggered"] for case in metadata["trade-safety"]["positive"]}
         self.assertEqual(sandbox_tools, {"trade_safety_capabilities"})
+
+    def test_every_generated_manifest_meets_public_submission_limits(self):
+        generated = builder.build()
+        for path, body in generated.items():
+            if path.endswith("/.codex-plugin/plugin.json"):
+                manifest = json.loads(body)
+                builder.validate_submission_metadata(manifest)
+                self.assertLessEqual(len(manifest["interface"]["shortDescription"]), 30)
+
+    def test_public_listing_text_boundaries_are_enforced(self):
+        manifest = json.loads((ROOT / "plugins/liquilens/.codex-plugin/plugin.json").read_text())
+        for field, maximum in (("displayName", 30), ("shortDescription", 30),
+                               ("longDescription", 4000), ("developerName", 80)):
+            with self.subTest(field=field):
+                candidate = copy.deepcopy(manifest)
+                candidate["interface"][field] = "x" * maximum
+                builder.validate_submission_metadata(candidate)
+                candidate["interface"][field] += "x"
+                with self.assertRaisesRegex(ValueError, field):
+                    builder.validate_submission_metadata(candidate)
+        candidate = copy.deepcopy(manifest)
+        candidate["interface"]["defaultPrompt"] = ["x" * 128]
+        builder.validate_submission_metadata(candidate)
+        candidate["interface"]["defaultPrompt"] = ["x" * 129]
+        with self.assertRaisesRegex(ValueError, "defaultPrompt"):
+            builder.validate_submission_metadata(candidate)
+
+    def test_listing_links_and_prompt_rules_fail_before_archive_generation(self):
+        manifest = json.loads((ROOT / "plugins/liquilens/.codex-plugin/plugin.json").read_text())
+        for field in ("websiteURL", "supportURL", "privacyPolicyURL", "termsOfServiceURL"):
+            candidate = copy.deepcopy(manifest)
+            candidate["interface"][field] = "https://name:secret@example.com"
+            with self.assertRaisesRegex(ValueError, field):
+                builder.validate_submission_metadata(candidate)
+        for prompts in (["same", "same"], ["one", "two", "three", "four"], ["Ask @example"]):
+            candidate = copy.deepcopy(manifest)
+            candidate["interface"]["defaultPrompt"] = prompts
+            with self.assertRaisesRegex(ValueError, "defaultPrompt"):
+                builder.validate_submission_metadata(candidate)
 
 
 if __name__ == "__main__":

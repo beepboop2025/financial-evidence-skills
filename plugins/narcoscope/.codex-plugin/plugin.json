@@ -1,6 +1,6 @@
 {
   "name": "narcoscope",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Inspect public evidence about informal economies, drug and arms markets, and regional context with dataset provenance, units and source dates. NarcoScope supports research briefs and evidence checks; administrative counts do not establish market size, individual guilt or current operational activity. Access and publication restrictions remain visible.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
@@ -13,7 +13,7 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "NarcoScope",
-    "shortDescription": "Informal-economy evidence and sources",
+    "shortDescription": "Informal-economy research",
     "longDescription": "Inspect public evidence about informal economies, drug and arms markets, and regional context with dataset provenance, units and source dates. NarcoScope supports research briefs and evidence checks; administrative counts do not establish market size, individual guilt or current operational activity. Access and publication restrictions remain visible.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
     "category": "Finance",
@@ -88,7 +88,7 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."
+        "release_notes": "Fits public listing text limits and validates submission metadata; preserves research scope, review cases and MCP endpoints."
       }
     }
   }

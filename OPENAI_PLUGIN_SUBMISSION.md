@@ -1,11 +1,19 @@
 # OpenAI public plugin submission packet
 
-**Current packet:** use the [0.1.10 hosted-workspace submission packet](docs/plugins/financial-evidence-publisher-0.1.10.md)
-and its exact release ZIP. The older material below documents the 0.1.7
-three-tool router and must not be used for the current nine-tool upload.
-The portal was rechecked on 16 October 2026: developer identity verification
-is still required before uploading. The current expansion request resumes
-preparation; no identity verification or submission is claimed.
+**Current submission:** Financial Evidence **0.1.17** is **In review** and
+**Not published**, independently read back from the OpenAI portal on 29 October
+2026 (IST). Eleven specialist plugins are also in review; Seiche and LiquiLens
+Trade Safety remain unsubmitted pending final review evidence and declarations.
+Trade Safety 0.2.3 is now live with independently verified read-only MCP responses;
+this runtime acceptance is separate from its OpenAI draft status.
+See the [dated status receipt](docs/distribution/openai-review-state-20261029.json).
+
+The [submitted ZIP](docs/distribution/downloads/financial-evidence-openai-plugin-v0.1.17.zip)
+and [exact file inventory](docs/distribution/downloads/financial-evidence-openai-plugin-v0.1.17.json)
+are the current artifacts. The [recorded review evidence](docs/review/20261028/financial-evidence/index.html)
+uses captured direct public MCP responses. It is not a newly executed model-routing
+or native plugin-installation test. Store approval and public availability remain
+unverified. The packet below is historical and must not be reused for submission.
 
 ## Historical 0.1.7 packet
 

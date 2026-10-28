@@ -1,0 +1,93 @@
+{
+  "schema": "financial-evidence.dify-marketplace-archive-readback.v1",
+  "observed_at": "2026-10-28T19:14:02.575365+00:00",
+  "requested_url": "https://marketplace.dify.ai/api/v1/plugins/download-url?unique_identifier=beepboop2025%2Ffinancial_evidence%3A0.1.2%401956fc5e710e6c5607d3b11d02d727068908a7aa88630c69304fec8f1368fe22",
+  "final_host": "dify-plugin-saas.305dbc7da819eb47bb3f3f3bc8927046.r2.cloudflarestorage.com",
+  "http_status": 200,
+  "content_type": "application/octet-stream",
+  "bytes": 8393,
+  "sha256": "63c7f514033a4aed019a513883c19f7d28e8720c9ec0c7b849d250e5a890f238",
+  "prefix_hex": "504b030414000800",
+  "marketplace_identifier": "beepboop2025/financial_evidence:0.1.2@1956fc5e710e6c5607d3b11d02d727068908a7aa88630c69304fec8f1368fe22",
+  "submitted_archive_sha256": "350d20409d9a3287d0ddc1b939d2cbb5f577ca632f2c20be75a5c7d046f0ba96",
+  "source_file_count": 10,
+  "source_files": [
+    {
+      "path": "PRIVACY.md",
+      "bytes": 2165,
+      "sha256": "199f6b1325f23c9f830277943b66a48497ef59070a410585af85c3ff9c00fe50",
+      "matches_submitted_and_source": true
+    },
+    {
+      "path": "README.md",
+      "bytes": 4622,
+      "sha256": "7649cc94a1b6f6d4ed2f3b0cbf6945bebd11fdbd948e8a8c6894cc2a859c7049",
+      "matches_submitted_and_source": true
+    },
+    {
+      "path": "_assets/icon.svg",
+      "bytes": 246,
+      "sha256": "c80fead76a1695cf1c874998954cee0dc382d52869ca019c1e6ddd1692ef6f65",
+      "matches_submitted_and_source": true
+    },
+    {
+      "path": "main.py",
+      "bytes": 147,
+      "sha256": "633d495584320e93e569501bf0fce9cc47ad05ba888db5538fe3476cb241ed19",
+      "matches_submitted_and_source": true
+    },
+    {
+      "path": "manifest.yaml",
+      "bytes": 691,
+      "sha256": "0c03924d6618a37172fe65d2e006565cbf5f763e3adb9b62f771e6723ae2698c",
+      "matches_submitted_and_source": true
+    },
+    {
+      "path": "provider/financial_evidence.py",
+      "bytes": 252,
+      "sha256": "815ce98a1be0a6b242bef63f7835013eb16c5cc113472ab140c700ab4f20c529",
+      "matches_submitted_and_source": true
+    },
+    {
+      "path": "provider/financial_evidence.yaml",
+      "bytes": 347,
+      "sha256": "31667830e0e9bc41d4997118d6dfda352a8d8ca19d1703d97c84fe0ee9c4bde0",
+      "matches_submitted_and_source": true
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 34,
+      "sha256": "33b131d54972ea4340c57ac88d86d95837b160e039cec5ec1e9b350dc4d4474e",
+      "matches_submitted_and_source": true
+    },
+    {
+      "path": "tools/evidence_page.py",
+      "bytes": 2309,
+      "sha256": "da7f3cc9ab735709b0ad2c34e8a9c9185b591a13fc846acc2008f2493deb1f54",
+      "matches_submitted_and_source": true
+    },
+    {
+      "path": "tools/evidence_page.yaml",
+      "bytes": 2080,
+      "sha256": "30bc721e4ecf1551f5e38e23a091fc3a115aed796f302189cd4615cf640e5777",
+      "matches_submitted_and_source": true
+    }
+  ],
+  "additional_files": [
+    {
+      "path": ".verification.dify.json",
+      "bytes": 35,
+      "sha256": "6c1558142d852d376df6ab38f7cae98e9585dc7e324d3e207c8ab488c33f8042"
+    }
+  ],
+  "checks": [
+    "bounded_official_marketplace_download",
+    "no_duplicate_or_unsafe_zip_paths",
+    "exact_submitted_payload_and_source_bytes",
+    "only_marketplace_verification_metadata_added"
+  ],
+  "signature_cryptographically_verified": false,
+  "fresh_marketplace_install_test_performed": false,
+  "independent_adoption_verified": false,
+  "note": "The complete Marketplace-distributed archive has a different hash from the unsigned submitted ZIP. All ten submitted source payload files match exactly. The sole additional file is Dify verification metadata. This checks delivered bytes, not a new installation or independent cryptographic signature validation."
+}

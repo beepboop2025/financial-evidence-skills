@@ -44,8 +44,8 @@
   },
   "transcript": {
     "file": "transcript.html",
-    "bytes": 10231,
-    "sha256": "db60f0d6ab0366841dec3303f9bbf4881f5457e85716877dd24626e2abe0bf25",
+    "bytes": 10723,
+    "sha256": "061d8bb27d6a79e78745a63d0a00a54b64ff10a49f11427416a42bc2b72fe122",
     "kind": "annotated review notes, not a verbatim conversation transcript"
   },
   "positive_scenarios": [
@@ -98,6 +98,15 @@
     "China catalog-first sequence required a follow-up.",
     "Additional synthesis needed an explicit date and quote-unit correction.",
     "Live endpoint links are not frozen copies of test responses.",
-    "No claim of marketplace approval, native-client certification, customer adoption or revenue."
-  ]
+    "No claim of marketplace approval, native-client certification, customer adoption or revenue.",
+    "The video predates rights-based withholding changes; funding numeric examples are historical and post-change acceptance remains pending."
+  ],
+  "rights_projection_context": {
+    "capture_date": "2026-10-28",
+    "capture_precedes_rights_withholding_updates": true,
+    "funding_numeric_examples": "historical behavior before rights-based withholding updates",
+    "current_public_behavior_accepted": false,
+    "post_projection_retest": "pending",
+    "original_evidence_retained": true
+  }
 }

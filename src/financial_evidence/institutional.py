@@ -1,6 +1,7 @@
 """Forward-only public evidence packets and private, consented usage counters."""
 
 import argparse
+import copy
 import fcntl
 import hashlib
 import hmac
@@ -279,6 +280,42 @@ def packet(root, identifier):
     return manifest, *values
 
 
+def public_packet(root, identifier):
+    """Project only after original immutable bytes and release identity verify."""
+    manifest, raw, csv_raw = packet(root, identifier)
+    review, public_csv = funding_archive.public_funding_projection(
+        strict_json(raw), csv_raw, digest(csv_raw)
+    )
+    if "publication_projection" not in review:
+        return manifest, raw, csv_raw
+    public_raw = encoded(review)
+    projected = copy.deepcopy(manifest)
+    projected.update(
+        schema="financial-evidence.public-packet-projection.v1",
+        publication_ready=False,
+        publication_status="redistribution_restricted",
+        original_public_manifest_sha256=digest(encoded(manifest)),
+        original_artifacts=copy.deepcopy(manifest["artifacts"]),
+        artifacts={"review.json": digest(public_raw),
+                   "observations.csv": digest(public_csv)},
+        publication_projection=review["publication_projection"],
+    )
+    return projected, public_raw, public_csv
+
+
+def public_latest(root):
+    value = latest(root)
+    if value["packet"] is not None:
+        manifest, raw, _ = public_packet(root, value["packet"]["packet_id"])
+        review = strict_json(raw)
+        value["packet"] = manifest
+        value["ready"] = bool(value["ready"] and review["ready"])
+        if "publication_projection" in review:
+            value["publication_status"] = "redistribution_restricted"
+            value["operational_attempt_scope"] = "capture_time_before_public_projection"
+    return value
+
+
 def history(root, *, as_of=None, limit=96):
     cutoff = timestamp(as_of or now())
     if cutoff > timestamp(now()):
@@ -361,8 +398,8 @@ def latest(root):
 
 
 def compare(root, left, right):
-    a, ar, _ = packet(root, left)
-    b, br, _ = packet(root, right)
+    a, ar, _ = public_packet(root, left)
+    b, br, _ = public_packet(root, right)
     if timestamp(a["archived_at"]) > timestamp(b["archived_at"]):
         raise ValueError("comparison must run forward")
     before, after = strict_json(ar)["results"], strict_json(br)["results"]

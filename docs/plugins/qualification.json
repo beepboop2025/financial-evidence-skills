@@ -11,7 +11,7 @@
       "operator_traffic": true,
       "server": {
         "name": "seiche",
-        "title": "Seiche \u2014 funding-stress terminal",
+        "title": "Seiche — funding-stress terminal",
         "version": "0.16.4",
         "websiteUrl": "https://seiche.info"
       },
@@ -114,11 +114,11 @@
     {
       "id": "palimpsest",
       "url": "https://agents.seiche.info/products/palimpsest/mcp",
-      "observed_at": "2026-10-16T16:34:52.915706+00:00",
+      "observed_at": "2026-10-28T12:43:56.227934+00:00",
       "operator_traffic": true,
       "server": {
         "name": "palimpsest",
-        "title": "Palimpsest \u2014 censorship, China economy and model evals",
+        "title": "Palimpsest — censorship, China economy and model evals",
         "version": "1.9.3",
         "websiteUrl": "https://palimpsest.info"
       },
@@ -129,11 +129,13 @@
         "list_signals",
         "get_signal",
         "get_newsroom",
-        "query_economic_observations",
+        "inspect_economic_publication_rights",
         "whats_happening",
         "gfw_reading"
       ],
-      "tool_annotations_complete": true
+      "tool_annotations_complete": true,
+      "source_commit": "1acdda35ff98b7fa4bb0c1a87f3baa02f6440c25",
+      "tools_sha256": "a23aca5424974fa9bea6b8475611f5d0d51b5ab27de5f4e24e159ebfc18a0b06"
     },
     {
       "id": "noisefloor",
@@ -143,7 +145,7 @@
       "server": {
         "name": "noisefloor",
         "version": "0.4.0",
-        "title": "noisefloor \u2014 is this number real?",
+        "title": "noisefloor — is this number real?",
         "websiteUrl": "https://github.com/beepboop2025/noisefloor"
       },
       "tool_count": 10,
@@ -243,7 +245,7 @@
       "operator_traffic": true,
       "server": {
         "name": "myquant-editorial",
-        "title": "my quant doesn\u2019t speak english",
+        "title": "my quant doesn’t speak english",
         "version": "2.1.1",
         "description": "Read-only discovery and bounded editorial content for the finite, evidence-bounded market briefing.",
         "websiteUrl": "https://myquantdoesntspeakenglish.com"

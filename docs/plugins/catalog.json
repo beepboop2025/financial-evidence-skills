@@ -90,7 +90,7 @@
       "mcp_url": "https://agents.seiche.info/products/palimpsest/mcp",
       "guide_url": "https://palimpsest.info/developers.html",
       "kind": "core_product",
-      "plugin_version": "1.0.2",
+      "plugin_version": "1.0.3",
       "source_path": "plugins/palimpsest",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -99,14 +99,14 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/palimpsest-openai-1.0.2.zip",
-          "sha256": "f4b7f23c08b6b3987dd3d2f0492ecf47d316396e959bb4c68dc89fe44f38d5c2",
-          "bytes": 30124
+          "url": "downloads/palimpsest-openai-1.0.3.zip",
+          "sha256": "ba4a850873db1f159136471377fe13ce70a37c695d14deafe634a264a32b469c",
+          "bytes": 30279
         },
         "gemini": {
-          "url": "downloads/palimpsest-gemini-1.0.2.zip",
-          "sha256": "45f3f049bf68b6de581fc1e6156ab1e56a985ad1963869bbb9a401be978ea980",
-          "bytes": 28689
+          "url": "downloads/palimpsest-gemini-1.0.3.zip",
+          "sha256": "55e3aaa7c7b9b79e00e792f913f720f9f8b81065945d8239d44cb0140fd3dd9a",
+          "bytes": 28808
         }
       }
     },

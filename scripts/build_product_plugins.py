@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://beepboop2025.github.io/financial-evidence-skills"
 REPO = "https://github.com/beepboop2025/financial-evidence-skills"
 VERSION = "1.0.2"
+PRODUCT_VERSIONS = {"palimpsest": "1.0.3"}
 
 
 def encode(value):
@@ -130,6 +131,7 @@ def build():
         if endpoint != f"https://agents.seiche.info/products/{slug}/mcp":
             raise ValueError(f"Unexpected endpoint: {slug}")
         review = review_metadata(slug, reviews, inventory)
+        version = PRODUCT_VERSIONS.get(slug, VERSION)
         if inventory[slug]["endpoint"] != endpoint:
             raise ValueError(f"Changed review endpoint: {slug}")
         summary = review["longDescription"]
@@ -163,7 +165,9 @@ Requests go to `{endpoint}`. The hosted service records bounded operational
 counts; installation does not enroll the user in optional learning or sharing.
 [Data handling](https://agents.seiche.info/privacy) · [Product guide]({product['guide_url']}).
 '''
-        common = {"name": slug, "version": VERSION, "description": summary,
+        if review.get("toolGuidance"):
+            skill = skill.replace("1. Discover", review["toolGuidance"] + "\n\n1. Discover", 1)
+        common = {"name": slug, "version": version, "description": summary,
                   "author": {"name": "LIQUILENS PRIVATE LIMITED", "url": "https://liquilens.in/"},
                   "homepage": product["guide_url"], "repository": REPO, "license": "MIT"}
         codex = dict(common, skills="./skills/", mcpServers="./.mcp.json", interface={
@@ -177,10 +181,10 @@ counts; installation does not enroll the user in optional learning or sharing.
         codex["extensions"] = {"com.openai": {
             "review": {"test_cases": {"positive": review["positive"], "negative": review["negative"]},
                        "commerce": False},
-            "publication": {"release_notes": "Fits public listing text limits and validates submission metadata; preserves research scope, review cases and MCP endpoints."}}}
+            "publication": {"release_notes": review.get("releaseNotes", "Fits public listing text limits and validates submission metadata; preserves research scope, review cases and MCP endpoints.")}}}
         validate_submission_metadata(codex)
         mcp = {"mcpServers": {slug: {"type": "http", "url": endpoint}}}
-        gemini = {"name": slug, "version": VERSION, "description": summary,
+        gemini = {"name": slug, "version": version, "description": summary,
                   "mcpServers": {slug: {"httpUrl": endpoint, "timeout": 30000,
                                         "includeTools": proof["tools"]}}}
         files = {".claude-plugin/plugin.json": encode(common),
@@ -193,7 +197,7 @@ counts; installation does not enroll the user in optional learning or sharing.
 
 {summary}
 
-This independent plugin package is version {VERSION}; the hosted product has its
+This independent plugin package is version {version}; the hosted product has its
 own release version. It connects to `{endpoint}` without a product API key.
 Your assistant may require its own account or plan. See the [installation guide]({SITE}/plugins/).
 
@@ -214,7 +218,7 @@ copilot plugin marketplace add beepboop2025/financial-evidence-skills
 copilot plugin install {slug}@liquidity-lab
 ```
 
-Gemini CLI: download and extract `{slug}-gemini-{VERSION}.zip`, then run
+Gemini CLI: download and extract `{slug}-gemini-{version}.zip`, then run
 `gemini extensions install ./extracted-directory`. Inspect the included server
 and tool list before enabling it. Native Gemini installation is not yet verified.
 
@@ -226,11 +230,11 @@ Cursor or Microsoft directory approval. [Privacy](https://agents.seiche.info/pri
         gemini_files = {k: v for k, v in files.items() if k not in {".claude-plugin/plugin.json", ".codex-plugin/plugin.json", ".mcp.json"}}
         downloads = {}
         for platform, contents in (("openai", openai_files), ("gemini", gemini_files)):
-            filename = f"{slug}-{platform}-{VERSION}.zip"
+            filename = f"{slug}-{platform}-{version}.zip"
             body = archive(contents)
             output[f"docs/plugins/downloads/{filename}"] = body
             downloads[platform] = {"url": f"downloads/{filename}", "sha256": hashlib.sha256(body).hexdigest(), "bytes": len(body)}
-        entry = {**product, "plugin_version": VERSION, "source_path": f"plugins/{slug}",
+        entry = {**product, "plugin_version": version, "source_path": f"plugins/{slug}",
                  "distribution": "publisher_maintained_marketplace", "official_directory_approved": False,
                  "observed_server_version": inventory[slug]["server_version"], "observed_tool_count": len(inventory[slug]["tools"]),
                  "review_tool_inventory": review_file.removeprefix("docs/plugins/"),
@@ -247,7 +251,7 @@ Cursor or Microsoft directory approval. [Privacy](https://agents.seiche.info/pri
         for entry in entries:
             if kind == "claude":
                 item = {"name": entry["id"], "source": "./" + entry["source_path"],
-                        "version": VERSION, "description": entry["scope"]}
+                        "version": entry["plugin_version"], "description": entry["scope"]}
             else:
                 item = {"name": entry["id"], "source": {"source": "local", "path": "./" + entry["source_path"]},
                         "policy": {"installation": "AVAILABLE", "authentication": "ON_INSTALL"}, "category": reviews[entry["id"]]["category"]}

@@ -1,0 +1,93 @@
+{
+  "schema": "liquilens.openai-portal-readback.v1",
+  "observed_at": "2026-10-28T20:54:20.534Z",
+  "source": "Independent refreshed OpenAI plugin list",
+  "products": [
+    {
+      "name": "LiquiLens Trade Safety",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "Seiche Market Atlas Corpus",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "Palimpsest",
+      "version": "1.0.3",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "LiquiLens",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "Undertow",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "NarcoScope",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "NoiseFloor",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "Wake",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "MyQuant Editorial",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "Riptide",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "MyQuant App Discovery",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "Source Data Research Workspace",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "Financial Evidence",
+      "version": "0.1.17",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "Seiche",
+      "version": "1.0.2",
+      "review_status": "not_submitted",
+      "publication_status": "not_published"
+    }
+  ],
+  "approval_claimed": false,
+  "model_api_calls_for_this_check": 0
+}

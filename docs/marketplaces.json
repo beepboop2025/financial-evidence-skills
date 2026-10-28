@@ -333,7 +333,6 @@
       },
       "prepared_archive": "https://beepboop2025.github.io/financial-evidence-skills/distribution/downloads/financial-evidence-openai-plugin-v0.1.17.zip",
       "archive_sha256": "0f383f07560d17d542e47055b2dbd5f233ecf770ef6f675d531196d42833b13d",
-      "identity_verification_completed": true,
       "portal_upload_completed": true,
       "updated_at": "2026-10-28T19:08:15.550Z",
       "completion_receipt": "distribution/completion-20261010.json",

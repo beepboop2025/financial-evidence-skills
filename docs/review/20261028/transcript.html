@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Financial Evidence — MCP component walkthrough, 28 October 2026</title>
+<meta name="description" content="Annotated review notes for an edited sequence of real OpenAI API Playground browser captures testing Financial Evidence MCP components.">
+<style>
+:root{color-scheme:light dark;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}body{max-width:980px;margin:auto;padding:28px 22px}h1,h2,h3{line-height:1.25}h1{font-size:2rem}h2{margin-top:2.2rem}a{color:#087e8b}code{overflow-wrap:anywhere;font-size:.9em}.note{border-left:4px solid #087e8b;padding:12px 18px;background:rgba(8,126,139,.08)}.muted{opacity:.78}video{display:block;width:100%;height:auto;background:#111}table{border-collapse:collapse;width:100%;font-size:.95rem}th,td{border:1px solid #9996;text-align:left;vertical-align:top;padding:10px}th{background:#8881}.table-wrap{overflow-x:auto}li{margin:.45rem 0}.badge{font-weight:600}footer{border-top:1px solid #9996;margin-top:2rem;padding-top:1rem;font-size:.9rem}@media(prefers-color-scheme:dark){a{color:#67d3d1}}
+</style>
+</head>
+<body>
+<header>
+<p class="muted">LIQUILENS PRIVATE LIMITED · Financial Evidence · 28 October 2026</p>
+<h1>MCP component walkthrough</h1>
+<p>Edited sequence of actual browser screen captures from the OpenAI API Playground, using <strong>gpt-6-luna</strong>.</p>
+</header>
+<div class="note">
+<strong>Review scope.</strong> This is an MCP component walkthrough, not a continuous screen recording, a full native ChatGPT or Codex plugin test, marketplace certification, or evidence of customer adoption. The video uses 13 selected browser screenshots, held for seven seconds each. The notes below annotate visible prompts, tool calls and results; they are not a verbatim conversation transcript.
+</div>
+<section aria-labelledby="video-heading">
+<h2 id="video-heading">Walkthrough video</h2>
+<video controls preload="metadata" aria-label="Financial Evidence MCP component walkthrough">
+<source src="component-walkthrough.mp4" type="video/mp4">
+Your browser cannot play this video. <a href="component-walkthrough.mp4">Download the MP4</a>.
+</video>
+<p><a href="component-walkthrough.mp4">Download the MP4</a> · The accompanying text supplies the test context, outcomes and limitations.</p>
+</section>
+<section aria-labelledby="method-heading">
+<h2 id="method-heading">Method and package relationship</h2>
+<ul>
+<li>Tests used public, synthetic research requests in one shared API Playground conversation, with approval for individual MCP tool calls. Results are not isolated benchmark trials.</li>
+<li>The remote MCP endpoint was <a href="https://agents.seiche.info/products/financial-evidence/mcp">Financial Evidence MCP</a>.</li>
+<li>The tested runtime assets from package <code>0.1.16</code> are byte-identical to the runtime assets in the uploaded <code>0.1.17</code> draft package. The version update concerns submission metadata; it does not establish a separate native-app test.</li>
+<li>The captures contain selected visible interaction states. This document does not publish hidden model reasoning, credentials, account identifiers or private customer data.</li>
+<li>Source repository: <a href="https://github.com/beepboop2025/financial-evidence-skills">financial-evidence-skills</a>. Source freshness, coverage, rights and quote units remain part of each result; successful tool execution does not imply complete or current coverage.</li>
+</ul>
+</section>
+<section aria-labelledby="outcomes-heading">
+<h2 id="outcomes-heading">Observed positive scenarios</h2>
+<div class="table-wrap"><table>
+<thead><tr><th scope="col">Scenario</th><th scope="col">Observed interaction</th><th scope="col">Outcome and qualification</th></tr></thead>
+<tbody>
+<tr><th scope="row">USD funding conditions</th><td><code>financial_evidence_workflow</code> with the USD funding request.</td><td>The response retained source dates and the <strong>PARTIAL</strong> coverage status. Available evidence was SOFR-only; it was not presented as complete money-market coverage.</td></tr>
+<tr><th scope="row">AU Small Finance Bank</th><td>An institutions workflow followed by a <code>bank_risk</code> query for <code>au-sfb</code>.</td><td>The response identified the covered institution, primary filing evidence and missing information. This is bounded research evidence, not a deposit-safety guarantee or a universal bank score.</td></tr>
+<tr><th scope="row">BTC exit scenarios</th><td>Requests for notionals of <code>10,000</code> and <code>100,000</code>.</td><td>The response covered six venues and labeled the estimates indicative. No trade was executed. Venue quote currencies and exclusions such as fees must remain visible; the additional synthesis issue described below is material to interpreting comparisons.</td></tr>
+<tr><th scope="row">Funding review</th><td><code>financial_evidence_funding_review</code>, followed by a request for source links.</td><td>The response distinguished the common <strong>26 October</strong> horizon from the <strong>28 October</strong> capture. The initial answer omitted source links; a follow-up supplied the four endpoints listed below. This was not complete citation delivery on the first answer.</td></tr>
+<tr><th scope="row">China evidence</th><td><code>financial_evidence_query</code> with <code>limit=20</code>, followed by a catalog request.</td><td>The query returned <strong>five metadata rows and zero observations</strong>, with null or restricted values. The result preserved those limits. The model skipped the intended catalog-first sequence; the catalog step occurred only after a follow-up.</td></tr>
+</tbody>
+</table></div>
+</section>
+<section aria-labelledby="negative-heading">
+<h2 id="negative-heading">Observed negative and out-of-scope scenarios</h2>
+<div class="table-wrap"><table>
+<thead><tr><th scope="col">Request</th><th scope="col">Observed result</th></tr></thead>
+<tbody>
+<tr><th scope="row">Buy BTC</th><td>The model declined to execute the purchase. No MCP call was made for this request.</td></tr>
+<tr><th scope="row">Access private RBI or customer records</th><td>No private records were accessed and no MCP call was made. The result did not claim access to confidential records.</td></tr>
+<tr><th scope="row">Write a birthday poem</th><td>The model handled the ordinary writing request without an MCP call.</td></tr>
+</tbody>
+</table></div>
+</section>
+<section aria-labelledby="correction-heading">
+<h2 id="correction-heading">Additional synthesis issue and prompted correction</h2>
+<p>An additional cross-source synthesis, <strong>not included in the video</strong>, contained two errors: it labeled the BTC publication time as an observation time and combined costs quoted in USD with costs quoted in USDT.</p>
+<p>After an explicit correction prompt, the model separated venue observations at <strong>10:01:17–10:01:20 UTC on 28 October</strong>, publication at <strong>10:03 UTC</strong>, and evaluation at <strong>10:23:46 UTC</strong>. It also separated the USD-quoted venues (Bitfinex, Coinbase, Gemini and Kraken) from the USDT-quoted venues (Binance and OKX), and retained the indicative nature and exclusions of the estimates.</p>
+<p>No new MCP call was made during that correction. The correction depended on a follow-up prompt; this is an observed limitation, not a clean first-pass result or proof that future answers will avoid the same errors. Referenced source endpoint: <a href="https://api.seiche.info/undertow/crypto_desk.json">Undertow crypto desk JSON</a>.</p>
+</section>
+<section aria-labelledby="sources-heading">
+<h2 id="sources-heading">Source endpoints supplied in the funding-review follow-up</h2>
+<ul>
+<li><a href="https://api.seiche.info/mcp">https://api.seiche.info/mcp</a></li>
+<li><a href="https://api.seiche.info/api/money-markets">https://api.seiche.info/api/money-markets</a></li>
+<li><a href="https://api.seiche.info/api/v2/money-markets">https://api.seiche.info/api/v2/money-markets</a></li>
+<li><a href="https://api.seiche.info/api/health">https://api.seiche.info/api/health</a></li>
+</ul>
+<p>These are live endpoints, not frozen copies of the test responses. Their contents may change after the test date. The MCP endpoint is a machine protocol endpoint and may require a protocol request rather than a normal browser visit. A health response demonstrates service state, not completeness or correctness of every dataset.</p>
+</section>
+<section aria-labelledby="timeline-heading">
+<h2 id="timeline-heading">Video sequence</h2>
+<div class="table-wrap"><table>
+<thead><tr><th scope="col">Start</th><th scope="col">Selected visible state</th></tr></thead>
+<tbody>
+<tr><td>00:00</td>Original funding-research prompt</td></tr>
+<tr><td>00:07</td>USD workflow approval request</td></tr>
+<tr><td>00:14</td>Funding answer with dates and partial coverage</td></tr>
+<tr><td>00:21</td>Institutions workflow approval request for the exact <code>au-sfb</code> ID</td></tr>
+<tr><td>00:28</td>Exit-scenario approval request with the two requested notionals</td></tr>
+<tr><td>00:35</td>Funding-review approval request</td></tr>
+<tr><td>00:42</td>Source-link follow-up</td></tr>
+<tr><td>00:49</td>China query approval request with <code>limit=20</code></td></tr>
+<tr><td>00:56</td>Restricted or metadata-only China answer</td></tr>
+<tr><td>01:03</td>Catalog follow-up</td></tr>
+<tr><td>01:10</td>Buy-BTC request declined without an MCP call</td></tr>
+<tr><td>01:17</td>Private-record request handled without accessing records or making an MCP call</td></tr>
+<tr><td>01:24</td>Birthday-poem request handled without an MCP call</td></tr>
+</tbody>
+</table></div>
+</section>
+<footer>
+<p>Prepared for plugin review from tests dated 28 October 2026. This artifact documents the bounded observations above; it does not establish native-client acceptance, directory approval, adoption or revenue.</p>
+<p><a href="manifest.json">Artifact verification manifest</a></p>
+<p>Video SHA-256: <code>e9738107e6b13b1b472f946a0f75af4050566390f2ecfd6ee739e6680997ed35</code></p>
+</footer>
+</body>
+</html>

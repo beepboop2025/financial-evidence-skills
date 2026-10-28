@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "artifact": "financial-evidence-mcp-component-walkthrough",
+  "recorded_date": "2026-10-28",
+  "description": "Edited sequence of actual API Playground browser screen captures; not a continuous recording or a full native ChatGPT/Codex plugin test.",
+  "environment": {
+    "surface": "OpenAI API Playground",
+    "model": "gpt-6-luna",
+    "conversation": "one shared conversation",
+    "tool_approval": "individual MCP tool approval",
+    "inputs": "public synthetic research requests"
+  },
+  "package": {
+    "tested_runtime_version": "0.1.16",
+    "uploaded_draft_version": "0.1.17",
+    "runtime_assets_compared_byte_identical": true,
+    "draft_is_not_a_review_submission": true
+  },
+  "video": {
+    "file": "component-walkthrough.mp4",
+    "bytes": 866101,
+    "sha256": "e9738107e6b13b1b472f946a0f75af4050566390f2ecfd6ee739e6680997ed35",
+    "codec": "h264",
+    "width": 960,
+    "height": 686,
+    "frames_decoded": 2184,
+    "frames_per_second": 24,
+    "decoded_stream_duration_seconds": 91,
+    "selected_browser_captures": 13,
+    "seconds_per_capture": 7,
+    "container": "fragmented MP4",
+    "ffprobe_format_duration_seconds": 10.416667,
+    "duration_note": "Decoded video stream is 91 seconds; reported format duration reflects the first fragment. Public browser playback requires independent verification."
+  },
+  "transcript": {
+    "file": "transcript.html",
+    "bytes": 10231,
+    "sha256": "db60f0d6ab0366841dec3303f9bbf4881f5457e85716877dd24626e2abe0bf25",
+    "kind": "annotated review notes, not a verbatim conversation transcript"
+  },
+  "positive_scenarios": [
+    "USD funding with SOFR-only PARTIAL coverage",
+    "AU Small Finance Bank primary filing evidence and gaps",
+    "BTC exit scenarios across six venues with indicative limits",
+    "Funding review with common-date/capture distinction and source links supplied on follow-up",
+    "China metadata-only results; catalog-first step skipped then completed on follow-up"
+  ],
+  "negative_scenarios": [
+    {
+      "request": "buy BTC",
+      "mcp_call": false,
+      "outcome": "purchase execution declined"
+    },
+    {
+      "request": "private RBI or customer records",
+      "mcp_call": false,
+      "outcome": "no private-record access"
+    },
+    {
+      "request": "birthday poem",
+      "mcp_call": false,
+      "outcome": "ordinary writing response"
+    }
+  ],
+  "additional_synthesis_not_in_video": {
+    "initial_errors": [
+      "publication time mislabeled as observation time",
+      "USD and USDT quoted costs combined"
+    ],
+    "prompted_correction_completed": true,
+    "new_mcp_call_during_correction": false,
+    "observations_utc": "2026-10-28T10:01:17Z–2026-10-28T10:01:20Z",
+    "publication_utc": "2026-10-28T10:03:00Z",
+    "evaluation_utc": "2026-10-28T10:23:46Z",
+    "source_endpoint": "https://api.seiche.info/undertow/crypto_desk.json"
+  },
+  "funding_source_endpoints": [
+    "https://api.seiche.info/mcp",
+    "https://api.seiche.info/api/money-markets",
+    "https://api.seiche.info/api/v2/money-markets",
+    "https://api.seiche.info/api/health"
+  ],
+  "mcp_endpoint": "https://agents.seiche.info/products/financial-evidence/mcp",
+  "limitations": [
+    "Selected screen states include pending approval requests; later result states substantiate execution.",
+    "Results share conversation context and are not isolated benchmark trials.",
+    "The funding-review answer supplied source links only after a follow-up.",
+    "China catalog-first sequence required a follow-up.",
+    "Additional synthesis needed an explicit date and quote-unit correction.",
+    "Live endpoint links are not frozen copies of test responses.",
+    "No claim of marketplace approval, native-client certification, customer adoption or revenue."
+  ]
+}

@@ -1,0 +1,76 @@
+Validation Information:
+Manifest ID Valid Prefix: The product ID in the manifest has a valid prefix
+  - Details: acdb8bb2-280d-4c73-aadc-bbd4e1427bf0
+
+Manifest ID Correct Structure: The structure of the product ID is correct.
+  - Details: acdb8bb2-280d-4c73-aadc-bbd4e1427bf0
+
+Package Type Identified: Package of your add-in was parsed successfully.
+
+Correct Package: Your package matches the submission type.
+
+Valid Manifest Schema: Your manifest does adhere to the current set of XML schema definitions for Add-in manifests.
+
+Manifest Version Correct Structure: The manifest version number has the correct structure for the platform that it supports.
+
+Manifest Version Correct Value: The manifest version number is greater or equal to 1.0.
+
+Desktop Source Location Present: A desktop or default source location URL is found.
+
+Secure Desktop Source Location: The manifest desktop source location URLs use HTTPS.
+
+The manifest source location URLs are valid.: The manifest source location URLs are valid.
+
+Supported Office Identified: Supported Office products were successfully determined.
+
+Support URL Present: The manifest support URL is present.
+  - Details: https://beepboop2025.github.io/financial-evidence-skills/support/
+
+Valid and reachabe Support URL: The manifest support URL is valid and reachable.
+  - Details: https://beepboop2025.github.io/financial-evidence-skills/support/
+
+Valid OnlineMeetingCommandSurface ExtensionPoint.: OnlineMeetingCommandSurface ExtensionPoint extracted from manifest is found to be valid.
+
+Valid Manifest Resource Urls: The manifest Resource URLs are valid.
+
+Valid Manifest AppDomain Urls: The manifest AppDomain URLs are valid.
+
+High Resolution Icon Present: A high resolution icon element was expected and is present.
+  - Details: https://beepboop2025.github.io/financial-evidence-skills/office/excel/icon-64.png
+
+Supported High Resolution Icon URL File Extension: The manifest high resolution icon URL has a valid image file extension.
+  - Details: png
+
+Secure High Resolution Icon URL: The manifest high resolution icon URL uses HTTPS.
+  - Details: https://beepboop2025.github.io/financial-evidence-skills/office/excel/icon-64.png
+
+Correct High Resolution Icon Dimensions: The manifest high resolution icon dimensions are correct.
+
+Icon Present: A icon element was expected and is present.
+  - Details: https://beepboop2025.github.io/financial-evidence-skills/office/excel/icon-32.png
+
+Supported Icon URL File Extension: The manifest icon URL has a valid image file extension.
+  - Details: png
+
+The manifest icon URL uses HTTPS.: Secure Icon URL
+  - Details: https://beepboop2025.github.io/financial-evidence-skills/office/excel/icon-32.png
+
+Correct Icon Dimensions: The manifest icon dimensions are correct.
+
+Acceptance Test Completed: Acceptance test service has finished checking provided add-in.
+
+
+Based on the requirements specified in your manifest, your add-in can run on the following platforms; your add-in will be tested on these platforms when you submit it to the Office Store:
+  - Excel on iPad
+  - Excel on Mac (Microsoft 365)
+  - Excel 2016 or later on Mac
+  - Excel 2019 or later on Mac
+  - Excel 2016 or later on Windows
+  - Excel 2019 or later on Windows
+  - Excel on Windows (Microsoft 365)
+  - Excel on the web
+Important: This analysis is based on the requirements specified in your manifest and does not account for any runtime JavaScript calls within your add-in. For information about which API sets and features are supported on each platform, see Office Add-in host and platform availability. (https://docs.microsoft.com/office/dev/add-ins/overview/office-add-in-availability).
+
+*This does not include mobile apps. You can opt-in to support mobile apps when you submit your add-in.
+
+The manifest is valid.

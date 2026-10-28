@@ -1,0 +1,17 @@
+{
+  "schema": "financial-evidence.dify-marketplace-readback.v1",
+  "observed_at_utc": "2026-10-28T09:03:02.719171+00:00",
+  "url": "https://marketplace.dify.ai/plugin/beepboop2025/financial_evidence",
+  "public_version": "0.1.2",
+  "public_status": "active",
+  "published_at_utc": "2026-10-28T01:36:56.511473Z",
+  "marketplace_identifier": "beepboop2025/financial_evidence:0.1.2@1956fc5e710e6c5607d3b11d02d727068908a7aa88630c69304fec8f1368fe22",
+  "marketplace_checksum": "1956fc5e710e6c5607d3b11d02d727068908a7aa88630c69304fec8f1368fe22",
+  "submitted_unsigned_package_sha256": "350d20409d9a3287d0ddc1b939d2cbb5f577ca632f2c20be75a5c7d046f0ba96",
+  "upstream_pr": 3534,
+  "upstream_pr_merged_at_utc": "2026-10-28T01:36:16Z",
+  "html_sha256": "310ce603062cc76af3526459ff62027ad879ec63b66ab1662fee8b58a073d19e",
+  "archive_bytes_verified": false,
+  "note": "Marketplace reports an active 0.1.2 listing. Marketplace checksum differs from submitted package; downloaded signed archive not yet independently reconciled. Native candidate tests remain separate from marketplace-install acceptance.",
+  "evidence_source": "Unauthenticated public Marketplace page version history and visible listing; GitHub upstream PR merge readback."
+}

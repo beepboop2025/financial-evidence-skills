@@ -45,7 +45,9 @@ def captures():
             {
                 "market_id": "US-USD",
                 "benchmark": {
-                    "mnemonic": "SOFR",
+                    "mnemonic": "SOFR_MEDIAN",
+                    "id": "US.NYFED.SOFR_MEDIAN",
+                    "source": "nyfed_rates",
                     "value": 0,
                     "unit": "%",
                     "asof": "2026-09-25",
@@ -323,6 +325,20 @@ class FundingReviewTests(unittest.TestCase):
                     contextlib.redirect_stdout(io.StringIO()),
                 ):
                     self.assertEqual(main(args), 2)
+
+
+    def test_direct_benchmark_requires_its_exact_source_and_identity(self):
+        for field, value in (("id", "US.NYFED.SOFR"), ("source", "fred"), ("mnemonic", "SOFR")):
+            with self.subTest(field=field):
+                docs = captures()
+                docs[1]["markets"][0]["benchmark"][field] = value
+                self.assertIn("usd_benchmark_not_usable", self.codes(docs))
+        self.assertEqual(self.result(captures())["canonical_source_policy"], "direct_publishers_required")
+
+    def test_legacy_policy_flag_must_be_explicit_boolean(self):
+        for value in ("true", 1, None):
+            with self.assertRaises(ValueError):
+                evaluate(*captures(), evaluated_at=NOW, allow_legacy_sources=value)
 
 
 if __name__ == "__main__":

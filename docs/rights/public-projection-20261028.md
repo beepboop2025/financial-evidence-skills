@@ -24,7 +24,9 @@ citation notice are different conditions. No written permission covering the
 current hosted redistribution was established in this review.
 
 The filter runs on source fetches, and again on table projection so an older
-upstream or cached packet cannot bypass it. Unrelated sources are unchanged.
+upstream or cached packet cannot bypass it. Unexpected root types, schemas or
+required payload shapes on these two reviewed routes fail closed to unavailable
+metadata rather than returning an unreviewed document. Unrelated sources are unchanged.
 Original acquired response hashes remain acquisition receipts. When the
 returned document changes, publication_projection declares that it is a
 projection and gives a separate SHA-256 over canonical returned JSON. No

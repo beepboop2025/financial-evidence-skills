@@ -133,3 +133,33 @@ class PublicationRightsTests(unittest.TestCase):
         assert output is doc
         assert receipt is None
 
+
+    def test_protected_routes_fail_closed_on_unknown_schema_and_shape(self):
+        for topic, dataset, valid in (
+            ("capital-market", "capital_markets", capital_document()),
+            ("money-market", "money_markets", money_document()),
+        ):
+            variants = [
+                {"value": 777.123},
+                {**valid, "schema": "future.schema", "value": 777.123},
+                {"schema": valid["schema"], "value": 777.123},
+                [{"value": 777.123}],
+                {**valid, ("markets" if topic == "money-market" else "capital_markets"): 777.123},
+                {**valid, "markets": [{"benchmark": 777.123}]} if topic == "money-market"
+                else {**valid, "capital_markets": {"risk_context": 777.123}},
+            ]
+            for document in variants:
+                with self.subTest(topic=topic, document=document):
+                    source = core.ROUTES[topic][0]
+                    raw = json.dumps(document).encode()
+                    result = core.fetch_source(source, timeout=1, max_bytes=100000,
+                        opener=lambda request, timeout: Response(request.full_url, raw))
+                    assert result["ok"] is True
+                    assert "777.123" not in json.dumps(result["document"])
+                    assert result["document"]["status"] == "unavailable"
+                    assert result["document"]["publication_allowed"] is False
+                    assert result["publication_projection"]["withheld_paths"] == ["/"]
+                    assert result["content_sha256"] == "sha256:" + hashlib.sha256(raw).hexdigest()
+                    table = query_packet(packet(topic, document), dataset)
+                    assert all(row["value"] is None for row in table["results"])
+                    assert all(row["availability"] != "published" for row in table["results"])

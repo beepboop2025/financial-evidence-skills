@@ -37,6 +37,23 @@ def capital_document():
     }
 
 
+
+def forex_document():
+    return {
+        "schema": "seiche.world-markets.v1",
+        "generated_at": "2026-10-28T00:00:00Z",
+        "selection": "forex",
+        "summary": {"reading": "SECRET-DERIVED 777.123"},
+        "forex": {
+            "as_of": "2026-10-26",
+            "headline": {"fx_pressure": 777.123, "verdict": "SECRET-DERIVED"},
+            "currencies": [{"currency": "EUR", "value": 777.123}],
+            "harbors": [{"reading": "SECRET-DERIVED"}],
+            "new_unreviewed_field": {"history": [777.123]},
+        },
+    }
+
+
 def money_document():
     metric = {"id": "US.NYFED.SOFR", "mnemonic": "SOFR", "value": 777.123,
               "source_url": "https://fred.stlouisfed.org/", "redistribution_status": "allowed",
@@ -86,6 +103,51 @@ class PublicationRightsTests(unittest.TestCase):
         assert receipt["document_is_original"] is False
         assert core.publication_projection(core.ROUTES["capital-market"][0].url, output)[0] == output
 
+
+    def test_forex_snapshot_is_metadata_only_while_independent_ecb_route_is_unchanged(self):
+        original = forex_document()
+        output, receipt = core.publication_projection(core.ROUTES["forex"][0].url, original)
+        assert "777.123" not in json.dumps(output)
+        assert "SECRET-DERIVED" not in json.dumps(output)
+        assert output["forex"]["as_of"] == "2026-10-26"
+        assert output["generated_at"] == original["generated_at"]
+        assert output["forex"]["publication_allowed"] is False
+        assert core._projection_receipt(output, [], "")["content_sha256"] == receipt["content_sha256"]
+        assert core.publication_projection(core.ROUTES["forex"][0].url, output)[0] == output
+        direct = {"schema": "seiche.gift-city.v1", "forex": {
+            "provider": "ecb", "source_url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+            "rows": [{"value": 1.25}]}}
+        for topic in ("gift-city", "gold"):
+            assert core.publication_projection(core.ROUTES[topic][0].url, direct) == (direct, None)
+        for malformed in ([777.123], {"schema": "changed", "forex": original["forex"]},
+                          {"schema": original["schema"], "forex": "SECRET-DERIVED"}):
+            restricted, proof = core.publication_projection(core.ROUTES["forex"][0].url, malformed)
+            assert restricted["status"] == "unavailable"
+            assert "777.123" not in json.dumps(restricted)
+            assert proof["withheld_paths"] == ["/"]
+
+    def test_capital_funding_narrative_is_withheld_but_treasury_demand_statistics_remain(self):
+        original = capital_document()
+        direct_statistics = [{"tenor": "10-Year", "latest_indirect_pct": 67.1,
+                              "trend_pp_per_auction": 0.25, "verdict": "firming"}]
+        original["capital_markets"]["primary_market"].append({
+            "id": "reportcard", "status": "derived", "asof": "2026-10-26",
+            "funding_asof": "2026-10-27", "n_cards": 8, "window_bd": [0, 1, 3, 5],
+            "demand_fatigue": direct_statistics,
+            "letter_line": "SECRET-DERIVED 777.123",
+            "unreviewed_event_study": {"value": 777.123},
+            "source_registry_ids": ["us_treasury_fiscaldata_api"]})
+        projected, _ = core.publication_projection(core.ROUTES["capital-market"][0].url, original)
+        assert "777.123" not in json.dumps(projected)
+        assert "SECRET-DERIVED" not in json.dumps(projected)
+        auction, report = projected["capital_markets"]["primary_market"]
+        assert auction == original["capital_markets"]["primary_market"][0]
+        assert report["demand_fatigue"] == direct_statistics
+        assert report["n_cards"] == 8 and report["window_bd"] == [0, 1, 3, 5]
+        assert report["letter_line"] is None
+        assert report["funding_reading"]["publication_allowed"] is False
+        assert report["funding_asof"] == "2026-10-27"
+        assert core.publication_projection(core.ROUTES["capital-market"][0].url, projected)[0] == projected
 
     def test_legacy_table_input_cannot_bypass_publication_policy(self):
         for topic, dataset, document in (
@@ -178,7 +240,9 @@ class PublicToolRightsTests(unittest.TestCase):
         from financial_evidence import workspace_mcp
 
         def opener(request, **kwargs):
-            document = capital_document() if ("world" in request.full_url or "capital" in request.full_url) else money_document()
+            document = (forex_document() if "forex" in request.full_url else
+                        capital_document() if ("world" in request.full_url or "capital" in request.full_url)
+                        else money_document())
             return Response(request.full_url, json.dumps(document).encode())
 
         with patch.dict(core.fetch_source.__kwdefaults__, {"opener": opener}), \
@@ -222,10 +286,14 @@ class PublicToolRightsTests(unittest.TestCase):
                         assert all(row["value"] is None for row in result["evidence"]["results"])
                     if name == "financial_evidence_funding_review":
                         assert reply["structuredContent"] == {"qualified_original_publisher_fixture": 0}
+                forex = client.get("/api/v1/packet", params={"topics": "forex"}).json()
+                assert forex["sources"][0]["document"]["forex"]["publication_allowed"] is False
+                assert "777.123" not in json.dumps(forex)
+                assert "SECRET-DERIVED" not in json.dumps(forex)
                 rest = client.get("/api/v1/workflow", params={"workflow": "funding", "selection": "USD"}).json()
                 assert rest["prepared_response"] is False
                 assert "777.123" not in json.dumps(rest)
-            legacy = legacy_mcp.call_tool("financial_evidence_fetch", {"topics": ["money-market", "capital-market"]})
+            legacy = legacy_mcp.call_tool("financial_evidence_fetch", {"topics": ["money-market", "capital-market", "forex"]})
             assert not legacy.get("isError")
             assert "777.123" not in json.dumps(legacy)
             assert "SECRET-DERIVED" not in json.dumps(legacy)

@@ -1,0 +1,105 @@
+{
+  "schema": "liquilens.openai-portal-readback.v1",
+  "observed_at": "2026-10-28T19:08:15.550Z",
+  "source": "Authenticated OpenAI plugin list, independently refreshed after submission",
+  "products": [
+    {
+      "name": "Seiche Market Atlas Corpus",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "Palimpsest",
+      "version": "1.0.3",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "LiquiLens",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "Undertow",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "NarcoScope",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "NoiseFloor",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "Wake",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "MyQuant Editorial",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "Riptide",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "MyQuant App Discovery",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "Source Data Research Workspace",
+      "version": "1.0.2",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "Financial Evidence",
+      "version": "0.1.17",
+      "review_status": "in_review",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "LiquiLens Trade Safety",
+      "version": "1.0.2",
+      "review_status": "not_submitted",
+      "publication_status": "not_published"
+    },
+    {
+      "name": "Seiche",
+      "version": "1.0.2",
+      "review_status": "not_submitted",
+      "publication_status": "not_published"
+    }
+  ],
+  "approval_claimed": false,
+  "model_api_calls_for_this_check": 0,
+  "runtime_followup": {
+    "product": "LiquiLens Trade Safety",
+    "verified_at": "2026-10-28T19:19:04.416262Z",
+    "gateway_version": "0.2.3",
+    "source_revision": "aedc73dc1ab4f2b08ebfbfd200f0e45b09c38904",
+    "direct_endpoint": "https://trade-safety.liquilens.in/mcp",
+    "openai_product_endpoint": "https://agents.seiche.info/products/trade-safety/mcp",
+    "capability_text_matches_structured_content": true,
+    "execution_enabled": false,
+    "x402_enabled": false,
+    "note": "Runtime acceptance is separate from OpenAI draft review, declarations and submission."
+  }
+}

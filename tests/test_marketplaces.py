@@ -75,7 +75,7 @@ class MarketplaceLedgerTests(unittest.TestCase):
         )
         self.assertEqual(
             self.by_id["openai-plugin-directory"]["state"],
-            "ready_account_action",
+            "submitted",
         )
         self.assertEqual(
             self.by_id["gemini-cli-extension-gallery"]["state"],
@@ -98,6 +98,17 @@ class MarketplaceLedgerTests(unittest.TestCase):
         demo = (ROOT / "OPENAI_DEMO_RECORDING.md").read_text()
         privacy = (ROOT / "docs" / "privacy" / "index.html").read_text()
 
+        openai = self.by_id["openai-plugin-directory"]
+        self.assertEqual(openai["latest_surface_check"]["readback"], "In review; Not published")
+        receipt = json.loads((ROOT / "docs" / openai["evidence_receipt"]).read_text())
+        self.assertFalse(receipt["approval_claimed"])
+        self.assertTrue(all(product["publication_status"] == "not_published" for product in receipt["products"]))
+        specialists = [product for product in receipt["products"] if product["name"] != "Financial Evidence"]
+        uploads = self.by_id["liquidity-lab-product-openai-uploads"]
+        self.assertEqual(uploads["submitted_count"], sum(product["review_status"] == "in_review" for product in specialists))
+        self.assertEqual(uploads["draft_count"], sum(product["review_status"] == "not_submitted" for product in specialists))
+        self.assertEqual(uploads["approved_count"], 0)
+        self.assertEqual(uploads["published_count"], 0)
         self.assertIn("Demo recording: not yet recorded", packet)
         self.assertIn("public logo and release URL are independently verified", packet)
         self.assertIn("both ChatGPT and Codex", demo)

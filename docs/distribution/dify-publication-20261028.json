@@ -11,7 +11,10 @@
   "upstream_pr": 3534,
   "upstream_pr_merged_at_utc": "2026-10-28T01:36:16Z",
   "html_sha256": "310ce603062cc76af3526459ff62027ad879ec63b66ab1662fee8b58a073d19e",
-  "archive_bytes_verified": false,
-  "note": "Marketplace reports an active 0.1.2 listing. Marketplace checksum differs from submitted package; downloaded signed archive not yet independently reconciled. Native candidate tests remain separate from marketplace-install acceptance.",
-  "evidence_source": "Unauthenticated public Marketplace page version history and visible listing; GitHub upstream PR merge readback."
+  "archive_bytes_verified": true,
+  "note": "The complete Marketplace-distributed archive has a different hash from the unsigned submitted ZIP. All ten submitted source payload files match exactly. The sole additional file is Dify verification metadata. This checks delivered bytes, not a new installation or independent cryptographic signature validation.",
+  "evidence_source": "Unauthenticated public Marketplace page version history and visible listing; GitHub upstream PR merge readback.",
+  "archive_verified_at_utc": "2026-10-28T19:14:02.575365+00:00",
+  "archive_receipt": "dify-marketplace-archive-20261029.json",
+  "downloaded_archive_sha256": "63c7f514033a4aed019a513883c19f7d28e8720c9ec0c7b849d250e5a890f238"
 }

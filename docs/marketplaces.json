@@ -320,26 +320,27 @@
       "id": "openai-plugin-directory",
       "name": "OpenAI Plugin Directory",
       "channel": "agent-plugin-directory",
-      "state": "ready_account_action",
+      "state": "submitted",
       "submission_url": "https://platform.openai.com/plugins",
       "cost": "free",
-      "detail": "Signed-in portal still requires verified developer identity before any upload. The exact 0.1.10 ZIP is prepared from signed release source fe9eb8c9d23e7fbef2c31016bf9d106b72741428 and now references the nine-tool hosted workspace; the old 0.1.7 three-tool packet is historical. No identity completion, upload, domain verification, demo or review submission is claimed.",
-      "next_action": "Account owner completes publisher identity; then upload the current ZIP, verify the actual agents.seiche.info endpoint domain, record real review demonstrations and submit. Keep approval and public listing separate.",
+      "detail": "Financial Evidence 0.1.17 was submitted after the owner approved the declarations. An independent refreshed OpenAI portal readback shows In review and Not published. This is a plugin submission, not a new PyPI, registry or public store release. The review demonstration contains direct public MCP responses; no new paid model test or native plugin-installation test is claimed.",
+      "next_action": "Wait for OpenAI review and respond to any specific findings. Verify approval and public listing independently before marking this channel live.",
       "latest_surface_check": {
-        "observed_at": "2026-10-16T16:41:02.998286+00:00",
+        "observed_at": "2026-10-28T19:08:15.550Z",
         "url": "https://platform.openai.com/plugins",
-        "readback": "signed_in_portal_gate_verified",
-        "new_submission_created": false
+        "readback": "In review; Not published",
+        "new_submission_created": true
       },
-      "prepared_archive": "https://beepboop2025.github.io/financial-evidence-skills/distribution/downloads/financial-evidence-openai-plugin-v0.1.10.zip",
-      "archive_sha256": "1dfc2942d10c3b60b551a36634e5affc88b4f9b8485de4753f39c93f26037d77",
-      "identity_verification_completed": false,
-      "portal_upload_completed": false,
-      "updated_at": "2026-10-16T16:41:02.998286+00:00",
+      "prepared_archive": "https://beepboop2025.github.io/financial-evidence-skills/distribution/downloads/financial-evidence-openai-plugin-v0.1.17.zip",
+      "archive_sha256": "0f383f07560d17d542e47055b2dbd5f233ecf770ef6f675d531196d42833b13d",
+      "identity_verification_completed": true,
+      "portal_upload_completed": true,
+      "updated_at": "2026-10-28T19:08:15.550Z",
       "completion_receipt": "distribution/completion-20261010.json",
       "publisher_completion_receipt": "distribution/publisher-completion-20261010.json",
       "owner_deferred": false,
-      "publisher_packet": "https://beepboop2025.github.io/financial-evidence-skills/plugins/financial-evidence-publisher-0.1.10.md"
+      "version": "0.1.17",
+      "evidence_receipt": "distribution/openai-review-state-20261029.json"
     },
     {
       "id": "claude-plugin-directory",
@@ -3930,7 +3931,7 @@
       "state": "live",
       "submission_url": "https://github.com/langgenius/dify-plugins/pull/3534",
       "cost": "Free upstream plugin submission; no paid placement selected.",
-      "detail": "Dify PR 3534 for version 0.1.2 merged on 28 October. Unauthenticated public Marketplace readback shows 0.1.2 active. The submitted archive previously passed bounded installed-package tests in Dify Cloud. Public listing, archive byte verification and independent adoption are separate; marketplace archive bytes have not yet been reconciled.",
+      "detail": "Dify PR 3534 for version 0.1.2 merged on 28 October, and public Marketplace readback shows 0.1.2 active. The official Marketplace archive was downloaded and all ten payload files match the submitted package and source byte-for-byte; its sole extra file is Dify verification metadata. The submitted archive passed bounded Dify Cloud tests. A fresh Marketplace installation and independent adoption remain separate.",
       "next_action": "Install 0.1.2 from the public Marketplace in a permitted workspace. Allow outbound agents.seiche.info. Complete fresh Marketplace-install acceptance; Community Edition and independent adoption remain unverified.",
       "verified_at": "2026-10-28T09:03:02.719171+00:00",
       "package_version": "0.1.2",
@@ -3979,7 +3980,10 @@
         "upstream_merge_commit": "5fdc1e880947916cecf9343b7633b253886b528e",
         "published_package_identifier": "beepboop2025/financial_evidence:0.1.1@44352f99f3bbbbba818bf550ebd963e674effe97c349818934edd7e8bc8b0683"
       },
-      "installed_archive_execution_tested": true
+      "installed_archive_execution_tested": true,
+      "archive_readback_receipt": "distribution/dify-marketplace-archive-20261029.json",
+      "archive_bytes_verified": true,
+      "archive_verified_at": "2026-10-28T19:14:02.575365+00:00"
     },
     {
       "id": "n8n-financial-evidence-npm",
@@ -5186,7 +5190,7 @@
       "listing_url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/",
       "cost": "Free product plugins; client accounts and plans may have separate costs.",
       "detail": "Thirteen individual product plugins extend the two existing Financial Evidence and Market Brief entries. All thirteen installed from the public GitHub marketplace in an isolated Claude configuration at source 71c637ef7d8ac3423edc234ea376c12429a1c291. Codex native catalog discovery and Claude strict validation passed. GitHub Pages is built and all thirty-three publication files matched source bytes. Official vendor store approval remains separate. Copilot CLI 1.0.68 also installed all fifteen entries from public GitHub; sixteen distinct MCP configurations matched their source after the Market Brief 0.1.1 connection-name correction.",
-      "next_action": "Use the published installation guide; OpenAI identity remains required and Claude paid-directory submission is deferred.",
+      "next_action": "Use the published installation guide and monitor submitted OpenAI reviews. Claude paid-directory submission remains deferred.",
       "verified_at": "2026-10-16T17:15:20.402147+00:00",
       "products": [
         "seiche",
@@ -5222,14 +5226,18 @@
       "id": "liquidity-lab-product-openai-uploads",
       "name": "Individual LiquiLens product OpenAI upload packages",
       "channel": "agent-plugin-directory",
-      "state": "ready_account_action",
+      "state": "submitted",
       "submission_url": "https://platform.openai.com/plugins",
       "cost": "No paid placement or plan purchased.",
-      "detail": "Thirteen self-contained product ZIPs are publicly downloadable with verified hashes, Codex manifests, one public MCP endpoint and one research skill per product. These are prepared upload artifacts; publisher identity, domain verification, real demos and official review remain pending.",
-      "next_action": "Resume official uploads only after publisher identity is verified; use exact ZIP checksums and actual portal requirements.",
-      "verified_at": "2026-10-16T16:54:50.436149+00:00",
+      "detail": "All thirteen specialist drafts are uploaded. Independent portal readback shows eleven specialist versions In review and Not published. Seiche and LiquiLens Trade Safety remain Not submitted pending final review evidence and declarations. Trade Safety 0.2.3 has independently verified runtime acceptance; this does not submit its OpenAI draft. Financial Evidence is tracked separately and is also In review. The captures disclose their direct-service scope; no new model-routing or native plugin-installation test is claimed.",
+      "next_action": "Complete the remaining Seiche release and both final review packets, approve their final declarations and submit those two drafts. Monitor the eleven submitted specialists without duplicate submissions.",
+      "verified_at": "2026-10-28T19:08:15.550Z",
       "listing_url": "https://beepboop2025.github.io/financial-evidence-skills/plugins/",
-      "evidence_receipt": "plugins/publication.json"
+      "evidence_receipt": "distribution/openai-review-state-20261029.json",
+      "submitted_count": 11,
+      "draft_count": 2,
+      "approved_count": 0,
+      "published_count": 0
     },
     {
       "id": "smithery-palimpsest",

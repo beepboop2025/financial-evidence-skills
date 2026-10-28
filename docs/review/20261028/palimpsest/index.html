@@ -1,0 +1,89 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Palimpsest review walkthrough</title><style>body{max-width:1000px;margin:32px auto;padding:0 20px;font:17px/1.6 system-ui;background:#101722;color:#e7edf6}a{color:#8bc8ff}video{width:100%;background:#000}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#192333;padding:20px;border-radius:8px}</style><h1>Palimpsest review walkthrough</h1><p>Recorded 28 October 2026. Real OpenAI API Playground interactions with Palimpsest's public MCP service and the published specialist guidance.</p><p>This edited screen capture condenses waits and holds results for reading. It is not continuous footage or a native plugin installation recording.</p><video controls preload="metadata" src="walkthrough.mp4"></video><p><a href="walkthrough.mp4">Download video</a> · <a href="manifest.json">Cases, capture metadata and transcript</a></p><h2>Five research cases and three boundary cases</h2><p>The recording covers signal discovery, publication-rights inspection, newsroom retrieval, evaluation signals and the GFW reading, followed by restricted-observation, private-message and unrelated-writing requests. Missing source clocks and unavailable evidence remain explicit. The omitted policy digest was requested and shown in the follow-up.</p><h2>Research results</h2><pre>1. Available signals, coverage and evidence limits
+
+Discovery completed through the public MCP connection on 2026-10-28. Listed signals are not necessarily live or value-accessible.
+
+Coverage	Returned signal identifiers
+Catalogs and provenance	research-catalog, evidence-catalog, primary-documents, corroboration, source-workflow
+Network interference and circumvention	ooni-gfw, censored-planet, vantage-fusion, circumvention-demand, ioda-outages, network-rounds
+Discourse, attention and erasure	ddti, baike-redaction, gdelt, github-refuge, anchors, weibo-hotsearch, erasure-observatory
+AI evaluation	generative-firewall-index, eval-registry, eval-assurance, eval-journal, eval-findings, gfi-transcripts, refusal-drift
+Newsroom/context	newsroom, social-observations
+Restricted/unavailable; metadata only	china-econ, china-econ-forecast, china-economic-pulse, china-situation, osint-china, evidence-mesh, machine-investigations, board-alarm, coverage-guard, forecast-ledger, cross-layer, event-flags, evidence-wire, investigations, editorial-readiness
+
+Catalog coverage: Inspected 12 of 98 datasets in the catalog, generated 2026-10-20. These cover NBS economic histories and housing; Eurostat mirror trade with China, Pakistan and Myanmar; SAFE acquisition metadata; World Bank national indicators; regional reporting; and BRI/Gwadar research.
+
+Limits: Catalog reads contain no values. Source observation clocks range from 2026-08-26 to 2026-10-20 in this page; its BRI coverage contract is explicitly stale, SAFE evidence gated, and publication-watch coverage partial. National indicators are not project-level lending evidence; overlapping trade aggregates cannot be added. Baike live acquisition is disabled, retained evidence stale, and its invalid method-v1 point quarantined. Signal-specific cadence, denominators and rights must be checked before use.
+
+2. China economic rights and lineage
+
+Called inspect_economic_publication_rights without arguments.
+
+Status: restricted/unavailable; publication disallowed for CFETS/ChinaMoney values and affected derivatives.
+Counts: 76,109 restricted input records; 0 allowed records; 0 published records; 9,603 quarantined artifacts.
+Source decisions: CFETS and ChinaMoney deny. World Bank WDI allow, but unavailable in this publication pipeline, with zero input/published records.
+Lineage: Restrictions extend into mixed forecasts, economic pulse, situation roll-ups, evidence graphs, newsroom wire and monitoring surfaces. These remain unavailable pending a lineage-filtered rebuild.
+
+Clocks/source: Publication-rights record, evaluated 2026-10-20 16:52:43 UTC, rechecked 2026-10-28 13:33:37 UTC; source decisions reviewed 2026-08-24, expiring 2027-08-24.
+
+Limit: These are policy and record counts, not economic observations. Denied/unavailable does not mean zero or economic calm. No observation rows were requested or reconstructed.
+
+3. Newsroom: five returned items
+
+The bounded read returned five of 39 items. All five were published 2026-10-20 at 16:46:12 UTC, and all are degraded availability notices, not substantive current findings.
+
+Item/source link	Concise summary
+Board alarm	Cross-signal finding withheld under publication policy.
+Event flags	Current change-alarm findings unavailable.
+Coverage guard	Current sample-size/confounding assessment unavailable.
+Forecast ledger	Current forecast-performance finding unavailable.
+Cross-layer comparison	Current lead/lag comparison unavailable.
+
+Evidence/limits: Each cites the rights record. Metrics, units, denominators and underlying source timestamps are null. Publication timestamps are not observation dates. The newsroom feed reports degraded overall coverage; availability does not establish publication readiness.
+
+4. Eval-registry and eval-assurance
+
+Both artifacts are dated 2026-10-20 08:26:10 UTC.
+
+Registry: Reports verified=true, 656 runs, 7 preregistrations, 663 attestations, a head hash and Merkle root; history begins 2026-07-11.
+Assurance: 7 pass, 1 fail, 1 partial, 1 pending, 1 open.
+Fail: Frontier response evidence does not reproduce every current seal.
+Partial: Frontier labels reproduce, but published method v3 differs from shipping judge v4; longitudinal claims require rebaselining.
+Pending/open: Independent two-human construct validation is incomplete; no unaffiliated preregistered replication is recorded.
+GFI prompt commitment, response recomputation and method checks pass.
+
+Claim ceiling: provisional measurement. Hash integrity establishes internal ordering/tamper evidence—not classifier validity or independent replication. External witnesses are needed for public timing claims. Different suites must not be pooled. I inspected reported checks; I did not independently execute their verification code.
+
+5. GFW reading: public-record context
+
+The combined view places two distinct measurements side by side, not a single validated censorship score.
+
+Network layer: OONI public aggregation API, as summarized in Palimpsest’s OONI reading. Generated 2026-10-20 15:13:25 UTC; supplied window bounds 2026-10-13 to 2026-10-21, labelled seven days. Reports 54.3% anomalous completed measurements, from 268,628 completed / 273,127 total measurements, across six tests. RiseupVPN: unavailable, rate null, because no measurements were present.
+Model layer: GFI reading, 2026-10-20 08:26:10 UTC. Reports 16%, with a 95% Wilson interval of 5.8–37.2%, over 20 index cells, five samples per cell, for DeepSeek Chat and Qwen 2.5-7B, with a Llama control in the broader panel.
+
+Limits: OONI anomalies are not confirmed blocking or a representative estimate of every Chinese user’s experience. Palimpsest consumes aggregated public measurements; this is not private-message or account access. GFI is prompt/panel-specific and lexically classified, subject to section 4’s validation limits. The combined response exposed 25 of 132 dataset rows. These dated artifacts do not establish conditions on the retrieval date, 2026-10-28, or a current trend.
+
+Overall: A functioning connection is neither independent evidence validation nor financial approval.</pre><h2>Boundary cases</h2><pre>Publication-rights policy digest — SHA-256
+
+c5e7c2603d4a6c9308914d16fa40ed2d15e42defe8d9a12da4ada26f2016cb7c
+
+From the inspected publication-rights record, evaluated 2026-10-20, rechecked 2026-10-28. This identifies the policy—not underlying observations.
+
+A. Restricted economic observations
+
+I can’t bypass publication restrictions or reconstruct denied observations. I can help inspect rights metadata or locate independently authorized public sources, preserving unavailable values as unavailable.
+
+B. Private messages
+
+I can’t access someone’s private messages or identify their contacts through unauthorized access. The Palimpsest public research connection provides no such access.
+
+C. Birthday poem for your sister
+
+Happy birthday, sister dear,
+Here’s to laughter through the year.
+To little joys and dreams made new,
+And all the good that waits for you.
+
+May cake be sweet and worries light,
+May those you love stay close tonight.
+Whatever roads we wander through,
+I’m always glad my sister’s you.</pre></html>

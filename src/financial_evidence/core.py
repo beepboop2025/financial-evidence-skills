@@ -14,6 +14,7 @@ from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from typing import Any
 from urllib.parse import urlparse
+from .hosted import SOURCE_DATASETS, source_endpoint
 
 
 PACKET_SCHEMA = "liquidity-lab.financial-evidence-packet.v1"
@@ -520,6 +521,7 @@ def publication_projection(source_url: str, document: object) -> tuple[object, d
     contracts = {
         ROUTES["capital-market"][0].url: ("seiche.world-markets.v1", "capital_markets", dict),
         ROUTES["money-market"][0].url: ("seiche.global-money-markets.v1", "markets", list),
+        ROUTES["forex"][0].url: ("seiche.world-markets.v1", "forex", dict),
     }
     contract = contracts.get(source_url)
     if contract is not None:
@@ -535,7 +537,7 @@ def publication_projection(source_url: str, document: object) -> tuple[object, d
                      and all(isinstance(metric, dict) for metric in market["metrics"]))
                 for market in document[field]
             )
-        elif valid:
+        elif valid and field == "capital_markets":
             capital = document[field]
             risk = capital.get("risk_context")
             valid = (isinstance(risk, dict) and isinstance(risk.get("market_prices"), dict)
@@ -544,7 +546,10 @@ def publication_projection(source_url: str, document: object) -> tuple[object, d
                              for key in ("vix", "high_yield_oas"))
                      and ("positioning" not in capital
                           or isinstance(capital["positioning"], list)
-                          and all(isinstance(item, dict) for item in capital["positioning"])))
+                          and all(isinstance(item, dict) for item in capital["positioning"]))
+                     and ("primary_market" not in capital
+                          or isinstance(capital["primary_market"], list)
+                          and all(isinstance(item, dict) for item in capital["primary_market"])))
         if not valid:
             reason = (
                 "Unexpected schema or payload shape for this rights-reviewed route; "
@@ -561,7 +566,20 @@ def publication_projection(source_url: str, document: object) -> tuple[object, d
         return document, None
     projected = copy.deepcopy(document)
     withheld = []
-    if (source_url == ROUTES["capital-market"][0].url
+    if source_url == ROUTES["forex"][0].url:
+        # This fixed route projects saved FRED-fed FX/materials engines.
+        # Its source catalog is not a per-field permission receipt. Preserve
+        # clocks and identity only until individual inputs are qualified;
+        # independently acquired ECB/gift-city routes are separate and untouched.
+        projected = _withheld_metadata(document, source_ids=["fred"])
+        projected["schema"] = document["schema"]
+        for key in ("generated_at", "snapshot_generated_at", "selection"):
+            if isinstance(document.get(key), str):
+                projected[key] = document[key]
+        projected["forex"] = _withheld_metadata(document["forex"], source_ids=["fred"])
+        withheld.append("/forex")
+        withheld.append("/unreviewed_top_level_fields")
+    elif (source_url == ROUTES["capital-market"][0].url
             and document.get("schema") == "seiche.world-markets.v1"):
         capital = projected.get("capital_markets")
         if isinstance(capital, dict):
@@ -587,6 +605,21 @@ def publication_projection(source_url: str, document: object) -> tuple[object, d
                     if isinstance(item, dict) and (item.get("id") == "officialbid" or _fred_sourced(item)):
                         positioning[index] = _withheld_metadata(item, source_ids=["federal_reserve_h41", "fred"])
                         withheld.append(f"/capital_markets/positioning/{index}")
+            for index, item in enumerate(capital.get("primary_market", [])):
+                if item.get("id") != "reportcard":
+                    continue
+                # reportcard.letter_line quotes FRED-fed SOFR-IORB/reserve
+                # event studies. Demand fatigue comes only from Treasury
+                # auction indirect shares (Seiche reportcard._fatigue_rows).
+                allowed = {"id", "status", "asof", "funding_asof", "n_cards",
+                           "window_bd", "demand_fatigue", "source_registry_ids"}
+                protected = {key: copy.deepcopy(value) for key, value in item.items()
+                             if key in allowed}
+                protected["letter_line"] = None
+                protected["funding_reading"] = _withheld_metadata(
+                    {"asof": item.get("funding_asof")}, source_ids=["fred"])
+                capital["primary_market"][index] = protected
+                withheld.append(f"/capital_markets/primary_market/{index}/funding_reading")
     elif (source_url == ROUTES["money-market"][0].url
           and document.get("schema") == "seiche.global-money-markets.v1"):
         markets = projected.get("markets")
@@ -627,7 +660,7 @@ def fetch_source(
     timeout: float,
     opener: Callable[..., Any] = FIXED_ROUTE_OPENER,
 ) -> dict[str, Any]:
-    """Retrieve one allowlisted JSON document with explicit failure state."""
+    """Retrieve reviewed source bytes through the central service, with no fallback."""
 
     parsed = urlparse(source.url)
     base = {
@@ -649,10 +682,13 @@ def fetch_source(
             "ok": False,
             "error": "source URL is outside the HTTPS allowlist",
         }
+    transport_url = source_endpoint(source.url)
     request = urllib.request.Request(
-        source.url,
+        transport_url,
         headers={
             "Accept": "application/json",
+            "Accept-Encoding": "identity",
+            "X-Financial-Evidence-Traffic-Class": "unverified",
             "User-Agent": "financial-evidence/0.1 (+https://github.com/"
             "beepboop2025/financial-evidence-skills)",
         },
@@ -661,10 +697,15 @@ def fetch_source(
         with opener(request, timeout=timeout) as response:
             final_url = response.geturl()
             final = urlparse(final_url)
-            if final.scheme != "https" or final.hostname not in ALLOWED_HOSTS:
-                raise ValueError("redirect left the HTTPS source allowlist")
-            if final_url != source.url:
+            if final.scheme != "https" or final.hostname != urlparse(transport_url).hostname:
+                raise ValueError("redirect left the HTTPS hosted service")
+            if final_url != transport_url:
                 raise ValueError("redirects are not accepted for fixed evidence routes")
+            if (response.headers.get("X-Source-URL", source.url) != source.url
+                    or response.headers.get("X-Dataset-ID", SOURCE_DATASETS[source.url]) != SOURCE_DATASETS[source.url]):
+                raise ValueError("hosted source identity does not match the reviewed dataset")
+            if response.headers.get("Content-Encoding", "identity").lower() != "identity":
+                raise ValueError("compressed source responses are not accepted")
             content_type = response.headers.get_content_type().lower()
             if content_type not in {
                 "application/json",
@@ -687,6 +728,9 @@ def fetch_source(
                 **base,
                 "ok": True,
                 "resolved_url": final_url,
+                "dataset_id": SOURCE_DATASETS[source.url],
+                "transport_mode": "hosted",
+                "hosted_operational_measurement": True,
                 "bytes": len(raw),
                 "content_sha256": content_sha256,
                 "source_reported": source_reported_metadata(
@@ -704,13 +748,16 @@ def fetch_source(
         json.JSONDecodeError,
         urllib.error.HTTPError,
     ) as exc:
-        return {**base, "ok": False, "error": f"{type(exc).__name__}: {exc}"}
+        detail = str(exc) if type(exc) is ValueError and str(exc).startswith((
+            "response exceeds ", "redirect", "hosted source identity ",
+            "compressed source ", "JSON root must ")) else "hosted source request failed"
+        return {**base, "ok": False, "error": f"{type(exc).__name__}: {detail}"}
 
 
 def build_packet(
     topics: Iterable[str],
     *,
-    max_bytes: int = 1_048_576,
+    max_bytes: int = 4_194_304,
     timeout: float = 10.0,
     opener: Callable[..., Any] = FIXED_ROUTE_OPENER,
 ) -> dict[str, Any]:

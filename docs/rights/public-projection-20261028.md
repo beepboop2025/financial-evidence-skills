@@ -32,10 +32,17 @@ returned document changes, publication_projection declares that it is a
 projection and gives a separate SHA-256 over canonical returned JSON. No
 FRED capture is relabelled as an original-publisher capture.
 
-The existing funding-review contract uses separately qualified original
-publisher acquisitions. This patch does not substitute old FRED values into
-that contract or change its observations. China metadata-only restrictions
-remain in force. It introduces no customer-license or private-data feature.
+The legacy Workspace funding-review archive also contains five explicitly
+FRED-attributed inputs. Its shared JSON/CSV read boundary now withholds those
+values after verifying original captured bytes, retains the four other rows,
+sets ready=false and redistribution_restricted, and qualifies historical
+ready_probes as capture-time operational metrics. CSV downloads contain blank
+restricted values and restricted states, with a separate projection hash.
+Immutable captured files, original manifest hashes and input hashes are not
+rewritten. The separately operated institutional original-publisher acquisition
+path is distinct; independently acquired, qualified values are not relabelled
+FRED copies and are not blanket withheld. China metadata-only restrictions
+remain in force. No customer-license or private-data feature is introduced.
 
 ## Reachable Financial Evidence tool paths
 
@@ -43,14 +50,16 @@ The nine Workspace tools use these boundaries: query, sources and agent_query
 use the service table projection; review builds its sections through the same
 table projection; packet uses the filtered source fetch; funding workflow uses
 EvidenceAgentClient.query and the same table projection. Datasets and route
-return metadata only. Funding_review retains its separately qualified captured
-original-publisher contract. The legacy stdio financial_evidence_fetch tool is
+return metadata only. Funding_review uses the verified archive JSON/CSV
+projection; its actual five FRED source labels cannot bypass the policy. The legacy stdio financial_evidence_fetch tool is
 not one of the nine Workspace tools, but it also uses the filtered source fetch.
 
 The HTTP MCP regression enumerates all nine actual registered tool names and
 calls each one with a sentinel upstream fixture. It also covers the funding
 REST route and legacy fetch, and verifies that a withheld USD benchmark cannot
-produce prepared_response=true. It does not substitute a mock filter.
+produce prepared_response=true. A separate actual-capture-shaped regression
+exercises funding_review through MCP, REST and CSV, verifies projection hashes,
+and proves original artifact bytes remain unchanged. Neither substitutes a mock filter.
 
 ## Limits and release acceptance
 

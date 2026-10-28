@@ -1,6 +1,6 @@
 {
   "name": "riptide",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Inspect Riptide's committed allocation, paper performance record, defensive coverage and methodology. Keep paper results, verification status and evidence dates explicit. Historical paper results are research records, not live-account performance or an instruction to trade.",
   "mcpServers": {
     "riptide": {

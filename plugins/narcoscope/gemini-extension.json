@@ -1,6 +1,6 @@
 {
   "name": "narcoscope",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Inspect public evidence about informal economies, drug and arms markets, and regional context with dataset provenance, units and source dates. NarcoScope supports research briefs and evidence checks; administrative counts do not establish market size, individual guilt or current operational activity. Access and publication restrictions remain visible.",
   "mcpServers": {
     "narcoscope": {

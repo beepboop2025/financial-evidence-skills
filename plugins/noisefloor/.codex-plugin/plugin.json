@@ -1,6 +1,6 @@
 {
   "name": "noisefloor",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Test whether an observed change may be noise, compare A/B results and examine forecast uncertainty using public, synthetic or explicitly authorized observations. NoiseFloor helps researchers check assumptions and limitations before interpreting a pattern. Results do not establish causality, investment performance or certainty about future outcomes.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
@@ -13,7 +13,7 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "NoiseFloor",
-    "shortDescription": "Check changes and forecast uncertainty",
+    "shortDescription": "Statistics and forecasts",
     "longDescription": "Test whether an observed change may be noise, compare A/B results and examine forecast uncertainty using public, synthetic or explicitly authorized observations. NoiseFloor helps researchers check assumptions and limitations before interpreting a pattern. Results do not establish causality, investment performance or certainty about future outcomes.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
     "category": "Productivity",
@@ -88,7 +88,7 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."
+        "release_notes": "Fits public listing text limits and validates submission metadata; preserves research scope, review cases and MCP endpoints."
       }
     }
   }

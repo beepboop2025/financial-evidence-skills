@@ -1,6 +1,6 @@
 {
   "name": "seiche",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Prepare a funding brief from public money-market evidence, compare regional funding conditions, and inspect source freshness before using a number. Seiche preserves observation dates, coverage and unavailable sources so treasury and research teams can identify questions for follow-up. It provides research context and does not execute trades or certify compliance.",
   "mcpServers": {
     "seiche": {

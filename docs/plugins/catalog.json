@@ -1,6 +1,6 @@
 {
   "schema": "liquilens.product-plugins.v1",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "products": [
     {
       "id": "seiche",
@@ -9,7 +9,7 @@
       "mcp_url": "https://agents.seiche.info/products/seiche/mcp",
       "guide_url": "https://seiche.info/developers.html",
       "kind": "core_product",
-      "plugin_version": "1.0.1",
+      "plugin_version": "1.0.2",
       "source_path": "plugins/seiche",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -18,14 +18,14 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/seiche-openai-1.0.1.zip",
-          "sha256": "c633d3bb48d2907d33c73dd57f84036ab45ba33dd82712cad2f1aa1616523238",
-          "bytes": 30093
+          "url": "downloads/seiche-openai-1.0.2.zip",
+          "sha256": "09b2f6864fa74c774832fcf9edac962198b709d8bd71027cf59510ae74c1ca58",
+          "bytes": 30086
         },
         "gemini": {
-          "url": "downloads/seiche-gemini-1.0.1.zip",
-          "sha256": "024dfbaa824606c064edb2fb4d052f997ec4a401d14e08d5de9bdb222b4a8997",
-          "bytes": 28773
+          "url": "downloads/seiche-gemini-1.0.2.zip",
+          "sha256": "6a32cafeef65d1436cdeeb7e3af2b2a34c19069c0b2674a5b473bc0c948040a3",
+          "bytes": 28772
         }
       }
     },
@@ -36,7 +36,7 @@
       "mcp_url": "https://agents.seiche.info/products/liquilens/mcp",
       "guide_url": "https://liquilens.in/developers/",
       "kind": "core_product",
-      "plugin_version": "1.0.1",
+      "plugin_version": "1.0.2",
       "source_path": "plugins/liquilens",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -45,13 +45,13 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/liquilens-openai-1.0.1.zip",
-          "sha256": "3eb802c91acee9248c4479c53c86f065f2e723682ada80fbe908f46cb4039570",
-          "bytes": 30219
+          "url": "downloads/liquilens-openai-1.0.2.zip",
+          "sha256": "6baea0586663c909b6ebe17dbd449011f6dd0da62676a6d73d129ef06743e17b",
+          "bytes": 30212
         },
         "gemini": {
-          "url": "downloads/liquilens-gemini-1.0.1.zip",
-          "sha256": "9f8f2eda77884dfc35df1282fc3a77d304ac9a26c52a83288a301d802b539c0b",
+          "url": "downloads/liquilens-gemini-1.0.2.zip",
+          "sha256": "1abd41f645cd45468c1680f29fbf7c68af5faada76d7185fbbbc9f4d4cab1900",
           "bytes": 28879
         }
       }
@@ -63,7 +63,7 @@
       "mcp_url": "https://agents.seiche.info/products/undertow/mcp",
       "guide_url": "https://liquilens-undertow.com/developers/",
       "kind": "core_product",
-      "plugin_version": "1.0.1",
+      "plugin_version": "1.0.2",
       "source_path": "plugins/undertow",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -72,13 +72,13 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/undertow-openai-1.0.1.zip",
-          "sha256": "5fc9a825a00246adb26a39f6c9527276223368945814465fa0bd7edf3853650a",
-          "bytes": 30072
+          "url": "downloads/undertow-openai-1.0.2.zip",
+          "sha256": "71f22f5461a3bfee6436e2495a682500edfccbb951921f2bbefd31b1177063b2",
+          "bytes": 30064
         },
         "gemini": {
-          "url": "downloads/undertow-gemini-1.0.1.zip",
-          "sha256": "3038f11cb6d1b2342412ad51b9544f4b0ecbfda34defa74d4e098be12fdfdcb6",
+          "url": "downloads/undertow-gemini-1.0.2.zip",
+          "sha256": "43f7fd2ae0cafb4cbdbb14fd820e4090abf0928d3d242b9efd3e4c27db0c856c",
           "bytes": 28772
         }
       }
@@ -90,7 +90,7 @@
       "mcp_url": "https://agents.seiche.info/products/palimpsest/mcp",
       "guide_url": "https://palimpsest.info/developers.html",
       "kind": "core_product",
-      "plugin_version": "1.0.1",
+      "plugin_version": "1.0.2",
       "source_path": "plugins/palimpsest",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -99,13 +99,13 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/palimpsest-openai-1.0.1.zip",
-          "sha256": "e1dc618bd17c9f7887dc4749408740bdf767ddc68147ae440c3587156c74fecb",
-          "bytes": 30133
+          "url": "downloads/palimpsest-openai-1.0.2.zip",
+          "sha256": "f4b7f23c08b6b3987dd3d2f0492ecf47d316396e959bb4c68dc89fe44f38d5c2",
+          "bytes": 30124
         },
         "gemini": {
-          "url": "downloads/palimpsest-gemini-1.0.1.zip",
-          "sha256": "3eba70c07591ac64e7f904ab0dae948663e9163bb02f1ccdcc1b171c84ff873a",
+          "url": "downloads/palimpsest-gemini-1.0.2.zip",
+          "sha256": "45f3f049bf68b6de581fc1e6156ab1e56a985ad1963869bbb9a401be978ea980",
           "bytes": 28689
         }
       }
@@ -117,7 +117,7 @@
       "mcp_url": "https://agents.seiche.info/products/noisefloor/mcp",
       "guide_url": "https://liquilens.in/agents/correlation/#connect",
       "kind": "core_product",
-      "plugin_version": "1.0.1",
+      "plugin_version": "1.0.2",
       "source_path": "plugins/noisefloor",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -126,13 +126,13 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/noisefloor-openai-1.0.1.zip",
-          "sha256": "a7205643b00b6ed64df7d97b497a282f0795898c2bf196f70151950a48a0127c",
-          "bytes": 30227
+          "url": "downloads/noisefloor-openai-1.0.2.zip",
+          "sha256": "2a07e58250c1fd36440915a445b15a9b0f7347b4744d907e22933e7aba0893ee",
+          "bytes": 30223
         },
         "gemini": {
-          "url": "downloads/noisefloor-gemini-1.0.1.zip",
-          "sha256": "a38f4426b4613ebb18d171be6f3a604d8584447d6f743b406b0e6bc82d46409a",
+          "url": "downloads/noisefloor-gemini-1.0.2.zip",
+          "sha256": "22b5e200a17244299f9e1592bbb1d6d5db86eac677ac94e48f1db35728b3cc82",
           "bytes": 28739
         }
       }
@@ -144,7 +144,7 @@
       "mcp_url": "https://agents.seiche.info/products/narcoscope/mcp",
       "guide_url": "https://www.narcoscope.com/developers/",
       "kind": "core_product",
-      "plugin_version": "1.0.1",
+      "plugin_version": "1.0.2",
       "source_path": "plugins/narcoscope",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -153,13 +153,13 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/narcoscope-openai-1.0.1.zip",
-          "sha256": "235fa092e3b608d65e3fb36919aef8e853bb76b0d5ab158f60c06839ded23f80",
-          "bytes": 30183
+          "url": "downloads/narcoscope-openai-1.0.2.zip",
+          "sha256": "09fc0d4cf4831db8489aeca8bde2322c278c4ab4304657b3332c073349bd0e56",
+          "bytes": 30167
         },
         "gemini": {
-          "url": "downloads/narcoscope-gemini-1.0.1.zip",
-          "sha256": "bdbd54b36cc554d64c8a55a8328f9ec431f6a0eb17dcee1fd9eb52b3ff1ee01f",
+          "url": "downloads/narcoscope-gemini-1.0.2.zip",
+          "sha256": "7b517808682851f90ae34c018cecb9291c7a3b7a90af3229ff7e8a2d70db9460",
           "bytes": 28755
         }
       }
@@ -171,7 +171,7 @@
       "mcp_url": "https://agents.seiche.info/products/wake/mcp",
       "guide_url": "https://agents.seiche.info/connect",
       "kind": "core_product",
-      "plugin_version": "1.0.1",
+      "plugin_version": "1.0.2",
       "source_path": "plugins/wake",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -180,14 +180,14 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/wake-openai-1.0.1.zip",
-          "sha256": "0a904b73d7deb16dedfcbca9afe81ac67899c8ec5471efb7770a6206890f6dfd",
-          "bytes": 30057
+          "url": "downloads/wake-openai-1.0.2.zip",
+          "sha256": "3287c61691e46da35dac0c89ce5ea78c2d25159d6376e70093aa14e3bdadbcc6",
+          "bytes": 30047
         },
         "gemini": {
-          "url": "downloads/wake-gemini-1.0.1.zip",
-          "sha256": "aae72e377cc3576aae7e2438eee809df4cc8a1b7a6bd8ab8ee07acd9842157b8",
-          "bytes": 28566
+          "url": "downloads/wake-gemini-1.0.2.zip",
+          "sha256": "0a5b183cac1a6c5c6ca328e110177f3379cf1ad0a8a8ed050d69f9de2aaaf392",
+          "bytes": 28567
         }
       }
     },
@@ -198,7 +198,7 @@
       "mcp_url": "https://agents.seiche.info/products/riptide/mcp",
       "guide_url": "https://agents.seiche.info/connect",
       "kind": "research_product",
-      "plugin_version": "1.0.1",
+      "plugin_version": "1.0.2",
       "source_path": "plugins/riptide",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -207,14 +207,14 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/riptide-openai-1.0.1.zip",
-          "sha256": "8502d21399479a80f4177175f9763745f70970217c6b7628fbd02fec7d8c6e70",
-          "bytes": 30009
+          "url": "downloads/riptide-openai-1.0.2.zip",
+          "sha256": "74d28108e0cee84e28a2c405de8afaba8369259983f745cc09a72a51b2216b4c",
+          "bytes": 29991
         },
         "gemini": {
-          "url": "downloads/riptide-gemini-1.0.1.zip",
-          "sha256": "2da9a98f4e90be1d00ed4c7f5b7dc40d9d2261a8bd35d69f8720206f12dbd096",
-          "bytes": 28520
+          "url": "downloads/riptide-gemini-1.0.2.zip",
+          "sha256": "ca072cde1c3311162d692d0e01f0a7080fa057229bc3c6326d59920e750a5ef8",
+          "bytes": 28519
         }
       }
     },
@@ -225,7 +225,7 @@
       "mcp_url": "https://agents.seiche.info/products/myquant-editorial/mcp",
       "guide_url": "https://agents.seiche.info/connect",
       "kind": "editorial_archive",
-      "plugin_version": "1.0.1",
+      "plugin_version": "1.0.2",
       "source_path": "plugins/myquant-editorial",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -234,14 +234,14 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/myquant-editorial-openai-1.0.1.zip",
-          "sha256": "f4fa72f56e8fca733fa4b0d6fcdc0142a4babc88ba8f5b78ee035586c58cf152",
-          "bytes": 30084
+          "url": "downloads/myquant-editorial-openai-1.0.2.zip",
+          "sha256": "3edda75b954b22d1ec47980ab778957e5afe445894cdedd5bcd10acca27a0677",
+          "bytes": 30061
         },
         "gemini": {
-          "url": "downloads/myquant-editorial-gemini-1.0.1.zip",
-          "sha256": "549bbb7516e6af6f286caf09b91c00df4409f233458c0eb9ba7e338963591b36",
-          "bytes": 28616
+          "url": "downloads/myquant-editorial-gemini-1.0.2.zip",
+          "sha256": "9460da46c03a30202f2798bf655c8f3bd4344c739fc13f4f2b61ed79cfe99c47",
+          "bytes": 28619
         }
       }
     },
@@ -252,7 +252,7 @@
       "mcp_url": "https://agents.seiche.info/products/myquant-app/mcp",
       "guide_url": "https://agents.seiche.info/connect",
       "kind": "metadata_only",
-      "plugin_version": "1.0.1",
+      "plugin_version": "1.0.2",
       "source_path": "plugins/myquant-app",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -261,14 +261,14 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/myquant-app-openai-1.0.1.zip",
-          "sha256": "e7ffea9483240281c306ee45f4e7de29ba71795755b5a120b048f981fb2bc41a",
-          "bytes": 29915
+          "url": "downloads/myquant-app-openai-1.0.2.zip",
+          "sha256": "8be92d3a047194d66596626610d543944a9389c268e8698987a5ba6e806b3034",
+          "bytes": 29904
         },
         "gemini": {
-          "url": "downloads/myquant-app-gemini-1.0.1.zip",
-          "sha256": "d852c79672801960207e1887a274fff83487af7c16c8e1b32f34a708db031e79",
-          "bytes": 28523
+          "url": "downloads/myquant-app-gemini-1.0.2.zip",
+          "sha256": "4a30e51804b13bb674c82115dddb0092b409918895fa9a23a61a0d07ebf71342",
+          "bytes": 28524
         }
       }
     },
@@ -279,7 +279,7 @@
       "mcp_url": "https://agents.seiche.info/products/trade-safety/mcp",
       "guide_url": "https://agents.seiche.info/connect",
       "kind": "read_only_sandbox",
-      "plugin_version": "1.0.1",
+      "plugin_version": "1.0.2",
       "source_path": "plugins/trade-safety",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -288,13 +288,13 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/trade-safety-openai-1.0.1.zip",
-          "sha256": "aacca91029b3f0484a607f13049a85d07ed616cabd5cf897452d28f87666a387",
-          "bytes": 30094
+          "url": "downloads/trade-safety-openai-1.0.2.zip",
+          "sha256": "0b57fd60f7e13169c9bbc1a36181953d9627cc60f5e2ce95a6433d399ea6772e",
+          "bytes": 30082
         },
         "gemini": {
-          "url": "downloads/trade-safety-gemini-1.0.1.zip",
-          "sha256": "6711ad3b141b35f70bb6037518c922a3bfdab38fa46f72ff4aa0cfa72f49b338",
+          "url": "downloads/trade-safety-gemini-1.0.2.zip",
+          "sha256": "9c2fcc5fe8938748ee476424ccca9bea80203f79a582b635b27c2367899cd0f4",
           "bytes": 28612
         }
       }
@@ -306,7 +306,7 @@
       "mcp_url": "https://agents.seiche.info/products/research-data/mcp",
       "guide_url": "https://agents.seiche.info/connect",
       "kind": "research_wrapper",
-      "plugin_version": "1.0.1",
+      "plugin_version": "1.0.2",
       "source_path": "plugins/research-data",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -315,14 +315,14 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/research-data-openai-1.0.1.zip",
-          "sha256": "d41719c8d6d9d3420c348389c01242875496c236e78736579daac50208b5686e",
-          "bytes": 30383
+          "url": "downloads/research-data-openai-1.0.2.zip",
+          "sha256": "ae44987f0d7df0f2098c5e5aa5d657bc659741d393d8e5f51635bd1d0bc0c343",
+          "bytes": 30369
         },
         "gemini": {
-          "url": "downloads/research-data-gemini-1.0.1.zip",
-          "sha256": "ee658726f7ae593a2bbaedd61690cf10820a8ec784e8e74c0c4a7db268c2429c",
-          "bytes": 28837
+          "url": "downloads/research-data-gemini-1.0.2.zip",
+          "sha256": "693e966c3d769ae4dbdcdb4fccae574e70a4b3a8cda190eb989161623f61fce7",
+          "bytes": 28838
         }
       }
     },
@@ -333,7 +333,7 @@
       "mcp_url": "https://agents.seiche.info/products/seiche-market-corpus/mcp",
       "guide_url": "https://agents.seiche.info/connect",
       "kind": "research_wrapper",
-      "plugin_version": "1.0.1",
+      "plugin_version": "1.0.2",
       "source_path": "plugins/seiche-market-corpus",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -342,14 +342,14 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/seiche-market-corpus-openai-1.0.1.zip",
-          "sha256": "4da1148a7ed821a094d2e3313a0231718e10f29be354147a948ce3d283f56967",
-          "bytes": 30231
+          "url": "downloads/seiche-market-corpus-openai-1.0.2.zip",
+          "sha256": "ebae89c62aa4bd813ea347ef7a1402b4b0626a159473874fbf96c76b8885bae7",
+          "bytes": 30223
         },
         "gemini": {
-          "url": "downloads/seiche-market-corpus-gemini-1.0.1.zip",
-          "sha256": "50438591086c135d9f9d781d9f2f904fef649d5d71c37f638a2bf9c2b1ad2a56",
-          "bytes": 28719
+          "url": "downloads/seiche-market-corpus-gemini-1.0.2.zip",
+          "sha256": "191b5777a3b4f711d2c251cc7c2f5174846cba4bf21981e378c9f669c4b75268",
+          "bytes": 28720
         }
       }
     }

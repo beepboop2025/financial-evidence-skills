@@ -1,6 +1,6 @@
 {
   "name": "liquilens",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Find covered financial institutions, review public asset-quality disclosures, and inspect RBI supervisory evidence with source dates and coverage limits. LiquiLens helps analysts prepare institution review questions while preserving missing or non-comparable evidence. It does not access private accounts, replace professional judgment or certify regulatory compliance.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",

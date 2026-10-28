@@ -1,6 +1,6 @@
 {
   "name": "wake",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Read attributed AI-model usage and U.S. retail e-commerce context with source dates. Inspect institutional aggregate thresholds and the signed opt-in collection contract. Public context does not establish adoption by a particular institution, permission to collect data or resale rights.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
@@ -13,7 +13,7 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Wake",
-    "shortDescription": "AI usage and retail economy evidence",
+    "shortDescription": "AI and retail economy evidence",
     "longDescription": "Read attributed AI-model usage and U.S. retail e-commerce context with source dates. Inspect institutional aggregate thresholds and the signed opt-in collection contract. Public context does not establish adoption by a particular institution, permission to collect data or resale rights.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
     "category": "Finance",
@@ -88,7 +88,7 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."
+        "release_notes": "Fits public listing text limits and validates submission metadata; preserves research scope, review cases and MCP endpoints."
       }
     }
   }

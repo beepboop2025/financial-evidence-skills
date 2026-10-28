@@ -38,79 +38,79 @@
     {
       "name": "seiche",
       "source": "./plugins/seiche",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Funding, money markets and source clocks"
     },
     {
       "name": "liquilens",
       "source": "./plugins/liquilens",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Covered institutions and disclosure review"
     },
     {
       "name": "undertow",
       "source": "./plugins/undertow",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Market liquidity and indicative BTC exits"
     },
     {
       "name": "palimpsest",
       "source": "./plugins/palimpsest",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "China, regional research and the public record"
     },
     {
       "name": "noisefloor",
       "source": "./plugins/noisefloor",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Statistical research using permitted observations"
     },
     {
       "name": "narcoscope",
       "source": "./plugins/narcoscope",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Drug, arms and informal-economy evidence"
     },
     {
       "name": "wake",
       "source": "./plugins/wake",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Public agent-economy context with separate reference periods"
     },
     {
       "name": "riptide",
       "source": "./plugins/riptide",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Show Riptide's committed paper research record and its evidence limits."
     },
     {
       "name": "myquant-editorial",
       "source": "./plugins/myquant-editorial",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Show one recent published story with its sources, dates and editorial limits."
     },
     {
       "name": "myquant-app",
       "source": "./plugins/myquant-app",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Show the MyQuant app's public capabilities and offline reading boundaries."
     },
     {
       "name": "trade-safety",
       "source": "./plugins/trade-safety",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Explain the Trade Safety sandbox's capabilities, input limits and lack of execution authority."
     },
     {
       "name": "research-data",
       "source": "./plugins/research-data",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Discover source datasets and exact series identifiers, then read bounded observations with capture receipts."
     },
     {
       "name": "seiche-market-corpus",
       "source": "./plugins/seiche-market-corpus",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Inspect corpus datasets, source clocks and publication rights. Restricted collections remain metadata only."
     }
   ]

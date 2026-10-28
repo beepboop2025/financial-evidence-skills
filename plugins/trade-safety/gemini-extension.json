@@ -1,6 +1,6 @@
 {
   "name": "trade-safety",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Inspect Trade Safety's fixed public sources, sandbox authority and documented limits before preparing assessment inputs. Assessments require explicit request and policy objects. Sandbox receipts do not authorize recommendations, broker previews, routing, resizing, custody, settlement or execution.",
   "mcpServers": {
     "trade-safety": {

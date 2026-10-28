@@ -1,7 +1,7 @@
 {
   "name": "liquilens",
-  "version": "1.0.0",
-  "description": "Covered institutions and disclosure review.",
+  "version": "1.0.1",
+  "description": "Find covered financial institutions, review public asset-quality disclosures, and inspect RBI supervisory evidence with source dates and coverage limits. LiquiLens helps analysts prepare institution review questions while preserving missing or non-comparable evidence. It does not access private accounts, replace professional judgment or certify regulatory compliance.",
   "mcpServers": {
     "liquilens": {
       "httpUrl": "https://agents.seiche.info/products/liquilens/mcp",

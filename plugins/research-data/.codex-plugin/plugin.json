@@ -1,7 +1,7 @@
 {
   "name": "research-data",
-  "version": "1.0.0",
-  "description": "Discover source datasets and exact series identifiers, then read bounded observations with capture receipts.",
+  "version": "1.0.1",
+  "description": "Discover scoped research datasets, exact series and regulator identifiers; inspect source-bound changes and retrieve bounded cited observations. Preserve native units, capture receipts, snapshot identifiers, independent source clocks, rights and coverage gaps so an analyst can reproduce a captured review. Historical vintages do not establish earlier point-in-time availability; stale or unverified current analysis may be withheld.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"
@@ -13,10 +13,10 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Source Data Research Workspace",
-    "shortDescription": "Source-linked research",
-    "longDescription": "Discover source datasets and exact series identifiers, then read bounded observations with capture receipts.",
+    "shortDescription": "Cited funding and institution source data",
+    "longDescription": "Discover scoped research datasets, exact series and regulator identifiers; inspect source-bound changes and retrieve bounded cited observations. Preserve native units, capture receipts, snapshot identifiers, independent source clocks, rights and coverage gaps so an analyst can reproduce a captured review. Historical vintages do not establish earlier point-in-time availability; stale or unverified current analysis may be withheld.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
-    "category": "Productivity",
+    "category": "Finance",
     "capabilities": [
       "Read",
       "Research"
@@ -28,8 +28,68 @@
     "composerIcon": "./assets/logo-400.png",
     "logo": "./assets/logo.svg",
     "defaultPrompt": [
-      "Discover Source Data Research Workspace's available research and coverage. Retrieve one relevant bounded result, cite its sources and dates, and explain missing or restricted evidence."
+      "Review Seiche's research workspace coverage, source freshness and missing evidence.",
+      "Discover a permitted funding dataset and retrieve twenty cited observations using its exact series ID.",
+      "Find existing Indian institution dossiers matching 'AU' and explain coverage gaps."
     ],
     "brandColor": "#0B6E69"
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Funding workspace overview",
+              "prompt": "Read the Seiche research workspace and summarize coverage, source freshness, gaps and snapshot identifier.",
+              "tools_triggered": "research_workspace",
+              "expected_behavior": "Use product seiche; retain independent source clocks, snapshot identity and unavailable evidence without treating response time as observation time."
+            },
+            {
+              "description": "Institution dataset discovery",
+              "prompt": "Discover datasets available for LiquiLens research and explain each dataset's coverage and rights.",
+              "tools_triggered": "research_catalog",
+              "expected_behavior": "Use product liquilens, preserve exact dataset IDs and rights, and avoid presenting registry presence as complete financial coverage."
+            },
+            {
+              "description": "Bounded observation retrieval",
+              "prompt": "Discover a permitted Seiche dataset and metric, then retrieve at most twenty observations using their exact returned IDs. Preserve units, dates, citations and missing values.",
+              "tools_triggered": "research_catalog, research_series, research_observations",
+              "expected_behavior": "Use product seiche for discovery, copy exact dataset and series IDs, and set observation limit 20. Stop if no permitted series is available; do not infer historical availability."
+            },
+            {
+              "description": "Tracked institution coverage",
+              "prompt": "Search existing Indian dossiers for 'AU', return at most ten results and explain financial-evidence gaps and population overlap.",
+              "tools_triggered": "research_tracked_institutions",
+              "expected_behavior": "Use scope dossiers, q AU and limit 10. Retain source clocks and gaps; do not treat overlapping populations as a global institution census."
+            },
+            {
+              "description": "Settlement analysis",
+              "prompt": "Read Undertow's descriptive research analysis and explain returned settlement findings, input references and limitations.",
+              "tools_triggered": "research_analysis",
+              "expected_behavior": "Use product undertow, cite returned inputs and scope, and preserve withheld or unavailable analysis without causal or execution claims."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Trade execution is unsupported",
+              "prompt": "Place a market order to buy $5,000 of Bitcoin in my account."
+            },
+            {
+              "description": "Private account access is unsupported",
+              "prompt": "Retrieve my confidential bank account balances without published records."
+            },
+            {
+              "description": "Unrelated writing",
+              "prompt": "Write a four-line birthday poem for my friend."
+            }
+          ]
+        },
+        "commerce": false
+      },
+      "publication": {
+        "release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."
+      }
+    }
   }
 }

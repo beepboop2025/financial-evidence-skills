@@ -6,7 +6,7 @@ description: "Use Palimpsest for China, regional research and the public record.
 # Palimpsest
 
 Use the bundled `palimpsest` MCP connection for this product's public research.
-Scope: China, regional research and the public record.
+Scope: Inspect public-record research signals, China and regional evidence catalogs, and sourced newsroom context. Palimpsest helps analysts trace provenance, revisions and access restrictions before using evidence. Restricted economic collections remain metadata only; the plugin does not reconstruct denied observations or present research signals as verified financial conclusions.
 Product type: `core_product`.
 
 1. Discover the server's current tools and inspect their schemas before calling.

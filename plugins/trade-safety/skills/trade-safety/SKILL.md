@@ -6,7 +6,7 @@ description: "Use LiquiLens Trade Safety for Explain the Trade Safety sandbox's 
 # LiquiLens Trade Safety
 
 Use the bundled `trade-safety` MCP connection for this product's public research.
-Scope: Explain the Trade Safety sandbox's capabilities, input limits and lack of execution authority.
+Scope: Inspect Trade Safety's fixed public sources, sandbox authority and documented limits before preparing assessment inputs. Assessments require explicit request and policy objects. Sandbox receipts do not authorize recommendations, broker previews, routing, resizing, custody, settlement or execution.
 Product type: `read_only_sandbox`.
 
 1. Discover the server's current tools and inspect their schemas before calling.

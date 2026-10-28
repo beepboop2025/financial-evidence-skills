@@ -6,7 +6,7 @@ description: "Use MyQuant App Discovery for Show the MyQuant app's public capabi
 # MyQuant App Discovery
 
 Use the bundled `myquant-app` MCP connection for this product's public research.
-Scope: Show the MyQuant app's public capabilities and offline reading boundaries.
+Scope: Inspect public MyQuant app capabilities for briefing, feed validation, offline reading and topic controls, plus API/MCP compatibility metadata. This plugin does not read or change on-device content, preferences, accounts or installed app state.
 Product type: `metadata_only`.
 
 1. Discover the server's current tools and inspect their schemas before calling.

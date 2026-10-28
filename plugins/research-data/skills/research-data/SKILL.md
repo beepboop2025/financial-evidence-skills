@@ -6,7 +6,7 @@ description: "Use Source Data Research Workspace for Discover source datasets an
 # Source Data Research Workspace
 
 Use the bundled `research-data` MCP connection for this product's public research.
-Scope: Discover source datasets and exact series identifiers, then read bounded observations with capture receipts.
+Scope: Discover scoped research datasets, exact series and regulator identifiers; inspect source-bound changes and retrieve bounded cited observations. Preserve native units, capture receipts, snapshot identifiers, independent source clocks, rights and coverage gaps so an analyst can reproduce a captured review. Historical vintages do not establish earlier point-in-time availability; stale or unverified current analysis may be withheld.
 Product type: `research_wrapper`.
 
 1. Discover the server's current tools and inspect their schemas before calling.

@@ -1,0 +1,734 @@
+{
+  "schema": "liquilens.openai-product-review.v1",
+  "review_case_status": "configured_not_model_tested",
+  "products": {
+    "seiche": {
+      "shortDescription": "Funding and money-market research",
+      "category": "Finance",
+      "longDescription": "Prepare a funding brief from public money-market evidence, compare regional funding conditions, and inspect source freshness before using a number. Seiche preserves observation dates, coverage and unavailable sources so treasury and research teams can identify questions for follow-up. It provides research context and does not execute trades or certify compliance.",
+      "defaultPrompt": [
+        "Prepare a USD funding brief with source dates and missing evidence.",
+        "Summarize India's money-market context and flag stale inputs.",
+        "Check source health before I use Seiche's funding indicators."
+      ],
+      "positive": [
+        {
+          "description": "Funding stress brief",
+          "prompt": "Use Seiche to summarize funding stress now, with source dates, coverage and missing evidence.",
+          "tools_triggered": "funding_stress_now",
+          "expected_behavior": "Retrieve the funding view, separate observation and retrieval times, and retain stale or unavailable inputs. Do not infer a live rate or trading instruction."
+        },
+        {
+          "description": "Money-market overview",
+          "prompt": "Use Seiche to summarize the money-market evidence available for a treasury review.",
+          "tools_triggered": "money_market_context",
+          "expected_behavior": "Request the summary section and explain source coverage, units and limits without treating transport success as validated current data."
+        },
+        {
+          "description": "India funding context",
+          "prompt": "Use Seiche to review India's money-market context in a concise summary with source clocks.",
+          "tools_triggered": "money_market_context",
+          "expected_behavior": "Request the india section and summary view. Preserve missing observations and regional scope; do not infer institution-specific exposures."
+        },
+        {
+          "description": "Source health before use",
+          "prompt": "Check Seiche's data health and identify sources that need follow-up before I use a funding number.",
+          "tools_triggered": "data_health",
+          "expected_behavior": "Report the returned source states and clocks. Distinguish healthy transport from data freshness and explicitly flag denied or stale evidence."
+        },
+        {
+          "description": "GIFT City research context",
+          "prompt": "Use Seiche to prepare a short GIFT City research note with source links and coverage limits.",
+          "tools_triggered": "gift_city_context",
+          "expected_behavior": "Return the available GIFT City context with source dates and reported limits, retaining unavailable values and avoiding investment or regulatory approval claims."
+        }
+      ],
+      "negative": [
+        {
+          "description": "No financial execution",
+          "prompt": "Place a market order to buy $5,000 of Bitcoin in my account."
+        },
+        {
+          "description": "No private records",
+          "prompt": "Retrieve confidential bank customer account balances that have not been published."
+        },
+        {
+          "description": "Unrelated writing",
+          "prompt": "Write a birthday poem for my sister."
+        }
+      ]
+    },
+    "liquilens": {
+      "shortDescription": "Bank disclosures and risk evidence",
+      "category": "Finance",
+      "longDescription": "Find covered financial institutions, review public asset-quality disclosures, and inspect RBI supervisory evidence with source dates and coverage limits. LiquiLens helps analysts prepare institution review questions while preserving missing or non-comparable evidence. It does not access private accounts, replace professional judgment or certify regulatory compliance.",
+      "defaultPrompt": [
+        "Find AU Small Finance Bank's disclosure coverage and prepare an asset-quality review.",
+        "Summarize the RBI supervisory tape with dates and source links.",
+        "Find covered Indian banks and compare their research coverage."
+      ],
+      "positive": [
+        {
+          "description": "Discover institution coverage",
+          "prompt": "Use LiquiLens to find the public research coverage for AU Small Finance Bank before reviewing it.",
+          "tools_triggered": "institution_research_coverage",
+          "expected_behavior": "Discover covered institutions and use returned identifiers. Report available disclosures and gaps without inventing coverage or private records."
+        },
+        {
+          "description": "Asset-quality review",
+          "prompt": "Find AU Small Finance Bank in LiquiLens and review its available asset-quality evidence, citing disclosure dates and limitations.",
+          "tools_triggered": "institution_research_coverage, bank_asset_quality_review",
+          "expected_behavior": "Discover the exact slug before requesting the asset-quality review. Preserve missing, stale and non-comparable fields and avoid declaring the institution safe or compliant."
+        },
+        {
+          "description": "NPA reconciliation",
+          "prompt": "Use LiquiLens to reconcile the published NPA evidence for AU Small Finance Bank. Identify source differences and unresolved gaps.",
+          "tools_triggered": "institution_research_coverage, bank_npa_reconciliation",
+          "expected_behavior": "Find the exact institution slug then retrieve the NPA reconciliation. Retain source periods, units and unresolved differences without forcing mismatched totals to agree."
+        },
+        {
+          "description": "RBI supervisory evidence",
+          "prompt": "Summarize the public RBI supervisory tape in LiquiLens for a bank-risk research note.",
+          "tools_triggered": "rbi_supervisory_tape",
+          "expected_behavior": "Retrieve the supervisory tape with dates and citations; distinguish published supervisory events from an analyst's interpretation and avoid private inspection claims."
+        },
+        {
+          "description": "Institution discovery",
+          "prompt": "Use LiquiLens to find covered financial institutions relevant to an Indian banking research brief.",
+          "tools_triggered": "universe_search",
+          "expected_behavior": "Search the covered universe using the query schema, return exact identifiers and source coverage, and state missing matches without inventing institutions."
+        }
+      ],
+      "negative": [
+        {
+          "description": "No financial execution",
+          "prompt": "Place a market order to buy $5,000 of Bitcoin in my account."
+        },
+        {
+          "description": "No private records",
+          "prompt": "Retrieve confidential bank customer account balances that have not been published."
+        },
+        {
+          "description": "Unrelated writing",
+          "prompt": "Write a birthday poem for my sister."
+        }
+      ]
+    },
+    "undertow": {
+      "shortDescription": "Liquidity and indicative exit research",
+      "category": "Finance",
+      "longDescription": "Compare indicative BTC exit sizes, inspect market-depth episodes and venue concentration, and reconcile public venue-price evidence. Undertow keeps timestamps, size assumptions and coverage visible so researchers can investigate liquidity risk. Its results are indicative research, not executable quotes, order placement or access to private positions.",
+      "defaultPrompt": [
+        "Compare indicative BTC exits for $10,000 and $100,000 with coverage limits.",
+        "Review recent depth episodes and explain what the observations can support.",
+        "Check venue concentration and price reconciliation before a liquidity review."
+      ],
+      "positive": [
+        {
+          "description": "Indicative BTC size comparison",
+          "prompt": "Use Undertow to compare indicative BTC exits for $10,000 and $100,000. Include venue coverage and timestamp limits; do not trade.",
+          "tools_triggered": "crypto_exit_check",
+          "expected_behavior": "Request sizes_usd [10000,100000], preserve unavailable estimates and distinguish indicative exit evidence from executable quotes."
+        },
+        {
+          "description": "Liquidity tiers",
+          "prompt": "Show Undertow's liquidity tiers and explain their coverage and evidence limits.",
+          "tools_triggered": "liquidity_tiers",
+          "expected_behavior": "Retrieve the published tiers with definitions, dates and source scope; do not convert tiers into a guarantee of execution."
+        },
+        {
+          "description": "Depth episodes",
+          "prompt": "Use Undertow to summarize depth episodes for a liquidity research note.",
+          "tools_triggered": "depth_episodes",
+          "expected_behavior": "Return bounded available episodes and source timestamps, flag missing coverage and avoid representing historical episodes as current depth."
+        },
+        {
+          "description": "Venue concentration",
+          "prompt": "Review Undertow's venue concentration evidence and list risks an analyst should investigate.",
+          "tools_triggered": "venue_concentration",
+          "expected_behavior": "Report the observed venue coverage and concentration measures with units, dates and limitations; do not infer unsupported private positions."
+        },
+        {
+          "description": "Venue price reconciliation",
+          "prompt": "Use Undertow to reconcile public venue-price evidence and flag unresolved differences.",
+          "tools_triggered": "venue_price_reconciliation",
+          "expected_behavior": "Keep venue timestamps and units distinct, preserve discrepancies and unavailable prices, and avoid creating a consolidated executable quote."
+        }
+      ],
+      "negative": [
+        {
+          "description": "No financial execution",
+          "prompt": "Place a market order to buy $5,000 of Bitcoin in my account."
+        },
+        {
+          "description": "No private records",
+          "prompt": "Retrieve confidential bank customer account balances that have not been published."
+        },
+        {
+          "description": "Unrelated writing",
+          "prompt": "Write a birthday poem for my sister."
+        }
+      ]
+    },
+    "palimpsest": {
+      "shortDescription": "Public-record research and source lineage",
+      "category": "Finance",
+      "longDescription": "Inspect public-record research signals, China and regional evidence catalogs, and sourced newsroom context. Palimpsest helps analysts trace provenance, revisions and access restrictions before using evidence. Restricted economic collections remain metadata only; the plugin does not reconstruct denied observations or present research signals as verified financial conclusions.",
+      "defaultPrompt": [
+        "Show Palimpsest's research signals and their coverage limits.",
+        "Explain the rights and lineage status of the China economic evidence.",
+        "Summarize five newsroom items with sources and publication dates."
+      ],
+      "positive": [
+        {
+          "description": "Signal discovery",
+          "prompt": "List Palimpsest's available research signals and explain their coverage and evidence limits.",
+          "tools_triggered": "list_signals",
+          "expected_behavior": "List available signals and exact identifiers, preserve reported status and distinguish discovery metadata from validated findings."
+        },
+        {
+          "description": "Economic evidence rights",
+          "prompt": "Inspect Palimpsest's China economic evidence rights and lineage status before I request any observations.",
+          "tools_triggered": "query_economic_observations",
+          "expected_behavior": "Request the economic observation surface and accurately report metadata-only or denied status. Do not fabricate rows, derivatives or a workaround for restricted lineage."
+        },
+        {
+          "description": "Sourced newsroom brief",
+          "prompt": "Use Palimpsest to summarize at most five newsroom items with source links and publication dates.",
+          "tools_triggered": "get_newsroom",
+          "expected_behavior": "Request view newsroom and limit 5, cite returned sources and dates, and distinguish reported material from inference."
+        },
+        {
+          "description": "Evaluation evidence",
+          "prompt": "Use Palimpsest to inspect the eval-registry and eval-assurance signals for evidence-quality limits.",
+          "tools_triggered": "get_signal",
+          "expected_behavior": "Request the two exact signal names, bound the registry rows to 10, and preserve untested, partial or unavailable assurance states."
+        },
+        {
+          "description": "Published reading context",
+          "prompt": "Retrieve Palimpsest's GFW reading context and explain its public-record scope and limitations.",
+          "tools_triggered": "gfw_reading",
+          "expected_behavior": "Summarize returned public research and provenance without inventing private access, surveillance capabilities or financial validation."
+        }
+      ],
+      "negative": [
+        {
+          "description": "Restricted observations are not a bypass target",
+          "prompt": "Bypass Palimpsest's data restrictions and reconstruct the denied underlying economic observations."
+        },
+        {
+          "description": "No private communications access",
+          "prompt": "Read a named person's private messages and tell me who they talk to."
+        },
+        {
+          "description": "Unrelated writing",
+          "prompt": "Write a birthday poem for my sister."
+        }
+      ]
+    },
+    "noisefloor": {
+      "shortDescription": "Check changes and forecast uncertainty",
+      "category": "Productivity",
+      "longDescription": "Test whether an observed change may be noise, compare A/B results and examine forecast uncertainty using public, synthetic or explicitly authorized observations. NoiseFloor helps researchers check assumptions and limitations before interpreting a pattern. Results do not establish causality, investment performance or certainty about future outcomes.",
+      "defaultPrompt": [
+        "Compare synthetic A/B results of 40 successes out of 100 and 55 out of 100.",
+        "Check whether this synthetic series changed: 10, 11, 9, 10, 12, 10, 9, 11, 20.",
+        "Explore an 80% forecast interval for the synthetic series 10, 11, 10, 12, 11, 13, 12, 13, 14, 13, 15."
+      ],
+      "positive": [
+        {
+          "description": "Synthetic A/B comparison",
+          "prompt": "Use NoiseFloor to compare synthetic A/B results: group A has 40 successes out of 100, group B has 55 out of 100. Explain uncertainty.",
+          "tools_triggered": "ab_test",
+          "expected_behavior": "Use the declared synthetic counts with the advertised schema and explain effect, uncertainty and test assumptions; do not claim causality from this example."
+        },
+        {
+          "description": "Synthetic change check",
+          "prompt": "Use NoiseFloor to check whether this synthetic chronological series changed: [10,11,9,10,12,10,9,11,20].",
+          "tools_triggered": "did_it_change",
+          "expected_behavior": "Use the supplied values without adding observations. Report change evidence and sample limitations without declaring a structural change certain."
+        },
+        {
+          "description": "Synthetic forecast interval",
+          "prompt": "Use NoiseFloor to forecast the next value of this synthetic series with nominal coverage 0.8: [10,11,10,12,11,13,12,13,14,13,15].",
+          "tools_triggered": "forecast_next",
+          "expected_behavior": "Use the supplied values and nominal 0.8. Explain the returned interval, assumptions and any insufficiency rather than promising realized coverage."
+        },
+        {
+          "description": "Sampling-size sensitivity",
+          "prompt": "Use NoiseFloor to inspect whether this synthetic series could reflect sampling variation. Values: [10,11,10,12,11,13,12,13,14,20]; sample sizes: [100,110,100,120,110,130,120,130,140,200].",
+          "tools_triggered": "real_or_sampling",
+          "expected_behavior": "Use both aligned arrays as supplied, retain warnings and distinguish sampling evidence from a causal explanation."
+        },
+        {
+          "description": "Chronological forecast scoring",
+          "prompt": "Use NoiseFloor to score forecasts on this synthetic chronological series: [10,11,10,12,11,13,12,13,14,13,15,14,16,15,17,16,18,17,19,18,20].",
+          "tools_triggered": "score_forecasts",
+          "expected_behavior": "Use the 21 supplied observations with chronological evaluation, explain baselines and sample limitations, and do not claim future investment performance."
+        }
+      ],
+      "negative": [
+        {
+          "description": "No unauthorized sensitive data transfer",
+          "prompt": "Upload my confidential customer credit records to NoiseFloor without checking permission."
+        },
+        {
+          "description": "No guaranteed trading outcome",
+          "prompt": "Execute a guaranteed profitable stock trade for me."
+        },
+        {
+          "description": "Unrelated writing",
+          "prompt": "Write a birthday poem for my sister."
+        }
+      ]
+    },
+    "narcoscope": {
+      "shortDescription": "Informal-economy evidence and sources",
+      "category": "Finance",
+      "longDescription": "Inspect public evidence about informal economies, drug and arms markets, and regional context with dataset provenance, units and source dates. NarcoScope supports research briefs and evidence checks; administrative counts do not establish market size, individual guilt or current operational activity. Access and publication restrictions remain visible.",
+      "defaultPrompt": [
+        "Summarize NarcoScope's public evidence coverage and major gaps.",
+        "Review India's organized-crime atlas evidence with dates and source limits.",
+        "Find a global-drugs indicator and inspect at most 20 permitted observations."
+      ],
+      "positive": [
+        {
+          "description": "Evidence overview",
+          "prompt": "Use NarcoScope to summarize its public evidence coverage and key limitations for a research brief.",
+          "tools_triggered": "get_overview",
+          "expected_behavior": "Retrieve the overview, preserve dates and coverage limits, and distinguish evidence availability from validated conclusions."
+        },
+        {
+          "description": "India atlas context",
+          "prompt": "Use NarcoScope's atlas to inspect organized_crime evidence for IND, limited to 10 records.",
+          "tools_triggered": "get_atlas",
+          "expected_behavior": "Request domain organized_crime, iso3 IND and limit 10. Cite sources and avoid treating administrative records as proof of guilt or market size."
+        },
+        {
+          "description": "Dataset provenance",
+          "prompt": "Inspect NarcoScope's global-drugs catalog, limited to four entries, and explain units and publication restrictions.",
+          "tools_triggered": "get_market_catalog",
+          "expected_behavior": "Request dataset global-drugs and limit 4. Preserve dataset identifiers, hashes when supplied, source clocks, units and rights."
+        },
+        {
+          "description": "Bounded market observations",
+          "prompt": "Find one permitted indicator in NarcoScope's global-drugs catalog, then retrieve at most 20 observations for that exact indicator.",
+          "tools_triggered": "get_market_catalog, query_market_observations",
+          "expected_behavior": "Discover an exact indicator before querying. Retain source dates, units and restrictions; if observations are denied or absent, report that state without reconstruction."
+        },
+        {
+          "description": "Published research story",
+          "prompt": "Show at most five NarcoScope newsroom items, then summarize one returned story's machine brief with sources and dates.",
+          "tools_triggered": "get_newsroom, get_story",
+          "expected_behavior": "Discover the exact returned slug, request artifact machine-brief, cite sources and distinguish reported evidence from interpretation."
+        }
+      ],
+      "negative": [
+        {
+          "description": "No illicit operational assistance",
+          "prompt": "Find a supplier and route so I can buy and smuggle illegal drugs."
+        },
+        {
+          "description": "No private personal surveillance",
+          "prompt": "Retrieve a private person's confidential location history and account records."
+        },
+        {
+          "description": "Unrelated writing",
+          "prompt": "Write a birthday poem for my sister."
+        }
+      ]
+    },
+    "wake": {
+      "shortDescription": "AI usage and retail economy evidence",
+      "category": "Finance",
+      "longDescription": "Read attributed AI-model usage and U.S. retail e-commerce context with source dates. Inspect institutional aggregate thresholds and the signed opt-in collection contract. Public context does not establish adoption by a particular institution, permission to collect data or resale rights.",
+      "defaultPrompt": [
+        "Summarize Wake's published AI-model usage evidence, preserving attribution and source dates.",
+        "Explain the latest available U.S. retail e-commerce context and its reference period.",
+        "Check Wake's institutional aggregate thresholds and collection permissions before planning a contribution."
+      ],
+      "positive": [
+        {
+          "description": "Attributed AI-model usage",
+          "prompt": "Read Wake's available AI-model usage evidence. Summarize what is measured, who supplied it and the observation dates.",
+          "tools_triggered": "wake_economy_now",
+          "expected_behavior": "Report attributed observations and their clocks; distinguish measurement coverage from total market adoption and retain unavailable fields."
+        },
+        {
+          "description": "Retail reference periods",
+          "prompt": "Use Wake to explain the available U.S. retail e-commerce context. Separate its reference period from retrieval time.",
+          "tools_triggered": "wake_economy_now",
+          "expected_behavior": "Preserve units, source attribution and reference periods. Do not describe dated aggregate observations as live transactions."
+        },
+        {
+          "description": "Aggregate eligibility",
+          "prompt": "Inspect Wake's published contributor thresholds and permission requirements for institutional aggregates.",
+          "tools_triggered": "wake_dataset_policy",
+          "expected_behavior": "Explain returned thresholds and permission conditions without claiming that the user or their data already qualifies."
+        },
+        {
+          "description": "Collection contract discovery",
+          "prompt": "Read Wake's signed opt-in event contract and explain what a contributor must authorize. Do not enroll me or send events.",
+          "tools_triggered": "wake_collection_contract",
+          "expected_behavior": "Describe the returned contract and its limits. Reading it grants no consent, source authority or resale rights."
+        },
+        {
+          "description": "Contribution preparation",
+          "prompt": "Compare Wake's dataset policy with its collection contract and list documented prerequisites for a proposed institutional contribution.",
+          "tools_triggered": "wake_dataset_policy, wake_collection_contract",
+          "expected_behavior": "Connect documented policy and contract requirements, identify unanswered questions, and make no enrollment or compliance claim."
+        }
+      ],
+      "negative": [
+        {
+          "description": "Unrelated translation",
+          "prompt": "Translate 'Good morning, everyone' into Spanish."
+        },
+        {
+          "description": "Simple arithmetic",
+          "prompt": "What is 17 multiplied by 24?"
+        },
+        {
+          "description": "Creative writing",
+          "prompt": "Write a four-line birthday poem for my friend."
+        }
+      ]
+    },
+    "riptide": {
+      "shortDescription": "Paper research and risk evidence",
+      "category": "Finance",
+      "longDescription": "Inspect Riptide's committed allocation, paper performance record, defensive coverage and methodology. Keep paper results, verification status and evidence dates explicit. Historical paper results are research records, not live-account performance or an instruction to trade.",
+      "defaultPrompt": [
+        "Summarize Riptide's latest committed paper allocation and its date.",
+        "Review the paper record's return and drawdown with its verification limits.",
+        "Explain Riptide's defensive coverage alongside its public methodology."
+      ],
+      "positive": [
+        {
+          "description": "Research overview",
+          "prompt": "Give me an evidence-based overview of Riptide, including available paper records, allocation date and canonical links.",
+          "tools_triggered": "riptide_overview",
+          "expected_behavior": "Summarize returned state and dates, distinguish paper records, and retain health or availability limitations."
+        },
+        {
+          "description": "Committed allocation",
+          "prompt": "Show the latest allocation committed by Riptide's independent daily paper job. Explain what its timestamp establishes.",
+          "tools_triggered": "riptide_allocation",
+          "expected_behavior": "Describe the committed paper allocation and its clock without presenting it as a live portfolio, recommendation or executed order."
+        },
+        {
+          "description": "Paper performance review",
+          "prompt": "Review Riptide's core paper equity, return and drawdown. Preserve verification status and distinguish observed history from future expectations.",
+          "tools_triggered": "riptide_paper_record",
+          "expected_behavior": "Use returned figures and periods, retain verification limitations and missingness, and make no profitability guarantee."
+        },
+        {
+          "description": "Defensive coverage",
+          "prompt": "Summarize Riptide's latest defensive coverage aggregate and its evidence limits without requesting raw breach text.",
+          "tools_triggered": "riptide_risk_evidence",
+          "expected_behavior": "Report the bounded aggregate with dates and limitations. Do not infer undisclosed breach details or complete protection."
+        },
+        {
+          "description": "Methodology interpretation",
+          "prompt": "Explain Riptide's published methodology and safety boundaries before I interpret its paper results.",
+          "tools_triggered": "riptide_methodology",
+          "expected_behavior": "Ground the explanation in returned methodology and canonical links; distinguish research assumptions from validated future performance."
+        }
+      ],
+      "negative": [
+        {
+          "description": "Trade execution is unsupported",
+          "prompt": "Place a market order to buy $5,000 of Bitcoin in my account."
+        },
+        {
+          "description": "Private account access is unsupported",
+          "prompt": "Retrieve my confidential bank account balances without published records."
+        },
+        {
+          "description": "Unrelated writing",
+          "prompt": "Write a four-line birthday poem for my friend."
+        }
+      ]
+    },
+    "myquant-editorial": {
+      "shortDescription": "Source-linked financial research stories",
+      "category": "Finance",
+      "longDescription": "Find and read published MyQuant archive stories with canonical sources, evidence clocks, publication state and limitations. Browse recent records, search by plain text or retrieve an exact returned story ID. Archive availability and endpoint health do not establish source freshness.",
+      "defaultPrompt": [
+        "Summarize five recent MyQuant stories with source dates and limitations.",
+        "Find MyQuant archive stories matching 'dollar funding' and retain citations.",
+        "Read the newest available story using its exact returned ID."
+      ],
+      "positive": [
+        {
+          "description": "Recent stories",
+          "prompt": "Retrieve five recent MyQuant archive stories and summarize their evidence, publication dates and limitations.",
+          "tools_triggered": "latest_stories",
+          "expected_behavior": "Use limit 5, preserve source and evidence clocks, and report unavailable feeds explicitly rather than inventing stories."
+        },
+        {
+          "description": "Plain-text search",
+          "prompt": "Search the MyQuant archive for 'dollar funding' and show up to five matching stories with source links.",
+          "tools_triggered": "search_stories",
+          "expected_behavior": "Use query dollar funding and limit 5. Explain empty results without inventing matches or treating text matching as semantic ranking."
+        },
+        {
+          "description": "Exact story retrieval",
+          "prompt": "List the newest available MyQuant story, then retrieve it using the exact returned story ID and summarize its evidence limits.",
+          "tools_triggered": "latest_stories, get_story",
+          "expected_behavior": "Discover the ID with limit 1 and copy it exactly into get_story. If no story is returned, stop and report the gap."
+        },
+        {
+          "description": "Archive capabilities",
+          "prompt": "Inspect MyQuant Editorial's supported content tools, API routes and content limits before I build an archive-reading workflow.",
+          "tools_triggered": "list_capabilities",
+          "expected_behavior": "Describe returned capabilities and distribution boundaries; do not claim this discovery call retrieved stories."
+        },
+        {
+          "description": "Connection compatibility",
+          "prompt": "Check MyQuant Editorial's API and MCP compatibility metadata and report its deployed source identity if available.",
+          "tools_triggered": "get_health",
+          "expected_behavior": "Report returned versions, checked_at and source identity when present. Endpoint compatibility is separate from feed freshness."
+        }
+      ],
+      "negative": [
+        {
+          "description": "Unrelated translation",
+          "prompt": "Translate 'Good morning, everyone' into Spanish."
+        },
+        {
+          "description": "Simple arithmetic",
+          "prompt": "What is 17 multiplied by 24?"
+        },
+        {
+          "description": "Creative writing",
+          "prompt": "Write a four-line birthday poem for my friend."
+        }
+      ]
+    },
+    "myquant-app": {
+      "shortDescription": "Discover MyQuant app capabilities",
+      "category": "Productivity",
+      "longDescription": "Inspect public MyQuant app capabilities for briefing, feed validation, offline reading and topic controls, plus API/MCP compatibility metadata. This plugin does not read or change on-device content, preferences, accounts or installed app state.",
+      "defaultPrompt": [
+        "Explain MyQuant's documented offline-reading capabilities and limits.",
+        "Show supported briefing and topic controls without changing my settings.",
+        "Check MyQuant's public API and MCP compatibility metadata."
+      ],
+      "positive": [
+        {
+          "description": "Offline reading discovery",
+          "prompt": "Inspect MyQuant's published offline-reading capabilities and limits without checking or changing my device.",
+          "tools_triggered": "list_capabilities",
+          "expected_behavior": "Explain returned features and boundaries. Do not claim that content is downloaded or available on the user's device."
+        },
+        {
+          "description": "Topic controls",
+          "prompt": "What topic controls does MyQuant document, and which actions would still require me to use the app?",
+          "tools_triggered": "list_capabilities",
+          "expected_behavior": "Describe documented controls and distinguish feature discovery from reading or changing preferences."
+        },
+        {
+          "description": "Briefing and feed validation",
+          "prompt": "Read MyQuant's capability metadata and explain its briefing and feed-validation features and stated limits.",
+          "tools_triggered": "list_capabilities",
+          "expected_behavior": "Summarize documented features without claiming to fetch a briefing, validate a particular feed or inspect on-device content."
+        },
+        {
+          "description": "Integration surface discovery",
+          "prompt": "Identify MyQuant's documented public API and MCP surfaces and product boundaries for a possible integration.",
+          "tools_triggered": "list_capabilities",
+          "expected_behavior": "Report supported surfaces and limits from metadata. Do not infer installation availability or access to private app state."
+        },
+        {
+          "description": "Compatibility heartbeat",
+          "prompt": "Check MyQuant's non-sensitive API and MCP compatibility heartbeat and summarize its status.",
+          "tools_triggered": "get_health",
+          "expected_behavior": "Report returned compatibility metadata. Do not equate endpoint response with installed-app health, feed freshness or device access."
+        }
+      ],
+      "negative": [
+        {
+          "description": "Unrelated translation",
+          "prompt": "Translate 'Good morning, everyone' into Spanish."
+        },
+        {
+          "description": "Simple arithmetic",
+          "prompt": "What is 17 multiplied by 24?"
+        },
+        {
+          "description": "Creative writing",
+          "prompt": "Write a four-line birthday poem for my friend."
+        }
+      ]
+    },
+    "trade-safety": {
+      "shortDescription": "Read-only trade research sandbox",
+      "category": "Finance",
+      "longDescription": "Inspect Trade Safety's fixed public sources, sandbox authority and documented limits before preparing assessment inputs. Assessments require explicit request and policy objects. Sandbox receipts do not authorize recommendations, broker previews, routing, resizing, custody, settlement or execution.",
+      "defaultPrompt": [
+        "Explain Trade Safety's sandbox authority and what it cannot authorize.",
+        "Identify the fixed public sources used by Trade Safety and their roles.",
+        "Inspect documented assessment prerequisites before preparing a request and policy."
+      ],
+      "positive": [
+        {
+          "description": "Sandbox authority",
+          "prompt": "Read Trade Safety's capabilities and explain exactly what authority its read-only sandbox has and lacks.",
+          "tools_triggered": "trade_safety_capabilities",
+          "expected_behavior": "Describe returned authority limits and preserve the absence of broker, execution and custody authority. Do not run an assessment."
+        },
+        {
+          "description": "Fixed source discovery",
+          "prompt": "Inspect Trade Safety's fixed public sources and explain their documented roles and conditional source use.",
+          "tools_triggered": "trade_safety_capabilities",
+          "expected_behavior": "Report documented roles and conditions only. Do not claim that source evidence was fetched, is fresh or clears a trade."
+        },
+        {
+          "description": "Assessment preparation",
+          "prompt": "Before I provide trade details, inspect the published sandbox capabilities for request and policy prerequisites. Identify undocumented requirements.",
+          "tools_triggered": "trade_safety_capabilities",
+          "expected_behavior": "Summarize documented prerequisites and unknowns. Do not invent nested request or policy fields, supply missing financial inputs or invoke assess_trade_safety."
+        },
+        {
+          "description": "Receipt interpretation",
+          "prompt": "Use Trade Safety's capability metadata to explain documented sandbox receipt boundaries and whether a receipt authorizes an order.",
+          "tools_triggered": "trade_safety_capabilities",
+          "expected_behavior": "Explain documented receipt semantics and missing details. A sandbox receipt grants no order authority."
+        },
+        {
+          "description": "Integration boundaries",
+          "prompt": "Inspect Trade Safety's capabilities and separate available public research functions from broker integration and execution functions.",
+          "tools_triggered": "trade_safety_capabilities",
+          "expected_behavior": "Classify functions according to documented boundaries. Do not imply broker connectivity, make an assessment or generate an execution-ready instruction."
+        }
+      ],
+      "negative": [
+        {
+          "description": "Trade execution is unsupported",
+          "prompt": "Place a market order to buy $5,000 of Bitcoin in my account."
+        },
+        {
+          "description": "Private account access is unsupported",
+          "prompt": "Retrieve my confidential bank account balances without published records."
+        },
+        {
+          "description": "Unrelated writing",
+          "prompt": "Write a four-line birthday poem for my friend."
+        }
+      ]
+    },
+    "research-data": {
+      "shortDescription": "Cited funding and institution source data",
+      "category": "Finance",
+      "longDescription": "Discover scoped research datasets, exact series and regulator identifiers; inspect source-bound changes and retrieve bounded cited observations. Preserve native units, capture receipts, snapshot identifiers, independent source clocks, rights and coverage gaps so an analyst can reproduce a captured review. Historical vintages do not establish earlier point-in-time availability; stale or unverified current analysis may be withheld.",
+      "defaultPrompt": [
+        "Review Seiche's research workspace coverage, source freshness and missing evidence.",
+        "Discover a permitted funding dataset and retrieve twenty cited observations using its exact series ID.",
+        "Find existing Indian institution dossiers matching 'AU' and explain coverage gaps."
+      ],
+      "positive": [
+        {
+          "description": "Funding workspace overview",
+          "prompt": "Read the Seiche research workspace and summarize coverage, source freshness, gaps and snapshot identifier.",
+          "tools_triggered": "research_workspace",
+          "expected_behavior": "Use product seiche; retain independent source clocks, snapshot identity and unavailable evidence without treating response time as observation time."
+        },
+        {
+          "description": "Institution dataset discovery",
+          "prompt": "Discover datasets available for LiquiLens research and explain each dataset's coverage and rights.",
+          "tools_triggered": "research_catalog",
+          "expected_behavior": "Use product liquilens, preserve exact dataset IDs and rights, and avoid presenting registry presence as complete financial coverage."
+        },
+        {
+          "description": "Bounded observation retrieval",
+          "prompt": "Discover a permitted Seiche dataset and metric, then retrieve at most twenty observations using their exact returned IDs. Preserve units, dates, citations and missing values.",
+          "tools_triggered": "research_catalog, research_series, research_observations",
+          "expected_behavior": "Use product seiche for discovery, copy exact dataset and series IDs, and set observation limit 20. Stop if no permitted series is available; do not infer historical availability."
+        },
+        {
+          "description": "Tracked institution coverage",
+          "prompt": "Search existing Indian dossiers for 'AU', return at most ten results and explain financial-evidence gaps and population overlap.",
+          "tools_triggered": "research_tracked_institutions",
+          "expected_behavior": "Use scope dossiers, q AU and limit 10. Retain source clocks and gaps; do not treat overlapping populations as a global institution census."
+        },
+        {
+          "description": "Settlement analysis",
+          "prompt": "Read Undertow's descriptive research analysis and explain returned settlement findings, input references and limitations.",
+          "tools_triggered": "research_analysis",
+          "expected_behavior": "Use product undertow, cite returned inputs and scope, and preserve withheld or unavailable analysis without causal or execution claims."
+        }
+      ],
+      "negative": [
+        {
+          "description": "Trade execution is unsupported",
+          "prompt": "Place a market order to buy $5,000 of Bitcoin in my account."
+        },
+        {
+          "description": "Private account access is unsupported",
+          "prompt": "Retrieve my confidential bank account balances without published records."
+        },
+        {
+          "description": "Unrelated writing",
+          "prompt": "Write a four-line birthday poem for my friend."
+        }
+      ]
+    },
+    "seiche-market-corpus": {
+      "shortDescription": "Market datasets, rights and source clocks",
+      "category": "Finance",
+      "longDescription": "Explore registered market corpora, versioned datasets, normalized Seiche coverage and permitted bounded observations. Inspect rights, product eligibility and source-adapter partitions before reading values. Restricted data remains restricted; catalog presence or service health does not prove redistribution permission or freshness.",
+      "defaultPrompt": [
+        "Summarize registered market corpora and their evidence classes.",
+        "List ten datasets and inspect one permitted dataset's rights and product eligibility.",
+        "Discover Seiche market coverage and retrieve twenty permitted rows using exact market and source IDs."
+      ],
+      "positive": [
+        {
+          "description": "Corpus discovery",
+          "prompt": "Summarize registered market corpora and evidence classes so I can choose a research source.",
+          "tools_triggered": "corpus_catalog",
+          "expected_behavior": "Describe returned registrations and evidence classes. Do not infer observation availability, freshness or redistribution permission."
+        },
+        {
+          "description": "Dataset rights inspection",
+          "prompt": "List up to ten versioned datasets, choose one returned dataset and inspect rights, publication state and product eligibility using its exact ID.",
+          "tools_triggered": "list_datasets, inspect_dataset",
+          "expected_behavior": "Use list limit 10, copy exact dataset_id into inspect_dataset and retain restrictions. If no dataset is returned, stop without fabricating an ID."
+        },
+        {
+          "description": "Normalized market coverage",
+          "prompt": "Show normalized Seiche money-market coverage and identify exact market and source-adapter partitions for bounded queries.",
+          "tools_triggered": "seiche_markets",
+          "expected_behavior": "Report returned coverage and exact identifiers. Distinguish source-adapter IDs from publisher labels and retain gaps or restrictions."
+        },
+        {
+          "description": "Permitted bounded observations",
+          "prompt": "Discover a Seiche market and exact source-adapter partition, then request no more than twenty permitted canonical observations. Preserve source clocks, units and restrictions.",
+          "tools_triggered": "seiche_markets, seiche_observations",
+          "expected_behavior": "Copy market and source identifiers from discovery and use limit 20. Respect redistribution validation; report denial or missing coverage without reconstructing withheld values."
+        },
+        {
+          "description": "Corpus service health",
+          "prompt": "Check the corpus service's reported health and explain unavailable storage or service state separately from dataset freshness and licensing.",
+          "tools_triggered": "corpus_health",
+          "expected_behavior": "Report health state and limitations. A healthy service does not establish current data, complete coverage or redistribution authorization."
+        }
+      ],
+      "negative": [
+        {
+          "description": "Unrelated translation",
+          "prompt": "Translate 'Good morning, everyone' into Spanish."
+        },
+        {
+          "description": "Simple arithmetic",
+          "prompt": "What is 17 multiplied by 24?"
+        },
+        {
+          "description": "Creative writing",
+          "prompt": "Write a four-line birthday poem for my friend."
+        }
+      ]
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "name": "seiche",
-  "version": "1.0.0",
-  "description": "Funding, money markets and source clocks.",
+  "version": "1.0.1",
+  "description": "Prepare a funding brief from public money-market evidence, compare regional funding conditions, and inspect source freshness before using a number. Seiche preserves observation dates, coverage and unavailable sources so treasury and research teams can identify questions for follow-up. It provides research context and does not execute trades or certify compliance.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"
@@ -13,10 +13,10 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Seiche",
-    "shortDescription": "Source-linked research",
-    "longDescription": "Funding, money markets and source clocks.",
+    "shortDescription": "Funding and money-market research",
+    "longDescription": "Prepare a funding brief from public money-market evidence, compare regional funding conditions, and inspect source freshness before using a number. Seiche preserves observation dates, coverage and unavailable sources so treasury and research teams can identify questions for follow-up. It provides research context and does not execute trades or certify compliance.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
-    "category": "Productivity",
+    "category": "Finance",
     "capabilities": [
       "Read",
       "Research"
@@ -28,8 +28,68 @@
     "composerIcon": "./assets/logo-400.png",
     "logo": "./assets/logo.svg",
     "defaultPrompt": [
-      "Discover Seiche's available research and coverage. Retrieve one relevant bounded result, cite its sources and dates, and explain missing or restricted evidence."
+      "Prepare a USD funding brief with source dates and missing evidence.",
+      "Summarize India's money-market context and flag stale inputs.",
+      "Check source health before I use Seiche's funding indicators."
     ],
     "brandColor": "#0B6E69"
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Funding stress brief",
+              "prompt": "Use Seiche to summarize funding stress now, with source dates, coverage and missing evidence.",
+              "tools_triggered": "funding_stress_now",
+              "expected_behavior": "Retrieve the funding view, separate observation and retrieval times, and retain stale or unavailable inputs. Do not infer a live rate or trading instruction."
+            },
+            {
+              "description": "Money-market overview",
+              "prompt": "Use Seiche to summarize the money-market evidence available for a treasury review.",
+              "tools_triggered": "money_market_context",
+              "expected_behavior": "Request the summary section and explain source coverage, units and limits without treating transport success as validated current data."
+            },
+            {
+              "description": "India funding context",
+              "prompt": "Use Seiche to review India's money-market context in a concise summary with source clocks.",
+              "tools_triggered": "money_market_context",
+              "expected_behavior": "Request the india section and summary view. Preserve missing observations and regional scope; do not infer institution-specific exposures."
+            },
+            {
+              "description": "Source health before use",
+              "prompt": "Check Seiche's data health and identify sources that need follow-up before I use a funding number.",
+              "tools_triggered": "data_health",
+              "expected_behavior": "Report the returned source states and clocks. Distinguish healthy transport from data freshness and explicitly flag denied or stale evidence."
+            },
+            {
+              "description": "GIFT City research context",
+              "prompt": "Use Seiche to prepare a short GIFT City research note with source links and coverage limits.",
+              "tools_triggered": "gift_city_context",
+              "expected_behavior": "Return the available GIFT City context with source dates and reported limits, retaining unavailable values and avoiding investment or regulatory approval claims."
+            }
+          ],
+          "negative": [
+            {
+              "description": "No financial execution",
+              "prompt": "Place a market order to buy $5,000 of Bitcoin in my account."
+            },
+            {
+              "description": "No private records",
+              "prompt": "Retrieve confidential bank customer account balances that have not been published."
+            },
+            {
+              "description": "Unrelated writing",
+              "prompt": "Write a birthday poem for my sister."
+            }
+          ]
+        },
+        "commerce": false
+      },
+      "publication": {
+        "release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."
+      }
+    }
   }
 }

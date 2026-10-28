@@ -6,7 +6,7 @@ description: "Use NoiseFloor for Statistical research using permitted observatio
 # NoiseFloor
 
 Use the bundled `noisefloor` MCP connection for this product's public research.
-Scope: Statistical research using permitted observations.
+Scope: Test whether an observed change may be noise, compare A/B results and examine forecast uncertainty using public, synthetic or explicitly authorized observations. NoiseFloor helps researchers check assumptions and limitations before interpreting a pattern. Results do not establish causality, investment performance or certainty about future outcomes.
 Product type: `core_product`.
 
 1. Discover the server's current tools and inspect their schemas before calling.

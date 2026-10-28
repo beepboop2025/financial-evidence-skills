@@ -1,7 +1,7 @@
 {
   "name": "seiche-market-corpus",
-  "version": "1.0.0",
-  "description": "Inspect corpus datasets, source clocks and publication rights. Restricted collections remain metadata only.",
+  "version": "1.0.1",
+  "description": "Explore registered market corpora, versioned datasets, normalized Seiche coverage and permitted bounded observations. Inspect rights, product eligibility and source-adapter partitions before reading values. Restricted data remains restricted; catalog presence or service health does not prove redistribution permission or freshness.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"
@@ -13,10 +13,10 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Seiche Market Atlas Corpus",
-    "shortDescription": "Source-linked research",
-    "longDescription": "Inspect corpus datasets, source clocks and publication rights. Restricted collections remain metadata only.",
+    "shortDescription": "Market datasets, rights and source clocks",
+    "longDescription": "Explore registered market corpora, versioned datasets, normalized Seiche coverage and permitted bounded observations. Inspect rights, product eligibility and source-adapter partitions before reading values. Restricted data remains restricted; catalog presence or service health does not prove redistribution permission or freshness.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
-    "category": "Productivity",
+    "category": "Finance",
     "capabilities": [
       "Read",
       "Research"
@@ -28,8 +28,68 @@
     "composerIcon": "./assets/logo-400.png",
     "logo": "./assets/logo.svg",
     "defaultPrompt": [
-      "Discover Seiche Market Atlas Corpus's available research and coverage. Retrieve one relevant bounded result, cite its sources and dates, and explain missing or restricted evidence."
+      "Summarize registered market corpora and their evidence classes.",
+      "List ten datasets and inspect one permitted dataset's rights and product eligibility.",
+      "Discover Seiche market coverage and retrieve twenty permitted rows using exact market and source IDs."
     ],
     "brandColor": "#0B6E69"
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Corpus discovery",
+              "prompt": "Summarize registered market corpora and evidence classes so I can choose a research source.",
+              "tools_triggered": "corpus_catalog",
+              "expected_behavior": "Describe returned registrations and evidence classes. Do not infer observation availability, freshness or redistribution permission."
+            },
+            {
+              "description": "Dataset rights inspection",
+              "prompt": "List up to ten versioned datasets, choose one returned dataset and inspect rights, publication state and product eligibility using its exact ID.",
+              "tools_triggered": "list_datasets, inspect_dataset",
+              "expected_behavior": "Use list limit 10, copy exact dataset_id into inspect_dataset and retain restrictions. If no dataset is returned, stop without fabricating an ID."
+            },
+            {
+              "description": "Normalized market coverage",
+              "prompt": "Show normalized Seiche money-market coverage and identify exact market and source-adapter partitions for bounded queries.",
+              "tools_triggered": "seiche_markets",
+              "expected_behavior": "Report returned coverage and exact identifiers. Distinguish source-adapter IDs from publisher labels and retain gaps or restrictions."
+            },
+            {
+              "description": "Permitted bounded observations",
+              "prompt": "Discover a Seiche market and exact source-adapter partition, then request no more than twenty permitted canonical observations. Preserve source clocks, units and restrictions.",
+              "tools_triggered": "seiche_markets, seiche_observations",
+              "expected_behavior": "Copy market and source identifiers from discovery and use limit 20. Respect redistribution validation; report denial or missing coverage without reconstructing withheld values."
+            },
+            {
+              "description": "Corpus service health",
+              "prompt": "Check the corpus service's reported health and explain unavailable storage or service state separately from dataset freshness and licensing.",
+              "tools_triggered": "corpus_health",
+              "expected_behavior": "Report health state and limitations. A healthy service does not establish current data, complete coverage or redistribution authorization."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Unrelated translation",
+              "prompt": "Translate 'Good morning, everyone' into Spanish."
+            },
+            {
+              "description": "Simple arithmetic",
+              "prompt": "What is 17 multiplied by 24?"
+            },
+            {
+              "description": "Creative writing",
+              "prompt": "Write a four-line birthday poem for my friend."
+            }
+          ]
+        },
+        "commerce": false
+      },
+      "publication": {
+        "release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."
+      }
+    }
   }
 }

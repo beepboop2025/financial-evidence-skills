@@ -1,7 +1,7 @@
 {
   "name": "wake",
-  "version": "1.0.0",
-  "description": "Public agent-economy context with separate reference periods.",
+  "version": "1.0.1",
+  "description": "Read attributed AI-model usage and U.S. retail e-commerce context with source dates. Inspect institutional aggregate thresholds and the signed opt-in collection contract. Public context does not establish adoption by a particular institution, permission to collect data or resale rights.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"
@@ -13,10 +13,10 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Wake",
-    "shortDescription": "Source-linked research",
-    "longDescription": "Public agent-economy context with separate reference periods.",
+    "shortDescription": "AI usage and retail economy evidence",
+    "longDescription": "Read attributed AI-model usage and U.S. retail e-commerce context with source dates. Inspect institutional aggregate thresholds and the signed opt-in collection contract. Public context does not establish adoption by a particular institution, permission to collect data or resale rights.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
-    "category": "Productivity",
+    "category": "Finance",
     "capabilities": [
       "Read",
       "Research"
@@ -28,8 +28,68 @@
     "composerIcon": "./assets/logo-400.png",
     "logo": "./assets/logo.svg",
     "defaultPrompt": [
-      "Discover Wake's available research and coverage. Retrieve one relevant bounded result, cite its sources and dates, and explain missing or restricted evidence."
+      "Summarize Wake's published AI-model usage evidence, preserving attribution and source dates.",
+      "Explain the latest available U.S. retail e-commerce context and its reference period.",
+      "Check Wake's institutional aggregate thresholds and collection permissions before planning a contribution."
     ],
     "brandColor": "#0B6E69"
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Attributed AI-model usage",
+              "prompt": "Read Wake's available AI-model usage evidence. Summarize what is measured, who supplied it and the observation dates.",
+              "tools_triggered": "wake_economy_now",
+              "expected_behavior": "Report attributed observations and their clocks; distinguish measurement coverage from total market adoption and retain unavailable fields."
+            },
+            {
+              "description": "Retail reference periods",
+              "prompt": "Use Wake to explain the available U.S. retail e-commerce context. Separate its reference period from retrieval time.",
+              "tools_triggered": "wake_economy_now",
+              "expected_behavior": "Preserve units, source attribution and reference periods. Do not describe dated aggregate observations as live transactions."
+            },
+            {
+              "description": "Aggregate eligibility",
+              "prompt": "Inspect Wake's published contributor thresholds and permission requirements for institutional aggregates.",
+              "tools_triggered": "wake_dataset_policy",
+              "expected_behavior": "Explain returned thresholds and permission conditions without claiming that the user or their data already qualifies."
+            },
+            {
+              "description": "Collection contract discovery",
+              "prompt": "Read Wake's signed opt-in event contract and explain what a contributor must authorize. Do not enroll me or send events.",
+              "tools_triggered": "wake_collection_contract",
+              "expected_behavior": "Describe the returned contract and its limits. Reading it grants no consent, source authority or resale rights."
+            },
+            {
+              "description": "Contribution preparation",
+              "prompt": "Compare Wake's dataset policy with its collection contract and list documented prerequisites for a proposed institutional contribution.",
+              "tools_triggered": "wake_dataset_policy, wake_collection_contract",
+              "expected_behavior": "Connect documented policy and contract requirements, identify unanswered questions, and make no enrollment or compliance claim."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Unrelated translation",
+              "prompt": "Translate 'Good morning, everyone' into Spanish."
+            },
+            {
+              "description": "Simple arithmetic",
+              "prompt": "What is 17 multiplied by 24?"
+            },
+            {
+              "description": "Creative writing",
+              "prompt": "Write a four-line birthday poem for my friend."
+            }
+          ]
+        },
+        "commerce": false
+      },
+      "publication": {
+        "release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."
+      }
+    }
   }
 }

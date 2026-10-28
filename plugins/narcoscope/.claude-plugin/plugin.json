@@ -1,7 +1,7 @@
 {
   "name": "narcoscope",
-  "version": "1.0.0",
-  "description": "Drug, arms and informal-economy evidence.",
+  "version": "1.0.1",
+  "description": "Inspect public evidence about informal economies, drug and arms markets, and regional context with dataset provenance, units and source dates. NarcoScope supports research briefs and evidence checks; administrative counts do not establish market size, individual guilt or current operational activity. Access and publication restrictions remain visible.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"

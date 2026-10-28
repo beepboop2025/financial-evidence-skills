@@ -6,7 +6,7 @@ description: "Use MyQuant Editorial for Show one recent published story with its
 # MyQuant Editorial
 
 Use the bundled `myquant-editorial` MCP connection for this product's public research.
-Scope: Show one recent published story with its sources, dates and editorial limits.
+Scope: Find and read published MyQuant archive stories with canonical sources, evidence clocks, publication state and limitations. Browse recent records, search by plain text or retrieve an exact returned story ID. Archive availability and endpoint health do not establish source freshness.
 Product type: `editorial_archive`.
 
 1. Discover the server's current tools and inspect their schemas before calling.

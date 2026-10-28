@@ -1,7 +1,7 @@
 {
   "name": "riptide",
-  "version": "1.0.0",
-  "description": "Show Riptide's committed paper research record and its evidence limits.",
+  "version": "1.0.1",
+  "description": "Inspect Riptide's committed allocation, paper performance record, defensive coverage and methodology. Keep paper results, verification status and evidence dates explicit. Historical paper results are research records, not live-account performance or an instruction to trade.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"

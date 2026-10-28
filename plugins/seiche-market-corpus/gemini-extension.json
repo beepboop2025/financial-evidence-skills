@@ -1,7 +1,7 @@
 {
   "name": "seiche-market-corpus",
-  "version": "1.0.0",
-  "description": "Inspect corpus datasets, source clocks and publication rights. Restricted collections remain metadata only.",
+  "version": "1.0.1",
+  "description": "Explore registered market corpora, versioned datasets, normalized Seiche coverage and permitted bounded observations. Inspect rights, product eligibility and source-adapter partitions before reading values. Restricted data remains restricted; catalog presence or service health does not prove redistribution permission or freshness.",
   "mcpServers": {
     "seiche-market-corpus": {
       "httpUrl": "https://agents.seiche.info/products/seiche-market-corpus/mcp",

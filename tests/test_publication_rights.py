@@ -4,6 +4,9 @@ import hashlib
 import json
 import sys
 import unittest
+import importlib.util
+import tempfile
+from unittest.mock import patch
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
@@ -163,3 +166,66 @@ class PublicationRightsTests(unittest.TestCase):
                     table = query_packet(packet(topic, document), dataset)
                     assert all(row["value"] is None for row in table["results"])
                     assert all(row["availability"] != "published" for row in table["results"])
+
+@unittest.skipUnless(all(importlib.util.find_spec(name) for name in ("fastapi", "mcp", "httpx")),
+                     "workspace dependencies required")
+class PublicToolRightsTests(unittest.TestCase):
+    def test_all_nine_workspace_tools_and_legacy_fetch_preserve_the_rights_gate(self):
+        from fastapi.testclient import TestClient
+        from financial_evidence.workspace import create_app
+        from financial_evidence.service import EvidenceService
+        from financial_evidence import mcp as legacy_mcp
+        from financial_evidence import workspace_mcp
+
+        def opener(request, **kwargs):
+            document = capital_document() if ("world" in request.full_url or "capital" in request.full_url) else money_document()
+            return Response(request.full_url, json.dumps(document).encode())
+
+        with patch.dict(core.fetch_source.__kwdefaults__, {"opener": opener}), \
+             patch.dict(core.build_packet.__kwdefaults__, {"opener": opener}), \
+             patch.object(workspace_mcp, "read_review", return_value={"qualified_original_publisher_fixture": 0}), \
+             tempfile.TemporaryDirectory() as usage_dir:
+            service = EvidenceService()
+            self.addCleanup(service.close)
+            with TestClient(create_app(service=service, base_url="http://localhost:6900",
+                                       usage_dir=usage_dir), base_url="http://localhost:6900") as client:
+                def rpc(method, params=None):
+                    response = client.post("/mcp", headers={"Accept": "application/json, text/event-stream"},
+                        json={"jsonrpc": "2.0", "id": 1, "method": method, "params": params or {}})
+                    assert response.status_code == 200, response.text
+                    return response.json()["result"]
+                names = {tool["name"] for tool in rpc("tools/list")["tools"]}
+                calls = [
+                    ("financial_evidence_datasets", {}),
+                    ("financial_evidence_route", {"topics": ["money-market", "capital-market"]}),
+                    ("financial_evidence_funding_review", {}),
+                    ("financial_evidence_sources", {}),
+                    ("financial_evidence_query", {"dataset": "money_markets", "entity": "USD"}),
+                    ("financial_evidence_query", {"dataset": "capital_markets"}),
+                    ("financial_evidence_agent_query", {"dataset": "money_markets", "entity": "USD"}),
+                    ("financial_evidence_agent_query", {"dataset": "capital_markets"}),
+                    ("financial_evidence_review", {}),
+                    ("financial_evidence_packet", {"topics": ["money-market", "capital-market"]}),
+                    ("financial_evidence_workflow", {"workflow": "funding", "selection": "USD"}),
+                ]
+                assert names == {name for name, _ in calls}
+                assert "financial_evidence_fetch" not in names
+                for name, arguments in calls:
+                    reply = rpc("tools/call", {"name": name, "arguments": arguments})
+                    assert not reply.get("isError"), (name, reply)
+                    assert "777.123" not in json.dumps(reply), name
+                    assert "SECRET-DERIVED" not in json.dumps(reply), name
+                    if name == "financial_evidence_workflow":
+                        result = reply["structuredContent"]
+                        assert result["prepared_response"] is False
+                        assert result["evidence"]["results"]
+                        assert all(row["value"] is None for row in result["evidence"]["results"])
+                    if name == "financial_evidence_funding_review":
+                        assert reply["structuredContent"] == {"qualified_original_publisher_fixture": 0}
+                rest = client.get("/api/v1/workflow", params={"workflow": "funding", "selection": "USD"}).json()
+                assert rest["prepared_response"] is False
+                assert "777.123" not in json.dumps(rest)
+            legacy = legacy_mcp.call_tool("financial_evidence_fetch", {"topics": ["money-market", "capital-market"]})
+            assert not legacy.get("isError")
+            assert "777.123" not in json.dumps(legacy)
+            assert "SECRET-DERIVED" not in json.dumps(legacy)

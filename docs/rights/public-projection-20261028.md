@@ -37,6 +37,21 @@ publisher acquisitions. This patch does not substitute old FRED values into
 that contract or change its observations. China metadata-only restrictions
 remain in force. It introduces no customer-license or private-data feature.
 
+## Reachable Financial Evidence tool paths
+
+The nine Workspace tools use these boundaries: query, sources and agent_query
+use the service table projection; review builds its sections through the same
+table projection; packet uses the filtered source fetch; funding workflow uses
+EvidenceAgentClient.query and the same table projection. Datasets and route
+return metadata only. Funding_review retains its separately qualified captured
+original-publisher contract. The legacy stdio financial_evidence_fetch tool is
+not one of the nine Workspace tools, but it also uses the filtered source fetch.
+
+The HTTP MCP regression enumerates all nine actual registered tool names and
+calls each one with a sentinel upstream fixture. It also covers the funding
+REST route and legacy fetch, and verifies that a withheld USD benchmark cannot
+produce prepared_response=true. It does not substitute a mock filter.
+
 ## Limits and release acceptance
 
 The Seiche US pack separately marks fred_daily/fred_weekly metadata-only;

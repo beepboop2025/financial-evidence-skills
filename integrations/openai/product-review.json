@@ -189,8 +189,8 @@
         {
           "description": "Economic evidence rights",
           "prompt": "Inspect Palimpsest's China economic evidence rights and lineage status before I request any observations.",
-          "tools_triggered": "query_economic_observations",
-          "expected_behavior": "Request the economic observation surface and accurately report metadata-only or denied status. Do not fabricate rows, derivatives or a workaround for restricted lineage."
+          "tools_triggered": "inspect_economic_publication_rights",
+          "expected_behavior": "Call the publication-rights inspection action without arguments. Report its policy digest, evaluation clocks, source decisions and publication counts as metadata only; do not invent observations or infer economic zeroes from zero published records."
         },
         {
           "description": "Sourced newsroom brief",
@@ -224,7 +224,9 @@
           "description": "Unrelated writing",
           "prompt": "Write a birthday poem for my sister."
         }
-      ]
+      ],
+      "toolGuidance": "For China economic publication rights, call `inspect_economic_publication_rights` with no arguments. It returns policy metadata and publication counts, never observation rows. The historical query action is a compatibility route and must not be treated as an observation service.",
+      "releaseNotes": "Uses the accurately named publication-rights inspection action and updates its reviewer case and skill guidance; source restrictions and MCP endpoint are unchanged."
     },
     "noisefloor": {
       "shortDescription": "Statistics and forecasts",

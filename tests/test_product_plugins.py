@@ -69,13 +69,27 @@ class ProductPluginTests(unittest.TestCase):
         for slug in metadata:
             item = builder.review_metadata(slug, metadata, inventory)
             manifest = json.loads((ROOT / f"plugins/{slug}/.codex-plugin/plugin.json").read_text())
-            self.assertEqual(manifest["version"], "1.0.2")
+            self.assertEqual(manifest["version"], "1.0.3" if slug == "palimpsest" else "1.0.2")
             self.assertEqual(manifest["interface"]["defaultPrompt"], item["defaultPrompt"])
             review = manifest["extensions"]["com.openai"]["review"]
             self.assertEqual(review["test_cases"], {"positive": item["positive"], "negative": item["negative"]})
             self.assertFalse(review["commerce"])
             self.assertNotIn("demo_recording_url", review)
             self.assertNotIn("review", manifest["interface"])
+
+    def test_palimpsest_rights_action_matches_both_distribution_contracts(self):
+        root = ROOT / "plugins/palimpsest"
+        plugin = json.loads((root / ".codex-plugin/plugin.json").read_text())
+        cases = plugin["extensions"]["com.openai"]["review"]["test_cases"]["positive"]
+        self.assertEqual(cases[1]["tools_triggered"], "inspect_economic_publication_rights")
+        self.assertIn("without arguments", cases[1]["expected_behavior"])
+        gemini = json.loads((root / "gemini-extension.json").read_text())
+        advertised = gemini["mcpServers"]["palimpsest"]["includeTools"]
+        self.assertIn("inspect_economic_publication_rights", advertised)
+        self.assertNotIn("query_economic_observations", advertised)
+        skill = (root / "skills/palimpsest/SKILL.md").read_text()
+        self.assertIn("inspect_economic_publication_rights", skill)
+        self.assertIn("no arguments", skill)
 
     def test_invalid_review_counts_and_undiscovered_tools_fail_the_build(self):
         metadata = json.loads((ROOT / "integrations/openai/product-review.json").read_text())["products"]

@@ -1,6 +1,6 @@
 {
   "name": "palimpsest",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Inspect public-record research signals, China and regional evidence catalogs, and sourced newsroom context. Palimpsest helps analysts trace provenance, revisions and access restrictions before using evidence. Restricted economic collections remain metadata only; the plugin does not reconstruct denied observations or present research signals as verified financial conclusions.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
@@ -48,8 +48,8 @@
             {
               "description": "Economic evidence rights",
               "prompt": "Inspect Palimpsest's China economic evidence rights and lineage status before I request any observations.",
-              "tools_triggered": "query_economic_observations",
-              "expected_behavior": "Request the economic observation surface and accurately report metadata-only or denied status. Do not fabricate rows, derivatives or a workaround for restricted lineage."
+              "tools_triggered": "inspect_economic_publication_rights",
+              "expected_behavior": "Call the publication-rights inspection action without arguments. Report its policy digest, evaluation clocks, source decisions and publication counts as metadata only; do not invent observations or infer economic zeroes from zero published records."
             },
             {
               "description": "Sourced newsroom brief",
@@ -88,7 +88,7 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "Fits public listing text limits and validates submission metadata; preserves research scope, review cases and MCP endpoints."
+        "release_notes": "Uses the accurately named publication-rights inspection action and updates its reviewer case and skill guidance; source restrictions and MCP endpoint are unchanged."
       }
     }
   }

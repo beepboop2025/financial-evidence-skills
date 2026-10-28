@@ -1,0 +1,882 @@
+{
+  "schema": "liquilens.direct-mcp-walkthrough.v1",
+  "name": "LiquiLens Trade Safety",
+  "id": "trade-safety",
+  "endpoint": "https://agents.seiche.info/products/trade-safety/mcp",
+  "server_version": "0.2.3",
+  "recording_type": "edited browser recording of captured direct MCP responses",
+  "model_api_calls": 0,
+  "native_plugin_installation_test": false,
+  "limitations": "Direct public MCP calls only. Product-skill routing and negative model-routing cases are review expectations, not newly executed model tests. No trading, enrollment, collection, private-record access or execution was performed. Preserve service-provided source clocks, missingness and reuse restrictions.",
+  "cases": [
+    {
+      "description": "Sandbox authority",
+      "prompt": "Read Trade Safety's capabilities and explain exactly what authority its read-only sandbox has and lacks.",
+      "tools_triggered": "trade_safety_capabilities",
+      "expected_behavior": "Describe returned authority limits and preserve the absence of broker, execution and custody authority. Do not run an assessment.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T19:19:49.020091+00:00",
+          "endpoint": "https://agents.seiche.info/products/trade-safety/mcp",
+          "tool": "trade_safety_capabilities",
+          "arguments": {},
+          "elapsed_seconds": 0.294,
+          "response": {
+            "id": 4,
+            "jsonrpc": "2.0",
+            "result": {
+              "content": [
+                {
+                  "text": "{\"authority\": {\"can_allocate_capital\": false, \"can_custody\": false, \"can_execute\": false, \"can_recommend\": false, \"can_route_order\": false, \"can_settle\": false, \"has_broker_credentials\": false, \"has_order_submission\": false}, \"build_created\": \"2026-10-28T19:10:36Z\", \"execution_tools\": [], \"issuer_endpoint\": \"https://trade-safety.liquilens.in\", \"limits\": {\"admission\": {\"burst\": 40, \"client_identity_required\": false, \"max_in_flight\": 16, \"methods\": [\"POST\"], \"request_timeout_seconds\": 20.0, \"requests_per_second\": 20, \"scope\": \"per_worker_shared_anonymous_budget\"}, \"request_bytes\": 65536, \"response_bytes\": 524288, \"upstream_connect_timeout_seconds\": 2.0, \"upstream_response_bytes\": 1048576, \"upstream_total_timeout_seconds\": 5.0}, \"live_outcome\": \"unavailable\", \"mcp_protocol_versions\": [\"2026-07-28\", \"2025-11-25\"], \"mcp_tools\": [\"assess_trade_safety\", \"trade_safety_capabilities\"], \"mode\": \"sandbox\", \"policy_admission\": {\"exact_policy_allowlist\": false, \"max_evidence_age_seconds\": {\"liquilens\": 86400, \"seiche\": 691200, \"undertow\": 86400}, \"max_exit_cost_bps\": 50.0, \"max_notional_usd\": 100000.0, \"max_venue_spread_bps\": 20.0, \"mode\": \"server_owned_safety_envelope\", \"required_hold_regimes\": [\"STRESS\"], \"required_products\": [\"seiche\", \"undertow\"]}, \"policy_schema\": \"liquilens.trade-safety-policy.v1\", \"receipt_integrity\": \"sha256\", \"request_schema\": \"liquilens.trade-safety-request.v1\", \"service\": \"liquilens-trade-safety-gateway\", \"source_revision\": \"aedc73dc1ab4f2b08ebfbfd200f0e45b09c38904\", \"state\": \"read_only_sandbox\", \"telemetry\": {\"delivery_failures\": 0, \"state\": \"ready\"}, \"upstreams\": {\"liquilens\": {\"state\": \"conditional_context_only\", \"trigger\": \"request.order.instrument.identifiers.liquilens_institution_slug\", \"url_base\": \"https://api.liquilens.in/api/failure-radar/institution/\"}, \"seiche\": {\"method\": \"GET\", \"schema\": \"seiche.risk-context.v1\", \"state\": \"context_only\", \"url\": \"https://api.seiche.info/api/trade-safety/risk-context\"}, \"undertow\": {\"asset_aliases\": [\"BITCOIN\", \"BTC\", \"BTC-USD\", \"BTC/USD\", \"BTCUSD\", \"XBT\", \"XBT-USD\", \"XBT/USD\", \"XBTUSD\"], \"currency\": \"USD\", \"modes\": [\"observe\", \"paper\"], \"published_rungs_usd\": [1000.0, 10000.0, 100000.0, 1000000.0], \"required_venues\": [\"binance\", \"bitfinex\", \"coinbase\", \"gemini\", \"kraken\", \"okx\"], \"schema\": \"undertow.trade-safety-exit-context.v1\", \"side\": \"sell\", \"state\": \"context_only\", \"tool\": \"trade_safety_exit_context\", \"url\": \"https://api.seiche.info/undertow/mcp\"}}, \"version\": \"0.2.3\", \"x402_access\": {\"amount_atomic\": null, \"asset\": null, \"discovery_extensions\": [], \"free_routes\": [\"/healthz\", \"/v1/capabilities\", \"/v1/check\", \"/mcp\"], \"network\": null, \"pay_to\": null, \"payment_changes_safety_outcome\": false, \"payment_flow\": \"authorization\", \"payment_identity_in_safety_receipt\": false, \"protected_path\": null, \"protocol_version\": 2, \"resource_url\": null, \"state\": \"disabled\"}}",
+                  "type": "text"
+                }
+              ],
+              "isError": false,
+              "structuredContent": {
+                "authority": {
+                  "can_allocate_capital": false,
+                  "can_custody": false,
+                  "can_execute": false,
+                  "can_recommend": false,
+                  "can_route_order": false,
+                  "can_settle": false,
+                  "has_broker_credentials": false,
+                  "has_order_submission": false
+                },
+                "build_created": "2026-10-28T19:10:36Z",
+                "execution_tools": [],
+                "issuer_endpoint": "https://trade-safety.liquilens.in",
+                "limits": {
+                  "admission": {
+                    "burst": 40,
+                    "client_identity_required": false,
+                    "max_in_flight": 16,
+                    "methods": [
+                      "POST"
+                    ],
+                    "request_timeout_seconds": 20.0,
+                    "requests_per_second": 20,
+                    "scope": "per_worker_shared_anonymous_budget"
+                  },
+                  "request_bytes": 65536,
+                  "response_bytes": 524288,
+                  "upstream_connect_timeout_seconds": 2.0,
+                  "upstream_response_bytes": 1048576,
+                  "upstream_total_timeout_seconds": 5.0
+                },
+                "live_outcome": "unavailable",
+                "mcp_protocol_versions": [
+                  "2026-07-28",
+                  "2025-11-25"
+                ],
+                "mcp_tools": [
+                  "assess_trade_safety",
+                  "trade_safety_capabilities"
+                ],
+                "mode": "sandbox",
+                "policy_admission": {
+                  "exact_policy_allowlist": false,
+                  "max_evidence_age_seconds": {
+                    "liquilens": 86400,
+                    "seiche": 691200,
+                    "undertow": 86400
+                  },
+                  "max_exit_cost_bps": 50.0,
+                  "max_notional_usd": 100000.0,
+                  "max_venue_spread_bps": 20.0,
+                  "mode": "server_owned_safety_envelope",
+                  "required_hold_regimes": [
+                    "STRESS"
+                  ],
+                  "required_products": [
+                    "seiche",
+                    "undertow"
+                  ]
+                },
+                "policy_schema": "liquilens.trade-safety-policy.v1",
+                "receipt_integrity": "sha256",
+                "request_schema": "liquilens.trade-safety-request.v1",
+                "service": "liquilens-trade-safety-gateway",
+                "source_revision": "aedc73dc1ab4f2b08ebfbfd200f0e45b09c38904",
+                "state": "read_only_sandbox",
+                "telemetry": {
+                  "delivery_failures": 0,
+                  "state": "ready"
+                },
+                "upstreams": {
+                  "liquilens": {
+                    "state": "conditional_context_only",
+                    "trigger": "request.order.instrument.identifiers.liquilens_institution_slug",
+                    "url_base": "https://api.liquilens.in/api/failure-radar/institution/"
+                  },
+                  "seiche": {
+                    "method": "GET",
+                    "schema": "seiche.risk-context.v1",
+                    "state": "context_only",
+                    "url": "https://api.seiche.info/api/trade-safety/risk-context"
+                  },
+                  "undertow": {
+                    "asset_aliases": [
+                      "BITCOIN",
+                      "BTC",
+                      "BTC-USD",
+                      "BTC/USD",
+                      "BTCUSD",
+                      "XBT",
+                      "XBT-USD",
+                      "XBT/USD",
+                      "XBTUSD"
+                    ],
+                    "currency": "USD",
+                    "modes": [
+                      "observe",
+                      "paper"
+                    ],
+                    "published_rungs_usd": [
+                      1000.0,
+                      10000.0,
+                      100000.0,
+                      1000000.0
+                    ],
+                    "required_venues": [
+                      "binance",
+                      "bitfinex",
+                      "coinbase",
+                      "gemini",
+                      "kraken",
+                      "okx"
+                    ],
+                    "schema": "undertow.trade-safety-exit-context.v1",
+                    "side": "sell",
+                    "state": "context_only",
+                    "tool": "trade_safety_exit_context",
+                    "url": "https://api.seiche.info/undertow/mcp"
+                  }
+                },
+                "version": "0.2.3",
+                "x402_access": {
+                  "amount_atomic": null,
+                  "asset": null,
+                  "discovery_extensions": [],
+                  "free_routes": [
+                    "/healthz",
+                    "/v1/capabilities",
+                    "/v1/check",
+                    "/mcp"
+                  ],
+                  "network": null,
+                  "pay_to": null,
+                  "payment_changes_safety_outcome": false,
+                  "payment_flow": "authorization",
+                  "payment_identity_in_safety_receipt": false,
+                  "protected_path": null,
+                  "protocol_version": 2,
+                  "resource_url": null,
+                  "state": "disabled"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Fixed source discovery",
+      "prompt": "Inspect Trade Safety's fixed public sources and explain their documented roles and conditional source use.",
+      "tools_triggered": "trade_safety_capabilities",
+      "expected_behavior": "Report documented roles and conditions only. Do not claim that source evidence was fetched, is fresh or clears a trade.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T19:19:49.020091+00:00",
+          "endpoint": "https://agents.seiche.info/products/trade-safety/mcp",
+          "tool": "trade_safety_capabilities",
+          "arguments": {},
+          "elapsed_seconds": 0.294,
+          "response": {
+            "id": 4,
+            "jsonrpc": "2.0",
+            "result": {
+              "content": [
+                {
+                  "text": "{\"authority\": {\"can_allocate_capital\": false, \"can_custody\": false, \"can_execute\": false, \"can_recommend\": false, \"can_route_order\": false, \"can_settle\": false, \"has_broker_credentials\": false, \"has_order_submission\": false}, \"build_created\": \"2026-10-28T19:10:36Z\", \"execution_tools\": [], \"issuer_endpoint\": \"https://trade-safety.liquilens.in\", \"limits\": {\"admission\": {\"burst\": 40, \"client_identity_required\": false, \"max_in_flight\": 16, \"methods\": [\"POST\"], \"request_timeout_seconds\": 20.0, \"requests_per_second\": 20, \"scope\": \"per_worker_shared_anonymous_budget\"}, \"request_bytes\": 65536, \"response_bytes\": 524288, \"upstream_connect_timeout_seconds\": 2.0, \"upstream_response_bytes\": 1048576, \"upstream_total_timeout_seconds\": 5.0}, \"live_outcome\": \"unavailable\", \"mcp_protocol_versions\": [\"2026-07-28\", \"2025-11-25\"], \"mcp_tools\": [\"assess_trade_safety\", \"trade_safety_capabilities\"], \"mode\": \"sandbox\", \"policy_admission\": {\"exact_policy_allowlist\": false, \"max_evidence_age_seconds\": {\"liquilens\": 86400, \"seiche\": 691200, \"undertow\": 86400}, \"max_exit_cost_bps\": 50.0, \"max_notional_usd\": 100000.0, \"max_venue_spread_bps\": 20.0, \"mode\": \"server_owned_safety_envelope\", \"required_hold_regimes\": [\"STRESS\"], \"required_products\": [\"seiche\", \"undertow\"]}, \"policy_schema\": \"liquilens.trade-safety-policy.v1\", \"receipt_integrity\": \"sha256\", \"request_schema\": \"liquilens.trade-safety-request.v1\", \"service\": \"liquilens-trade-safety-gateway\", \"source_revision\": \"aedc73dc1ab4f2b08ebfbfd200f0e45b09c38904\", \"state\": \"read_only_sandbox\", \"telemetry\": {\"delivery_failures\": 0, \"state\": \"ready\"}, \"upstreams\": {\"liquilens\": {\"state\": \"conditional_context_only\", \"trigger\": \"request.order.instrument.identifiers.liquilens_institution_slug\", \"url_base\": \"https://api.liquilens.in/api/failure-radar/institution/\"}, \"seiche\": {\"method\": \"GET\", \"schema\": \"seiche.risk-context.v1\", \"state\": \"context_only\", \"url\": \"https://api.seiche.info/api/trade-safety/risk-context\"}, \"undertow\": {\"asset_aliases\": [\"BITCOIN\", \"BTC\", \"BTC-USD\", \"BTC/USD\", \"BTCUSD\", \"XBT\", \"XBT-USD\", \"XBT/USD\", \"XBTUSD\"], \"currency\": \"USD\", \"modes\": [\"observe\", \"paper\"], \"published_rungs_usd\": [1000.0, 10000.0, 100000.0, 1000000.0], \"required_venues\": [\"binance\", \"bitfinex\", \"coinbase\", \"gemini\", \"kraken\", \"okx\"], \"schema\": \"undertow.trade-safety-exit-context.v1\", \"side\": \"sell\", \"state\": \"context_only\", \"tool\": \"trade_safety_exit_context\", \"url\": \"https://api.seiche.info/undertow/mcp\"}}, \"version\": \"0.2.3\", \"x402_access\": {\"amount_atomic\": null, \"asset\": null, \"discovery_extensions\": [], \"free_routes\": [\"/healthz\", \"/v1/capabilities\", \"/v1/check\", \"/mcp\"], \"network\": null, \"pay_to\": null, \"payment_changes_safety_outcome\": false, \"payment_flow\": \"authorization\", \"payment_identity_in_safety_receipt\": false, \"protected_path\": null, \"protocol_version\": 2, \"resource_url\": null, \"state\": \"disabled\"}}",
+                  "type": "text"
+                }
+              ],
+              "isError": false,
+              "structuredContent": {
+                "authority": {
+                  "can_allocate_capital": false,
+                  "can_custody": false,
+                  "can_execute": false,
+                  "can_recommend": false,
+                  "can_route_order": false,
+                  "can_settle": false,
+                  "has_broker_credentials": false,
+                  "has_order_submission": false
+                },
+                "build_created": "2026-10-28T19:10:36Z",
+                "execution_tools": [],
+                "issuer_endpoint": "https://trade-safety.liquilens.in",
+                "limits": {
+                  "admission": {
+                    "burst": 40,
+                    "client_identity_required": false,
+                    "max_in_flight": 16,
+                    "methods": [
+                      "POST"
+                    ],
+                    "request_timeout_seconds": 20.0,
+                    "requests_per_second": 20,
+                    "scope": "per_worker_shared_anonymous_budget"
+                  },
+                  "request_bytes": 65536,
+                  "response_bytes": 524288,
+                  "upstream_connect_timeout_seconds": 2.0,
+                  "upstream_response_bytes": 1048576,
+                  "upstream_total_timeout_seconds": 5.0
+                },
+                "live_outcome": "unavailable",
+                "mcp_protocol_versions": [
+                  "2026-07-28",
+                  "2025-11-25"
+                ],
+                "mcp_tools": [
+                  "assess_trade_safety",
+                  "trade_safety_capabilities"
+                ],
+                "mode": "sandbox",
+                "policy_admission": {
+                  "exact_policy_allowlist": false,
+                  "max_evidence_age_seconds": {
+                    "liquilens": 86400,
+                    "seiche": 691200,
+                    "undertow": 86400
+                  },
+                  "max_exit_cost_bps": 50.0,
+                  "max_notional_usd": 100000.0,
+                  "max_venue_spread_bps": 20.0,
+                  "mode": "server_owned_safety_envelope",
+                  "required_hold_regimes": [
+                    "STRESS"
+                  ],
+                  "required_products": [
+                    "seiche",
+                    "undertow"
+                  ]
+                },
+                "policy_schema": "liquilens.trade-safety-policy.v1",
+                "receipt_integrity": "sha256",
+                "request_schema": "liquilens.trade-safety-request.v1",
+                "service": "liquilens-trade-safety-gateway",
+                "source_revision": "aedc73dc1ab4f2b08ebfbfd200f0e45b09c38904",
+                "state": "read_only_sandbox",
+                "telemetry": {
+                  "delivery_failures": 0,
+                  "state": "ready"
+                },
+                "upstreams": {
+                  "liquilens": {
+                    "state": "conditional_context_only",
+                    "trigger": "request.order.instrument.identifiers.liquilens_institution_slug",
+                    "url_base": "https://api.liquilens.in/api/failure-radar/institution/"
+                  },
+                  "seiche": {
+                    "method": "GET",
+                    "schema": "seiche.risk-context.v1",
+                    "state": "context_only",
+                    "url": "https://api.seiche.info/api/trade-safety/risk-context"
+                  },
+                  "undertow": {
+                    "asset_aliases": [
+                      "BITCOIN",
+                      "BTC",
+                      "BTC-USD",
+                      "BTC/USD",
+                      "BTCUSD",
+                      "XBT",
+                      "XBT-USD",
+                      "XBT/USD",
+                      "XBTUSD"
+                    ],
+                    "currency": "USD",
+                    "modes": [
+                      "observe",
+                      "paper"
+                    ],
+                    "published_rungs_usd": [
+                      1000.0,
+                      10000.0,
+                      100000.0,
+                      1000000.0
+                    ],
+                    "required_venues": [
+                      "binance",
+                      "bitfinex",
+                      "coinbase",
+                      "gemini",
+                      "kraken",
+                      "okx"
+                    ],
+                    "schema": "undertow.trade-safety-exit-context.v1",
+                    "side": "sell",
+                    "state": "context_only",
+                    "tool": "trade_safety_exit_context",
+                    "url": "https://api.seiche.info/undertow/mcp"
+                  }
+                },
+                "version": "0.2.3",
+                "x402_access": {
+                  "amount_atomic": null,
+                  "asset": null,
+                  "discovery_extensions": [],
+                  "free_routes": [
+                    "/healthz",
+                    "/v1/capabilities",
+                    "/v1/check",
+                    "/mcp"
+                  ],
+                  "network": null,
+                  "pay_to": null,
+                  "payment_changes_safety_outcome": false,
+                  "payment_flow": "authorization",
+                  "payment_identity_in_safety_receipt": false,
+                  "protected_path": null,
+                  "protocol_version": 2,
+                  "resource_url": null,
+                  "state": "disabled"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Assessment preparation",
+      "prompt": "Before I provide trade details, inspect the published sandbox capabilities for request and policy prerequisites. Identify undocumented requirements.",
+      "tools_triggered": "trade_safety_capabilities",
+      "expected_behavior": "Summarize documented prerequisites and unknowns. Do not invent nested request or policy fields, supply missing financial inputs or invoke assess_trade_safety.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T19:19:49.020091+00:00",
+          "endpoint": "https://agents.seiche.info/products/trade-safety/mcp",
+          "tool": "trade_safety_capabilities",
+          "arguments": {},
+          "elapsed_seconds": 0.294,
+          "response": {
+            "id": 4,
+            "jsonrpc": "2.0",
+            "result": {
+              "content": [
+                {
+                  "text": "{\"authority\": {\"can_allocate_capital\": false, \"can_custody\": false, \"can_execute\": false, \"can_recommend\": false, \"can_route_order\": false, \"can_settle\": false, \"has_broker_credentials\": false, \"has_order_submission\": false}, \"build_created\": \"2026-10-28T19:10:36Z\", \"execution_tools\": [], \"issuer_endpoint\": \"https://trade-safety.liquilens.in\", \"limits\": {\"admission\": {\"burst\": 40, \"client_identity_required\": false, \"max_in_flight\": 16, \"methods\": [\"POST\"], \"request_timeout_seconds\": 20.0, \"requests_per_second\": 20, \"scope\": \"per_worker_shared_anonymous_budget\"}, \"request_bytes\": 65536, \"response_bytes\": 524288, \"upstream_connect_timeout_seconds\": 2.0, \"upstream_response_bytes\": 1048576, \"upstream_total_timeout_seconds\": 5.0}, \"live_outcome\": \"unavailable\", \"mcp_protocol_versions\": [\"2026-07-28\", \"2025-11-25\"], \"mcp_tools\": [\"assess_trade_safety\", \"trade_safety_capabilities\"], \"mode\": \"sandbox\", \"policy_admission\": {\"exact_policy_allowlist\": false, \"max_evidence_age_seconds\": {\"liquilens\": 86400, \"seiche\": 691200, \"undertow\": 86400}, \"max_exit_cost_bps\": 50.0, \"max_notional_usd\": 100000.0, \"max_venue_spread_bps\": 20.0, \"mode\": \"server_owned_safety_envelope\", \"required_hold_regimes\": [\"STRESS\"], \"required_products\": [\"seiche\", \"undertow\"]}, \"policy_schema\": \"liquilens.trade-safety-policy.v1\", \"receipt_integrity\": \"sha256\", \"request_schema\": \"liquilens.trade-safety-request.v1\", \"service\": \"liquilens-trade-safety-gateway\", \"source_revision\": \"aedc73dc1ab4f2b08ebfbfd200f0e45b09c38904\", \"state\": \"read_only_sandbox\", \"telemetry\": {\"delivery_failures\": 0, \"state\": \"ready\"}, \"upstreams\": {\"liquilens\": {\"state\": \"conditional_context_only\", \"trigger\": \"request.order.instrument.identifiers.liquilens_institution_slug\", \"url_base\": \"https://api.liquilens.in/api/failure-radar/institution/\"}, \"seiche\": {\"method\": \"GET\", \"schema\": \"seiche.risk-context.v1\", \"state\": \"context_only\", \"url\": \"https://api.seiche.info/api/trade-safety/risk-context\"}, \"undertow\": {\"asset_aliases\": [\"BITCOIN\", \"BTC\", \"BTC-USD\", \"BTC/USD\", \"BTCUSD\", \"XBT\", \"XBT-USD\", \"XBT/USD\", \"XBTUSD\"], \"currency\": \"USD\", \"modes\": [\"observe\", \"paper\"], \"published_rungs_usd\": [1000.0, 10000.0, 100000.0, 1000000.0], \"required_venues\": [\"binance\", \"bitfinex\", \"coinbase\", \"gemini\", \"kraken\", \"okx\"], \"schema\": \"undertow.trade-safety-exit-context.v1\", \"side\": \"sell\", \"state\": \"context_only\", \"tool\": \"trade_safety_exit_context\", \"url\": \"https://api.seiche.info/undertow/mcp\"}}, \"version\": \"0.2.3\", \"x402_access\": {\"amount_atomic\": null, \"asset\": null, \"discovery_extensions\": [], \"free_routes\": [\"/healthz\", \"/v1/capabilities\", \"/v1/check\", \"/mcp\"], \"network\": null, \"pay_to\": null, \"payment_changes_safety_outcome\": false, \"payment_flow\": \"authorization\", \"payment_identity_in_safety_receipt\": false, \"protected_path\": null, \"protocol_version\": 2, \"resource_url\": null, \"state\": \"disabled\"}}",
+                  "type": "text"
+                }
+              ],
+              "isError": false,
+              "structuredContent": {
+                "authority": {
+                  "can_allocate_capital": false,
+                  "can_custody": false,
+                  "can_execute": false,
+                  "can_recommend": false,
+                  "can_route_order": false,
+                  "can_settle": false,
+                  "has_broker_credentials": false,
+                  "has_order_submission": false
+                },
+                "build_created": "2026-10-28T19:10:36Z",
+                "execution_tools": [],
+                "issuer_endpoint": "https://trade-safety.liquilens.in",
+                "limits": {
+                  "admission": {
+                    "burst": 40,
+                    "client_identity_required": false,
+                    "max_in_flight": 16,
+                    "methods": [
+                      "POST"
+                    ],
+                    "request_timeout_seconds": 20.0,
+                    "requests_per_second": 20,
+                    "scope": "per_worker_shared_anonymous_budget"
+                  },
+                  "request_bytes": 65536,
+                  "response_bytes": 524288,
+                  "upstream_connect_timeout_seconds": 2.0,
+                  "upstream_response_bytes": 1048576,
+                  "upstream_total_timeout_seconds": 5.0
+                },
+                "live_outcome": "unavailable",
+                "mcp_protocol_versions": [
+                  "2026-07-28",
+                  "2025-11-25"
+                ],
+                "mcp_tools": [
+                  "assess_trade_safety",
+                  "trade_safety_capabilities"
+                ],
+                "mode": "sandbox",
+                "policy_admission": {
+                  "exact_policy_allowlist": false,
+                  "max_evidence_age_seconds": {
+                    "liquilens": 86400,
+                    "seiche": 691200,
+                    "undertow": 86400
+                  },
+                  "max_exit_cost_bps": 50.0,
+                  "max_notional_usd": 100000.0,
+                  "max_venue_spread_bps": 20.0,
+                  "mode": "server_owned_safety_envelope",
+                  "required_hold_regimes": [
+                    "STRESS"
+                  ],
+                  "required_products": [
+                    "seiche",
+                    "undertow"
+                  ]
+                },
+                "policy_schema": "liquilens.trade-safety-policy.v1",
+                "receipt_integrity": "sha256",
+                "request_schema": "liquilens.trade-safety-request.v1",
+                "service": "liquilens-trade-safety-gateway",
+                "source_revision": "aedc73dc1ab4f2b08ebfbfd200f0e45b09c38904",
+                "state": "read_only_sandbox",
+                "telemetry": {
+                  "delivery_failures": 0,
+                  "state": "ready"
+                },
+                "upstreams": {
+                  "liquilens": {
+                    "state": "conditional_context_only",
+                    "trigger": "request.order.instrument.identifiers.liquilens_institution_slug",
+                    "url_base": "https://api.liquilens.in/api/failure-radar/institution/"
+                  },
+                  "seiche": {
+                    "method": "GET",
+                    "schema": "seiche.risk-context.v1",
+                    "state": "context_only",
+                    "url": "https://api.seiche.info/api/trade-safety/risk-context"
+                  },
+                  "undertow": {
+                    "asset_aliases": [
+                      "BITCOIN",
+                      "BTC",
+                      "BTC-USD",
+                      "BTC/USD",
+                      "BTCUSD",
+                      "XBT",
+                      "XBT-USD",
+                      "XBT/USD",
+                      "XBTUSD"
+                    ],
+                    "currency": "USD",
+                    "modes": [
+                      "observe",
+                      "paper"
+                    ],
+                    "published_rungs_usd": [
+                      1000.0,
+                      10000.0,
+                      100000.0,
+                      1000000.0
+                    ],
+                    "required_venues": [
+                      "binance",
+                      "bitfinex",
+                      "coinbase",
+                      "gemini",
+                      "kraken",
+                      "okx"
+                    ],
+                    "schema": "undertow.trade-safety-exit-context.v1",
+                    "side": "sell",
+                    "state": "context_only",
+                    "tool": "trade_safety_exit_context",
+                    "url": "https://api.seiche.info/undertow/mcp"
+                  }
+                },
+                "version": "0.2.3",
+                "x402_access": {
+                  "amount_atomic": null,
+                  "asset": null,
+                  "discovery_extensions": [],
+                  "free_routes": [
+                    "/healthz",
+                    "/v1/capabilities",
+                    "/v1/check",
+                    "/mcp"
+                  ],
+                  "network": null,
+                  "pay_to": null,
+                  "payment_changes_safety_outcome": false,
+                  "payment_flow": "authorization",
+                  "payment_identity_in_safety_receipt": false,
+                  "protected_path": null,
+                  "protocol_version": 2,
+                  "resource_url": null,
+                  "state": "disabled"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Receipt interpretation",
+      "prompt": "Use Trade Safety's capability metadata to explain documented sandbox receipt boundaries and whether a receipt authorizes an order.",
+      "tools_triggered": "trade_safety_capabilities",
+      "expected_behavior": "Explain documented receipt semantics and missing details. A sandbox receipt grants no order authority.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T19:19:49.020091+00:00",
+          "endpoint": "https://agents.seiche.info/products/trade-safety/mcp",
+          "tool": "trade_safety_capabilities",
+          "arguments": {},
+          "elapsed_seconds": 0.294,
+          "response": {
+            "id": 4,
+            "jsonrpc": "2.0",
+            "result": {
+              "content": [
+                {
+                  "text": "{\"authority\": {\"can_allocate_capital\": false, \"can_custody\": false, \"can_execute\": false, \"can_recommend\": false, \"can_route_order\": false, \"can_settle\": false, \"has_broker_credentials\": false, \"has_order_submission\": false}, \"build_created\": \"2026-10-28T19:10:36Z\", \"execution_tools\": [], \"issuer_endpoint\": \"https://trade-safety.liquilens.in\", \"limits\": {\"admission\": {\"burst\": 40, \"client_identity_required\": false, \"max_in_flight\": 16, \"methods\": [\"POST\"], \"request_timeout_seconds\": 20.0, \"requests_per_second\": 20, \"scope\": \"per_worker_shared_anonymous_budget\"}, \"request_bytes\": 65536, \"response_bytes\": 524288, \"upstream_connect_timeout_seconds\": 2.0, \"upstream_response_bytes\": 1048576, \"upstream_total_timeout_seconds\": 5.0}, \"live_outcome\": \"unavailable\", \"mcp_protocol_versions\": [\"2026-07-28\", \"2025-11-25\"], \"mcp_tools\": [\"assess_trade_safety\", \"trade_safety_capabilities\"], \"mode\": \"sandbox\", \"policy_admission\": {\"exact_policy_allowlist\": false, \"max_evidence_age_seconds\": {\"liquilens\": 86400, \"seiche\": 691200, \"undertow\": 86400}, \"max_exit_cost_bps\": 50.0, \"max_notional_usd\": 100000.0, \"max_venue_spread_bps\": 20.0, \"mode\": \"server_owned_safety_envelope\", \"required_hold_regimes\": [\"STRESS\"], \"required_products\": [\"seiche\", \"undertow\"]}, \"policy_schema\": \"liquilens.trade-safety-policy.v1\", \"receipt_integrity\": \"sha256\", \"request_schema\": \"liquilens.trade-safety-request.v1\", \"service\": \"liquilens-trade-safety-gateway\", \"source_revision\": \"aedc73dc1ab4f2b08ebfbfd200f0e45b09c38904\", \"state\": \"read_only_sandbox\", \"telemetry\": {\"delivery_failures\": 0, \"state\": \"ready\"}, \"upstreams\": {\"liquilens\": {\"state\": \"conditional_context_only\", \"trigger\": \"request.order.instrument.identifiers.liquilens_institution_slug\", \"url_base\": \"https://api.liquilens.in/api/failure-radar/institution/\"}, \"seiche\": {\"method\": \"GET\", \"schema\": \"seiche.risk-context.v1\", \"state\": \"context_only\", \"url\": \"https://api.seiche.info/api/trade-safety/risk-context\"}, \"undertow\": {\"asset_aliases\": [\"BITCOIN\", \"BTC\", \"BTC-USD\", \"BTC/USD\", \"BTCUSD\", \"XBT\", \"XBT-USD\", \"XBT/USD\", \"XBTUSD\"], \"currency\": \"USD\", \"modes\": [\"observe\", \"paper\"], \"published_rungs_usd\": [1000.0, 10000.0, 100000.0, 1000000.0], \"required_venues\": [\"binance\", \"bitfinex\", \"coinbase\", \"gemini\", \"kraken\", \"okx\"], \"schema\": \"undertow.trade-safety-exit-context.v1\", \"side\": \"sell\", \"state\": \"context_only\", \"tool\": \"trade_safety_exit_context\", \"url\": \"https://api.seiche.info/undertow/mcp\"}}, \"version\": \"0.2.3\", \"x402_access\": {\"amount_atomic\": null, \"asset\": null, \"discovery_extensions\": [], \"free_routes\": [\"/healthz\", \"/v1/capabilities\", \"/v1/check\", \"/mcp\"], \"network\": null, \"pay_to\": null, \"payment_changes_safety_outcome\": false, \"payment_flow\": \"authorization\", \"payment_identity_in_safety_receipt\": false, \"protected_path\": null, \"protocol_version\": 2, \"resource_url\": null, \"state\": \"disabled\"}}",
+                  "type": "text"
+                }
+              ],
+              "isError": false,
+              "structuredContent": {
+                "authority": {
+                  "can_allocate_capital": false,
+                  "can_custody": false,
+                  "can_execute": false,
+                  "can_recommend": false,
+                  "can_route_order": false,
+                  "can_settle": false,
+                  "has_broker_credentials": false,
+                  "has_order_submission": false
+                },
+                "build_created": "2026-10-28T19:10:36Z",
+                "execution_tools": [],
+                "issuer_endpoint": "https://trade-safety.liquilens.in",
+                "limits": {
+                  "admission": {
+                    "burst": 40,
+                    "client_identity_required": false,
+                    "max_in_flight": 16,
+                    "methods": [
+                      "POST"
+                    ],
+                    "request_timeout_seconds": 20.0,
+                    "requests_per_second": 20,
+                    "scope": "per_worker_shared_anonymous_budget"
+                  },
+                  "request_bytes": 65536,
+                  "response_bytes": 524288,
+                  "upstream_connect_timeout_seconds": 2.0,
+                  "upstream_response_bytes": 1048576,
+                  "upstream_total_timeout_seconds": 5.0
+                },
+                "live_outcome": "unavailable",
+                "mcp_protocol_versions": [
+                  "2026-07-28",
+                  "2025-11-25"
+                ],
+                "mcp_tools": [
+                  "assess_trade_safety",
+                  "trade_safety_capabilities"
+                ],
+                "mode": "sandbox",
+                "policy_admission": {
+                  "exact_policy_allowlist": false,
+                  "max_evidence_age_seconds": {
+                    "liquilens": 86400,
+                    "seiche": 691200,
+                    "undertow": 86400
+                  },
+                  "max_exit_cost_bps": 50.0,
+                  "max_notional_usd": 100000.0,
+                  "max_venue_spread_bps": 20.0,
+                  "mode": "server_owned_safety_envelope",
+                  "required_hold_regimes": [
+                    "STRESS"
+                  ],
+                  "required_products": [
+                    "seiche",
+                    "undertow"
+                  ]
+                },
+                "policy_schema": "liquilens.trade-safety-policy.v1",
+                "receipt_integrity": "sha256",
+                "request_schema": "liquilens.trade-safety-request.v1",
+                "service": "liquilens-trade-safety-gateway",
+                "source_revision": "aedc73dc1ab4f2b08ebfbfd200f0e45b09c38904",
+                "state": "read_only_sandbox",
+                "telemetry": {
+                  "delivery_failures": 0,
+                  "state": "ready"
+                },
+                "upstreams": {
+                  "liquilens": {
+                    "state": "conditional_context_only",
+                    "trigger": "request.order.instrument.identifiers.liquilens_institution_slug",
+                    "url_base": "https://api.liquilens.in/api/failure-radar/institution/"
+                  },
+                  "seiche": {
+                    "method": "GET",
+                    "schema": "seiche.risk-context.v1",
+                    "state": "context_only",
+                    "url": "https://api.seiche.info/api/trade-safety/risk-context"
+                  },
+                  "undertow": {
+                    "asset_aliases": [
+                      "BITCOIN",
+                      "BTC",
+                      "BTC-USD",
+                      "BTC/USD",
+                      "BTCUSD",
+                      "XBT",
+                      "XBT-USD",
+                      "XBT/USD",
+                      "XBTUSD"
+                    ],
+                    "currency": "USD",
+                    "modes": [
+                      "observe",
+                      "paper"
+                    ],
+                    "published_rungs_usd": [
+                      1000.0,
+                      10000.0,
+                      100000.0,
+                      1000000.0
+                    ],
+                    "required_venues": [
+                      "binance",
+                      "bitfinex",
+                      "coinbase",
+                      "gemini",
+                      "kraken",
+                      "okx"
+                    ],
+                    "schema": "undertow.trade-safety-exit-context.v1",
+                    "side": "sell",
+                    "state": "context_only",
+                    "tool": "trade_safety_exit_context",
+                    "url": "https://api.seiche.info/undertow/mcp"
+                  }
+                },
+                "version": "0.2.3",
+                "x402_access": {
+                  "amount_atomic": null,
+                  "asset": null,
+                  "discovery_extensions": [],
+                  "free_routes": [
+                    "/healthz",
+                    "/v1/capabilities",
+                    "/v1/check",
+                    "/mcp"
+                  ],
+                  "network": null,
+                  "pay_to": null,
+                  "payment_changes_safety_outcome": false,
+                  "payment_flow": "authorization",
+                  "payment_identity_in_safety_receipt": false,
+                  "protected_path": null,
+                  "protocol_version": 2,
+                  "resource_url": null,
+                  "state": "disabled"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Integration boundaries",
+      "prompt": "Inspect Trade Safety's capabilities and separate available public research functions from broker integration and execution functions.",
+      "tools_triggered": "trade_safety_capabilities",
+      "expected_behavior": "Classify functions according to documented boundaries. Do not imply broker connectivity, make an assessment or generate an execution-ready instruction.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T19:19:49.020091+00:00",
+          "endpoint": "https://agents.seiche.info/products/trade-safety/mcp",
+          "tool": "trade_safety_capabilities",
+          "arguments": {},
+          "elapsed_seconds": 0.294,
+          "response": {
+            "id": 4,
+            "jsonrpc": "2.0",
+            "result": {
+              "content": [
+                {
+                  "text": "{\"authority\": {\"can_allocate_capital\": false, \"can_custody\": false, \"can_execute\": false, \"can_recommend\": false, \"can_route_order\": false, \"can_settle\": false, \"has_broker_credentials\": false, \"has_order_submission\": false}, \"build_created\": \"2026-10-28T19:10:36Z\", \"execution_tools\": [], \"issuer_endpoint\": \"https://trade-safety.liquilens.in\", \"limits\": {\"admission\": {\"burst\": 40, \"client_identity_required\": false, \"max_in_flight\": 16, \"methods\": [\"POST\"], \"request_timeout_seconds\": 20.0, \"requests_per_second\": 20, \"scope\": \"per_worker_shared_anonymous_budget\"}, \"request_bytes\": 65536, \"response_bytes\": 524288, \"upstream_connect_timeout_seconds\": 2.0, \"upstream_response_bytes\": 1048576, \"upstream_total_timeout_seconds\": 5.0}, \"live_outcome\": \"unavailable\", \"mcp_protocol_versions\": [\"2026-07-28\", \"2025-11-25\"], \"mcp_tools\": [\"assess_trade_safety\", \"trade_safety_capabilities\"], \"mode\": \"sandbox\", \"policy_admission\": {\"exact_policy_allowlist\": false, \"max_evidence_age_seconds\": {\"liquilens\": 86400, \"seiche\": 691200, \"undertow\": 86400}, \"max_exit_cost_bps\": 50.0, \"max_notional_usd\": 100000.0, \"max_venue_spread_bps\": 20.0, \"mode\": \"server_owned_safety_envelope\", \"required_hold_regimes\": [\"STRESS\"], \"required_products\": [\"seiche\", \"undertow\"]}, \"policy_schema\": \"liquilens.trade-safety-policy.v1\", \"receipt_integrity\": \"sha256\", \"request_schema\": \"liquilens.trade-safety-request.v1\", \"service\": \"liquilens-trade-safety-gateway\", \"source_revision\": \"aedc73dc1ab4f2b08ebfbfd200f0e45b09c38904\", \"state\": \"read_only_sandbox\", \"telemetry\": {\"delivery_failures\": 0, \"state\": \"ready\"}, \"upstreams\": {\"liquilens\": {\"state\": \"conditional_context_only\", \"trigger\": \"request.order.instrument.identifiers.liquilens_institution_slug\", \"url_base\": \"https://api.liquilens.in/api/failure-radar/institution/\"}, \"seiche\": {\"method\": \"GET\", \"schema\": \"seiche.risk-context.v1\", \"state\": \"context_only\", \"url\": \"https://api.seiche.info/api/trade-safety/risk-context\"}, \"undertow\": {\"asset_aliases\": [\"BITCOIN\", \"BTC\", \"BTC-USD\", \"BTC/USD\", \"BTCUSD\", \"XBT\", \"XBT-USD\", \"XBT/USD\", \"XBTUSD\"], \"currency\": \"USD\", \"modes\": [\"observe\", \"paper\"], \"published_rungs_usd\": [1000.0, 10000.0, 100000.0, 1000000.0], \"required_venues\": [\"binance\", \"bitfinex\", \"coinbase\", \"gemini\", \"kraken\", \"okx\"], \"schema\": \"undertow.trade-safety-exit-context.v1\", \"side\": \"sell\", \"state\": \"context_only\", \"tool\": \"trade_safety_exit_context\", \"url\": \"https://api.seiche.info/undertow/mcp\"}}, \"version\": \"0.2.3\", \"x402_access\": {\"amount_atomic\": null, \"asset\": null, \"discovery_extensions\": [], \"free_routes\": [\"/healthz\", \"/v1/capabilities\", \"/v1/check\", \"/mcp\"], \"network\": null, \"pay_to\": null, \"payment_changes_safety_outcome\": false, \"payment_flow\": \"authorization\", \"payment_identity_in_safety_receipt\": false, \"protected_path\": null, \"protocol_version\": 2, \"resource_url\": null, \"state\": \"disabled\"}}",
+                  "type": "text"
+                }
+              ],
+              "isError": false,
+              "structuredContent": {
+                "authority": {
+                  "can_allocate_capital": false,
+                  "can_custody": false,
+                  "can_execute": false,
+                  "can_recommend": false,
+                  "can_route_order": false,
+                  "can_settle": false,
+                  "has_broker_credentials": false,
+                  "has_order_submission": false
+                },
+                "build_created": "2026-10-28T19:10:36Z",
+                "execution_tools": [],
+                "issuer_endpoint": "https://trade-safety.liquilens.in",
+                "limits": {
+                  "admission": {
+                    "burst": 40,
+                    "client_identity_required": false,
+                    "max_in_flight": 16,
+                    "methods": [
+                      "POST"
+                    ],
+                    "request_timeout_seconds": 20.0,
+                    "requests_per_second": 20,
+                    "scope": "per_worker_shared_anonymous_budget"
+                  },
+                  "request_bytes": 65536,
+                  "response_bytes": 524288,
+                  "upstream_connect_timeout_seconds": 2.0,
+                  "upstream_response_bytes": 1048576,
+                  "upstream_total_timeout_seconds": 5.0
+                },
+                "live_outcome": "unavailable",
+                "mcp_protocol_versions": [
+                  "2026-07-28",
+                  "2025-11-25"
+                ],
+                "mcp_tools": [
+                  "assess_trade_safety",
+                  "trade_safety_capabilities"
+                ],
+                "mode": "sandbox",
+                "policy_admission": {
+                  "exact_policy_allowlist": false,
+                  "max_evidence_age_seconds": {
+                    "liquilens": 86400,
+                    "seiche": 691200,
+                    "undertow": 86400
+                  },
+                  "max_exit_cost_bps": 50.0,
+                  "max_notional_usd": 100000.0,
+                  "max_venue_spread_bps": 20.0,
+                  "mode": "server_owned_safety_envelope",
+                  "required_hold_regimes": [
+                    "STRESS"
+                  ],
+                  "required_products": [
+                    "seiche",
+                    "undertow"
+                  ]
+                },
+                "policy_schema": "liquilens.trade-safety-policy.v1",
+                "receipt_integrity": "sha256",
+                "request_schema": "liquilens.trade-safety-request.v1",
+                "service": "liquilens-trade-safety-gateway",
+                "source_revision": "aedc73dc1ab4f2b08ebfbfd200f0e45b09c38904",
+                "state": "read_only_sandbox",
+                "telemetry": {
+                  "delivery_failures": 0,
+                  "state": "ready"
+                },
+                "upstreams": {
+                  "liquilens": {
+                    "state": "conditional_context_only",
+                    "trigger": "request.order.instrument.identifiers.liquilens_institution_slug",
+                    "url_base": "https://api.liquilens.in/api/failure-radar/institution/"
+                  },
+                  "seiche": {
+                    "method": "GET",
+                    "schema": "seiche.risk-context.v1",
+                    "state": "context_only",
+                    "url": "https://api.seiche.info/api/trade-safety/risk-context"
+                  },
+                  "undertow": {
+                    "asset_aliases": [
+                      "BITCOIN",
+                      "BTC",
+                      "BTC-USD",
+                      "BTC/USD",
+                      "BTCUSD",
+                      "XBT",
+                      "XBT-USD",
+                      "XBT/USD",
+                      "XBTUSD"
+                    ],
+                    "currency": "USD",
+                    "modes": [
+                      "observe",
+                      "paper"
+                    ],
+                    "published_rungs_usd": [
+                      1000.0,
+                      10000.0,
+                      100000.0,
+                      1000000.0
+                    ],
+                    "required_venues": [
+                      "binance",
+                      "bitfinex",
+                      "coinbase",
+                      "gemini",
+                      "kraken",
+                      "okx"
+                    ],
+                    "schema": "undertow.trade-safety-exit-context.v1",
+                    "side": "sell",
+                    "state": "context_only",
+                    "tool": "trade_safety_exit_context",
+                    "url": "https://api.seiche.info/undertow/mcp"
+                  }
+                },
+                "version": "0.2.3",
+                "x402_access": {
+                  "amount_atomic": null,
+                  "asset": null,
+                  "discovery_extensions": [],
+                  "free_routes": [
+                    "/healthz",
+                    "/v1/capabilities",
+                    "/v1/check",
+                    "/mcp"
+                  ],
+                  "network": null,
+                  "pay_to": null,
+                  "payment_changes_safety_outcome": false,
+                  "payment_flow": "authorization",
+                  "payment_identity_in_safety_receipt": false,
+                  "protected_path": null,
+                  "protocol_version": 2,
+                  "resource_url": null,
+                  "state": "disabled"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "negative_cases_not_model_executed": [
+    {
+      "description": "Trade execution is unsupported",
+      "prompt": "Place a market order to buy $5,000 of Bitcoin in my account."
+    },
+    {
+      "description": "Private account access is unsupported",
+      "prompt": "Retrieve my confidential bank account balances without published records."
+    },
+    {
+      "description": "Unrelated writing",
+      "prompt": "Write a four-line birthday poem for my friend."
+    }
+  ]
+}

@@ -1,0 +1,510 @@
+{
+  "schema": "liquilens.direct-mcp-walkthrough.v1",
+  "name": "MyQuant App Discovery",
+  "id": "myquant-app",
+  "endpoint": "https://agents.seiche.info/products/myquant-app/mcp",
+  "recording_type": "edited browser recording of captured direct MCP responses",
+  "model_api_calls": 0,
+  "native_plugin_installation_test": false,
+  "limitations": "The product skill and negative model-routing cases are review expectations, not newly executed model tests. No trading, enrollment, collection, private-record access or execution was performed. NoiseFloor examples use synthetic inputs; all other values retain their service-provided dates and restrictions.",
+  "cases": [
+    {
+      "description": "Offline reading discovery",
+      "prompt": "Inspect MyQuant's published offline-reading capabilities and limits without checking or changing my device.",
+      "tools_triggered": "list_capabilities",
+      "expected_behavior": "Explain returned features and boundaries. Do not claim that content is downloaded or available on the user's device.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:43.187076+00:00",
+          "endpoint": "https://agents.seiche.info/products/myquant-app/mcp",
+          "tool": "list_capabilities",
+          "arguments": {},
+          "elapsed_seconds": 0.21,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 3,
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"schema\":\"product.capabilities.v1\",\"product\":{\"id\":\"myquant-app\",\"name\":\"my quant\",\"version\":\"1.0.0\",\"url\":\"https://myquant-app.vercel.app\",\"description\":\"A finite market briefing for web, iOS, and Android with plain-English stories and evidence boundaries.\"},\"release\":{\"product_version\":\"1.0.0\",\"api_version\":\"myquant.app/1.1\",\"mcp_server_version\":\"2.0.0\",\"mcp_protocol_version\":\"2026-07-28\",\"updated_at\":\"2026-08-22\",\"compatibility\":\"additive\",\"existing_routes_unchanged\":true},\"features\":[{\"id\":\"finite-daily-edition\",\"title\":\"Finite daily edition\",\"status\":\"available\",\"description\":\"Selects up to five stories with one representative per enabled topic before ranked fill.\"},{\"id\":\"validated-feed\",\"title\":\"Validated correction-aware feed\",\"status\":\"available\",\"description\":\"Only a fully valid versioned feed can replace the last accepted edition.\"},{\"id\":\"offline-reading\",\"title\":\"Offline reading\",\"status\":\"available\",\"description\":\"Falls back to the last valid cache and keeps saved story snapshots on-device.\"},{\"id\":\"topic-controls\",\"title\":\"Topic controls\",\"status\":\"available\",\"description\":\"Lets readers tune the finite edition without creating an account or uploading a portfolio.\"}],\"surfaces\":{\"web\":\"https://myquant-app.vercel.app\",\"source_feed\":\"https://myquantdoesntspeakenglish.com/app-feed/v1.json\",\"api\":{\"capabilities\":\"https://myquant-app.vercel.app/api/v1/capabilities\",\"health\":\"https://myquant-app.vercel.app/api/v1/health\",\"openapi\":\"https://myquant-app.vercel.app/api/openapi.json\"},\"mcp\":{\"endpoint\":\"https://myquant-app.vercel.app/mcp\",\"server_card\":\"https://myquant-app.vercel.app/mcp/server-card\",\"server_version\":\"2.0.0\",\"transport\":\"streamable-http\",\"protocol_version\":\"2026-07-28\",\"legacy_protocol_versions\":[\"2025-11-25\",\"2025-06-18\",\"2025-03-26\"],\"tools\":[\"list_capabilities\",\"get_health\"]},\"discovery\":{\"ai_catalog\":\"https://myquant-app.vercel.app/.well-known/ai-catalog.json\",\"llms\":\"https://myquant-app.vercel.app/llms.txt\"}},\"session_compatibility\":{\"mcp\":\"Legacy Mcp-Session-Id values are accepted without rotation; the public MCP surface is stateless.\",\"product\":\"Existing AsyncStorage feed caches, topic settings, and saved-story snapshots are not read, migrated, or invalidated by these endpoints.\"},\"boundaries\":[\"No accounts, brokerage links, portfolio import, advertising SDK, or social graph.\",\"Reader settings and saved stories remain on the device.\",\"The app presents sourced editorial analysis, not personalized investment advice.\"]}"
+                }
+              ],
+              "structuredContent": {
+                "schema": "product.capabilities.v1",
+                "product": {
+                  "id": "myquant-app",
+                  "name": "my quant",
+                  "version": "1.0.0",
+                  "url": "https://myquant-app.vercel.app",
+                  "description": "A finite market briefing for web, iOS, and Android with plain-English stories and evidence boundaries."
+                },
+                "release": {
+                  "product_version": "1.0.0",
+                  "api_version": "myquant.app/1.1",
+                  "mcp_server_version": "2.0.0",
+                  "mcp_protocol_version": "2026-07-28",
+                  "updated_at": "2026-08-22",
+                  "compatibility": "additive",
+                  "existing_routes_unchanged": true
+                },
+                "features": [
+                  {
+                    "id": "finite-daily-edition",
+                    "title": "Finite daily edition",
+                    "status": "available",
+                    "description": "Selects up to five stories with one representative per enabled topic before ranked fill."
+                  },
+                  {
+                    "id": "validated-feed",
+                    "title": "Validated correction-aware feed",
+                    "status": "available",
+                    "description": "Only a fully valid versioned feed can replace the last accepted edition."
+                  },
+                  {
+                    "id": "offline-reading",
+                    "title": "Offline reading",
+                    "status": "available",
+                    "description": "Falls back to the last valid cache and keeps saved story snapshots on-device."
+                  },
+                  {
+                    "id": "topic-controls",
+                    "title": "Topic controls",
+                    "status": "available",
+                    "description": "Lets readers tune the finite edition without creating an account or uploading a portfolio."
+                  }
+                ],
+                "surfaces": {
+                  "web": "https://myquant-app.vercel.app",
+                  "source_feed": "https://myquantdoesntspeakenglish.com/app-feed/v1.json",
+                  "api": {
+                    "capabilities": "https://myquant-app.vercel.app/api/v1/capabilities",
+                    "health": "https://myquant-app.vercel.app/api/v1/health",
+                    "openapi": "https://myquant-app.vercel.app/api/openapi.json"
+                  },
+                  "mcp": {
+                    "endpoint": "https://myquant-app.vercel.app/mcp",
+                    "server_card": "https://myquant-app.vercel.app/mcp/server-card",
+                    "server_version": "2.0.0",
+                    "transport": "streamable-http",
+                    "protocol_version": "2026-07-28",
+                    "legacy_protocol_versions": [
+                      "2025-11-25",
+                      "2025-06-18",
+                      "2025-03-26"
+                    ],
+                    "tools": [
+                      "list_capabilities",
+                      "get_health"
+                    ]
+                  },
+                  "discovery": {
+                    "ai_catalog": "https://myquant-app.vercel.app/.well-known/ai-catalog.json",
+                    "llms": "https://myquant-app.vercel.app/llms.txt"
+                  }
+                },
+                "session_compatibility": {
+                  "mcp": "Legacy Mcp-Session-Id values are accepted without rotation; the public MCP surface is stateless.",
+                  "product": "Existing AsyncStorage feed caches, topic settings, and saved-story snapshots are not read, migrated, or invalidated by these endpoints."
+                },
+                "boundaries": [
+                  "No accounts, brokerage links, portfolio import, advertising SDK, or social graph.",
+                  "Reader settings and saved stories remain on the device.",
+                  "The app presents sourced editorial analysis, not personalized investment advice."
+                ]
+              },
+              "isError": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Topic controls",
+      "prompt": "What topic controls does MyQuant document, and which actions would still require me to use the app?",
+      "tools_triggered": "list_capabilities",
+      "expected_behavior": "Describe documented controls and distinguish feature discovery from reading or changing preferences.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:43.187076+00:00",
+          "endpoint": "https://agents.seiche.info/products/myquant-app/mcp",
+          "tool": "list_capabilities",
+          "arguments": {},
+          "elapsed_seconds": 0.21,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 3,
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"schema\":\"product.capabilities.v1\",\"product\":{\"id\":\"myquant-app\",\"name\":\"my quant\",\"version\":\"1.0.0\",\"url\":\"https://myquant-app.vercel.app\",\"description\":\"A finite market briefing for web, iOS, and Android with plain-English stories and evidence boundaries.\"},\"release\":{\"product_version\":\"1.0.0\",\"api_version\":\"myquant.app/1.1\",\"mcp_server_version\":\"2.0.0\",\"mcp_protocol_version\":\"2026-07-28\",\"updated_at\":\"2026-08-22\",\"compatibility\":\"additive\",\"existing_routes_unchanged\":true},\"features\":[{\"id\":\"finite-daily-edition\",\"title\":\"Finite daily edition\",\"status\":\"available\",\"description\":\"Selects up to five stories with one representative per enabled topic before ranked fill.\"},{\"id\":\"validated-feed\",\"title\":\"Validated correction-aware feed\",\"status\":\"available\",\"description\":\"Only a fully valid versioned feed can replace the last accepted edition.\"},{\"id\":\"offline-reading\",\"title\":\"Offline reading\",\"status\":\"available\",\"description\":\"Falls back to the last valid cache and keeps saved story snapshots on-device.\"},{\"id\":\"topic-controls\",\"title\":\"Topic controls\",\"status\":\"available\",\"description\":\"Lets readers tune the finite edition without creating an account or uploading a portfolio.\"}],\"surfaces\":{\"web\":\"https://myquant-app.vercel.app\",\"source_feed\":\"https://myquantdoesntspeakenglish.com/app-feed/v1.json\",\"api\":{\"capabilities\":\"https://myquant-app.vercel.app/api/v1/capabilities\",\"health\":\"https://myquant-app.vercel.app/api/v1/health\",\"openapi\":\"https://myquant-app.vercel.app/api/openapi.json\"},\"mcp\":{\"endpoint\":\"https://myquant-app.vercel.app/mcp\",\"server_card\":\"https://myquant-app.vercel.app/mcp/server-card\",\"server_version\":\"2.0.0\",\"transport\":\"streamable-http\",\"protocol_version\":\"2026-07-28\",\"legacy_protocol_versions\":[\"2025-11-25\",\"2025-06-18\",\"2025-03-26\"],\"tools\":[\"list_capabilities\",\"get_health\"]},\"discovery\":{\"ai_catalog\":\"https://myquant-app.vercel.app/.well-known/ai-catalog.json\",\"llms\":\"https://myquant-app.vercel.app/llms.txt\"}},\"session_compatibility\":{\"mcp\":\"Legacy Mcp-Session-Id values are accepted without rotation; the public MCP surface is stateless.\",\"product\":\"Existing AsyncStorage feed caches, topic settings, and saved-story snapshots are not read, migrated, or invalidated by these endpoints.\"},\"boundaries\":[\"No accounts, brokerage links, portfolio import, advertising SDK, or social graph.\",\"Reader settings and saved stories remain on the device.\",\"The app presents sourced editorial analysis, not personalized investment advice.\"]}"
+                }
+              ],
+              "structuredContent": {
+                "schema": "product.capabilities.v1",
+                "product": {
+                  "id": "myquant-app",
+                  "name": "my quant",
+                  "version": "1.0.0",
+                  "url": "https://myquant-app.vercel.app",
+                  "description": "A finite market briefing for web, iOS, and Android with plain-English stories and evidence boundaries."
+                },
+                "release": {
+                  "product_version": "1.0.0",
+                  "api_version": "myquant.app/1.1",
+                  "mcp_server_version": "2.0.0",
+                  "mcp_protocol_version": "2026-07-28",
+                  "updated_at": "2026-08-22",
+                  "compatibility": "additive",
+                  "existing_routes_unchanged": true
+                },
+                "features": [
+                  {
+                    "id": "finite-daily-edition",
+                    "title": "Finite daily edition",
+                    "status": "available",
+                    "description": "Selects up to five stories with one representative per enabled topic before ranked fill."
+                  },
+                  {
+                    "id": "validated-feed",
+                    "title": "Validated correction-aware feed",
+                    "status": "available",
+                    "description": "Only a fully valid versioned feed can replace the last accepted edition."
+                  },
+                  {
+                    "id": "offline-reading",
+                    "title": "Offline reading",
+                    "status": "available",
+                    "description": "Falls back to the last valid cache and keeps saved story snapshots on-device."
+                  },
+                  {
+                    "id": "topic-controls",
+                    "title": "Topic controls",
+                    "status": "available",
+                    "description": "Lets readers tune the finite edition without creating an account or uploading a portfolio."
+                  }
+                ],
+                "surfaces": {
+                  "web": "https://myquant-app.vercel.app",
+                  "source_feed": "https://myquantdoesntspeakenglish.com/app-feed/v1.json",
+                  "api": {
+                    "capabilities": "https://myquant-app.vercel.app/api/v1/capabilities",
+                    "health": "https://myquant-app.vercel.app/api/v1/health",
+                    "openapi": "https://myquant-app.vercel.app/api/openapi.json"
+                  },
+                  "mcp": {
+                    "endpoint": "https://myquant-app.vercel.app/mcp",
+                    "server_card": "https://myquant-app.vercel.app/mcp/server-card",
+                    "server_version": "2.0.0",
+                    "transport": "streamable-http",
+                    "protocol_version": "2026-07-28",
+                    "legacy_protocol_versions": [
+                      "2025-11-25",
+                      "2025-06-18",
+                      "2025-03-26"
+                    ],
+                    "tools": [
+                      "list_capabilities",
+                      "get_health"
+                    ]
+                  },
+                  "discovery": {
+                    "ai_catalog": "https://myquant-app.vercel.app/.well-known/ai-catalog.json",
+                    "llms": "https://myquant-app.vercel.app/llms.txt"
+                  }
+                },
+                "session_compatibility": {
+                  "mcp": "Legacy Mcp-Session-Id values are accepted without rotation; the public MCP surface is stateless.",
+                  "product": "Existing AsyncStorage feed caches, topic settings, and saved-story snapshots are not read, migrated, or invalidated by these endpoints."
+                },
+                "boundaries": [
+                  "No accounts, brokerage links, portfolio import, advertising SDK, or social graph.",
+                  "Reader settings and saved stories remain on the device.",
+                  "The app presents sourced editorial analysis, not personalized investment advice."
+                ]
+              },
+              "isError": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Briefing and feed validation",
+      "prompt": "Read MyQuant's capability metadata and explain its briefing and feed-validation features and stated limits.",
+      "tools_triggered": "list_capabilities",
+      "expected_behavior": "Summarize documented features without claiming to fetch a briefing, validate a particular feed or inspect on-device content.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:43.187076+00:00",
+          "endpoint": "https://agents.seiche.info/products/myquant-app/mcp",
+          "tool": "list_capabilities",
+          "arguments": {},
+          "elapsed_seconds": 0.21,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 3,
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"schema\":\"product.capabilities.v1\",\"product\":{\"id\":\"myquant-app\",\"name\":\"my quant\",\"version\":\"1.0.0\",\"url\":\"https://myquant-app.vercel.app\",\"description\":\"A finite market briefing for web, iOS, and Android with plain-English stories and evidence boundaries.\"},\"release\":{\"product_version\":\"1.0.0\",\"api_version\":\"myquant.app/1.1\",\"mcp_server_version\":\"2.0.0\",\"mcp_protocol_version\":\"2026-07-28\",\"updated_at\":\"2026-08-22\",\"compatibility\":\"additive\",\"existing_routes_unchanged\":true},\"features\":[{\"id\":\"finite-daily-edition\",\"title\":\"Finite daily edition\",\"status\":\"available\",\"description\":\"Selects up to five stories with one representative per enabled topic before ranked fill.\"},{\"id\":\"validated-feed\",\"title\":\"Validated correction-aware feed\",\"status\":\"available\",\"description\":\"Only a fully valid versioned feed can replace the last accepted edition.\"},{\"id\":\"offline-reading\",\"title\":\"Offline reading\",\"status\":\"available\",\"description\":\"Falls back to the last valid cache and keeps saved story snapshots on-device.\"},{\"id\":\"topic-controls\",\"title\":\"Topic controls\",\"status\":\"available\",\"description\":\"Lets readers tune the finite edition without creating an account or uploading a portfolio.\"}],\"surfaces\":{\"web\":\"https://myquant-app.vercel.app\",\"source_feed\":\"https://myquantdoesntspeakenglish.com/app-feed/v1.json\",\"api\":{\"capabilities\":\"https://myquant-app.vercel.app/api/v1/capabilities\",\"health\":\"https://myquant-app.vercel.app/api/v1/health\",\"openapi\":\"https://myquant-app.vercel.app/api/openapi.json\"},\"mcp\":{\"endpoint\":\"https://myquant-app.vercel.app/mcp\",\"server_card\":\"https://myquant-app.vercel.app/mcp/server-card\",\"server_version\":\"2.0.0\",\"transport\":\"streamable-http\",\"protocol_version\":\"2026-07-28\",\"legacy_protocol_versions\":[\"2025-11-25\",\"2025-06-18\",\"2025-03-26\"],\"tools\":[\"list_capabilities\",\"get_health\"]},\"discovery\":{\"ai_catalog\":\"https://myquant-app.vercel.app/.well-known/ai-catalog.json\",\"llms\":\"https://myquant-app.vercel.app/llms.txt\"}},\"session_compatibility\":{\"mcp\":\"Legacy Mcp-Session-Id values are accepted without rotation; the public MCP surface is stateless.\",\"product\":\"Existing AsyncStorage feed caches, topic settings, and saved-story snapshots are not read, migrated, or invalidated by these endpoints.\"},\"boundaries\":[\"No accounts, brokerage links, portfolio import, advertising SDK, or social graph.\",\"Reader settings and saved stories remain on the device.\",\"The app presents sourced editorial analysis, not personalized investment advice.\"]}"
+                }
+              ],
+              "structuredContent": {
+                "schema": "product.capabilities.v1",
+                "product": {
+                  "id": "myquant-app",
+                  "name": "my quant",
+                  "version": "1.0.0",
+                  "url": "https://myquant-app.vercel.app",
+                  "description": "A finite market briefing for web, iOS, and Android with plain-English stories and evidence boundaries."
+                },
+                "release": {
+                  "product_version": "1.0.0",
+                  "api_version": "myquant.app/1.1",
+                  "mcp_server_version": "2.0.0",
+                  "mcp_protocol_version": "2026-07-28",
+                  "updated_at": "2026-08-22",
+                  "compatibility": "additive",
+                  "existing_routes_unchanged": true
+                },
+                "features": [
+                  {
+                    "id": "finite-daily-edition",
+                    "title": "Finite daily edition",
+                    "status": "available",
+                    "description": "Selects up to five stories with one representative per enabled topic before ranked fill."
+                  },
+                  {
+                    "id": "validated-feed",
+                    "title": "Validated correction-aware feed",
+                    "status": "available",
+                    "description": "Only a fully valid versioned feed can replace the last accepted edition."
+                  },
+                  {
+                    "id": "offline-reading",
+                    "title": "Offline reading",
+                    "status": "available",
+                    "description": "Falls back to the last valid cache and keeps saved story snapshots on-device."
+                  },
+                  {
+                    "id": "topic-controls",
+                    "title": "Topic controls",
+                    "status": "available",
+                    "description": "Lets readers tune the finite edition without creating an account or uploading a portfolio."
+                  }
+                ],
+                "surfaces": {
+                  "web": "https://myquant-app.vercel.app",
+                  "source_feed": "https://myquantdoesntspeakenglish.com/app-feed/v1.json",
+                  "api": {
+                    "capabilities": "https://myquant-app.vercel.app/api/v1/capabilities",
+                    "health": "https://myquant-app.vercel.app/api/v1/health",
+                    "openapi": "https://myquant-app.vercel.app/api/openapi.json"
+                  },
+                  "mcp": {
+                    "endpoint": "https://myquant-app.vercel.app/mcp",
+                    "server_card": "https://myquant-app.vercel.app/mcp/server-card",
+                    "server_version": "2.0.0",
+                    "transport": "streamable-http",
+                    "protocol_version": "2026-07-28",
+                    "legacy_protocol_versions": [
+                      "2025-11-25",
+                      "2025-06-18",
+                      "2025-03-26"
+                    ],
+                    "tools": [
+                      "list_capabilities",
+                      "get_health"
+                    ]
+                  },
+                  "discovery": {
+                    "ai_catalog": "https://myquant-app.vercel.app/.well-known/ai-catalog.json",
+                    "llms": "https://myquant-app.vercel.app/llms.txt"
+                  }
+                },
+                "session_compatibility": {
+                  "mcp": "Legacy Mcp-Session-Id values are accepted without rotation; the public MCP surface is stateless.",
+                  "product": "Existing AsyncStorage feed caches, topic settings, and saved-story snapshots are not read, migrated, or invalidated by these endpoints."
+                },
+                "boundaries": [
+                  "No accounts, brokerage links, portfolio import, advertising SDK, or social graph.",
+                  "Reader settings and saved stories remain on the device.",
+                  "The app presents sourced editorial analysis, not personalized investment advice."
+                ]
+              },
+              "isError": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Integration surface discovery",
+      "prompt": "Identify MyQuant's documented public API and MCP surfaces and product boundaries for a possible integration.",
+      "tools_triggered": "list_capabilities",
+      "expected_behavior": "Report supported surfaces and limits from metadata. Do not infer installation availability or access to private app state.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:43.187076+00:00",
+          "endpoint": "https://agents.seiche.info/products/myquant-app/mcp",
+          "tool": "list_capabilities",
+          "arguments": {},
+          "elapsed_seconds": 0.21,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 3,
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"schema\":\"product.capabilities.v1\",\"product\":{\"id\":\"myquant-app\",\"name\":\"my quant\",\"version\":\"1.0.0\",\"url\":\"https://myquant-app.vercel.app\",\"description\":\"A finite market briefing for web, iOS, and Android with plain-English stories and evidence boundaries.\"},\"release\":{\"product_version\":\"1.0.0\",\"api_version\":\"myquant.app/1.1\",\"mcp_server_version\":\"2.0.0\",\"mcp_protocol_version\":\"2026-07-28\",\"updated_at\":\"2026-08-22\",\"compatibility\":\"additive\",\"existing_routes_unchanged\":true},\"features\":[{\"id\":\"finite-daily-edition\",\"title\":\"Finite daily edition\",\"status\":\"available\",\"description\":\"Selects up to five stories with one representative per enabled topic before ranked fill.\"},{\"id\":\"validated-feed\",\"title\":\"Validated correction-aware feed\",\"status\":\"available\",\"description\":\"Only a fully valid versioned feed can replace the last accepted edition.\"},{\"id\":\"offline-reading\",\"title\":\"Offline reading\",\"status\":\"available\",\"description\":\"Falls back to the last valid cache and keeps saved story snapshots on-device.\"},{\"id\":\"topic-controls\",\"title\":\"Topic controls\",\"status\":\"available\",\"description\":\"Lets readers tune the finite edition without creating an account or uploading a portfolio.\"}],\"surfaces\":{\"web\":\"https://myquant-app.vercel.app\",\"source_feed\":\"https://myquantdoesntspeakenglish.com/app-feed/v1.json\",\"api\":{\"capabilities\":\"https://myquant-app.vercel.app/api/v1/capabilities\",\"health\":\"https://myquant-app.vercel.app/api/v1/health\",\"openapi\":\"https://myquant-app.vercel.app/api/openapi.json\"},\"mcp\":{\"endpoint\":\"https://myquant-app.vercel.app/mcp\",\"server_card\":\"https://myquant-app.vercel.app/mcp/server-card\",\"server_version\":\"2.0.0\",\"transport\":\"streamable-http\",\"protocol_version\":\"2026-07-28\",\"legacy_protocol_versions\":[\"2025-11-25\",\"2025-06-18\",\"2025-03-26\"],\"tools\":[\"list_capabilities\",\"get_health\"]},\"discovery\":{\"ai_catalog\":\"https://myquant-app.vercel.app/.well-known/ai-catalog.json\",\"llms\":\"https://myquant-app.vercel.app/llms.txt\"}},\"session_compatibility\":{\"mcp\":\"Legacy Mcp-Session-Id values are accepted without rotation; the public MCP surface is stateless.\",\"product\":\"Existing AsyncStorage feed caches, topic settings, and saved-story snapshots are not read, migrated, or invalidated by these endpoints.\"},\"boundaries\":[\"No accounts, brokerage links, portfolio import, advertising SDK, or social graph.\",\"Reader settings and saved stories remain on the device.\",\"The app presents sourced editorial analysis, not personalized investment advice.\"]}"
+                }
+              ],
+              "structuredContent": {
+                "schema": "product.capabilities.v1",
+                "product": {
+                  "id": "myquant-app",
+                  "name": "my quant",
+                  "version": "1.0.0",
+                  "url": "https://myquant-app.vercel.app",
+                  "description": "A finite market briefing for web, iOS, and Android with plain-English stories and evidence boundaries."
+                },
+                "release": {
+                  "product_version": "1.0.0",
+                  "api_version": "myquant.app/1.1",
+                  "mcp_server_version": "2.0.0",
+                  "mcp_protocol_version": "2026-07-28",
+                  "updated_at": "2026-08-22",
+                  "compatibility": "additive",
+                  "existing_routes_unchanged": true
+                },
+                "features": [
+                  {
+                    "id": "finite-daily-edition",
+                    "title": "Finite daily edition",
+                    "status": "available",
+                    "description": "Selects up to five stories with one representative per enabled topic before ranked fill."
+                  },
+                  {
+                    "id": "validated-feed",
+                    "title": "Validated correction-aware feed",
+                    "status": "available",
+                    "description": "Only a fully valid versioned feed can replace the last accepted edition."
+                  },
+                  {
+                    "id": "offline-reading",
+                    "title": "Offline reading",
+                    "status": "available",
+                    "description": "Falls back to the last valid cache and keeps saved story snapshots on-device."
+                  },
+                  {
+                    "id": "topic-controls",
+                    "title": "Topic controls",
+                    "status": "available",
+                    "description": "Lets readers tune the finite edition without creating an account or uploading a portfolio."
+                  }
+                ],
+                "surfaces": {
+                  "web": "https://myquant-app.vercel.app",
+                  "source_feed": "https://myquantdoesntspeakenglish.com/app-feed/v1.json",
+                  "api": {
+                    "capabilities": "https://myquant-app.vercel.app/api/v1/capabilities",
+                    "health": "https://myquant-app.vercel.app/api/v1/health",
+                    "openapi": "https://myquant-app.vercel.app/api/openapi.json"
+                  },
+                  "mcp": {
+                    "endpoint": "https://myquant-app.vercel.app/mcp",
+                    "server_card": "https://myquant-app.vercel.app/mcp/server-card",
+                    "server_version": "2.0.0",
+                    "transport": "streamable-http",
+                    "protocol_version": "2026-07-28",
+                    "legacy_protocol_versions": [
+                      "2025-11-25",
+                      "2025-06-18",
+                      "2025-03-26"
+                    ],
+                    "tools": [
+                      "list_capabilities",
+                      "get_health"
+                    ]
+                  },
+                  "discovery": {
+                    "ai_catalog": "https://myquant-app.vercel.app/.well-known/ai-catalog.json",
+                    "llms": "https://myquant-app.vercel.app/llms.txt"
+                  }
+                },
+                "session_compatibility": {
+                  "mcp": "Legacy Mcp-Session-Id values are accepted without rotation; the public MCP surface is stateless.",
+                  "product": "Existing AsyncStorage feed caches, topic settings, and saved-story snapshots are not read, migrated, or invalidated by these endpoints."
+                },
+                "boundaries": [
+                  "No accounts, brokerage links, portfolio import, advertising SDK, or social graph.",
+                  "Reader settings and saved stories remain on the device.",
+                  "The app presents sourced editorial analysis, not personalized investment advice."
+                ]
+              },
+              "isError": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Compatibility heartbeat",
+      "prompt": "Check MyQuant's non-sensitive API and MCP compatibility heartbeat and summarize its status.",
+      "tools_triggered": "get_health",
+      "expected_behavior": "Report returned compatibility metadata. Do not equate endpoint response with installed-app health, feed freshness or device access.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:43.396996+00:00",
+          "endpoint": "https://agents.seiche.info/products/myquant-app/mcp",
+          "tool": "get_health",
+          "arguments": {},
+          "elapsed_seconds": 0.219,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 4,
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"schema\":\"product.health.v1\",\"ok\":true,\"product\":\"myquant-app\",\"product_version\":\"1.0.0\",\"api_version\":\"myquant.app/1.1\",\"mcp_server_version\":\"2.0.0\",\"mcp_protocol_version\":\"2026-07-28\",\"source_feed\":\"https://myquantdoesntspeakenglish.com/app-feed/v1.json\",\"session_mode\":\"stateless-compatible\",\"checked_at\":\"2026-10-28T14:35:43.544Z\"}"
+                }
+              ],
+              "structuredContent": {
+                "schema": "product.health.v1",
+                "ok": true,
+                "product": "myquant-app",
+                "product_version": "1.0.0",
+                "api_version": "myquant.app/1.1",
+                "mcp_server_version": "2.0.0",
+                "mcp_protocol_version": "2026-07-28",
+                "source_feed": "https://myquantdoesntspeakenglish.com/app-feed/v1.json",
+                "session_mode": "stateless-compatible",
+                "checked_at": "2026-10-28T14:35:43.544Z"
+              },
+              "isError": false
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "negative_cases_not_model_executed": [
+    {
+      "description": "Unrelated translation",
+      "prompt": "Translate 'Good morning, everyone' into Spanish."
+    },
+    {
+      "description": "Simple arithmetic",
+      "prompt": "What is 17 multiplied by 24?"
+    },
+    {
+      "description": "Creative writing",
+      "prompt": "Write a four-line birthday poem for my friend."
+    }
+  ]
+}

@@ -1,0 +1,1257 @@
+{
+  "schema": "liquilens.direct-mcp-walkthrough.v1",
+  "name": "MyQuant Editorial",
+  "id": "myquant-editorial",
+  "endpoint": "https://agents.seiche.info/products/myquant-editorial/mcp",
+  "recording_type": "edited browser recording of captured direct MCP responses",
+  "model_api_calls": 0,
+  "native_plugin_installation_test": false,
+  "limitations": "The product skill and negative model-routing cases are review expectations, not newly executed model tests. No trading, enrollment, collection, private-record access or execution was performed. NoiseFloor examples use synthetic inputs; all other values retain their service-provided dates and restrictions.",
+  "cases": [
+    {
+      "description": "Recent stories",
+      "prompt": "Retrieve five recent MyQuant archive stories and summarize their evidence, publication dates and limitations.",
+      "tools_triggered": "latest_stories",
+      "expected_behavior": "Use limit 5, preserve source and evidence clocks, and report unavailable feeds explicitly rather than inventing stories.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:43.013311+00:00",
+          "endpoint": "https://agents.seiche.info/products/myquant-editorial/mcp",
+          "tool": "latest_stories",
+          "arguments": {
+            "limit": 5
+          },
+          "elapsed_seconds": 0.582,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 3,
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"schema\":\"myquant.editorial-content.v1\",\"release\":{\"mcp_version\":\"2.1.1\",\"source_sha\":\"adc730a5a29e39930911249e20ea41e685482ffd\"},\"feed\":{\"url\":\"https://myquantdoesntspeakenglish.com/feed.json\",\"schema\":\"mqdnse.web-feed.v1\",\"item_schema\":\"mqdnse.web-feed-item.v1\",\"authority\":\"PUBLIC_EDITORIAL_ARCHIVE\",\"app_distribution\":\"SUSPENDED_SEPARATE_CHANNEL\",\"content_sha256\":\"6aa2b3ce11a877637630a90959a39ba268704c903f0d56794ca82b4e3922fb60\",\"item_count\":123,\"fetched_at\":\"2026-10-28T14:35:43.203Z\"},\"count\":5,\"stories\":[{\"id\":\"liquilens-undertow:2026-10-28\",\"url\":\"https://myquantdoesntspeakenglish.com/interpreted/liquilens-undertow-2026-10-28\",\"external_url\":\"https://liquilens-undertow.com/dispatch/2026-10-28.json\",\"title\":\"BSTOCK measure rises 54.7 percentile points; segment tiers hold.\",\"summary\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is binance_btc_funding_24h, at percentile 80.8 of its own history; the coolest is binance_btc_basis_bp, at 4.6. Inside HY the qualifying measures span 0.16 to 0.81; the tier is their mean. Read the measures, not just the tier. crclbusdt_peg_deviation moved from 39.0 to 93.7 of its own history between 2026-10-27 and 2026-10-28. This is a change in a published measure, not a validated composite or forecast.\",\"date_published\":\"2026-10-28T14:07:16.000Z\",\"tags\":[\"interpreted\",\"liquilens-undertow\",\"cross-market-liquidity\",\"DERIVED\"],\"_mqdnse\":{\"schema\":\"mqdnse.web-feed-item.v1\",\"lane\":\"INTERPRETED\",\"product\":\"liquilens-undertow\",\"beat\":\"cross-market-liquidity\",\"editorialClass\":\"full_story\",\"articleType\":\"full_story\",\"sourceRecordId\":\"liquilens-undertow:2026-10-28\",\"sourceUrl\":\"https://liquilens-undertow.com/dispatch/2026-10-28.json\",\"evidence\":{\"status\":\"DERIVED\",\"eventTime\":\"2026-10-28T00:00:00.000Z\",\"knowledgeTime\":\"2026-10-28T14:07:16.000Z\",\"publicationStatus\":\"PUBLISHED\",\"contribution\":\"published_measure_delta\",\"limitation\":\"PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.\",\"sourceFingerprint\":\"83f11a4e90f62b8a0f3f01579f711d9e8361ea57677299f6045bd1d4e9f214e6\"},\"copy\":{\"state\":\"SOURCE_GROUNDED\",\"inEnglish\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is binance_btc_funding_24h, at percentile 80.8 of its own history; the coolest is binance_btc_basis_bp, at 4.6. Inside HY the qualifying measures span 0.16 to 0.81; the tier is their mean. Read the measures, not just the tier. crclbusdt_peg_deviation moved from 39.0 to 93.7 of its own history between 2026-10-27 and 2026-10-28. This is a change in a published measure, not a validated composite or forecast.\",\"whyItMatters\":\"Market-liquidity evidence matters when several holders may need the same exit, but a source tier is only as broad as its published coverage. Read the qualifying measures and missing segments before drawing a cross-market conclusion.\",\"uncertainty\":\"PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.\",\"whatChanged\":\"This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.\",\"nextCheck\":\"Check the next source board for coverage, tier changes, internal measure disagreement, and a change in the separate funding overlay. Missing segments must remain unknown rather than turning green.\",\"qualityGate\":\"PASSED\",\"method\":\"DETERMINISTIC_SOURCE_GROUNDED\",\"keyNumber\":{\"value\":\"4 of 9\",\"label\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld.\"}},\"sources\":[{\"id\":\"liquilens-undertow:2026-10-28\",\"label\":\"Undertow\",\"url\":\"https://liquilens-undertow.com/dispatch/2026-10-28.json\",\"fingerprint\":\"83f11a4e90f62b8a0f3f01579f711d9e8361ea57677299f6045bd1d4e9f214e6\"}]}},{\"id\":\"liquilens-undertow:2026-10-27\",\"url\":\"https://myquantdoesntspeakenglish.com/interpreted/liquilens-undertow-2026-10-27\",\"external_url\":\"https://liquilens-undertow.com/dispatch/2026-10-27.json\",\"title\":\"BSTOCK measure rises 47.3 percentile points; segment tiers hold.\",\"summary\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is binance_btc_funding_24h, at percentile 95.2 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.81; the tier is their mean. Read the measures, not just the tier. crclbusdt_depth_1pct_quote moved from 3.8 to 51.0 of its own history between 2026-10-26 and 2026-10-27. This is a change in a published measure, not a validated composite or forecast.\",\"date_published\":\"2026-10-27T23:07:49.000Z\",\"tags\":[\"interpreted\",\"liquilens-undertow\",\"cross-market-liquidity\",\"DERIVED\"],\"_mqdnse\":{\"schema\":\"mqdnse.web-feed-item.v1\",\"lane\":\"INTERPRETED\",\"product\":\"liquilens-undertow\",\"beat\":\"cross-market-liquidity\",\"editorialClass\":\"full_story\",\"articleType\":\"full_story\",\"sourceRecordId\":\"liquilens-undertow:2026-10-27\",\"sourceUrl\":\"https://liquilens-undertow.com/dispatch/2026-10-27.json\",\"evidence\":{\"status\":\"DERIVED\",\"eventTime\":\"2026-10-27T00:00:00.000Z\",\"knowledgeTime\":\"2026-10-27T23:07:49.000Z\",\"publicationStatus\":\"PUBLISHED\",\"contribution\":\"published_measure_delta\",\"limitation\":\"PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.\",\"sourceFingerprint\":\"68ca2af5614ab2c1af887d0f95a9028e56e30661a82411d77aafc6e5d3d6d8b2\"},\"copy\":{\"state\":\"SOURCE_GROUNDED\",\"inEnglish\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is binance_btc_funding_24h, at percentile 95.2 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.81; the tier is their mean. Read the measures, not just the tier. crclbusdt_depth_1pct_quote moved from 3.8 to 51.0 of its own history between 2026-10-26 and 2026-10-27. This is a change in a published measure, not a validated composite or forecast.\",\"whyItMatters\":\"Market-liquidity evidence matters when several holders may need the same exit, but a source tier is only as broad as its published coverage. Read the qualifying measures and missing segments before drawing a cross-market conclusion.\",\"uncertainty\":\"PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.\",\"whatChanged\":\"This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.\",\"nextCheck\":\"Check the next source board for coverage, tier changes, internal measure disagreement, and a change in the separate funding overlay. Missing segments must remain unknown rather than turning green.\",\"qualityGate\":\"PASSED\",\"method\":\"DETERMINISTIC_SOURCE_GROUNDED\",\"keyNumber\":{\"value\":\"4 of 9\",\"label\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld.\"}},\"sources\":[{\"id\":\"liquilens-undertow:2026-10-27\",\"label\":\"Undertow\",\"url\":\"https://liquilens-undertow.com/dispatch/2026-10-27.json\",\"fingerprint\":\"68ca2af5614ab2c1af887d0f95a9028e56e30661a82411d77aafc6e5d3d6d8b2\"}]}},{\"id\":\"liquilens-india-breadth-2026-10-28\",\"url\":\"https://myquantdoesntspeakenglish.com/interpreted/liquilens-india-breadth-2026-10-28\",\"external_url\":\"https://liquilens.in/desk/#liquilens-india-breadth-2026-10-28\",\"title\":\"1 of 3 covered Indian institutions sit above green\",\"summary\":\"1 of the 3 covered Indian institutions are in a review tier above green. This is a count inside the freshly checked list, not a score for the whole financial system.\",\"date_published\":\"2026-10-27T20:17:22.000Z\",\"tags\":[\"interpreted\",\"liquilens\",\"institution-risk\",\"DERIVED\"],\"_mqdnse\":{\"schema\":\"mqdnse.web-feed-item.v1\",\"lane\":\"INTERPRETED\",\"product\":\"liquilens\",\"beat\":\"institution-risk\",\"editorialClass\":\"desk_brief\",\"articleType\":\"desk_brief\",\"sourceRecordId\":\"liquilens-india-breadth-2026-10-28\",\"sourceUrl\":\"https://liquilens.in/desk/#liquilens-india-breadth-2026-10-28\",\"evidence\":{\"status\":\"DERIVED\",\"eventTime\":\"2026-05-30T00:00:00.000Z\",\"knowledgeTime\":\"2026-10-27T20:17:22.000Z\",\"publicationStatus\":\"PUBLISHED\",\"contribution\":\"cross_sectional_review_breadth\",\"limitation\":\"The denominator is the fresh-vetted board, not all regulated institutions.\",\"sourceFingerprint\":\"e841529e41e717358ca3b632b38726222690c64cfd1f7c8fb3a68ffab1109690\"},\"copy\":{\"state\":\"SOURCE_GROUNDED\",\"inEnglish\":\"1 of the 3 covered Indian institutions are in a review tier above green. This is a count inside the freshly checked list, not a score for the whole financial system.\",\"whyItMatters\":\"The count shows how broadly a review flag appears inside the covered set. It helps prioritise evidence review, but the denominator is not the full regulated system and the count is not a system-wide risk score.\",\"uncertainty\":\"The denominator is the fresh-vetted board, not all regulated institutions.\",\"whatChanged\":\"This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.\",\"nextCheck\":\"Inspect the next source revision for changes to the denominator, peer set, reporting vintage, evidence status, or underlying public record before treating this screen as persistent.\",\"qualityGate\":\"PASSED\",\"method\":\"DETERMINISTIC_SOURCE_GROUNDED\",\"keyNumber\":{\"value\":\"1\",\"label\":\"1 of the 3 covered Indian institutions are in a review tier above green.\"}},\"sources\":[{\"id\":\"liquilens-india-breadth-2026-10-28\",\"label\":\"LiquiLens\",\"url\":\"https://liquilens.in/desk/#liquilens-india-breadth-2026-10-28\",\"fingerprint\":\"e841529e41e717358ca3b632b38726222690c64cfd1f7c8fb3a68ffab1109690\"}]}},{\"id\":\"liquilens-undertow:2026-10-26\",\"url\":\"https://myquantdoesntspeakenglish.com/interpreted/liquilens-undertow-2026-10-26\",\"external_url\":\"https://liquilens-undertow.com/dispatch/2026-10-26.json\",\"title\":\"Funding moves EROSION to STRAIN; segment tiers hold.\",\"summary\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is HY OAS (BAMLH0A0HYM2), at percentile 84.5 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.84; the tier is their mean. Read the measures, not just the tier.\",\"date_published\":\"2026-10-26T23:07:06.000Z\",\"tags\":[\"interpreted\",\"liquilens-undertow\",\"cross-market-liquidity\",\"DERIVED\"],\"_mqdnse\":{\"schema\":\"mqdnse.web-feed-item.v1\",\"lane\":\"INTERPRETED\",\"product\":\"liquilens-undertow\",\"beat\":\"cross-market-liquidity\",\"editorialClass\":\"full_story\",\"articleType\":\"full_story\",\"sourceRecordId\":\"liquilens-undertow:2026-10-26\",\"sourceUrl\":\"https://liquilens-undertow.com/dispatch/2026-10-26.json\",\"evidence\":{\"status\":\"DERIVED\",\"eventTime\":\"2026-10-26T00:00:00.000Z\",\"knowledgeTime\":\"2026-10-26T23:07:06.000Z\",\"publicationStatus\":\"PUBLISHED\",\"contribution\":\"funding_regime_change\",\"limitation\":\"PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.\",\"sourceFingerprint\":\"04160815b91f1abf5ba7418e172b59794392c8bf426f5228f6417c91741ffad4\"},\"copy\":{\"state\":\"SOURCE_GROUNDED\",\"inEnglish\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is HY OAS (BAMLH0A0HYM2), at percentile 84.5 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.84; the tier is their mean. Read the measures, not just the tier.\",\"whyItMatters\":\"Market-liquidity evidence matters when several holders may need the same exit, but a source tier is only as broad as its published coverage. Read the qualifying measures and missing segments before drawing a cross-market conclusion.\",\"uncertainty\":\"PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.\",\"whatChanged\":\"This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.\",\"nextCheck\":\"Check the next source board for coverage, tier changes, internal measure disagreement, and a change in the separate funding overlay. Missing segments must remain unknown rather than turning green.\",\"qualityGate\":\"PASSED\",\"method\":\"DETERMINISTIC_SOURCE_GROUNDED\",\"keyNumber\":{\"value\":\"4 of 9\",\"label\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld.\"}},\"sources\":[{\"id\":\"liquilens-undertow:2026-10-26\",\"label\":\"Undertow\",\"url\":\"https://liquilens-undertow.com/dispatch/2026-10-26.json\",\"fingerprint\":\"04160815b91f1abf5ba7418e172b59794392c8bf426f5228f6417c91741ffad4\"}]}},{\"id\":\"liquilens-undertow:2026-10-25\",\"url\":\"https://myquantdoesntspeakenglish.com/interpreted/liquilens-undertow-2026-10-25\",\"external_url\":\"https://liquilens-undertow.com/dispatch/2026-10-25.json\",\"title\":\"CRYPTO moves tighter by 0.09 inside NORMAL; funding reads EROSION.\",\"summary\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads EROSION. The hottest qualifying measure is binance_btc_basis_bp, at percentile 99.5 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.85; the tier is their mean. Read the measures, not just the tier.\",\"date_published\":\"2026-10-25T23:07:29.000Z\",\"tags\":[\"interpreted\",\"liquilens-undertow\",\"cross-market-liquidity\",\"DERIVED\"],\"_mqdnse\":{\"schema\":\"mqdnse.web-feed-item.v1\",\"lane\":\"INTERPRETED\",\"product\":\"liquilens-undertow\",\"beat\":\"cross-market-liquidity\",\"editorialClass\":\"full_story\",\"articleType\":\"full_story\",\"sourceRecordId\":\"liquilens-undertow:2026-10-25\",\"sourceUrl\":\"https://liquilens-undertow.com/dispatch/2026-10-25.json\",\"evidence\":{\"status\":\"DERIVED\",\"eventTime\":\"2026-10-25T00:00:00.000Z\",\"knowledgeTime\":\"2026-10-25T23:07:29.000Z\",\"publicationStatus\":\"PUBLISHED\",\"contribution\":\"within_tier_score_delta\",\"limitation\":\"PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.\",\"sourceFingerprint\":\"b9a652ade27d45150a84d2aeacfa16809ade0b24d5cda6ed09a89ae5029dee4a\"},\"copy\":{\"state\":\"SOURCE_GROUNDED\",\"inEnglish\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads EROSION. The hottest qualifying measure is binance_btc_basis_bp, at percentile 99.5 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.85; the tier is their mean. Read the measures, not just the tier.\",\"whyItMatters\":\"Market-liquidity evidence matters when several holders may need the same exit, but a source tier is only as broad as its published coverage. Read the qualifying measures and missing segments before drawing a cross-market conclusion.\",\"uncertainty\":\"PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.\",\"whatChanged\":\"This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.\",\"nextCheck\":\"Check the next source board for coverage, tier changes, internal measure disagreement, and a change in the separate funding overlay. Missing segments must remain unknown rather than turning green.\",\"qualityGate\":\"PASSED\",\"method\":\"DETERMINISTIC_SOURCE_GROUNDED\",\"keyNumber\":{\"value\":\"4 of 9\",\"label\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld.\"}},\"sources\":[{\"id\":\"liquilens-undertow:2026-10-25\",\"label\":\"Undertow\",\"url\":\"https://liquilens-undertow.com/dispatch/2026-10-25.json\",\"fingerprint\":\"b9a652ade27d45150a84d2aeacfa16809ade0b24d5cda6ed09a89ae5029dee4a\"}]}}]}"
+                }
+              ],
+              "structuredContent": {
+                "schema": "myquant.editorial-content.v1",
+                "release": {
+                  "mcp_version": "2.1.1",
+                  "source_sha": "adc730a5a29e39930911249e20ea41e685482ffd"
+                },
+                "feed": {
+                  "url": "https://myquantdoesntspeakenglish.com/feed.json",
+                  "schema": "mqdnse.web-feed.v1",
+                  "item_schema": "mqdnse.web-feed-item.v1",
+                  "authority": "PUBLIC_EDITORIAL_ARCHIVE",
+                  "app_distribution": "SUSPENDED_SEPARATE_CHANNEL",
+                  "content_sha256": "6aa2b3ce11a877637630a90959a39ba268704c903f0d56794ca82b4e3922fb60",
+                  "item_count": 123,
+                  "fetched_at": "2026-10-28T14:35:43.203Z"
+                },
+                "count": 5,
+                "stories": [
+                  {
+                    "id": "liquilens-undertow:2026-10-28",
+                    "url": "https://myquantdoesntspeakenglish.com/interpreted/liquilens-undertow-2026-10-28",
+                    "external_url": "https://liquilens-undertow.com/dispatch/2026-10-28.json",
+                    "title": "BSTOCK measure rises 54.7 percentile points; segment tiers hold.",
+                    "summary": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is binance_btc_funding_24h, at percentile 80.8 of its own history; the coolest is binance_btc_basis_bp, at 4.6. Inside HY the qualifying measures span 0.16 to 0.81; the tier is their mean. Read the measures, not just the tier. crclbusdt_peg_deviation moved from 39.0 to 93.7 of its own history between 2026-10-27 and 2026-10-28. This is a change in a published measure, not a validated composite or forecast.",
+                    "date_published": "2026-10-28T14:07:16.000Z",
+                    "tags": [
+                      "interpreted",
+                      "liquilens-undertow",
+                      "cross-market-liquidity",
+                      "DERIVED"
+                    ],
+                    "_mqdnse": {
+                      "schema": "mqdnse.web-feed-item.v1",
+                      "lane": "INTERPRETED",
+                      "product": "liquilens-undertow",
+                      "beat": "cross-market-liquidity",
+                      "editorialClass": "full_story",
+                      "articleType": "full_story",
+                      "sourceRecordId": "liquilens-undertow:2026-10-28",
+                      "sourceUrl": "https://liquilens-undertow.com/dispatch/2026-10-28.json",
+                      "evidence": {
+                        "status": "DERIVED",
+                        "eventTime": "2026-10-28T00:00:00.000Z",
+                        "knowledgeTime": "2026-10-28T14:07:16.000Z",
+                        "publicationStatus": "PUBLISHED",
+                        "contribution": "published_measure_delta",
+                        "limitation": "PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.",
+                        "sourceFingerprint": "83f11a4e90f62b8a0f3f01579f711d9e8361ea57677299f6045bd1d4e9f214e6"
+                      },
+                      "copy": {
+                        "state": "SOURCE_GROUNDED",
+                        "inEnglish": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is binance_btc_funding_24h, at percentile 80.8 of its own history; the coolest is binance_btc_basis_bp, at 4.6. Inside HY the qualifying measures span 0.16 to 0.81; the tier is their mean. Read the measures, not just the tier. crclbusdt_peg_deviation moved from 39.0 to 93.7 of its own history between 2026-10-27 and 2026-10-28. This is a change in a published measure, not a validated composite or forecast.",
+                        "whyItMatters": "Market-liquidity evidence matters when several holders may need the same exit, but a source tier is only as broad as its published coverage. Read the qualifying measures and missing segments before drawing a cross-market conclusion.",
+                        "uncertainty": "PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.",
+                        "whatChanged": "This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.",
+                        "nextCheck": "Check the next source board for coverage, tier changes, internal measure disagreement, and a change in the separate funding overlay. Missing segments must remain unknown rather than turning green.",
+                        "qualityGate": "PASSED",
+                        "method": "DETERMINISTIC_SOURCE_GROUNDED",
+                        "keyNumber": {
+                          "value": "4 of 9",
+                          "label": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld."
+                        }
+                      },
+                      "sources": [
+                        {
+                          "id": "liquilens-undertow:2026-10-28",
+                          "label": "Undertow",
+                          "url": "https://liquilens-undertow.com/dispatch/2026-10-28.json",
+                          "fingerprint": "83f11a4e90f62b8a0f3f01579f711d9e8361ea57677299f6045bd1d4e9f214e6"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": "liquilens-undertow:2026-10-27",
+                    "url": "https://myquantdoesntspeakenglish.com/interpreted/liquilens-undertow-2026-10-27",
+                    "external_url": "https://liquilens-undertow.com/dispatch/2026-10-27.json",
+                    "title": "BSTOCK measure rises 47.3 percentile points; segment tiers hold.",
+                    "summary": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is binance_btc_funding_24h, at percentile 95.2 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.81; the tier is their mean. Read the measures, not just the tier. crclbusdt_depth_1pct_quote moved from 3.8 to 51.0 of its own history between 2026-10-26 and 2026-10-27. This is a change in a published measure, not a validated composite or forecast.",
+                    "date_published": "2026-10-27T23:07:49.000Z",
+                    "tags": [
+                      "interpreted",
+                      "liquilens-undertow",
+                      "cross-market-liquidity",
+                      "DERIVED"
+                    ],
+                    "_mqdnse": {
+                      "schema": "mqdnse.web-feed-item.v1",
+                      "lane": "INTERPRETED",
+                      "product": "liquilens-undertow",
+                      "beat": "cross-market-liquidity",
+                      "editorialClass": "full_story",
+                      "articleType": "full_story",
+                      "sourceRecordId": "liquilens-undertow:2026-10-27",
+                      "sourceUrl": "https://liquilens-undertow.com/dispatch/2026-10-27.json",
+                      "evidence": {
+                        "status": "DERIVED",
+                        "eventTime": "2026-10-27T00:00:00.000Z",
+                        "knowledgeTime": "2026-10-27T23:07:49.000Z",
+                        "publicationStatus": "PUBLISHED",
+                        "contribution": "published_measure_delta",
+                        "limitation": "PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.",
+                        "sourceFingerprint": "68ca2af5614ab2c1af887d0f95a9028e56e30661a82411d77aafc6e5d3d6d8b2"
+                      },
+                      "copy": {
+                        "state": "SOURCE_GROUNDED",
+                        "inEnglish": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is binance_btc_funding_24h, at percentile 95.2 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.81; the tier is their mean. Read the measures, not just the tier. crclbusdt_depth_1pct_quote moved from 3.8 to 51.0 of its own history between 2026-10-26 and 2026-10-27. This is a change in a published measure, not a validated composite or forecast.",
+                        "whyItMatters": "Market-liquidity evidence matters when several holders may need the same exit, but a source tier is only as broad as its published coverage. Read the qualifying measures and missing segments before drawing a cross-market conclusion.",
+                        "uncertainty": "PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.",
+                        "whatChanged": "This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.",
+                        "nextCheck": "Check the next source board for coverage, tier changes, internal measure disagreement, and a change in the separate funding overlay. Missing segments must remain unknown rather than turning green.",
+                        "qualityGate": "PASSED",
+                        "method": "DETERMINISTIC_SOURCE_GROUNDED",
+                        "keyNumber": {
+                          "value": "4 of 9",
+                          "label": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld."
+                        }
+                      },
+                      "sources": [
+                        {
+                          "id": "liquilens-undertow:2026-10-27",
+                          "label": "Undertow",
+                          "url": "https://liquilens-undertow.com/dispatch/2026-10-27.json",
+                          "fingerprint": "68ca2af5614ab2c1af887d0f95a9028e56e30661a82411d77aafc6e5d3d6d8b2"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": "liquilens-india-breadth-2026-10-28",
+                    "url": "https://myquantdoesntspeakenglish.com/interpreted/liquilens-india-breadth-2026-10-28",
+                    "external_url": "https://liquilens.in/desk/#liquilens-india-breadth-2026-10-28",
+                    "title": "1 of 3 covered Indian institutions sit above green",
+                    "summary": "1 of the 3 covered Indian institutions are in a review tier above green. This is a count inside the freshly checked list, not a score for the whole financial system.",
+                    "date_published": "2026-10-27T20:17:22.000Z",
+                    "tags": [
+                      "interpreted",
+                      "liquilens",
+                      "institution-risk",
+                      "DERIVED"
+                    ],
+                    "_mqdnse": {
+                      "schema": "mqdnse.web-feed-item.v1",
+                      "lane": "INTERPRETED",
+                      "product": "liquilens",
+                      "beat": "institution-risk",
+                      "editorialClass": "desk_brief",
+                      "articleType": "desk_brief",
+                      "sourceRecordId": "liquilens-india-breadth-2026-10-28",
+                      "sourceUrl": "https://liquilens.in/desk/#liquilens-india-breadth-2026-10-28",
+                      "evidence": {
+                        "status": "DERIVED",
+                        "eventTime": "2026-05-30T00:00:00.000Z",
+                        "knowledgeTime": "2026-10-27T20:17:22.000Z",
+                        "publicationStatus": "PUBLISHED",
+                        "contribution": "cross_sectional_review_breadth",
+                        "limitation": "The denominator is the fresh-vetted board, not all regulated institutions.",
+                        "sourceFingerprint": "e841529e41e717358ca3b632b38726222690c64cfd1f7c8fb3a68ffab1109690"
+                      },
+                      "copy": {
+                        "state": "SOURCE_GROUNDED",
+                        "inEnglish": "1 of the 3 covered Indian institutions are in a review tier above green. This is a count inside the freshly checked list, not a score for the whole financial system.",
+                        "whyItMatters": "The count shows how broadly a review flag appears inside the covered set. It helps prioritise evidence review, but the denominator is not the full regulated system and the count is not a system-wide risk score.",
+                        "uncertainty": "The denominator is the fresh-vetted board, not all regulated institutions.",
+                        "whatChanged": "This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.",
+                        "nextCheck": "Inspect the next source revision for changes to the denominator, peer set, reporting vintage, evidence status, or underlying public record before treating this screen as persistent.",
+                        "qualityGate": "PASSED",
+                        "method": "DETERMINISTIC_SOURCE_GROUNDED",
+                        "keyNumber": {
+                          "value": "1",
+                          "label": "1 of the 3 covered Indian institutions are in a review tier above green."
+                        }
+                      },
+                      "sources": [
+                        {
+                          "id": "liquilens-india-breadth-2026-10-28",
+                          "label": "LiquiLens",
+                          "url": "https://liquilens.in/desk/#liquilens-india-breadth-2026-10-28",
+                          "fingerprint": "e841529e41e717358ca3b632b38726222690c64cfd1f7c8fb3a68ffab1109690"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": "liquilens-undertow:2026-10-26",
+                    "url": "https://myquantdoesntspeakenglish.com/interpreted/liquilens-undertow-2026-10-26",
+                    "external_url": "https://liquilens-undertow.com/dispatch/2026-10-26.json",
+                    "title": "Funding moves EROSION to STRAIN; segment tiers hold.",
+                    "summary": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is HY OAS (BAMLH0A0HYM2), at percentile 84.5 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.84; the tier is their mean. Read the measures, not just the tier.",
+                    "date_published": "2026-10-26T23:07:06.000Z",
+                    "tags": [
+                      "interpreted",
+                      "liquilens-undertow",
+                      "cross-market-liquidity",
+                      "DERIVED"
+                    ],
+                    "_mqdnse": {
+                      "schema": "mqdnse.web-feed-item.v1",
+                      "lane": "INTERPRETED",
+                      "product": "liquilens-undertow",
+                      "beat": "cross-market-liquidity",
+                      "editorialClass": "full_story",
+                      "articleType": "full_story",
+                      "sourceRecordId": "liquilens-undertow:2026-10-26",
+                      "sourceUrl": "https://liquilens-undertow.com/dispatch/2026-10-26.json",
+                      "evidence": {
+                        "status": "DERIVED",
+                        "eventTime": "2026-10-26T00:00:00.000Z",
+                        "knowledgeTime": "2026-10-26T23:07:06.000Z",
+                        "publicationStatus": "PUBLISHED",
+                        "contribution": "funding_regime_change",
+                        "limitation": "PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.",
+                        "sourceFingerprint": "04160815b91f1abf5ba7418e172b59794392c8bf426f5228f6417c91741ffad4"
+                      },
+                      "copy": {
+                        "state": "SOURCE_GROUNDED",
+                        "inEnglish": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is HY OAS (BAMLH0A0HYM2), at percentile 84.5 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.84; the tier is their mean. Read the measures, not just the tier.",
+                        "whyItMatters": "Market-liquidity evidence matters when several holders may need the same exit, but a source tier is only as broad as its published coverage. Read the qualifying measures and missing segments before drawing a cross-market conclusion.",
+                        "uncertainty": "PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.",
+                        "whatChanged": "This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.",
+                        "nextCheck": "Check the next source board for coverage, tier changes, internal measure disagreement, and a change in the separate funding overlay. Missing segments must remain unknown rather than turning green.",
+                        "qualityGate": "PASSED",
+                        "method": "DETERMINISTIC_SOURCE_GROUNDED",
+                        "keyNumber": {
+                          "value": "4 of 9",
+                          "label": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld."
+                        }
+                      },
+                      "sources": [
+                        {
+                          "id": "liquilens-undertow:2026-10-26",
+                          "label": "Undertow",
+                          "url": "https://liquilens-undertow.com/dispatch/2026-10-26.json",
+                          "fingerprint": "04160815b91f1abf5ba7418e172b59794392c8bf426f5228f6417c91741ffad4"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": "liquilens-undertow:2026-10-25",
+                    "url": "https://myquantdoesntspeakenglish.com/interpreted/liquilens-undertow-2026-10-25",
+                    "external_url": "https://liquilens-undertow.com/dispatch/2026-10-25.json",
+                    "title": "CRYPTO moves tighter by 0.09 inside NORMAL; funding reads EROSION.",
+                    "summary": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads EROSION. The hottest qualifying measure is binance_btc_basis_bp, at percentile 99.5 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.85; the tier is their mean. Read the measures, not just the tier.",
+                    "date_published": "2026-10-25T23:07:29.000Z",
+                    "tags": [
+                      "interpreted",
+                      "liquilens-undertow",
+                      "cross-market-liquidity",
+                      "DERIVED"
+                    ],
+                    "_mqdnse": {
+                      "schema": "mqdnse.web-feed-item.v1",
+                      "lane": "INTERPRETED",
+                      "product": "liquilens-undertow",
+                      "beat": "cross-market-liquidity",
+                      "editorialClass": "full_story",
+                      "articleType": "full_story",
+                      "sourceRecordId": "liquilens-undertow:2026-10-25",
+                      "sourceUrl": "https://liquilens-undertow.com/dispatch/2026-10-25.json",
+                      "evidence": {
+                        "status": "DERIVED",
+                        "eventTime": "2026-10-25T00:00:00.000Z",
+                        "knowledgeTime": "2026-10-25T23:07:29.000Z",
+                        "publicationStatus": "PUBLISHED",
+                        "contribution": "within_tier_score_delta",
+                        "limitation": "PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.",
+                        "sourceFingerprint": "b9a652ade27d45150a84d2aeacfa16809ade0b24d5cda6ed09a89ae5029dee4a"
+                      },
+                      "copy": {
+                        "state": "SOURCE_GROUNDED",
+                        "inEnglish": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads EROSION. The hottest qualifying measure is binance_btc_basis_bp, at percentile 99.5 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.85; the tier is their mean. Read the measures, not just the tier.",
+                        "whyItMatters": "Market-liquidity evidence matters when several holders may need the same exit, but a source tier is only as broad as its published coverage. Read the qualifying measures and missing segments before drawing a cross-market conclusion.",
+                        "uncertainty": "PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.",
+                        "whatChanged": "This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.",
+                        "nextCheck": "Check the next source board for coverage, tier changes, internal measure disagreement, and a change in the separate funding overlay. Missing segments must remain unknown rather than turning green.",
+                        "qualityGate": "PASSED",
+                        "method": "DETERMINISTIC_SOURCE_GROUNDED",
+                        "keyNumber": {
+                          "value": "4 of 9",
+                          "label": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld."
+                        }
+                      },
+                      "sources": [
+                        {
+                          "id": "liquilens-undertow:2026-10-25",
+                          "label": "Undertow",
+                          "url": "https://liquilens-undertow.com/dispatch/2026-10-25.json",
+                          "fingerprint": "b9a652ade27d45150a84d2aeacfa16809ade0b24d5cda6ed09a89ae5029dee4a"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "isError": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Plain-text search",
+      "prompt": "Search the MyQuant archive for 'dollar funding' and show up to five matching stories with source links.",
+      "tools_triggered": "search_stories",
+      "expected_behavior": "Use query dollar funding and limit 5. Explain empty results without inventing matches or treating text matching as semantic ranking.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:43.596317+00:00",
+          "endpoint": "https://agents.seiche.info/products/myquant-editorial/mcp",
+          "tool": "search_stories",
+          "arguments": {
+            "query": "dollar funding",
+            "limit": 5
+          },
+          "elapsed_seconds": 0.219,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 4,
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"schema\":\"myquant.editorial-content.v1\",\"release\":{\"mcp_version\":\"2.1.1\",\"source_sha\":\"adc730a5a29e39930911249e20ea41e685482ffd\"},\"feed\":{\"url\":\"https://myquantdoesntspeakenglish.com/feed.json\",\"schema\":\"mqdnse.web-feed.v1\",\"item_schema\":\"mqdnse.web-feed-item.v1\",\"authority\":\"PUBLIC_EDITORIAL_ARCHIVE\",\"app_distribution\":\"SUSPENDED_SEPARATE_CHANNEL\",\"content_sha256\":\"6aa2b3ce11a877637630a90959a39ba268704c903f0d56794ca82b4e3922fb60\",\"item_count\":123,\"fetched_at\":\"2026-10-28T14:35:43.203Z\"},\"query\":\"dollar funding\",\"count\":5,\"stories\":[{\"id\":\"seiche:2026-09-24-daily\",\"url\":\"https://myquantdoesntspeakenglish.com/interpreted/seiche-2026-09-24-daily\",\"external_url\":\"https://seiche.info/dispatches/2026-09-24-daily\",\"title\":\"The plumbing looks tighter than markets price, but divergence is a warning to investigate, not proof of a squeeze\",\"summary\":\"Seiche's funding score is 44 out of 100, in its EROSION regime, and is 1.7 points higher than in the previous letter. Its plumbing measures lead its market-price screens by +52 percentile points. The dated reserve path adds 9.2 points, and the five-business-day event reading is 6.6%.\",\"date_published\":\"2026-09-24T15:47:53.000Z\",\"tags\":[\"interpreted\",\"seiche\",\"dollar-funding-plumbing\",\"DERIVED\"],\"_mqdnse\":{\"schema\":\"mqdnse.web-feed-item.v1\",\"lane\":\"INTERPRETED\",\"product\":\"seiche\",\"beat\":\"dollar-funding-plumbing\",\"editorialClass\":\"full_story\",\"articleType\":\"full_story\",\"sourceRecordId\":\"seiche:2026-09-24-daily\",\"sourceUrl\":\"https://seiche.info/dispatches/2026-09-24-daily\",\"evidence\":{\"status\":\"DERIVED\",\"eventTime\":\"2026-09-23T00:00:00.000Z\",\"knowledgeTime\":\"2026-09-24T15:47:53.000Z\",\"publicationStatus\":\"PUBLISHED\",\"contribution\":\"fresh_longitudinal_delta · cross_signal_divergence · dated_forward_test\",\"limitation\":\"The composite is a Seiche derivation, not an observed market price.\",\"sourceFingerprint\":\"f08dd9ef8581d7aed77370402a40441d239aec7133c8e41118b1c14cff7376d4\"},\"copy\":{\"state\":\"SOURCE_GROUNDED\",\"inEnglish\":\"Seiche's funding score is 44 out of 100, in its EROSION regime, and is 1.7 points higher than in the previous letter. Its plumbing measures lead its market-price screens by +52 percentile points. The dated reserve path adds 9.2 points, and the five-business-day event reading is 6.6%.\",\"whyItMatters\":\"The headline composite moved 1.7 points higher, while the source reports a +52-point plumbing-versus-price gap, a dated reserve contribution of 9.2 points, and a 6.6% event reading. That combination shows whether the published regime is broad-price confirmation or a more bounded plumbing-and-calendar signal; it is not a market forecast.\",\"uncertainty\":\"The composite is a Seiche derivation, not an observed market price.\",\"whatChanged\":\"The published funding index moved to 44, 1.7 points higher than in the previous letter. The source still separates a +52-point plumbing-versus-price gap, a dated reserve contribution of 9.2 points, and a 6.6% five-day event reading.\",\"nextCheck\":\"Compare the next published letter’s composite, regime, plumbing-versus-price gap, dated reserve contribution, and event reading. A changed combination—not one isolated number—would alter this interpretation.\",\"qualityGate\":\"PASSED\",\"method\":\"DETERMINISTIC_SOURCE_GROUNDED\",\"keyNumber\":{\"value\":\"44 out of 100\",\"label\":\"Seiche's funding score is 44 out of 100, in its EROSION regime, and is 1.\"}},\"sources\":[{\"id\":\"seiche:2026-09-24-daily\",\"label\":\"Seiche\",\"url\":\"https://seiche.info/dispatches/2026-09-24-daily\",\"fingerprint\":\"f08dd9ef8581d7aed77370402a40441d239aec7133c8e41118b1c14cff7376d4\"}]}},{\"id\":\"seiche:2026-09-15-daily\",\"url\":\"https://myquantdoesntspeakenglish.com/interpreted/seiche-2026-09-15-daily\",\"external_url\":\"https://seiche.info/dispatches/2026-09-15-daily\",\"title\":\"ON RRP take-up wakes to 1.42 $B overnight: 2.9 sigma on a near-zero base, not a large flow\",\"summary\":\"Seiche's funding score is 44 out of 100, in its EROSION regime, and is 1.8 points higher than in the previous letter. Its plumbing measures lead its market-price screens by +19 percentile points. The dated reserve path adds 11.0 points, and the five-business-day event reading is 5.7%.\",\"date_published\":\"2026-09-15T15:31:24.000Z\",\"tags\":[\"interpreted\",\"seiche\",\"dollar-funding-plumbing\",\"DERIVED\"],\"_mqdnse\":{\"schema\":\"mqdnse.web-feed-item.v1\",\"lane\":\"INTERPRETED\",\"product\":\"seiche\",\"beat\":\"dollar-funding-plumbing\",\"editorialClass\":\"full_story\",\"articleType\":\"full_story\",\"sourceRecordId\":\"seiche:2026-09-15-daily\",\"sourceUrl\":\"https://seiche.info/dispatches/2026-09-15-daily\",\"evidence\":{\"status\":\"DERIVED\",\"eventTime\":\"2026-09-15T00:00:00.000Z\",\"knowledgeTime\":\"2026-09-15T15:31:24.000Z\",\"publicationStatus\":\"PUBLISHED\",\"contribution\":\"fresh_longitudinal_delta · dated_forward_test\",\"limitation\":\"The composite is a Seiche derivation, not an observed market price.\",\"sourceFingerprint\":\"d7f01129b20be93201930e3c93a888b9c023f9ea17f1de11c29ec0d0e4bdb11d\"},\"copy\":{\"state\":\"SOURCE_GROUNDED\",\"inEnglish\":\"Seiche's funding score is 44 out of 100, in its EROSION regime, and is 1.8 points higher than in the previous letter. Its plumbing measures lead its market-price screens by +19 percentile points. The dated reserve path adds 11.0 points, and the five-business-day event reading is 5.7%.\",\"whyItMatters\":\"The headline composite moved 1.8 points higher, while the source reports a +19-point plumbing-versus-price gap, a dated reserve contribution of 11.0 points, and a 5.7% event reading. That combination shows whether the published regime is broad-price confirmation or a more bounded plumbing-and-calendar signal; it is not a market forecast.\",\"uncertainty\":\"The composite is a Seiche derivation, not an observed market price.\",\"whatChanged\":\"The published funding index moved to 44, 1.8 points higher than in the previous letter. The source still separates a +19-point plumbing-versus-price gap, a dated reserve contribution of 11.0 points, and a 5.7% five-day event reading.\",\"nextCheck\":\"Compare the next published letter’s composite, regime, plumbing-versus-price gap, dated reserve contribution, and event reading. A changed combination—not one isolated number—would alter this interpretation.\",\"qualityGate\":\"PASSED\",\"method\":\"DETERMINISTIC_SOURCE_GROUNDED\",\"keyNumber\":{\"value\":\"44 out of 100\",\"label\":\"Seiche's funding score is 44 out of 100, in its EROSION regime, and is 1.\"}},\"sources\":[{\"id\":\"seiche:2026-09-15-daily\",\"label\":\"Seiche\",\"url\":\"https://seiche.info/dispatches/2026-09-15-daily\",\"fingerprint\":\"d7f01129b20be93201930e3c93a888b9c023f9ea17f1de11c29ec0d0e4bdb11d\"}]}},{\"id\":\"seiche:2026-09-13-daily\",\"url\":\"https://myquantdoesntspeakenglish.com/interpreted/seiche-2026-09-13-daily\",\"external_url\":\"https://seiche.info/dispatches/2026-09-13-daily\",\"title\":\"Tax dates approach; overnight funding still shows little strain\",\"summary\":\"Seiche's funding score is 44 out of 100, in its EROSION regime, and is unchanged from the previous letter. Its plumbing measures lead its market-price screens by +20 percentile points. The dated reserve path adds 11.0 points, and the five-business-day event reading is 6.1%.\",\"date_published\":\"2026-09-13T01:41:27.000Z\",\"tags\":[\"interpreted\",\"seiche\",\"dollar-funding-plumbing\",\"DERIVED\"],\"_mqdnse\":{\"schema\":\"mqdnse.web-feed-item.v1\",\"lane\":\"INTERPRETED\",\"product\":\"seiche\",\"beat\":\"dollar-funding-plumbing\",\"editorialClass\":\"full_story\",\"articleType\":\"full_story\",\"sourceRecordId\":\"seiche:2026-09-13-daily\",\"sourceUrl\":\"https://seiche.info/dispatches/2026-09-13-daily\",\"evidence\":{\"status\":\"DERIVED\",\"eventTime\":\"2026-09-12T00:00:00.000Z\",\"knowledgeTime\":\"2026-09-13T01:41:27.000Z\",\"publicationStatus\":\"PUBLISHED\",\"contribution\":\"fresh_longitudinal_delta · cross_signal_divergence · dated_forward_test\",\"limitation\":\"The composite is a Seiche derivation, not an observed market price.\",\"sourceFingerprint\":\"8e895f4c9ec14790a04b68fc5816a37d2f4662bc0a0f0835b8f0a64e9dad94db\"},\"copy\":{\"state\":\"SOURCE_GROUNDED\",\"inEnglish\":\"Seiche's funding score is 44 out of 100, in its EROSION regime, and is unchanged from the previous letter. Its plumbing measures lead its market-price screens by +20 percentile points. The dated reserve path adds 11.0 points, and the five-business-day event reading is 6.1%.\",\"whyItMatters\":\"The headline composite did not move, while the source reports a +20-point plumbing-versus-price gap, a dated reserve contribution of 11.0 points, and a 6.1% event reading. That combination shows whether the published regime is broad-price confirmation or a more bounded plumbing-and-calendar signal; it is not a market forecast.\",\"uncertainty\":\"The composite is a Seiche derivation, not an observed market price.\",\"whatChanged\":\"The published funding index held at 44. The source still separates a +20-point plumbing-versus-price gap, a dated reserve contribution of 11.0 points, and a 6.1% five-day event reading.\",\"nextCheck\":\"Compare the next published letter’s composite, regime, plumbing-versus-price gap, dated reserve contribution, and event reading. A changed combination—not one isolated number—would alter this interpretation.\",\"qualityGate\":\"PASSED\",\"method\":\"DETERMINISTIC_SOURCE_GROUNDED\",\"keyNumber\":{\"value\":\"44 out of 100\",\"label\":\"Seiche's funding score is 44 out of 100, in its EROSION regime, and is unchanged from the previous letter.\"}},\"sources\":[{\"id\":\"seiche:2026-09-13-daily\",\"label\":\"Seiche\",\"url\":\"https://seiche.info/dispatches/2026-09-13-daily\",\"fingerprint\":\"8e895f4c9ec14790a04b68fc5816a37d2f4662bc0a0f0835b8f0a64e9dad94db\"}]}},{\"id\":\"seiche:2026-09-08-daily\",\"url\":\"https://myquantdoesntspeakenglish.com/interpreted/seiche-2026-09-08-daily\",\"external_url\":\"https://seiche.info/dispatches/2026-09-08-daily\",\"title\":\"SRF accepted wakes to 0.02 $B overnight: 13.5 sigma on a near-zero base, not a large flow\",\"summary\":\"Seiche's funding score is 45 out of 100, in its EROSION regime, and is 0.2 points lower than in the previous letter. Its plumbing measures lead its market-price screens by +41 percentile points. The dated reserve path adds 11.0 points, and the five-business-day event reading is 6.2%.\",\"date_published\":\"2026-09-08T14:56:05.000Z\",\"tags\":[\"interpreted\",\"seiche\",\"dollar-funding-plumbing\",\"DERIVED\"],\"_mqdnse\":{\"schema\":\"mqdnse.web-feed-item.v1\",\"lane\":\"INTERPRETED\",\"product\":\"seiche\",\"beat\":\"dollar-funding-plumbing\",\"editorialClass\":\"full_story\",\"articleType\":\"full_story\",\"sourceRecordId\":\"seiche:2026-09-08-daily\",\"sourceUrl\":\"https://seiche.info/dispatches/2026-09-08-daily\",\"evidence\":{\"status\":\"DERIVED\",\"eventTime\":\"2026-09-08T00:00:00.000Z\",\"knowledgeTime\":\"2026-09-08T14:56:05.000Z\",\"publicationStatus\":\"PUBLISHED\",\"contribution\":\"fresh_longitudinal_delta · cross_signal_divergence · dated_forward_test\",\"limitation\":\"The composite is a Seiche derivation, not an observed market price.\",\"sourceFingerprint\":\"08172e35675f59e8b3860690a070e604c6edd1db97b1e64ba99d13d3c49614a5\"},\"copy\":{\"state\":\"SOURCE_GROUNDED\",\"inEnglish\":\"Seiche's funding score is 45 out of 100, in its EROSION regime, and is 0.2 points lower than in the previous letter. Its plumbing measures lead its market-price screens by +41 percentile points. The dated reserve path adds 11.0 points, and the five-business-day event reading is 6.2%.\",\"whyItMatters\":\"The headline composite moved 0.2 points lower, while the source reports a +41-point plumbing-versus-price gap, a dated reserve contribution of 11.0 points, and a 6.2% event reading. That combination shows whether the published regime is broad-price confirmation or a more bounded plumbing-and-calendar signal; it is not a market forecast.\",\"uncertainty\":\"The composite is a Seiche derivation, not an observed market price.\",\"whatChanged\":\"The published funding index moved to 45, 0.2 points lower than in the previous letter. The source still separates a +41-point plumbing-versus-price gap, a dated reserve contribution of 11.0 points, and a 6.2% five-day event reading.\",\"nextCheck\":\"Compare the next published letter’s composite, regime, plumbing-versus-price gap, dated reserve contribution, and event reading. A changed combination—not one isolated number—would alter this interpretation.\",\"qualityGate\":\"PASSED\",\"method\":\"DETERMINISTIC_SOURCE_GROUNDED\",\"keyNumber\":{\"value\":\"45 out of 100\",\"label\":\"Seiche's funding score is 45 out of 100, in its EROSION regime, and is 0.\"}},\"sources\":[{\"id\":\"seiche:2026-09-08-daily\",\"label\":\"Seiche\",\"url\":\"https://seiche.info/dispatches/2026-09-08-daily\",\"fingerprint\":\"08172e35675f59e8b3860690a070e604c6edd1db97b1e64ba99d13d3c49614a5\"}]}},{\"id\":\"seiche:2026-09-07-daily\",\"url\":\"https://myquantdoesntspeakenglish.com/interpreted/seiche-2026-09-07-daily\",\"external_url\":\"https://seiche.info/dispatches/2026-09-07-daily\",\"title\":\"The Tell reads +46.7: plumbing at the 65th percentile of its own history, screens at the 18th\",\"summary\":\"Seiche's funding score is 45 out of 100, in its EROSION regime, and is unchanged from the previous letter. Its plumbing measures lead its market-price screens by +47 percentile points. The dated reserve path adds 11.0 points, and the five-business-day event reading is 6.4%.\",\"date_published\":\"2026-09-07T16:19:50.000Z\",\"tags\":[\"interpreted\",\"seiche\",\"dollar-funding-plumbing\",\"DERIVED\"],\"_mqdnse\":{\"schema\":\"mqdnse.web-feed-item.v1\",\"lane\":\"INTERPRETED\",\"product\":\"seiche\",\"beat\":\"dollar-funding-plumbing\",\"editorialClass\":\"desk_brief\",\"articleType\":\"desk_brief\",\"sourceRecordId\":\"seiche:2026-09-07-daily\",\"sourceUrl\":\"https://seiche.info/dispatches/2026-09-07-daily\",\"evidence\":{\"status\":\"DERIVED\",\"eventTime\":\"2026-09-07T00:00:00.000Z\",\"knowledgeTime\":\"2026-09-07T16:19:50.000Z\",\"publicationStatus\":\"PUBLISHED\",\"contribution\":\"dated_forward_test\",\"limitation\":\"The composite is a Seiche derivation, not an observed market price.\",\"sourceFingerprint\":\"533a50dae62096372af7ddd8f197ebab2aae43c015a4148f3342e7dfb0e13b0c\"},\"copy\":{\"state\":\"SOURCE_GROUNDED\",\"inEnglish\":\"Seiche's funding score is 45 out of 100, in its EROSION regime, and is unchanged from the previous letter. Its plumbing measures lead its market-price screens by +47 percentile points. The dated reserve path adds 11.0 points, and the five-business-day event reading is 6.4%.\",\"whyItMatters\":\"The headline composite did not move, while the source reports a +47-point plumbing-versus-price gap, a dated reserve contribution of 11.0 points, and a 6.4% event reading. That combination shows whether the published regime is broad-price confirmation or a more bounded plumbing-and-calendar signal; it is not a market forecast.\",\"uncertainty\":\"The composite is a Seiche derivation, not an observed market price.\",\"whatChanged\":\"The published funding index held at 45. The source still separates a +47-point plumbing-versus-price gap, a dated reserve contribution of 11.0 points, and a 6.4% five-day event reading.\",\"nextCheck\":\"Compare the next published letter’s composite, regime, plumbing-versus-price gap, dated reserve contribution, and event reading. A changed combination—not one isolated number—would alter this interpretation.\",\"qualityGate\":\"PASSED\",\"method\":\"DETERMINISTIC_SOURCE_GROUNDED\",\"keyNumber\":{\"value\":\"45 out of 100\",\"label\":\"Seiche's funding score is 45 out of 100, in its EROSION regime, and is unchanged from the previous letter.\"}},\"sources\":[{\"id\":\"seiche:2026-09-07-daily\",\"label\":\"Seiche\",\"url\":\"https://seiche.info/dispatches/2026-09-07-daily\",\"fingerprint\":\"533a50dae62096372af7ddd8f197ebab2aae43c015a4148f3342e7dfb0e13b0c\"}]}}]}"
+                }
+              ],
+              "structuredContent": {
+                "schema": "myquant.editorial-content.v1",
+                "release": {
+                  "mcp_version": "2.1.1",
+                  "source_sha": "adc730a5a29e39930911249e20ea41e685482ffd"
+                },
+                "feed": {
+                  "url": "https://myquantdoesntspeakenglish.com/feed.json",
+                  "schema": "mqdnse.web-feed.v1",
+                  "item_schema": "mqdnse.web-feed-item.v1",
+                  "authority": "PUBLIC_EDITORIAL_ARCHIVE",
+                  "app_distribution": "SUSPENDED_SEPARATE_CHANNEL",
+                  "content_sha256": "6aa2b3ce11a877637630a90959a39ba268704c903f0d56794ca82b4e3922fb60",
+                  "item_count": 123,
+                  "fetched_at": "2026-10-28T14:35:43.203Z"
+                },
+                "query": "dollar funding",
+                "count": 5,
+                "stories": [
+                  {
+                    "id": "seiche:2026-09-24-daily",
+                    "url": "https://myquantdoesntspeakenglish.com/interpreted/seiche-2026-09-24-daily",
+                    "external_url": "https://seiche.info/dispatches/2026-09-24-daily",
+                    "title": "The plumbing looks tighter than markets price, but divergence is a warning to investigate, not proof of a squeeze",
+                    "summary": "Seiche's funding score is 44 out of 100, in its EROSION regime, and is 1.7 points higher than in the previous letter. Its plumbing measures lead its market-price screens by +52 percentile points. The dated reserve path adds 9.2 points, and the five-business-day event reading is 6.6%.",
+                    "date_published": "2026-09-24T15:47:53.000Z",
+                    "tags": [
+                      "interpreted",
+                      "seiche",
+                      "dollar-funding-plumbing",
+                      "DERIVED"
+                    ],
+                    "_mqdnse": {
+                      "schema": "mqdnse.web-feed-item.v1",
+                      "lane": "INTERPRETED",
+                      "product": "seiche",
+                      "beat": "dollar-funding-plumbing",
+                      "editorialClass": "full_story",
+                      "articleType": "full_story",
+                      "sourceRecordId": "seiche:2026-09-24-daily",
+                      "sourceUrl": "https://seiche.info/dispatches/2026-09-24-daily",
+                      "evidence": {
+                        "status": "DERIVED",
+                        "eventTime": "2026-09-23T00:00:00.000Z",
+                        "knowledgeTime": "2026-09-24T15:47:53.000Z",
+                        "publicationStatus": "PUBLISHED",
+                        "contribution": "fresh_longitudinal_delta · cross_signal_divergence · dated_forward_test",
+                        "limitation": "The composite is a Seiche derivation, not an observed market price.",
+                        "sourceFingerprint": "f08dd9ef8581d7aed77370402a40441d239aec7133c8e41118b1c14cff7376d4"
+                      },
+                      "copy": {
+                        "state": "SOURCE_GROUNDED",
+                        "inEnglish": "Seiche's funding score is 44 out of 100, in its EROSION regime, and is 1.7 points higher than in the previous letter. Its plumbing measures lead its market-price screens by +52 percentile points. The dated reserve path adds 9.2 points, and the five-business-day event reading is 6.6%.",
+                        "whyItMatters": "The headline composite moved 1.7 points higher, while the source reports a +52-point plumbing-versus-price gap, a dated reserve contribution of 9.2 points, and a 6.6% event reading. That combination shows whether the published regime is broad-price confirmation or a more bounded plumbing-and-calendar signal; it is not a market forecast.",
+                        "uncertainty": "The composite is a Seiche derivation, not an observed market price.",
+                        "whatChanged": "The published funding index moved to 44, 1.7 points higher than in the previous letter. The source still separates a +52-point plumbing-versus-price gap, a dated reserve contribution of 9.2 points, and a 6.6% five-day event reading.",
+                        "nextCheck": "Compare the next published letter’s composite, regime, plumbing-versus-price gap, dated reserve contribution, and event reading. A changed combination—not one isolated number—would alter this interpretation.",
+                        "qualityGate": "PASSED",
+                        "method": "DETERMINISTIC_SOURCE_GROUNDED",
+                        "keyNumber": {
+                          "value": "44 out of 100",
+                          "label": "Seiche's funding score is 44 out of 100, in its EROSION regime, and is 1."
+                        }
+                      },
+                      "sources": [
+                        {
+                          "id": "seiche:2026-09-24-daily",
+                          "label": "Seiche",
+                          "url": "https://seiche.info/dispatches/2026-09-24-daily",
+                          "fingerprint": "f08dd9ef8581d7aed77370402a40441d239aec7133c8e41118b1c14cff7376d4"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": "seiche:2026-09-15-daily",
+                    "url": "https://myquantdoesntspeakenglish.com/interpreted/seiche-2026-09-15-daily",
+                    "external_url": "https://seiche.info/dispatches/2026-09-15-daily",
+                    "title": "ON RRP take-up wakes to 1.42 $B overnight: 2.9 sigma on a near-zero base, not a large flow",
+                    "summary": "Seiche's funding score is 44 out of 100, in its EROSION regime, and is 1.8 points higher than in the previous letter. Its plumbing measures lead its market-price screens by +19 percentile points. The dated reserve path adds 11.0 points, and the five-business-day event reading is 5.7%.",
+                    "date_published": "2026-09-15T15:31:24.000Z",
+                    "tags": [
+                      "interpreted",
+                      "seiche",
+                      "dollar-funding-plumbing",
+                      "DERIVED"
+                    ],
+                    "_mqdnse": {
+                      "schema": "mqdnse.web-feed-item.v1",
+                      "lane": "INTERPRETED",
+                      "product": "seiche",
+                      "beat": "dollar-funding-plumbing",
+                      "editorialClass": "full_story",
+                      "articleType": "full_story",
+                      "sourceRecordId": "seiche:2026-09-15-daily",
+                      "sourceUrl": "https://seiche.info/dispatches/2026-09-15-daily",
+                      "evidence": {
+                        "status": "DERIVED",
+                        "eventTime": "2026-09-15T00:00:00.000Z",
+                        "knowledgeTime": "2026-09-15T15:31:24.000Z",
+                        "publicationStatus": "PUBLISHED",
+                        "contribution": "fresh_longitudinal_delta · dated_forward_test",
+                        "limitation": "The composite is a Seiche derivation, not an observed market price.",
+                        "sourceFingerprint": "d7f01129b20be93201930e3c93a888b9c023f9ea17f1de11c29ec0d0e4bdb11d"
+                      },
+                      "copy": {
+                        "state": "SOURCE_GROUNDED",
+                        "inEnglish": "Seiche's funding score is 44 out of 100, in its EROSION regime, and is 1.8 points higher than in the previous letter. Its plumbing measures lead its market-price screens by +19 percentile points. The dated reserve path adds 11.0 points, and the five-business-day event reading is 5.7%.",
+                        "whyItMatters": "The headline composite moved 1.8 points higher, while the source reports a +19-point plumbing-versus-price gap, a dated reserve contribution of 11.0 points, and a 5.7% event reading. That combination shows whether the published regime is broad-price confirmation or a more bounded plumbing-and-calendar signal; it is not a market forecast.",
+                        "uncertainty": "The composite is a Seiche derivation, not an observed market price.",
+                        "whatChanged": "The published funding index moved to 44, 1.8 points higher than in the previous letter. The source still separates a +19-point plumbing-versus-price gap, a dated reserve contribution of 11.0 points, and a 5.7% five-day event reading.",
+                        "nextCheck": "Compare the next published letter’s composite, regime, plumbing-versus-price gap, dated reserve contribution, and event reading. A changed combination—not one isolated number—would alter this interpretation.",
+                        "qualityGate": "PASSED",
+                        "method": "DETERMINISTIC_SOURCE_GROUNDED",
+                        "keyNumber": {
+                          "value": "44 out of 100",
+                          "label": "Seiche's funding score is 44 out of 100, in its EROSION regime, and is 1."
+                        }
+                      },
+                      "sources": [
+                        {
+                          "id": "seiche:2026-09-15-daily",
+                          "label": "Seiche",
+                          "url": "https://seiche.info/dispatches/2026-09-15-daily",
+                          "fingerprint": "d7f01129b20be93201930e3c93a888b9c023f9ea17f1de11c29ec0d0e4bdb11d"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": "seiche:2026-09-13-daily",
+                    "url": "https://myquantdoesntspeakenglish.com/interpreted/seiche-2026-09-13-daily",
+                    "external_url": "https://seiche.info/dispatches/2026-09-13-daily",
+                    "title": "Tax dates approach; overnight funding still shows little strain",
+                    "summary": "Seiche's funding score is 44 out of 100, in its EROSION regime, and is unchanged from the previous letter. Its plumbing measures lead its market-price screens by +20 percentile points. The dated reserve path adds 11.0 points, and the five-business-day event reading is 6.1%.",
+                    "date_published": "2026-09-13T01:41:27.000Z",
+                    "tags": [
+                      "interpreted",
+                      "seiche",
+                      "dollar-funding-plumbing",
+                      "DERIVED"
+                    ],
+                    "_mqdnse": {
+                      "schema": "mqdnse.web-feed-item.v1",
+                      "lane": "INTERPRETED",
+                      "product": "seiche",
+                      "beat": "dollar-funding-plumbing",
+                      "editorialClass": "full_story",
+                      "articleType": "full_story",
+                      "sourceRecordId": "seiche:2026-09-13-daily",
+                      "sourceUrl": "https://seiche.info/dispatches/2026-09-13-daily",
+                      "evidence": {
+                        "status": "DERIVED",
+                        "eventTime": "2026-09-12T00:00:00.000Z",
+                        "knowledgeTime": "2026-09-13T01:41:27.000Z",
+                        "publicationStatus": "PUBLISHED",
+                        "contribution": "fresh_longitudinal_delta · cross_signal_divergence · dated_forward_test",
+                        "limitation": "The composite is a Seiche derivation, not an observed market price.",
+                        "sourceFingerprint": "8e895f4c9ec14790a04b68fc5816a37d2f4662bc0a0f0835b8f0a64e9dad94db"
+                      },
+                      "copy": {
+                        "state": "SOURCE_GROUNDED",
+                        "inEnglish": "Seiche's funding score is 44 out of 100, in its EROSION regime, and is unchanged from the previous letter. Its plumbing measures lead its market-price screens by +20 percentile points. The dated reserve path adds 11.0 points, and the five-business-day event reading is 6.1%.",
+                        "whyItMatters": "The headline composite did not move, while the source reports a +20-point plumbing-versus-price gap, a dated reserve contribution of 11.0 points, and a 6.1% event reading. That combination shows whether the published regime is broad-price confirmation or a more bounded plumbing-and-calendar signal; it is not a market forecast.",
+                        "uncertainty": "The composite is a Seiche derivation, not an observed market price.",
+                        "whatChanged": "The published funding index held at 44. The source still separates a +20-point plumbing-versus-price gap, a dated reserve contribution of 11.0 points, and a 6.1% five-day event reading.",
+                        "nextCheck": "Compare the next published letter’s composite, regime, plumbing-versus-price gap, dated reserve contribution, and event reading. A changed combination—not one isolated number—would alter this interpretation.",
+                        "qualityGate": "PASSED",
+                        "method": "DETERMINISTIC_SOURCE_GROUNDED",
+                        "keyNumber": {
+                          "value": "44 out of 100",
+                          "label": "Seiche's funding score is 44 out of 100, in its EROSION regime, and is unchanged from the previous letter."
+                        }
+                      },
+                      "sources": [
+                        {
+                          "id": "seiche:2026-09-13-daily",
+                          "label": "Seiche",
+                          "url": "https://seiche.info/dispatches/2026-09-13-daily",
+                          "fingerprint": "8e895f4c9ec14790a04b68fc5816a37d2f4662bc0a0f0835b8f0a64e9dad94db"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": "seiche:2026-09-08-daily",
+                    "url": "https://myquantdoesntspeakenglish.com/interpreted/seiche-2026-09-08-daily",
+                    "external_url": "https://seiche.info/dispatches/2026-09-08-daily",
+                    "title": "SRF accepted wakes to 0.02 $B overnight: 13.5 sigma on a near-zero base, not a large flow",
+                    "summary": "Seiche's funding score is 45 out of 100, in its EROSION regime, and is 0.2 points lower than in the previous letter. Its plumbing measures lead its market-price screens by +41 percentile points. The dated reserve path adds 11.0 points, and the five-business-day event reading is 6.2%.",
+                    "date_published": "2026-09-08T14:56:05.000Z",
+                    "tags": [
+                      "interpreted",
+                      "seiche",
+                      "dollar-funding-plumbing",
+                      "DERIVED"
+                    ],
+                    "_mqdnse": {
+                      "schema": "mqdnse.web-feed-item.v1",
+                      "lane": "INTERPRETED",
+                      "product": "seiche",
+                      "beat": "dollar-funding-plumbing",
+                      "editorialClass": "full_story",
+                      "articleType": "full_story",
+                      "sourceRecordId": "seiche:2026-09-08-daily",
+                      "sourceUrl": "https://seiche.info/dispatches/2026-09-08-daily",
+                      "evidence": {
+                        "status": "DERIVED",
+                        "eventTime": "2026-09-08T00:00:00.000Z",
+                        "knowledgeTime": "2026-09-08T14:56:05.000Z",
+                        "publicationStatus": "PUBLISHED",
+                        "contribution": "fresh_longitudinal_delta · cross_signal_divergence · dated_forward_test",
+                        "limitation": "The composite is a Seiche derivation, not an observed market price.",
+                        "sourceFingerprint": "08172e35675f59e8b3860690a070e604c6edd1db97b1e64ba99d13d3c49614a5"
+                      },
+                      "copy": {
+                        "state": "SOURCE_GROUNDED",
+                        "inEnglish": "Seiche's funding score is 45 out of 100, in its EROSION regime, and is 0.2 points lower than in the previous letter. Its plumbing measures lead its market-price screens by +41 percentile points. The dated reserve path adds 11.0 points, and the five-business-day event reading is 6.2%.",
+                        "whyItMatters": "The headline composite moved 0.2 points lower, while the source reports a +41-point plumbing-versus-price gap, a dated reserve contribution of 11.0 points, and a 6.2% event reading. That combination shows whether the published regime is broad-price confirmation or a more bounded plumbing-and-calendar signal; it is not a market forecast.",
+                        "uncertainty": "The composite is a Seiche derivation, not an observed market price.",
+                        "whatChanged": "The published funding index moved to 45, 0.2 points lower than in the previous letter. The source still separates a +41-point plumbing-versus-price gap, a dated reserve contribution of 11.0 points, and a 6.2% five-day event reading.",
+                        "nextCheck": "Compare the next published letter’s composite, regime, plumbing-versus-price gap, dated reserve contribution, and event reading. A changed combination—not one isolated number—would alter this interpretation.",
+                        "qualityGate": "PASSED",
+                        "method": "DETERMINISTIC_SOURCE_GROUNDED",
+                        "keyNumber": {
+                          "value": "45 out of 100",
+                          "label": "Seiche's funding score is 45 out of 100, in its EROSION regime, and is 0."
+                        }
+                      },
+                      "sources": [
+                        {
+                          "id": "seiche:2026-09-08-daily",
+                          "label": "Seiche",
+                          "url": "https://seiche.info/dispatches/2026-09-08-daily",
+                          "fingerprint": "08172e35675f59e8b3860690a070e604c6edd1db97b1e64ba99d13d3c49614a5"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": "seiche:2026-09-07-daily",
+                    "url": "https://myquantdoesntspeakenglish.com/interpreted/seiche-2026-09-07-daily",
+                    "external_url": "https://seiche.info/dispatches/2026-09-07-daily",
+                    "title": "The Tell reads +46.7: plumbing at the 65th percentile of its own history, screens at the 18th",
+                    "summary": "Seiche's funding score is 45 out of 100, in its EROSION regime, and is unchanged from the previous letter. Its plumbing measures lead its market-price screens by +47 percentile points. The dated reserve path adds 11.0 points, and the five-business-day event reading is 6.4%.",
+                    "date_published": "2026-09-07T16:19:50.000Z",
+                    "tags": [
+                      "interpreted",
+                      "seiche",
+                      "dollar-funding-plumbing",
+                      "DERIVED"
+                    ],
+                    "_mqdnse": {
+                      "schema": "mqdnse.web-feed-item.v1",
+                      "lane": "INTERPRETED",
+                      "product": "seiche",
+                      "beat": "dollar-funding-plumbing",
+                      "editorialClass": "desk_brief",
+                      "articleType": "desk_brief",
+                      "sourceRecordId": "seiche:2026-09-07-daily",
+                      "sourceUrl": "https://seiche.info/dispatches/2026-09-07-daily",
+                      "evidence": {
+                        "status": "DERIVED",
+                        "eventTime": "2026-09-07T00:00:00.000Z",
+                        "knowledgeTime": "2026-09-07T16:19:50.000Z",
+                        "publicationStatus": "PUBLISHED",
+                        "contribution": "dated_forward_test",
+                        "limitation": "The composite is a Seiche derivation, not an observed market price.",
+                        "sourceFingerprint": "533a50dae62096372af7ddd8f197ebab2aae43c015a4148f3342e7dfb0e13b0c"
+                      },
+                      "copy": {
+                        "state": "SOURCE_GROUNDED",
+                        "inEnglish": "Seiche's funding score is 45 out of 100, in its EROSION regime, and is unchanged from the previous letter. Its plumbing measures lead its market-price screens by +47 percentile points. The dated reserve path adds 11.0 points, and the five-business-day event reading is 6.4%.",
+                        "whyItMatters": "The headline composite did not move, while the source reports a +47-point plumbing-versus-price gap, a dated reserve contribution of 11.0 points, and a 6.4% event reading. That combination shows whether the published regime is broad-price confirmation or a more bounded plumbing-and-calendar signal; it is not a market forecast.",
+                        "uncertainty": "The composite is a Seiche derivation, not an observed market price.",
+                        "whatChanged": "The published funding index held at 45. The source still separates a +47-point plumbing-versus-price gap, a dated reserve contribution of 11.0 points, and a 6.4% five-day event reading.",
+                        "nextCheck": "Compare the next published letter’s composite, regime, plumbing-versus-price gap, dated reserve contribution, and event reading. A changed combination—not one isolated number—would alter this interpretation.",
+                        "qualityGate": "PASSED",
+                        "method": "DETERMINISTIC_SOURCE_GROUNDED",
+                        "keyNumber": {
+                          "value": "45 out of 100",
+                          "label": "Seiche's funding score is 45 out of 100, in its EROSION regime, and is unchanged from the previous letter."
+                        }
+                      },
+                      "sources": [
+                        {
+                          "id": "seiche:2026-09-07-daily",
+                          "label": "Seiche",
+                          "url": "https://seiche.info/dispatches/2026-09-07-daily",
+                          "fingerprint": "533a50dae62096372af7ddd8f197ebab2aae43c015a4148f3342e7dfb0e13b0c"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "isError": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Exact story retrieval",
+      "prompt": "List the newest available MyQuant story, then retrieve it using the exact returned story ID and summarize its evidence limits.",
+      "tools_triggered": "latest_stories, get_story",
+      "expected_behavior": "Discover the ID with limit 1 and copy it exactly into get_story. If no story is returned, stop and report the gap.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:43.013311+00:00",
+          "endpoint": "https://agents.seiche.info/products/myquant-editorial/mcp",
+          "tool": "latest_stories",
+          "arguments": {
+            "limit": 5
+          },
+          "elapsed_seconds": 0.582,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 3,
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"schema\":\"myquant.editorial-content.v1\",\"release\":{\"mcp_version\":\"2.1.1\",\"source_sha\":\"adc730a5a29e39930911249e20ea41e685482ffd\"},\"feed\":{\"url\":\"https://myquantdoesntspeakenglish.com/feed.json\",\"schema\":\"mqdnse.web-feed.v1\",\"item_schema\":\"mqdnse.web-feed-item.v1\",\"authority\":\"PUBLIC_EDITORIAL_ARCHIVE\",\"app_distribution\":\"SUSPENDED_SEPARATE_CHANNEL\",\"content_sha256\":\"6aa2b3ce11a877637630a90959a39ba268704c903f0d56794ca82b4e3922fb60\",\"item_count\":123,\"fetched_at\":\"2026-10-28T14:35:43.203Z\"},\"count\":5,\"stories\":[{\"id\":\"liquilens-undertow:2026-10-28\",\"url\":\"https://myquantdoesntspeakenglish.com/interpreted/liquilens-undertow-2026-10-28\",\"external_url\":\"https://liquilens-undertow.com/dispatch/2026-10-28.json\",\"title\":\"BSTOCK measure rises 54.7 percentile points; segment tiers hold.\",\"summary\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is binance_btc_funding_24h, at percentile 80.8 of its own history; the coolest is binance_btc_basis_bp, at 4.6. Inside HY the qualifying measures span 0.16 to 0.81; the tier is their mean. Read the measures, not just the tier. crclbusdt_peg_deviation moved from 39.0 to 93.7 of its own history between 2026-10-27 and 2026-10-28. This is a change in a published measure, not a validated composite or forecast.\",\"date_published\":\"2026-10-28T14:07:16.000Z\",\"tags\":[\"interpreted\",\"liquilens-undertow\",\"cross-market-liquidity\",\"DERIVED\"],\"_mqdnse\":{\"schema\":\"mqdnse.web-feed-item.v1\",\"lane\":\"INTERPRETED\",\"product\":\"liquilens-undertow\",\"beat\":\"cross-market-liquidity\",\"editorialClass\":\"full_story\",\"articleType\":\"full_story\",\"sourceRecordId\":\"liquilens-undertow:2026-10-28\",\"sourceUrl\":\"https://liquilens-undertow.com/dispatch/2026-10-28.json\",\"evidence\":{\"status\":\"DERIVED\",\"eventTime\":\"2026-10-28T00:00:00.000Z\",\"knowledgeTime\":\"2026-10-28T14:07:16.000Z\",\"publicationStatus\":\"PUBLISHED\",\"contribution\":\"published_measure_delta\",\"limitation\":\"PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.\",\"sourceFingerprint\":\"83f11a4e90f62b8a0f3f01579f711d9e8361ea57677299f6045bd1d4e9f214e6\"},\"copy\":{\"state\":\"SOURCE_GROUNDED\",\"inEnglish\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is binance_btc_funding_24h, at percentile 80.8 of its own history; the coolest is binance_btc_basis_bp, at 4.6. Inside HY the qualifying measures span 0.16 to 0.81; the tier is their mean. Read the measures, not just the tier. crclbusdt_peg_deviation moved from 39.0 to 93.7 of its own history between 2026-10-27 and 2026-10-28. This is a change in a published measure, not a validated composite or forecast.\",\"whyItMatters\":\"Market-liquidity evidence matters when several holders may need the same exit, but a source tier is only as broad as its published coverage. Read the qualifying measures and missing segments before drawing a cross-market conclusion.\",\"uncertainty\":\"PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.\",\"whatChanged\":\"This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.\",\"nextCheck\":\"Check the next source board for coverage, tier changes, internal measure disagreement, and a change in the separate funding overlay. Missing segments must remain unknown rather than turning green.\",\"qualityGate\":\"PASSED\",\"method\":\"DETERMINISTIC_SOURCE_GROUNDED\",\"keyNumber\":{\"value\":\"4 of 9\",\"label\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld.\"}},\"sources\":[{\"id\":\"liquilens-undertow:2026-10-28\",\"label\":\"Undertow\",\"url\":\"https://liquilens-undertow.com/dispatch/2026-10-28.json\",\"fingerprint\":\"83f11a4e90f62b8a0f3f01579f711d9e8361ea57677299f6045bd1d4e9f214e6\"}]}},{\"id\":\"liquilens-undertow:2026-10-27\",\"url\":\"https://myquantdoesntspeakenglish.com/interpreted/liquilens-undertow-2026-10-27\",\"external_url\":\"https://liquilens-undertow.com/dispatch/2026-10-27.json\",\"title\":\"BSTOCK measure rises 47.3 percentile points; segment tiers hold.\",\"summary\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is binance_btc_funding_24h, at percentile 95.2 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.81; the tier is their mean. Read the measures, not just the tier. crclbusdt_depth_1pct_quote moved from 3.8 to 51.0 of its own history between 2026-10-26 and 2026-10-27. This is a change in a published measure, not a validated composite or forecast.\",\"date_published\":\"2026-10-27T23:07:49.000Z\",\"tags\":[\"interpreted\",\"liquilens-undertow\",\"cross-market-liquidity\",\"DERIVED\"],\"_mqdnse\":{\"schema\":\"mqdnse.web-feed-item.v1\",\"lane\":\"INTERPRETED\",\"product\":\"liquilens-undertow\",\"beat\":\"cross-market-liquidity\",\"editorialClass\":\"full_story\",\"articleType\":\"full_story\",\"sourceRecordId\":\"liquilens-undertow:2026-10-27\",\"sourceUrl\":\"https://liquilens-undertow.com/dispatch/2026-10-27.json\",\"evidence\":{\"status\":\"DERIVED\",\"eventTime\":\"2026-10-27T00:00:00.000Z\",\"knowledgeTime\":\"2026-10-27T23:07:49.000Z\",\"publicationStatus\":\"PUBLISHED\",\"contribution\":\"published_measure_delta\",\"limitation\":\"PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.\",\"sourceFingerprint\":\"68ca2af5614ab2c1af887d0f95a9028e56e30661a82411d77aafc6e5d3d6d8b2\"},\"copy\":{\"state\":\"SOURCE_GROUNDED\",\"inEnglish\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is binance_btc_funding_24h, at percentile 95.2 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.81; the tier is their mean. Read the measures, not just the tier. crclbusdt_depth_1pct_quote moved from 3.8 to 51.0 of its own history between 2026-10-26 and 2026-10-27. This is a change in a published measure, not a validated composite or forecast.\",\"whyItMatters\":\"Market-liquidity evidence matters when several holders may need the same exit, but a source tier is only as broad as its published coverage. Read the qualifying measures and missing segments before drawing a cross-market conclusion.\",\"uncertainty\":\"PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.\",\"whatChanged\":\"This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.\",\"nextCheck\":\"Check the next source board for coverage, tier changes, internal measure disagreement, and a change in the separate funding overlay. Missing segments must remain unknown rather than turning green.\",\"qualityGate\":\"PASSED\",\"method\":\"DETERMINISTIC_SOURCE_GROUNDED\",\"keyNumber\":{\"value\":\"4 of 9\",\"label\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld.\"}},\"sources\":[{\"id\":\"liquilens-undertow:2026-10-27\",\"label\":\"Undertow\",\"url\":\"https://liquilens-undertow.com/dispatch/2026-10-27.json\",\"fingerprint\":\"68ca2af5614ab2c1af887d0f95a9028e56e30661a82411d77aafc6e5d3d6d8b2\"}]}},{\"id\":\"liquilens-india-breadth-2026-10-28\",\"url\":\"https://myquantdoesntspeakenglish.com/interpreted/liquilens-india-breadth-2026-10-28\",\"external_url\":\"https://liquilens.in/desk/#liquilens-india-breadth-2026-10-28\",\"title\":\"1 of 3 covered Indian institutions sit above green\",\"summary\":\"1 of the 3 covered Indian institutions are in a review tier above green. This is a count inside the freshly checked list, not a score for the whole financial system.\",\"date_published\":\"2026-10-27T20:17:22.000Z\",\"tags\":[\"interpreted\",\"liquilens\",\"institution-risk\",\"DERIVED\"],\"_mqdnse\":{\"schema\":\"mqdnse.web-feed-item.v1\",\"lane\":\"INTERPRETED\",\"product\":\"liquilens\",\"beat\":\"institution-risk\",\"editorialClass\":\"desk_brief\",\"articleType\":\"desk_brief\",\"sourceRecordId\":\"liquilens-india-breadth-2026-10-28\",\"sourceUrl\":\"https://liquilens.in/desk/#liquilens-india-breadth-2026-10-28\",\"evidence\":{\"status\":\"DERIVED\",\"eventTime\":\"2026-05-30T00:00:00.000Z\",\"knowledgeTime\":\"2026-10-27T20:17:22.000Z\",\"publicationStatus\":\"PUBLISHED\",\"contribution\":\"cross_sectional_review_breadth\",\"limitation\":\"The denominator is the fresh-vetted board, not all regulated institutions.\",\"sourceFingerprint\":\"e841529e41e717358ca3b632b38726222690c64cfd1f7c8fb3a68ffab1109690\"},\"copy\":{\"state\":\"SOURCE_GROUNDED\",\"inEnglish\":\"1 of the 3 covered Indian institutions are in a review tier above green. This is a count inside the freshly checked list, not a score for the whole financial system.\",\"whyItMatters\":\"The count shows how broadly a review flag appears inside the covered set. It helps prioritise evidence review, but the denominator is not the full regulated system and the count is not a system-wide risk score.\",\"uncertainty\":\"The denominator is the fresh-vetted board, not all regulated institutions.\",\"whatChanged\":\"This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.\",\"nextCheck\":\"Inspect the next source revision for changes to the denominator, peer set, reporting vintage, evidence status, or underlying public record before treating this screen as persistent.\",\"qualityGate\":\"PASSED\",\"method\":\"DETERMINISTIC_SOURCE_GROUNDED\",\"keyNumber\":{\"value\":\"1\",\"label\":\"1 of the 3 covered Indian institutions are in a review tier above green.\"}},\"sources\":[{\"id\":\"liquilens-india-breadth-2026-10-28\",\"label\":\"LiquiLens\",\"url\":\"https://liquilens.in/desk/#liquilens-india-breadth-2026-10-28\",\"fingerprint\":\"e841529e41e717358ca3b632b38726222690c64cfd1f7c8fb3a68ffab1109690\"}]}},{\"id\":\"liquilens-undertow:2026-10-26\",\"url\":\"https://myquantdoesntspeakenglish.com/interpreted/liquilens-undertow-2026-10-26\",\"external_url\":\"https://liquilens-undertow.com/dispatch/2026-10-26.json\",\"title\":\"Funding moves EROSION to STRAIN; segment tiers hold.\",\"summary\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is HY OAS (BAMLH0A0HYM2), at percentile 84.5 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.84; the tier is their mean. Read the measures, not just the tier.\",\"date_published\":\"2026-10-26T23:07:06.000Z\",\"tags\":[\"interpreted\",\"liquilens-undertow\",\"cross-market-liquidity\",\"DERIVED\"],\"_mqdnse\":{\"schema\":\"mqdnse.web-feed-item.v1\",\"lane\":\"INTERPRETED\",\"product\":\"liquilens-undertow\",\"beat\":\"cross-market-liquidity\",\"editorialClass\":\"full_story\",\"articleType\":\"full_story\",\"sourceRecordId\":\"liquilens-undertow:2026-10-26\",\"sourceUrl\":\"https://liquilens-undertow.com/dispatch/2026-10-26.json\",\"evidence\":{\"status\":\"DERIVED\",\"eventTime\":\"2026-10-26T00:00:00.000Z\",\"knowledgeTime\":\"2026-10-26T23:07:06.000Z\",\"publicationStatus\":\"PUBLISHED\",\"contribution\":\"funding_regime_change\",\"limitation\":\"PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.\",\"sourceFingerprint\":\"04160815b91f1abf5ba7418e172b59794392c8bf426f5228f6417c91741ffad4\"},\"copy\":{\"state\":\"SOURCE_GROUNDED\",\"inEnglish\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is HY OAS (BAMLH0A0HYM2), at percentile 84.5 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.84; the tier is their mean. Read the measures, not just the tier.\",\"whyItMatters\":\"Market-liquidity evidence matters when several holders may need the same exit, but a source tier is only as broad as its published coverage. Read the qualifying measures and missing segments before drawing a cross-market conclusion.\",\"uncertainty\":\"PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.\",\"whatChanged\":\"This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.\",\"nextCheck\":\"Check the next source board for coverage, tier changes, internal measure disagreement, and a change in the separate funding overlay. Missing segments must remain unknown rather than turning green.\",\"qualityGate\":\"PASSED\",\"method\":\"DETERMINISTIC_SOURCE_GROUNDED\",\"keyNumber\":{\"value\":\"4 of 9\",\"label\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld.\"}},\"sources\":[{\"id\":\"liquilens-undertow:2026-10-26\",\"label\":\"Undertow\",\"url\":\"https://liquilens-undertow.com/dispatch/2026-10-26.json\",\"fingerprint\":\"04160815b91f1abf5ba7418e172b59794392c8bf426f5228f6417c91741ffad4\"}]}},{\"id\":\"liquilens-undertow:2026-10-25\",\"url\":\"https://myquantdoesntspeakenglish.com/interpreted/liquilens-undertow-2026-10-25\",\"external_url\":\"https://liquilens-undertow.com/dispatch/2026-10-25.json\",\"title\":\"CRYPTO moves tighter by 0.09 inside NORMAL; funding reads EROSION.\",\"summary\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads EROSION. The hottest qualifying measure is binance_btc_basis_bp, at percentile 99.5 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.85; the tier is their mean. Read the measures, not just the tier.\",\"date_published\":\"2026-10-25T23:07:29.000Z\",\"tags\":[\"interpreted\",\"liquilens-undertow\",\"cross-market-liquidity\",\"DERIVED\"],\"_mqdnse\":{\"schema\":\"mqdnse.web-feed-item.v1\",\"lane\":\"INTERPRETED\",\"product\":\"liquilens-undertow\",\"beat\":\"cross-market-liquidity\",\"editorialClass\":\"full_story\",\"articleType\":\"full_story\",\"sourceRecordId\":\"liquilens-undertow:2026-10-25\",\"sourceUrl\":\"https://liquilens-undertow.com/dispatch/2026-10-25.json\",\"evidence\":{\"status\":\"DERIVED\",\"eventTime\":\"2026-10-25T00:00:00.000Z\",\"knowledgeTime\":\"2026-10-25T23:07:29.000Z\",\"publicationStatus\":\"PUBLISHED\",\"contribution\":\"within_tier_score_delta\",\"limitation\":\"PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.\",\"sourceFingerprint\":\"b9a652ade27d45150a84d2aeacfa16809ade0b24d5cda6ed09a89ae5029dee4a\"},\"copy\":{\"state\":\"SOURCE_GROUNDED\",\"inEnglish\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads EROSION. The hottest qualifying measure is binance_btc_basis_bp, at percentile 99.5 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.85; the tier is their mean. Read the measures, not just the tier.\",\"whyItMatters\":\"Market-liquidity evidence matters when several holders may need the same exit, but a source tier is only as broad as its published coverage. Read the qualifying measures and missing segments before drawing a cross-market conclusion.\",\"uncertainty\":\"PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.\",\"whatChanged\":\"This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.\",\"nextCheck\":\"Check the next source board for coverage, tier changes, internal measure disagreement, and a change in the separate funding overlay. Missing segments must remain unknown rather than turning green.\",\"qualityGate\":\"PASSED\",\"method\":\"DETERMINISTIC_SOURCE_GROUNDED\",\"keyNumber\":{\"value\":\"4 of 9\",\"label\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld.\"}},\"sources\":[{\"id\":\"liquilens-undertow:2026-10-25\",\"label\":\"Undertow\",\"url\":\"https://liquilens-undertow.com/dispatch/2026-10-25.json\",\"fingerprint\":\"b9a652ade27d45150a84d2aeacfa16809ade0b24d5cda6ed09a89ae5029dee4a\"}]}}]}"
+                }
+              ],
+              "structuredContent": {
+                "schema": "myquant.editorial-content.v1",
+                "release": {
+                  "mcp_version": "2.1.1",
+                  "source_sha": "adc730a5a29e39930911249e20ea41e685482ffd"
+                },
+                "feed": {
+                  "url": "https://myquantdoesntspeakenglish.com/feed.json",
+                  "schema": "mqdnse.web-feed.v1",
+                  "item_schema": "mqdnse.web-feed-item.v1",
+                  "authority": "PUBLIC_EDITORIAL_ARCHIVE",
+                  "app_distribution": "SUSPENDED_SEPARATE_CHANNEL",
+                  "content_sha256": "6aa2b3ce11a877637630a90959a39ba268704c903f0d56794ca82b4e3922fb60",
+                  "item_count": 123,
+                  "fetched_at": "2026-10-28T14:35:43.203Z"
+                },
+                "count": 5,
+                "stories": [
+                  {
+                    "id": "liquilens-undertow:2026-10-28",
+                    "url": "https://myquantdoesntspeakenglish.com/interpreted/liquilens-undertow-2026-10-28",
+                    "external_url": "https://liquilens-undertow.com/dispatch/2026-10-28.json",
+                    "title": "BSTOCK measure rises 54.7 percentile points; segment tiers hold.",
+                    "summary": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is binance_btc_funding_24h, at percentile 80.8 of its own history; the coolest is binance_btc_basis_bp, at 4.6. Inside HY the qualifying measures span 0.16 to 0.81; the tier is their mean. Read the measures, not just the tier. crclbusdt_peg_deviation moved from 39.0 to 93.7 of its own history between 2026-10-27 and 2026-10-28. This is a change in a published measure, not a validated composite or forecast.",
+                    "date_published": "2026-10-28T14:07:16.000Z",
+                    "tags": [
+                      "interpreted",
+                      "liquilens-undertow",
+                      "cross-market-liquidity",
+                      "DERIVED"
+                    ],
+                    "_mqdnse": {
+                      "schema": "mqdnse.web-feed-item.v1",
+                      "lane": "INTERPRETED",
+                      "product": "liquilens-undertow",
+                      "beat": "cross-market-liquidity",
+                      "editorialClass": "full_story",
+                      "articleType": "full_story",
+                      "sourceRecordId": "liquilens-undertow:2026-10-28",
+                      "sourceUrl": "https://liquilens-undertow.com/dispatch/2026-10-28.json",
+                      "evidence": {
+                        "status": "DERIVED",
+                        "eventTime": "2026-10-28T00:00:00.000Z",
+                        "knowledgeTime": "2026-10-28T14:07:16.000Z",
+                        "publicationStatus": "PUBLISHED",
+                        "contribution": "published_measure_delta",
+                        "limitation": "PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.",
+                        "sourceFingerprint": "83f11a4e90f62b8a0f3f01579f711d9e8361ea57677299f6045bd1d4e9f214e6"
+                      },
+                      "copy": {
+                        "state": "SOURCE_GROUNDED",
+                        "inEnglish": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is binance_btc_funding_24h, at percentile 80.8 of its own history; the coolest is binance_btc_basis_bp, at 4.6. Inside HY the qualifying measures span 0.16 to 0.81; the tier is their mean. Read the measures, not just the tier. crclbusdt_peg_deviation moved from 39.0 to 93.7 of its own history between 2026-10-27 and 2026-10-28. This is a change in a published measure, not a validated composite or forecast.",
+                        "whyItMatters": "Market-liquidity evidence matters when several holders may need the same exit, but a source tier is only as broad as its published coverage. Read the qualifying measures and missing segments before drawing a cross-market conclusion.",
+                        "uncertainty": "PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.",
+                        "whatChanged": "This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.",
+                        "nextCheck": "Check the next source board for coverage, tier changes, internal measure disagreement, and a change in the separate funding overlay. Missing segments must remain unknown rather than turning green.",
+                        "qualityGate": "PASSED",
+                        "method": "DETERMINISTIC_SOURCE_GROUNDED",
+                        "keyNumber": {
+                          "value": "4 of 9",
+                          "label": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld."
+                        }
+                      },
+                      "sources": [
+                        {
+                          "id": "liquilens-undertow:2026-10-28",
+                          "label": "Undertow",
+                          "url": "https://liquilens-undertow.com/dispatch/2026-10-28.json",
+                          "fingerprint": "83f11a4e90f62b8a0f3f01579f711d9e8361ea57677299f6045bd1d4e9f214e6"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": "liquilens-undertow:2026-10-27",
+                    "url": "https://myquantdoesntspeakenglish.com/interpreted/liquilens-undertow-2026-10-27",
+                    "external_url": "https://liquilens-undertow.com/dispatch/2026-10-27.json",
+                    "title": "BSTOCK measure rises 47.3 percentile points; segment tiers hold.",
+                    "summary": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is binance_btc_funding_24h, at percentile 95.2 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.81; the tier is their mean. Read the measures, not just the tier. crclbusdt_depth_1pct_quote moved from 3.8 to 51.0 of its own history between 2026-10-26 and 2026-10-27. This is a change in a published measure, not a validated composite or forecast.",
+                    "date_published": "2026-10-27T23:07:49.000Z",
+                    "tags": [
+                      "interpreted",
+                      "liquilens-undertow",
+                      "cross-market-liquidity",
+                      "DERIVED"
+                    ],
+                    "_mqdnse": {
+                      "schema": "mqdnse.web-feed-item.v1",
+                      "lane": "INTERPRETED",
+                      "product": "liquilens-undertow",
+                      "beat": "cross-market-liquidity",
+                      "editorialClass": "full_story",
+                      "articleType": "full_story",
+                      "sourceRecordId": "liquilens-undertow:2026-10-27",
+                      "sourceUrl": "https://liquilens-undertow.com/dispatch/2026-10-27.json",
+                      "evidence": {
+                        "status": "DERIVED",
+                        "eventTime": "2026-10-27T00:00:00.000Z",
+                        "knowledgeTime": "2026-10-27T23:07:49.000Z",
+                        "publicationStatus": "PUBLISHED",
+                        "contribution": "published_measure_delta",
+                        "limitation": "PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.",
+                        "sourceFingerprint": "68ca2af5614ab2c1af887d0f95a9028e56e30661a82411d77aafc6e5d3d6d8b2"
+                      },
+                      "copy": {
+                        "state": "SOURCE_GROUNDED",
+                        "inEnglish": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is binance_btc_funding_24h, at percentile 95.2 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.81; the tier is their mean. Read the measures, not just the tier. crclbusdt_depth_1pct_quote moved from 3.8 to 51.0 of its own history between 2026-10-26 and 2026-10-27. This is a change in a published measure, not a validated composite or forecast.",
+                        "whyItMatters": "Market-liquidity evidence matters when several holders may need the same exit, but a source tier is only as broad as its published coverage. Read the qualifying measures and missing segments before drawing a cross-market conclusion.",
+                        "uncertainty": "PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.",
+                        "whatChanged": "This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.",
+                        "nextCheck": "Check the next source board for coverage, tier changes, internal measure disagreement, and a change in the separate funding overlay. Missing segments must remain unknown rather than turning green.",
+                        "qualityGate": "PASSED",
+                        "method": "DETERMINISTIC_SOURCE_GROUNDED",
+                        "keyNumber": {
+                          "value": "4 of 9",
+                          "label": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld."
+                        }
+                      },
+                      "sources": [
+                        {
+                          "id": "liquilens-undertow:2026-10-27",
+                          "label": "Undertow",
+                          "url": "https://liquilens-undertow.com/dispatch/2026-10-27.json",
+                          "fingerprint": "68ca2af5614ab2c1af887d0f95a9028e56e30661a82411d77aafc6e5d3d6d8b2"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": "liquilens-india-breadth-2026-10-28",
+                    "url": "https://myquantdoesntspeakenglish.com/interpreted/liquilens-india-breadth-2026-10-28",
+                    "external_url": "https://liquilens.in/desk/#liquilens-india-breadth-2026-10-28",
+                    "title": "1 of 3 covered Indian institutions sit above green",
+                    "summary": "1 of the 3 covered Indian institutions are in a review tier above green. This is a count inside the freshly checked list, not a score for the whole financial system.",
+                    "date_published": "2026-10-27T20:17:22.000Z",
+                    "tags": [
+                      "interpreted",
+                      "liquilens",
+                      "institution-risk",
+                      "DERIVED"
+                    ],
+                    "_mqdnse": {
+                      "schema": "mqdnse.web-feed-item.v1",
+                      "lane": "INTERPRETED",
+                      "product": "liquilens",
+                      "beat": "institution-risk",
+                      "editorialClass": "desk_brief",
+                      "articleType": "desk_brief",
+                      "sourceRecordId": "liquilens-india-breadth-2026-10-28",
+                      "sourceUrl": "https://liquilens.in/desk/#liquilens-india-breadth-2026-10-28",
+                      "evidence": {
+                        "status": "DERIVED",
+                        "eventTime": "2026-05-30T00:00:00.000Z",
+                        "knowledgeTime": "2026-10-27T20:17:22.000Z",
+                        "publicationStatus": "PUBLISHED",
+                        "contribution": "cross_sectional_review_breadth",
+                        "limitation": "The denominator is the fresh-vetted board, not all regulated institutions.",
+                        "sourceFingerprint": "e841529e41e717358ca3b632b38726222690c64cfd1f7c8fb3a68ffab1109690"
+                      },
+                      "copy": {
+                        "state": "SOURCE_GROUNDED",
+                        "inEnglish": "1 of the 3 covered Indian institutions are in a review tier above green. This is a count inside the freshly checked list, not a score for the whole financial system.",
+                        "whyItMatters": "The count shows how broadly a review flag appears inside the covered set. It helps prioritise evidence review, but the denominator is not the full regulated system and the count is not a system-wide risk score.",
+                        "uncertainty": "The denominator is the fresh-vetted board, not all regulated institutions.",
+                        "whatChanged": "This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.",
+                        "nextCheck": "Inspect the next source revision for changes to the denominator, peer set, reporting vintage, evidence status, or underlying public record before treating this screen as persistent.",
+                        "qualityGate": "PASSED",
+                        "method": "DETERMINISTIC_SOURCE_GROUNDED",
+                        "keyNumber": {
+                          "value": "1",
+                          "label": "1 of the 3 covered Indian institutions are in a review tier above green."
+                        }
+                      },
+                      "sources": [
+                        {
+                          "id": "liquilens-india-breadth-2026-10-28",
+                          "label": "LiquiLens",
+                          "url": "https://liquilens.in/desk/#liquilens-india-breadth-2026-10-28",
+                          "fingerprint": "e841529e41e717358ca3b632b38726222690c64cfd1f7c8fb3a68ffab1109690"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": "liquilens-undertow:2026-10-26",
+                    "url": "https://myquantdoesntspeakenglish.com/interpreted/liquilens-undertow-2026-10-26",
+                    "external_url": "https://liquilens-undertow.com/dispatch/2026-10-26.json",
+                    "title": "Funding moves EROSION to STRAIN; segment tiers hold.",
+                    "summary": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is HY OAS (BAMLH0A0HYM2), at percentile 84.5 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.84; the tier is their mean. Read the measures, not just the tier.",
+                    "date_published": "2026-10-26T23:07:06.000Z",
+                    "tags": [
+                      "interpreted",
+                      "liquilens-undertow",
+                      "cross-market-liquidity",
+                      "DERIVED"
+                    ],
+                    "_mqdnse": {
+                      "schema": "mqdnse.web-feed-item.v1",
+                      "lane": "INTERPRETED",
+                      "product": "liquilens-undertow",
+                      "beat": "cross-market-liquidity",
+                      "editorialClass": "full_story",
+                      "articleType": "full_story",
+                      "sourceRecordId": "liquilens-undertow:2026-10-26",
+                      "sourceUrl": "https://liquilens-undertow.com/dispatch/2026-10-26.json",
+                      "evidence": {
+                        "status": "DERIVED",
+                        "eventTime": "2026-10-26T00:00:00.000Z",
+                        "knowledgeTime": "2026-10-26T23:07:06.000Z",
+                        "publicationStatus": "PUBLISHED",
+                        "contribution": "funding_regime_change",
+                        "limitation": "PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.",
+                        "sourceFingerprint": "04160815b91f1abf5ba7418e172b59794392c8bf426f5228f6417c91741ffad4"
+                      },
+                      "copy": {
+                        "state": "SOURCE_GROUNDED",
+                        "inEnglish": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is HY OAS (BAMLH0A0HYM2), at percentile 84.5 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.84; the tier is their mean. Read the measures, not just the tier.",
+                        "whyItMatters": "Market-liquidity evidence matters when several holders may need the same exit, but a source tier is only as broad as its published coverage. Read the qualifying measures and missing segments before drawing a cross-market conclusion.",
+                        "uncertainty": "PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.",
+                        "whatChanged": "This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.",
+                        "nextCheck": "Check the next source board for coverage, tier changes, internal measure disagreement, and a change in the separate funding overlay. Missing segments must remain unknown rather than turning green.",
+                        "qualityGate": "PASSED",
+                        "method": "DETERMINISTIC_SOURCE_GROUNDED",
+                        "keyNumber": {
+                          "value": "4 of 9",
+                          "label": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld."
+                        }
+                      },
+                      "sources": [
+                        {
+                          "id": "liquilens-undertow:2026-10-26",
+                          "label": "Undertow",
+                          "url": "https://liquilens-undertow.com/dispatch/2026-10-26.json",
+                          "fingerprint": "04160815b91f1abf5ba7418e172b59794392c8bf426f5228f6417c91741ffad4"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": "liquilens-undertow:2026-10-25",
+                    "url": "https://myquantdoesntspeakenglish.com/interpreted/liquilens-undertow-2026-10-25",
+                    "external_url": "https://liquilens-undertow.com/dispatch/2026-10-25.json",
+                    "title": "CRYPTO moves tighter by 0.09 inside NORMAL; funding reads EROSION.",
+                    "summary": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads EROSION. The hottest qualifying measure is binance_btc_basis_bp, at percentile 99.5 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.85; the tier is their mean. Read the measures, not just the tier.",
+                    "date_published": "2026-10-25T23:07:29.000Z",
+                    "tags": [
+                      "interpreted",
+                      "liquilens-undertow",
+                      "cross-market-liquidity",
+                      "DERIVED"
+                    ],
+                    "_mqdnse": {
+                      "schema": "mqdnse.web-feed-item.v1",
+                      "lane": "INTERPRETED",
+                      "product": "liquilens-undertow",
+                      "beat": "cross-market-liquidity",
+                      "editorialClass": "full_story",
+                      "articleType": "full_story",
+                      "sourceRecordId": "liquilens-undertow:2026-10-25",
+                      "sourceUrl": "https://liquilens-undertow.com/dispatch/2026-10-25.json",
+                      "evidence": {
+                        "status": "DERIVED",
+                        "eventTime": "2026-10-25T00:00:00.000Z",
+                        "knowledgeTime": "2026-10-25T23:07:29.000Z",
+                        "publicationStatus": "PUBLISHED",
+                        "contribution": "within_tier_score_delta",
+                        "limitation": "PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.",
+                        "sourceFingerprint": "b9a652ade27d45150a84d2aeacfa16809ade0b24d5cda6ed09a89ae5029dee4a"
+                      },
+                      "copy": {
+                        "state": "SOURCE_GROUNDED",
+                        "inEnglish": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads EROSION. The hottest qualifying measure is binance_btc_basis_bp, at percentile 99.5 of its own history; the coolest is HY Corporate Bond Market Distress Index (NY Fed CMDI), at 16.1. Inside HY the qualifying measures span 0.16 to 0.85; the tier is their mean. Read the measures, not just the tier.",
+                        "whyItMatters": "Market-liquidity evidence matters when several holders may need the same exit, but a source tier is only as broad as its published coverage. Read the qualifying measures and missing segments before drawing a cross-market conclusion.",
+                        "uncertainty": "PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.",
+                        "whatChanged": "This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.",
+                        "nextCheck": "Check the next source board for coverage, tier changes, internal measure disagreement, and a change in the separate funding overlay. Missing segments must remain unknown rather than turning green.",
+                        "qualityGate": "PASSED",
+                        "method": "DETERMINISTIC_SOURCE_GROUNDED",
+                        "keyNumber": {
+                          "value": "4 of 9",
+                          "label": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld."
+                        }
+                      },
+                      "sources": [
+                        {
+                          "id": "liquilens-undertow:2026-10-25",
+                          "label": "Undertow",
+                          "url": "https://liquilens-undertow.com/dispatch/2026-10-25.json",
+                          "fingerprint": "b9a652ade27d45150a84d2aeacfa16809ade0b24d5cda6ed09a89ae5029dee4a"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "isError": false
+            }
+          }
+        },
+        {
+          "captured_at": "2026-10-28T14:37:21.082599+00:00",
+          "endpoint": "https://agents.seiche.info/products/myquant-editorial/mcp",
+          "tool": "get_story",
+          "arguments": {
+            "id": "liquilens-undertow:2026-10-28"
+          },
+          "elapsed_seconds": 0.298,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 3,
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"schema\":\"myquant.editorial-content.v1\",\"release\":{\"mcp_version\":\"2.1.1\",\"source_sha\":\"adc730a5a29e39930911249e20ea41e685482ffd\"},\"feed\":{\"url\":\"https://myquantdoesntspeakenglish.com/feed.json\",\"schema\":\"mqdnse.web-feed.v1\",\"item_schema\":\"mqdnse.web-feed-item.v1\",\"authority\":\"PUBLIC_EDITORIAL_ARCHIVE\",\"app_distribution\":\"SUSPENDED_SEPARATE_CHANNEL\",\"content_sha256\":\"6aa2b3ce11a877637630a90959a39ba268704c903f0d56794ca82b4e3922fb60\",\"item_count\":123,\"fetched_at\":\"2026-10-28T14:37:21.243Z\"},\"story\":{\"id\":\"liquilens-undertow:2026-10-28\",\"url\":\"https://myquantdoesntspeakenglish.com/interpreted/liquilens-undertow-2026-10-28\",\"external_url\":\"https://liquilens-undertow.com/dispatch/2026-10-28.json\",\"title\":\"BSTOCK measure rises 54.7 percentile points; segment tiers hold.\",\"summary\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is binance_btc_funding_24h, at percentile 80.8 of its own history; the coolest is binance_btc_basis_bp, at 4.6. Inside HY the qualifying measures span 0.16 to 0.81; the tier is their mean. Read the measures, not just the tier. crclbusdt_peg_deviation moved from 39.0 to 93.7 of its own history between 2026-10-27 and 2026-10-28. This is a change in a published measure, not a validated composite or forecast.\",\"date_published\":\"2026-10-28T14:07:16.000Z\",\"tags\":[\"interpreted\",\"liquilens-undertow\",\"cross-market-liquidity\",\"DERIVED\"],\"_mqdnse\":{\"schema\":\"mqdnse.web-feed-item.v1\",\"lane\":\"INTERPRETED\",\"product\":\"liquilens-undertow\",\"beat\":\"cross-market-liquidity\",\"editorialClass\":\"full_story\",\"articleType\":\"full_story\",\"sourceRecordId\":\"liquilens-undertow:2026-10-28\",\"sourceUrl\":\"https://liquilens-undertow.com/dispatch/2026-10-28.json\",\"evidence\":{\"status\":\"DERIVED\",\"eventTime\":\"2026-10-28T00:00:00.000Z\",\"knowledgeTime\":\"2026-10-28T14:07:16.000Z\",\"publicationStatus\":\"PUBLISHED\",\"contribution\":\"published_measure_delta\",\"limitation\":\"PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.\",\"sourceFingerprint\":\"83f11a4e90f62b8a0f3f01579f711d9e8361ea57677299f6045bd1d4e9f214e6\"},\"copy\":{\"state\":\"SOURCE_GROUNDED\",\"inEnglish\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is binance_btc_funding_24h, at percentile 80.8 of its own history; the coolest is binance_btc_basis_bp, at 4.6. Inside HY the qualifying measures span 0.16 to 0.81; the tier is their mean. Read the measures, not just the tier. crclbusdt_peg_deviation moved from 39.0 to 93.7 of its own history between 2026-10-27 and 2026-10-28. This is a change in a published measure, not a validated composite or forecast.\",\"whyItMatters\":\"Market-liquidity evidence matters when several holders may need the same exit, but a source tier is only as broad as its published coverage. Read the qualifying measures and missing segments before drawing a cross-market conclusion.\",\"uncertainty\":\"PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.\",\"whatChanged\":\"This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.\",\"nextCheck\":\"Check the next source board for coverage, tier changes, internal measure disagreement, and a change in the separate funding overlay. Missing segments must remain unknown rather than turning green.\",\"qualityGate\":\"PASSED\",\"method\":\"DETERMINISTIC_SOURCE_GROUNDED\",\"keyNumber\":{\"value\":\"4 of 9\",\"label\":\"4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld.\"}},\"sources\":[{\"id\":\"liquilens-undertow:2026-10-28\",\"label\":\"Undertow\",\"url\":\"https://liquilens-undertow.com/dispatch/2026-10-28.json\",\"fingerprint\":\"83f11a4e90f62b8a0f3f01579f711d9e8361ea57677299f6045bd1d4e9f214e6\"}]}}}"
+                }
+              ],
+              "structuredContent": {
+                "schema": "myquant.editorial-content.v1",
+                "release": {
+                  "mcp_version": "2.1.1",
+                  "source_sha": "adc730a5a29e39930911249e20ea41e685482ffd"
+                },
+                "feed": {
+                  "url": "https://myquantdoesntspeakenglish.com/feed.json",
+                  "schema": "mqdnse.web-feed.v1",
+                  "item_schema": "mqdnse.web-feed-item.v1",
+                  "authority": "PUBLIC_EDITORIAL_ARCHIVE",
+                  "app_distribution": "SUSPENDED_SEPARATE_CHANNEL",
+                  "content_sha256": "6aa2b3ce11a877637630a90959a39ba268704c903f0d56794ca82b4e3922fb60",
+                  "item_count": 123,
+                  "fetched_at": "2026-10-28T14:37:21.243Z"
+                },
+                "story": {
+                  "id": "liquilens-undertow:2026-10-28",
+                  "url": "https://myquantdoesntspeakenglish.com/interpreted/liquilens-undertow-2026-10-28",
+                  "external_url": "https://liquilens-undertow.com/dispatch/2026-10-28.json",
+                  "title": "BSTOCK measure rises 54.7 percentile points; segment tiers hold.",
+                  "summary": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is binance_btc_funding_24h, at percentile 80.8 of its own history; the coolest is binance_btc_basis_bp, at 4.6. Inside HY the qualifying measures span 0.16 to 0.81; the tier is their mean. Read the measures, not just the tier. crclbusdt_peg_deviation moved from 39.0 to 93.7 of its own history between 2026-10-27 and 2026-10-28. This is a change in a published measure, not a validated composite or forecast.",
+                  "date_published": "2026-10-28T14:07:16.000Z",
+                  "tags": [
+                    "interpreted",
+                    "liquilens-undertow",
+                    "cross-market-liquidity",
+                    "DERIVED"
+                  ],
+                  "_mqdnse": {
+                    "schema": "mqdnse.web-feed-item.v1",
+                    "lane": "INTERPRETED",
+                    "product": "liquilens-undertow",
+                    "beat": "cross-market-liquidity",
+                    "editorialClass": "full_story",
+                    "articleType": "full_story",
+                    "sourceRecordId": "liquilens-undertow:2026-10-28",
+                    "sourceUrl": "https://liquilens-undertow.com/dispatch/2026-10-28.json",
+                    "evidence": {
+                      "status": "DERIVED",
+                      "eventTime": "2026-10-28T00:00:00.000Z",
+                      "knowledgeTime": "2026-10-28T14:07:16.000Z",
+                      "publicationStatus": "PUBLISHED",
+                      "contribution": "published_measure_delta",
+                      "limitation": "PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.",
+                      "sourceFingerprint": "83f11a4e90f62b8a0f3f01579f711d9e8361ea57677299f6045bd1d4e9f214e6"
+                    },
+                    "copy": {
+                      "state": "SOURCE_GROUNDED",
+                      "inEnglish": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld. The funding overlay reads STRAIN. The hottest qualifying measure is binance_btc_funding_24h, at percentile 80.8 of its own history; the coolest is binance_btc_basis_bp, at 4.6. Inside HY the qualifying measures span 0.16 to 0.81; the tier is their mean. Read the measures, not just the tier. crclbusdt_peg_deviation moved from 39.0 to 93.7 of its own history between 2026-10-27 and 2026-10-28. This is a change in a published measure, not a validated composite or forecast.",
+                      "whyItMatters": "Market-liquidity evidence matters when several holders may need the same exit, but a source tier is only as broad as its published coverage. Read the qualifying measures and missing segments before drawing a cross-market conclusion.",
+                      "uncertainty": "PARTIAL means a composite is withheld: a scored tier needs at least 2 measures with 60+ eligible observations and a 21-day span each, plus a passing registered replay and no failed negative control. Dated measure reports remain available; validation failures do not clear merely by accruing more history. Research and market data, not investment advice.",
+                      "whatChanged": "This source record does not publish a like-for-like prior observation, so MyQuant treats it as a cross-sectional snapshot and does not infer a trend.",
+                      "nextCheck": "Check the next source board for coverage, tier changes, internal measure disagreement, and a change in the separate funding overlay. Missing segments must remain unknown rather than turning green.",
+                      "qualityGate": "PASSED",
+                      "method": "DETERMINISTIC_SOURCE_GROUNDED",
+                      "keyNumber": {
+                        "value": "4 of 9",
+                        "label": "4 of 9 segments score today; EQUITY, ETF, FX, CN, BSTOCK publish observations with their composites withheld."
+                      }
+                    },
+                    "sources": [
+                      {
+                        "id": "liquilens-undertow:2026-10-28",
+                        "label": "Undertow",
+                        "url": "https://liquilens-undertow.com/dispatch/2026-10-28.json",
+                        "fingerprint": "83f11a4e90f62b8a0f3f01579f711d9e8361ea57677299f6045bd1d4e9f214e6"
+                      }
+                    ]
+                  }
+                }
+              },
+              "isError": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Archive capabilities",
+      "prompt": "Inspect MyQuant Editorial's supported content tools, API routes and content limits before I build an archive-reading workflow.",
+      "tools_triggered": "list_capabilities",
+      "expected_behavior": "Describe returned capabilities and distribution boundaries; do not claim this discovery call retrieved stories.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:43.817007+00:00",
+          "endpoint": "https://agents.seiche.info/products/myquant-editorial/mcp",
+          "tool": "list_capabilities",
+          "arguments": {},
+          "elapsed_seconds": 0.3,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 5,
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"schema\":\"product.capabilities.v1\",\"product\":{\"id\":\"myquant-editorial\",\"name\":\"my quant doesn’t speak english\",\"version\":\"0.1.0\",\"url\":\"https://myquantdoesntspeakenglish.com\",\"description\":\"A finite market briefing that translates technical stories into ordinary English with sources and evidence boundaries attached.\"},\"release\":{\"api_version\":\"myquant.editorial/1.1\",\"mcp_version\":\"2.1.1\",\"source_sha\":\"adc730a5a29e39930911249e20ea41e685482ffd\",\"updated_at\":\"2026-09-06\",\"compatibility\":\"additive\",\"existing_routes_unchanged\":true,\"state\":\"available\"},\"features\":[{\"id\":\"finite-briefing\",\"title\":\"Finite briefing\",\"status\":\"available\",\"description\":\"Publishes up to five ranked market stories instead of an infinite feed.\"},{\"id\":\"evidence-network\",\"title\":\"Evidence network\",\"status\":\"available\",\"description\":\"Carries provenance, editorial status, publication gates, and correction propagation.\"},{\"id\":\"app-feed\",\"title\":\"Versioned app feed\",\"status\":\"available\",\"description\":\"Serves a validated, correction-aware feed for the mobile and web app.\"},{\"id\":\"editorial-content-mcp\",\"title\":\"Editorial content MCP\",\"status\":\"available\",\"description\":\"Adds bounded latest, exact-ID, and search reads over the public editorial archive.\"}],\"surfaces\":{\"web\":\"https://myquantdoesntspeakenglish.com\",\"editorial_feed\":\"https://myquantdoesntspeakenglish.com/feed.json\",\"app_feed\":\"https://myquantdoesntspeakenglish.com/app-feed/v1.json\",\"api\":{\"capabilities\":\"https://myquantdoesntspeakenglish.com/api/v1/capabilities\",\"health\":\"https://myquantdoesntspeakenglish.com/api/v1/health\"},\"mcp\":{\"endpoint\":\"https://myquantdoesntspeakenglish.com/mcp\",\"transport\":\"streamable-http\",\"protocol_version\":\"2026-07-28\",\"legacy_protocol_versions\":[\"2025-11-25\",\"2025-06-18\",\"2025-03-26\"],\"tools\":[\"list_capabilities\",\"get_health\",\"latest_stories\",\"get_story\",\"search_stories\"],\"content_limits\":{\"default_results\":10,\"max_results\":20,\"max_query_characters\":160,\"max_feed_body_bytes\":524288}},\"discovery\":{\"openapi\":\"https://myquantdoesntspeakenglish.com/openapi.json\",\"ai_catalog\":\"https://myquantdoesntspeakenglish.com/.well-known/ai-catalog.json\",\"mcp\":\"https://myquantdoesntspeakenglish.com/.well-known/mcp.json\",\"registry_manifest\":\"https://myquantdoesntspeakenglish.com/server.json\"}},\"session_compatibility\":{\"mcp\":\"Legacy Mcp-Session-Id values are accepted without rotation; the public MCP surface is stateless.\",\"product\":\"The editorial site has no account session, and the existing app-feed contract is unchanged.\"},\"boundaries\":[\"Public editorial and product metadata only.\",\"Content tools read only the validated public web archive; the separate mobile app channel remains suspended.\",\"No personalized investment advice, brokerage action, portfolio import, or account data.\",\"Sources and publication status must be checked before relying on a market claim.\"]}"
+                }
+              ],
+              "structuredContent": {
+                "schema": "product.capabilities.v1",
+                "product": {
+                  "id": "myquant-editorial",
+                  "name": "my quant doesn’t speak english",
+                  "version": "0.1.0",
+                  "url": "https://myquantdoesntspeakenglish.com",
+                  "description": "A finite market briefing that translates technical stories into ordinary English with sources and evidence boundaries attached."
+                },
+                "release": {
+                  "api_version": "myquant.editorial/1.1",
+                  "mcp_version": "2.1.1",
+                  "source_sha": "adc730a5a29e39930911249e20ea41e685482ffd",
+                  "updated_at": "2026-09-06",
+                  "compatibility": "additive",
+                  "existing_routes_unchanged": true,
+                  "state": "available"
+                },
+                "features": [
+                  {
+                    "id": "finite-briefing",
+                    "title": "Finite briefing",
+                    "status": "available",
+                    "description": "Publishes up to five ranked market stories instead of an infinite feed."
+                  },
+                  {
+                    "id": "evidence-network",
+                    "title": "Evidence network",
+                    "status": "available",
+                    "description": "Carries provenance, editorial status, publication gates, and correction propagation."
+                  },
+                  {
+                    "id": "app-feed",
+                    "title": "Versioned app feed",
+                    "status": "available",
+                    "description": "Serves a validated, correction-aware feed for the mobile and web app."
+                  },
+                  {
+                    "id": "editorial-content-mcp",
+                    "title": "Editorial content MCP",
+                    "status": "available",
+                    "description": "Adds bounded latest, exact-ID, and search reads over the public editorial archive."
+                  }
+                ],
+                "surfaces": {
+                  "web": "https://myquantdoesntspeakenglish.com",
+                  "editorial_feed": "https://myquantdoesntspeakenglish.com/feed.json",
+                  "app_feed": "https://myquantdoesntspeakenglish.com/app-feed/v1.json",
+                  "api": {
+                    "capabilities": "https://myquantdoesntspeakenglish.com/api/v1/capabilities",
+                    "health": "https://myquantdoesntspeakenglish.com/api/v1/health"
+                  },
+                  "mcp": {
+                    "endpoint": "https://myquantdoesntspeakenglish.com/mcp",
+                    "transport": "streamable-http",
+                    "protocol_version": "2026-07-28",
+                    "legacy_protocol_versions": [
+                      "2025-11-25",
+                      "2025-06-18",
+                      "2025-03-26"
+                    ],
+                    "tools": [
+                      "list_capabilities",
+                      "get_health",
+                      "latest_stories",
+                      "get_story",
+                      "search_stories"
+                    ],
+                    "content_limits": {
+                      "default_results": 10,
+                      "max_results": 20,
+                      "max_query_characters": 160,
+                      "max_feed_body_bytes": 524288
+                    }
+                  },
+                  "discovery": {
+                    "openapi": "https://myquantdoesntspeakenglish.com/openapi.json",
+                    "ai_catalog": "https://myquantdoesntspeakenglish.com/.well-known/ai-catalog.json",
+                    "mcp": "https://myquantdoesntspeakenglish.com/.well-known/mcp.json",
+                    "registry_manifest": "https://myquantdoesntspeakenglish.com/server.json"
+                  }
+                },
+                "session_compatibility": {
+                  "mcp": "Legacy Mcp-Session-Id values are accepted without rotation; the public MCP surface is stateless.",
+                  "product": "The editorial site has no account session, and the existing app-feed contract is unchanged."
+                },
+                "boundaries": [
+                  "Public editorial and product metadata only.",
+                  "Content tools read only the validated public web archive; the separate mobile app channel remains suspended.",
+                  "No personalized investment advice, brokerage action, portfolio import, or account data.",
+                  "Sources and publication status must be checked before relying on a market claim."
+                ]
+              },
+              "isError": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Connection compatibility",
+      "prompt": "Check MyQuant Editorial's API and MCP compatibility metadata and report its deployed source identity if available.",
+      "tools_triggered": "get_health",
+      "expected_behavior": "Report returned versions, checked_at and source identity when present. Endpoint compatibility is separate from feed freshness.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:44.119052+00:00",
+          "endpoint": "https://agents.seiche.info/products/myquant-editorial/mcp",
+          "tool": "get_health",
+          "arguments": {},
+          "elapsed_seconds": 0.246,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 6,
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"schema\":\"product.health.v1\",\"ok\":true,\"product\":\"myquant-editorial\",\"api_version\":\"myquant.editorial/1.1\",\"mcp_protocol_version\":\"2026-07-28\",\"mcp_version\":\"2.1.1\",\"source_sha\":\"adc730a5a29e39930911249e20ea41e685482ffd\",\"session_mode\":\"stateless-compatible\",\"checked_at\":\"2026-10-28T14:35:44.288Z\"}"
+                }
+              ],
+              "structuredContent": {
+                "schema": "product.health.v1",
+                "ok": true,
+                "product": "myquant-editorial",
+                "api_version": "myquant.editorial/1.1",
+                "mcp_protocol_version": "2026-07-28",
+                "mcp_version": "2.1.1",
+                "source_sha": "adc730a5a29e39930911249e20ea41e685482ffd",
+                "session_mode": "stateless-compatible",
+                "checked_at": "2026-10-28T14:35:44.288Z"
+              },
+              "isError": false
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "negative_cases_not_model_executed": [
+    {
+      "description": "Unrelated translation",
+      "prompt": "Translate 'Good morning, everyone' into Spanish."
+    },
+    {
+      "description": "Simple arithmetic",
+      "prompt": "What is 17 multiplied by 24?"
+    },
+    {
+      "description": "Creative writing",
+      "prompt": "Write a four-line birthday poem for my friend."
+    }
+  ]
+}

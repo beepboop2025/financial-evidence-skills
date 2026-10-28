@@ -1,0 +1,79 @@
+{
+  "schema": "liquilens.plugin-demo-recording.v1",
+  "product": "liquilens",
+  "name": "LiquiLens",
+  "recording": "walkthrough.mp4",
+  "sha256": "c1c790742158d23d9c23a75a1176b34fa1dce47d761b702f8f39935b290c731b",
+  "bytes": 1244029,
+  "duration_seconds": 90,
+  "fps": 24,
+  "capture_type": "edited browser recording of direct MCP evidence captures",
+  "native_plugin_installation_test": false,
+  "model_api_calls_for_this_recording": 0,
+  "case_count": 5,
+  "capture_sha256": "f0a488b19e6a3ff75b9612a9e573ac91965929dcca19f2a60e9e2df59b70d615",
+  "capture_url": "../service-viewer/data/liquilens.json",
+  "timeline": [
+    {
+      "label": "1. Discover institution coverage \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "1. Discover institution coverage \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "1. Discover institution coverage \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "2. Asset-quality review \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "2. Asset-quality review \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "2. Asset-quality review \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "3. Cited institution review packet \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "3. Cited institution review packet \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "3. Cited institution review packet \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "4. RBI supervisory evidence \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "4. RBI supervisory evidence \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "4. RBI supervisory evidence \u2014 limits",
+      "seconds": 7
+    },
+    {
+      "label": "5. Official NBFC register discovery \u2014 response",
+      "seconds": 6
+    },
+    {
+      "label": "5. Official NBFC register discovery \u2014 response details",
+      "seconds": 5
+    },
+    {
+      "label": "5. Official NBFC register discovery \u2014 limits",
+      "seconds": 7
+    }
+  ],
+  "limitations": "The product skill and negative model-routing cases are review expectations, not newly executed model tests. No trading, enrollment, collection, private-record access or execution was performed. NoiseFloor examples use synthetic inputs; all other values retain their service-provided dates and restrictions."
+}

@@ -1,0 +1,1258 @@
+{
+  "schema": "liquilens.direct-mcp-walkthrough.v1",
+  "name": "LiquiLens",
+  "id": "liquilens",
+  "endpoint": "https://agents.seiche.info/products/liquilens/mcp",
+  "recording_type": "edited browser recording of captured direct MCP responses",
+  "model_api_calls": 0,
+  "native_plugin_installation_test": false,
+  "limitations": "The product skill and negative model-routing cases are review expectations, not newly executed model tests. No trading, enrollment, collection, private-record access or execution was performed. NoiseFloor examples use synthetic inputs; all other values retain their service-provided dates and restrictions.",
+  "cases": [
+    {
+      "description": "Discover institution coverage",
+      "prompt": "Use LiquiLens to find the public research coverage for AU Small Finance Bank before reviewing it.",
+      "tools_triggered": "institution_research_coverage",
+      "expected_behavior": "Discover covered institutions and use returned identifiers. Report available disclosures and gaps without inventing coverage or private records.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:42.333293+00:00",
+          "endpoint": "https://agents.seiche.info/products/liquilens/mcp",
+          "tool": "institution_research_coverage",
+          "arguments": {
+            "q": "AU",
+            "limit": 10
+          },
+          "elapsed_seconds": 0.376,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 3,
+            "result": {
+              "isError": false,
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"schema\":\"liquilens.institution-research-coverage.v1\",\"scope\":\"dossiers\",\"as_of\":\"2026-10-28\",\"total_tracked_records\":59,\"total_matching\":1,\"offset\":0,\"next_offset\":null,\"counts\":{\"observed\":1},\"rows\":[{\"id\":\"au-sfb\",\"name\":\"AU Small Finance Bank\",\"institution_type\":\"sfb\",\"jurisdiction\":\"IN\",\"evidence_status\":\"observed\",\"latest_research_period\":\"2026-06-30\",\"age_days\":120,\"freshness_limit_days\":183,\"corpus_period\":\"2026-06-30\",\"corpus_numeric_fields\":[\"advances\",\"casa_pct\",\"crar_pct\",\"deposits\",\"gnpa_pct\",\"gross_loan_portfolio\",\"lcr_pct\",\"nnpa_pct\",\"pcr_excluding_technical_writeoffs_pct\",\"pcr_including_technical_writeoffs_pct\",\"tier1_pct\"],\"research_supplement_metrics\":[],\"sources\":[\"https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260725_Investor-Presentation.pdf\"],\"evidence_exclusions\":0,\"identity_basis\":\"explicit dossier slug\",\"entity_lifecycle\":null,\"next_step\":\"Review missing funding, maturity and concentration disclosures\",\"scoring_eligible\":false,\"training_corpus_changed\":false}],\"registry_provenance\":null,\"research_archive\":{\"workspace\":\"https://api.seiche.info/api/v2/research-data/?product=liquilens\",\"catalog\":\"https://api.seiche.info/api/v2/research-data/catalog?product=liquilens\",\"mcp\":\"https://api.seiche.info/api/v2/research-data/mcp\"},\"limits\":[\"Dossier and registry populations overlap; their counts must not be added as unique institutions.\",\"Separately scoped issuer research and related historical dossiers are distinct records, not additional unique-entity claims.\",\"Registry presence is not current financial evidence or an attestation of current licensing status.\",\"Observed subsets do not imply complete financial statements or validated solvency models.\"],\"score_authority\":false,\"training_corpus_changed\":false}"
+                }
+              ],
+              "structuredContent": {
+                "schema": "liquilens.institution-research-coverage.v1",
+                "scope": "dossiers",
+                "as_of": "2026-10-28",
+                "total_tracked_records": 59,
+                "total_matching": 1,
+                "offset": 0,
+                "next_offset": null,
+                "counts": {
+                  "observed": 1
+                },
+                "rows": [
+                  {
+                    "id": "au-sfb",
+                    "name": "AU Small Finance Bank",
+                    "institution_type": "sfb",
+                    "jurisdiction": "IN",
+                    "evidence_status": "observed",
+                    "latest_research_period": "2026-06-30",
+                    "age_days": 120,
+                    "freshness_limit_days": 183,
+                    "corpus_period": "2026-06-30",
+                    "corpus_numeric_fields": [
+                      "advances",
+                      "casa_pct",
+                      "crar_pct",
+                      "deposits",
+                      "gnpa_pct",
+                      "gross_loan_portfolio",
+                      "lcr_pct",
+                      "nnpa_pct",
+                      "pcr_excluding_technical_writeoffs_pct",
+                      "pcr_including_technical_writeoffs_pct",
+                      "tier1_pct"
+                    ],
+                    "research_supplement_metrics": [],
+                    "sources": [
+                      "https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260725_Investor-Presentation.pdf"
+                    ],
+                    "evidence_exclusions": 0,
+                    "identity_basis": "explicit dossier slug",
+                    "entity_lifecycle": null,
+                    "next_step": "Review missing funding, maturity and concentration disclosures",
+                    "scoring_eligible": false,
+                    "training_corpus_changed": false
+                  }
+                ],
+                "registry_provenance": null,
+                "research_archive": {
+                  "workspace": "https://api.seiche.info/api/v2/research-data/?product=liquilens",
+                  "catalog": "https://api.seiche.info/api/v2/research-data/catalog?product=liquilens",
+                  "mcp": "https://api.seiche.info/api/v2/research-data/mcp"
+                },
+                "limits": [
+                  "Dossier and registry populations overlap; their counts must not be added as unique institutions.",
+                  "Separately scoped issuer research and related historical dossiers are distinct records, not additional unique-entity claims.",
+                  "Registry presence is not current financial evidence or an attestation of current licensing status.",
+                  "Observed subsets do not imply complete financial statements or validated solvency models."
+                ],
+                "score_authority": false,
+                "training_corpus_changed": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Asset-quality review",
+      "prompt": "Find AU Small Finance Bank in LiquiLens and review its available asset-quality evidence, citing disclosure dates and limitations.",
+      "tools_triggered": "institution_research_coverage, bank_asset_quality_review",
+      "expected_behavior": "Discover the exact slug before requesting the asset-quality review. Preserve missing, stale and non-comparable fields and avoid declaring the institution safe or compliant.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:42.333293+00:00",
+          "endpoint": "https://agents.seiche.info/products/liquilens/mcp",
+          "tool": "institution_research_coverage",
+          "arguments": {
+            "q": "AU",
+            "limit": 10
+          },
+          "elapsed_seconds": 0.376,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 3,
+            "result": {
+              "isError": false,
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"schema\":\"liquilens.institution-research-coverage.v1\",\"scope\":\"dossiers\",\"as_of\":\"2026-10-28\",\"total_tracked_records\":59,\"total_matching\":1,\"offset\":0,\"next_offset\":null,\"counts\":{\"observed\":1},\"rows\":[{\"id\":\"au-sfb\",\"name\":\"AU Small Finance Bank\",\"institution_type\":\"sfb\",\"jurisdiction\":\"IN\",\"evidence_status\":\"observed\",\"latest_research_period\":\"2026-06-30\",\"age_days\":120,\"freshness_limit_days\":183,\"corpus_period\":\"2026-06-30\",\"corpus_numeric_fields\":[\"advances\",\"casa_pct\",\"crar_pct\",\"deposits\",\"gnpa_pct\",\"gross_loan_portfolio\",\"lcr_pct\",\"nnpa_pct\",\"pcr_excluding_technical_writeoffs_pct\",\"pcr_including_technical_writeoffs_pct\",\"tier1_pct\"],\"research_supplement_metrics\":[],\"sources\":[\"https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260725_Investor-Presentation.pdf\"],\"evidence_exclusions\":0,\"identity_basis\":\"explicit dossier slug\",\"entity_lifecycle\":null,\"next_step\":\"Review missing funding, maturity and concentration disclosures\",\"scoring_eligible\":false,\"training_corpus_changed\":false}],\"registry_provenance\":null,\"research_archive\":{\"workspace\":\"https://api.seiche.info/api/v2/research-data/?product=liquilens\",\"catalog\":\"https://api.seiche.info/api/v2/research-data/catalog?product=liquilens\",\"mcp\":\"https://api.seiche.info/api/v2/research-data/mcp\"},\"limits\":[\"Dossier and registry populations overlap; their counts must not be added as unique institutions.\",\"Separately scoped issuer research and related historical dossiers are distinct records, not additional unique-entity claims.\",\"Registry presence is not current financial evidence or an attestation of current licensing status.\",\"Observed subsets do not imply complete financial statements or validated solvency models.\"],\"score_authority\":false,\"training_corpus_changed\":false}"
+                }
+              ],
+              "structuredContent": {
+                "schema": "liquilens.institution-research-coverage.v1",
+                "scope": "dossiers",
+                "as_of": "2026-10-28",
+                "total_tracked_records": 59,
+                "total_matching": 1,
+                "offset": 0,
+                "next_offset": null,
+                "counts": {
+                  "observed": 1
+                },
+                "rows": [
+                  {
+                    "id": "au-sfb",
+                    "name": "AU Small Finance Bank",
+                    "institution_type": "sfb",
+                    "jurisdiction": "IN",
+                    "evidence_status": "observed",
+                    "latest_research_period": "2026-06-30",
+                    "age_days": 120,
+                    "freshness_limit_days": 183,
+                    "corpus_period": "2026-06-30",
+                    "corpus_numeric_fields": [
+                      "advances",
+                      "casa_pct",
+                      "crar_pct",
+                      "deposits",
+                      "gnpa_pct",
+                      "gross_loan_portfolio",
+                      "lcr_pct",
+                      "nnpa_pct",
+                      "pcr_excluding_technical_writeoffs_pct",
+                      "pcr_including_technical_writeoffs_pct",
+                      "tier1_pct"
+                    ],
+                    "research_supplement_metrics": [],
+                    "sources": [
+                      "https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260725_Investor-Presentation.pdf"
+                    ],
+                    "evidence_exclusions": 0,
+                    "identity_basis": "explicit dossier slug",
+                    "entity_lifecycle": null,
+                    "next_step": "Review missing funding, maturity and concentration disclosures",
+                    "scoring_eligible": false,
+                    "training_corpus_changed": false
+                  }
+                ],
+                "registry_provenance": null,
+                "research_archive": {
+                  "workspace": "https://api.seiche.info/api/v2/research-data/?product=liquilens",
+                  "catalog": "https://api.seiche.info/api/v2/research-data/catalog?product=liquilens",
+                  "mcp": "https://api.seiche.info/api/v2/research-data/mcp"
+                },
+                "limits": [
+                  "Dossier and registry populations overlap; their counts must not be added as unique institutions.",
+                  "Separately scoped issuer research and related historical dossiers are distinct records, not additional unique-entity claims.",
+                  "Registry presence is not current financial evidence or an attestation of current licensing status.",
+                  "Observed subsets do not imply complete financial statements or validated solvency models."
+                ],
+                "score_authority": false,
+                "training_corpus_changed": false
+              }
+            }
+          }
+        },
+        {
+          "captured_at": "2026-10-28T14:35:42.710245+00:00",
+          "endpoint": "https://agents.seiche.info/products/liquilens/mcp",
+          "tool": "bank_asset_quality_review",
+          "arguments": {
+            "slug": "au-sfb"
+          },
+          "elapsed_seconds": 0.35,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 4,
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"schema\":\"liquilens.bank-specialisation.v1\",\"slug\":\"au-sfb\",\"name\":\"AU Small Finance Bank\",\"sector\":\"sfb\",\"as_of\":\"2026-10-28\",\"status\":\"observed\",\"scope\":\"research\",\"score_authority\":false,\"can_authorize_credit\":false,\"exclusions\":[],\"historical_evidence\":{\"status\":\"PERIOD_END_PROXY_CONSTRUCTION_PIT\",\"validated_backtest_eligible\":false,\"real_money_eligible\":false,\"bitemporal_input_contract\":false,\"filing_lag_days\":60,\"availability_time_basis\":\"explicit publication clock when present; otherwise period_end + 60 days\",\"lead_times_optimistic\":true,\"reason\":\"the committed crisis dossiers do not preserve a complete public-availability/revision archive; a conservative filing lag prevents quarter-end lookahead but cannot reconstruct overwritten amendments\"},\"period_end\":\"2026-06-30\",\"quarter\":\"Q1FY27\",\"available_at\":\"2026-10-04T17:06:35.119775Z\",\"retrieved_at\":\"2026-10-04T17:00:14.931709+00:00\",\"publication_date\":\"2026-07-25\",\"age_days\":120,\"freshness_limit_days\":183,\"sources\":[\"https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260725_Investor-Presentation.pdf\"],\"metrics\":{\"gnpa_pct\":{\"label\":\"Gross NPA / gross advances\",\"value\":2.1,\"unit\":\"percent\",\"status\":\"observed\",\"basis\":null},\"nnpa_pct\":{\"label\":\"Net NPA / net advances\",\"value\":0.76,\"unit\":\"percent\",\"status\":\"observed\",\"basis\":null},\"crar_pct\":{\"label\":\"Capital adequacy\",\"value\":18.9,\"unit\":\"percent\",\"status\":\"observed\",\"basis\":null},\"cet1_pct\":{\"label\":\"Common equity Tier 1 capital ratio\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"tier1_pct\":{\"label\":\"Tier 1 capital ratio\",\"value\":17.1,\"unit\":\"percent\",\"status\":\"observed\",\"basis\":null},\"casa_pct\":{\"label\":\"Current and savings account deposits / deposits\",\"value\":29,\"unit\":\"percent\",\"status\":\"observed\",\"basis\":null},\"top20_depositors_pct\":{\"label\":\"Twenty largest depositors / deposits\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"top20_npa_pct\":{\"label\":\"Twenty largest NPA exposures / gross NPAs\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"lcr_pct\":{\"label\":\"Reported liquidity coverage\",\"value\":119,\"unit\":\"percent\",\"status\":\"observed\",\"basis\":\"Average for the quarter, not a period-end ratio.\"},\"pcr_including_technical_writeoffs_pct\":{\"label\":\"PCR including technical write-offs\",\"value\":85,\"unit\":\"percent\",\"status\":\"observed\",\"basis\":null},\"pcr_excluding_technical_writeoffs_pct\":{\"label\":\"PCR excluding technical write-offs\",\"value\":64,\"unit\":\"percent\",\"status\":\"observed\",\"basis\":null},\"pcr_reported_pct\":{\"label\":\"Reported PCR; consult disclosed basis\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"deposits\":{\"label\":\"Deposits\",\"value\":157727,\"unit\":\"INR_crore\",\"status\":\"observed\",\"basis\":null},\"advances\":{\"label\":\"Reported advances\",\"value\":140461,\"unit\":\"INR_crore\",\"status\":\"observed\",\"basis\":\"Reported gross advances at 30 June 2026, INR crore; distinct from gross loan portfolio. PDF page 9 (printed page 8).\"},\"gross_loan_portfolio\":{\"label\":\"Gross loan portfolio\",\"value\":144250,\"unit\":\"INR_crore\",\"status\":\"observed\",\"basis\":\"Reported gross loan portfolio; distinct from gross advances and the NPA denominator.\"}},\"provisional_update\":{\"status\":\"provisional\",\"period_end\":\"2026-09-30\",\"quarter\":\"Q2FY27\",\"publication_date\":\"2026-10-03\",\"available_at\":\"2026-10-14T08:41:14.633991Z\",\"retrieved_at\":\"2026-10-14T08:38:45.214132+00:00\",\"age_days\":28,\"freshness_limit_days\":183,\"metrics\":{\"gnpa_pct\":{\"label\":\"Gross NPA / gross advances\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"nnpa_pct\":{\"label\":\"Net NPA / net advances\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"crar_pct\":{\"label\":\"Capital adequacy\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"cet1_pct\":{\"label\":\"Common equity Tier 1 capital ratio\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"tier1_pct\":{\"label\":\"Tier 1 capital ratio\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"casa_pct\":{\"label\":\"Current and savings account deposits / deposits\",\"value\":29.5,\"unit\":\"percent\",\"status\":\"observed\",\"basis\":\"Provisional CASA deposits divided by total deposits at September 30, 2026.\"},\"top20_depositors_pct\":{\"label\":\"Twenty largest depositors / deposits\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"top20_npa_pct\":{\"label\":\"Twenty largest NPA exposures / gross NPAs\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"lcr_pct\":{\"label\":\"Reported liquidity coverage\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"pcr_including_technical_writeoffs_pct\":{\"label\":\"PCR including technical write-offs\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"pcr_excluding_technical_writeoffs_pct\":{\"label\":\"PCR excluding technical write-offs\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"pcr_reported_pct\":{\"label\":\"Reported PCR; consult disclosed basis\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"deposits\":{\"label\":\"Deposits\",\"value\":170460,\"unit\":\"INR_crore\",\"status\":\"observed\",\"basis\":\"Provisional total deposits at September 30, 2026.\"},\"advances\":{\"label\":\"Reported advances\",\"value\":150290,\"unit\":\"INR_crore\",\"status\":\"observed\",\"basis\":\"Provisional gross advances (A); excludes securitised/assigned portfolio and IBPC.\"},\"gross_loan_portfolio\":{\"label\":\"Gross loan portfolio\",\"value\":153770,\"unit\":\"INR_crore\",\"status\":\"observed\",\"basis\":\"Provisional gross advances (A) plus securitised/assigned portfolio/IBPC (B); not interchangeable with gross advances.\"}},\"sources\":[\"https://www.au.bank.in/pdfs/quaterly-compliance/2026-27/Provisional_release_Q2_FY27.pdf\"],\"source_documents\":[{\"url\":\"https://www.au.bank.in/pdfs/quaterly-compliance/2026-27/Provisional_release_Q2_FY27.pdf\",\"sha256\":\"3e15b6bd4736f163623f32769b8c79dbb59b6d86f4524be697251e66fe321821\",\"pdf_pages\":[1]}],\"comparability_notes\":[\"Issuer labels this Q2FY27 business update provisional, released before full financial results and subject to review and approval by its Audit Committee, Board and Statutory Auditors.\",\"NPA ratios, capital adequacy, liquidity coverage and an NPA movement are not disclosed in this update. June 2026 financial-result metrics retain their original reporting period.\"],\"full_financial_results\":false,\"asset_quality_period_refreshed\":false,\"score_authority\":false,\"training_eligible\":false,\"interpretation_limits\":[\"Issuer-reported provisional business figures, subject to its financial-results review and approval.\",\"This update does not refresh NPA, capital or liquidity ratios that it does not disclose.\",\"Read the full-filing and provisional reporting periods separately; do not combine them into one quarter.\"]},\"source_documents\":[{\"url\":\"https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260725_Investor-Presentation.pdf\",\"sha256\":\"50a3d15c520eb42a83aa5d4896e3f99f3d202a5986da969562b4e9ae597f79ab\",\"pdf_pages\":[6,8,9,14,15,17,31]}],\"changes\":{\"quarter\":{\"status\":\"observed\",\"from_period\":\"2026-03-31\",\"to_period\":\"2026-06-30\",\"unit\":\"percentage_points\",\"changes\":{\"gnpa_pct\":0.07,\"nnpa_pct\":0.02,\"crar_pct\":0.2},\"sources\":[\"https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260427_Press-Release-on-Audited-Financial-Result.pdf\"],\"available_at\":\"2026-09-05T07:05:33Z\"},\"year\":{\"status\":\"observed\",\"from_period\":\"2025-06-30\",\"to_period\":\"2026-06-30\",\"unit\":\"percentage_points\",\"changes\":{\"gnpa_pct\":-0.37,\"nnpa_pct\":-0.12,\"crar_pct\":null},\"sources\":[\"https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260725_Investor-Presentation.pdf\"],\"available_at\":\"2026-09-24T21:36:30.694179Z\"}},\"default_event\":null,\"interpretation_limits\":[\"A falling NPA percentage does not identify recoveries; loan growth, write-offs and sales can also change it.\",\"GNPA and NNPA use different denominators. Their ratio or difference is not provision coverage.\",\"A zero reported NNPA is not proof of zero credit risk or full deposit safety.\",\"Institution type is the dossier's reporting classification; licence transitions require separate verification.\"],\"next_disclosures\":[\"Microfinance and unsecured-loan concentration\",\"Collection-efficiency denominator and exclusions\",\"Deposit concentration and maturity\",\"Slippages and write-offs by loan cohort\"],\"comparability_notes\":[\"Selected facts verified against the cited primary filing; capture time is not backdated to publication.\",\"Additional reported facts reviewed on 4 October 2026 from a newly retrieved, byte-identical primary filing; the reporting period is unchanged and the earlier capture is retained.\"],\"regulatory_comparison\":{\"framework\":null,\"applicable\":false,\"status\":\"not_applicable\",\"risk_level\":0,\"breaches\":[],\"headroom\":[{\"indicator\":\"CRAR\",\"value\":18.9,\"entry_at\":15.0,\"headroom_pp\":3.9}],\"not_assessed\":[],\"note\":\"SFBs are outside the 2021 bank-PCA framework; headroom shown against the 15% licensing CRAR floor\",\"rule_as_of\":null,\"sources\":[]},\"npa_movement\":{\"status\":\"unavailable\",\"reason\":\"closed NPA movement table not disclosed in the accepted record\"}}"
+                }
+              ],
+              "structuredContent": {
+                "schema": "liquilens.bank-specialisation.v1",
+                "slug": "au-sfb",
+                "name": "AU Small Finance Bank",
+                "sector": "sfb",
+                "as_of": "2026-10-28",
+                "status": "observed",
+                "scope": "research",
+                "score_authority": false,
+                "can_authorize_credit": false,
+                "exclusions": [],
+                "historical_evidence": {
+                  "status": "PERIOD_END_PROXY_CONSTRUCTION_PIT",
+                  "validated_backtest_eligible": false,
+                  "real_money_eligible": false,
+                  "bitemporal_input_contract": false,
+                  "filing_lag_days": 60,
+                  "availability_time_basis": "explicit publication clock when present; otherwise period_end + 60 days",
+                  "lead_times_optimistic": true,
+                  "reason": "the committed crisis dossiers do not preserve a complete public-availability/revision archive; a conservative filing lag prevents quarter-end lookahead but cannot reconstruct overwritten amendments"
+                },
+                "period_end": "2026-06-30",
+                "quarter": "Q1FY27",
+                "available_at": "2026-10-04T17:06:35.119775Z",
+                "retrieved_at": "2026-10-04T17:00:14.931709+00:00",
+                "publication_date": "2026-07-25",
+                "age_days": 120,
+                "freshness_limit_days": 183,
+                "sources": [
+                  "https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260725_Investor-Presentation.pdf"
+                ],
+                "metrics": {
+                  "gnpa_pct": {
+                    "label": "Gross NPA / gross advances",
+                    "value": 2.1,
+                    "unit": "percent",
+                    "status": "observed",
+                    "basis": null
+                  },
+                  "nnpa_pct": {
+                    "label": "Net NPA / net advances",
+                    "value": 0.76,
+                    "unit": "percent",
+                    "status": "observed",
+                    "basis": null
+                  },
+                  "crar_pct": {
+                    "label": "Capital adequacy",
+                    "value": 18.9,
+                    "unit": "percent",
+                    "status": "observed",
+                    "basis": null
+                  },
+                  "cet1_pct": {
+                    "label": "Common equity Tier 1 capital ratio",
+                    "value": null,
+                    "unit": "percent",
+                    "status": "not_disclosed",
+                    "basis": null
+                  },
+                  "tier1_pct": {
+                    "label": "Tier 1 capital ratio",
+                    "value": 17.1,
+                    "unit": "percent",
+                    "status": "observed",
+                    "basis": null
+                  },
+                  "casa_pct": {
+                    "label": "Current and savings account deposits / deposits",
+                    "value": 29,
+                    "unit": "percent",
+                    "status": "observed",
+                    "basis": null
+                  },
+                  "top20_depositors_pct": {
+                    "label": "Twenty largest depositors / deposits",
+                    "value": null,
+                    "unit": "percent",
+                    "status": "not_disclosed",
+                    "basis": null
+                  },
+                  "top20_npa_pct": {
+                    "label": "Twenty largest NPA exposures / gross NPAs",
+                    "value": null,
+                    "unit": "percent",
+                    "status": "not_disclosed",
+                    "basis": null
+                  },
+                  "lcr_pct": {
+                    "label": "Reported liquidity coverage",
+                    "value": 119,
+                    "unit": "percent",
+                    "status": "observed",
+                    "basis": "Average for the quarter, not a period-end ratio."
+                  },
+                  "pcr_including_technical_writeoffs_pct": {
+                    "label": "PCR including technical write-offs",
+                    "value": 85,
+                    "unit": "percent",
+                    "status": "observed",
+                    "basis": null
+                  },
+                  "pcr_excluding_technical_writeoffs_pct": {
+                    "label": "PCR excluding technical write-offs",
+                    "value": 64,
+                    "unit": "percent",
+                    "status": "observed",
+                    "basis": null
+                  },
+                  "pcr_reported_pct": {
+                    "label": "Reported PCR; consult disclosed basis",
+                    "value": null,
+                    "unit": "percent",
+                    "status": "not_disclosed",
+                    "basis": null
+                  },
+                  "deposits": {
+                    "label": "Deposits",
+                    "value": 157727,
+                    "unit": "INR_crore",
+                    "status": "observed",
+                    "basis": null
+                  },
+                  "advances": {
+                    "label": "Reported advances",
+                    "value": 140461,
+                    "unit": "INR_crore",
+                    "status": "observed",
+                    "basis": "Reported gross advances at 30 June 2026, INR crore; distinct from gross loan portfolio. PDF page 9 (printed page 8)."
+                  },
+                  "gross_loan_portfolio": {
+                    "label": "Gross loan portfolio",
+                    "value": 144250,
+                    "unit": "INR_crore",
+                    "status": "observed",
+                    "basis": "Reported gross loan portfolio; distinct from gross advances and the NPA denominator."
+                  }
+                },
+                "provisional_update": {
+                  "status": "provisional",
+                  "period_end": "2026-09-30",
+                  "quarter": "Q2FY27",
+                  "publication_date": "2026-10-03",
+                  "available_at": "2026-10-14T08:41:14.633991Z",
+                  "retrieved_at": "2026-10-14T08:38:45.214132+00:00",
+                  "age_days": 28,
+                  "freshness_limit_days": 183,
+                  "metrics": {
+                    "gnpa_pct": {
+                      "label": "Gross NPA / gross advances",
+                      "value": null,
+                      "unit": "percent",
+                      "status": "not_disclosed",
+                      "basis": null
+                    },
+                    "nnpa_pct": {
+                      "label": "Net NPA / net advances",
+                      "value": null,
+                      "unit": "percent",
+                      "status": "not_disclosed",
+                      "basis": null
+                    },
+                    "crar_pct": {
+                      "label": "Capital adequacy",
+                      "value": null,
+                      "unit": "percent",
+                      "status": "not_disclosed",
+                      "basis": null
+                    },
+                    "cet1_pct": {
+                      "label": "Common equity Tier 1 capital ratio",
+                      "value": null,
+                      "unit": "percent",
+                      "status": "not_disclosed",
+                      "basis": null
+                    },
+                    "tier1_pct": {
+                      "label": "Tier 1 capital ratio",
+                      "value": null,
+                      "unit": "percent",
+                      "status": "not_disclosed",
+                      "basis": null
+                    },
+                    "casa_pct": {
+                      "label": "Current and savings account deposits / deposits",
+                      "value": 29.5,
+                      "unit": "percent",
+                      "status": "observed",
+                      "basis": "Provisional CASA deposits divided by total deposits at September 30, 2026."
+                    },
+                    "top20_depositors_pct": {
+                      "label": "Twenty largest depositors / deposits",
+                      "value": null,
+                      "unit": "percent",
+                      "status": "not_disclosed",
+                      "basis": null
+                    },
+                    "top20_npa_pct": {
+                      "label": "Twenty largest NPA exposures / gross NPAs",
+                      "value": null,
+                      "unit": "percent",
+                      "status": "not_disclosed",
+                      "basis": null
+                    },
+                    "lcr_pct": {
+                      "label": "Reported liquidity coverage",
+                      "value": null,
+                      "unit": "percent",
+                      "status": "not_disclosed",
+                      "basis": null
+                    },
+                    "pcr_including_technical_writeoffs_pct": {
+                      "label": "PCR including technical write-offs",
+                      "value": null,
+                      "unit": "percent",
+                      "status": "not_disclosed",
+                      "basis": null
+                    },
+                    "pcr_excluding_technical_writeoffs_pct": {
+                      "label": "PCR excluding technical write-offs",
+                      "value": null,
+                      "unit": "percent",
+                      "status": "not_disclosed",
+                      "basis": null
+                    },
+                    "pcr_reported_pct": {
+                      "label": "Reported PCR; consult disclosed basis",
+                      "value": null,
+                      "unit": "percent",
+                      "status": "not_disclosed",
+                      "basis": null
+                    },
+                    "deposits": {
+                      "label": "Deposits",
+                      "value": 170460,
+                      "unit": "INR_crore",
+                      "status": "observed",
+                      "basis": "Provisional total deposits at September 30, 2026."
+                    },
+                    "advances": {
+                      "label": "Reported advances",
+                      "value": 150290,
+                      "unit": "INR_crore",
+                      "status": "observed",
+                      "basis": "Provisional gross advances (A); excludes securitised/assigned portfolio and IBPC."
+                    },
+                    "gross_loan_portfolio": {
+                      "label": "Gross loan portfolio",
+                      "value": 153770,
+                      "unit": "INR_crore",
+                      "status": "observed",
+                      "basis": "Provisional gross advances (A) plus securitised/assigned portfolio/IBPC (B); not interchangeable with gross advances."
+                    }
+                  },
+                  "sources": [
+                    "https://www.au.bank.in/pdfs/quaterly-compliance/2026-27/Provisional_release_Q2_FY27.pdf"
+                  ],
+                  "source_documents": [
+                    {
+                      "url": "https://www.au.bank.in/pdfs/quaterly-compliance/2026-27/Provisional_release_Q2_FY27.pdf",
+                      "sha256": "3e15b6bd4736f163623f32769b8c79dbb59b6d86f4524be697251e66fe321821",
+                      "pdf_pages": [
+                        1
+                      ]
+                    }
+                  ],
+                  "comparability_notes": [
+                    "Issuer labels this Q2FY27 business update provisional, released before full financial results and subject to review and approval by its Audit Committee, Board and Statutory Auditors.",
+                    "NPA ratios, capital adequacy, liquidity coverage and an NPA movement are not disclosed in this update. June 2026 financial-result metrics retain their original reporting period."
+                  ],
+                  "full_financial_results": false,
+                  "asset_quality_period_refreshed": false,
+                  "score_authority": false,
+                  "training_eligible": false,
+                  "interpretation_limits": [
+                    "Issuer-reported provisional business figures, subject to its financial-results review and approval.",
+                    "This update does not refresh NPA, capital or liquidity ratios that it does not disclose.",
+                    "Read the full-filing and provisional reporting periods separately; do not combine them into one quarter."
+                  ]
+                },
+                "source_documents": [
+                  {
+                    "url": "https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260725_Investor-Presentation.pdf",
+                    "sha256": "50a3d15c520eb42a83aa5d4896e3f99f3d202a5986da969562b4e9ae597f79ab",
+                    "pdf_pages": [
+                      6,
+                      8,
+                      9,
+                      14,
+                      15,
+                      17,
+                      31
+                    ]
+                  }
+                ],
+                "changes": {
+                  "quarter": {
+                    "status": "observed",
+                    "from_period": "2026-03-31",
+                    "to_period": "2026-06-30",
+                    "unit": "percentage_points",
+                    "changes": {
+                      "gnpa_pct": 0.07,
+                      "nnpa_pct": 0.02,
+                      "crar_pct": 0.2
+                    },
+                    "sources": [
+                      "https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260427_Press-Release-on-Audited-Financial-Result.pdf"
+                    ],
+                    "available_at": "2026-09-05T07:05:33Z"
+                  },
+                  "year": {
+                    "status": "observed",
+                    "from_period": "2025-06-30",
+                    "to_period": "2026-06-30",
+                    "unit": "percentage_points",
+                    "changes": {
+                      "gnpa_pct": -0.37,
+                      "nnpa_pct": -0.12,
+                      "crar_pct": null
+                    },
+                    "sources": [
+                      "https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260725_Investor-Presentation.pdf"
+                    ],
+                    "available_at": "2026-09-24T21:36:30.694179Z"
+                  }
+                },
+                "default_event": null,
+                "interpretation_limits": [
+                  "A falling NPA percentage does not identify recoveries; loan growth, write-offs and sales can also change it.",
+                  "GNPA and NNPA use different denominators. Their ratio or difference is not provision coverage.",
+                  "A zero reported NNPA is not proof of zero credit risk or full deposit safety.",
+                  "Institution type is the dossier's reporting classification; licence transitions require separate verification."
+                ],
+                "next_disclosures": [
+                  "Microfinance and unsecured-loan concentration",
+                  "Collection-efficiency denominator and exclusions",
+                  "Deposit concentration and maturity",
+                  "Slippages and write-offs by loan cohort"
+                ],
+                "comparability_notes": [
+                  "Selected facts verified against the cited primary filing; capture time is not backdated to publication.",
+                  "Additional reported facts reviewed on 4 October 2026 from a newly retrieved, byte-identical primary filing; the reporting period is unchanged and the earlier capture is retained."
+                ],
+                "regulatory_comparison": {
+                  "framework": null,
+                  "applicable": false,
+                  "status": "not_applicable",
+                  "risk_level": 0,
+                  "breaches": [],
+                  "headroom": [
+                    {
+                      "indicator": "CRAR",
+                      "value": 18.9,
+                      "entry_at": 15.0,
+                      "headroom_pp": 3.9
+                    }
+                  ],
+                  "not_assessed": [],
+                  "note": "SFBs are outside the 2021 bank-PCA framework; headroom shown against the 15% licensing CRAR floor",
+                  "rule_as_of": null,
+                  "sources": []
+                },
+                "npa_movement": {
+                  "status": "unavailable",
+                  "reason": "closed NPA movement table not disclosed in the accepted record"
+                }
+              },
+              "isError": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Cited institution review packet",
+      "prompt": "Find AU Small Finance Bank in LiquiLens and retrieve its cited institution review packet. Preserve source dates and unresolved coverage gaps.",
+      "tools_triggered": "institution_research_coverage, institution_review_packet",
+      "expected_behavior": "Discover the exact returned institution slug or full name, then supply it as institution to institution_review_packet. Report no exact match if needed; preserve stale or dark gaps and do not interpret a content hash as attestation or publication-time proof.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:42.333293+00:00",
+          "endpoint": "https://agents.seiche.info/products/liquilens/mcp",
+          "tool": "institution_research_coverage",
+          "arguments": {
+            "q": "AU",
+            "limit": 10
+          },
+          "elapsed_seconds": 0.376,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 3,
+            "result": {
+              "isError": false,
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"schema\":\"liquilens.institution-research-coverage.v1\",\"scope\":\"dossiers\",\"as_of\":\"2026-10-28\",\"total_tracked_records\":59,\"total_matching\":1,\"offset\":0,\"next_offset\":null,\"counts\":{\"observed\":1},\"rows\":[{\"id\":\"au-sfb\",\"name\":\"AU Small Finance Bank\",\"institution_type\":\"sfb\",\"jurisdiction\":\"IN\",\"evidence_status\":\"observed\",\"latest_research_period\":\"2026-06-30\",\"age_days\":120,\"freshness_limit_days\":183,\"corpus_period\":\"2026-06-30\",\"corpus_numeric_fields\":[\"advances\",\"casa_pct\",\"crar_pct\",\"deposits\",\"gnpa_pct\",\"gross_loan_portfolio\",\"lcr_pct\",\"nnpa_pct\",\"pcr_excluding_technical_writeoffs_pct\",\"pcr_including_technical_writeoffs_pct\",\"tier1_pct\"],\"research_supplement_metrics\":[],\"sources\":[\"https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260725_Investor-Presentation.pdf\"],\"evidence_exclusions\":0,\"identity_basis\":\"explicit dossier slug\",\"entity_lifecycle\":null,\"next_step\":\"Review missing funding, maturity and concentration disclosures\",\"scoring_eligible\":false,\"training_corpus_changed\":false}],\"registry_provenance\":null,\"research_archive\":{\"workspace\":\"https://api.seiche.info/api/v2/research-data/?product=liquilens\",\"catalog\":\"https://api.seiche.info/api/v2/research-data/catalog?product=liquilens\",\"mcp\":\"https://api.seiche.info/api/v2/research-data/mcp\"},\"limits\":[\"Dossier and registry populations overlap; their counts must not be added as unique institutions.\",\"Separately scoped issuer research and related historical dossiers are distinct records, not additional unique-entity claims.\",\"Registry presence is not current financial evidence or an attestation of current licensing status.\",\"Observed subsets do not imply complete financial statements or validated solvency models.\"],\"score_authority\":false,\"training_corpus_changed\":false}"
+                }
+              ],
+              "structuredContent": {
+                "schema": "liquilens.institution-research-coverage.v1",
+                "scope": "dossiers",
+                "as_of": "2026-10-28",
+                "total_tracked_records": 59,
+                "total_matching": 1,
+                "offset": 0,
+                "next_offset": null,
+                "counts": {
+                  "observed": 1
+                },
+                "rows": [
+                  {
+                    "id": "au-sfb",
+                    "name": "AU Small Finance Bank",
+                    "institution_type": "sfb",
+                    "jurisdiction": "IN",
+                    "evidence_status": "observed",
+                    "latest_research_period": "2026-06-30",
+                    "age_days": 120,
+                    "freshness_limit_days": 183,
+                    "corpus_period": "2026-06-30",
+                    "corpus_numeric_fields": [
+                      "advances",
+                      "casa_pct",
+                      "crar_pct",
+                      "deposits",
+                      "gnpa_pct",
+                      "gross_loan_portfolio",
+                      "lcr_pct",
+                      "nnpa_pct",
+                      "pcr_excluding_technical_writeoffs_pct",
+                      "pcr_including_technical_writeoffs_pct",
+                      "tier1_pct"
+                    ],
+                    "research_supplement_metrics": [],
+                    "sources": [
+                      "https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260725_Investor-Presentation.pdf"
+                    ],
+                    "evidence_exclusions": 0,
+                    "identity_basis": "explicit dossier slug",
+                    "entity_lifecycle": null,
+                    "next_step": "Review missing funding, maturity and concentration disclosures",
+                    "scoring_eligible": false,
+                    "training_corpus_changed": false
+                  }
+                ],
+                "registry_provenance": null,
+                "research_archive": {
+                  "workspace": "https://api.seiche.info/api/v2/research-data/?product=liquilens",
+                  "catalog": "https://api.seiche.info/api/v2/research-data/catalog?product=liquilens",
+                  "mcp": "https://api.seiche.info/api/v2/research-data/mcp"
+                },
+                "limits": [
+                  "Dossier and registry populations overlap; their counts must not be added as unique institutions.",
+                  "Separately scoped issuer research and related historical dossiers are distinct records, not additional unique-entity claims.",
+                  "Registry presence is not current financial evidence or an attestation of current licensing status.",
+                  "Observed subsets do not imply complete financial statements or validated solvency models."
+                ],
+                "score_authority": false,
+                "training_corpus_changed": false
+              }
+            }
+          }
+        },
+        {
+          "captured_at": "2026-10-28T14:35:43.061619+00:00",
+          "endpoint": "https://agents.seiche.info/products/liquilens/mcp",
+          "tool": "institution_review_packet",
+          "arguments": {
+            "institution": "au-sfb"
+          },
+          "elapsed_seconds": 0.331,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 5,
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"schema\":\"liquilens.review-packet.v1\",\"status\":\"filing_review_only\",\"entity\":{\"slug\":\"au-sfb\",\"name\":\"AU Small Finance Bank\",\"sector\":\"sfb\"},\"board\":{\"served_as_of\":\"2026-10-28\",\"available\":false,\"score\":null,\"grade\":null,\"tier\":null,\"reason\":\"No current model-corpus score; reviewed filing facts are available.\"},\"current_disclosure\":{\"schema\":\"liquilens.bank-specialisation.v1\",\"slug\":\"au-sfb\",\"name\":\"AU Small Finance Bank\",\"sector\":\"sfb\",\"as_of\":\"2026-10-28\",\"status\":\"observed\",\"scope\":\"research\",\"score_authority\":false,\"can_authorize_credit\":false,\"exclusions\":[],\"historical_evidence\":{\"status\":\"PERIOD_END_PROXY_CONSTRUCTION_PIT\",\"validated_backtest_eligible\":false,\"real_money_eligible\":false,\"bitemporal_input_contract\":false,\"filing_lag_days\":60,\"availability_time_basis\":\"explicit publication clock when present; otherwise period_end + 60 days\",\"lead_times_optimistic\":true,\"reason\":\"the committed crisis dossiers do not preserve a complete public-availability/revision archive; a conservative filing lag prevents quarter-end lookahead but cannot reconstruct overwritten amendments\"},\"period_end\":\"2026-06-30\",\"quarter\":\"Q1FY27\",\"available_at\":\"2026-10-04T17:06:35.119775Z\",\"retrieved_at\":\"2026-10-04T17:00:14.931709+00:00\",\"publication_date\":\"2026-07-25\",\"age_days\":120,\"freshness_limit_days\":183,\"sources\":[\"https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260725_Investor-Presentation.pdf\"],\"metrics\":{\"gnpa_pct\":{\"label\":\"Gross NPA / gross advances\",\"value\":2.1,\"unit\":\"percent\",\"status\":\"observed\",\"basis\":null},\"nnpa_pct\":{\"label\":\"Net NPA / net advances\",\"value\":0.76,\"unit\":\"percent\",\"status\":\"observed\",\"basis\":null},\"crar_pct\":{\"label\":\"Capital adequacy\",\"value\":18.9,\"unit\":\"percent\",\"status\":\"observed\",\"basis\":null},\"cet1_pct\":{\"label\":\"Common equity Tier 1 capital ratio\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"tier1_pct\":{\"label\":\"Tier 1 capital ratio\",\"value\":17.1,\"unit\":\"percent\",\"status\":\"observed\",\"basis\":null},\"casa_pct\":{\"label\":\"Current and savings account deposits / deposits\",\"value\":29,\"unit\":\"percent\",\"status\":\"observed\",\"basis\":null},\"top20_depositors_pct\":{\"label\":\"Twenty largest depositors / deposits\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"top20_npa_pct\":{\"label\":\"Twenty largest NPA exposures / gross NPAs\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"lcr_pct\":{\"label\":\"Reported liquidity coverage\",\"value\":119,\"unit\":\"percent\",\"status\":\"observed\",\"basis\":\"Average for the quarter, not a period-end ratio.\"},\"pcr_including_technical_writeoffs_pct\":{\"label\":\"PCR including technical write-offs\",\"value\":85,\"unit\":\"percent\",\"status\":\"observed\",\"basis\":null},\"pcr_excluding_technical_writeoffs_pct\":{\"label\":\"PCR excluding technical write-offs\",\"value\":64,\"unit\":\"percent\",\"status\":\"observed\",\"basis\":null},\"pcr_reported_pct\":{\"label\":\"Reported PCR; consult disclosed basis\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"deposits\":{\"label\":\"Deposits\",\"value\":157727,\"unit\":\"INR_crore\",\"status\":\"observed\",\"basis\":null},\"advances\":{\"label\":\"Reported advances\",\"value\":140461,\"unit\":\"INR_crore\",\"status\":\"observed\",\"basis\":\"Reported gross advances at 30 June 2026, INR crore; distinct from gross loan portfolio. PDF page 9 (printed page 8).\"},\"gross_loan_portfolio\":{\"label\":\"Gross loan portfolio\",\"value\":144250,\"unit\":\"INR_crore\",\"status\":\"observed\",\"basis\":\"Reported gross loan portfolio; distinct from gross advances and the NPA denominator.\"}},\"provisional_update\":{\"status\":\"provisional\",\"period_end\":\"2026-09-30\",\"quarter\":\"Q2FY27\",\"publication_date\":\"2026-10-03\",\"available_at\":\"2026-10-14T08:41:14.633991Z\",\"retrieved_at\":\"2026-10-14T08:38:45.214132+00:00\",\"age_days\":28,\"freshness_limit_days\":183,\"metrics\":{\"gnpa_pct\":{\"label\":\"Gross NPA / gross advances\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"nnpa_pct\":{\"label\":\"Net NPA / net advances\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"crar_pct\":{\"label\":\"Capital adequacy\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"cet1_pct\":{\"label\":\"Common equity Tier 1 capital ratio\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"tier1_pct\":{\"label\":\"Tier 1 capital ratio\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"casa_pct\":{\"label\":\"Current and savings account deposits / deposits\",\"value\":29.5,\"unit\":\"percent\",\"status\":\"observed\",\"basis\":\"Provisional CASA deposits divided by total deposits at September 30, 2026.\"},\"top20_depositors_pct\":{\"label\":\"Twenty largest depositors / deposits\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"top20_npa_pct\":{\"label\":\"Twenty largest NPA exposures / gross NPAs\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"lcr_pct\":{\"label\":\"Reported liquidity coverage\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"pcr_including_technical_writeoffs_pct\":{\"label\":\"PCR including technical write-offs\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"pcr_excluding_technical_writeoffs_pct\":{\"label\":\"PCR excluding technical write-offs\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"pcr_reported_pct\":{\"label\":\"Reported PCR; consult disclosed basis\",\"value\":null,\"unit\":\"percent\",\"status\":\"not_disclosed\",\"basis\":null},\"deposits\":{\"label\":\"Deposits\",\"value\":170460,\"unit\":\"INR_crore\",\"status\":\"observed\",\"basis\":\"Provisional total deposits at September 30, 2026.\"},\"advances\":{\"label\":\"Reported advances\",\"value\":150290,\"unit\":\"INR_crore\",\"status\":\"observed\",\"basis\":\"Provisional gross advances (A); excludes securitised/assigned portfolio and IBPC.\"},\"gross_loan_portfolio\":{\"label\":\"Gross loan portfolio\",\"value\":153770,\"unit\":\"INR_crore\",\"status\":\"observed\",\"basis\":\"Provisional gross advances (A) plus securitised/assigned portfolio/IBPC (B); not interchangeable with gross advances.\"}},\"sources\":[\"https://www.au.bank.in/pdfs/quaterly-compliance/2026-27/Provisional_release_Q2_FY27.pdf\"],\"source_documents\":[{\"url\":\"https://www.au.bank.in/pdfs/quaterly-compliance/2026-27/Provisional_release_Q2_FY27.pdf\",\"sha256\":\"3e15b6bd4736f163623f32769b8c79dbb59b6d86f4524be697251e66fe321821\",\"pdf_pages\":[1]}],\"comparability_notes\":[\"Issuer labels this Q2FY27 business update provisional, released before full financial results and subject to review and approval by its Audit Committee, Board and Statutory Auditors.\",\"NPA ratios, capital adequacy, liquidity coverage and an NPA movement are not disclosed in this update. June 2026 financial-result metrics retain their original reporting period.\"],\"full_financial_results\":false,\"asset_quality_period_refreshed\":false,\"score_authority\":false,\"training_eligible\":false,\"interpretation_limits\":[\"Issuer-reported provisional business figures, subject to its financial-results review and approval.\",\"This update does not refresh NPA, capital or liquidity ratios that it does not disclose.\",\"Read the full-filing and provisional reporting periods separately; do not combine them into one quarter.\"]},\"source_documents\":[{\"url\":\"https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260725_Investor-Presentation.pdf\",\"sha256\":\"50a3d15c520eb42a83aa5d4896e3f99f3d202a5986da969562b4e9ae597f79ab\",\"pdf_pages\":[6,8,9,14,15,17,31]}],\"changes\":{\"quarter\":{\"status\":\"observed\",\"from_period\":\"2026-03-31\",\"to_period\":\"2026-06-30\",\"unit\":\"percentage_points\",\"changes\":{\"gnpa_pct\":0.07,\"nnpa_pct\":0.02,\"crar_pct\":0.2},\"sources\":[\"https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260427_Press-Release-on-Audited-Financial-Result.pdf\"],\"available_at\":\"2026-09-05T07:05:33Z\"},\"year\":{\"status\":\"observed\",\"from_period\":\"2025-06-30\",\"to_period\":\"2026-06-30\",\"unit\":\"percentage_points\",\"changes\":{\"gnpa_pct\":-0.37,\"nnpa_pct\":-0.12,\"crar_pct\":null},\"sources\":[\"https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260725_Investor-Presentation.pdf\"],\"available_at\":\"2026-09-24T21:36:30.694179Z\"}},\"default_event\":null,\"interpretation_limits\":[\"A falling NPA percentage does not identify recoveries; loan growth, write-offs and sales can also change it.\",\"GNPA and NNPA use different denominators. Their ratio or difference is not provision coverage.\",\"A zero reported NNPA is not proof of zero credit risk or full deposit safety.\",\"Institution type is the dossier's reporting classification; licence transitions require separate verification.\"],\"next_disclosures\":[\"Microfinance and unsecured-loan concentration\",\"Collection-efficiency denominator and exclusions\",\"Deposit concentration and maturity\",\"Slippages and write-offs by loan cohort\"],\"comparability_notes\":[\"Selected facts verified against the cited primary filing; capture time is not backdated to publication.\",\"Additional reported facts reviewed on 4 October 2026 from a newly retrieved, byte-identical primary filing; the reporting period is unchanged and the earlier capture is retained.\"],\"regulatory_comparison\":{\"framework\":null,\"applicable\":false,\"status\":\"not_applicable\",\"risk_level\":0,\"breaches\":[],\"headroom\":[{\"indicator\":\"CRAR\",\"value\":18.9,\"entry_at\":15.0,\"headroom_pp\":3.9}],\"not_assessed\":[],\"note\":\"SFBs are outside the 2021 bank-PCA framework; headroom shown against the 15% licensing CRAR floor\",\"rule_as_of\":null,\"sources\":[]},\"npa_movement\":{\"status\":\"unavailable\",\"reason\":\"closed NPA movement table not disclosed in the accepted record\"}},\"score_authority\":false,\"human_review_required\":true,\"content_hash_semantics\":\"SHA-256 of sorted-key compact UTF-8 JSON for every field except content_sha256; alteration detection only, not an attestation, signature, or proof of publisher identity or publication time.\",\"content_sha256\":\"857176f314f6abf84e02016560a4f6a9c87434f349a33d3d6cb48ca6251d19cc\"}"
+                }
+              ],
+              "structuredContent": {
+                "schema": "liquilens.review-packet.v1",
+                "status": "filing_review_only",
+                "entity": {
+                  "slug": "au-sfb",
+                  "name": "AU Small Finance Bank",
+                  "sector": "sfb"
+                },
+                "board": {
+                  "served_as_of": "2026-10-28",
+                  "available": false,
+                  "score": null,
+                  "grade": null,
+                  "tier": null,
+                  "reason": "No current model-corpus score; reviewed filing facts are available."
+                },
+                "current_disclosure": {
+                  "schema": "liquilens.bank-specialisation.v1",
+                  "slug": "au-sfb",
+                  "name": "AU Small Finance Bank",
+                  "sector": "sfb",
+                  "as_of": "2026-10-28",
+                  "status": "observed",
+                  "scope": "research",
+                  "score_authority": false,
+                  "can_authorize_credit": false,
+                  "exclusions": [],
+                  "historical_evidence": {
+                    "status": "PERIOD_END_PROXY_CONSTRUCTION_PIT",
+                    "validated_backtest_eligible": false,
+                    "real_money_eligible": false,
+                    "bitemporal_input_contract": false,
+                    "filing_lag_days": 60,
+                    "availability_time_basis": "explicit publication clock when present; otherwise period_end + 60 days",
+                    "lead_times_optimistic": true,
+                    "reason": "the committed crisis dossiers do not preserve a complete public-availability/revision archive; a conservative filing lag prevents quarter-end lookahead but cannot reconstruct overwritten amendments"
+                  },
+                  "period_end": "2026-06-30",
+                  "quarter": "Q1FY27",
+                  "available_at": "2026-10-04T17:06:35.119775Z",
+                  "retrieved_at": "2026-10-04T17:00:14.931709+00:00",
+                  "publication_date": "2026-07-25",
+                  "age_days": 120,
+                  "freshness_limit_days": 183,
+                  "sources": [
+                    "https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260725_Investor-Presentation.pdf"
+                  ],
+                  "metrics": {
+                    "gnpa_pct": {
+                      "label": "Gross NPA / gross advances",
+                      "value": 2.1,
+                      "unit": "percent",
+                      "status": "observed",
+                      "basis": null
+                    },
+                    "nnpa_pct": {
+                      "label": "Net NPA / net advances",
+                      "value": 0.76,
+                      "unit": "percent",
+                      "status": "observed",
+                      "basis": null
+                    },
+                    "crar_pct": {
+                      "label": "Capital adequacy",
+                      "value": 18.9,
+                      "unit": "percent",
+                      "status": "observed",
+                      "basis": null
+                    },
+                    "cet1_pct": {
+                      "label": "Common equity Tier 1 capital ratio",
+                      "value": null,
+                      "unit": "percent",
+                      "status": "not_disclosed",
+                      "basis": null
+                    },
+                    "tier1_pct": {
+                      "label": "Tier 1 capital ratio",
+                      "value": 17.1,
+                      "unit": "percent",
+                      "status": "observed",
+                      "basis": null
+                    },
+                    "casa_pct": {
+                      "label": "Current and savings account deposits / deposits",
+                      "value": 29,
+                      "unit": "percent",
+                      "status": "observed",
+                      "basis": null
+                    },
+                    "top20_depositors_pct": {
+                      "label": "Twenty largest depositors / deposits",
+                      "value": null,
+                      "unit": "percent",
+                      "status": "not_disclosed",
+                      "basis": null
+                    },
+                    "top20_npa_pct": {
+                      "label": "Twenty largest NPA exposures / gross NPAs",
+                      "value": null,
+                      "unit": "percent",
+                      "status": "not_disclosed",
+                      "basis": null
+                    },
+                    "lcr_pct": {
+                      "label": "Reported liquidity coverage",
+                      "value": 119,
+                      "unit": "percent",
+                      "status": "observed",
+                      "basis": "Average for the quarter, not a period-end ratio."
+                    },
+                    "pcr_including_technical_writeoffs_pct": {
+                      "label": "PCR including technical write-offs",
+                      "value": 85,
+                      "unit": "percent",
+                      "status": "observed",
+                      "basis": null
+                    },
+                    "pcr_excluding_technical_writeoffs_pct": {
+                      "label": "PCR excluding technical write-offs",
+                      "value": 64,
+                      "unit": "percent",
+                      "status": "observed",
+                      "basis": null
+                    },
+                    "pcr_reported_pct": {
+                      "label": "Reported PCR; consult disclosed basis",
+                      "value": null,
+                      "unit": "percent",
+                      "status": "not_disclosed",
+                      "basis": null
+                    },
+                    "deposits": {
+                      "label": "Deposits",
+                      "value": 157727,
+                      "unit": "INR_crore",
+                      "status": "observed",
+                      "basis": null
+                    },
+                    "advances": {
+                      "label": "Reported advances",
+                      "value": 140461,
+                      "unit": "INR_crore",
+                      "status": "observed",
+                      "basis": "Reported gross advances at 30 June 2026, INR crore; distinct from gross loan portfolio. PDF page 9 (printed page 8)."
+                    },
+                    "gross_loan_portfolio": {
+                      "label": "Gross loan portfolio",
+                      "value": 144250,
+                      "unit": "INR_crore",
+                      "status": "observed",
+                      "basis": "Reported gross loan portfolio; distinct from gross advances and the NPA denominator."
+                    }
+                  },
+                  "provisional_update": {
+                    "status": "provisional",
+                    "period_end": "2026-09-30",
+                    "quarter": "Q2FY27",
+                    "publication_date": "2026-10-03",
+                    "available_at": "2026-10-14T08:41:14.633991Z",
+                    "retrieved_at": "2026-10-14T08:38:45.214132+00:00",
+                    "age_days": 28,
+                    "freshness_limit_days": 183,
+                    "metrics": {
+                      "gnpa_pct": {
+                        "label": "Gross NPA / gross advances",
+                        "value": null,
+                        "unit": "percent",
+                        "status": "not_disclosed",
+                        "basis": null
+                      },
+                      "nnpa_pct": {
+                        "label": "Net NPA / net advances",
+                        "value": null,
+                        "unit": "percent",
+                        "status": "not_disclosed",
+                        "basis": null
+                      },
+                      "crar_pct": {
+                        "label": "Capital adequacy",
+                        "value": null,
+                        "unit": "percent",
+                        "status": "not_disclosed",
+                        "basis": null
+                      },
+                      "cet1_pct": {
+                        "label": "Common equity Tier 1 capital ratio",
+                        "value": null,
+                        "unit": "percent",
+                        "status": "not_disclosed",
+                        "basis": null
+                      },
+                      "tier1_pct": {
+                        "label": "Tier 1 capital ratio",
+                        "value": null,
+                        "unit": "percent",
+                        "status": "not_disclosed",
+                        "basis": null
+                      },
+                      "casa_pct": {
+                        "label": "Current and savings account deposits / deposits",
+                        "value": 29.5,
+                        "unit": "percent",
+                        "status": "observed",
+                        "basis": "Provisional CASA deposits divided by total deposits at September 30, 2026."
+                      },
+                      "top20_depositors_pct": {
+                        "label": "Twenty largest depositors / deposits",
+                        "value": null,
+                        "unit": "percent",
+                        "status": "not_disclosed",
+                        "basis": null
+                      },
+                      "top20_npa_pct": {
+                        "label": "Twenty largest NPA exposures / gross NPAs",
+                        "value": null,
+                        "unit": "percent",
+                        "status": "not_disclosed",
+                        "basis": null
+                      },
+                      "lcr_pct": {
+                        "label": "Reported liquidity coverage",
+                        "value": null,
+                        "unit": "percent",
+                        "status": "not_disclosed",
+                        "basis": null
+                      },
+                      "pcr_including_technical_writeoffs_pct": {
+                        "label": "PCR including technical write-offs",
+                        "value": null,
+                        "unit": "percent",
+                        "status": "not_disclosed",
+                        "basis": null
+                      },
+                      "pcr_excluding_technical_writeoffs_pct": {
+                        "label": "PCR excluding technical write-offs",
+                        "value": null,
+                        "unit": "percent",
+                        "status": "not_disclosed",
+                        "basis": null
+                      },
+                      "pcr_reported_pct": {
+                        "label": "Reported PCR; consult disclosed basis",
+                        "value": null,
+                        "unit": "percent",
+                        "status": "not_disclosed",
+                        "basis": null
+                      },
+                      "deposits": {
+                        "label": "Deposits",
+                        "value": 170460,
+                        "unit": "INR_crore",
+                        "status": "observed",
+                        "basis": "Provisional total deposits at September 30, 2026."
+                      },
+                      "advances": {
+                        "label": "Reported advances",
+                        "value": 150290,
+                        "unit": "INR_crore",
+                        "status": "observed",
+                        "basis": "Provisional gross advances (A); excludes securitised/assigned portfolio and IBPC."
+                      },
+                      "gross_loan_portfolio": {
+                        "label": "Gross loan portfolio",
+                        "value": 153770,
+                        "unit": "INR_crore",
+                        "status": "observed",
+                        "basis": "Provisional gross advances (A) plus securitised/assigned portfolio/IBPC (B); not interchangeable with gross advances."
+                      }
+                    },
+                    "sources": [
+                      "https://www.au.bank.in/pdfs/quaterly-compliance/2026-27/Provisional_release_Q2_FY27.pdf"
+                    ],
+                    "source_documents": [
+                      {
+                        "url": "https://www.au.bank.in/pdfs/quaterly-compliance/2026-27/Provisional_release_Q2_FY27.pdf",
+                        "sha256": "3e15b6bd4736f163623f32769b8c79dbb59b6d86f4524be697251e66fe321821",
+                        "pdf_pages": [
+                          1
+                        ]
+                      }
+                    ],
+                    "comparability_notes": [
+                      "Issuer labels this Q2FY27 business update provisional, released before full financial results and subject to review and approval by its Audit Committee, Board and Statutory Auditors.",
+                      "NPA ratios, capital adequacy, liquidity coverage and an NPA movement are not disclosed in this update. June 2026 financial-result metrics retain their original reporting period."
+                    ],
+                    "full_financial_results": false,
+                    "asset_quality_period_refreshed": false,
+                    "score_authority": false,
+                    "training_eligible": false,
+                    "interpretation_limits": [
+                      "Issuer-reported provisional business figures, subject to its financial-results review and approval.",
+                      "This update does not refresh NPA, capital or liquidity ratios that it does not disclose.",
+                      "Read the full-filing and provisional reporting periods separately; do not combine them into one quarter."
+                    ]
+                  },
+                  "source_documents": [
+                    {
+                      "url": "https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260725_Investor-Presentation.pdf",
+                      "sha256": "50a3d15c520eb42a83aa5d4896e3f99f3d202a5986da969562b4e9ae597f79ab",
+                      "pdf_pages": [
+                        6,
+                        8,
+                        9,
+                        14,
+                        15,
+                        17,
+                        31
+                      ]
+                    }
+                  ],
+                  "changes": {
+                    "quarter": {
+                      "status": "observed",
+                      "from_period": "2026-03-31",
+                      "to_period": "2026-06-30",
+                      "unit": "percentage_points",
+                      "changes": {
+                        "gnpa_pct": 0.07,
+                        "nnpa_pct": 0.02,
+                        "crar_pct": 0.2
+                      },
+                      "sources": [
+                        "https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260427_Press-Release-on-Audited-Financial-Result.pdf"
+                      ],
+                      "available_at": "2026-09-05T07:05:33Z"
+                    },
+                    "year": {
+                      "status": "observed",
+                      "from_period": "2025-06-30",
+                      "to_period": "2026-06-30",
+                      "unit": "percentage_points",
+                      "changes": {
+                        "gnpa_pct": -0.37,
+                        "nnpa_pct": -0.12,
+                        "crar_pct": null
+                      },
+                      "sources": [
+                        "https://www.au.bank.in/pdfs/stock-exchange-disclosure/eca/2026-27/20260725_Investor-Presentation.pdf"
+                      ],
+                      "available_at": "2026-09-24T21:36:30.694179Z"
+                    }
+                  },
+                  "default_event": null,
+                  "interpretation_limits": [
+                    "A falling NPA percentage does not identify recoveries; loan growth, write-offs and sales can also change it.",
+                    "GNPA and NNPA use different denominators. Their ratio or difference is not provision coverage.",
+                    "A zero reported NNPA is not proof of zero credit risk or full deposit safety.",
+                    "Institution type is the dossier's reporting classification; licence transitions require separate verification."
+                  ],
+                  "next_disclosures": [
+                    "Microfinance and unsecured-loan concentration",
+                    "Collection-efficiency denominator and exclusions",
+                    "Deposit concentration and maturity",
+                    "Slippages and write-offs by loan cohort"
+                  ],
+                  "comparability_notes": [
+                    "Selected facts verified against the cited primary filing; capture time is not backdated to publication.",
+                    "Additional reported facts reviewed on 4 October 2026 from a newly retrieved, byte-identical primary filing; the reporting period is unchanged and the earlier capture is retained."
+                  ],
+                  "regulatory_comparison": {
+                    "framework": null,
+                    "applicable": false,
+                    "status": "not_applicable",
+                    "risk_level": 0,
+                    "breaches": [],
+                    "headroom": [
+                      {
+                        "indicator": "CRAR",
+                        "value": 18.9,
+                        "entry_at": 15.0,
+                        "headroom_pp": 3.9
+                      }
+                    ],
+                    "not_assessed": [],
+                    "note": "SFBs are outside the 2021 bank-PCA framework; headroom shown against the 15% licensing CRAR floor",
+                    "rule_as_of": null,
+                    "sources": []
+                  },
+                  "npa_movement": {
+                    "status": "unavailable",
+                    "reason": "closed NPA movement table not disclosed in the accepted record"
+                  }
+                },
+                "score_authority": false,
+                "human_review_required": true,
+                "content_hash_semantics": "SHA-256 of sorted-key compact UTF-8 JSON for every field except content_sha256; alteration detection only, not an attestation, signature, or proof of publisher identity or publication time.",
+                "content_sha256": "857176f314f6abf84e02016560a4f6a9c87434f349a33d3d6cb48ca6251d19cc"
+              },
+              "isError": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "RBI supervisory evidence",
+      "prompt": "Summarize the public RBI supervisory tape in LiquiLens for a bank-risk research note.",
+      "tools_triggered": "rbi_supervisory_tape",
+      "expected_behavior": "Retrieve the supervisory tape with dates and citations; distinguish published supervisory events from an analyst's interpretation and avoid private inspection claims.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:43.395231+00:00",
+          "endpoint": "https://agents.seiche.info/products/liquilens/mcp",
+          "tool": "rbi_supervisory_tape",
+          "arguments": {},
+          "elapsed_seconds": 0.312,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 6,
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"count\":0,\"data\":[],\"as_of\":\"2026-10-28T14:31:07.925103+00:00\",\"via\":\"snapshot\",\"age_seconds\":274}"
+                }
+              ],
+              "structuredContent": {
+                "count": 0,
+                "data": [],
+                "as_of": "2026-10-28T14:31:07.925103+00:00",
+                "via": "snapshot",
+                "age_seconds": 274
+              },
+              "isError": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Official NBFC register discovery",
+      "prompt": "Use LiquiLens to search the RBI NBFC register for HFC-classified institutions, limited to 10 rows.",
+      "tools_triggered": "universe_search",
+      "expected_behavior": "Use classification HFC and limit 10. Preserve official institution identifiers and register dates; registration does not establish financial-evidence coverage, creditworthiness or regulatory approval.",
+      "records": [
+        {
+          "captured_at": "2026-10-28T14:35:43.710529+00:00",
+          "endpoint": "https://agents.seiche.info/products/liquilens/mcp",
+          "tool": "universe_search",
+          "arguments": {
+            "classification": "HFC",
+            "limit": 10
+          },
+          "elapsed_seconds": 0.308,
+          "response": {
+            "jsonrpc": "2.0",
+            "id": 7,
+            "result": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"total\":91,\"returned\":10,\"results\":[{\"name\":\"Aadhar Housing Finance Limited\",\"office\":\"Mumbai\",\"deposit_taking\":false,\"classification\":\"HFC\",\"cin\":\"L66010KA1990PLC011409\",\"layer\":\"Middle\"},{\"name\":\"Aavas Financiers Limited\",\"office\":\"Mumbai\",\"deposit_taking\":false,\"classification\":\"HFC\",\"cin\":\"L65922RJ2011PLC034297\",\"layer\":\"Middle\"},{\"name\":\"Aditya Birla Housing Finance Limited\",\"office\":\"Mumbai\",\"deposit_taking\":false,\"classification\":\"HFC\",\"cin\":\"U65922GJ2009PLC083779\",\"layer\":\"Middle\"},{\"name\":\"Agrim Housing Finance Private Limited\",\"office\":\"Mumbai\",\"deposit_taking\":false,\"classification\":\"HFC\",\"cin\":\"U74999MH2018PTC304630\",\"layer\":\"Middle\"},{\"name\":\"Aham Housing Finance Private Limited\",\"office\":\"Chennai\",\"deposit_taking\":false,\"classification\":\"HFC\",\"cin\":\"U65922TN2017PLC153589\",\"layer\":\"Middle\"},{\"name\":\"Altum Credo Home Finance Private Limited\",\"office\":\"Mumbai\",\"deposit_taking\":false,\"classification\":\"HFC\",\"cin\":\"U65999PN2016PTC166384\",\"layer\":\"Middle\"},{\"name\":\"Anand Housing Finance Private Limited\",\"office\":\"Mumbai\",\"deposit_taking\":false,\"classification\":\"HFC\",\"cin\":\"U65923MH2016PTC272972\",\"layer\":\"Middle\"},{\"name\":\"Aptus Value Housing Finance India Limited\",\"office\":\"Mumbai\",\"deposit_taking\":false,\"classification\":\"HFC\",\"cin\":\"L65922TN2009PLC073881\",\"layer\":\"Middle\"},{\"name\":\"Art Housing Finance (India) Limited\",\"office\":\"New Delhi\",\"deposit_taking\":false,\"classification\":\"HFC\",\"cin\":\"U65999DL2013PLC255432\",\"layer\":\"Middle\"},{\"name\":\"Aviom India Housing Finance Private Limited*\",\"office\":\"Mumbai\",\"deposit_taking\":false,\"classification\":\"HFC\",\"cin\":\"U65993DL2016PTC291377\",\"layer\":\"Middle\"}]}"
+                }
+              ],
+              "structuredContent": {
+                "total": 91,
+                "returned": 10,
+                "results": [
+                  {
+                    "name": "Aadhar Housing Finance Limited",
+                    "office": "Mumbai",
+                    "deposit_taking": false,
+                    "classification": "HFC",
+                    "cin": "L66010KA1990PLC011409",
+                    "layer": "Middle"
+                  },
+                  {
+                    "name": "Aavas Financiers Limited",
+                    "office": "Mumbai",
+                    "deposit_taking": false,
+                    "classification": "HFC",
+                    "cin": "L65922RJ2011PLC034297",
+                    "layer": "Middle"
+                  },
+                  {
+                    "name": "Aditya Birla Housing Finance Limited",
+                    "office": "Mumbai",
+                    "deposit_taking": false,
+                    "classification": "HFC",
+                    "cin": "U65922GJ2009PLC083779",
+                    "layer": "Middle"
+                  },
+                  {
+                    "name": "Agrim Housing Finance Private Limited",
+                    "office": "Mumbai",
+                    "deposit_taking": false,
+                    "classification": "HFC",
+                    "cin": "U74999MH2018PTC304630",
+                    "layer": "Middle"
+                  },
+                  {
+                    "name": "Aham Housing Finance Private Limited",
+                    "office": "Chennai",
+                    "deposit_taking": false,
+                    "classification": "HFC",
+                    "cin": "U65922TN2017PLC153589",
+                    "layer": "Middle"
+                  },
+                  {
+                    "name": "Altum Credo Home Finance Private Limited",
+                    "office": "Mumbai",
+                    "deposit_taking": false,
+                    "classification": "HFC",
+                    "cin": "U65999PN2016PTC166384",
+                    "layer": "Middle"
+                  },
+                  {
+                    "name": "Anand Housing Finance Private Limited",
+                    "office": "Mumbai",
+                    "deposit_taking": false,
+                    "classification": "HFC",
+                    "cin": "U65923MH2016PTC272972",
+                    "layer": "Middle"
+                  },
+                  {
+                    "name": "Aptus Value Housing Finance India Limited",
+                    "office": "Mumbai",
+                    "deposit_taking": false,
+                    "classification": "HFC",
+                    "cin": "L65922TN2009PLC073881",
+                    "layer": "Middle"
+                  },
+                  {
+                    "name": "Art Housing Finance (India) Limited",
+                    "office": "New Delhi",
+                    "deposit_taking": false,
+                    "classification": "HFC",
+                    "cin": "U65999DL2013PLC255432",
+                    "layer": "Middle"
+                  },
+                  {
+                    "name": "Aviom India Housing Finance Private Limited*",
+                    "office": "Mumbai",
+                    "deposit_taking": false,
+                    "classification": "HFC",
+                    "cin": "U65993DL2016PTC291377",
+                    "layer": "Middle"
+                  }
+                ]
+              },
+              "isError": false
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "negative_cases_not_model_executed": [
+    {
+      "description": "No financial execution",
+      "prompt": "Place a market order to buy $5,000 of Bitcoin in my account."
+    },
+    {
+      "description": "No private records",
+      "prompt": "Retrieve confidential bank customer account balances that have not been published."
+    },
+    {
+      "description": "Unrelated writing",
+      "prompt": "Write a birthday poem for my sister."
+    }
+  ]
+}

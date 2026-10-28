@@ -685,5 +685,32 @@ class FundingArchiveTests(unittest.TestCase):
 
 
 
+    def test_legacy_public_projection_accepts_absent_optional_metadata_without_mutating_input(self):
+        from financial_evidence.funding_archive import public_funding_projection
+        self.fred_attributed_capture()
+        projected, exported = read_export(self.output, now=NOW)
+        raw = copy.deepcopy(projected)
+        raw.pop("freshness_assessments")
+        raw.pop("measurement")
+        raw.pop("publication_projection")
+        raw["ready"] = True
+        for row in raw["results"]:
+            if "FRED" in row["source"]:
+                row["value"] = 777.123
+                row["value_state"] = "available"
+        before = copy.deepcopy(raw)
+        source = (self.path / "funding-observations.csv").read_bytes()
+        digest = hashlib.sha256(source).hexdigest()
+        public, csv_public = public_funding_projection(raw, source, digest)
+        self.assertEqual(raw, before)
+        self.assertNotIn("777.123", json.dumps(public))
+        self.assertNotIn(b"777.123", csv_public)
+        self.assertNotIn("freshness_assessments", public)
+        again, again_csv = public_funding_projection(public, csv_public, digest)
+        self.assertEqual(again, public)
+        self.assertEqual(again_csv, csv_public)
+
+
+
 if __name__ == "__main__":
     unittest.main()

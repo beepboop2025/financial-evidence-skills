@@ -277,6 +277,7 @@ def public_funding_projection(result: dict, csv_bytes: bytes | None,
     if not restricted:
         return result, csv_bytes
     result = copy.deepcopy(result)
+    result.pop("publication_projection", None)
     status = "redistribution_restricted"
     paths = []
     for index, row in enumerate(result["results"]):
@@ -288,7 +289,7 @@ def public_funding_projection(result: dict, csv_bytes: bytes | None,
                        publication_allowed=False, rights_reason=_RIGHTS_REASON,
                        rights_urls=[_FRED_TERMS])
             paths.append(f"/results/{index}/value")
-            assessment = result["freshness_assessments"].get(row["metric_id"])
+            assessment = result.get("freshness_assessments", {}).get(row["metric_id"])
             if assessment is not None:
                 # Preserve clocks, not a narrative derived from restricted values.
                 for key in ("basis", "latest_observation_basis"):
@@ -296,15 +297,15 @@ def public_funding_projection(result: dict, csv_bytes: bytes | None,
                         assessment[key] = _RIGHTS_REASON
     result.update(
         ready=False, availability="partially_restricted",
-        captured_data_readiness=result["data_readiness"],
+        captured_data_readiness=result.get("captured_data_readiness", result["data_readiness"]),
         data_readiness=status, rights_status="redistribution_review_required",
         publication_allowed=False,
     )
-    result["issues"] = [*result["issues"], {
-        "code": "public_redistribution_review_required", "subject": "funding_review",
-    }]
+    issue = {"code": "public_redistribution_review_required", "subject": "funding_review"}
+    if issue not in result["issues"]:
+        result["issues"] = [*result["issues"], issue]
     result["measurement"] = {
-        **result["measurement"],
+        **result.get("measurement", {}),
         "scope": "capture_time_pre_projection_operational_metrics_not_publication_readiness",
         "current_publication_ready": False,
     }

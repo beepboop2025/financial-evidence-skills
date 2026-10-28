@@ -15,7 +15,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://beepboop2025.github.io/financial-evidence-skills"
 REPO = "https://github.com/beepboop2025/financial-evidence-skills"
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 
 
 def encode(value):
@@ -33,10 +33,41 @@ def archive(files):
     return buffer.getvalue()
 
 
+def review_metadata(slug, metadata, inventory):
+    """Validate reviewer cases against a dated complete live tool inventory."""
+    item = metadata[slug]
+    proof = inventory[slug]
+    if proof["status"] != "inventory_complete":
+        raise ValueError(f"Incomplete review tool inventory: {slug}")
+    if len(item["positive"]) != 5 or len(item["negative"]) != 3:
+        raise ValueError(f"Expected five positive and three negative cases: {slug}")
+    for case in item["positive"]:
+        if set(case) != {"description", "prompt", "tools_triggered", "expected_behavior"}:
+            raise ValueError(f"Invalid positive review fields: {slug}")
+        if not all(isinstance(value, str) and value.strip() for value in case.values()):
+            raise ValueError(f"Empty positive review field: {slug}")
+        tools = {name.strip() for name in case["tools_triggered"].split(",")}
+        if not tools <= set(proof["tools"]):
+            raise ValueError(f"Undiscovered review tool: {slug}")
+    for case in item["negative"]:
+        if set(case) != {"description", "prompt"} or not all(
+            isinstance(value, str) and value.strip() for value in case.values()
+        ):
+            raise ValueError(f"Invalid negative review case: {slug}")
+    if len(item["defaultPrompt"]) != 3 or not all(
+        isinstance(value, str) and value.strip() for value in item["defaultPrompt"]
+    ):
+        raise ValueError(f"Expected three task prompts: {slug}")
+    return item
+
+
 def build():
     connections = json.loads((ROOT / "docs/connect/native-connections.json").read_text())
     observations = json.loads((ROOT / "docs/plugins/qualification.json").read_text())
     observed = {row["id"]: row for row in observations["connections"]}
+    review_file = "docs/plugins/review-tool-inventory-20261028.json"
+    inventory = {row["id"]: row for row in json.loads((ROOT / review_file).read_text())["products"]}
+    reviews = json.loads((ROOT / "integrations/openai/product-review.json").read_text())["products"]
     products = [p for p in connections["products"] if p["id"] != "financial-evidence"]
     output, entries, cards = {}, [], []
     for product in products:
@@ -46,8 +77,10 @@ def build():
             raise ValueError(f"Unqualified or changed endpoint: {slug}")
         if endpoint != f"https://agents.seiche.info/products/{slug}/mcp":
             raise ValueError(f"Unexpected endpoint: {slug}")
-        summary = product["scope"].rstrip(".") + "."
-        prompt = f"Discover {name}'s available research and coverage. Retrieve one relevant bounded result, cite its sources and dates, and explain missing or restricted evidence."
+        review = review_metadata(slug, reviews, inventory)
+        if inventory[slug]["endpoint"] != endpoint:
+            raise ValueError(f"Changed review endpoint: {slug}")
+        summary = review["longDescription"]
         skill = f'''---
 name: {slug}
 description: {json.dumps('Use ' + name + ' for ' + product['scope'].rstrip('.') + '. Preserve source dates, coverage and unavailable evidence.')}
@@ -82,13 +115,17 @@ counts; installation does not enroll the user in optional learning or sharing.
                   "author": {"name": "LIQUILENS PRIVATE LIMITED", "url": "https://liquilens.in/"},
                   "homepage": product["guide_url"], "repository": REPO, "license": "MIT"}
         codex = dict(common, skills="./skills/", mcpServers="./.mcp.json", interface={
-            "displayName": name, "shortDescription": "Source-linked research",
+            "displayName": name, "shortDescription": review["shortDescription"],
             "longDescription": summary, "developerName": "LIQUILENS PRIVATE LIMITED",
-            "category": "Productivity", "capabilities": ["Read", "Research"],
+            "category": review["category"], "capabilities": ["Read", "Research"],
             "websiteURL": product["guide_url"], "privacyPolicyURL": "https://agents.seiche.info/privacy",
             "termsOfServiceURL": SITE + "/terms/", "supportURL": SITE + "/support/",
             "composerIcon": "./assets/logo-400.png", "logo": "./assets/logo.svg",
-            "defaultPrompt": [prompt], "brandColor": "#0B6E69"})
+            "defaultPrompt": review["defaultPrompt"], "brandColor": "#0B6E69"})
+        codex["extensions"] = {"com.openai": {
+            "review": {"test_cases": {"positive": review["positive"], "negative": review["negative"]},
+                       "commerce": False},
+            "publication": {"release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."}}}
         mcp = {"mcpServers": {slug: {"type": "http", "url": endpoint}}}
         gemini = {"name": slug, "version": VERSION, "description": summary,
                   "mcpServers": {slug: {"httpUrl": endpoint, "timeout": 30000,
@@ -142,7 +179,8 @@ Cursor or Microsoft directory approval. [Privacy](https://agents.seiche.info/pri
             downloads[platform] = {"url": f"downloads/{filename}", "sha256": hashlib.sha256(body).hexdigest(), "bytes": len(body)}
         entry = {**product, "plugin_version": VERSION, "source_path": f"plugins/{slug}",
                  "distribution": "publisher_maintained_marketplace", "official_directory_approved": False,
-                 "observed_server_version": proof["server"]["version"], "observed_tool_count": len(proof["tools"]),
+                 "observed_server_version": inventory[slug]["server_version"], "observed_tool_count": len(inventory[slug]["tools"]),
+                 "review_tool_inventory": review_file.removeprefix("docs/plugins/"),
                  "downloads": downloads}
         entries.append(entry)
         config = {"type": "http", "url": endpoint}
@@ -158,15 +196,15 @@ Cursor or Microsoft directory approval. [Privacy](https://agents.seiche.info/pri
                         "version": VERSION, "description": entry["scope"]}
             else:
                 item = {"name": entry["id"], "source": {"source": "local", "path": "./" + entry["source_path"]},
-                        "policy": {"installation": "AVAILABLE", "authentication": "ON_INSTALL"}, "category": "Productivity"}
+                        "policy": {"installation": "AVAILABLE", "authentication": "ON_INSTALL"}, "category": reviews[entry["id"]]["category"]}
             catalog["plugins"].append(item)
         output[relative] = encode(catalog)
     output["docs/plugins/catalog.json"] = encode({"schema": "liquilens.product-plugins.v1", "version": VERSION,
         "products": entries, "existing_plugins": ["financial-evidence", "market-brief"],
         "scope": "Publisher-maintained installs and candidate ZIPs; official directory approval is separate."})
-    page = '''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Product plugins — LiquiLens</title><meta name="description" content="Install individual LiquiLens product plugins in Claude Code and Codex, or connect through Gemini, Cursor and VS Code."><link rel="stylesheet" href="../styles.css"><style>pre{overflow:auto}table{border-collapse:collapse;width:100%}th,td{text-align:left;padding:1rem;border-bottom:1px solid #bbb;vertical-align:top}.table-wrap{overflow:auto}td code{white-space:nowrap}main{max-width:1200px;margin:auto;padding:2rem}</style></head><body><main><p>LIQUILENS PRIVATE LIMITED</p><h1>Choose a product. Add it to your assistant.</h1><p>Install individual research plugins alongside Financial Evidence and Market Brief. Each product keeps its own sources, dates, coverage and access limits.</p><h2>Claude Code</h2><pre><code>claude plugin marketplace add beepboop2025/financial-evidence-skills
+    page = '''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Product plugins — LiquiLens</title><meta name="description" content="Install individual LiquiLens product plugins in Claude Code and Codex, or connect through Gemini, Cursor and VS Code."><link rel="stylesheet" href="../styles.css"><style>pre{overflow:auto}table{border-collapse:collapse;width:100%}th,td{text-align:left;padding:1rem;border-bottom:1px solid #bbb;vertical-align:top}.table-wrap{overflow:auto}td code{white-space:nowrap}main{max-width:1200px;margin:auto;padding:2rem}</style></head><body><main><p>LIQUILENS PRIVATE LIMITED</p><h1>Connected financial evidence for treasury, risk and research teams.</h1><p>Start with one question: a funding brief, a bank disclosure review, an indicative liquidity check or a source-data investigation. Individuals and small or midsize financial institutions can use these public research connections in their existing assistants, alongside Financial Evidence and Market Brief.</p><p>Discover available sources, retrieve a bounded result, reconcile identifiers, dates and units, then prepare a reusable brief or table with provenance and coverage gaps. Each product keeps its own evidence and access limits. These plugins do not connect private internal databases or turn different research signals into one risk score.</p><h2>Claude Code</h2><pre><code>claude plugin marketplace add beepboop2025/financial-evidence-skills
 claude plugin install liquilens@liquidity-lab</code></pre><h2>Codex</h2><pre><code>codex plugin marketplace add beepboop2025/financial-evidence-skills --ref main
-codex plugin add liquilens@liquidity-lab</code></pre><p>Replace <code>liquilens</code> with a product name below. These commands use the current repository; inspect updates before installing. For a fixed source, use a reviewed commit with the client's ref option.</p><div class="table-wrap"><table><thead><tr><th>Product</th><th>Research scope</th><th>Plugin name</th><th>Downloads and connections</th></tr></thead><tbody>ROWS</tbody></table></div><h2>Other assistants</h2><p>For Gemini CLI, extract the product's Gemini ZIP and run <code>gemini extensions install ./extracted-directory</code>. For ChatGPT, Claude web, Perplexity, Windsurf, Cline, Kilo, Kiro, Continue and Copilot Studio, use their custom MCP connection flow where available with the product URL from the <a href="../connect/">connection guide</a>. Account and administrator policies may restrict custom servers. Native installation in every client has not been verified.</p><h2>Directory publication</h2><p>This is our publisher-maintained catalog. OpenAI requires verified publisher identity; Claude Directory submission is deferred because it requires an eligible paid publisher plan. Public Claude Code installations remain available. Neither official directory approval is claimed. Existing Cursor, Cline, Kilo and other applications retain their individual review status in the <a href="../marketplaces.json">distribution tracker</a>. Gemini's public gallery indexes qualifying repositories separately.</p><p>The Plugin ZIP is a prepared OpenAI upload, not an approved store listing. It contains public manifests, one MCP connection, a research skill and logos. The public service needs no product API key; assistant accounts may have their own fees.</p><p><a href="catalog.json">Machine-readable catalog and ZIP hashes</a> · <a href="qualification.json">Dated MCP discovery checks</a> · <a href="https://agents.seiche.info/privacy">Hosted data handling</a> · <a href="../support/">Support</a></p></main></body></html>'''
+codex plugin add liquilens@liquidity-lab</code></pre><p>Replace <code>liquilens</code> with a product name below. These commands use the current repository; inspect updates before installing. For a fixed source, use a reviewed commit with the client's ref option.</p><div class="table-wrap"><table><thead><tr><th>Product</th><th>Research scope</th><th>Plugin name</th><th>Downloads and connections</th></tr></thead><tbody>ROWS</tbody></table></div><h2>Other assistants</h2><p>For Gemini CLI, extract the product's Gemini ZIP and run <code>gemini extensions install ./extracted-directory</code>. For ChatGPT, Claude web, Perplexity, Windsurf, Cline, Kilo, Kiro, Continue and Copilot Studio, use their custom MCP connection flow where available with the product URL from the <a href="../connect/">connection guide</a>. Account and administrator policies may restrict custom servers. Native installation in every client has not been verified.</p><h2>Directory publication</h2><p>This is our publisher-maintained catalog. OpenAI requires verified publisher identity; Claude Directory submission is deferred because it requires an eligible paid publisher plan. Public Claude Code installations remain available. Neither official directory approval is claimed. Existing Cursor, Cline, Kilo and other applications retain their individual review status in the <a href="../marketplaces.json">distribution tracker</a>. Gemini's public gallery indexes qualifying repositories separately.</p><p>The Plugin ZIP is a prepared OpenAI upload, not an approved store listing. It contains public manifests, one MCP connection, a research skill and logos. The public service needs no product API key; assistant accounts may have their own fees.</p><p><a href="catalog.json">Machine-readable catalog and ZIP hashes</a> · <a href="review-tool-inventory-20261028.json">Current review tool inventory</a> · <a href="qualification.json">Original dated MCP discovery checks</a> · <a href="https://agents.seiche.info/privacy">Hosted data handling</a> · <a href="../support/">Support</a></p></main></body></html>'''
     page = page.replace('<h2>Other assistants</h2>', '<h2>GitHub Copilot CLI</h2><pre><code>copilot plugin marketplace add beepboop2025/financial-evidence-skills\ncopilot plugin install liquilens@liquidity-lab</code></pre><p>All 15 catalog plugins passed installation checks in Copilot CLI 1.0.68. Market Brief 0.1.1 uses separate connection names so it can be installed alongside Financial Evidence. <a href="copilot-native-validation.json">Dated installation and connection verification</a>. <a href="https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference">Official format reference</a>.</p><h2>Other assistants</h2>')
     page = page.replace('Windsurf, Cline', 'Windsurf / Devin Cascade, Cline')
     page = page.replace('<h2>Directory publication</h2>', '<h2>Smithery</h2><p>Each product above has a public Smithery listing. The <a href="https://smithery.ai/servers/mrinallovesbhature/financial-evidence-workspace">Financial Evidence workspace</a> is also listed with its nine research tools. <a href="smithery-publication.json">Dated listing and tool-inventory verification</a>.</p><h2>Directory publication</h2>')

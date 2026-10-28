@@ -1,7 +1,7 @@
 {
   "name": "liquilens",
-  "version": "1.0.0",
-  "description": "Covered institutions and disclosure review.",
+  "version": "1.0.1",
+  "description": "Find covered financial institutions, review public asset-quality disclosures, and inspect RBI supervisory evidence with source dates and coverage limits. LiquiLens helps analysts prepare institution review questions while preserving missing or non-comparable evidence. It does not access private accounts, replace professional judgment or certify regulatory compliance.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"
@@ -13,10 +13,10 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "LiquiLens",
-    "shortDescription": "Source-linked research",
-    "longDescription": "Covered institutions and disclosure review.",
+    "shortDescription": "Bank disclosures and risk evidence",
+    "longDescription": "Find covered financial institutions, review public asset-quality disclosures, and inspect RBI supervisory evidence with source dates and coverage limits. LiquiLens helps analysts prepare institution review questions while preserving missing or non-comparable evidence. It does not access private accounts, replace professional judgment or certify regulatory compliance.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
-    "category": "Productivity",
+    "category": "Finance",
     "capabilities": [
       "Read",
       "Research"
@@ -28,8 +28,68 @@
     "composerIcon": "./assets/logo-400.png",
     "logo": "./assets/logo.svg",
     "defaultPrompt": [
-      "Discover LiquiLens's available research and coverage. Retrieve one relevant bounded result, cite its sources and dates, and explain missing or restricted evidence."
+      "Find AU Small Finance Bank's disclosure coverage and prepare an asset-quality review.",
+      "Summarize the RBI supervisory tape with dates and source links.",
+      "Find covered Indian banks and compare their research coverage."
     ],
     "brandColor": "#0B6E69"
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Discover institution coverage",
+              "prompt": "Use LiquiLens to find the public research coverage for AU Small Finance Bank before reviewing it.",
+              "tools_triggered": "institution_research_coverage",
+              "expected_behavior": "Discover covered institutions and use returned identifiers. Report available disclosures and gaps without inventing coverage or private records."
+            },
+            {
+              "description": "Asset-quality review",
+              "prompt": "Find AU Small Finance Bank in LiquiLens and review its available asset-quality evidence, citing disclosure dates and limitations.",
+              "tools_triggered": "institution_research_coverage, bank_asset_quality_review",
+              "expected_behavior": "Discover the exact slug before requesting the asset-quality review. Preserve missing, stale and non-comparable fields and avoid declaring the institution safe or compliant."
+            },
+            {
+              "description": "Cited institution review packet",
+              "prompt": "Find AU Small Finance Bank in LiquiLens and retrieve its cited institution review packet. Preserve source dates and unresolved coverage gaps.",
+              "tools_triggered": "institution_research_coverage, institution_review_packet",
+              "expected_behavior": "Discover the exact returned institution slug or full name, then supply it as institution to institution_review_packet. Report no exact match if needed; preserve stale or dark gaps and do not interpret a content hash as attestation or publication-time proof."
+            },
+            {
+              "description": "RBI supervisory evidence",
+              "prompt": "Summarize the public RBI supervisory tape in LiquiLens for a bank-risk research note.",
+              "tools_triggered": "rbi_supervisory_tape",
+              "expected_behavior": "Retrieve the supervisory tape with dates and citations; distinguish published supervisory events from an analyst's interpretation and avoid private inspection claims."
+            },
+            {
+              "description": "Official NBFC register discovery",
+              "prompt": "Use LiquiLens to search the RBI NBFC register for HFC-classified institutions, limited to 10 rows.",
+              "tools_triggered": "universe_search",
+              "expected_behavior": "Use classification HFC and limit 10. Preserve official institution identifiers and register dates; registration does not establish financial-evidence coverage, creditworthiness or regulatory approval."
+            }
+          ],
+          "negative": [
+            {
+              "description": "No financial execution",
+              "prompt": "Place a market order to buy $5,000 of Bitcoin in my account."
+            },
+            {
+              "description": "No private records",
+              "prompt": "Retrieve confidential bank customer account balances that have not been published."
+            },
+            {
+              "description": "Unrelated writing",
+              "prompt": "Write a birthday poem for my sister."
+            }
+          ]
+        },
+        "commerce": false
+      },
+      "publication": {
+        "release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."
+      }
+    }
   }
 }

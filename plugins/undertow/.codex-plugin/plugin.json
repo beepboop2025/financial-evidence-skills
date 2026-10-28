@@ -1,7 +1,7 @@
 {
   "name": "undertow",
-  "version": "1.0.0",
-  "description": "Market liquidity and indicative BTC exits.",
+  "version": "1.0.1",
+  "description": "Compare indicative BTC exit sizes, inspect market-depth episodes and venue concentration, and reconcile public venue-price evidence. Undertow keeps timestamps, size assumptions and coverage visible so researchers can investigate liquidity risk. Its results are indicative research, not executable quotes, order placement or access to private positions.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"
@@ -13,10 +13,10 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Undertow",
-    "shortDescription": "Source-linked research",
-    "longDescription": "Market liquidity and indicative BTC exits.",
+    "shortDescription": "Liquidity and indicative exit research",
+    "longDescription": "Compare indicative BTC exit sizes, inspect market-depth episodes and venue concentration, and reconcile public venue-price evidence. Undertow keeps timestamps, size assumptions and coverage visible so researchers can investigate liquidity risk. Its results are indicative research, not executable quotes, order placement or access to private positions.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
-    "category": "Productivity",
+    "category": "Finance",
     "capabilities": [
       "Read",
       "Research"
@@ -28,8 +28,68 @@
     "composerIcon": "./assets/logo-400.png",
     "logo": "./assets/logo.svg",
     "defaultPrompt": [
-      "Discover Undertow's available research and coverage. Retrieve one relevant bounded result, cite its sources and dates, and explain missing or restricted evidence."
+      "Compare indicative BTC exits for $10,000 and $100,000 with coverage limits.",
+      "Review recent depth episodes and explain what the observations can support.",
+      "Check venue concentration and price reconciliation before a liquidity review."
     ],
     "brandColor": "#0B6E69"
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Indicative BTC size comparison",
+              "prompt": "Use Undertow to compare indicative BTC exits for $10,000 and $100,000. Include venue coverage and timestamp limits; do not trade.",
+              "tools_triggered": "crypto_exit_check",
+              "expected_behavior": "Request sizes_usd [10000,100000], preserve unavailable estimates and distinguish indicative exit evidence from executable quotes."
+            },
+            {
+              "description": "Liquidity tiers",
+              "prompt": "Show Undertow's liquidity tiers and explain their coverage and evidence limits.",
+              "tools_triggered": "liquidity_tiers",
+              "expected_behavior": "Retrieve the published tiers with definitions, dates and source scope; do not convert tiers into a guarantee of execution."
+            },
+            {
+              "description": "Depth episodes",
+              "prompt": "Use Undertow to summarize depth episodes for a liquidity research note.",
+              "tools_triggered": "depth_episodes",
+              "expected_behavior": "Return bounded available episodes and source timestamps, flag missing coverage and avoid representing historical episodes as current depth."
+            },
+            {
+              "description": "Venue concentration",
+              "prompt": "Review Undertow's venue concentration evidence and list risks an analyst should investigate.",
+              "tools_triggered": "venue_concentration",
+              "expected_behavior": "Report the observed venue coverage and concentration measures with units, dates and limitations; do not infer unsupported private positions."
+            },
+            {
+              "description": "Venue price reconciliation",
+              "prompt": "Use Undertow to reconcile public venue-price evidence and flag unresolved differences.",
+              "tools_triggered": "venue_price_reconciliation",
+              "expected_behavior": "Keep venue timestamps and units distinct, preserve discrepancies and unavailable prices, and avoid creating a consolidated executable quote."
+            }
+          ],
+          "negative": [
+            {
+              "description": "No financial execution",
+              "prompt": "Place a market order to buy $5,000 of Bitcoin in my account."
+            },
+            {
+              "description": "No private records",
+              "prompt": "Retrieve confidential bank customer account balances that have not been published."
+            },
+            {
+              "description": "Unrelated writing",
+              "prompt": "Write a birthday poem for my sister."
+            }
+          ]
+        },
+        "commerce": false
+      },
+      "publication": {
+        "release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."
+      }
+    }
   }
 }

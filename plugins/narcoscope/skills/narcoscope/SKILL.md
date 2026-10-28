@@ -6,7 +6,7 @@ description: "Use NarcoScope for Drug, arms and informal-economy evidence. Prese
 # NarcoScope
 
 Use the bundled `narcoscope` MCP connection for this product's public research.
-Scope: Drug, arms and informal-economy evidence.
+Scope: Inspect public evidence about informal economies, drug and arms markets, and regional context with dataset provenance, units and source dates. NarcoScope supports research briefs and evidence checks; administrative counts do not establish market size, individual guilt or current operational activity. Access and publication restrictions remain visible.
 Product type: `core_product`.
 
 1. Discover the server's current tools and inspect their schemas before calling.

@@ -1,7 +1,7 @@
 {
   "name": "research-data",
-  "version": "1.0.0",
-  "description": "Discover source datasets and exact series identifiers, then read bounded observations with capture receipts.",
+  "version": "1.0.1",
+  "description": "Discover scoped research datasets, exact series and regulator identifiers; inspect source-bound changes and retrieve bounded cited observations. Preserve native units, capture receipts, snapshot identifiers, independent source clocks, rights and coverage gaps so an analyst can reproduce a captured review. Historical vintages do not establish earlier point-in-time availability; stale or unverified current analysis may be withheld.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"

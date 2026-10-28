@@ -6,7 +6,7 @@ description: "Use Seiche for Funding, money markets and source clocks. Preserve 
 # Seiche
 
 Use the bundled `seiche` MCP connection for this product's public research.
-Scope: Funding, money markets and source clocks.
+Scope: Prepare a funding brief from public money-market evidence, compare regional funding conditions, and inspect source freshness before using a number. Seiche preserves observation dates, coverage and unavailable sources so treasury and research teams can identify questions for follow-up. It provides research context and does not execute trades or certify compliance.
 Product type: `core_product`.
 
 1. Discover the server's current tools and inspect their schemas before calling.

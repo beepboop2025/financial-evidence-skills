@@ -1,7 +1,7 @@
 {
   "name": "myquant-editorial",
-  "version": "1.0.0",
-  "description": "Show one recent published story with its sources, dates and editorial limits.",
+  "version": "1.0.1",
+  "description": "Find and read published MyQuant archive stories with canonical sources, evidence clocks, publication state and limitations. Browse recent records, search by plain text or retrieve an exact returned story ID. Archive availability and endpoint health do not establish source freshness.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"
@@ -13,10 +13,10 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "MyQuant Editorial",
-    "shortDescription": "Source-linked research",
-    "longDescription": "Show one recent published story with its sources, dates and editorial limits.",
+    "shortDescription": "Source-linked financial research stories",
+    "longDescription": "Find and read published MyQuant archive stories with canonical sources, evidence clocks, publication state and limitations. Browse recent records, search by plain text or retrieve an exact returned story ID. Archive availability and endpoint health do not establish source freshness.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
-    "category": "Productivity",
+    "category": "Finance",
     "capabilities": [
       "Read",
       "Research"
@@ -28,8 +28,68 @@
     "composerIcon": "./assets/logo-400.png",
     "logo": "./assets/logo.svg",
     "defaultPrompt": [
-      "Discover MyQuant Editorial's available research and coverage. Retrieve one relevant bounded result, cite its sources and dates, and explain missing or restricted evidence."
+      "Summarize five recent MyQuant stories with source dates and limitations.",
+      "Find MyQuant archive stories matching 'dollar funding' and retain citations.",
+      "Read the newest available story using its exact returned ID."
     ],
     "brandColor": "#0B6E69"
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Recent stories",
+              "prompt": "Retrieve five recent MyQuant archive stories and summarize their evidence, publication dates and limitations.",
+              "tools_triggered": "latest_stories",
+              "expected_behavior": "Use limit 5, preserve source and evidence clocks, and report unavailable feeds explicitly rather than inventing stories."
+            },
+            {
+              "description": "Plain-text search",
+              "prompt": "Search the MyQuant archive for 'dollar funding' and show up to five matching stories with source links.",
+              "tools_triggered": "search_stories",
+              "expected_behavior": "Use query dollar funding and limit 5. Explain empty results without inventing matches or treating text matching as semantic ranking."
+            },
+            {
+              "description": "Exact story retrieval",
+              "prompt": "List the newest available MyQuant story, then retrieve it using the exact returned story ID and summarize its evidence limits.",
+              "tools_triggered": "latest_stories, get_story",
+              "expected_behavior": "Discover the ID with limit 1 and copy it exactly into get_story. If no story is returned, stop and report the gap."
+            },
+            {
+              "description": "Archive capabilities",
+              "prompt": "Inspect MyQuant Editorial's supported content tools, API routes and content limits before I build an archive-reading workflow.",
+              "tools_triggered": "list_capabilities",
+              "expected_behavior": "Describe returned capabilities and distribution boundaries; do not claim this discovery call retrieved stories."
+            },
+            {
+              "description": "Connection compatibility",
+              "prompt": "Check MyQuant Editorial's API and MCP compatibility metadata and report its deployed source identity if available.",
+              "tools_triggered": "get_health",
+              "expected_behavior": "Report returned versions, checked_at and source identity when present. Endpoint compatibility is separate from feed freshness."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Unrelated translation",
+              "prompt": "Translate 'Good morning, everyone' into Spanish."
+            },
+            {
+              "description": "Simple arithmetic",
+              "prompt": "What is 17 multiplied by 24?"
+            },
+            {
+              "description": "Creative writing",
+              "prompt": "Write a four-line birthday poem for my friend."
+            }
+          ]
+        },
+        "commerce": false
+      },
+      "publication": {
+        "release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."
+      }
+    }
   }
 }

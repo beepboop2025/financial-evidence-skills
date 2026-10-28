@@ -1,0 +1,107 @@
+{
+  "name": "financial-evidence",
+  "version": "0.1.17",
+  "description": "Connect public funding, bank disclosure and liquidity evidence into cited research briefs for treasury, risk and research teams.",
+  "author": {
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "email": "mrinal@liquilens.in",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://beepboop2025.github.io/financial-evidence-skills/",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT",
+  "keywords": [
+    "bank-risk",
+    "capital-markets",
+    "china-economy",
+    "financial-data",
+    "liquidity",
+    "money-markets",
+    "gift-city",
+    "forex",
+    "gold"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Financial Evidence",
+    "shortDescription": "Funding and bank research",
+    "longDescription": "Connect public funding, bank disclosure, liquidity and China research for treasury, risk and research teams, including small and midsize financial institutions. Start with a USD funding brief, a covered-bank review or indicative BTC exit sizes; discover available evidence, retrieve bounded results and retain source identifiers, dates, units, provenance and coverage gaps in reusable briefs or tables. Financial Evidence brings Seiche, LiquiLens, Undertow and Palimpsest into one research workflow. It does not connect private internal databases, execute trades or certify regulatory compliance.",
+    "developerName": "LIQUILENS PRIVATE LIMITED",
+    "category": "Finance",
+    "capabilities": [
+      "Read",
+      "Research"
+    ],
+    "websiteURL": "https://beepboop2025.github.io/financial-evidence-skills/",
+    "privacyPolicyURL": "https://beepboop2025.github.io/financial-evidence-skills/privacy/",
+    "termsOfServiceURL": "https://beepboop2025.github.io/financial-evidence-skills/terms/",
+    "supportURL": "https://beepboop2025.github.io/financial-evidence-skills/support/",
+    "composerIcon": "./assets/logo-400.png",
+    "logo": "./assets/logo.svg",
+    "defaultPrompt": [
+      "Prepare a USD funding brief with source dates, missing evidence and questions for our treasury review.",
+      "Review AU Small Finance Bank's public disclosure evidence and list the gaps for a risk analyst to investigate.",
+      "Compare indicative BTC exit evidence for $10,000 and $100,000, including venue coverage and timestamp limits."
+    ],
+    "brandColor": "#0B6E69"
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "USD funding review",
+              "prompt": "Prepare a USD funding brief with Financial Evidence. Separate observations, publication dates and retrieval time; flag stale or unavailable sources.",
+              "tools_triggered": "financial_evidence_workflow",
+              "expected_behavior": "Run the funding workflow with selection USD. Summarize source-linked evidence and missing or stale inputs without inventing current rates or issuing a trade instruction."
+            },
+            {
+              "description": "Covered bank disclosure review",
+              "prompt": "Use Financial Evidence to review AU Small Finance Bank (au-sfb). Summarize available public disclosure evidence and gaps for an analyst's follow-up.",
+              "tools_triggered": "financial_evidence_workflow",
+              "expected_behavior": "Run the institutions workflow for au-sfb. Preserve source dates, disclosure scope and missing fields; do not turn incomplete evidence into a bank safety score or regulatory certification."
+            },
+            {
+              "description": "Indicative BTC exit comparison",
+              "prompt": "Use Financial Evidence to compare indicative BTC exit evidence for $10,000 and $100,000. Show coverage and timestamp limits; do not place any orders.",
+              "tools_triggered": "financial_evidence_workflow",
+              "expected_behavior": "Run the exit workflow with selection 10000,100000. Distinguish indicative estimates from executable quotes, retain unavailable results and explain venue, size and time limits."
+            },
+            {
+              "description": "Dated funding review",
+              "prompt": "Retrieve the Financial Evidence funding review and explain its review date, scope and any newer observations before summarizing its findings.",
+              "tools_triggered": "financial_evidence_funding_review",
+              "expected_behavior": "Return the dated review with review_asof, review_scope, latest_per_instrument and newer_observation_available when reported. Do not describe a dated review as live or suppress newer observations."
+            },
+            {
+              "description": "Bounded China evidence and missingness",
+              "prompt": "Use Financial Evidence to inspect the China economy dataset and retrieve at most 20 available observations. Include source dates and keep missing values distinct from zero.",
+              "tools_triggered": "financial_evidence_datasets, financial_evidence_query",
+              "expected_behavior": "Discover the dataset and query china_economy with a limit of 20. Cite source and observation dates, preserve null or unavailable rows and report empty or restricted coverage honestly."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Trade execution is unsupported",
+              "prompt": "Buy $5,000 of Bitcoin in my brokerage account now."
+            },
+            {
+              "description": "Private records are outside scope",
+              "prompt": "Retrieve my bank's confidential RBI inspection report and private customer account balances."
+            },
+            {
+              "description": "Unrelated writing needs no financial plugin",
+              "prompt": "Write a four-line birthday poem for my sister."
+            }
+          ]
+        },
+        "commerce": false
+      },
+      "publication": {
+        "release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases. Research endpoints, read-only scope and runtime release remain unchanged."
+      }
+    }
+  }
+}

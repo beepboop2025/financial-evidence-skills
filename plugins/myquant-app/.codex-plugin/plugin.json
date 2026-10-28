@@ -1,7 +1,7 @@
 {
   "name": "myquant-app",
-  "version": "1.0.0",
-  "description": "Show the MyQuant app's public capabilities and offline reading boundaries.",
+  "version": "1.0.1",
+  "description": "Inspect public MyQuant app capabilities for briefing, feed validation, offline reading and topic controls, plus API/MCP compatibility metadata. This plugin does not read or change on-device content, preferences, accounts or installed app state.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"
@@ -13,8 +13,8 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "MyQuant App Discovery",
-    "shortDescription": "Source-linked research",
-    "longDescription": "Show the MyQuant app's public capabilities and offline reading boundaries.",
+    "shortDescription": "Discover MyQuant app capabilities",
+    "longDescription": "Inspect public MyQuant app capabilities for briefing, feed validation, offline reading and topic controls, plus API/MCP compatibility metadata. This plugin does not read or change on-device content, preferences, accounts or installed app state.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
     "category": "Productivity",
     "capabilities": [
@@ -28,8 +28,68 @@
     "composerIcon": "./assets/logo-400.png",
     "logo": "./assets/logo.svg",
     "defaultPrompt": [
-      "Discover MyQuant App Discovery's available research and coverage. Retrieve one relevant bounded result, cite its sources and dates, and explain missing or restricted evidence."
+      "Explain MyQuant's documented offline-reading capabilities and limits.",
+      "Show supported briefing and topic controls without changing my settings.",
+      "Check MyQuant's public API and MCP compatibility metadata."
     ],
     "brandColor": "#0B6E69"
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Offline reading discovery",
+              "prompt": "Inspect MyQuant's published offline-reading capabilities and limits without checking or changing my device.",
+              "tools_triggered": "list_capabilities",
+              "expected_behavior": "Explain returned features and boundaries. Do not claim that content is downloaded or available on the user's device."
+            },
+            {
+              "description": "Topic controls",
+              "prompt": "What topic controls does MyQuant document, and which actions would still require me to use the app?",
+              "tools_triggered": "list_capabilities",
+              "expected_behavior": "Describe documented controls and distinguish feature discovery from reading or changing preferences."
+            },
+            {
+              "description": "Briefing and feed validation",
+              "prompt": "Read MyQuant's capability metadata and explain its briefing and feed-validation features and stated limits.",
+              "tools_triggered": "list_capabilities",
+              "expected_behavior": "Summarize documented features without claiming to fetch a briefing, validate a particular feed or inspect on-device content."
+            },
+            {
+              "description": "Integration surface discovery",
+              "prompt": "Identify MyQuant's documented public API and MCP surfaces and product boundaries for a possible integration.",
+              "tools_triggered": "list_capabilities",
+              "expected_behavior": "Report supported surfaces and limits from metadata. Do not infer installation availability or access to private app state."
+            },
+            {
+              "description": "Compatibility heartbeat",
+              "prompt": "Check MyQuant's non-sensitive API and MCP compatibility heartbeat and summarize its status.",
+              "tools_triggered": "get_health",
+              "expected_behavior": "Report returned compatibility metadata. Do not equate endpoint response with installed-app health, feed freshness or device access."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Unrelated translation",
+              "prompt": "Translate 'Good morning, everyone' into Spanish."
+            },
+            {
+              "description": "Simple arithmetic",
+              "prompt": "What is 17 multiplied by 24?"
+            },
+            {
+              "description": "Creative writing",
+              "prompt": "Write a four-line birthday poem for my friend."
+            }
+          ]
+        },
+        "commerce": false
+      },
+      "publication": {
+        "release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."
+      }
+    }
   }
 }

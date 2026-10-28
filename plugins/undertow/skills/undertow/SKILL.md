@@ -6,7 +6,7 @@ description: "Use Undertow for Market liquidity and indicative BTC exits. Preser
 # Undertow
 
 Use the bundled `undertow` MCP connection for this product's public research.
-Scope: Market liquidity and indicative BTC exits.
+Scope: Compare indicative BTC exit sizes, inspect market-depth episodes and venue concentration, and reconcile public venue-price evidence. Undertow keeps timestamps, size assumptions and coverage visible so researchers can investigate liquidity risk. Its results are indicative research, not executable quotes, order placement or access to private positions.
 Product type: `core_product`.
 
 1. Discover the server's current tools and inspect their schemas before calling.

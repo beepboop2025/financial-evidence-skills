@@ -1,7 +1,7 @@
 {
   "name": "myquant-app",
-  "version": "1.0.0",
-  "description": "Show the MyQuant app's public capabilities and offline reading boundaries.",
+  "version": "1.0.1",
+  "description": "Inspect public MyQuant app capabilities for briefing, feed validation, offline reading and topic controls, plus API/MCP compatibility metadata. This plugin does not read or change on-device content, preferences, accounts or installed app state.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"

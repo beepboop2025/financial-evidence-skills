@@ -6,7 +6,7 @@ description: "Use LiquiLens for Covered institutions and disclosure review. Pres
 # LiquiLens
 
 Use the bundled `liquilens` MCP connection for this product's public research.
-Scope: Covered institutions and disclosure review.
+Scope: Find covered financial institutions, review public asset-quality disclosures, and inspect RBI supervisory evidence with source dates and coverage limits. LiquiLens helps analysts prepare institution review questions while preserving missing or non-comparable evidence. It does not access private accounts, replace professional judgment or certify regulatory compliance.
 Product type: `core_product`.
 
 1. Discover the server's current tools and inspect their schemas before calling.

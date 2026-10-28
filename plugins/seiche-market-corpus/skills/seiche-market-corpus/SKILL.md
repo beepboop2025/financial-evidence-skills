@@ -6,7 +6,7 @@ description: "Use Seiche Market Atlas Corpus for Inspect corpus datasets, source
 # Seiche Market Atlas Corpus
 
 Use the bundled `seiche-market-corpus` MCP connection for this product's public research.
-Scope: Inspect corpus datasets, source clocks and publication rights. Restricted collections remain metadata only.
+Scope: Explore registered market corpora, versioned datasets, normalized Seiche coverage and permitted bounded observations. Inspect rights, product eligibility and source-adapter partitions before reading values. Restricted data remains restricted; catalog presence or service health does not prove redistribution permission or freshness.
 Product type: `research_wrapper`.
 
 1. Discover the server's current tools and inspect their schemas before calling.

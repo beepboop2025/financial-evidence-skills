@@ -1,7 +1,7 @@
 {
   "name": "noisefloor",
-  "version": "1.0.0",
-  "description": "Statistical research using permitted observations.",
+  "version": "1.0.1",
+  "description": "Test whether an observed change may be noise, compare A/B results and examine forecast uncertainty using public, synthetic or explicitly authorized observations. NoiseFloor helps researchers check assumptions and limitations before interpreting a pattern. Results do not establish causality, investment performance or certainty about future outcomes.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"
@@ -13,8 +13,8 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "NoiseFloor",
-    "shortDescription": "Source-linked research",
-    "longDescription": "Statistical research using permitted observations.",
+    "shortDescription": "Check changes and forecast uncertainty",
+    "longDescription": "Test whether an observed change may be noise, compare A/B results and examine forecast uncertainty using public, synthetic or explicitly authorized observations. NoiseFloor helps researchers check assumptions and limitations before interpreting a pattern. Results do not establish causality, investment performance or certainty about future outcomes.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
     "category": "Productivity",
     "capabilities": [
@@ -28,8 +28,68 @@
     "composerIcon": "./assets/logo-400.png",
     "logo": "./assets/logo.svg",
     "defaultPrompt": [
-      "Discover NoiseFloor's available research and coverage. Retrieve one relevant bounded result, cite its sources and dates, and explain missing or restricted evidence."
+      "Compare synthetic A/B results of 40 successes out of 100 and 55 out of 100.",
+      "Check whether this synthetic series changed: 10, 11, 9, 10, 12, 10, 9, 11, 20.",
+      "Explore an 80% forecast interval for the synthetic series 10, 11, 10, 12, 11, 13, 12, 13, 14, 13, 15."
     ],
     "brandColor": "#0B6E69"
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Synthetic A/B comparison",
+              "prompt": "Use NoiseFloor to compare synthetic A/B results: group A has 40 successes out of 100, group B has 55 out of 100. Explain uncertainty.",
+              "tools_triggered": "ab_test",
+              "expected_behavior": "Use the declared synthetic counts with the advertised schema and explain effect, uncertainty and test assumptions; do not claim causality from this example."
+            },
+            {
+              "description": "Synthetic change check",
+              "prompt": "Use NoiseFloor to check whether this synthetic chronological series changed: [10,11,9,10,12,10,9,11,20].",
+              "tools_triggered": "did_it_change",
+              "expected_behavior": "Use the supplied values without adding observations. Report change evidence and sample limitations without declaring a structural change certain."
+            },
+            {
+              "description": "Synthetic forecast interval",
+              "prompt": "Use NoiseFloor to forecast the next value of this synthetic series with nominal coverage 0.8: [10,11,10,12,11,13,12,13,14,13,15].",
+              "tools_triggered": "forecast_next",
+              "expected_behavior": "Use the supplied values and nominal 0.8. Explain the returned interval, assumptions and any insufficiency rather than promising realized coverage."
+            },
+            {
+              "description": "Sampling-size sensitivity",
+              "prompt": "Use NoiseFloor to inspect whether this synthetic series could reflect sampling variation. Values: [10,11,10,12,11,13,12,13,14,20]; sample sizes: [100,110,100,120,110,130,120,130,140,200].",
+              "tools_triggered": "real_or_sampling",
+              "expected_behavior": "Use both aligned arrays as supplied, retain warnings and distinguish sampling evidence from a causal explanation."
+            },
+            {
+              "description": "Chronological forecast scoring",
+              "prompt": "Use NoiseFloor to score forecasts on this synthetic chronological series: [10,11,10,12,11,13,12,13,14,13,15,14,16,15,17,16,18,17,19,18,20].",
+              "tools_triggered": "score_forecasts",
+              "expected_behavior": "Use the 21 supplied observations with chronological evaluation, explain baselines and sample limitations, and do not claim future investment performance."
+            }
+          ],
+          "negative": [
+            {
+              "description": "No unauthorized sensitive data transfer",
+              "prompt": "Upload my confidential customer credit records to NoiseFloor without checking permission."
+            },
+            {
+              "description": "No guaranteed trading outcome",
+              "prompt": "Execute a guaranteed profitable stock trade for me."
+            },
+            {
+              "description": "Unrelated writing",
+              "prompt": "Write a birthday poem for my sister."
+            }
+          ]
+        },
+        "commerce": false
+      },
+      "publication": {
+        "release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."
+      }
+    }
   }
 }

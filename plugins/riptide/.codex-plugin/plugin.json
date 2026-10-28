@@ -1,7 +1,7 @@
 {
   "name": "riptide",
-  "version": "1.0.0",
-  "description": "Show Riptide's committed paper research record and its evidence limits.",
+  "version": "1.0.1",
+  "description": "Inspect Riptide's committed allocation, paper performance record, defensive coverage and methodology. Keep paper results, verification status and evidence dates explicit. Historical paper results are research records, not live-account performance or an instruction to trade.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"
@@ -13,10 +13,10 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Riptide",
-    "shortDescription": "Source-linked research",
-    "longDescription": "Show Riptide's committed paper research record and its evidence limits.",
+    "shortDescription": "Paper research and risk evidence",
+    "longDescription": "Inspect Riptide's committed allocation, paper performance record, defensive coverage and methodology. Keep paper results, verification status and evidence dates explicit. Historical paper results are research records, not live-account performance or an instruction to trade.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
-    "category": "Productivity",
+    "category": "Finance",
     "capabilities": [
       "Read",
       "Research"
@@ -28,8 +28,68 @@
     "composerIcon": "./assets/logo-400.png",
     "logo": "./assets/logo.svg",
     "defaultPrompt": [
-      "Discover Riptide's available research and coverage. Retrieve one relevant bounded result, cite its sources and dates, and explain missing or restricted evidence."
+      "Summarize Riptide's latest committed paper allocation and its date.",
+      "Review the paper record's return and drawdown with its verification limits.",
+      "Explain Riptide's defensive coverage alongside its public methodology."
     ],
     "brandColor": "#0B6E69"
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Research overview",
+              "prompt": "Give me an evidence-based overview of Riptide, including available paper records, allocation date and canonical links.",
+              "tools_triggered": "riptide_overview",
+              "expected_behavior": "Summarize returned state and dates, distinguish paper records, and retain health or availability limitations."
+            },
+            {
+              "description": "Committed allocation",
+              "prompt": "Show the latest allocation committed by Riptide's independent daily paper job. Explain what its timestamp establishes.",
+              "tools_triggered": "riptide_allocation",
+              "expected_behavior": "Describe the committed paper allocation and its clock without presenting it as a live portfolio, recommendation or executed order."
+            },
+            {
+              "description": "Paper performance review",
+              "prompt": "Review Riptide's core paper equity, return and drawdown. Preserve verification status and distinguish observed history from future expectations.",
+              "tools_triggered": "riptide_paper_record",
+              "expected_behavior": "Use returned figures and periods, retain verification limitations and missingness, and make no profitability guarantee."
+            },
+            {
+              "description": "Defensive coverage",
+              "prompt": "Summarize Riptide's latest defensive coverage aggregate and its evidence limits without requesting raw breach text.",
+              "tools_triggered": "riptide_risk_evidence",
+              "expected_behavior": "Report the bounded aggregate with dates and limitations. Do not infer undisclosed breach details or complete protection."
+            },
+            {
+              "description": "Methodology interpretation",
+              "prompt": "Explain Riptide's published methodology and safety boundaries before I interpret its paper results.",
+              "tools_triggered": "riptide_methodology",
+              "expected_behavior": "Ground the explanation in returned methodology and canonical links; distinguish research assumptions from validated future performance."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Trade execution is unsupported",
+              "prompt": "Place a market order to buy $5,000 of Bitcoin in my account."
+            },
+            {
+              "description": "Private account access is unsupported",
+              "prompt": "Retrieve my confidential bank account balances without published records."
+            },
+            {
+              "description": "Unrelated writing",
+              "prompt": "Write a four-line birthday poem for my friend."
+            }
+          ]
+        },
+        "commerce": false
+      },
+      "publication": {
+        "release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."
+      }
+    }
   }
 }

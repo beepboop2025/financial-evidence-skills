@@ -1,5 +1,6 @@
 import importlib.util
 import io
+import copy
 import json
 from pathlib import Path
 import unittest
@@ -59,6 +60,47 @@ class ProductPluginTests(unittest.TestCase):
     def test_generated_files_are_reproducible(self):
         for name, expected in builder.build().items():
             self.assertEqual((ROOT / name).read_bytes(), expected, name)
+
+    def test_review_cases_match_discovered_tools_and_packaged_manifests(self):
+        metadata = json.loads((ROOT / "integrations/openai/product-review.json").read_text())["products"]
+        inventory = {row["id"]: row for row in json.loads(
+            (ROOT / "docs/plugins/review-tool-inventory-20261028.json").read_text()
+        )["products"]}
+        for slug in metadata:
+            item = builder.review_metadata(slug, metadata, inventory)
+            manifest = json.loads((ROOT / f"plugins/{slug}/.codex-plugin/plugin.json").read_text())
+            self.assertEqual(manifest["version"], "1.0.1")
+            self.assertEqual(manifest["interface"]["defaultPrompt"], item["defaultPrompt"])
+            review = manifest["extensions"]["com.openai"]["review"]
+            self.assertEqual(review["test_cases"], {"positive": item["positive"], "negative": item["negative"]})
+            self.assertFalse(review["commerce"])
+            self.assertNotIn("demo_recording_url", review)
+            self.assertNotIn("review", manifest["interface"])
+
+    def test_invalid_review_counts_and_undiscovered_tools_fail_the_build(self):
+        metadata = json.loads((ROOT / "integrations/openai/product-review.json").read_text())["products"]
+        inventory = {row["id"]: row for row in json.loads(
+            (ROOT / "docs/plugins/review-tool-inventory-20261028.json").read_text()
+        )["products"]}
+        invalid = copy.deepcopy(metadata)
+        invalid["seiche"]["positive"][0]["tools_triggered"] = "place_private_order"
+        with self.assertRaisesRegex(ValueError, "Undiscovered review tool"):
+            builder.review_metadata("seiche", invalid, inventory)
+        invalid = copy.deepcopy(metadata)
+        invalid["seiche"]["negative"].pop()
+        with self.assertRaisesRegex(ValueError, "five positive and three negative"):
+            builder.review_metadata("seiche", invalid, inventory)
+        invalid = copy.deepcopy(metadata)
+        invalid["seiche"]["positive"][0]["expected_behavior"] = ""
+        with self.assertRaisesRegex(ValueError, "Empty positive review field"):
+            builder.review_metadata("seiche", invalid, inventory)
+
+    def test_metadata_only_review_does_not_invent_app_access_or_assessment_inputs(self):
+        metadata = json.loads((ROOT / "integrations/openai/product-review.json").read_text())["products"]
+        app_tools = {case["tools_triggered"] for case in metadata["myquant-app"]["positive"]}
+        self.assertLessEqual(app_tools, {"list_capabilities", "get_health"})
+        sandbox_tools = {case["tools_triggered"] for case in metadata["trade-safety"]["positive"]}
+        self.assertEqual(sandbox_tools, {"trade_safety_capabilities"})
 
 
 if __name__ == "__main__":

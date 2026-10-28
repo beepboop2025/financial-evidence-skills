@@ -1,7 +1,7 @@
 {
   "name": "trade-safety",
-  "version": "1.0.0",
-  "description": "Explain the Trade Safety sandbox's capabilities, input limits and lack of execution authority.",
+  "version": "1.0.1",
+  "description": "Inspect Trade Safety's fixed public sources, sandbox authority and documented limits before preparing assessment inputs. Assessments require explicit request and policy objects. Sandbox receipts do not authorize recommendations, broker previews, routing, resizing, custody, settlement or execution.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"

@@ -1,7 +1,7 @@
 {
   "name": "seiche",
-  "version": "1.0.0",
-  "description": "Funding, money markets and source clocks.",
+  "version": "1.0.1",
+  "description": "Prepare a funding brief from public money-market evidence, compare regional funding conditions, and inspect source freshness before using a number. Seiche preserves observation dates, coverage and unavailable sources so treasury and research teams can identify questions for follow-up. It provides research context and does not execute trades or certify compliance.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"

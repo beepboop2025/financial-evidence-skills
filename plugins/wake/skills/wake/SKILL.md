@@ -6,7 +6,7 @@ description: "Use Wake for Public agent-economy context with separate reference 
 # Wake
 
 Use the bundled `wake` MCP connection for this product's public research.
-Scope: Public agent-economy context with separate reference periods.
+Scope: Read attributed AI-model usage and U.S. retail e-commerce context with source dates. Inspect institutional aggregate thresholds and the signed opt-in collection contract. Public context does not establish adoption by a particular institution, permission to collect data or resale rights.
 Product type: `core_product`.
 
 1. Discover the server's current tools and inspect their schemas before calling.

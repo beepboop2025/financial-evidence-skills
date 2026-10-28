@@ -40,7 +40,7 @@
         "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"
       },
-      "category": "Productivity"
+      "category": "Finance"
     },
     {
       "name": "liquilens",
@@ -52,7 +52,7 @@
         "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"
       },
-      "category": "Productivity"
+      "category": "Finance"
     },
     {
       "name": "undertow",
@@ -64,7 +64,7 @@
         "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"
       },
-      "category": "Productivity"
+      "category": "Finance"
     },
     {
       "name": "palimpsest",
@@ -76,7 +76,7 @@
         "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"
       },
-      "category": "Productivity"
+      "category": "Finance"
     },
     {
       "name": "noisefloor",
@@ -100,7 +100,7 @@
         "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"
       },
-      "category": "Productivity"
+      "category": "Finance"
     },
     {
       "name": "wake",
@@ -112,7 +112,7 @@
         "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"
       },
-      "category": "Productivity"
+      "category": "Finance"
     },
     {
       "name": "riptide",
@@ -124,7 +124,7 @@
         "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"
       },
-      "category": "Productivity"
+      "category": "Finance"
     },
     {
       "name": "myquant-editorial",
@@ -136,7 +136,7 @@
         "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"
       },
-      "category": "Productivity"
+      "category": "Finance"
     },
     {
       "name": "myquant-app",
@@ -160,7 +160,7 @@
         "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"
       },
-      "category": "Productivity"
+      "category": "Finance"
     },
     {
       "name": "research-data",
@@ -172,7 +172,7 @@
         "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"
       },
-      "category": "Productivity"
+      "category": "Finance"
     },
     {
       "name": "seiche-market-corpus",
@@ -184,7 +184,7 @@
         "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"
       },
-      "category": "Productivity"
+      "category": "Finance"
     }
   ]
 }

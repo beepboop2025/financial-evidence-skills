@@ -1,7 +1,7 @@
 {
   "name": "myquant-editorial",
-  "version": "1.0.0",
-  "description": "Show one recent published story with its sources, dates and editorial limits.",
+  "version": "1.0.1",
+  "description": "Find and read published MyQuant archive stories with canonical sources, evidence clocks, publication state and limitations. Browse recent records, search by plain text or retrieve an exact returned story ID. Archive availability and endpoint health do not establish source freshness.",
   "mcpServers": {
     "myquant-editorial": {
       "httpUrl": "https://agents.seiche.info/products/myquant-editorial/mcp",

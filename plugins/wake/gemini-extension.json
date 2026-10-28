@@ -1,7 +1,7 @@
 {
   "name": "wake",
-  "version": "1.0.0",
-  "description": "Public agent-economy context with separate reference periods.",
+  "version": "1.0.1",
+  "description": "Read attributed AI-model usage and U.S. retail e-commerce context with source dates. Inspect institutional aggregate thresholds and the signed opt-in collection contract. Public context does not establish adoption by a particular institution, permission to collect data or resale rights.",
   "mcpServers": {
     "wake": {
       "httpUrl": "https://agents.seiche.info/products/wake/mcp",

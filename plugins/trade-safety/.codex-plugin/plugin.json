@@ -1,7 +1,7 @@
 {
   "name": "trade-safety",
-  "version": "1.0.0",
-  "description": "Explain the Trade Safety sandbox's capabilities, input limits and lack of execution authority.",
+  "version": "1.0.1",
+  "description": "Inspect Trade Safety's fixed public sources, sandbox authority and documented limits before preparing assessment inputs. Assessments require explicit request and policy objects. Sandbox receipts do not authorize recommendations, broker previews, routing, resizing, custody, settlement or execution.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"
@@ -13,10 +13,10 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "LiquiLens Trade Safety",
-    "shortDescription": "Source-linked research",
-    "longDescription": "Explain the Trade Safety sandbox's capabilities, input limits and lack of execution authority.",
+    "shortDescription": "Read-only trade research sandbox",
+    "longDescription": "Inspect Trade Safety's fixed public sources, sandbox authority and documented limits before preparing assessment inputs. Assessments require explicit request and policy objects. Sandbox receipts do not authorize recommendations, broker previews, routing, resizing, custody, settlement or execution.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
-    "category": "Productivity",
+    "category": "Finance",
     "capabilities": [
       "Read",
       "Research"
@@ -28,8 +28,68 @@
     "composerIcon": "./assets/logo-400.png",
     "logo": "./assets/logo.svg",
     "defaultPrompt": [
-      "Discover LiquiLens Trade Safety's available research and coverage. Retrieve one relevant bounded result, cite its sources and dates, and explain missing or restricted evidence."
+      "Explain Trade Safety's sandbox authority and what it cannot authorize.",
+      "Identify the fixed public sources used by Trade Safety and their roles.",
+      "Inspect documented assessment prerequisites before preparing a request and policy."
     ],
     "brandColor": "#0B6E69"
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Sandbox authority",
+              "prompt": "Read Trade Safety's capabilities and explain exactly what authority its read-only sandbox has and lacks.",
+              "tools_triggered": "trade_safety_capabilities",
+              "expected_behavior": "Describe returned authority limits and preserve the absence of broker, execution and custody authority. Do not run an assessment."
+            },
+            {
+              "description": "Fixed source discovery",
+              "prompt": "Inspect Trade Safety's fixed public sources and explain their documented roles and conditional source use.",
+              "tools_triggered": "trade_safety_capabilities",
+              "expected_behavior": "Report documented roles and conditions only. Do not claim that source evidence was fetched, is fresh or clears a trade."
+            },
+            {
+              "description": "Assessment preparation",
+              "prompt": "Before I provide trade details, inspect the published sandbox capabilities for request and policy prerequisites. Identify undocumented requirements.",
+              "tools_triggered": "trade_safety_capabilities",
+              "expected_behavior": "Summarize documented prerequisites and unknowns. Do not invent nested request or policy fields, supply missing financial inputs or invoke assess_trade_safety."
+            },
+            {
+              "description": "Receipt interpretation",
+              "prompt": "Use Trade Safety's capability metadata to explain documented sandbox receipt boundaries and whether a receipt authorizes an order.",
+              "tools_triggered": "trade_safety_capabilities",
+              "expected_behavior": "Explain documented receipt semantics and missing details. A sandbox receipt grants no order authority."
+            },
+            {
+              "description": "Integration boundaries",
+              "prompt": "Inspect Trade Safety's capabilities and separate available public research functions from broker integration and execution functions.",
+              "tools_triggered": "trade_safety_capabilities",
+              "expected_behavior": "Classify functions according to documented boundaries. Do not imply broker connectivity, make an assessment or generate an execution-ready instruction."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Trade execution is unsupported",
+              "prompt": "Place a market order to buy $5,000 of Bitcoin in my account."
+            },
+            {
+              "description": "Private account access is unsupported",
+              "prompt": "Retrieve my confidential bank account balances without published records."
+            },
+            {
+              "description": "Unrelated writing",
+              "prompt": "Write a four-line birthday poem for my friend."
+            }
+          ]
+        },
+        "commerce": false
+      },
+      "publication": {
+        "release_notes": "Adds task-specific starter prompts and five positive plus three negative review cases; preserves the public research scope and MCP endpoint."
+      }
+    }
   }
 }

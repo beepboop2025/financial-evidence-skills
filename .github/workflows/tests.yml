@@ -37,6 +37,8 @@ jobs:
           test "$(git -C tap-candidate rev-parse HEAD)" = "$TAP_SOURCE"
           brew tap beepboop2025/tap "$GITHUB_WORKSPACE/tap-candidate"
           test "$(git -C "$(brew --repo beepboop2025/tap)" rev-parse HEAD)" = "$TAP_SOURCE"
+      - name: Trust only the verified candidate formula
+        run: brew trust --formula beepboop2025/tap/financial-evidence
       - run: brew audit --strict --online beepboop2025/tap/financial-evidence
       - run: brew style beepboop2025/tap/financial-evidence
       - run: brew install beepboop2025/tap/financial-evidence

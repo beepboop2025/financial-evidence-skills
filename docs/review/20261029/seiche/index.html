@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Seiche — plugin service walkthrough</title>
+<style>body{background:#0b1418;color:#e9f1f3;font:16px/1.6 system-ui;margin:0}
+main{max-width:1040px;margin:auto;padding:36px 24px}h1{font-size:36px;line-height:1.15}
+a{color:#9de2da}video{width:100%;border:1px solid #34525e;border-radius:12px;background:#000}
+.note{padding:18px;border:1px solid #48636c;border-radius:10px;background:#12242d}
+code{overflow-wrap:anywhere;font-size:12px}li{margin:22px 0}p{max-width:900px}
+.label{color:#81ded2;letter-spacing:2px;font-size:12px}</style><main>
+<a href="../../20261028/walkthroughs.html">Release walkthrough archive</a>
+<p class="label">LIQUILENS · PLUGIN REVIEW EVIDENCE</p><h1>Seiche</h1>
+<p>Runtime 0.16.10 · Plugin 1.0.3 · Captured 29 October 2026. Five successful public MCP calls from the accepted production release.</p>
+<video controls preload="metadata" src="walkthrough.mp4"></video>
+<p>90.0 seconds · edited browser recording · no audio · no model API calls for this recording.</p>
+<p><a href="../service-viewer/?product=seiche">Inspect the interactive capture viewer</a> ·
+<a href="transcript.md">Case transcript</a> · <a href="manifest.json">Recording manifest</a> ·
+<a href="../service-viewer/data/seiche.json">Underlying service captures</a></p>
+<div class="note"><strong>What this demonstrates</strong>
+<p>The video shows captured responses from the public MCP service, including the eight-tool release boundary, source clocks, withheld fields and coverage gaps. It is not a native plugin-installation recording or a new model-routing test.</p>
+<p>Direct public MCP calls only. Product-skill routing and negative model-routing cases are review expectations, not newly executed model tests. No trading, enrollment, collection, private-record access or execution was performed. Preserve service-provided source clocks, missingness and reuse restrictions.</p></div><h2>Cases shown</h2><ol><li><strong>Source rights and release scope</strong><p>Use Seiche to check which source-backed research tools are available and which legacy features are unavailable.</p><p>Interpretation boundary: Report the eight public research tools and the returned source-rights restrictions. Explicitly identify legacy forecasts and backtests as unavailable; do not reconstruct withheld values from other sources or treat availability as investment approval.</p></li><li><strong>Money-market overview</strong><p>Use Seiche to summarize the money-market evidence available for a treasury review.</p><p>Interpretation boundary: Request the summary section and explain source coverage, units and limits without treating transport success as validated current data.</p></li><li><strong>India funding context</strong><p>Use Seiche to review India&#x27;s money-market context in a concise summary with source clocks.</p><p>Interpretation boundary: Request the india section and summary view. Preserve missing observations and regional scope; do not infer institution-specific exposures.</p></li><li><strong>Source health before use</strong><p>Check Seiche&#x27;s data health and identify sources that need follow-up before I use a funding number.</p><p>Interpretation boundary: Report the returned source states and clocks. Distinguish healthy transport from data freshness and explicitly flag denied or stale evidence.</p></li><li><strong>GIFT City research context</strong><p>Use Seiche to prepare a short GIFT City research note with source links and coverage limits.</p><p>Interpretation boundary: Return the available GIFT City context with source dates and reported limits, retaining unavailable values and avoiding investment or regulatory approval claims.</p></li></ol>
+<p>Endpoint: <a href="https://agents.seiche.info/products/seiche/mcp">https://agents.seiche.info/products/seiche/mcp</a></p>
+<p>Runtime source: <a href="https://github.com/beepboop2025/seiche/commit/98359e7120639a355a600e4eb491ac58ed4fd22f">98359e71</a></p>
+<p>Video SHA-256: <code>faf6b2dbbc5f8ad935ffac28a7f9493069c7d163890e34418f8acf46627b3d8d</code></p>
+<p>Review evidence. This page is not an OpenAI approval or publication receipt.</p></main></html>

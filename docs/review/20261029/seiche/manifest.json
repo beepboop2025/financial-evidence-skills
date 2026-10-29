@@ -1,0 +1,79 @@
+{
+  "schema": "liquilens.plugin-demo-recording.v1",
+  "product": "seiche",
+  "plugin_version": "1.0.3",
+  "runtime_version": "0.16.10",
+  "runtime_source_revision": "98359e7120639a355a600e4eb491ac58ed4fd22f",
+  "recorded_at": "2026-10-29T14:43:15Z",
+  "duration_seconds": 90.0,
+  "width": 2288,
+  "height": 1368,
+  "frames_per_second": 15,
+  "frame_count": 1350,
+  "bytes": 1564592,
+  "sha256": "faf6b2dbbc5f8ad935ffac28a7f9493069c7d163890e34418f8acf46627b3d8d",
+  "file": "walkthrough.mp4",
+  "capture_sha256": "7b2962b2e7a4ea9ec61503c5e38869310c77197429e5c6dafbfcb9338c14db2f",
+  "case_count": 5,
+  "direct_tool_calls": 5,
+  "model_api_calls_for_this_recording": 0,
+  "native_plugin_installation_test": false,
+  "audio_streams": 0,
+  "recording_method": "macOS screen recording of the uniquely identified Seiche Chrome window; no microphone or system audio",
+  "edits": [
+    "Cropped browser chrome only: crop=2288:1368:112:208",
+    "Encoded H.264 at 15 frames per second; no temporal edits or generated answers"
+  ],
+  "raw_recording": {
+    "filename": "seiche-evidence-direct-20261029T144314Z.mov",
+    "bytes": 20665388,
+    "sha256": "801017847d52642c2c19e7f4180b111aa2051dd915eefcc316c7516ef2db643b",
+    "duration_seconds": 89.998333,
+    "retained_privately": true
+  },
+  "frame_checks": [
+    {
+      "seconds": 8,
+      "visible_case": "Source rights and release scope",
+      "file": "seiche-review-8s.png",
+      "sha256": "3804a5667bcbfbd370d50d4aa1cad59ff184b3e58cc0c6da273a1247eca57b3f",
+      "reviewed": true
+    },
+    {
+      "seconds": 24,
+      "visible_case": "Money-market overview",
+      "file": "seiche-review-24s.png",
+      "sha256": "19d03098f4722ff5958ca76cac2b6539027137f35f88da89974183c9d0f082bc",
+      "reviewed": true
+    },
+    {
+      "seconds": 40,
+      "visible_case": "India funding context",
+      "file": "seiche-review-40s.png",
+      "sha256": "00f9b25e38c8a95bbd71f5fd251e42169806dce4d624c816f1e2938a5ca1a673",
+      "reviewed": true
+    },
+    {
+      "seconds": 55,
+      "visible_case": "Source health before use",
+      "file": "seiche-review-55s.png",
+      "sha256": "313f6454bf4356b4efa27738d36b0c076bd135e550a62d37ae33b83dba9d805c",
+      "reviewed": true
+    },
+    {
+      "seconds": 67,
+      "visible_case": "GIFT City research context",
+      "file": "seiche-review-67s.png",
+      "sha256": "c5466ca7d0ee76882f78530abf0b25b4e265bc701f828c29fc7a862e2afce928",
+      "reviewed": true
+    },
+    {
+      "seconds": 82,
+      "visible_case": "Review limits",
+      "file": "seiche-review-82s.png",
+      "sha256": "d5b67777483aa2a2cccfd11adf57c326613ef4ff235452f1c22737e897d88165",
+      "reviewed": true
+    }
+  ],
+  "limitations": "Captured public MCP responses retain original source clocks, unavailable values and reuse restrictions. No new model-routing or native plugin-installation test was performed."
+}

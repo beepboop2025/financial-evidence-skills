@@ -1,7 +1,7 @@
 {
   "name": "seiche",
-  "version": "1.0.2",
-  "description": "Prepare a funding brief from public money-market evidence, compare regional funding conditions, and inspect source freshness before using a number. Seiche preserves observation dates, coverage and unavailable sources so treasury and research teams can identify questions for follow-up. It provides research context and does not execute trades or certify compliance.",
+  "version": "1.0.3",
+  "description": "Research public money markets, regional funding context, GIFT City and gold carry using verified direct-source tools. Inspect source rights, observation dates, coverage and unavailable evidence before using a result. This release explicitly withholds legacy forecasts, backtests and other derived views whose reuse rights are unconfirmed. Seiche supports research; it does not execute trades, approve investments or certify compliance.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"

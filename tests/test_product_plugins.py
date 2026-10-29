@@ -69,7 +69,7 @@ class ProductPluginTests(unittest.TestCase):
         for slug in metadata:
             item = builder.review_metadata(slug, metadata, inventory)
             manifest = json.loads((ROOT / f"plugins/{slug}/.codex-plugin/plugin.json").read_text())
-            self.assertEqual(manifest["version"], "1.0.3" if slug == "palimpsest" else "1.0.2")
+            self.assertEqual(manifest["version"], "1.0.3" if slug in {"palimpsest", "seiche"} else "1.0.2")
             self.assertEqual(manifest["interface"]["defaultPrompt"], item["defaultPrompt"])
             review = manifest["extensions"]["com.openai"]["review"]
             self.assertEqual(review["test_cases"], {"positive": item["positive"], "negative": item["negative"]})
@@ -90,6 +90,20 @@ class ProductPluginTests(unittest.TestCase):
         skill = (root / "skills/palimpsest/SKILL.md").read_text()
         self.assertIn("inspect_economic_publication_rights", skill)
         self.assertIn("no arguments", skill)
+
+    def test_seiche_package_exposes_only_current_research_tools(self):
+        root = ROOT / "plugins/seiche"
+        manifest = json.loads((root / "gemini-extension.json").read_text())
+        self.assertEqual(len(manifest["mcpServers"]["seiche"]["includeTools"]), 8)
+        advertised = set(manifest["mcpServers"]["seiche"]["includeTools"])
+        self.assertEqual(advertised, {
+            "source_rights_status", "money_market_context", "market_workbench",
+            "world_markets_context", "gift_city_context", "gold_inventory_carry",
+            "research_network", "data_health",
+        })
+        skill = (root / "skills/seiche/SKILL.md").read_text()
+        self.assertIn("source_rights_status", skill)
+        self.assertIn("Legacy forecasts, backtests and derived views are explicitly unavailable", skill)
 
     def test_invalid_review_counts_and_undiscovered_tools_fail_the_build(self):
         metadata = json.loads((ROOT / "integrations/openai/product-review.json").read_text())["products"]

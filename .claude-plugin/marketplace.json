@@ -38,7 +38,7 @@
     {
       "name": "seiche",
       "source": "./plugins/seiche",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "description": "Funding, money markets and source clocks"
     },
     {

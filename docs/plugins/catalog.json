@@ -9,23 +9,23 @@
       "mcp_url": "https://agents.seiche.info/products/seiche/mcp",
       "guide_url": "https://seiche.info/developers.html",
       "kind": "core_product",
-      "plugin_version": "1.0.2",
+      "plugin_version": "1.0.3",
       "source_path": "plugins/seiche",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
-      "observed_server_version": "0.16.9",
-      "observed_tool_count": 16,
+      "observed_server_version": "0.16.10",
+      "observed_tool_count": 8,
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/seiche-openai-1.0.2.zip",
-          "sha256": "09b2f6864fa74c774832fcf9edac962198b709d8bd71027cf59510ae74c1ca58",
-          "bytes": 30086
+          "url": "downloads/seiche-openai-1.0.3.zip",
+          "sha256": "3bf3ed4d8a605240bd7dc0cbd22a0d38f6af49ce1399298b64d3d5017be91873",
+          "bytes": 30505
         },
         "gemini": {
-          "url": "downloads/seiche-gemini-1.0.2.zip",
-          "sha256": "6a32cafeef65d1436cdeeb7e3af2b2a34c19069c0b2674a5b473bc0c948040a3",
-          "bytes": 28772
+          "url": "downloads/seiche-gemini-1.0.3.zip",
+          "sha256": "673ed81f29b2bb16aa48e68b5dac24370ecc9f70c73ed665174bbd19e2160969",
+          "bytes": 29004
         }
       }
     },

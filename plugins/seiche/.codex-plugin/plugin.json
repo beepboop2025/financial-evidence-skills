@@ -1,7 +1,7 @@
 {
   "name": "seiche",
-  "version": "1.0.2",
-  "description": "Prepare a funding brief from public money-market evidence, compare regional funding conditions, and inspect source freshness before using a number. Seiche preserves observation dates, coverage and unavailable sources so treasury and research teams can identify questions for follow-up. It provides research context and does not execute trades or certify compliance.",
+  "version": "1.0.3",
+  "description": "Research public money markets, regional funding context, GIFT City and gold carry using verified direct-source tools. Inspect source rights, observation dates, coverage and unavailable evidence before using a result. This release explicitly withholds legacy forecasts, backtests and other derived views whose reuse rights are unconfirmed. Seiche supports research; it does not execute trades, approve investments or certify compliance.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"
@@ -13,8 +13,8 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Seiche",
-    "shortDescription": "Funding and money markets",
-    "longDescription": "Prepare a funding brief from public money-market evidence, compare regional funding conditions, and inspect source freshness before using a number. Seiche preserves observation dates, coverage and unavailable sources so treasury and research teams can identify questions for follow-up. It provides research context and does not execute trades or certify compliance.",
+    "shortDescription": "Direct-source market research",
+    "longDescription": "Research public money markets, regional funding context, GIFT City and gold carry using verified direct-source tools. Inspect source rights, observation dates, coverage and unavailable evidence before using a result. This release explicitly withholds legacy forecasts, backtests and other derived views whose reuse rights are unconfirmed. Seiche supports research; it does not execute trades, approve investments or certify compliance.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
     "category": "Finance",
     "capabilities": [
@@ -28,9 +28,9 @@
     "composerIcon": "./assets/logo-400.png",
     "logo": "./assets/logo.svg",
     "defaultPrompt": [
-      "Prepare a USD funding brief with source dates and missing evidence.",
-      "Summarize India's money-market context and flag stale inputs.",
-      "Check source health before I use Seiche's funding indicators."
+      "Check which Seiche tools and sources are available for research.",
+      "Summarize money-market evidence with source dates and missing inputs.",
+      "Review India's money-market context and flag stale evidence."
     ],
     "brandColor": "#0B6E69"
   },
@@ -40,10 +40,10 @@
         "test_cases": {
           "positive": [
             {
-              "description": "Funding stress brief",
-              "prompt": "Use Seiche to summarize funding stress now, with source dates, coverage and missing evidence.",
-              "tools_triggered": "funding_stress_now",
-              "expected_behavior": "Retrieve the funding view, separate observation and retrieval times, and retain stale or unavailable inputs. Do not infer a live rate or trading instruction."
+              "description": "Source rights and release scope",
+              "prompt": "Use Seiche to check which source-backed research tools are available and which legacy features are unavailable.",
+              "tools_triggered": "source_rights_status",
+              "expected_behavior": "Report the eight public research tools and the returned source-rights restrictions. Explicitly identify legacy forecasts and backtests as unavailable; do not reconstruct withheld values from other sources or treat availability as investment approval."
             },
             {
               "description": "Money-market overview",
@@ -80,15 +80,15 @@
               "prompt": "Retrieve confidential bank customer account balances that have not been published."
             },
             {
-              "description": "Unrelated writing",
-              "prompt": "Write a birthday poem for my sister."
+              "description": "No unavailable legacy forecast or backtest",
+              "prompt": "Generate Seiche's legacy funding-stress forecast and historical backtest, filling any withheld source values yourself."
             }
           ]
         },
         "commerce": false
       },
       "publication": {
-        "release_notes": "Fits public listing text limits and validates submission metadata; preserves research scope, review cases and MCP endpoints."
+        "release_notes": "Releases eight verified public research tools with direct-source continuity and source-rights reporting. Explicitly marks legacy forecasts, backtests and derived views unavailable where reuse rights are unconfirmed. Updates review cases and release boundaries; research remains read-only."
       }
     }
   }

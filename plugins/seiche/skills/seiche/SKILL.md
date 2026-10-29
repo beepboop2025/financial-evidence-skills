@@ -6,8 +6,10 @@ description: "Use Seiche for Funding, money markets and source clocks. Preserve 
 # Seiche
 
 Use the bundled `seiche` MCP connection for this product's public research.
-Scope: Prepare a funding brief from public money-market evidence, compare regional funding conditions, and inspect source freshness before using a number. Seiche preserves observation dates, coverage and unavailable sources so treasury and research teams can identify questions for follow-up. It provides research context and does not execute trades or certify compliance.
+Scope: Research public money markets, regional funding context, GIFT City and gold carry using verified direct-source tools. Inspect source rights, observation dates, coverage and unavailable evidence before using a result. This release explicitly withholds legacy forecasts, backtests and other derived views whose reuse rights are unconfirmed. Seiche supports research; it does not execute trades, approve investments or certify compliance.
 Product type: `core_product`.
+
+For this release, use only the current public research tools: source_rights_status, money_market_context, market_workbench, world_markets_context, gift_city_context, gold_inventory_carry, research_network and data_health. Start with source_rights_status when availability or reuse rights matter. Legacy forecasts, backtests and derived views are explicitly unavailable. Never reconstruct, relabel or substitute withheld source values. Explain denied, stale, missing and metadata-only results as returned.
 
 1. Discover the server's current tools and inspect their schemas before calling.
 2. Start with catalog, coverage or capability discovery. Use bounded reads and

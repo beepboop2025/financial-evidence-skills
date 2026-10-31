@@ -65,15 +65,14 @@ tabs and never retries or schedules work automatically.
 | `script.container.ui` | Display the review sidebar in the current spreadsheet. |
 
 The runtime manifest requests no Drive, Gmail, contacts, account identity,
-background trigger or all-spreadsheets scope. The saved, unsubmitted Marketplace
-SDK configuration also includes Google's default `userinfo.email` and
-`userinfo.profile` scopes. These installation scopes still need reconciliation
-with the runtime's three scopes before public submission; the add-on code does
+background trigger or all-spreadsheets scope. The Marketplace
+SDK installation configuration also includes Google's default `userinfo.email` and
+`userinfo.profile` scopes. Google's review of the installation/runtime scope alignment remains pending; the add-on code does
 not read or transmit Google identity.
 
 Installation does not enroll users in optional measurement, learning or sharing.
 Request counters and provider delivery logs still apply as described in the
-[office privacy notice](../privacy.html) and [service privacy policy](../../../privacy/).
+[Google add-on privacy policy](https://liquilens.in/financial-evidence/privacy/) and [service privacy policy](../../../privacy/).
 
 ## Publisher configuration — not yet completed by this package
 
@@ -136,3 +135,25 @@ node --test tests/test_google_office_addon.cjs
 
 The package includes the repository's MIT licence. Source-data rights, restricted
 values and provider terms remain separate from the client-code licence.
+
+## OAuth privacy and domain remediation — 30 October 2026
+
+The Google reviewer requested explicit data access, use, sharing and protection
+disclosures and URLs on a verified owned domain. The proposed application URLs are:
+
+- Homepage: https://liquilens.in/financial-evidence/
+- Privacy: https://liquilens.in/financial-evidence/privacy/
+- Terms: https://liquilens.in/financial-evidence/terms/
+
+The homepage and dedicated policy are maintained in beepboop2025/liquilens-site.
+The previous shared Office privacy URL retains the complete Google disclosures
+and the separate Excel/custom-function notices, so existing installed sidebars
+continue to reach the updated information. New source packages point directly to
+the company-domain policy. Runtime behavior and the three manifest scopes remain
+unchanged. Existing status records retain their original observation dates.
+
+Before submitting remediation, verify the public page bytes and ownership under
+a project owner account; update Google Auth Platform branding and the Marketplace
+listing; inspect the live five verification/installation scopes and three runtime
+scopes; and reply to the original reviewer thread after submission. Source changes
+alone do not establish live script deployment, approval or public installation.

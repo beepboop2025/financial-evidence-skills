@@ -59,6 +59,39 @@ def replace(path, value):
     os.replace(temporary, path)
 
 
+def write_new_atomic(path, value):
+    """Create ``path`` holding ``value`` completely, or leave nothing behind.
+
+    write_new() fills the final name in place, so full disks left zero-byte
+    attempt receipts (77 on fsn1 between 2026-10-29 and 2026-10-31) that broke
+    every later capture and the public history and reliability reads. Write a hidden
+    sibling first, then link it into place; like write_new, an existing name
+    is never replaced.
+    """
+    temporary = path.with_name("." + path.name + "-" + uuid.uuid4().hex)
+    try:
+        write_new(temporary, value)
+        os.link(temporary, path)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def read_attempts(root):
+    """Return the archive's attempt receipts and the count of empty ones.
+
+    A zero-byte receipt was created but never written (for example on a full
+    disk) and holds no acquisition record, so it is counted and reported,
+    never parsed or reconstructed. Any other unreadable receipt still raises.
+    """
+    attempts, empty = [], 0
+    for path in sorted((Path(root) / "attempts").glob("*.json")):
+        if not path.is_symlink() and path.is_file() and path.stat().st_size == 0:
+            empty += 1
+            continue
+        attempts.append(read_json(path))
+    return attempts, empty
+
+
 def verify_pair(review, csv_raw, *, expected_source=None):
     """A CSV from a different capture must never be attached to this review."""
     source = SOURCE if expected_source is None else expected_source
@@ -296,14 +329,12 @@ def archive_once(
             and attempt["packet_id"] is not None
         )
         probe["includes_original_publisher_checks"] = True
-        write_new(root / "attempts" / (identifier + ".json"), attempt)
+        write_new_atomic(root / "attempts" / (identifier + ".json"), attempt)
         replace(
             root / "latest.json",
             {"attempt_id": identifier, "sha256": digest(encoded(attempt))},
         )
-        observations = [
-            read_json(p)["probe"] for p in (root / "attempts").glob("*.json")
-        ]
+        observations = [item["probe"] for item in read_attempts(root)[0]]
         replace(root / "reliability.json", summarize_releases(observations))
         replace(root / "coverage.json", history(root))
         return attempt
@@ -400,7 +431,7 @@ def history(root, *, as_of=None, limit=96):
                     }
                 )
     rows.sort(key=lambda x: (timestamp(x["archived_at"]), x["packet_id"]))
-    attempts = [read_json(p) for p in (Path(root) / "attempts").glob("*.json")]
+    attempts, empty_attempts = read_attempts(root)
     known = [a for a in attempts if timestamp(a["recorded_at"]) <= cutoff]
     last = max(known, key=lambda a: timestamp(a["recorded_at"]), default=None)
     return {
@@ -416,6 +447,8 @@ def history(root, *, as_of=None, limit=96):
         "latest_attempt": {k: last[k] for k in ("recorded_at", "packet_id", "error")}
         if last
         else None,
+        # Receipts created but never written hold no acquisition record.
+        "empty_attempt_receipts": empty_attempts,
     }
 
 

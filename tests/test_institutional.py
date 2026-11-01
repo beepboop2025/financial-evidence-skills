@@ -258,6 +258,44 @@ class ArchiveTests(unittest.TestCase):
             builder=lambda review: (review, csv_bytes(review["results"]), []),
         )
 
+    def test_an_empty_attempt_receipt_no_longer_breaks_capture_or_history(self):
+        # fsn1: a full disk left zero-byte attempts/*.json; every later capture
+        # then failed with JSONDecodeError and /history and /reliability 503'd.
+        self.assertIsNone(self.archive()["error"])
+        (self.root / "attempts" / ("0" * 32 + ".json")).write_bytes(b"")
+        self.assertIsNone(self.archive()["error"])
+        attempts, empty = store.read_attempts(self.root)
+        self.assertEqual((len(attempts), empty), (2, 1))
+        coverage = store.history(self.root)
+        self.assertEqual(coverage["empty_attempt_receipts"], 1)
+        self.assertEqual(coverage["packet_count"], 1)
+        reliability.summarize_releases([a["probe"] for a in attempts], evaluated_at=AT)
+
+    def test_a_corrupt_nonempty_attempt_receipt_still_fails_closed(self):
+        self.archive()
+        (self.root / "attempts" / ("1" * 32 + ".json")).write_bytes(b"{truncated")
+        with self.assertRaises(ValueError):
+            store.history(self.root)
+        with self.assertRaises(ValueError):
+            store.read_attempts(self.root)
+
+    def test_attempt_receipts_are_written_completely_or_not_at_all(self):
+        import errno
+
+        folder = self.root / "attempts"
+        folder.mkdir(parents=True)
+
+        def full_disk(_descriptor):
+            raise OSError(errno.ENOSPC, "No space left on device")
+
+        with patch.object(store.os, "fsync", full_disk), self.assertRaises(OSError):
+            store.write_new_atomic(folder / ("2" * 32 + ".json"), {"probe": {}})
+        self.assertEqual(list(folder.iterdir()), [])
+        store.write_new_atomic(folder / ("3" * 32 + ".json"), {"probe": {}})
+        with self.assertRaises(FileExistsError):
+            store.write_new_atomic(folder / ("3" * 32 + ".json"), {"probe": {}})
+        self.assertEqual([p.name for p in folder.iterdir()], ["3" * 32 + ".json"])
+
     def test_packet_is_immutable_and_csv_verified(self):
         self.assertIsNone(self.archive()["error"])
         manifest, _review, csv_raw = store.packet(self.root, PID)

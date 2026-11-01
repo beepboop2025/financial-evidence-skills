@@ -234,10 +234,7 @@ def create_app(archive=None, events=None):
     def reliability():
         # Recompute the tail gap at request time, even if the sampling timer stops.
         observations = read(
-            lambda: [
-                store.read_json(p)["probe"]
-                for p in (archive / "attempts").glob("*.json")
-            ]
+            lambda: [item["probe"] for item in store.read_attempts(archive)[0]]
         )
         return read(lambda: summarize_releases(observations, evaluated_at=now()))
 

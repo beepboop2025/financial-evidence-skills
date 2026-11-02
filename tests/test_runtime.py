@@ -438,5 +438,51 @@ class RuntimeMCPTests(unittest.IsolatedAsyncioTestCase):
                 self.assertTrue(await server.call_tool(name, {}))
 
 
+class JournalLockTests(unittest.TestCase):
+    """fsn1, 2026-10-31: 33 of 49 scheduler ticks failed with "database is
+    locked" in Store.__init__ while the operations monitor held a read
+    transaction on the rollback-journal database."""
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name) / "state"
+        Store(self.root, traffic_class="internal")
+
+    def test_opening_an_initialized_journal_does_not_need_the_write_lock(self):
+        reader = sqlite3.connect(self.root / "runtime.sqlite", timeout=0)
+        self.addCleanup(reader.close)
+        reader.execute("BEGIN")
+        reader.execute("SELECT count(*) FROM jobs").fetchone()  # holds SHARED, as the monitor does
+        store = Store(self.root)
+        self.assertEqual(store.jobs(), [])
+        reader.rollback()
+
+    def test_opening_an_initialized_journal_leaves_its_bytes_unchanged(self):
+        path = self.root / "runtime.sqlite"
+        before = path.read_bytes()
+        Store(self.root)
+        self.assertEqual(path.read_bytes(), before)
+
+    def test_installation_identity_stays_immutable_on_reopen(self):
+        with self.assertRaisesRegex(ValueError, "immutable"):
+            Store(self.root, traffic_class="synthetic")
+        with self.assertRaisesRegex(ValueError, "immutable"):
+            Store(self.root, limits={"jobs": 5})
+
+    def test_writers_wait_out_a_bounded_monitor_read(self):
+        seen = []
+        real = sqlite3.connect
+
+        def connect(*args, **kwargs):
+            seen.append(kwargs.get("timeout"))
+            return real(*args, **kwargs)
+
+        with patch("financial_evidence.runtime.store.sqlite3.connect", connect):
+            Store(self.root).jobs()
+        self.assertTrue(seen)
+        self.assertTrue(all(timeout >= 30 for timeout in seen))
+
+
 if __name__ == "__main__":
     unittest.main()

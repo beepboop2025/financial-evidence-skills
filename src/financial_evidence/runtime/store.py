@@ -11,6 +11,32 @@ from .contracts import Workflow, decode, encode, integer, moment, utc
 
 DEFAULT_LIMITS = {"jobs": 100, "runs": 10000, "daily_runs": 1000, "receipt_bytes": 67_108_864}
 CLASSES = {"unverified", "internal", "synthetic"}
+SCHEMA = """
+  CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY, value TEXT NOT NULL);
+  CREATE TABLE IF NOT EXISTS jobs (
+    id TEXT PRIMARY KEY, spec BLOB NOT NULL, sha256 TEXT NOT NULL,
+    next_due REAL NOT NULL, failures INTEGER NOT NULL DEFAULT 0,
+    breaker_until REAL NOT NULL DEFAULT 0, enabled INTEGER NOT NULL DEFAULT 1);
+  CREATE TABLE IF NOT EXISTS runs (
+    id TEXT PRIMARY KEY, job TEXT NOT NULL REFERENCES jobs(id), key TEXT NOT NULL,
+    status TEXT NOT NULL, started REAL NOT NULL, finished REAL,
+    bundle BLOB, sha256 TEXT, error TEXT, UNIQUE(job,key));
+  CREATE INDEX IF NOT EXISTS run_started ON runs(started);
+  CREATE INDEX IF NOT EXISTS run_job ON runs(job,status);
+  CREATE TABLE IF NOT EXISTS events (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, at REAL NOT NULL,
+    kind TEXT NOT NULL, job TEXT, run TEXT, detail TEXT NOT NULL);
+  CREATE TABLE IF NOT EXISTS acknowledgements (
+    run TEXT PRIMARY KEY REFERENCES runs(id), at REAL NOT NULL,
+    outcome TEXT NOT NULL CHECK(outcome IN ('useful','not_useful')));
+  PRAGMA user_version=1;
+"""
+SCHEMA_OBJECTS = {("table", "meta"), ("table", "jobs"), ("table", "runs"), ("table", "events"),
+                  ("table", "acknowledgements"), ("index", "run_started"), ("index", "run_job")}
+META_KEYS = {"installation_id", "traffic_class", "limits", "stopped", "last_clock"}
+# A writer waits this long for a reader's shared lock to clear. The operations
+# monitor bounds its read transaction at 30 seconds.
+BUSY_TIMEOUT_SECONDS = 30
 
 
 class Store:
@@ -40,31 +66,21 @@ class Store:
             version = db.execute("PRAGMA user_version").fetchone()[0]
             if version not in (0, 1):
                 raise ValueError("unsupported runtime database version")
-            db.executescript("""
-              CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY, value TEXT NOT NULL);
-              CREATE TABLE IF NOT EXISTS jobs (
-                id TEXT PRIMARY KEY, spec BLOB NOT NULL, sha256 TEXT NOT NULL,
-                next_due REAL NOT NULL, failures INTEGER NOT NULL DEFAULT 0,
-                breaker_until REAL NOT NULL DEFAULT 0, enabled INTEGER NOT NULL DEFAULT 1);
-              CREATE TABLE IF NOT EXISTS runs (
-                id TEXT PRIMARY KEY, job TEXT NOT NULL REFERENCES jobs(id), key TEXT NOT NULL,
-                status TEXT NOT NULL, started REAL NOT NULL, finished REAL,
-                bundle BLOB, sha256 TEXT, error TEXT, UNIQUE(job,key));
-              CREATE INDEX IF NOT EXISTS run_started ON runs(started);
-              CREATE INDEX IF NOT EXISTS run_job ON runs(job,status);
-              CREATE TABLE IF NOT EXISTS events (
-                id INTEGER PRIMARY KEY AUTOINCREMENT, at REAL NOT NULL,
-                kind TEXT NOT NULL, job TEXT, run TEXT, detail TEXT NOT NULL);
-              CREATE TABLE IF NOT EXISTS acknowledgements (
-                run TEXT PRIMARY KEY REFERENCES runs(id), at REAL NOT NULL,
-                outcome TEXT NOT NULL CHECK(outcome IN ('useful','not_useful')));
-              PRAGMA user_version=1;
-            """)
-            db.execute("BEGIN IMMEDIATE")
-            values = {"installation_id": uuid.uuid4().hex, "traffic_class": traffic_class or "unverified",
-                      "limits": encode(selected).decode(), "stopped": "false", "last_clock": "0"}
-            for key, value in values.items():
-                db.execute("INSERT OR IGNORE INTO meta VALUES (?,?)", (key, value))
+            # Opening an initialized journal is read-only. Every scheduler tick
+            # constructs a Store, and the former unconditional DDL and
+            # user_version write needed an exclusive lock each minute: on fsn1
+            # it failed with "database is locked" whenever the operations
+            # monitor held its read transaction, so most ticks under load did
+            # no work. Write only to create or complete the schema.
+            present = {tuple(row) for row in db.execute("SELECT type, name FROM sqlite_master")}
+            if version != 1 or not SCHEMA_OBJECTS <= present:
+                db.executescript(SCHEMA)
+            if not META_KEYS <= {row[0] for row in db.execute("SELECT key FROM meta")}:
+                db.execute("BEGIN IMMEDIATE")
+                values = {"installation_id": uuid.uuid4().hex, "traffic_class": traffic_class or "unverified",
+                          "limits": encode(selected).decode(), "stopped": "false", "last_clock": "0"}
+                for key, value in values.items():
+                    db.execute("INSERT OR IGNORE INTO meta VALUES (?,?)", (key, value))
             if traffic_class and self.meta(db, "traffic_class") != traffic_class:
                 raise ValueError("existing installation class is immutable")
             if limits is not None and decode(self.meta(db, "limits").encode()) != selected:
@@ -83,7 +99,7 @@ class Store:
     @contextmanager
     def connection(self):
         self._check_paths()
-        db = sqlite3.connect(self.path, timeout=5)
+        db = sqlite3.connect(self.path, timeout=BUSY_TIMEOUT_SECONDS)
         db.row_factory = sqlite3.Row
         try:
             db.execute("PRAGMA foreign_keys=ON")

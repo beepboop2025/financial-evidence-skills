@@ -6652,6 +6652,54 @@
         "product_tools_called": false,
         "scope": "initialize and tools/list only; no customer usage or purchase inferred."
       }
+    },
+    {
+      "id": "copilot-studio-mcp-custom-connectors",
+      "name": "LiquiLens product MCP connectors for Microsoft Copilot Studio (tenant import)",
+      "channel": "custom-connector",
+      "state": "ready_validation",
+      "submission_url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/mcp-add-existing-server-to-agent",
+      "cost": "No paid placement or plan purchased. Licensing and data policies in the importing tenant apply.",
+      "detail": "Packaged, not submitted (3 November 2026). Seven custom connector definitions (apiDefinition.swagger.json, apiProperties.json and intro.md, plus a shared icon) use the Copilot Studio MCP Streamable HTTP operation for LiquiLens, Seiche, LiquiLens Undertow, Palimpsest, NoiseFloor, GroundCheck and Data Breach Detector. Each targets its official MCP Registry remote with no authentication. A read-only initialize and tools/list check passed for all seven at 2026-11-02T20:40:24Z. Microsoft's published connector schemas pass except for the x-ms-agentic-protocol key, which the schema predates and Microsoft's own MCP template shares. No tenant import, paconn validate or Solution Checker run. Riptide is excluded.",
+      "next_action": "Import one connector into a test environment and confirm tool discovery and the documented schema known issues. Microsoft certification would first need a verified publisher and server authentication, which are owner decisions.",
+      "verified_at": "2026-11-02T20:40:24Z",
+      "packaged_at": "2026-11-03",
+      "source_path": "integrations/copilot-studio/",
+      "verification_receipt": "integrations/copilot-studio/verification-20261103.json",
+      "products": [
+        "liquilens",
+        "seiche",
+        "undertow",
+        "palimpsest",
+        "noisefloor",
+        "groundcheck",
+        "data-breach-detector"
+      ],
+      "tenant_import_verified": false,
+      "certification_submitted": false,
+      "public_listing_verified": false,
+      "independent_adoption_verified": false
+    },
+    {
+      "id": "liquidity-lab-direct-remote-claude-plugins",
+      "name": "GroundCheck and Data Breach Detector Claude plugins and Claude connector guide",
+      "channel": "agent-plugin-marketplace",
+      "state": "ready_validation",
+      "submission_url": "https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp",
+      "cost": "Free plugins; Claude account and plan costs are separate. No model requests were made during validation.",
+      "detail": "Packaged, not submitted (3 November 2026). Two new liquidity-lab marketplace plugins register the official MCP Registry remotes for GroundCheck and Data Breach Detector over HTTP with no secrets, each with a claim-boundary skill. They are not in the Codex catalog. The five existing product plugins for LiquiLens, Seiche, Undertow, Palimpsest and NoiseFloor are unchanged. claude plugin validate --strict passed with Claude Code 2.1.316 and with the CI-pinned 2.1.241. All seven plugins installed from a local copy of the marketplace in an isolated Claude Code configuration and all seven servers reported connected. The directory profile flags a missing privacy policy for both new plugins. docs/platforms/claude-connectors.md covers adding all seven server URLs as Claude Desktop and claude.ai custom connectors. No Claude directory submission.",
+      "next_action": "After merge, install both plugins from the public marketplace and keep the receipt. Publish privacy policies for GroundCheck and Data Breach Detector before any directory route.",
+      "verified_at": "2026-11-02T20:49:48Z",
+      "packaged_at": "2026-11-03",
+      "products": [
+        "groundcheck",
+        "data-breach-detector"
+      ],
+      "guide_path": "docs/platforms/claude-connectors.md",
+      "local_marketplace_install_verified": true,
+      "public_marketplace_install_verified": false,
+      "official_directory_acceptance": false,
+      "independent_adoption_verified": false
     }
   ],
   "release_verified_at": "2026-10-27T20:36:57.379680+00:00",

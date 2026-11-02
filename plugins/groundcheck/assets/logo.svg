@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title description">
+  <title id="title">Financial Evidence</title>
+  <desc id="description">Evidence streams crossing one routed path.</desc>
+  <rect width="512" height="512" rx="112" fill="#0B2628"/>
+  <path d="M88 156c52-44 99-44 141 0s89 44 141 0 94-44 126 0" fill="none" stroke="#62D4C7" stroke-width="28" stroke-linecap="round"/>
+  <path d="M88 236c52-44 99-44 141 0s89 44 141 0 94-44 126 0" fill="none" stroke="#B5E7D8" stroke-width="28" stroke-linecap="round"/>
+  <path d="M88 316c52-44 99-44 141 0s89 44 141 0 94-44 126 0" fill="none" stroke="#F4C95D" stroke-width="28" stroke-linecap="round"/>
+  <path d="M256 112v288" fill="none" stroke="#FFFFFF" stroke-width="22" stroke-linecap="round" opacity=".94"/>
+</svg>

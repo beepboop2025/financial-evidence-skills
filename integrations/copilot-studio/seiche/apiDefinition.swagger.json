@@ -1,0 +1,68 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Seiche MCP",
+    "description": "Free public research on funding markets, money markets and reference FX, with source dates, units and reuse restrictions kept visible. Legacy forecasts, stress scores and backtests stay withheld until their sources qualify. Seiche is research, not investment advice, and it never executes trades.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "LIQUILENS PRIVATE LIMITED",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/issues"
+    }
+  },
+  "host": "api.seiche.info",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json",
+    "text/event-stream"
+  ],
+  "paths": {
+    "/mcp": {
+      "post": {
+        "summary": "Seiche MCP server",
+        "description": "Sends Model Context Protocol messages to the hosted Seiche server over Streamable HTTP. The agent runtime manages the session, so makers do not call this operation directly.",
+        "operationId": "InvokeMCP",
+        "x-ms-agentic-protocol": "mcp-streamable-1.0",
+        "x-ms-visibility": "advanced",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default": "application/json, text/event-stream",
+            "x-ms-summary": "Accept",
+            "description": "Media types the MCP server may return.",
+            "x-ms-visibility": "internal"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MCP Streamable HTTP response."
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {},
+  "security": [],
+  "x-ms-connector-metadata": [
+    {
+      "propertyName": "Website",
+      "propertyValue": "https://seiche.info/"
+    },
+    {
+      "propertyName": "Privacy policy",
+      "propertyValue": "https://seiche.info/privacy"
+    },
+    {
+      "propertyName": "Categories",
+      "propertyValue": "Finance;Data"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "LiquiLens Undertow MCP",
+    "description": "Read-only market liquidity research from LiquiLens Undertow: indicative BTC exit sizes, depth episodes, venue concentration and a sealed record of calls that keeps its misses. Every reading carries its clock and coverage, and PARTIAL means missing history, never calm. Estimates are not executable quotes or investment advice.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "LIQUILENS PRIVATE LIMITED",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/issues"
+    }
+  },
+  "host": "api.seiche.info",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json",
+    "text/event-stream"
+  ],
+  "paths": {
+    "/undertow/mcp": {
+      "post": {
+        "summary": "LiquiLens Undertow MCP server",
+        "description": "Sends Model Context Protocol messages to the hosted LiquiLens Undertow server over Streamable HTTP. The agent runtime manages the session, so makers do not call this operation directly.",
+        "operationId": "InvokeMCP",
+        "x-ms-agentic-protocol": "mcp-streamable-1.0",
+        "x-ms-visibility": "advanced",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default": "application/json, text/event-stream",
+            "x-ms-summary": "Accept",
+            "description": "Media types the MCP server may return.",
+            "x-ms-visibility": "internal"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MCP Streamable HTTP response."
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {},
+  "security": [],
+  "x-ms-connector-metadata": [
+    {
+      "propertyName": "Website",
+      "propertyValue": "https://liquilens-undertow.com/"
+    },
+    {
+      "propertyName": "Categories",
+      "propertyValue": "Finance;Data"
+    }
+  ]
+}

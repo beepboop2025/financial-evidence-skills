@@ -12,15 +12,23 @@ builder = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(builder)
 
 
+# Claude catalog plugins (not in the Codex catalog) for hosted servers outside the
+# central gateway. Each uses the remote published in its official MCP Registry entry; see
+# integrations/copilot-studio/connectors.json and tests/test_copilot_studio_connectors.py.
+DIRECT_REMOTE_CLAUDE_PLUGINS = {"groundcheck", "data-breach-detector"}
+
+
 class ProductPluginTests(unittest.TestCase):
     def test_every_published_connection_has_one_plugin(self):
         connections = json.loads((ROOT / "docs/connect/native-connections.json").read_text())
         required = {p["id"] for p in connections["products"]}
-        for path in (".agents/plugins/marketplace.json", ".claude-plugin/marketplace.json"):
+        for path, extra in ((".agents/plugins/marketplace.json", set()),
+                            (".claude-plugin/marketplace.json", DIRECT_REMOTE_CLAUDE_PLUGINS)):
             catalog = json.loads((ROOT / path).read_text())
             names = [p["name"] for p in catalog["plugins"]]
             self.assertEqual(len(names), len(set(names)))
-            self.assertEqual(set(names), required | {"market-brief"})
+            self.assertEqual(set(names), required | {"market-brief"} | extra)
+            self.assertFalse(required & DIRECT_REMOTE_CLAUDE_PLUGINS)
 
     def test_downloads_resolve_all_runtime_files_and_exact_endpoints(self):
         catalog = json.loads((ROOT / "docs/plugins/catalog.json").read_text())

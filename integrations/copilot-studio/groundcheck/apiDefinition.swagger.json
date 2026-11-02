@@ -1,0 +1,64 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "GroundCheck MCP",
+    "description": "Fact verification for agents. verify_claim checks one claim against retrieved public sources and returns supported, refuted or unverified with sufficiency, an error bound and a signed provenance receipt. The other tools are paid per call and return a payment offer that this connection cannot settle. Unverified never means false.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "LIQUILENS PRIVATE LIMITED",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/issues"
+    }
+  },
+  "host": "groundcheck.seiche.info",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json",
+    "text/event-stream"
+  ],
+  "paths": {
+    "/mcp": {
+      "post": {
+        "summary": "GroundCheck MCP server",
+        "description": "Sends Model Context Protocol messages to the hosted GroundCheck server over Streamable HTTP. The agent runtime manages the session, so makers do not call this operation directly.",
+        "operationId": "InvokeMCP",
+        "x-ms-agentic-protocol": "mcp-streamable-1.0",
+        "x-ms-visibility": "advanced",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default": "application/json, text/event-stream",
+            "x-ms-summary": "Accept",
+            "description": "Media types the MCP server may return.",
+            "x-ms-visibility": "internal"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MCP Streamable HTTP response."
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {},
+  "security": [],
+  "x-ms-connector-metadata": [
+    {
+      "propertyName": "Website",
+      "propertyValue": "https://groundcheck.seiche.info/"
+    },
+    {
+      "propertyName": "Categories",
+      "propertyValue": "AI;Data"
+    }
+  ]
+}

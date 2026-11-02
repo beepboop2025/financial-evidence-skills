@@ -1,0 +1,366 @@
+{
+  "schema": "liquilens.copilot-studio-mcp-verification.v1",
+  "observed_at": "2026-11-02T20:40:24Z",
+  "method": "Read the latest official MCP Registry entry, then send initialize, notifications/initialized and tools/list over Streamable HTTP. No tools/call, no credentials, no tenant import.",
+  "user_agent": "liquilens-packaging-check/2026-11-03 (synthetic; read-only; initialize+tools/list only)",
+  "requested_protocol_version": "2025-06-18",
+  "schema_findings_reference": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/mcp-troubleshooting",
+  "copilot_studio_tenant_import_tested": false,
+  "connectors": [
+    {
+      "id": "liquilens",
+      "url": "https://api.liquilens.in/mcp",
+      "registry": {
+        "name": "io.github.beepboop2025/liquilens",
+        "version": "1.8.1",
+        "is_latest": true,
+        "remote_type": "streamable-http",
+        "remote_url": "https://api.liquilens.in/mcp",
+        "remote_count": 1
+      },
+      "http_status": 200,
+      "content_type": "application/json",
+      "protocol_version": "2025-06-18",
+      "server_name": "liquilens",
+      "server_version": "1.8.1",
+      "session_header_issued": false,
+      "tools": [
+        "bank_asset_quality_review",
+        "bank_npa_reconciliation",
+        "banking_specialisation_coverage",
+        "corporate_transmission_board",
+        "crypto_exposure_board",
+        "crypto_regime_board",
+        "evidence_europe",
+        "evidence_india",
+        "evidence_institution",
+        "evidence_markets",
+        "evidence_us",
+        "failure_radar_board",
+        "failure_radar_institution",
+        "forward_odds",
+        "household_credit_board",
+        "institution_evidence_monitor",
+        "institution_research_coverage",
+        "institution_review_packet",
+        "latest_article",
+        "rbi_supervisory_tape",
+        "research_network",
+        "stablecoin_rails_board",
+        "universe_search",
+        "verify_published_record"
+      ],
+      "copilot_studio_schema_findings": {
+        "bank_npa_reconciliation": [
+          "enum read as string"
+        ],
+        "banking_specialisation_coverage": [
+          "enum read as string"
+        ],
+        "institution_research_coverage": [
+          "enum read as string"
+        ],
+        "research_network": [
+          "enum read as string"
+        ],
+        "universe_search": [
+          "enum read as string"
+        ]
+      },
+      "status": "ok",
+      "central_gateway": {
+        "url": "https://agents.seiche.info/products/liquilens/mcp",
+        "same_server_version": true,
+        "same_tool_names": true
+      }
+    },
+    {
+      "id": "seiche",
+      "url": "https://api.seiche.info/mcp",
+      "registry": {
+        "name": "io.github.beepboop2025/seiche",
+        "version": "0.16.11",
+        "is_latest": true,
+        "remote_type": "streamable-http",
+        "remote_url": "https://api.seiche.info/mcp",
+        "remote_count": 1
+      },
+      "http_status": 200,
+      "content_type": "application/json",
+      "protocol_version": "2025-06-18",
+      "server_name": "seiche",
+      "server_version": "0.16.11",
+      "session_header_issued": true,
+      "tools": [
+        "source_rights_status",
+        "gift_city_context",
+        "gold_inventory_carry",
+        "market_workbench",
+        "research_network",
+        "money_market_context",
+        "world_markets_context",
+        "data_health"
+      ],
+      "copilot_studio_schema_findings": {
+        "gold_inventory_carry": [
+          "enum read as string"
+        ],
+        "market_workbench": [
+          "enum read as string"
+        ],
+        "research_network": [
+          "enum read as string"
+        ],
+        "money_market_context": [
+          "enum read as string"
+        ],
+        "world_markets_context": [
+          "enum read as string"
+        ]
+      },
+      "status": "ok",
+      "central_gateway": {
+        "url": "https://agents.seiche.info/products/seiche/mcp",
+        "same_server_version": true,
+        "same_tool_names": true
+      }
+    },
+    {
+      "id": "undertow",
+      "url": "https://api.seiche.info/undertow/mcp",
+      "registry": {
+        "name": "io.github.beepboop2025/undertow",
+        "version": "1.13.0",
+        "is_latest": true,
+        "remote_type": "streamable-http",
+        "remote_url": "https://api.seiche.info/undertow/mcp",
+        "remote_count": 1
+      },
+      "http_status": 200,
+      "content_type": "application/json",
+      "protocol_version": "2025-06-18",
+      "server_name": "undertow",
+      "server_version": "1.13.0",
+      "session_header_issued": false,
+      "tools": [
+        "agent_access_status",
+        "crypto_exit_check",
+        "crypto_funding_cost",
+        "crypto_portfolio_stress",
+        "depth_episodes",
+        "exit_cost",
+        "gold_cash_realisation",
+        "latest_article",
+        "liquidity_tiers",
+        "market_corpus_context",
+        "research_network",
+        "sealed_record",
+        "trade_safety_exit_context",
+        "unwind_watch",
+        "venue_concentration",
+        "venue_price_reconciliation"
+      ],
+      "copilot_studio_schema_findings": {
+        "crypto_funding_cost": [
+          "enum read as string"
+        ],
+        "crypto_portfolio_stress": [
+          "enum read as string"
+        ],
+        "exit_cost": [
+          "integer exclusiveMinimum"
+        ],
+        "gold_cash_realisation": [
+          "enum read as string"
+        ],
+        "market_corpus_context": [
+          "enum read as string"
+        ],
+        "research_network": [
+          "enum read as string"
+        ],
+        "trade_safety_exit_context": [
+          "enum read as string"
+        ]
+      },
+      "status": "ok",
+      "central_gateway": {
+        "url": "https://agents.seiche.info/products/undertow/mcp",
+        "same_server_version": true,
+        "same_tool_names": true
+      }
+    },
+    {
+      "id": "palimpsest",
+      "url": "https://api.seiche.info/palimpsest/mcp",
+      "registry": {
+        "name": "io.github.beepboop2025/palimpsest",
+        "version": "1.9.3",
+        "is_latest": true,
+        "remote_type": "streamable-http",
+        "remote_url": "https://api.seiche.info/palimpsest/mcp",
+        "remote_count": 1
+      },
+      "http_status": 200,
+      "content_type": "application/json",
+      "protocol_version": "2025-06-18",
+      "server_name": "palimpsest",
+      "server_version": "1.9.3",
+      "session_header_issued": false,
+      "tools": [
+        "research_catalog",
+        "list_signals",
+        "get_signal",
+        "get_newsroom",
+        "inspect_economic_publication_rights",
+        "whats_happening",
+        "gfw_reading"
+      ],
+      "copilot_studio_schema_findings": {
+        "get_newsroom": [
+          "enum read as string"
+        ]
+      },
+      "status": "ok",
+      "central_gateway": {
+        "url": "https://agents.seiche.info/products/palimpsest/mcp",
+        "same_server_version": true,
+        "same_tool_names": true
+      }
+    },
+    {
+      "id": "noisefloor",
+      "url": "https://api.seiche.info/noisefloor/mcp",
+      "registry": {
+        "name": "io.github.beepboop2025/noisefloor",
+        "version": "0.4.3",
+        "is_latest": true,
+        "remote_type": "streamable-http",
+        "remote_url": "https://api.seiche.info/noisefloor/mcp",
+        "remote_count": 1
+      },
+      "http_status": 200,
+      "content_type": "application/json",
+      "protocol_version": "2025-06-18",
+      "server_name": "noisefloor",
+      "server_version": "0.4.3",
+      "session_header_issued": false,
+      "tools": [
+        "ab_test",
+        "did_it_change",
+        "dyson_reference",
+        "forecast_next",
+        "market_assessment",
+        "narrative_triage",
+        "real_or_sampling",
+        "score_forecasts",
+        "spectral_assessment",
+        "which_metrics_matter"
+      ],
+      "copilot_studio_schema_findings": {
+        "ab_test": [
+          "integer exclusiveMaximum",
+          "integer exclusiveMinimum"
+        ],
+        "did_it_change": [
+          "integer exclusiveMinimum"
+        ],
+        "forecast_next": [
+          "integer exclusiveMaximum",
+          "integer exclusiveMinimum"
+        ],
+        "market_assessment": [
+          "enum read as string",
+          "integer exclusiveMinimum",
+          "type array"
+        ],
+        "narrative_triage": [
+          "enum read as string",
+          "integer exclusiveMinimum"
+        ],
+        "real_or_sampling": [
+          "integer exclusiveMinimum"
+        ],
+        "score_forecasts": [
+          "integer exclusiveMaximum",
+          "integer exclusiveMinimum"
+        ],
+        "spectral_assessment": [
+          "enum read as string",
+          "integer exclusiveMinimum",
+          "type array"
+        ],
+        "which_metrics_matter": [
+          "integer exclusiveMaximum",
+          "integer exclusiveMinimum"
+        ]
+      },
+      "status": "ok",
+      "central_gateway": {
+        "url": "https://agents.seiche.info/products/noisefloor/mcp",
+        "same_server_version": true,
+        "same_tool_names": true
+      }
+    },
+    {
+      "id": "groundcheck",
+      "url": "https://groundcheck.seiche.info/mcp",
+      "registry": {
+        "name": "io.github.beepboop2025/groundcheck",
+        "version": "0.7.2",
+        "is_latest": true,
+        "remote_type": "streamable-http",
+        "remote_url": "https://groundcheck.seiche.info/mcp",
+        "remote_count": 1
+      },
+      "http_status": 200,
+      "content_type": "application/json",
+      "protocol_version": "2025-06-18",
+      "server_name": "groundcheck",
+      "server_version": "0.7.2",
+      "session_header_issued": false,
+      "tools": [
+        "verify_claim",
+        "check_citations",
+        "resolve_instrument",
+        "extract_claims",
+        "attest_delivery"
+      ],
+      "copilot_studio_schema_findings": {
+        "resolve_instrument": [
+          "enum read as string"
+        ]
+      },
+      "status": "ok"
+    },
+    {
+      "id": "data-breach-detector",
+      "url": "https://breach.seiche.info/mcp",
+      "registry": {
+        "name": "io.github.beepboop2025/data-breach-detector",
+        "version": "0.3.2",
+        "is_latest": true,
+        "remote_type": "streamable-http",
+        "remote_url": "https://breach.seiche.info/mcp",
+        "remote_count": 1
+      },
+      "http_status": 200,
+      "content_type": "text/event-stream",
+      "protocol_version": "2025-06-18",
+      "server_name": "data-breach-detector",
+      "server_version": "0.3.2",
+      "session_header_issued": true,
+      "tools": [
+        "breach_news",
+        "check_exposure",
+        "breach_history",
+        "breach_timeline",
+        "breach_stats",
+        "assess_threat",
+        "feed_sources"
+      ],
+      "copilot_studio_schema_findings": {},
+      "status": "ok"
+    }
+  ]
+}

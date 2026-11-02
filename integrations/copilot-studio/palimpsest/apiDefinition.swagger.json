@@ -1,0 +1,64 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Palimpsest MCP",
+    "description": "Open public-record observatory for internet censorship signals, China economic publication rights and pre-registered AI model evaluations. Each signal carries its timestamp, source and health state. Restricted economic evidence stays metadata only and is never presented as zero or calm. Palimpsest sells nothing and has no financial authority.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "LIQUILENS PRIVATE LIMITED",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/issues"
+    }
+  },
+  "host": "api.seiche.info",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json",
+    "text/event-stream"
+  ],
+  "paths": {
+    "/palimpsest/mcp": {
+      "post": {
+        "summary": "Palimpsest MCP server",
+        "description": "Sends Model Context Protocol messages to the hosted Palimpsest server over Streamable HTTP. The agent runtime manages the session, so makers do not call this operation directly.",
+        "operationId": "InvokeMCP",
+        "x-ms-agentic-protocol": "mcp-streamable-1.0",
+        "x-ms-visibility": "advanced",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default": "application/json, text/event-stream",
+            "x-ms-summary": "Accept",
+            "description": "Media types the MCP server may return.",
+            "x-ms-visibility": "internal"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MCP Streamable HTTP response."
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {},
+  "security": [],
+  "x-ms-connector-metadata": [
+    {
+      "propertyName": "Website",
+      "propertyValue": "https://palimpsest.info/"
+    },
+    {
+      "propertyName": "Categories",
+      "propertyValue": "Data;AI"
+    }
+  ]
+}

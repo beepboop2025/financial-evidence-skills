@@ -13,6 +13,17 @@ release acceptance. Updating the ledger does not refresh every observation.
 
 ## Latest marketplace retries
 
+- **Copilot Studio and Claude packaging (3 November):** packaged, not
+  submitted. Seven Copilot Studio custom connector definitions in
+  [`integrations/copilot-studio/`](integrations/copilot-studio/README.md) cover
+  LiquiLens, Seiche, LiquiLens Undertow, Palimpsest, NoiseFloor, GroundCheck and
+  Data Breach Detector, each at its official MCP Registry remote with no
+  authentication. GroundCheck and Data Breach Detector also gain Claude plugins,
+  and a [Claude connector guide](docs/platforms/claude-connectors.md) covers all
+  seven URLs. No tenant import, certification or directory submission is
+  claimed. Microsoft certification would need a verified publisher and server
+  authentication.
+
 - **15 October expansion:** Dify 0.1.1 is publicly listed and verified;
   LiquiLens.in and Seiche.info are approved on SaaSHub. The free Undertow by
   LiquiLens submission and official Cursor publisher application received

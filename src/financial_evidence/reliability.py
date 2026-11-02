@@ -8,7 +8,7 @@ import re
 import time
 import urllib.error
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 BASE = "https://api.seiche.info/openbb"
@@ -331,11 +331,37 @@ def summarize_releases(samples, *, evaluated_at=None):
             "FINANCIAL_EVIDENCE_EXPECTED_SOURCE": source,
         })
         groups.setdefault(identity, []).append(item)
-    end = evaluated_at or now()
-    current = summarize(groups.pop((RELEASE, SOURCE), []), evaluated_at=end)
-    current["prior_releases"] = [
-        summarize(values, evaluated_at=end, expected_release=release,
-                  expected_source=source)
-        for (release, source), values in sorted(groups.items())
-    ]
+    end = timestamp(evaluated_at or now())
+    current_values = groups.pop((RELEASE, SOURCE), [])
+    current = summarize(current_values, evaluated_at=end.isoformat())
+    # Each retired release is judged over its own service window: from its
+    # first retained observation until the next release was first observed, or
+    # its own last finished observation if that is later, and never past this
+    # evaluation. Ending every retired window at request time pushed old
+    # releases outside the 30-day window and reported null rates and latency.
+    first_seen = sorted(
+        (min(timestamp(x["observed_at"]) for x in values), identity)
+        for identity, values in [*groups.items(), ((RELEASE, SOURCE), current_values)]
+        if values
+    )
+    current["prior_releases"] = []
+    for (release, source), values in sorted(groups.items()):
+        first = min(timestamp(x["observed_at"]) for x in values)
+        last = max(timestamp(x["observed_at"]) for x in values)
+        # The instant after the last observation keeps that observation's slot
+        # inside the window even when it finished in the same microsecond.
+        window_end = max(
+            [timestamp(x["finished_at"]) for x in values] + [last + timedelta(microseconds=1)]
+        )
+        successor = next(
+            (at for at, identity in first_seen
+             if at > first and identity != (release, source)),
+            None,
+        )
+        if successor is not None:
+            window_end = max(window_end, successor)
+        current["prior_releases"].append(summarize(
+            values, evaluated_at=min(window_end, end).isoformat(),
+            expected_release=release, expected_source=source,
+        ))
     return current

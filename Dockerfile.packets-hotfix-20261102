@@ -1,0 +1,15 @@
+# Dated overlay for the live funding packets image, in the pattern of
+# Dockerfile.packet-dated and integrations/institutional/Dockerfile.runtime-rights.
+# FROM is the image fsn1 runs on 2026-11-02: INSTITUTIONAL_IMAGE in
+# /etc/financial-evidence/institutional.env, tagged financial-evidence-packets:dated-14b82eeba65f.
+# It serves financial-evidence-packets and runs financial-evidence-packet-capture
+# and financial-evidence-usage-expiry. Three modules change, taken from 14b82ee
+# plus two fixes so they match every other module already in the image:
+#   reliability.py      #206: a retired release keeps its own reliability window
+#   institutional.py    #204: attempt receipts are written atomically; empty ones
+#   institutional_api.py      are counted, never parsed
+FROM sha256:408c00c54ed3dc3275ac2266c28af84fbf881a5d440f25d6e0244a6dfe4e75d6
+ARG SOURCE_COMMIT
+LABEL org.opencontainers.image.revision=$SOURCE_COMMIT
+ENV FINANCIAL_EVIDENCE_SOURCE_COMMIT=$SOURCE_COMMIT
+COPY src/financial_evidence/reliability.py src/financial_evidence/institutional.py src/financial_evidence/institutional_api.py /usr/local/lib/python3.13/site-packages/financial_evidence/

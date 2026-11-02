@@ -1,0 +1,64 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Data Breach Detector MCP",
+    "description": "Read-only breach intelligence from public disclosure feeds: HaveIBeenPwned, the RansomLook leak-site tracker, the frozen ransomwatch archive and SEC 8-K Item 1.05 filings. It reports whether an organization is named in a disclosure, never breach contents. A leak-site listing is a claim, not a confirmed breach.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "LIQUILENS PRIVATE LIMITED",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/issues"
+    }
+  },
+  "host": "breach.seiche.info",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json",
+    "text/event-stream"
+  ],
+  "paths": {
+    "/mcp": {
+      "post": {
+        "summary": "Data Breach Detector MCP server",
+        "description": "Sends Model Context Protocol messages to the hosted Data Breach Detector server over Streamable HTTP. The agent runtime manages the session, so makers do not call this operation directly.",
+        "operationId": "InvokeMCP",
+        "x-ms-agentic-protocol": "mcp-streamable-1.0",
+        "x-ms-visibility": "advanced",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default": "application/json, text/event-stream",
+            "x-ms-summary": "Accept",
+            "description": "Media types the MCP server may return.",
+            "x-ms-visibility": "internal"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "MCP Streamable HTTP response."
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {},
+  "security": [],
+  "x-ms-connector-metadata": [
+    {
+      "propertyName": "Website",
+      "propertyValue": "https://github.com/beepboop2025/data-breach-detector"
+    },
+    {
+      "propertyName": "Categories",
+      "propertyValue": "Security;Data"
+    }
+  ]
+}

@@ -269,6 +269,8 @@ jobs:
           docker run --rm --read-only --cap-drop ALL --security-opt no-new-privileges --tmpfs /tmp:rw,nosuid,size=32m -v "$PWD/tests:/tests:ro" --entrypoint python funding-packet-test -m unittest discover -s /tests -p 'test_institutional.py' -v
           docker run --rm --read-only --cap-drop ALL --security-opt no-new-privileges --tmpfs /tmp:rw,nosuid,size=32m -v "$PWD/tests:/tests:ro" --entrypoint python funding-packet-test -m unittest discover -s /tests -p 'test_original_publishers.py' -v
           docker run --rm --read-only --cap-drop ALL --security-opt no-new-privileges --tmpfs /tmp:rw,nosuid,size=32m -v "$PWD/tests:/tests:ro" --entrypoint python funding-packet-test -m unittest discover -s /tests -p 'test_funding_automation.py' -v
+      - name: Run the usage expiry unit offline and after an interrupted start
+        run: python3 scripts/verify_usage_expiry_unit.py integrations/institutional/financial-evidence-usage-expiry.service INSTITUTIONAL_IMAGE=funding-packet-test
 
   stdlib-contract:
     runs-on: ubuntu-24.04
@@ -359,6 +361,8 @@ jobs:
         env:
           SOURCE_COMMIT: ${{ github.sha }}
         run: docker build --build-arg SOURCE_COMMIT="$SOURCE_COMMIT" -f integrations/openbb/Dockerfile -t evidence-workspace-test .
+      - name: Run the usage expiry unit offline and after an interrupted start
+        run: python3 scripts/verify_usage_expiry_unit.py integrations/openbb/financial-evidence-workspace-usage-expiry.service WORKSPACE_IMAGE=evidence-workspace-test WORKSPACE_UID=65532 WORKSPACE_GID=65532
       - name: Check the read-only container through real HTTP and MCP
         env:
           EXPECTED_SOURCE: ${{ github.sha }}

@@ -36,6 +36,18 @@
       "version": "0.1.1"
     },
     {
+      "name": "groundcheck",
+      "source": "./plugins/groundcheck",
+      "version": "1.0.0",
+      "description": "Claim verification with sufficiency gates; paid tools return x402 offers"
+    },
+    {
+      "name": "data-breach-detector",
+      "source": "./plugins/data-breach-detector",
+      "version": "1.0.0",
+      "description": "Public breach and ransomware disclosure triage, never breach contents"
+    },
+    {
       "name": "seiche",
       "source": "./plugins/seiche",
       "version": "1.0.3",

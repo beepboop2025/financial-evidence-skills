@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "data-breach-detector": {
+      "type": "http",
+      "url": "https://breach.seiche.info/mcp"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "data-breach-detector",
+  "version": "1.0.0",
+  "description": "Check whether an organization is named in public breach or ransomware disclosures from HaveIBeenPwned, the RansomLook leak-site tracker, the frozen ransomwatch archive and SEC 8-K Item 1.05 filings. Results are disclosure metadata, never breach contents, and a leak-site listing is a claim rather than a confirmed breach.",
+  "mcpServers": {
+    "data-breach-detector": {
+      "httpUrl": "https://breach.seiche.info/mcp",
+      "timeout": 30000,
+      "includeTools": [
+        "breach_news",
+        "check_exposure",
+        "breach_history",
+        "breach_timeline",
+        "breach_stats",
+        "assess_threat",
+        "feed_sources"
+      ]
+    }
+  }
+}

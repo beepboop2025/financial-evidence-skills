@@ -249,7 +249,9 @@ class EditorIntegrationTests(unittest.TestCase):
         self.assertEqual(plugin["name"], SERVER_NAME)
         self.assertEqual(plugin["version"], self.version)
         self.assertEqual(marketplace["name"], "liquidity-lab")
-        self.assertEqual(len(marketplace["plugins"]), 15)
+        # 15 shared catalog entries plus GroundCheck and Data Breach Detector,
+        # which only the Claude catalog lists (hosted outside the gateway).
+        self.assertEqual(len(marketplace["plugins"]), 17)
         self.assertEqual(
             [entry["name"] for entry in marketplace["plugins"][:2]],
             [SERVER_NAME, MARKET_BRIEF_NAME],

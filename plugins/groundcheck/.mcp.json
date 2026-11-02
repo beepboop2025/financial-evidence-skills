@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "groundcheck": {
+      "type": "http",
+      "url": "https://groundcheck.seiche.info/mcp"
+    }
+  }
+}

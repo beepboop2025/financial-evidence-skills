@@ -1,0 +1,12 @@
+{
+  "name": "groundcheck",
+  "version": "1.0.0",
+  "description": "Check a factual claim against retrieved public sources before relying on it. GroundCheck returns supported, refuted or unverified with a sufficiency gate, an error bound and a signed provenance receipt. Only verify_claim is free; the other tools answer with an x402 payment offer, which this package never pays.",
+  "author": {
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://groundcheck.seiche.info/",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT"
+}

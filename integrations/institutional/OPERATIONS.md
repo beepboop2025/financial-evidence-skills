@@ -66,8 +66,16 @@ release's baseline. No packet or attempt migration is needed on upgrade.
   seconds jitter, plus an initial backup two minutes after activation. Uses the existing encrypted repository under a separate tag,
   restores the exact new snapshot and verifies every file. Usage identifiers
   and the HMAC key are excluded. No deletion or repository initialization occurs.
-- `financial-evidence-usage-expiry.timer`: daily at midnight UTC. Purges consented
-  counters even without new visitor traffic; includes only the last 30 UTC dates.
+- `financial-evidence-usage-expiry.timer`: daily at 00:17 UTC with up to 60
+  seconds jitter. Purges consented counters even without new visitor traffic; after
+  each run only the last 30 UTC dates remain. The purge is by UTC date, so this
+  run removes exactly what a midnight run would. Midnight is avoided because about
+  30 units start then on this host: on 2026-11-01 and 2026-11-02 Docker created the
+  container but did not start it within the old 60-second limit. The service now
+  allows 300 seconds, runs with `--network none` (the expiry is local SQLite work),
+  and first removes a stopped container left under its fixed name by an
+  interrupted start; `docker rm` without `--force` never removes a running one.
+  `financial-evidence-workspace-usage-expiry.service` follows the same pattern.
 - GitHub `funding-reliability.yml`: external samples at :07/:22/:37/:52 UTC.
   Each run inherits only this workflow's previous main-branch artifact and
   publishes a new cumulative ledger with 90-day retention. Failed samples are

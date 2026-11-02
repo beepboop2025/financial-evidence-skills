@@ -6,5 +6,6 @@ Requires=docker.service
 [Service]
 Type=oneshot
 EnvironmentFile=/etc/financial-evidence/institutional.env
-ExecStart=/usr/bin/docker run --rm --name financial-evidence-usage-expiry --read-only --cap-drop ALL --security-opt no-new-privileges --memory 96m --cpus 0.25 --pids-limit 16 --user 65532:65532 -v /var/lib/financial-evidence-institutional/usage:/data/usage:rw --entrypoint python ${INSTITUTIONAL_IMAGE} -m financial_evidence.institutional usage --directory /data/usage
-TimeoutStartSec=60
+ExecStartPre=/bin/sh -c '/usr/bin/docker container inspect financial-evidence-usage-expiry >/dev/null 2>&1 || exit 0; exec /usr/bin/docker rm financial-evidence-usage-expiry'
+ExecStart=/usr/bin/docker run --rm --name financial-evidence-usage-expiry --network none --read-only --cap-drop ALL --security-opt no-new-privileges --memory 96m --cpus 0.25 --pids-limit 16 --user 65532:65532 -v /var/lib/financial-evidence-institutional/usage:/data/usage:rw --entrypoint python ${INSTITUTIONAL_IMAGE} -m financial_evidence.institutional usage --directory /data/usage
+TimeoutStartSec=300

@@ -2,9 +2,10 @@
 Description=Daily expiry of optional funding download counters
 
 [Timer]
-OnCalendar=*-*-* 00:00:00 UTC
+OnCalendar=*-*-* 00:17:00 UTC
 Persistent=true
 AccuracySec=1s
+RandomizedDelaySec=60
 Unit=financial-evidence-usage-expiry.service
 
 [Install]

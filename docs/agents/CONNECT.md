@@ -140,3 +140,7 @@ Agent profiles, task reports, model training and commerce contributions each
 retain their own permissions and evidence states.
 
 For an existing setup, use the [migration plan](../HOSTED_MIGRATION.md).
+
+For district observations and cooperative-bank geography, use the reviewed
+LiquiLens `lending_geography` tool. The [geography research workflow](GEOGRAPHY_RESEARCH.md)
+keeps observation dates, page scope, source rights and missingness explicit.

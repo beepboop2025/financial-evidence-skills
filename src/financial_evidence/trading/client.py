@@ -32,7 +32,7 @@ PRODUCTS = {key: (value[0], PLATFORM_URL + f"/products/{key}/mcp", value[2])
 MODES = {"test", "backtest", "shadow", "paper", "operator_reported_production", "unknown"}
 READ_TOOLS = {
     "seiche": {"funding_stress_now", "money_market_context", "data_health", "research_network", "trade_safety_risk_context", "world_markets_context", "institutional_flows", "historical_analogs", "latest_article"},
-    "liquilens": {"institution_research_coverage", "institution_review_packet", "evidence_institution", "universe_search", "failure_radar_board", "failure_radar_institution", "institution_evidence_monitor", "bank_asset_quality_review", "research_network", "latest_article"},
+    "liquilens": {"institution_research_coverage", "institution_review_packet", "evidence_institution", "universe_search", "failure_radar_board", "failure_radar_institution", "institution_evidence_monitor", "bank_asset_quality_review", "lending_geography", "research_network", "latest_article"},
     "undertow": {"liquidity_tiers", "crypto_exit_check", "exit_cost", "venue_concentration", "venue_price_reconciliation", "market_corpus_context", "research_network", "trade_safety_exit_context"},
     "palimpsest": {"research_catalog", "list_signals", "get_signal", "get_newsroom", "query_economic_observations", "whats_happening", "gfw_reading"},
     "noisefloor": {"dyson_reference", "ab_test", "did_it_change", "forecast_next", "market_assessment", "narrative_triage", "real_or_sampling", "score_forecasts", "spectral_assessment", "which_metrics_matter"},
@@ -40,6 +40,19 @@ READ_TOOLS = {
     "wake": {"wake_economy_now", "wake_dataset_policy", "wake_collection_contract"},
 }
 READ_TOOLS.update({key: set(value["read_tools"]) for key, value in EXTRA_PRODUCTS.items()})
+
+
+def validate_read_arguments(product, tool, arguments):
+    """Bound the geography lookup; never accept URLs, arbitrary fields or authority flags."""
+    if product != "liquilens" or tool != "lending_geography":
+        return
+    place = arguments.get("id")
+    offset = arguments.get("offset", 0)
+    if (set(arguments) - {"id", "offset"} or not isinstance(place, str)
+            or len(place) > 120
+            or not re.fullmatch(r"in-(?:dist|state|dccb|stcb)-[a-z0-9]+(?:-[a-z0-9]+)*", place)
+            or type(offset) is not int or not 0 <= offset <= 1000):
+        raise ValueError("geography requires a district, state or cooperative-bank id and an integer offset from 0 to 1000")
 
 
 def product_catalog(platform_url=None):
@@ -222,6 +235,7 @@ class ProductClient:
         arguments = {} if arguments is None else arguments
         if not isinstance(arguments, dict) or len(_encode(arguments)) > 16384:
             raise ValueError("arguments exceed bounded object contract")
+        validate_read_arguments(product, tool, arguments)
         if workflow_id is not None and (not isinstance(workflow_id, str) or not re.fullmatch(r"[A-Za-z0-9_-]{1,96}", workflow_id)):
             raise ValueError("invalid workflow identifier")
         started = self.clock()

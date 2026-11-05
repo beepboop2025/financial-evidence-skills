@@ -102,6 +102,27 @@ class ProductBridgeTests(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(failure.isError)
         self.assertNotIn("private-upstream-secret", failure.model_dump_json())
 
+    async def test_geography_discovery_and_bounded_arguments_preserve_native_results(self):
+        from mcp.types import ListToolsResult, Tool, ToolAnnotations
+        geography = Tool(name="lending_geography", description="Dated district research",
+                         inputSchema={"type": "object", "properties": {"id": {"type": "string"},
+                                      "offset": {"type": "integer", "minimum": 0}},
+                                      "required": ["id"], "additionalProperties": False},
+                         annotations=ToolAnnotations(readOnlyHint=True, idempotentHint=True))
+        factory, calls = self.factory(pages={None: ListToolsResult(tools=[geography])})
+        server = create_server("liquilens", PRODUCTS["liquilens"][1], session_factory=factory)
+        listed = await self.inventory(server)
+        self.assertEqual(listed.tools[0].model_dump(mode="json"), geography.model_dump(mode="json"))
+        result = await self.call(server, "lending_geography", {"id": "in-state-rajasthan", "offset": 5})
+        self.assertEqual(result.model_dump(mode="json"), native_result().model_dump(mode="json"))
+        for arguments in ({"id": "https://private.example"}, {"id": "in-state-rajasthan", "offset": True},
+                          {"id": "in-state-rajasthan", "score_authority": True}):
+            denied = await self.call(server, "lending_geography", arguments)
+            self.assertTrue(denied.isError)
+            self.assertNotIn("private.example", denied.model_dump_json())
+        self.assertEqual([item for item in calls if item[0] == "call"],
+                         [("call", "lending_geography", {"id": "in-state-rajasthan", "offset": 5})])
+
     async def test_argument_response_and_pagination_limits(self):
         from mcp.types import CallToolResult, ListToolsResult, TextContent
         factory, calls = self.factory()

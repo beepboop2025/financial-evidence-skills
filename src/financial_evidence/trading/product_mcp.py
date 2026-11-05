@@ -9,7 +9,7 @@ from datetime import timedelta
 import json
 import math
 import os
-from .client import ProductClient, PRODUCTS, READ_TOOLS
+from .client import ProductClient, PRODUCTS, READ_TOOLS, validate_read_arguments
 
 MAX_ARGUMENT_BYTES = 16384
 MAX_RESPONSE_BYTES = 2_097_152
@@ -126,6 +126,7 @@ def create_server(product, endpoint, credential=None, *, platform_url=None, sess
         try:
             if not isinstance(arguments, dict) or len(_encoded(arguments)) > MAX_ARGUMENT_BYTES:
                 return failure("Product arguments exceed the bounded object contract.")
+            validate_read_arguments(product, name, arguments)
 
             async def invoke():
                 async with session_factory(endpoint, credential) as session:

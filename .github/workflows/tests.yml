@@ -21,7 +21,7 @@ jobs:
     env:
       HOMEBREW_NO_AUTO_UPDATE: "1"
       HOMEBREW_NO_ANALYTICS: "1"
-      TAP_SOURCE: "6efe4d6d3285226ae7557d2a9321a05dc6fae319"
+      TAP_SOURCE: "484a5c85af3b3e1a54442a89bef21ad6c5a330ee"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: beepboop2025/homebrew-tap
-          ref: 6efe4d6d3285226ae7557d2a9321a05dc6fae319
+          ref: 484a5c85af3b3e1a54442a89bef21ad6c5a330ee
           path: tap-candidate
           persist-credentials: false
       - name: Register only the exact public candidate tap
@@ -45,7 +45,7 @@ jobs:
       - run: brew test beepboop2025/tap/financial-evidence
       - name: Verify installed MCP and retain the separate candidate identity
         run: |
-          python3 scripts/verify_published_mcp.py --contract integrations/financial-evidence-mcp-v0.1.13.json --receipt homebrew-mcp-receipt.json -- \
+          python3 scripts/verify_published_mcp.py --contract integrations/financial-evidence-mcp-v0.1.17.json --receipt homebrew-mcp-receipt.json -- \
             "$(brew --prefix financial-evidence)/bin/financial-evidence-mcp"
           python3 - <<'PY'
           import hashlib, json, os, pathlib, re, subprocess
@@ -54,11 +54,12 @@ jobs:
           source = subprocess.check_output(["git", "-C", tap, "rev-parse", "HEAD"], text=True).strip()
           assert source == os.environ["TAP_SOURCE"]
           formula = pathlib.Path(tap) / "Formula/financial-evidence.rb"
+          assert hashlib.sha256(formula.read_bytes()).hexdigest() == "b8ba572acbd1c866a615412263bcb57f76eac76750a07422836cc2545e688f13"
           formula_text = formula.read_text()
           release_url = re.search(r'^  url "([^"]+)"', formula_text, re.M).group(1)
           release_sha256 = re.search(r'^  sha256 "([^"]+)"', formula_text, re.M).group(1)
-          assert release_url == "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.13/financial_evidence-0.1.13.tar.gz"
-          assert release_sha256 == "37e95fcf58458f284e69a1e8576c6c3100934bca120b1c9fc8096a3320d56257"
+          assert release_url == "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.17/financial_evidence-0.1.17.tar.gz"
+          assert release_sha256 == "1ba59c858adbc39e1b49c5fb09b33eddea1dd7e97a3698e8db06bf77d886238e"
           prefix = subprocess.check_output(["brew", "--prefix", "financial-evidence"], text=True).strip()
           python = pathlib.Path(prefix) / "libexec/bin/python"
           installed = json.loads(subprocess.check_output([str(python), "-c", '''
@@ -69,6 +70,8 @@ jobs:
           import financial_evidence.agent_workflow
           import financial_evidence.research
           import financial_evidence.trading.context
+          import financial_evidence.trading.client
+          import financial_evidence.trading.product_mcp
           package = distribution("financial-evidence")
           entries = {entry.name: entry for entry in package.entry_points if entry.group == "console_scripts"}
           expected = {"financial-evidence", "financial-evidence-mcp", "financial-evidence-api",
@@ -82,23 +85,29 @@ jobs:
               "hosted_module_sha256": hashlib.sha256(Path(financial_evidence.hosted.__file__).read_bytes()).hexdigest(),
               "workflow_module_sha256": hashlib.sha256(Path(financial_evidence.agent_workflow.__file__).read_bytes()).hexdigest(),
               "research_module_sha256": hashlib.sha256(Path(financial_evidence.research.__file__).read_bytes()).hexdigest(),
+              "geography_client_module_sha256": hashlib.sha256(Path(financial_evidence.trading.client.__file__).read_bytes()).hexdigest(),
+              "geography_bridge_module_sha256": hashlib.sha256(Path(financial_evidence.trading.product_mcp.__file__).read_bytes()).hexdigest(),
               "context_module_sha256": hashlib.sha256(Path(financial_evidence.trading.context.__file__).read_bytes()).hexdigest()}))
           '''], text=True))
-          assert installed["version"] == "0.1.13"
+          assert installed["version"] == "0.1.17"
           assert installed["platform_url"] == "https://agents.seiche.info"
           assert installed["hosted_module_sha256"] == "108b87f1c8129084bbb394ffcf0932636f58f6c1942918e7103796be8dd98fa7"
           assert installed["context_module_sha256"] == "6a62b6c2a1b8fa1a15bd775a607b4b3cac7d558f092545cb401b1c211d656aec"
           assert installed["research_module_sha256"] == "4d3970956b792fac5470b119d18ebccb9d3e2fea10abd2b41a3f4a4518449ffe"
-          assert installed["workflow_module_sha256"] == "ad3f4f2f9b13c409d75eba09077b1ef6a6dd17c347e7ea73517e32efffd1bbee"
+          assert installed["workflow_module_sha256"] == "b0783cd03512be7a12387c4dbd0aa8fbaed213511a95e1fa5269aad672168c00"
+          assert installed["geography_client_module_sha256"] == "afcc79c4d36fb31075a25b98457a07692dc94b6a1997daa619923171f6ca1566"
+          assert installed["geography_bridge_module_sha256"] == "35a2ae350407e00fa87a7b28403a73d78d57f948bafd25a3149f5d9095b2581c"
           receipt = {"schema": "financial-evidence.homebrew-candidate-acceptance.v1",
                      "observed_at": datetime.now(timezone.utc).isoformat(),
                      "source_commit": source, "formula_sha256": hashlib.sha256(formula.read_bytes()).hexdigest(),
-                     "release_source_commit": "e93613059bd65c1534ca0d65c0390dba348e165f",
+                     "release_source_commit": "a5b2a2fbe77382a155a9b35f6b65c7996c4128e9",
                      "release_url": release_url, "release_sha256": release_sha256, "installed": installed,
                      "checks": ["strict_online_audit", "style", "actual_install", "formula_test", "published_mcp_contract",
                                 "all_11_entrypoints_load", "installed_central_client_identity", "installed_context_patch_identity",
                                 "installed_first_review_commands", "installed_research_module_identity",
-                                "installed_recurring_workflow_commands", "installed_workflow_module_identity"],
+                                "installed_recurring_workflow_commands", "installed_workflow_module_identity",
+                                "installed_geography_client_bounds_and_evidence", "installed_geography_client_identity",
+                                "installed_geography_bridge_identity"],
                      "status": "PASS", "scope": "Independent consumer acceptance, not native tap CI or public tap publication"}
           pathlib.Path("homebrew-source-receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
           PY
@@ -128,24 +137,24 @@ jobs:
         with:
           persist-credentials: false
       - name: Pull the immutable public release
-        run: docker pull --platform '${{ matrix.platform }}' ghcr.io/beepboop2025/financial-evidence-skills@sha256:cc5d9521e57b47f0fba8a10c8d027916f60075010439c7e3fd609ca07bed9b1a
+        run: docker pull --platform '${{ matrix.platform }}' ghcr.io/beepboop2025/financial-evidence-skills@sha256:cda4c71c9d1c4723a4fe2e9f21b15c7d9fea272385c66ba90a7a5968958c7ab0
       - name: Exercise the published stdio contract without network access
         env:
           TESTED_PLATFORM: ${{ matrix.platform }}
         run: |
-          python3 scripts/verify_published_mcp.py --contract integrations/financial-evidence-mcp-v0.1.16.json --receipt published-mcp-receipt.json -- \
+          python3 scripts/verify_published_mcp.py --contract integrations/financial-evidence-mcp-v0.1.17.json --receipt published-mcp-receipt.json -- \
             docker run --rm --interactive --platform "$TESTED_PLATFORM" --pull never --read-only --network none \
             --cap-drop ALL --security-opt no-new-privileges --pids-limit 64 \
             --memory 128m --cpus 1 \
-            ghcr.io/beepboop2025/financial-evidence-skills@sha256:cc5d9521e57b47f0fba8a10c8d027916f60075010439c7e3fd609ca07bed9b1a
+            ghcr.io/beepboop2025/financial-evidence-skills@sha256:cda4c71c9d1c4723a4fe2e9f21b15c7d9fea272385c66ba90a7a5968958c7ab0
           python3 - <<'PY'
           import json, os, pathlib, subprocess
-          image = "ghcr.io/beepboop2025/financial-evidence-skills@sha256:cc5d9521e57b47f0fba8a10c8d027916f60075010439c7e3fd609ca07bed9b1a"
+          image = "ghcr.io/beepboop2025/financial-evidence-skills@sha256:cda4c71c9d1c4723a4fe2e9f21b15c7d9fea272385c66ba90a7a5968958c7ab0"
           details = json.loads(subprocess.check_output(["docker", "image", "inspect", image]))[0]
           platform = details["Os"] + "/" + details["Architecture"]
           assert platform == os.environ["TESTED_PLATFORM"]
-          assert details["Config"]["Labels"]["org.opencontainers.image.revision"] == "e214e3f225d2229df7ff5d86012609bfafa0ee4b"
-          assert details["Config"]["Labels"]["org.opencontainers.image.version"] == "0.1.16"
+          assert details["Config"]["Labels"]["org.opencontainers.image.revision"] == "a5b2a2fbe77382a155a9b35f6b65c7996c4128e9"
+          assert details["Config"]["Labels"]["org.opencontainers.image.version"] == "0.1.17"
           assert details["Config"]["User"] == "65532:65532"
           path = pathlib.Path("published-mcp-receipt.json")
           receipt = json.loads(path.read_text())
@@ -186,6 +195,58 @@ jobs:
           assert len(connections["products"]) == 14
           assert connections["clients"] == ["mcp", "vscode"]
           receipt["offline_connection_catalog"] = "PASS"
+          geography_code = '''
+          import asyncio, json
+          from copy import deepcopy
+          import financial_evidence
+          from financial_evidence.trading import ProductClient
+          from financial_evidence.trading.client import READ_TOOLS
+          async def check():
+              assert financial_evidence.__version__ == "0.1.17"
+              assert "lending_geography" in READ_TOOLS["liquilens"]
+              calls = []
+              evidence = {"schema": "liquilens.lending-geography.v1", "scope": "research",
+                  "as_of": "2026-11-05", "score_authority": False, "scoring_eligible": False,
+                  "offset": 5, "next_offset": 10,
+                  "sources": {"soil_moisture": {"as_of": "2024-10-15"}},
+                  "districts": [{"recent_months": {"mm": [0, None, 10]}}]}
+              result = {"content": [{"type": "text", "text": json.dumps(evidence)}]}
+              async def transport(url, tool, arguments, timeout):
+                  calls.append((url, tool, deepcopy(arguments)))
+                  return {"result": deepcopy(result)}
+              client = ProductClient(transport=transport, mode="test", platform_url="https://agents.seiche.info")
+              arguments = {"id": "in-state-rajasthan", "offset": 5}
+              observed = await client.call("liquilens", "lending_geography", arguments)
+              assert observed["payload"]["result"] == result
+              assert json.loads(observed["payload"]["result"]["content"][0]["text"]) == evidence
+              assert calls == [("https://agents.seiche.info/products/liquilens/mcp", "lending_geography", arguments)]
+              invalid = [{"id": "https://example.invalid"}, {"id": "in-state-rajasthan", "score_authority": True},
+                  *({"id": "in-state-rajasthan", "offset": value} for value in (True, -1, 1001, 0.5))]
+              for arguments in invalid:
+                  try:
+                      await client.call("liquilens", "lending_geography", arguments)
+                  except ValueError:
+                      pass
+                  else:
+                      raise AssertionError("invalid geography arguments were accepted")
+              assert len(calls) == 1
+              print(json.dumps({"status": "PASS", "synthetic": True, "mock_transport_calls": len(calls),
+                  "invalid_arguments_rejected": len(invalid), "source_dates_and_missingness_preserved": True,
+                  "configured_central_endpoint_only": True, "live_geography_requests": 0,
+                  "native_mcp_bridge_qualified": False}))
+          asyncio.run(check())
+          '''
+          geography = json.loads(subprocess.check_output([
+              "docker", "run", "--rm", "--platform", os.environ["TESTED_PLATFORM"],
+              "--pull", "never", "--read-only", "--network", "none",
+              "--cap-drop", "ALL", "--security-opt", "no-new-privileges",
+              "--pids-limit", "64", "--memory", "128m", "--cpus", "1",
+              "--entrypoint", "python", image, "-I", "-B", "-c", geography_code,
+          ]))
+          assert geography["status"] == "PASS"
+          assert geography["live_geography_requests"] == 0
+          assert geography["native_mcp_bridge_qualified"] is False
+          receipt["offline_geography_client"] = geography
           path.write_text(json.dumps(receipt, indent=2) + "\n")
           PY
       - name: Retain the published artifact receipt

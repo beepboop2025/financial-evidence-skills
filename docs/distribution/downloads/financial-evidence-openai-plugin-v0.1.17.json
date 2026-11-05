@@ -1,7 +1,7 @@
 {
   "schema": "financial-evidence.openai-candidate.v1",
   "plugin_version": "0.1.17",
-  "runtime_version": "0.1.16",
+  "runtime_version": "0.1.17",
   "state": "prepared_candidate",
   "official_directory_approved": false,
   "review_cases_status": "configured_not_model_tested",

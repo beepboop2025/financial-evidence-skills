@@ -11,10 +11,12 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
+REMOTE_RELEASE = json.loads(
+    (ROOT / "ops" / "release" / "remote-mcp.json").read_text(encoding="utf-8")
+)
+# The deployed router and the package's stdio server release independently.
 CONTRACT = json.loads(
-    (ROOT / "integrations" / "financial-evidence-mcp-v0.1.8.json").read_text(
-        encoding="utf-8"
-    )
+    (ROOT / REMOTE_RELEASE["mcp_contract"]).read_text(encoding="utf-8")
 )
 DEFAULT_URL = "https://liquilens.in/mcp/financial-evidence"
 

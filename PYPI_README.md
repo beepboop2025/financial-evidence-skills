@@ -93,6 +93,16 @@ isolation or process private institution data. Follow the
 [institution connection guide](https://beepboop2025.github.io/financial-evidence-skills/connect/institution-portability.md)
 for the supported scope and import steps.
 
+## Review district and cooperative-bank geography
+
+Version 0.1.17 adds the bounded LiquiLens `lending_geography` read tool to the
+Python product client and native MCP bridge. Select a district, state or
+cooperative-bank ID and retain each page's source dates, coverage and missingness.
+The bridge exposes the tool only when upstream discovery advertises it.
+Documented areas of operation do not measure lending shares; satellite imagery
+does not establish property title or value. See the
+[geography research guide](https://beepboop2025.github.io/financial-evidence-skills/agents/GEOGRAPHY_RESEARCH.md).
+
 ## Choose the product for your question
 
 | Product | Research scope | API and MCP guide |

@@ -13,6 +13,7 @@ from financial_evidence import core
 
 from scripts.verify_remote_mcp import (
     CONTRACT,
+    REMOTE_RELEASE,
     decode_response,
     normalize_tools,
     require_fetch_semantics,
@@ -21,6 +22,16 @@ from scripts.verify_remote_mcp import (
 
 
 class RemoteMcpVerifierTests(unittest.TestCase):
+    def test_hosted_contract_is_pinned_independently_of_package(self):
+        self.assertEqual(
+            REMOTE_RELEASE["mcp_contract"],
+            "integrations/financial-evidence-mcp-v0.1.16.json",
+        )
+        self.assertEqual(CONTRACT["serverInfo"]["version"], "0.1.16")
+        current = json.loads((Path(__file__).resolve().parents[1] / "integrations"
+                              / "financial-evidence-mcp-current.json").read_text())
+        self.assertEqual(current["serverInfo"]["version"], "0.1.17")
+
     def test_candidate_release_rejects_published_v015_remote_identity(self):
         initialized = {
             "jsonrpc": "2.0", "id": "initialize", "result": {

@@ -6,6 +6,8 @@ Evidence, Market Brief and thirteen product plugins, with Gemini downloads and
 Cursor / VS Code connection links. Publisher-maintained availability is separate
 from each platform's official directory review.
 
+**0.1.17 candidate:** bounded district, state and cooperative-bank geography reads are now available through the Python product client and native bridge. [Candidate release notes](docs/releases/0.1.17-candidate.md). Published installation instructions below remain at the last verified package release.
+
 ## Connect and ask one question
 
 Hosted Streamable HTTP MCP; no local server or API key for public read-only tools.
@@ -64,7 +66,7 @@ boundaries and a next-day task. [Copy the instructions](docs/agents/WORKFLOWS.md
 **Verified package 0.1.16:** install `financial-evidence[workspace]==0.1.16` from
 [PyPI](https://pypi.org/project/financial-evidence/0.1.16/) for persistent MCP sessions,
 source-status snapshots and SSE clients. The separately deployed public router
-retains version 0.1.8. Both router versions support
+retains version 0.1.16. Both router versions support
 `gift-city`, `forex` and `gold` alongside the five existing research topics.
 GIFT City serves gold and treasury desks, investors/fund managers, and banks/IFSC
 institutions. The helper reads fixed public context; gold/FX calculations remain

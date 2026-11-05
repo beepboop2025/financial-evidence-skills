@@ -1,0 +1,31 @@
+{
+  "schema": "financial-evidence.homebrew-native-acceptance.v1",
+  "version": "0.1.17",
+  "status": "PASS",
+  "source_commit": "484a5c85af3b3e1a54442a89bef21ad6c5a330ee",
+  "release_source_commit": "a5b2a2fbe77382a155a9b35f6b65c7996c4128e9",
+  "ci_source_commit": "30a84427b98904beb34fa4492f2e6482027566d1",
+  "workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/42130632314",
+  "job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/42130632314/job/127606024918",
+  "job_id": 127606024918,
+  "completed_at": "2026-11-05T23:46:55Z",
+  "artifact": {
+    "id": 13462839849,
+    "name": "homebrew-candidate-consumer",
+    "size_in_bytes": 1816,
+    "digest": "sha256:ef627840286d544e9e30221cf41219fe17fec8dd1c746fd76c30e535231c1e15"
+  },
+  "receipts": [
+    {
+      "file": "homebrew-source-receipt.json",
+      "sha256": "5da7d91e57b5165378194f775ce316382a98190b4ef83e6ba5b44a17a0e9c7cb"
+    },
+    {
+      "file": "homebrew-mcp-receipt.json",
+      "sha256": "0e5f28c0f30c9be69a8d42657ae6533a19a0bf53665401f19bbdbc4774863199"
+    }
+  ],
+  "native_tap_actions_enabled": false,
+  "acceptance_host": "Independent Financial Evidence macOS CI",
+  "scope": "Actual Homebrew strict audit/style/install/formula/MCP/entrypoint/source-identity acceptance against the exact public tap candidate; tap publication is independently read back and not inferred from this receipt."
+}

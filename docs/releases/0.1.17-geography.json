@@ -1,0 +1,45 @@
+{
+  "adoption": "not_measured",
+  "checks": [
+    "four_public_identity_types",
+    "invalid_arguments_never_reach_transport",
+    "fixed_configured_hosted_destination",
+    "dates_missingness_and_pagination_preserved",
+    "authority_flags_preserved_false",
+    "native_bridge_tool_schema_preserved",
+    "native_bridge_result_preserved",
+    "invalid_bridge_arguments_denied",
+    "private_arguments_not_echoed",
+    "installed_source_matches_signed_release"
+  ],
+  "fresh_public_install": true,
+  "install_report_sha256": "b1af2448fe8d02cb8d0af396f265c157730caf7eaa3467c7ecc7ca41a4eef473",
+  "installed_geography_source_sha256": {
+    "src/financial_evidence/trading/client.py": "afcc79c4d36fb31075a25b98457a07692dc94b6a1997daa619923171f6ca1566",
+    "src/financial_evidence/trading/product_mcp.py": "35a2ae350407e00fa87a7b28403a73d78d57f948bafd25a3149f5d9095b2581c"
+  },
+  "installed_source_files_verified": 66,
+  "live_geography_requests": 0,
+  "mcp_sdk_version": "1.30.0",
+  "network_guard": "IP sockets, connections and DNS denied; local AF_UNIX event-loop wakeup sockets allowed",
+  "network_guard_probe": "PASS",
+  "observed_at": "2026-11-05T23:35:02.121057+00:00",
+  "optional_workspace_dependencies_installed": true,
+  "private_data_requests": 0,
+  "python_isolated": true,
+  "pythonpath_used": false,
+  "schema": "financial-evidence.public-geography-consumer.v1",
+  "scope": "Fresh public installed client and real MCP SDK bridge with synthetic injected transports; no hosted data or private geography qualification",
+  "skipped": 0,
+  "source_commit": "a5b2a2fbe77382a155a9b35f6b65c7996c4128e9",
+  "status": "PASS",
+  "synthetic": true,
+  "test_source_sha256": {
+    "tests/test_lending_geography_client.py": "9cbb0695a7617abf0c1d76b901e826f26cc32ce4a9dc93a836c6ec4fa9d83737",
+    "tests/test_trading_mcp.py": "290df6241140d9fc3618f2cced4394e0281078c8693232e55b68cf7040fea4f0"
+  },
+  "tests_run": 4,
+  "unexpected_network_events": 0,
+  "version": "0.1.17",
+  "wheel_sha256": "ce4323f2a303419b1118d57e4dd7a4a98dc3cb5206c3d5c5f1f5195143122037"
+}

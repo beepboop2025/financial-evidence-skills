@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://beepboop2025.github.io/financial-evidence-skills/</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://beepboop2025.github.io/financial-evidence-skills/llms.txt</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -72,14 +72,14 @@
   <url><loc>https://beepboop2025.github.io/financial-evidence-skills/api/</loc><lastmod>2026-10-07</lastmod></url>
   <url><loc>https://beepboop2025.github.io/financial-evidence-skills/partners/</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://beepboop2025.github.io/financial-evidence-skills/start/</loc><lastmod>2026-10-07</lastmod></url>
-  <url><loc>https://beepboop2025.github.io/financial-evidence-skills/distribution/</loc><lastmod>2026-10-18</lastmod></url>
-  <url><loc>https://beepboop2025.github.io/financial-evidence-skills/distribution/ai-trading-tools.html</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://beepboop2025.github.io/financial-evidence-skills/distribution/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://beepboop2025.github.io/financial-evidence-skills/distribution/ai-trading-tools.html</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://beepboop2025.github.io/financial-evidence-skills/agents/low-latency.md</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://beepboop2025.github.io/financial-evidence-skills/agents/persistent-client.md</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://beepboop2025.github.io/financial-evidence-skills/agents/readiness.md</loc><lastmod>2026-10-15</lastmod></url>
   <url><loc>https://beepboop2025.github.io/financial-evidence-skills/start/trading-agents.md</loc><lastmod>2026-10-15</lastmod></url>
 <url><loc>https://beepboop2025.github.io/financial-evidence-skills/agents/runtime.html</loc><lastmod>2026-10-08</lastmod></url>
-  <url><loc>https://beepboop2025.github.io/financial-evidence-skills/agents/system.json</loc><lastmod>2026-10-08</lastmod></url>
+  <url><loc>https://beepboop2025.github.io/financial-evidence-skills/agents/system.json</loc><lastmod>2026-11-05</lastmod></url>
 <url><loc>https://beepboop2025.github.io/financial-evidence-skills/agents/WORKFLOWS.md</loc><lastmod>2026-10-09</lastmod></url>
 <url><loc>https://beepboop2025.github.io/financial-evidence-skills/agents/workflows.json</loc><lastmod>2026-10-09</lastmod></url>
   <url><loc>https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html</loc></url>

@@ -1,0 +1,52 @@
+{
+  "schema": "financial-evidence.homebrew-candidate-acceptance.v1",
+  "observed_at": "2026-11-05T23:46:47.696691+00:00",
+  "source_commit": "484a5c85af3b3e1a54442a89bef21ad6c5a330ee",
+  "formula_sha256": "b8ba572acbd1c866a615412263bcb57f76eac76750a07422836cc2545e688f13",
+  "release_source_commit": "a5b2a2fbe77382a155a9b35f6b65c7996c4128e9",
+  "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.17/financial_evidence-0.1.17.tar.gz",
+  "release_sha256": "1ba59c858adbc39e1b49c5fb09b33eddea1dd7e97a3698e8db06bf77d886238e",
+  "installed": {
+    "version": "0.1.17",
+    "entrypoints": [
+      "financial-evidence",
+      "financial-evidence-agent-mcp",
+      "financial-evidence-api",
+      "financial-evidence-learning",
+      "financial-evidence-mcp",
+      "financial-evidence-product-mcp",
+      "financial-evidence-runtime",
+      "financial-evidence-runtime-mcp",
+      "financial-evidence-trading",
+      "financial-evidence-workspace-mcp",
+      "seiche-network-client-mcp"
+    ],
+    "all_entrypoints_load": true,
+    "platform_url": "https://agents.seiche.info",
+    "hosted_module_sha256": "108b87f1c8129084bbb394ffcf0932636f58f6c1942918e7103796be8dd98fa7",
+    "workflow_module_sha256": "b0783cd03512be7a12387c4dbd0aa8fbaed213511a95e1fa5269aad672168c00",
+    "research_module_sha256": "4d3970956b792fac5470b119d18ebccb9d3e2fea10abd2b41a3f4a4518449ffe",
+    "geography_client_module_sha256": "afcc79c4d36fb31075a25b98457a07692dc94b6a1997daa619923171f6ca1566",
+    "geography_bridge_module_sha256": "35a2ae350407e00fa87a7b28403a73d78d57f948bafd25a3149f5d9095b2581c",
+    "context_module_sha256": "6a62b6c2a1b8fa1a15bd775a607b4b3cac7d558f092545cb401b1c211d656aec"
+  },
+  "checks": [
+    "strict_online_audit",
+    "style",
+    "actual_install",
+    "formula_test",
+    "published_mcp_contract",
+    "all_11_entrypoints_load",
+    "installed_central_client_identity",
+    "installed_context_patch_identity",
+    "installed_first_review_commands",
+    "installed_research_module_identity",
+    "installed_recurring_workflow_commands",
+    "installed_workflow_module_identity",
+    "installed_geography_client_bounds_and_evidence",
+    "installed_geography_client_identity",
+    "installed_geography_bridge_identity"
+  ],
+  "status": "PASS",
+  "scope": "Independent consumer acceptance, not native tap CI or public tap publication"
+}

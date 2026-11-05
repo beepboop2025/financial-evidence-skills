@@ -6,19 +6,19 @@ Generation is offline and uses the existing Financial Evidence product catalog. 
 
 ## Version availability
 
-This command is available in the published **0.1.16** package. Its public wheel,
+This command is available in the published **0.1.17** package. Its public wheel,
 signed source and fresh consumer checks are recorded in the
-[release verification receipt](../releases/0.1.16.json).
+[release verification receipt](../releases/0.1.17.json).
 
 Install it in your chosen Python environment:
 
 ```sh
-python3 -m pip install financial-evidence==0.1.16
+python3 -m pip install financial-evidence==0.1.17
 financial-evidence --version
 ```
 
-The version should report `0.1.16`. Optional workspace dependencies are not needed
-for configuration generation. See the [release notes](../releases/0.1.16-candidate.md)
+The version should report `0.1.17`. Optional workspace dependencies are not needed
+for configuration generation. See the [release notes](../releases/0.1.17-candidate.md)
 for tested scope and remaining platform boundaries.
 
 ## Start with the existing products

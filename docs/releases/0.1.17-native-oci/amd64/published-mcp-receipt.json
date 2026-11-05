@@ -1,0 +1,72 @@
+{
+  "schema": "financial-evidence.published-artifact-check.v1",
+  "observed_at": "2026-11-05T23:36:22.707862+00:00",
+  "status": "PASS",
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--interactive",
+    "--platform",
+    "linux/amd64",
+    "--pull",
+    "never",
+    "--read-only",
+    "--network",
+    "none",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "--pids-limit",
+    "64",
+    "--memory",
+    "128m",
+    "--cpus",
+    "1",
+    "ghcr.io/beepboop2025/financial-evidence-skills@sha256:cda4c71c9d1c4723a4fe2e9f21b15c7d9fea272385c66ba90a7a5968958c7ab0"
+  ],
+  "server_info": {
+    "name": "financial-evidence",
+    "version": "0.1.17"
+  },
+  "tools_sha256": "078d872396724c0acaeac051385d07f35679fb5445c5cd1979f673c372ab170d",
+  "topic_count": 8,
+  "topics": [
+    "money-market",
+    "capital-market",
+    "china-economy",
+    "bank-risk",
+    "market-liquidity",
+    "gift-city",
+    "forex",
+    "gold"
+  ],
+  "checks": [
+    "initialize",
+    "frozen_tools_contract",
+    "all_topic_routes",
+    "new_topic_routes",
+    "shared_gold_gift_source",
+    "strict_arguments"
+  ],
+  "valid_fetch_requests": 0,
+  "scope": "Artifact runtime contract; no source freshness or external adoption claim",
+  "tested_platform": "linux/amd64",
+  "image": "ghcr.io/beepboop2025/financial-evidence-skills@sha256:cda4c71c9d1c4723a4fe2e9f21b15c7d9fea272385c66ba90a7a5968958c7ab0",
+  "image_id": "sha256:c6027e04aa9fc6b1e6965692e3a546629692ca44f9fb73fc355e8e785f3e9a53",
+  "source_commit": "a5b2a2fbe77382a155a9b35f6b65c7996c4128e9",
+  "runtime_catalog": "PASS",
+  "recurring_workflow_report": "PASS",
+  "offline_connection_catalog": "PASS",
+  "offline_geography_client": {
+    "status": "PASS",
+    "synthetic": true,
+    "mock_transport_calls": 1,
+    "invalid_arguments_rejected": 6,
+    "source_dates_and_missingness_preserved": true,
+    "configured_central_endpoint_only": true,
+    "live_geography_requests": 0,
+    "native_mcp_bridge_qualified": false
+  }
+}

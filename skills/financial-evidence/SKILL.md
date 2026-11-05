@@ -65,9 +65,9 @@ python3 financial-evidence/scripts/fetch_evidence.py \
 
 Current-source helpers retrieve fixed source bytes through `https://agents.seiche.info/v1/data/`. The original publisher URL, content hash and source clocks remain in the receipt. Requests produce bounded operational dataset counts; optional learning stays separate and no direct-origin fallback occurs.
 
-The verified 0.1.7 package and public MCP router support all eight topics,
-including `gift-city`, `forex`, and `gold`; see the
-[release verification record](https://github.com/beepboop2025/financial-evidence-skills/blob/main/docs/releases/0.1.7.json). Inspect the topic
+The verified 0.1.17 package and independently versioned public MCP router
+0.1.16 support all eight topics, including `gift-city`, `forex`, and `gold`; see
+the [release verification record](https://github.com/beepboop2025/financial-evidence-skills/blob/main/docs/releases/0.1.17.json). Inspect the topic
 list when using an older installation. A source checkout does not upgrade a
 hosted MCP endpoint.
 

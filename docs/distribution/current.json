@@ -4,13 +4,14 @@
   "packages": [
     {
       "name": "Financial Evidence",
-      "version": "0.1.13",
+      "version": "0.1.17",
       "ecosystem": "Python",
-      "url": "https://pypi.org/project/financial-evidence/0.1.13/",
-      "receipt": "https://beepboop2025.github.io/financial-evidence-skills/releases/0.1.13.json",
-      "source_commit": "e93613059bd65c1534ca0d65c0390dba348e165f",
-      "command": "python3 -m pip install financial-evidence==0.1.13",
-      "description": "Save cited funding and institution reviews, compare later captures, and reuse bounded MCP sessions and source-status clients."
+      "url": "https://pypi.org/project/financial-evidence/0.1.17/",
+      "receipt": "https://beepboop2025.github.io/financial-evidence-skills/releases/0.1.17.json",
+      "source_commit": "a5b2a2fbe77382a155a9b35f6b65c7996c4128e9",
+      "command": "python3 -m pip install financial-evidence==0.1.17",
+      "description": "Save cited funding and institution reviews, compare captures, and use bounded geography clients with source dates, coverage and missingness retained.",
+      "verified_at": "2026-11-05T23:35:02.121057+00:00"
     },
     {
       "name": "Financial Evidence AI SDK",

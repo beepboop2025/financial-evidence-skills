@@ -1,0 +1,66 @@
+{
+  "schema": "financial-evidence.native-oci-acceptance.v1",
+  "version": "0.1.17",
+  "status": "PASS",
+  "release_source_commit": "a5b2a2fbe77382a155a9b35f6b65c7996c4128e9",
+  "ci_source_commit": "30a84427b98904beb34fa4492f2e6482027566d1",
+  "workflow_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/42130632314",
+  "image": "ghcr.io/beepboop2025/financial-evidence-skills@sha256:cda4c71c9d1c4723a4fe2e9f21b15c7d9fea272385c66ba90a7a5968958c7ab0",
+  "platforms": [
+    {
+      "architecture": "amd64",
+      "status": "PASS",
+      "job_id": 127606024855,
+      "job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/42130632314/job/127606024855",
+      "observed_at": "2026-11-05T23:36:22.707862+00:00",
+      "receipt": "amd64/published-mcp-receipt.json",
+      "receipt_sha256": "ceecd085d3bb7f6602301ca2039a1e860ec42f0425f5b05e53c21d1115362853",
+      "artifact": {
+        "id": 13462578427,
+        "name": "published-mcp-consumer-amd64",
+        "size_in_bytes": 1106,
+        "digest": "sha256:b4d6b5a98f78693b791821879957b19795883bacbeda254f2c2d7d164db287a3"
+      },
+      "image_id": "sha256:c6027e04aa9fc6b1e6965692e3a546629692ca44f9fb73fc355e8e785f3e9a53",
+      "valid_fetch_requests": 0,
+      "offline_geography_client": {
+        "status": "PASS",
+        "synthetic": true,
+        "mock_transport_calls": 1,
+        "invalid_arguments_rejected": 6,
+        "source_dates_and_missingness_preserved": true,
+        "configured_central_endpoint_only": true,
+        "live_geography_requests": 0,
+        "native_mcp_bridge_qualified": false
+      }
+    },
+    {
+      "architecture": "arm64",
+      "status": "PASS",
+      "job_id": 127606024937,
+      "job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/42130632314/job/127606024937",
+      "observed_at": "2026-11-05T23:36:22.591209+00:00",
+      "receipt": "arm64/published-mcp-receipt.json",
+      "receipt_sha256": "7aa333a5fc6494af8167b105040f868be49cf8735f089db4b817c7ead09d95fe",
+      "artifact": {
+        "id": 13463451086,
+        "name": "published-mcp-consumer-arm64",
+        "size_in_bytes": 1105,
+        "digest": "sha256:cf77ecbd24a1b0194e20b6ae413fbe7c44c7e9bffc2c01f1587448c3237ea2aa"
+      },
+      "image_id": "sha256:ad9d2343e3fb0d240149406437bcaae181256d1d0b6462c4aebc8b8f1e79e461",
+      "valid_fetch_requests": 0,
+      "offline_geography_client": {
+        "status": "PASS",
+        "synthetic": true,
+        "mock_transport_calls": 1,
+        "invalid_arguments_rejected": 6,
+        "source_dates_and_missingness_preserved": true,
+        "configured_central_endpoint_only": true,
+        "live_geography_requests": 0,
+        "native_mcp_bridge_qualified": false
+      }
+    }
+  ],
+  "scope": "Two named native architecture jobs; these receipts do not assert the conclusion of unrelated jobs. Network-denied base-package MCP/runtime/connection and synthetic geography-client checks; optional SDK bridge is qualified separately in the fresh public workspace consumer."
+}

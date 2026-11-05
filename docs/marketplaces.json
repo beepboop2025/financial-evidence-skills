@@ -2,8 +2,8 @@
   "schema": "liquidity-lab.financial-evidence-marketplaces.v1",
   "name": "Financial Evidence",
   "version": "0.1.17",
-  "release_state": "candidate",
-  "last_verified_release": "0.1.16",
+  "release_state": "published",
+  "last_verified_release": "0.1.17",
   "checked_at": "2026-10-15T16:05:35.527239Z",
   "state_definitions": {
     "live": "A public listing or install surface was independently resolved.",
@@ -26,22 +26,22 @@
       "name": "Official MCP Registry",
       "channel": "mcp-registry",
       "state": "live",
-      "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.16",
+      "listing_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.17",
       "cost": "free",
-      "detail": "Version 0.1.16 is active with the published PyPI and OCI packages and the separate public three-tool remote router. Versioned registry metadata matches the signed source. The public Python consumer passed; native OCI consumer acceptance is recorded separately. This does not refresh unrelated directory listings.",
+      "detail": "Version 0.1.17 is active with published PyPI and OCI packages. Registry metadata matches the exact signed source; the separate public three-tool router remains 0.1.16. Public Python and offline geography consumers passed. Unrelated directory reviews are unchanged.",
       "next_action": "Monitor future release publication.",
-      "verified_at": "2026-10-27T20:35:22.033321+00:00",
+      "verified_at": "2026-11-05T23:31:52.700676+00:00",
       "latest_surface_check": {
-        "observed_at": "2026-10-27T20:35:22.033321+00:00",
-        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.16",
+        "observed_at": "2026-11-05T23:31:52.700676+00:00",
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.17",
         "http_status": 200,
         "readback": "active version metadata matches the exact signed release; latest alias not asserted",
         "mentioned_versions": [
-          "0.1.16"
+          "0.1.17"
         ]
       },
-      "evidence_receipt": "https://beepboop2025.github.io/financial-evidence-skills/releases/0.1.16.json",
-      "version": "0.1.16"
+      "evidence_receipt": "releases/0.1.17.json",
+      "version": "0.1.17"
     },
     {
       "id": "skills-sh",
@@ -5094,13 +5094,13 @@
       "name": "Financial Evidence on PyPI",
       "channel": "python-package",
       "state": "live",
-      "version": "0.1.13",
-      "listing_url": "https://pypi.org/project/financial-evidence/0.1.13/",
+      "version": "0.1.17",
+      "listing_url": "https://pypi.org/project/financial-evidence/0.1.17/",
       "cost": "free",
-      "verified_at": "2026-10-17T22:34:17.883687+00:00",
-      "detail": "The actual PyPI description matches signed source 0.1.13. A fresh public installation matched 63 Python source files and passed the recorded consumer checks. Synthetic verification is not independent adoption.",
+      "verified_at": "2026-11-05T23:35:02.121057+00:00",
+      "detail": "The PyPI description and all 66 installed source files match signed 0.1.17. Fresh public base and workspace installations passed the MCP, connection and four offline geography-client/bridge checks. No live geography or private-data requests were made; synthetic verification is not adoption.",
       "next_action": "Monitor publication identity and actual consumer checks for future releases.",
-      "evidence_receipt": "releases/0.1.13.json",
+      "evidence_receipt": "releases/0.1.17.json",
       "independent_adoption_verified": false
     },
     {
@@ -5108,13 +5108,13 @@
       "name": "Financial Evidence GitHub release",
       "channel": "github-release",
       "state": "live",
-      "version": "0.1.13",
-      "listing_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.13",
+      "version": "0.1.17",
+      "listing_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.17",
       "cost": "free",
-      "verified_at": "2026-10-17T22:34:17.883687+00:00",
-      "detail": "The signed 0.1.13 release publishes wheel, source archive, MCP bundle, SBOM and checksums. Python archive hashes match PyPI, and four artifact attestations bind to the exact signed source, tag and release workflow.",
+      "verified_at": "2026-11-05T23:34:12.255407+00:00",
+      "detail": "The signed 0.1.17 release publishes the wheel, source archive, MCP bundle, SBOM and checksums. PyPI bytes match GitHub; four artifact attestations bind to the exact signed source, tag and release workflow.",
       "next_action": "Monitor publication identity and actual consumer checks for future releases.",
-      "evidence_receipt": "releases/0.1.13.json",
+      "evidence_receipt": "releases/0.1.17.json",
       "independent_adoption_verified": false
     },
     {
@@ -5122,13 +5122,13 @@
       "name": "Financial Evidence container",
       "channel": "oci-package",
       "state": "live",
-      "version": "0.1.13",
+      "version": "0.1.17",
       "listing_url": "https://github.com/beepboop2025/financial-evidence-skills/pkgs/container/financial-evidence-skills",
       "cost": "free",
-      "verified_at": "2026-10-17T22:34:17.883687+00:00",
-      "detail": "The published 0.1.13 OCI identity and actual linux/amd64 and linux/arm64 containers passed the frozen MCP contract against the accepted source and immutable digest.",
+      "verified_at": "2026-11-05T23:36:22.707862+00:00",
+      "detail": "The published 0.1.17 OCI identity and actual linux/amd64 and linux/arm64 containers passed the frozen MCP, runtime, connection and synthetic geography-client contracts against the signed source and immutable digest, with networking disabled. The minimal image does not qualify the optional MCP SDK bridge.",
       "next_action": "Monitor publication identity and actual consumer checks for future releases.",
-      "evidence_receipt": "releases/0.1.13.json",
+      "evidence_receipt": "releases/0.1.17.json",
       "independent_adoption_verified": false
     },
     {
@@ -5136,13 +5136,13 @@
       "name": "Financial Evidence Homebrew tap",
       "channel": "terminal-package",
       "state": "live",
-      "version": "0.1.12",
+      "version": "0.1.17",
       "listing_url": "https://github.com/beepboop2025/homebrew-tap/blob/main/Formula/financial-evidence.rb",
       "cost": "free",
-      "verified_at": "2026-10-17T20:43:41.055802+00:00",
-      "detail": "The public tap publishes the checksum-pinned 0.1.12 archive. Independent macOS acceptance passed strict audit, style, actual installation, formula tests, all 11 entrypoints, MCP contract and exact installed module hashes, including recurring reviews. Public formula bytes match the tested signed candidate; native tap Actions remain disabled.",
+      "verified_at": "2026-11-05T23:49:02.761584+00:00",
+      "detail": "The public tap publishes the checksum-pinned 0.1.17 archive. Independent macOS acceptance passed strict audit, style, actual installation, formula tests including offline geography, all 11 entrypoints, MCP contract and six exact installed-module hashes. Merged public formula bytes match the tested signed candidate; tap-repository Actions remain disabled.",
       "next_action": "Keep the public formula bound to verified release bytes and consumer receipts.",
-      "evidence_receipt": "releases/0.1.12.json",
+      "evidence_receipt": "distribution/homebrew-0.1.17.json",
       "independent_adoption_verified": false
     },
     {

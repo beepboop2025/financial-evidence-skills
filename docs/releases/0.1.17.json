@@ -1,0 +1,253 @@
+{
+  "schema": "financial-evidence.release-verification.v1",
+  "version": "0.1.17",
+  "source_commit": "a5b2a2fbe77382a155a9b35f6b65c7996c4128e9",
+  "tag_object": "6b9d0cd925af7272cf4ecd6fed6677550fea2c00",
+  "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.17",
+  "published_at": "2026-11-05T23:31:38Z",
+  "verified_at": "2026-11-05T23:49:02.761584+00:00",
+  "verification_status": "verified_public_artifacts_python_native_oci_and_homebrew_consumers",
+  "checksums": "PASS",
+  "signature_checks": [
+    {
+      "check": "tag",
+      "returncode": 0
+    },
+    {
+      "check": "commit",
+      "returncode": 0
+    }
+  ],
+  "release_workflow": {
+    "url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/42129612058",
+    "conclusion": "success",
+    "source_commit": "a5b2a2fbe77382a155a9b35f6b65c7996c4128e9"
+  },
+  "assets": [
+    {
+      "name": "financial-evidence-0.1.17.mcpb",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.17/financial-evidence-0.1.17.mcpb",
+      "sha256": "7dd1ceb9a9f631cc66d3758ddbb572103c6ecef56d54b6efb21dcf731d0d5d5c",
+      "size": 24862210
+    },
+    {
+      "name": "financial-evidence-v0.1.17.cdx.json",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.17/financial-evidence-v0.1.17.cdx.json",
+      "sha256": "d497ab80fa608ad501e4344a49678521a5e6bfb183f7d5d06c482b679d95bac3",
+      "size": 361821
+    },
+    {
+      "name": "financial_evidence-0.1.17-py3-none-any.whl",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.17/financial_evidence-0.1.17-py3-none-any.whl",
+      "sha256": "ce4323f2a303419b1118d57e4dd7a4a98dc3cb5206c3d5c5f1f5195143122037",
+      "size": 214253
+    },
+    {
+      "name": "financial_evidence-0.1.17.tar.gz",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.17/financial_evidence-0.1.17.tar.gz",
+      "sha256": "1ba59c858adbc39e1b49c5fb09b33eddea1dd7e97a3698e8db06bf77d886238e",
+      "size": 24438582
+    },
+    {
+      "name": "SHA256SUMS",
+      "url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.17/SHA256SUMS",
+      "sha256": "1c4ab04ea1cc5e8585653ec732ec7621f1cabae6df04eba95e85e9ce04fa2272",
+      "size": 407
+    }
+  ],
+  "attestations": [
+    {
+      "asset": "financial-evidence-0.1.17.mcpb",
+      "status": "PASS",
+      "signer_workflow": "beepboop2025/financial-evidence-skills/.github/workflows/release-container.yml",
+      "source_commit": "a5b2a2fbe77382a155a9b35f6b65c7996c4128e9",
+      "source_ref": "refs/tags/v0.1.17",
+      "self_hosted_runners_allowed": false
+    },
+    {
+      "asset": "financial-evidence-v0.1.17.cdx.json",
+      "status": "PASS",
+      "signer_workflow": "beepboop2025/financial-evidence-skills/.github/workflows/release-container.yml",
+      "source_commit": "a5b2a2fbe77382a155a9b35f6b65c7996c4128e9",
+      "source_ref": "refs/tags/v0.1.17",
+      "self_hosted_runners_allowed": false
+    },
+    {
+      "asset": "financial_evidence-0.1.17-py3-none-any.whl",
+      "status": "PASS",
+      "signer_workflow": "beepboop2025/financial-evidence-skills/.github/workflows/release-container.yml",
+      "source_commit": "a5b2a2fbe77382a155a9b35f6b65c7996c4128e9",
+      "source_ref": "refs/tags/v0.1.17",
+      "self_hosted_runners_allowed": false
+    },
+    {
+      "asset": "financial_evidence-0.1.17.tar.gz",
+      "status": "PASS",
+      "signer_workflow": "beepboop2025/financial-evidence-skills/.github/workflows/release-container.yml",
+      "source_commit": "a5b2a2fbe77382a155a9b35f6b65c7996c4128e9",
+      "source_ref": "refs/tags/v0.1.17",
+      "self_hosted_runners_allowed": false
+    }
+  ],
+  "wheel_source_files_verified": 66,
+  "archive_source_verification": {
+    "wheel_sdist_mcpb_match_signed_source": true,
+    "checked_at": "2026-11-05T23:34:12.255407+00:00"
+  },
+  "pypi": {
+    "url": "https://pypi.org/project/financial-evidence/0.1.17/",
+    "artifact_hashes_match_github": true,
+    "description_matches_signed_source": true
+  },
+  "registry_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Ffinancial-evidence/versions/0.1.17",
+  "registry_status": "active",
+  "registry_metadata_matches_source": true,
+  "registry_verified_at": "2026-11-05T23:31:52.700676+00:00",
+  "oci": {
+    "checked_at": "2026-11-05T23:31:48.479255+00:00",
+    "image": "ghcr.io/beepboop2025/financial-evidence-skills@sha256:cda4c71c9d1c4723a4fe2e9f21b15c7d9fea272385c66ba90a7a5968958c7ab0",
+    "index_digest": "sha256:cda4c71c9d1c4723a4fe2e9f21b15c7d9fea272385c66ba90a7a5968958c7ab0",
+    "native_execution_performed": true,
+    "platforms": [
+      {
+        "architecture": "amd64",
+        "config_digest": "sha256:c6027e04aa9fc6b1e6965692e3a546629692ca44f9fb73fc355e8e785f3e9a53",
+        "manifest_digest": "sha256:c5f21ccc332aba66e76069f677813b2ba6b175b2071abeac06ec6ac810c05abc",
+        "os": "linux",
+        "source_commit": "a5b2a2fbe77382a155a9b35f6b65c7996c4128e9",
+        "user": "65532:65532",
+        "version": "0.1.17",
+        "native_execution": {
+          "status": "PASS",
+          "job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/42130632314/job/127606024855",
+          "observed_at": "2026-11-05T23:36:22.707862+00:00",
+          "receipt_sha256": "ceecd085d3bb7f6602301ca2039a1e860ec42f0425f5b05e53c21d1115362853",
+          "valid_fetch_requests": 0,
+          "offline_geography_client": "PASS"
+        }
+      },
+      {
+        "architecture": "arm64",
+        "config_digest": "sha256:ad9d2343e3fb0d240149406437bcaae181256d1d0b6462c4aebc8b8f1e79e461",
+        "manifest_digest": "sha256:41d9a72f96a43db55dbf9dfe03679638526b3f4b0efa4a3d45ef334e99d37503",
+        "os": "linux",
+        "source_commit": "a5b2a2fbe77382a155a9b35f6b65c7996c4128e9",
+        "user": "65532:65532",
+        "version": "0.1.17",
+        "native_execution": {
+          "status": "PASS",
+          "job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/42130632314/job/127606024937",
+          "observed_at": "2026-11-05T23:36:22.591209+00:00",
+          "receipt_sha256": "7aa333a5fc6494af8167b105040f868be49cf8735f089db4b817c7ead09d95fe",
+          "valid_fetch_requests": 0,
+          "offline_geography_client": "PASS"
+        }
+      }
+    ],
+    "scope": "Public OCI index/platform/config identity plus separately retained native architecture execution receipts.",
+    "status": "PASS",
+    "native_execution_receipt": "0.1.17-native-oci/acceptance.json"
+  },
+  "python_consumer": {
+    "adoption": "not_measured",
+    "catalog_products": 14,
+    "checked_at": "2026-11-05T23:34:35.364283+00:00",
+    "config_hashes_match": true,
+    "default_egress_denial": true,
+    "fresh_public_install": true,
+    "installed_source_files_verified": 66,
+    "mcp_contract": "financial-evidence-mcp-v0.1.17.json",
+    "mcp_valid_fetch_requests": 0,
+    "optional_dependencies_installed": false,
+    "output_permissions": "0700 directory and 0600 configs",
+    "pythonpath_used": false,
+    "schema": "financial-evidence.public-connection-consumer.v1",
+    "socket_denied_catalog": "PASS",
+    "source_commit": "a5b2a2fbe77382a155a9b35f6b65c7996c4128e9",
+    "status": "PASS",
+    "synthetic": true,
+    "version": "0.1.17",
+    "wheel_sha256": "ce4323f2a303419b1118d57e4dd7a4a98dc3cb5206c3d5c5f1f5195143122037"
+  },
+  "geography_consumer": {
+    "adoption": "not_measured",
+    "checks": [
+      "four_public_identity_types",
+      "invalid_arguments_never_reach_transport",
+      "fixed_configured_hosted_destination",
+      "dates_missingness_and_pagination_preserved",
+      "authority_flags_preserved_false",
+      "native_bridge_tool_schema_preserved",
+      "native_bridge_result_preserved",
+      "invalid_bridge_arguments_denied",
+      "private_arguments_not_echoed",
+      "installed_source_matches_signed_release"
+    ],
+    "fresh_public_install": true,
+    "install_report_sha256": "b1af2448fe8d02cb8d0af396f265c157730caf7eaa3467c7ecc7ca41a4eef473",
+    "installed_geography_source_sha256": {
+      "src/financial_evidence/trading/client.py": "afcc79c4d36fb31075a25b98457a07692dc94b6a1997daa619923171f6ca1566",
+      "src/financial_evidence/trading/product_mcp.py": "35a2ae350407e00fa87a7b28403a73d78d57f948bafd25a3149f5d9095b2581c"
+    },
+    "installed_source_files_verified": 66,
+    "live_geography_requests": 0,
+    "mcp_sdk_version": "1.30.0",
+    "network_guard": "IP sockets, connections and DNS denied; local AF_UNIX event-loop wakeup sockets allowed",
+    "network_guard_probe": "PASS",
+    "observed_at": "2026-11-05T23:35:02.121057+00:00",
+    "optional_workspace_dependencies_installed": true,
+    "private_data_requests": 0,
+    "python_isolated": true,
+    "pythonpath_used": false,
+    "schema": "financial-evidence.public-geography-consumer.v1",
+    "scope": "Fresh public installed client and real MCP SDK bridge with synthetic injected transports; no hosted data or private geography qualification",
+    "skipped": 0,
+    "source_commit": "a5b2a2fbe77382a155a9b35f6b65c7996c4128e9",
+    "status": "PASS",
+    "synthetic": true,
+    "test_source_sha256": {
+      "tests/test_lending_geography_client.py": "9cbb0695a7617abf0c1d76b901e826f26cc32ce4a9dc93a836c6ec4fa9d83737",
+      "tests/test_trading_mcp.py": "290df6241140d9fc3618f2cced4394e0281078c8693232e55b68cf7040fea4f0"
+    },
+    "tests_run": 4,
+    "unexpected_network_events": 0,
+    "version": "0.1.17",
+    "wheel_sha256": "ce4323f2a303419b1118d57e4dd7a4a98dc3cb5206c3d5c5f1f5195143122037"
+  },
+  "remote_mcp": {
+    "schema": "financial-evidence.remote-mcp-release.v1",
+    "repository": "https://github.com/beepboop2025/liquilens-site.git",
+    "worker_source_commit": "f0a4272e2cf5d867d5dc98d68ed41f2109a5ceb9",
+    "worker_version_id": "1499ad75-996f-4d30-ab81-73227283026c",
+    "mcp_contract": "integrations/financial-evidence-mcp-v0.1.16.json",
+    "verified_at": "2026-11-05T23:10:21Z",
+    "source_paths": [
+      "edge",
+      ".well-known",
+      "protocol",
+      "package.json",
+      "package-lock.json",
+      "wrangler.catalog.jsonc"
+    ],
+    "scope": "The hosted router has an independent version. Release preflight checks this exact deployed source, its ancestry, unchanged Worker inputs on site main, and the live MCP contract.",
+    "server_version": "0.1.16",
+    "strict_live_fetch_verification": "PASS",
+    "strict_live_fetch_verified_at": "2026-11-05T23:29:24Z",
+    "strict_live_fetch_verification_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/42129612058/job/127602589381"
+  },
+  "homebrew": {
+    "published_version": "0.1.17",
+    "candidate_version": "0.1.17",
+    "candidate_source_commit": "484a5c85af3b3e1a54442a89bef21ad6c5a330ee",
+    "candidate_pr": "https://github.com/beepboop2025/homebrew-tap/pull/15",
+    "acceptance": "PASS",
+    "native_tap_actions_enabled": false,
+    "tap_main_commit": "ebb1068323077b74ca110696a061645e649c7f1f",
+    "formula_sha256": "b8ba572acbd1c866a615412263bcb57f76eac76750a07422836cc2545e688f13",
+    "verified_at": "2026-11-05T23:49:02.761584+00:00",
+    "publication_receipt": "../distribution/homebrew-0.1.17.json",
+    "native_consumer_job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/42130632314/job/127606024918",
+    "public_formula_matches_tested_candidate": true
+  },
+  "scope": "Publisher-operated release and synthetic consumer verification; no live geography or private-data requests, source-data accuracy, external adoption, paid use or marketplace approval inferred."
+}

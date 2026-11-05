@@ -1,0 +1,56 @@
+{
+  "schema": "financial-evidence.homebrew-publication.v1",
+  "status": "PASS",
+  "verified_at": "2026-11-05T23:49:02.761584+00:00",
+  "pull_request": {
+    "number": 15,
+    "url": "https://github.com/beepboop2025/homebrew-tap/pull/15",
+    "merged_at": "2026-11-05T23:48:28Z"
+  },
+  "candidate_commit": "484a5c85af3b3e1a54442a89bef21ad6c5a330ee",
+  "previous_main_commit": "1d87feddef14450369023463e7ac0bb897430db3",
+  "tap_main_commit": "ebb1068323077b74ca110696a061645e649c7f1f",
+  "formula_sha256": "b8ba572acbd1c866a615412263bcb57f76eac76750a07422836cc2545e688f13",
+  "public_readbacks": [
+    {
+      "ref": "ebb1068323077b74ca110696a061645e649c7f1f",
+      "url": "https://raw.githubusercontent.com/beepboop2025/homebrew-tap/ebb1068323077b74ca110696a061645e649c7f1f/Formula/financial-evidence.rb",
+      "sha256": "b8ba572acbd1c866a615412263bcb57f76eac76750a07422836cc2545e688f13",
+      "matches_reviewed_and_installed_candidate": true
+    },
+    {
+      "ref": "main",
+      "url": "https://raw.githubusercontent.com/beepboop2025/homebrew-tap/main/Formula/financial-evidence.rb",
+      "sha256": "b8ba572acbd1c866a615412263bcb57f76eac76750a07422836cc2545e688f13",
+      "matches_reviewed_and_installed_candidate": true
+    }
+  ],
+  "release_source_commit": "a5b2a2fbe77382a155a9b35f6b65c7996c4128e9",
+  "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/download/v0.1.17/financial_evidence-0.1.17.tar.gz",
+  "release_sha256": "1ba59c858adbc39e1b49c5fb09b33eddea1dd7e97a3698e8db06bf77d886238e",
+  "native_acceptance": {
+    "repository": "beepboop2025/financial-evidence-skills",
+    "workflow_source_commit": "30a84427b98904beb34fa4492f2e6482027566d1",
+    "run_id": 42130632314,
+    "job_id": 127606024918,
+    "job_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/42130632314/job/127606024918",
+    "result": "success",
+    "artifact_id": 13462839849,
+    "artifact_sha256": "ef627840286d544e9e30221cf41219fe17fec8dd1c746fd76c30e535231c1e15",
+    "installed_version": "0.1.17",
+    "all_11_entrypoints_load": true,
+    "formula_test_passed": true,
+    "mcp_contract_passed": true,
+    "scope": "Fresh macOS consumer installation of exact candidate; merged public formula bytes match; not a tap-repository CI run"
+  },
+  "tap_repository_actions": {
+    "enabled": false,
+    "permissions_changed": false,
+    "native_tap_workflow_result": "unavailable; not claimed passed"
+  },
+  "scope": "Published Homebrew formula and independently verified fresh native consumer installation; no adoption claim",
+  "version": "0.1.17",
+  "native_acceptance_receipt": "homebrew-0.1.17/native-acceptance.json",
+  "source_receipt": "homebrew-0.1.17/homebrew-source-receipt.json",
+  "mcp_receipt": "homebrew-0.1.17/homebrew-mcp-receipt.json"
+}

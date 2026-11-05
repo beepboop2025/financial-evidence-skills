@@ -1,7 +1,7 @@
 {
   "schema": "financial-evidence.system-interfaces.v1",
   "operator": "LIQUILENS PRIVATE LIMITED",
-  "updated_at": "2026-10-17",
+  "updated_at": "2026-11-05",
   "guide_url": "https://liquilens.in/agents/infrastructure/",
   "public_discovery_observation": {
     "observed_at": "2026-10-08T11:12:59.038376+00:00",
@@ -12,7 +12,7 @@
     {
       "id": "public-router",
       "name": "Financial Evidence router",
-      "version": "0.1.8",
+      "version": "0.1.16",
       "access": "public",
       "authentication": "none",
       "transport": "streamable-http",
@@ -23,9 +23,16 @@
         "financial_evidence_route",
         "financial_evidence_fetch"
       ],
-      "release_url": "https://github.com/beepboop2025/financial-evidence-skills/releases/tag/v0.1.8",
       "execution_authority": false,
-      "local_state_writes": false
+      "local_state_writes": false,
+      "source_repository": "https://github.com/beepboop2025/liquilens-site",
+      "source_commit": "f0a4272e2cf5d867d5dc98d68ed41f2109a5ceb9",
+      "worker_version_id": "1499ad75-996f-4d30-ab81-73227283026c",
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/releases/0.1.17.json",
+      "verified_at": "2026-11-05T23:29:24Z",
+      "verification_scope": "Independent hosted-router identity, exact tools, Worker provenance and strict complete-fetch semantics; source-data accuracy and adoption are not inferred.",
+      "worker_identity_verified_at": "2026-11-05T23:10:21Z",
+      "strict_live_fetch_verification_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/42129612058/job/127602589381"
     },
     {
       "id": "research-desk",
@@ -70,7 +77,7 @@
     {
       "id": "local-runtime",
       "name": "Financial Evidence Runtime",
-      "package_version": "0.1.12",
+      "package_version": "0.1.17",
       "contract_version": "1.0.0",
       "access": "customer_operated_local",
       "transport": "stdio",
@@ -96,7 +103,10 @@
         "dashboard": "private_loopback_via_operator_ssh",
         "encrypted_backup": true,
         "restore_preserves_retry_keys": true
-      }
+      },
+      "verification_url": "https://beepboop2025.github.io/financial-evidence-skills/releases/0.1.17-native-oci/acceptance.json",
+      "verified_at": "2026-11-05T23:36:22.707862+00:00",
+      "verification_scope": "Released package identity and native offline runtime catalog; not a qualification of every runtime tool, customer deployment or private-data workflow."
     },
     {
       "id": "private-paper-host",

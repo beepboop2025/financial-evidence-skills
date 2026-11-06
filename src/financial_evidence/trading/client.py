@@ -15,6 +15,7 @@ import threading
 from functools import partial
 from ..hosted import PLATFORM_URL, platform_base
 from .additional_products import EXTRA_PRODUCTS
+from .input_rights import project_native_payload
 
 NATIVE_PRODUCTS = {
     "seiche": ("Seiche", "https://api.seiche.info/mcp", "funding_stress_now"),
@@ -257,10 +258,15 @@ class ProductClient:
                 if self._default_transport:
                     payload = dict(payload)
                     transport_timing = payload.pop("_transport_timing", {})
+                upstream_payload_sha256 = hashlib.sha256(_encode(payload)).hexdigest()
+                payload, rights_projection = project_native_payload(payload)
                 receipt = {"schema": "financial-evidence.direct-product.v1", "product": product,
                            "product_name": PRODUCTS[product][0], "endpoint": self.endpoints[product], "tool": tool,
                            "captured_at": datetime.fromtimestamp(self.clock(), timezone.utc).isoformat(),
                            "payload": payload, "payload_sha256": hashlib.sha256(_encode(payload)).hexdigest(),
+                           "upstream_payload_sha256": upstream_payload_sha256,
+                           "source_rights_projection": rights_projection,
+                           "ai_input_eligibility": "restricted" if rights_projection else "requires_source_qualification",
                            "freshness": "requires_observation_policy", "execution_authority": "none",
                            "training_permission": "not_inferred", "transport_mode": "hosted",
                            "hosted_operational_measurement": True}

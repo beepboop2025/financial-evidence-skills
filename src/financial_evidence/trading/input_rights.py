@@ -78,7 +78,7 @@ def restricted_sources(document):
 
 
 _PROVENANCE_LINE = re.compile(
-    r"^\s*(?:[-*]\s+)?(?:\*\*)?(?:source|sources|source_id|source_url|provider|venue)(?:\*\*)?\s*[:=]\s*(?:\*\*)?([^\r\n]{1,2048})",
+    r"^\s*(?:[-*]\s+)?(?:\*\*)?(?:source|sources|source_id|source_url|provider|venue)(?:\*\*)?\s*[:=]\s*(?:\*\*)?([^\r\n]+)",
     re.IGNORECASE | re.MULTILINE,
 )
 
@@ -89,7 +89,10 @@ def _text_provenance(text):
         return []
     if len(text) > 2_097_152:
         raise ValueError("native text exceeds bounded rights inspection")
-    return [{"source": match.group(1)} for match in _PROVENANCE_LINE.finditer(text)]
+    values = [match.group(1) for match in _PROVENANCE_LINE.finditer(text)]
+    if any(len(value) > 2048 for value in values):
+        raise ValueError("explicit source provenance exceeds bounded inspection")
+    return [{"source": value} for value in values]
 
 
 def project_native_payload(payload):

@@ -51,6 +51,11 @@ class NativeRightsTests(unittest.TestCase):
         self.assertEqual(receipt["sources"], ["coinbase"])
         self.assertNotIn("9137", json.dumps(out))
 
+    def test_oversized_explicit_source_label_does_not_hide_its_provider(self):
+        payload = {"result": {"content": [{"type": "text", "text": "Source: " + "x" * 2050 + " Coinbase\nprice:9137"}]}}
+        with self.assertRaises(ValueError):
+            project_native_payload(payload)
+
     def test_incidental_opaque_text_is_not_a_positive_qualification(self):
         payload = {"result": {"content": [{"type": "text", "text": "Review Coinbase licensing before use."}]}}
         self.assertEqual(project_native_payload(payload), (payload, None))

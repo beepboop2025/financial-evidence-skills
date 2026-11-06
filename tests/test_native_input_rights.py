@@ -28,6 +28,13 @@ class NativeRightsTests(unittest.TestCase):
         self.assertNotIn("9137", json.dumps(out))
         self.assertEqual(receipt["sources"], ["coinbase"])
 
+    def test_embedded_json_resource_has_the_same_gate(self):
+        payload = {"result": {"content": [{"type": "resource", "resource": {
+            "uri": "fixture:input", "text": '{"source":"Coinbase","value":9137}'}}]}}
+        out, receipt = project_native_payload(payload)
+        self.assertNotIn("9137", json.dumps(out))
+        self.assertEqual(receipt["sources"], ["coinbase"])
+
     def test_client_hashes_and_caches_only_projected_payload(self):
         calls = []
         async def transport(*args):

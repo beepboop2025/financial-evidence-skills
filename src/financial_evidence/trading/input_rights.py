@@ -87,11 +87,14 @@ def project_native_payload(payload):
     result = payload.get("result")
     if not isinstance(result, dict):
         return payload, None
-    documents = [result.get("structuredContent")]
+    documents = [result]
     for block in result.get("content", []):
-        if isinstance(block, dict) and block.get("type") == "text":
+        if not isinstance(block, dict):
+            continue
+        text = block.get("text") if block.get("type") == "text" else (block.get("resource", {}).get("text") if block.get("type") == "resource" and isinstance(block.get("resource"), dict) else None)
+        if text is not None:
             try:
-                documents.append(json.loads(block.get("text", "")))
+                documents.append(json.loads(text))
             except (ValueError, TypeError):
                 continue
     sources = sorted({source for document in documents for source in restricted_sources(document)})

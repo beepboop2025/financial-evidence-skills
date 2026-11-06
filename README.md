@@ -6,7 +6,7 @@ Evidence, Market Brief and thirteen product plugins, with Gemini downloads and
 Cursor / VS Code connection links. Publisher-maintained availability is separate
 from each platform's official directory review.
 
-**0.1.18 candidate:** the native product client withholds explicitly attributed source inputs whose current AI-use permission is unqualified. Unknown responses remain unqualified. [Release notes](docs/releases/0.1.18-candidate.md).
+**0.1.19 candidate:** the native product client withholds explicitly attributed source inputs whose current AI-use permission is unqualified. Unknown responses remain unqualified. [Release notes](docs/releases/0.1.19-candidate.md).
 
 **0.1.17 released:** bounded district, state and cooperative-bank geography reads are available through the Python product client and native MCP bridge. Fresh public installations passed the geography client and bridge checks with synthetic inputs. [Release notes](docs/releases/0.1.17-candidate.md) · [Verification receipt](docs/releases/0.1.17.json).
 

@@ -1,6 +1,6 @@
 {
   "name": "financial-evidence",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "description": "Read-only GIFT City, forex, gold, money-market, capital-market, China-economy, bank-risk and liquidity evidence.",
   "author": {
     "name": "Liquidity Lab",

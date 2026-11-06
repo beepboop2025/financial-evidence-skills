@@ -1,6 +1,6 @@
 Native input rights change, 6 November 2026
 
-Base: origin/main a0ddf0c (0.1.17 documentation lineage). The 0.1.18 candidate is prepared for the existing signed exact-main/tag release workflow. Published package 0.1.17 and Worker 0.1.16 were the last independently verified release states in the fleet closeout; those remain the last verified states until the new publication readback passes.
+Base: origin/main a0ddf0c (0.1.17 documentation lineage). The 0.1.19 candidate is prepared for the existing signed exact-main/tag release workflow. Published package 0.1.17 and Worker 0.1.16 were the last independently verified release states in the fleet closeout; those remain the last verified states until the new publication readback passes.
 
 ProductClient now applies a targeted deny gate before returning or caching native MCP results. It covers attributed Coinbase, FRED, Binance Vision, OONI, Telegram, unofficial Yahoo, and free hosted Open-Meteo inputs. Both JSON text and structured MCP representations are inspected. A tainted mixed result is replaced in full so sibling totals, prose, and embedded resources cannot retain dependent data. Original-response and returned-payload hashes remain distinct. No paid API, upstream market-data fetch, mail, archive deletion, or licence grant occurs.
 

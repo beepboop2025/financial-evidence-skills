@@ -30,7 +30,7 @@ class RemoteMcpVerifierTests(unittest.TestCase):
         self.assertEqual(CONTRACT["serverInfo"]["version"], "0.1.16")
         current = json.loads((Path(__file__).resolve().parents[1] / "integrations"
                               / "financial-evidence-mcp-current.json").read_text())
-        self.assertEqual(current["serverInfo"]["version"], "0.1.18")
+        self.assertEqual(current["serverInfo"]["version"], "0.1.19")
 
     def test_candidate_release_rejects_published_v015_remote_identity(self):
         initialized = {

@@ -4,7 +4,7 @@ message: >-
   release and the upstream evidence publishers identified by each packet.
 title: Financial Evidence
 type: software
-version: 0.1.18
+version: 0.1.19
 authors:
   - name: Liquidity Lab
 license: MIT

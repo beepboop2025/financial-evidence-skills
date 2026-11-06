@@ -77,6 +77,21 @@ def restricted_sources(document):
     return sorted(found)
 
 
+_PROVENANCE_LINE = re.compile(
+    r"^\s*(?:[-*]\s+)?(?:\*\*)?(?:source|sources|source_id|source_url|provider|venue)(?:\*\*)?\s*[:=]\s*(?:\*\*)?([^\r\n]{1,2048})",
+    re.IGNORECASE | re.MULTILINE,
+)
+
+
+def _text_provenance(text):
+    """Only explicit provenance labels; incidental provider mentions do not qualify."""
+    if not isinstance(text, str):
+        return []
+    if len(text) > 2_097_152:
+        raise ValueError("native text exceeds bounded rights inspection")
+    return [{"source": match.group(1)} for match in _PROVENANCE_LINE.finditer(text)]
+
+
 def project_native_payload(payload):
     """Project structured and JSON-text MCP representations consistently.
 
@@ -91,12 +106,15 @@ def project_native_payload(payload):
     for block in result.get("content", []):
         if not isinstance(block, dict):
             continue
-        text = block.get("text") if block.get("type") == "text" else (block.get("resource", {}).get("text") if block.get("type") == "resource" and isinstance(block.get("resource"), dict) else None)
+        resource = block.get("resource")
+        if block.get("type") == "resource" and isinstance(resource, dict):
+            documents.append({"source_url": resource.get("uri")})
+        text = block.get("text") if block.get("type") == "text" else (resource.get("text") if block.get("type") == "resource" and isinstance(resource, dict) else None)
         if text is not None:
             try:
                 documents.append(json.loads(text))
             except (ValueError, TypeError):
-                continue
+                documents.extend(_text_provenance(text))
     sources = sorted({source for document in documents for source in restricted_sources(document)})
     if not sources:
         return payload, None

@@ -6,7 +6,7 @@ description: "Use Undertow for Market liquidity and indicative BTC exits. Preser
 # Undertow
 
 Use the bundled `undertow` MCP connection for this product's public research.
-Scope: Compare indicative BTC exit sizes, inspect market-depth episodes and venue concentration, and reconcile public venue-price evidence. Undertow keeps timestamps, size assumptions and coverage visible so researchers can investigate liquidity risk. Its results are indicative research, not executable quotes, order placement or access to private positions.
+Scope: Check what exiting a position at a given size may cost, and where liquidity has thinned, from public venue data with its timestamps and coverage. Compare indicative BTC exit costs at your size per venue, see realised market-depth collapses, venue concentration and a consensus price when venues disagree, estimate perpetual funding costs, stress a crypto portfolio under price moves you choose, and work through a gold sale, FX and cash-settlement scenario from your own inputs. The liquidity-tier board carries Seiche funding context, and the sealed record of past calls keeps its misses. A PARTIAL reading means the history is not yet sufficient; it is never a calm reading. Results are indicative research, not executable quotes, order placement, investment advice or access to private positions.
 Product type: `core_product`.
 
 1. Discover the server's current tools and inspect their schemas before calling.

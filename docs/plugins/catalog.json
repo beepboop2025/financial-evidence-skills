@@ -63,7 +63,7 @@
       "mcp_url": "https://agents.seiche.info/products/undertow/mcp",
       "guide_url": "https://liquilens-undertow.com/developers/",
       "kind": "core_product",
-      "plugin_version": "1.0.2",
+      "plugin_version": "1.0.3",
       "source_path": "plugins/undertow",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -72,14 +72,14 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/undertow-openai-1.0.2.zip",
-          "sha256": "71f22f5461a3bfee6436e2495a682500edfccbb951921f2bbefd31b1177063b2",
-          "bytes": 30064
+          "url": "downloads/undertow-openai-1.0.3.zip",
+          "sha256": "6a2ebeb877ea08e345bd2717e6f4dafd60264002697f95163ea7778147df53d8",
+          "bytes": 30841
         },
         "gemini": {
-          "url": "downloads/undertow-gemini-1.0.2.zip",
-          "sha256": "43f7fd2ae0cafb4cbdbb14fd820e4090abf0928d3d242b9efd3e4c27db0c856c",
-          "bytes": 28772
+          "url": "downloads/undertow-gemini-1.0.3.zip",
+          "sha256": "da8d41673c16e15c55a7222c18f04e3145fc334b5804820762f67aa5eaee39f8",
+          "bytes": 29475
         }
       }
     },
@@ -117,7 +117,7 @@
       "mcp_url": "https://agents.seiche.info/products/noisefloor/mcp",
       "guide_url": "https://liquilens.in/agents/correlation/#connect",
       "kind": "core_product",
-      "plugin_version": "1.0.2",
+      "plugin_version": "1.0.3",
       "source_path": "plugins/noisefloor",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -126,14 +126,14 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/noisefloor-openai-1.0.2.zip",
-          "sha256": "2a07e58250c1fd36440915a445b15a9b0f7347b4744d907e22933e7aba0893ee",
-          "bytes": 30223
+          "url": "downloads/noisefloor-openai-1.0.3.zip",
+          "sha256": "d736484839a0b51329c7923ea3248d83ba2fe9f3d7a6c921996d997d98e7022e",
+          "bytes": 30699
         },
         "gemini": {
-          "url": "downloads/noisefloor-gemini-1.0.2.zip",
-          "sha256": "22b5e200a17244299f9e1592bbb1d6d5db86eac677ac94e48f1db35728b3cc82",
-          "bytes": 28739
+          "url": "downloads/noisefloor-gemini-1.0.3.zip",
+          "sha256": "1b546ea55bb47a25376decf6c7b42640047a5d9c5623a4842ab39b2cd22176f4",
+          "bytes": 29201
         }
       }
     },
@@ -144,7 +144,7 @@
       "mcp_url": "https://agents.seiche.info/products/narcoscope/mcp",
       "guide_url": "https://www.narcoscope.com/developers/",
       "kind": "core_product",
-      "plugin_version": "1.0.2",
+      "plugin_version": "1.0.3",
       "source_path": "plugins/narcoscope",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -153,14 +153,14 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/narcoscope-openai-1.0.2.zip",
-          "sha256": "09fc0d4cf4831db8489aeca8bde2322c278c4ab4304657b3332c073349bd0e56",
-          "bytes": 30167
+          "url": "downloads/narcoscope-openai-1.0.3.zip",
+          "sha256": "dbe966a3c7d2d26afbd4015eb0ba1c3dd35ea7cd8b7674b08605624da5dd25cb",
+          "bytes": 30642
         },
         "gemini": {
-          "url": "downloads/narcoscope-gemini-1.0.2.zip",
-          "sha256": "7b517808682851f90ae34c018cecb9291c7a3b7a90af3229ff7e8a2d70db9460",
-          "bytes": 28755
+          "url": "downloads/narcoscope-gemini-1.0.3.zip",
+          "sha256": "e279792bf1bcb10228105dcf89a4eb5eee45ca81174c37a58dab27ae65b3e97c",
+          "bytes": 29216
         }
       }
     },
@@ -198,7 +198,7 @@
       "mcp_url": "https://agents.seiche.info/products/riptide/mcp",
       "guide_url": "https://agents.seiche.info/connect",
       "kind": "research_product",
-      "plugin_version": "1.0.2",
+      "plugin_version": "1.0.3",
       "source_path": "plugins/riptide",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -207,14 +207,14 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/riptide-openai-1.0.2.zip",
-          "sha256": "74d28108e0cee84e28a2c405de8afaba8369259983f745cc09a72a51b2216b4c",
-          "bytes": 29991
+          "url": "downloads/riptide-openai-1.0.3.zip",
+          "sha256": "0a96a93d545df258458edc0de54fe7ecd62b13455701ed1f8723ea48846b89f0",
+          "bytes": 30300
         },
         "gemini": {
-          "url": "downloads/riptide-gemini-1.0.2.zip",
-          "sha256": "ca072cde1c3311162d692d0e01f0a7080fa057229bc3c6326d59920e750a5ef8",
-          "bytes": 28519
+          "url": "downloads/riptide-gemini-1.0.3.zip",
+          "sha256": "54e7ad13d8609c8bd37731fb116f43d82a0c2b8b5166689a298777e3796c58c8",
+          "bytes": 28844
         }
       }
     },

@@ -6,7 +6,7 @@ description: "Use Riptide for Show Riptide's committed paper research record and
 # Riptide
 
 Use the bundled `riptide` MCP connection for this product's public research.
-Scope: Inspect Riptide's committed allocation, paper performance record, defensive coverage and methodology. Keep paper results, verification status and evidence dates explicit. Historical paper results are research records, not live-account performance or an instruction to trade.
+Scope: Inspect Riptide's committed daily paper allocation, its paper record and crypto paper record, read-only event-market context, defensive coverage and published methodology. Paper results, verification status and evidence dates stay explicit, and observed history stays apart from future expectations. Historical paper results are research records, not live-account performance, investment advice or an instruction to trade. Riptide places no orders and holds no accounts, wallets or keys.
 Product type: `research_product`.
 
 1. Discover the server's current tools and inspect their schemas before calling.

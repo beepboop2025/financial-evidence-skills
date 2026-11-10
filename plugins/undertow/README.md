@@ -1,8 +1,8 @@
 # Undertow plugin
 
-Compare indicative BTC exit sizes, inspect market-depth episodes and venue concentration, and reconcile public venue-price evidence. Undertow keeps timestamps, size assumptions and coverage visible so researchers can investigate liquidity risk. Its results are indicative research, not executable quotes, order placement or access to private positions.
+Check what exiting a position at a given size may cost, and where liquidity has thinned, from public venue data with its timestamps and coverage. Compare indicative BTC exit costs at your size per venue, see realised market-depth collapses, venue concentration and a consensus price when venues disagree, estimate perpetual funding costs, stress a crypto portfolio under price moves you choose, and work through a gold sale, FX and cash-settlement scenario from your own inputs. The liquidity-tier board carries Seiche funding context, and the sealed record of past calls keeps its misses. A PARTIAL reading means the history is not yet sufficient; it is never a calm reading. Results are indicative research, not executable quotes, order placement, investment advice or access to private positions.
 
-This independent plugin package is version 1.0.2; the hosted product has its
+This independent plugin package is version 1.0.3; the hosted product has its
 own release version. It connects to `https://agents.seiche.info/products/undertow/mcp` without a product API key.
 Your assistant may require its own account or plan. See the [installation guide](https://beepboop2025.github.io/financial-evidence-skills/plugins/).
 
@@ -23,7 +23,7 @@ copilot plugin marketplace add beepboop2025/financial-evidence-skills
 copilot plugin install undertow@liquidity-lab
 ```
 
-Gemini CLI: download and extract `undertow-gemini-1.0.2.zip`, then run
+Gemini CLI: download and extract `undertow-gemini-1.0.3.zip`, then run
 `gemini extensions install ./extracted-directory`. Inspect the included server
 and tool list before enabling it. Native Gemini installation is not yet verified.
 

@@ -1,7 +1,7 @@
 {
   "name": "riptide",
-  "version": "1.0.2",
-  "description": "Inspect Riptide's committed allocation, paper performance record, defensive coverage and methodology. Keep paper results, verification status and evidence dates explicit. Historical paper results are research records, not live-account performance or an instruction to trade.",
+  "version": "1.0.3",
+  "description": "Inspect Riptide's committed daily paper allocation, its paper record and crypto paper record, read-only event-market context, defensive coverage and published methodology. Paper results, verification status and evidence dates stay explicit, and observed history stays apart from future expectations. Historical paper results are research records, not live-account performance, investment advice or an instruction to trade. Riptide places no orders and holds no accounts, wallets or keys.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"
@@ -14,7 +14,7 @@
   "interface": {
     "displayName": "Riptide",
     "shortDescription": "Paper research and risk",
-    "longDescription": "Inspect Riptide's committed allocation, paper performance record, defensive coverage and methodology. Keep paper results, verification status and evidence dates explicit. Historical paper results are research records, not live-account performance or an instruction to trade.",
+    "longDescription": "Inspect Riptide's committed daily paper allocation, its paper record and crypto paper record, read-only event-market context, defensive coverage and published methodology. Paper results, verification status and evidence dates stay explicit, and observed history stays apart from future expectations. Historical paper results are research records, not live-account performance, investment advice or an instruction to trade. Riptide places no orders and holds no accounts, wallets or keys.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
     "category": "Finance",
     "capabilities": [
@@ -88,7 +88,7 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "Fits public listing text limits and validates submission metadata; preserves research scope, review cases and MCP endpoints."
+        "release_notes": "Describes the crypto paper record and event-market context the hosted server now serves. Riptide remains paper-only; the MCP endpoint and review cases are unchanged."
       }
     }
   }

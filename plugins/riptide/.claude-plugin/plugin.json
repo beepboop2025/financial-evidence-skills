@@ -1,7 +1,7 @@
 {
   "name": "riptide",
-  "version": "1.0.2",
-  "description": "Inspect Riptide's committed allocation, paper performance record, defensive coverage and methodology. Keep paper results, verification status and evidence dates explicit. Historical paper results are research records, not live-account performance or an instruction to trade.",
+  "version": "1.0.3",
+  "description": "Inspect Riptide's committed daily paper allocation, its paper record and crypto paper record, read-only event-market context, defensive coverage and published methodology. Paper results, verification status and evidence dates stay explicit, and observed history stays apart from future expectations. Historical paper results are research records, not live-account performance, investment advice or an instruction to trade. Riptide places no orders and holds no accounts, wallets or keys.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"

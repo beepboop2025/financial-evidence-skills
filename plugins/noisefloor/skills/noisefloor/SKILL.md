@@ -6,7 +6,7 @@ description: "Use NoiseFloor for Statistical research using permitted observatio
 # NoiseFloor
 
 Use the bundled `noisefloor` MCP connection for this product's public research.
-Scope: Test whether an observed change may be noise, compare A/B results and examine forecast uncertainty using public, synthetic or explicitly authorized observations. NoiseFloor helps researchers check assumptions and limitations before interpreting a pattern. Results do not establish causality, investment performance or certainty about future outcomes.
+Scope: Test whether an observed change may be noise, using public, synthetic or explicitly authorized observations. Get a peek-safe A/B verdict, check whether a metric moved or a sample-size change explains it, review several metrics at once without false discoveries piling up, produce an empirical interval for the next value and replay how past forecasts scored. Market series can be reviewed for noise, shared factors and evidence quality, and repeated headlines can be triaged. NoiseFloor helps researchers check assumptions and limitations before interpreting a pattern. Results do not establish causality, investment performance or certainty about future outcomes.
 Product type: `core_product`.
 
 1. Discover the server's current tools and inspect their schemas before calling.

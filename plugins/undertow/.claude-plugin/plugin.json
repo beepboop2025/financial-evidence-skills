@@ -8,5 +8,10 @@
   },
   "homepage": "https://liquilens-undertow.com/developers/",
   "repository": "https://github.com/beepboop2025/financial-evidence-skills",
-  "license": "MIT"
+  "license": "MIT",
+  "displayName": "Undertow",
+  "documentationUrl": "https://liquilens-undertow.com/developers/",
+  "supportUrl": "https://beepboop2025.github.io/financial-evidence-skills/support/",
+  "privacyPolicyUrl": "https://agents.seiche.info/privacy",
+  "termsOfServiceUrl": "https://beepboop2025.github.io/financial-evidence-skills/terms/"
 }

@@ -188,7 +188,12 @@ counts; installation does not enroll the user in optional learning or sharing.
         gemini = {"name": slug, "version": version, "description": summary,
                   "mcpServers": {slug: {"httpUrl": endpoint, "timeout": 30000,
                                         "includeTools": inventory[slug]["tools"]}}}
-        files = {".claude-plugin/plugin.json": encode(common),
+        # Claude directory listings read these fields from plugin.json; without them a listing shows the
+        # lowercase name and no support, documentation or terms links.
+        claude = dict(common, displayName=name, documentationUrl=product["guide_url"],
+                      supportUrl=SITE + "/support/", privacyPolicyUrl="https://agents.seiche.info/privacy",
+                      termsOfServiceUrl=SITE + "/terms/")
+        files = {".claude-plugin/plugin.json": encode(claude),
                  ".codex-plugin/plugin.json": encode(codex), ".mcp.json": encode(mcp),
                  "gemini-extension.json": encode(gemini), f"skills/{slug}/SKILL.md": skill.encode(),
                  "LICENSE": (ROOT / "LICENSE").read_bytes(),

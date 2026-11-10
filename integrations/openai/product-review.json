@@ -118,9 +118,9 @@
       "releaseNotes": "Describes the wider coverage of small and mid-size Indian lenders and the RBI enforcement and peer context now returned with bank reviews. The hosted tools and the MCP endpoint are unchanged."
     },
     "undertow": {
-      "shortDescription": "Liquidity and BTC exit checks",
+      "shortDescription": "Liquidity and exit-cost checks",
       "category": "Finance",
-      "longDescription": "Compare indicative BTC exit sizes, inspect market-depth episodes and venue concentration, and reconcile public venue-price evidence. Undertow keeps timestamps, size assumptions and coverage visible so researchers can investigate liquidity risk. Its results are indicative research, not executable quotes, order placement or access to private positions.",
+      "longDescription": "Check what exiting a position at a given size may cost, and where liquidity has thinned, from public venue data with its timestamps and coverage. Compare indicative BTC exit costs at your size per venue, see realised market-depth collapses, venue concentration and a consensus price when venues disagree, estimate perpetual funding costs, stress a crypto portfolio under price moves you choose, and work through a gold sale, FX and cash-settlement scenario from your own inputs. The liquidity-tier board carries Seiche funding context, and the sealed record of past calls keeps its misses. A PARTIAL reading means the history is not yet sufficient; it is never a calm reading. Results are indicative research, not executable quotes, order placement, investment advice or access to private positions.",
       "defaultPrompt": [
         "Compare indicative BTC exits for $10,000 and $100,000 with coverage limits.",
         "Review recent depth episodes and explain what the observations can support.",
@@ -171,7 +171,8 @@
           "description": "Unrelated writing",
           "prompt": "Write a birthday poem for my sister."
         }
-      ]
+      ],
+      "releaseNotes": "Describes all sixteen tools the hosted server now serves, including exit cost per venue, funding cost, portfolio stress, the gold cash scenario, liquidity tiers and the sealed record. The MCP endpoint and review cases are unchanged."
     },
     "palimpsest": {
       "shortDescription": "Public records and provenance",
@@ -234,7 +235,7 @@
     "noisefloor": {
       "shortDescription": "Statistics and forecasts",
       "category": "Productivity",
-      "longDescription": "Test whether an observed change may be noise, compare A/B results and examine forecast uncertainty using public, synthetic or explicitly authorized observations. NoiseFloor helps researchers check assumptions and limitations before interpreting a pattern. Results do not establish causality, investment performance or certainty about future outcomes.",
+      "longDescription": "Test whether an observed change may be noise, using public, synthetic or explicitly authorized observations. Get a peek-safe A/B verdict, check whether a metric moved or a sample-size change explains it, review several metrics at once without false discoveries piling up, produce an empirical interval for the next value and replay how past forecasts scored. Market series can be reviewed for noise, shared factors and evidence quality, and repeated headlines can be triaged. NoiseFloor helps researchers check assumptions and limitations before interpreting a pattern. Results do not establish causality, investment performance or certainty about future outcomes.",
       "defaultPrompt": [
         "Compare synthetic A/B results of 40 successes out of 100 and 55 out of 100.",
         "Check whether this synthetic series changed: 10, 11, 9, 10, 12, 10, 9, 11, 20.",
@@ -285,12 +286,13 @@
           "description": "Unrelated writing",
           "prompt": "Write a birthday poem for my sister."
         }
-      ]
+      ],
+      "releaseNotes": "Describes the market-noise, shared-factor, headline-triage and multiple-metric tools the hosted server now serves. The MCP endpoint and review cases are unchanged."
     },
     "narcoscope": {
       "shortDescription": "Informal-economy research",
       "category": "Finance",
-      "longDescription": "Inspect public evidence about informal economies, drug and arms markets, and regional context with dataset provenance, units and source dates. NarcoScope supports research briefs and evidence checks; administrative counts do not establish market size, individual guilt or current operational activity. Access and publication restrictions remain visible.",
+      "longDescription": "Inspect public evidence about informal economies, drug and arms markets and regional context, with dataset provenance, units and source dates. Query the illicit-economy atlas and granular market observations from official sources such as wastewater monitoring, read privacy-minimized OFAC designation identities, and follow China, Belt and Road and corridor context from Palimpsest beside Seiche funding context as separate evidence lanes. NarcoScope supports research briefs and evidence checks; administrative counts do not establish market size, individual guilt or current operational activity. Access and publication restrictions remain visible.",
       "defaultPrompt": [
         "Summarize NarcoScope's public evidence coverage and major gaps.",
         "Review India's organized-crime atlas evidence with dates and source limits.",
@@ -341,7 +343,8 @@
           "description": "Unrelated writing",
           "prompt": "Write a birthday poem for my sister."
         }
-      ]
+      ],
+      "releaseNotes": "Describes the sanctions-designation, granular market-observation and Palimpsest corridor tools the hosted server now serves. The MCP endpoint and review cases are unchanged."
     },
     "wake": {
       "shortDescription": "AI and retail economy evidence",
@@ -402,7 +405,7 @@
     "riptide": {
       "shortDescription": "Paper research and risk",
       "category": "Finance",
-      "longDescription": "Inspect Riptide's committed allocation, paper performance record, defensive coverage and methodology. Keep paper results, verification status and evidence dates explicit. Historical paper results are research records, not live-account performance or an instruction to trade.",
+      "longDescription": "Inspect Riptide's committed daily paper allocation, its paper record and crypto paper record, read-only event-market context, defensive coverage and published methodology. Paper results, verification status and evidence dates stay explicit, and observed history stays apart from future expectations. Historical paper results are research records, not live-account performance, investment advice or an instruction to trade. Riptide places no orders and holds no accounts, wallets or keys.",
       "defaultPrompt": [
         "Summarize Riptide's latest committed paper allocation and its date.",
         "Review the paper record's return and drawdown with its verification limits.",
@@ -453,7 +456,8 @@
           "description": "Unrelated writing",
           "prompt": "Write a four-line birthday poem for my friend."
         }
-      ]
+      ],
+      "releaseNotes": "Describes the crypto paper record and event-market context the hosted server now serves. Riptide remains paper-only; the MCP endpoint and review cases are unchanged."
     },
     "myquant-editorial": {
       "shortDescription": "Financial research stories",

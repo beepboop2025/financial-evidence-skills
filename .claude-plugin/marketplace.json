@@ -50,7 +50,7 @@
     {
       "name": "undertow",
       "source": "./plugins/undertow",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "description": "Market liquidity and indicative BTC exits"
     },
     {
@@ -62,13 +62,13 @@
     {
       "name": "noisefloor",
       "source": "./plugins/noisefloor",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "description": "Statistical research using permitted observations"
     },
     {
       "name": "narcoscope",
       "source": "./plugins/narcoscope",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "description": "Drug, arms and informal-economy evidence"
     },
     {
@@ -80,7 +80,7 @@
     {
       "name": "riptide",
       "source": "./plugins/riptide",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "description": "Show Riptide's committed paper research record and its evidence limits."
     },
     {

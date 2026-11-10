@@ -8,5 +8,10 @@
   },
   "homepage": "https://agents.seiche.info/connect",
   "repository": "https://github.com/beepboop2025/financial-evidence-skills",
-  "license": "MIT"
+  "license": "MIT",
+  "displayName": "Source Data Research Workspace",
+  "documentationUrl": "https://agents.seiche.info/connect",
+  "supportUrl": "https://beepboop2025.github.io/financial-evidence-skills/support/",
+  "privacyPolicyUrl": "https://agents.seiche.info/privacy",
+  "termsOfServiceUrl": "https://beepboop2025.github.io/financial-evidence-skills/terms/"
 }

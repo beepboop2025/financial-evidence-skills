@@ -1,7 +1,7 @@
 {
   "name": "narcoscope",
-  "version": "1.0.2",
-  "description": "Inspect public evidence about informal economies, drug and arms markets, and regional context with dataset provenance, units and source dates. NarcoScope supports research briefs and evidence checks; administrative counts do not establish market size, individual guilt or current operational activity. Access and publication restrictions remain visible.",
+  "version": "1.0.3",
+  "description": "Inspect public evidence about informal economies, drug and arms markets and regional context, with dataset provenance, units and source dates. Query the illicit-economy atlas and granular market observations from official sources such as wastewater monitoring, read privacy-minimized OFAC designation identities, and follow China, Belt and Road and corridor context from Palimpsest beside Seiche funding context as separate evidence lanes. NarcoScope supports research briefs and evidence checks; administrative counts do not establish market size, individual guilt or current operational activity. Access and publication restrictions remain visible.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
     "url": "https://liquilens.in/"
@@ -14,7 +14,7 @@
   "interface": {
     "displayName": "NarcoScope",
     "shortDescription": "Informal-economy research",
-    "longDescription": "Inspect public evidence about informal economies, drug and arms markets, and regional context with dataset provenance, units and source dates. NarcoScope supports research briefs and evidence checks; administrative counts do not establish market size, individual guilt or current operational activity. Access and publication restrictions remain visible.",
+    "longDescription": "Inspect public evidence about informal economies, drug and arms markets and regional context, with dataset provenance, units and source dates. Query the illicit-economy atlas and granular market observations from official sources such as wastewater monitoring, read privacy-minimized OFAC designation identities, and follow China, Belt and Road and corridor context from Palimpsest beside Seiche funding context as separate evidence lanes. NarcoScope supports research briefs and evidence checks; administrative counts do not establish market size, individual guilt or current operational activity. Access and publication restrictions remain visible.",
     "developerName": "LIQUILENS PRIVATE LIMITED",
     "category": "Finance",
     "capabilities": [
@@ -88,7 +88,7 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "Fits public listing text limits and validates submission metadata; preserves research scope, review cases and MCP endpoints."
+        "release_notes": "Describes the sanctions-designation, granular market-observation and Palimpsest corridor tools the hosted server now serves. The MCP endpoint and review cases are unchanged."
       }
     }
   }

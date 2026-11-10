@@ -9,7 +9,7 @@ submitting organization holds each listing long term. Review mail goes to the co
 Each connector is the product's endpoint on the LiquiLens agent gateway, with no sign-in. Every tool
 is read-only and annotated `readOnlyHint: true`.
 
-| Product | Slug | Tools | State at 18:45Z |
+| Product | Slug | Tools | State on 10 November (UTC) |
 | --- | --- | --- | --- |
 | NoiseFloor | `noisefloor` | 10 | Published; [public page](https://claude.ai/directory/noisefloor) resolved about 19:25Z |
 | MyQuant Editorial | `myquant-editorial` | 5 | Published; [public page](https://claude.ai/directory/myquant-editorial) resolved about 19:25Z |

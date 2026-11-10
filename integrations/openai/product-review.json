@@ -61,13 +61,13 @@
       "releaseNotes": "Releases eight verified public research tools with direct-source continuity and source-rights reporting. Explicitly marks legacy forecasts, backtests and derived views unavailable where reuse rights are unconfirmed. Updates review cases and release boundaries; research remains read-only."
     },
     "liquilens": {
-      "shortDescription": "Bank disclosures and risk",
+      "shortDescription": "Indian lender filings and risk",
       "category": "Finance",
-      "longDescription": "Find covered financial institutions, review public asset-quality disclosures, and inspect RBI supervisory evidence with source dates and coverage limits. LiquiLens helps analysts prepare institution review questions while preserving missing or non-comparable evidence. It does not access private accounts, replace professional judgment or certify regulatory compliance.",
+      "longDescription": "Research India's banks and lenders from their own public filings, with every figure's source document and date. LiquiLens reviews 58 banks, among them small finance, urban co-operative, payments and local area banks, and 29 non-bank lenders (NBFCs, housing finance and microfinance lenders) identified by their exact entry in RBI's register. Every served figure was read twice by independent readers. A bank review shows asset quality, capital and liquidity with filing dates, RBI's recorded enforcement actions on that bank since April 2021, and where its core ratios sit among reporting peers of the same type in the same period. You can also read RBI's supervisory tape, the district lending geography of co-operative banks, and the state and district central co-operative banks of the NAFSCOB census.\n\nLiquiLens is research, not a rating, a credit decision or a compliance certificate. It keeps missing, stale and non-comparable evidence visible instead of filling gaps, and it does not access private accounts.",
       "defaultPrompt": [
-        "Find AU Small Finance Bank's disclosure coverage and prepare an asset-quality review.",
-        "Summarize the RBI supervisory tape with dates and source links.",
-        "Find covered Indian banks and compare their research coverage."
+        "Review AU Small Finance Bank's asset quality, RBI actions and peer position with filing dates.",
+        "Which urban co-operative banks does LiquiLens cover, and how current are their filings?",
+        "Find an NBFC by name or CIN and show its RBI register entry and reviewed filings."
       ],
       "positive": [
         {
@@ -80,7 +80,7 @@
           "description": "Asset-quality review",
           "prompt": "Find AU Small Finance Bank in LiquiLens and review its available asset-quality evidence, citing disclosure dates and limitations.",
           "tools_triggered": "institution_research_coverage, bank_asset_quality_review",
-          "expected_behavior": "Discover the exact slug before requesting the asset-quality review. Preserve missing, stale and non-comparable fields and avoid declaring the institution safe or compliant."
+          "expected_behavior": "Discover the exact slug before requesting the asset-quality review. Report the review's RBI enforcement actions and peer positions as dated facts, not a rating. Preserve missing, stale and non-comparable fields and avoid declaring the institution safe or compliant."
         },
         {
           "description": "Cited institution review packet",
@@ -114,7 +114,8 @@
           "description": "Unrelated writing",
           "prompt": "Write a birthday poem for my sister."
         }
-      ]
+      ],
+      "releaseNotes": "Describes the wider coverage of small and mid-size Indian lenders and the RBI enforcement and peer context now returned with bank reviews. The hosted tools and the MCP endpoint are unchanged."
     },
     "undertow": {
       "shortDescription": "Liquidity and BTC exit checks",

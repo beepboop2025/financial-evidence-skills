@@ -36,7 +36,7 @@
       "mcp_url": "https://agents.seiche.info/products/liquilens/mcp",
       "guide_url": "https://liquilens.in/developers/",
       "kind": "core_product",
-      "plugin_version": "1.0.2",
+      "plugin_version": "1.0.3",
       "source_path": "plugins/liquilens",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -45,14 +45,14 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/liquilens-openai-1.0.2.zip",
-          "sha256": "6baea0586663c909b6ebe17dbd449011f6dd0da62676a6d73d129ef06743e17b",
-          "bytes": 30212
+          "url": "downloads/liquilens-openai-1.0.3.zip",
+          "sha256": "4c397eb5c2f684e168be4e8d6852088b5107270c5dd90815dd691332e44b7207",
+          "bytes": 31275
         },
         "gemini": {
-          "url": "downloads/liquilens-gemini-1.0.2.zip",
-          "sha256": "1abd41f645cd45468c1680f29fbf7c68af5faada76d7185fbbbc9f4d4cab1900",
-          "bytes": 28879
+          "url": "downloads/liquilens-gemini-1.0.3.zip",
+          "sha256": "eef6a68b3c3e53603b7cea1cc684e71b36344ebd08af70f188f7c15c95e872ae",
+          "bytes": 29846
         }
       }
     },

@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://beepboop2025.github.io/financial-evidence-skills"
 REPO = "https://github.com/beepboop2025/financial-evidence-skills"
 VERSION = "1.0.2"
-PRODUCT_VERSIONS = {"palimpsest": "1.0.3", "seiche": "1.0.3"}
+PRODUCT_VERSIONS = {"liquilens": "1.0.3", "palimpsest": "1.0.3", "seiche": "1.0.3"}
 
 
 def encode(value):

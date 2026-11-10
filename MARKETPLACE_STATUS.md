@@ -13,6 +13,13 @@ release acceptance. Updating the ledger does not refresh every observation.
 
 ## Latest marketplace retries
 
+- **Claude directory (10 November):** the submission portal opened on a qualifying paid owner
+  account. Five product connectors were submitted after every tool passed an MCP Inspector call.
+  NoiseFloor and MyQuant Editorial were approved and published; LiquiLens, Riptide and MyQuant App
+  Discovery are in review. Undertow, Palimpsest, NarcoScope, Trade Safety and four untitled servers
+  wait on named server fixes. Plugin bundles wait on the owner's GitHub connection. See the
+  [submission record](docs/distribution/claude-directory-20261110.md).
+
 - **15 October expansion:** Dify 0.1.1 is publicly listed and verified;
   LiquiLens.in and Seiche.info are approved on SaaSHub. The free Undertow by
   LiquiLens submission and official Cursor publisher application received

@@ -11,8 +11,8 @@ is read-only and annotated `readOnlyHint: true`.
 
 | Product | Slug | Tools | State at 18:45Z |
 | --- | --- | --- | --- |
-| NoiseFloor | `noisefloor` | 10 | Approved and published; public page not yet resolved |
-| MyQuant Editorial | `myquant-editorial` | 5 | Approved and published; public page not yet resolved |
+| NoiseFloor | `noisefloor` | 10 | Published; [public page](https://claude.ai/directory/noisefloor) resolved about 19:25Z |
+| MyQuant Editorial | `myquant-editorial` | 5 | Published; [public page](https://claude.ai/directory/myquant-editorial) resolved about 19:25Z |
 | LiquiLens | `liquilens` | 26 | In review |
 | Riptide | `riptide` | 7 | In review |
 | MyQuant App Discovery | `myquant-app-discovery` | 2 | In review |

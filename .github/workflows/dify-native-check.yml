@@ -1,0 +1,27 @@
+name: Signed Dify bank evidence after deployment
+on:
+  push:
+    branches: [verify/dify-bank-cutover-20261119]
+permissions:
+  contents: read
+jobs:
+  native:
+    timeout-minutes: 10
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned upstream Dify engine and plugin daemon
+        run: |
+          python -m pip install --quiet uv
+          uv venv --python 3.12 .native
+          uv pip install --python .native/bin/python 'graphon @ git+https://github.com/langgenius/graphon.git@4fa22141774dff80e90e4dfa98ea3e6fbf0421bb'
+          curl --fail --location --retry 2 -o /tmp/dify-slim https://github.com/langgenius/dify-plugin-daemon/releases/download/0.6.15/dify-plugin-slim-linux-amd64
+          echo '3313c7ad3bb73f3e0c6e41799d16c8359e5afbb0ded064d1e7d8fab386f114dd  /tmp/dify-slim' | sha256sum --check
+          chmod 755 /tmp/dify-slim
+      - name: Run the imported workflow with the signed plugin
+        env:
+          SLIM_BINARY_PATH: /tmp/dify-slim
+        run: .native/bin/python -u .github/dify-native-check.py

@@ -29,7 +29,7 @@ claude mcp add --transport http liquilens https://api.liquilens.in/mcp
 claude mcp add --transport http undertow https://api.seiche.info/undertow/mcp
 ```
 
-**Try this first:** What is the current US funding stress regime, and which dated funding events are next? Cite source dates and missing evidence.
+**Try this first:** Which dollar funding channel looks most stretched against its own last three years, and which underlying observations are old or missing? Cite source dates and missing evidence.
 
 **Move approved research connections between clients:** Python 0.1.17 includes `financial-evidence connect` for existing product routes, declared institution/workspace approval and portable MCP/VS Code configuration. Generation is offline; private-silo access and vendor entitlements require separately qualified infrastructure. [Connection guide](docs/connect/institution-portability.md).
 

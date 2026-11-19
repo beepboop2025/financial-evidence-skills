@@ -52,7 +52,7 @@ test('a missing channel value stays unavailable and cannot read as complete evid
   evidence.coverage.available_metrics = evidence.coverage.total_metrics;
   const output = call('seiche', evidence, fundingSettings);
   assert.equal(output.source_status, 'DATA_GAPS');
-  assert.match(output.message_text, /Discount-window primary credit: unavailable/);
+  assert.ok(output.message_text.includes(`${desk.strongest_signal.label}: unavailable`));
 });
 
 test('withheld or unavailable desk answers stay visibly unavailable with no reading', () => {

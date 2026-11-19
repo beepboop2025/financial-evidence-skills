@@ -201,10 +201,10 @@
       ],
       "audience": "Analysts building internal AI applications",
       "workflow": "Use sourced funding, bank-risk and liquidity evidence inside your Dify workflow.",
-      "artifact_label": "Install verified Dify plugin 0.1.1",
-      "artifact_url": "https://marketplace.dify.ai/plugin/beepboop2025/financial_evidence",
-      "status": "Approved Marketplace version remains 0.1.1 (publicly verified 15 October). Separate hosted 0.1.2 passed installed-archive tests in Dify Cloud on 28 October IST; update PR 3534 passed upstream checks and awaits review. Community Edition and independent adoption remain unverified.",
-      "official_source": "https://docs.dify.ai/en/develop-plugin/publishing/standards/contributor-covenant-code-of-conduct",
+      "artifact_label": "Run the Dify first-evidence workflow",
+      "artifact_url": "dify/",
+      "status": "Financial Evidence 0.1.2 is available in Dify Marketplace. Choose a public research table and inspect its dated evidence in a draft workflow.",
+      "official_source": "https://docs.dify.ai/en/cloud/use-dify/workspace/export-import-apps",
       "verified_customer_adoption": null
     },
     {

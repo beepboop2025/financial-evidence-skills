@@ -15,6 +15,17 @@ ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / "docs/platforms"
 
 
+def zip_bytes(entries: dict[str, bytes]) -> bytes:
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        for name, data in sorted(entries.items()):
+            info = zipfile.ZipInfo(name, date_time=(2026, 10, 11, 0, 0, 0))
+            info.compress_type = zipfile.ZIP_DEFLATED
+            info.external_attr = 0o100644 << 16
+            archive.writestr(info, data)
+    return buffer.getvalue()
+
+
 def page(manifest: dict) -> bytes:
     escape = html.escape
     cards = []
@@ -78,6 +89,8 @@ def assets() -> dict[str, bytes]:
                 ROOT / "docs/start/agent-workflows.md", ROOT / "docs/start/learning.md",
                 ROOT / "integrations/trading-agents/recurring_review.py",
                 DEST / "pilot-scorecard.csv", DEST / "native-packages.md",
+                DEST / "dify/index.html", DEST / "dify/first-evidence.yml", DEST / "dify/native-check-20261119.json",
+                ROOT / "docs/distribution/dify-marketplace-archive-20261029.json",
                 DEST / "native-packages.json", DEST / "hosted-native-packages.json",
                 ROOT / "docs/integrations/dify-native-proof-20261028.json",
                 ROOT / "docs/distribution/dify-submission-20261028.json",
@@ -190,18 +203,21 @@ Upstream data retains its source-specific terms.
 Retain observation and availability clocks; never backfill current captures into
 historical decisions. No broker credentials or order execution is included.
 """
-    buffer = io.BytesIO()
-    with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED) as archive:
-        entries = {str(path.relative_to(ROOT)): path.read_bytes() for path in selected}
-        entries["README.md"] = readme
-        for name, data in sorted(entries.items()):
-            info = zipfile.ZipInfo(name, date_time=(2026, 10, 11, 0, 0, 0))
-            info.compress_type = zipfile.ZIP_DEFLATED
-            info.external_attr = 0o100644 << 16
-            archive.writestr(info, data)
-    result = {"index.html": page(manifest), "finance-platform-kit.zip": buffer.getvalue(),
+    workflow = (DEST / "dify/first-evidence.yml").read_bytes()
+    manifest_text = (
+        "format: dify.app\nformat_version: 2\napps:\n- path: app.yaml\n"
+        f"  size: {len(workflow)}\n  sha256: {hashlib.sha256(workflow).hexdigest()}\n"
+    )
+    dify_app = zip_bytes({"app.yaml": workflow, "manifest.yaml": manifest_text.encode()})
+    entries = {str(path.relative_to(ROOT)): path.read_bytes() for path in selected}
+    entries["README.md"] = readme
+    entries["docs/platforms/dify/first-evidence.ifpkg"] = dify_app
+    result = {"index.html": page(manifest), "finance-platform-kit.zip": zip_bytes(entries),
+              "dify/first-evidence.ifpkg": dify_app,
               "platform-search.mjs": (DEST / "platform-search.mjs").read_bytes(), **downloads}
     result["hosted-native-packages.json"] = (DEST / "hosted-native-packages.json").read_bytes()
+    for name in ("dify/index.html", "dify/first-evidence.yml", "dify/native-check-20261119.json"):
+        result[name] = (DEST / name).read_bytes()
     result["colab-verification-20261011.json"] = (DEST / "colab-verification-20261011.json").read_bytes()
     result["n8n-publication-20261011.json"] = (DEST / "n8n-publication-20261011.json").read_bytes()
     result["n8n-creator-submission-20261011.json"] = (DEST / "n8n-creator-submission-20261011.json").read_bytes()

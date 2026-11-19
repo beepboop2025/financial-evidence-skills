@@ -5,8 +5,7 @@
 Use these versions for the central service at
 `https://agents.seiche.info/v1/research`. The exact downloaded bytes passed
 the checks in [current package receipts](hosted-native-packages.json).
-n8n 0.1.1 is published on npm. Dify 0.1.2 passed installed-package tests in Cloud
-and is submitted for marketplace review; the approved Dify listing remains 0.1.1.
+n8n 0.1.1 is published on npm. Dify Marketplace publishes Financial Evidence 0.1.2. [Run its first-evidence workflow](dify/).
 
 ### n8n hosted 0.1.1
 
@@ -46,13 +45,7 @@ and offset `0`; invalid limit `251` was rejected. Outputs retained sources and
 diagnostics. The temporary workflow and candidate plugin were removed afterward.
 See the [sanitized native proof](../integrations/dify-native-proof-20261028.json).
 
-[Update PR 3534](https://github.com/langgenius/dify-plugins/pull/3534) is submitted
-and passed upstream checks; review and marketplace publication are pending.
-The [submission receipt](../distribution/dify-submission-20261028.json) records
-the exact package and submitted revision. Use the local-package route in a
-permitted workspace to evaluate 0.1.2; the approved Marketplace version remains
-0.1.1. Outbound policies must permit `agents.seiche.info`; an
-`api.seiche.info`-only allowlist is insufficient for 0.1.2.
+Dify merged [update PR 3534](https://github.com/langgenius/dify-plugins/pull/3534) on 28 October. Install [Financial Evidence from the Marketplace](https://marketplace.dify.ai/plugin/beepboop2025/financial_evidence) and follow the [Dify workflow guide](dify/). Allow outbound HTTPS to `agents.seiche.info`. The [signed archive receipt](../distribution/dify-marketplace-archive-20261029.json) identifies the Marketplace download separately from the local test archive.
 
 The repeat used cached provider evidence, not a fresh upstream retrieval.
 Money-market data retained a PARTIAL source status, bank data retained
@@ -66,7 +59,7 @@ validity, redistribution rights, regulatory compliance or customer adoption.
 The following versioned downloads and observations remain historical.
 For new central connections, choose the current hosted clients above.
 
-The n8n package is published on npm; Dify 0.1.1 is approved and publicly listed. Check each package's publication state, file digest and
+The following receipts cover the earlier n8n and Dify packages. Check each package's publication state, file digest and
 validation scope in [package receipts](native-packages.json).
 
 ## n8n
@@ -140,8 +133,7 @@ a successful workflow is not evidence that every source value is available.
 approved and merged on 11 October. The [public Marketplace listing](https://marketplace.dify.ai/plugin/beepboop2025/financial_evidence)
 was verified on 15 October: version 0.1.1, Verified by Dify, with an install link.
 This historical proof does not establish installed-archive execution of 0.1.1.
-The separate central-hosted 0.1.2 has its own Cloud acceptance and pending
-marketplace update [above](#dify-hosted-012).
+The [current 0.1.2 package](#dify-hosted-012) has its own Cloud test and signed Marketplace download.
 The [prior 0.1.0 receipt](https://github.com/beepboop2025/financial-evidence-skills/blob/c767edbf58e173b60b085cf637880b5bd9d4bb52/docs/platforms/native-packages.json)
 is historical and must not be relabeled as this 0.1.1 package.
 

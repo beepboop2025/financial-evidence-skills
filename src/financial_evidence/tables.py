@@ -299,19 +299,30 @@ def _bank_filings(source: dict) -> list[dict]:
     for index, raw in enumerate(_items(filings.get("rows"))):
         item = _obj(raw)
         metrics = _obj(item.get("metrics"))
+        # The compact public board emits only observed headline percentages.
+        # A full disclosure, even a malformed one, never falls back to sibling values.
+        compact = "metrics" not in item and filings.get("detail_tool") == "bank_asset_quality_review"
+        row_path = f"/current_disclosures/rows/{index}"
         sources = _items(item.get("sources"))
         observation_url = next((url for url in sources if isinstance(url, str) and url.startswith("https://")), None)
         for name in ("gnpa_pct", "nnpa_pct", "crar_pct", "cet1_pct", "tier1_pct", "casa_pct", "lcr_pct"):
             metric = _obj(metrics.get(name))
+            if compact and name in ("gnpa_pct", "nnpa_pct", "crar_pct") and name in item:
+                value, unit = item[name], "percent"
+                source_field = f"{row_path}/{name}"
+                observed = item.get("status") == "observed"
+            else:
+                value, unit = metric.get("value"), _text(metric.get("unit"))
+                source_field = f"{row_path}/metrics/{name}/value" if "value" in metric else row_path
+                observed = item.get("status") == "observed" and metric.get("status") == "observed"
             blocked = any(_blocked(node, raw_observation=True) for node in (document, filings, item, metric))
-            observed = item.get("status") == "observed" and metric.get("status") == "observed"
-            number = _number(metric.get("value")) if not blocked and observed and metric.get("unit") == "percent" else None
+            number = _number(value) if observed and not blocked and unit == "percent" else None
             rows.append(_row(
                 source, "bank_risk", entity_id=_text(item.get("slug")), entity_name=_text(item.get("name")),
-                metric=name, value=number, unit=_text(metric.get("unit")), as_of=_text(item.get("period_end")),
+                metric=name, value=number, unit=unit, as_of=_text(item.get("period_end")),
                 published_at=_text(item.get("publication_date")), knowledge_time=_text(item.get("available_at")),
                 source_status=_text(item.get("status")), availability="published" if number is not None else "unavailable",
-                source_field=f"/current_disclosures/rows/{index}/metrics/{name}/value", observation_url=observation_url,
+                source_field=source_field, observation_url=observation_url,
                 rights_status=_text(metric.get("rights_status") or item.get("rights_status") or filings.get("rights_status")),
                 context=_json({"scope": "reported_filing_ratio", "score_authority": False,
                     "basis": metric.get("basis"), "source_documents": item.get("source_documents", []),

@@ -115,6 +115,8 @@ institutional-readiness certification.
 
 **Automate funding research:** [versioned packets, captured changes, Python, OpenBB and a local agent tool](https://beepboop2025.github.io/financial-evidence-skills/funding/automate/). Public access requires no account; optional application keys use explicit measurement consent. The hosted packet API and downloadable templates are versioned separately from the v0.1.17 wheel.
 
+[Run a first Dify workflow](https://beepboop2025.github.io/financial-evidence-skills/platforms/dify/) to inspect a dated funding, bank or market-liquidity observation with the signed Marketplace plugin.
+
 **Three concrete jobs:** [funding review, Cosmos Bank NPAs and a $100k BTC exit](https://beepboop2025.github.io/financial-evidence-skills/automations/)
 with native n8n workflows and optional Slack/Telegram delivery. The
 [Cursor task plugin](.cursor-plugin/plugin.json) bundles the same three focused

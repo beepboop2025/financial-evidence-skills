@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get a dated financial observation in Dify | Financial Evidence</title>
+<meta name="description" content="Run one bank, funding or market-liquidity lookup inside Dify with the signed Financial Evidence plugin. Read the original observation date and source diagnostics.">
+<link rel="canonical" href="https://beepboop2025.github.io/financial-evidence-skills/platforms/dify/">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+main{max-width:56rem;padding-block:3rem}h1{max-width:18ch;font-size:clamp(2.4rem,5vw,4rem)}h2{font-size:1.6rem;max-width:none}section{margin:2.5rem 0}td,th{padding:.65rem}.actions{margin:1.4rem 0}.table-wrap{max-width:100%}
+</style></head><body>
+<header class="site-header"><nav><a class="brand" href="../../">Financial Evidence</a><a href="../">Platform guides</a></nav></header>
+<main><h1>Get a dated financial observation in Dify</h1>
+<p class="lede">Run one public lookup in your workspace. The workflow returns the complete evidence page, including units, observation dates, sources and diagnostics. It uses zero model tokens.</p>
+<div class="actions"><a class="button primary" href="first-evidence.ifpkg" download>Download the Dify workflow</a><a class="button" href="https://marketplace.dify.ai/plugin/beepboop2025/financial_evidence">View the signed plugin</a></div>
+<section><h2>Run your first lookup</h2><ol>
+<li>In Dify Studio, choose <strong>Create → Import App</strong> and upload <code>first-evidence.ifpkg</code> to create a new draft. If your Studio offers <strong>Import DSL File</strong>, use the <a href="first-evidence.yml" download>YAML workflow</a>.</li>
+<li>Confirm the Financial Evidence Marketplace dependency if Dify requests it. The workflow pins version <strong>0.1.2</strong>. Your workspace must allow plugins and outbound HTTPS to <code>agents.seiche.info</code>.</li>
+<li>Choose <strong>Test Run</strong>. Keep the default <code>market_liquidity</code> table and <code>CRYPTO</code> entity. Run the workflow and open <code>evidence</code> in the output. To try another question, change both fields using the table below.</li>
+</ol></section>
+<section><h2>What to look for</h2><p>In <code>evidence[0].results[0]</code>, read <code>metric</code>, <code>value</code>, <code>unit</code>, <code>as_of</code> and <code>availability</code>. Follow <code>source_url</code> and read the page’s <code>sources</code> and <code>diagnostics</code>. A null value indicates unavailable evidence. If <code>results</code> is empty, inspect <code>transport_status</code> and the source diagnostics. An unavailable source can produce an empty page even for a covered entity. On a complete response, check the table and entity ID.</p>
+<p>For example, on 19 November 2026 the crypto lookup returned <code>stress_percentile</code> of <strong>0.2844</strong> for the Binance BTC basis metric. The published unit was <code>ratio</code> and the observation was dated 19 November. Your run will use the current source.</p>
+<div class="table-wrap"><table><thead><tr><th>Question</th><th>Research table</th><th>Entity ID</th></tr></thead>
+<tbody><tr><td>What is the dated US funding benchmark?</td><td><code>money_markets</code></td><td><code>US-USD</code></td></tr>
+<tr><td>Is a gross NPA observation available for AU Small Finance Bank?</td><td><code>bank_risk</code></td><td><code>au-sfb</code></td></tr>
+<tr><td>Which dated crypto liquidity observation did Undertow publish?</td><td><code>market_liquidity</code></td><td><code>CRYPTO</code></td></tr></tbody></table></div></section>
+<p>If the bank row is unavailable, open the <a href="../../start/workflows.html?workflow=institutions&amp;selection=au-sfb">AU Small Finance Bank institution review</a> to see the filing period, coverage and original disclosures.</p>
+<p>The tool sends the table name, public entity ID and pagination to the hosted research service. Use public identifiers only. Each run requests one row. Source observations may remain unchanged between runs.</p>
+<p>Dify 1.20.0’s package reader accepted this download. Its workflow engine ran all three nodes with the signed plugin on 19 November 2026. <a href="native-check-20261119.json">See the five verification cases</a>.</p>
+<p><a href="https://marketplace.dify.ai/api/v1/plugins/beepboop2025/financial_evidence">Marketplace package record</a> · <a href="../../integrations/dify-native-proof-20261028.json">Earlier Dify Cloud plugin test</a></p></main></body></html>

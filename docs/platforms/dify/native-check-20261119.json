@@ -1,0 +1,129 @@
+{
+  "observed_at": "2026-11-19T16:51:18.444412+00:00",
+  "run_url": "https://github.com/beepboop2025/financial-evidence-skills/actions/runs/44570649960",
+  "verification_commit": "111a76d5ad4e1c3f69d648f0e2d95502249878b8",
+  "dify_version": "1.20.0",
+  "package_reader_image": "langgenius/dify-api@sha256:9acb839cd797532ee2fd7a357c9bca0c15710ace99ceca3702ea990239d5c8b7",
+  "package_readback": "AppPackageService.read_package accepted the archive and returned the same application DSL.",
+  "graphon_commit": "4fa22141774dff80e90e4dfa98ea3e6fbf0421bb",
+  "slim_version": "0.6.15",
+  "signed_marketplace_identifier": "beepboop2025/financial_evidence:0.1.2@1956fc5e710e6c5607d3b11d02d727068908a7aa88630c69304fec8f1368fe22",
+  "signed_plugin_sha256": "63c7f514033a4aed019a513883c19f7d28e8720c9ec0c7b849d250e5a890f238",
+  "workflow_yaml_sha256": "f07e043fe6b7f078e724f6778e2498e67057a78df609d1ab1127cd638fe4f23e",
+  "workflow_ifpkg_sha256": "a547568ccd98aa40a972b1c95480b951de183e222bb0477ad1af5f4ce1cfab3c",
+  "model_nodes": 0,
+  "cases": [
+    {
+      "inputs": {
+        "dataset": "market_liquidity",
+        "entity": "CRYPTO"
+      },
+      "successful_nodes": [
+        "100",
+        "200",
+        "300"
+      ],
+      "transport_status": "complete",
+      "result_count": 1,
+      "observation": {
+        "entity_id": "CRYPTO",
+        "metric": "stress_percentile",
+        "value": 0.2844,
+        "unit": "ratio",
+        "as_of": "2026-11-19",
+        "availability": "published",
+        "source_url": "https://api.seiche.info/undertow/x402/summary"
+      },
+      "sources": 1,
+      "diagnostics": 0
+    },
+    {
+      "inputs": {
+        "dataset": "money_markets",
+        "entity": "US-USD"
+      },
+      "successful_nodes": [
+        "100",
+        "200",
+        "300"
+      ],
+      "transport_status": "complete",
+      "result_count": 1,
+      "observation": {
+        "entity_id": "US-USD",
+        "metric": "SOFR_MEDIAN",
+        "value": 3.9,
+        "unit": "%",
+        "as_of": "2026-11-18",
+        "availability": "AVAILABLE",
+        "source_url": "https://api.seiche.info/api/v2/money-markets"
+      },
+      "sources": 1,
+      "diagnostics": 0
+    },
+    {
+      "inputs": {
+        "dataset": "bank_risk",
+        "entity": "au-sfb"
+      },
+      "successful_nodes": [
+        "100",
+        "200",
+        "300"
+      ],
+      "transport_status": "complete",
+      "result_count": 1,
+      "observation": {
+        "entity_id": "au-sfb",
+        "metric": "gnpa_pct",
+        "value": null,
+        "unit": null,
+        "as_of": "2026-09-30",
+        "availability": "unavailable",
+        "source_url": "https://api.liquilens.in/api/failure-radar/board"
+      },
+      "sources": 1,
+      "diagnostics": 0
+    },
+    {
+      "inputs": {
+        "dataset": "market_liquidity"
+      },
+      "successful_nodes": [
+        "100",
+        "200",
+        "300"
+      ],
+      "transport_status": "complete",
+      "result_count": 1,
+      "observation": {
+        "entity_id": "UST",
+        "metric": "stress_percentile",
+        "value": null,
+        "unit": "ratio",
+        "as_of": "2026-11-17",
+        "availability": "unavailable",
+        "source_url": "https://api.seiche.info/undertow/x402/summary"
+      },
+      "sources": 1,
+      "diagnostics": 0
+    },
+    {
+      "inputs": {
+        "dataset": "market_liquidity",
+        "entity": "INVALID-PUBLIC-ID"
+      },
+      "successful_nodes": [
+        "100",
+        "200",
+        "300"
+      ],
+      "transport_status": "complete",
+      "result_count": 0,
+      "observation": null,
+      "sources": 1,
+      "diagnostics": 0
+    }
+  ],
+  "scope": "Owner-run Dify package import-reader and workflow-engine verification. No Cloud Studio tenant or independent customer ran this test."
+}

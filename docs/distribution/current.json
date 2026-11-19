@@ -25,12 +25,13 @@
     },
     {
       "name": "Seiche",
-      "version": "0.16.5",
+      "version": "0.16.14",
       "ecosystem": "Python / MCP",
-      "url": "https://pypi.org/project/seiche/0.16.5/",
-      "receipt": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fseiche/versions/0.16.5",
-      "source_commit": "793dc42b391141c20aee911f6d18f000bd3feb8a",
-      "description": "Retrieve compact funding context and exact metrics, with source dates, coverage and diagnostic limits. Hosted source identity is checked separately from package publication."
+      "url": "https://pypi.org/project/seiche/0.16.14/",
+      "receipt": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.beepboop2025%2Fseiche/versions/0.16.14",
+      "source_commit": "26e0e053570934d2b0fc779428872b953c2f75a7",
+      "description": "Retrieve compact funding context and exact metrics, with source dates, coverage and diagnostic limits. Hosted source identity is checked separately from package publication.",
+      "verified_at": "2026-11-18T19:01:32.133856+00:00"
     },
     {
       "name": "NoiseFloor",

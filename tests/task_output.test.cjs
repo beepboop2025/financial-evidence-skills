@@ -1,11 +1,13 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const { formatTaskResponse } = require('../integrations/n8n/task-output.cjs');
+const fs = require('node:fs');
+const path = require('node:path');
 const now = new Date('2026-09-27T10:00:00Z');
-const funding = () => ({ schema: 'seiche.public.v2', generated_at: now.toISOString(),
-  conclusion: { regime: 'EROSION', value: 42, coverage_pct: 90 },
-  data_quality: { status_counts: { fresh: 2, aging: 1, dead: 0, unknown: 1 } },
-  proof: { historical_evidence: { validated_backtest_eligible: false } } });
+// A real money_market_context {"section": "summary"} answer (19 November 2026), trimmed; its clock is moved to the test clock.
+const desk = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures/seiche-money-market-summary-20261119.json'), 'utf8'));
+const funding = () => ({ ...structuredClone(desk), snapshot_generated_at: now.toISOString() });
+const fundingSettings = { toolInput: { section: 'summary' }, maxAgeSeconds: 21600 };
 const bank = () => ({ schema: 'liquilens.bank-specialisation.v1', slug: 'cosmos-ucb',
   status: 'observed', scope: 'research', score_authority: false, can_authorize_credit: false,
   period_end: '2026-03-31', sources: ['https://example.com/filing.pdf'],
@@ -19,25 +21,60 @@ const call = (product, evidence, config = settings) => formatTaskResponse(produc
 
 test('transport errors and malformed response shapes cannot produce updates', () => {
   for (const response of [{ isError: true, structuredContent: funding() }, { error: {} }, {}, { content: [{ type: 'text', text: 'not json' }] }]) {
-    assert.throws(() => formatTaskResponse('seiche', response, settings, now));
+    assert.throws(() => formatTaskResponse('seiche', response, fundingSettings, now));
   }
+  const legacy = { schema: 'seiche.public.v2', generated_at: now.toISOString(), conclusion: {}, data_quality: {} };
+  assert.throws(() => call('seiche', legacy, fundingSettings));
 });
 
-test('source gaps and validation flags survive; summary cannot silently imply complete funding evidence', () => {
+test('the funding task reads the money-market desk and keeps its gaps, dates and units', () => {
   const evidence = funding();
-  const output = call('seiche', evidence);
+  const output = call('seiche', evidence, fundingSettings);
+  assert.equal(output.tool, 'money_market_context');
   assert.equal(output.source_status, 'DATA_GAPS');
   assert.strictEqual(output.evidence, evidence);
-  assert.match(output.message_text, /1 unknown/);
-  delete evidence.data_quality.status_counts.unknown;
-  assert.throws(() => call('seiche', evidence));
+  const s = desk.strongest_signal, c = desk.countercase, counts = desk.freshness.status_counts;
+  assert.ok(output.message_text.includes(`${s.label}: ${s.value} ${s.unit}, observed ${s.asof} (${s.freshness})`));
+  assert.ok(output.message_text.includes(`Countercase: ${c.label}: ${c.value} ${c.unit}, observed ${c.asof}`));
+  assert.ok(output.message_text.includes(`${counts.fresh} fresh, ${counts.aging} aging, ${counts.stale} stale, ${counts.unavailable} unavailable`));
+  assert.ok(output.message_text.includes(`Metrics available: ${desk.coverage.available_metrics} of ${desk.coverage.total_metrics}`));
+  assert.match(output.message_text, /does not reconstruct/);
+  assert.doesNotMatch(output.message_text, /\u2014|\u2013/);
+  delete evidence.freshness.status_counts.stale;
+  assert.throws(() => call('seiche', evidence, fundingSettings));
+  assert.throws(() => call('seiche', funding(), { ...fundingSettings, toolInput: { section: 'all' } }));
+});
+
+test('a missing channel value stays unavailable and cannot read as complete evidence', () => {
+  const evidence = funding();
+  evidence.strongest_signal.value = null;
+  evidence.freshness.status_counts = { fresh: 1, aging: 0, stale: 0, unavailable: 0 };
+  evidence.coverage.available_metrics = evidence.coverage.total_metrics;
+  const output = call('seiche', evidence, fundingSettings);
+  assert.equal(output.source_status, 'DATA_GAPS');
+  assert.ok(output.message_text.includes(`${desk.strongest_signal.label}: unavailable`));
+});
+
+test('withheld or unavailable desk answers stay visibly unavailable with no reading', () => {
+  for (const change of [{ ok: false, reason: 'Source rights are not qualified.' },
+    { publication_projection: { status: 'withheld', reason: 'Source rights are not qualified.' } }]) {
+    const evidence = { ...funding(), ...change };
+    const output = call('seiche', evidence, fundingSettings);
+    assert.equal(output.source_status, 'UNAVAILABLE');
+    assert.match(output.message_text, /Source rights are not qualified/);
+    assert.doesNotMatch(output.message_text, /Most stretched|Countercase|SOURCE_REPORTED/);
+    assert.strictEqual(output.evidence, evidence);
+  }
 });
 
 test('stale and future snapshot clocks withhold current funding readings and BTC costs', () => {
   for (const date of ['2026-09-26T10:00:00Z', '2026-09-28T10:00:00Z']) {
-    const f = funding(); f.generated_at = date;
+    const f = funding(); f.snapshot_generated_at = date;
     const b = exit(); b.generated_at = date;
-    assert.doesNotMatch(call('seiche', f).message_text, /gauge 42/);
+    const seiche = call('seiche', f, fundingSettings);
+    assert.doesNotMatch(seiche.message_text, /Most stretched channel:/);
+    assert.match(seiche.source_status, /STALE_SNAPSHOT|FUTURE_SOURCE_CLOCK/);
+    assert.strictEqual(seiche.evidence, f);
     const result = call('undertow', b, { ...settings, toolInput: { size_usd: 100000 } });
     assert.doesNotMatch(result.message_text, /alpha: 1.25/);
     assert.strictEqual(result.evidence, b);
@@ -84,7 +121,7 @@ test('BTC depth gaps, rung approximation and excluded fees stay visible; wrong s
 test('MCP text fallback preserves the same evidence contract', () => {
   const evidence = funding();
   for (const text of [evidence, JSON.stringify(evidence)]) {
-    const output = formatTaskResponse('seiche', { content: [{ type: 'text', text }] }, settings, now);
+    const output = formatTaskResponse('seiche', { content: [{ type: 'text', text }] }, fundingSettings, now);
     assert.deepEqual(output.evidence, evidence);
   }
 });

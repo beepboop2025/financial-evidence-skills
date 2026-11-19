@@ -29,7 +29,7 @@ claude mcp add --transport http liquilens https://api.liquilens.in/mcp
 claude mcp add --transport http undertow https://api.seiche.info/undertow/mcp
 ```
 
-**Try this first:** What is the current US funding stress regime, and which dated funding events are next? Cite source dates and missing evidence.
+**Try this first:** Which dollar funding channel looks most stretched against its own last three years, and which underlying observations are old or missing? Cite source dates and missing evidence.
 
 **Move approved research connections between clients:** Python 0.1.17 includes `financial-evidence connect` for existing product routes, declared institution/workspace approval and portable MCP/VS Code configuration. Generation is offline; private-silo access and vendor entitlements require separately qualified infrastructure. [Connection guide](docs/connect/institution-portability.md).
 
@@ -94,7 +94,7 @@ the hosted OpenBB desk. Institutional vendor acceptance remains separate.
 
 **[OpenBB Research Desk](integrations/openbb/README.md), Workspace 1.3.0 source.**
 Seven cited datasets, a seven-tab Workspace app, an archived USD funding review,
-benchmark history charts, typed REST responses and a nine-tool MCP server connect
+benchmark history charts, typed REST responses and a twelve-tool MCP server connect
 all four projects. The hosted service is `https://agents.seiche.info/v1/research`.
 Install
 `.[openbb,workspace]` from this checkout, then run `openbb-build` and
@@ -271,10 +271,10 @@ configuration until a separately verified release updates them.
 
 Gemini CLI can install this repository as an extension. Its root
 [`gemini-extension.json`](gemini-extension.json) connects only to the fixed
-hosted workspace and allowlists its nine read-only tools; the
+hosted workspace and allows nine of its read-only tools; the
 mirrored `skills/financial-evidence` folder gives Gemini the domain routing
-instructions as well. Install the signed 0.1.17 release to use the
-central nine-tool workspace:
+instructions as well. Install the signed 0.1.17 release to use those
+nine tools of the central workspace:
 
 ```bash
 gemini extensions install https://github.com/beepboop2025/financial-evidence-skills \
@@ -323,8 +323,9 @@ workspace without a local Python process.
 The repository also includes editor-specific workspace configuration:
 [`.vscode/mcp.json`](.vscode/mcp.json) uses VS Code's top-level `servers`
 object, while [`.cursor/mcp.json`](.cursor/mcp.json) uses Cursor's top-level
-`mcpServers` object. Both current files use the hosted nine-tool workspace.
-The install links below connect to the same central nine-tool workspace.
+`mcpServers` object. Both current files use the hosted workspace, which listed
+twelve tools on 18 November 2026. The install links below connect to the same
+central workspace.
 They require no local Python process.
 
 VS Code can install the server through its protocol handler:
@@ -363,7 +364,7 @@ cross-platform `uv` runtime and requires no API key or configuration.
   `https://agents.seiche.info/products/financial-evidence/mcp`; no local runtime, account, or
   API key is required.
 - **Gemini CLI:** the root extension manifest bundles the Agent Skill and
-  allowlists the nine tools exposed by the hosted research workspace.
+  allows nine of the tools exposed by the hosted research workspace.
 - **Claude Code:** the self-hosted `liquidity-lab` marketplace installs the
   versioned plugin, Agent Skill, and MCP configuration from this repository.
 - **Codex:** the repository marketplace installs the Agent Skill and public

@@ -9,7 +9,7 @@ Last verified release: 0.1.17
 Geography research: Python 0.1.17 adds bounded district, state and cooperative-bank lookups through the product client and MCP bridge. Preserve source dates, missing values and research-only authority. Guide: https://beepboop2025.github.io/financial-evidence-skills/agents/GEOGRAPHY_RESEARCH.md . The separate public three-tool router remains 0.1.16.
 Optional workflow feedback reasons and requested data categories are available in 0.1.17. Private reports separate feedback from requests and exclude tests from improvement priorities; sharing requires explicit enrollment.
 Published topics: money-market, capital-market, china-economy, bank-risk, market-liquidity, gift-city, forex, gold.
-Last updated: 2026-11-05
+Last updated: 2026-11-19
 Publisher: LIQUILENS PRIVATE LIMITED
 License: MIT for the software; source publishers retain rights in upstream data.
 

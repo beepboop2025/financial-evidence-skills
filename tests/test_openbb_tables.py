@@ -114,6 +114,45 @@ class ProjectionTests(unittest.TestCase):
             output = query_packet(packet("bank-risk", amended), "bank_risk")["results"]
             self.assertTrue(all(row["value"] is None for row in output))
 
+    def test_compact_board_publishes_only_explicit_observed_headline_percentages(self):
+        filing = {"slug": "au-sfb", "name": "AU Small Finance Bank", "status": "observed",
+                  "period_end": "2026-09-30", "publication_date": "2026-10-24",
+                  "gnpa_pct": 1.99, "nnpa_pct": 0, "crar_pct": None, "cet1_pct": 94}
+        summary = {"schema": "liquilens.current-bank-filings.v1", "detail_tool": "bank_asset_quality_review",
+                   "rows": [filing]}
+        doc = {"current_disclosures": summary, "rows": []}
+
+        def project(document):
+            rows = query_packet(packet("bank-risk", document), "bank_risk")["results"]
+            return {row["metric"]: row for row in rows}
+
+        rows = project(doc)
+        self.assertEqual(rows["gnpa_pct"]["value"], 1.99)
+        self.assertEqual(rows["gnpa_pct"]["unit"], "percent")
+        self.assertEqual(rows["gnpa_pct"]["availability"], "published")
+        self.assertEqual(rows["gnpa_pct"]["as_of"], "2026-09-30")
+        self.assertEqual(rows["gnpa_pct"]["published_at"], "2026-10-24")
+        self.assertIsNone(rows["gnpa_pct"]["observation_url"])
+        self.assertIsNone(rows["gnpa_pct"]["knowledge_time"])
+        self.assertEqual(rows["nnpa_pct"]["value"], 0)
+        self.assertEqual(rows["crar_pct"]["availability"], "unavailable")
+        self.assertIsNone(rows["cet1_pct"]["value"])
+        self.assertIsNone(rows["tier1_pct"]["value"])
+        for name in ("gnpa_pct", "nnpa_pct", "crar_pct"):
+            self.assertEqual(rows[name]["source_field"], f"/current_disclosures/rows/0/{name}")
+        self.assertEqual(rows["tier1_pct"]["source_field"], "/current_disclosures/rows/0")
+
+        for mutation in ({"status": "stale"}, {"rights_status": "derived_only"},
+                         {"publication_allowed": False}, {"gnpa_pct": False}, {"gnpa_pct": "1.99"},
+                         {"metrics": None}, {"metrics": {"gnpa_pct": {"status": "withheld"}}}):
+            with self.subTest(mutation=mutation):
+                modified = {**doc, "current_disclosures": {**summary, "rows": [{**filing, **mutation}]}}
+                self.assertIsNone(project(modified)["gnpa_pct"]["value"])
+        for modified in ({**doc, "rights_status": "restricted"},
+                         {**doc, "current_disclosures": {**summary, "publication_allowed": False}},
+                         {**doc, "current_disclosures": {**summary, "detail_tool": "unknown"}}):
+            self.assertIsNone(project(modified)["gnpa_pct"]["value"])
+
     def test_malformed_mcp_params_and_unknown_arguments_do_not_crash_or_fetch(self):
         result = mcp.dispatch(
             {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": []}

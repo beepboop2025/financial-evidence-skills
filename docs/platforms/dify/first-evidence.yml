@@ -47,14 +47,14 @@ workflow:
           variable: dataset
           type: select
           required: true
-          options: [money_markets, bank_risk, market_liquidity]
-          default: money_markets
+          options: [market_liquidity, money_markets, bank_risk]
+          default: market_liquidity
         - label: Public entity ID (optional)
           variable: entity
           type: text-input
           required: false
           max_length: 100
-          default: ''
+          default: CRYPTO
     - id: '200'
       type: custom
       position: {x: 365, y: 150}

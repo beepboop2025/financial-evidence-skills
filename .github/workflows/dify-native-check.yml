@@ -25,3 +25,24 @@ jobs:
         env:
           SLIM_BINARY_PATH: /tmp/dify-slim
         run: .native/bin/python -u .github/dify-native-check.py
+  app-package:
+    timeout-minutes: 10
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read the packaged app with the production Dify importer
+        run: |
+          base64 -d .github/dify-native-app.b64 > /tmp/first-evidence.ifpkg
+          sha256sum /tmp/first-evidence.ifpkg
+          docker run --rm -i --entrypoint python -v /tmp/first-evidence.ifpkg:/tmp/check.ifpkg:ro \
+            -v "$PWD/docs/platforms/dify/first-evidence.yml:/tmp/check.yml:ro" \
+            langgenius/dify-api@sha256:9acb839cd797532ee2fd7a357c9bca0c15710ace99ceca3702ea990239d5c8b7 - <<'PY'
+          import yaml
+          from services.app_package_service import AppPackageService
+          with open('/tmp/check.ifpkg','rb') as stream:
+              validated = AppPackageService().read_package(stream)
+          assert validated is not None
+          assert yaml.safe_load(validated.dsl) == yaml.safe_load(open('/tmp/check.yml'))
+          assert not validated.has_resources and not validated.workflow_tools
+          print('DIFY_APP_PACKAGE_VALIDATED', '1.20.0')
+          PY

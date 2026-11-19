@@ -138,7 +138,7 @@ Packet `status` equals `transport_status` and describes retrieval only. Every pa
 
 - [Current release and discovery hub](https://beepboop2025.github.io/financial-evidence-skills/distribution/) and [machine-readable catalog](https://beepboop2025.github.io/financial-evidence-skills/distribution/current.json): accepted packages, nine existing Glama repository listings and eighteen hosted connector records, with individual observation clocks.
 - Financial Evidence Python 0.1.17: https://pypi.org/project/financial-evidence/0.1.17/ . npm AI SDK 0.1.2: https://www.npmjs.com/package/@moomoo202020/financial-evidence-ai-sdk . Package releases are separate from hosted runtime identities and pending directory submissions.
-- Seiche Python/MCP 0.16.5: https://pypi.org/project/seiche/0.16.5/ . Compact funding context, exact metric retrieval and compatible diagnostics retain source and coverage boundaries.
+- Seiche Python/MCP 0.16.14: https://pypi.org/project/seiche/0.16.14/ . Compact funding context, exact metric retrieval and compatible diagnostics retain source and coverage boundaries.
 - NoiseFloor Python/MCP 0.4.3: https://pypi.org/project/noisefloor/0.4.3/ . Ten tools with typed output contracts, unchanged input validation, calculations and returned tool payloads. [Accepted package receipt](https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-0.4.3.json). [Hosted 0.4.3 verification](https://beepboop2025.github.io/financial-evidence-skills/distribution/noisefloor-hosted-0.4.3.json).
 
 ## Optional correlation research

@@ -73,7 +73,7 @@ function formatTaskResponse(product, response, settings, now = new Date()) {
       else lines.push('Snapshot is outside the configured age window; current readings withheld.');
       lines.push(`Sources: ${counts.fresh} fresh, ${counts.aging} aging, ${counts.stale} stale, ${counts.unavailable} unavailable. Metrics available: ${cov.available_metrics} of ${cov.total_metrics}.`);
       lines.push('Snapshot time is not the date of every observation. A three-year rank is descriptive context, not a forecast, probability or trade signal.');
-      lines.push('Seiche withholds its legacy stress reading and forecasts while their source rights are qualified; this update does not reconstruct them.');
+      lines.push('The Seiche MCP does not serve its legacy stress score or forecasts while their source rights are qualified; this update does not reconstruct them.');
       lines.push('https://seiche.info/money-markets/');
     }
   } else if (product === 'liquilens') {

@@ -100,7 +100,7 @@ from financial_evidence.trading import ProductClient
 async def review():
     client = ProductClient(mode="shadow", timeout=30, cache_seconds=0)
     result = await client.call(
-        "seiche", "funding_stress_now", {}, task="funding_review"
+        "seiche", "money_market_context", {"section": "summary"}, task="funding_review"
     )
     return result
 

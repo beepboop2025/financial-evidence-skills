@@ -1,0 +1,400 @@
+{
+ "ok": true,
+ "schema": "seiche.money-market-desk.v1",
+ "asof": "2026-11-17",
+ "snapshot_generated_at": "2026-11-19T06:26:42+00:00",
+ "context_only": true,
+ "selection": "summary",
+ "chart_history_included": false,
+ "publication_projection": {
+  "policy": "seiche.public-source-rights.2026-11-09",
+  "status": "public",
+  "reason": "Every desk input is an allowed direct acquisition.",
+  "original_snapshot_unchanged": true
+ },
+ "plain_language": "The most stretched current observed channel is still below the desk's watch threshold relative to its own recent history.",
+ "quant_read": "Family-wise headline selects Discount-window primary credit at adjusted stress p72.0 (raw p96.5): 9.268 $B as of 2026-11-11. Bonferroni m=8 controls the empirical upper-tail family under arbitrary dependence. Metric coverage is 95.2%; stale indicators are excluded and no cross-channel averaging or causal claim is applied.",
+ "strongest_signal": {
+  "metric_id": "liquidity.discount_window",
+  "label": "Discount-window primary credit",
+  "value": 9.268,
+  "unit": "$B",
+  "asof": "2026-11-11",
+  "freshness": "fresh",
+  "age_days_vs_evaluation_asof": 8,
+  "direction": "high",
+  "empirical_percentile_3y": 96.5,
+  "empirical_sample_n": 157,
+  "raw_stress_percentile": 96.5,
+  "interpretation": "discount-window use",
+  "bonferroni_adjusted_stress_percentile": 72.0,
+  "stress_percentile": 72.0,
+  "raw_empirical_tail_probability": 0.035,
+  "familywise_adjusted_tail_probability": 0.28,
+  "familywise_hypotheses": 8,
+  "why_selected": "highest Bonferroni-adjusted empirical stress percentile among non-stale eligible indicators",
+  "use": "context only; not causal, predictive, or directly tradable"
+ },
+ "countercase": {
+  "metric_id": "distribution.sofr.iqr",
+  "label": "SOFR interquartile width",
+  "value": 7.0,
+  "unit": "bp",
+  "asof": "2026-11-17",
+  "freshness": "fresh",
+  "age_days_vs_evaluation_asof": 2,
+  "direction": "high",
+  "empirical_percentile_3y": 37.1,
+  "empirical_sample_n": 747,
+  "raw_stress_percentile": 37.1,
+  "interpretation": "SOFR transaction dispersion",
+  "bonferroni_adjusted_stress_percentile": 0.0,
+  "stress_percentile": 0.0,
+  "raw_empirical_tail_probability": 0.629,
+  "familywise_adjusted_tail_probability": 1.0,
+  "familywise_hypotheses": 8,
+  "reading": "This observed channel is the least stressed current counterweight among the configured indicators.",
+  "limit": "A calm counterweight does not invalidate stress elsewhere, and a stressed reading does not establish cause."
+ },
+ "coverage": {
+  "available_metrics": 79,
+  "historical_available_metrics": 82,
+  "total_metrics": 83,
+  "coverage_pct": 95.2,
+  "available_sources": 27,
+  "historical_available_sources": 28,
+  "total_sources": 28,
+  "non_stale_metrics": 79,
+  "sections": [
+   {
+    "id": "policy_corridor",
+    "status": "available",
+    "available_metrics": 6,
+    "historical_available_metrics": 6,
+    "stale_metrics": 0,
+    "total_metrics": 6
+   },
+   {
+    "id": "secured_distributions",
+    "status": "available",
+    "available_metrics": 30,
+    "historical_available_metrics": 30,
+    "stale_metrics": 0,
+    "total_metrics": 30
+   },
+   {
+    "id": "repo_segments",
+    "status": "partial",
+    "available_metrics": 17,
+    "historical_available_metrics": 17,
+    "stale_metrics": 0,
+    "total_metrics": 18
+   },
+   {
+    "id": "unsecured_funding",
+    "status": "partial",
+    "available_metrics": 3,
+    "historical_available_metrics": 6,
+    "stale_metrics": 3,
+    "total_metrics": 6
+   },
+   {
+    "id": "bills_cash_curve",
+    "status": "available",
+    "available_metrics": 7,
+    "historical_available_metrics": 7,
+    "stale_metrics": 0,
+    "total_metrics": 7
+   },
+   {
+    "id": "liquidity_buffers",
+    "status": "available",
+    "available_metrics": 8,
+    "historical_available_metrics": 8,
+    "stale_metrics": 0,
+    "total_metrics": 8
+   },
+   {
+    "id": "mmf_plumbing",
+    "status": "available",
+    "available_metrics": 8,
+    "historical_available_metrics": 8,
+    "stale_metrics": 0,
+    "total_metrics": 8
+   }
+  ],
+  "unavailable_metrics": [
+   "repo.gcf_volume_share"
+  ],
+  "stale_metrics": [
+   "unsecured.cp_nonfinancial_3m",
+   "unsecured.nonfinancial_cp_minus_treasury",
+   "unsecured.financial_minus_nonfinancial_cp"
+  ],
+  "rule": "available counts include only fresh or aging cards at the explicit evaluation date; historical values remain separately counted and visible"
+ },
+ "freshness": {
+  "desk_asof": "2026-11-17",
+  "evaluation_asof": "2026-11-19",
+  "basis": "age of each source's latest used observation versus the explicit response or replay evaluation date; cadence-specific thresholds",
+  "thresholds_days": {
+   "daily": {
+    "fresh_through": 3,
+    "aging_through": 7
+   },
+   "weekly": {
+    "fresh_through": 10,
+    "aging_through": 21
+   },
+   "monthly": {
+    "fresh_through": 45,
+    "aging_through": 75
+   }
+  },
+  "status_counts": {
+   "fresh": 24,
+   "aging": 3,
+   "stale": 1,
+   "unavailable": 0
+  },
+  "by_source": [
+   {
+    "id": "nyfed_original:SOFR",
+    "asof": "2026-11-17",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 0,
+    "age_days_vs_evaluation_asof": 2,
+    "freshness": "fresh"
+   },
+   {
+    "id": "nyfed_original:EFFR",
+    "asof": "2026-11-17",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 0,
+    "age_days_vs_evaluation_asof": 2,
+    "freshness": "fresh"
+   },
+   {
+    "id": "fed_prates:IORB",
+    "asof": "2026-11-17",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 0,
+    "age_days_vs_evaluation_asof": 2,
+    "freshness": "fresh"
+   },
+   {
+    "id": "nyfed_sofr_distribution",
+    "asof": "2026-11-17",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 0,
+    "age_days_vs_evaluation_asof": 2,
+    "freshness": "fresh"
+   },
+   {
+    "id": "nyfed_tgcr_distribution",
+    "asof": "2026-11-17",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 0,
+    "age_days_vs_evaluation_asof": 2,
+    "freshness": "fresh"
+   },
+   {
+    "id": "nyfed_bgcr_distribution",
+    "asof": "2026-11-17",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 0,
+    "age_days_vs_evaluation_asof": 2,
+    "freshness": "fresh"
+   },
+   {
+    "id": "ofr_bgcr",
+    "asof": "2026-11-17",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 0,
+    "age_days_vs_evaluation_asof": 2,
+    "freshness": "fresh"
+   },
+   {
+    "id": "ofr_tgcr",
+    "asof": "2026-11-17",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 0,
+    "age_days_vs_evaluation_asof": 2,
+    "freshness": "fresh"
+   },
+   {
+    "id": "ofr_dvp_rate",
+    "asof": "2026-11-17",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 0,
+    "age_days_vs_evaluation_asof": 2,
+    "freshness": "fresh"
+   },
+   {
+    "id": "ofr_dvp_volume",
+    "asof": "2026-11-17",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 0,
+    "age_days_vs_evaluation_asof": 2,
+    "freshness": "fresh"
+   },
+   {
+    "id": "ofr_tri_rate",
+    "asof": "2026-11-16",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 1,
+    "age_days_vs_evaluation_asof": 3,
+    "freshness": "fresh"
+   },
+   {
+    "id": "ofr_tri_volume",
+    "asof": "2026-11-16",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 1,
+    "age_days_vs_evaluation_asof": 3,
+    "freshness": "fresh"
+   },
+   {
+    "id": "ofr_gcf_rate",
+    "asof": "2026-11-13",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 4,
+    "age_days_vs_evaluation_asof": 6,
+    "freshness": "aging"
+   },
+   {
+    "id": "ofr_gcf_volume",
+    "asof": "2026-11-13",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 4,
+    "age_days_vs_evaluation_asof": 6,
+    "freshness": "aging"
+   },
+   {
+    "id": "fed_cp:CP_NONFIN_3M",
+    "asof": "2026-11-05",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 12,
+    "age_days_vs_evaluation_asof": 14,
+    "freshness": "stale"
+   },
+   {
+    "id": "fed_cp:CP_FIN_3M",
+    "asof": "2026-11-17",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 0,
+    "age_days_vs_evaluation_asof": 2,
+    "freshness": "fresh"
+   },
+   {
+    "id": "fed_h15:DGS3M",
+    "asof": "2026-11-17",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 0,
+    "age_days_vs_evaluation_asof": 2,
+    "freshness": "fresh"
+   },
+   {
+    "id": "fed_h15:TB4W",
+    "asof": "2026-11-17",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 0,
+    "age_days_vs_evaluation_asof": 2,
+    "freshness": "fresh"
+   },
+   {
+    "id": "fed_h15:TB3M",
+    "asof": "2026-11-17",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 0,
+    "age_days_vs_evaluation_asof": 2,
+    "freshness": "fresh"
+   },
+   {
+    "id": "fed_h41:WRESBAL",
+    "asof": "2026-11-11",
+    "cadence": "weekly",
+    "age_days_vs_desk_asof": 6,
+    "age_days_vs_evaluation_asof": 8,
+    "freshness": "fresh"
+   },
+   {
+    "id": "fiscal_tga",
+    "asof": "2026-11-17",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 0,
+    "age_days_vs_evaluation_asof": 2,
+    "freshness": "fresh"
+   },
+   {
+    "id": "nyfed_original:RRPONTSYD",
+    "asof": "2026-11-17",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 0,
+    "age_days_vs_evaluation_asof": 2,
+    "freshness": "fresh"
+   },
+   {
+    "id": "nyfed_srf",
+    "asof": "2026-11-17",
+    "cadence": "daily",
+    "age_days_vs_desk_asof": 0,
+    "age_days_vs_evaluation_asof": 2,
+    "freshness": "fresh"
+   },
+   {
+    "id": "fed_h41:DISCOUNT_WINDOW",
+    "asof": "2026-11-11",
+    "cadence": "weekly",
+    "age_days_vs_desk_asof": 6,
+    "age_days_vs_evaluation_asof": 8,
+    "freshness": "fresh"
+   },
+   {
+    "id": "ofr_mmf_total",
+    "asof": "2026-10-31",
+    "cadence": "monthly",
+    "age_days_vs_desk_asof": 17,
+    "age_days_vs_evaluation_asof": 19,
+    "freshness": "fresh"
+   },
+   {
+    "id": "ofr_mmf_repo_ficc",
+    "asof": "2026-10-31",
+    "cadence": "monthly",
+    "age_days_vs_desk_asof": 17,
+    "age_days_vs_evaluation_asof": 19,
+    "freshness": "fresh"
+   },
+   {
+    "id": "ofr_mmf_repo_fed",
+    "asof": "2026-09-30",
+    "cadence": "monthly",
+    "age_days_vs_desk_asof": 48,
+    "age_days_vs_evaluation_asof": 50,
+    "freshness": "aging"
+   },
+   {
+    "id": "ofr_mmf_repo_total",
+    "asof": "2026-10-31",
+    "cadence": "monthly",
+    "age_days_vs_desk_asof": 17,
+    "age_days_vs_evaluation_asof": 19,
+    "freshness": "fresh"
+   }
+  ]
+ },
+ "caveats": [
+  "This engine is descriptive context only. It is not a forecast, causal model, probability, investment recommendation, or executable trading signal.",
+  "Exact-date joins avoid invented observations but reduce overlap when sources publish on different calendars; each derived card reports the overlap used.",
+  "SOFR, EFFR, IORB, Treasury par yields, and bill discount rates do not all share the same instrument, tenor, counterparty set, or quote convention.",
+  "NY Fed percentiles describe the distribution of reported benchmark transactions, not prices guaranteed to any individual borrower or lender.",
+  "OFR DVP, tri-party, and GCF series describe published segments; their displayed fixed-composition sum is not represented as total US repo market size, and dates with a different component mask are excluded from aggregate comparisons.",
+  "GCF overnight/open nulls may mean no qualifying print rather than a failed collector; the engine preserves the null.",
+  "Commercial-paper spreads combine credit, liquidity, term, tax, and quote-convention effects; they are not standalone default-risk measures.",
+  "Reserve balances, ON RRP, TGA, SRF, and discount-window balances are system aggregates. Their changes do not identify holder-level access or establish a one-for-one causal flow.",
+  "MMF holdings are monthly stocks and can lag daily repo conditions. The 'other repo' bucket is an arithmetic remainder, not a separately reported counterparty class.",
+  "Historical percentile thresholds adapt to the available trailing sample and can change as old observations leave the window; they are ranks, not calibrated event probabilities. The headline applies a conservative Bonferroni tail adjustment across eligible channels.",
+  "Freshness is measured against an explicit live-response or replay evaluation date. Stale metrics remain visible as historical context but cannot set the descriptive regime."
+ ]
+}

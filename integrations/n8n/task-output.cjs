@@ -26,27 +26,56 @@ function formatTaskResponse(product, response, settings, now = new Date()) {
     return age < -300 ? 'FUTURE_SOURCE_CLOCK' : age > settings.maxAgeSeconds ? 'STALE_SNAPSHOT' : 'WITHIN_SNAPSHOT_AGE_LIMIT';
   };
   if (product === 'seiche') {
-    endpoint = 'https://agents.seiche.info/products/seiche/mcp'; tool = 'funding_stress_now';
-    if (evidence.schema !== 'seiche.public.v2' || !object(evidence.data_quality) || !object(evidence.conclusion)) {
-      throw new Error('Unexpected Seiche funding contract');
+    endpoint = 'https://agents.seiche.info/products/seiche/mcp'; tool = 'money_market_context';
+    const short = (value, limit = 120) => typeof value === 'string' && value.length > 0 && value.length <= limit && !/[\r\n]/.test(value) ? value : null;
+    const projection = evidence.publication_projection;
+    const withheld = evidence.ok === false || evidence.available === false ||
+      (object(projection) && projection.status !== 'public') ||
+      ['unavailable', 'withheld', 'restricted', 'denied'].includes(String(evidence.status ?? '').toLowerCase());
+    if (withheld) {
+      sourceClock = short(evidence.snapshot_generated_at, 40);
+      state = 'UNAVAILABLE';
+      const reason = short(evidence.reason ?? (object(projection) ? projection.reason : null), 300);
+      lines = [`Seiche money-market desk: ${state}`, `Reason given: ${reason ?? 'not supplied'}`,
+        'No reading has been substituted for the unavailable evidence. Inspect the retained evidence.', 'https://seiche.info/money-markets/'];
+    } else {
+      if (evidence.schema !== 'seiche.money-market-desk.v1' || evidence.selection !== settings.toolInput.section ||
+          !object(evidence.freshness) || !object(evidence.coverage)) {
+        throw new Error('Unexpected Seiche money-market contract');
+      }
+      sourceClock = evidence.snapshot_generated_at;
+      state = clockState(sourceClock);
+      const counts = evidence.freshness.status_counts;
+      if (!object(counts) || !['fresh', 'aging', 'stale', 'unavailable'].every(k => Number.isInteger(counts[k]) && counts[k] >= 0)) {
+        throw new Error('Funding source freshness counts are missing');
+      }
+      const cov = evidence.coverage;
+      if (!Number.isInteger(cov.available_metrics) || !Number.isInteger(cov.total_metrics) || cov.available_metrics < 0 || cov.total_metrics < cov.available_metrics) {
+        throw new Error('Funding metric coverage is missing');
+      }
+      const signals = [['Most stretched channel', evidence.strongest_signal], ['Countercase', evidence.countercase]];
+      const reading = x => {
+        if (!object(x)) return 'not supplied';
+        const value = number(x.value) ? `${x.value}${short(x.unit, 20) ? ` ${x.unit}` : ''}` : 'unavailable';
+        const pct = v => number(v) ? v : 'not supplied';
+        return `${short(x.label) ?? 'unlabelled channel'}: ${value}, observed ${short(x.asof, 40) ?? 'not supplied'} (${short(x.freshness, 20) ?? 'freshness not supplied'}); ` +
+          `three-year percentile ${pct(x.empirical_percentile_3y)}, adjusted across ${pct(x.familywise_hypotheses)} channels ${pct(x.bonferroni_adjusted_stress_percentile)}.`;
+      };
+      const timely = state === 'WITHIN_SNAPSHOT_AGE_LIMIT';
+      if (timely) {
+        const gaps = counts.aging + counts.stale + counts.unavailable > 0 || cov.available_metrics < cov.total_metrics ||
+          signals.some(([, x]) => !object(x) || !number(x.value));
+        state = gaps ? 'DATA_GAPS' : 'SOURCE_REPORTED';
+      }
+      lines = [`Seiche money-market desk: ${state}`, `Snapshot generated: ${sourceClock}`,
+        `Desk observations through ${short(evidence.asof, 40) ?? 'not supplied'}; evaluated on ${short(evidence.freshness.evaluation_asof, 40) ?? 'not supplied'}.`];
+      if (timely) for (const [label, x] of signals) lines.push(`${label}: ${reading(x)}`);
+      else lines.push('Snapshot is outside the configured age window; current readings withheld.');
+      lines.push(`Sources: ${counts.fresh} fresh, ${counts.aging} aging, ${counts.stale} stale, ${counts.unavailable} unavailable. Metrics available: ${cov.available_metrics} of ${cov.total_metrics}.`);
+      lines.push('Snapshot time is not the date of every observation. A three-year rank is descriptive context, not a forecast, probability or trade signal.');
+      lines.push('Seiche withholds its legacy stress reading and forecasts while their source rights are qualified; this update does not reconstruct them.');
+      lines.push('https://seiche.info/money-markets/');
     }
-    sourceClock = evidence.generated_at;
-    state = clockState(sourceClock);
-    const counts = evidence.data_quality.status_counts;
-    if (!object(counts) || !['fresh', 'aging', 'dead', 'unknown'].every(k => Number.isInteger(counts[k]) && counts[k] >= 0)) {
-      throw new Error('Funding source-quality counts are missing');
-    }
-    const c = evidence.conclusion;
-    const regime = typeof c.regime === 'string' && /^[A-Z_ -]{1,40}$/.test(c.regime) ? c.regime : null;
-    if (!regime || !number(c.value) || !number(c.coverage_pct)) throw new Error('Funding conclusion is incomplete');
-    const timely = state === 'WITHIN_SNAPSHOT_AGE_LIMIT';
-    if (timely) state = counts.aging + counts.dead + counts.unknown > 0 || c.coverage_pct < 100 ? 'DATA_GAPS' : 'SOURCE_REPORTED';
-    lines = [`Seiche funding review — ${state}`, `Board generated: ${sourceClock}`];
-    if (timely) lines.push(`Source-reported regime: ${regime}; gauge ${c.value}/100; coverage ${c.coverage_pct}%.`);
-    else lines.push('Snapshot is outside the configured age window; current reading withheld.');
-    lines.push(`Sources: ${counts.fresh} fresh, ${counts.aging} aging, ${counts.dead} dead, ${counts.unknown} unknown.`);
-    lines.push('Board generation time is not the date of every observation. Inspect headline_ages and proof limits in the retained evidence.');
-    lines.push('https://seiche.info/');
   } else if (product === 'liquilens') {
     endpoint = 'https://agents.seiche.info/products/liquilens/mcp'; tool = 'bank_asset_quality_review';
     if (evidence.schema !== 'liquilens.bank-specialisation.v1' || evidence.slug !== settings.toolInput.slug ||

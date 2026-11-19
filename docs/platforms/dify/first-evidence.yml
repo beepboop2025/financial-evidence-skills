@@ -1,0 +1,94 @@
+app:
+  mode: workflow
+  name: First financial evidence
+  description: Read one dated public observation with its source, availability and coverage diagnostics.
+  icon: 📊
+  icon_background: '#E3F0FC'
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.7.0
+dependencies:
+- type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: beepboop2025/financial_evidence:0.1.2@1956fc5e710e6c5607d3b11d02d727068908a7aa88630c69304fec8f1368fe22
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features: {}
+  graph:
+    viewport: {x: 0, y: 0, zoom: 1}
+    edges:
+    - id: choose-to-fetch
+      type: custom
+      source: '100'
+      sourceHandle: source
+      target: '200'
+      targetHandle: target
+      data: {sourceType: start, targetType: tool, isInIteration: false, isInLoop: false}
+    - id: fetch-to-evidence
+      type: custom
+      source: '200'
+      sourceHandle: source
+      target: '300'
+      targetHandle: target
+      data: {sourceType: tool, targetType: end, isInIteration: false, isInLoop: false}
+    nodes:
+    - id: '100'
+      type: custom
+      position: {x: 40, y: 150}
+      sourcePosition: right
+      targetPosition: left
+      width: 245
+      data:
+        type: start
+        title: Choose a research table
+        variables:
+        - label: Research table
+          variable: dataset
+          type: select
+          required: true
+          options: [money_markets, bank_risk, market_liquidity]
+          default: money_markets
+        - label: Public entity ID (optional)
+          variable: entity
+          type: text-input
+          required: false
+          max_length: 100
+          default: ''
+    - id: '200'
+      type: custom
+      position: {x: 365, y: 150}
+      sourcePosition: right
+      targetPosition: left
+      width: 245
+      data:
+        type: tool
+        title: Get one evidence row
+        provider_type: builtin
+        provider_id: beepboop2025/financial_evidence/financial_evidence
+        provider_name: beepboop2025/financial_evidence/financial_evidence
+        plugin_id: beepboop2025/financial_evidence
+        plugin_unique_identifier: beepboop2025/financial_evidence:0.1.2@1956fc5e710e6c5607d3b11d02d727068908a7aa88630c69304fec8f1368fe22
+        tool_name: evidence_page
+        tool_label: Get Evidence Page
+        tool_description: Fetch one page of public research with source dates and diagnostics.
+        tool_node_version: '2'
+        tool_configurations: {}
+        tool_parameters:
+          dataset: {type: variable, value: ['100', dataset]}
+          entity: {type: variable, value: ['100', entity]}
+          limit: {type: constant, value: 1}
+          offset: {type: constant, value: 0}
+    - id: '300'
+      type: custom
+      position: {x: 690, y: 150}
+      sourcePosition: right
+      targetPosition: left
+      width: 245
+      data:
+        type: end
+        title: Return the evidence page
+        outputs:
+        - variable: evidence
+          value_selector: ['200', json]
+          value_type: array[object]

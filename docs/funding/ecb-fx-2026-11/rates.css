@@ -1,0 +1,18 @@
+main { max-width: 62rem; padding-block: 3.25rem 4rem; }
+h1 { max-width: none; font-size: clamp(2.5rem, 6vw, 4.5rem); }
+h2 { max-width: none; font-size: 1.5rem; }
+.lede, section p { max-width: 72ch; }
+fieldset { display: flex; flex-wrap: wrap; gap: 1rem; border: 1px solid var(--line); border-radius: .5rem; padding: 1.2rem; background: white; }
+legend, label { font-size: .88rem; font-weight: 650; }
+label { flex: 1 1 8rem; }
+select { display: block; width: 100%; min-height: 2.7rem; margin-top: .35rem; padding: .4rem; background: white; border: 1px solid #8b97a6; border-radius: .3rem; color: var(--ink); }
+section { margin-top: 2.3rem; }
+.result { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; background: #192638; color: white; border-radius: .6rem; padding: clamp(1.25rem, 4vw, 2.5rem); }
+.result h2 { font-size: 1.1rem; letter-spacing: normal; color: #c9dbf2; }
+#rate { font-variant-numeric: tabular-nums; font-size: clamp(2rem, 6vw, 3.7rem); line-height: 1.1; }
+#movement { margin-bottom: 0; }
+.plot { min-width: 0; }
+canvas { display: block; width: 100%; height: 8rem; }
+.axis { display: flex; justify-content: space-between; font-variant-numeric: tabular-nums; font-size: .8rem; color: #c9dbf2; }
+td, th { font-variant-numeric: tabular-nums; padding: .6rem .8rem; }
+@media (max-width: 640px) { main { padding-top: 1.8rem; } .result { grid-template-columns: 1fr; gap: 1.2rem; } }

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Historical FX cross rates from ECB observations | Seiche</title>
+  <meta name="description" content="Compare USD, INR, GBP and JPY on shared ECB publication dates through 13 November 2026. Inspect both euro reference rates behind each calculation.">
+  <link rel="canonical" href="https://beepboop2025.github.io/financial-evidence-skills/funding/ecb-fx-2026-11/">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="rates.css">
+  <script type="module" src="rates.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to calculator</a>
+  <header class="site-header"><nav aria-label="Primary"><a class="brand" href="../../">Financial Evidence</a><a href="../">Funding research</a></nav></header>
+  <main id="main">
+    <p class="eyebrow">Seiche · ECB reference rates</p>
+    <h1>Historical FX cross rates</h1>
+    <p class="lede">Compare two currencies on dates when the European Central Bank published both rates. This snapshot ends on 13 November 2026.</p>
+    <p id="status" role="status">Loading the ECB observations…</p>
+    <noscript>Enable JavaScript to calculate a cross rate, or open the downloadable data below.</noscript>
+    <div id="calculator" hidden>
+      <fieldset><legend>Choose a comparison</legend>
+        <label>Base currency<select id="base"></select></label>
+        <label>Quote currency<select id="quote"></select></label>
+        <label>Year<select id="year"></select></label>
+        <label>End date<select id="date"></select></label>
+        <label>Compare with<select id="lag"><option value="1">1 observation earlier</option><option value="5">5 observations earlier</option><option value="20">20 observations earlier</option><option value="60">60 observations earlier</option><option value="250">250 observations earlier</option></select></label>
+      </fieldset>
+      <section class="result" aria-label="Cross-rate result">
+        <div class="summary" role="status"><h2 id="unit"></h2><strong id="rate"></strong><p id="movement"></p></div>
+        <div class="plot" id="plot"><canvas id="chart" role="img" aria-label="Cross rates for the selected dates"></canvas><div class="axis"><span id="earlier"></span><span id="later"></span></div></div>
+      </section>
+      <section aria-labelledby="evidence"><h2 id="evidence">Source observations</h2>
+        <p id="formula"></p>
+        <div class="table-wrap"><table><thead><tr><th scope="col">ECB date</th><th scope="col" id="base-unit"></th><th scope="col" id="quote-unit"></th><th scope="col" id="result-unit"></th></tr></thead><tbody id="values"></tbody></table></div>
+        <p><a id="permalink" href="">Link to this comparison</a></p>
+      </section>
+    </div>
+    <section aria-labelledby="source"><h2 id="source">Data and attribution</h2>
+      <p>Seiche captured four European Central Bank reference series on 15 November 2026. Published dates begin in January 1999 for USD, GBP and JPY, and January 2009 for INR. Missing observations are left open. These are historical reference values for research.</p>
+      <p><a href="https://huggingface.co/datasets/liquilens/seiche-ecb-reference-fx/tree/6a69269e2a5ce104defe87681203705ccc4876db">Inspect the snapshot</a> · <a href="https://www.ecb.europa.eu/stats/eurofxref/">ECB reference rates</a> · <a href="https://www.ecb.europa.eu/services/using-our-site/disclaimer/html/index.en.html">ECB reuse terms</a></p>
+      <p><a href="https://colab.research.google.com/github/beepboop2025/seiche/blob/26e0e053570934d2b0fc779428872b953c2f75a7/notebooks/seiche_direct_ofr_research.ipynb">Explore US funding observations in Colab</a></p>
+    </section>
+  </main>
+</body>
+</html>

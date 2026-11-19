@@ -111,6 +111,8 @@ institutional-readiness certification.
 
 **Run recurring research:** [install the durable runtime](https://beepboop2025.github.io/financial-evidence-skills/agents/runtime.html) for fixed policies, bounded scheduling, retained receipts, private MCP and backup recovery across LiquiLens, Seiche and Undertow.
 
+[Compare historical ECB exchange rates](https://beepboop2025.github.io/financial-evidence-skills/funding/ecb-fx-2026-11/) in the browser. Each comparison links to its dated Seiche snapshot and shows both euro reference rates.
+
 **Automate funding research:** [versioned packets, captured changes, Python, OpenBB and a local agent tool](https://beepboop2025.github.io/financial-evidence-skills/funding/automate/). Public access requires no account; optional application keys use explicit measurement consent. The hosted packet API and downloadable templates are versioned separately from the v0.1.17 wheel.
 
 **Three concrete jobs:** [funding review, Cosmos Bank NPAs and a $100k BTC exit](https://beepboop2025.github.io/financial-evidence-skills/automations/)

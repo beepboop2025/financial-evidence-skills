@@ -5,7 +5,7 @@ Use the central Research Desk when the client supports remote MCP:
 - Name: `financial-evidence`
 - URL: `https://agents.seiche.info/products/financial-evidence/mcp`
 - Authentication: none
-- Tools: nine read-only workspace tools. Start with `financial_evidence_datasets`,
+- Tools: twelve read-only workspace tools listed on 18 November 2026. Start with `financial_evidence_datasets`,
   then call `financial_evidence_workflow` with `{"workflow":"funding","selection":"USD"}`.
   Preserve the returned source dates, diagnostics and unavailable states.
 
@@ -33,14 +33,15 @@ In Cline's MCP server settings, the equivalent entry is:
 
 Merge this entry into existing settings; preserve other configured servers.
 The server needs no authentication. Cline's model provider is configured
-separately. The current configuration targets the central nine-tool workspace.
+separately. The current configuration targets the central workspace, which
+listed twelve tools on 18 November 2026.
 
 ### Historical Cline qualification
 
 On 10 October 2026, Cline CLI 3.0.70 installed the earlier configuration at
 `https://liquilens.in/mcp/financial-evidence`; its native MCP client connected,
 listed the three router tools and successfully called `financial_evidence_topics`.
-That dated result verifies the legacy MCP connection, not the current nine-tool
+That dated result verifies the legacy MCP connection, not the current Research Desk
 configuration or an LLM-generated research answer.
 
 ## Legacy three-tool compatibility interface

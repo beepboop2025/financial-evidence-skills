@@ -1,7 +1,7 @@
 {
   "schema": "financial-evidence.system-interfaces.v1",
   "operator": "LIQUILENS PRIVATE LIMITED",
-  "updated_at": "2026-11-05",
+  "updated_at": "2026-11-19",
   "guide_url": "https://liquilens.in/agents/infrastructure/",
   "public_discovery_observation": {
     "observed_at": "2026-10-08T11:12:59.038376+00:00",
@@ -72,10 +72,10 @@
         "identity_scope": "operator_supplied_build_revision",
         "institutional_readiness": "not_certified"
       },
+      "release_observed_at": "2026-10-11T09:31:16.844082+00:00",
       "client_kit_url": "https://beepboop2025.github.io/financial-evidence-skills/api/",
       "execution_authority": false,
       "workflow_url": "https://beepboop2025.github.io/financial-evidence-skills/start/workflows.html",
-      "release_observed_at": "2026-10-11T09:31:16.844082+00:00",
       "connection_guide_url": "https://beepboop2025.github.io/financial-evidence-skills/connect/",
       "start_catalog_url": "https://agents.seiche.info/v1/research/api/v1/start"
     },

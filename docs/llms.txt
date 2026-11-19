@@ -124,7 +124,7 @@ Packet `status` equals `transport_status` and describes retrieval only. Every pa
 
 ## Current system interfaces
 
-[System interface catalog](https://beepboop2025.github.io/financial-evidence-skills/agents/system.json) separates the public three-tool router 0.1.16, hosted Research Desk 1.3.0 (twelve tools listed on 18 November 2026; upstream package 0.1.7, source `4802a9b3bfb9d652199f25bf52852cb1e5db1cb3`), six-tool local Runtime contract 1.0.0 (package 0.1.12), Runtime Operations 1.0.3 and the private authenticated paper host. [Choose an interface](https://liquilens.in/agents/infrastructure/). Public MCP endpoints retain their read-only authority; local scheduling and paper-host installation require the operator-controlled setup described by their guides.
+[System interface catalog](https://beepboop2025.github.io/financial-evidence-skills/agents/system.json) separates the public three-tool router 0.1.16, hosted Research Desk 1.3.0 (twelve tools listed on 18 November 2026; release identity observed 11 October 2026: upstream package 0.1.7, source `4802a9b3bfb9d652199f25bf52852cb1e5db1cb3`), six-tool local Runtime contract 1.0.0 (package 0.1.12), Runtime Operations 1.0.3 and the private authenticated paper host. [Choose an interface](https://liquilens.in/agents/infrastructure/). Public MCP endpoints retain their read-only authority; local scheduling and paper-host installation require the operator-controlled setup described by their guides.
 
 ## Start a recurring task
 

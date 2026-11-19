@@ -1,0 +1,27 @@
+name: Dify Community Edition draft import
+on:
+  push:
+    branches: [verify/dify-studio-draft-20261119]
+permissions:
+  contents: read
+jobs:
+  draft:
+    timeout-minutes: 8
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Import and read the stored draft in an isolated Dify workspace
+        run: |
+          set -euo pipefail
+          api=langgenius/dify-api@sha256:9acb839cd797532ee2fd7a357c9bca0c15710ace99ceca3702ea990239d5c8b7
+          docker network create --internal dfcheck
+          docker run -d --name dfdb --network dfcheck -e POSTGRES_DB=dify -e POSTGRES_PASSWORD=local-test-only postgres:15-alpine
+          docker run -d --name dfredis --network dfcheck redis:7-alpine
+          docker pull "$api"
+          common=(--rm --network dfcheck -e DB_HOST=dfdb -e DB_DATABASE=dify -e DB_USERNAME=postgres -e DB_PASSWORD=local-test-only -e REDIS_HOST=dfredis -e CELERY_BROKER_URL=redis://dfredis:6379/1 -e STORAGE_TYPE=opendal -e OPENDAL_SCHEME=fs -e OPENDAL_FS_ROOT=/tmp/storage -e SECRET_KEY=ephemeral-ci-value)
+          docker run "${common[@]}" -e MIGRATION_ENABLED=true -e MODE=migration "$api" > /tmp/dify-migration.log 2>&1 || { tail -50 /tmp/dify-migration.log; exit 1; }
+          base64 -d .github/dify-native-app.b64 >/tmp/first.ifpkg
+          sha256sum /tmp/first.ifpkg
+          docker run -i "${common[@]}" --entrypoint python -v /tmp/first.ifpkg:/tmp/first.ifpkg:ro "$api" - <.github/dify-local-draft.py

@@ -66,7 +66,7 @@ Python 0.1.17 bounds complete-event waits even when partial bytes or comment fra
 
 - Agent Skills: public `financial-evidence` skill with domain-triggered routing for compatible agents; install the last verified release with `npx skills add https://github.com/beepboop2025/financial-evidence-skills/tree/v0.1.17/financial-evidence --skill financial-evidence`.
 - Terminal: uvx and persistent uv tool (0.1.17); Homebrew 0.1.17 independently installed and verified, Bash/Zsh/Fish completions, JSON/NDJSON/CSV/table output.
-- Current MCP: the root `.mcp.json`, Gemini, Codex, Claude Code and editor configurations connect to the central nine-tool read-only Research Desk.
+- Current MCP: the root `.mcp.json`, Gemini, Codex, Claude Code and editor configurations connect to the central read-only Research Desk, which listed twelve tools on 18 November 2026. The Gemini extension allows nine of them.
 - Remote MCP: public Streamable HTTP at `https://agents.seiche.info/products/financial-evidence/mcp`; no local install, account, API key, or write action. Start with `financial_evidence_datasets`, then `financial_evidence_workflow` with `{"workflow":"funding","selection":"USD"}`.
 - Legacy compatibility interface: `https://liquilens.in/mcp/financial-evidence` retains `financial_evidence_topics`, `financial_evidence_route` and `financial_evidence_fetch`. The local stdio command, MCP Bundle, OCI image and Registry record retain this separate three-tool contract. Fresh source retrieval uses the central data service.
 - Gemini CLI: root `gemini-extension.json` is in the signed 0.1.17 release; install it with `gemini extensions install https://github.com/beepboop2025/financial-evidence-skills --ref v0.1.17`.
@@ -86,7 +86,7 @@ Python 0.1.17 bounds complete-event waits even when partial bytes or comment fra
 - VS Code CLI: `code --add-mcp '{"name":"financial-evidence","type":"http","url":"https://agents.seiche.info/products/financial-evidence/mcp"}'`
 - Cursor deeplink: `cursor://anysphere.cursor-deeplink/mcp/install?name=financial-evidence&config=eyJ0eXBlIjoiaHR0cCIsInVybCI6Imh0dHBzOi8vYWdlbnRzLnNlaWNoZS5pbmZvL3Byb2R1Y3RzL2ZpbmFuY2lhbC1ldmlkZW5jZS9tY3AifQ==`
 
-These routes connect to the central nine-tool HTTP service without `uvx` or a
+These routes connect to the central Research Desk HTTP service without `uvx` or a
 local Python process. Review the hosted URL and configuration before accepting editor installation, trust,
 or tool-use prompts. They are compatibility artifacts, not claims of a VS Code
 or Cursor marketplace listing or endorsement.
@@ -124,7 +124,7 @@ Packet `status` equals `transport_status` and describes retrieval only. Every pa
 
 ## Current system interfaces
 
-[System interface catalog](https://beepboop2025.github.io/financial-evidence-skills/agents/system.json) separates the public three-tool router 0.1.16, nine-tool hosted Research Desk 1.3.0 (upstream package 0.1.7, source `4802a9b3bfb9d652199f25bf52852cb1e5db1cb3`), six-tool local Runtime contract 1.0.0 (package 0.1.12), Runtime Operations 1.0.3 and the private authenticated paper host. [Choose an interface](https://liquilens.in/agents/infrastructure/). Public MCP endpoints retain their read-only authority; local scheduling and paper-host installation require the operator-controlled setup described by their guides.
+[System interface catalog](https://beepboop2025.github.io/financial-evidence-skills/agents/system.json) separates the public three-tool router 0.1.16, hosted Research Desk 1.3.0 (twelve tools listed on 18 November 2026; upstream package 0.1.7, source `4802a9b3bfb9d652199f25bf52852cb1e5db1cb3`), six-tool local Runtime contract 1.0.0 (package 0.1.12), Runtime Operations 1.0.3 and the private authenticated paper host. [Choose an interface](https://liquilens.in/agents/infrastructure/). Public MCP endpoints retain their read-only authority; local scheduling and paper-host installation require the operator-controlled setup described by their guides.
 
 ## Start a recurring task
 

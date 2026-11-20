@@ -1,5 +1,6 @@
 """Operator evidence survives failures and can be replayed without the network."""
 
+from contextlib import redirect_stderr
 import copy
 import csv
 import io
@@ -221,6 +222,79 @@ class CaptureTests(unittest.TestCase):
         self.assertEqual(sleep.call_count, 2)
         self.assertEqual(self.current()["latest"]["capture_id"], latest.name)
         self.assertIsNone(self.current()["last_ready"])
+
+    def board_rechecks(self, generation_at, *, after=None, probe_raw=None, elapsed_at_first=0):
+        # A 03:03 UTC capture was stale; the next board completed 199 seconds
+        # after evaluation, outside the previous two fixed 45-second waits.
+        old = list(self.old_snapshot())
+        old[1] = captures()[1]  # the independent atlas generation is fresh
+        fresh = captures()
+        capture_calls, health_probes = [], []
+        elapsed = 0
+
+        def advance(seconds):
+            nonlocal elapsed
+            elapsed += seconds
+
+        def read(name, url, **options):
+            if name == "health" and "payload" not in options:
+                health_probes.append(elapsed)
+                bodies = responses(fresh if elapsed >= generation_at else old)
+                if probe_raw is not None:
+                    bodies["health"] = probe_raw
+                return fetcher(bodies)(name, url, **options)
+            if name == "mcp-initialize":
+                capture_calls.append(elapsed)
+                if len(capture_calls) == 1:
+                    advance(elapsed_at_first)
+            docs = old if len(capture_calls) == 1 else after or fresh
+            return fetcher(responses(docs))(name, url, **options)
+
+        trace = io.StringIO()
+        with redirect_stderr(trace), patch.object(capture.time, "sleep", side_effect=advance), \
+             patch.object(capture.time, "monotonic", side_effect=lambda: elapsed):
+            _, result, attempts = capture.capture_with_snapshot_rechecks(
+                self.output, snapshot_rechecks=2, fetcher=read,
+                backend="https://evidence.example", timeout=30,
+            )
+        recorded = json.loads(trace.getvalue())
+        self.assertEqual(recorded["polls"], len(health_probes))
+        self.assertEqual(recorded["capture_id"], attempts[0].name)
+        self.assertEqual(recorded["outcome"], "advanced" if len(attempts) > 1 else "no_advance_within_budget")
+        return result, attempts, capture_calls, health_probes
+
+    def test_board_wait_spans_late_publication_without_duplicate_mcp(self):
+        result, attempts, calls, probes = self.board_rechecks(199)
+        self.assertTrue(result["ready"])
+        self.assertEqual(calls, [0, 210])
+        self.assertEqual(probes, list(range(15, 211, 15)))
+        first = json.loads((attempts[0] / "review.json").read_bytes())
+        self.assertEqual({i["subject"] for i in first["issues"]}, {"desk", "desk_history", "health"})
+        self.assertEqual(self.current()["measurement"]["probes"], 2)
+
+    def test_board_wait_exhausts_without_charging_another_full_capture(self):
+        nested = b"[" * 2000 + b"]" * 2000
+        for raw in (None, b'{"generated_at":"2099-01-01T00:00:00Z"}', b'null', b'bad', nested):
+            with self.subTest(raw=raw):
+                result, attempts, calls, probes = self.board_rechecks(1000, probe_raw=raw)
+                self.assertFalse(result["ready"])
+                self.assertEqual(len(attempts), 1)
+                self.assertEqual(calls, [0])
+                self.assertLessEqual(probes[-1], 405)
+
+    def test_board_wait_reserves_full_capture_time_after_a_slow_first_attempt(self):
+        result, attempts, _, probes = self.board_rechecks(410, elapsed_at_first=380)
+        self.assertFalse(result["ready"])
+        self.assertEqual(len(attempts), 1)
+        self.assertEqual(probes, [395])
+
+    def test_health_advance_cannot_make_a_failed_full_review_ready(self):
+        invalid = captures()
+        invalid[0]["sections"][0]["metrics"][0]["freshness"] = "stale"
+        result, attempts, calls, _ = self.board_rechecks(15, after=invalid)
+        self.assertFalse(result["ready"])
+        self.assertEqual(len(attempts), 2)
+        self.assertEqual(calls, [0, 15])
 
     def test_snapshot_recheck_does_not_retry_another_data_failure(self):
         docs = self.old_snapshot()

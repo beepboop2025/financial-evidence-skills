@@ -54,6 +54,10 @@ SOURCE_NAMES = (
     "health",
 )
 BACKEND_NAMES = ("backend-health", "backend-release")
+# The production oneshot has TimeoutStartSec=900. Leave room for final disk writes.
+RECHECK_RUNTIME_SECONDS = 885
+PUBLICATION_WAIT_SECONDS = 420
+HEALTH_POLL_SECONDS = 15
 
 
 class ReplayPolicyMismatch(ValueError):
@@ -659,10 +663,63 @@ def snapshot_recheckable(directory, manifest, issues):
     return before < after <= evaluated
 
 
+def wait_for_health_generation(directory, manifest, deadline, fetcher):
+    """Admit a full retry only after a fresh advance of the native board clock."""
+    raw = (directory / "health.response").read_bytes()
+    if sha256(raw) != manifest["artifact_sha256"]["health.response"]:
+        raise ValueError("retained health changed before publication recheck")
+    previous = timestamp(strict_json(raw)["generated_at"])
+    began = time.monotonic()
+    polls = 0
+    advanced = None
+    while deadline - time.monotonic() > HEALTH_POLL_SECONDS:
+        time.sleep(HEALTH_POLL_SECONDS)
+        remaining = deadline - time.monotonic()
+        if remaining < 2:
+            break
+        # fetch bounds the body read to at most approximately twice its timeout.
+        polls += 1
+        receipt, raw, _ = fetcher(
+            "health", ORIGIN + "/api/health", timeout=min(5, remaining / 2)
+        )
+        if not receipt["complete"] or receipt["error"] or receipt["http_status"] != 200:
+            continue
+        try:
+            document = strict_json(raw)
+            if not isinstance(document, dict):
+                continue
+            generation = timestamp(document.get("generated_at"))
+            age = (timestamp(utcnow()) - generation).total_seconds()
+        except (ValueError, TypeError, OverflowError, RecursionError):
+            continue
+        if (
+            previous < generation
+            and 0 <= age <= manifest["max_snapshot_age_seconds"]
+            and time.monotonic() < deadline
+        ):
+            advanced = generation
+            break
+    print(json.dumps({
+        "event": "funding_publication_wait",
+        "capture_id": directory.name,
+        "outcome": "advanced" if advanced else "no_advance_within_budget",
+        "polls": polls,
+        "elapsed_seconds": round(time.monotonic() - began, 3),
+        "previous_generated_at": previous.isoformat(),
+        "next_generated_at": advanced.isoformat() if advanced else None,
+    }), file=sys.stderr, flush=True)
+    return advanced is not None
+
+
 def capture_with_snapshot_rechecks(output, *, snapshot_rechecks=0, **kwargs):
     """Retain each observation; retry bounded snapshot age/coherence failures."""
     if type(snapshot_rechecks) is not int or not 0 <= snapshot_rechecks <= 2:
         raise ValueError("snapshot rechecks must be between 0 and 2")
+    started = time.monotonic()
+    # Reserve a full fetch budget for each route, including backend identity reads.
+    routes = len(SOURCE_NAMES) + (len(BACKEND_NAMES) if kwargs.get("backend") else 0)
+    latest_retry = started + RECHECK_RUNTIME_SECONDS - 2 * routes * kwargs.get("timeout", 15)
+    publication_deadline = None
     attempts = []
     for attempt in range(snapshot_rechecks + 1):
         directory, manifest = capture(output, **kwargs)
@@ -680,7 +737,22 @@ def capture_with_snapshot_rechecks(output, *, snapshot_rechecks=0, **kwargs):
         issues = strict_json(raw)["issues"]
         if not snapshot_recheckable(directory, manifest, issues):
             break
-        time.sleep(45)
+        subjects = {issue["subject"] for issue in issues}
+        if (
+            "health" in subjects
+            and subjects <= {"health", "desk", "desk_history"}
+            and all(issue["code"] == "snapshot_too_old" for issue in issues)
+        ):
+            if publication_deadline is None:
+                publication_deadline = min(time.monotonic() + PUBLICATION_WAIT_SECONDS, latest_retry)
+            if not wait_for_health_generation(
+                directory, manifest, publication_deadline, kwargs.get("fetcher", fetch)
+            ):
+                break
+        else:
+            if publication_deadline is not None and time.monotonic() + 45 >= latest_retry:
+                break
+            time.sleep(45)
     return directory, manifest, attempts
 
 

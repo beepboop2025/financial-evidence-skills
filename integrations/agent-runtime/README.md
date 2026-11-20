@@ -211,6 +211,29 @@ export needed receipts and back up the installation. Archive it before
 provisioning a new explicit root; keys are scoped to an installation and do not
 deduplicate across a new root. Monitor actual filesystem capacity separately.
 
+### Look up an archived retry key offline
+
+After an exact offsite recovery of a **final stopped** snapshot, an operator can
+look up one workflow and retry key using the standalone source tool and the
+runtime used to verify the archive. Supply the exact snapshot ID and the receipt
+SHA-256 retained independently in the trusted archive handoff.
+
+```sh
+/path/to/verified/runtime/bin/python integrations/agent-runtime/operations/archived_lookup.py \
+  --journal /private/restored/runtime.sqlite --receipt /private/restored/reconstructed-receipt.json \
+  --receipt-sha256 TRUSTED_RECEIPT_SHA256 --snapshot EXACT_SNAPSHOT_ID \
+  --job funding-watch --key ORIGINAL_KEY
+```
+
+A verified match returns the original run ID, outcome, originating installation
+and canonical receipt digest when available. A verified miss returns
+`absent_in_this_snapshot` scoped to that single snapshot. An unavailable file,
+mismatched digest, unsupported reader or incomplete verification returns
+`unknown` and exit code 2. Every outcome carries `acquisition_authority: false`.
+The command verifies a bounded private copy locally and reads no network
+source. Python builds without SQLite deserialization use a temporary private
+directory under the configured temporary path and remove it on completion.
+
 See [architecture and scale boundaries](../../docs/infrastructure/ARCHITECTURE.md)
 and [adoption measurements](../../docs/infrastructure/ADOPTION.md).
 

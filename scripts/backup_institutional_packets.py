@@ -6,6 +6,7 @@ import fcntl
 import hashlib
 import json
 import re
+import shutil
 import sys
 import tempfile
 from datetime import datetime, timezone
@@ -100,6 +101,9 @@ def _backup(source, state, repository_id):
             if len(snapshots) != 1:
                 raise ValueError("ambiguous snapshot")
             snapshot = snapshots[0]["id"]
+            # Restic now owns a uniquely identified snapshot. Keep the inventory
+            # in memory for verification while reusing the private staging space.
+            shutil.rmtree(stage)
             restored = work / "restore"
             restored.mkdir()
             restic("restore", snapshot, "--target", str(restored))

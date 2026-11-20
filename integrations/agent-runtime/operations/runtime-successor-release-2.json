@@ -1,0 +1,10 @@
+{
+  "base_service_sha256": "89c1d7a7d614a1fa36ad9f8a3e5cdb158bad158077002f3f6d0a9df10dfbc548",
+  "base_wheel_sha256": "673fb9f20d7c2a21a1dc6f55252410e1e5ecb783b5889db79e305e39e8583e92",
+  "implementation_sha256": "503a7e169fa0ae7367029de1f74ce22bd73149b9967dc7065ea7c65662d237e4",
+  "package_version": "0.1.7+successor.2",
+  "service_sha256": "bd309386a61720aa43306675317a8e301d8f73a3c52e736033abca4948e14528",
+  "source_commit": "a15dd1251a5d9cc826f80ae326fc6f6e3c6ba15e",
+  "transport_source_commit": "b8ab5c3339183338159d9292c2c9cf818390b417",
+  "wheel_sha256": "a9a3a5950d1e046c5829575b3421433fe05f051fb39738bee5dba95eaf083d92"
+}

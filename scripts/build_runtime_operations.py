@@ -13,7 +13,7 @@ import tarfile
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", required=True)
-    parser.add_argument("--private-successor", action="store_true", help="build the privately admitted dual-generation operations profile")
+    parser.add_argument("--private-successor", nargs="?", choices=("1", "2"), const="1", help="build a privately admitted dual-generation profile")
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
     source = root / "integrations/agent-runtime/operations"
@@ -22,10 +22,13 @@ def main():
     output = Path(args.output).absolute()
     output.mkdir(parents=True, exist_ok=False)
     commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
-    version = "1.0.3+successor.1" if args.private_successor else "1.0.3"
+    version = "1.0.3+successor." + args.private_successor if args.private_successor else "1.0.3"
     profile = "runtime-successor-release.json" if args.private_successor else "runtime-release.json"
     names = ("ops.py", "ops_common.py", "ops_backup.py", "ops_monitor.py", "install.py", "configure.py",
              "ops_recovery.py", "ops_diagnostics.py", "ops_successor.py", "ops_transition.py", "ops_capacity_admission.py", "README.md", "RELEASE_NOTES.md", "runtime-release.json", "runtime-successor-release.json")
+    if args.private_successor == "2":
+        profile = "runtime-successor-release-2.json"
+        names += (profile,)
     entries = {name: (source / name).read_bytes() for name in names}
     manifest = {"schema": "financial-evidence.runtime-ops-release.v1", "version": version,
                 "source_commit": commit, "runtime": json.loads(entries[profile]),

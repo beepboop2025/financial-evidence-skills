@@ -11,7 +11,7 @@ from ops_common import atomic, config, inspect_journal, private, regular, runtim
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--successor-runtime", action="store_true", help="bind the separately pinned dual-generation runtime")
+    parser.add_argument("--successor-runtime", nargs="?", choices=("1", "2"), const="1", help="bind the separately pinned runtime profile")
     parser.add_argument("--root", required=True)
     parser.add_argument("--state", required=True)
     parser.add_argument("--repository-id", required=True)
@@ -22,6 +22,8 @@ def main(argv=None):
     if output.exists() or output.is_symlink():
         raise ValueError("configuration destination must be new")
     manifest = "runtime-successor-release.json" if args.successor_runtime else "runtime-release.json"
+    if args.successor_runtime == "2":
+        manifest = "runtime-successor-release-2.json"
     release = json.loads(regular(Path(__file__).with_name(manifest), 8192))
     journal = inspect_journal(Path(args.root) / "runtime.sqlite", full=True)
     value = {"schema": "financial-evidence.runtime-ops.v1", "root": str(Path(args.root).absolute()),

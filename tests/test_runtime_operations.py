@@ -126,6 +126,19 @@ class OperationsTests(unittest.TestCase):
         atomic(path, self.cfg)
         self.assertEqual(config(path), self.cfg)
 
+    def test_successor_configuration_binds_each_exact_implementation(self):
+        directory = ROOT / "integrations/agent-runtime/operations"
+        profiles = [json.loads((directory / name).read_bytes()) for name in
+                    ("runtime-successor-release.json", "runtime-successor-release-2.json")]
+        path = self.base / "profile-config.json"
+        for selected, other in (profiles, reversed(profiles)):
+            change = {k: selected[k] for k in ("package_version", "implementation_sha256")}
+            atomic(path, {**self.cfg, **change})
+            self.assertEqual(config(path)["implementation_sha256"], selected["implementation_sha256"])
+            atomic(path, {**self.cfg, **change, "implementation_sha256": other["implementation_sha256"]})
+            with self.assertRaisesRegex(ValueError, "unsupported"):
+                config(path)
+
     def successor_reader(self):
         # Load the exact private wheel overlay only for generation-transition cases.
         overlay = ROOT / "integrations/agent-runtime/successor-runtime"

@@ -101,7 +101,12 @@ def config(path):
     if not all(HEX.fullmatch(value[key]) for key in ("implementation_sha256", "repository_id")):
         raise ValueError("exact implementation and repository identities required")
     if value["package_version"] != "0.1.7":
-        successor = decode(regular(Path(__file__).with_name("runtime-successor-release.json"), 8192))
+        profiles = {"0.1.7+successor.1": "runtime-successor-release.json",
+                    "0.1.7+successor.2": "runtime-successor-release-2.json"}
+        name = profiles.get(value["package_version"])
+        if not name:
+            raise ValueError("unsupported private runtime package")
+        successor = decode(regular(Path(__file__).with_name(name), 8192))
         if (value["package_version"], value["implementation_sha256"]) != (
             successor["package_version"], successor["implementation_sha256"]
         ):

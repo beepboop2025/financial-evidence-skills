@@ -101,7 +101,11 @@ def config(path):
     if not all(HEX.fullmatch(value[key]) for key in ("implementation_sha256", "repository_id")):
         raise ValueError("exact implementation and repository identities required")
     if value["package_version"] != "0.1.7":
-        raise ValueError("unsupported runtime package")
+        successor = decode(regular(Path(__file__).with_name("runtime-successor-release.json"), 8192))
+        if (value["package_version"], value["implementation_sha256"]) != (
+            successor["package_version"], successor["implementation_sha256"]
+        ):
+            raise ValueError("unsupported runtime package or implementation")
     if not isinstance(value["jobs"], dict) or not 1 <= len(value["jobs"]) <= 100:
         raise ValueError("expected workflows required")
     for name, digest in value["jobs"].items():

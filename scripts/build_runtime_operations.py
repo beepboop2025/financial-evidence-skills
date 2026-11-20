@@ -23,7 +23,7 @@ def main():
     commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
     version = "1.0.3"
     names = ("ops.py", "ops_common.py", "ops_backup.py", "ops_monitor.py", "install.py", "configure.py",
-             "ops_recovery.py", "ops_diagnostics.py", "ops_successor.py", "ops_capacity_admission.py", "README.md", "RELEASE_NOTES.md", "runtime-release.json")
+             "ops_recovery.py", "ops_diagnostics.py", "ops_successor.py", "ops_capacity_admission.py", "README.md", "RELEASE_NOTES.md", "runtime-release.json", "runtime-successor-release.json")
     entries = {name: (source / name).read_bytes() for name in names}
     manifest = {"schema": "financial-evidence.runtime-ops-release.v1", "version": version,
                 "source_commit": commit, "runtime": json.loads(entries["runtime-release.json"]),

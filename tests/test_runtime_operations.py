@@ -124,6 +124,26 @@ class OperationsTests(unittest.TestCase):
         atomic(path, self.cfg)
         self.assertEqual(config(path), self.cfg)
 
+    def test_scheduler_capacity_admission_keeps_old_and_new_keys_distinct(self):
+        from ops_capacity_admission import admission
+        path = self.root / "runtime.sqlite"
+        identity = self.cfg["installation_id"]
+        self.assertTrue(admission(path, identity)["admitted"])
+        with self.assertRaises(ValueError):
+            admission(path, "0" * 32)
+        with closing(sqlite3.connect(path)) as db:
+            db.execute("INSERT INTO runs(id,job,key,status,started,error) VALUES (?,?,?,'error',?,?)",
+                       ("f" * 32, self.workflow.id, "overflow", NOW, "receipt_storage_full"))
+            db.commit()
+        held = admission(path, identity)
+        self.assertFalse(held["admitted"])
+        self.assertEqual(held["first_unrecordable_run"], "f" * 32)
+        receipt = backup(self.cfg, restic=self.restic)
+        reference = self.state / "receipts" / (receipt["operation_id"] + ".json")
+        successor = self.base / "successor"
+        prepared = prepare(self.cfg, reference, successor, restic=self.restic)
+        self.assertTrue(admission(successor / "runtime.sqlite", prepared["installation_id"])["admitted"])
+
     def test_successor_preserves_history_limits_and_new_writes_through_a_restore(self):
         receipt = backup(self.cfg, restic=self.restic)
         reference = self.state / "receipts" / (receipt["operation_id"] + ".json")

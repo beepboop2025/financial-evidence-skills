@@ -38,11 +38,11 @@ def render(cfg, *, python, code, config_path, credentials, user):
         result[name + ".timer"] = (f"[Unit]\nDescription={description}\n\n[Timer]\nOnActiveSec={initial}\nOnUnitActiveSec={interval}\nAccuracySec=1s\nUnit={name}.service\n\n[Install]\nWantedBy=timers.target\n")
 
     service("financial-evidence-runtime", "Bounded Financial Evidence research scheduler",
-            f"Type=oneshot\nUser={user}\nGroup={user}\nExecStart={Path(python).parent}/financial-evidence-runtime --root {root} tick --limit 1\n"
+            f"Type=oneshot\nUser={user}\nGroup={user}\nExecCondition={python} -IB {code}/ops_capacity_admission.py {root}/runtime.sqlite {cfg['installation_id']}\nExecStart={Path(python).parent}/financial-evidence-runtime --root {root} tick --limit 1\n"
             f"TimeoutStartSec=60\nMemoryMax=256M\nCPUQuota=50%\nTasksMax=16\nReadWritePaths={root}\nRestrictAddressFamilies=AF_UNIX AF_INET AF_INET6\n", network=True)
     timer("financial-evidence-runtime", "Schedule bounded research once a minute", "15s", "60s")
     service("financial-evidence-runtime-backup", "Encrypted research journal backup with exact offsite restoration",
-            f"Type=oneshot\nUser=root\nEnvironmentFile={credentials}\n"
+            f"Type=oneshot\nUser=root\nEnvironmentFile={credentials}\nEnvironment=GOMEMLIMIT=256MiB GOGC=35 GOMAXPROCS=2\n"
             f"ExecStart=/usr/bin/env RESTIC_CACHE_DIR={state}/restic-cache {prefix} backup\n"
             f"TimeoutStartSec=20min\nMemoryMax=512M\nCPUQuota=50%\nNice=10\nReadOnlyPaths={root}\nReadWritePaths={state}\n"
             "RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6\n", network=True)

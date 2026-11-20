@@ -23,7 +23,7 @@ from financial_evidence.tables import _blocked
 from financial_evidence.funding_publication_calendar import (
     next_publication_after_observation,
 )
-from financial_evidence.funding_horizon import common_horizon_evidence
+from financial_evidence.funding_horizon import common_horizon_evidence, canonical_source
 
 POLICY_ID = "usd-funding-review-checks.v3"
 REQUIRED = {
@@ -54,8 +54,8 @@ ATLAS_DECLARED_CLOCK_BASIS = (
 # deadline and all observation, identity and rights checks still apply below.
 ATLAS_CLOCK_BASES = (ATLAS_CLOCK_BASIS, ATLAS_DECLARED_CLOCK_BASIS)
 NYFED_CLOCKS = {
-    "policy.sofr": ("US.NYFED.SOFR", "SOFR", "%", 1, "fred"),
-    "policy.effr": ("US.NYFED.EFFR", "EFFR", "%", 1, "fred"),
+    "policy.sofr": ("US.NYFED.SOFR_MEDIAN", "SOFR", "%", 1, "nyfed_rates"),
+    "policy.effr": ("US.NYFED.EFFR_MEDIAN", "EFFR", "%", 1, "nyfed_unsecured_rates"),
     "distribution.sofr.p99": ("US.NYFED.SOFR_P99", "SOFR", "%", 1, "nyfed_rates"),
     "distribution.sofr.volume": (
         "US.NYFED.SOFR_VOLUME",
@@ -90,13 +90,15 @@ def publication_denied(value):
     return _blocked(value, raw_observation=True)
 
 
-def nyfed_clock_evidence(name, row, market, now):
+def nyfed_clock_evidence(name, row, market, now, *, allow_legacy_sources=False):
     """Join one exact observation to a bounded, independently reviewed clock.
 
     This does not use the atlas's estimated published_at as an actual release
     timestamp, and never substitutes SOFR's rate for its percentile or volume.
     """
     instrument, clock, unit, divisor, source = NYFED_CLOCKS[name]
+    if name in ("policy.sofr", "policy.effr"):
+        instrument, source = canonical_source(market, name, allow_legacy_sources)
     if not isinstance(market, dict) or (
         market.get("timezone") != "America/New_York"
         or market.get("settlement_calendar") != "US-FEDWIRE"
@@ -155,15 +157,17 @@ def nyfed_clock_evidence(name, row, market, now):
     }
 
 
-def reported_latest_date(name, market, health, now):
+def reported_latest_date(name, market, health, now, *, allow_legacy_sources=False):
     """Report observed source dates, never manufacture a latest numeric value."""
     dates = []
     instrument = {
-        "policy.iorb": "US.FED.IORB",
+        "policy.iorb": "US.FED.IORB_DIRECT",
         "liquidity.srf": "US.NYFED.SRF_TAKEUP",
     }.get(name)
     if name in NYFED_CLOCKS:
         instrument = NYFED_CLOCKS[name][0]
+    if name in ("policy.sofr", "policy.effr", "policy.iorb"):
+        instrument, _ = canonical_source(market, name, allow_legacy_sources)
     if (
         instrument
         and isinstance(market, dict)
@@ -212,9 +216,12 @@ def evaluate(
     evaluated_at,
     max_snapshot_age_seconds=900,
     desk_history=None,
+    allow_legacy_sources=False,
 ):
     """Inspect only named public fields; never infer a missing print or clock."""
     now = timestamp(evaluated_at)
+    if not isinstance(allow_legacy_sources, bool):
+        raise ValueError("legacy replay policy must be boolean")
     if (
         not finite_number(max_snapshot_age_seconds)
         or not 1 <= max_snapshot_age_seconds <= 86400
@@ -316,9 +323,12 @@ def evaluate(
             # Alignment alone never excuses a missed reference-rate publication.
             for reference_name in ("policy.sofr", "policy.effr"):
                 nyfed_clock_evidence(
-                    reference_name, metrics.get(reference_name, {}), market, now
+                    reference_name, metrics.get(reference_name, {}), market, now,
+                    allow_legacy_sources=allow_legacy_sources,
                 )
-            horizon = common_horizon_evidence(desk, market, desk_history, now)
+            horizon = common_horizon_evidence(
+                desk, market, desk_history, now, allow_legacy_sources=allow_legacy_sources
+            )
         except (ValueError, TypeError, KeyError, OverflowError):
             issue("common_horizon_not_verified", "desk.evidence_horizon")
     freshness_assessments = {}
@@ -348,7 +358,9 @@ def evaluate(
         # when the desk's coarse age label says fresh.
         if name in NYFED_CLOCKS and isinstance(market, dict) and "metrics" in market:
             try:
-                evidence = nyfed_clock_evidence(name, row, market, now)
+                evidence = nyfed_clock_evidence(
+                    name, row, market, now, allow_legacy_sources=allow_legacy_sources
+                )
                 nyfed_fresh = row.get("freshness") in {"fresh", "aging"}
                 if nyfed_fresh:
                     assessment.update(evidence)
@@ -410,7 +422,9 @@ def evaluate(
             issue("observation_exceeds_age_backstop", name)
         if row.get("freshness") != "fresh" and not nyfed_fresh and not horizon_fresh:
             issue("required_metric_not_reported_fresh", name)
-        latest_day = reported_latest_date(name, market, health, now)
+        latest_day = reported_latest_date(
+            name, market, health, now, allow_legacy_sources=allow_legacy_sources
+        )
         assessment["canonical_latest_asof"] = (
             latest_day.isoformat() if latest_day else None
         )
@@ -429,8 +443,12 @@ def evaluate(
         benchmark = {}
     if any(publication_denied(node) for node in [benchmark, *usd]):
         issue("publication_restricted", "atlas.US-USD")
+    benchmark_id, benchmark_source = canonical_source(market, "policy.sofr", allow_legacy_sources)
+    benchmark_mnemonic = "SOFR" if benchmark_source == "fred" else "SOFR_MEDIAN"
     if (
-        benchmark.get("mnemonic") != "SOFR"
+        benchmark.get("mnemonic") != benchmark_mnemonic
+        or benchmark.get("id") != benchmark_id
+        or benchmark.get("source") != benchmark_source
         or benchmark.get("unit") != "%"
         or benchmark.get("availability") != "AVAILABLE"
         or benchmark.get("redistribution_status") != "allowed"
@@ -484,7 +502,10 @@ def evaluate(
         "policy_id": POLICY_ID,
         "evaluated_at": now.isoformat(),
         "status": "attention_required" if issues else "checks_passed",
-        "scope": "captured_usd_funding_consistency_and_age_backstops",
+        "scope": "offline_legacy_canonical_replay_not_current_publication_readiness"
+        if allow_legacy_sources else "captured_usd_funding_consistency_and_age_backstops",
+        "canonical_source_policy": "explicit_offline_legacy_replay"
+        if allow_legacy_sources else "direct_publishers_required",
         "review_scope": "common_sofr_iorb_horizon"
         if common_claim and review_asof is not None
         else "captured_observations",
@@ -538,6 +559,8 @@ def main(argv=None):
         "--evaluated-at", required=True, help="explicit ISO timestamp with timezone"
     )
     parser.add_argument("--max-snapshot-age-seconds", type=int, default=900)
+    parser.add_argument("--offline-legacy-sources", action="store_true",
+                        help="explicit historical replay only; does not establish current publication readiness")
     args = parser.parse_args(argv)
     try:
         captures = {
@@ -553,6 +576,7 @@ def main(argv=None):
             else None,
             evaluated_at=args.evaluated_at,
             max_snapshot_age_seconds=args.max_snapshot_age_seconds,
+            allow_legacy_sources=args.offline_legacy_sources,
         )
         report["input_sha256"] = {name: entry[1] for name, entry in captures.items()}
         print(json.dumps(report, indent=2, allow_nan=False))

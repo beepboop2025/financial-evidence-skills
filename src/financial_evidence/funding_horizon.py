@@ -33,6 +33,28 @@ HISTORICAL_CARDS = {
 }
 
 
+# A direct entry, even an unusable one, must never fall back to the legacy FRED
+# series. Legacy identity is admitted only by explicit offline replay callers.
+CANONICAL_SOURCES = {
+    "policy.sofr": ("US.NYFED.SOFR_MEDIAN", "nyfed_rates", "US.NYFED.SOFR"),
+    "policy.effr": ("US.NYFED.EFFR_MEDIAN", "nyfed_unsecured_rates", "US.NYFED.EFFR"),
+    "policy.iorb": ("US.FED.IORB_DIRECT", "fed_prates", "US.FED.IORB"),
+}
+
+
+def canonical_source(market, name, allow_legacy_sources=False):
+    if not isinstance(allow_legacy_sources, bool):
+        raise ValueError("legacy replay policy must be boolean")
+    direct_id, source, legacy_id = CANONICAL_SOURCES[name]
+    members = market.get("metrics") if isinstance(market, dict) else None
+    direct_present = isinstance(members, list) and any(
+        isinstance(row, dict) and row.get("id") == direct_id for row in members
+    )
+    if allow_legacy_sources and not direct_present:
+        return legacy_id, "fred"
+    return direct_id, source
+
+
 def _date(value):
     if not isinstance(value, str):
         raise ValueError("invalid observation date")
@@ -183,7 +205,7 @@ def _chart_point(document, chart_id, column, horizon):
     return latest[1]
 
 
-def common_horizon_evidence(desk, market, history, now):
+def common_horizon_evidence(desk, market, history, now, *, allow_legacy_sources=False):
     """Return strict historical-point proof, or raise ValueError.
 
     SOFR/EFFR publication-clock admission is deliberately the caller's separate
@@ -191,6 +213,8 @@ def common_horizon_evidence(desk, market, history, now):
     """
     if not isinstance(now, datetime) or now.tzinfo is None or now.utcoffset() is None:
         raise ValueError("explicit aware evaluation time required")
+    if not isinstance(allow_legacy_sources, bool):
+        raise ValueError("legacy replay policy must be boolean")
     today = now.astimezone(timezone.utc).date()
     cards, full_cards = _cards(desk), _cards(history)
     horizon = _date(desk.get("asof"))
@@ -231,8 +255,13 @@ def common_horizon_evidence(desk, market, history, now):
         or market.get("settlement_calendar") != "US-FEDWIRE"
     ):
         raise ValueError("unrecognized canonical market")
-    sofr, sofr_points = _instrument(market, "US.NYFED.SOFR", "%", "fred", today)
-    iorb, iorb_points = _instrument(market, "US.FED.IORB", "%", "fred", today)
+    # Direct canonical histories crosscheck the captured desk's honestly named
+    # inputs. This does not relabel the desk's acquisition or turn current-vintage
+    # history into a historical publication receipt.
+    sofr_id, sofr_source = canonical_source(market, "policy.sofr", allow_legacy_sources)
+    iorb_id, iorb_source = canonical_source(market, "policy.iorb", allow_legacy_sources)
+    sofr, sofr_points = _instrument(market, sofr_id, "%", sofr_source, today)
+    iorb, iorb_points = _instrument(market, iorb_id, "%", iorb_source, today)
     srf, srf_points = _instrument(
         market,
         "US.NYFED.SRF_TAKEUP",
@@ -311,6 +340,9 @@ def common_horizon_evidence(desk, market, history, now):
             else None,
             "basis": "verified_own_observation_at_common_sofr_iorb_horizon",
         }
+        if name == "policy.iorb":
+            result[name].update(canonical_instrument=iorb_id, canonical_source=iorb_source,
+                                publication_clock="not_established_by_historical_points")
         if name == "liquidity.srf":
             result[name].update(
                 canonical_value_millions=value,

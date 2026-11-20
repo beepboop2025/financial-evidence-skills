@@ -101,15 +101,15 @@ def horizon_fixture():
         "settlement_calendar": "US-FEDWIRE",
         "metrics": [
             instrument(
-                "US.NYFED.SOFR",
+                "US.NYFED.SOFR_MEDIAN",
                 "%",
-                "fred",
+                "nyfed_rates",
                 [["2026-09-24", 3.88], ["2026-09-25", 3.9]],
             ),
             instrument(
-                "US.FED.IORB",
+                "US.FED.IORB_DIRECT",
                 "%",
-                "fred",
+                "fed_prates",
                 [["2026-09-24", 3.9], ["2026-09-25", 3.9], ["2026-09-28", 3.9]],
             ),
             instrument(
@@ -341,6 +341,34 @@ class FundingHorizonTests(unittest.TestCase):
                     self.check()
                 for doc in (self.desk, self.history):
                     self.card(name, doc)["asof"] = "2026-09-25"
+
+
+    def test_direct_iorb_history_does_not_invent_a_publication_clock(self):
+        row = self.market["metrics"][1]
+        row.update(published_at=None, status="UNKNOWN", knowledge_time="2026-09-28T23:58:00Z")
+        before = copy.deepcopy((self.desk, self.market, self.history))
+        proof = self.check()["historical_observation_checks"]["policy.iorb"]
+        self.assertEqual(proof["canonical_instrument"], "US.FED.IORB_DIRECT")
+        self.assertEqual(proof["canonical_source"], "fed_prates")
+        self.assertEqual(proof["publication_clock"], "not_established_by_historical_points")
+        self.assertEqual((self.desk, self.market, self.history), before)
+
+    def test_legacy_horizon_is_an_explicit_replay_only(self):
+        self.market["metrics"][0].update(id="US.NYFED.SOFR", source="fred")
+        self.market["metrics"][1].update(id="US.FED.IORB", source="fred")
+        with self.assertRaises(ValueError):
+            self.check()
+        proof = common_horizon_evidence(self.desk, self.market, self.history, NOW, allow_legacy_sources=True)
+        self.assertEqual(proof["historical_observation_checks"]["policy.iorb"]["canonical_source"], "fred")
+
+    def test_direct_iorb_present_but_unusable_cannot_use_legacy(self):
+        legacy = copy.deepcopy(self.market["metrics"][1])
+        legacy.update(id="US.FED.IORB", source="fred")
+        self.market["metrics"].append(legacy)
+        self.market["metrics"][1]["redistribution_status"] = "restricted"
+        for allowed in (False, True):
+            with self.assertRaises(ValueError):
+                common_horizon_evidence(self.desk, self.market, self.history, NOW, allow_legacy_sources=allowed)
 
 
 if __name__ == "__main__":

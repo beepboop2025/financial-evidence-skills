@@ -19,8 +19,8 @@ def overnight(asof="2026-09-25", now="2026-09-29T00:01:00Z", due="2026-09-29"):
         doc[key] = now
     rows = {row["id"]: row for row in docs[0]["sections"][0]["metrics"]}
     cases = [
-        ("policy.sofr", "US.NYFED.SOFR", 3.9, "%", 3.9, "fred", 12),
-        ("policy.effr", "US.NYFED.EFFR", 3.88, "%", 3.88, "fred", 13),
+        ("policy.sofr", "US.NYFED.SOFR_MEDIAN", 3.9, "%", 3.9, "nyfed_rates", 12),
+        ("policy.effr", "US.NYFED.EFFR_MEDIAN", 3.88, "%", 3.88, "nyfed_unsecured_rates", 13),
         (
             "distribution.sofr.p99",
             "US.NYFED.SOFR_P99",
@@ -263,6 +263,36 @@ class PublicationReviewTests(unittest.TestCase):
         self.assertIn(
             "nyfed_publication_clock_not_usable", {x["code"] for x in result["issues"]}
         )
+
+
+    def test_legacy_canonical_sources_require_explicit_offline_replay(self):
+        docs = overnight()
+        market = docs[1]["markets"][0]
+        for row, ident in zip(market["metrics"][:2], ("US.NYFED.SOFR", "US.NYFED.EFFR")):
+            row.update(id=ident, source="fred")
+        market["benchmark"].update(id="US.NYFED.SOFR", mnemonic="SOFR", source="fred")
+        self.assertEqual(evaluate(*docs, evaluated_at="2026-09-29T00:01:00Z")["status"], "attention_required")
+        replay = evaluate(*docs, evaluated_at="2026-09-29T00:01:00Z", allow_legacy_sources=True)
+        self.assertEqual(replay["issues"], [])
+        self.assertEqual(replay["canonical_source_policy"], "explicit_offline_legacy_replay")
+        self.assertIn("not_current_publication_readiness", replay["scope"])
+
+    def test_unusable_direct_print_never_falls_back_to_legacy(self):
+        for allowed in (False, True):
+            docs = overnight()
+            market = docs[1]["markets"][0]
+            legacy = copy.deepcopy(market["metrics"][0])
+            legacy.update(id="US.NYFED.SOFR", source="fred")
+            market["metrics"].append(legacy)
+            market["metrics"][0]["source"] = "fred"
+            result = evaluate(*docs, evaluated_at="2026-09-29T00:01:00Z", allow_legacy_sources=allowed)
+            self.assertIn({"code": "nyfed_publication_clock_not_usable", "subject": "policy.sofr"}, result["issues"])
+
+    def test_offline_flag_does_not_override_explicit_publication_restriction(self):
+        docs = overnight()
+        docs[1]["markets"][0]["metrics"][0]["redistribution_status"] = "restricted"
+        result = evaluate(*docs, evaluated_at="2026-09-29T00:01:00Z", allow_legacy_sources=True)
+        self.assertEqual(result["status"], "attention_required")
 
 
 if __name__ == "__main__":

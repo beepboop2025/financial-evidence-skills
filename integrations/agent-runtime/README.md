@@ -234,6 +234,50 @@ The command verifies a bounded private copy locally and reads no network
 source. Python builds without SQLite deserialization use a temporary private
 directory under the configured temporary path and remove it on completion.
 
+### Check multiple stopped archives at a capacity warning
+
+The source-only command `operations/archived_catalog.py` can check up to eight
+operator-selected final archives sequentially. A catalog uses schema
+`financial-evidence.runtime-archive-catalog.v1`. Its `archives` array has
+one object per installation in predecessor-first order. Each object contains
+`installation_id`, `repository_id`, the full `snapshot_id`, the trusted
+`receipt_sha256`, and paths `journal` and `receipt`. Relative paths resolve
+from the catalog directory. Retain the catalog SHA-256 independently of the
+restored files. Each successor's embedded predecessor must match the earlier
+snapshot, database and retry-inventory digests and run count.
+
+```sh
+python archived_catalog.py --catalog /private/archive-catalog.json \
+  --catalog-sha256 TRUSTED_CATALOG_SHA256 --job funding-watch --key ORIGINAL_KEY
+```
+
+A matching inherited retry resolves to one original outcome, with every
+matching snapshot listed. Distinct outcomes for the same queried key, a missing
+predecessor or an unverifiable archive return `unknown` and exit 2. A verified
+miss returns `absent_in_catalog`, scoped to those pinned closed archives.
+Omitting the job and key audits all retained retry outcomes and detects
+conflicts across the catalog.
+
+The existing private monitor emits `runs_capacity_warning` at 8,000 retained
+attempts and `runs_capacity_exhausted` at 10,000 under the signed limit. An
+operator-controlled listener can run the following audit when either
+transition opens. Supply the independently configured live installation ID.
+
+```sh
+python archived_catalog.py --catalog /private/archive-catalog.json \
+  --catalog-sha256 TRUSTED_CATALOG_SHA256 --installation-id LIVE_INSTALLATION_ID \
+  --on-capacity-warning /private/operations/health.json
+```
+
+A fresh, identity-matched report below the threshold yields
+`below_capacity_warning`. At the warning or ceiling the tool verifies the
+closed catalog, including the live report's exact predecessor anchor, and
+rejects a catalog that lists the active installation as final. An expired
+report or a report without a matching anchor yields `unknown`. The audit reads
+the health report and archives offline. Acquisitions, live cursor and
+acknowledgement continuity, rollover and future installation selection retain
+their existing authority and limits.
+
 See [architecture and scale boundaries](../../docs/infrastructure/ARCHITECTURE.md)
 and [adoption measurements](../../docs/infrastructure/ADOPTION.md).
 

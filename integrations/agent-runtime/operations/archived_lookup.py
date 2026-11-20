@@ -45,8 +45,9 @@ def verified_reader(data):
                 yield db
 
 
-def lookup(journal, receipt, receipt_sha256, snapshot, job, key):
-    if not (HEX.fullmatch(receipt_sha256) and HEX.fullmatch(snapshot) and NAME.fullmatch(job) and KEY.fullmatch(key)):
+@contextmanager
+def verified_archive(journal, receipt, receipt_sha256, snapshot):
+    if not (HEX.fullmatch(receipt_sha256) and HEX.fullmatch(snapshot)):
         raise ArchiveUnavailable("invalid_lookup_parameters")
     raw = regular(receipt, 65536)
     if sha(raw) != receipt_sha256:
@@ -77,23 +78,36 @@ def lookup(journal, receipt, receipt_sha256, snapshot, job, key):
         rows = [list(row) for row in db.execute("SELECT id,job,key,status,sha256 FROM runs ORDER BY id LIMIT 10001")]
         if len(rows) > 10000 or len(rows) != binding.get("runs") or digest(rows) != binding["keys_sha256"]:
             raise ArchiveUnavailable("retry_inventory_mismatch")
-        context = {"snapshot_id": snapshot, "archive_installation": meta["installation_id"], "acquisition_authority": False}
-        run = db.execute("SELECT * FROM runs WHERE job=? AND key=?", (job, key)).fetchone()
-        if run is None:
-            return {**context, "status": "absent_in_this_snapshot"}
-        origin = meta["installation_id"]
-        if run["sha256"] is not None:
+        yield db, meta, binding, version
+
+
+def archive_outcome(db, meta, version, run, workflows):
+    origin = meta["installation_id"]
+    job = run["job"]
+    if run["sha256"] is not None:
+        if job not in workflows:
             spec = db.execute("SELECT spec,sha256 FROM jobs WHERE id=?", (job,)).fetchone()
             workflow = Workflow.parse(decode(spec["spec"]))
             if workflow.id != job or workflow.sha256 != spec["sha256"]:
                 raise ArchiveUnavailable("workflow_binding_mismatch")
-            origin = verify_row(db, run, meta, workflow)["installation_id"]
-        elif run["status"] not in {"error", "interrupted"}:
-            raise ArchiveUnavailable("terminal_outcome_unverified")
-        elif version == 2 and db.execute("SELECT 1 FROM predecessor_runs WHERE run_id=?", (run["id"],)).fetchone():
-            origin = db.execute("SELECT installation_id FROM predecessor").fetchone()[0]
-        return {**context, "status": "found", "outcome": run["status"], "origin_installation": origin,
-                "run_id": run["id"], "receipt_sha256": run["sha256"]}
+            workflows[job] = workflow
+        origin = verify_row(db, run, meta, workflows[job])["installation_id"]
+    elif run["status"] not in {"error", "interrupted"}:
+        raise ArchiveUnavailable("terminal_outcome_unverified")
+    elif version == 2 and db.execute("SELECT 1 FROM predecessor_runs WHERE run_id=?", (run["id"],)).fetchone():
+        origin = db.execute("SELECT installation_id FROM predecessor").fetchone()[0]
+    return {"outcome": run["status"], "origin_installation": origin, "run_id": run["id"], "receipt_sha256": run["sha256"]}
+
+
+def lookup(journal, receipt, receipt_sha256, snapshot, job, key):
+    if not (NAME.fullmatch(job) and KEY.fullmatch(key)):
+        raise ArchiveUnavailable("invalid_lookup_parameters")
+    with verified_archive(journal, receipt, receipt_sha256, snapshot) as (db, meta, binding, version):
+        context = {"snapshot_id": snapshot, "archive_installation": meta["installation_id"], "acquisition_authority": False}
+        run = db.execute("SELECT * FROM runs WHERE job=? AND key=?", (job, key)).fetchone()
+        if run is None:
+            return {**context, "status": "absent_in_this_snapshot"}
+        return {**context, "status": "found", **archive_outcome(db, meta, version, run, {})}
 
 
 def main(argv=None):

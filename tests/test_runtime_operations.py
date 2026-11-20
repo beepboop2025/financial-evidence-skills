@@ -30,6 +30,7 @@ from financial_evidence.runtime.engine import Runtime, implementation
 from financial_evidence.runtime.store import Store
 from ops_common import atomic, config, inspect_journal, regular, sha
 from archived_lookup import lookup, main as archived_lookup_main
+from archived_catalog import inspect_catalog, main as archived_catalog_main
 from ops_backup import backup, recover
 from ops_recovery import candidates, recover_snapshot
 from ops_diagnostics import diagnose
@@ -486,6 +487,99 @@ class OperationsTests(unittest.TestCase):
         self.assertEqual((error["outcome"], error["run_id"], error["receipt_sha256"]), ("error", failure["run_id"], None))
         self.assertEqual((error["archive_installation"], error["origin_installation"]),
                          (report["installation_id"], self.cfg["installation_id"]))
+
+    def catalog_entry(self, args):
+        proof = json.loads(args["receipt"].read_bytes())
+        return {"installation_id": proof["installation_id"], "repository_id": proof["repository_id"],
+                "snapshot_id": args["snapshot"], "receipt_sha256": args["receipt_sha256"],
+                "journal": str(args["journal"].relative_to(self.base)), "receipt": str(args["receipt"].relative_to(self.base))}
+
+    def catalog_inputs(self, entries):
+        path = self.base / "catalog.json"
+        atomic(path, {"schema":"financial-evidence.runtime-archive-catalog.v1","archives":entries})
+        return path, sha(path.read_bytes())
+
+    def test_catalog_collapses_proven_inherited_retries_and_rejects_missing_anchors(self):
+        self.successor_reader()
+        self.store.control(NOW + 1, stopped=True)
+        old = self.lookup_inputs(self.cfg, "old-final")
+        path = self.state / "receipts"
+        ref = next(path.glob("*.json"))
+        destination = self.base / "next"
+        report = prepare(self.cfg, ref, destination, restic=self.restic, final_stopped=True)
+        cfg = dict(self.cfg, root=str(destination), installation_id=report["installation_id"], state=str(self.base / "next-ops"))
+        Path(cfg["state"]).mkdir(mode=0o700)
+        new = self.lookup_inputs(cfg, "new-final")
+        entries = [self.catalog_entry(x) for x in (old,new)]
+        catalog, checksum = self.catalog_inputs(entries)
+        found = inspect_catalog(catalog, checksum, self.workflow.id, "permanent-key")
+        self.assertEqual((found["origin_installation"], found["run_id"], len(found["matched_snapshots"])),
+                         (self.cfg["installation_id"], self.run["run_id"], 2))
+        audit = inspect_catalog(catalog, checksum)
+        self.assertEqual((audit["retry_keys"],audit["retained_rows_verified"]),(1,2))
+        self.assertEqual(inspect_catalog(catalog, checksum, self.workflow.id,"missing")["status"],"absent_in_catalog")
+        self.assertFalse(audit["acquisition_authority"])
+        with self.assertRaisesRegex(ValueError,"missing_or_mismatched_predecessor"):
+            inspect_catalog(*self.catalog_inputs(entries[1:]))
+        with self.assertRaisesRegex(ValueError,"duplicate_or_invalid"):
+            inspect_catalog(*self.catalog_inputs([entries[0],entries[0]]))
+
+    def test_catalog_conflicting_independent_retries_and_damaged_later_archives_fail_closed(self):
+        self.store.control(NOW + 1, stopped=True)
+        one = self.lookup_inputs(self.cfg, "first-final")
+        other_root = self.base / "other"; store = Store(other_root,traffic_class="synthetic")
+        store.register(self.workflow,NOW)
+        Runtime(store,executor=lambda _:result(),clock=lambda:NOW).run(self.workflow.id,"permanent-key")
+        store.control(NOW+1,stopped=True)
+        other_state=self.base/"other-ops";other_state.mkdir(mode=0o700)
+        cfg=dict(self.cfg,root=str(other_root),state=str(other_state),installation_id=store.report()["installation_id"])
+        two=self.lookup_inputs(cfg,"second-final")
+        entries=[self.catalog_entry(x) for x in (one,two)]
+        catalog, checksum=self.catalog_inputs(entries)
+        for pair in ((), (self.workflow.id,"permanent-key")):
+            with self.assertRaisesRegex(ValueError,"conflicting_retry_outcomes"):
+                inspect_catalog(catalog,checksum,*pair)
+        self.assertEqual(inspect_catalog(catalog,checksum,self.workflow.id,"another")["status"],"absent_in_catalog")
+        two["journal"].write_bytes(b"damaged later archive")
+        with self.assertRaisesRegex(ValueError,"database_digest_mismatch"):
+            inspect_catalog(catalog,checksum,self.workflow.id,"permanent-key")
+        with self.assertRaisesRegex(ValueError,"catalog_digest_mismatch"):
+            inspect_catalog(catalog,"f"*64)
+
+    def test_catalog_warning_selects_exact_live_predecessor_and_never_grants_capacity(self):
+        self.store.control(NOW+1,stopped=True)
+        first=self.lookup_inputs(self.cfg,"sealed")
+        catalog, checksum=self.catalog_inputs([self.catalog_entry(first)])
+        proof=json.loads(first["receipt"].read_bytes())
+        anchor={k:proof[k] for k in ("installation_id","snapshot_id","database_sha256","keys_sha256","runs")}
+        live="a"*32
+        health=self.base/"current-health.json"
+        now=datetime.now(timezone.utc).timestamp()
+        journal={"installation_id":live,"runs":7999,"limits":{"runs":10000},"predecessor":anchor}
+        value={"schema":"financial-evidence.runtime-health.v1","execution_authority":False,"installation_id":live,
+               "generated_at":datetime.fromtimestamp(now-5,timezone.utc).isoformat(),"valid_until":datetime.fromtimestamp(now+120,timezone.utc).isoformat(),
+               "journal":journal,"issues":[]}
+        argv=["--catalog",str(catalog),"--catalog-sha256",checksum,"--on-capacity-warning",str(health),"--installation-id",live]
+        def run(expected):
+            atomic(health,value)
+            with redirect_stdout(io.StringIO()) as output:
+                self.assertEqual(archived_catalog_main(argv),expected)
+            return json.loads(output.getvalue())
+        self.assertEqual(run(0)["status"],"below_capacity_warning")
+        journal["runs"]=8000
+        self.assertEqual(run(2)["reason"],"health_capacity_issue_mismatch")
+        value["issues"]=[{"code":"runs_capacity_warning"}]
+        verified=run(0)
+        self.assertEqual(verified["status"],"catalog_verified")
+        self.assertFalse(verified["acquisition_authority"])
+        journal["runs"]=10000;value["issues"]=[{"code":"runs_capacity_exhausted"}]
+        self.assertEqual(run(0)["capacity"]["issue"],"runs_capacity_exhausted")
+        anchor["database_sha256"]="f"*64
+        self.assertEqual(run(2)["reason"],"live_predecessor_not_in_catalog")
+        value["valid_until"]=datetime.fromtimestamp(now+86400,timezone.utc).isoformat()
+        self.assertEqual(run(2)["reason"],"health_outside_validity_window")
+        value["valid_until"]=value["generated_at"]
+        self.assertEqual(run(2)["reason"],"health_outside_validity_window")
 
     def test_changed_workflow_inventory_requires_operator_review(self):
         cfg = {**self.cfg, "jobs": {self.workflow.id: "c" * 64}}

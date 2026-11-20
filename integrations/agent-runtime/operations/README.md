@@ -240,6 +240,15 @@ and remote snapshots remain retained. Review warnings and archive verified
 evidence before a cap. A new installation has a new key namespace and does not
 deduplicate across the old installation.
 
+The candidate `prepare-successor` command prepares a separate stopped installation from an exact verified offsite receipt. It retains each run ID, key, digest, event, acknowledgement, workflow and scheduling state. Historical receipts keep the original installation identity and canonical bytes. The successor keeps a self-contained compressed copy of those receipts. Both the original installation’s allowance and the successor’s 64 MiB allowance apply to uncompressed canonical evidence. The 10,000-attempt limit includes all inherited keys. The command supports one predecessor.
+
+```sh
+python ops.py --config /path/to/config.json prepare-successor \
+  --receipt /absolute/path/to/verified-receipt.json --target /new/private/successor
+```
+
+A paired runtime and operations build with successor-journal support is required. The preparation command leaves the active runtime alone. An earlier snapshot is suitable for a rehearsal. A production cutover needs a stopped scheduler, no in-flight claims, a final verified snapshot matching the source journal, separately bound successor configuration, exact backup/restore readback, and a rollback procedure covering receipts written after cutover. Earlier binaries can replay the original installation from its original verified snapshot. Preserve the successor format for later writes.
+
 A full restore every 15 minutes can consume several GiB of network reads per day
 at the journal's maximum size. Monitor actual capacity and bandwidth before
 increasing limits or adding installations. A hosted service would need shared

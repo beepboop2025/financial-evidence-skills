@@ -107,6 +107,9 @@ def main(argv=None):
     command = sub.add_parser("restore")
     command.add_argument("--receipt", required=True)
     command.add_argument("--target", required=True)
+    command = sub.add_parser("prepare-successor")
+    command.add_argument("--receipt", required=True)
+    command.add_argument("--target", required=True)
     command = sub.add_parser("restore-snapshot")
     command.add_argument("--snapshot", required=True)
     command.add_argument("--target", required=True)
@@ -123,6 +126,9 @@ def main(argv=None):
             result = recover(cfg, args.receipt, args.target)
         elif args.command == "recovery-candidates":
             result = candidates(cfg)
+        elif args.command == "prepare-successor":
+            from ops_successor import prepare
+            result = prepare(cfg, args.receipt, args.target)
         elif args.command == "restore-snapshot":
             result = recover_snapshot(cfg, args.snapshot, args.target)
         elif args.command == "diagnose":

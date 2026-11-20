@@ -85,14 +85,14 @@ def diagnose(cfg, *, job=None, now=None, journal=None):
                 continue
             latest = entry["latest"]
             row = db.execute("SELECT * FROM runs WHERE id=?", (latest["id"],)).fetchone() if latest else None
-            if row is None or row["bundle"] is None:
+            if row is None or row["sha256"] is None:
                 reports.append({"job": entry["id"], "status": "no_retained_receipt", "run_id": latest["id"] if latest else None})
                 continue
             stored = db.execute("SELECT spec FROM jobs WHERE id=?", (entry["id"],)).fetchone()
             workflow = Workflow.parse(decode(stored["spec"]))
             if workflow.sha256 != cfg["jobs"][entry["id"]]:
                 raise ValueError("diagnostic workflow binding differs")
-            report = explain(verify_row(row, meta, workflow))
+            report = explain(verify_row(db, row, meta, workflow))
             report["receipt_sha256"] = row["sha256"]
             reports.append(report)
     used = {reason for report in reports for reason in report.get("reasons", [])}

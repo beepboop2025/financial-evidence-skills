@@ -76,6 +76,9 @@ class FakeRestic:
         raise AssertionError(args)
 
 
+from ops_successor import prepare
+
+
 class OperationsTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
@@ -120,6 +123,47 @@ class OperationsTests(unittest.TestCase):
                 config(path)
         atomic(path, self.cfg)
         self.assertEqual(config(path), self.cfg)
+
+    def test_successor_preserves_history_limits_and_new_writes_through_a_restore(self):
+        receipt = backup(self.cfg, restic=self.restic)
+        reference = self.state / "receipts" / (receipt["operation_id"] + ".json")
+        successor = self.base / "successor"
+        before = sha((self.root / "runtime.sqlite").read_bytes())
+        report = prepare(self.cfg, reference, successor, restic=self.restic)
+        self.assertEqual(before, sha((self.root / "runtime.sqlite").read_bytes()))
+        self.assertTrue(report["admission_stopped"])
+        first_id = self.run["run_id"]
+        archived = self.runtime.replay(first_id)
+        store = Store(successor)
+        rt = Runtime(store, executor=lambda _: result(), clock=lambda: NOW + 86400)
+        self.assertEqual(rt.replay(first_id), archived)
+        self.assertEqual(rt.run(self.workflow.id, "permanent-key")["run_id"], first_id)
+        self.assertEqual(rt.run(self.workflow.id, "new-key")["reason"], "stopped")
+        store.control(NOW + 86400, stopped=False)
+        second = rt.run(self.workflow.id, "new-key")
+        second_id = second["run_id"]
+        self.assertNotEqual(first_id, second_id)
+        self.assertEqual(rt.bundle(second_id)["record"]["installation_id"], report["installation_id"])
+        next_cfg = dict(self.cfg, root=str(successor), state=str(self.base / "new-ops"),
+                        installation_id=report["installation_id"])
+        Path(next_cfg["state"]).mkdir(mode=0o700)
+        second_proof = backup(next_cfg, restic=self.restic)
+        self.assertEqual(second_proof["verified_receipts"], 2)
+        second_reference = Path(next_cfg["state"]) / "receipts" / (second_proof["operation_id"] + ".json")
+        restored = self.base / "restored-successor"
+        recover(next_cfg, second_reference, restored, restic=self.restic)
+        recovered = Runtime(Store(restored), clock=lambda: NOW + 86401)
+        self.assertEqual(recovered.replay(first_id), archived)
+        self.assertEqual(recovered.replay(second_id), rt.replay(second_id))
+        self.assertEqual(recovered.run(self.workflow.id, "new-key")["run_id"], second_id)
+        report = inspect_journal(restored / "runtime.sqlite", full=True)
+        self.assertEqual(report["predecessor"]["canonical_bytes"], inspect_journal(self.root / "runtime.sqlite")["receipt_bytes"])
+        self.assertEqual(report["limits"], store.report()["limits"])
+        with closing(sqlite3.connect(restored / "runtime.sqlite")) as db:
+            db.execute("UPDATE predecessor_runs SET payload=payload || X'FF' WHERE payload IS NOT NULL")
+            db.commit()
+        with self.assertRaises((ValueError, sqlite3.Error, TypeError)):
+            inspect_journal(restored / "runtime.sqlite", full=True)
 
     def test_observer_is_readonly_and_does_not_initialize_missing_state(self):
         path = self.root / "runtime.sqlite"

@@ -1,10 +1,11 @@
 """Failure-oriented acceptance of the separately deployed operations component."""
 
 import copy
-from contextlib import closing
+from contextlib import closing, redirect_stdout
 from datetime import datetime, timezone
 import hashlib
 import http.client
+import io
 import importlib.util
 from http.server import ThreadingHTTPServer
 import json
@@ -28,6 +29,7 @@ from financial_evidence.runtime.contracts import encode
 from financial_evidence.runtime.engine import Runtime, implementation
 from financial_evidence.runtime.store import Store
 from ops_common import atomic, config, inspect_journal, regular, sha
+from archived_lookup import lookup, main as archived_lookup_main
 from ops_backup import backup, recover
 from ops_recovery import candidates, recover_snapshot
 from ops_diagnostics import diagnose
@@ -400,6 +402,90 @@ class OperationsTests(unittest.TestCase):
         self.assertEqual(restored.run(self.workflow.id, "new-key")["reason"], "stopped")
         with self.assertRaises(ValueError):
             recover(self.cfg, path, target, restic=self.restic)
+
+    def lookup_inputs(self, cfg, name):
+        receipt = backup(cfg, restic=self.restic)
+        target = self.base / name
+        recover_snapshot(cfg, receipt["snapshot_id"], target, restic=self.restic)
+        proof = target / "reconstructed-receipt.json"
+        return dict(journal=target / "runtime.sqlite", receipt=proof, receipt_sha256=sha(proof.read_bytes()),
+                    snapshot=receipt["snapshot_id"], job=self.workflow.id, key="permanent-key")
+
+    def test_archived_lookup_verifies_record_and_proves_absence_only_within_named_snapshot(self):
+        self.store.control(NOW + 1, stopped=True)
+        args = self.lookup_inputs(self.cfg, "sealed")
+        original = sha(args["journal"].read_bytes())
+        self.restic.calls.clear()
+        verified = lookup(**args)
+        self.assertEqual((verified["run_id"], verified["origin_installation"], verified["receipt_sha256"]),
+                         (self.run["run_id"], self.cfg["installation_id"], self.run["sha256"]))
+        self.assertEqual(verified["status"], "found")
+        with patch("archived_lookup.CAN_DESERIALIZE", False), patch("tempfile.tempdir", str(self.base)):
+            self.assertEqual(lookup(**args), verified)
+        missing = lookup(**dict(args, key="another-key"))
+        self.assertEqual(missing["status"], "absent_in_this_snapshot")
+        self.assertFalse(missing["acquisition_authority"])
+        self.assertEqual(sha(args["journal"].read_bytes()), original)
+        self.assertEqual(self.restic.calls, [])
+
+    def test_archived_lookup_returns_unknown_for_untrusted_or_unavailable_inputs(self):
+        self.store.control(NOW + 1, stopped=True)
+        args = self.lookup_inputs(self.cfg, "sealed")
+        checks = ({"receipt_sha256": "f" * 64}, {"snapshot": "a" * 64}, {"snapshot": "latest"},
+                  {"journal": self.base / "missing.sqlite"}, {"receipt": self.base / "missing.json"})
+        for change in checks:
+            with self.subTest(change=change):
+                argv = [v for k, val in dict(args, **change).items() for v in ("--" + k.replace("_", "-"), str(val))]
+                output = io.StringIO()
+                with redirect_stdout(output):
+                    self.assertEqual(archived_lookup_main(argv), 2)
+                self.assertEqual(json.loads(output.getvalue())["status"], "unknown")
+        args["journal"].write_bytes(args["journal"].read_bytes() + b"tampered")
+        with self.assertRaisesRegex(ValueError, "database_digest_mismatch"):
+            lookup(**dict(args, key="another-key"))
+
+    def test_archived_lookup_checks_inventory_before_reporting_a_miss(self):
+        self.store.control(NOW + 1, stopped=True)
+        args = self.lookup_inputs(self.cfg, "sealed")
+        receipt = json.loads(args["receipt"].read_bytes())
+        receipt["keys_sha256"] = "0" * 64
+        altered = self.base / "inconsistent-receipt.json"
+        altered.write_bytes(encode(receipt))
+        with self.assertRaisesRegex(ValueError, "retry_inventory_mismatch"):
+            lookup(**dict(args, receipt=altered, receipt_sha256=sha(altered.read_bytes()), key="unseen"))
+
+    def test_archived_lookup_refuses_snapshot_taken_with_live_admission(self):
+        args = self.lookup_inputs(self.cfg, "live-backup")
+        # The normal recovery publishes a stopped copy. Its changed bytes must
+        # not masquerade as the originally captured live database.
+        with self.assertRaisesRegex(ValueError, "database_digest_mismatch"):
+            lookup(**args)
+        files = self.restic.snapshots[args["snapshot"]]["files"]
+        args["journal"].write_bytes(files["runtime.sqlite"])
+        with self.assertRaisesRegex(ValueError, "final_stopped_snapshot_required"):
+            lookup(**args)
+
+    def test_archived_lookup_preserves_origin_for_a_predecessor_and_terminal_error(self):
+        self.successor_reader()
+        failed = Runtime(self.store, executor=lambda _: (_ for _ in ()).throw(TimeoutError()), clock=lambda: NOW + 86400)
+        failure = failed.run(self.workflow.id, "failed-key")
+        self.assertEqual(failure["status"], "error")
+        self.store.control(NOW + 86401, stopped=True)
+        saved = backup(self.cfg, restic=self.restic)
+        reference = self.state / "receipts" / (saved["operation_id"] + ".json")
+        destination = self.base / "next"
+        report = prepare(self.cfg, reference, destination, restic=self.restic, final_stopped=True)
+        cfg = dict(self.cfg, root=str(destination), installation_id=report["installation_id"], state=str(self.base / "next-ops"))
+        Path(cfg["state"]).mkdir(mode=0o700)
+        args = self.lookup_inputs(cfg, "archived")
+        self.assertEqual(lookup(**args)["origin_installation"], self.cfg["installation_id"])
+        with patch.dict(sys.modules, {"financial_evidence.runtime.history": None}):
+            with self.assertRaisesRegex(ValueError, "successor_reader_required"):
+                lookup(**dict(args, key="unseen"))
+        error = lookup(**dict(args, key="failed-key"))
+        self.assertEqual((error["outcome"], error["run_id"], error["receipt_sha256"]), ("error", failure["run_id"], None))
+        self.assertEqual((error["archive_installation"], error["origin_installation"]),
+                         (report["installation_id"], self.cfg["installation_id"]))
 
     def test_changed_workflow_inventory_requires_operator_review(self):
         cfg = {**self.cfg, "jobs": {self.workflow.id: "c" * 64}}

@@ -20,11 +20,12 @@ from .core import (
 )
 from .tables import DATASETS, query_packet, validate_query
 
+MONEY_MARKETS_ATLAS_URL = "https://api.seiche.info/api/v2/money-markets"
 DEFAULT_SOURCE_MAX_BYTES = 1_048_576
 # The country atlas includes bounded historical series and now exceeds 1 MiB.
 # Keep the larger allowance tied to this exact fixed route, not its whole host.
 SOURCE_MAX_BYTES = {
-    "https://api.seiche.info/api/v2/money-markets": 4_194_304,
+    MONEY_MARKETS_ATLAS_URL: 4_194_304,
 }
 
 
@@ -62,7 +63,9 @@ class EvidenceService:
 
     def _load(self, source):
         budget = SOURCE_MAX_BYTES.get(source.url, DEFAULT_SOURCE_MAX_BYTES)
-        value = self._fetcher(source, max_bytes=budget, timeout=10)
+        # The full historical atlas can take over ten seconds to send its first byte.
+        timeout = 25 if source.url == MONEY_MARKETS_ATLAS_URL else 10
+        value = self._fetcher(source, max_bytes=budget, timeout=timeout)
         return value, self._clock()
 
     def packet(self, topics) -> dict:

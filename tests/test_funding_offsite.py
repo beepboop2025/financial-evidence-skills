@@ -1,8 +1,10 @@
 import hashlib
 import importlib.util
 import json
+import os
 from pathlib import Path
 import shutil
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -43,6 +45,45 @@ def fixture(root):
 
 
 class OffsiteTests(unittest.TestCase):
+    def test_cli_distinguishes_storage_deferral_from_failure_in_an_optional_install(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            entry = root / "offsite_funding_review.py"
+            shutil.copyfile(SCRIPTS / entry.name, entry)
+            shutil.copyfile(SCRIPTS / "backup_funding_review.py", root / "backup_funding_review.py")
+            cmd = [
+                sys.executable, "-B", str(entry), "--source", str(root / "source"),
+                "--state", str(root / "state"), "--repository-id", "invalid",
+            ]
+            env = {"PATH": os.environ["PATH"]}
+            standalone = subprocess.run(cmd, env=env, capture_output=True)
+            self.assertEqual(standalone.returncode, 1)
+            self.assertEqual(json.loads(standalone.stdout)["error_type"], "ValueError")
+            (root / "funding_offsite_admission.py").write_text(
+                "from contextlib import contextmanager\n"
+                "class StorageBusy(Exception): pass\n"
+                "@contextmanager\n"
+                "def storage_admission(source, state, policy):\n"
+                "    assert source.parent == state.parent == policy.parent\n"
+                "    if policy.name == 'busy': raise StorageBusy()\n"
+                "    if policy.name == 'invalid': raise PermissionError()\n"
+                "    yield\n"
+            )
+            for policy, code, expected in (
+                ("busy", 75, {"status": "deferred", "reason": "native_storage_busy",
+                              "execution_started": False}),
+                ("invalid", 1, {"status": "failed", "error_type": "PermissionError"}),
+                ("admitted", 1, {"status": "failed", "error_type": "ValueError"}),
+            ):
+                with self.subTest(policy=policy):
+                    run = subprocess.run(
+                        cmd, env={**env, "FUNDING_OFFSITE_STORAGE_POLICY": str(root / policy)},
+                        capture_output=True,
+                    )
+                    self.assertEqual(run.returncode, code)
+                    self.assertEqual(json.loads(run.stdout), expected)
+                    self.assertFalse((root / "state").exists())
+
     def test_atlas_capture_bound_applies_to_staging_and_exact_restore(self):
         for name, size, accepted in (
             ("atlas.response", 4 * 1024 * 1024 + 1, True),
@@ -157,6 +198,7 @@ class OffsiteTests(unittest.TestCase):
                         return offsite.encoded({"id": REPOSITORY})
                     if arguments[0] == "backup":
                         staged.append(Path(arguments[-1]))
+                        shutil.copytree(staged[0], root / "snapshot")
                         return (
                             json.dumps(
                                 {"message_type": "summary", "snapshot_id": SNAPSHOT}
@@ -164,10 +206,11 @@ class OffsiteTests(unittest.TestCase):
                             + "\n"
                         ).encode()
                     self.assertEqual(arguments[:3], ("restore", SNAPSHOT, "--target"))
-                    destination = Path(arguments[3]) / staged[0].resolve().relative_to(
-                        "/"
-                    )
-                    shutil.copytree(staged[0], destination)
+                    self.assertFalse(staged[0].exists())
+                    restored = Path(arguments[3])
+                    self.assertEqual(list(restored.iterdir()), [])
+                    destination = restored / staged[0].relative_to("/")
+                    shutil.copytree(root / "snapshot", destination)
                     if corrupt:
                         (destination / "captures/example-1/review.json").write_bytes(
                             b"bad"
@@ -194,6 +237,32 @@ class OffsiteTests(unittest.TestCase):
                 self.assertEqual(
                     (root / "source/current.json").read_bytes(), source_before
                 )
+
+    def test_missing_or_ambiguous_snapshot_never_starts_restore(self):
+        summary = json.dumps(
+            {"message_type": "summary", "snapshot_id": SNAPSHOT}
+        ).encode()
+        for output in (
+            b"",
+            summary + b"\n" + summary,
+            summary.replace(SNAPSHOT.encode(), b"invalid"),
+        ):
+            with self.subTest(output=output), tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary)
+                fixture(root / "source")
+                with patch.object(
+                    offsite,
+                    "restic",
+                    side_effect=[offsite.encoded({"id": REPOSITORY}), output],
+                ) as run:
+                    with self.assertRaisesRegex(ValueError, "snapshot identity"):
+                        offsite.backup(root / "source", root / "state", REPOSITORY)
+                self.assertEqual(
+                    [call.args[0] for call in run.call_args_list], ["cat", "backup"]
+                )
+                status = json.loads((root / "state/status.json").read_bytes())
+                self.assertEqual(status["status"], "failed")
+                self.assertFalse((root / "state/receipts").exists())
 
     def test_restore_rejects_added_or_missing_files(self):
         with tempfile.TemporaryDirectory() as temporary:

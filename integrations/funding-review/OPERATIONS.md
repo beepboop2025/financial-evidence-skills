@@ -299,6 +299,27 @@ advertised as write-once storage or evidence of continuous uptime. Test the
 installed Restic integration with `python3 tests/integration_funding_offsite.py`;
 it uses an isolated temporary repository and no production credentials.
 
+On a host where CI shares the backup volume, install
+`scripts/funding_offsite_admission.py` alongside the two backup scripts. Install
+`native-ci-storage-admission.conf` as a drop-in for the offsite service and
+`financial-evidence-funding-offsite-deferred.timer` as an on-demand systemd timer.
+Keep the ordinary hourly timer enabled.
+
+The drop-in reads `/etc/financial-evidence/funding-offsite-storage-policy.json`.
+Use schema `financial-evidence.native-storage-admission.v1`. Set `helper` and
+`helper_sha256` to the enrolled native lock helper's absolute path and SHA-256.
+Set `state`, `mount`, `uuid` and `filesystem` to the approved scratch directory
+and its actual volume identity. Set `reserve_bytes` to the protected free-space
+floor including its safety margin. The policy, helper and their parent paths
+must be root-controlled. The backup checks space for one complete staging tree
+above this reserve. Once Restic returns the snapshot ID, the backup removes its
+private staging copy and restores into an empty directory for full verification.
+
+A busy lock produces a `deferred` journal entry and an exit code of 75 before
+backup execution. The on-demand timer retries after 30 seconds. Other errors
+retain the ordinary failure status and schedule. Source data, credentials and
+the most recent verified receipt remain in their existing custody.
+
 ### Pull a verified copy over SSH
 
 `scripts/backup_funding_review.py --output-dir /path/on/backup/storage` reads an

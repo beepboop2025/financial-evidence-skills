@@ -7,6 +7,7 @@ command never initializes repositories, deletes snapshots, or changes captures.
 
 import argparse
 import base64
+from contextlib import ExitStack
 from datetime import datetime, timezone
 import fcntl
 import hashlib
@@ -14,6 +15,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
 import stat
 import subprocess
 import tempfile
@@ -173,6 +175,7 @@ def backup(source, state, repository_id):
                 stage = work / "archive"
                 stage.mkdir(mode=0o700)
                 inventory = stage_archive(source, stage)
+                snapshot_path = stage.resolve()
                 output = restic(
                     "backup",
                     "--host",
@@ -180,7 +183,7 @@ def backup(source, state, repository_id):
                     "--tag",
                     "funding-review",
                     "--",
-                    str(stage.resolve()),
+                    str(snapshot_path),
                 )
                 summaries = [
                     row
@@ -192,10 +195,13 @@ def backup(source, state, repository_id):
                 ):
                     raise ValueError("backup snapshot identity missing or ambiguous")
                 snapshot = summaries[0]["snapshot_id"]
+                # The sealed snapshot and original hashes now suffice for verification.
+                shutil.rmtree(stage)
                 restored = work / "restore"
+                restored.mkdir(mode=0o700)
                 restic("restore", snapshot, "--target", str(restored))
                 verify_restore(
-                    restored / stage.resolve().relative_to("/"), inventory["files"]
+                    restored / snapshot_path.relative_to("/"), inventory["files"]
                 )
                 result.update(
                     status="pass",
@@ -240,7 +246,26 @@ if __name__ == "__main__":
     parser.add_argument("--repository-id", required=True)
     arguments = parser.parse_args()
     try:
-        receipt = backup(arguments.source, arguments.state, arguments.repository_id)
+        with ExitStack() as guards:
+            policy_path = os.environ.get("FUNDING_OFFSITE_STORAGE_POLICY")
+            if policy_path is not None:
+                from funding_offsite_admission import StorageBusy, storage_admission
+
+                try:
+                    guards.enter_context(
+                        storage_admission(
+                            arguments.source, arguments.state, Path(policy_path)
+                        )
+                    )
+                except StorageBusy:
+                    deferred = {
+                        "status": "deferred",
+                        "reason": "native_storage_busy",
+                        "execution_started": False,
+                    }
+                    print(json.dumps(deferred))
+                    raise SystemExit(75)
+            receipt = backup(arguments.source, arguments.state, arguments.repository_id)
     except Exception as error:
         print(json.dumps({"status": "failed", "error_type": type(error).__name__}))
         raise SystemExit(1)

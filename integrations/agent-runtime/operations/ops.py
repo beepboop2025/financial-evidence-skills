@@ -107,7 +107,12 @@ def main(argv=None):
     command = sub.add_parser("restore")
     command.add_argument("--receipt", required=True)
     command.add_argument("--target", required=True)
+    command = sub.add_parser("prepare-rollback")
+    command.add_argument("--receipt", required=True)
+    command.add_argument("--target", required=True)
+    command.add_argument("--original-id", required=True)
     command = sub.add_parser("prepare-successor")
+    command.add_argument("--final-stopped", action="store_true")
     command.add_argument("--receipt", required=True)
     command.add_argument("--target", required=True)
     command = sub.add_parser("restore-snapshot")
@@ -128,7 +133,10 @@ def main(argv=None):
             result = candidates(cfg)
         elif args.command == "prepare-successor":
             from ops_successor import prepare
-            result = prepare(cfg, args.receipt, args.target)
+            result = prepare(cfg, args.receipt, args.target, final_stopped=args.final_stopped)
+        elif args.command == "prepare-rollback":
+            from ops_successor import prepare
+            result = prepare(cfg, args.receipt, args.target, final_stopped=True, rollback_to=args.original_id)
         elif args.command == "restore-snapshot":
             result = recover_snapshot(cfg, args.snapshot, args.target)
         elif args.command == "diagnose":

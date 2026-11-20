@@ -23,6 +23,7 @@ sys.path.insert(0, str(ROOT / "integrations/agent-runtime/operations"))
 sys.path.insert(0, str(ROOT / "src"))
 
 from test_runtime import NOW, result, workflow
+from financial_evidence.runtime.contracts import encode
 from financial_evidence.runtime.engine import Runtime, implementation
 from financial_evidence.runtime.store import Store
 from ops_common import atomic, config, inspect_journal, regular, sha
@@ -184,6 +185,50 @@ class OperationsTests(unittest.TestCase):
             db.commit()
         with self.assertRaises((ValueError, sqlite3.Error, TypeError)):
             inspect_journal(restored / "runtime.sqlite", full=True)
+
+    def test_final_successor_and_rollback_keep_post_cutover_writes(self):
+        def snapshot(config):
+            saved = backup(config, restic=self.restic)
+            return Path(config["state"]) / "receipts" / (saved["operation_id"] + ".json")
+
+        with self.assertRaisesRegex(ValueError, "final backup must capture stopped"):
+            prepare(self.cfg, snapshot(self.cfg), self.base / "not-final", restic=self.restic, final_stopped=True)
+        self.store.control(NOW + 1, stopped=True)
+        original = self.cfg["installation_id"]
+        first_id = self.run["run_id"]
+        successor = self.base / "valid-successor"
+        forward = prepare(self.cfg, snapshot(self.cfg), successor, restic=self.restic, final_stopped=True)
+        next_cfg = dict(self.cfg, root=str(successor), state=str(self.base / "new-ops"), installation_id=forward["installation_id"])
+        Path(next_cfg["state"]).mkdir(mode=0o700)
+        store = Store(successor)
+        runtime = Runtime(store, executor=lambda _: result(), clock=lambda: NOW + 86400)
+        store.control(NOW + 86400, stopped=False)
+        second_id = runtime.run(self.workflow.id, "key-after-cutover")["run_id"]
+        second_bytes = encode(runtime.bundle(second_id))
+        store.acknowledge(second_id, "useful", NOW + 86401)
+        store.control(NOW + 86402, stopped=True)
+        reference = snapshot(next_cfg)
+        target = self.base / "rollback"
+        with self.assertRaisesRegex(ValueError, "exact original"):
+            prepare(next_cfg, reference, target, restic=self.restic, rollback_to="0"*32)
+        trial = prepare(next_cfg, reference, target, restic=self.restic, rollback_to=original)
+        self.assertEqual(trial["installation_id"], original)
+        rolled = Store(target)
+        current = Runtime(rolled, executor=lambda _: result(), clock=lambda: NOW + 86500)
+        self.assertEqual(encode(current.bundle(second_id)), second_bytes)
+        self.assertEqual(current.bundle(first_id), self.runtime.bundle(first_id))
+        self.assertEqual(rolled.report()["operator_reported_outcomes"], {"useful": 1})
+        self.assertEqual(rolled.events(after=forward["event_cursor"]), store.events(after=forward["event_cursor"]))
+        rolled.control(NOW + 86403, stopped=False)
+        self.assertEqual(current.run(self.workflow.id, "key-after-cutover")["run_id"], second_id)
+        self.assertEqual(current.run(self.workflow.id, "permanent-key")["run_id"], first_id)
+        third_id = current.run(self.workflow.id, "after-rollback")["run_id"]
+        self.assertEqual(current.bundle(third_id)["record"]["installation_id"], original)
+        stale_target = self.base / "stale-copy"
+        store.control(NOW + 86404, stopped=False)
+        with self.assertRaisesRegex(ValueError, "live stopped journal differs"):
+            prepare(next_cfg, reference, stale_target, restic=self.restic, rollback_to=original)
+        self.assertFalse(stale_target.exists())
 
     def test_observer_is_readonly_and_does_not_initialize_missing_state(self):
         path = self.root / "runtime.sqlite"

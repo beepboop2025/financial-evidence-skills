@@ -17,9 +17,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SIGNERS = 'ops/release/financial-evidence.allowed_signers'
 SIGNERS_HASH = '53294bcc8be556a265458c079a7d2cb7c012378e3c47a8708b9082bfdcef9b31'
 SCHEMA = 'financial-evidence.private-runtime-provenance.v1'
-WHEEL = 'financial_evidence-0.1.7+successor.1-py3-none-any.whl'
-OPS_VERSION = '1.0.3+successor.1'
-OPS_NAME = 'financial-evidence-runtime-ops-' + OPS_VERSION
+TRANSPORT_SCHEMA = 'financial-evidence.private-runtime-provenance.v2'
+TRANSPORT_DIGEST_KEYS = {'base_service_sha256', 'service_sha256'}
 DIGEST_KEYS = {'base_wheel_sha256', 'implementation_sha256', 'wheel_sha256', 'operations_sha256'}
 
 
@@ -45,12 +44,18 @@ def valid_hex(value, size):
 
 
 def validate_admission(document):
-    required = DIGEST_KEYS | {'schema', 'build_source_commit', 'runtime_source_commit', 'acceptance'}
-    if not isinstance(document, dict) or document.keys() != required or document['schema'] != SCHEMA:
+    if not isinstance(document, dict) or document.get('schema') not in (SCHEMA, TRANSPORT_SCHEMA):
         raise ValueError('unexpected admission schema')
-    if not all(valid_hex(document[key], 64) for key in DIGEST_KEYS):
+    digest_keys = DIGEST_KEYS
+    source_keys = {'build_source_commit', 'runtime_source_commit'}
+    if document['schema'] == TRANSPORT_SCHEMA:
+        digest_keys = digest_keys | TRANSPORT_DIGEST_KEYS
+        source_keys.add('transport_source_commit')
+    if document.keys() != digest_keys | source_keys | {'schema', 'acceptance'}:
+        raise ValueError('unexpected admission fields')
+    if not all(valid_hex(document[key], 64) for key in digest_keys):
         raise ValueError('invalid artifact digest')
-    if not all(valid_hex(document[key], 40) for key in ('build_source_commit', 'runtime_source_commit')):
+    if not all(valid_hex(document[key], 40) for key in source_keys):
         raise ValueError('invalid source commit')
     receipts = document['acceptance']
     if not isinstance(receipts, dict) or not 1 <= len(receipts) <= 32:
@@ -94,31 +99,42 @@ def build(root, admission_file, base_wheel, output):
     output.mkdir(exist_ok=False)
     wheel_dir = output / 'wheel'
     wheel_dir.mkdir()
+    transport_profile = admission['schema'] == TRANSPORT_SCHEMA
+    generation = 2 if transport_profile else 1
+    package_version = f'0.1.7+successor.{generation}'
+    ops_version = f'1.0.3+successor.{generation}'
+    ops_name = 'financial-evidence-runtime-ops-' + ops_version
+    wheel_path = wheel_dir / f'financial_evidence-{package_version}-py3-none-any.whl'
+    wheel_args = ['--profile', '2'] if transport_profile else []
+    ops_args = ['--private-successor', '2'] if transport_profile else ['--private-successor']
     wheel_receipt = json.loads(subprocess.check_output([
         sys.executable, 'scripts/build_runtime_successor_wheel.py',
-        '--base-wheel', str(base_wheel), '--output', str(wheel_dir)], cwd=root))
+        '--base-wheel', str(base_wheel), '--output', str(wheel_dir), *wheel_args], cwd=root))
     expected = {
         'base_wheel_sha256': admission['base_wheel_sha256'],
         'implementation_sha256': admission['implementation_sha256'],
         'wheel_sha256': admission['wheel_sha256'],
         'source_commit': admission['runtime_source_commit'],
-        'package_version': '0.1.7+successor.1',
+        'package_version': package_version,
     }
-    if wheel_receipt != expected or sha(wheel_dir / WHEEL) != expected['wheel_sha256']:
+    if transport_profile:
+        expected.update({key: admission[key] for key in TRANSPORT_DIGEST_KEYS | {'transport_source_commit'}})
+    if wheel_receipt != expected or sha(wheel_path) != expected['wheel_sha256']:
         raise ValueError('reconstructed wheel differs from signed admission')
     ops_dir = output / 'ops'
-    subprocess.run([sys.executable, 'scripts/build_runtime_operations.py', '--private-successor',
+    subprocess.run([sys.executable, 'scripts/build_runtime_operations.py', *ops_args,
                     '--output', str(ops_dir)], cwd=root, check=True)
-    archive = ops_dir / (OPS_NAME + '.tar')
+    archive = ops_dir / (ops_name + '.tar')
     if sha(archive) != admission['operations_sha256']:
         raise ValueError('reconstructed operations digest differs from signed admission')
     with tarfile.open(archive, 'r:') as reader:
-        manifest = json.loads(reader.extractfile(OPS_NAME + '/source.json').read())
-    if (manifest['version'] != OPS_VERSION or manifest['source_commit'] != admission['build_source_commit']
+        manifest = json.loads(reader.extractfile(ops_name + '/source.json').read())
+    if (manifest['version'] != ops_version or manifest['source_commit'] != admission['build_source_commit']
             or any(manifest['runtime'].get(key) != value for key, value in expected.items())):
         raise ValueError('operations archive does not bind the admitted source and runtime')
     print('Verified private wheel', expected['wheel_sha256'])
     print('Verified private operations archive', admission['operations_sha256'])
+    return wheel_path, archive
 
 
 def main():
@@ -130,6 +146,7 @@ def main():
     reproduce.add_argument('--admission', type=Path, required=True)
     reproduce.add_argument('--base-wheel', type=Path, required=True)
     reproduce.add_argument('--output', type=Path, required=True)
+    reproduce.add_argument('--github-output', type=Path)
     args = parser.parse_args()
     if args.command == 'admission':
         raw = input_bytes('ADMISSION_B64')
@@ -138,7 +155,10 @@ def main():
             destination.write(raw)
         print('Verified release-owner admission commit', commit)
     else:
-        build(ROOT, args.admission, args.base_wheel.resolve(), args.output.resolve())
+        wheel, operations = build(ROOT, args.admission, args.base_wheel.resolve(), args.output.resolve())
+        if args.github_output:
+            with args.github_output.open('a', encoding='utf-8') as outputs:
+                outputs.write(f'wheel={wheel}\noperations={operations}\n')
 
 
 if __name__ == '__main__':

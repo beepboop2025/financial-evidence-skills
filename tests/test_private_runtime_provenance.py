@@ -61,6 +61,23 @@ class AdmissionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'signed commit'):
             self.verify(signed, json.dumps(altered).encode())
 
+    def test_signed_transport_profile_binds_the_legacy_and_updated_caller(self):
+        transport = dict(self.document, schema=provenance.TRANSPORT_SCHEMA,
+                         transport_source_commit='d' * 40, base_service_sha256='f' * 64,
+                         service_sha256='c' * 64)
+        raw = json.dumps(transport).encode()
+        blob = self.git('hash-object', '-w', '--stdin', data=raw)
+        tree = self.git('mktree', data=f'100644 blob {blob}\tadmission.json\n'.encode())
+        signed = self.sign(tree=tree)
+        self.assertTrue(self.verify(signed, raw=raw))
+        with self.assertRaisesRegex(ValueError, 'signed commit'):
+            self.verify(signed, raw=json.dumps(dict(transport, service_sha256='a' * 64)).encode())
+        for field in ('base_service_sha256', 'service_sha256', 'transport_source_commit'):
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                provenance.validate_admission({k: v for k, v in transport.items() if k != field})
+        with self.assertRaises(ValueError):
+            provenance.validate_admission(dict(transport, schema=provenance.SCHEMA))
+
     def test_reject_unsigned_foreign_key_and_wrong_parent(self):
         with self.assertRaisesRegex(ValueError, 'SSH-signed'):
             self.verify(subprocess.check_output(['git', 'cat-file', 'commit', self.head], cwd=self.root))

@@ -44,13 +44,14 @@ jobs:
             --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/release-container.yml" \
             --source-digest 286e86bcc011dbc8c1108fcbda8505f6c40e2283 --source-ref refs/tags/v0.1.7
       - name: Reconstruct wheel and operations archive and compare their signed digests
+        id: pair
         run: |
           python3 scripts/qualify_private_runtime_release.py build --admission "$RUNNER_TEMP/admission.json" \
-            --base-wheel "$RUNNER_TEMP/financial_evidence-0.1.7-py3-none-any.whl" --output "$RUNNER_TEMP/successor"
+            --base-wheel "$RUNNER_TEMP/financial_evidence-0.1.7-py3-none-any.whl" --output "$RUNNER_TEMP/successor" --github-output "$GITHUB_OUTPUT"
       - uses: actions/attest-build-provenance@0f67c3f4856b2e3261c31976d6725780e5e4c373 # v4.1.1
         with:
           push-to-registry: false
           create-storage-record: false
           subject-path: |
-            ${{ runner.temp }}/successor/wheel/financial_evidence-0.1.7+successor.1-py3-none-any.whl
-            ${{ runner.temp }}/successor/ops/financial-evidence-runtime-ops-1.0.3+successor.1.tar
+            ${{ steps.pair.outputs.wheel }}
+            ${{ steps.pair.outputs.operations }}

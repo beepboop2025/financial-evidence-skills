@@ -332,3 +332,28 @@ new work under the original identity and preserves the new receipts, retry
 keys, acknowledgements and event cursor. Resetting a pointer to the old
 pre-cutover database would lose subsequent work. The 10,000-run allowance
 covers both retained namespaces. Only the first forward successor is supported.
+
+## Update the private atlas read budget
+
+Profile 2 retains the version 2 journal format and installation identity. It
+applies the reviewed transport change to the released 0.1.7 service module.
+The exact country-atlas URL uses a 25-second read budget. Other routes retain
+10 seconds. The original URL-specific byte limits, worker deadline, cache
+policy and stored receipt format still apply.
+
+Build the wheel with `scripts/build_runtime_successor_wheel.py --profile 2`
+and the operations archive with `scripts/build_runtime_operations.py
+--private-successor 2`. Admit the exact pair and source through the versioned
+signed admission and provenance workflow. Stage them alongside the selected
+release. On a stopped copy, verify old and new receipts and duplicate keys
+with both readers, including an actual post-update write followed by a
+same-journal software rollback.
+
+For the update, retain the prior release and configuration for exact-snapshot
+recovery. Drain writers and backups, prove a stopped offsite snapshot, bind
+the same journal with `configure.py --successor-runtime 2`, then install the
+normal same-identity units against their preceding applied plan with
+`--hold`. Select the attested software and configuration while workers are
+held. Verify the paired reader, scheduler and backup before resuming. Software
+rollback selects the preceding verified reader and matching configuration
+over the same journal, including all later writes.

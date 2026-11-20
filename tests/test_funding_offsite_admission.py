@@ -3,6 +3,7 @@
 from contextlib import ExitStack, contextmanager
 import importlib.util
 import json
+import os
 from pathlib import Path
 import tempfile
 import types
@@ -108,27 +109,92 @@ class StorageAdmissionTests(unittest.TestCase):
         self.assertEqual(admission._stage_bytes(self.source, 4096), before)
         self.assertGreaterEqual(before, 4102)
 
-    def test_volume_and_free_space_are_both_verified(self):
+    def mount_rows(self):
+        device = self.base.stat().st_dev
+        physical = {
+            "uuid": "test-volume",
+            "fstype": "ext4",
+            "target": str(self.base),
+            "fsroot": "/",
+            "maj:min": f"{os.major(device)}:{os.minor(device)}",
+        }
+        return physical, {**physical, "target": str(self.state), "fsroot": "/state"}
+
+    def test_full_volume_and_systemd_state_bind_preserve_free_space_check(self):
         estimate = admission._stage_bytes(self.source, 4096)
         size = self.policy["reserve_bytes"] + estimate
         fs = types.SimpleNamespace(f_frsize=4096, f_bavail=(size + 4095) // 4096)
         ident = self.patches.enter_context(
-            mock.patch.object(
-                admission.subprocess,
-                "check_output",
-                return_value="test-volume ext4 " + str(self.base),
-            )
+            mock.patch.object(admission.subprocess, "check_output")
         )
         self.patches.enter_context(
             mock.patch.object(admission.os, "statvfs", return_value=fs)
         )
-        admission._check_reserve(self.source, self.state, self.policy)
+        physical, bind = self.mount_rows()
+        sibling = {
+            **physical,
+            "target": str(self.base / "unrelated"),
+            "fsroot": "/elsewhere",
+        }
+        for mounts in ([physical], [bind, sibling, physical]):
+            with self.subTest(mounts=mounts):
+                ident.return_value = json.dumps({"filesystems": mounts})
+                admission._check_reserve(self.source, self.state, self.policy)
+        argv = ident.call_args.args[0]
+        self.assertIn("--submounts", argv)
+        self.assertEqual(argv[argv.index("--target") + 1], str(self.base))
         fs.f_bavail -= 1
         with self.assertRaisesRegex(OSError, "insufficient space"):
             admission._check_reserve(self.source, self.state, self.policy)
-        ident.return_value = "other-volume ext4 " + str(self.base)
-        with self.assertRaisesRegex(ValueError, "volume identity differs"):
-            admission._check_reserve(self.source, self.state, self.policy)
+
+    def test_other_bind_sources_and_mount_identities_are_rejected(self):
+        physical, bind = self.mount_rows()
+        wrong_rows = [
+            [bind],
+            [physical, physical],
+            [physical, bind, bind],
+            [{**physical, "uuid": "other"}],
+            [{**physical, "fstype": "xfs"}],
+            [{**physical, "fsroot": "/other"}],
+            [{**physical, "maj:min": "111:222"}],
+            [physical, {**bind, "uuid": "other"}],
+            [physical, {**bind, "fstype": "xfs"}],
+            [physical, {**bind, "maj:min": "111:222"}],
+            [physical, {**bind, "fsroot": "/"}],
+            [physical, {**bind, "fsroot": "/sibling"}],
+            [
+                physical,
+                bind,
+                {
+                    **bind,
+                    "target": str(self.state / "receipts"),
+                    "fsroot": "/state/receipts",
+                },
+            ],
+        ]
+        for rows in wrong_rows:
+            with (
+                self.subTest(rows=rows),
+                mock.patch.object(
+                    admission.subprocess,
+                    "check_output",
+                    return_value=json.dumps({"filesystems": rows}),
+                ),
+                self.assertRaisesRegex(ValueError, "volume identity differs"),
+            ):
+                admission._check_reserve(self.source, self.state, self.policy)
+
+        nested = self.state / "nested"
+        nested.mkdir()
+        with mock.patch.object(
+            admission.subprocess,
+            "check_output",
+            return_value=json.dumps({"filesystems": [physical, bind]}),
+        ):
+            with self.assertRaisesRegex(ValueError, "volume identity differs"):
+                admission._check_reserve(
+                    self.source, nested, {**self.policy, "state": str(nested)}
+                )
 
     def test_changed_helper_hash_is_never_executed(self):
         with mock.patch.object(

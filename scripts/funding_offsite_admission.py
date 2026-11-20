@@ -72,16 +72,50 @@ def _check_reserve(source, state, policy):
     if (
         state != Path(policy["state"])
         or state.resolve(strict=True) != state
+        or state == mount
         or not state.is_relative_to(mount)
         or mount.resolve(strict=True) != mount
     ):
         raise ValueError("backup scratch differs from the enrolled volume")
-    identity = subprocess.check_output(
-        ["/usr/bin/findmnt", "-nr", "-T", str(state), "-o", "UUID,FSTYPE,TARGET"],
+    device = mount.stat().st_dev
+    physical = {
+        "uuid": policy["uuid"],
+        "fstype": policy["filesystem"],
+        "target": str(mount),
+        "fsroot": "/",
+        "maj:min": f"{os.major(device)}:{os.minor(device)}",
+    }
+    # ProtectSystem=strict may expose the original ReadWritePaths directory as
+    # a separate mount of precisely that same subdirectory of the filesystem.
+    self_bind = {
+        **physical,
+        "target": str(state),
+        "fsroot": "/" + str(state.relative_to(mount)),
+    }
+    output = subprocess.check_output(
+        [
+            "/usr/bin/findmnt",
+            "--json",
+            "--list",
+            "--submounts",
+            "--target",
+            str(mount),
+            "--output",
+            "UUID,FSTYPE,TARGET,FSROOT,MAJ:MIN",
+        ],
         text=True,
         timeout=10,
-    ).split()
-    if identity != [policy["uuid"], policy["filesystem"], str(mount)]:
+    )
+    relevant = []
+    for row in json.loads(output)["filesystems"]:
+        target = Path(row["target"])
+        if state.is_relative_to(target) or target.is_relative_to(state):
+            relevant.append(row)
+    relevant.sort(key=lambda row: row["target"])
+    if state.stat().st_dev != device or relevant not in (
+        [physical],
+        [physical, self_bind],
+    ):
         raise ValueError("backup volume identity differs")
     required = policy["reserve_bytes"] + _stage_bytes(
         source, os.statvfs(state).f_frsize

@@ -1,0 +1,8 @@
+[Unit]
+Description=Retry a funding backup deferred by an active native storage owner
+
+[Timer]
+OnActiveSec=30s
+AccuracySec=1s
+RemainAfterElapse=no
+Unit=financial-evidence-funding-offsite.service

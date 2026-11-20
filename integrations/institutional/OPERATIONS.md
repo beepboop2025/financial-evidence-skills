@@ -59,11 +59,11 @@ release's baseline. No packet or attempt migration is needed on upgrade.
   regular fifteen-minute capture remains responsible for retrying a failed
   attempt against the same source identity.
 - `financial-evidence-packet-capture.timer`: fallback at :08/:23/:38/:53 UTC, up to 20
-  seconds jitter, plus an initial attempt one minute after activation. Fetches the existing review and matching CSV, then seven
+  seconds jitter, with a one-minute boot trigger for initial capture. Fetches the existing review and matching CSV, then seven
   bounded original-publisher documents. A failed source or mismatch records an
   unsuccessful attempt; `/latest` never falls back to an earlier success.
 - `financial-evidence-packet-backup.timer`: hourly at :12 UTC with up to 30
-  seconds jitter, plus an initial backup two minutes after activation. Uses the existing encrypted repository under a separate tag,
+  seconds jitter, with a two-minute boot trigger for initial backup. Uses the existing encrypted repository under a separate tag,
   restores the exact new snapshot and verifies every file. Usage identifiers
   and the HMAC key are excluded. No deletion or repository initialization occurs.
 - `financial-evidence-usage-expiry.timer`: daily at 00:17 UTC with up to 60

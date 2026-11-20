@@ -5,6 +5,7 @@ from contextlib import closing
 from datetime import datetime, timezone
 import hashlib
 import http.client
+import importlib.util
 from http.server import ThreadingHTTPServer
 import json
 import os
@@ -125,7 +126,24 @@ class OperationsTests(unittest.TestCase):
         atomic(path, self.cfg)
         self.assertEqual(config(path), self.cfg)
 
+    def successor_reader(self):
+        # Load the exact private wheel overlay only for generation-transition cases.
+        overlay = ROOT / "integrations/agent-runtime/successor-runtime"
+
+        def load(name):
+            spec = importlib.util.spec_from_file_location("financial_evidence.runtime." + name, overlay / (name + ".py"))
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            return module
+
+        history = load("history")
+        modules = patch.dict(sys.modules, {"financial_evidence.runtime.history": history})
+        modules.start()
+        self.addCleanup(modules.stop)
+        return load("store").Store
+
     def test_scheduler_capacity_admission_keeps_old_and_new_keys_distinct(self):
+        self.successor_reader()
         from ops_capacity_admission import admission
         path = self.root / "runtime.sqlite"
         identity = self.cfg["installation_id"]
@@ -145,7 +163,20 @@ class OperationsTests(unittest.TestCase):
         prepared = prepare(self.cfg, reference, successor, restic=self.restic)
         self.assertTrue(admission(successor / "runtime.sqlite", prepared["installation_id"])["admitted"])
 
+    def test_scheduler_refuses_exact_shared_run_limit(self):
+        from ops_capacity_admission import admission
+        journal = self.root / "runtime.sqlite"
+        with closing(sqlite3.connect(journal)) as db:
+            limits = json.loads(db.execute("SELECT value FROM meta WHERE key='limits'").fetchone()[0])
+            limits["runs"] = 1
+            db.execute("UPDATE meta SET value=? WHERE key='limits'", (json.dumps(limits),))
+            db.commit()
+        report = admission(journal, self.cfg["installation_id"])
+        self.assertFalse(report["admitted"])
+        self.assertEqual((report["runs"], report["run_limit"]), (1, 1))
+
     def test_successor_preserves_history_limits_and_new_writes_through_a_restore(self):
+        SuccessorStore = self.successor_reader()
         receipt = backup(self.cfg, restic=self.restic)
         reference = self.state / "receipts" / (receipt["operation_id"] + ".json")
         successor = self.base / "successor"
@@ -155,7 +186,7 @@ class OperationsTests(unittest.TestCase):
         self.assertTrue(report["admission_stopped"])
         first_id = self.run["run_id"]
         archived = self.runtime.replay(first_id)
-        store = Store(successor)
+        store = SuccessorStore(successor)
         rt = Runtime(store, executor=lambda _: result(), clock=lambda: NOW + 86400)
         self.assertEqual(rt.replay(first_id), archived)
         self.assertEqual(rt.run(self.workflow.id, "permanent-key")["run_id"], first_id)
@@ -173,7 +204,7 @@ class OperationsTests(unittest.TestCase):
         second_reference = Path(next_cfg["state"]) / "receipts" / (second_proof["operation_id"] + ".json")
         restored = self.base / "restored-successor"
         recover(next_cfg, second_reference, restored, restic=self.restic)
-        recovered = Runtime(Store(restored), clock=lambda: NOW + 86401)
+        recovered = Runtime(SuccessorStore(restored), clock=lambda: NOW + 86401)
         self.assertEqual(recovered.replay(first_id), archived)
         self.assertEqual(recovered.replay(second_id), rt.replay(second_id))
         self.assertEqual(recovered.run(self.workflow.id, "new-key")["run_id"], second_id)
@@ -187,6 +218,8 @@ class OperationsTests(unittest.TestCase):
             inspect_journal(restored / "runtime.sqlite", full=True)
 
     def test_final_successor_and_rollback_keep_post_cutover_writes(self):
+        SuccessorStore = self.successor_reader()
+
         def snapshot(config):
             saved = backup(config, restic=self.restic)
             return Path(config["state"]) / "receipts" / (saved["operation_id"] + ".json")
@@ -200,7 +233,18 @@ class OperationsTests(unittest.TestCase):
         forward = prepare(self.cfg, snapshot(self.cfg), successor, restic=self.restic, final_stopped=True)
         next_cfg = dict(self.cfg, root=str(successor), state=str(self.base / "new-ops"), installation_id=forward["installation_id"])
         Path(next_cfg["state"]).mkdir(mode=0o700)
-        store = Store(successor)
+        from ops_transition import proof
+        self.assertEqual(proof(self.cfg, self.root, successor)["installation_id"], forward["installation_id"])
+        marker = successor / "successor.json"
+        original_marker = marker.read_bytes()
+        marker.unlink()
+        with self.assertRaises(FileNotFoundError):
+            proof(self.cfg, self.root, successor)
+        atomic(marker, {**forward, "continuity_sha256": "0" * 64})
+        with self.assertRaises(ValueError):
+            proof(self.cfg, self.root, successor)
+        atomic(marker, original_marker, raw=True)
+        store = SuccessorStore(successor)
         runtime = Runtime(store, executor=lambda _: result(), clock=lambda: NOW + 86400)
         store.control(NOW + 86400, stopped=False)
         second_id = runtime.run(self.workflow.id, "key-after-cutover")["run_id"]
@@ -213,7 +257,8 @@ class OperationsTests(unittest.TestCase):
             prepare(next_cfg, reference, target, restic=self.restic, rollback_to="0"*32)
         trial = prepare(next_cfg, reference, target, restic=self.restic, rollback_to=original)
         self.assertEqual(trial["installation_id"], original)
-        rolled = Store(target)
+        self.assertEqual(proof(next_cfg, successor, target)["installation_id"], original)
+        rolled = SuccessorStore(target)
         current = Runtime(rolled, executor=lambda _: result(), clock=lambda: NOW + 86500)
         self.assertEqual(encode(current.bundle(second_id)), second_bytes)
         self.assertEqual(current.bundle(first_id), self.runtime.bundle(first_id))

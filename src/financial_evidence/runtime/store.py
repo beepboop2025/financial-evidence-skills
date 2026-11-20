@@ -8,7 +8,6 @@ import sqlite3
 import uuid
 
 from .contracts import Workflow, decode, encode, integer, moment, utc
-from .history import receipt_bytes
 
 DEFAULT_LIMITS = {"jobs": 100, "runs": 10000, "daily_runs": 1000, "receipt_bytes": 67_108_864}
 CLASSES = {"unverified", "internal", "synthetic"}
@@ -65,7 +64,7 @@ class Store:
             integer(value, 1, DEFAULT_LIMITS[key], key)
         with self.connection() as db:
             version = db.execute("PRAGMA user_version").fetchone()[0]
-            if version not in (0, 1, 2):
+            if version not in (0, 1):
                 raise ValueError("unsupported runtime database version")
             # Opening an initialized journal is read-only. Every scheduler tick
             # constructs a Store, and the former unconditional DDL and
@@ -74,9 +73,7 @@ class Store:
             # monitor held its read transaction, so most ticks under load did
             # no work. Write only to create or complete the schema.
             present = {tuple(row) for row in db.execute("SELECT type, name FROM sqlite_master")}
-            if version == 2 and not (SCHEMA_OBJECTS | {("table", "predecessor"), ("table", "predecessor_runs")}) <= present:
-                raise ValueError("incomplete successor journal")
-            if version == 0 or not SCHEMA_OBJECTS <= present:
+            if version != 1 or not SCHEMA_OBJECTS <= present:
                 db.executescript(SCHEMA)
             if not META_KEYS <= {row[0] for row in db.execute("SELECT key FROM meta")}:
                 db.execute("BEGIN IMMEDIATE")
@@ -246,14 +243,15 @@ class Store:
                 raise ValueError("unknown run")
             value = {k: row[k] for k in ("id", "job", "key", "status", "error", "sha256")}
             value.update(started_at=utc(row["started"]), finished_at=utc(row["finished"]) if row["finished"] is not None else None)
-            raw, _ = receipt_bytes(db, row)
-            if raw is not None:
-                value["record"] = decode(raw)
+            if row["bundle"] is not None:
+                if hashlib.sha256(row["bundle"]).hexdigest() != row["sha256"]:
+                    raise ValueError("receipt integrity mismatch")
+                value["record"] = decode(row["bundle"])
             return value
 
     def prior_revision(self, job, identifier):
         with self.connection() as db:
-            row = db.execute("SELECT id FROM runs WHERE job=? AND id<>? AND sha256 IS NOT NULL ORDER BY started DESC,id DESC LIMIT 1",
+            row = db.execute("SELECT id FROM runs WHERE job=? AND id<>? AND bundle IS NOT NULL ORDER BY started DESC,id DESC LIMIT 1",
                              (job, identifier)).fetchone()
         return self.run(row[0])["record"]["result"]["revision"] if row else None
 
@@ -314,11 +312,7 @@ class Store:
         with self.connection() as db:
             counts = dict(db.execute("SELECT status,count(*) FROM runs GROUP BY status"))
             acknowledgements = dict(db.execute("SELECT outcome,count(*) FROM acknowledgements GROUP BY outcome"))
-            predecessor = {}
-            if db.execute("PRAGMA user_version").fetchone()[0] == 2:
-                prior = db.execute("SELECT installation_id,canonical_bytes,runs,snapshot_id FROM predecessor").fetchone()
-                predecessor = {"archived_installation": dict(prior)}
-            return {**predecessor, "schema": "financial-evidence.runtime-metrics.v1",
+            return {"schema": "financial-evidence.runtime-metrics.v1",
                     "installation_id": self.meta(db, "installation_id"),
                     "traffic_class": self.meta(db, "traffic_class"),
                     "stopped": self.meta(db, "stopped") == "true",

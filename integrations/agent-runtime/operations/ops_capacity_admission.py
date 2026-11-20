@@ -30,10 +30,14 @@ def admission(journal, installation):
         meta = dict(db.execute("SELECT key,value FROM meta WHERE key IN ('limits','installation_id')"))
         if meta["installation_id"] != installation:
             raise ValueError("scheduler installation differs")
-        limit = json.loads(meta["limits"])["receipt_bytes"]
+        limits = json.loads(meta["limits"])
+        limit = limits["receipt_bytes"]
+        run_limit = limits["runs"]
+        if type(run_limit) is not int or not 1 <= run_limit <= 10_000:
+            raise ValueError("invalid run allowance")
         if type(limit) is not int or not 1 <= limit <= 67_108_864:
             raise ValueError("invalid receipt allowance")
-        used = db.execute("SELECT coalesce(sum(length(bundle)),0) FROM runs").fetchone()[0]
+        runs, used = db.execute("SELECT count(*), coalesce(sum(length(bundle)),0) FROM runs").fetchone()
         # A successor retains predecessor keys and outcomes. Only proof from
         # this installation may prevent the new installation from acquiring.
         sql = "SELECT id FROM runs WHERE error='receipt_storage_full'"
@@ -42,8 +46,10 @@ def admission(journal, installation):
         failure = db.execute(sql + " ORDER BY started LIMIT 1").fetchone()
         return {
             "schema": "financial-evidence.capacity-admission.v1",
-            "admitted": used < limit and failure is None,
+            "admitted": runs < run_limit and used < limit and failure is None,
             "stored_receipt_bytes": used,
+            "runs": runs,
+            "run_limit": run_limit,
             "limit": limit,
             "first_unrecordable_run": failure[0] if failure else None,
         }

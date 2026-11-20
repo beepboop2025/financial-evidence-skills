@@ -31,7 +31,7 @@ def build(original, output):
         "financial_evidence/runtime/history.py": "e7c9dedfaab83fcd3c8ad5f7b4c10f67757bf1ec337f78e3d0ea145207d79644",
         "financial_evidence/runtime/store.py": "97bc499601547ec6825c3fab75c769991c9bf096e77a65b0680fabd306e6b420",
     }.items():
-        raw = (ROOT / "src" / name).read_bytes()
+        raw = (ROOT / "integrations/agent-runtime/successor-runtime" / Path(name).name).read_bytes()
         if sha(raw) != expected:
             raise ValueError(f"reviewed successor runtime source changed: {name}")
         files[name] = raw

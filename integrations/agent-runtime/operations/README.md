@@ -276,3 +276,59 @@ Linux also validates all seven systemd units. No source request or broker order
 is made. Production acceptance separately checks the actual offsite repository,
 private HTTP readback, stopped recovery, preserved retry keys and two natural
 scheduled backup cycles separated by a complete 15-minute interval.
+
+## Select a verified private successor
+
+This procedure requires an individually admitted runtime wheel and operations
+archive. Keep the original release, configuration, applied unit plan and
+repository credentials available for exact-snapshot recovery. The CLI and MCP
+use the selected runtime reader. Verify every local writer and cursor consumer
+before scheduling a transition. Older binaries can verify exported canonical
+bundles. The dual-generation reader is required for an active version 2 journal.
+
+1. Disable the three owned timers and the dashboard across reboots. Drain all
+   workers, including any local CLI or MCP process, and verify the service
+   account and database have no active writers. Use the selected CLI to stop
+   admission. Verify that the journal is stopped and has no running claims.
+   On Linux ext4, set the immutable flag on the database and verify the flag
+   and absence of SQLite sidecars. Retain the fences until selection completes.
+2. Use the admitted original release and configuration to perform an encrypted
+   backup and restore verification. Retain its exact receipt in private storage.
+   Give SQLite and Restic a private, writable temporary directory with enough
+   room for the bounded journal, staged generation and recovery copy.
+3. Run the new operations CLI with the original configuration and
+   `prepare-successor --final-stopped --receipt EXACT_RECEIPT --target NEW`.
+   Use a fresh path inside a root-private directory on the same filesystem as
+   the stable runtime root. The completed generation contains a stopped journal
+   and a final preparation receipt. Set directory and journal ownership to the
+   existing runtime account, retain mode 0700/0600, and make the staged database
+   immutable. The preparation receipt remains root-owned.
+4. Run `exchange-stopped --staged NEW` with the original configuration. It
+   checks both complete journals, all receipt identities and the final snapshot
+   marker before atomically exchanging directory names. A retry while the
+   fences remain in place verifies the existing selection. The stable pathname
+   continues to exist at all times. The prior stopped journal remains at NEW.
+5. Bind a fresh operations state directory and configuration to the selected
+   journal with `configure.py --successor-runtime`. Preserve the reviewed
+   thresholds and three-way binding of runtime, workflows and repository.
+   Use `install.py --apply --hold --previous-plan OLD_PLAN
+   --transition-from-config OLD_CONFIG --fenced-source-root NEW` with the
+   usual installer arguments. Preserve unrelated systemd drop-ins. Reconcile
+   any earlier installation-specific capacity override against the prior
+   applied bytes and the new rendered admission before releasing workers.
+6. Verify the actual service commands, rendered hashes, selected package
+   implementation, both namespaces, capacities, exact backup and offline replay.
+   Publish the state's selection receipt privately using an atomic file replacement.
+   With only the selected generation unlocked, resume the selected CLI and
+   enable the owned workers. Observe a scheduled write and two natural
+   restore-verified backups a quarter-hour apart. Keep the prior release and
+   original exact-snapshot restore path available.
+
+For rollback after any use, repeat the same writer drain, durable fence and
+exact stopped backup on the active successor. Run `prepare-rollback --receipt
+EXACT_SUCCESSOR_RECEIPT --target NEW --original-id ORIGINAL_ID`. Use the same
+verified exchange and held installation process. The compatible runtime admits
+new work under the original identity and preserves the new receipts, retry
+keys, acknowledgements and event cursor. Resetting a pointer to the old
+pre-cutover database would lose subsequent work. The 10,000-run allowance
+covers both retained namespaces. Only the first forward successor is supported.

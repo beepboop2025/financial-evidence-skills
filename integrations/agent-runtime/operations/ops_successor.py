@@ -236,4 +236,9 @@ def prepare(cfg, receipt_path, target, *, restic=None, final_stopped=False, roll
         target.mkdir(mode=0o700, exist_ok=False)
         os.replace(db_path, target / "runtime.sqlite")
         atomic(target / ("rollback.json" if rollback_to is not None else "successor.json"), report)
+        parent_fd = os.open(target.parent, os.O_RDONLY | os.O_DIRECTORY)
+        try:
+            os.fsync(parent_fd)
+        finally:
+            os.close(parent_fd)
     return report

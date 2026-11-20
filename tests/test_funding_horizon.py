@@ -49,11 +49,18 @@ def horizon_fixture():
         "freshness": {"desk_asof": "2026-09-25"},
         "sections": [{"id": "test", "metrics": cards}],
     }
+    desk_sources = {
+        "policy.iorb": ("fed_prates:IORB", "Board of Governors of the Federal Reserve System", "RESBM_N.D+RESBME_N.D"),
+        "liquidity.on_rrp": ("nyfed_original:RRPONTSYD", "Federal Reserve Bank of New York", "ON_RRP_TREASURY"),
+    }
+    for card in cards:
+        if card["id"] in desk_sources:
+            card["source_ids"] = [desk_sources[card["id"]][0]]
     history = copy.deepcopy(desk)
     history["source_metadata"] = [
-        {"id": ident, "available": True, "asof": "2026-09-25"}
-        for ident in ("fred_iorb", "fred_on_rrp", "nyfed_srf")
-    ]
+        {"id": ident, "available": True, "asof": "2026-09-25", "publisher": publisher, "series": series, "cadence": "daily"}
+        for ident, publisher, series in desk_sources.values()
+    ] + [{"id": "nyfed_srf", "available": True, "asof": "2026-09-25"}]
     history["charts"] = {
         "policy": {
             "id": "policy",
@@ -342,6 +349,46 @@ class FundingHorizonTests(unittest.TestCase):
                 for doc in (self.desk, self.history):
                     self.card(name, doc)["asof"] = "2026-09-25"
 
+
+    def test_direct_desk_provenance_must_match_both_cards_and_publisher(self):
+        for card_id, meta_index, legacy_id in (("policy.iorb", 0, "fred_iorb"), ("liquidity.on_rrp", 1, "fred_on_rrp")):
+            for case in ("wrong_publisher", "wrong_series", "wrong_cadence", "duplicate", "withheld", "unavailable",
+                         "missing_source", "wrong_source", "wrong_history", "multiple_sources", "stale_metadata"):
+                with self.subTest(card=card_id, case=case):
+                    self.setUp()
+                    metadata = self.history["source_metadata"]
+                    row = metadata[meta_index]
+                    metadata.append({"id": legacy_id, "asof": row["asof"], "available": True})
+                    if case == "duplicate":
+                        metadata.append(copy.deepcopy(row))
+                    elif case == "withheld":
+                        row["redistribution_status"] = "restricted"
+                    elif case == "unavailable":
+                        row["available"] = False
+                    elif case == "missing_source":
+                        self.card(card_id).pop("source_ids")
+                    elif case == "wrong_source":
+                        self.card(card_id)["source_ids"] = [legacy_id]
+                    elif case == "wrong_history":
+                        self.card(card_id, self.history)["source_ids"] = [legacy_id]
+                    elif case == "multiple_sources":
+                        self.card(card_id)["source_ids"].append(legacy_id)
+                    elif case == "stale_metadata":
+                        row["asof"] = "2026-09-24"
+                    else:
+                        row[case.removeprefix("wrong_")] = "unknown"
+                    for legacy in (False, True):
+                        with self.assertRaises(ValueError):
+                            common_horizon_evidence(self.desk, self.market, self.history, NOW, allow_legacy_sources=legacy)
+
+    def test_legacy_desk_source_ids_require_explicit_offline_replay(self):
+        for index, (name, legacy_id) in enumerate((("policy.iorb", "fred_iorb"), ("liquidity.on_rrp", "fred_on_rrp"))):
+            self.history["source_metadata"][index]["id"] = legacy_id
+            for doc in (self.desk, self.history):
+                self.card(name, doc).pop("source_ids")
+        with self.assertRaises(ValueError):
+            self.check()
+        common_horizon_evidence(self.desk, self.market, self.history, NOW, allow_legacy_sources=True)
 
     def test_direct_iorb_history_does_not_invent_a_publication_clock(self):
         row = self.market["metrics"][1]

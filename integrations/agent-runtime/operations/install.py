@@ -38,11 +38,11 @@ def render(cfg, *, python, code, config_path, credentials, user):
         result[name + ".timer"] = (f"[Unit]\nDescription={description}\n\n[Timer]\nOnActiveSec={initial}\nOnUnitActiveSec={interval}\nAccuracySec=1s\nUnit={name}.service\n\n[Install]\nWantedBy=timers.target\n")
 
     service("financial-evidence-runtime", "Bounded Financial Evidence research scheduler",
-            f"Type=oneshot\nUser={user}\nGroup={user}\nExecStart={Path(python).parent}/financial-evidence-runtime --root {root} tick --limit 1\n"
+            f"Type=oneshot\nUser={user}\nGroup={user}\nExecCondition={python} -IB {code}/ops_capacity_admission.py {root}/runtime.sqlite {cfg['installation_id']}\nExecStart={Path(python).parent}/financial-evidence-runtime --root {root} tick --limit 1\n"
             f"TimeoutStartSec=60\nMemoryMax=256M\nCPUQuota=50%\nTasksMax=16\nReadWritePaths={root}\nRestrictAddressFamilies=AF_UNIX AF_INET AF_INET6\n", network=True)
     timer("financial-evidence-runtime", "Schedule bounded research once a minute", "15s", "60s")
     service("financial-evidence-runtime-backup", "Encrypted research journal backup with exact offsite restoration",
-            f"Type=oneshot\nUser=root\nEnvironmentFile={credentials}\n"
+            f"Type=oneshot\nUser=root\nEnvironmentFile={credentials}\nEnvironment=GOMEMLIMIT=256MiB GOGC=35 GOMAXPROCS=2\n"
             f"ExecStart=/usr/bin/env RESTIC_CACHE_DIR={state}/restic-cache {prefix} backup\n"
             f"TimeoutStartSec=20min\nMemoryMax=512M\nCPUQuota=50%\nNice=10\nReadOnlyPaths={root}\nReadWritePaths={state}\n"
             "RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6\n", network=True)
@@ -114,6 +114,9 @@ def main(argv=None):
     parser.add_argument("--runtime-user", default="financial-research")
     parser.add_argument("--output", required=True)
     parser.add_argument("--previous-plan", help="Prior applied plan.json, required when replacing installed units")
+    parser.add_argument("--transition-from-config", help="Prior immutable config for a stopped, already exchanged generation")
+    parser.add_argument("--fenced-source-root", help="Retained source directory from exchange-stopped")
+    parser.add_argument("--hold", action="store_true", help="Leave previously stopped workers, timers and console inactive")
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args(argv)
     os.umask(0o077)
@@ -123,7 +126,20 @@ def main(argv=None):
     bound_identity(value, cfg)
     files = render(cfg, python=args.runtime_python, code=Path(__file__).resolve().parent,
                    config_path=args.config, credentials=args.credentials, user=args.runtime_user)
-    prior_hashes = previous_units(args.previous_plan, cfg, files)
+    prior_cfg = cfg
+    if args.transition_from_config or args.fenced_source_root:
+        if not (args.transition_from_config and args.fenced_source_root and args.previous_plan and args.hold):
+            raise ValueError("a generation transition requires its prior config and plan, fenced source, and --hold")
+        from ops_transition import fenced, proof
+        prior_cfg = config(args.transition_from_config)
+        if (prior_cfg["root"] != cfg["root"] or prior_cfg["repository_id"] != cfg["repository_id"]
+                or prior_cfg["jobs"] != cfg["jobs"] or prior_cfg["state"] == cfg["state"]):
+            raise ValueError("transition must preserve root, repository and workflows and isolate backup state")
+        private(Path(args.fenced_source_root).absolute().parent)
+        for directory in (args.fenced_source_root, cfg["root"]):
+            fenced(directory)
+        bound_identity(proof(prior_cfg, args.fenced_source_root, cfg["root"]), cfg)
+    prior_hashes = previous_units(args.previous_plan, prior_cfg, files)
     output = Path(args.output)
     output.mkdir(mode=0o700, exist_ok=False)
     for name, body in files.items():
@@ -155,6 +171,16 @@ def main(argv=None):
         state = subprocess.run(["systemctl", "show", unit, "--property=ActiveState", "--value"], capture_output=True, text=True, check=True).stdout.strip()
         if state in {"active", "activating", "deactivating"}:
             raise ValueError("owned service busy; reconcile before installation")
+    if args.hold:
+        for unit in files:
+            state = subprocess.run(["systemctl", "show", unit, "--property=ActiveState", "--value"],
+                                   check=True, capture_output=True, text=True).stdout.strip()
+            if state != "inactive":
+                raise ValueError("all owned units must be inactive for a held installation")
+            if unit.endswith(".timer") or unit == "financial-evidence-runtime-dashboard.service":
+                enabled = subprocess.run(["systemctl", "is-enabled", unit], capture_output=True, text=True).stdout.strip()
+                if enabled != "disabled":
+                    raise ValueError("owned timers and console must be persistently disabled for a held installation")
     previously_active = []
     dashboard = "financial-evidence-runtime-dashboard.service"
     dashboard_was_active = subprocess.run(["systemctl", "show", dashboard, "--property=ActiveState", "--value"],
@@ -180,7 +206,8 @@ def main(argv=None):
             (current / name).chmod(0o644)
             written.append(name)
         subprocess.run(["systemctl", "daemon-reload"], check=True)
-        activate(files)
+        if not args.hold:
+            activate(files)
     except Exception:
         # Restore only the files this attempt wrote. Do not stop a source worker
         # or a possibly accepted backup; any active intent remains inspectable.
@@ -203,7 +230,7 @@ def main(argv=None):
         plan.update(applied=False, failed_at=utc(), prior_timers_resumed=previously_active)
         atomic(output / "plan.json", plan)
         raise
-    plan.update(applied=True, applied_at=utc(), prior_units_retained=str(old), dashboard_restarted=True)
+    plan.update(applied=True, applied_at=utc(), prior_units_retained=str(old), dashboard_restarted=not args.hold, activation_held=args.hold)
     atomic(output / "plan.json", plan)
     print(json.dumps(plan, indent=2))
     return 0

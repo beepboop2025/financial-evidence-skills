@@ -101,7 +101,11 @@ def config(path):
     if not all(HEX.fullmatch(value[key]) for key in ("implementation_sha256", "repository_id")):
         raise ValueError("exact implementation and repository identities required")
     if value["package_version"] != "0.1.7":
-        raise ValueError("unsupported runtime package")
+        successor = decode(regular(Path(__file__).with_name("runtime-successor-release.json"), 8192))
+        if (value["package_version"], value["implementation_sha256"]) != (
+            successor["package_version"], successor["implementation_sha256"]
+        ):
+            raise ValueError("unsupported runtime package or implementation")
     if not isinstance(value["jobs"], dict) or not 1 <= len(value["jobs"]) <= 100:
         raise ValueError("expected workflows required")
     for name, digest in value["jobs"].items():
@@ -136,7 +140,8 @@ def readonly(path):
 def inspect_journal(path, *, full=False):
     """Never construct Store here: diagnostics must not create or migrate state."""
     with readonly(path) as db:
-        if db.execute("PRAGMA user_version").fetchone()[0] != 1:
+        version = db.execute("PRAGMA user_version").fetchone()[0]
+        if version not in (1, 2):
             raise ValueError("unsupported journal schema")
         if full and (db.execute("PRAGMA integrity_check").fetchone()[0] != "ok" or db.execute("PRAGMA foreign_key_check").fetchone()):
             raise ValueError("journal integrity failure")
@@ -162,8 +167,8 @@ def inspect_journal(path, *, full=False):
             latest = None
             if last:
                 latest = {k: last[k] for k in ("id", "status", "started", "finished", "error")}
-                if last["bundle"] is not None:
-                    record = verify_row(last, meta, workflow)
+                if last["sha256"] is not None or last["bundle"] is not None:
+                    record = verify_row(db, last, meta, workflow)
                     latest.update(reasons=record["assessment"]["reasons"], rows=record["assessment"]["rows_checked"],
                                   observation_dates=sorted({r["as_of"] for r in record["result"].get("results", []) if r.get("as_of")}))
             jobs.append({"id": row["id"], "sha256": row["sha256"], "interval_seconds": workflow.value["interval_seconds"],
@@ -173,14 +178,18 @@ def inspect_journal(path, *, full=False):
         if full:
             specs = {row["id"]: Workflow.parse(decode(row["spec"])) for row in db.execute("SELECT * FROM jobs")}
             for row in db.execute("SELECT * FROM runs ORDER BY id"):
-                if row["bundle"] is not None:
-                    verify_row(row, meta, specs[row["job"]])
+                if row["sha256"] is not None or row["bundle"] is not None:
+                    verify_row(db, row, meta, specs[row["job"]])
                     verified += 1
                 elif row["status"] not in {"error", "running", "interrupted"}:
                     raise ValueError("completed attempt lacks receipt")
         keys = [[row["id"], row["job"], row["key"], row["status"], row["sha256"]]
                 for row in db.execute("SELECT id,job,key,status,sha256 FROM runs ORDER BY id")]
-        return {"installation_id": meta["installation_id"], "traffic_class": meta["traffic_class"],
+        history = {}
+        if version == 2:
+            from ops_successor import inspect_predecessor
+            history = {"predecessor": inspect_predecessor(db, meta, limits, full)}
+        return {**history, "installation_id": meta["installation_id"], "traffic_class": meta["traffic_class"],
                 "stopped": meta["stopped"] == "true", "last_clock": clock, "limits": limits, "jobs": jobs,
                 "runs": total, "runs_by_status": dict(db.execute("SELECT status,count(*) FROM runs GROUP BY status")),
                 "receipt_bytes": db.execute("SELECT coalesce(sum(length(bundle)),0) FROM runs").fetchone()[0],
@@ -188,11 +197,17 @@ def inspect_journal(path, *, full=False):
                 "keys_sha256": sha(encode(keys)), "verified_receipts": verified}
 
 
-def verify_row(row, meta, workflow):
-    record = decode(row["bundle"])
+def verify_row(db, row, meta, workflow):
+    raw, origin = row["bundle"], None
+    if raw is None:
+        from financial_evidence.runtime.history import receipt_bytes
+        raw, origin = receipt_bytes(db, row)
+    if sha(raw) != row["sha256"]:
+        raise ValueError("receipt integrity mismatch")
+    record = decode(raw)
     verify_bundle({"schema": "financial-evidence.runtime-bundle.v1", "sha256": row["sha256"], "record": record})
-    if (sha(row["bundle"]) != row["sha256"] or record["run_id"] != row["id"]
-            or record["installation_id"] != meta["installation_id"] or record["traffic_class"] != meta["traffic_class"]
+    if (record["run_id"] != row["id"]
+            or record["installation_id"] != (origin or meta["installation_id"]) or record["traffic_class"] != meta["traffic_class"]
             or record["workflow_sha256"] != workflow.sha256
             or abs(datetime.fromisoformat(record["started_at"]).timestamp() - row["started"]) > .00001
             or row["finished"] is None or row["finished"] < datetime.fromisoformat(record["captured_at"]).timestamp() - .00001

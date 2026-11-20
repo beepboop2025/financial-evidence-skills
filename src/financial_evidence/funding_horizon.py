@@ -32,6 +32,15 @@ HISTORICAL_CARDS = {
     "liquidity.srf": ("liquidity", "srf_b", "nyfed_srf"),
 }
 
+DIRECT_DESK_SOURCES = {
+    "policy.iorb": (
+        "fed_prates:IORB", "Board of Governors of the Federal Reserve System", "RESBM_N.D+RESBME_N.D",
+    ),
+    "liquidity.on_rrp": (
+        "nyfed_original:RRPONTSYD", "Federal Reserve Bank of New York", "ON_RRP_TREASURY",
+    ),
+}
+
 
 # A direct entry, even an unusable one, must never fall back to the legacy FRED
 # series. Legacy identity is admitted only by explicit offline replay callers.
@@ -280,6 +289,10 @@ def common_horizon_evidence(desk, market, history, now, *, allow_legacy_sources=
         )
     if not _equal(cards["policy.sofr"]["value"], sofr_points[horizon.isoformat()]):
         raise ValueError("SOFR horizon value differs")
+    history_metadata = history.get("source_metadata")
+    desk_metadata = desk.get("source_metadata", [])
+    if any(not isinstance(rows, list) or len(rows) > 64 for rows in (desk_metadata, history_metadata)):
+        raise ValueError("own source metadata is absent or exceeds bound")
     result = {}
     for name, (chart_id, column, source_id) in HISTORICAL_CARDS.items():
         card = cards[name]
@@ -287,25 +300,34 @@ def common_horizon_evidence(desk, market, history, now, *, allow_legacy_sources=
             card.get("asof") != horizon.isoformat()
             or card.get("freshness") not in ("fresh", "aging")
             or card.get("cadence") != "daily"
+            or full_cards[name].get("cadence") != card.get("cadence")
+            or full_cards[name].get("freshness") != card.get("freshness")
         ):
             raise ValueError("card is not an available daily horizon observation")
-        metadata = history.get("source_metadata")
-        matches = (
-            [
-                row
-                for row in metadata
-                if isinstance(row, dict) and row.get("id") == source_id
-            ]
-            if isinstance(metadata, list) and len(metadata) <= 64
-            else []
-        )
-        if (
-            len(matches) != 1
-            or matches[0].get("available") is not True
-            or matches[0].get("asof") != horizon.isoformat()
-        ):
-            raise ValueError("own source metadata missing or inconsistent")
-        _allowed(matches[0])
+        direct = DIRECT_DESK_SOURCES.get(name)
+        if direct and allow_legacy_sources and not any(
+            isinstance(row, dict) and row.get("id") == direct[0]
+            for rows in (desk_metadata, history_metadata) for row in rows
+        ) and all("source_ids" not in row for row in (card, full_cards[name])):
+            # Only an explicitly replayed, pre-direct desk may use its archived ID.
+            direct = None
+        if direct:
+            source_id, publisher, series = direct
+            if any(row.get("source_ids") != [source_id] for row in (card, full_cards[name])):
+                raise ValueError("MCP and history cards do not identify the same direct source")
+        inventories = (desk_metadata, history_metadata) if direct else (history_metadata,)
+        for rows in inventories:
+            matches = [row for row in rows if isinstance(row, dict) and row.get("id") == source_id]
+            if len(matches) != 1:
+                raise ValueError("own source metadata missing or ambiguous")
+            row = matches[0]
+            _allowed(row)
+            if row.get("available") is not True or row.get("asof") != horizon.isoformat():
+                raise ValueError("own source metadata missing or inconsistent")
+            if direct and (
+                row.get("publisher") != publisher or row.get("series") != series or row.get("cadence") != "daily"
+            ):
+                raise ValueError("direct source metadata disagrees with its publisher series")
         point = _chart_point(history, chart_id, column, horizon)
         if name != "liquidity.srf" and not _equal(card["value"], point):
             raise ValueError("card differs from its own chart point")

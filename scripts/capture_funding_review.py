@@ -343,6 +343,16 @@ def export_csv(desk, report):
     return output.getvalue().encode("utf-8")
 
 
+def responses_available(records, names):
+    return all(
+        (r := records.get(name, {})).get("complete")
+        and not r.get("error")
+        and isinstance(r.get("http_status"), int)
+        and 200 <= r["http_status"] < 300
+        for name in names
+    )
+
+
 def analyze(
     records,
     bodies,
@@ -352,17 +362,8 @@ def analyze(
     expected_release=None,
     backend=None,
 ):
-    def responded(names):
-        return all(
-            (r := records.get(name, {})).get("complete")
-            and not r.get("error")
-            and isinstance(r.get("http_status"), int)
-            and 200 <= r["http_status"] < 300
-            for name in names
-        )
-
-    source_available = responded(SOURCE_NAMES)
-    backend_available = responded(BACKEND_NAMES) if backend else True
+    source_available = responses_available(records, SOURCE_NAMES)
+    backend_available = responses_available(records, BACKEND_NAMES) if backend else True
     report = {
         "schema": "liquidity-lab.funding-review-check.v1",
         "policy_id": POLICY_ID,
@@ -711,8 +712,21 @@ def wait_for_health_generation(directory, manifest, deadline, fetcher):
     return advanced is not None
 
 
+def isolated_atlas_timeout(manifest):
+    """Only a transport timeout on the full atlas can take this retry path."""
+    atlas = manifest["requests"]["atlas"]
+    return (
+        atlas["http_status"] in (None, 200)
+        and not atlas["complete"]
+        and atlas["error"] in ("TimeoutError: The read operation timed out", "TimeoutError: timed out")
+        and not manifest["errors"]
+        and responses_available(manifest["requests"], (name for name in SOURCE_NAMES if name != "atlas"))
+        and manifest["backend_availability"] in {"available", "not_requested"}
+    )
+
+
 def capture_with_snapshot_rechecks(output, *, snapshot_rechecks=0, **kwargs):
-    """Retain each observation; retry bounded snapshot age/coherence failures."""
+    """Retain each capture when retrying a publication boundary or an isolated atlas timeout."""
     if type(snapshot_rechecks) is not int or not 0 <= snapshot_rechecks <= 2:
         raise ValueError("snapshot rechecks must be between 0 and 2")
     started = time.monotonic()
@@ -724,12 +738,14 @@ def capture_with_snapshot_rechecks(output, *, snapshot_rechecks=0, **kwargs):
     for attempt in range(snapshot_rechecks + 1):
         directory, manifest = capture(output, **kwargs)
         attempts.append(directory)
-        if (
-            attempt == snapshot_rechecks
-            or manifest["availability"] != "available"
-            or manifest["release_identity"] not in {"matched", "observed", "not_requested"}
-            or manifest["data_readiness"] != "attention_required"
-        ):
+        if attempt == snapshot_rechecks or manifest["release_identity"] not in {"matched", "observed", "not_requested"}:
+            break
+        if manifest["availability"] != "available":
+            if attempt == 0 and isolated_atlas_timeout(manifest) and time.monotonic() + 5 < latest_retry:
+                time.sleep(5)
+                continue
+            break
+        if manifest["data_readiness"] != "attention_required":
             break
         raw = (directory / "review.json").read_bytes()
         if sha256(raw) != manifest["artifact_sha256"]["review.json"]:

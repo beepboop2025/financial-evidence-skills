@@ -165,6 +165,35 @@ class CaptureTests(unittest.TestCase):
         self.assertEqual(current["measurement"]["probes"], 2)
         self.assertEqual(current["measurement"]["sampled_availability_pct"], 50)
 
+    def test_isolated_atlas_timeout_rechecks_one_complete_capture(self):
+        for fail_twice in (False, True):
+            with self.subTest(fail_twice=fail_twice), tempfile.TemporaryDirectory() as tmp:
+                regular = fetcher()
+                attempts = 0
+
+                def read(name, url, **kwargs):
+                    nonlocal attempts
+                    receipt, body, session = regular(name, url, **kwargs)
+                    if name == "mcp-initialize":
+                        attempts += 1
+                    if name == "atlas" and (attempts == 1 or fail_twice):
+                        body = b""
+                        receipt.update(complete=False, http_status=None, error="TimeoutError: The read operation timed out",
+                                       bytes=0, sha256=capture.sha256(body))
+                    return receipt, body, session
+
+                with patch.object(capture.time, "sleep") as wait:
+                    _, last, retained = capture.capture_with_snapshot_rechecks(
+                        Path(tmp), snapshot_rechecks=2, fetcher=read,
+                    )
+                wait.assert_called_once_with(5)
+                self.assertEqual(attempts, 2)
+                self.assertEqual(len(retained), 2)
+                self.assertFalse(json.loads((retained[0] / "manifest.json").read_bytes())["ready"])
+                self.assertEqual(last["ready"], not fail_twice)
+                for path in retained:
+                    self.assertTrue((path / "health.response").is_file())
+
     def test_available_but_stale_data_is_not_ready(self):
         docs = captures()
         docs[0]["sections"][0]["metrics"][0]["freshness"] = "stale"

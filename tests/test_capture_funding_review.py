@@ -273,7 +273,8 @@ class CaptureTests(unittest.TestCase):
         self.assertEqual(self.current()["measurement"]["probes"], 2)
 
     def test_board_wait_exhausts_without_charging_another_full_capture(self):
-        for raw in (None, b'{"generated_at":"2099-01-01T00:00:00Z"}', b'null', b'bad'):
+        nested = b"[" * 2000 + b"]" * 2000
+        for raw in (None, b'{"generated_at":"2099-01-01T00:00:00Z"}', b'null', b'bad', nested):
             with self.subTest(raw=raw):
                 result, attempts, calls, probes = self.board_rechecks(1000, probe_raw=raw)
                 self.assertFalse(result["ready"])

@@ -690,7 +690,7 @@ def wait_for_health_generation(directory, manifest, deadline, fetcher):
                 continue
             generation = timestamp(document.get("generated_at"))
             age = (timestamp(utcnow()) - generation).total_seconds()
-        except (ValueError, TypeError, OverflowError):
+        except (ValueError, TypeError, OverflowError, RecursionError):
             continue
         if (
             previous < generation

@@ -454,7 +454,7 @@ class CacheTests(unittest.TestCase):
         limits = {}
 
         def fetcher(source, **kwargs):
-            limits[source.url] = kwargs["max_bytes"]
+            limits[source.url] = (kwargs["max_bytes"], kwargs["timeout"])
             response = io.BytesIO(body)
             response.headers = Message()
             response.headers["Content-Type"] = "application/json"
@@ -470,7 +470,9 @@ class CacheTests(unittest.TestCase):
         other = service.packet(["capital-market"])
         self.assertEqual(other["transport_status"], "unavailable")
         self.assertIn("exceeds 1048576", other["sources"][0]["error"])
-        self.assertEqual(sorted(limits.values()), [1_048_576, 4_194_304])
+        atlas_url = "https://api.seiche.info/api/v2/money-markets"
+        self.assertEqual(limits.pop(atlas_url), (4_194_304, 25))
+        self.assertEqual(list(limits.values()), [(1_048_576, 10)])
 
     def test_atlas_still_rejects_responses_over_four_mib(self):
         def fetcher(source, **kwargs):

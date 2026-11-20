@@ -61,6 +61,7 @@ def horizon_fixture():
         {"id": ident, "available": True, "asof": "2026-09-25", "publisher": publisher, "series": series, "cadence": "daily"}
         for ident, publisher, series in desk_sources.values()
     ] + [{"id": "nyfed_srf", "available": True, "asof": "2026-09-25"}]
+    desk["source_metadata"] = copy.deepcopy(history["source_metadata"])
     history["charts"] = {
         "policy": {
             "id": "policy",
@@ -381,10 +382,29 @@ class FundingHorizonTests(unittest.TestCase):
                         with self.assertRaises(ValueError):
                             common_horizon_evidence(self.desk, self.market, self.history, NOW, allow_legacy_sources=legacy)
 
+    def test_direct_metadata_and_cadence_must_agree_across_both_projections(self):
+        for side in ("desk", "history"):
+            for key, value in (("rights_status", "restricted"), ("series", "other"), ("publisher", "other"),
+                               ("missing", None), ("duplicate", None), ("cadence", "annual"), ("freshness", "stale")):
+                with self.subTest(side=side, key=key):
+                    self.setUp()
+                    doc = getattr(self, side)
+                    metadata = doc["source_metadata"]
+                    if key == "missing":
+                        metadata.pop(0)
+                    elif key == "duplicate":
+                        metadata.append(copy.deepcopy(metadata[0]))
+                    elif key in ("freshness", "cadence"):
+                        self.card("policy.iorb", doc)[key] = value
+                    else:
+                        metadata[0][key] = value
+                    with self.assertRaises(ValueError):
+                        self.check()
+
     def test_legacy_desk_source_ids_require_explicit_offline_replay(self):
         for index, (name, legacy_id) in enumerate((("policy.iorb", "fred_iorb"), ("liquidity.on_rrp", "fred_on_rrp"))):
-            self.history["source_metadata"][index]["id"] = legacy_id
             for doc in (self.desk, self.history):
+                doc["source_metadata"][index]["id"] = legacy_id
                 self.card(name, doc).pop("source_ids")
         with self.assertRaises(ValueError):
             self.check()

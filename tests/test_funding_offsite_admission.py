@@ -202,3 +202,29 @@ class StorageAdmissionTests(unittest.TestCase):
         ):
             with self.assertRaisesRegex(ValueError, "helper changed"):
                 admission._helper(self.policy)
+
+    def test_bounded_scratch_requires_verified_backing_and_the_parent_reserve(self):
+        physical, bind = self.mount_rows()
+        scratch = self.base.parent / "private-scratch"
+        spec = {"mount": str(scratch)}
+        fs = types.SimpleNamespace(f_frsize=4096, f_bavail=self.policy["reserve_bytes"] // 4096 + 8)
+        with (
+            mock.patch.object(admission.subprocess, "check_output", return_value=json.dumps({"filesystems": [physical, bind]})),
+            mock.patch.object(admission.os, "statvfs", return_value=fs),
+            mock.patch.object(admission, "_compressed_scratch", return_value=scratch) as verified,
+        ):
+            policy = {**self.policy, "scratch": spec}
+            self.assertEqual(admission._check_reserve(self.source, self.state, policy), scratch)
+            verified.assert_called_once_with(spec, self.base, self.base.stat().st_dev)
+            fs.f_bavail -= 1
+            with self.assertRaisesRegex(OSError, "insufficient space"):
+                admission._check_reserve(self.source, self.state, policy)
+
+    def test_enrollment_schema_cannot_accidentally_select_or_omit_scratch(self):
+        for schema, extra in (("v1", {"scratch": {}}), ("v2", {})):
+            with self.subTest(schema=schema):
+                policy = {**self.policy, **extra, "schema": "financial-evidence.native-storage-admission." + schema}
+                with mock.patch.object(admission, "_root_file", return_value=json.dumps(policy).encode()):
+                    with self.assertRaisesRegex(ValueError, "invalid native storage admission policy"):
+                        with admission.storage_admission(self.source, self.state, self.base / "policy"):
+                            self.fail("admitted a mixed enrollment")

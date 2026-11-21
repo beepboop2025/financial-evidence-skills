@@ -67,6 +67,60 @@ def _stage_bytes(source, block_size):
     return total
 
 
+def _compressed_scratch(spec, mount, device):
+    """Verify a private filesystem whose entire backing allocation is already charged to the parent."""
+    if not isinstance(spec, dict) or set(spec) != {"mount", "uuid", "image", "inode", "bytes"}:
+        raise ValueError("invalid compressed scratch enrollment")
+    scratch, image = Path(spec["mount"]), Path(spec["image"])
+    if not image.is_relative_to(mount) or scratch.is_relative_to(mount) or mount.is_relative_to(scratch):
+        raise ValueError("compressed scratch paths overlap or leave the enrolled volume")
+    for path in (scratch, image):
+        if not path.is_absolute() or path.resolve(strict=True) != path:
+            raise ValueError("compressed scratch path was redirected")
+        if any(p.stat().st_uid != 0 or p.stat().st_mode & 0o022 for p in (path, *path.parents)):
+            raise ValueError("compressed scratch path is not root-controlled")
+    info = image.stat()
+    if (
+        not stat.S_ISREG(info.st_mode) or info.st_dev != device or info.st_nlink != 1
+        or info.st_mode & 0o077 or not scratch.is_dir() or scratch.stat().st_mode & 0o077
+        or type(spec["inode"]) is not int or info.st_ino != spec["inode"]
+        or type(spec["bytes"]) is not int or spec["bytes"] <= 0 or info.st_size != spec["bytes"]
+        or info.st_blocks * 512 < info.st_size
+    ):
+        raise ValueError("compressed scratch backing file differs or is not fully allocated")
+    mounts = json.loads(subprocess.check_output([
+        "/usr/bin/findmnt", "--json", "--list", "--submounts", "--target", str(scratch),
+        "--output", "SOURCE,TARGET,FSTYPE,UUID,FSROOT,OPTIONS,MAJ:MIN",
+    ], text=True, timeout=10))["filesystems"]
+    if len(mounts) != 1:
+        raise ValueError("compressed scratch must be one private mount")
+    row, = mounts
+    options = set(row["options"].split(","))
+    dev = scratch.stat().st_dev
+    if (
+        (row["target"], row["fstype"], row["uuid"], row["fsroot"], row["maj:min"])
+        != (str(scratch), "btrfs", spec["uuid"], "/", f"{os.major(dev)}:{os.minor(dev)}")
+        or not re.fullmatch(r"/dev/loop[0-9]+", row["source"])
+        or not {"rw", "nosuid", "nodev", "noexec", "compress-force=zstd:3"} <= options
+        or any(option.startswith("discard") for option in options)
+    ):
+        raise ValueError("compressed scratch filesystem or options differ")
+    loops = json.loads(subprocess.check_output([
+        "/usr/sbin/losetup", "--json", "--list", "--output",
+        "NAME,BACK-FILE,BACK-INO,BACK-MAJ:MIN,OFFSET,SIZELIMIT", row["source"],
+    ], text=True, timeout=10))["loopdevices"]
+    if len(loops) != 1:
+        raise ValueError("compressed scratch loop identity is ambiguous")
+    loop, = loops
+    if (
+        (loop["name"], loop["back-file"], int(loop["back-ino"]), loop["back-maj:min"])
+        != (row["source"], str(image), info.st_ino, f"{os.major(device)}:{os.minor(device)}")
+        or int(loop["offset"]) != 0 or int(loop["sizelimit"]) != 0
+    ):
+        raise ValueError("compressed scratch loop backing differs")
+    return scratch
+
+
 def _check_reserve(source, state, policy):
     mount = Path(policy["mount"])
     if (
@@ -117,32 +171,32 @@ def _check_reserve(source, state, policy):
         [physical, self_bind],
     ):
         raise ValueError("backup volume identity differs")
-    required = policy["reserve_bytes"] + _stage_bytes(
-        source, os.statvfs(state).f_frsize
-    )
     usage = os.statvfs(state)
+    scratch = None
+    if "scratch" in policy:
+        scratch = _compressed_scratch(policy["scratch"], mount, device)
+        # The fully allocated image already counts against f_bavail. Only the
+        # small status, receipt and attempt records are written outside it.
+        required = policy["reserve_bytes"] + 8 * usage.f_frsize
+    else:
+        required = policy["reserve_bytes"] + _stage_bytes(source, usage.f_frsize)
     if usage.f_bavail * usage.f_frsize < required:
         raise OSError(
             "insufficient space for a full restore above the enrolled reserve"
         )
+    return scratch
 
 
 @contextmanager
 def storage_admission(source, state, policy_path):
     policy = json.loads(_root_file(policy_path, 16 * 1024))
+    fields = {"schema", "helper", "helper_sha256", "state", "mount", "uuid", "filesystem", "reserve_bytes"}
+    if policy.get("schema") == "financial-evidence.native-storage-admission.v2":
+        fields.add("scratch")
+    elif policy.get("schema") != "financial-evidence.native-storage-admission.v1":
+        raise ValueError("invalid native storage admission policy")
     if (
-        policy.get("schema") != "financial-evidence.native-storage-admission.v1"
-        or set(policy)
-        != {
-            "schema",
-            "helper",
-            "helper_sha256",
-            "state",
-            "mount",
-            "uuid",
-            "filesystem",
-            "reserve_bytes",
-        }
+        set(policy) != fields
         or not re.fullmatch(r"[0-9a-f]{64}", policy["helper_sha256"])
         or type(policy["reserve_bytes"]) is not int
         or policy["reserve_bytes"] <= 0
@@ -158,5 +212,4 @@ def storage_admission(source, state, policy_path):
             if str(error) != "Storage admission is held by another job":
                 raise
             raise StorageBusy from error
-        _check_reserve(source, state, policy)
-        yield
+        yield _check_reserve(source, state, policy)

@@ -315,6 +315,24 @@ must be root-controlled. The backup checks space for one complete staging tree
 above this reserve. Once Restic returns the snapshot ID, the backup removes its
 private staging copy and restores into an empty directory for full verification.
 
+A host can enroll a private compressed workspace through a
+`financial-evidence.native-storage-admission.v2` policy. Keep the existing
+physical volume, state and reserve fields. The additional `scratch` object
+names the mount, its Btrfs filesystem UUID, the backing image on the enrolled
+volume, its inode and its fixed byte length (`mount`, `uuid`, `image`,
+`inode` and `bytes`). Allocate the entire image before enrollment, disable
+discard, and use a private root mount with `compress-force=zstd:3,nosuid,nodev,noexec`.
+The mount unit must require the filesystem containing the image.
+
+Install `compressed-scratch.conf` after the shared storage admission drop-in.
+This binds the backup service to its scratch mount and disables speculative
+file preallocation inside that service. The kernel accounts for compressed data
+as it is written. The existing physical reserve still applies to the outer
+volume. Stage the real corpus and restore a previous encrypted snapshot on the
+bounded workspace before selecting it. The full recovered directory and every
+file hash are checked. The state lock also protects recovery of a recorded
+interrupted temporary directory. Receipts and source captures keep their paths.
+
 A busy lock produces a `deferred` journal entry and an exit code of 75 before
 backup execution. The on-demand timer retries after 30 seconds. Other errors
 retain the ordinary failure status and schedule. Source data, credentials and

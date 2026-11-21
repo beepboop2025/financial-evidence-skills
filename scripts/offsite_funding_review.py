@@ -7,7 +7,7 @@ command never initializes repositories, deletes snapshots, or changes captures.
 
 import argparse
 import base64
-from contextlib import ExitStack
+from contextlib import ExitStack, contextmanager
 from datetime import datetime, timezone
 import fcntl
 import hashlib
@@ -149,7 +149,63 @@ def atomic_status(path, value):
     os.replace(temporary, path)
 
 
-def backup(source, state, repository_id):
+def sync_directory(path):
+    descriptor = os.open(path, os.O_DIRECTORY | os.O_RDONLY | os.O_NOFOLLOW)
+    try:
+        os.fsync(descriptor)
+    finally:
+        os.close(descriptor)
+
+
+def clear_recorded_work(state, scratch, repository_id):
+    marker = state / ".scratch-attempt.json"
+    if not os.path.lexists(marker):
+        return
+    record = json.loads(read_file(state, marker.name, 4096))
+    if (
+        set(record) != {"name", "scratch", "repository_id"}
+        or record.get("scratch") != str(scratch) or record.get("repository_id") != repository_id
+        or not re.fullmatch(r"\.verified-backup-[a-f0-9]{32}", record.get("name", ""))
+    ):
+        raise ValueError("unrecognized funding scratch attempt")
+    work = scratch / record["name"]
+    try:
+        info = work.lstat()
+    except FileNotFoundError:
+        pass
+    else:
+        if (not stat.S_ISDIR(info.st_mode) or info.st_mode & 0o077
+                or info.st_uid != os.geteuid() or info.st_dev != scratch.stat().st_dev):
+            raise ValueError("recorded funding scratch directory was replaced")
+        shutil.rmtree(work)
+    sync_directory(scratch)
+    marker.unlink()
+    sync_directory(state)
+
+
+@contextmanager
+def working_directory(state, scratch, repository_id):
+    if scratch is None:
+        with tempfile.TemporaryDirectory(prefix=".verified-backup-", dir=state) as temporary:
+            yield Path(temporary)
+        return
+    # The existing state lock covers the marker and the scratch through cleanup.
+    # Persist the unique name before creating any files so a killed run can resume.
+    clear_recorded_work(state, scratch, repository_id)
+    name = ".verified-backup-" + uuid.uuid4().hex
+    work = scratch / name
+    if os.path.lexists(work):
+        raise ValueError("funding scratch name already exists")
+    atomic_status(state / ".scratch-attempt.json", {"name": name, "scratch": str(scratch), "repository_id": repository_id})
+    sync_directory(state)
+    work.mkdir(mode=0o700)
+    try:
+        yield work
+    finally:
+        clear_recorded_work(state, scratch, repository_id)
+
+
+def backup(source, state, repository_id, *, scratch=None):
     if not re.fullmatch(r"[0-9a-f]{64}", repository_id):
         raise ValueError("expected repository identity required")
     if source.is_symlink() or state.is_symlink():
@@ -168,10 +224,7 @@ def backup(source, state, repository_id):
             config = json.loads(restic("cat", "config"))
             if config.get("id") != repository_id:
                 raise ValueError("restic repository identity changed")
-            with tempfile.TemporaryDirectory(
-                prefix=".verified-backup-", dir=state
-            ) as temporary:
-                work = Path(temporary)
+            with working_directory(state, scratch, repository_id) as work:
                 stage = work / "archive"
                 stage.mkdir(mode=0o700)
                 inventory = stage_archive(source, stage)
@@ -199,7 +252,8 @@ def backup(source, state, repository_id):
                 shutil.rmtree(stage)
                 restored = work / "restore"
                 restored.mkdir(mode=0o700)
-                restic("restore", snapshot, "--target", str(restored))
+                restore_options = ["--sparse"] if scratch is not None else []
+                restic("restore", snapshot, *restore_options, "--target", str(restored))
                 verify_restore(
                     restored / snapshot_path.relative_to("/"), inventory["files"]
                 )
@@ -247,12 +301,13 @@ if __name__ == "__main__":
     arguments = parser.parse_args()
     try:
         with ExitStack() as guards:
+            scratch = None
             policy_path = os.environ.get("FUNDING_OFFSITE_STORAGE_POLICY")
             if policy_path is not None:
                 from funding_offsite_admission import StorageBusy, storage_admission
 
                 try:
-                    guards.enter_context(
+                    scratch = guards.enter_context(
                         storage_admission(
                             arguments.source, arguments.state, Path(policy_path)
                         )
@@ -265,7 +320,7 @@ if __name__ == "__main__":
                     }
                     print(json.dumps(deferred))
                     raise SystemExit(75)
-            receipt = backup(arguments.source, arguments.state, arguments.repository_id)
+            receipt = backup(arguments.source, arguments.state, arguments.repository_id, scratch=scratch)
     except Exception as error:
         print(json.dumps({"status": "failed", "error_type": type(error).__name__}))
         raise SystemExit(1)

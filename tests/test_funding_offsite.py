@@ -45,6 +45,48 @@ def fixture(root):
 
 
 class OffsiteTests(unittest.TestCase):
+    def test_interrupted_compressed_work_reclaims_only_the_recorded_tree(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp).resolve()
+            state, scratch = root / "state", root / "scratch"
+            state.mkdir()
+            scratch.mkdir()
+            old = scratch / (".verified-backup-" + "a" * 32)
+            old.mkdir(mode=0o700)
+            (old / "interrupted-file").write_text("partial")
+            separate = scratch / "retained"
+            separate.write_text("unrelated")
+            marker = state / ".scratch-attempt.json"
+            record = {"scratch": str(scratch), "name": old.name, "repository_id": REPOSITORY}
+            marker.write_text(json.dumps(record))
+            with offsite.working_directory(state, scratch, REPOSITORY) as work:
+                self.assertFalse(old.exists())
+                self.assertTrue(work.is_dir())
+                self.assertEqual(work.parent, scratch)
+                self.assertEqual(json.loads(marker.read_bytes())["name"], work.name)
+            self.assertFalse(work.exists())
+            self.assertFalse(marker.exists())
+            self.assertEqual(separate.read_text(), "unrelated")
+
+    def test_scratch_cleanup_rejects_changed_repository_or_redirected_marker(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp).resolve()
+            state, scratch = root / "state", root / "scratch"
+            state.mkdir()
+            scratch.mkdir()
+            marker = state / ".scratch-attempt.json"
+            for name, repo in (("../retained", REPOSITORY), (".verified-backup-" + "a" * 32, "b" * 64)):
+                with self.subTest(name=name, repo=repo):
+                    marker.write_text(json.dumps({"scratch": str(scratch), "name": name, "repository_id": repo}))
+                    with self.assertRaisesRegex(ValueError, "unrecognized"):
+                        with offsite.working_directory(state, scratch, REPOSITORY):
+                            self.fail("overlapping scratch was admitted")
+                    self.assertTrue(marker.exists())
+            marker.unlink()
+            marker.symlink_to(scratch)
+            with self.assertRaises(OSError):
+                offsite.clear_recorded_work(state, scratch, REPOSITORY)
+
     def test_cli_distinguishes_storage_deferral_from_failure_in_an_optional_install(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

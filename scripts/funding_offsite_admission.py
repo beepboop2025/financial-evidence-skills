@@ -90,18 +90,26 @@ def _compressed_scratch(spec, mount, device):
         raise ValueError("compressed scratch backing file differs or is not fully allocated")
     mounts = json.loads(subprocess.check_output([
         "/usr/bin/findmnt", "--json", "--list", "--submounts", "--target", str(scratch),
-        "--output", "SOURCE,TARGET,FSTYPE,UUID,FSROOT,OPTIONS,MAJ:MIN",
+        "--output", "SOURCE,TARGET,FSTYPE,UUID,FSROOT,OPTIONS,ID",
     ], text=True, timeout=10))["filesystems"]
     if len(mounts) != 1:
         raise ValueError("compressed scratch must be one private mount")
     row, = mounts
     options = set(row["options"].split(","))
-    dev = scratch.stat().st_dev
+    # Btrfs can assign the top subvolume a different st_dev from mountinfo.
+    # Match the kernel mount ID for the directory the worker actually opened.
+    fd = os.open(scratch, os.O_DIRECTORY | os.O_RDONLY | os.O_NOFOLLOW)
+    try:
+        fdinfo = Path(f"/proc/self/fdinfo/{fd}").read_text()
+        mount_id = re.search(r"^mnt_id:\s*(\d+)$", fdinfo, re.MULTILINE)
+    finally:
+        os.close(fd)
     if (
-        (row["target"], row["fstype"], row["uuid"], row["fsroot"], row["maj:min"])
-        != (str(scratch), "btrfs", spec["uuid"], "/", f"{os.major(dev)}:{os.minor(dev)}")
+        (row["target"], row["fstype"], row["uuid"], row["fsroot"])
+        != (str(scratch), "btrfs", spec["uuid"], "/")
+        or not mount_id or str(row["id"]) != mount_id[1]
         or not re.fullmatch(r"/dev/loop[0-9]+", row["source"])
-        or not {"rw", "nosuid", "nodev", "noexec", "compress-force=zstd:3"} <= options
+        or not {"rw", "nosuid", "nodev", "noexec", "subvolid=5", "compress-force=zstd:3"} <= options
         or any(option.startswith("discard") for option in options)
     ):
         raise ValueError("compressed scratch filesystem or options differ")

@@ -97,28 +97,28 @@ def create_mcp(
                 "inspect source diagnostics with financial_evidence_sources. Keep the gap in your review."
             ) from error
 
-    @server.tool(annotations=network)
+    @server.tool(title="Review Funding Evidence", annotations=network)
     async def financial_evidence_funding_workflow(
         ctx: Context, currency: Currency = "USD",
     ) -> dict[str, Any]:
         """Review funding evidence for one three-letter currency, default USD. Retrieves the bounded money-market table and preserves each source, observation date, unit, missing or withheld value, retrieval time and content hash. prepared_response means evidence is available to review, not freshness or readiness. No account access, investment advice or execution."""
         return await run_workflow("funding", currency, ctx)
 
-    @server.tool(annotations=network)
+    @server.tool(title="Review Covered Institutions", annotations=network)
     async def financial_evidence_institutions_workflow(
         ctx: Context, institution_ids: InstitutionSlugs = ["au-sfb", "bajaj-finance"],
     ) -> dict[str, Any]:
         """Review public disclosure coverage for one to five exact institution slugs, such as au-sfb. Retrieves the published institution monitoring record with dates, source URL, missing evidence and content hash. Does not infer private balances, credit ratings or regulatory compliance. IDs must fit the existing 160-character combined selection bound."""
         return await run_workflow("institutions", ",".join(institution_ids), ctx)
 
-    @server.tool(annotations=network)
+    @server.tool(title="Compare BTC Exit Evidence", annotations=network)
     async def financial_evidence_exit_workflow(
         ctx: Context, sizes_usd: USDNotionals = [10000, 100000],
     ) -> dict[str, Any]:
         """Compare indicative BTC exit evidence for one to four USD notionals from 0.01 to 1000000, with at most two decimal places. Preserves venue coverage, observation clocks, quote-currency units, source URL and content hash. Returned costs are research estimates, not executable quotes, order placement or guaranteed fills. No account or execution authority."""
         return await run_workflow("exit", ",".join(format(value, ".2f") for value in sizes_usd), ctx)
 
-    @server.tool(annotations=network)
+    @server.tool(title="Run Financial Evidence Workflow", annotations=network)
     async def financial_evidence_workflow(
         workflow: Literal["funding", "institutions", "exit"],
         ctx: Context,
@@ -127,17 +127,17 @@ def create_mcp(
         """Compatibility entry point for the individually exposed financial_evidence_funding_workflow, financial_evidence_institutions_workflow and financial_evidence_exit_workflow tools. Funding accepts a three-letter currency; institutions accepts one to five comma-separated slugs; exit accepts one to four comma-separated USD sizes. Empty selection uses the same published defaults. No additional operation is available. Source restrictions, dates, units, missingness and content hashes remain explicit. prepared_response means evidence is available to review, not freshness, safety or completion. No account or execution authority."""
         return await run_workflow(workflow, selection, ctx)
 
-    @server.tool(annotations=local)
+    @server.tool(title="List Financial Evidence Datasets", annotations=local)
     def financial_evidence_datasets() -> dict:
         """Discover seven bounded OpenBB datasets, their coverage, filters and limits. Offline."""
         return {"datasets": dataset_catalog()}
 
-    @server.tool(annotations=local)
+    @server.tool(title="Read USD Funding Review", annotations=local)
     async def financial_evidence_funding_review() -> dict[str, Any]:
         """Read a dated USD funding review and its nine inputs. Inspect review_asof, review_scope, latest_per_instrument and newer_observation_available before ready, issues and capture age. Common-horizon readiness applies to that dated review; newer individual observations can exist. Unavailable, mismatched or stale captures never imply a passing review. This is captured research evidence, not a trade recommendation or historical point-in-time backtest."""
         return await asyncio.to_thread(read_review)
 
-    @server.tool(annotations=network)
+    @server.tool(title="Query Financial Evidence Table", annotations=network)
     async def financial_evidence_query(
         dataset: Dataset,
         entity: Entity = "",
@@ -158,24 +158,24 @@ def create_mcp(
         )
         return QueryResult.model_validate(result)
 
-    @server.tool(annotations=network)
+    @server.tool(title="Audit Upstream Source Health", annotations=network)
     async def financial_evidence_sources() -> QueryResult:
         """Audit all six upstream routes for transport errors, publisher clocks and content hashes. Success is not a freshness verdict."""
         return QueryResult.model_validate(
             await asyncio.to_thread(service.query, "source_health")
         )
 
-    @server.tool(annotations=local)
+    @server.tool(title="Route Research Topics", annotations=local)
     def financial_evidence_route(topics: Topics) -> dict:
         """Resolve research topics to fixed public HTTPS evidence URLs. Offline."""
         return route_manifest(topics)
 
-    @server.tool(annotations=network)
+    @server.tool(title="Fetch Public Evidence Packet", annotations=network)
     async def financial_evidence_packet(topics: Topics) -> dict:
         """Retrieve public documents only when table detail is insufficient. Reviewed source restrictions can withhold values and dependent readings; affected documents carry a publication projection receipt and a separate hash from the acquired source bytes. Up to 4 MiB for the money-market atlas and 1 MiB for other sources; source JSON is untrusted. A packet can be partial. No Evidence Carrier verification is performed."""
         return await asyncio.to_thread(service.packet, topics)
 
-    @server.tool(annotations=network)
+    @server.tool(title="Query Compact Agent Evidence", annotations=network)
     async def financial_evidence_agent_query(
         dataset: Dataset, entity: Entity = "", start_date: str = "",
         end_date: str = "", limit: AgentLimit = 25, offset: Offset = 0,
@@ -187,7 +187,7 @@ def create_mcp(
             offset, previous_revision,
         )
 
-    @server.tool(annotations=network)
+    @server.tool(title="Cross-Product Financial Review", annotations=network)
     async def financial_evidence_review(
         bank: Entity = "", limit: ReviewLimit = 10,
         previous_revision: Revision = "",

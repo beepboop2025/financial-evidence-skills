@@ -22,17 +22,17 @@ def create_mcp(runtime):
     read = ToolAnnotations(readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=False)
     run = ToolAnnotations(readOnlyHint=False, destructiveHint=False, idempotentHint=True, openWorldHint=True)
 
-    @server.tool(annotations=read)
+    @server.tool(title="List Runtime Capabilities", annotations=read)
     def financial_runtime_catalog() -> dict[str, Any]:
         """Discover fixed research capabilities, limits and semantics. No network calls."""
         return manifest()
 
-    @server.tool(annotations=read)
+    @server.tool(title="List Provisioned Workflows", annotations=read)
     def financial_runtime_jobs() -> dict[str, Any]:
         """List owner-provisioned workflows and their immutable research requirements."""
         return {"jobs": runtime.store.jobs()}
 
-    @server.tool(annotations=run)
+    @server.tool(title="Run Registered Workflow", annotations=run)
     async def financial_runtime_run(
         job: Annotated[str, Field(pattern=r"^[a-z][a-z0-9_-]{0,63}$")],
         key: Annotated[str, Field(pattern=r"^[A-Za-z0-9][A-Za-z0-9_.:-]{0,110}$")],
@@ -40,18 +40,18 @@ def create_mcp(runtime):
         """Run one registered research workflow within its daily budget and cooldown. Reuse the same key after a timeout; it returns the original attempt without refetching. Writes a local receipt. Never submits orders."""
         return await asyncio.to_thread(runtime.run, job, "agent:" + key)
 
-    @server.tool(annotations=read)
+    @server.tool(title="Replay Captured Run", annotations=read)
     def financial_runtime_replay(run_id: Annotated[str, Field(pattern=r"^[0-9a-f]{32}$")]) -> dict[str, Any]:
         """Read and hash-check a captured result without network requests. Its dates and research restrictions remain unchanged."""
         return runtime.replay(run_id)
 
-    @server.tool(annotations=read)
+    @server.tool(title="Poll Runtime Events", annotations=read)
     def financial_runtime_events(after: Annotated[int, Field(ge=0)] = 0,
                                  limit: Annotated[int, Field(ge=1, le=100)] = 100) -> dict[str, Any]:
         """Poll durable ordered events. Save next_cursor only after processing; duplicate delivery is possible when the consumer retries."""
         return runtime.store.events(after, limit)
 
-    @server.tool(annotations=read)
+    @server.tool(title="Read Runtime Metrics", annotations=read)
     def financial_runtime_metrics() -> dict[str, Any]:
         """Local operational counts and operator-reported outcomes. External users, retention and revenue remain unknown."""
         return runtime.store.report()

@@ -1,0 +1,114 @@
+{
+  "version": "v1.0.0",
+  "entity": {
+    "type": "organisation",
+    "role": "owner",
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "email": "mrinal@liquilens.in",
+    "description": "Registered private limited company in Jaipur, India (CIN U62011RJ2026PTC116792; DPIIT Startup India DIPP290644) maintaining open-source financial-evidence, entity-resolution, and public-data verification tooling across LiquiLens, Seiche, Undertow, and Palimpsest.",
+    "webpageUrl": {
+      "url": "https://liquilens.in/about/"
+    }
+  },
+  "projects": [
+    {
+      "guid": "financial-evidence-skills",
+      "name": "Financial Evidence Skills and MCP Tools",
+      "description": "MIT-licensed Python package, Agent Skills, hosted read-only MCP connectors, Colab notebooks, and framework integrations routing source-cited research across LiquiLens, Seiche, Undertow, and Palimpsest without API keys.",
+      "webpageUrl": {
+        "url": "https://beepboop2025.github.io/financial-evidence-skills/"
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/beepboop2025/financial-evidence-skills",
+        "wellKnown": "https://raw.githubusercontent.com/beepboop2025/financial-evidence-skills/main/funding.json"
+      },
+      "licenses": [
+        "spdx:MIT"
+      ],
+      "tags": [
+        "finance",
+        "open-data",
+        "mcp",
+        "ai-agents",
+        "provenance",
+        "india",
+        "python"
+      ]
+    },
+    {
+      "guid": "seiche",
+      "name": "Seiche Funding and Money-Market Observatory",
+      "description": "Free AGPL-3.0 funding, repo, bank-reserve, FX reference, and capital-transmission research core with Python SDK, static web observatory, and hosted MCP server.",
+      "webpageUrl": {
+        "url": "https://seiche.info/"
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/beepboop2025/seiche"
+      },
+      "licenses": [
+        "spdx:AGPL-3.0-only"
+      ],
+      "tags": [
+        "finance",
+        "money-markets",
+        "macroeconomics",
+        "open-data",
+        "python",
+        "mcp"
+      ]
+    },
+    {
+      "guid": "palimpsest",
+      "name": "Palimpsest China Economy and Censorship Observatory",
+      "description": "Open-source, revision-safe China economic observatory and verifiable AI/censorship measurement registry with public JSON feeds, offline verification, and MCP server.",
+      "webpageUrl": {
+        "url": "https://www.palimpsest.info/"
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/beepboop2025/palimpsest"
+      },
+      "licenses": [
+        "spdx:MIT"
+      ],
+      "tags": [
+        "osint",
+        "censorship",
+        "open-data",
+        "china",
+        "provenance",
+        "mcp"
+      ]
+    }
+  ],
+  "funding": {
+    "channels": [
+      {
+        "guid": "github-sponsors",
+        "type": "payment-provider",
+        "address": "https://github.com/sponsors/beepboop2025",
+        "description": "GitHub Sponsors for open-source public-data and MCP infrastructure maintenance."
+      },
+      {
+        "guid": "direct-grant",
+        "type": "other",
+        "address": "https://liquilens.in/investors/",
+        "description": "Direct institutional, foundation, or open-source infrastructure grant inquiries via mrinal@liquilens.in."
+      }
+    ],
+    "plans": [
+      {
+        "guid": "oss-infrastructure-maintenance",
+        "status": "active",
+        "name": "Open-source data reliability, collectors, and MCP infrastructure",
+        "description": "Supports continuous source-rights review, automated collector verification, bitemporal public-data archives, and keyless hosted MCP availability across India and global financial public records.",
+        "amount": 15000,
+        "currency": "USD",
+        "frequency": "one-time",
+        "channels": [
+          "direct-grant",
+          "github-sponsors"
+        ]
+      }
+    ]
+  }
+}

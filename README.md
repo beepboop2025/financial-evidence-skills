@@ -31,6 +31,8 @@ claude mcp add --transport http undertow https://api.seiche.info/undertow/mcp
 
 **Try this first:** Which dollar funding channel looks most stretched against its own last three years, and which underlying observations are old or missing? Cite source dates and missing evidence.
 
+**Executable Colab notebooks & AI framework quickstarts:** run keyless notebooks for [Indian bank NPA/capital audits](notebooks/01_india_bank_npa_capital_audit.ipynb), [financial entity ontology resolution](notebooks/02_financial_entity_ontology_crosswalk.ipynb), [USD funding & exit liquidity](notebooks/03_usd_funding_and_exit_liquidity.ipynb), and [Palimpsest China revision audits](notebooks/04_china_economy_revision_audit.ipynb), or copy-paste starter templates for OpenAI Agents SDK, PydanticAI, LangChain/LangGraph, and Google ADK in [`examples/frameworks/`](examples/frameworks/README.md).
+
 **Move approved research connections between clients:** Python 0.1.17 includes `financial-evidence connect` for existing product routes, declared institution/workspace approval and portable MCP/VS Code configuration. Generation is offline; private-silo access and vendor entitlements require separately qualified infrastructure. [Connection guide](docs/connect/institution-portability.md).
 
 **Improve the next review:** Python 0.1.17 includes optional feedback reasons and requested data categories. Private reports separate feedback from attempts and exclude rehearsals from improvement priorities. Sharing remains opt-in. [Product learning guide](docs/start/agent-workflows.md).

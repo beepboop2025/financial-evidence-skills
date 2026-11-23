@@ -144,7 +144,10 @@
       "verified_at": "2026-10-17T23:11:39.365406+00:00",
       "name": "Data Breach Detector",
       "endpoint": "https://breach.seiche.info/mcp",
-      "tool_count": 7
+      "tool_count": 7,
+      "status": "retired",
+      "retired_on": "2026-11-23",
+      "replacement": "pip install data-breach-detector (runs locally over stdio; self-host with --http)"
     },
     {
       "id": "glama-financial-evidence-connector",

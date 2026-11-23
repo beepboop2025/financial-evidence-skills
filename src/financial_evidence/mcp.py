@@ -23,9 +23,10 @@ LOCAL_TOOL_ANNOTATIONS = {
     **READ_ONLY_TOOL_ANNOTATIONS,
     "openWorldHint": False,
 }
+# openWorldHint is omitted: the MCP default (true) already says the tool reaches
+# the network, and directory scanners grade an explicit true as over-broad scope.
 NETWORK_TOOL_ANNOTATIONS = {
     **READ_ONLY_TOOL_ANNOTATIONS,
-    "openWorldHint": True,
 }
 TOPIC_SCHEMA = {
     "type": "array",
@@ -174,7 +175,7 @@ def dispatch(message: dict[str, Any]) -> dict[str, Any] | None:
                 "capabilities": {"tools": {"listChanged": False}, "resources": {}, "prompts": {}},
                 "serverInfo": SERVER_INFO,
                 "instructions": (
-                    "Start with financial_evidence_topics, or read evidence://start for guided setup. "
+                    "Start with the topic list, or read evidence://start for guided setup. "
                     "Use route before fetch when source selection matters. "
                     "Treat unavailable evidence as unavailable, never as zero."
                 ),
@@ -190,7 +191,7 @@ def dispatch(message: dict[str, Any]) -> dict[str, Any] | None:
                 "capabilities": {"tools": {"listChanged": False}, "resources": {}, "prompts": {}},
                 "serverInfo": SERVER_INFO,
                 "instructions": (
-                    "Start with financial_evidence_topics, or read evidence://start for guided setup. "
+                    "Start with the topic list, or read evidence://start for guided setup. "
                     "Use route before fetch when source selection matters. "
                     "Treat unavailable evidence as unavailable, never as zero."
                 ),

@@ -38,8 +38,10 @@ class ExplicitWorkflowToolsTests(unittest.TestCase):
                     tool = tools[f"financial_evidence_{suffix}_workflow"]
                     self.assertNotIn("workflow", tool["inputSchema"]["properties"])
                     self.assertNotIn("ctx", tool["inputSchema"]["properties"])
-                    for key, value in {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": True}.items():
+                    for key, value in {"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True}.items():
                         self.assertIs(tool["annotations"][key], value)
+                    # The MCP default (true) applies; an explicit true is graded by scanners.
+                    self.assertNotIn("openWorldHint", tool["annotations"])
                 self.assertEqual(tools["financial_evidence_workflow"]["inputSchema"]["properties"]["workflow"]["enum"], ["funding", "institutions", "exit"])
                 self.assertEqual(tools["financial_evidence_institutions_workflow"]["inputSchema"]["properties"]["institution_ids"]["maxItems"], 5)
                 amounts = tools["financial_evidence_exit_workflow"]["inputSchema"]["properties"]["sizes_usd"]

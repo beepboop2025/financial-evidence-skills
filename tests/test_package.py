@@ -336,10 +336,9 @@ class McpTests(unittest.TestCase):
                     **common,
                     "openWorldHint": False,
                 },
-                "financial_evidence_fetch": {
-                    **common,
-                    "openWorldHint": True,
-                },
+                # Omitted rather than explicitly true: the MCP default is
+                # already true, and scanners grade the explicit flag.
+                "financial_evidence_fetch": common,
             },
         )
         for tool in tools[1:]:

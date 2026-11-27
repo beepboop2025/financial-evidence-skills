@@ -1,6 +1,6 @@
 {
   "name": "seiche",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Research public money markets, regional funding context, GIFT City and gold carry using verified direct-source tools. Inspect source rights, observation dates, coverage and unavailable evidence before using a result. This release explicitly withholds legacy forecasts, backtests and other derived views whose reuse rights are unconfirmed. Seiche supports research; it does not execute trades, approve investments or certify compliance.",
   "mcpServers": {
     "seiche": {

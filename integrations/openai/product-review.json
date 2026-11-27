@@ -58,7 +58,7 @@
         }
       ],
       "toolGuidance": "For this release, use only the current public research tools: source_rights_status, money_market_context, market_workbench, world_markets_context, gift_city_context, gold_inventory_carry, research_network and data_health. Start with source_rights_status when availability or reuse rights matter. Legacy forecasts, backtests and derived views are explicitly unavailable. Never reconstruct, relabel or substitute withheld source values. Explain denied, stale, missing and metadata-only results as returned.",
-      "releaseNotes": "Releases eight verified public research tools with direct-source continuity and source-rights reporting. Explicitly marks legacy forecasts, backtests and derived views unavailable where reuse rights are unconfirmed. Updates review cases and release boundaries; research remains read-only."
+      "releaseNotes": "Removes country restrictions, and the skill and README now also name the product's MCP Registry URL, which the repository's new Agent Plugins, Antigravity and Devin manifests use. This package's MCP endpoint, tools and review cases are unchanged."
     },
     "liquilens": {
       "shortDescription": "Indian lender filings and risk",
@@ -115,7 +115,7 @@
           "prompt": "Write a birthday poem for my sister."
         }
       ],
-      "releaseNotes": "Describes the wider coverage of small and mid-size Indian lenders and the RBI enforcement and peer context now returned with bank reviews. The hosted tools and the MCP endpoint are unchanged."
+      "releaseNotes": "Removes country restrictions, and the skill and README now also name the product's MCP Registry URL, which the repository's new Agent Plugins, Antigravity and Devin manifests use. This package's MCP endpoint, tools and review cases are unchanged."
     },
     "undertow": {
       "shortDescription": "Liquidity and exit-cost checks",
@@ -172,7 +172,7 @@
           "prompt": "Write a birthday poem for my sister."
         }
       ],
-      "releaseNotes": "Describes all sixteen tools the hosted server now serves, including exit cost per venue, funding cost, portfolio stress, the gold cash scenario, liquidity tiers and the sealed record. The MCP endpoint and review cases are unchanged."
+      "releaseNotes": "Removes country restrictions, and the skill and README now also name the product's MCP Registry URL, which the repository's new Agent Plugins, Antigravity and Devin manifests use. This package's MCP endpoint, tools and review cases are unchanged."
     },
     "palimpsest": {
       "shortDescription": "Public records and provenance",

@@ -38,19 +38,19 @@
     {
       "name": "seiche",
       "source": "./plugins/seiche",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "description": "Funding, money markets and source clocks"
     },
     {
       "name": "liquilens",
       "source": "./plugins/liquilens",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "description": "Covered institutions and disclosure review"
     },
     {
       "name": "undertow",
       "source": "./plugins/undertow",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "description": "Market liquidity and indicative BTC exits"
     },
     {

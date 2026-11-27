@@ -1,0 +1,24 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "undertow",
+  "version": "1.0.4",
+  "description": "Check what exiting a position at a given size may cost, and where liquidity has thinned, from public venue data with its timestamps and coverage.",
+  "author": {
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://liquilens-undertow.com/developers/",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT",
+  "keywords": [
+    "undertow",
+    "liquidity",
+    "exit cost",
+    "market depth",
+    "slippage",
+    "crypto",
+    "btc",
+    "perpetual funding",
+    "venue concentration"
+  ]
+}

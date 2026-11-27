@@ -26,6 +26,9 @@ Do not place orders, transfer funds or infer account access from this plugin.
 Do not send credentials, private portfolios or confidential inputs. NoiseFloor
 inputs must be public, synthetic or explicitly authorized for this hosted service.
 
-Requests go to `https://agents.seiche.info/products/seiche/mcp`. The hosted service records bounded operational
-counts; installation does not enroll the user in optional learning or sharing.
-[Data handling](https://agents.seiche.info/privacy) · [Product guide](https://seiche.info/developers.html).
+Requests go to the MCP Registry URL `https://api.seiche.info/mcp` or to its
+documented alias `https://agents.seiche.info/products/seiche/mcp`, depending on
+which manifest your client loaded from this package. The gateway alias records
+bounded operational counts; installation does not enroll the user in optional
+learning or sharing.
+[Gateway data handling](https://agents.seiche.info/privacy) · [Product guide](https://seiche.info/developers.html).

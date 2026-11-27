@@ -1,0 +1,17 @@
+{
+  "name": "liquilens",
+  "displayName": "LiquiLens",
+  "description": "Research India's banks and lenders from their own public filings, with every figure's source document and date",
+  "shortDescription": "Indian lender filings and risk",
+  "homepage": "https://liquilens.in/developers/",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "logo": "logo.svg",
+  "keywords": [
+    "Finance"
+  ],
+  "mcpServers": {
+    "liquilens": {
+      "url": "https://api.liquilens.in/mcp"
+    }
+  }
+}

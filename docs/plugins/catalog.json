@@ -9,7 +9,7 @@
       "mcp_url": "https://agents.seiche.info/products/seiche/mcp",
       "guide_url": "https://seiche.info/developers.html",
       "kind": "core_product",
-      "plugin_version": "1.0.3",
+      "plugin_version": "1.0.4",
       "source_path": "plugins/seiche",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -18,15 +18,25 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/seiche-openai-1.0.3.zip",
-          "sha256": "3bf3ed4d8a605240bd7dc0cbd22a0d38f6af49ce1399298b64d3d5017be91873",
-          "bytes": 30505
+          "url": "downloads/seiche-openai-1.0.4.zip",
+          "sha256": "923fe5903ff089c9693a26b7356754a8ae6804046e78c86ddf35f950055d91e8",
+          "bytes": 31157
         },
         "gemini": {
-          "url": "downloads/seiche-gemini-1.0.3.zip",
-          "sha256": "673ed81f29b2bb16aa48e68b5dac24370ecc9f70c73ed665174bbd19e2160969",
-          "bytes": 29004
+          "url": "downloads/seiche-gemini-1.0.4.zip",
+          "sha256": "01126618c899a89cce1d54f7f8ba730bd050224747f6a0a39a9fefde95d0098c",
+          "bytes": 29604
         }
+      },
+      "canonical_mcp_url": "https://api.seiche.info/mcp",
+      "registry_server": "io.github.beepboop2025/seiche",
+      "client_manifests": {
+        "claude": "plugins/seiche/.claude-plugin/plugin.json",
+        "codex": "plugins/seiche/.codex-plugin/plugin.json",
+        "gemini": "plugins/seiche/gemini-extension.json",
+        "agent-plugins": "plugins/seiche/plugin.json",
+        "antigravity": "plugins/seiche/.antigravity-plugin/plugin.json",
+        "devin": "integrations/devin/seiche/.devin-plugin/plugin.json"
       }
     },
     {
@@ -36,7 +46,7 @@
       "mcp_url": "https://agents.seiche.info/products/liquilens/mcp",
       "guide_url": "https://liquilens.in/developers/",
       "kind": "core_product",
-      "plugin_version": "1.0.3",
+      "plugin_version": "1.0.4",
       "source_path": "plugins/liquilens",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -45,15 +55,25 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/liquilens-openai-1.0.3.zip",
-          "sha256": "4c397eb5c2f684e168be4e8d6852088b5107270c5dd90815dd691332e44b7207",
-          "bytes": 31275
+          "url": "downloads/liquilens-openai-1.0.4.zip",
+          "sha256": "948dbf8e71d7b820a795af8862473726681a456d5be7add406f969b605f0632e",
+          "bytes": 31925
         },
         "gemini": {
-          "url": "downloads/liquilens-gemini-1.0.3.zip",
-          "sha256": "eef6a68b3c3e53603b7cea1cc684e71b36344ebd08af70f188f7c15c95e872ae",
-          "bytes": 29846
+          "url": "downloads/liquilens-gemini-1.0.4.zip",
+          "sha256": "295e249269edf39cbbbe5a3f15d6ad3b92abcf67dcb64f53c68765c388ca3833",
+          "bytes": 30438
         }
+      },
+      "canonical_mcp_url": "https://api.liquilens.in/mcp",
+      "registry_server": "io.github.beepboop2025/liquilens",
+      "client_manifests": {
+        "claude": "plugins/liquilens/.claude-plugin/plugin.json",
+        "codex": "plugins/liquilens/.codex-plugin/plugin.json",
+        "gemini": "plugins/liquilens/gemini-extension.json",
+        "agent-plugins": "plugins/liquilens/plugin.json",
+        "antigravity": "plugins/liquilens/.antigravity-plugin/plugin.json",
+        "devin": "integrations/devin/liquilens/.devin-plugin/plugin.json"
       }
     },
     {
@@ -63,7 +83,7 @@
       "mcp_url": "https://agents.seiche.info/products/undertow/mcp",
       "guide_url": "https://liquilens-undertow.com/developers/",
       "kind": "core_product",
-      "plugin_version": "1.0.3",
+      "plugin_version": "1.0.4",
       "source_path": "plugins/undertow",
       "distribution": "publisher_maintained_marketplace",
       "official_directory_approved": false,
@@ -72,15 +92,25 @@
       "review_tool_inventory": "review-tool-inventory-20261028.json",
       "downloads": {
         "openai": {
-          "url": "downloads/undertow-openai-1.0.3.zip",
-          "sha256": "6a2ebeb877ea08e345bd2717e6f4dafd60264002697f95163ea7778147df53d8",
-          "bytes": 30841
+          "url": "downloads/undertow-openai-1.0.4.zip",
+          "sha256": "3875c961d23f853f0a72ec851967b786512d262aa41c7bf8d58cecfaddfa4791",
+          "bytes": 31490
         },
         "gemini": {
-          "url": "downloads/undertow-gemini-1.0.3.zip",
-          "sha256": "da8d41673c16e15c55a7222c18f04e3145fc334b5804820762f67aa5eaee39f8",
-          "bytes": 29475
+          "url": "downloads/undertow-gemini-1.0.4.zip",
+          "sha256": "b83caf52f6c5035526e2b31b60ffb150cb41da3003c7b5af1f8e237d24a93e8d",
+          "bytes": 30073
         }
+      },
+      "canonical_mcp_url": "https://api.seiche.info/undertow/mcp",
+      "registry_server": "io.github.beepboop2025/undertow",
+      "client_manifests": {
+        "claude": "plugins/undertow/.claude-plugin/plugin.json",
+        "codex": "plugins/undertow/.codex-plugin/plugin.json",
+        "gemini": "plugins/undertow/gemini-extension.json",
+        "agent-plugins": "plugins/undertow/plugin.json",
+        "antigravity": "plugins/undertow/.antigravity-plugin/plugin.json",
+        "devin": "integrations/devin/undertow/.devin-plugin/plugin.json"
       }
     },
     {

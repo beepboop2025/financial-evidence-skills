@@ -1,0 +1,51 @@
+{
+  "schema": "liquilens.plugin-client-manifests.v1",
+  "scope": "One row per product for the LiquiLens, Seiche and LiquiLens Undertow plugin folders. scripts/build_product_plugins.py writes every manifest named here from this table, and tests/test_plugin_client_manifests.py parses each manifest and checks its name, version and MCP URL against it.",
+  "url_policy": {
+    "decision": "D1 option c, adopted 27 November 2026: the MCP Registry remote is canonical on every new surface, and the agents.seiche.info gateway URL stays a documented alias.",
+    "canonical": "Agent Plugins, Google Antigravity and Devin manifests, and the Cursor, VS Code, Kiro and LM Studio links on the plugins page.",
+    "alias_kept": "The Claude-compatible files (.claude-plugin/plugin.json with .mcp.json), the OpenAI upload (.codex-plugin/plugin.json with .mcp.json, and its prepared ZIP) and the Gemini extension keep the gateway URL. The Claude directory connectors and OpenAI drafts submitted from 10 November 2026 use the gateway URL, OpenAI changes a submitted server URL only through support, and Anthropic pairs a plugin bundle with its connector at the same URL. The prepared OpenAI and Gemini ZIPs leave out the Agent Plugins and Antigravity files, because OpenAI reads MCP servers from mcp.json when a root plugin.json is present.",
+    "observed_27_nov_2026": "In isolated homes, Codex CLI 0.171.0 installed plugins/liquilens through its Agent Plugins manifest and loaded the server from mcp.json (the registry URL). Copilot CLI 1.0.68 loaded the server from .mcp.json (the gateway URL). Claude Code 2.1.332 validates the folder and loads .mcp.json."
+  },
+  "registry_snapshot": "registry-remotes-20261127.json",
+  "products": [
+    {
+      "id": "liquilens",
+      "display_name": "LiquiLens",
+      "plugin_version": "1.0.4",
+      "registry_server": "io.github.beepboop2025/liquilens",
+      "canonical_mcp_url": "https://api.liquilens.in/mcp",
+      "alias_mcp_url": "https://agents.seiche.info/products/liquilens/mcp",
+      "keywords": ["liquilens", "india", "banks", "nbfc", "lenders", "rbi", "bank filings", "asset quality", "co-operative banks"],
+      "devin_keywords": ["Finance"]
+    },
+    {
+      "id": "seiche",
+      "display_name": "Seiche",
+      "plugin_version": "1.0.4",
+      "registry_server": "io.github.beepboop2025/seiche",
+      "canonical_mcp_url": "https://api.seiche.info/mcp",
+      "alias_mcp_url": "https://agents.seiche.info/products/seiche/mcp",
+      "keywords": ["seiche", "money markets", "funding", "repo", "fx", "gift city", "gold", "source rights", "macro research"],
+      "devin_keywords": ["Finance"]
+    },
+    {
+      "id": "undertow",
+      "display_name": "LiquiLens Undertow",
+      "plugin_version": "1.0.4",
+      "registry_server": "io.github.beepboop2025/undertow",
+      "canonical_mcp_url": "https://api.seiche.info/undertow/mcp",
+      "alias_mcp_url": "https://agents.seiche.info/products/undertow/mcp",
+      "keywords": ["undertow", "liquidity", "exit cost", "market depth", "slippage", "crypto", "btc", "perpetual funding", "venue concentration"],
+      "devin_keywords": ["Finance"]
+    }
+  ],
+  "manifests": [
+    {"client": "Claude Code plugin and Copilot CLI 1.0.68", "format": "claude", "path": "plugins/{id}/.claude-plugin/plugin.json", "mcp_path": "plugins/{id}/.mcp.json", "url": "alias"},
+    {"client": "OpenAI plugin upload and its ZIP", "format": "codex", "path": "plugins/{id}/.codex-plugin/plugin.json", "mcp_path": "plugins/{id}/.mcp.json", "url": "alias"},
+    {"client": "Gemini CLI extension", "format": "gemini", "path": "plugins/{id}/gemini-extension.json", "mcp_path": "plugins/{id}/gemini-extension.json", "url": "alias"},
+    {"client": "Agent Plugins 1.0.0 (Codex CLI, Kiro powers and other Agent Plugins clients)", "format": "agent-plugins", "path": "plugins/{id}/plugin.json", "mcp_path": "plugins/{id}/mcp.json", "url": "canonical"},
+    {"client": "Google Antigravity", "format": "antigravity", "path": "plugins/{id}/.antigravity-plugin/plugin.json", "mcp_path": "plugins/{id}/mcp_config.json", "url": "canonical"},
+    {"client": "Devin", "format": "devin", "path": "integrations/devin/{id}/.devin-plugin/plugin.json", "mcp_path": "integrations/devin/{id}/.devin-plugin/plugin.json", "url": "canonical"}
+  ]
+}

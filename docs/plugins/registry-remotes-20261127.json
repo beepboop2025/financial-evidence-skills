@@ -1,0 +1,53 @@
+{
+  "schema": "liquilens.registry-remotes.v1",
+  "read_at": "2026-11-27T05:45:55Z",
+  "registry": "https://registry.modelcontextprotocol.io/v0/servers",
+  "method": "One GET per server name with version=latest; the entry whose name matches exactly.",
+  "servers": [
+    {
+      "name": "io.github.beepboop2025/liquilens",
+      "query": "https://registry.modelcontextprotocol.io/v0/servers?search=io.github.beepboop2025%2Fliquilens&version=latest",
+      "version": "1.8.4",
+      "title": "LiquiLens: the record of India's banks and lenders",
+      "status": "active",
+      "is_latest": true,
+      "published_at": "2026-11-27T00:48:10.09638Z",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://api.liquilens.in/mcp"
+        }
+      ]
+    },
+    {
+      "name": "io.github.beepboop2025/seiche",
+      "query": "https://registry.modelcontextprotocol.io/v0/servers?search=io.github.beepboop2025%2Fseiche&version=latest",
+      "version": "0.16.17",
+      "title": "Seiche: World-markets evidence terminal",
+      "status": "active",
+      "is_latest": true,
+      "published_at": "2026-11-26T08:59:39.942009Z",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://api.seiche.info/mcp"
+        }
+      ]
+    },
+    {
+      "name": "io.github.beepboop2025/undertow",
+      "query": "https://registry.modelcontextprotocol.io/v0/servers?search=io.github.beepboop2025%2Fundertow&version=latest",
+      "version": "1.14.0",
+      "title": "Undertow market liquidity and exit-cost tools",
+      "status": "active",
+      "is_latest": true,
+      "published_at": "2026-11-18T17:27:31.784199Z",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://api.seiche.info/undertow/mcp"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "undertow",
+  "displayName": "LiquiLens Undertow",
+  "version": "1.0.4",
+  "description": "Check what exiting a position at a given size may cost, and where liquidity has thinned, from public venue data with its timestamps and coverage.",
+  "logo": "assets/logo.svg",
+  "suggestedPrompts": [
+    "Compare indicative BTC exits for $10,000 and $100,000 with coverage limits.",
+    "Review recent depth episodes and explain what the observations can support.",
+    "Check venue concentration and price reconciliation before a liquidity review."
+  ],
+  "author": {
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://liquilens-undertow.com/developers/",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT",
+  "keywords": [
+    "undertow",
+    "liquidity",
+    "exit cost",
+    "market depth",
+    "slippage",
+    "crypto",
+    "btc",
+    "perpetual funding",
+    "venue concentration"
+  ]
+}

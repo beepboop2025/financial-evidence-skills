@@ -1,0 +1,17 @@
+{
+  "name": "seiche",
+  "displayName": "Seiche",
+  "description": "Research public money markets, regional funding context, GIFT City and gold carry using verified direct-source tools",
+  "shortDescription": "Direct-source market research",
+  "homepage": "https://seiche.info/developers.html",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "logo": "logo.svg",
+  "keywords": [
+    "Finance"
+  ],
+  "mcpServers": {
+    "seiche": {
+      "url": "https://api.seiche.info/mcp"
+    }
+  }
+}

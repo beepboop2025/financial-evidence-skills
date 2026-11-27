@@ -1,0 +1,31 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "liquilens",
+  "displayName": "LiquiLens",
+  "version": "1.0.4",
+  "description": "Research India's banks and lenders from their own public filings, with every figure's source document and date.",
+  "logo": "assets/logo.svg",
+  "suggestedPrompts": [
+    "Review AU Small Finance Bank's asset quality, RBI actions and peer position with filing dates.",
+    "Which urban co-operative banks does LiquiLens cover, and how current are their filings?",
+    "Find an NBFC by name or CIN and show its RBI register entry and reviewed filings."
+  ],
+  "author": {
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://liquilens.in/developers/",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT",
+  "keywords": [
+    "liquilens",
+    "india",
+    "banks",
+    "nbfc",
+    "lenders",
+    "rbi",
+    "bank filings",
+    "asset quality",
+    "co-operative banks"
+  ]
+}

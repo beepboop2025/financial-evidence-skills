@@ -69,7 +69,9 @@ class ProductPluginTests(unittest.TestCase):
         for slug in metadata:
             item = builder.review_metadata(slug, metadata, inventory)
             manifest = json.loads((ROOT / f"plugins/{slug}/.codex-plugin/plugin.json").read_text())
-            self.assertEqual(manifest["version"], "1.0.3" if slug in {"liquilens", "palimpsest", "seiche", "undertow", "narcoscope", "noisefloor", "riptide"} else "1.0.2")
+            expected = ("1.0.4" if slug in {"liquilens", "seiche", "undertow"}
+                        else "1.0.3" if slug in {"palimpsest", "narcoscope", "noisefloor", "riptide"} else "1.0.2")
+            self.assertEqual(manifest["version"], expected)
             self.assertEqual(manifest["interface"]["defaultPrompt"], item["defaultPrompt"])
             review = manifest["extensions"]["com.openai"]["review"]
             self.assertEqual(review["test_cases"], {"positive": item["positive"], "negative": item["negative"]})

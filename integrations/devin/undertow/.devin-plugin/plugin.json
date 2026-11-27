@@ -1,0 +1,17 @@
+{
+  "name": "undertow",
+  "displayName": "LiquiLens Undertow",
+  "description": "Check what exiting a position at a given size may cost, and where liquidity has thinned, from public venue data with its timestamps and coverage",
+  "shortDescription": "Liquidity and exit-cost checks",
+  "homepage": "https://liquilens-undertow.com/developers/",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "logo": "logo.svg",
+  "keywords": [
+    "Finance"
+  ],
+  "mcpServers": {
+    "undertow": {
+      "url": "https://api.seiche.info/undertow/mcp"
+    }
+  }
+}

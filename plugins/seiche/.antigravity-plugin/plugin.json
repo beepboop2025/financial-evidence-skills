@@ -1,0 +1,31 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "seiche",
+  "displayName": "Seiche",
+  "version": "1.0.4",
+  "description": "Research public money markets, regional funding context, GIFT City and gold carry using verified direct-source tools.",
+  "logo": "assets/logo.svg",
+  "suggestedPrompts": [
+    "Check which Seiche tools and sources are available for research.",
+    "Summarize money-market evidence with source dates and missing inputs.",
+    "Review India's money-market context and flag stale evidence."
+  ],
+  "author": {
+    "name": "LIQUILENS PRIVATE LIMITED",
+    "url": "https://liquilens.in/"
+  },
+  "homepage": "https://seiche.info/developers.html",
+  "repository": "https://github.com/beepboop2025/financial-evidence-skills",
+  "license": "MIT",
+  "keywords": [
+    "seiche",
+    "money markets",
+    "funding",
+    "repo",
+    "fx",
+    "gift city",
+    "gold",
+    "source rights",
+    "macro research"
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "name": "undertow",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Check what exiting a position at a given size may cost, and where liquidity has thinned, from public venue data with its timestamps and coverage. Compare indicative BTC exit costs at your size per venue, see realised market-depth collapses, venue concentration and a consensus price when venues disagree, estimate perpetual funding costs, stress a crypto portfolio under price moves you choose, and work through a gold sale, FX and cash-settlement scenario from your own inputs. The liquidity-tier board carries Seiche funding context, and the sealed record of past calls keeps its misses. A PARTIAL reading means the history is not yet sufficient; it is never a calm reading. Results are indicative research, not executable quotes, order placement, investment advice or access to private positions.",
   "author": {
     "name": "LIQUILENS PRIVATE LIMITED",
@@ -88,7 +88,8 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "Describes all sixteen tools the hosted server now serves, including exit cost per venue, funding cost, portfolio stress, the gold cash scenario, liquidity tiers and the sealed record. The MCP endpoint and review cases are unchanged."
+        "countries": [],
+        "release_notes": "Removes country restrictions, and the skill and README now also name the product's MCP Registry URL, which the repository's new Agent Plugins, Antigravity and Devin manifests use. This package's MCP endpoint, tools and review cases are unchanged."
       }
     }
   }
